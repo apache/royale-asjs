@@ -18,29 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	COMPILE::SWF {
-		import flash.display.DisplayObject;
-		import flash.display.Sprite;
-	}
-	
-    import org.apache.royale.jewel.beads.controls.slider.ISliderView;
-    import org.apache.royale.core.BeadViewBase;
+	COMPILE::SWF
+	{
     import org.apache.royale.core.IBead;
+    import org.apache.royale.core.ValuesManager;
+	}
+    import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IRangeModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.jewel.Button;
+    import org.apache.royale.jewel.beads.controls.slider.ISliderView;
 	
 	/**
-	 *  The SliderView class creates the visual elements of the org.apache.royale.jewel.Slider 
-	 *  component. The Slider has a track and a thumb control which are also created with view beads.
+	 *  The SliderView class creates the visual elements of the org.apache.royale.jewel.HSlider 
+	 *  component. The HSlider has a track and a thumb control which are also created with view beads.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -144,7 +141,7 @@ package org.apache.royale.jewel.beads.views
 				sliderTrackContainer.appendChild(sliderTrackFill);
 				sliderTrackContainer.appendChild(sliderTrack);
 
-				host.positioner.appendChild(sliderTrackContainer);
+				host.transformElement.appendChild(sliderTrackContainer);
             }
 
 			// listen for changes to the model and adjust the UI accordingly.

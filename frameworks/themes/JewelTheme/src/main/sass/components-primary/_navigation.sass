@@ -20,18 +20,21 @@
 
 
 // Jewel Navigation
+$navigation-itemrenderer-padding: 16px
 
 // Navigation variables
 .jewel.navigation
     background-color: #ffffff
 
+    .layout.vertical
+        align-items: stretch
 
 // Jewel NavigationLinkItemRenderer
 
 // NavigationLinkItemRenderer variables
 .jewel.navigationlink
     margin: 0
-    padding: 0 $itemrenderer-padding
+    padding: 0 $navigation-itemrenderer-padding
     font:
         // family: $font-stack
         size: $font-size
@@ -39,10 +42,25 @@
 
     color: rgba(black, 0.6)
     
-    &.hovered:hover
+    &.hovered
         //color: $font-theme-color
         background: lighten($default-color, 10%) !important
 
     // &.selectable:active
     //     //color: $font-theme-color
-    //     background: $default-color !important
+    //     background: lighten($default-color, 15%) !important
+
+    // an icon used to show the collapsed state of the renderer (open/close)
+    .hint
+        &.fonticon
+            margin-left: auto
+
+.navigation-section-group
+    transition: height .5s
+    overflow: hidden !important
+    // height: this is calculated in code using `childNavigation.element.scrollHeight`
+    //&.closed
+        //  height: 0
+    
+    .navigationlink
+        padding-left: 34px

@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="MXRoyaleJS.test" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../../../../../../.."/>
+    
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="ROYALE_HOME" value="${env.ROYALE_HOME}"/>
+    <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
+    <property name="target.name" value="MXRoyaleJS-${release.version}.swc" />
+
+    <!--
+        Windows browser:
+            try chrome first because it's the most popular browser
+            otherwise, try to fall back to firefox
+            DON'T use internet explorer! it cannot run scripts in local pages
+    -->
+    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"/>
+        </and>
+    </condition>
+
+    <!--
+        macOS browser:
+            try chrome first because it's the most popular browser
+            otherwise, try to fall back to firefox
+            DON'T use safari! it asks the user to confirm opening local pages
+    -->
+    <condition property="royaleunit.browser" value="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome">
+        <and>
+            <os family="mac"/>
+            <available file="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="/Applications/Firefox.app/Contents/MacOS/firefox">
+        <and>
+            <os family="mac"/>
+            <available file="/Applications/Firefox.app/Contents/MacOS/firefox"/>
+        </and>
+    </condition>
+
+    <!--
+        Linux/Unix browser
+    -->
+    <condition property="royaleunit.browser" value="/usr/bin/firefox">
+        <and>
+            <os family="unix"/>
+            <available file="/usr/bin/firefox"/>
+        </and>
+    </condition>
+
+    <property name="report.dir" value="${basedir}/out" />
+
+    <target name="main" depends="clean,compile,test" description="Clean test of ${target.name}">
+    </target>
+
+    <target name="clean">
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${basedir}/target">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${report.dir}">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <path id="lib.path">
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="royaleUnitTasks.jar"/>
+    </path>
+
+    <target name="compile" description="Cross-compiles tests">
+        <echo message="Cross-compiling tests"/>
+        <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
+        <echo message="playerglobal.version: ${playerglobal.version}"/>
+
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+            Link in the classes (and their dependencies) for the MXML tags
+            listed in this project's manifest.xml.
+            Also link the additional classes (and their dependencies)
+            listed in RoyaleUIClasses.as,
+            because these aren't referenced by the manifest classes.
+            Keep the standard metadata when compiling.
+            Include the appropriate CSS files and assets in the SWC.
+            Don't include any resources in the SWC.
+            Write a bundle list of referenced resource bundles
+            into the file bundles.properties in this directory.
+        -->
+        <mxmlc fork="true"
+            file="${basedir}/../../../../../../projects/MXRoyale/src/test/royale/FlexUnitRoyaleApplication.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <!--
+            <jvmarg value="-Xdebug" />
+            <jvmarg value="-Xnoagent" />
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8763,server=y,suspend=y" />
+             -->
+            <arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css" />
+            <arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-swf.swc:defaults.css" />
+            <arg value="-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css" />
+           <!-- <arg value="-debug" />-->
+            <arg value="-compiler.targets=JSRoyale" />
+            <arg value="-js-output=target" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </mxmlc>
+    </target>
+
+    <target name="check-royaleunit-browser" if="royaleunit.browser" unless="skip-tests">
+        <!--
+            if the royaleunit.browser property was provided manually,
+            check if the file actually exists
+        -->
+        <condition property="royaleunit.browser.exists">
+            <and>
+                <isset property="royaleunit.browser" />
+                <available file="${royaleunit.browser}" type="file" />
+            </and>
+        </condition>
+        
+        <fail unless="royaleunit.browser.exists" message="Invalid royaleunit.browser path: &quot;${royaleunit.browser}&quot;. To skip RoyaleUnit tests, use -Dskip-tests." />
+    </target>
+
+    <target name="test" depends="check-royaleunit-browser"
+            if="royaleunit.browser.exists" unless="skip-tests"
+            xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+        <macrodef name="debug.test">
+            <attribute name="is.needed" default="false"/>
+            <sequential>
+                <echo if:true="@{is.needed}">JS-RELEASE TESTS FAILED</echo>
+                <echo if:true="@{is.needed}">Running backup tests in js-debug build, because release build tests failed</echo>
+                <royaleunit if:true="@{is.needed}"
+                            player="html"
+                            swf="${basedir}/target/bin/js-debug/index.html"
+                            command="${royaleunit.browser}"
+                            workingDir="${basedir}"
+                            toDir="${report.dir}"
+                            haltonfailure="false"
+                            failureProperty="debugBuildFail"
+                            verbose="true"
+                            localTrusted="true"
+                            timeout="90000" />
+                <condition if:true="@{is.needed}" property="debugTestResult" value="PASSED" else="FAILED">
+                    <not>
+                        <isset property="debugBuildFail"/>
+                    </not>
+                </condition>
+            </sequential>
+        </macrodef>
+
+        <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
+        <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
+        <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
+
+        <mkdir dir="${report.dir}" />
+        <royaleunit
+                player="html"
+                swf="${basedir}/target/bin/js-release/index.html"
+                command="${royaleunit.browser}"
+                workingDir="${basedir}"
+                toDir="${report.dir}"
+                haltonfailure="false"
+                failureProperty="releaseBuildFail"
+                verbose="true"
+                localTrusted="true"
+                timeout="90000" />
+
+        <condition property="releaseTestResult" value="PASSED" else="FAILED">
+            <not>
+                <isset property="releaseBuildFail"/>
+            </not>
+        </condition>
+
+        <!-- the above runs a test in release build. If it fails, try again in debug-build -->
+        <debug.test is.needed="${releaseBuildFail}"/>
+        <!-- if the debug test ran, it will had already set 'debugTestResult', otherwise set it to 'Not tested' below -->
+        <property name="debugTestResult" value="Not tested" />
+
+        <property name="testResult">
+            ${ant.project.name} RoyaleUnit Release build tests: ${releaseTestResult}
+            ${ant.project.name} RoyaleUnit Debug build tests: ${debugTestResult}
+        </property>
+
+        <!-- Generate readable JUnit-style reports -->
+        <junitreport todir="${report.dir}">
+            <fileset dir="${report.dir}">
+                <include name="TEST-*.xml" />
+            </fileset>
+            <report format="frames" todir="${report.dir}/html" />
+        </junitreport>
+
+        <!-- fail now if release tests are broken (with debug test info as well) -->
+        <fail if="releaseBuildFail" message="Test Failure ${line.separator}RoyaleUnit Release Build Tests must pass: ${line.separator} ${testResult}" />
+        <!-- otherwise just show test result -->
+        <echo>${testResult}</echo>
+    </target>
+</project>

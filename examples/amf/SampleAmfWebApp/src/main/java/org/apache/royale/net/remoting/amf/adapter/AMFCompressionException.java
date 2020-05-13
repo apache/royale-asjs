@@ -28,7 +28,7 @@ public class AMFCompressionException extends RuntimeException {
 	/**
 	 * Creates an exception with an error code.
 	 *
-	 * @param compressionError
+	 * @param compressionError the amf compression error
 	 */
 	public AMFCompressionException(AMFCompressionError compressionError) {
 		super(compressionError.getMessage());
@@ -37,8 +37,8 @@ public class AMFCompressionException extends RuntimeException {
 	/**
 	 * Creates an exception with an error code and cause.
 	 *
-	 * @param compressionError
-	 * @param cause
+	 * @param compressionError the amf compression error
+	 * @param cause the cause
 	 */
 	public AMFCompressionException(AMFCompressionError compressionError, Throwable cause) {
 		super(compressionError.getMessage(), cause);

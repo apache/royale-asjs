@@ -23,7 +23,7 @@ package mx.formatters
 import mx.managers.ISystemManager;
 import mx.managers.SystemManager;
 
-[ResourceBundle("formatters")]
+//[ResourceBundle("formatters")]
 
 /**
  *  The PhoneFormatter class formats a valid number into a phone number format,

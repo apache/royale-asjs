@@ -107,7 +107,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
+[Style(name="borderVisible", type="Boolean", inherit="no")]
+//, theme="spark, mobile"
 
 /**
  *  The alpha of the content background for this component.

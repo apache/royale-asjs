@@ -20,11 +20,11 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.sendBeadEvent;
 
 
     /**
@@ -77,12 +77,13 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		protected function initComplete(event:Event):void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
-			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			labelField = _dataProviderModel.labelField;
 
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
@@ -126,7 +127,7 @@ package org.apache.royale.html.beads
 		{
 			ignoreDPChange = true;
 			//simulate a dataProvider change (full renderer refresh)
-			_dataProviderModel.dispatchEvent(new Event('dataProviderChanged'));
+			sendBeadEvent(_dataProviderModel,"dataProviderChanged");
 			ignoreDPChange = false;
 		}
 
@@ -140,6 +141,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel():IDataProviderModel
 		{

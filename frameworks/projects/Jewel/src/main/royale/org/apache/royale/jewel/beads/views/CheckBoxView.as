@@ -18,22 +18,32 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	COMPILE::SWF
+	{
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
-	
-    import org.apache.royale.core.BeadViewBase;
+
 	import org.apache.royale.core.CSSTextField;
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IToggleButtonModel;
-	import org.apache.royale.events.Event;
+	}
+	COMPILE::JS
+	{
+	import org.apache.royale.events.IEventDispatcher;
+	import  org.apache.royale.events.Event;
+	}
+    import org.apache.royale.core.BeadViewBase;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.jewel.CheckBox;
+    import org.apache.royale.utils.css.addDynamicSelector;
 	
     /**
-     *  The CheckBoxView class is the default view for
-     *  the org.apache.royale.html.CheckBox class.
+     *  The CheckBoxView class is the default view for SWF platform
+     *  in the org.apache.royale.jewel.CheckBox class.
      *  It displays a simple checkbox with an 'x' if checked,
      *  and a label on the right.  There are no styles or
      *  properties to configure the look of the 'x' or the
@@ -48,8 +58,10 @@ package org.apache.royale.jewel.beads.views
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class CheckBoxView extends BeadViewBase implements IBeadView
+	public class CheckBoxView extends BeadViewBase
 	{
+		public static const CHECK_DEFAULT_SIZE:Number = 22;
+
         /**
          *  Constructor.
          *  
@@ -60,6 +72,8 @@ package org.apache.royale.jewel.beads.views
          */
 		public function CheckBoxView()
 		{
+			COMPILE::SWF
+			{
 			sprites = [ upSprite = new Sprite(),
 				        downSprite = new Sprite(),
 						overSprite = new Sprite(),
@@ -78,15 +92,17 @@ package org.apache.royale.jewel.beads.views
 				s.addChild(icon);
 				s.addChild(tf);
 			}
+			}
 		}
 		
+		COMPILE::SWF
+		{
 		private var upSprite:Sprite;
 		private var downSprite:Sprite;
 		private var overSprite:Sprite;
 		private var upAndSelectedSprite:Sprite;
 		private var downAndSelectedSprite:Sprite;
 		private var overAndSelectedSprite:Sprite;
-		
 		private var sprites:Array;
 		
 		private var _toggleButtonModel:IToggleButtonModel;
@@ -96,7 +112,15 @@ package org.apache.royale.jewel.beads.views
 		{
 			return _toggleButtonModel;
 		}
+		}
 		
+		COMPILE::JS
+        /**
+         * the org.apache.royale.core.HTMLElementWrapper#element for this component
+         * added to the positioner. Is a HTMLInputElement.
+         */
+        private var input:HTMLInputElement;
+
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *  
@@ -108,7 +132,21 @@ package org.apache.royale.jewel.beads.views
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+
+			COMPILE::JS
+			{
+			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
+            IEventDispatcher(value).addEventListener("sizeChanged",sizeChangeHandler);
+
+			input = (_strand as CheckBox).input;
+
+			// always run size change since there are no size change events
+			sizeChangeHandler(null);
+			}
             
+			COMPILE::SWF
+			{
 			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
@@ -137,6 +175,65 @@ package org.apache.royale.jewel.beads.views
 				text = toggleButtonModel.text;
 			if (toggleButtonModel.html !== null)
 				html = toggleButtonModel.html;
+			}
+		}
+
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		COMPILE::JS
+		private function sizeChangeHandler(event:Event) : void
+		{
+			// first reads
+			// var widthToContent:Boolean = (_strand as UIBase).isWidthSizedToContent();
+			// trace("widthToContent:" + widthToContent);
+
+			// var checkbox:CheckBox = (_strand as CheckBox);
+			// var inputWidth:String = input.style.width + "px";
+			// var inputHeight:String = input.style.height + "px";
+
+			// var ruleName:String;
+			// var beforeSelector:String = "";
+			// if(checkbox.checkWidth || checkbox.checkHeight) {
+			// 	ruleName = "chkb" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
+			// 	// addDynamicSelector(".jewel.checkbox." + ruleName, "border: 1px solid red;");
+			// 	// addDynamicSelector(".jewel.checkbox", "border: 1px solid red;");
+			// 	checkbox.className = ruleName;
+			// }
+			
+			// if(checkbox.checkWidth) {
+			// 	input.style.width = checkbox.checkWidth + "px";
+			// 	beforeSelector += "width: "+ checkbox.checkWidth +"px;";
+			// } 
+			// else {
+			// 	input.style.width = CHECK_DEFAULT_SIZE + "px";
+			// 	beforeSelector += "width: "+ CHECK_DEFAULT_SIZE +"px;";
+			// }
+
+			// if(checkbox.checkHeight) {
+			// 	input.style.height = checkbox.checkHeight + "px";
+			// 	beforeSelector += "height: "+ checkbox.checkHeight +"px;";
+			// } 
+			// else {
+			// 	input.style.height = CHECK_DEFAULT_SIZE + "px";
+			// 	beforeSelector += "height: "+ CHECK_DEFAULT_SIZE +"px;";
+			// }
+
+			// if(checkbox.checkWidth || checkbox.checkHeight) {
+			// 	addDynamicSelector(".jewel.checkbox." + ruleName + " input+span::before" , beforeSelector);
+			// 	addDynamicSelector(".jewel.checkbox." + ruleName + " input+span::after" , beforeSelector);
+			// }
+			// var strandWidth:Number;
+			// if (!widthToContent)
+			// {
+			// 	strandWidth = (_strand as UIBase).width;
+			// }
+			
+			// // input.x = 0;
+			// // input.y = 0;
+			// if (!widthToContent)
+			// 	input.width = strandWidth - spinner.width - 2;
 		}
 		
         /**
@@ -149,8 +246,15 @@ package org.apache.royale.jewel.beads.views
          */
 		public function get text():String
 		{
+			COMPILE::JS
+			{
+				return "";
+			}
+			COMPILE::SWF
+			{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.text;
+			}
 		}
 		
         /**
@@ -158,6 +262,8 @@ package org.apache.royale.jewel.beads.views
          */
 		public function set text(value:String):void
 		{
+			COMPILE::SWF
+			{
 			for each( var s:Sprite in sprites )
 			{
 				var tf:CSSTextField = s.getChildByName('textField') as CSSTextField;
@@ -165,6 +271,7 @@ package org.apache.royale.jewel.beads.views
 			}
 			
 			layoutControl();
+			}
 		}
 		
         /**
@@ -177,8 +284,15 @@ package org.apache.royale.jewel.beads.views
          */
 		public function get html():String
 		{
+			COMPILE::JS
+			{
+				return "";
+			}
+			COMPILE::SWF
+			{
 			var tf:CSSTextField = upSprite.getChildByName('textField') as CSSTextField;
 			return tf.htmlText;
+			}
 		}
 		
         /**
@@ -186,6 +300,8 @@ package org.apache.royale.jewel.beads.views
          */
 		public function set html(value:String):void
 		{
+			COMPILE::SWF
+			{
 			for each(var s:Sprite in sprites)
 			{
 				var tf:CSSTextField = s.getChildByName('textField') as CSSTextField;
@@ -193,13 +309,16 @@ package org.apache.royale.jewel.beads.views
 			}
 			
 			layoutControl();
+			}
 		}
 		
+		COMPILE::SWF
 		private function textChangeHandler(event:Event):void
 		{
 			text = toggleButtonModel.text;
 		}
 		
+		COMPILE::SWF
 		private function htmlChangeHandler(event:Event):void
 		{
 			html = toggleButtonModel.html;
@@ -227,6 +346,8 @@ package org.apache.royale.jewel.beads.views
 		{
 			_selected = value;
 			
+			COMPILE::SWF
+			{
 			layoutControl();
 			
 			if( value ) {
@@ -239,8 +360,10 @@ package org.apache.royale.jewel.beads.views
 				SimpleButton(_strand).downState = downSprite;
 				SimpleButton(_strand).overState = overSprite;
 			}
+			}
 		}
 		
+		COMPILE::SWF
 		private function selectedChangeHandler(event:Event):void
 		{
 			selected = toggleButtonModel.selected;
@@ -254,6 +377,7 @@ package org.apache.royale.jewel.beads.views
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
+		COMPILE::SWF
 		protected function layoutControl() : void
 		{
 			for each(var s:Sprite in sprites)
@@ -271,7 +395,6 @@ package org.apache.royale.jewel.beads.views
 				tf.x = icon.x + icon.width + 1;
 				tf.y = (mh - tf.height)/2;
 			}
-			
 		}
 		
         /**
@@ -282,6 +405,7 @@ package org.apache.royale.jewel.beads.views
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
+		COMPILE::SWF
 		protected function drawCheckBox(icon:Shape) : void
 		{
 			icon.graphics.clear();

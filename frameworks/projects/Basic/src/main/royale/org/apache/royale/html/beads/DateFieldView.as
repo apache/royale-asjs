@@ -22,10 +22,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDateChooserModel;
+    import org.apache.royale.core.IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ITextInput;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -34,6 +36,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.PointUtils;
     import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.geom.Point;
+    import org.apache.royale.html.beads.IComboBoxView;
 	import org.apache.royale.html.supportClasses.IDateChooser;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TextInput;
@@ -54,7 +57,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateFieldView extends BeadViewBase implements IBeadView
+	public class DateFieldView extends BeadViewBase implements IBeadView, IComboBoxView
 	{
 		/**
 		 *  constructor.
@@ -68,7 +71,7 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		private var _textInput:TextInput;
+		protected var _textInput:ITextInput;
 		private var _button:TextButton;
 
 		/**
@@ -79,7 +82,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get menuButton():TextButton
+		public function get popupButton():Object
 		{
 			return _button;
 		}
@@ -92,7 +95,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get textInput():TextInput
+		public function get textInputField():Object
 		{
 			return _textInput;
 		}
@@ -117,13 +120,15 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 
-			_textInput = new TextInput();
+            if (!_textInput)
+    			_textInput = new TextInput();
 			getHost().addElement(_textInput);
 			_textInput.width = 100;
 			_textInput.height = 18;
 
 			_button = new TextButton();
-			_button.text = "⬇︎";
+			//_button.text = "⬇︎";
+			_button.text =  "\uD83D\uDCC5"
 			getHost().addElement(_button);
 
 			COMPILE::SWF {
@@ -151,7 +156,7 @@ package org.apache.royale.html.beads
 		}
 
 
-		private var _popUp:IDateChooser;
+		protected var _popUp:IDateChooser;
 
 		/**
 		 *  The pop-up component that holds the selection list.
@@ -161,7 +166,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get popUp():IDateChooser
+		public function get popUp():Object
 		{
 			return _popUp;
 		}
@@ -203,6 +208,8 @@ package org.apache.royale.html.beads
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
+                    var popUpModel:IDateChooserModelWithChangeCheck = _popUp.getBeadByType(IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
+                    popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());
 					var point:Point = new Point(_textInput.width, _button.height);

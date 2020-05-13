@@ -123,7 +123,7 @@ package org.apache.royale.binding
          *  @productversion Royale 0.0
          */
         public var isStatic:Boolean;
-        public var staticRoot:Object
+        public var staticRoot:Object;
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -202,6 +202,8 @@ package org.apache.royale.binding
                 var arr:Array = destinationData as Array;
                 var n:int = arr.length;
                 var obj:Object = document[arr[0]];
+				if (obj == null && arr[0] == 'this')
+					obj = document;
                 if (obj == null)
                 {
                     if (!_listening) {

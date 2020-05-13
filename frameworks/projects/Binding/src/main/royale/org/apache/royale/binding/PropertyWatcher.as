@@ -124,6 +124,17 @@ package org.apache.royale.binding
          *  @productversion Royale 0.0
          */                
         public var getterFunction:Function;
+        
+        
+        /**
+         *  Support for function return binding on a chain
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public var funcProps:Object;
 		
         /**
          *  The event handler that gets called when
@@ -140,11 +151,16 @@ package org.apache.royale.binding
         protected function changeHandler(event:Event):void
         {
             if (event is ValueChangeEvent)
-            {
-                var propName:String = ValueChangeEvent(event).propertyName;
-                
-                if (propName != propertyName)
-                    return;
+            {   //normally it is 'generic' ValueChangeEvent.VALUE_CHANGE, but it can be other types, eg. "currentStateChange", so check here:
+                if (event.type == ValueChangeEvent.VALUE_CHANGE) {
+                    var propName:String = ValueChangeEvent(event).propertyName;
+
+                    if (propName != propertyName) {
+                        return;
+                    }
+
+                }
+                //@todo investigate possible optimization here. We can assume we already know the new Value and old Value via the event.
             }
             
             wrapUpdate(updateProperty);
@@ -231,7 +247,24 @@ package org.apache.royale.binding
                 }
                 else
                 {
-                    if (getterFunction != null)
+                    if (funcProps != null) {
+                        try{
+                            if (funcProps.functionGetter != null)
+                            {
+                                value = funcProps.functionGetter(funcProps.functionName).apply(source,
+                                        funcProps.paramFunction.apply(document));
+                            }
+                            else
+                            {
+                                value = source[funcProps.functionName].apply(source,
+                                        funcProps.paramFunction.apply(document));
+                            }
+                        } catch (e:Error)
+                        {
+                            value = null;
+                        }
+                    }
+                    else if (getterFunction != null)
                     {
                         try
                         {
@@ -244,7 +277,19 @@ package org.apache.royale.binding
                     }
                     else
                     {
-                        value = source[propertyName];
+                        COMPILE::JS
+                        {
+                            // someday have Proxy swap out PropertyWatcher?
+                            if (typeof source["getProperty"] === "function")
+                                value = source["getProperty"](propertyName);
+                            else
+                                value = source[propertyName];
+                            
+                        }
+                        COMPILE::SWF
+                        {
+                            value = source[propertyName];
+                        }
                     }
                 }
             }

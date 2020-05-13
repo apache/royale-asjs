@@ -120,7 +120,7 @@ package org.apache.royale.binding
                     }
                 }
                 else if (binding.source is Array
-                        && binding.source[0] in _strand
+                        /*&& binding.source[0] in _strand*/ // ConstantBindings are most often not instance constants on the strand
                         && binding.source.length == 2 && binding.destination.length == 2)
                 {
                     // can be simplebinding or constantbinding
@@ -140,7 +140,7 @@ package org.apache.royale.binding
 
                         prepareCreatedBinding(sb as IBinding, binding);
                     }
-                    else if (fieldWatcher && fieldWatcher.eventNames == null)
+                    else if (!fieldWatcher || fieldWatcher.eventNames == null)
                     {
                         var cb:ConstantBinding = new ConstantBinding();
                         cb.destinationPropertyName = binding.destination[1];

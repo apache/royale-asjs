@@ -19,6 +19,7 @@
 
 package mx.containers.utilityClasses
 {
+import org.apache.royale.core.IDocument;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 
@@ -27,13 +28,13 @@ import flash.events.Event;
 import flash.events.IEventDispatcher;
 */
 import mx.core.IInvalidating;
-/*
 import mx.core.mx_internal;
+/*
 import mx.core.IMXMLObject;
 import flash.events.EventDispatcher;
 
-use namespace mx_internal;
 */
+use namespace mx_internal;
 
 /**
  *  The ConstraintColumn class partitions an absolutely
@@ -50,7 +51,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ConstraintColumn extends EventDispatcher //implements IMXMLObject
+public class ConstraintColumn extends EventDispatcher implements IDocument//implements IMXMLObject
 {
 	//--------------------------------------------------------------------------
 	//
@@ -76,7 +77,7 @@ public class ConstraintColumn extends EventDispatcher //implements IMXMLObject
 	//  Variables
 	//
 	//--------------------------------------------------------------------------
-	protected var contentSize:Boolean = false;
+	mx_internal var contentSize:Boolean = false;
 	
 	//--------------------------------------------------------------------------
 	//
@@ -436,6 +437,11 @@ public class ConstraintColumn extends EventDispatcher //implements IMXMLObject
 		this.id = id;
 		if (!this.width && !this.percentWidth)
 			contentSize = true;
+    }
+    
+    public function setDocument(document:Object, id:String = null):void
+    {
+        initialized(document, id);
     }
     
 	/**

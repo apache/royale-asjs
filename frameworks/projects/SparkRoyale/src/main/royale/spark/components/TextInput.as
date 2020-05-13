@@ -33,8 +33,10 @@ COMPILE::JS
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.RestrictTextInputBead;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
+import mx.events.FocusEvent;
     
 import spark.components.supportClasses.SkinnableTextBase;
 import spark.components.supportClasses.SkinnableComponent;
@@ -254,6 +256,7 @@ public class TextInput extends SkinnableTextBase
     public function TextInput()
     {
         super();
+        typeNames = "TextInput";
     }
 
     //--------------------------------------------------------------------------
@@ -282,8 +285,8 @@ public class TextInput extends SkinnableTextBase
     //  text
     //----------------------------------
 
-    //[Bindable("change")]
-    //[Bindable("textChanged")]
+    [Bindable("change")]
+    [Bindable("textChanged")]
     
     // Compiler will strip leading and trailing whitespace from text string.
     [CollapseWhiteSpace]
@@ -291,34 +294,9 @@ public class TextInput extends SkinnableTextBase
     /**
      *  @private
      */
-    override public function set text(value:String):void
-    {
-        // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
-        COMPILE::SWF
-		{
-			inSetter = true;
-			ITextModel(model).text = value;
-			inSetter = false;
-		}
-		
-		COMPILE::JS
-		{
-			(element as HTMLInputElement).value = value;
-		}
-        // END
-
-        super.text = value;
-        // Trigger bindings to textChanged.
-        dispatchEvent(new Event("textChanged"));
-    }
-
-    // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
-    /**
-     *  @private
-     */
     override public function get text():String
     {
-        COMPILE::SWF
+		COMPILE::SWF
 		{
 			return ITextModel(model).text;
 		}
@@ -327,14 +305,90 @@ public class TextInput extends SkinnableTextBase
 			return (element as HTMLInputElement).value;
 		}
     }
-    // END
+    override public function set text(value:String):void
+    {
+        var changed:Boolean = false;
+        // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
+        COMPILE::SWF
+		{
+            if (value != ITextModel(model).text)
+            {
+    			inSetter = true;
+    			ITextModel(model).text = value;
+    			inSetter = false;
+                changed = true;
+            }
+		}
+		
+		COMPILE::JS
+		{
+            if (value != (element as HTMLInputElement).value)
+            {
+    			(element as HTMLInputElement).value = value;
+                changed = true;
+            }
+		}
+        // END
+
+      /*  super.text = value; */
+        // Trigger bindings to textChanged.
+        if (changed)
+        {
+            dispatchEvent(new Event("textChanged"));
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));            
+        }
+    }
+	
+    private var _editable:Boolean = true;
+    override public function get editable():Boolean{
+	return _editable;
+    }
+    override public function set editable(value:Boolean):void{
+	_editable = value;
+	COMPILE::JS
+	{
+		if(value == false) {
+			(element as HTMLInputElement).readOnly = true;
+		}
+		else {
+			 (element as HTMLInputElement).readOnly = false;
+		}
+	}
+   }
+    override public function set maxChars(value:int):void
+    {
+        super.maxChars = value;
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).maxLength = value;
+            //dispatchEvent(new Event('htmlTextChanged'));
+        }  
+    }
+    
+    private var restrictBead:RestrictTextInputBead;
+    
+    override public function get restrict():String 
+    {
+        if (!restrictBead) return null;
+        return restrictBead.restrict;
+    }
+
+    override public function set restrict(value:String):void
+    {
+        if (!restrictBead)
+        {
+            restrictBead = new RestrictTextInputBead();
+            addBead(restrictBead);
+        }
+        restrictBead.restrict = value;
+    }
     
     COMPILE::JS
 	override protected function createElement():WrappedHTMLElement
 	{
 		addElementToWrapper(this,'input');
 		element.setAttribute('type', 'text');
-		
+        
 		//attach input handler to dispatch royale change event when user write in textinput
 		//goog.events.listen(element, 'change', killChangeHandler);
 		goog.events.listen(element, 'input', textChangeHandler);
@@ -353,7 +407,15 @@ public class TextInput extends SkinnableTextBase
 	public function textChangeHandler(event:Event):void
 	{
         if (!inSetter)
+		{
             dispatchEvent(new Event(Event.CHANGE));
+		}
+	}
+	
+	override protected function focusOutHandler(event:FocusEvent):void
+	{
+		super.focusOutHandler(event);
+        dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 	}
 
     //--------------------------------------------------------------------------

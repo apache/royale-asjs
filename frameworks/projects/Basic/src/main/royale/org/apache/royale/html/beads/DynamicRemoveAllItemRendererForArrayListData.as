@@ -20,18 +20,18 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.IListView;
 
 	/**
-	 * Handles the removal of all itemRenderers once the all items has been removed
-	 * from the IDataProviderModel.
+	 *  Handles the removal of all itemRenderers once the all items has been removed
+	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -75,6 +75,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -87,12 +89,18 @@ package org.apache.royale.html.beads
 			dataProviderChangeHandler(null);
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
 		 * @private
+		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+			}
+			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
@@ -101,12 +109,14 @@ package org.apache.royale.html.beads
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the allItemsRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleAllItemsRemoved(event:CollectionEvent):void
 		{
@@ -117,7 +127,7 @@ package org.apache.royale.html.beads
 				model.selectedItem = null;
 			}
 
-			itemRendererParent.removeAllItemRenderers();
+			itemRendererOwnerView.removeAllItemRenderers();
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
@@ -131,6 +141,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel(): IDataProviderModel
 		{
@@ -140,10 +151,10 @@ package org.apache.royale.html.beads
 			return _dataProviderModel;
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -153,13 +164,13 @@ package org.apache.royale.html.beads
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
                 var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-                _itemRendererParent = view.dataGroup;
+                _itemRendererOwnerView = view.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 	}
 }

@@ -151,6 +151,21 @@ public class MustellaResultsParser {
 				else if (s.startsWith("[IOErrorEvent type=\"ioError\"") && s.contains("localhost:9999/ScriptComplete"))
 				{
 				}
+                else if (s.startsWith("Connection to http://localhost:9999/step_timeout halted"))
+                {
+                }
+                else if (s.startsWith("Error: Request for resource at http://localhost:9999/step_timeout"))
+                {
+                }
+                else if (s.startsWith("*** Security Sandbox Violation ***"))
+                {
+                }
+                else if (s.startsWith("Warning: HTTP send request error,"))
+                {
+                }
+                else if (s.startsWith("Warning: Failed to load policy file from http://localhost:9999/crossdomain.xml"))
+                {
+                }
 				else if (s.startsWith("Avertissement"))
 				{
 				}

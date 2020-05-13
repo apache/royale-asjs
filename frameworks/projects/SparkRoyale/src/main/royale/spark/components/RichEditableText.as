@@ -38,11 +38,7 @@ package spark.components
     import flash.ui.Keyboard;
     
     import flashx.textLayout.compose.ISWFContext;
-    import flashx.textLayout.container.TextContainerManager;
     import flashx.textLayout.conversion.ConversionType;
-    import flashx.textLayout.conversion.ITextExporter;
-    import flashx.textLayout.conversion.ITextImporter;
-    import flashx.textLayout.conversion.TextConverter;
     import flashx.textLayout.edit.EditManager;
     import flashx.textLayout.edit.EditingMode;
     import flashx.textLayout.edit.IEditManager;
@@ -79,23 +75,42 @@ package spark.components
     import mx.core.IFlexModuleFactory;
     import mx.core.IIMESupport;
     import mx.core.ISystemCursorClient;
-	import mx.core.mx_internal;
     import mx.managers.IFocusManager;
-    import mx.utils.StringUtil;
     
-    import spark.components.supportClasses.RichEditableTextContainerManager;
-    import spark.core.CSSTextLayoutFormat;
-    import spark.core.IEditableText;
     import spark.core.IViewport;
+    import spark.core.CSSTextLayoutFormat;
     import spark.core.NavigationUnit;
     import spark.events.TextOperationEvent;
     import spark.utils.TextUtil;
     
-    use namespace mx_internal;
     use namespace tlf_internal; */
+    
+    import mx.core.UIComponent;
+    import mx.core.mx_internal;
     import mx.events.FlexEvent;
-	import mx.core.UIComponent;
+    import mx.utils.StringUtil;
+    
+    import spark.components.supportClasses.RichEditableTextContainerManager;
+    import spark.core.IEditableText;
+    import spark.core.IViewport;
+    
+    import org.apache.royale.textLayout.beads.DispatchTLFKeyboardEventBead;
+    import org.apache.royale.textLayout.container.TextContainerManager;
+    import org.apache.royale.textLayout.conversion.ITextExporter;
+    import org.apache.royale.textLayout.conversion.ITextImporter;
+    import org.apache.royale.textLayout.conversion.TextConverter;
+    import org.apache.royale.textLayout.edit.EditingMode;
+    import org.apache.royale.textLayout.edit.ISelectionManager;
+    import org.apache.royale.textLayout.edit.SelectionState;
+    import org.apache.royale.textLayout.elements.TextFlow;
+    import org.apache.royale.textLayout.events.SelectionEvent;
+    import org.apache.royale.textLayout.factory.StandardTLFFactory;
+    import org.apache.royale.textLayout.factory.TLFFactory;
+    import org.apache.royale.textLayout.factory.TextFlowTextLineFactory;
+    import org.apache.royale.textLayout.factory.TextLineFactoryBase;
+    use namespace mx_internal;
 	import mx.managers.IFocusManagerComponent;
+	import org.apache.royale.textLayout.beads.DispatchTLFKeyboardEventBead;
 
     
     //--------------------------------------
@@ -439,9 +454,9 @@ package spark.components
      *  @see flashx.textLayout.container.TextContainerManager
      */
     public class RichEditableText extends UIComponent
-        implements IFocusManagerComponent
+        implements IFocusManagerComponent, IEditableText, IViewport
     {
-	//, IIMESupport, ISystemCursorClient,IViewport, IEditableText
+	//, IIMESupport, ISystemCursorClient
        // include "../core/Version.as";
         
         //--------------------------------------------------------------------------
@@ -473,11 +488,15 @@ package spark.components
          *  related to whether this class or the TLF classes
          *  that it uses are initialized first.
          */
-        /* private static function initClass():void
+        private static function initClass():void
         {
             if (classInitialized)
                 return;
             
+            if (!TLFFactory.defaultTLFFactory)
+                TLFFactory.defaultTLFFactory = new StandardTLFFactory();        
+            
+            /*
             // Set the TLF hook used for localizing runtime error messages.
             // TLF itself has English-only messages,
             // but higher layers like Flex can provide localized versions.
@@ -492,6 +511,7 @@ package spark.components
             // measure as the rest of the remaining width up to 10000.
             GlobalSettings.enableDefaultTabStops = 
                 !Configuration.playerEnablesArgoFeatures;
+            */
             
             staticPlainTextImporter =
                 TextConverter.getImporter(TextConverter.PLAIN_TEXT_FORMAT);
@@ -504,7 +524,7 @@ package spark.components
                 TextConverter.getExporter(TextConverter.PLAIN_TEXT_FORMAT);
             
             classInitialized = true;
-        }  */
+        }
         
         //--------------------------------------------------------------------------
         //
@@ -515,7 +535,7 @@ package spark.components
         /**
          *  @private
          */
-        //private static var classInitialized:Boolean = false;
+        private static var classInitialized:Boolean = false;
                 
         /**
          *  @private
@@ -539,14 +559,14 @@ package spark.components
          *  This TLF object is used to import a 'text' String
          *  containing linebreaks to create a multiparagraph TextFlow.
          */
-        //private static var staticPlainTextImporter:ITextImporter;
+        private static var staticPlainTextImporter:ITextImporter;
         
         /**
          *  @private
          *  This TLF object is used to export a TextFlow as plain 'text',
          *  by walking the leaf FlowElements in the TextFlow.
          */
-        //private static var staticPlainTextExporter:ITextExporter;
+        private static var staticPlainTextExporter:ITextExporter;
         
         /**
          *  @private
@@ -615,7 +635,9 @@ package spark.components
         {
             super();
             
-           /*  initClass();
+            typeNames = "RichEditableText";
+                
+            initClass();
             
             // Use the setter.
             text = "";
@@ -626,6 +648,7 @@ package spark.components
             // of the component.
             _textContainerManager = createTextContainerManager();
 
+            /*
             // Turn on TextField-like behavior which preserves the selection when text is set.
             // If the new text is shorter than the exisiting text, the selection may change.
             if (FlexVersion.compatibilityVersion > FlexVersion.VERSION_4_8) 
@@ -712,7 +735,7 @@ package spark.components
          *  @private
          *  Source of text: one of "text", "textFlow" or "content".
          */
-       // private var source:String = "text";
+        private var source:String = "text";
         
         /**
          *  @private
@@ -720,14 +743,14 @@ package spark.components
          *  determine whether to return immediately from damage event if there 
          *  have been no changes.
          */
-       // private var lastGeneration:uint = 0;    // 0 means not set
+        private var lastGeneration:uint = 0;    // 0 means not set
         
         /**
          *  @private
          *  The generation of the text flow that last reported its content
          *  bounds. 
          */
-       // private var lastContentBoundsGeneration:int = 0;  // 0 means not set
+        private var lastContentBoundsGeneration:int = 0;  // 0 means not set
         
         /**
          *  @private
@@ -744,17 +767,17 @@ package spark.components
         /**
          *  @private
          */
-       // private var inUpdateDLMethod:Boolean = false;
+        private var inUpdateDLMethod:Boolean = false;
         
         /**
          *  @private
          */
-       // private var remeasuringText:Boolean = false;
+        private var remeasuringText:Boolean = false;
 
         /**
          *  @private
          */
-       // mx_internal var passwordChar:String = "*";
+        mx_internal var passwordChar:String = "*";
         
         /**
          *  @private
@@ -805,14 +828,14 @@ package spark.components
          *  Cache the width constraint as set by the layout in setLayoutBoundsSize()
          *  so that text reflow can be calculated during a subsequent measure pass.
          */
-       // private var widthConstraint:Number = NaN;
+        private var widthConstraint:Number = NaN;
         
         /**
          *  @private
          *  Cache the height constraint as set by the layout in setLayoutBoundsSize()
          *  so that text reflow can be calculated during a subsequent measure pass.
          */
-      //  private var heightConstraint:Number = NaN;
+        private var heightConstraint:Number = NaN;
         
         /**
          *  @private
@@ -820,14 +843,14 @@ package spark.components
          *  that until the next selection is set, either interactively or via the
          *  API.
          */
-      //  private var hasProgrammaticSelectionRange:Boolean = false;
+        private var hasProgrammaticSelectionRange:Boolean = false;
         
         /**
          *  @private
          *  True if this component sizes itself based on its actual
          *  contents.
          */
-       // mx_internal var autoSize:Boolean = false;
+        mx_internal var autoSize:Boolean = false;
         
         /**
          *  @private
@@ -842,11 +865,11 @@ package spark.components
         /**
          *  @private
          */
-       // private var lastUnscaledWidth:Number;
+        private var lastUnscaledWidth:Number;
         /**
          *  @private
          */
-      //  private var lastUnscaledHeight:Number;
+        private var lastUnscaledHeight:Number;
         
         //--------------------------------------------------------------------------
         //
@@ -873,12 +896,12 @@ package spark.components
         /**
          *  @private
          */
-       // private var enabledChanged:Boolean = false;
+        private var enabledChanged:Boolean = false;
         
         /**
          *  @private
          */
-        /* override public function set enabled(value:Boolean):void
+        override public function set enabled(value:Boolean):void
         {
             if (value == super.enabled)
                 return;
@@ -888,7 +911,7 @@ package spark.components
             
             invalidateProperties();
             invalidateDisplayList();
-        } */
+        }
         
         //----------------------------------
         // explicitHeight
@@ -933,11 +956,11 @@ package spark.components
         /**
          *  @private
          */
-        /* public function get isTruncated():Boolean
+        public function get isTruncated():Boolean
         {
             // This class does not support truncation
             return false;
-        } */
+        }
                
         //----------------------------------
         // percentHeight
@@ -1008,12 +1031,12 @@ package spark.components
         /**
          *  @private
          */
-        //private var _clipAndEnableScrolling:Boolean = false;
+        private var _clipAndEnableScrolling:Boolean = false;
         
         /**
          *  @private
          */
-        //private var clipAndEnableScrollingChanged:Boolean = false;
+        private var clipAndEnableScrollingChanged:Boolean = false;
         
         /**
          *  @copy spark.core.IViewport#clipAndEnableScrolling
@@ -1025,17 +1048,17 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get clipAndEnableScrolling():Boolean 
+        public function get clipAndEnableScrolling():Boolean 
         {
             return _clipAndEnableScrolling;
-        } */
+        }
         
         /**
          *  @private
          *  Set to true by a scroller when it installs this as a viewport.
          *  Set to false by a scroller when it uninstalls this as a viewport.
          */
-        /* public function set clipAndEnableScrolling(value:Boolean):void 
+        public function set clipAndEnableScrolling(value:Boolean):void 
         {
             if (value == _clipAndEnableScrolling) 
                 return;
@@ -1044,7 +1067,7 @@ package spark.components
             clipAndEnableScrollingChanged = true;
             
             invalidateProperties();
-        } */
+        }
         
         //----------------------------------
         //  contentHeight
@@ -1125,15 +1148,15 @@ package spark.components
         /**
          *  @private
          */
-       // private var _horizontalScrollPosition:Number = 0;
+        private var _horizontalScrollPosition:Number = 0;
         
         /**
          *  @private
          */
-       /*  private var horizontalScrollPositionChanged:Boolean = false;
+        private var horizontalScrollPositionChanged:Boolean = false;
         
         [Bindable("propertyChange")]
-        [Inspectable(defaultValue="0", minValue="0.0")] */
+        [Inspectable(defaultValue="0", minValue="0.0")]
                 
         /**
          *  The number of pixels by which the text is scrolled horizontally.
@@ -1149,15 +1172,15 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get horizontalScrollPosition():Number
+        public function get horizontalScrollPosition():Number
         {
             return _horizontalScrollPosition;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set horizontalScrollPosition(value:Number):void
+        public function set horizontalScrollPosition(value:Number):void
         {
             // Convert NaN to 0 to keep TCM happy.
             if (isNaN(value))
@@ -1174,7 +1197,7 @@ package spark.components
             // Note:  TLF takes care of updating the container when the scroll
             // position is set so there is no need for us to invalidate the 
             // display list.
-        } */
+        }
         
         //----------------------------------
         //  verticalScrollPosition
@@ -1183,15 +1206,15 @@ package spark.components
         /**
          *  @private
          */
-        //private var _verticalScrollPosition:Number = 0;
+        private var _verticalScrollPosition:Number = 0;
         
         /**
          *  @private
          */
-        /* private var verticalScrollPositionChanged:Boolean = false;
+        private var verticalScrollPositionChanged:Boolean = false;
         
         [Bindable("propertyChange")]
-        [Inspectable(defaultValue="0", minValue="0.0")] */
+        [Inspectable(defaultValue="0", minValue="0.0")]
                 
         /**
          *  The number of pixels by which the text is scrolled vertically.
@@ -1207,15 +1230,15 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get verticalScrollPosition():Number
+        public function get verticalScrollPosition():Number
         {
             return _verticalScrollPosition;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set verticalScrollPosition(value:Number):void
+        public function set verticalScrollPosition(value:Number):void
         {
             // Convert NaN to 0 to keep TCM happy.
             if (isNaN(value))
@@ -1232,7 +1255,7 @@ package spark.components
             // Note:  TLF takes care of updating the container when the scroll
             // position is set so there is no need for us to invalidate the 
             // display list.
-        } */
+        }
         
         //--------------------------------------------------------------------------
         //
@@ -1252,7 +1275,7 @@ package spark.components
         /**
          *  @private
          */
-        //private var contentChanged:Boolean = false;
+        private var contentChanged:Boolean = false;
         
         /**
          *  @private
@@ -1330,16 +1353,16 @@ package spark.components
                 return;
             
             _content = value;
-            //contentChanged = true;
-            //source = "content";
+            contentChanged = true;
+            source = "content";
             
             // Of 'text', 'textFlow', and 'content', the last one set wins.
-            //textChanged = false;
-            //textFlowChanged = false;
+            textChanged = false;
+            textFlowChanged = false;
             
             // The other two are now invalid and must be recalculated when needed.
             _text = null;
-            //_textFlow = null;
+            _textFlow = null;
          
             /*
             invalidateProperties();
@@ -1347,7 +1370,13 @@ package spark.components
             invalidateDisplayList();
             */
             
-            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));                                   
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+            if (parent)
+            {
+                commitProperties();
+                //measure();
+                updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+            }
         }
         
         //----------------------------------
@@ -1357,14 +1386,14 @@ package spark.components
         /**
          *  @private
          */
-        //private var _displayAsPassword:Boolean = false;
+        private var _displayAsPassword:Boolean = false;
         
         /**
          *  @private
          */
-        /* private var displayAsPasswordChanged:Boolean = false;
+        private var displayAsPasswordChanged:Boolean = false;
         
-        [Inspectable(category="General", defaultValue="false")] */
+        [Inspectable(category="General", defaultValue="false")]
         
         /**
          *  @copy flash.text.TextField#displayAsPassword
@@ -1374,15 +1403,15 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get displayAsPassword():Boolean
+        public function get displayAsPassword():Boolean
         {
             return _displayAsPassword;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set displayAsPassword(value:Boolean):void
+        public function set displayAsPassword(value:Boolean):void
         {
             if (value == _displayAsPassword)
                 return;
@@ -1393,7 +1422,7 @@ package spark.components
             invalidateProperties();
             invalidateSize();
             invalidateDisplayList();
-        } */
+        }
         
         //----------------------------------
         //  editable
@@ -1407,9 +1436,9 @@ package spark.components
         /**
          *  @private
          */
-        /* private var editableChanged:Boolean = false;
+        private var editableChanged:Boolean = false;
         
-        [Inspectable(category="General", defaultValue="true")] */
+        [Inspectable(category="General", defaultValue="true")]
         
         /**
          *  A flag indicating whether the user is allowed
@@ -1465,7 +1494,7 @@ package spark.components
          *  Note that this is not a public property
          *  and does not use the invalidation mechanism.
          */
-        /* private function get editingMode():String
+        private function get editingMode():String
         {
             // Note: this could be called before all properties are committed.
             
@@ -1479,12 +1508,12 @@ package spark.components
             }
             
             return _textContainerManager.editingMode;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* private function set editingMode(value:String):void
+        private function set editingMode(value:String):void
         {
             var lastEditingMode:String = _textContainerManager.editingMode;
             
@@ -1506,7 +1535,7 @@ package spark.components
                 
                 _textContainerManager.endInteraction();
             }
-        } */
+        }
         
         //----------------------------------
         //  enableIME
@@ -1655,7 +1684,7 @@ package spark.components
         //  lineBreak
         //----------------------------------
         
-        //[Inspectable(environment="none")]
+        [Inspectable(environment="none")]
 
         /**
          *  @private
@@ -1664,18 +1693,18 @@ package spark.components
          *  interface. The lineBreak style should be used instead of this
          *  property.
          */
-        /* public function get lineBreak():String
+        public function get lineBreak():String
         {
             return getStyle("lineBreak");
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set lineBreak(value:String):void
+        public function set lineBreak(value:String):void
         {
             setStyle("lineBreak", value);
-        } */
+        }
         
         //----------------------------------
         //  maxChars
@@ -1718,9 +1747,9 @@ package spark.components
         /**
          *  @private
          */
-        /* private var _multiline:Boolean = true;
+        private var _multiline:Boolean = true;
         
-        [Inspectable(category="General", defaultValue="true")] */
+        [Inspectable(category="General", defaultValue="true")]
         
         /**
          *  Determines whether the user can enter multiline text.
@@ -1738,18 +1767,18 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get multiline():Boolean 
+        public function get multiline():Boolean 
         {
             return _multiline;
-        } */
+        }
         
         /**
          *  @private
          */
-       /*  public function set multiline(value:Boolean):void
+        public function set multiline(value:Boolean):void
         {
             _multiline = value;
-        } */
+        }
  
         //----------------------------------
         //  restrict
@@ -1758,9 +1787,9 @@ package spark.components
         /**
          *  @private
          */
-        /* private var _restrict:String = null;
+        private var _restrict:String = null;
         
-        [Inspectable(category="General", defaultValue="null")] */
+        [Inspectable(category="General", defaultValue="null")]
         
         /**
          *  @copy flash.text.TextField#restrict
@@ -1772,18 +1801,18 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get restrict():String 
+        public function get restrict():String 
         {
             return _restrict;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set restrict(value:String):void
+        public function set restrict(value:String):void
         {
             _restrict = value;
-        } */
+        }
         
         //----------------------------------
         //  selectable
@@ -1792,14 +1821,14 @@ package spark.components
         /**
          *  @private
          */
-        //private var _selectable:Boolean = true;
+        private var _selectable:Boolean = true;
         
         /**
          *  @private
          */
-        /* private var selectableChanged:Boolean = false;
+        private var selectableChanged:Boolean = false;
         
-        [Inspectable(category="General", defaultValue="true")] */
+        [Inspectable(category="General", defaultValue="true")]
         
         /**
          *  A flag indicating whether the content is selectable
@@ -1818,15 +1847,15 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get selectable():Boolean
+        public function get selectable():Boolean
         {
             return _selectable;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set selectable(value:Boolean):void
+        public function set selectable(value:Boolean):void
         {
             if (value == _selectable)
                 return;
@@ -1836,7 +1865,7 @@ package spark.components
             
             invalidateProperties();
             invalidateDisplayList();
-        } */
+        }
         
         //----------------------------------
         //  selectionActivePosition
@@ -1845,10 +1874,10 @@ package spark.components
         /**
          *  @private
          */
-        /* private var _selectionActivePosition:int = -1;
+        private var _selectionActivePosition:int = -1;
         
         [Bindable("selectionChange")]
-        [Inspectable(category="General", defaultValue="-1")] */
+        [Inspectable(category="General", defaultValue="-1")]
         
         /**
          *  A character position, relative to the beginning of the
@@ -1875,10 +1904,10 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get selectionActivePosition():int
+        public function get selectionActivePosition():int
         {
             return _selectionActivePosition;
-        } */
+        }
         
         //----------------------------------
         //  selectionAnchorPosition
@@ -1887,10 +1916,10 @@ package spark.components
         /**
          *  @private
          */
-        /* private var _selectionAnchorPosition:int = -1;
+        private var _selectionAnchorPosition:int = -1;
         
         [Bindable("selectionChange")]
-        [Inspectable(category="General", defaultValue="-1")] */
+        [Inspectable(category="General", defaultValue="-1")]
         
         /**
          *  A character position, relative to the beginning of the
@@ -1917,11 +1946,11 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get selectionAnchorPosition():int
+        public function get selectionAnchorPosition():int
         {
             return _selectionAnchorPosition;
-        } */
-        
+        }
+      
         //----------------------------------
         //  selectionHighlighting
         //----------------------------------
@@ -1929,7 +1958,7 @@ package spark.components
         /**
          *  @private
          */
-        /* private var _selectionHighlighting:String =
+        private var _selectionHighlighting:String = "whenFocused" /*
             TextSelectionHighlighting.WHEN_FOCUSED; */
         
         /**
@@ -1937,9 +1966,9 @@ package spark.components
          *  To indicate either selection highlighting or selection styles have
          *  changed.
          */
-        /* private var selectionFormatsChanged:Boolean = false;
+        private var selectionFormatsChanged:Boolean = false;
         
-        [Inspectable(category="General", enumeration="always,whenActive,whenFocused", defaultValue="whenFocused")] */
+        [Inspectable(category="General", enumeration="always,whenActive,whenFocused", defaultValue="whenFocused")]
         
         /**
          *  Determines when the text selection is highlighted.
@@ -1970,15 +1999,15 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get selectionHighlighting():String 
+        public function get selectionHighlighting():String 
         {
             return _selectionHighlighting;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set selectionHighlighting(value:String):void
+        public function set selectionHighlighting(value:String):void
         {
             if (value == _selectionHighlighting)
                 return;
@@ -1988,7 +2017,7 @@ package spark.components
             
             invalidateProperties();
             invalidateDisplayList();
-        } */
+        }
         
         //----------------------------------
         //  text
@@ -2002,7 +2031,7 @@ package spark.components
         /**
          *  @private
          */
-        //private var textChanged:Boolean = false;
+        private var textChanged:Boolean = false;
         
         [Bindable("change")]
         [Inspectable(category="General", defaultValue="")]
@@ -2114,7 +2143,7 @@ package spark.components
                 return; */
             
             _text = value;
-           /*  textChanged = true;
+            textChanged = true;
             source = "text";
             
             // Of 'text', 'textFlow', and 'content', the last one set wins.
@@ -2129,7 +2158,13 @@ package spark.components
             invalidateSize();
             invalidateDisplayList();
             
-            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));  */                                  
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+            if (parent)
+            {
+                commitProperties();
+                //measure();
+                updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+            }
         }
         
         //----------------------------------
@@ -2139,17 +2174,17 @@ package spark.components
         /**
          *  @private
          */
-       // private var _textContainerManager:RichEditableTextContainerManager;
+        private var _textContainerManager:RichEditableTextContainerManager;
         
         /**
          *  @private
          *  The TLF TextContainerManager instance that displays,
          *  scrolls, and edits the text in this component.
          */
-        /* mx_internal function get textContainerManager():TextContainerManager
+        mx_internal function get textContainerManager():TextContainerManager
         {
             return _textContainerManager;
-        } */
+        }
         
         //----------------------------------
         //  textFlow
@@ -2159,12 +2194,12 @@ package spark.components
          *  @private
          *  Storage for the textFlow property.
          */
-        //private var _textFlow:TextFlow;
+        private var _textFlow:TextFlow;
         
         /**
          *  @private
          */
-        //private var textFlowChanged:Boolean = false;
+        private var textFlowChanged:Boolean = false;
         
         /**
          *  The TextFlow representing the rich text displayed by this component.
@@ -2225,7 +2260,7 @@ package spark.components
          *  @playerversion AIR 2.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get textFlow():TextFlow
+        public function get textFlow():TextFlow
         {
             // Note: this could be called before all properties are committed.
             
@@ -2241,7 +2276,7 @@ package spark.components
                 }
                 else
                 {
-                    _textFlow = staticPlainTextImporter.importToFlow(_text);
+                    _textFlow = staticPlainTextImporter.importToFlow(_text) as TextFlow;
                 }
                 textFlowChanged = true;
             }
@@ -2260,14 +2295,13 @@ package spark.components
                 _textContainerManager.beginInteraction();
                 _textContainerManager.endInteraction();
             }
-            
             return _textFlow;
-        } */
+        } 
         
         /**
          *  @private
          */
-        /* public function set textFlow(value:TextFlow):void
+        public function set textFlow(value:TextFlow):void
         {
             // Treat setting the 'textFlow' to null
             // as if 'text' were being set to the empty String
@@ -2297,8 +2331,14 @@ package spark.components
             invalidateSize();
             invalidateDisplayList();
             
-            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));                                   
-        } */
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+            if (parent)
+            {
+                commitProperties();
+                //measure();
+                updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+            }
+        }
         
         //----------------------------------
         //  typicalText
@@ -2307,20 +2347,20 @@ package spark.components
         /**
          *  @private
          */
-        //private var typicalTextChanged:Boolean;
+        private var typicalTextChanged:Boolean;
                 
         /**
          *  @private
          */
-        //private var _typicalText:String;
+        private var _typicalText:String;
         
         /**
          *  @private
          *  Used when _typicalText is multiline
          */
-        /* private var _typicalTextFlow:TextFlow;
+        private var _typicalTextFlow:TextFlow;
         
-        [Inspectable(category="General", defaultValue="null")] */
+        [Inspectable(category="General", defaultValue="null")]
 
         /**
          *  Text that is used to determine
@@ -2344,15 +2384,15 @@ package spark.components
          *  @playerversion AIR 2.0
          *  @productversion Royale 0.9.4
          */
-        /* public function get typicalText():String 
+        public function get typicalText():String 
         {
             return _typicalText;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set typicalText(value:String):void
+        public function set typicalText(value:String):void
         {
             if (value == _typicalText)
                 return;
@@ -2364,7 +2404,7 @@ package spark.components
             invalidateProperties();
             invalidateSize();
             invalidateDisplayList();
-        } */
+        }
         
         //----------------------------------
         //  widthInChars
@@ -2519,7 +2559,7 @@ package spark.components
         /**
          *  @private
          */
-        /* override protected function commitProperties():void
+        override protected function commitProperties():void
         {
             super.commitProperties();
             
@@ -2553,7 +2593,7 @@ package spark.components
                 // and FTE performance will degrade on a large paragraph.
                 if (_text.indexOf("\n") != -1 || _text.indexOf("\r") != -1)
                 {
-                    _textFlow = staticPlainTextImporter.importToFlow(_text);
+                    _textFlow = staticPlainTextImporter.importToFlow(_text) as TextFlow;
                     _textContainerManager.setTextFlow(_textFlow);
                 }
                 else
@@ -2670,9 +2710,9 @@ package spark.components
 			// from the display list. This causes any accessibilityImplementation that
 			// was assigned to the component to be removed. The following line restores
 			// the accessibilityImplementation if it no longer exists. 
-			if (!accessibilityImplementation)
-				initializeAccessibility();
-        } */
+			//if (!accessibilityImplementation)
+			//	initializeAccessibility();
+        }
         
         /**
          *  @private
@@ -2901,9 +2941,11 @@ package spark.components
         /**
          *  @private
          */
-        /* override protected function updateDisplayList(unscaledWidth:Number,
+        override protected function updateDisplayList(unscaledWidth:Number,
                                                       unscaledHeight:Number):void 
         {
+            TLFFactory.defaultTLFFactory.currentContainer = this;
+
             inUpdateDLMethod = true;
             
             //trace("updateDisplayList", unscaledWidth, unscaledHeight, "autoSize", autoSize);
@@ -2978,7 +3020,7 @@ package spark.components
             lastUnscaledHeight = unscaledHeight;
             
             inUpdateDLMethod = false;
-         } */
+         }
         
         /**
          *  @private
@@ -3274,10 +3316,10 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function insertText(text:String):void
+        public function insertText(text:String):void
         {      
             handleInsertText(text);  
-        } */
+        }
         
         /**
          *  Appends the specified text to the end of the RichEditableText,
@@ -3294,10 +3336,10 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function appendText(text:String):void
+        public function appendText(text:String):void
         {
             handleInsertText(text, true);
-        } */
+        }
         
         /**
          *  @copy flashx.textLayout.container.ContainerController#scrollToRange() 
@@ -3307,14 +3349,14 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function scrollToRange(anchorPosition:int, activePosition:int):void
+        public function scrollToRange(anchorPosition:int, activePosition:int):void
         {
             // Make sure the properties are commited since the text could change.
             validateProperties();
             
             // Scrolls so that the text position is visible in the container. 
             textContainerManager.scrollToRange(anchorPosition, activePosition);       
-        } */
+        }
         
         /**
          *  Selects a specified range of characters.
@@ -3332,7 +3374,7 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function selectRange(anchorPosition:int,
+        public function selectRange(anchorPosition:int,
                                     activePosition:int):void
         {
             // Make sure the properties are commited since the text could change.
@@ -3364,7 +3406,7 @@ package spark.components
             // Remember if the current selection is a range which was set
             // programatically.
             hasProgrammaticSelectionRange = (anchorPosition != activePosition);
-        } */
+        }
         
         /**
          *  Selects all of the text. This does not include the final paragraph
@@ -3375,10 +3417,10 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function selectAll():void
+        public function selectAll():void
         {
             selectRange(0, int.MAX_VALUE);
-        } */
+        }
        
         /**
          *  Returns a TextLayoutFormat object specifying the computed formats
@@ -3633,17 +3675,17 @@ package spark.components
         /**
          *  @private
          */
-        /* mx_internal function createTextContainerManager():RichEditableTextContainerManager
+        mx_internal function createTextContainerManager():RichEditableTextContainerManager
         {
             return new RichEditableTextContainerManager(this);
-        } */
+        }
         
         /**
          *  @private
          */
-        /* private function updateStylesIfChanged():void
+        private function updateStylesIfChanged():void
         {
-            
+            /*
             if (hostFormatChanged)
             {
                 // Side-effect is it marks the text as damaged.
@@ -3680,7 +3722,8 @@ package spark.components
                 
                 selectionFormatsChanged = false;
             }
-        } */
+            */
+        }
         
         /**
          *  @private
@@ -3829,7 +3872,7 @@ package spark.components
          *  Changing one dimension may change the size of the measured text 
          *  and the layout manager needs to know this.
          */
-        /* private function remeasureText(width:Number, height:Number):Boolean
+        private function remeasureText(width:Number, height:Number):Boolean
         {   
             // Neither dimensions changed.  If auto-sizing we're still auto-sizing.
             if (width == measuredWidth && height == measuredHeight)
@@ -3881,7 +3924,7 @@ package spark.components
             remeasuringText = true;
             
             return true;            
-        } */
+        }
         
         /**
          *  @private
@@ -4033,7 +4076,7 @@ package spark.components
         /**
          *  @private
          */
-        /* private function createTextFlowFromContent(content:Object):TextFlow
+        private function createTextFlowFromContent(content:Object):TextFlow
         {
             var textFlow:TextFlow ;
             
@@ -4057,12 +4100,12 @@ package spark.components
             }
             
             return textFlow;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* private function updateEditingMode():void
+        private function updateEditingMode():void
         {
             var newEditingMode:String = EditingMode.READ_ONLY;
             
@@ -4075,14 +4118,14 @@ package spark.components
             }
             
             editingMode = newEditingMode;
-        } */
+        }
         
         /**
          *  @private
          * 
          *  This is used when text is either inserted or appended via the API.
          */
-        /* private function handleInsertText(newText:String, isAppend:Boolean=false):void
+        private function handleInsertText(newText:String, isAppend:Boolean=false):void
         {
             // Make sure all properties are committed.  The damage handler for the 
             // insert will cause the remeasure and display update.
@@ -4108,7 +4151,7 @@ package spark.components
             
             if (success)
                 dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-        } */
+        }
         
         /**
          *  @private
@@ -4624,7 +4667,7 @@ package spark.components
          *  @private
          *  Called when the TextContainerManager dispatches a 'selectionChange' event.
          */
-        /* private function textContainerManager_selectionChangeHandler(
+        private function textContainerManager_selectionChangeHandler(
             event:SelectionEvent):void
         {
             var oldAnchor:int = _selectionAnchorPosition;
@@ -4655,7 +4698,7 @@ package spark.components
                 //trace("selectionChangeHandler", _selectionAnchorPosition, _selectionActivePosition);
                 dispatchEvent(new FlexEvent(FlexEvent.SELECTION_CHANGE));
             }
-        } */
+        }
         
         /**
          *  @private
@@ -4898,6 +4941,20 @@ package spark.components
         {
             TextUtil.recycleTextLine(textLine as TextLine);
         } */
+        
+        override public function addedToParent():void
+        {
+            super.addedToParent();
+            commitProperties();
+            measure();
+            updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+            COMPILE::JS
+            {
+                if (element['tabIndex'] == -1)
+                    element['tabIndex'] = 0;
+            }
+            addBead(new DispatchTLFKeyboardEventBead());
+        }
     }
 
 }

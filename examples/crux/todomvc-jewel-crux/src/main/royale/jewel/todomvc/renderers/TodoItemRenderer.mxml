@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:js="library://ns.apache.org/royale/basic"
+    rollOver="rollOverHandler(event)"
+    rollOut="rollOutHandler(event)"
+    width="100%">
+
+    <fx:Script>
+        <![CDATA[
+			import jewel.todomvc.events.TodoEvent;
+			import jewel.todomvc.vos.TodoVO;
+
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
+
+            /**
+             *  Used to know if mouse is over this render in order to
+             *  show destroy button when exit editing state
+             */
+            private var mouseIsOverRenderer:Boolean = false;
+
+            /**
+             * the item used in bindnigs for this renderer
+             */
+            [Bindable("dataChange")]
+            public function get item():TodoVO {
+                return data as TodoVO;
+            }
+
+            /**
+             *  Change the item state between done/undone
+             */
+            public function changeItemState(event:Event):void {
+                dispatchEvent(new TodoEvent(TodoEvent.ITEM_STATE_CHANGED, item, null, event.target.selected));
+            }
+
+            /**
+             *  Destroy this todo item
+             */
+            public function removeItemClickHandler(event:Event):void {
+                COMPILE::JS
+                {
+                document.removeEventListener('click', commitLabelChanges, true);
+                }
+                dispatchEvent(new TodoEvent(TodoEvent.ITEM_REMOVED, item));
+            }
+
+            /**
+             *  commit changes to the todo item and exit 'editing' state
+             */
+            public function updateLabelAndExit(event:Event):void {
+                commitLabelChanges();
+            }
+
+            /**
+             *  Change renderer state to edit mode by double clicking in the todo item label
+             */
+            public function goToEditMode(event:Event):void
+            {
+                editfield.text = description.text;
+                currentState = "editing";
+                destroy_btn.visible = false;
+                editfield.setFocus();
+
+                COMPILE::JS
+                {
+                document.addEventListener('click', commitLabelChanges, true);
+                }
+            }
+
+            /**
+             *  remove document listener to stop listening click events. If user made changes to label, commit 
+             *  changes to the todo item and exit 'editing' state.
+             *  Make destroy button visible if mouse is over renderer.
+             */
+            public function commitLabelChanges():void {
+                COMPILE::JS
+                {
+                document.removeEventListener('click', commitLabelChanges, true);
+                }
+                if(item.label != editfield.text)
+                    dispatchEvent(new TodoEvent(TodoEvent.ITEM_LABEL_CHANGED, item, editfield.text));
+                currentState = 'normal';
+                if(mouseIsOverRenderer)
+                    destroy_btn.visible = true;
+            }
+
+            /**
+             *  Show destroy button when user rolls over the renderer
+             */
+            public function rollOverHandler(event:Event):void
+            {
+                mouseIsOverRenderer = true;
+                if(currentState == "normal")
+                    destroy_btn.visible = true;
+            }
+            
+            /**
+             *  Hide destroy button when user rolls out the renderer
+             */
+            public function rollOutHandler(event:Event):void
+            {
+                mouseIsOverRenderer = false;
+                if(currentState == "normal")
+                    destroy_btn.visible = false;
+            }
+		]]>
+    </fx:Script>
+
+    <j:states>
+		<js:State name="normal"/>
+		<js:State name="editing"/>
+	</j:states>
+
+    <j:beads>
+        <js:SimpleStatesImpl/>
+        <js:ItemRendererDataBinding />
+    </j:beads>
+    
+    <j:CheckBox selected="{item ? item.done : false}"
+        visible.normal="true" visible.editing="false"
+        click="changeItemState(event);">
+        <j:beads>
+            <j:InputButtonSize width="40" height="40"/>
+        </j:beads>
+    </j:CheckBox>
+    
+    <j:Label localId="description" width="84%" 
+        text="{item ? item.label : ''}" multiline="true"
+        visible.normal="true" visible.editing="false"
+        className="{item ? (item.done ? 'todolabel completed' : 'todolabel') : 'todolabel' }"
+        doubleClick="goToEditMode(event)"/>
+
+    <j:TextInput localId="editfield" width="100%"
+        visible.normal="false" visible.editing="true"
+        enter="updateLabelAndExit(event)"/>
+
+    <j:IconButton localId="destroy_btn" visible="false" className="destroy"
+        click="removeItemClickHandler(event)">
+        <j:icon>
+            <js:MaterialIcon text="{MaterialIconType.CLOSE}"/>
+        </j:icon>
+    </j:IconButton>
+
+</j:ListItemRenderer>
+

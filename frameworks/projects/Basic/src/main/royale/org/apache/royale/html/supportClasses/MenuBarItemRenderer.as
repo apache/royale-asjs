@@ -40,10 +40,6 @@ package org.apache.royale.html.supportClasses
 			super.addedToParent();
 			
 			addElement(label);
-            COMPILE::JS
-            {
-                label.setParentEventTarget(this);        
-            }
 		}
 		
 		override public function set data(value:Object):void
@@ -85,8 +81,6 @@ package org.apache.royale.html.supportClasses
 			
 			var h:Number = height;
 			var w:Number = width;
-			
-			updateRenderer();
 		}
 	}
 }

@@ -155,9 +155,9 @@ limitations under the License.
 
     <j:initialView>
         <j:View>
-            <js:beads>
+            <j:beads>
                 <j:VerticalLayout gap="10"/>
-            </js:beads>
+            </j:beads>
 
             <html:H3 text="RemoteObject AMF Test"/>
 

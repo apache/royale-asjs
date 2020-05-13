@@ -56,7 +56,10 @@ $alert-modal-opacity: .5
     min-height: $alert-min-height
     
     border: 0px solid
-    background-color: $background-color
+    @if $dark
+        background: lighten($background-color, 10%)
+    @else
+        background: lighten($background-color, 10%)
     box-shadow: 0px 20px 65px 0px rgba(0,0,0,0.8)
     border-radius: $alert-border-radius
 
@@ -100,8 +103,9 @@ $alert-modal-opacity: .5
 
     .jewel.controlbar
         @if $flat
-            background: $default-color
+            background: lighten($default-color, 15%)
             border: 0px solid
+            box-shadow: none
         @else
             background: linear-gradient(lighten($default-color, 5%), darken($default-color, 5%))
             border-top: 1px solid darken($default-color, 15%)

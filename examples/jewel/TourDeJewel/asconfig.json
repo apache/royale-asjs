@@ -1,0 +1,19 @@
+{
+    "config": "royale",
+    "compilerOptions": {
+        "debug": false,
+        "targets": ["JSRoyale"],
+        "source-path": [
+            "src/main/resources"
+        ],
+        "source-map": true,
+        "html-template": "src/main/resources/jewel-example-index-template.html",
+        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
+    },
+    "copySourcePathAssets": true,
+    "additionalOptions": "-js-dynamic-access-unknown-members=true",
+    "files":
+    [
+        "src/main/royale/App.mxml"
+    ]
+}

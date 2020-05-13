@@ -23,25 +23,16 @@ package mx.controls.advancedDataGridClasses
 /* import flash.display.DisplayObject;
 import flash.events.Event;
  */
-import org.apache.royale.events.Event;
-
-import mx.controls.AdvancedDataGrid; //BaseEx;
+import mx.controls.AdvancedDataGrid;
 import mx.controls.TextInput;
-//import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.dataGridClasses.DataGridColumn;
 import mx.core.ClassFactory;
-//import mx.core.ContextualClassFactory;
-//import mx.core.IEmbeddedFontRegistry;
 import mx.core.IFactory;
-//import mx.core.IFlexModuleFactory;
-//import mx.core.IIMESupport;
-//import mx.core.Singleton;
 import mx.core.mx_internal;
-//import mx.formatters.Formatter;
-//import mx.formatters.IFormatter;
-//import mx.styles.CSSStyleDeclaration;
 import mx.utils.StringUtil;
 
-import mx.controls.dataGridClasses.DataGridColumn;
+import org.apache.royale.core.UIBase;
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 //--------------------------------------
@@ -248,7 +239,8 @@ public class AdvancedDataGridColumn extends DataGridColumn
 
         return _embeddedFontRegistry;
     }
-    
+    */
+
     private static var _defaultItemEditorFactory:IFactory;
     
     mx_internal static function get defaultItemEditorFactory():IFactory
@@ -256,7 +248,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
         if (!_defaultItemEditorFactory)
             _defaultItemEditorFactory = new ClassFactory(TextInput);
         return _defaultItemEditorFactory;
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -294,12 +286,8 @@ public class AdvancedDataGridColumn extends DataGridColumn
     //
     //--------------------------------------------------------------------------
 
-    /**
-     *  @private
-     *  The AdvancedDataGrid that owns this column.
-     */
-    mx_internal var owner:AdvancedDataGrid; //BaseEx;
-
+    mx_internal var list:UIBase; //BaseEx;
+    
     /**
      *  @private
      */
@@ -323,15 +311,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
      * True if createInFontContext has been called.
      */
    // private var hasFontContextBeenSaved:Boolean = false;
-    
-    /**
-     *  @private
-     *  The zero-based index of this column as it is displayed in the grid.
-     *  It is not related to the structure of the data being displayed.
-     *  In MXML, the default order of the columns is the order of the
-     *  <code>mx:AdvancedDataGridColumn</code> tags.
-     */
-   // mx_internal var colNum:Number;
     
     // preferred width is the number we should use when measuring
     // regular width will be changed if we shrink columns to fit.
@@ -397,17 +376,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @productversion Royale 0.9.3
      */
    // public var sortDescending:Boolean = false;
-    public function get textAlign():Object
-    {
-        trace("textAlign not implemented");
-        return 0;
-    }
-    public function set textAlign(value:Object):void
-    {
-        trace("textAlign not implemented");
-    }
-
-
     //----------------------------------
     //  dataTipField
     //----------------------------------
@@ -591,7 +559,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var itemEditor:IFactory = null;//defaultItemEditorFactory;
+    public var itemEditor:IFactory = defaultItemEditorFactory;
 
     //----------------------------------
     //  editorDataField
@@ -638,7 +606,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorHeightOffset:Number = 0;
+    public var editorHeightOffset:Number = 0;
 
     //----------------------------------
     //  editorWidthOffset
@@ -662,7 +630,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorWidthOffset:Number = 0;
+    public var editorWidthOffset:Number = 0;
 
     //----------------------------------
     //  editorXOffset
@@ -687,7 +655,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorXOffset:Number = 0;
+    public var editorXOffset:Number = 0;
 
     //----------------------------------
     //  editorYOffset
@@ -712,7 +680,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorYOffset:Number = 0;
+    public var editorYOffset:Number = 0;
 
     //----------------------------------
     //  editorUsesEnterKey
@@ -899,51 +867,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
         _imeMode = value;
     } */
 
-
-    //----------------------------------
-    //  minWidth
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the minWidth property.
-     */
-    private var _minWidth:Number = 20;
-
-    [Bindable("minWidthChanged")]
-    [Inspectable(category="General", defaultValue="100")]
-
-    /**
-     *  The minimum width of the column, in pixels.
-     *  @default 20
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get minWidth():Number
-    {
-        return _minWidth;
-    }
-
-    /**
-     *  @private
-     */
-    public function set minWidth(value:Number):void
-    {
-        _minWidth = value;
-
-      /*   if (owner)
-        {
-            owner.invalidateList();
-        }
-
-        if (_width < value)
-            _width = value;
-
-        dispatchEvent(new Event("minWidthChanged")); */
-    }
 
     //----------------------------------
     //  resizable
@@ -1182,7 +1105,10 @@ public class AdvancedDataGridColumn extends DataGridColumn
 
             if (owner)
             {
-                owner.columnsInvalid();
+                (owner as AdvancedDataGrid).columnsInvalid();
+                // columns invisible at init don't get a dataprovider so 
+                // force assignment by faking a dp change
+                (owner as AdvancedDataGrid).model.dispatchEvent(new Event("dataProviderChanged"));
                 
                 //owner.invalidateProperties();
                 //owner.invalidateSize();
@@ -1192,49 +1118,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
     }
 
 
-
-    //----------------------------------
-    //  wordWrap
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the wordWrap property.
-     */
-    private var _wordWrap:*;
-
-    [Inspectable(category="Advanced")]
-
-    /**
-     *  Set to <code>false</code> to wrap the text in a row of this column
-     *  because it does not fit on one line
-     *  If <code>undefined</code>, the AdvancedDataGrid control's <code>wordWrap</code> property 
-     *  is used.
-     *
-     *  @default undefined
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get wordWrap():*
-    {
-        return _wordWrap;
-    }
-
-    /**
-     *  @private
-     */
-    public function set wordWrap(value:*):void
-    {
-        _wordWrap = value;
-
-       /*  if (owner)
-        {
-            owner.invalidateList();
-        } */
-    }
 
     //----------------------------------
     //  styleFunction

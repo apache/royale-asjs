@@ -15,19 +15,15 @@
  */
 package org.apache.royale.crux.utils.event
 {
-
 	COMPILE::SWF{
-		import flash.system.ApplicationDomain;
-		import flash.events.Event;
+	import flash.events.Event;
+	import flash.system.ApplicationDomain;
 	}
-
 	COMPILE::JS{
-		import org.apache.royale.events.Event;
+	import org.apache.royale.events.Event;
 	}
-
-	import org.apache.royale.reflection.getQualifiedClassName;
 	import mx.rpc.AsyncToken;
-	
+
 	import org.apache.royale.crux.metadata.EventHandlerMetadataTag;
 	import org.apache.royale.crux.reflection.MetadataHostMethod;
 	import org.apache.royale.crux.reflection.MethodParameter;
@@ -37,9 +33,8 @@ package org.apache.royale.crux.utils.event
 	import org.apache.royale.crux.utils.async.IAsynchronousEvent;
 	import org.apache.royale.crux.utils.async.IAsynchronousOperation;
 	import org.apache.royale.reflection.TypeDefinition;
-	import org.apache.royale.reflection.MethodDefinition;
 	import org.apache.royale.reflection.VariableDefinition;
-	
+	import org.apache.royale.reflection.getQualifiedClassName;
 	import org.apache.royale.reflection.utils.getMembersWithNameMatch;
 	
 	/**

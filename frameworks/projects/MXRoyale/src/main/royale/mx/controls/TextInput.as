@@ -31,17 +31,21 @@ import mx.core.ITextInput;
 import mx.core.UIComponent;
 import mx.core.UITextField;
 import mx.events.FlexEvent;
+import mx.events.KeyboardEvent;
+import mx.events.TextEvent;
 
 import org.apache.royale.core.ITextModel;
+import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.accessories.PasswordInputBead;
+import org.apache.royale.html.accessories.RestrictTextInputBead;
 import org.apache.royale.html.beads.DisableBead;
-import org.apache.royale.core.TextLineMetrics;
 
 COMPILE::SWF {
 	import org.apache.royale.html.beads.TextInputView;
 }
 import mx.core.mx_internal;
+
 use namespace mx_internal;
 
 /*
@@ -75,7 +79,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="change", type="flash.events.Event")]
+[Event(name="change", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when the <code>data</code> property changes.
@@ -121,7 +125,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="textInput", type="flash.events.TextEvent")]
+[Event(name="textInput", type="mx.events.TextEvent")]
 
 
 //--------------------------------------
@@ -361,11 +365,41 @@ public class TextInput extends UIComponent implements ITextInput
 		}
 		
 		_disableBead.disabled = !value;
+        
+        COMPILE::JS {
+            if (value)
+            {
+                element.removeEventListener("keypress", blockInput);
+                element.removeEventListener("keydown", blockEdit);
+            }
+            else 
+            {
+                element.addEventListener("keypress", blockInput);
+                element.addEventListener("keydown", blockEdit);
+            }
+        }
 		
 		COMPILE::SWF {
 			var textView:TextInputView = view as TextInputView;
 			textView.textField.mouseEnabled = super.enabled;
 		}
+    }
+    
+    COMPILE::JS
+    private function blockInput(event:Event):void
+    {
+        event["returnValue"] = false;
+        if (event.preventDefault) event.preventDefault();        
+    }
+    
+    COMPILE::JS
+    private function blockEdit(event:Event):void
+    {
+        if (event["key"] == "Delete" || event["key"] == "Backspace")
+        {
+            event["returnValue"] = false;
+            if (event.preventDefault) event.preventDefault();   
+        }
     }
 
     //----------------------------------
@@ -617,7 +651,18 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function set editable(value:Boolean):void
     {
-        if (value == _editable)
+        _editable = value;
+	COMPILE::JS
+	{
+		if(value == false) {
+			(element as HTMLInputElement).readOnly = true;
+		}
+		else {
+			 (element as HTMLInputElement).readOnly = value;
+		}
+	}
+	
+     /*   if (value == _editable)
             return;
 
         _editable = value;
@@ -625,7 +670,7 @@ public class TextInput extends UIComponent implements ITextInput
 
         invalidateProperties();
 
-        dispatchEvent(new Event("editableChanged"));
+        dispatchEvent(new Event("editableChanged")); */
     }
 
     //----------------------------------
@@ -949,7 +994,7 @@ public class TextInput extends UIComponent implements ITextInput
     //  listData
     //----------------------------------
 
-    private var _listData:BaseListData;
+    private var _listData:Object;
 
     [Bindable("dataChange")]
     [Inspectable(environment="none")]
@@ -974,7 +1019,7 @@ public class TextInput extends UIComponent implements ITextInput
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
     }
@@ -982,7 +1027,7 @@ public class TextInput extends UIComponent implements ITextInput
     /**
      *  @private
      */
-    public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
         _listData = value;
     }
@@ -1027,11 +1072,10 @@ public class TextInput extends UIComponent implements ITextInput
             return;
 
         _maxChars = value;
-        maxCharsChanged = true;
-
-        invalidateProperties();
-
-        dispatchEvent(new Event("maxCharsChanged"));
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).maxLength = value;
+        }  
     }
 
     //----------------------------------
@@ -1091,47 +1135,22 @@ public class TextInput extends UIComponent implements ITextInput
     //  restrict
     //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the restrict property.
-     */
-    private var _restrict:String;
-
-    /**
-     *  @private
-     */
-    private var restrictChanged:Boolean = false;
-
-    [Bindable("restrictChanged")]
-    [Inspectable(category="General")]
-
-    /**
-     *  @inheritDoc
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get restrict():String
+    private var restrictBead:RestrictTextInputBead;
+    
+    public function get restrict():String 
     {
-        return _restrict;
+        if (!restrictBead) return null;
+        return restrictBead.restrict;
     }
-
-    /**
-     *  @private
-     */
+    
     public function set restrict(value:String):void
     {
-        if (value == _restrict)
-            return;
-
-        _restrict = value;
-        restrictChanged = true;
-
-        invalidateProperties();
-
-        dispatchEvent(new Event("restrictChanged"));
+        if (!restrictBead)
+        {
+            restrictBead = new RestrictTextInputBead();
+            addBead(restrictBead);
+        }
+        restrictBead.restrict = value;
     }
 
     //----------------------------------
@@ -1207,6 +1226,10 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function get selectionBeginIndex():int
     {
+        COMPILE::JS
+        {
+            _selectionBeginIndex = (element as HTMLInputElement).selectionStart;        
+        }
         return _selectionBeginIndex;
     }
 
@@ -1216,6 +1239,10 @@ public class TextInput extends UIComponent implements ITextInput
     public function set selectionBeginIndex(value:int):void
     {
         _selectionBeginIndex = value;
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).selectionStart = value;        
+        }
     }
 
     //----------------------------------
@@ -1252,6 +1279,10 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function get selectionEndIndex():int
     {
+        COMPILE::JS
+        {
+            _selectionEndIndex = (element as HTMLInputElement).selectionEnd;        
+        }
         return _selectionEndIndex;
     }
 
@@ -1264,6 +1295,10 @@ public class TextInput extends UIComponent implements ITextInput
         selectionChanged = true;
 
         invalidateProperties();
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).selectionEnd = value;        
+        }
     }
 
     //----------------------------------
@@ -1319,7 +1354,13 @@ public class TextInput extends UIComponent implements ITextInput
 		
 		COMPILE::JS
 		{
+            // Flash does not reset selection when setting text
+            // but browser does
+            _selectionBeginIndex = (element as HTMLInputElement).selectionStart;
+            _selectionEndIndex = (element as HTMLInputElement).selectionEnd;
 			(element as HTMLInputElement).value = value;
+            (element as HTMLInputElement).selectionStart = _selectionBeginIndex;
+            (element as HTMLInputElement).selectionEnd = _selectionEndIndex;
 		}
 
         dispatchEvent(new Event('textChanged'));
@@ -1624,6 +1665,7 @@ public class TextInput extends UIComponent implements ITextInput
 		//attach input handler to dispatch royale change event when user write in textinput
 		//goog.events.listen(element, 'change', killChangeHandler);
 		goog.events.listen(element, 'input', textChangeHandler);
+        goog.events.listen(element, 'keypress', enterEventHandler);
 		return element;
 	}
 	
@@ -1646,6 +1688,31 @@ public class TextInput extends UIComponent implements ITextInput
         }
 	}
 
+    /**
+     *  dispatch change event in response to a textChange event
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    COMPILE::JS
+    public function enterEventHandler(event:Event):void
+    {
+        if (event['key'] === 'Enter') {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            dispatchEvent(new Event(FlexEvent.ENTER));
+        }
+        else
+        {
+            var textEvent:TextEvent = new TextEvent(TextEvent.TEXT_INPUT, false, true);
+            textEvent.text = event['key'];
+            if (!dispatchEvent(textEvent))
+                event.preventDefault();
+        }
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Methods
@@ -1714,6 +1781,7 @@ public class TextInput extends UIComponent implements ITextInput
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  @royaleignorecoercion HTMLInputElement
      */
     public function setSelection(beginIndex:int, endIndex:int):void
     {
@@ -1722,6 +1790,12 @@ public class TextInput extends UIComponent implements ITextInput
         selectionChanged = true;
 
         invalidateProperties();
+        
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).setSelectionRange(beginIndex, endIndex);        
+        }
+          
     }
 
     /**

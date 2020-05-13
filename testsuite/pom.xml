@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7-SNAPSHOT</version>
   </parent>
 
   <artifactId>testsuite</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Apache Royale: Testsuite</name>
@@ -36,7 +36,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>2.0.0</version>
+        <version>3.2.1</version>
         <configuration>
           <!-- Define the place the projects are copied to and executed in -->
           <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>

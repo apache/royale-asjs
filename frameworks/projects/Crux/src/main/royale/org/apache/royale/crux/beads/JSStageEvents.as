@@ -24,17 +24,15 @@ package org.apache.royale.crux.beads
 {
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.IRenderedObject;
-    import org.apache.royale.core.ApplicationBase;
     import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
     
     COMPILE::JS {
-        import org.apache.royale.core.HTMLElementWrapper;
-        import org.apache.royale.core.WrappedHTMLElement;
         import goog.events.EventTarget;
+
+        import org.apache.royale.core.ElementWrapper;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
     
     /**
@@ -97,7 +95,8 @@ package org.apache.royale.crux.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          *
-         *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+         *  @royaleignorecoercion org.apache.royale.core.ElementWrapper
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         public function set strand(value:IStrand):void
         {
@@ -110,7 +109,7 @@ package org.apache.royale.crux.beads
                     _activeInstance = this;
                     if (!_dispatcher) _dispatcher = value as IEventDispatcher;
                     var observer:MutationObserver = new MutationObserver(mutationDetected);
-                    observer.observe(HTMLElementWrapper(value).element, {'childList': true, 'subtree': true});
+                    observer.observe((value as ElementWrapper).element, {'childList': true, 'subtree': true});
                     trace('Activating JSStageEvents')
                 }
             }
@@ -150,6 +149,7 @@ package org.apache.royale.crux.beads
          *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *  @royaleignorecoercion MutationRecord
          *  @royaleignorecoercion NodeList
+         *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
          */
         COMPILE::JS
         private function mutationDetected(mutationsList:Array):void
@@ -197,7 +197,16 @@ package org.apache.royale.crux.beads
                             }
                         }
                         //dispatch a non-bubbling event, but support capture phase listeners
-                        royaleInstance.dispatchBubblingEvent(royaleInstance,new Event('addedToStage', false));
+                        // build the ancestors tree without setting the actual parentEventTarget
+                        var e:Object = new Event('addedToStage', false);
+                        var ancestorsTree:Array = [];
+                        var t:IEventDispatcher = royaleInstance["parent"] as IEventDispatcher;
+                        while (t != null) {
+                            ancestorsTree.push(t);
+                            t = t["parent"] as IEventDispatcher;
+                        }
+                        
+                        goog.events.EventTarget.dispatchEventInternal_(royaleInstance, e, ancestorsTree);
                     }
                 }
             }

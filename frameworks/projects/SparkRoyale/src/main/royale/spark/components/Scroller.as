@@ -53,7 +53,6 @@ import spark.components.supportClasses.GroupBase;
 import spark.components.supportClasses.ScrollerLayout;
 import spark.components.supportClasses.TouchScrollHelper;
 import spark.core.IGraphicElement;
-import spark.core.IViewport;
 import spark.core.NavigationUnit;
 import spark.effects.Animate;
 import spark.effects.ThrowEffect;
@@ -63,13 +62,16 @@ import spark.events.CaretBoundsChangeEvent;
 import spark.layouts.supportClasses.LayoutBase;
 import spark.utils.MouseEventUtil; */
 import mx.core.IVisualElement;
-import mx.core.mx_internal;
-import spark.components.supportClasses.SkinnableComponent;
 import mx.core.IVisualElementContainer;
+import mx.core.mx_internal;
+import mx.core.UIComponent;
 import mx.managers.IFocusManagerComponent;
 
-import org.apache.royale.events.Event;
+import spark.components.supportClasses.SkinnableComponent;
+import spark.core.IViewport;
+
 import org.apache.royale.core.IChild;
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 /* 
@@ -1049,7 +1051,7 @@ public class Scroller extends SkinnableComponent
     //  viewport - default property
     //----------------------------------    
     
-    private var _viewport:IVisualElement;//IViewport;
+    private var _viewport:IViewport;
     
     [Bindable(event="viewportChanged")]
     
@@ -1077,7 +1079,7 @@ public class Scroller extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function get viewport(): IVisualElement//IViewport
+    public function get viewport(): IViewport
     {       
         return _viewport;
     }
@@ -1085,14 +1087,15 @@ public class Scroller extends SkinnableComponent
     /**
      *  @private
      */
-    public function set viewport(value:IVisualElement):void
+    public function set viewport(value:IViewport):void
     {
         if (value == _viewport)
             return;
         
        uninstallViewport();
         _viewport = value;
-       installViewport();
+        if (parent)
+           installViewport();
         dispatchEvent(new Event("viewportChanged"));
     }
     
@@ -1110,8 +1113,9 @@ public class Scroller extends SkinnableComponent
     {
         /*  SWF?
         if (skin && viewport)
-        {
+        {*/
             viewport.clipAndEnableScrolling = true;
+            /*
             Group(skin).addElementAt(viewport, 0);
             viewport.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, viewport_propertyChangeHandler);
             viewport.addEventListener(Event.RESIZE, viewport_resizeHandler);
@@ -3882,6 +3886,27 @@ public class Scroller extends SkinnableComponent
         // If caretBounds is changing, minimize the scroll
         ensureElementPositionIsVisible(lastFocusedElement, event.newCaretBounds, false, false);
     } */
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp.isWidthSizedToContent())
+        		vp.setWidth(width);
+		if (vp.isHeightSizedToContent())
+        		vp.setHeight(height);
+        installViewport();
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp.isWidthSizedToContent())
+        		vp.setWidth(width);
+		if (vp.isHeightSizedToContent())
+        		vp.setHeight(height);
+    }
 }
 
 }

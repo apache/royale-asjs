@@ -19,46 +19,61 @@
 -->
 <project>
   <output>
+    <movie fps="60"/>
+    <movie height="600"/>
     <movie disabled="False"/>
+    <movie background="#FFFFFF"/>
     <movie path="bin-debug/CruxQuickStart.swf"/>
+    <movie width="800"/>
+    <movie platform="Flash Player"/>
     <movie version="11"/>
     <movie input=""/>
-    <movie width="800"/>
-    <movie height="600"/>
-    <movie fps="60"/>
-    <movie background="#FFFFFF"/>
-    <movie platform="Flash Player"/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
+  <jsOutput>
+    <option path=""/>
+  </jsOutput>
   <classpaths>
     <class path="src/main/royale"/>
   </classpaths>
   <moonshineResourcePaths></moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
-    <option useResourceBundleMetadata="True"/>
-    <option showBindingWarnings="True"/>
-    <option warnings="True"/>
     <option es="False"/>
     <option verboseStackTraces="False"/>
-    <option additional="-theme=${royalelib}/themes/Basic/src/basic.css"/>
-    <option loadConfig=""/>
-    <option linkReport=""/>
-    <option benchmark="False"/>
-    <option optimize="False"/>
-    <option showActionScriptWarnings="True"/>
-    <option staticLinkRSL="False"/>
-    <option locale=""/>
-    <option compilerConstants=""/>
-    <option showDeprecationWarnings="True"/>
-    <option antBuildPath="build/build.xml"/>
-    <option showUnusedTypeSelectorWarnings="True"/>
     <option customSDK=""/>
+    <option loadConfig=""/>
+    <option additional="-theme=${royalelib}/themes/Basic/src/basic.css -theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -js-default-initializers=true  -compiler.exclude-defaults-css-files=MXRoyale-0.9.7-js.swc:defaults.css -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient -keep-code-with-metadata=Inject +configname=flex"/>
+    <option optimize="False"/>
+    <option staticLinkRSL="False"/>
+    <option antBuildPath="build/build.xml"/>
+    <option showActionScriptWarnings="True"/>
+    <option compilerConstants=""/>
+    <option locale=""/>
+    <option linkReport=""/>
+    <option showDeprecationWarnings="True"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
+    <option showBindingWarnings="True"/>
     <option strict="True"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
     <option allowSourcePathOverlap="False"/>
+    <option useResourceBundleMetadata="True"/>
+    <option benchmark="False"/>
+    <option warnings="True"/>
   </build>
+  <mavenBuild>
+    <option mavenBuildPath=""/>
+    <option settingsFilePath=""/>
+    <option commandLine=""/>
+    <actions>
+      <action action="install" actionName="Build"/>
+      <action action="clean package" actionName="Clean and package"/>
+      <action action="clean" actionName="Clean"/>
+      <action action="clean install" actionName="Clean and Build"/>
+      <action action="war:exploded" actionName="Exploded"/>
+    </actions>
+  </mavenBuild>
   <includeLibraries></includeLibraries>
   <libraryPaths></libraryPaths>
   <externalLibraryPaths></externalLibraryPaths>
@@ -74,19 +89,24 @@
   <hiddenPaths></hiddenPaths>
   <preBuildCommand>null</preBuildCommand>
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
+  <trustSVNCertificate>False</trustSVNCertificate>
   <options>
-    <option testMovie=""/>
-    <option showHiddenPaths="False"/>
-    <option testMovieCommand=""/>
-    <option defaultBuildTargets=""/>
     <option isPrimeFacesVisualEditor="False"/>
+    <option defaultBuildTargets=""/>
+    <option visualEditorExportPath=""/>
+    <option showHiddenPaths="False"/>
+    <option isRoyale="True"/>
+    <option testMovie=""/>
+    <option testMovieCommand=""/>
+    <option isExportedToExistingSource="False"/>
   </options>
   <moonshineRunCustomization>
+    <option customUrlToLaunch=""/>
     <option deviceSimulator="null"/>
     <option targetPlatform="2"/>
-    <option launchMethod="Simulator"/>
     <option urlToLaunch=""/>
     <option projectType="2"/>
+    <option launchMethod="Simulator"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>

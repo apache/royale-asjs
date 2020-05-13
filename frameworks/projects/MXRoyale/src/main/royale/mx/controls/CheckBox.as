@@ -193,7 +193,6 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	 */
 	override protected function createElement():WrappedHTMLElement
 	{
-		var cb:HTMLInputElement;
 		addElementToWrapper(this,'label');
 		_label = element;
 		_icon = new CheckBoxIcon();

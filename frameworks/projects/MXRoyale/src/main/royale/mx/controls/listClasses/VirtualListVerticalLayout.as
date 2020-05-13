@@ -30,7 +30,7 @@ package mx.controls.listClasses
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
@@ -228,7 +228,7 @@ package mx.controls.listClasses
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
                         ir  = factory.getItemRendererForIndex(i, i - startIndex);
@@ -287,13 +287,17 @@ package mx.controls.listClasses
                     {
                         // see if we can re-use any renderers
                         freeIndex = visibleIndexes.pop();
-                        while (freeIndex >= endIndex)
+                        while (freeIndex > endIndex)
                         {
                             factory.freeItemRendererForIndex(freeIndex);
                             if (visibleIndexes.length == 0)
                                 break;
                             freeIndex = visibleIndexes.pop();
                         }
+                        // we popped it off at the end of loop but if we didn't
+                        // use it, then push it back on
+                        if (freeIndex == endIndex)
+                            visibleIndexes.push(freeIndex);
                         if (visibleIndexes.length)
                             endIndex = visibleIndexes[visibleIndexes.length - 1];
                     }
@@ -338,7 +342,7 @@ package mx.controls.listClasses
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
                        ir  = factory.getItemRendererForIndex(i, i - startIndex + 1);
@@ -358,6 +362,12 @@ package mx.controls.listClasses
                     bottomSpacer = document.createElement("div") as HTMLDivElement;
                     contentView.element.appendChild(bottomSpacer);
                 }
+                else
+                {
+                    // ensure bottom spacer is at the bottom!
+                    contentView.element.removeChild(bottomSpacer);                    
+                    contentView.element.appendChild(bottomSpacer);                    
+                }
                 bottomSpacer.style.height = ((dp.length - endIndex) * presentationModel.rowHeight).toString() + "px";  
                 inLayout = false;
 				return true;
@@ -370,7 +380,7 @@ package mx.controls.listClasses
         }
 
         COMPILE::SWF
-        private function sizeAndPositionRenderer(ir:ISelectableItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
+        private function sizeAndPositionRenderer(ir:IIndexedItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
         {
             var ilc:ILayoutChild;
             var positions:Object = childPositions(ir);

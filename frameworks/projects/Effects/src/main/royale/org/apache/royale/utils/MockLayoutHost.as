@@ -34,9 +34,9 @@ package org.apache.royale.utils
 			return _contentView;
 		}
 		
-		public function beforeLayout():void
+		public function beforeLayout():Boolean
 		{
-			
+			return true;
 		}
 		
 		public function afterLayout():void

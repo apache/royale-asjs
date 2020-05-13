@@ -28,6 +28,7 @@ import flash.display.InteractiveObject;
 COMPILE::JS
 {
 import goog.events.BrowserEvent;
+import org.apache.royale.core.WrappedHTMLElement;
 }
 
 import org.apache.royale.events.Event;
@@ -49,10 +50,10 @@ public class FocusEvent extends flash.events.FocusEvent
 {
     public static const FOCUS_IN:String = "focusIn";
     public static const FOCUS_OUT:String = "focusOut";
-	public function FocusEvent(type:String, bubbles:Boolean = false,
-                              cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none")
+	public function FocusEvent(type:String/*, bubbles:Boolean = false,
+                              cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none"*/)
     {
-        super(type, bubbles, cancelable,relatedObject,shiftKey,keyCode,direction);
+        super(type/*, bubbles, cancelable,relatedObject,shiftKey,keyCode,direction*/);
     }
 }
 
@@ -108,9 +109,11 @@ public class FocusEvent extends org.apache.royale.events.Event
 							  
 	{
 		super(type, bubbles, cancelable);
+		_relatedObject = relatedObject;
 	}
 	
-
+	private var _relatedObject:Object;
+	
     /**
      * @type {?goog.events.FocusEvent}
      */
@@ -121,13 +124,24 @@ public class FocusEvent extends org.apache.royale.events.Event
      */
     private var nativeEvent:Object;
     
-    public function wrapEvent(event:goog.events.BrowserEvent):void
+    public function wrapEvent(event:Object):void
     {
-        wrappedEvent = event;
-        nativeEvent = event.getBrowserEvent();
+        //wrappedEvent = event;
+        nativeEvent = event; //.getBrowserEvent();
     }
     
-
+    /**
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
+	public function get relatedObject():Object
+	{
+		if (nativeEvent && nativeEvent["relatedTarget"])
+		{
+			return (nativeEvent["relatedTarget"] as WrappedHTMLElement).royale_wrapper;
+		}
+			
+		return _relatedObject;
+	}
 
 	
 }

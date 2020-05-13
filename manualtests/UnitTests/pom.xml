@@ -16,17 +16,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.apache.royale.manualtests</groupId>
 		<artifactId>manualtests</artifactId>
-		<version>0.9.6</version>
+		<version>0.9.7</version>
 	</parent>
 	<artifactId>UnitTests</artifactId>
-	<version>0.9.6</version>
+	<version>0.9.7</version>
 	<packaging>swf</packaging>
 	<name>Apache Royale: ManualTests: UnitTests</name>
 
@@ -42,7 +41,7 @@
 		<swf>${project.artifactId}</swf>
 		<width>100%</width>
 		<height>100%</height>
-	</properties>
+	<project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
 
 	<build>
 		<defaultGoal>compile</defaultGoal>
@@ -52,156 +51,181 @@
 				<artifactId>royale-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<targets>SWF,JSRoyale</targets>
+					<targets>JSRoyale</targets>
 					<mainClass>${project.artifactId}.mxml</mainClass>
-                    <removeCirculars>true</removeCirculars>
+					<removeCirculars>true</removeCirculars>
 					<debug>false</debug>
+					<allowSubclassOverrides>true</allowSubclassOverrides>
 					<additionalCompilerOptions>
 						-swf-version=30;
 						-js-default-initializers;
 						-source-map=true;
-						-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta;
-						-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta;
+						-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css;
+						-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta,Transient;
+						-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta,Transient;
 					</additionalCompilerOptions>
+					<defines>
+						<define append="true">
+							<name>COMPILE::Flex</name>
+							<value>false</value>
+						</define>
+						<define append="true">
+							<name>COMPILE::Royale</name>
+							<value>true</value>
+						</define>
+					</defines>
 					<outputDirectory>${basedir}/target</outputDirectory>
-					<flashOutputFileName>swf/${project.artifactId}.swf</flashOutputFileName>
 					<javascriptOutputDirectoryName>javascript</javascriptOutputDirectoryName>
 				</configuration>
-				<!--<executions>
-					<execution>
-						<id>compile-js</id>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>compile-app</goal>
-						</goals>
-						<configuration>
-							<targets>JSRoyale</targets>
-							<mainClass>${project.artifactId}.mxml</mainClass>
-							<debug>false</debug>
-							<additionalCompilerOptions>-js-default-initializers;-source-map=true;-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta;-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
-							<outputDirectory>${basedir}/target</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>-->
 			</plugin>
-            <!-- AJH couldn't figure out how this was supposed to work so disabled it to try to get the release to work
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>copy-template-swf</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${basedir}/target/swf</outputDirectory>
-							<includeEmptyDirs>true</includeEmptyDirs>
-							<resources>
-								<resource>
-									<directory>${basedir}/src/main/resources/swfobject</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>com.coderplus.maven.plugins</groupId>
-				<artifactId>copy-rename-maven-plugin</artifactId>
-				<version>1.0.1</version>
-				<executions>
-					<execution>
-						<id>rename-file</id>
-						<phase>compile</phase>
-						<goals>
-							<goal>rename</goal>
-						</goals>
-						<configuration>
-							<sourceFile>${basedir}/target/swf/index.template.html</sourceFile>
-							<destinationFile>${basedir}/target/swf/${project.artifactId}.html</destinationFile>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-             -->
-
-			<!--<plugin>
-         <groupId>com.google.code.maven-replacer-plugin</groupId>
-         <artifactId>replacer</artifactId>
-         <version>1.5.2</version>
-         <executions>
-           <execution>
-             <id>configure-swf-template</id>
-             <phase>compile</phase>
-             <goals>
-               <goal>replace</goal>
-             </goals>
-             <configuration>
-               <file>${basedir}/bin-debug/index.template.html</file>
-			   <regex>false</regex>
-               <replacements>
-
-               </replacements>
-             </configuration>
-           </execution>
-		    </executions>
-			</plugin>-->
 		</plugins>
 	</build>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.adobe.flash.framework</groupId>
-			<artifactId>playerglobal</artifactId>
-			<version>${flash.version}</version>
+			<groupId>org.apache.royale.framework</groupId>
+			<artifactId>MXRoyale</artifactId>
+			<version>0.9.7</version>
 			<type>swc</type>
-			<scope>provided</scope>
+			<classifier>js</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.6</version>
-			<type>swc</type>
-			<classifier>swf</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.royale.framework</groupId>
-			<artifactId>Reflection</artifactId>
-			<version>0.9.6</version>
+			<version>0.9.7</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Network</artifactId>
-			<version>0.9.6</version>
-			<type>swc</type>
-			<classifier>swf</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.royale.framework</groupId>
-			<artifactId>Network</artifactId>
-			<version>0.9.6</version>
+			<version>0.9.7</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>XML</artifactId>
-			<version>0.9.6</version>
-			<type>swc</type>
-			<classifier>swf</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.royale.framework</groupId>
-			<artifactId>XML</artifactId>
-			<version>0.9.6</version>
+			<version>0.9.7</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
 	</dependencies>
-
+	<profiles>
+		<profile>
+			<id>option-with-swf</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.royale.compiler</groupId>
+						<artifactId>royale-maven-plugin</artifactId>
+						<extensions>true</extensions>
+						<configuration>
+							<targets>SWF,JSRoyale</targets>
+							<mainClass>${project.artifactId}.mxml</mainClass>
+							<removeCirculars>true</removeCirculars>
+							<debug>false</debug>
+							<allowSubclassOverrides>true</allowSubclassOverrides>
+							<additionalCompilerOptions>
+								-swf-version=30;
+								-js-default-initializers;
+								-source-map=true;
+								-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css;
+								-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-swf.swc:defaults.css;
+								-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta,Transient;
+								-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta,Transient;
+							</additionalCompilerOptions>
+							<defines>
+								<define append="true">
+									<name>COMPILE::Flex</name>
+									<value>false</value>
+								</define>
+								<define append="true">
+									<name>COMPILE::Royale</name>
+									<value>true</value>
+								</define>
+							</defines>
+							<outputDirectory>${basedir}/target</outputDirectory>
+							<flashOutputFileName>swf/${project.artifactId}.swf</flashOutputFileName>
+							<javascriptOutputDirectoryName>javascript</javascriptOutputDirectoryName>
+						</configuration>
+					</plugin>
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>3.1.0</version>
+						<executions>
+							<execution>
+								<id>copy-template-swf</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${basedir}/target/swf</outputDirectory>
+									<includeEmptyDirs>true</includeEmptyDirs>
+									<resources>
+										<resource>
+											<directory>${basedir}/../../templates/swfobject</directory>
+										</resource>
+										<resource>
+											<directory>${basedir}/swf-html-template</directory>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.coderplus.maven.plugins</groupId>
+						<artifactId>copy-rename-maven-plugin</artifactId>
+						<version>1.0.1</version>
+						<executions>
+							<execution>
+								<id>rename-file</id>
+								<phase>compile</phase>
+								<goals>
+									<goal>rename</goal>
+								</goals>
+								<configuration>
+									<sourceFile>${basedir}/target/swf/index.template.html</sourceFile>
+									<destinationFile>${basedir}/target/swf/${project.artifactId}.html</destinationFile>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+			<dependencies>
+				<dependency>
+					<groupId>com.adobe.flash.framework</groupId>
+					<artifactId>playerglobal</artifactId>
+					<version>${flash.version}</version>
+					<type>swc</type>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.royale.framework</groupId>
+					<artifactId>MXRoyale</artifactId>
+					<version>0.9.7</version>
+					<type>swc</type>
+					<classifier>swf</classifier>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.royale.framework</groupId>
+					<artifactId>Reflection</artifactId>
+					<version>0.9.7</version>
+					<type>swc</type>
+					<classifier>swf</classifier>
+				</dependency>
+				<dependency>
+					<groupId>org.apache.royale.framework</groupId>
+					<artifactId>Network</artifactId>
+					<version>0.9.7</version>
+					<type>swc</type>
+					<classifier>swf</classifier>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
 </project>

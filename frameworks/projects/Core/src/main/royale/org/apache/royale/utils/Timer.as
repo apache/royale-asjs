@@ -140,7 +140,7 @@ public class Timer extends EventDispatcher
     public var delay:Number;
     public var repeatCount:int;
     
-	public function running():Boolean
+	public function get running():Boolean
 	{
 		return timerInterval != -1;
 	}
@@ -162,18 +162,18 @@ public class Timer extends EventDispatcher
     
     public function stop():void
     {
-        clearInterval(timerInterval);
-        timerInterval = -1;
+        if (timerInterval != -1){
+            clearInterval(timerInterval);
+            timerInterval = -1;
+        }
     }
     
     public function start():void
     {
-		// bail if already running.  Is less code than an
-		// isRunning flag?
-		if (timerInterval != -1) return; 
-		
-        timerInterval =
-            setInterval(timerHandler, delay);
+		// ignore if already running.  
+		if (timerInterval == -1) {
+            timerInterval = setInterval(timerHandler, delay);
+        }
     }
     
     private function timerHandler():void

@@ -27,6 +27,13 @@ package org.apache.royale.core
     {
         import org.apache.royale.utils.CSSUtils;
         import org.apache.royale.events.Event;
+        import org.apache.royale.utils.html.getStyle;
+        import org.apache.royale.utils.sendEvent;
+        import org.apache.royale.utils.sendEvent;
+        import org.apache.royale.utils.sendEvent;
+        import org.apache.royale.utils.sendEvent;
+        import org.apache.royale.utils.sendEvent;
+        import org.apache.royale.utils.sendEvent;
     }
 
     [DefaultProperty("beads")]
@@ -124,7 +131,7 @@ package org.apache.royale.core
         public function get width():Number
         {
             var pixels:Number;
-            var strpixels:String = element.style.width as String;
+            var strpixels:String = getStyle(this).width as String;
             if(strpixels == null)
                 pixels = NaN;
             else
@@ -162,7 +169,7 @@ package org.apache.royale.core
         public function get height():Number
         {
             var pixels:Number;
-            var strpixels:String = element.style.height as String;
+            var strpixels:String = getStyle(this).height as String;
             if(strpixels == null)
                 pixels = NaN;
             else
@@ -203,9 +210,9 @@ package org.apache.royale.core
             if (_height != value)
             {
                 _height = value;
-                this.element.style.height = value.toString() + 'px';        
+                getStyle(this).height = value.toString() + 'px';        
                 if (!noEvent)
-                    dispatchEvent(new Event("heightChanged"));
+                    sendEvent(this,"heightChanged");
             }            
         }
         
@@ -222,9 +229,9 @@ package org.apache.royale.core
             if (_width != value)
             {
                 _width = value;
-                this.element.style.width = value.toString() + 'px';        
+                getStyle(this).width = value.toString() + 'px';        
                 if (!noEvent)
-                    dispatchEvent(new Event("widthChanged"));
+                    sendEvent(this,"widthChanged");
             }
         }
         
@@ -257,8 +264,7 @@ package org.apache.royale.core
                 _percentWidth = NaN;
             
             _explicitWidth = value;
-            
-            dispatchEvent(new Event("explicitWidthChanged"));
+            sendEvent(this,"explicitWidthChanged");
         }
         
         private var _explicitHeight:Number;
@@ -290,8 +296,7 @@ package org.apache.royale.core
                 _percentHeight = NaN;
             
             _explicitHeight = value;
-            
-            dispatchEvent(new Event("explicitHeightChanged"));
+            sendEvent(this,"explicitHeightChanged");
         }
         
         private var _percentWidth:Number;
@@ -319,10 +324,10 @@ package org.apache.royale.core
         public function set percentWidth(value:Number):void
         {
             this._percentWidth = value;
-            this.element.style.width = value.toString() + '%';
+            getStyle(this).width = value.toString() + '%';
             if (!isNaN(value))
                 this._explicitWidth = NaN;
-            dispatchEvent(new Event("percentWidthChanged"));
+            sendEvent(this,"percentWidthChanged");
         }
         
         private var _percentHeight:Number;
@@ -350,10 +355,10 @@ package org.apache.royale.core
         public function set percentHeight(value:Number):void
         {
             this._percentHeight = value;
-            this.element.style.height = value.toString() + '%';
+            getStyle(this).height = value.toString() + '%';
             if (!isNaN(value))
                 this._explicitHeight = NaN;
-            dispatchEvent(new Event("percentHeightChanged"));
+            sendEvent(this,"percentHeightChanged");
         }
 
 

@@ -92,11 +92,15 @@ import mx.utils.StringUtil;
 use namespace mx_internal;
 */
     
+import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.ListBase;
+import mx.core.mx_internal;
+use namespace mx_internal;
+
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IDataGrid;
-import org.apache.royale.core.IDataGridPresentationModel;
 import org.apache.royale.core.IDataGridModel;
+import org.apache.royale.core.IDataGridPresentationModel;
 import org.apache.royale.core.ValuesManager;
 
 //--------------------------------------
@@ -725,6 +729,7 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     public function DataGrid()
     {
         super();
+        typeNames = "DataGrid";
     }
 
     //--------------------------------------------------------------------------
@@ -785,6 +790,10 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     public function set columns(value:Array):void
     {
         IDataGridModel(model).columns = value;
+        for each (var col:DataGridColumn in value)
+        {
+            col.owner = this;
+        }
     }
 	
     /**
@@ -802,7 +811,7 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
      *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
      *  @royaleignorecoercion org.apache.royale.core.IBead
      */
-    public function get presentationModel():IBead
+    override public function get presentationModel():IBead
     {
         if (_presentationModel == null) {
             var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");

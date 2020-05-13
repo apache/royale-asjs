@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -30,8 +30,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 
 	/**
-	 *  Handles the removal of all itemRenderers once the all items has been removed
-	 *  from the IDataProviderModel. This works the same for List and Table components
+	 *  Handles the removal of all itemRenderers.
+	 *  This works the same for List and Table components
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -78,6 +78,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function initComplete(event:Event):void
 		{
+			setUp();
+		}
+
+		/**
+		 * This method is called when List is composed to conform a DataGrid
+		 * In that case DataGrid uses RemoveAllDataGridItemRendererForArrayListData,
+		 * that add this bead to the each column List and calls this method at
+		 * initialization time.
+		 */
+		public function setUp():void
+		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
@@ -106,7 +117,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 *  Handles the itemRemoved event by removing the item.
+		 *  Handles the allItemsRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -122,7 +133,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				model.selectedItem = null;
 			}
 
-			itemRendererParent.removeAllItemRenderers();
+			itemRendererOwnerView.removeAllItemRenderers();
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
@@ -145,10 +156,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			return _dataProviderModel;
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -156,13 +167,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-				_itemRendererParent = view.dataGroup;
+				_itemRendererOwnerView = view.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 	}
 }

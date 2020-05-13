@@ -20,10 +20,6 @@
 // Jewel NumericStepper
 
 // NumericStepper variables
-$numericstepper-button-width: 22px
-$numericstepper-button-height: 10px
-$numericstepper-button-xoffset: calc(50% - #{$numericstepper-button-width/2})
-$numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
 
 .jewel.numericstepper    
     .jewel.textinput
@@ -31,12 +27,10 @@ $numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
 
 @media (max-width: $desktop)
     .jewel.numericstepper
-        width: 190px
-        height: 39px 
         .jewel.textinput
             z-index: 1
             position: relative
-            left: 38px
+            
 
 j|NumericStepper
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")
@@ -60,47 +54,24 @@ j|NumericStepper
     .jewel.button
         display: flex
 
-        &.up
-
+        &.up, &.down
             &::after
                 content: ' '
                 position: absolute
-
-                width: $numericstepper-button-width
-                height: $numericstepper-button-height
-
-                left: $numericstepper-button-xoffset
-                top: $numericstepper-button-yoffset
-        &.down
-
-            &::after
-                content: ' '
-                position: absolute
-
-                width: $numericstepper-button-width
-                height: $numericstepper-button-height
-
-                left: $numericstepper-button-xoffset
-                top: $numericstepper-button-yoffset
 
 @media (max-width: $desktop)
     .jewel.spinner
         position: relative
-        left: -112px
         flex-direction: row
-        width: auto
+        
         .jewel.button
-            width: 39px
-            height: 38px
         
             &.up
                 // position: absolute
-                left: 149px 
+                 
             &.down
                 // position: absolute
-                left: -39px
-
-    
+            
 j|Spinner
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.SpinnerView")

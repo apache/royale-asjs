@@ -39,6 +39,8 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class ErrorEvent extends flash.events.ErrorEvent
 {
+    public static const ERROR:String = "error";
+    
 	public function ErrorEvent(type:String, bubbles:Boolean = false,
 							  cancelable:Boolean = false, text:String = "", id:int = 0
 							  )

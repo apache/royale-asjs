@@ -20,6 +20,8 @@
 
 
 <componentPackage>
-    <component id="FontIcon" class="org.apache.royale.icons.FontIcon"/>
-    <component id="ToggleFontIcon" class="org.apache.royale.icons.ToggleFontIcon"/>
+    <component id="MaterialIcon" class="org.apache.royale.icons.MaterialIcon"/>
+    <component id="MaterialToggleIcon" class="org.apache.royale.icons.MaterialToggleIcon"/>
+    <component id="FontAwesomeIcon" class="org.apache.royale.icons.FontAwesomeIcon"/>
+    <component id="FontAwesomeToggleIcon" class="org.apache.royale.icons.FontAwesomeToggleIcon"/>
 </componentPackage>

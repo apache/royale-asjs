@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="Core.test" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../../../../../.."/>
+    
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="ROYALE_HOME" value="${env.ROYALE_HOME}"/>
+    <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
+    <property name="target.name" value="Collections-${release.version}.swc" />
+
+    <property name="report.dir" value="${basedir}/out" />
+
+    <target name="main" depends="clean,compile,test" description="Clean test of ${target.name}">
+    </target>
+    
+    <target name="clean">
+        <delete failonerror="false">
+            <fileset dir="${basedir}">
+                <include name="FlexUnitRoyaleApplication.swf"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${report.dir}">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
+    </target>
+    
+    <path id="lib.path">
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="royaleUnitTasks.jar"/>
+    </path>
+
+    <target name="compile" description="Compiles FlexUnitRoyaleApplication.swf">
+        <echo message="Compiling FlexUnitRoyaleApplication.swf"/>
+        <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
+        <echo message="playerglobal.version: ${playerglobal.version}"/>
+
+        <!-- Load the <compc> task. We can't do this at the <project> level -->
+        <!-- because targets that run before flexTasks.jar gets built would fail. -->
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <!--
+            Link in the classes (and their dependencies) for the MXML tags
+            listed in this project's manifest.xml.
+            Also link the additional classes (and their dependencies)
+            listed in RoyaleUIClasses.as,
+            because these aren't referenced by the manifest classes.
+            Keep the standard metadata when compiling.
+            Include the appropriate CSS files and assets in the SWC.
+            Don't include any resources in the SWC.
+            Write a bundle list of referenced resource bundles
+            into the file bundles.properties in this directory.
+        -->
+        <mxmlc fork="true"
+            file="${basedir}/FlexUnitRoyaleApplication.mxml"
+            output="${basedir}/FlexUnitRoyaleApplication.swf">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <!--
+            <jvmarg value="-Xdebug" />
+            <jvmarg value="-Xnoagent" />
+            <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8763,server=y,suspend=y" />
+             -->
+            <arg value="-debug" />
+            <arg value="-compiler.targets=SWF" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </mxmlc>
+    </target>
+
+    <target name="test">
+        <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
+        <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
+        <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
+		<mkdir dir="${report.dir}" />
+		<royaleunit
+            swf="${basedir}/FlexUnitRoyaleApplication.swf"
+		    workingDir="${basedir}"
+		    toDir="${report.dir}"
+			haltonfailure="true"
+			verbose="true"
+			localTrusted="true"
+			timeout="90000" />
+        
+		<!-- Generate readable JUnit-style reports -->
+		<junitreport todir="${report.dir}">
+			<fileset dir="${report.dir}">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report format="frames" todir="${report.dir}/html" />
+		</junitreport>
+        
+    </target>
+</project>

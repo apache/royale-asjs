@@ -140,9 +140,9 @@ public dynamic class Proxy extends EventDispatcher
 		return valueMap.hasOwnProperty(propName);
     }
     
-    public function deleteProperty(propName:String):void
+    public function deleteProperty(propName:String):Boolean
     {
-        delete valueMap[propName];
+		return delete valueMap[propName];
     }
 	
 	public function propertyNames():Array

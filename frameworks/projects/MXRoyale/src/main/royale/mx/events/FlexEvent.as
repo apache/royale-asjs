@@ -409,7 +409,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const ENTER:String = "enter";
+    public static const ENTER:String = "enter";
 
     /**
      *  The <code>FlexEvent.ENTER_FRAME</code> constant defines the value of the
@@ -1130,7 +1130,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const SELECTION_CHANGE:String = "selectionChange";
+    public static const SELECTION_CHANGE:String = "selectionChange";
 
     /**
      *  The <code>FlexEvent.SHOW</code> constant defines the value of the

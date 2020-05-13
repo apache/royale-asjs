@@ -16,21 +16,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>18</version>
+    <version>23</version>
     <relativePath />
   </parent>
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -43,51 +42,47 @@
   -->
 
   <scm>
-    <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
-    <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
-    <url>scm:git:https://github.com/apache/royale-asjs.git</url>
-    <tag>org.apache.royale.framework-0.9.6-rc3</tag>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</connection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</developerConnection>
+    <url>https://github.com/apache/royale-asjs</url>
+    <tag>org.apache.royale.framework-0.9.7-rc5</tag>
   </scm>
 
   <properties>
-    <java.version>1.6</java.version>
+    <java.version>1.7</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
-    <royale.compiler.version>0.9.6</royale.compiler.version>
-    <royale.typedefs.version>0.9.6</royale.typedefs.version>
-    <royale.build-tools.version>1.0.0</royale.build-tools.version>
-    <royale.swc-date>9/24/19 9:06 -0800</royale.swc-date>
+    <royale.build-tools.version>1.1.0</royale.build-tools.version>
+    <royale.compiler.version>0.9.7</royale.compiler.version>
+    <royale.typedefs.version>0.9.7</royale.typedefs.version>
 
-    <royale.example.targets>JSRoyale</royale.example.targets>
-    
+    <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
     <repo.compiler.options />
-    
+
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
     <swf.version>31</swf.version>
     <source.map>true</source.map>
-    
+
+    <!-- This parameter has to be provided from the outside -->
+    <webdriver.gecko.driver />
     <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
-    <skipgpg>false</skipgpg>
 
-    <!-- URL of the ASF SonarQube server -->
-    <sonar.host.url>https://builds.apache.org/analysis</sonar.host.url>
-    <!-- Exclude all generated code -->
-    <sonar.exclusions>file:**/generated-sources/**</sonar.exclusions>
-  </properties>
+    <release-profiles>apache-release,with-distribution,option-with-swf</release-profiles>
+  <project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
     <site>
       <id>apache.website</id>
-      <url>scm:git:https://git-wip-us.apache.org/repos/asf/royale-asjs.git</url>
+      <url>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</url>
     </site>
   </distributionManagement>
 
@@ -113,16 +108,32 @@
     </mailingList>
   </mailingLists>
 
+  <modules>
+    <module>frameworks</module>
+    <module>archetypes</module>
+  </modules>
+
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <configuration>
-            <skip>${skipgpg}</skip><!--true to skip gpg if building release on CI server -->
-          </configuration>
+          <groupId>com.googlecode.maven-download-plugin</groupId>
+          <artifactId>download-maven-plugin</artifactId>
+          <version>1.5.0</version>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.3</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.gmaven</groupId>
+          <artifactId>groovy-maven-plugin</artifactId>
+          <version>2.1.1</version>
+        </plugin>
+
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
           <artifactId>royale-maven-plugin</artifactId>
@@ -154,7 +165,7 @@
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.7</version>
         </plugin>
-        
+
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
@@ -164,19 +175,7 @@
         <plugin>
           <groupId>nl.geodienstencentrum.maven</groupId>
           <artifactId>sass-maven-plugin</artifactId>
-          <version>3.6.0</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>3.0.0-SNAPSHOT</version>
+          <version>3.7.2</version>
         </plugin>
 
         <plugin>
@@ -190,15 +189,77 @@
           <artifactId>maven-scm-plugin</artifactId>
           <version>1.10.0</version>
         </plugin>
-<!--
+
         <plugin>
-          <groupId>org.sonarsource.scanner.maven</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.2</version>
-        </plugin>-->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.2.0</version>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.theoryinpractise</groupId>
+          <artifactId>reproducible-maven-plugin</artifactId>
+          <version>1.0.1</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+          <!-- If deploying fails due to repo or network problems, retry the given number of times (1-10) -->
+          <configuration>
+            <retryFailedDeploymentCount>6</retryFailedDeploymentCount>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
+        
       </plugins>
     </pluginManagement>
+
     <plugins>
+      <!-- Execute some checks if the environment ist correctly configured -->
+      <plugin>
+        <groupId>org.codehaus.gmaven</groupId>
+        <artifactId>groovy-maven-plugin</artifactId>
+        <executions>
+          <!-- Do some pre-build checks and report any findings to the user -->
+          <execution>
+            <id>prerequisite-check</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>execute</goal>
+            </goals>
+            <inherited>false</inherited>
+            <configuration>
+              <properties>
+                <!--
+                  We have to pass this value in this way or we can't
+                  access the value overridden by the commandline.
+                -->
+                <geckoProperty>${webdriver.gecko.driver}</geckoProperty>
+              </properties>
+              <source>${project.basedir}/src/main/script/prerequisiteCheckFramework.groovy</source>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <arguments combine.self="override">-P${release-profiles}</arguments>
+        </configuration>
+      </plugin>
+
       <!-- Check if all source files have the required apache license headers -->
       <plugin>
         <groupId>org.apache.rat</groupId>
@@ -214,6 +275,8 @@
           </execution>
         </executions>
         <configuration>
+          <!-- Make rat log the problematic files in the build output -->
+          <consoleOutput>true</consoleOutput>
           <excludes>
             <!-- JSON files can't contain comments -->
             <exclude>**/*.json</exclude>
@@ -250,279 +313,264 @@
                 target directories. We don't want that.
             -->
             <exclude>**/target/**</exclude>
-
+            <!-- 
+                Same case for generated compilations of examples or libraries
+                done with IDEs that instead of target use bin.
+            -->
+            <exclude>**/bin/**</exclude>
+            
             <exclude>**/src/test/royale/out/**</exclude>
             <exclude>lib/external/*.html</exclude>
+            
+            <!-- Moonshine generate this files -->
+            <exclude>obj/*.xml</exclude>
+            <exclude>*.as3proj</exclude>
+
+            <!-- Exclude node_modules -->
+            <exclude>node_modules/**</exclude>
+            
+            <!-- Exclude Affinity Design -->
+            <exclude>**/*.afdesign</exclude>
           </excludes>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.doxia</groupId>
-            <artifactId>doxia-core</artifactId>
-            <version>1.6</version>
-            <exclusions>
-              <exclusion>
-                <groupId>xerces</groupId>
-                <artifactId>xercesImpl</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-        </dependencies>
-      </plugin>
-
-      <!-- Configure the Site generation -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <!-- Downgraded to 3.4 as 3.5 and 3.5.1 seem to have issues with the velocity tools -->
-        <version>3.7.1</version>
-        <configuration>
-          <generateReports>true</generateReports>
-          <generateSitemap>true</generateSitemap>
-          <relativizeDecorationLinks>false</relativizeDecorationLinks>
-          <locales>en</locales>
-          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-          <outputEncoding>${project.reporting.outputencoding}</outputEncoding>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.maven.doxia</groupId>
-            <artifactId>doxia-core</artifactId>
-            <version>1.8</version>
-          </dependency>
-          <!-- All dependencies needed by the reflow skin -->
-          <dependency>
-            <groupId>lt.velykis.maven.skins</groupId>
-            <artifactId>reflow-velocity-tools</artifactId>
-            <version>1.1.1</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-
-      <!--
-        Make the maven-site-plugin stage the output in the "asf-site" branch
-      -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-scm-publish-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <id>scm-publish</id>
-            <phase>site-deploy</phase>
-            <!-- deploy site with maven-scm-publish-plugin -->
-            <goals>
-              <goal>publish-scm</goal>
-            </goals>
-            <configuration>
-              <!-- mono-module doesn't require site:stage -->
-              <content>${project.build.directory}/site</content>
-              <!-- branch where to deploy -->
-              <scmBranch>asf-site</scmBranch>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
-          <configuration>
-              <providerImplementations>
-                  <git>jgit</git>
-              </providerImplementations>
-          </configuration>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.maven.scm</groupId>
-                  <artifactId>maven-scm-provider-jgit</artifactId>
-                  <version>1.11.2-SNAPSHOT</version>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.maven.scm</groupId>
-                  <artifactId>maven-scm-api</artifactId>
-                  <version>1.11.2-SNAPSHOT</version>
-              </dependency>
-          </dependencies>
       </plugin>
     </plugins>
   </build>
 
   <profiles>
     <profile>
-      <id>main</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <modules>
-          <module>frameworks</module>
-          <module>archetypes</module>
-      </modules>
-    </profile>
-    <profile>
-      <id>release</id>
-      <properties>
-        <royale.debug>false</royale.debug>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>build-examples</id>
+      <id>with-examples</id>
       <modules>
         <module>examples</module>
       </modules>
     </profile>
 
     <profile>
-      <id>build-distribution</id>
+      <id>with-distribution</id>
       <modules>
         <module>distribution</module>
       </modules>
     </profile>
 
     <profile>
-      <id>build-manualtests</id>
+      <id>with-manualtests</id>
       <modules>
         <module>manualtests</module>
       </modules>
     </profile>
 
     <profile>
-      <id>run-testsuite</id>
-      <modules>
+      <id>with-ui-testsuite</id>
+      <!-- Disabled for now till I find out what the module is about -->
+      <!--modules>
         <module>testsuite</module>
-      </modules>
+      </modules-->
     </profile>
+
     <profile>
-        <id>upload-release-to-staging</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <modules><!-- only run on top-level, not for each module -->
-        </modules>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>wagon-maven-plugin</artifactId>
-                    <version>2.0.0</version>
-                    <configuration>
-                        <serverId>apache.releases.https</serverId>
-                        <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-    
-    <profile>
-        <id>generate-swf</id>
-        <properties>
-            <royale.example.targets>SWF,JSRoyale</royale.example.targets>
-        </properties>
-        <dependencies>
-            <dependency>
-                <groupId>com.adobe.flash.framework</groupId>
-                <artifactId>playerglobal</artifactId>
-                <version>${flash.version}</version>
-                <type>swc</type>
-                <scope>runtime</scope>
-            </dependency>
-        </dependencies>
-    </profile>
-    
-    <profile>
-      <id>generate-swcs-for-swf</id>
+      <id>option-with-swf</id>
       <properties>
-          <royale.skipAS>false</royale.skipAS>
+        <royale.targets>SWF,JSRoyale</royale.targets>
+        <royale.skipAS>false</royale.skipAS>
       </properties>
       <dependencies>
-          <dependency>
-              <groupId>com.adobe.air.framework</groupId>
-              <artifactId>airglobal</artifactId>
-              <version>${air.version}</version>
-              <type>swc</type>
-              <scope>runtime</scope>
-          </dependency>
+        <dependency>
+          <groupId>com.adobe.air.framework</groupId>
+          <artifactId>airglobal</artifactId>
+          <version>${air.version}</version>
+          <type>swc</type>
+          <scope>runtime</scope>
+        </dependency>
       </dependencies>
     </profile>
-    
+
     <profile>
-        <id>release-swcs</id>
-        <properties>
-            <repo.compiler.options>-metadata.date="${royale.swc-date}";-metadata.dateFormat="MM/dd/yy HH:mm Z";-swf-debugfile-alias=/org/apache/royale/0.9.6;</repo.compiler.options>
-            <source.map>false</source.map>
-        </properties>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.royale.compiler</groupId>
-                    <artifactId>royale-maven-plugin</artifactId>
-                    <version>${royale.compiler.version}</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
+      <id>_reproducible-build</id>
+      <properties>
+          <repo.compiler.options>
+          -metadata.date=${project.build.outputTimestamp};-metadata.dateFormat=yyyy-MM-dd'T'HH:mm:ss'Z'</repo.compiler.options>
+      </properties>
+      <activation>
+        <property>
+          <name>project.build.outputTimestamp</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.royale.compiler</groupId>
+            <artifactId>royale-maven-plugin</artifactId>
+            <version>${royale.compiler.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!--
+      This profile enables the changes required to do releases on the Royale CI server.
+      It should not be used otherwise.
+    -->
+    <profile>
+      <id>royale-release</id>
+      <properties>
+        <!-- Ensure the royale-release plugin is enabled when running release:perform -->
+        <release-profiles>apache-release,royale-release,with-distribution,option-with-swf</release-profiles>
+      </properties>
+
+      <!-- Redirect the deployment to a local directory -->
+      <!-- Note: using the 'altReleaseDeploymentRepository' and alike were ignored in the release:perform phase -->
+      <distributionManagement>
+        <repository>
+          <id>apache.releases.https</id>
+          <name>Apache Release Distribution Repository</name>
+          <!--
+            'maven.multiModuleProjectDirectory' is a property introduced with maven 3.3.1 ...
+            don't worry if your IDE is complaining.
+            Also this will be set to the 'target/checkout' directory the output will be in
+            'target/local-release-dir'.
+          -->
+          <url>file://${maven.multiModuleProjectDirectory}/../local-release-dir</url>
+        </repository>
+      </distributionManagement>
+
+      <build>
+        <plugins>
+          <!-- Generate the effective poms for this build -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-help-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-effective-pom</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>effective-pom</goal>
+                </goals>
+                <configuration>
+                  <output>${project.build.directory}/effective.pom</output>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+        <pluginManagement>
+          <plugins>
+            <!-- We require the release manager to manually login an sign using his credentials -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <configuration>
+                <skip>true</skip>
+              </configuration>
+            </plugin>
+            <!-- We require the release manager to login and push the changes using his credentials -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-release-plugin</artifactId>
+              <configuration>
+                <pushChanges>false</pushChanges>
+                <providerImplementations>
+                  <git>jgit</git>
+                </providerImplementations>
+              </configuration>
+              <dependencies>
+                <dependency>
+                  <groupId>org.apache.maven.scm</groupId>
+                  <artifactId>maven-scm-provider-jgit</artifactId>
+                  <version>1.11.3-SNAPSHOT</version>
+                </dependency>
+              </dependencies>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+
+    <!--
+      This profile is needed by the releasesteps.xml Ant script in order to know
+      where to deploy artifacts.
+    -->
+    <profile>
+      <id>_releasesteps-upload-release-to-staging</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <modules><!-- only run on top-level, not for each module -->
+      </modules>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>wagon-maven-plugin</artifactId>
+            <version>2.0.0</version>
+            <configuration>
+              <includes>**</includes>
+              <serverId>apache.releases.https</serverId>
+              <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <!-- Make the release-plugin use the new reproducible build plugin extension -->
+    <profile>
+      <id>apache-release</id>
+      <properties>
+        <source.map>false</source.map>
+        <royale.debug>false</royale.debug>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.theoryinpractise</groupId>
+            <artifactId>reproducible-maven-plugin</artifactId>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <configuration>
+              <preparationGoals>clean com.theoryinpractise:reproducible-maven-plugin:apply install</preparationGoals>
+              <completionGoals>com.theoryinpractise:reproducible-maven-plugin:clear</completionGoals>
+            </configuration>
+          </plugin>
+
+          <!--
+            Create MD5 and SHA512 checksum files for the release artifacts.
+          -->
+          <plugin>
+            <groupId>net.nicoulaj.maven.plugins</groupId>
+            <artifactId>checksum-maven-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>files</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <algorithms>
+                <algorithm>SHA-512</algorithm>
+              </algorithms>
+              <fileSets>
+                <fileSet>
+                  <directory>${project.build.directory}</directory>
+                  <includes>
+                    <include>royale-framework-parent-${project.version}-source-release.zip</include>
+                  </includes>
+                </fileSet>
+              </fileSets>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
-
-  <repositories>
-    <repository>
-      <id>apache-release</id>
-      <url>https://repository.apache.org/content/repositories/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>apache-snapshots</id>
-      <url>https://repository.apache.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>apache-plugins-release</id>
-      <url>https://repository.apache.org/content/repositories/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>apache-plugins-snapshots</id>
-      <url>https://repository.apache.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
 
 </project>

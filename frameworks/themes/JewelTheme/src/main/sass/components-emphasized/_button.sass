@@ -20,35 +20,18 @@
 // Jewel Button
 
 // Button variables
-$button-border-radius: 3px
-
-=button-theme($button-color, $text-color)
-	
-	+jewel-bg-border("normal", $button-color, $button-border-radius)
-	
-	color: $text-color
-	
-	@if not $flat and $text-color == $font-theme-color
-		text:
-			shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7) //0 .063em
-	
-	&:hover, &:hover:focus
-		+jewel-bg-border("hover", $button-color)
-
-	&:active, &:active:focus
-		+jewel-bg-border("active", $button-color)
-
-	&:focus
-		+jewel-bg-border("focus", $button-color)
-		
-	&[disabled]
-		+jewel-bg-border("disabled", $button-color)
-		color: $disabled-font-color
-		text:
-			shadow: unset
+$button-border-radius: $border-radius
 
 .jewel.button.emphasized
-	+button-theme($emphasized-color, $font-theme-color)
+	+button-theme($emphasized-color, $font-theme-color, false)
+
+// OUTLINED
+.jewel.button.emphasized.outlined
+	+button-theme($emphasized-color, $font-theme-color, true)
+
+// UNBOXED	
+.jewel.button.emphasized.unboxed
+	+button-theme($emphasized-color, $font-theme-color, false, true)
 
 
 //SVGs

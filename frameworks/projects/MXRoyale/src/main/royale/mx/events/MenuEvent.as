@@ -499,7 +499,7 @@ public class MenuEvent extends ListEvent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
- //   public var menuBar:MenuBar;
+    public var menuBar:Object;//MenuBar;
 
     //--------------------------------------------------------------------------
     //

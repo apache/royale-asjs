@@ -18,18 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-    }
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateControlConfigBead;
 	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-
 	
 	/**
 	 * The change event is dispatched when the selectedDate is changed.

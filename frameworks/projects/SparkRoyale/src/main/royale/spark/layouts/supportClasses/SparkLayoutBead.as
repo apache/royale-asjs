@@ -26,6 +26,7 @@ import mx.core.UIComponent;
 import mx.core.mx_internal;
 
 import spark.components.supportClasses.GroupBase;
+import spark.components.SkinnableContainer;
 import spark.core.NavigationUnit;
 
 import org.apache.royale.core.IBeadLayout;
@@ -70,13 +71,25 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
         super();
     }
 
+	private var sawSizeChanged:Boolean;
+	
+	override	 protected function handleSizeChange(event:Event):void
+	{
+		sawSizeChanged = true;
+		super.handleSizeChange(event);
+	}
+
     override public function layout():Boolean
     {
         var n:int = target.numChildren;
         if (n == 0)
             return false;
         
-        if (target != host)
+		var usingSkin:Boolean = false;
+		if (host is SkinnableContainer)
+			usingSkin = (host as SkinnableContainer).skin != null;
+				
+        if (!usingSkin && target != host)
         {
             var tlc:UIComponent = host as UIComponent;
             if (!tlc.isWidthSizedToContent() &&
@@ -84,22 +97,26 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
                 target.setActualSize(tlc.width, tlc.height);
         }
         
+		if ((!isNaN(target.percentWidth)) || (!isNaN(target.percentHeight)))
+			if (!sawSizeChanged)
+				return false;
+				
         var w:Number = target.width;
         var h:Number = target.height;
-        if (target.isHeightSizedToContent())
+        if (target.layout.isHeightSizedToContent())
             h = target.measuredHeight;
-        if (target.isWidthSizedToContent())
+        if (target.layout.isWidthSizedToContent())
             w = target.measuredWidth;
         target.layout.updateDisplayList(w, h);
         
         // update the target's actual size if needed.
-        if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
+        if (target.layout.isWidthSizedToContent() && target.layout.isHeightSizedToContent()) {
             target.setActualSize(target.getExplicitOrMeasuredWidth(), 
                 target.getExplicitOrMeasuredHeight());
         }
-        else if (target.isWidthSizedToContent())
+        else if (target.layout.isWidthSizedToContent())
             target.setWidth(target.getExplicitOrMeasuredWidth());
-        else if (target.isHeightSizedToContent())
+        else if (target.layout.isHeightSizedToContent())
             target.setHeight(target.getExplicitOrMeasuredHeight());
         
         return true;

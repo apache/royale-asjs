@@ -22,13 +22,13 @@ package org.apache.royale.jewel.itemRenderers
     {
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
-    }
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.beads.controls.TextAlign;
-	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
-	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
+	}
+    import org.apache.royale.core.StyledMXMLItemRenderer;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.html.util.getLabelFromData;
+    import org.apache.royale.jewel.beads.controls.TextAlign;
+    import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
+    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
@@ -53,15 +53,10 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel item";
-			addClass("selectable");
 
 			if(MXMLDescriptor != null)
 			{
 				addClass("mxmlContent");
-			} else
-			{
-				textAlign = new TextAlign();
-				addBead(textAlign);
 			}
 		}
 
@@ -113,6 +108,11 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set align(value:String):void
 		{
+			if(!textAlign)
+			{
+				textAlign = new TextAlign();
+				addBead(textAlign);
+			}
 			textAlign.align = value;
 		}
 
@@ -140,51 +140,8 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this, 'li');
+			element.tabIndex = 0;
             return element;
         }
-
-		private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		override public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-		override public function set selectable(value:Boolean):void
-		{
-			_selectable = value;
-			toggleClass("selectable", _selectable);	
-		}
-
-        /**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			// if (down)
-			// 	useColor = downColor;
-			// else if (hovered)
-			// 	useColor = highlightColor;
-			// else 
-            //if (selected)
-            // 	useColor = selectedColor;
-			//else
-			// 	useColor = backgroundColor;
-
-			if(hoverable)
-            	toggleClass("hovered", hovered);
-			if(selectable)
-            	toggleClass("selected", selected);
-		}
 	}
 }

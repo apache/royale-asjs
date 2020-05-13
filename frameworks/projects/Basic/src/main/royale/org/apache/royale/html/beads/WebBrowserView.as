@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.html.beads.models.WebBrowserModel;
+	import org.apache.royale.html.beads.models.WebBrowserModel;
+	import org.apache.royale.html.beads.models.WebBrowserModel;
+	
 	COMPILE::SWF {
 		import flash.events.Event;
 		import flash.html.HTMLLoader;
@@ -95,6 +99,9 @@ package org.apache.royale.html.beads
 			loader.width = host.width;
 			loader.height = host.height;
 			(host as UIBase).$sprite_addChild(loader);
+			if (model is WebBrowserModel && WebBrowserModel(model).url != null) {
+				loadPage(null);
+			}
 		}
 
 		/**
@@ -169,6 +176,9 @@ package org.apache.royale.html.beads
 
 			var iframe:HTMLIFrameElement = (host as UIBase).element as HTMLIFrameElement;
 			iframe.addEventListener("load", handlePageShow, false);
+			if (model is WebBrowserModel && WebBrowserModel(model).url != null) {
+				loadPage(null);
+			}
 		}
 
 		/**

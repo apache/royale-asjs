@@ -24,8 +24,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.beads.controls.TextAlign;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
 
 	/**
@@ -53,7 +51,6 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel navigationlink";
-			addClass("selectable");
 
 			if(MXMLDescriptor != null)
 			{
@@ -61,7 +58,7 @@ package org.apache.royale.jewel.itemRenderers
 			}
 		}
 
-		private var _href:String = "#";
+		// private var _href:String = "#";
         /**
          *  the navigation link url
          *  
@@ -70,14 +67,15 @@ package org.apache.royale.jewel.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function get href():String
-		{
-            return _href;   
-		}
-		public function set href(value:String):void
-		{
-            _href = value;
-		}
+		// [Bindable('dataChange')]
+		// public function get href():String
+		// {
+        //     return _href;   
+		// }
+		// public function set href(value:String):void
+		// {
+        //     _href = value;
+		// }
 
 		private var _text:String = "";
 
@@ -89,6 +87,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
+		[Bindable('dataChange')]
 		public function get text():String
 		{
             return _text;
@@ -114,39 +113,45 @@ package org.apache.royale.jewel.itemRenderers
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;
-
-			if(value == null) return;
-
+			if (value == null) {
+				// _href = "#";
+				_text = null;
+				//super.data setter will dispatch dataChange
+				super.data = value;
+				return;
+			}
+			
 			if (labelField)
 			{
-                text = String(value[labelField]);
+                _text = String(value[labelField]);
             }
 			else if(value.label !== undefined)
 			{
-                text = String(value.label);
+				if (value.label === null) _text = null;
+                else _text = String(value.label);
 			}
 			else
 			{
-				text = String(value);
+				_text = String(value);
 			}
 			// text = getLabelFromData(this, value);
 			
-            if(value.href !== undefined)
-			{
-                href = String(value.href);
-			}
+            // if(value.href !== undefined)
+			// {
+			// 	if (value.href === null) _href = "#";
+            //     else _href = String(value.href);
+			// } else _href = "#";
 
 			COMPILE::JS
 			{
 			if(textNode != null)
 			{
-				textNode.nodeValue = text;
-				(element as HTMLElement).setAttribute('href', href);
+				textNode.nodeValue = _text;
+				//(element as HTMLElement).setAttribute('href', _href);
 			}	
 			}
-
-			dispatchEvent(new Event("dataChange"));
+			//super.data setter will dispatch dataChange
+			super.data = value;
 		}
 
         /**
@@ -157,7 +162,7 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
             var a:WrappedHTMLElement = addElementToWrapper(this, 'a');
-            a.setAttribute('href', href);
+            //a.setAttribute('href', href);
 
 			if(MXMLDescriptor == null)
 			{
@@ -167,18 +172,5 @@ package org.apache.royale.jewel.itemRenderers
 
             return element;
         }
-
-		/**
-		 * @private
-		 * 
-		 * Styles are handled in CSS and usualy This renderer does not uses "selected" state
-	 	 * at least if the drawer is closed after selection.
-		 */
-		override public function updateRenderer():void
-		{
-			// there's no selection only hover state
-			if(hoverable)
-            	toggleClass("hovered", hovered);
-		}
 	}
 }

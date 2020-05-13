@@ -75,6 +75,9 @@
 	<component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
 	<component id="TileLayout" class="spark.layouts.TileLayout"/>
     <component id="Module" class="spark.modules.Module" />
+    <component id="FormItemLayout" class="spark.layouts.FormItemLayout"/>
+    <component id="ConstraintColumn" class="mx.containers.utilityClasses.ConstraintColumn" lookupOnly="true"/>
+    <component id="ConstraintRow" class="mx.containers.utilityClasses.ConstraintRow" lookupOnly="true"/>
 
     <component id="ArrayCollection" class="mx.collections.ArrayCollection" lookupOnly="true"/>
 
@@ -112,6 +115,10 @@
     
     <component id="NonVirtualHDataGroup" class="spark.components.NonVirtualHDataGroup"/>
     <component id="NonVirtualVDataGroup" class="spark.components.NonVirtualVDataGroup"/>
+    <component id="TabBarView" class="spark.components.beads.TabBarView"/>
+    <component id="MXAdvancedDataGridItemRenderer" class="spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
+    <component id="SparkTextButtonItemRenderer" class="spark.components.supportClasses.SparkTextButtonItemRenderer"/>
+    <component id="Skin" class="spark.components.supportClasses.Skin"/>
 
 	
 </componentPackage>

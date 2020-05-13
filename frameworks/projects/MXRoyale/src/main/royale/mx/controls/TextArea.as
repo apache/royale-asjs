@@ -1542,23 +1542,28 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get selectionBeginIndex():int
-//    {
-//        return textField ?
-//               textField.selectionBeginIndex :
-//               _selectionBeginIndex;
-//    }
+    public function get selectionBeginIndex():int
+    {
+        COMPILE::JS
+        {
+            return (element as HTMLTextAreaElement).selectionStart;
+        }
+        COMPILE::SWF
+        {
+            return 0;
+        }
+    }
 
     /**
      *  @private
      */
-//    public function set selectionBeginIndex(value:int):void
-//    {
-//        _selectionBeginIndex = value;
-//        selectionChanged = true;
-//
-//        invalidateProperties();     
-//    }
+    public function set selectionBeginIndex(value:int):void
+    {
+        COMPILE::JS
+        {
+            (element as HTMLTextAreaElement).selectionStart = value;
+        }
+    }
 
     //----------------------------------
     //  selectionEndIndex
@@ -1592,23 +1597,28 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get selectionEndIndex():int
-//    {
-//        return textField ?
-//               textField.selectionEndIndex :
-//               _selectionEndIndex;
-//    }
+    public function get selectionEndIndex():int
+    {
+        COMPILE::JS
+        {
+            return (element as HTMLTextAreaElement).selectionEnd;
+        }
+        COMPILE::SWF
+        {
+            return 0;
+        }
+    }
 
     /**
      *  @private
      */
-//    public function set selectionEndIndex(value:int):void
-//    {
-//        _selectionEndIndex = value;
-//        selectionChanged = true;
-//
-//        invalidateProperties();
-//    }
+    public function set selectionEndIndex(value:int):void
+    {
+        COMPILE::JS
+        {
+            (element as HTMLTextAreaElement).selectionEnd = value;                
+        }
+    }
 
     //----------------------------------
     //  styleSheet
@@ -2308,14 +2318,14 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function setSelection(beginIndex:int, endIndex:int):void
-//    {
-//        _selectionBeginIndex = beginIndex;
-//        _selectionEndIndex = endIndex;
-//        selectionChanged = true;
-//
-//        invalidateProperties();
-//    }
+    public function setSelection(beginIndex:int, endIndex:int):void
+    {
+        COMPILE::JS
+        {
+            selectionBeginIndex = beginIndex;
+            selectionEndIndex = endIndex;
+        }
+    }
 
     /**
      *  @private

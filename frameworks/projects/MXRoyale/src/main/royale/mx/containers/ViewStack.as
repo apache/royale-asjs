@@ -990,7 +990,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
             {
                 // must set visible=true otherwise child has display:none
                 // and measurements of its children will not be correct
-                child.visible = true;
+                child.setVisible(true);
             }
             // Don't send events for the size/move. The set visible below
             if (child.width != newWidth || child.height != newHeight)

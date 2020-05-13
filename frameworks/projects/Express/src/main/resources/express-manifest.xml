@@ -95,6 +95,7 @@
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport"  lookupOnly="true" />
 
     <component id="DataGridButtonBar" class="org.apache.royale.html.DataGridButtonBar" lookupOnly="true" />
+    <component id="DataGridColumnList" class="org.apache.royale.html.supportClasses.DataGridColumnList" lookupOnly="true" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser" lookupOnly="true" />
     <component id="DateField" class="org.apache.royale.html.DateField" lookupOnly="true" />

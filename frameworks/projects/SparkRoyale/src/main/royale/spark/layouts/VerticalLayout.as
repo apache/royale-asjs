@@ -37,6 +37,7 @@ import spark.layouts.supportClasses.DropLocation;
 import spark.layouts.supportClasses.LayoutBase;
 import spark.layouts.supportClasses.LayoutElementHelper;
 import spark.layouts.supportClasses.LinearLayoutVector;
+import spark.core.IGapLayout;
 
 use namespace mx_internal;
 
@@ -123,7 +124,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class VerticalLayout extends LayoutBase
+public class VerticalLayout extends LayoutBase implements IGapLayout
 {
 //    include "../core/Version.as";
     
@@ -2374,7 +2375,6 @@ public class VerticalLayout extends LayoutBase
         
         return index;
     }
-
 
 }
 }

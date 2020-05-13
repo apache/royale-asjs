@@ -25,6 +25,7 @@
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
 
@@ -92,6 +93,7 @@
             <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
             <arg value="-load-config=${config.path}" />
+            <arg value="-target-player=${playerglobal.version}" />
             <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,IUIComponent" />
             <arg value="-compiler.define+=GOOG::DEBUG,goog.DEBUG" />
             <arg value="-debug=true" />
@@ -138,6 +140,7 @@
             <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
             <arg value="-load-config=${config.swf.path}" />
+            <arg value="-target-player=${playerglobal.version}" />
             <arg value="-compiler.define+=GOOG::DEBUG,true" />
             <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject" />
             <arg value="-debug=true" />

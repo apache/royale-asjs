@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    import org.apache.royale.html.beads.TextFieldViewBase
-	import flash.text.TextFieldType;
+    import flash.text.TextFieldType;
+
+    import org.apache.royale.html.beads.TextFieldViewBase;
 	
     /**
      *  The TextFieldView class is the default view for
-     *  the org.apache.royale.jewel.Label class.
+     *  the org.apache.royale.jewel.Label class in the SWF platform.
      *  It displays text using a TextInput, so there is no
      *  right-to-left text support in this view.
      *  

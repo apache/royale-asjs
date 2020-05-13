@@ -38,7 +38,7 @@
     <component id="RegExp" class="RegExp" lookupOnly="true"/>
     <component id="String" class="String" lookupOnly="true"/>
     <component id="uint" class="uint" lookupOnly="true"/>
-	<component id="Vector" class="__AS3__.vec.Vector" lookupOnly="true"/>
+    <component id="Vector" class="__AS3__.vec.Vector" lookupOnly="true"/>
     <component id="XML" class="XML" lookupOnly="true"/>
     <component id="XMLList" class="XMLList" lookupOnly="true"/>
 

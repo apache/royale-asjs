@@ -47,7 +47,7 @@ limitations under the License.
                 <j:SizeControl size="xlarge"/>
             </j:beads>
             <j:icon>
-                <js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+                <js:MaterialIcon text="{MaterialIconType.SEARCH}"/>
             </j:icon>
         </j:IconTextInput>
         <j:Button text="Search" emphasis="secondary">

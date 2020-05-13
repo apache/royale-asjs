@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="LayoutsPlayGround.mxml">
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
+		<c:ExampleHeader title="Jewel Layouts">
+			<c:description>
+				<![CDATA[<strong>Jewel Layouts</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="BasicLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:Label multiline="true" text="Jewel BasicLayout (width200, height:200px)"/>
+					<j:Group width="200" height="200" className="wrapper">
+						<j:Button text="Origin" emphasis="primary"/>
+						<j:Button text="x:30,y:30" emphasis="secondary" x="30" y="30"/>
+						<j:Button text="x:60,y:60" emphasis="emphasized" x="60" y="60"/>
+						<j:Button text="bottom/right" style="bottom:0;right:0"/>
+					</j:Group>
+
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="HorizontalLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:HGroup localId="hg" gap="3" className="wrapper">
+						<j:Button text="X" emphasis="primary"/>
+						<j:Button text="Y" emphasis="secondary"/>
+						<j:Button text="Z" emphasis="emphasized"/>
+						<j:Button text="0" />
+					</j:HGroup>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VerticalLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:VGroup localId="vg" gap="3" className="wrapper">
+						<j:Button text="X" emphasis="primary"/>
+						<j:Button text="Y" emphasis="secondary"/>
+						<j:Button text="Z" emphasis="emphasized"/>
+						<j:Button text="0"/>
+					</j:VGroup>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="HorizontalCenteredLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+				
+					<j:Group width="100%" height="200" className="wrapper">
+						<j:beads>
+							<j:HorizontalCenteredLayout localId="hcl" gap="3"/>
+						</j:beads>
+						<j:Button text="X" emphasis="primary"/>
+						<j:Button text="Y" emphasis="secondary"/>
+						<j:Button text="Z" emphasis="emphasized"/>
+						<j:Button text="0" />
+					</j:Group>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hcl.gap = event.target.value"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VerticalCenteredLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:Group width="100%" height="200" className="wrapper">
+						<j:beads>
+							<j:VerticalCenteredLayout localId="vcl" gap="3"/>
+						</j:beads>
+						<j:Button text="X" emphasis="primary"/>
+						<j:Button text="Y" emphasis="secondary"/>
+						<j:Button text="Z" emphasis="emphasized"/>
+						<j:Button text="0" />
+					</j:Group>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vcl.gap = event.target.value"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="HorizontalFlowLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+				
+					<j:Group className="wrapper">
+						<j:beads>
+							<j:HorizontalFlowLayout localId="hfl" gap="3"/>
+						</j:beads>
+						<j:Button text="X" emphasis="primary" width="60"/>
+						<j:Button text="Y" emphasis="secondary" width="60"/>
+						<j:Button text="Z" emphasis="emphasized" width="60"/>
+						<j:Button text="0" width="60"/>
+					</j:Group>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hfl.gap = event.target.value"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VerticalFlowLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:Group className="wrapper" height="200">
+						<j:beads>
+							<j:VerticalFlowLayout localId="vfl" gap="3"/>
+						</j:beads>
+						<j:Button text="X" emphasis="primary" width="60"/>
+						<j:Button text="Y" emphasis="secondary" width="60"/>
+						<j:Button text="Z" emphasis="emphasized" width="60"/>
+						<j:Button text="0" width="60"/>
+					</j:Group>
+				
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vfl.gap = event.target.value"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VerticalCenteredLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:Group width="100%" height="300" className="wrapper">
+						<j:beads>
+							<j:VerticalCenteredLayout/>
+						</j:beads>
+						<j:Card width="50%" height="100">
+							<j:Label text="Hello!"/>
+						</j:Card>
+					</j:Group>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VContainer itemsHorizontalAlign='itemsCenter'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:VContainer width="100%" height="300" gap="3" itemsHorizontalAlign="itemsCenter" className="wrapper">
+						<j:Card width="50%" height="100">
+							<j:Label text="horz center"/>
+						</j:Card>
+						<j:Card width="50%" height="100">
+							<j:Label text="horz center"/>
+						</j:Card>
+					</j:VContainer>
+
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VContainer itemsHorizontalAlign='itemsRight'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:VContainer width="100%" height="300" gap="3" itemsHorizontalAlign="itemsRight" className="wrapper">
+						<j:Card width="50%" height="100">
+							<j:Label text="horz right"/>
+						</j:Card>
+						<j:Card width="50%" height="100">
+							<j:Label text="horz right"/>
+						</j:Card>
+					</j:VContainer>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VContainer itemsVerticalAlign='itemsBottom'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:VContainer width="100%" height="300" gap="3" itemsVerticalAlign="itemsBottom" className="wrapper">
+						<j:Card width="50%" height="100">
+							<j:Label text="vert bottom"/>
+						</j:Card>
+						<j:Card width="50%" height="100">
+							<j:Label text="vert bottom"/>
+						</j:Card>
+					</j:VContainer>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="VContainer itemsVerticalAlign='itemsCenter'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:VContainer width="100%" height="300" gap="3" itemsVerticalAlign="itemsCenter" className="wrapper">
+						<j:Card width="50%" height="100">
+							<j:Label text="vert center"/>
+						</j:Card>
+						<j:Card width="50%" height="100">
+							<j:Label text="vert center"/>
+						</j:Card>
+					</j:VContainer>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="HContainer itemsHorizontalAlign='itemsCenter'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:HContainer width="100%" height="300" gap="3" itemsHorizontalAlign="itemsCenter" className="wrapper">
+						<j:Card width="100" height="50%">
+							<j:Label text="horz center"/>
+						</j:Card>
+						<j:Card width="100" height="50%">
+							<j:Label text="horz center"/>
+						</j:Card>
+					</j:HContainer>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="HContainer itemsHorizontalAlign='itemsRight'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:HContainer width="100%" height="300" gap="3" itemsHorizontalAlign="itemsRight" className="wrapper">
+						<j:Card width="100" height="50%">
+							<j:Label text="horz right"/>
+						</j:Card>
+						<j:Card width="100" height="50%">
+							<j:Label text="horz right"/>
+						</j:Card>
+					</j:HContainer>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="HContainer itemsVerticalAlign='itemsBottom'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:HContainer width="100%" height="300" gap="3" itemsVerticalAlign="itemsBottom" className="wrapper">
+						<j:Card width="100" height="50%">
+							<j:Label text="vert bottom"/>
+						</j:Card>
+						<j:Card width="100" height="50%">
+							<j:Label text="vert bottom"/>
+						</j:Card>
+					</j:HContainer>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="HContainer itemsVerticalAlign='itemsCenter'" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:HContainer width="100%" height="300" gap="3" itemsVerticalAlign="itemsCenter" className="wrapper">
+						<j:Card width="100" height="50%">
+							<j:Label text="vert centered"/>
+						</j:Card>
+						<j:Card width="100" height="50%">
+							<j:Label text="vert centered"/>
+						</j:Card>
+					</j:HContainer>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

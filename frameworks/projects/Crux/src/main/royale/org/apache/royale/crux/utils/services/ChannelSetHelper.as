@@ -19,7 +19,7 @@ package org.apache.royale.crux.utils.services
 	import mx.messaging.ChannelSet;
 	import mx.messaging.channels.AMFChannel;
 	import mx.messaging.channels.SecureAMFChannel;
-	
+
 	import org.apache.royale.crux.IInitializing;
 	
 	/**

@@ -35,7 +35,8 @@ package flexUnitTests
                 ReflectionTesterTestUseCache,
                 ReflectionTesterTestAlias,
                 ReflectionTesterTestDynamic,
-                ReflectionTesterNativeTypes
+                ReflectionTesterNativeTypes,
+                ReflectionTesterTestEdgeCases
             ];
         }
         
@@ -48,5 +49,7 @@ package flexUnitTests
         public var reflectionTesterDynamicTest:ReflectionTesterTestDynamic;
     
         public var reflectionTesterNativeTypes:ReflectionTesterNativeTypes;
+    
+        public var reflectionTesterTestEdgeCases:ReflectionTesterTestEdgeCases;
     }
 }

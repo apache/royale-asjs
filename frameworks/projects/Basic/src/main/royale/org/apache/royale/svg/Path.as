@@ -50,6 +50,7 @@ package org.apache.royale.svg
         {
             _data = value;
             _pathCommands = null;
+            updateView();
         }
 
         private var _pathCommands:PathBuilder;
@@ -63,6 +64,7 @@ package org.apache.royale.svg
         {
             _pathCommands = value;
             _data = _pathCommands.getPathString();
+            updateView();
         }
 
 

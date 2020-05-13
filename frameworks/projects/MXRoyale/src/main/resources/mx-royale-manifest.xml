@@ -27,6 +27,8 @@
   <component id="ComboBox" class="mx.controls.ComboBox" />
   <component id="DataGrid" class="mx.controls.DataGrid" />
   <component id="DataGridColumn" class="mx.controls.dataGridClasses.DataGridColumn" />
+  <component id="DataGridColumnList" class="mx.controls.dataGridClasses.DataGridColumnList" />
+  <component id="DataGridListArea" class="mx.controls.dataGridClasses.DataGridListArea" />
 	<component id="DateChooser" class="mx.controls.DateChooser" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
@@ -62,6 +64,8 @@
 	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
     <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation"/>
 	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
+    <component id="WebService" class="mx.rpc.soap.mxml.WebService" />
+    <component id="WebServiceOperation" class="mx.rpc.soap.mxml.Operation" />
 	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
 	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
 	<component id="DateValidator" class="mx.validators.DateValidator"/>
@@ -126,6 +130,7 @@
 	<component id="GridItem" class="mx.containers.GridItem"/>
 	<component id="GridRow" class="mx.containers.GridRow"/>
 	<component id="Parallel" class="mx.effects.Parallel"/>
+	<component id="Fade" class="mx.effects.Fade"/>
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
 	<component id="Tree" class="mx.controls.Tree"/>
 	<component id="LinkBar" class="mx.controls.LinkBar"/>
@@ -141,7 +146,6 @@
         <component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
 	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
         <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
-        <component id="MXAdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
 	<component id="PhoneFormatter" class="mx.formatters.PhoneFormatter"/>
 
 

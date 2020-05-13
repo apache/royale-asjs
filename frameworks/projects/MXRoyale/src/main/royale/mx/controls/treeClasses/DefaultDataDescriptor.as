@@ -27,6 +27,7 @@ import mx.collections.IList;
 import mx.collections.IViewCursor;
 import mx.collections.XMLListCollection;
 import mx.core.mx_internal;
+import mx.controls.menuClasses.IMenuDataDescriptor;
 
 import org.apache.royale.utils.UIDUtil;
 
@@ -55,7 +56,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DefaultDataDescriptor implements ITreeDataDescriptor2 //, IMenuDataDescriptor
+public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDescriptor
 {
 //    include "../../core/Version.as";
 

@@ -29,6 +29,8 @@
     <component id="HGroup" class="org.apache.royale.jewel.HGroup"/>
     <component id="VGroup" class="org.apache.royale.jewel.VGroup"/>
     <component id="Container" class="org.apache.royale.jewel.Container"/>
+    <component id="HContainer" class="org.apache.royale.jewel.HContainer"/>
+    <component id="VContainer" class="org.apache.royale.jewel.VContainer"/>
     <component id="Grid" class="org.apache.royale.jewel.Grid"/>
     <component id="ScrollableGrid" class="org.apache.royale.jewel.ScrollableGrid"/>
     <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
@@ -43,6 +45,18 @@
     <component id="TableHeaderCell" class="org.apache.royale.jewel.supportClasses.table.TableHeaderCell"/>
     <component id="TableColumn" class="org.apache.royale.jewel.supportClasses.table.TableColumn"/>
 
+    <component id="DataGrid" class="org.apache.royale.jewel.DataGrid"/>
+    <component id="DataGridColumn" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn"/>
+    <component id="DataGridColumnList" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList"/>
+    <component id="DataGridListArea" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea"/>
+    <component id="DataGridButtonBar" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar"/>
+
+    <component id="DataGridColumnLabelsChange" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridColumnLabelsChange"/>
+
+    <component id="ButtonBarItemRenderer" class="org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer"/>
+    <component id="IconButtonBarItemRenderer" class="org.apache.royale.jewel.itemRenderers.IconButtonBarItemRenderer"/>
+    <component id="ToggleButtonBarItemRenderer" class="org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer"/>
+
     <component id="SimpleButton" class="org.apache.royale.jewel.supportClasses.button.SimpleButton"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="IconButton" class="org.apache.royale.jewel.IconButton"/>
@@ -54,16 +68,20 @@
     <component id="TextArea" class="org.apache.royale.jewel.TextArea"/>
     <component id="Spinner" class="org.apache.royale.jewel.Spinner" />
     <component id="NumericStepper" class="org.apache.royale.jewel.NumericStepper" />
-    <component id="Slider" class="org.apache.royale.jewel.Slider"/>
+    <component id="HSlider" class="org.apache.royale.jewel.HSlider"/>
+    <component id="VSlider" class="org.apache.royale.jewel.VSlider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>
     <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
     <component id="ControlBar" class="org.apache.royale.jewel.ControlBar"/>
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
     <component id="List" class="org.apache.royale.jewel.List"/>
+    <component id="VirtualList" class="org.apache.royale.jewel.VirtualList"/>
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     <component id="ComboBox" class="org.apache.royale.jewel.ComboBox"/>
     <component id="ComboBoxPopUp" class="org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp"/>
+    <component id="VirtualComboBox" class="org.apache.royale.jewel.VirtualComboBox"/>
+    <component id="VirtualComboBoxPopUp" class="org.apache.royale.jewel.supportClasses.combobox.VirtualComboBoxPopUp"/>
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
@@ -91,13 +109,18 @@
     <component id="AssignTabContent" class="org.apache.royale.jewel.beads.controls.tabbar.AssignTabContent"/>
     
     <component id="HorizontalListScroll" class="org.apache.royale.jewel.beads.controls.list.HorizontalListScroll"/>
+    <component id="VirtualListView" class="org.apache.royale.jewel.beads.views.VirtualListView"/>
 
+    <component id="ButtonBar" class="org.apache.royale.jewel.ButtonBar"/>
+    <component id="IconButtonBar" class="org.apache.royale.jewel.IconButtonBar"/>
+    <component id="ToggleButtonBar" class="org.apache.royale.jewel.ToggleButtonBar"/>
     <component id="TabBar" class="org.apache.royale.jewel.TabBar"/>
     <component id="TabBarButtonItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer"/>
     <component id="TabBarButtonInidicatorRestrictedToContentItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonInidicatorRestrictedToContentItemRenderer"/>
     <component id="TabBarContent" class="org.apache.royale.jewel.TabBarContent"/>
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer"/>
+    <component id="CollapsibleNavigationSectionRenderer" class="org.apache.royale.jewel.itemRenderers.CollapsibleNavigationSectionRenderer"/>
 
     <component id="DateChooserModel" class="org.apache.royale.jewel.beads.models.DateChooserModel"/>
 
@@ -117,6 +140,7 @@
     <component id="Drawer" class="org.apache.royale.jewel.Drawer"/>
     <component id="DrawerHeader" class="org.apache.royale.jewel.supportClasses.drawer.DrawerHeader"/>
     <component id="DrawerContent" class="org.apache.royale.jewel.supportClasses.drawer.DrawerContent"/>
+    <component id="DrawerFooter" class="org.apache.royale.jewel.supportClasses.drawer.DrawerFooter"/>
 
     <component id="HideDrawerOnMouseDown" class="org.apache.royale.jewel.beads.controls.drawer.HideDrawerOnMouseDown"/>
 
@@ -125,6 +149,10 @@
     <component id="Image" class="org.apache.royale.jewel.Image"/>
 
     <component id="Card" class="org.apache.royale.jewel.Card"/>
+    <component id="CardHeader" class="org.apache.royale.jewel.supportClasses.card.CardHeader"/>
+    <component id="CardTitle" class="org.apache.royale.jewel.supportClasses.card.CardTitle"/>
+    <component id="CardPrimaryContent" class="org.apache.royale.jewel.supportClasses.card.CardPrimaryContent"/>
+    <component id="CardActions" class="org.apache.royale.jewel.supportClasses.card.CardActions"/>
 
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList"/>
 
@@ -136,6 +164,8 @@
     <component id="ResponsiveVisibility" class="org.apache.royale.jewel.beads.layouts.ResponsiveVisibility"/>
 
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
+    
+    <component id="InputButtonSize" class="org.apache.royale.jewel.beads.controls.InputButtonSize"/>
 
     <component id="MultiLine" class="org.apache.royale.jewel.beads.controls.MultiLine"/>
     <component id="NavigationActionNotifier" class="org.apache.royale.jewel.beads.controls.NavigationActionNotifier"/>
@@ -156,9 +186,11 @@
     <component id="UpperCase" class="org.apache.royale.jewel.beads.controls.textinput.UpperCase"/>
     <component id="SearchFilterForList" class="org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList"/>
     <component id="LowerCase" class="org.apache.royale.jewel.beads.controls.textinput.LowerCase"/>
+    <component id="TruncateText" class="org.apache.royale.jewel.beads.controls.textinput.TruncateText"/>
     <component id="ComboUpperCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboUpperCase"/>
     <component id="ComboLowerCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboLowerCase"/>
     <component id="ComboBoxDisabled" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"/>
+    <component id="ComboBoxTruncateText" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText"/>
 
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
     <component id="NullLayout" class="org.apache.royale.jewel.beads.layouts.NullLayout"/>
@@ -166,6 +198,7 @@
     <component id="SimpleVerticalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout"/>
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
+    <component id="VirtualListVerticalLayout" class="org.apache.royale.jewel.beads.layouts.VirtualListVerticalLayout"/>
     <component id="FormLayout" class="org.apache.royale.jewel.beads.layouts.FormLayout"/>
     <component id="FormItemLayout" class="org.apache.royale.jewel.beads.layouts.FormItemLayout"/>
     <component id="HorizontalCenteredLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalCenteredLayout"/>
@@ -176,9 +209,12 @@
     <component id="GridLayout" class="org.apache.royale.jewel.beads.layouts.GridLayout"/>
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     <component id="TableLayout" class="org.apache.royale.jewel.beads.layouts.TableLayout"/>
+    <component id="ButtonBarLayout" class="org.apache.royale.jewel.beads.layouts.ButtonBarLayout"/>
+    <component id="Paddings" class="org.apache.royale.jewel.beads.layouts.Paddings"/>
 
     <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
+    <component id="DataGridItemRenderer" class="org.apache.royale.jewel.itemRenderers.DataGridItemRenderer"/>
     <component id="TableItemRenderer" class="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
     <component id="DropDownListItemRenderer" class="org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer"/>
@@ -187,14 +223,12 @@
     <component id="NoViewport" class="org.apache.royale.jewel.supportClasses.NoViewport"/>
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>
-    <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView"/>
+    <component id="VirtualDataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView"/>
     <component id="DropDownListItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView"/>
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
-
-    <component id="AddListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddListItemRendererForArrayListData" />
-    <component id="RemoveListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveListItemRendererForArrayListData" />
-    <component id="UpdateListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateListItemRendererForArrayListData" />
-    <component id="CollectionChangeUpdateForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.CollectionChangeUpdateForArrayListData" />
+    <component id="NoClassSelectorListSelectableItemRendererBead" class="org.apache.royale.jewel.beads.itemRenderers.NoClassSelectorListSelectableItemRendererBead"/>
+    
+    <component id="RemoveAllDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllDataGridItemRendererForArrayListData" />
 
     <component id="AddTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableRowForArrayListData" />
     <component id="RemoveTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveTableRowForArrayListData" />

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="CardPlayGround.mxml">
+	
+	<c:beads>
+		<js:ContainerDataBinding/>
+	</c:beads>
+
+	<j:Grid gap="true">
+		<j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
+		<c:ExampleHeader title="Jewel Card">
+			<c:description>
+				<![CDATA[This page shows how to use <b>Jewel Card</b> alone or with other companion components like <b>CardHeader</b>, <b>CardPrimaryContent</b> and <b>CardActions</b>.<br>
+				You can see how content is aligned in each section and how to add variations in order to get several configurations. Special attention to different button styles and text colors.<br>
+				Notice that unlike other pages, this one doesn't use <b>itemsVerticalAlign</b> set to "itemsSameHeight" in order to show how Card height works depending on content.]]>
+			</c:description>
+		</c:ExampleHeader>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel Simple Card"/>
+
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p><b>Apache Royale Card</b> simplest version uses just a Card component that layout content elements vertically with some default gap between them. It applies some default padding. Card width is 100%.</p>]]></j:html>
+				</j:Label>
+
+				<j:Button text="Action" emphasis="primary"/>
+			</j:Card>
+		</j:GridCell>	
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel Simple Card"/>
+				
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p>Below this text the element is an <b>HGroup</b> with <b>itemsExpand</b> that makes internal content expand all available space.</p>]]></j:html>
+				</j:Label>
+				
+				<j:HGroup itemsExpand="true" gap="3">
+					<j:Button text="Hello"/>
+					<j:Button text="Apache"/>
+					<j:Button text="Royale!"/>
+				</j:HGroup>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardPrimaryContent>
+					<html:H3 text="Jewel Card" className="primary-dark"/>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This Card use <b>CardPrimaryContent</b> to add the main content vertically with some gap. <b>CardActions</b> add some action buttons horizontally with some gap. Action Buttons use "outlined" style.</p>]]></j:html>
+					</j:Label>
+					<j:CheckBox text="A CheckBox" selected="true"/>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Button text="Submit" emphasis="primary" outlined="true"/>
+					<j:Button text="Cancel" outlined="true"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>	
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true" className="primary-normal">
+						<j:html><![CDATA[<p>This Card with <b>CardPrimaryContent</b> and <b>CardActions</b> align action buttons to the right with <b>itemsHorizontalAlign</b> property set to <b>"itemsRight"</b>. This label is colored with "primary-normal" color.</p>]]></j:html>
+					</j:Label>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:Button text="Ok" emphasis="primary"/>
+					<j:Button text="Cancel"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel Card" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This Card adds a <b>CardHeader</b> as the first element and the title is colored with "secondary-normal", then <b>CardPrimaryContent</b> and <b>CardActions</b> card parts. Actions use IconButton to add icons and the "outlined" style.</p>]]></j:html>
+					</j:Label>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:IconButton text="Reply" emphasis="primary" outlined="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.REPLY}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton text="Cancel" outlined="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.CANCEL}" />
+						</j:icon>
+					</j:IconButton>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>	
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:BarSection>
+						<html:H3 text="Jewel Card" className="emphasized-normal"/>
+					</j:BarSection>
+					<j:BarSection itemsHorizontalAlign="itemsRight">
+						<j:IconButton emphasis="primary" unboxed="true">
+							<j:icon>
+								<js:MaterialIcon text="{MaterialIconType.SHARE}" />
+							</j:icon>
+						</j:IconButton>
+						<j:IconButton unboxed="true">
+							<j:icon>
+								<js:MaterialIcon text="{MaterialIconType.MORE_VERT}" />
+							</j:icon>
+						</j:IconButton>
+					</j:BarSection>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>In This Card the <b>CardHeader</b> use two <b>BarSection</b> to layout the title and the header buttons to left and right. The buttons in the header use an "unboxed" style with just icons.</p>]]></j:html>
+					</j:Label>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsRight">
+					<j:Button text="Do it" emphasis="primary"/>
+					<j:Button text="Cancel"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+	</j:Grid>
+</c:ExampleAndSourceCodeTabbedSectionContent>

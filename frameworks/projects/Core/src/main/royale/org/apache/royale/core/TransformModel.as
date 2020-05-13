@@ -21,6 +21,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.geom.Matrix;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	public class TransformModel extends EventDispatcher implements ITransformModel
 	{
@@ -28,7 +29,7 @@ package org.apache.royale.core
 		public static const CHANGE:String = "transferModelChange";
 		
 		private var _matrix:Matrix;
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		public function TransformModel()
 		{
@@ -41,7 +42,7 @@ package org.apache.royale.core
 
 		private function dispatchModelChangeEvent():void
 		{
-			host.dispatchEvent(new Event(CHANGE));
+			sendStrandEvent(_strand,CHANGE);
 		}
 		
 		private function get host():ITransformHost

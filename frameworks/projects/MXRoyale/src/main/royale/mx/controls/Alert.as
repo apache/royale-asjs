@@ -18,17 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package mx.controls
-{
-
+{    
+    import mx.containers.Panel;
+    import mx.core.FlexGlobals;
+    import mx.core.IFlexDisplayObject;
+    import mx.core.IUIComponent;
+    import mx.events.FlexEvent;
+    import mx.managers.ISystemManager;
+    import mx.managers.PopUpManager;
+    
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IChild;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.CloseEvent;
-	import mx.containers.Panel;
-	import mx.managers.ISystemManager;
-    import mx.managers.PopUpManager;
-	import mx.core.IUIComponent;
-	import mx.core.FlexGlobals;
+    import org.apache.royale.events.CloseEvent;
+    import org.apache.royale.events.Event;
+
 	/*
 import flash.events.Event;
 import flash.events.EventPhase;
@@ -519,13 +522,31 @@ public class Alert extends Panel
                 alert.document = FlexGlobals.topLevelApplication.document;
         }
 
-        alert.addEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
         */
+        
+        alert.addEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
+
         PopUpManager.addPopUp(alert, parent, true);
 
         return alert;
     }
 
+    /**
+     *  @private
+     */
+    private static function static_creationCompleteHandler(event:FlexEvent):void
+    {
+        if (event.target is Alert /*IFlexDisplayObject && event.eventPhase == EventPhase.AT_TARGET*/)
+        {
+            var alert:Alert = Alert(event.target);
+            alert.removeEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
+            
+            //alert.setActualSize(alert.getExplicitOrMeasuredWidth(),
+            //    alert.getExplicitOrMeasuredHeight());
+            PopUpManager.centerPopUp(IFlexDisplayObject(alert));
+        }
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -696,6 +717,32 @@ public class Alert extends Panel
     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         $uibase_addChild(c as IUIComponent);
+    }
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        COMPILE::JS
+        {
+            // make the buttons the same width
+            var buttonWidth:Number = 0;
+            var controlBar:HTMLElement = element.childNodes[2];
+            var numButtons:int = controlBar.childNodes.length;
+            for (var i:int = 0; i < numButtons; i++)
+            {
+                buttonWidth = Math.max(buttonWidth, controlBar.childNodes[i].offsetWidth);
+            }
+            for (i = 0; i < numButtons; i++)
+            {
+                controlBar.childNodes[i].style.minWidth = buttonWidth.toString() + "px";
+            }
+            // set a max on the content of 2 x (max of buttons or title)
+            var maxContentWidth:Number = buttonWidth * numButtons;
+            maxContentWidth = Math.max(element.childNodes[0].childNodes[0].clientWidth);
+            maxContentWidth += maxContentWidth;
+            element.childNodes[1].style.maxWidth = maxContentWidth.toString() + "px";
+            
+        }
     }
     
 }

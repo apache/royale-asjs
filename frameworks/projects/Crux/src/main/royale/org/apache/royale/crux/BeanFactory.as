@@ -15,27 +15,26 @@
  */
 package org.apache.royale.crux
 {
-	import org.apache.royale.core.ApplicationBase;
-	import org.apache.royale.core.IRoyaleElement;
-	import org.apache.royale.core.UIBase;
 	COMPILE::SWF{
 		import flash.events.Event;
 	}
 	COMPILE::JS{
-		import org.apache.royale.events.Event;
 		import goog.events;
+
+		import org.apache.royale.events.Event;
 	}
-	
-    import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.crux.events.BeanEvent;
-    import org.apache.royale.crux.events.CruxEvent;
-    import org.apache.royale.crux.processors.IBeanProcessor;
-    import org.apache.royale.crux.processors.IFactoryProcessor;
-    import org.apache.royale.crux.processors.IMetadataProcessor;
-    import org.apache.royale.crux.processors.IProcessor;
-    import org.apache.royale.crux.reflection.TypeCache;
+	import org.apache.royale.core.IFlexInfo;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.crux.events.BeanEvent;
+	import org.apache.royale.crux.events.CruxEvent;
+	import org.apache.royale.crux.processors.IBeanProcessor;
+	import org.apache.royale.crux.processors.IFactoryProcessor;
+	import org.apache.royale.crux.processors.IMetadataProcessor;
+	import org.apache.royale.crux.processors.IProcessor;
+	import org.apache.royale.crux.reflection.TypeCache;
 	import org.apache.royale.crux.utils.view.simulatedSingleEnterFrame;
-    import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.reflection.getQualifiedClassName;
 
     public class BeanFactory extends EventDispatcher implements IBeanFactory
 	{
@@ -110,7 +109,7 @@ package org.apache.royale.crux
 			if( waitForSetup )
 				return;
 			
-			trace("BeanFactory completing setup");
+			//trace("BeanFactory completing setup");
 			
 			// bean setup has to be delayed until after all startup beans have been added
 			for each(var bean:Bean in beans)
@@ -352,7 +351,7 @@ package org.apache.royale.crux
 			if( bean.initialized )
 				return;
 			
-			trace("BeanFactory::setUpBean", bean);
+			//trace("BeanFactory::setUpBean", bean);
 			bean.initialized = true;
 			
 			var processor:IProcessor;
@@ -366,7 +365,7 @@ package org.apache.royale.crux
 				// Handle Metadata Processors
 				if(processor is IMetadataProcessor)
 				{
-					trace("processor is IMetadataProcessor");
+					//trace("processor is IMetadataProcessor");
 					var metadataProcessor:IMetadataProcessor = IMetadataProcessor( processor );
 					
 					// get the tags this processor is interested in
@@ -382,7 +381,7 @@ package org.apache.royale.crux
 				// Handle Bean Processors
 				if(processor is IBeanProcessor)
 				{
-					trace("processor is IBeanProcessor");
+					//trace("processor is IBeanProcessor");
 					IBeanProcessor(processor).setUpBean(bean);
 				}
 			}
@@ -508,7 +507,7 @@ package org.apache.royale.crux
 					if( removedDisplayObjects.length == 0 )
 					{
 						//like 'removing' enterframe event listener...
-						simulatedSingleEnterFrame(ApplicationBase(crux.dispatcher), enterFrameHandler, true);
+						simulatedSingleEnterFrame(IFlexInfo(crux.dispatcher), enterFrameHandler, true);
 						isListeningForEnterFrame = false;
 					}
 					
@@ -570,7 +569,7 @@ package org.apache.royale.crux
 			if( !isListeningForEnterFrame )
 			{
 		 		//crux.dispatcher.addEventListener( Event.ENTER_FRAME, enterFrameHandler, false, 0, true );
-				simulatedSingleEnterFrame(ApplicationBase(crux.dispatcher), enterFrameHandler, false);
+				simulatedSingleEnterFrame(IFlexInfo(crux.dispatcher), enterFrameHandler, false);
 		 		isListeningForEnterFrame = true;
 		 	}
 		 }

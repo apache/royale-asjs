@@ -24,13 +24,12 @@ package org.apache.royale.jewel.supportClasses.textinput
 
     COMPILE::JS
     {
-    import goog.events;
-
     import org.apache.royale.core.WrappedHTMLElement;
     }
 
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.events.Event;
+    import org.apache.royale.events.KeyboardEvent;
     import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
     
     /**
@@ -42,6 +41,18 @@ package org.apache.royale.jewel.supportClasses.textinput
      *  @productversion Royale 0.9.4
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
+
+    /**
+     *  Dispatched when the user presses the Enter key.
+     *
+     *  @eventType mx.events.FlexEvent.ENTER
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.7
+     */
+    [Event(name="enter", type="org.apache.royale.events.Event")]
 
     /**
      *  The TextInputBase class is the base class for TextInput and TextArea Jewel controls.
@@ -94,7 +105,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            return (element as HTMLInputElement).value;
+            return input.value;
             }
 		}
         /**
@@ -111,7 +122,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            (element as HTMLInputElement).value = value;
+            input.value = value;
             dispatchEvent(new Event('textChange'));
             }
 		}
@@ -134,7 +145,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            return (element as HTMLInputElement).value;
+            return input.value;
             }
 		}
         /**
@@ -149,7 +160,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            (element as HTMLInputElement).value = value;
+            input.value = value;
             dispatchEvent(new Event('textChange'));
             }
 		}
@@ -171,6 +182,26 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             dispatchEvent(new Event(Event.CHANGE));
 		}
+
+        /**
+         *  dispatch change event in response to a textChange event
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        protected function enterEventHandler(event:KeyboardEvent):void
+        {
+            COMPILE::JS
+            {
+            if (event.key === KeyboardEvent.KEYCODE__ENTER) {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                dispatchEvent(new Event("enter"));
+            }
+            }
+        }
 
         COMPILE::JS
         private var _input:HTMLInputElement;
@@ -214,7 +245,23 @@ package org.apache.royale.jewel.supportClasses.textinput
 		{
 			_positioner = value;
             _positioner.royale_wrapper = this;
-			_positioner.appendChild(element);
+			_positioner.appendChild(input);
 		}
+
+        /**
+         *  set focus on the text box programatically
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		public function setFocus():void
+		{
+            COMPILE::JS
+            {
+                input.focus();
+            }
+        }
 	}
 }

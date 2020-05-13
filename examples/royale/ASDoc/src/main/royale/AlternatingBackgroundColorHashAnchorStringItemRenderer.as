@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+import  org.apache.royale.core.IOwnerViewItemRenderer;
+import  org.apache.royale.core.IItemRendererOwnerView;
+import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead;
+import org.apache.royale.events.Event;
 
 	/**
 	 *  The AlternatingBackgroundColorHashAnchorItemRenderer class displays data in string form using the data's toString()
@@ -29,7 +33,7 @@ package
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class AlternatingBackgroundColorHashAnchorStringItemRenderer extends HashAnchorStringItemRenderer
+	public class AlternatingBackgroundColorHashAnchorStringItemRenderer extends HashAnchorStringItemRenderer implements IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -41,56 +45,35 @@ package
 		 */
 		public function AlternatingBackgroundColorHashAnchorStringItemRenderer()
 		{
+			addBead(new AlternatingBackgroundColorSelectableItemRendererBead());
+		}
+		
+        [Bindable("dataChange")]
+		override public function set data(value:Object):void
+		{
+			super.data = value;
+			dispatchEvent(new Event("dataChange"));
 		}
 
-		private var _color0:String;
-		
-		public function get backgroundColor0():String
-		{
-			return _color0;
-		}
-		public function set backgroundColor0(value:String):void
-		{
-			_color0 = value;
-		}
-		
-		private var _color1:String;
-		
-		public function get backgroundColor1():String
-		{
-			return _color1;
-		}
-		public function set backgroundColor1(value:String):void
-		{
-			_color1 = value;
-		}
-		
-		private var oddIndex:Boolean;
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
-			var index:int = parent.getElementIndex(this);
-			oddIndex = ((index % 2) == 1)
-			COMPILE::JS
-			{
-				element.style.backgroundColor = oddIndex ? _color1 : _color0;
-			}
-		}
-
-		/**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			COMPILE::JS
-			{
-				if (element.style.backgroundColor == null || element.style.backgroundColor == "")
-					element.style.backgroundColor = oddIndex ? _color1 : _color0;
-			}
-		}
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The text of the renderer
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
 
 	}
 }

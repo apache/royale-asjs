@@ -35,11 +35,13 @@ package org.apache.royale.html.beads
 		import org.apache.royale.utils.CSSUtils;
 		import org.apache.royale.core.IRenderedObject;
 	}
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.html.supportClasses.IColorPickerPopUp;
 	import org.apache.royale.core.IColorModel;
+    import org.apache.royale.core.IPopUp;
 	
 	/**
 	 *  The ColorPickerView class creates the visual elements of the org.apache.royale.html.ColorPicker 
@@ -144,6 +146,7 @@ package org.apache.royale.html.beads
 			host.addElement(selectedColorDisplay);
 			host.addElement(button);
 			
+            loadBeadFromValuesManager(IPopUp, "iPopUp", _strand);
 			list = _strand.getBeadByType(IColorPickerPopUp) as IUIBase;
 			list.visible = false;
 			

@@ -27,13 +27,13 @@ $snackbar-border-radius: $border-radius
 		@if $flat
 			background: $emphasized-color
 			border: 0px solid
+			box-shadow: none
 		@else
 			background: linear-gradient(lighten($emphasized-color, 5%), darken($emphasized-color, 5%))
 			border: 1px solid darken($emphasized-color, 15%)
 			box-shadow: inset 0 1px 0 lighten($emphasized-color, 20%)
 			border-bottom: none
-		// +jewel-bg-border("normal", $emphasized-color, $snackbar-border-radius)
-	
+			
 	.jewel.snackbar-message
 		color: $font-theme-color
 
@@ -46,6 +46,3 @@ $snackbar-border-radius: $border-radius
 				border: none
 			@else
 				background: linear-gradient($emphasized-color, darken($emphasized-color, 10%))
-			// +jewel-bg-border("hover", $emphasized-color)
-			// @if $flat == false
-			// 	border: none

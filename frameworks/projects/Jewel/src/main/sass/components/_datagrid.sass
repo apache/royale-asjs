@@ -1,0 +1,71 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License") you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel DataGrid
+
+// DataGrid variables
+.jewel.datagrid
+    display: flex
+    flex-direction: column
+    position: relative
+    overflow: auto
+    
+    .jewel.buttonbar.header
+        width: 100%
+
+    .listarea
+        width: 100%
+        flex: 1 1 0%
+
+    .jewel.list.column
+
+        &.first
+        
+        &.middle
+
+        &.last
+        
+        .jewel.item.datagrid
+            width: 100%
+        
+j|DataGrid
+    IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel")
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView")
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout")
+    headerClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar")
+    headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout")
+    listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea")
+    columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList")
+
+j|DataGridListArea
+    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+
+j|DataGridColumnList
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DataGridItemRenderer")
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataGridColumnListItemRendererInitializer")
+    ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
+
+//Nothing to change from j|ButtonBar
+j|DataGridButtonBar

@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.Label;
+	import org.apache.royale.utils.IEmphasis;
 	
 	/**
 	 *  The Badge class provides a small status descriptors for UI elements.
@@ -35,7 +36,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class Badge implements IBead
+	public class Badge implements IBead, IEmphasis
 	{
 		/**
 		 *  constructor.

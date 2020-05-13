@@ -22,6 +22,7 @@ package org.apache.royale.core
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.sendEvent;
 	
 	/**
 	 * The default property uses when additional MXML content appears within an element's
@@ -67,8 +68,8 @@ package org.apache.royale.core
 			{
 				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
 				
-				dispatchEvent(new Event("initBindings"));
-				dispatchEvent(new Event("initComplete"));
+				sendEvent(this,"initBindings");
+				sendEvent(this,"initComplete");
 				_initialized = true;
 				
 				// - why was this added here? childrenAdded(); //?? Is this necessary since MXMLDataInterpreter will already have called it

@@ -30,6 +30,9 @@ internal class DragDropClasses
     import org.apache.royale.core.DropType; DropType;
     import org.apache.royale.events.DragEvent; DragEvent;
 
+	import org.apache.royale.html.beads.MultiSelectionDragImageBead; MultiSelectionDragImageBead;
+	import org.apache.royale.html.beads.MultiSelectionDragSourceBead; MultiSelectionDragSourceBead;
+	import org.apache.royale.html.beads.MultiSelectionTreeDragSourceBead; MultiSelectionTreeDragSourceBead;
 	import org.apache.royale.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
 	import org.apache.royale.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
 	import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead; SingleSelectionDropIndicatorBead;
@@ -46,6 +49,8 @@ internal class DragDropClasses
 	import org.apache.royale.html.beads.ButtonBarReorderBead; ButtonBarReorderBead;
 
 	import org.apache.royale.html.beads.DataGridDragDropBead; DataGridDragDropBead;
+	
+	import org.apache.royale.html.beads.DragDropListItemRendererInitializer; DragDropListItemRendererInitializer;
 
 }
 

@@ -438,10 +438,10 @@ public class ChangeWatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /*public function unwatch():void
+    public function unwatch():void
     {
         reset(null);
-    }*/
+    }
 
     /**
      *  Retrieves the current value of the watched property or property chain,

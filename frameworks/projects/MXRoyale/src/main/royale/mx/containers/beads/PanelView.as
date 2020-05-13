@@ -36,6 +36,8 @@ import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.html.beads.PanelView;
 import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  @private
@@ -63,13 +65,25 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
 	}
 
     /**
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
      */
     override public function set strand(value:IStrand):void
     {
         titleBar = new PanelTitleBar();
+		var panel:IEventDispatcher = value as IEventDispatcher;
+		panel.addEventListener("widthChanged", handleSizeChanged);
+		panel.addEventListener("heightChanged", handleSizeChanged);
+		panel.addEventListener("sizeChanged", handleSizeChanged);
         super.strand = value;
-    }
-    
+	}
+	
+	private var sawSizeChanged:Boolean;
+	
+	private function handleSizeChanged(event:Event):void
+	{
+		sawSizeChanged = true;
+	}
+	    
     /**
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion org.apache.royale.core.UIBase
@@ -131,6 +145,24 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
         boxLayout.direction = "vertical";
         _strand.addBead(boxLayout);
     }
+
+	/**
+     * @royaleignorecoercion mx.core.UIComponent 
+     * @royaleignorecoercion org.apache.royale.core.UIBase
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     */
+    override public function beforeLayout():Boolean
+    {
+		var panel:Container = host as Container;
+		if (!isNaN(panel.explicitWidth) && !isNaN(panel.explicitHeight))
+			return true;
+		if (!panel.isWidthSizedToContent() || !panel.isHeightSizedToContent())
+		{
+			return sawSizeChanged;
+		}
+        return true;
+    }
+
 }
 
 }

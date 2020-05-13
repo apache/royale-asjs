@@ -103,8 +103,9 @@ limitations under the License.
 	<js:HContainer x="20" y="50" width="400" height="350" className="OuterGroup">
 		
 	    <!-- demonstrates how to place a DataGrid into a Container that has padding. -->
-		<js:DataGrid id="dataGrid" width="100%" height="100%" change="dataGridChange(dataGrid, output1)" 
-					 rowHeight="40" className="PercentageColumnWidths DataGrid">
+		<js:DataGrid id="dataGrid" width="100%" height="100%" 
+			change="dataGridChange(dataGrid, output1)" 
+			rowHeight="40" className="PercentageColumnWidths">
 			<js:beads>
 				<js:ConstantBinding
 					sourceID="applicationModel"

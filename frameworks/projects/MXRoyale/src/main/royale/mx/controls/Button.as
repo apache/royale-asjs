@@ -25,11 +25,15 @@ COMPILE::JS
 	import org.apache.royale.events.BrowserEvent;
 	import org.apache.royale.html.util.addElementToWrapper;
 }
+import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.listClasses.BaseListData;
+import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
 
+import org.apache.royale.binding.ItemRendererDataBinding;
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.accessories.ToolTipBead;
@@ -243,7 +247,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class Button extends UIComponent implements IDataRenderer
+public class Button extends UIComponent implements IDataRenderer, IListItemRenderer, IDropInListItemRenderer
 {
 	
 	public function Button()
@@ -276,17 +280,6 @@ public class Button extends UIComponent implements IDataRenderer
 	{
 	}
 	
-	// ------------------------------------------------
-	//  fontStyle
-	// ------------------------------------------------
-	
-	public function get fontStyle():String
-	{
-		return "BOLD";
-	}
-	public function set fontStyle(value:String):void
-	{
-	}
 	// ------------------------------------------------
 	//  icon
 	// ------------------------------------------------
@@ -347,6 +340,7 @@ public class Button extends UIComponent implements IDataRenderer
 	//  label
 	//----------------------------------
 	
+    private var labelSet:Boolean;
 	public function get label():String
 	{
 		return ITextModel(model).text;
@@ -357,6 +351,7 @@ public class Button extends UIComponent implements IDataRenderer
 	 */
 	public function set label(value:String):void
 	{
+		labelSet = true;
 		ITextModel(model).text = value;
 		COMPILE::JS {
 			setInnerHTML();
@@ -436,13 +431,57 @@ public class Button extends UIComponent implements IDataRenderer
 		return _data;
 	}
 	
+	private var bindingAdded:Boolean;
+	
+	
 	/**
 	 *  @private
 	 */
 	public function set data(value:Object):void
 	{
-		_data = value;
-		dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+        var newSelected:*;
+        var newLabel:*;
+
+		if (!bindingAdded)
+		{
+			addBead(new ItemRendererDataBinding());
+			bindingAdded = true;
+		}
+		dispatchEvent(new Event("initBindings"));
+		
+        _data = value;
+
+        if (_listData && _listData is DataGridListData && 
+            DataGridListData(_listData).dataField !=null)
+        {
+            newSelected = _data[DataGridListData(_listData).dataField];
+
+            newLabel = "";
+        }
+        else if (_listData)
+        {
+            if (selectedField)
+                newSelected = _data[selectedField];
+
+            newLabel = _listData.label;
+        }
+        else
+        {
+            newSelected = _data;
+        }
+
+        if (newSelected !== undefined/* && !selectedSet*/)
+        {
+            selected = newSelected as Boolean;
+            //selectedSet = false;
+        }
+        if (newLabel !== undefined && !labelSet)
+        {
+            label = newLabel;
+            labelSet = false;
+        }
+
+        dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
 	}
 	
 	//-----------------------------------
@@ -453,7 +492,7 @@ public class Button extends UIComponent implements IDataRenderer
 	 *  @private
 	 *  Storage for the listData property.
 	 */
-	private var _listData:BaseListData;
+	private var _listData:Object;
 	
 	[Bindable("dataChange")]
 	[Inspectable(environment="none")]
@@ -478,7 +517,7 @@ public class Button extends UIComponent implements IDataRenderer
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function get listData():BaseListData
+	public function get listData():Object
 	{
 		return _listData;
 	}
@@ -486,7 +525,7 @@ public class Button extends UIComponent implements IDataRenderer
 	/**
 	 *  @private
 	 */
-	public function set listData(value:BaseListData):void
+	public function set listData(value:Object):void
 	{
 		_listData = value;
 	}
@@ -612,28 +651,6 @@ public class Button extends UIComponent implements IDataRenderer
 		dispatchEvent(new Event("toggleChanged"));
 	}
 	
-	
-	//----------------------------------
-	//  enabled
-	//----------------------------------
-	
-	/**
-	 *  @private
-	 */
-	
-	[Inspectable(category="General", enumeration="true,false", defaultValue="true")]
-	
-	/**
-	 *  @private
-	 *  This is called whenever the enabled state changes.
-	 */
-	override public function set enabled(value:Boolean):void
-	{
-		// TBD: redirect to bead
-		trace("Button.enabled not implemented properly.");
-	}
-	
-	
 	//----------------------------------
 	//  internal
 	//----------------------------------
@@ -682,7 +699,7 @@ public class Button extends UIComponent implements IDataRenderer
 	private function handleImageLoaded2(event:BrowserEvent):void
 	{
 		var img:HTMLImageElement = event.target as HTMLImageElement;
-		element.style["padding-left"] = String(img.naturalWidth+4)+"px";
+		element.style["text-indent"] = String(img.naturalWidth+4)+"px";
 		
 		this.height = Math.max(img.naturalHeight, element.offsetHeight);
 		

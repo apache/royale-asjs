@@ -34,25 +34,25 @@ package org.apache.royale.reflection.nativejs {
             return {
                 'methods':function():Object {
                     return {
-                        'Number':{'parameters':function():Object { return [{'index':1,'optional':true,'type':'*'}]},'type':'','declaredBy':'Number'},
-                        '|sin':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
+                        'Number':{'parameters':function():Object { return ['*',true]},'type':'','declaredBy':'Number'},
+                        '|sin':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
                         '|random':{'declaredBy':'Number','type':'Number'},
-                        '|atan2':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'},{'index':2,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|sqrt':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|cos':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|asin':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|tan':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|floor':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|max':{'parameters':function():Object {return [{'index':1,'optional':true,'type':'Number'},{'index':2,'optional':true,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|abs':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|exp':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|atan':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|round':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|log':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|min':{'parameters':function():Object {return [{'index':1,'optional':true,'type':'Number'},{'index':2,'optional':true,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|acos':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|ceil':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
-                        '|pow':{'parameters':function():Object {return [{'index':1,'optional':false,'type':'Number'},{'index':2,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'}
+                        '|atan2':{'parameters':function():Object {return ['Number', false,{'index':2,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'},
+                        '|sqrt':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|cos':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|asin':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|tan':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|floor':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|max':{'parameters':function():Object {return ['Number', true, 'Number', true]},'declaredBy':'Number','type':'Number'},
+                        '|abs':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|exp':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|atan':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|round':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|log':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|min':{'parameters':function():Object {return ['Number', true, 'Number', true]},'declaredBy':'Number','type':'Number'},
+                        '|acos':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|ceil':{'parameters':function():Object {return ['Number', false]},'declaredBy':'Number','type':'Number'},
+                        '|pow':{'parameters':function():Object {return ['Number', false,{'index':2,'optional':false,'type':'Number'}]},'declaredBy':'Number','type':'Number'}
                     };
                 }
             };

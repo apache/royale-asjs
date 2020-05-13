@@ -19,6 +19,7 @@
 package org.apache.royale.core
 {
 	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.sendEvent;
 
     //--------------------------------------
     //  Events
@@ -90,7 +91,7 @@ package org.apache.royale.core
         public function set applicationModel(value:Object):void
         {
             _applicationModel = value;
-            dispatchEvent(new Event("modelChanged"));
+            sendEvent(this,"modelChanged");
         }
 
         /**

@@ -20,43 +20,20 @@
 // Jewel ToggleButton
 
 // ToggleButton variables
+$togglebutton-margin: 0 !default
+$togglebutton-padding: 0.679em 1.12em !default
+$icon-togglebutton-padding: 0.429em 0.87em !default
 $togglebutton-border-radius: $border-radius
 
-=togglebutton-theme($togglebutton-color, $text-color)
-	
-	+jewel-bg-border("normal", $togglebutton-color, $togglebutton-border-radius)
-	
-	color: $text-color
-		
-	@if not $flat and $text-color == $font-theme-color
-		text:
-			shadow: 0 -1px 0 rgba(darken($togglebutton-color, 30%), .7)
-	
-	&:hover, &:hover:focus
-		+jewel-bg-border("hover", $togglebutton-color)
-
-	&:active, &:active:focus
-		+jewel-bg-border("active", $togglebutton-color)
-
-	&:focus
-		+jewel-bg-border("focus", $togglebutton-color)
-		
-	&[disabled]
-		+jewel-bg-border("disabled", $togglebutton-color)
-		color: $disabled-font-color
-		text:
-			shadow: unset
-	
-	&.selected
-		+jewel-bg-border("selected", $togglebutton-color)
-
 .jewel.togglebutton
+	margin: $togglebutton-margin
+	padding: $togglebutton-padding
+
 	+togglebutton-theme($default-color, $default-font-color)
 
 
 	// -- TOGGLEBUTTON LABEL
 	font:
-		// family: $font-stack 
 		weight: bold
 	text:
 		transform: uppercase
@@ -71,19 +48,35 @@ $togglebutton-border-radius: $border-radius
 			weight: $font-weight-normal
 	
 	&.icon
+		padding: $icon-togglebutton-padding
+
 		i
 			margin-left: 0px
 			margin-right: 0px
 
-	&.iconLSpace
+	&.left-space
 		i
 			margin-left: 0px
 			margin-right: 8px
-	&.iconRSpace
+	&.right-space
 		i
 			margin-left: 8px
 			margin-right: 0px
-
+	
 .jewel.togglebutton.primary
 	+togglebutton-theme($primary-color, $font-theme-color)
+
+// OUTLINED
+.jewel.togglebutton.outlined
+	+togglebutton-theme(darken($default-color, 15%), darken($default-font-color, 15%), true)
+
+.jewel.togglebutton.primary.outlined
+	+togglebutton-theme($primary-color, $font-theme-color, true)
+
+// UNBOXED
+.jewel.togglebutton.unboxed
+	+togglebutton-theme(darken($default-color, 15%), darken($default-font-color, 15%), false, true)
+	
+.jewel.togglebutton.primary.unboxed
+	+togglebutton-theme($primary-color, $font-theme-color, false, true)
 

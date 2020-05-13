@@ -19,7 +19,9 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.jewel.beads.layouts.GridCellLayout;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 	import org.apache.royale.utils.StringUtil;
+	import org.apache.royale.jewel.supportClasses.container.AlignmentItemsContainer;
 
 	/**
 	 *  The GridCell class is the inmediate container in a Grid Layout
@@ -30,7 +32,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class GridCell extends Group
+	public class GridCell extends AlignmentItemsContainer
 	{
 		/**
 		 *  constructor.
@@ -44,7 +46,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel " + GridCellLayout.LAYOUT_TYPE_NAMES;
+            typeNames += " " + GridCellLayout.LAYOUT_TYPE_NAMES;
 
 			layout = new GridCellLayout();
 			addBead(layout);

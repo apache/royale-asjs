@@ -20,6 +20,7 @@ package org.apache.royale.reflection
 {
 	COMPILE::JS{
 		import goog.DEBUG;
+		import org.apache.royale.utils.Language;
 	}
 	
 	COMPILE::SWF{
@@ -63,7 +64,9 @@ package org.apache.royale.reflection
 		public function get getValue():Function{
             if (_getter != null) return _getter;
             COMPILE::SWF{
-				var fieldName:String = this.name;
+				var fieldName:Object = this.name;
+				var uri:String = this.uri;
+				if (uri) fieldName = new QName(uri,fieldName);
 				var cl:Class = flash.utils.getDefinitionByName(owner.qualifiedName) as Class;
                 if (isStatic) {
 					_getter = function():* {return cl[fieldName]}
@@ -101,7 +104,9 @@ package org.apache.royale.reflection
 		public function get setValue():Function{
 			if (_setter != null) return _setter;
 			COMPILE::SWF{
-				var fieldName:String = this.name;
+				var fieldName:Object = this.name;
+				var uri:String = this.uri;
+				if (uri) fieldName = new QName(uri,fieldName);
 				var cl:Class = flash.utils.getDefinitionByName(owner.qualifiedName) as Class;
 				if (isStatic) {
 					_setter = function(value:*):* {
@@ -117,12 +122,19 @@ package org.apache.royale.reflection
    
 			COMPILE::JS {
 				var f:Function = _rawData.get_set;
+				var valueClass:Class;
+				var type:String = _rawData.type;
+				if (type && type != '*') {
+					valueClass = getDefinitionByName(type);
+				}
 				if (isStatic) {
 					_setter = function(value:*):* {
                         if (goog.DEBUG) {
                             if (arguments.length != 1) throw 'invalid setValue parameters';
 							//todo: more robust runtime checking of value here for debug mode
                         }
+						//coerce
+						if (valueClass) value = Language.as(value, valueClass, true);
                         f(value);
                     }
 				} else {
@@ -131,6 +143,8 @@ package org.apache.royale.reflection
 							if (arguments.length != 2 || !instance) throw 'invalid setValue parameters';
 							//todo: more robust runtime checking of value here for debug mode
 						}
+						//coerce
+						if (valueClass) value = Language.as(value, valueClass, true);
 						f(instance, value);
 					}
 				}
@@ -143,7 +157,9 @@ package org.apache.royale.reflection
          * A string representation of this variable definition
          */
         public function toString():String {
-            var s:String = "variable: '"+name+"', type:"+type.qualifiedName;
+			var uriNS:String = uri;
+			if (uriNS) uriNS = ', uri=\''+ uriNS +'\'';
+            var s:String = "variable: '"+name+"'" + uriNS + ", type:"+type.qualifiedName;
             var meta:Array = metadata;
             var i:uint;
             var l:uint = meta.length;

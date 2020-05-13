@@ -25,6 +25,7 @@
     <component id="HTTPService" class="org.apache.royale.net.HTTPService"/>
     <component id="BinaryUploader" class="org.apache.royale.net.BinaryUploader"/>
     <component id="CORSCredentialsBead" class="org.apache.royale.net.beads.CORSCredentialsBead"/>
+    <component id="URLLoaderCORSCredentialsBead" class="org.apache.royale.net.beads.URLLoaderCORSCredentialsBead"/>
     <component id="FileProxy" class="org.apache.royale.file.FileProxy"/>
     <component id="FileBrowser" class="org.apache.royale.file.beads.FileBrowser"/>
     <component id="FileBrowserWithFilter" class="org.apache.royale.file.beads.FileBrowserWithFilter"/>
@@ -34,4 +35,5 @@
     <component id="FileLoaderAndUploader" class="org.apache.royale.file.beads.FileLoaderAndUploader"/>
     <component id="FileModel" class="org.apache.royale.file.beads.FileModel"/>
     <component id="FileModelWithParams" class="org.apache.royale.file.beads.FileModelWithParams"/>
+    <component id="FileModelWithParamsAndFileContent" class="org.apache.royale.file.beads.FileModelWithParamsAndFileContent"/>
 </componentPackage>

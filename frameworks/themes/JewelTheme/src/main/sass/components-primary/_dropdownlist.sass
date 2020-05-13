@@ -22,71 +22,28 @@
 // DropDownList variables
 $dropdownlist-border-radius: $border-radius
 
-// =dropdownlist-theme($dropdownlist-color, $text-color)
-    
-//     // +jewel-bg-border("normal", $dropdownlist-color, $dropdownlist-border-radius)
-
-//     // @if $transitions-enable
-//     //     transition:
-//     //         duration: $transition-duration
-//     //         timing-function: $transition-timing
-
-//     font:
-//         family: $font-stack 
-//         size: $font-size
-//         // weight: bold
-//     color: $text-color
-//     text:
-//         // transform: uppercase
-//         weight: $font-weight-normal
-//         decoration: none 
-//     @if not $flat and $text-color == $font-theme-color
-//         text:
-//             shadow: 0 -1px 0 rgba(darken($dropdownlist-color, 30%), .7) //0 .063em
-
-//     // &:hover, &:hover:focus
-//     //     +jewel-bg-border("hover", $dropdownlist-color)
-
-//     // &:active, &:active:focus
-//     //     +jewel-bg-border("active", $dropdownlist-color)
-
-//     &:focus
-//         outline: none
-//         // +jewel-bg-border("focus", $dropdownlist-color)
-        
-//     &[disabled]
-//         cursor: unset
-//         // +jewel-bg-border("disabled", $dropdownlist-color)
-//         color: $disabled-font-color
-//         // font:
-//         //     weight: $font-weight-normal
-//         // text:
-//         //     shadow: unset
-
-.jewel.dropdownlist
-    // +dropdownlist-theme($default-color, $default-font-color)
-    
+.jewel.dropdownlist    
     @if $flat
-        background: $default-color
-        border: 0px solid
+        background-color: lighten($default-color, 15%)
+        border: 1px solid darken($default-color, 3%)
     @else
         background-color: lighten($default-color, 15%) // temporal until we fix compiler to join this on a backgroun property.
         //linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%)) // this in iOS doesn't work 
-        background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
-        background-size: 1.08em
-        background-position: right .7em center
-        background-repeat: no-repeat
         border: 1px solid darken($default-color, 15%)
+    background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
+    background-size: 1.08em
+    background-position: right .7em center
+    background-repeat: no-repeat
     border-radius: $dropdownlist-border-radius
 
     &[disabled]
         @if $flat
-            background: $disabled-color
-            border: 0px solid
+            background-color: $disabled-color
+            border: 1px solid $disabled-border-color
         @else
             background-color: $disabled-color
-            background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{darken($disabled-color, 15%)}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
             border: 1px solid $disabled-border-color
+        background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{darken($disabled-color, 15%)}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
         box-shadow: none
         color: $disabled-font-color
         
@@ -105,6 +62,7 @@ $dropdownlist-border-radius: $border-radius
 
     &:focus
         @if $flat
-            background: lighten($primary-color, 25%)
+            border: 1px solid $primary-color
+            // background: lighten($primary-color, 25%)
         @else
             border: 1px solid darken($primary-color, 15%)

@@ -233,7 +233,7 @@ public class RadioButton extends ToggleButtonBase
     {
         rbicon = new RadioButtonIcon()
         rbicon.id = '_radio_' + RadioButton.radioCounter++;
-        rbicon.element.addEventListener("change", rbChangeHandler);
+        rbicon.element.addEventListener("click", rbClickHandler);
         
         textNode = document.createTextNode('') as window.Text;
         
@@ -253,9 +253,11 @@ public class RadioButton extends ToggleButtonBase
      * @royaleignorecoercion HTMLInputElement
      */
     COMPILE::JS
-    private function rbChangeHandler(event:Event):void
+    private function rbClickHandler(event:Event):void
     {
-        selected = (rbicon.element as HTMLInputElement).checked    
+        selected = (rbicon.element as HTMLInputElement).checked;
+        if (group)
+            group.setSelection(this);
     }
     
     COMPILE::JS
@@ -288,7 +290,8 @@ public class RadioButton extends ToggleButtonBase
             {
                 (rbicon.element as HTMLInputElement).checked = value;
             }
-            group.setSelection(this, false);
+        if (value && group)
+            group.setSelection(this);
         dispatchEvent(new Event("selectedChanged"));
     }    
 
@@ -309,7 +312,7 @@ public class RadioButton extends ToggleButtonBase
      *  @private
      *  Default inital index value
      */
-    //mx_internal var indexNumber:int = 0;
+    mx_internal var indexNumber:int = 0;
     
     /**
      *  @private
@@ -320,7 +323,7 @@ public class RadioButton extends ToggleButtonBase
      *  property, if initially set, is needed when the radio button is readded
      *  to the group.
      */
-    //mx_internal var radioButtonGroup:RadioButtonGroup = null;
+    mx_internal var radioButtonGroup:RadioButtonGroup = null;
      
     //--------------------------------------------------------------------------
     //
@@ -386,10 +389,10 @@ public class RadioButton extends ToggleButtonBase
      *  Spark radio button groups are prefixed with _fx to differentiate the
      *  Halo groups which are stored in the same table.
      */
-    /* private function get autoGroupIndex():String
+    private function get autoGroupIndex():String
     {
         return "_spark_" + groupName;
-    } */
+    }
 
     //----------------------------------
     //  group
@@ -419,7 +422,7 @@ public class RadioButton extends ToggleButtonBase
     public function get group():RadioButtonGroup
     {
         // Debugger asks too soon.
-        /* if (!document)
+        if (!mxmlDocument)
             return _group;
 
         if (!_group)
@@ -431,27 +434,34 @@ public class RadioButton extends ToggleButtonBase
                 var g:RadioButtonGroup;
                 try
                 {
-                    g = RadioButtonGroup(document[groupName]);
+                    g = RadioButtonGroup(mxmlDocument[groupName]);
+                    COMPILE::JS
+                    {
+                        // in JS, the coercion above does not throw an exception
+                        // if the value is undefined.  Maybe it should?
+                        if (g == null)
+                            throw new Error();
+                    }
                 }
                 catch(e:Error)
                 {
                     // Special automaticRadioButtonGroup slot to hold generated
                     // radio button groups.  Shared with halo so prefix
                     // groupName to differentiate.
-                    if (document.automaticRadioButtonGroups &&
-                        document.automaticRadioButtonGroups[autoGroupIndex])
+                    if (mxmlDocument.automaticRadioButtonGroups &&
+                        mxmlDocument.automaticRadioButtonGroups[autoGroupIndex])
                     {
                         g = RadioButtonGroup(
-                            document.automaticRadioButtonGroups[autoGroupIndex]);
+                            mxmlDocument.automaticRadioButtonGroups[autoGroupIndex]);
                     }
                 }
                 if (!g)
                 {
-                    g = new RadioButtonGroup(IFlexDisplayObject(document));
+                    g = new RadioButtonGroup(IFlexDisplayObject(mxmlDocument));
                     
-                    if (!document.automaticRadioButtonGroups)
-                        document.automaticRadioButtonGroups = [];
-                    document.automaticRadioButtonGroups[autoGroupIndex] = g;                        
+                    if (!mxmlDocument.automaticRadioButtonGroups)
+                        mxmlDocument.automaticRadioButtonGroups = [];
+                    mxmlDocument.automaticRadioButtonGroups[autoGroupIndex] = g;                        
                 }
                 else if (!(g is RadioButtonGroup))
                 {
@@ -460,7 +470,7 @@ public class RadioButton extends ToggleButtonBase
 
                 _group = g;
             }
-        } */
+        }
 
         return _group;
     }
@@ -474,15 +484,22 @@ public class RadioButton extends ToggleButtonBase
             return;
 
         // If the button was in another group, remove it.
-        //removeFromGroup();    
+        removeFromGroup();    
 
         _group = value;  
 
         // If the group is set then the groupName is the generated name of
         // the rbg.  If it's set to null, then set the groupName back to the
         // default group so this button will move back to that group.
-       // _groupName = value ? group.name : "radioGroup";    
+        _groupName = value ? group.id : "radioGroup";    
         
+        COMPILE::JS
+        {
+            (rbicon.element as HTMLInputElement).name = _groupName;        
+        }
+
+		if (value)
+			addToGroup();
         // Make sure this gets added to it's RadioButtonGroup
         //groupChanged = true;
         
@@ -534,6 +551,7 @@ public class RadioButton extends ToggleButtonBase
     
     /**
      *  @private
+     *  @royaleignorecoercion HTMLInputElement
      */
     public function set groupName(value:String):void
     {
@@ -549,6 +567,11 @@ public class RadioButton extends ToggleButtonBase
         
         // Make sure get group recalculates the group.
         _group = null;
+        
+        COMPILE::JS
+        {
+            (rbicon.element as HTMLInputElement).name = value;        
+        }
 
         // Make sure this gets added to it's RadioButtonGroup
         //groupChanged = true;
@@ -633,7 +656,7 @@ public class RadioButton extends ToggleButtonBase
      *  @private
      *  Update properties before measurement/layout.
      */
-    /* override protected function commitProperties():void
+    /*override protected function commitProperties():void
     {
         if (groupChanged)
         {
@@ -645,7 +668,7 @@ public class RadioButton extends ToggleButtonBase
         // skin state is set, enabled and selected will return the correct values,
         // and the correct skin will be used.
         super.commitProperties();
-    } */
+    }*/
 
     /**
      *  @private
@@ -706,22 +729,22 @@ public class RadioButton extends ToggleButtonBase
      *  Create radio button group if it does not exist
      *  and add the instance to the group. 
      */
-    /* private function addToGroup():RadioButtonGroup
+    private function addToGroup():RadioButtonGroup
     {        
         var g:RadioButtonGroup = group; // Trigger getting the group
         if (g)
             g.addInstance(this);
               
         return g;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* private function removeFromGroup():void
+    private function removeFromGroup():void
     {        
         // If the radio button was in a group, remove it.
-        this.dispatchEvent(new Event(Event.REMOVED));
+        //this.dispatchEvent(new Event(Event.REMOVED));
           
         // It's possible that the radio button was in the auto group.  If so,
         // delete the group if there are no other radio buttons still in it.
@@ -730,15 +753,15 @@ public class RadioButton extends ToggleButtonBase
         // specified by groupName.
         try
         {
-            if (document.automaticRadioButtonGroups[autoGroupIndex].numRadioButtons == 0)
+            if (mxmlDocument.automaticRadioButtonGroups[autoGroupIndex].numRadioButtons == 0)
             {
-                delete document.automaticRadioButtonGroups[autoGroupIndex];
+                delete mxmlDocument.automaticRadioButtonGroups[autoGroupIndex];
             }
         }
         catch(e:Error)
         {
         }
-    } */
+    }
 
     /**
      *  @private
@@ -904,6 +927,23 @@ public class RadioButton extends ToggleButtonBase
             }
         }
     } */
+    
+    /**
+     * The method called when added to a parent. The DateField class uses
+     * this opportunity to install additional beads.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        addToGroup();
+        if (selected)
+            group.setSelection(this, false);
+    }
 }
 
 }

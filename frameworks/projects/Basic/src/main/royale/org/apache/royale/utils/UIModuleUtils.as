@@ -172,7 +172,7 @@ package org.apache.royale.utils
 		{
             this.host = host;
             
-            if (moduleInstance)
+            if (moduleInstance && moduleInstance.parent == host)
                 host.removeElement(moduleInstance);
             
 			createLoader();
@@ -223,7 +223,7 @@ package org.apache.royale.utils
             }
 		}
         
-        private var moduleInstance:IUIBase;
+        public var moduleInstance:IUIBase;
         
         COMPILE::SWF
         protected function completeHandler(event:flash.events.Event):void

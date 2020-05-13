@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:js="library://ns.apache.org/royale/basic" xmlns:html="library://ns.apache.org/royale/html"
+	applicationComplete="applicationCompleteHandler()"
+	>
+
+	<fx:Script>
+		<![CDATA[
+		import org.apache.royale.collections.ArrayList;
+		import org.apache.royale.collections.HierarchicalData;
+		import org.apache.royale.collections.TreeData;
+		private function applicationCompleteHandler():void
+		{
+			var dp:Array = [];
+			dp.push("Item 1");
+			dp.push("Item 2");
+			dp.push("Item 3");
+			dp.push("Item 4");
+			dp.push("Item 5");
+			dp.push("Item 6");
+			dp.push("Item 7");
+			dp.push("Item 8");
+			dp.push("Item 9");
+			dp.push("Item 10");
+			dp.push("Item 11");
+			dp.push("Item 12");
+			dp.push("Item 13");
+			dp.push("Item 14");
+			dp.push("Item 15");
+			dp.push("Item 16");
+			dp.push("Item 17");
+			dp.push("Item 18");
+			dp.push("Item 19");
+			dp.push("Item 20");
+			dp.push("Item 21");
+			dp.push("Item 22");
+			myList1.dataProvider = dp;
+			myList2.dataProvider = [];
+			myList3.dataProvider = [];
+			////
+			var arr:Array = [];
+			arr.push({label:'Folder 1',children:[{label:'Folder 2',children:[{label:'Item 1'},{label:'Item 2'}]},{label:'Item 3'}]});
+			arr.push({label:'Folder 3',children:[{label:'Item 4'},{label:'Item 5'}]});
+			arr.push({label:'Item 6'});
+			arr.push({label:'Item 7'});
+			arr.push({label:'Item 8'});
+			var h:HierarchicalData = new HierarchicalData({'children':arr});
+			var treeData:TreeData = new TreeData(h);
+			myTree1.dataProvider = treeData;
+			myTree2.dataProvider = [];
+		}
+
+		private function dropHandler(e:Event):void
+		{
+			var newDp:Array = (myList3.dataProvider as Array).concat();
+			var dragSource:Array = DragEvent.dragSource as Array;
+			for (var i:int = 0; i < dragSource.length; i++)
+			{
+				newDp.push(dragSource[i]);
+			}
+			myList3.dataProvider = newDp;
+		}
+
+		]]>
+	</fx:Script>
+	<js:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</js:valuesImpl>
+	<js:beads>
+		<js:OutOfApplicationDropTargetBead drop="dropHandler(event)"/>
+	</js:beads>
+	<js:initialView>
+		<js:View>
+			<js:VContainer>
+				<html:H2 text="List"/>
+				<js:HContainer width="1800">
+					<js:VContainer width="400" height="320">
+						<js:Label text="Drag From Here" height="20"/>
+						<js:MultiSelectionList id="myList1" width="400" height="300">
+							<js:beads>
+								<js:MultiSelectionDragSourceBead dragType="move" />
+								<js:MultiSelectionDragImageBead />
+							</js:beads>
+						</js:MultiSelectionList>
+					</js:VContainer>
+					<js:VContainer width="400" height="320">
+						<js:Label text="Drop here" height="20"/>
+						<js:MultiSelectionList id="myList2" width="400" height="300">
+							<js:beads>
+								<js:SensitiveMultiSelectionDropTargetBead />
+								<js:SingleSelectionDropIndicatorBead />
+							</js:beads>
+						</js:MultiSelectionList>
+					</js:VContainer>
+					<js:VContainer width="400" height="320">
+						<js:Label height="20" text="Or drop out of application"/>
+						<js:List id="myList3" width="400" height="300"/>
+					</js:VContainer>
+				</js:HContainer>
+				<html:H2 text="Tree"/>
+				<js:HContainer width="1800">
+					<js:VContainer width="400" height="320">
+						<js:Label text="Drag From Here" height="20"/>
+						<js:MultiSelectionTree id="myTree1" width="400" height="300">
+							<js:beads>
+								<js:MultiSelectionTreeDragSourceBead dragType="move" />
+								<js:MultiSelectionDragImageBead />
+							</js:beads>
+						</js:MultiSelectionTree>
+					</js:VContainer>
+					<js:VContainer width="400" height="320">
+						<js:Label text="Drop here" height="20"/>
+						<js:MultiSelectionList id="myTree2" width="400" height="300">
+							<js:beads>
+								<js:SensitiveMultiSelectionDropTargetBead />
+								<js:SingleSelectionDropIndicatorBead />
+							</js:beads>
+						</js:MultiSelectionList>
+					</js:VContainer>
+				</js:HContainer>
+			</js:VContainer>
+		</js:View>
+	</js:initialView>
+</js:Application>

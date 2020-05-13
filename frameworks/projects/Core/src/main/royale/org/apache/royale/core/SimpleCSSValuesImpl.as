@@ -35,7 +35,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.utils.CSSUtils;
-	import org.apache.royale.utils.StringUtil;
+	import org.apache.royale.utils.string.splitAndTrim;
     
     /**
      *  The SimpleCSSValuesImpl class implements a minimal set of
@@ -334,6 +334,19 @@ package org.apache.royale.core
             return arr.join(" ");
         }
 
+        private function toCamelCase(value:String):String
+        {
+            var c:int = value.indexOf("-");
+            while (c > -1)
+            {
+                value = value.substr(0, c) +
+                    value.charAt(c + 1).toUpperCase() +
+                    value.substr(c + 2);
+                c = value.indexOf("-");
+            }
+            return value;
+        }
+
         /**
          *  The map of values.  The format is not documented and it is not recommended
          *  to manipulate this structure directly.
@@ -359,14 +372,7 @@ package org.apache.royale.core
          */
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
-            var c:int = valueName.indexOf("-");
-            while (c > -1)
-            {
-                valueName = valueName.substr(0, c) +
-                    valueName.charAt(c + 1).toUpperCase() +
-                    valueName.substr(c + 2);
-                c = valueName.indexOf("-");
-            }
+            valueName = toCamelCase(valueName);
 
             var value:*;
 			var o:*;
@@ -574,14 +580,7 @@ package org.apache.royale.core
          */
 		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
-            var c:int = valueName.indexOf("-");
-            while (c > -1)
-            {
-                valueName = valueName.substr(0, c) +
-                    valueName.charAt(c + 1).toUpperCase() +
-                    valueName.substr(c + 2);
-                c = valueName.indexOf("-");
-            }
+            valueName = toCamelCase(valueName);
 			var oldValue:Object = values[valueName];
 			if (oldValue !== value)
 			{
@@ -667,17 +666,10 @@ package org.apache.royale.core
             var parts:Array = styles.split(";");
             for each (var part:String in parts)
             {
-                var pieces:Array = StringUtil.splitAndTrim(part, ":");
+                var pieces:Array = splitAndTrim(part, ":");
                 if (pieces.length < 2) continue;
                 var valueName:String = pieces[0];
-                var c:int = valueName.indexOf("-");
-	            while (c != -1)
-	            {
-	                valueName = valueName.substr(0, c) +
-	                    valueName.charAt(c + 1).toUpperCase() +
-	                    valueName.substr(c + 2);
-	                c = valueName.indexOf("-");
-	            }
+                valueName = toCamelCase(valueName);
                 
                 var value:String = pieces[1];
                 if (value == "null")
@@ -692,8 +684,16 @@ package org.apache.royale.core
                     if (isNaN(n))
                     {
                         if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
-                        {                            
+                        {                     
+                            COMPILE::SWF{
+                                // in SWF we need int or uint values
                             obj[valueName] = CSSUtils.toColor(value);
+                            }
+                            COMPILE::JS
+                            {
+                                //In JS these values can be applied directly
+                                obj[valueName] = value;
+                            }
                         }
                         else
                         {
@@ -729,14 +729,7 @@ package org.apache.royale.core
             for (var valueName:String in ruleValues)
             {
                 var v:* = ruleValues[valueName];
-                var c:int = valueName.indexOf("-");
-                while (c > -1)
-                {
-                    valueName = valueName.substr(0, c) +
-                        valueName.charAt(c + 1).toUpperCase() +
-                        valueName.substr(c + 2);
-                    c = valueName.indexOf("-");
-                }
+                valueName = toCamelCase(valueName);
                 asValues[valueName] = v;
             }
             values[ruleName] = asValues;
@@ -755,10 +748,7 @@ package org.apache.royale.core
 				    if (typeof(value) == 'function') continue;
 					cssString += p + ": ";
 					if (typeof(value) == 'number') {
-                    	if (colorStyles[p])
-                        	value = CSSUtils.attributeFromColor(value as uint);
-                    	else
-                        	value = value.toString() + 'px';
+                        value = processNumberStyle(p,value);
                 	}
                 	else if (p == 'backgroundImage') {
                     	if (p.indexOf('url') != 0)
@@ -770,6 +760,13 @@ package org.apache.royale.core
 				cssString += "}";
 				ss.insertRule(cssString, ss.cssRules.length);
 			}
+        }
+        COMPILE::JS
+        protected function processNumberStyle(prop:String,value:*):*{
+            if (colorStyles[prop])
+                return CSSUtils.attributeFromColor(value);
+                
+            return value + 'px';
         }
 		
 		COMPILE::JS
@@ -842,19 +839,6 @@ package org.apache.royale.core
         }
         
         /**
-         * The styles that can use raw numbers
-         */
-        COMPILE::JS
-        private static const _numericStyles:Object = {
-        }
-        COMPILE::JS
-        protected function get numericStyles() : Object
-        {
-            return SimpleCSSValuesImpl._numericStyles;
-        }
-        
-
-        /**
          * @param thisObject The object to apply styles to;
          * @param styles The styles.
          * @royaleignorecoercion HTMLElement
@@ -865,7 +849,6 @@ package org.apache.royale.core
             var styleList:Object = this.perInstanceStyles;
             var colorStyles:Object = this.colorStyles;
             var skipStyles:Object = this.skipStyles;
-            var numericStyles:Object = this.numericStyles;
             var listObj:Object = styles;
             if (styles && styles.styleList)
                 listObj = styles.styleList;
@@ -878,12 +861,7 @@ package org.apache.royale.core
                 if (value === undefined)
                     continue;
                 if (typeof(value) == 'number') {
-                    if (colorStyles[p])
-                        value = CSSUtils.attributeFromColor(value);
-                    else if (numericStyles[p])
-                        value = value.toString();
-                    else
-                        value = value.toString() + 'px';
+                    value = processNumberStyle(p,value);
                 }
                 else if (p == 'backgroundImage' && value.indexOf('url') != 0) {
                         value = 'url(' + value + ')';

@@ -20,6 +20,7 @@ package org.apache.royale.core
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.utils.sendStrandEvent;
 
     /**
      *  The Strand class is the base class for non-display object
@@ -45,43 +46,6 @@ package org.apache.royale.core
 			super();
 		}
 		
-		
-		private var _model:IBeadModel;
-                
-        /**
-         *  An IBeadModel that serves as the data model for the component.
-         *  Note that there is no controller or view properties since
-         *  this not a display object.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.IBead
-         */
-		public function get model():IBeadModel
-		{
-            if (_model == null)
-            {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
-            }
-			return _model;
-		}
-        
-        /**
-         *  @private
-         *  @royaleignorecoercion org.apache.royale.core.IBead
-         */
-		public function set model(value:IBeadModel):void
-		{
-			if (_model != value)
-			{
-				addBead(value as IBead);
-				dispatchEvent(new Event("modelChanged"));
-			}
-		}
-		
 		private var _id:String;
 
         /**
@@ -101,7 +65,7 @@ package org.apache.royale.core
 			if (_id != value)
 			{
 				_id = value;
-				dispatchEvent(new Event("idChanged"));
+                sendStrandEvent(this,"idChanged");
 			}
 		}
 				
@@ -130,15 +94,12 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.IBeadModel
          */
 		public function addBead(bead:IBead):void
 		{
 			if (!_beads)
 				_beads = new Vector.<IBead>;
 			_beads.push(bead);
-			if (bead is IBeadModel)
-				_model = bead as IBeadModel;
 			bead.strand = this;
 		}
 		

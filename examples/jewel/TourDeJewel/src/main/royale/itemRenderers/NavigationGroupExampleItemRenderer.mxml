@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:CollapsibleNavigationSectionRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+                                        xmlns:j="library://ns.apache.org/royale/jewel"
+                                        xmlns:js="library://ns.apache.org/royale/basic"
+                                        xmlns:html="library://ns.apache.org/royale/html"
+                                        className="layout vertical"
+                                        sectionClick="handleNavToggle(event)">
+
+    <fx:Script>
+		<![CDATA[
+        import org.apache.royale.events.Event;
+        import org.apache.royale.jewel.Navigation;
+
+        import vos.NavigationLinkVO;
+
+        [Bindable(event="dataChange")]
+        public function get navlink():NavigationLinkVO
+        {
+            return data as NavigationLinkVO;
+        }
+
+        /**
+         * override in subclasses as a simple way to configure the nested content field
+         * if it is not 'subMenu' (the default)
+         */
+        /*override public function get submenuField():String{
+            return 'submenu';
+        }*/
+
+        //probably don't want this for touch interfaces...
+        override public function get retainHover():Boolean{
+            return true;
+        }
+
+        private function handleNavToggle(event:Event):void{
+            var triggerBinding:Boolean;
+            if (event.target == this){
+                this.open = !this.open;
+                //trigger the binding because ItemRendererDataBinding only listens to dataChange
+                triggerBinding = true;
+            }
+
+            if (triggerBinding) dispatchEvent(new Event('dataChange'));
+        }
+
+
+        override public function onChange(selectedItem:Object):void{
+            trace('selectedItem',selectedItem)
+            var parentNav:Navigation =   this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
+            if (parentNav) {
+                //this hierarchy support is a bit kooky, and probably there will be something better later with Hierarchical data setup
+                navlink.selectedChild =selectedItem as NavigationLinkVO;
+                if (parentNav.selectedItem!= this.data){
+                    parentNav.selectedItem = this.data;
+                }
+                parentNav.dispatchEvent(new Event('change'));
+            }
+        }
+        ]]>
+	</fx:Script>
+
+    <j:beads>
+        <js:ItemRendererDataBinding />
+    </j:beads>
+
+    <js:MaterialIcon text="{navlink ? navlink.icon : ''}"  visible="{navlink ? navlink.icon != null : false}"/>
+
+    <html:Span className="navigation-section-title" text="{text}"/>
+    
+    <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
+                visible="{navlink.subMenu != null}" />
+
+</j:CollapsibleNavigationSectionRenderer>
+

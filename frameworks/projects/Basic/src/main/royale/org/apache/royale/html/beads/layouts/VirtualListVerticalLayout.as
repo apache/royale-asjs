@@ -18,38 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.layouts
 {
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IBeadModel;
+    COMPILE::SWF
+    {
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
-	COMPILE::JS
-	{
-		import org.apache.royale.core.WrappedHTMLElement;
-	}
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.geom.Rectangle;
-    import org.apache.royale.html.beads.VirtualDataContainerView;
-	import org.apache.royale.utils.CSSUtils;
-
-    COMPILE::SWF {
-        import org.apache.royale.geom.Size;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.html.beads.VirtualDataContainerView;
     }
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithPresentationModel;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.events.Event;
+
         
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -86,7 +79,7 @@ package org.apache.royale.html.beads.layouts
             dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
             COMPILE::JS
             {
-                host.element.addEventListener("scroll", scrollHandler);
+            host.element.addEventListener("scroll", scrollHandler);
             }
         }
         
@@ -230,7 +223,7 @@ package org.apache.royale.html.beads.layouts
                 {
                     if (i >= dp.length) continue; // no more renderers needed
                     
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
                         ir  = factory.getItemRendererForIndex(i, i - startIndex);
@@ -283,28 +276,43 @@ package org.apache.royale.html.beads.layouts
                     contentView.element.appendChild(topSpacer);
                 }
                 topSpacer.style.height = (startIndex * presentationModel.rowHeight).toString() + "px";
+                //trace("starting layout: startIndex = " + startIndex + " endIndex = " + endIndex);
                 if (visibleIndexes.length)
                 {
+                    //trace("visibleIndexes: " + visibleIndexes);
                     if (startIndex < visibleIndexes[0])
                     {
+                        //trace("startIndex < visibleIndex[0]");
                         // see if we can re-use any renderers
                         freeIndex = visibleIndexes.pop();
-                        while (freeIndex >= endIndex)
+                        //trace("freeIndex: " + freeIndex);
+                        while (freeIndex > endIndex)
                         {
+                            //trace("free: " + freeIndex);
                             factory.freeItemRendererForIndex(freeIndex);
                             if (visibleIndexes.length == 0)
                                 break;
                             freeIndex = visibleIndexes.pop();
                         }
+                        // we popped it off at the end of loop but if we didn't
+                        // use it, then push it back on
+                        if (freeIndex == endIndex)
+                            visibleIndexes.push(freeIndex);
                         if (visibleIndexes.length)
+                        {
                             endIndex = visibleIndexes[visibleIndexes.length - 1];
+                            //trace("changing endIndex: " + endIndex);
+                        }
                     }
                     else if (startIndex > visibleIndexes[0])
                     {
+                        //trace("startIndex > visibleIndex[0]");
                         // see if we can re-use any renderers
                         freeIndex = visibleIndexes.shift();
+                        //trace("freeIndex: " + freeIndex);
                         while (freeIndex < startIndex)
                         {
+                            //trace("free: " + freeIndex);
                             factory.freeItemRendererForIndex(freeIndex);
                             if (visibleIndexes.length == 0)
                                 break;
@@ -313,14 +321,18 @@ package org.apache.royale.html.beads.layouts
                     }
                     else
                     {
+                        //trace("startIndex == visibleIndex[0]");
                         // see if rows got added or removed because height changed
                         lastIndex = visibleIndexes[visibleIndexes.length - 1];
+                        //trace("lastIndex: " + lastIndex);
                         if (lastIndex > endIndex)
                         {
                             // see if we can re-use any renderers
                             freeIndex = visibleIndexes.pop();
+                            //trace("freeIndex: " + freeIndex);
                             while (freeIndex > endIndex)
                             {
+                                //trace("free: " + freeIndex);
                                 factory.freeItemRendererForIndex(freeIndex);
                                 if (visibleIndexes.length == 0)
                                     break;
@@ -332,37 +344,51 @@ package org.apache.royale.html.beads.layouts
                     }
                     firstIndex = visibleIndexes[0];
                     lastIndex = visibleIndexes[visibleIndexes.length - 1];
+                    //trace("done freeing: firstIndex = " + firstIndex + " lastIndex = " + lastIndex);
                 }
                 else
                 {
                     firstIndex = dp.length;
                     lastIndex = 0;
+                    //trace("no freeing: firstIndex = " + firstIndex + " lastIndex = " + lastIndex);
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
                     if (i >= dp.length) continue; // no more renderers needed
                     
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
+                       //trace("i < firstIndex: creating: i = " + i);
                        ir  = factory.getItemRendererForIndex(i, i - startIndex + 1);
                        ir.element.style.display = "block";
                        visibleIndexes.push(i);
                     }
                     else if (i > lastIndex)
                     {
+                        //trace("i > lastIndex: creating: i = " + i);
                         ir  = factory.getItemRendererForIndex(i, i - startIndex + 1);
                         ir.element.style.display = "block";
                         visibleIndexes.push(i);
                     }
                 }
                 visibleIndexes = visibleIndexes.sort(numberSort);
+                //trace("visibleIndexes: " + visibleIndexes);
                 if (!bottomSpacer)
                 {
                     bottomSpacer = document.createElement("div") as HTMLDivElement;
                     contentView.element.appendChild(bottomSpacer);
                 }
-                bottomSpacer.style.height = ((dp.length - endIndex) * presentationModel.rowHeight).toString() + "px";  
+                else
+                {
+                    // ensure bottom spacer is at the bottom!
+                    contentView.element.removeChild(bottomSpacer);                    
+                    contentView.element.appendChild(bottomSpacer);                    
+                }
+                
+                var numBottomRows:int = dp.length - endIndex;
+                bottomSpacer.style.height = (numBottomRows > 0) ? (numBottomRows * presentationModel.rowHeight).toString() + "px" : "0px";  
+                //trace("ENDING LAYOUT: bottom spacer = " + bottomSpacer.style.height);
                 inLayout = false;
 				return true;
 			}
@@ -374,7 +400,7 @@ package org.apache.royale.html.beads.layouts
         }
 
         COMPILE::SWF
-        protected function sizeAndPositionRenderer(ir:ISelectableItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
+        protected function sizeAndPositionRenderer(ir:IIndexedItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
         {
             var ilc:ILayoutChild;
             var positions:Object = childPositions(ir);

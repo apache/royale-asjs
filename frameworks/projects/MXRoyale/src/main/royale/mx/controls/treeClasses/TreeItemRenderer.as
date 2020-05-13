@@ -46,15 +46,26 @@ import mx.managers.ISystemManager;
 import mx.utils.PopUpUtil;
 
  */
-import mx.core.IFlexDisplayObject;
+import mx.controls.Label;
+import mx.controls.Tree;
 import mx.controls.listClasses.BaseListData;
-import org.apache.royale.html.supportClasses.TreeItemRenderer;
-import mx.core.mx_internal;
-import mx.core.UIComponent;
-import mx.core.IDataRenderer;
 import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.core.IDataRenderer;
+import mx.core.IFlexDisplayObject;
+import mx.core.UIComponent;
+import mx.core.mx_internal;
 
 use namespace mx_internal;
+
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IItemRenderer;
+import org.apache.royale.core.ILabelFieldItemRenderer;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+import org.apache.royale.html.util.getLabelFromData;
+import org.apache.royale.html.supportClasses.TreeListData;
+import org.apache.royale.core.IItemRendererOwnerView;
+import org.apache.royale.core.ISelectableItemRenderer;
 
 /**
  *  The TreeItemRenderer class defines the default item renderer for a Tree control. 
@@ -72,7 +83,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class TreeItemRenderer extends UIComponent implements IDataRenderer,IDropInListItemRenderer
+public class TreeItemRenderer extends UIComponent 
+    implements IDataRenderer, IDropInListItemRenderer, IItemRenderer, ILabelFieldItemRenderer
 {
    
 
@@ -93,8 +105,20 @@ public class TreeItemRenderer extends UIComponent implements IDataRenderer,IDrop
     public function TreeItemRenderer()
     {
         super();
+        typeNames = "TreeItemRenderer";        
     }
 
+    override protected function createChildren():void
+    {
+        super.createChildren();
+        if (numChildren == 0)
+        {
+            label = new Label();
+            addChild(label);
+            disclosureIcon = new Label();
+            addChild(disclosureIcon);
+        }
+    }
    
     //--------------------------------------------------------------------------
     //
@@ -102,78 +126,6 @@ public class TreeItemRenderer extends UIComponent implements IDataRenderer,IDrop
     //
     //--------------------------------------------------------------------------
 
-  	private var _data:Object
- 
-	public function get data():Object   
-	{     
-	return _data;    
-	}       
-	/**  
-	*  @private    
-	*/
-
-	public function set data(value:Object):void   
-	{       
-	_data = value;     
-	//dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));  
-	}
-
-
-	private var _listData:BaseListData 
-	//_listData:AdvancedDataGridListData;
-
-	[Bindable("dataChange")]
-
-
-	/**
-	*  
-	The implementation of the <code>listData</code> property as 
-	*  
-	defined by the IDropInListItemRenderer interface.
-	*  The text of the renderer is set to the <code>label</code>
-
-	*  property of this property.
-	*
-	*  @see mx.controls.listClasses.IDropInListItemRenderer
-	*  
-	*  @langversion 3.0
-
-	*  @playerversion Flash 9
-	*  @playerversion AIR 1.1
-	*  @productversion Royale 0.9.3
-	*/
-
-	public function get listData():BaseListData
-
-	{
-	return _listData;
-	}
-
-	/**
-	*  @private
-	*/
-
-
-	public function set listData(value:BaseListData):void
-	{
-	_listData = value;
-	/*_listData = AdvancedDataGridListData(value);
-
-	if (nestLevel && !invalidatePropertiesFlag)
-
-	{
-
-	UIComponentGlobals.layoutManager.invalidateProperties(this);
-
-	invalidatePropertiesFlag = true;
-
-	UIComponentGlobals.layoutManager.invalidateSize(this);
-
-	invalidateSizeFlag = true;
-
-	} 
-	*/
-	}
     
     //----------------------------------
     //  icon
@@ -201,7 +153,7 @@ public class TreeItemRenderer extends UIComponent implements IDataRenderer,IDrop
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    protected var label:Object;
+    protected var label:Label;
     
  
 	//----------------------------------
@@ -217,7 +169,7 @@ public class TreeItemRenderer extends UIComponent implements IDataRenderer,IDrop
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    protected var disclosureIcon:IFlexDisplayObject;
+    public var disclosureIcon:Label;
 
     //--------------------------------------------------------------------------
     //
@@ -241,9 +193,178 @@ public class TreeItemRenderer extends UIComponent implements IDataRenderer,IDrop
         return label;
     }
     
-	
-   
+    //--------------------------------------------------------------------------
+    //
+    //  Copied from UIItemRendererBase.  Good case for finding a better way to 
+    //  share code like this
+    //
+    //--------------------------------------------------------------------------
+    
 
+    /**
+     * @private
+     */
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        
+        // very common for item renderers to be resized by their containers,
+        addEventListener("widthChanged", sizeChangeHandler);
+        addEventListener("heightChanged", sizeChangeHandler);
+        addEventListener("sizeChanged", sizeChangeHandler);
+        
+        // each MXML file can also have styles in fx:Style block
+        ValuesManager.valuesImpl.init(this);
+        
+        dispatchEvent(new Event("initBindings"));
+        dispatchEvent(new Event("initComplete"));
+        
+    }
+    
+    private var _data:Object;
+    
+    [Bindable("__NoChangeEvent__")]
+    /**
+     *  The data being represented by this itemRenderer. This can be something simple like a String or
+     *  a Number or something very complex.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get data():Object
+    {
+        return _data;
+    }
+    public function set data(value:Object):void
+    {
+        _data = value;
+        var treeListData:mx.controls.treeClasses.TreeListData = listData as mx.controls.treeClasses.TreeListData;
+
+        if ((treeListData.owner as Tree).labelFunction)
+            text = (treeListData.owner as Tree).labelFunction(data);
+        else
+            text = dataToString(value);
+        
+        var indentSpace:String = "    ";
+        var extraSpace:String = " ";
+        
+        COMPILE::JS {
+            indentSpace = "\u00a0\u00a0\u00a0\u00a0";
+            extraSpace = "\u00a0";
+        }
+            
+            var indent:String = "";
+        for (var i:int=0; i < treeListData.depth - 1; i++) {
+            indent += indentSpace;
+        }
+        
+        indent += (treeListData.hasChildren ? (treeListData.isOpen ? "▼" : "▶") : "") + extraSpace;
+        
+        disclosureIcon.text = indent;
+
+    }
+    
+    protected function dataToString(value:Object):String
+    {
+        return getLabelFromData(this,value);
+    }
+
+    private var _listData:Object;
+    
+    [Bindable("__NoChangeEvent__")]
+    /**
+     *  Additional data about the list structure the itemRenderer may
+     *  find useful.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get listData():Object
+    {
+        return _listData;
+    }
+    public function set listData(value:Object):void
+    {
+        _listData = value;
+    }
+    
+    private var _labelField:String = "label";
+    
+    /**
+     * The name of the field within the data to use as a label. Some itemRenderers use this field to
+     * identify the value they should show while other itemRenderers ignore this if they are showing
+     * complex information.
+     */
+    public function get labelField():String
+    {
+        return _labelField;
+    }
+    public function set labelField(value:String):void
+    {
+        _labelField = value;
+    }
+    
+    /**
+     * @private
+     */
+    private function sizeChangeHandler(event:Event):void
+    {
+        adjustSize();
+    }
+    
+    /**
+     *  This function is called whenever the itemRenderer changes size. Sub-classes should override
+     *  this method an handle the size change.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function adjustSize():void
+    {
+        updateDisplayList(width, height);
+    }
+   
+    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    {
+        label.x = disclosureIcon.width;
+        label.y = 2;
+        disclosureIcon.y = 2;
+    }
+
+    public function set text(value:String):void
+    {
+        COMPILE::JS
+        {
+            if (value == "undefined")
+            {
+                if (labelField.charAt(0) == '@')
+                    value = data["attribute"](labelField);
+                else
+                    value = data["child"](labelField).toString();
+            }
+        }
+        label.text = value;
+    }
+
+    /**
+     *  The text currently displayed by the itemRenderer instance.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get text():String
+    {
+        return label.text;
+    }
+    
 }
 
 }

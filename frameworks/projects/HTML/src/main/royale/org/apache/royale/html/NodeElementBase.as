@@ -57,5 +57,71 @@ package org.apache.royale.html
             }
 			
 		}
+
+        public function get class():String
+        {
+            COMPILE::SWF
+            {
+                return "";
+            }
+            COMPILE::JS
+            {
+            	return element.getAttribute("class");
+            }
+        }
+
+        public function set class(value:String):void
+        {
+            COMPILE::JS
+            {
+            	element.setAttribute("class",value);
+            }
+        }
+
+        COMPILE::SWF
+        override public function get tabIndex():int{
+            return super.tabIndex;
+        }
+        COMPILE::SWF
+        override public function set tabIndex(value:int):void{
+            super.tabIndex = value;
+        }
+
+        COMPILE::JS
+        public function get tabIndex():int
+        {
+            return element.tabIndex;
+        }
+        COMPILE::JS
+        public function set tabIndex(value:int):void
+        {
+            element.tabIndex = value;
+        }
+        
+        COMPILE::SWF
+        protected var _attributes_:Object = {};
+        public function setAttribute(name:String,value:String):void
+        {
+            COMPILE::JS
+            {
+            	element.setAttribute(name,value);
+            }
+            COMPILE::SWF
+            {
+                _attributes_[name] = value;
+            }
+            
+        }
+        public function getAttribute(name:String):String
+        {
+            COMPILE::JS
+            {
+            	return element.getAttribute(name);
+            }
+            COMPILE::SWF
+            {
+                return _attributes_[name];
+            }
+        }
     }
 }

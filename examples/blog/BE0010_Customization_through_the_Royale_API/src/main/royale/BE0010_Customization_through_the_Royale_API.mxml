@@ -83,17 +83,28 @@
 
     <j:initialView>
         <j:View>
-            <js:beads>
-                <j:HorizontalCenteredLayout/>
-            </js:beads>
+            <j:beads>
+                <j:VerticalCenteredLayout/>
+            </j:beads>
 
-            <j:Card width="350">
-                <html:H3 text="Customization through Royale API"/>
+            <j:Card width="400">
+                <j:CardHeader>
+                    <html:H3 text="Customization through Royale API" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
                 
-				<j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts."
+				    <j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts."
                         multiline="true"/>
-                <j:Button text="Click Me" click="clickHandler(event)"/>
-                <j:Label id="status"/>
+                    
+                </j:CardPrimaryContent>
+                <j:CardActions itemsVerticalAlign="itemsCentered">
+                    <j:BarSection>
+                        <j:Label id="status"/>
+                    </j:BarSection>
+                    <j:BarSection itemsHorizontalAlign="itemsRight">
+                        <j:Button text="Click Me" click="clickHandler(event)"/>                    
+                    </j:BarSection>
+                </j:CardActions>
             </j:Card>
         </j:View>
     </j:initialView>

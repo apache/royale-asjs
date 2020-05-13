@@ -19,7 +19,7 @@ package org.apache.royale.file
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDocument;
-	import org.apache.royale.core.Strand;
+	import org.apache.royale.core.StrandWithModel;
 	import org.apache.royale.utils.BinaryData;
 
 	COMPILE::SWF
@@ -47,7 +47,7 @@ package org.apache.royale.file
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class FileProxy extends Strand implements IDocument, IFileModel
+	public class FileProxy extends StrandWithModel implements IDocument, IFileModel
 	{
 		private var _document:Object;
 		public function FileProxy()

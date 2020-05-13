@@ -32,6 +32,7 @@ package org.apache.royale.reflection.beads
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IFlexInfo;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IDocument;
     
     /**
      *  The ClassAliasBead class is the registers class
@@ -45,7 +46,7 @@ package org.apache.royale.reflection.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ClassAliasBead implements IBead
+	public class ClassAliasBead implements IBead, IDocument
 	{
         /**
          *  Constructor.
@@ -73,6 +74,7 @@ package org.apache.royale.reflection.beads
          */
         public function set strand(value:IStrand):void
         {
+            if (_strand == value) return;
             _strand = value;
             var app:IFlexInfo = value as IFlexInfo;
             var info:Object = app.info();
@@ -86,6 +88,21 @@ package org.apache.royale.reflection.beads
                     if (c) // if no class, may have only been used in JS as a type and never actually instantiated
                         registerClassAlias(alias, c);
                 }
+            }
+        }
+
+        /**
+         *  the following ensures that ClassAliasBead will be processed in mxml bead declaration order,
+         *  before other subsequent application beads which can run code that requires class aliases
+         *  for example :
+         *  a model bead that is set up from its instantiation based on deserialization (using class aliases) of content from local storage
+         *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IStrand
+         */
+        public function setDocument(document:Object, id:String = null):void
+        {
+            if (document is IStrand) {
+                strand = IStrand(document);
             }
         }
             

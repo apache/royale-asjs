@@ -25,6 +25,11 @@ package org.apache.royale.core
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.utils.sendStrandEvent;
+	COMPILE::JS
+	{
+		import org.apache.royale.utils.html.getStyle;
+	}
 	
 	/**
 	 * The StyleChangeNotifier can be added to the bead list of any UI component
@@ -63,20 +68,18 @@ package org.apache.royale.core
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIHTMLElementWrapper
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function handleStyleChange(event:ValueChangeEvent):void
 		{
 			COMPILE::SWF {
 				var styleEvent:StyleChangeEvent = StyleChangeEvent.createChangeEvent(_strand, event.propertyName, event.oldValue, event.newValue);
-				IEventDispatcher(_strand).dispatchEvent(styleEvent);
+				sendStrandEvent(_strand,styleEvent);
 			}
 			COMPILE::JS {
 				var host:UIHTMLElementWrapper = UIHTMLElementWrapper(_strand);
 				if (host) {
-					var element:WrappedHTMLElement = host.element as WrappedHTMLElement;
-					if (element) {
-						element.style[event.propertyName] = event.newValue;
-					}
+					getStyle(host)[event.propertyName] = event.newValue;
 				}
 			}
 		}

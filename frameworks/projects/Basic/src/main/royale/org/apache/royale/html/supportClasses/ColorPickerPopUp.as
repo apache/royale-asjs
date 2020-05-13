@@ -27,6 +27,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.HueSelector;
 	import org.apache.royale.utils.hsvToHex;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IBead;
 
 	/**
 	 *  The ColorPickerPopUp class is used in ColorPicker. It contains a set of controls for picking a color.
@@ -38,7 +39,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp
+	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp, IBead
 	{
 		protected var colorSpectrum:ColorSpectrum;
 		protected var hueSelector:HueSelector;
@@ -61,6 +62,7 @@ package org.apache.royale.html.supportClasses
 			hueSelector.width = 20;
 			hueSelector.height = 300;
 			hueSelector.x = 310;
+            hueSelector.y = 0;
 			hueSelector.addEventListener("valueChange", hueChangeHandler);
 			COMPILE::JS 
 			{
@@ -81,12 +83,30 @@ package org.apache.royale.html.supportClasses
 			var colorSpectrumModel:IColorSpectrumModel = loadBeadFromValuesManager(IColorSpectrumModel, "iColorSpectrumModel", colorSpectrum) as IColorSpectrumModel;
 			colorSpectrumModel.baseColor = (value as IColorModel).color;
 			(colorSpectrum as IEventDispatcher).addEventListener("change", colorSpectrumChangeHandler);
+            (colorSpectrum as IEventDispatcher).addEventListener("thumbDown", colorSpectrumThumbDownHandler);
+            (colorSpectrum as IEventDispatcher).addEventListener("thumbUp", colorSpectrumThumbUpHandler);
 		}
 		
+        private var draggingThumb:Boolean;
+        
 		protected function colorSpectrumChangeHandler(event:Event):void
 		{
 			(model as IColorModel).color = colorSpectrum.hsvModifiedColor;
+            if (!draggingThumb)
+                dispatchEvent(new Event("change"));
 		}
+        
+        protected function colorSpectrumThumbDownHandler(event:Event):void
+        {
+            draggingThumb = true;
+        }
+        
+        protected function colorSpectrumThumbUpHandler(event:Event):void
+        {
+            draggingThumb = false;
+            (model as IColorModel).color = colorSpectrum.hsvModifiedColor;
+            dispatchEvent(new Event("change"));
+        }
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand

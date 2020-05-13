@@ -22,18 +22,21 @@ package spark.components.beads
 
 import spark.components.SkinnableContainer;
 import spark.components.supportClasses.GroupBase;
+import spark.components.supportClasses.SkinnableComponent;
+import spark.components.supportClasses.Skin;
+import spark.layouts.BasicLayout;
 
 import org.apache.royale.core.IBead;
+import org.apache.royale.core.IContainer;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
-import org.apache.royale.html.beads.ContainerView;
 
 /**
  *  @private
  *  The SkinnableContainerView for emulation.
  */
-public class SkinnableContainerView extends ContainerView
+public class SkinnableContainerView extends SparkContainerView
 {
 	//--------------------------------------------------------------------------
 	//
@@ -54,22 +57,73 @@ public class SkinnableContainerView extends ContainerView
 		super();
 	}
 
-    /**
-     */
-    override public function set strand(value:IStrand):void
+    override protected function prepareContentView():void
     {
-        super.strand = value;
         var host:SkinnableContainer = _strand as SkinnableContainer;
-        var g:GroupBase = (contentView as GroupBase);
-        g.layout = host.layout;
-        
-        if (!host.isWidthSizedToContent())
-            g.percentWidth = 100;
-        if (!host.isHeightSizedToContent())
-            g.percentHeight = 100;
+        if (host.skin)
+        {
+            if (!host.isWidthSizedToContent())
+                host.skin.percentWidth = 100;
+            if (!host.isHeightSizedToContent())
+                host.skin.percentHeight = 100;            
+        }
+        else
+            super.prepareContentView();
+    }
 
+    /**
+     *  Adjusts the size of the host after the layout has been run if needed
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.UIBase
+     */
+    override public function beforeLayout():Boolean
+    {
+        var host:SkinnableContainer = _strand as SkinnableContainer;
+        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
+        {
+            if (host.skin)
+            {
+                (host.skin as Skin).layout.measure();
+                host.measuredHeight = host.skin.measuredHeight;
+                host.measuredWidth = host.skin.measuredWidth;
+            }
+            else 
+            {
+                if (host.layout == null)
+                    host.layout = new BasicLayout();
+                host.layout.measure();
+            }
+        }
+        else
+        {
+            if (host.skin)
+            {
+                host.skin.setLayoutBoundsSize(host.width, host.height);
+            }
+            else
+            {
+                (viewport.contentView as ILayoutChild).setWidthAndHeight(host.width, host.height);
+            }
+                
+        }
+		return true;
     }
     
+    override protected function addViewport():void
+    {
+        var chost:IContainer = host as IContainer;
+        var skinhost:SkinnableComponent = host as SkinnableComponent;
+        if (chost != null && chost != viewport.contentView && skinhost.skin) {
+            chost.addElement(skinhost.skin);
+        }
+        else
+            super.addViewport();
+    }
+
 }
 
 }

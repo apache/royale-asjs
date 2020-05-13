@@ -97,5 +97,6 @@ package org.apache.royale.core
 		 */
 		function get selectedDate():Date;
 		function set selectedDate(value:Date):void;
+        
 	}
 }

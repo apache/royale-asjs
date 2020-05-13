@@ -38,6 +38,7 @@ import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.styles.CSSStyleDeclaration;
 
+import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
 
@@ -338,6 +339,8 @@ public class FormItem extends Container
      */
     override public function set label(value:String):void
     {
+		if (_label == value) return;
+		
         _label = value;
         labelChanged = true;
 
@@ -351,6 +354,7 @@ public class FormItem extends Container
        {
             Form(parent).invalidateLabelWidth();
             commitProperties();
+			Form(parent).dispatchEvent(new Event("layoutNeeded"));
        }
 
         dispatchEvent(new Event("labelChanged"));
@@ -1554,6 +1558,12 @@ public class FormItem extends Container
      */
     override public function get numElements():int
     {
+        // the view getter below will instantiate the view which can happen
+        // earlier than we would like (when setting mxmlDocument) so we
+        // see if the view bead exists on the strand.  If not, nobody
+        // has added any children so numElements must be 0
+        if (!getBeadByType(IBeadView))
+            return 0;
         var containerView:FormItemView = view as FormItemView;
         return containerView.contentArea.numElements;
     }

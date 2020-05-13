@@ -43,22 +43,26 @@
 
     <j:initialView>
         <j:View>
-            <js:beads>
-                <j:HorizontalCenteredLayout/>
-                <js:ApplicationDataBinding/>
-            </js:beads>
+            <j:beads>
+                <j:VerticalCenteredLayout/>
+            </j:beads>
 
-            <j:Card width="270">
-                <html:H3 text="Jewel List With ItemRenderer"/>
+            <j:Card width="320">
+                <j:CardHeader>
+                    <html:H3 text="Jewel List With ItemRenderer" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
                 
-				<j:List width="100%" height="300" className="iconListItemRenderer">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="listModel"
-							sourcePropertyName="iconListData"
-							destinationPropertyName="dataProvider" />
-					</j:beads>
-				</j:List>
+				    <j:List width="100%" height="300" className="iconListItemRenderer">
+                        <j:beads>
+                            <js:ConstantBinding
+                                sourceID="listModel"
+                                sourcePropertyName="iconListData"
+                                destinationPropertyName="dataProvider"/>
+                        </j:beads>
+                    </j:List>
+                    
+                </j:CardPrimaryContent>
             </j:Card>
         </j:View>
     </j:initialView>

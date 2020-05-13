@@ -23,5 +23,7 @@
 
     <component id="ClassAliasBead" class="org.apache.royale.reflection.beads.ClassAliasBead" />
     <component id="JSONReviver" class="org.apache.royale.reflection.beads.JSONReviver" />
-    
+    <component id="ExtraReflectionDataBead" class="org.apache.royale.reflection.beads.ExtraReflectionDataBead" />
+    <component id="ReflectionCacheEnabledBead" class="org.apache.royale.reflection.beads.ReflectionCacheEnabledBead" />
+
 </componentPackage>

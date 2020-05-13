@@ -35,13 +35,13 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-    <mdl:beads>
+    <j:beads>
         <js:ItemRendererDataBinding />
-    </mdl:beads>
+    </j:beads>
     
-    <js:FontIcon text="{iconList.icon}" material="true" visible="{iconList.icon != null}"/>
+    <js:MaterialIcon text="{iconList ? iconList.icon : ''}" visible="{iconList ? iconList.icon != null : false}"/>
 
-    <html:Span text="{iconList.label}"/>
+    <html:Span text="{iconList ? iconList.label : ''}"/>
     
 </j:ListItemRenderer>
 

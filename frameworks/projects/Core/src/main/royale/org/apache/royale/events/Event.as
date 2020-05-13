@@ -174,12 +174,18 @@ package org.apache.royale.events
 		 * Google Closure doesn't seem to support stopImmediatePropagation, but
 		 * actually the ElementWrapper fireListener override sends a
 		 * BrowserEvent in most/all cases where folks need stopImmediatePropagation
-		 * so we put this in here for compile time since it will exist in
-		 * the BrowserEvent that does get sent around.
+		 * We're re-writing the goog behavior to stop immmediate propogation in EventDispatcher
 		 */
+		private var _immediatePropogationStopped:Boolean;
+
+		public function get immediatePropogationStopped():Boolean
+		{
+			return _immediatePropogationStopped;
+		}
+		
 		public function stopImmediatePropagation():void
 		{
-			throw new Error("stopImmediatePropagation");
+			_immediatePropogationStopped = true;
 		}
 		
 		public function cloneEvent():IRoyaleEvent

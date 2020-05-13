@@ -38,9 +38,13 @@ internal class RoyaleUnitClasses
 	import org.apache.royale.test.asserts.assertStrictlyEquals;assertStrictlyEquals;
 	import org.apache.royale.test.asserts.assertTrue;assertTrue;
 	import org.apache.royale.test.asserts.fail;fail;
+	import org.apache.royale.test.async.Async;Async;
+	import org.apache.royale.test.async.AsyncLocator;AsyncLocator;
+	import org.apache.royale.test.async.IAsyncHandler;IAsyncHandler;
 	import org.apache.royale.test.listeners.CIListener;CIListener;
 	import org.apache.royale.test.listeners.FailureListener;FailureListener;
-	import org.apache.royale.test.listeners.TraceListener;TraceListener
+	import org.apache.royale.test.listeners.BrowserConsoleListener;BrowserConsoleListener;
+	import org.apache.royale.test.listeners.TraceListener;TraceListener;
 	import org.apache.royale.test.runners.ITestRunner;ITestRunner;
 	import org.apache.royale.test.runners.MetadataRunner;MetadataRunner;
 	import org.apache.royale.test.runners.ParentRunner;ParentRunner;

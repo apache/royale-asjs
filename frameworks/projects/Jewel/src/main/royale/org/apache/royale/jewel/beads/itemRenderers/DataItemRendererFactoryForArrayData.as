@@ -20,23 +20,23 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
-	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
-	
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
+	import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
-    import org.apache.royale.html.beads.IListView;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
@@ -145,7 +145,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 		
         /**
-         *  The org.apache.royale.core.IItemRendererParent that will
+         *  The org.apache.royale.core.IItemRendererOwnerView that will
          *  parent the item renderers.
          *
          *  @langversion 3.0
@@ -154,11 +154,12 @@ package org.apache.royale.jewel.beads.itemRenderers
          *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.core.IListView
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.StyledDataItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
          */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -167,7 +168,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				return;
 			
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			var dataGroup:IItemRendererParent = listView.dataGroup;
+			var dataGroup:IItemRendererOwnerView = listView.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
 			
@@ -176,23 +177,22 @@ package org.apache.royale.jewel.beads.itemRenderers
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-                var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+				var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+                var dataItemRenderer:StyledDataItemRenderer = ir as StyledDataItemRenderer;
 
 				
 				ir.index = i;
-				ir.labelField = labelField;
+                (ir as ILabelFieldItemRenderer).labelField = labelField;
                 if (dataItemRenderer)
                 {
                     dataItemRenderer.dataField = dataField;
                 }
+                if (ir is IOwnerViewItemRenderer)
+                    (ir as IOwnerViewItemRenderer).itemRendererOwnerView = dataGroup;
 
 				if (presentationModel) {
-					var style:SimpleCSSStyles = new SimpleCSSStyles();
-					style.marginBottom = presentationModel.separatorThickness;
-					UIBase(ir).style = style;
 					UIBase(ir).height = presentationModel.rowHeight;
-					UIBase(ir).percentWidth = 100;
+					// UIBase(ir).percentWidth = 100;
 				}
 				ir.data = dp[i];
 				dataGroup.addItemRenderer(ir, false);

@@ -413,7 +413,6 @@ package org.apache.royale.mdl
             textNode.nodeValue = value;
         }
         
-        /** @export */
         public function get selected():Boolean
         {
             return icon.checked;

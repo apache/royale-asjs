@@ -19,19 +19,18 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
-	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.core.IItemRenderer;
 
 	/**
 	 *  Handles the removal of an itemRenderer in a Table component once the corresponding 
@@ -124,23 +123,23 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var ir:DataItemRenderer;
+			var ir:StyledDataItemRenderer;
 			var cell:TableCell;
-			var processedRow:TableRow = (itemRendererParent as UIBase).getElementAt(event.index) as TableRow;
+			var processedRow:TableRow = (itemRendererOwnerView as UIBase).getElementAt(event.index) as TableRow;
 			while (processedRow.numElements > 0) {
 				cell = processedRow.getElementAt(0) as TableCell;
-				ir = cell.getElementAt(0) as DataItemRenderer;
-				itemRendererParent.removeItemRenderer(ir);
+				ir = cell.getElementAt(0) as StyledDataItemRenderer;
+				itemRendererOwnerView.removeItemRenderer(ir);
 				cell.removeElement(ir);
 				processedRow.removeElement(cell);
 			}
-			(itemRendererParent as UIBase).removeElement(processedRow);
+			(itemRendererOwnerView as UIBase).removeElement(processedRow);
 
 			// adjust the itemRenderers' index to adjust for the shift
-			var len:int = itemRendererParent.numItemRenderers;
+			var len:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				ir = itemRendererParent.getItemRendererAt(i) as DataItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as StyledDataItemRenderer;
 				ir.index = i;
 				ir.rowIndex = i;
 			}
@@ -148,10 +147,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -159,13 +158,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-				_itemRendererParent = listView.dataGroup;
+				_itemRendererOwnerView = listView.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 	}
 }

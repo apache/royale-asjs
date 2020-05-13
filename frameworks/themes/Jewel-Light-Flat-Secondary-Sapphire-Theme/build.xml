@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="Jewel-Light-Flat-Secondary-Sapphire-Theme" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../../.."/>
+    
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+    
+    <property name="target.name" value="${ant.project.name}.swc" />
+    
+    <!-- doesn't contain compiled files so only need to compile JS version -->
+    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
+    </target>
+    
+    <target name="compile-js">
+        <!-- doesn't contain compiled files so only need to compile JS version
+        <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" >
+            <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
+            <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
+            <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+        </ant>
+         -->
+    </target>
+    
+    <target name="copy-swc" if="env.AIR_HOME">
+        <copy file="${basedir}/target/${target.name}" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
+    </target>
+    
+    <target name="check-for-tests" >
+        <condition property="skip-tests" >
+            <not>
+                <available file="${basedir}/src/test/royale/build.xml" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="test" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/royale" />
+    </target>
+    
+    <target name="clean">
+        <delete failonerror="false">
+            <fileset dir="${ROYALE_HOME}/frameworks/libs">
+                <include name="${target.name}"/>
+            </fileset>
+        </delete>
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${basedir}/target">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
+        <antcall target="clean-tests" />
+    </target>
+    
+    <target name="clean-tests" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/royale" target="clean"/>
+    </target>
+    
+    <target name="compile" description="Compiles .as files into .swc" if="env.AIR_HOME">
+        <echo message="Compiling libs/${ant.project.name}.swc"/>
+        <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
+        
+        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" >
+            <jvmarg value="-Xmx384m" />
+            <jvmarg value="-Dsun.io.useCanonCaches=false" />
+            <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
+            <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
+            <arg value="+playerglobal.version=${playerglobal.version}" />
+            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="-compiler.strict-xml=true" />
+            <arg value="-compiler.targets=SWF,JSRoyale" />
+            <arg value="-output=${basedir}/target/${target.name}" />
+            <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
+            <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
+            <arg value="-js-load-config+=${basedir}/../../js/themes/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
+        </java>
+    </target>
+    
+    <target name="check-compiler" depends="check-compiler-home,check-transpiler-home">
+        <path id="lib.path">
+            <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+        </path>
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+    </target>
+    
+    <target name="check-compiler-home"
+        description="Set ROYALE_SWF_COMPILER_HOME to point at the compiler.">
+        
+        <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar"
+        type="file"
+        property="ROYALE_SWF_COMPILER_HOME"
+        value="${ROYALE_HOME}"/>
+        
+        <fail message="ROYALE_SWF_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or the root of a Royale SDK"
+        unless="ROYALE_SWF_COMPILER_HOME"/>
+    </target>
+    
+    <target name="check-transpiler-home"
+        description="Set ROYALE_COMPILER_HOME to point at the cross-compiler.">
+        
+        <available file="${ROYALE_HOME}/js/lib/jsc.jar"
+        type="file"
+        property="ROYALE_COMPILER_HOME"
+        value="${ROYALE_HOME}/js"/>
+        
+        <fail message="ROYALE_COMPILER_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder of a Royale SDK"
+        unless="ROYALE_COMPILER_HOME"/>
+    </target>
+    
+</project>

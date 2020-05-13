@@ -28,6 +28,15 @@ package org.apache.royale.core
      */
     public interface IIcon extends IUIBase
     {
-
+        /**
+         *  The text of the icon
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		function get text():String;
+        function set text(value:String):void;
     }
 }

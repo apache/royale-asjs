@@ -18,17 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.Group;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IChrome;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IChrome;
+    import org.apache.royale.jewel.Group;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
+
 
 	/**
 	 *  The ControlBar class is used within a Panel as a place to position

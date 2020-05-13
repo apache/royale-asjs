@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <!--
-
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
   this work for additional information regarding copyright ownership.
@@ -15,10 +14,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-
 -->
-
-
 <project name="UnitTests" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../.."/>
     <property name="example" value="UnitTests" />
@@ -39,13 +35,16 @@
     <!--<property name="swf.version" value="30" />
     <property name="playerglobal.version" value="19" />-->
     <property name="destDir" value="${basedir}/target/swf"/>
-    <property name="html_template_base" value="${basedir}/src/main/resources" />
+    <property name="html_template_base" value="${basedir}/swf-html-template" />
     <include file="${basedir}/../build_example.xml" />
 
     <target name="main" depends="clean" description="Clean build of ${example}">
+
         <antcall target="build_example.compile">
             <param name="debug" value="false"/>
+            <param name="no.wrapper" value="true"/>
         </antcall>
+        <antcall target="wrapper"/>
     </target>
 
     <target name="clean">
@@ -58,5 +57,103 @@
             <arg value="file:///${basedir}/testsview/index.html"/>
         </exec>
     </target>
+
+    <target name="wrapper">
+        <property name="templatebase" value="${basedir}/swf-html-template/index.template.html"/>
+        <copy todir="${destDir}">
+            <fileset dir="${ROYALE_HOME}/templates/swfobject">
+                <exclude name="index.template.html"/>
+            </fileset>
+        </copy>
+
+        <html-wrapper
+                height="100%"
+                width="100%"
+                bgcolor="#ffffff"
+                name="${example}"
+                versionmajor="11"
+                versionminor="5"
+                versionrevision="0"
+                template="${templatebase}"
+                output="${destDir}"/>
+    </target>
+
+
+    <property name="html_template_base" value="${basedir}/swf-html-template/index.template.html" />
+    <macrodef name="html-wrapper">
+        <attribute name="width"/>
+        <attribute name="height"/>
+        <attribute name="bgcolor"/>
+        <attribute name="name"/>
+        <attribute name="versionmajor"/>
+        <attribute name="versionminor"/>
+        <attribute name="versionrevision"/>
+        <attribute name="output"/>
+        <attribute name="template" default="${html_template_base}"/>
+        <sequential>
+            <copy toFile="@{output}/@{name}.html"
+                  file="@{template}" />
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${title}"
+                        value="@{name}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${bgcolor}"
+                        value="@{bgcolor}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${useBrowserHistory}"
+                        value="&#45;&#45;"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${version_major}"
+                        value="@{versionmajor}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${version_minor}"
+                        value="@{versionminor}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${version_revision}"
+                        value="@{versionrevision}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${expressInstallSwf}"
+                        value="expressInstall.swf"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${expressInstallSwf}"
+                        value="expressInstall.swf"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${width}"
+                        value="@{width}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${height}"
+                        value="@{height}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${application}"
+                        value="@{name}"/>
+            </replace>
+            <replace file="@{output}/@{name}.html">
+                <replacefilter
+                        token="$${swf}"
+                        value="@{name}"/>
+            </replace>
+        </sequential>
+    </macrodef>
 
 </project>

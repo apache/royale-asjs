@@ -24,6 +24,11 @@ package mx.events.utils
         import flash.events.MouseEvent;
         import org.apache.royale.events.utils.IHandlesOriginalEvent;
     }
+    COMPILE::JS
+    {
+        import goog.events.BrowserEvent;
+        import goog.events.Event;
+    }
     
     import mx.core.Keyboard;
     import mx.events.MouseEvent;
@@ -180,13 +185,24 @@ package mx.events.utils
     COMPILE::JS
 	public class MouseEventConverter
 	{
-        public static function convert(nativeEvent:Object):mx.events.MouseEvent
+        /**
+         * @royaleignorecoercion goog.events.Event
+         * We're lying to the compiler for now because it thinks it's supposed to accept a goog.events.Event.
+         * We need to fix this in typedefs
+         */
+        public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):mx.events.MouseEvent
         {
             if (nativeEvent.hasOwnProperty("getModifierState"))
             {
                 Keyboard.setCapsLock(nativeEvent["getModifierState"]("CapsLock"));
             }
-            return new mx.events.MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
+            var event:mx.events.MouseEvent = new mx.events.MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
+			if(!browserEvent)
+			{
+				browserEvent = new goog.events.BrowserEvent(nativeEvent as goog.events.Event,nativeEvent["currentTarget"]);
+			}
+            event.wrapEvent(browserEvent);
+            return event;
         }
     }
 

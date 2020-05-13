@@ -244,6 +244,39 @@ package org.apache.royale.geom
 		}
 		
 		/**
+		 * Creates the specific style of matrix expected by the certain methods of the swf Graphics emulation class in the Graphics library.
+		 * @param width The width of the gradient box.
+		 * @param height The height of the gradient box.
+		 * @param rotation (default = 0) — The amount to rotate, in radians.
+		 * @param tx (default = 0) — The distance, in pixels, to translate to the right along the x axis. This value is offset by half of the width parameter.
+		 * @param ty (default = 0) — The distance, in pixels, to translate down along the y axis. This value is offset by half of the height parameter.
+		 *
+		 * This method is not reflectable in javascript, to allow for dead-code-elimination in applications that will not use it.
+		 * If it is required for reflection, you can create a subclass, and overrride this method, simply calling the super method with the original arguments.
+		 * That change will make it reflectable in the subclass.
+		 * @royalesuppressexport
+		 */
+		public function createGradientBox(width:Number, height:Number, rotation:Number = 0, tx:Number = 0, ty:Number = 0):void
+		{
+			this.tx = tx + width / 2;
+			this.ty = ty + height / 2;
+			a = width / 1638.4;
+			d = height / 1638.4;
+			if (rotation !== 0) {
+				var cos:Number = Math.cos(rotation);
+				var sin:Number = Math.sin(rotation);
+				c = -sin * a;
+				b = sin * d;
+				a = cos * a;
+				d = cos * d;
+			} else {
+				// the following seems unusual, but it correctly results in NaN values if a or d is NaN, which matches observed behavior from swf reference implementation
+				c = a * 0;
+				b = d * 0;
+			}
+		}
+		
+		/**
 		 *  Returns a string representation of the Matrix.
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2

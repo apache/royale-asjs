@@ -22,7 +22,8 @@ package mx.controls.advancedDataGridClasses
 	import mx.collections.IViewCursor;
     import mx.collections.CursorBookmark;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
-	import mx.core.IUIComponent;
+    import mx.controls.beads.models.DataGridColumnICollectionViewModel;
+    import mx.core.IUIComponent;
 	
 	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
@@ -32,9 +33,12 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
+    import org.apache.royale.core.IListDataItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
@@ -48,12 +52,10 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData;
+	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryBase;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.supportClasses.TreeListData;
 	
-	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
-
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a
      *  HierarchicalData object and creates an item renderer for every
@@ -66,7 +68,7 @@ package mx.controls.advancedDataGridClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataItemRendererFactoryForICollectionViewAdvancedDataGridData extends VirtualDataItemRendererFactoryForArrayData
+	public class DataItemRendererFactoryForICollectionViewAdvancedDataGridData extends VirtualDataItemRendererFactoryBase
 	{
         /**
          *  Constructor.
@@ -81,28 +83,11 @@ package mx.controls.advancedDataGridClasses
 			super();
 		}
 
-		private var _strand:IStrand;
-
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			super.strand = value;
-		}
-        
         /**
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-         * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+         * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         override protected function dataProviderChangeHandler(event:Event):void
@@ -114,7 +99,7 @@ package mx.controls.advancedDataGridClasses
                 return;
             
             cursor = dp.createCursor();
-            currentIndex = 0;
+            currentIndex = (dp.length > 0) ? 0 : -1;
             
             // listen for individual items being added in the future.
             //var dped:IEventDispatcher = dp as IEventDispatcher;
@@ -124,6 +109,7 @@ package mx.controls.advancedDataGridClasses
             
             //dataGroup.removeAllItemRenderers();
                         
+            rendererMap = {};
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
             IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
         }
@@ -131,40 +117,9 @@ package mx.controls.advancedDataGridClasses
         private var cursor:IViewCursor;
         private var currentIndex:int;
 		
-		/**
-		 * Sets the itemRenderer's data with additional tree-related data.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 */
-		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
-		{
-            if (!(_strand as AdvancedDataGridColumnList).adg) return;
-            
-			var depth:int = (_strand as AdvancedDataGridColumnList).adg.getDepth(data);
-			var isOpen:Boolean = (_strand as AdvancedDataGridColumnList).adg.isItemOpen(data);
-			var hasChildren:Boolean = (_strand as AdvancedDataGridColumnList).adg.hasChildren(data);
-            var listID:String = (_strand as AdvancedDataGridColumnList).id;
-            var firstColumn:Boolean =  listID == "dataGridColumn0";
-			
-			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", firstColumn ? 0 : 1, "", (_strand as AdvancedDataGridColumnList).adg, index);
-			treeListData.depth = depth;
-			treeListData.open = isOpen;
-			treeListData.hasChildren = hasChildren;
-			
-			ir.listData = treeListData;
-            if (firstColumn && (_strand as AdvancedDataGridColumnList).adg.groupLabelField)
-                ir.labelField = (_strand as AdvancedDataGridColumnList).adg.groupLabelField;
-			
-			ir.data = data;
-            ir.index = index;
-		}
         
         /**
-         *  Get an item renderer for a given index.
+         *  Get a item for a given index.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -173,36 +128,14 @@ package mx.controls.advancedDataGridClasses
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
-        override public function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer
+        override public function getItemAt(index:int):Object
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
-            if (ir) return ir;
-            
-            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
-            
-            ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-            var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
-            
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
-            dataGroup.addItemRendererAt(ir, elementIndex);
-            ir.labelField = labelField;
-            if (dataItemRenderer)
-            {
-                dataItemRenderer.dataField = dataField;
-            }
-            rendererMap[index] = ir;
-            
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            if (presentationModel) {
-                var style:SimpleCSSStyles = new SimpleCSSStyles();
-                style.marginBottom = presentationModel.separatorThickness;
-                UIBase(ir).style = style;
-                UIBase(ir).height = presentationModel.rowHeight;
-                UIBase(ir).percentWidth = 100;
-            }
             var delta:int = index - currentIndex;
-            if (delta == -1)
+            if (currentIndex == -1)
+            {
+                cursor.seek(CursorBookmark.FIRST, index);                
+            }
+            else if (delta == -1)
             {
                 cursor.movePrevious();
             }
@@ -215,14 +148,7 @@ package mx.controls.advancedDataGridClasses
                 cursor.seek(CursorBookmark.CURRENT, delta);
             }
             currentIndex = index;
-            
-            var item:Object = cursor.current;
-            setData(ir, item, index);
-            
-            var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-            newEvent.itemRenderer = ir;
-            dispatchEvent(newEvent);
-            return ir;
+			return cursor.current;
         }
 	}
 }

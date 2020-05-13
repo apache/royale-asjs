@@ -26,7 +26,7 @@ package org.apache.royale.jewel
     }
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.jewel.beads.models.TableModel;
-	import org.apache.royale.jewel.supportClasses.DataContainerBase;
+	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	
 	[DefaultProperty("columns")]
 

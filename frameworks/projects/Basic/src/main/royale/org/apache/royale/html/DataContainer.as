@@ -28,14 +28,14 @@ package org.apache.royale.html
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
     import org.apache.royale.core.IStrandWithPresentationModel;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -46,6 +46,7 @@ package org.apache.royale.html
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.models.ListPresentationModel;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IListWithPresentationModel;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -73,7 +74,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataContainer extends DataContainerBase implements IStrandWithPresentationModel
+	public class DataContainer extends DataContainerBase implements IStrandWithPresentationModel, IListWithPresentationModel
 	{
 		/**
 		 *  constructor.
@@ -146,8 +147,12 @@ package org.apache.royale.html
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
-				presModel = new ListPresentationModel();
-				addBead(presModel);
+			    presModel = loadBeadFromValuesManager(IListPresentationModel, "iListPresentationModel", this) as IListPresentationModel;
+				if (presModel == null)
+				{		
+					presModel = new ListPresentationModel();
+					addBead(presModel);
+				}
 			}
 			return presModel;
 		}

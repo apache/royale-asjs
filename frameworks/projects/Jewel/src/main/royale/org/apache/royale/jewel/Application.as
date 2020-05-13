@@ -18,38 +18,39 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+    COMPILE::SWF {
+    import flash.display.DisplayObject;
+    import flash.display.StageAlign;
+    import flash.display.StageQuality;
+    import flash.display.StageScaleMode;
+    import flash.events.Event;
+
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.events.utils.MouseEventConverter;
+    }
+
+    COMPILE::JS {
+    import org.apache.royale.core.StyledUIBase;
+    }
+    import org.apache.royale.core.AllCSSValuesImpl;
     import org.apache.royale.core.ApplicationBase;
+    import org.apache.royale.core.IApplicationView;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IInitialViewApplication;
     import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IPopUpHost;
     import org.apache.royale.core.IPopUpHostParent;
+    import org.apache.royale.core.IRenderedObject;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.IValuesImpl;
+    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.Timer;
-    import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IInitialViewApplication;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.core.IRenderedObject;
-    import org.apache.royale.core.AllCSSValuesImpl;
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.ILayoutChild;
-    import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.core.IValuesImpl;
-    import org.apache.royale.core.IChild;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.IApplicationView;
 
-    COMPILE::SWF {
-        import flash.display.DisplayObject;
-        import flash.display.StageAlign;
-        import flash.display.StageQuality;
-        import flash.display.StageScaleMode;
-        import flash.events.Event;
-        import org.apache.royale.events.utils.MouseEventConverter;
-    }
-
-    COMPILE::JS {
-        import org.apache.royale.core.UIBase;
-    }
 
     //--------------------------------------
     //  Events
@@ -151,7 +152,7 @@ package org.apache.royale.jewel
             }
 			COMPILE::JS {
 				element = document.getElementsByTagName('body')[0];
-				element.className = 'Application';			
+				element.className = 'jewel application';			
 			}
 
 			this.valuesImpl = new AllCSSValuesImpl();
@@ -598,7 +599,7 @@ package org.apache.royale.jewel
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
-                    if (children[i] == c.element)
+                    if (children[i] == c.positioner)
                         return i;
                 }
                 return -1;
@@ -625,7 +626,7 @@ package org.apache.royale.jewel
                     removeChild(c as DisplayObject);
             }
             COMPILE::JS {
-                element.removeChild(c.element as HTMLElement);
+                element.removeChild(c.positioner as HTMLElement);
             }
         }
 
@@ -699,7 +700,7 @@ package org.apache.royale.jewel
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IBead
-         * @royaleignorecoercion org.apache.royale.core.UIBase
+         * @royaleignorecoercion org.apache.royale.core.StyledUIBase
 		 */
 		COMPILE::JS
 		protected function initialize():void
@@ -713,7 +714,7 @@ package org.apache.royale.jewel
                 initialView.applicationModel = model;
                 addElement(initialView);
                 
-				var baseView:UIBase = initialView as UIBase;
+				var baseView:StyledUIBase = initialView as StyledUIBase;
 				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
 					this.element.style.height = window.innerHeight.toString() + 'px';
 					this.element.style.width = window.innerWidth.toString() + 'px';

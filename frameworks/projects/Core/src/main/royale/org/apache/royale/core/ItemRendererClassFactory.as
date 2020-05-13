@@ -55,7 +55,7 @@ package org.apache.royale.core
 			super();
 		}
 				
-        private var _strand:IStrand;
+        protected var _strand:IStrand;
         
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -122,9 +122,9 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public function createItemRenderer(parent:IItemRendererParent):IItemRenderer
+        public function createItemRenderer():IItemRenderer
         {
-            return createFunction(parent);
+            return createFunction();
         }
         
         /**
@@ -153,9 +153,9 @@ package org.apache.royale.core
          *  @productversion Royale 0.0
          *  @royaleignorecoercion org.apache.royale.core.IParent
          */
-        protected function createFromMXMLContent(parent:IItemRendererParent):IItemRenderer
+        protected function createFromMXMLContent():IItemRenderer
         {
-            return MXMLDataInterpreter.generateMXMLArray(document, parent as IParent, MXMLDescriptor)[0];
+            return MXMLDataInterpreter.generateMXMLArray(document, null, MXMLDescriptor)[0];
         }
         
         /**
@@ -179,10 +179,9 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public function createFromClass(parent:IItemRendererParent):IItemRenderer
+        public function createFromClass():IItemRenderer
         {
             var renderer:IItemRenderer = itemRendererFactory.newInstance();
-			renderer.itemRendererParent = parent;
             return renderer;
         }
         

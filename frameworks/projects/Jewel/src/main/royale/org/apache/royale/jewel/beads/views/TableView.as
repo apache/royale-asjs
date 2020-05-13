@@ -18,15 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.beads.views.ListView;
 	import org.apache.royale.jewel.supportClasses.table.TFoot;
 	import org.apache.royale.jewel.supportClasses.table.THead;
-	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.utils.getSelectionRenderBead;
 	
 	/**
 	 *  The TableView class creates the visual elements of the org.apache.royale.jewel.Table component.
@@ -51,7 +53,7 @@ package org.apache.royale.jewel.beads.views
 		public function TableView()
 		{
 			super();
-        }
+		}
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -94,7 +96,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function itemsCreatedHandler(event:Event):void
 		{
-            super.itemsCreatedHandler(event);
+			super.itemsCreatedHandler(event);
 			if(listModel.selectedIndex != -1)
 				selectionChangeHandler(null);
 		}
@@ -115,14 +117,23 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
-            if (ir)
-				ir.selected = false;
-			
-			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as ISelectableItemRenderer;
+			var selectionBead:ISelectableItemRenderer;
+			var ir:IItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as IItemRenderer;
 			if (ir)
-				ir.selected = true;
-            lastSelectedIndex = listModel.selectedIndex;
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = false;
+			}
+			
+			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as IItemRenderer;
+			if (ir)
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = true;
+			}
+			lastSelectedIndex = listModel.selectedIndex;
 		}
 	}
 }

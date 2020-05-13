@@ -18,20 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.list
 {
-	import org.apache.royale.html.supportClasses.DataGroup;
-	import org.apache.royale.html.DataContainer;
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IStrand;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-		import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
-
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.jewel.DataContainer;
+	
 	/**
-	 *  The DataGroup class is the IItemRendererParent used internally
+	 *  The DataGroup class is the IItemRendererOwnerView used internally
      *  by org.apache.royale.jewel.List class.
 	 *  
      *  @toplevel

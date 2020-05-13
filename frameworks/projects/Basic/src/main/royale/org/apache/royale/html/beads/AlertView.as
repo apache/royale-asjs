@@ -19,36 +19,42 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.html.beads.GroupView;
-    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IAlertModel;
 	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-    import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.events.MouseEvent;
-    import org.apache.royale.events.CloseEvent;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.CloseEvent;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Alert;
-    import org.apache.royale.html.Container;
-    import org.apache.royale.html.ControlBar;
-    import org.apache.royale.html.Group;
-    import org.apache.royale.html.Label;
+	import org.apache.royale.html.Container;
+	import org.apache.royale.html.ControlBar;
+	import org.apache.royale.html.Group;
+	import org.apache.royale.html.Label;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TitleBar;
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.sendEvent;
 
 	COMPILE::SWF
 	{
-        import org.apache.royale.geom.Rectangle;
-        import org.apache.royale.core.ValuesManager;
-        import org.apache.royale.utils.loadBeadFromValuesManager;
-        import org.apache.royale.core.IMeasurementBead;
+		import org.apache.royale.geom.Rectangle;
+		import org.apache.royale.core.ValuesManager;
+		import org.apache.royale.utils.loadBeadFromValuesManager;
+		import org.apache.royale.core.IMeasurementBead;
 		import org.apache.royale.html.beads.IBackgroundBead;
 		import org.apache.royale.html.beads.IBorderBead;
+	}
+	COMPILE::JS
+	{
+		import org.apache.royale.utils.html.getStyle;
 	}
 	
 	/**
@@ -80,12 +86,12 @@ package org.apache.royale.html.beads
 		protected var label:Label;
 		protected var labelContent:Group;
 
-        protected var okButton:TextButton;
-        protected var cancelButton:TextButton;
-        protected var yesButton:TextButton;
-        protected var noButton:TextButton;
+		protected var okButton:TextButton;
+		protected var cancelButton:TextButton;
+		protected var yesButton:TextButton;
+		protected var noButton:TextButton;
 
-        protected var alertModel:IAlertModel;
+		protected var alertModel:IAlertModel;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -100,68 +106,71 @@ package org.apache.royale.html.beads
 			super.strand = value;
 
 			COMPILE::SWF
-            {
-                var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
-                var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
-                if (backgroundColor != null || backgroundImage != null)
-                {
-                    loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
-                }
+			{
+				var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+				var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+				if (backgroundColor != null || backgroundImage != null)
+				{
+					loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
+				}
 
-                var borderStyle:String;
-                var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
-                if (borderStyles is Array)
-                {
-                    borderStyle = borderStyles[1];
-                }
-                if (borderStyle == null)
-                {
-                    borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
-                }
-                if (borderStyle != null && borderStyle != "none")
-                {
-                    loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
-                }
-            }
+				var borderStyle:String;
+				var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+				if (borderStyles is Array)
+				{
+					borderStyle = borderStyles[1];
+				}
+				if (borderStyle == null)
+				{
+					borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
+				}
+				if (borderStyle != null && borderStyle != "none")
+				{
+					loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
+				}
+			}
 
 			alertModel = (_strand as UIBase).model as IAlertModel;
 
 			createButtons();
 
 			if (alertModel.title)
-            {
-                titleBar = new TitleBar();
-                titleBar.height = 25;
-                titleBar.title = alertModel.title;
-                IParent(_strand).addElement(titleBar);
-            }
+			{
+				titleBar = new TitleBar();
+				titleBar.height = 25;
+				titleBar.title = alertModel.title;
+				IParent(_strand).addElement(titleBar);
+			}
 
 			label = new Label();
 			label.text = alertModel.message;
 			
 			labelContent = new Group();
-			labelContent.percentWidth = 100;
-			labelContent.percentHeight = 100;
+			labelContent.className = "AlertContent";
+			//labelContent.percentWidth = 100;
+			//labelContent.percentHeight = 100;
 
 			labelContent.addElement(label);
 			
-            IParent(_strand).addElement(labelContent);
+			IParent(_strand).addElement(labelContent);
 
 			COMPILE::JS
 			{
-                label.element.style["white-space"] = "unset";
-				labelContent.element.style["minHeight"] = "30px";
-				controlBar.element.style["flex-direction"] = "row";
-				controlBar.element.style["justify-content"] = "flex-end";
-				controlBar.element.style["border"] = "none";
-				controlBar.element.style["background-color"] = "#FFFFFF";
+				getStyle(label)["white-space"] = "unset";
+				// label.element.style["white-space"] = "unset";
+				//labelContent.element.style["minHeight"] = "30px";
+				var style:CSSStyleDeclaration = getStyle(controlBar);
+				style["flex-direction"] = "row";
+				style["justify-content"] = "center";
+				style["border"] = "none";
+				style["background-color"] = "#FFFFFF";
 			}
-            IParent(_strand).addElement(controlBar);
+			IParent(_strand).addElement(controlBar);
 
 			COMPILE::SWF
-            {
-                refreshSize();
-            }
+			{
+				refreshSize();
+			}
 		}
 
 		private function createButtons():void
@@ -169,75 +178,87 @@ package org.apache.royale.html.beads
 			COMPILE::SWF
 			{
 				controlBar = new Group();
-            }
+			}
 
 			COMPILE::JS
 			{
 				controlBar = new ControlBar();
 			}
 
-            var flags:uint = alertModel.flags;
-            if( flags & Alert.OK )
-            {
-                okButton = new TextButton();
-                okButton.text = alertModel.okLabel;
-                okButton.addEventListener("click",handleOK);
+			var flags:uint = alertModel.flags;
+			if( flags & Alert.OK )
+			{
+				okButton = new TextButton();
+				okButton.className = "AlertButton";
+				okButton.text = alertModel.okLabel;
+				okButton.addEventListener("click",handleOK);
 
-                controlBar.addElement(okButton);
+				controlBar.addElement(okButton);
 
-                COMPILE::JS
-                {
-                    okButton.element.style["margin-left"] = "2px";
-                    okButton.element.style["margin-right"] = "2px";
-                }
-            }
-            if( flags & Alert.CANCEL )
-            {
-                cancelButton = new TextButton();
-                cancelButton.text = alertModel.cancelLabel;
-                cancelButton.addEventListener("click",handleCancel);
+				COMPILE::JS
+				{
+					var style:CSSStyleDeclaration = getStyle(okButton);
+					style["height"] = "intrinsic";
+					style["margin-left"] = "2px";
+					style["margin-right"] = "2px";
+				}
+			}
+			if( flags & Alert.CANCEL )
+			{
+				cancelButton = new TextButton();
+				cancelButton.className = "AlertButton";
+				cancelButton.text = alertModel.cancelLabel;
+				cancelButton.addEventListener("click",handleCancel);
 
-                controlBar.addElement(cancelButton);
+				controlBar.addElement(cancelButton);
 
-                COMPILE::JS
-                {
-                    cancelButton.element.style["margin-left"] = "2px";
-                    cancelButton.element.style["margin-right"] = "2px";
-                }
-            }
-            if( flags & Alert.YES )
-            {
-                yesButton = new TextButton();
-                yesButton.text = alertModel.yesLabel;
-                yesButton.addEventListener("click",handleYes);
+				COMPILE::JS
+				{
+					style = getStyle(cancelButton);
+					style["height"] = "intrinsic";
+					style["margin-left"] = "2px";
+					style["margin-right"] = "2px";
+				}
+			}
+			if( flags & Alert.YES )
+			{
+				yesButton = new TextButton();
+				yesButton.className = "AlertButton";
+				yesButton.text = alertModel.yesLabel;
+				yesButton.addEventListener("click",handleYes);
 
-                controlBar.addElement(yesButton);
+				controlBar.addElement(yesButton);
 
-                COMPILE::JS
-                {
-                    yesButton.element.style["margin-left"] = "2px";
-                    yesButton.element.style["margin-right"] = "2px";
-                }
-            }
-            if( flags & Alert.NO )
-            {
-                noButton = new TextButton();
-                noButton.text = alertModel.noLabel;
-                noButton.addEventListener("click",handleNo);
+				COMPILE::JS
+				{
+					style = getStyle(yesButton);
+					style["height"] = "intrinsic";
+					style["margin-left"] = "2px";
+					style["margin-right"] = "2px";
+				}
+			}
+			if( flags & Alert.NO )
+			{
+				noButton = new TextButton();
+				noButton.className = "AlertButton";
+				noButton.text = alertModel.noLabel;
+				noButton.addEventListener("click",handleNo);
 
-                controlBar.addElement(noButton);
+				controlBar.addElement(noButton);
 
-                COMPILE::JS
-                {
-                    noButton.element.style["margin-left"] = "2px";
-                    noButton.element.style["margin-right"] = "2px";
-                }
-            }
+				COMPILE::JS
+				{
+					style = getStyle(noButton);
+					style["height"] = "intrinsic";
+					style["margin-left"] = "2px";
+					style["margin-right"] = "2px";
+				}
+			}
 		}
 
 		/**
 		 * @private
-         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		private function refreshSize():void
@@ -250,15 +271,15 @@ package org.apache.royale.html.beads
 
 			var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(_strand as IUIBase);
 
-            var titleBarHeight:Number = 0;
+			var titleBarHeight:Number = 0;
 			if (titleBar)
-            {
-                titleBarHeight = titleBar.height;
-                titleBar.x = 0;
-                titleBar.y = 0;
-                titleBar.width = maxWidth;
-                titleBar.dispatchEvent(new Event("layoutNeeded"));
-            }
+			{
+				titleBarHeight = titleBar.height;
+				titleBar.x = 0;
+				titleBar.y = 0;
+				titleBar.width = maxWidth;
+				sendEvent(titleBar,"layoutNeeded");
+			}
 
 			// content placement here
 			label.x = metrics.left;
@@ -268,7 +289,7 @@ package org.apache.royale.html.beads
 			controlBar.x = 0;
 			controlBar.y = titleBarHeight + label.y + label.height + metrics.bottom;
 			controlBar.width = maxWidth;
-			controlBar.dispatchEvent(new Event("layoutNeeded"));
+			sendEvent(controlBar,"layoutNeeded");
 			
 			UIBase(_strand).width = maxWidth;
 			UIBase(_strand).height = titleBarHeight + label.height + controlBar.height + metrics.top + metrics.bottom;
@@ -314,7 +335,7 @@ package org.apache.royale.html.beads
 		public function dispatchCloseEvent(buttonFlag:uint):void
 		{
 			var closeEvent:CloseEvent = new CloseEvent("close", false, false, buttonFlag);
-			IEventDispatcher(_strand).dispatchEvent(closeEvent);
+			sendStrandEvent(_strand,closeEvent);
 		}
 	}
 }

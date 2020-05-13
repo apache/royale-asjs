@@ -20,13 +20,24 @@ package org.apache.royale.jewel
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
+    }
+    COMPILE::JS
+    {
+    import org.apache.royale.events.Event;
     }
     import org.apache.royale.core.IIcon;
     import org.apache.royale.core.IIconSupport;
-    import org.apache.royale.events.Event;
     
+    /**
+     *  The IconButton class is a Button that supports icons.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.4
+     */
     public class IconButton extends Button implements IIconSupport
 	{
         /**
@@ -62,7 +73,6 @@ package org.apache.royale.jewel
 		{
             return _text;
 		}
-
         /**
          *  @private
          */
@@ -78,6 +88,8 @@ package org.apache.royale.jewel
 		}
 
         private var _icon:IIcon;
+        
+        [Bindable("iconChange")]
         /**
 		 *  The icon to use with the button.
          *  Optional
@@ -94,16 +106,13 @@ package org.apache.royale.jewel
         public function set icon(value:IIcon):void
         {
             _icon = value;
+            value ? addClass("icon") : removeClass("icon");
             setIconPosition();
-
-            COMPILE::SWF
-            {
-            classSelectorList.toggle("icon", (_icon != null));
-            // todo set up icon on swf
-            }
         }
 
         private var _rightPosition:Boolean;
+
+        [Bindable("rightPositionChange")]
         /**
 		 *  icon's position regarding the text content 
          *  Can be false ("left") or true ("right"). defaults to false ("left")
@@ -129,12 +138,12 @@ package org.apache.royale.jewel
         {
             COMPILE::JS
             {
-            removeClass("iconRSpace");
-            removeClass("iconLSpace");
-            var iconClass:String = "icon";
+            removeClass("left-space");
+            removeClass("right-space");
+            var iconClass:String = "";
             if(text != "")
             {
-                iconClass += (rightPosition? "R" : "L" ) + "Space";
+                iconClass += (rightPosition? "right" : "left" ) + "-space";
             }
             addClass(iconClass);
             

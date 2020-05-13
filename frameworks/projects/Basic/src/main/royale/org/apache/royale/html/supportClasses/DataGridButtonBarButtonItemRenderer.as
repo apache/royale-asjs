@@ -19,7 +19,7 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;

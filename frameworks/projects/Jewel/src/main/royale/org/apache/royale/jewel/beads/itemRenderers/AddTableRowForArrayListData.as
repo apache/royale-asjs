@@ -20,23 +20,20 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
-	import org.apache.royale.jewel.supportClasses.table.TableCell;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
-	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.html.beads.IListView;
 
     /**
 	 *  Handles the adding of an itemRenderer in a Table component once the corresponding datum has been added
@@ -143,7 +140,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					ir = column.itemRenderer.newInstance() as TableItemRenderer;
 				} else
 				{
-					ir = itemRendererFactory.createItemRenderer(itemRendererParent) as TableItemRenderer;
+					ir = itemRendererFactory.createItemRenderer() as TableItemRenderer;
 				}
 
 				labelField =  column.dataField;
@@ -162,10 +159,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			// adjust the itemRenderers' index to adjust for the shift
-			var len:int = itemRendererParent.numItemRenderers;
+			var len:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				ir = itemRendererParent.getItemRendererAt(i) as TableItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as TableItemRenderer;
 				ir.index = i;
 				ir.rowIndex = i;
 			}
@@ -173,10 +170,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -184,13 +181,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-				_itemRendererParent = view.dataGroup;
+				_itemRendererOwnerView = view.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 
         private var _itemRendererFactory:IItemRendererClassFactory;
@@ -220,16 +217,12 @@ package org.apache.royale.jewel.beads.itemRenderers
                                         itemRenderer:TableItemRenderer,
                                         presentationModel:IListPresentationModel):void
         {
-            itemRendererParent.addItemRendererAt(itemRenderer, index);
+            itemRendererOwnerView.addItemRendererAt(itemRenderer, index);
 
             itemRenderer.labelField = labelField;
 
             if (presentationModel) {
-                var style:SimpleCSSStyles = new SimpleCSSStyles();
-                style.marginBottom = presentationModel.separatorThickness;
-                UIBase(itemRenderer).style = style;
                 UIBase(itemRenderer).height = presentationModel.rowHeight;
-                UIBase(itemRenderer).percentWidth = 100;
             }
 
             setData(itemRenderer, item, index);

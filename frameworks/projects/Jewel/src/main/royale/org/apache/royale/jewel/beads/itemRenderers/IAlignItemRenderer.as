@@ -30,7 +30,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	public interface IAlignItemRenderer
 	{
         /**
-         *  How text align in the itemRenderer instance.
+         *  How text aligns in the itemRenderer instance.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

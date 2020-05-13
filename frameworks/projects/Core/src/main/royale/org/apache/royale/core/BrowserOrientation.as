@@ -29,6 +29,7 @@ COMPILE::JS
     import org.apache.royale.utils.BrowserInfo;
 }
     import org.apache.royale.utils.OSUtils;
+    import org.apache.royale.utils.sendStrandEvent;
 
     /**
      *  The BrowserOrientation class listens for browser
@@ -58,6 +59,7 @@ COMPILE::JS
 		}
 		
         private var host:IUIBase;
+        private var _strand:IStrand;
         
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -70,6 +72,7 @@ COMPILE::JS
          */
         public function set strand(value:IStrand):void
         {
+            _strand = value;
             host = value as IUIBase;
             if(OSUtils.getOS() == OSUtils.ANDROID_OS || OSUtils.getOS() == OSUtils.IOS_OS)
             {
@@ -99,7 +102,7 @@ COMPILE::JS
         public function set orientation(value:String):void
         {
         	_orientation = value;
-            host.dispatchEvent(new Event("orientationChanged"));
+            sendStrandEvent(_strand,"orientationChanged");
         }
         
 		/**

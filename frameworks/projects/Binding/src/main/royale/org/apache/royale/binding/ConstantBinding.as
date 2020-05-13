@@ -171,7 +171,13 @@ package org.apache.royale.binding
             
             if (sourceID != null)
             {
-                source = document[sourceID];
+                COMPILE::SWF{
+                    if (sourceID in document)
+                        source = document[sourceID];
+                }
+                COMPILE::JS{
+                    source = document[sourceID];
+                }
             }
             else
             {

@@ -22,7 +22,13 @@ package org.apache.royale.jewel
     {
     import org.apache.royale.core.ITextModel;
     }
-
+    COMPILE::JS
+    {
+    //@gregdove: Below is needed to avoid dispatching native JS Event, which seems to still work in Chrome and probably other browsers,
+    //but IE11 will break if the following import is removed:
+    //@carlosrovira: Probably the above issue is due to the need to be in COMPILE::JS, so IDEs organizing imports don't remove this one
+    import org.apache.royale.events.Event;
+    }
     import org.apache.royale.jewel.supportClasses.button.SimpleButton;
 
     [DefaultProperty("text")]
@@ -42,98 +48,94 @@ package org.apache.royale.jewel
      */
     public class Button extends SimpleButton
     {
-        public static const PRIMARY:String = "primary";
-        public static const SECONDARY:String = "secondary";
-        public static const EMPHASIZED:String = "emphasized";
-        
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function Button()
-		{
-			super();
-		}
+            /**
+             *  Constructor.
+             *  
+             *  @langversion 3.0
+             *  @playerversion Flash 10.2
+             *  @playerversion AIR 2.6
+             *  @productversion Royale 0.9.4
+             */
+            public function Button()
+            {
+                  super();
+            }
 
-        [Bindable("textChange")]
-        /**
-         *  The text to appear on the control.
-         * 
-         *  @copy org.apache.royale.jewel.Label#text
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get text():String
-		{
-            COMPILE::SWF
+            [Bindable("textChange")]
+            /**
+             *  The text to appear on the control.
+             * 
+             *  @copy org.apache.royale.jewel.Label#text
+             *
+             *  @langversion 3.0
+             *  @playerversion Flash 10.2
+             *  @playerversion AIR 2.6
+             *  @productversion Royale 0.9.4
+             */
+            public function get text():String
             {
-            return ITextModel(model).text;
+                  COMPILE::SWF
+                  {
+                  return ITextModel(model).text;
+                  }
+                  COMPILE::JS
+                  {
+                  return (element as HTMLButtonElement).textContent;
+                  }
             }
-            COMPILE::JS
+            /**
+             *  @private
+             */
+            public function set text(value:String):void
             {
-            return (element as HTMLButtonElement).innerHTML;
+                  COMPILE::SWF
+                  {
+                  ITextModel(model).text = value;
+                  }
+                  COMPILE::JS
+                  {
+                  (element as HTMLButtonElement).textContent = value;
+                  dispatchEvent(new Event('textChange'));
+                  }
             }
-		}
-        /**
-         *  @private
-         */
-		public function set text(value:String):void
-		{
-            COMPILE::SWF
-            {
-            ITextModel(model).text = value;
-            }
-            COMPILE::JS
-            {
-            (element as HTMLButtonElement).innerHTML = value;
-            dispatchEvent(new Event('textChange'));
-            }
-		}
 
 
-        [Bindable("htmlChange")]
-        /**
-         *  The html text to appear on the control.
-		 *  
-         *  @copy org.apache.royale.jewel.Label#html
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get html():String
-		{
-            COMPILE::SWF
+            [Bindable("htmlChange")]
+            /**
+             *  The html text to appear on the control.
+             *  
+             *  @copy org.apache.royale.jewel.Label#html
+             *
+             *  @langversion 3.0
+             *  @playerversion Flash 10.2
+             *  @playerversion AIR 2.6
+             *  @productversion Royale 0.9.4
+             */
+            public function get html():String
             {
-            return ITextModel(model).html;
+                  COMPILE::SWF
+                  {
+                  return ITextModel(model).html;
+                  }
+                  COMPILE::JS
+                  {
+                  return (element as HTMLButtonElement).innerHTML;
+                  }
             }
-            COMPILE::JS
+            /**
+             *  @private
+             */
+            public function set html(value:String):void
             {
-            return (element as HTMLButtonElement).innerHTML;
+                  COMPILE::SWF
+                  {
+                  ITextModel(model).html = value;
+                  }
+                  COMPILE::JS
+                  {
+                  (element as HTMLButtonElement).innerHTML = value;
+                  dispatchEvent(new Event('htmlChange'));
+                  }
             }
-		}
-        /**
-         *  @private
-         */
-		public function set html(value:String):void
-		{
-            COMPILE::SWF
-            {
-            ITextModel(model).html = value;
-            }
-            COMPILE::JS
-            {
-            (element as HTMLButtonElement).innerHTML = value;
-            dispatchEvent(new Event('textChange'));
-            }
-		}
 	}
 }

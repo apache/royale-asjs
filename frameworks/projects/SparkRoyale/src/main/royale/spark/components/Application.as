@@ -67,7 +67,8 @@ import mx.events.utils.MouseEventConverter;
 import mx.managers.ISystemManager;
 
 COMPILE::JS {
-    import org.apache.royale.core.HTMLElementWrapper;
+    import org.apache.royale.core.ElementWrapper;
+    import org.apache.royale.events.ElementEvents;
 }
 
 import org.apache.royale.binding.ContainerDataBinding;
@@ -82,6 +83,7 @@ import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IValuesImpl;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.reflection.beads.ClassAliasBead;
 
 use namespace mx_internal; 
 
@@ -319,10 +321,11 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         
         this.valuesImpl = new AllCSSValuesImpl();
         addBead(new ContainerDataBinding());
+        addBead(new ClassAliasBead());
         
         COMPILE::JS
         {
-            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+            ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter.convert;
         }
     }
 
@@ -1637,10 +1640,17 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
     /**
      *  @private
      */
-    /* override protected function createChildren():void
+    override protected function createChildren():void
     {
+        COMPILE::JS
+            {
+                ElementEvents.elementEvents["focusin"] = 1;
+                ElementEvents.elementEvents["focusout"] = 1;
+            }
+
         super.createChildren();
         
+        /*
         // Only listen for softKeyboard events 
         // if the runtime supports a soft keyboard
         if (softKeyboardBehavior != "")
@@ -1659,8 +1669,8 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
             if (nativeApp && nativeApp["nativeApplication"])
                 EventDispatcher(nativeApp["nativeApplication"]).
                     addEventListener(Event.DEACTIVATE, nativeApplication_deactivateHandler);
-        }
-    } */
+        }*/
+    }
 
     /**
      *  @private

@@ -18,25 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.utils.UIModuleUtils;
-	
 	COMPILE::SWF
 	{
-		import flash.display.DisplayObjectContainer;
-		import flash.display.Loader;
-		import flash.events.Event;
-		import flash.net.URLRequest;
-		import flash.system.ApplicationDomain;
-		import flash.system.LoaderContext;
+    import flash.display.DisplayObjectContainer;
+    import flash.display.Loader;
+    import flash.events.Event;
+    import flash.net.URLRequest;
+    import flash.system.ApplicationDomain;
+    import flash.system.LoaderContext;
 	}
-	
-    COMPILE::JS
-    {
-        import goog.global;
-
-        import org.apache.royale.core.WrappedHTMLElement;   
-    }
+	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.utils.UIModuleUtils;
     
     /**
      *  The Jewel ModuleLoader class can load a Jewel Module. 

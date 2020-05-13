@@ -27,7 +27,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -44,6 +44,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.
@@ -54,7 +55,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class DataContainerView extends ContainerView implements IListView, IItemRendererParent
+	public class DataContainerView extends ContainerView implements IListView, IItemRendererOwnerView
 	{
 		public function DataContainerView()
 		{
@@ -88,11 +89,11 @@ package org.apache.royale.html.beads
 		protected var dataModel:IDataProviderModel;
 		
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.IItemRendererParent
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
 		 */
-		public function get dataGroup():IItemRendererParent
+		public function get dataGroup():IItemRendererOwnerView
 		{
-			return this as IItemRendererParent;
+			return this as IItemRendererOwnerView;
 		}
 		
 		/**
@@ -112,7 +113,7 @@ package org.apache.royale.html.beads
 		protected function itemsCreatedHandler(event:Event):void
 		{
 			// trace("DataContainerView: itemsCreatedHandler");
-			host.dispatchEvent(new Event("layoutNeeded"));
+            sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -121,7 +122,7 @@ package org.apache.royale.html.beads
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// trace("DataContainerView: dataProviderChangeHandler");
-            host.dispatchEvent(new Event("layoutNeeded"));                
+            sendStrandEvent(_strand,"layoutNeeded");
 		}
         
         /**
@@ -134,11 +135,11 @@ package org.apache.royale.html.beads
         }
         
         /*
-        * IItemRendererParent
+        * IItemRendererOwnerView
         */
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#numItemRenderers()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#numItemRenderers()
          * @private
          *
          *  @langversion 3.0
@@ -154,7 +155,7 @@ package org.apache.royale.html.beads
         
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#addItemRenderer()
          * @private
          *
          *  @langversion 3.0
@@ -170,7 +171,7 @@ package org.apache.royale.html.beads
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#addItemRendererAt()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#addItemRendererAt()
          * @private
          *
          *  @langversion 3.0
@@ -189,12 +190,11 @@ package org.apache.royale.html.beads
         {
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
             newEvent.item = renderer;
-            
-            host.dispatchEvent(newEvent);
+            sendStrandEvent(_strand,newEvent);
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#removeItemRenderer()
          * @private
          *
          *  @langversion 3.0
@@ -209,12 +209,11 @@ package org.apache.royale.html.beads
             
             var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
             newEvent.item = renderer;
-            
-            host.dispatchEvent(newEvent);
+            sendStrandEvent(_strand,newEvent);
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#removeAllItemRenderers()
          * @private
          *
          *  @langversion 3.0
@@ -232,7 +231,7 @@ package org.apache.royale.html.beads
         }
         
         /**
-         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererForIndex()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -247,7 +246,7 @@ package org.apache.royale.html.beads
         }
         
         /**
-         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererAt()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererAt()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -265,7 +264,7 @@ package org.apache.royale.html.beads
         /**
          *  Refreshes the itemRenderers. Useful after a size change by the data group.
          *
-         *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#updateAllItemRenderers()
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

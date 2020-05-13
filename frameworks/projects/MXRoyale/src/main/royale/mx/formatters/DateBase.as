@@ -104,7 +104,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var dayNamesLongOverride:Array; /* of String */
+    private static var dayNamesLongOverride:Array /* of String */ = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     /**
      *  Long format of day names.
@@ -145,12 +145,12 @@ public class DateBase
      *  @private
      *  Storage for the dayNamesShort property.
      */
-    private static var _dayNamesShort:Array; /* of String */
+    private static var _dayNamesShort:Array = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; /* of String */
     
     /**
      *  @private
      */
-    private static var dayNamesShortOverride:Array; /* of String */
+    private static var dayNamesShortOverride:Array = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; /* of String */
 
     /**
      *  Short format of day names.
@@ -209,7 +209,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var monthNamesLongOverride:Array; /* of String */
+    private static var monthNamesLongOverride:Array /* of String */ = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     /**
      *  Long format of month names.
@@ -269,12 +269,12 @@ public class DateBase
      *  @private
      *  Storage for the monthNamesShort property.
      */
-    private static var _monthNamesShort:Array; /* of String */
+    private static var _monthNamesShort:Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct","Nov", "Dec"]; /* of String */
     
     /**
      *  @private
      */
-    private static var monthNamesShortOverride:Array; /* of String */
+    private static var monthNamesShortOverride:Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct","Nov", "Dec"]; /* of String */
 
     /**
      *  Short format of month names.
@@ -338,7 +338,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var timeOfDayOverride:Array; /* of String */
+    private static var timeOfDayOverride:Array = /* of String */["AM", "PM"];
 
     /**
      *  Time of day names.

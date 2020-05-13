@@ -423,6 +423,17 @@ package mx.utils
                 }
             }
             
+            COMPILE::JS
+            {
+            // Replace {context.root}
+            if (url.indexOf(CONTEXT_ROOT_TOKEN) > 0)
+            {
+                var contextRoot:String = LoaderConfig.contextRoot;
+                url = url.replace(CONTEXT_ROOT_REGEX, contextRoot);
+            }
+            }
+
+            
             return url;
         }
         
@@ -518,6 +529,17 @@ package mx.utils
          *  @productversion Flex 3
          */
         public static const SERVER_PORT_TOKEN:String = "{server.port}";
+        
+        /**
+         *  The pattern in the String that is passed to the <code>replaceTokens()</code> method that 
+         *  is replaced by the application's server name.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public static const CONTEXT_ROOT_TOKEN:String = "{context.root}";
         
         /**
          *  Enumerates an object's dynamic properties (by using a <code>for..in</code> loop)
@@ -768,6 +790,7 @@ package mx.utils
         // we should handle server.name and server-name, etc...
         private static const SERVER_NAME_REGEX:RegExp = new RegExp("\\{server.name\\}", "g");
         private static const SERVER_PORT_REGEX:RegExp = new RegExp("\\{server.port\\}", "g");    
+        private static const CONTEXT_ROOT_REGEX:RegExp = new RegExp("\\{context.root\\}", "g");    
     }
     
 }

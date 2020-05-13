@@ -21,7 +21,8 @@ limitations under the License.
                 xmlns:js="library://ns.apache.org/royale/basic"
                 xmlns:svg="library://ns.apache.org/royale/svg"
 				initComplete="setup()" 
-				xmlns:renderers="sample.todo.renderers.*">
+				xmlns:renderers="sample.todo.renderers.*"
+				xmlns:controllers="sample.todo.controllers.*">
 
     <fx:Style>
         @namespace basic "library://ns.apache.org/royale/basic";
@@ -48,6 +49,11 @@ limitations under the License.
         .StatusText {
         	flex-grow: 1;
         }
+
+        .todoList {
+            IBeadController: ClassReference("sample.todo.controllers.TodoListSingleSelectionMouseController");
+		}
+		
     </fx:Style>
     
     <fx:Script>
@@ -66,6 +72,8 @@ limitations under the License.
 				// showActive() change the model which results in this event being
 				// dispatched.
 				(applicationModel as TodoListModel).addEventListener("todoListChanged", updateStatus);
+				todoList.addEventListener("checkChanged",itemChecked);
+				todoList.addEventListener("removeRequest",itemRemove);
 				updateStatus(null);
 			}
 			
@@ -120,16 +128,14 @@ limitations under the License.
 			 */
 			private function handleRendererCreated(event:ItemRendererEvent):void {
 				var renderer:IEventDispatcher = event.itemRenderer as IEventDispatcher;
-				renderer.addEventListener("checkChanged",itemChecked);
-				renderer.addEventListener("removeRequest",itemRemove);
 			}
 			
 			/**
 			 * When an item is checked, form new event and dispatch to controller.
 			 */
-			private function itemChecked(event:Event):void
+			private function itemChecked(event:ItemRendererEvent):void
 			{
-				var renderer:TodoItemRenderer = event.target as TodoItemRenderer;
+				var renderer:TodoItemRenderer = event.itemRenderer as TodoItemRenderer;
 
 				var newEvent:TodoListEvent = new TodoListEvent(TodoListEvent.ITEM_CHECKED);
 				newEvent.item = renderer.data;
@@ -139,9 +145,9 @@ limitations under the License.
 			/**
 			 * When an item is removed, form a new event and dispatch to the controller.
 			 */
-			private function itemRemove(event:Event):void
+			private function itemRemove(event:ItemRendererEvent):void
 			{
-				var renderer:TodoItemRenderer = event.target as TodoItemRenderer;
+				var renderer:TodoItemRenderer = event.itemRenderer as TodoItemRenderer;
 
 				var newEvent:TodoListEvent = new TodoListEvent(TodoListEvent.ITEM_REMOVE_REQUEST);
 				newEvent.item = renderer.data;
@@ -165,12 +171,12 @@ limitations under the License.
             <js:TextButton text="Enter" click="logTodo()" width="15%" />
         </js:HContainer>
 
-        <js:List id="todoList"
+        <js:List id="todoList" className="todoList"
                     itemRenderer="sample.todo.renderers.TodoItemRenderer"
 					dataProvider="{TodoListModel(applicationModel).todos}"
                     width="100%" height="400">
 			<js:beads>
-				<js:DataItemRendererFactoryForArrayData itemRendererCreated="handleRendererCreated(event)" />
+				<js:DataItemRendererFactoryForArrayData />
 			</js:beads>
         </js:List>
 

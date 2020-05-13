@@ -29,6 +29,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.sendEvent;
 
     COMPILE::JS
     {
@@ -120,7 +121,7 @@ package org.apache.royale.core
          */
         public function childrenAdded():void
         {
-            dispatchEvent(new ValueEvent("childrenAdded"));
+            sendEvent(this,new ValueEvent("childrenAdded"));
         }
 		
 		/*
@@ -137,7 +138,7 @@ package org.apache.royale.core
 		 */
 		public function layoutNeeded():void
 		{
-			dispatchEvent( new Event("layoutNeeded") );
+			sendEvent(this,"layoutNeeded");
 		}
 		
 		/*
@@ -254,9 +255,10 @@ package org.apache.royale.core
          */
         public function set currentState(value:String):void
         {
+			if (value == _currentState) return;
             var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
             _currentState = value;
-            dispatchEvent(event);
+            sendEvent(this,event);
         }
         
         private var _transitions:Array;
@@ -289,7 +291,7 @@ package org.apache.royale.core
 		{
 			super.addElement(c, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new ValueEvent("childrenAdded", c));
+                sendEvent(this,new ValueEvent("childrenAdded", c));
 		}
 		
 		/**
@@ -299,7 +301,7 @@ package org.apache.royale.core
 		{
 			super.addElementAt(c, index, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new ValueEvent("childrenAdded", c));
+                sendEvent(this,new ValueEvent("childrenAdded", c));
 		}
 
 		/**
@@ -310,7 +312,7 @@ package org.apache.royale.core
 			super.removeElement(c, dispatchEvent);
 			//TODO This should possibly be ultimately refactored to be more PAYG
             if (dispatchEvent)
-                this.dispatchEvent(new ValueEvent("childrenRemoved", c));
+                sendEvent(this,new ValueEvent("childrenRemoved", c));
 		}
 
     }

@@ -16,69 +16,23 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>examples-amf-webapps</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: AMF Web Apps</name>
-
-  <properties combine.self="override">
-    
-  </properties>
+  <name>Apache Royale: Examples: AMF Web Apps ----------------------------</name>
 
   <modules>
     <module>SampleAmfWebApp</module>
   </modules>
 
-  <build>
-    <sourceDirectory>src/main/java</sourceDirectory>
-    <resources combine.self="override">
-
-    </resources>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <inherited>false</inherited>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.1.0</version>
-          <configuration combine.self="override">
-            
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <!-- Makes it possible to run the example directly by running 'mvn tomcat7:run' -->
-      <plugin>
-        <inherited>false</inherited>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration combine.self="override">
-          
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-    
-  <profiles>
-    <profile>
-      <id>release</id>
-
-      <properties combine.self="override">
-        
-      </properties>
-    </profile>
-  </profiles>
-</project>
+<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>

@@ -23,6 +23,7 @@ COMPILE::SWF
 {
 import flash.display.DisplayObject;
 }
+import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
 
 use namespace mx_internal;
@@ -65,6 +66,9 @@ public class LoaderConfig
         // if somebody has set this in our applicationdomain hierarchy, don't overwrite it
         if (!_url)
         {
+            if (root is IFlexModuleFactory)
+                _contextRoot = (root as IFlexModuleFactory).info()["contextRoot"];
+            
             _url = location.href;
             _parameters = {};
             var query:String = location.search.substring(1);
@@ -107,6 +111,32 @@ public class LoaderConfig
     //
     //--------------------------------------------------------------------------
 
+    //----------------------------------
+    //  contextRoot
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the contextRoot property.
+     */
+    COMPILE::JS
+    mx_internal static var _contextRoot:String = null;
+    
+    /**
+     *  If the LoaderConfig has been initialized, this
+     *  should represent the contextRoot specified at compile time.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 1.0
+     */
+    COMPILE::JS
+    public static function get contextRoot():String
+    {
+        return _contextRoot;
+    }
+    
     //----------------------------------
     //  parameters
     //----------------------------------

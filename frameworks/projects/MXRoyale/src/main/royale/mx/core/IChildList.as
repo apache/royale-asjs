@@ -24,6 +24,7 @@ COMPILE::SWF
 {
     import flash.display.DisplayObject;
 }
+import org.apache.royale.core.IUIBase;
 
 /**
  *  The IChildList interface defines the properties and methods
@@ -294,7 +295,7 @@ public interface IChildList
 	 *  @productversion Flex 3
 	 */
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
-	function contains(child:IUIComponent):Boolean;
+	function contains(child:IUIBase):Boolean;
 }
 
 }

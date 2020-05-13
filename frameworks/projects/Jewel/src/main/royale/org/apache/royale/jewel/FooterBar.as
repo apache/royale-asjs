@@ -24,11 +24,6 @@ package org.apache.royale.jewel
 
 	import org.apache.royale.core.IRenderedObject;
     }
-    COMPILE::JS
-    {
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
-    }
 
 	/**
 	 *  The FooterBar class is a container component for different items like

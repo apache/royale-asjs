@@ -26,5 +26,8 @@ package tests
 		public var beforeClassAndAfterClassTests:BeforeClassAndAfterClassTests;
 		public var ignoreTests:IgnoreTests;
 		public var scopeTests:ScopeTests;
+		public var runNotifierTests:RunNotifierTests;
+		public var asyncTests:AsyncTests;
+		public var expectedTests:ExpectedTests;
 	}
 }

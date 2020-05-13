@@ -18,8 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.test.runners.notification
 {
+	/**
+	 * The result of a failed test.
+	 */
 	public class Failure
 	{
+		/**
+		 * Constructor.
+		 */
 		public function Failure(description:String, exception:Error)
 		{
 			_description = description;
@@ -61,20 +67,26 @@ package org.apache.royale.test.runners.notification
 			return _exception;
 		}
 
+		/**
+		 * @private
+		 */
 		protected var _stackTrace:String = null;
 
 		/**
-		 * Convenience method.
+		 * The exception's stack trace.
 		 */
 		public function get stackTrace():String
 		{
 			return _stackTrace;
 		}
 
+		/**
+		 * @private
+		 */
 		protected var _message:String = null;
 
 		/**
-		 * Convenience method.
+		 * The exception's message.
 		 */
 		public function get message():String
 		{

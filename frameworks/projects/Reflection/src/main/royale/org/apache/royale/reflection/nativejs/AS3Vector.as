@@ -45,7 +45,7 @@ package org.apache.royale.reflection.nativejs {
                 'methods':function():Object {
                     var ret:Object = {};
                     //constructor
-                    ret[typeName] ={'parameters':function():Object {return [{'index':1,'optional':true,'type':'uint'},{'index':2,'optional':true,'type':'Boolean'}]},'type':'','declaredBy': typeName};
+                    ret[typeName] ={'parameters':function():Object {return ['uint', true, 'Boolean', true]},'type':'','declaredBy': typeName};
                     return ret;
                 }
             };

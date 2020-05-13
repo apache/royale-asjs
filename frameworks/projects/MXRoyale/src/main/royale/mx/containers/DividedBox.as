@@ -31,8 +31,11 @@ import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
 import mx.core.IInvalidating;
 */
+import mx.containers.beads.BoxLayout;
+import mx.containers.beads.DividedBoxLayout;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
+
 /*
 import mx.core.mx_internal;
 import mx.events.ChildExistenceChangedEvent;
@@ -219,6 +222,11 @@ public class DividedBox extends Box
 //		addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, 
 //						 childRemoveHandler);
 	}
+    
+    override protected function createLayout():void
+    {
+        _layout = new DividedBoxLayout();
+    }
 
 	//--------------------------------------------------------------------------
 	//

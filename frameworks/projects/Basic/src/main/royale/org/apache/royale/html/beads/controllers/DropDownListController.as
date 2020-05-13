@@ -31,6 +31,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.IDropDownListView;
+	import org.apache.royale.utils.sendStrandEvent;
 
     /**
      *  The DropDownListController class is the controller for
@@ -110,7 +111,7 @@ package org.apache.royale.html.beads.controllers
             var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             selectionModel.selectedIndex = popUpModel.selectedIndex;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			sendStrandEvent(_strand,"change");
         }
 	
 	}

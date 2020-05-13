@@ -25,7 +25,7 @@ package org.apache.royale.mdl.itemRenderers
     }
 
 	import org.apache.royale.html.TableRow;
-	import org.apache.royale.html.supportClasses.MXMLItemRenderer;;
+	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
     
 	/**
 	 *  The TableItemRenderer defines the basic Item Renderer for a MDL Table Component.

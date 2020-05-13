@@ -24,9 +24,7 @@ under the License.
   </formats>
   <includeBaseDirectory>false</includeBaseDirectory>
   <componentDescriptors>
-    <componentDescriptor>src/main/assembly/component.xml</componentDescriptor>
-    <componentDescriptor>src/main/assembly/component-flash.xml</componentDescriptor>
-    <componentDescriptor>src/main/assembly/component-air.xml</componentDescriptor>
-    <componentDescriptor>src/main/assembly/component-fontkit.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-royale.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-royale-without-swf.xml</componentDescriptor>
   </componentDescriptors>
 </assembly>

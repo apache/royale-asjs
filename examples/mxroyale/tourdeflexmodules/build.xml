@@ -90,12 +90,13 @@
          <attribute name="relmap"/>
         
         <sequential>
+            <mkdir dir="${basedir}/bin/js-debug" />
    			<mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="${debug_flag}"
             	output="${basedir}/bin-debug/@{folder}@{example}.swf"
                 fork="true" failonerror="true">
 				<load-config filename="${ROYALE_HOME}/frameworks/flex-config.xml"/>
                 <arg value="-module-output=@{folder}" />
-                <arg value="-load-externs=${basedir}/bin-debug/link_report-js.xml" />
+                <arg value="-load-externs=${basedir}/bin/js-debug/link_report-js.xml" />
                 <arg value="-js-compiler-option=--variable_map_input_file @{relmap}gcc_variablemap.txt" />
                 <arg value="-js-compiler-option+=--property_map_input_file @{relmap}gcc_propertymap.txt" />
                 <arg value="-js-compiler-option+=--externs ${basedir}/bin/js-debug/externs_report.js" />
@@ -111,6 +112,7 @@
         <attribute name="folder"/>
         
         <sequential>
+            <mkdir dir="${basedir}/bin/js-debug" />
             <mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="${debug_flag}"
                 output="${basedir}/bin-debug/@{folder}@{example}.swf"
                 fork="true" failonerror="true">
@@ -120,7 +122,7 @@
                 <arg value="-js-compiler-option+=--property_map_output_file gcc_propertymap.txt" />
                 <arg value="-externs-report=${basedir}/bin/js-debug/externs_report.js" />
                 <!-- the JSROYALE compilation will produce a file called link_report-js.xml -->
-                <arg value="-link-report=${basedir}/bin-debug/link_report.xml" />
+                <arg value="-link-report=${basedir}/bin/js-debug/link_report.xml" />
                 <arg value="+playerglobal.version=${playerglobal.version}" />
                 <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
                 <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
@@ -133,6 +135,7 @@
     	 <attribute name="locales" default="en_US"/>
         
         <sequential>
+            <mkdir dir="${basedir}/bin/js-debug" />
    			<mxmlc file="${basedir}/src/@{example}.mxml"
             	output="${basedir}/src/@{example}.swf" fork="true" failonerror="true">
    				<locale>en_US</locale>

@@ -29,6 +29,7 @@ package org.apache.royale.utils.css
      *  
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
+     *  @royalesuppressexport
      *  @royaleignorecoercion CSSStyleSheet
 	 *  @royaleignorecoercion HTMLStyleElement
      */
@@ -36,20 +37,21 @@ package org.apache.royale.utils.css
     {
         COMPILE::JS
         {
-            var selectorString:String = selector + ' { ' + rule + ' }'
+            var selectorString:String = selector + ' { ' + rule + ' }';
             var element:HTMLStyleElement = document.getElementById("royale_dynamic_css") as HTMLStyleElement;
             if(element)
             {
                 var sheet:CSSStyleSheet = element.sheet as CSSStyleSheet;
-                sheet.insertRule(selectorString);
+                //for 'insertRule' below, the index (2nd) argument is not optional in IE11, but is optional for modern browsers (with default value 0)
+                sheet.insertRule(selectorString, 0);
             }
             else
             {
-				var style:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
-				style.type = 'text/css';
+                var style:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
+                style.type = 'text/css';
                 style.id = "royale_dynamic_css";
-				style.innerHTML = selectorString;
-				document.getElementsByTagName('head')[0].appendChild(style);
+                style.innerHTML = selectorString;
+                document.getElementsByTagName('head')[0].appendChild(style);
             }
         }
     }

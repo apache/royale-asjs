@@ -35,7 +35,7 @@ package org.apache.royale.ace
 	{
 		/**
 		 * <inject_html>
-		 * <script src="https://cdn.rawgit.com/ajaxorg/ace-builds/master/src-min-noconflict/ace.js"></script>
+		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js"></script>
 		 * </inject_html>
 		 */
 		public function ACEEditor()

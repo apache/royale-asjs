@@ -30,11 +30,13 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+    import org.apache.royale.html.util.getLabelFromData;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-    import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()
@@ -45,7 +47,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class StringItemRenderer extends DataItemRenderer implements ITextItemRenderer, IAlignItemRenderer
+	public class StringItemRenderer extends StyledDataItemRenderer implements IOwnerViewItemRenderer, ITextItemRenderer, IAlignItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -104,7 +106,6 @@ package org.apache.royale.jewel.itemRenderers
 			textField.y = cy - textField.height/2;
 			textField.width = width;
 
-			updateRenderer();
 		}
 
 		/**
@@ -126,7 +127,6 @@ package org.apache.royale.jewel.itemRenderers
                 return this.element.textContent;
             }
 		}
-
 		public function set text(value:String):void
 		{
             COMPILE::SWF
@@ -151,7 +151,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			return textAlign.align;
 		}
-
 		public function set align(value:String):void
 		{
 			textAlign.align = value;
@@ -190,5 +189,25 @@ package org.apache.royale.jewel.itemRenderers
             // return element;
         }
 
+        /*
+		 * IItemRenderer, ISelectableItemRenderer
+		 */
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
+		/**
+		 * The parent container for the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get itemRendererOwnerView():IItemRendererOwnerView
+		{
+			return _itemRendererOwnerView;
+		}
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+		{
+			_itemRendererOwnerView = value;
+		}
 	}
 }

@@ -32,7 +32,7 @@ $radiobutton-button-yoffset: 0px
 	padding: 0
 
 	// width: 100%
-	height: $radiobutton-button-size
+	height: auto //$radiobutton-button-size
 
 	// -- INPUT
 	input
@@ -85,9 +85,10 @@ $radiobutton-button-yoffset: 0px
 		cursor: pointer
 
 		margin: 0
-		vertical-align: top
+		width: inherit
+		// vertical-align: top
 
-		line-height: $radiobutton-button-size + 2
+		// line-height: $radiobutton-button-size + 2
 
 @media -royale-swf
 	j|RadioButton

@@ -29,7 +29,6 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 
 import mx.core.mx_internal;
-import mx.events.CloseEvent;
 import mx.events.FlexEvent;
 import mx.events.SandboxMouseEvent;
 import mx.utils.BitFlagUtil;
@@ -37,6 +36,8 @@ import mx.utils.BitFlagUtil;
 import spark.events.TitleWindowBoundsEvent;
 
 use namespace mx_internal; */
+    import mx.events.CloseEvent;
+    import mx.events.MouseEvent;
 
 //--------------------------------------
 //  Events
@@ -284,7 +285,7 @@ public class TitleWindow extends Panel
     //  closeButton
     //---------------------------------- 
     
-    //[SkinPart(required="false")]
+    [SkinPart(required="false")]
     
     /**
      *  The skin part that defines the appearance of the 
@@ -297,13 +298,13 @@ public class TitleWindow extends Panel
      *
      *  <p>Focus is disabled for this skin part.</p>
      */
-   // public var closeButton:Button;
+    public var closeButton:Button;
     
     //----------------------------------
     //  moveArea
     //---------------------------------- 
     
-   // [SkinPart(required="false")]
+    //[SkinPart(required="false")]
     
     /**
      *  The area where the user must click and drag to move the window.
@@ -313,7 +314,7 @@ public class TitleWindow extends Panel
      *  the title bar area of the window, then move the mouse. 
      *  Create a custom skin class to change the move area.</p>
      */
-   // public var moveArea:InteractiveObject;
+    //public var moveArea:InteractiveObject;
     
     //--------------------------------------------------------------------------
     //
@@ -369,20 +370,21 @@ public class TitleWindow extends Panel
     /**
      *  @private
      */
-    /* override protected function partAdded(partName:String, instance:Object) : void
+    override protected function partAdded(partName:String, instance:Object) : void
     {
         super.partAdded(partName, instance);
         
+        /*
         if (instance == moveArea)
         {
             moveArea.addEventListener(MouseEvent.MOUSE_DOWN, moveArea_mouseDownHandler);
         }
-        else if (instance == closeButton)
+        else*/ if (instance == closeButton)
         {
             closeButton.focusEnabled = false;
             closeButton.addEventListener(MouseEvent.CLICK, closeButton_clickHandler);   
         }
-    } */
+    }
     
     /**
      *  @private
@@ -435,7 +437,7 @@ public class TitleWindow extends Panel
     /**
      *  @private
      */
-    /* override public function move(x:Number, y:Number) : void
+    /*override public function move(x:Number, y:Number) : void
     {
         var beforeBounds:Rectangle = new Rectangle(this.x, this.y, width, height);
         
@@ -448,7 +450,7 @@ public class TitleWindow extends Panel
                                        false, false, beforeBounds, afterBounds);
         
         dispatchEvent(e2);
-    } */
+    }*/
     
     //--------------------------------------------------------------------------
     // 
@@ -470,8 +472,9 @@ public class TitleWindow extends Panel
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* protected function closeButton_clickHandler(event:MouseEvent):void
+    protected function closeButton_clickHandler(event:MouseEvent):void
     {
+        /*
         var child:DisplayObject = getFocus() as DisplayObject;
         if (child && contains(child))
         {
@@ -480,8 +483,9 @@ public class TitleWindow extends Panel
             if (stage)
                 stage.focus = null;
         }
+        */
         dispatchEvent(new CloseEvent(CloseEvent.CLOSE));
-    } */
+    }
     
     //----------------------------------
     //  moveArea Handlers

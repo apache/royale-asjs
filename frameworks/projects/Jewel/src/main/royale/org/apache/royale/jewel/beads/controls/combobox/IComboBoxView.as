@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.beads.controls.combobox
 {
     import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IStrand;
     
 	/**
 	 *  The IComboBoxView interface provides the protocol for any bead that

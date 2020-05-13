@@ -21,20 +21,19 @@ package org.apache.royale.jewel.supportClasses.button
     COMPILE::SWF
     {
     import org.apache.royale.core.UIButtonBase;
+    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.utils.IEmphasis;
     }
-
     COMPILE::JS
     {
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
-    
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
 
     //--------------------------------------
     //  Events
@@ -158,12 +157,8 @@ package org.apache.royale.jewel.supportClasses.button
      *  @productversion Royale 0.9.6
      */
     COMPILE::SWF
-	public class SimpleButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
+	public class SimpleButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport, IEmphasis
 	{
-        public static const PRIMARY:String = "primary";
-        public static const SECONDARY:String = "secondary";
-        public static const EMPHASIZED:String = "emphasized";
-
         /**
          *  Constructor.
          *  
@@ -205,11 +200,57 @@ package org.apache.royale.jewel.supportClasses.button
             {
                 if(_emphasis)
                 {
-                    classSelectorList.toggle(_emphasis, false);
+                    toggleClass(_emphasis, false);
                 }
                 _emphasis = value;
 
-                classSelectorList.toggle(_emphasis, value);
+                toggleClass(_emphasis, value);
+            }
+        }
+
+        private var _outlined:Boolean;
+        /**
+		 *  Applies outlined style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get outlined():Boolean
+        {
+            return _outlined;
+        }
+        public function set outlined(value:Boolean):void
+        {
+            if (_outlined != value)
+            {
+                _outlined = value;
+
+                _outlined ? addClass("outlined") : removeClass("outlined");
+            }
+        }
+
+        private var _unboxed:Boolean;
+        /**
+		 *  Applies unboxed style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get unboxed():Boolean
+        {
+            return _unboxed;
+        }
+        public function set unboxed(value:Boolean):void
+        {
+            if (_unboxed != value)
+            {
+                _unboxed = value;
+
+                _unboxed ? addClass("unboxed") : removeClass("unboxed");
             }
         }
 
@@ -297,12 +338,8 @@ package org.apache.royale.jewel.supportClasses.button
      *  @productversion Royale 0.9.6
      */
     COMPILE::JS
-    public class SimpleButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
+    public class SimpleButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher
     {
-        public static const PRIMARY:String = "primary";
-        public static const SECONDARY:String = "secondary";
-        public static const EMPHASIZED:String = "emphasized";
-
         /**
          *  Constructor.
          *  
@@ -317,36 +354,6 @@ package org.apache.royale.jewel.supportClasses.button
             typeNames = "jewel button";
 		}
 
-        private var _emphasis:String;
-        /**
-		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
-         *  Colors are defined in royale jewel theme CSS.
-         * 
-         *  Left without value to get the default look (light or dark).
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
-		 */
-        public function get emphasis():String
-        {
-            return _emphasis;
-        }
-        public function set emphasis(value:String):void
-        {
-            if (_emphasis != value)
-            {
-                if(_emphasis)
-                {
-                    removeClass(_emphasis);
-                }
-                _emphasis = value;
-
-                addClass(_emphasis);
-            }
-        }
-
         /**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion org.apache.royale.html.util.addElementToWrapper
@@ -357,6 +364,52 @@ package org.apache.royale.jewel.supportClasses.button
             element.setAttribute('type', 'button');
             
             return element;
+        }
+
+        private var _outlined:Boolean;
+        /**
+		 *  Applies outlined style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get outlined():Boolean
+        {
+            return _outlined;
+        }
+        public function set outlined(value:Boolean):void
+        {
+            if (_outlined != value)
+            {
+                _outlined = value;
+
+                _outlined ? addClass("outlined") : removeClass("outlined");
+            }
+        }
+        
+        private var _unboxed:Boolean;
+        /**
+		 *  Applies unboxed style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get unboxed():Boolean
+        {
+            return _unboxed;
+        }
+        public function set unboxed(value:Boolean):void
+        {
+            if (_unboxed != value)
+            {
+                _unboxed = value;
+
+                _unboxed ? addClass("unboxed") : removeClass("unboxed");
+            }
         }
 	}
 }

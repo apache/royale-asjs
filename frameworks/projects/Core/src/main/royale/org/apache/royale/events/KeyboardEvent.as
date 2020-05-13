@@ -20,10 +20,10 @@ package org.apache.royale.events
 {
     COMPILE::JS
     {
-        import goog.events.BrowserEvent;
-        import org.apache.royale.core.HTMLElementWrapper;
-		import org.apache.royale.events.Event;
-        import org.apache.royale.events.utils.KeyboardEventConverter;
+    import goog.events.BrowserEvent;
+    import org.apache.royale.core.ElementWrapper;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.utils.KeyboardEventConverter;
     }
     import org.apache.royale.events.IBrowserEvent;
 
@@ -48,6 +48,10 @@ package org.apache.royale.events
         public static const KEY_DOWN:String = "keydown";
         COMPILE::JS
         public static const KEY_UP:String = "keyup";
+
+        public static const KEYCODE__UP:String = "ArrowUp";
+        public static const KEYCODE__DOWN:String = "ArrowDown";
+        public static const KEYCODE__ENTER:String = "Enter";
 
         public static const KEYCODE_UP:uint = 38;
         public static const KEYCODE_DOWN:uint = 40;
@@ -157,59 +161,119 @@ package org.apache.royale.events
         {
             _code = value;
         }
-        
-        private var _shiftKey:Boolean;
-        public function get shiftKey():Boolean
-        {
-            return _shiftKey;
-        }
 
         private var _altKey:Boolean;
+
+        COMPILE::SWF
         public function get altKey():Boolean
         {
             return _altKey;
         }
+        
+        COMPILE::JS
+        public function get altKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.altKey : _altKey;
+        }
+        COMPILE::SWF
         public function set altKey(value:Boolean):void
         {
             _altKey = value;
         }
-        
+
+        COMPILE::JS
+        public function set altKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.altKey = value;
+            else _altKey = value;
+        }
+
         private var _ctrlKey:Boolean;
+        
+        COMPILE::SWF
         public function get ctrlKey():Boolean
         {
             return _ctrlKey;
         }
+
+        COMPILE::JS
+        public function get ctrlKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.ctrlKey : _ctrlKey;
+        }
+
+        COMPILE::SWF
         public function set ctrlKey(value:Boolean):void
         {
             _ctrlKey = value;
         }
 
+        COMPILE::JS
+        public function set ctrlKey(value:Boolean):void
+        {
+            if(wrappedEvent)
+                wrappedEvent.ctrlKey = value;
+            else 
+                _ctrlKey = value;
+        }
         private var _metaKey:Boolean;
+
+        COMPILE::SWF
         public function get metaKey():Boolean
         {
             return _metaKey;
         }
+        
+        COMPILE::JS
+        public function get metaKey():Boolean
+        {
+            return wrappedEvent ? wrappedEvent.metaKey : _metaKey;
+        }
+
+        COMPILE::SWF
         public function set metaKey(value:Boolean):void
         {
             _metaKey = value;
+        }
+
+        COMPILE::JS
+        public function set metaKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.metaKey = value;
+            else _metaKey = value;
+        }
+
+        private var _shiftKey:Boolean;
+
+        COMPILE::SWF
+        public function get shiftKey():Boolean
+        {
+            return _shiftKey;
+        }
+        
+        COMPILE::JS
+        public function get shiftKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.shiftKey : _shiftKey;
+        }
+
+        COMPILE::SWF
+        public function set shiftKey(value:Boolean):void
+        {
+            _shiftKey = value;
+        }
+
+        COMPILE::JS
+        public function set shiftKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.shiftKey = value;
+            else _shiftKey = value;
         }
         
         public function get modifierKey():Boolean
         {
             return shiftKey || ctrlKey || metaKey;
         }
-		
-        private var _specialKey:Boolean;
-		public function get specialKey():Boolean
-
-		{
-			return _specialKey;
-		}
-
-		public function set specialKey(value:Boolean):void
-		{
-			_specialKey = value;
-		}
 
         /**
          * @langversion 3.0
@@ -297,7 +361,7 @@ package org.apache.royale.events
         COMPILE::JS
         public static function setupConverter():Boolean
         {
-            HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+            ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter.convert;
             return true;
         }
         

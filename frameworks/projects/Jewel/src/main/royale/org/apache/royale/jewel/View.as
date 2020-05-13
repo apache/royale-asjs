@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+    import org.apache.royale.core.IMXMLDocument;
+    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.core.ViewBase;
-	import org.apache.royale.core.IMXMLDocument;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.MXMLDataInterpreter;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.utils.MXMLDataInterpreter;
 	
 	/**
 	 * The default property uses when additional MXML content appears within an element's

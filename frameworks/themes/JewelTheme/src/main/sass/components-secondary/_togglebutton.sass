@@ -20,35 +20,15 @@
 // Jewel ToggleButton
 
 // ToggleButton variables
-$togglebutton-border-radius: 3px
-
-=togglebutton-theme($togglebutton-color, $text-color)
+$togglebutton-border-radius: $border-radius
 	
-	+jewel-bg-border("normal", $togglebutton-color, $togglebutton-border-radius)
-	
-	color: $text-color
-	
-	@if not $flat and $text-color == $font-theme-color
-		text:
-			shadow: 0 -1px 0 rgba(darken($togglebutton-color, 30%), .7) //0 .063em
-	
-	&:hover, &:hover:focus
-		+jewel-bg-border("hover", $togglebutton-color)
-
-	&:active, &:active:focus
-		+jewel-bg-border("active", $togglebutton-color)
-
-	&:focus
-		+jewel-bg-border("focus", $togglebutton-color)
-		
-	&[disabled]
-		+jewel-bg-border("disabled", $togglebutton-color)
-		color: $disabled-font-color
-		text:
-			shadow: unset
-
-	&.selected
-		+jewel-bg-border("selected", $togglebutton-color)
-		
 .jewel.togglebutton.secondary
-	+togglebutton-theme($secondary-color, $font-theme-color)
+	+togglebutton-theme($secondary-color, $font-theme-color, false)
+
+// OUTLINED
+.jewel.togglebutton.secondary.outlined
+	+togglebutton-theme($secondary-color, $font-theme-color, true)
+
+// UNBOXED	
+.jewel.togglebutton.secondary.unboxed
+	+button-theme($secondary-color, $font-theme-color, false, true)

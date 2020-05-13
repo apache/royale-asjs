@@ -19,20 +19,18 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
-	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
 
     /**
 	 *  Handles the update of an itemRenderer in a Table component once the corresponding 
@@ -132,25 +130,25 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-			var ir:ISelectableItemRenderer;
-			var processedRow:TableRow = (itemRendererParent as UIBase).getElementAt(event.index) as TableRow;
+			var ir:IIndexedItemRenderer;
+			var processedRow:TableRow = (itemRendererOwnerView as UIBase).getElementAt(event.index) as TableRow;
 			var cell:TableCell;
 			var n:int = processedRow.numElements;
 
 			for (var i:int = 0; i < n; i++)
 			{
 				cell = processedRow.getElementAt(i) as TableCell;
-				ir = cell.getElementAt(0) as ISelectableItemRenderer;
+				ir = cell.getElementAt(0) as IIndexedItemRenderer;
 				setData(ir, event.item, event.index);
 			}
 			
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -159,19 +157,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-				_itemRendererParent = listView.dataGroup;
+				_itemRendererOwnerView = listView.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
             itemRenderer.data = data;

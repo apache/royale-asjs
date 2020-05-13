@@ -25,7 +25,7 @@ package org.apache.royale.svg
     COMPILE::SWF
     {
         import flash.geom.Point;
-        import flash.geom.Rectangle;            
+        import flash.geom.Rectangle;
     }
     COMPILE::JS
     {
@@ -74,6 +74,7 @@ package org.apache.royale.svg
 		public function set rx(value:Number):void
 		{
 			_rx = value;
+			updateView();
 		}
 
 		private var _ry:Number;
@@ -95,6 +96,7 @@ package org.apache.royale.svg
 		public function set ry(value:Number):void
 		{
 			_ry = value;
+			updateView();
 		}
 
 		/**
@@ -132,29 +134,34 @@ package org.apache.royale.svg
                 var style:String = this.getStyleStr();
 				
 				if (_rect == null) {
-                	_rect = createSVG('rect') as WrappedHTMLElement;
-                	_rect.royale_wrapper = this;
+					_rect = createSVG('rect') as WrappedHTMLElement;
+					_rect.royale_wrapper = this;
 					element.appendChild(_rect);
 				}
-                _rect.setAttribute('style', style);
-                if (stroke)
-                {
+				_rect.setAttribute('style', style);
+				if (stroke)
+				{
 					_rect.setAttribute('x', stroke.weight / 2);
 					_rect.setAttribute('y', stroke.weight / 2);
-                }
-                else
-                {
+				}
+				else
+				{
 					_rect.setAttribute('x', 0);
 					_rect.setAttribute('y', 0);
-                }
+				}
 				if(width)
 					_rect.setAttribute('width', width);
 				if(height)
 					_rect.setAttribute('height', height);
-                
+				if(!isNaN(_rx)){
+					_rect.setAttribute('rx', _rx);
+				}
+				if(!isNaN(_ry)){
+					_rect.setAttribute('ry', _ry);
+				}
 				// resize(x, y, getBBox(_rect));
 				resize(x, y);
-            }
+			}
 		}
 		
 		COMPILE::JS

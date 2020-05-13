@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" 
+	xmlns:models="models.*"
+	sourceCodeUrl="ComboBoxPlayGround.mxml">
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.collections.ArrayList;
+			import org.apache.royale.jewel.ComboBox;
+
+			import vos.IconListVO;
+
+			public function assignNewData(cmb:ComboBox):void
+			{
+				cmb.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
+			}
+
+			private function describeItem(item:*):String {
+				const intro:String = "";
+				var evaluated:String;
+				if (item is String) {
+					evaluated = "String value: '" + item + "'";
+				} else {
+					if (item === null || item === undefined) {
+						evaluated = "Nothing Selected";
+					}
+					else {
+						if (item is IconListVO) {
+							evaluated = "Object's label field: '" + IconListVO(item).label + "'";
+						} else {
+							evaluated = "Object : " + item;
+						}
+					}
+				}
+				return intro + evaluated;
+			}
+
+			[Bindable]
+			public var promptText:String = "The text here is truncated";
+		]]>
+	</fx:Script>
+
+	<c:beads>
+		<js:ContainerDataBinding/>
+	</c:beads>
+
+	<c:model>
+		<models:ListsModel localId="listModel"/>
+	</c:model>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
+		<c:ExampleHeader title="Jewel ComboBox">
+			<c:description>
+				<![CDATA[<strong>Jewel ComboBox</strong> is a component that displays an input field with a button to show and pop-up list with selections. Selecting an item from the pop-up list places that item into the input field.]]>
+			</c:description>
+		</c:ExampleHeader>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:BarSection>
+						<html:H3 text="String Collection" className="secondary-normal"/>
+					</j:BarSection>
+					<j:BarSection itemsHorizontalAlign="itemsRight">
+						<j:IconButton unboxed="true" click="assignNewData(watchmenComboBox)">
+							<j:icon>
+								<js:MaterialIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" />
+							</j:icon>
+							<j:beads>
+								<j:ToolTip toolTip="Assign new data"/>
+							</j:beads>
+						</j:IconButton>
+					</j:BarSection>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> is using a simple string collection as <i>dataProvider</i> and a <b>ComboBoxTextPrompt</b> bead to show a prompt message.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox localId="watchmenComboBox" dataProvider="{listModel.watchmen}">
+						<j:beads>
+							<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
+						</j:beads>
+					</j:ComboBox>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsCenter">
+					<j:BarSection>
+						<j:Label localId="watchmenComboBoxResult" html="{describeItem(watchmenComboBox.selectedItem)}"/>
+					</j:BarSection>
+					<j:BarSection gap="3" itemsHorizontalAlign="itemsRight">
+						<j:Label text="Select Index: "/>
+						<j:NumericStepper valueChange="watchmenComboBox.selectedIndex = event.target.value" minimum="0" maximum="5"/>
+					</j:BarSection>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:BarSection>
+						<html:H3 text="Object Collection" className="secondary-normal"/>
+					</j:BarSection>
+					<j:BarSection itemsHorizontalAlign="itemsRight">
+						<j:IconButton unboxed="true" click="assignNewData(avengersComboBox)">
+							<j:icon>
+								<js:MaterialIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" />
+							</j:icon>
+							<j:beads>
+								<j:ToolTip toolTip="Assign new data"/>
+							</j:beads>
+						</j:IconButton>
+					</j:BarSection>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> is using an object collection as <i>dataProvider</i>. Use <i>labelField</i> to indicate the object property to use as label. A <b>ComboBoxTextPrompt</b> bead is used to show a prompt message.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox localId="avengersComboBox" labelField="label" dataProvider="{listModel.avengers}">
+						<j:beads>
+							<j:ComboBoxTextPrompt prompt="Avengers Team..."/>
+						</j:beads>
+					</j:ComboBox>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsCenter">
+					<j:BarSection>
+						<j:Label localId="avengersComboBoxResult" html="{describeItem(avengersComboBox.selectedItem)}"/>
+					</j:BarSection>
+					<j:BarSection gap="3" itemsHorizontalAlign="itemsRight">
+						<j:Label text="Select Index: "/>
+						<j:NumericStepper valueChange="avengersComboBox.selectedIndex = event.target.value" minimum="0" maximum="8"/>
+					</j:BarSection>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Selected Index" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> is configured with <i>selectedIndex</i> equal to 2.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox localId="cmb1" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2"/>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsCenter">
+					<j:BarSection>
+						<j:Label text="selectedIndex: {cmb1.selectedIndex}"/>
+					</j:BarSection>
+					<j:BarSection itemsHorizontalAlign="itemsRight">
+						<j:Button text="Deselect Index" click="cmb1.selectedIndex = -1" emphasis="primary"/>
+					</j:BarSection>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Selected Item" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> is configured with <i>selectedItem</i> equal to third item in the collection.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox localId="cmb2" labelField="label" dataProvider="{listModel.avengers}" selectedItem="{listModel.avengers.getItemAt(3)}" />
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsCenter">
+					<j:BarSection>
+						<j:Label text="selectedItem: {describeItem(cmb2.selectedItem)}"/>
+					</j:BarSection>
+					<j:BarSection itemsHorizontalAlign="itemsRight">
+						<j:Button text="Deselect Item" click="cmb2.selectedItem = null" emphasis="primary"/>
+					</j:BarSection>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Sizing" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>ComboBox</b> size is not set, so it defaults to 200px.</p>]]></j:html>
+					</j:Label>
+					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}"/>
+					
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>ComboBox</b> size is set to 140 pixels.</p>]]></j:html>
+					</j:Label>
+					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}" width="140"/>
+					
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>ComboBox</b> size is set to 100%.</p>]]></j:html>
+					</j:Label>
+					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}" width="100%"/>
+
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>ComboBox</b> size is set to 50%.</p>]]></j:html>
+					</j:Label>
+					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}" width="50%"/>
+
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Resizing" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>ComboBox</b> width size is managed by a slider.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox localId="cmb3" labelField="label" dataProvider="{listModel.avengers}"/>
+					
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsCenter">
+					<j:beads>
+						<j:VerticalLayout gap="3"/>
+					</j:beads>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="width: {cmb3.width}px"/>
+						<j:HSlider width="250" value="200" minimum="100" maximum="400" valueChange="cmb3.width = event.target.value;"/>
+					</j:HGroup>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="rowHeight: {cmb3.rowHeight}"/>
+						<j:HSlider width="150" value="34" minimum="34" maximum="52" valueChange="cmb3.rowHeight = event.target.value;"/>
+					</j:HGroup>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="rowCount: {cmb3.rowCount}"/>
+						<j:HSlider width="150" value="5" minimum="3" maximum="8" valueChange="cmb3.rowCount = event.target.value;"/>
+					</j:HGroup>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Local Search Filter" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> uses a <b>SearchFilter</b> bead to perform a local search in the <i>dataProvider</i>. The filter is decorated, and can be configured.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+						<j:beads>
+							<j:ComboBoxTextPrompt prompt="Type to search..."/>
+							<j:SearchFilter/>
+						</j:beads>
+					</j:ComboBox>
+
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Disabled" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> shows how the disabled style look.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+						<j:beads>
+							<j:ComboBoxDisabled localId="cmbdis" disabled="{disable_cmb.selected}"/>
+							<j:ComboBoxTextPrompt prompt="{cmbdis.disabled ? 'Disabled...' : 'Enabled...'}"/>
+						</j:beads>
+					</j:ComboBox>
+
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:CheckBox localId="disable_cmb" text="Disable ComboBox?" selected="true"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="PopUp Reposition" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Click the button below to display a non modal <b>PopUp</b> with four buttons that show how pop-up reposition depending on screen edges.</p>]]></j:html>
+					</j:Label>
+
+					<j:PopUp localId="popup1">
+						<c:ComboBoxPopUpContent width="96%" height="96%"/>
+					</j:PopUp>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:Button text="show comboboxes" emphasis="primary" click="popup1.open = !popup1.open;"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Custom Itemrenderer" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> shows how to configure a custom item renderer through a css style that defines the renderer. Note: exit pop-up clicking outside.
+						<pre style="font-size: 0.8em">IItemRenderer: ClassReference("itemRenderers.SimpleIconListItemRenderer");</pre>. A <b>SearchFilter</b> is configured to show it in use custom renderers.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox className="cmbSimpleiIconListItemRenderer" labelField="label"
+								rowCount="4" rowHeight="52"
+								dataProvider="{listModel.avengers}">
+						<j:beads>
+							<j:ComboBoxTextPrompt prompt="Icons and Text..."/>
+							<j:SearchFilter/>
+						</j:beads>
+					</j:ComboBox>
+
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="ComboBoxTrucatedText" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>ComboBox</b> shows how to configure a <b>ComboBoxTrucatedText</b> bead that tructate the text using "...", also shows how to change the <i>prompt</i> at runtime.</p>]]></j:html>
+					</j:Label>
+
+					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+						<j:beads>
+							<j:ComboBoxTruncateText/>
+							<j:ComboBoxTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:ComboBox>
+					
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:Button text="change prompt" click="promptText = 'Other text'" emphasis="primary"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+	</j:Grid>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

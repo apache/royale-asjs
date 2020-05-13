@@ -16,21 +16,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>examples-blog</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: Blog</name>
+  <name>Apache Royale: Examples: Blog ------------------------------------</name>
 
   <modules>
     <module>BE0001_Hello_World</module>
@@ -46,6 +45,7 @@
     <module>BE0011_Loading_external_data_through_HTTPService</module>
     <module>BE0012_Using_external_javascript_libraries_in_Apache_Royale</module>
     <module>BE0013_Dividing_an_Apache_Royale_application_with_modules</module>
+    <module>BE0014_Working_with_vector_graphics</module>
   </modules>
 
   <build>
@@ -79,101 +79,47 @@
       </plugin>
     </plugins>
   </build>
-  <profiles>
-      <profile>
-          <id>swf-dependencies-blog</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Core</artifactId>
-                  <version>0.9.6</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Language</artifactId>
-                  <version>0.9.6</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>HTML</artifactId>
-                  <version>0.9.6</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Collections</artifactId>
-                  <version>0.9.6</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Binding</artifactId>
-                  <version>0.9.6</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Graphics</artifactId>
-                  <version>0.9.6</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -182,9 +128,66 @@
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>examples-tests</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
-</project>
+  <profiles>
+    <profile>
+      <id>option-with-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Core</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Language</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>HTML</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Collections</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Binding</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Graphics</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
+<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>

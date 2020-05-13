@@ -19,11 +19,12 @@
 
 package mx.core
 {
-
+    import org.apache.royale.core.ITextInput;
+    
     import mx.managers.IFocusManagerComponent;
+	import mx.controls.listClasses.IDropInListItemRenderer;
+	import mx.controls.listClasses.IListItemRenderer;
 /*
-import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.listClasses.IListItemRenderer;
 import mx.styles.IStyleClient;
 */
 
@@ -36,7 +37,8 @@ import mx.styles.IStyleClient;
  *  @productversion Flex 4
  */
 public interface ITextInput
-    extends IDataRenderer, IUIComponent, IFocusManagerComponent
+    extends IDataRenderer, IUIComponent, IDropInListItemRenderer,
+			IListItemRenderer, IFocusManagerComponent, org.apache.royale.core.ITextInput
 {
     //--------------------------------------------------------------------------
     //
@@ -271,52 +273,6 @@ public interface ITextInput
      */
     function set selectable(value:Boolean):void;
 
-    //----------------------------------
-    //  text
-    //----------------------------------
-
-    /**
-     *  Plain text that appears in the control.
-     *  Its appearance is determined by the CSS styles of this Label control.
-     *
-     *  <p>Any HTML tags in the text string are ignored,
-     *  and appear as entered in the string.
-     *  To display text formatted using HTML tags,
-     *  use the <code>htmlText</code> property instead.
-     *  If you set the <code>htmlText</code> property,
-     *  the HTML replaces any text you had set using this propety, and the
-     *  <code>text</code> property returns a plain-text version of the
-     *  HTML text, with all HTML tags stripped out. For more information
-     *  see the <code>htmlText</code> property.</p>
-     *
-     *  <p>To include the special characters left angle  bracket (&lt;),
-     *  right angle bracket (&gt;), or ampersand (&amp;) in the text,
-     *  wrap the text string in the CDATA tag.
-     *  Alternatively, you can use HTML character entities for the
-     *  special characters, for example, <code>&amp;lt;</code>.</p>
-     *
-     *  <p>If you try to set this property to <code>null</code>,
-     *  it is set, instead, to the empty string.
-     *  The <code>text</code> property can temporarily have the value <code>null</code>,
-     *  which indicates that the <code>htmlText</code> has been recently set
-     *  and the corresponding <code>text</code> value
-     *  has not yet been determined.</p>
-     *
-     *  @default ""
-     *  @tiptext Gets or sets the TextInput content
-     *  @helpid 3190
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Flex 4
-     */
-    function get text():String;
-
-    /**
-     *  @private
-     */
-    function set text(value:String):void;
 
     //--------------------------------------------------------------------------
     //

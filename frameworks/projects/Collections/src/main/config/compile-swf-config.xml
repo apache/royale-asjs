@@ -32,6 +32,9 @@
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
         </external-library-path>
+        <library-path>
+            <path-element>../../../../../libs/Language.swc</path-element>
+        </library-path>
 
 		<mxml>
 			<children-as-data>true</children-as-data>

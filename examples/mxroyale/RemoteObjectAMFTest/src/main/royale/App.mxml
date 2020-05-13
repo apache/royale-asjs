@@ -176,7 +176,7 @@ limitations under the License.
                          destination="exampleService">
             <mx:method name="echo">
                 <mx:arguments>
-                    <symbol>{name_txt.text}</symbol>
+                    <mx:symbol>{name_txt.text}</mx:symbol><!-- this tag has no prefix, so fails to compile -->
                 </mx:arguments>
             </mx:method>
             <mx:method name="getObjectArray1">

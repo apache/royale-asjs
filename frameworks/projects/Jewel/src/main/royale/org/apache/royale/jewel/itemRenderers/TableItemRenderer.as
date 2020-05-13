@@ -22,9 +22,8 @@ package org.apache.royale.jewel.itemRenderers
     {
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
-	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     }
-	import org.apache.royale.jewel.beads.controls.TextAlign;
+    import org.apache.royale.jewel.beads.controls.TextAlign;
 
 	/**
 	 *  The TableItemRenderer class displays data in string form using the data's toString()
@@ -57,7 +56,7 @@ package org.apache.royale.jewel.itemRenderers
 			}
 
 			textAlign = new TextAlign();
-			addBead(textAlign);
+			addBead(textAlign);            
 		}
 		
         /**

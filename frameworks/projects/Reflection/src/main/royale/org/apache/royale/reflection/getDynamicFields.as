@@ -39,15 +39,18 @@ package org.apache.royale.reflection {
 	 *          detected properties.
 	 * @param checkFirst an optional check to verify that the inspect parameter is dynamic
 	 *        before inspecting it for dynamic properties. This should normally be left at its default value of true.
-	 *        If it is know that the object is dynamic before calling this method, setting this to false
+	 *        If it is known that the object is dynamic before calling this method, setting this to false
 	 *        could improve performance in performance-sensitive code.
 	 *        The results of calling this method on non-dynamic objects may be less reliable or less consistent
 	 *        across target platforms if checkFirst is false
+	 * @param numericFields if true, numeric fields will be returned as numeric values
 	 *
 	 * @return the dynamic fields as Strings in an Array
+	 *
+	 * @royaleignorecoercion Map
 	 */
 	COMPILE::JS
-	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true):Array {
+	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true, numericFields:Boolean = false):Array {
 		var arr:Array;
 		var i:uint = 0;
 		var assumeDynamic:Boolean = checkFirst ? isDynamicObject(inspect) : true;
@@ -63,11 +66,11 @@ package org.apache.royale.reflection {
 					arr = Object.keys(inspect);
 					if (inspect.prototype && inspect.prototype.ROYALE_REFLECTION_INFO) {
 						if (goog.DEBUG) {
-							if (!CompilationData.hasCompilationOption(inspect.prototype.ROYALE_REFLECTION_INFO.compileFlags, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
+							if (!CompilationData.hasCompilationOption(inspect.prototype.ROYALE_COMPILE_FLAGS, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
 								trace('[WARN] getDynamicFields can be unreliable for static inspection of ' + inspect.prototype.ROYALE_CLASS_INFO.names[0].qName + ' because it was not compiled with \'js-default-initializers=true\'');
 							}
 						}
-						var avoidNames:Array = inspect.prototype.ROYALE_REFLECTION_INFO.statics;
+						var avoidNames:Array = inspect.prototype.ROYALE_INITIAL_STATICS;
 						if (avoidNames) {
 							var temp:Array = [];
 							var l:uint = arr.length;
@@ -90,7 +93,7 @@ package org.apache.royale.reflection {
 					if (inspect.ROYALE_REFLECTION_INFO) {
 						const inspectReflect:Object = inspect.ROYALE_REFLECTION_INFO;
 						if (goog.DEBUG) {
-							if (!CompilationData.hasCompilationOption(inspectReflect.compileFlags, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
+							if (!CompilationData.hasCompilationOption(inspect.ROYALE_COMPILE_FLAGS, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
 								trace('[WARN] getDynamicFields can be unreliable for ' + inspect.ROYALE_CLASS_INFO.names[0].qName + ' and any ancestor classes that were not compiled with \'js-default-initializers=true\'');
 								warned = true;
 							}
@@ -120,7 +123,7 @@ package org.apache.royale.reflection {
 							while (proto) {
 								var protoReflect:Object = proto.ROYALE_REFLECTION_INFO;
 								if (goog.DEBUG && !warned) {
-									if (protoReflect && !CompilationData.hasCompilationOption(protoReflect.compileFlags, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
+									if (protoReflect && !CompilationData.hasCompilationOption(proto.ROYALE_COMPILE_FLAGS, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
 										//skip EventDispatcher because we already special-cased it
 										if (proto.ROYALE_CLASS_INFO.names[0].qName != eventDispatcherClassInfo.names[0].qName) {
 											trace('[WARN] getDynamicFields can be unreliable for '
@@ -150,6 +153,15 @@ package org.apache.royale.reflection {
 						while (l--) {
 							excludeFields.push(instanceExcludes[l]);
 						}
+					} else {
+						if (inspect.constructor == Map) {
+							arr = [];
+							(inspect as Map).forEach(
+								function(value:Object, key:Object, inst:Map):void{
+									arr.push(key);
+								}
+							)
+						}
 					}
 					
 					if (excludeFields) {
@@ -166,6 +178,14 @@ package org.apache.royale.reflection {
 				if (checkIncludes) {
 					arr = arr.filter(includePredicate);
 				}
+				if (numericFields) {
+				 	//arr.forEach(numericise)
+					arr.forEach(function (value:String, index:uint, array:Array):void{
+						var numVal:Number = Number(value);
+						if (''+numVal == value) array[index]=numVal;
+					})
+					
+				}
 		} else {
 			//it's not considered dynamic...
 			//so assume zero dynamic fields (even if technically in js
@@ -177,17 +197,23 @@ package org.apache.royale.reflection {
 	}
 	
 	COMPILE::SWF
-	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true):Array {
+	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true, numericFields:Boolean = false):Array {
 		
 		var i:uint = 0;
 		var assumeDynamic:Boolean = checkFirst ? isDynamicObject(inspect) : true;
 		var checkIncludes:Boolean = includePredicate != null;
-		var prop:String;
 		var arr:Array = [];
 		if (assumeDynamic) {
-			for (prop in inspect) {
-				if (!checkIncludes || includePredicate(prop))
-					arr[i++] = prop;
+			if (numericFields) {
+				for (var propObj:Object in inspect) {
+					if (!checkIncludes || includePredicate(propObj))
+						arr[i++] = propObj;
+				}
+			} else {
+				for (var prop:String in inspect) {
+					if (!checkIncludes || includePredicate(prop))
+						arr[i++] = prop;
+				}
 			}
 		}
 		
@@ -195,3 +221,11 @@ package org.apache.royale.reflection {
 	}
 	
 }
+
+
+/*COMPILE::JS{
+	function numericise(value:String, index:uint, array:Array):void{
+		var numVal:Number = Number(value);
+		if (''+numVal == value) array[index]=numVal;
+	}
+}*/

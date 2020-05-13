@@ -15,14 +15,14 @@
  */
 package org.apache.royale.crux
 {
-	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.IDocument;
-    import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.reflection.AccessorDefinition;
 	import org.apache.royale.reflection.TypeDefinition;
 	import org.apache.royale.reflection.VariableDefinition;
 	import org.apache.royale.reflection.describeType;
-    import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 
     [DefaultProperty("beans")]
 
@@ -115,7 +115,16 @@ package org.apache.royale.crux
 				{
 					// BeanProvider will take care of setting the type descriptor,
 					// but we want to wrap the instances in Bean classes to set the Bean.name to id
-					child = varDef.getValue(inspect);
+					if (name == 'model') { // accessing Royale model accessor can throw an error if it is not set and there is not css value supplied
+						try{
+							child = varDef.getValue(inspect);
+						} catch(e:Error) {
+							child = null;
+						}
+					} else {
+						child = varDef.getValue(inspect);
+					}
+					
 					if(child != null)
 					{
 						found = false;

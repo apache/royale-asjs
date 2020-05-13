@@ -20,14 +20,17 @@ package org.apache.royale.events
 {
 	COMPILE::JS
 	{
-        import goog.events;
+    import goog.events;
+		import goog.events.Listener;
 		import goog.events.EventTarget;
+    import org.apache.royale.core.IChild;
+		import org.apache.royale.events.Event;
 	}
 
 	COMPILE::SWF
 	{
 		import flash.events.EventDispatcher;
-        import flash.events.IEventDispatcher;
+    import flash.events.IEventDispatcher;
 	}
 
 	/**
@@ -73,36 +76,76 @@ package org.apache.royale.events
 		
 		override public function dispatchEvent(event1:Object):Boolean
 		{
-			try 
+			//we get quite a few string events here, "initialize" etc
+			//so this general approach doesn't work:
+			//event.target = _dispatcher;
+			if (event1) {
+				if (typeof event1 == "string") {
+					event1 = new Event("" + event1);
+					event1.target = _dispatcher;
+					//console.log("created event from string ",event);
+				}
+				else if ("target" in event1) {
+					event1.target = _dispatcher;
+					//console.log("assigned target to event ",event);
+				}
+			} else return false;
+			var ancestorsTree:Array = null;
+			if(event1.bubbles)
 			{
-				//we get quite a few string events here, "initialize" etc
-				//so this general approach doesn't work:
-				//event.target = _dispatcher;
-				if (event1) {
-					if (typeof event1 == "string") {
-						event1 = new Event("" + event1);
-						event1.target = _dispatcher;
-						//console.log("created event from string ",event);
-					}
-					else if ("target" in event1) {
-						event1.target = _dispatcher;
-						//console.log("assigned target to event ",event);
-					}
-				} else return false;
+				var ancestor:Object = this.getParentEventTarget();
+				if (ancestor) {
+    			ancestorsTree = [];
+    			var ancestorCount:int = 1;
+			    for (; ancestor; ancestor = ancestor.getParentEventTarget()) {
+      			ancestorsTree.push(ancestor);
+      		// 	goog.asserts.assert(
+          // 		(++ancestorCount < goog.events.EventTarget.MAX_ANCESTORS_),
+          // 'infinite loop');
+		    	}
+  			}
+			}
 
-				return super.dispatchEvent(event1);
-			}
-			catch (e:Error)
-			{
-				if (e.name != "stopImmediatePropagation")
-					throw e;
-			}
-			return false;
+			return goog.events.EventTarget.dispatchEventInternal_(this, event1, ancestorsTree);
 		}
-        
-        public function toString():String
-        {
-            return "EventDispatcher";
-        }
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IChild
+		 * @royaleemitcoercion org.apache.royale.events.EventDispatcher
+		 */
+		override public function getParentEventTarget():goog.events.EventTarget{
+			return (this as IChild).parent as EventDispatcher;
+		}
+		override public function fireListeners(type:Object, capture:Boolean, eventObject:Object):Boolean{
+			var listenerArray:Array = getListeners(type, capture);
+			if (!listenerArray) {
+				return true;
+			}
+			listenerArray = listenerArray.concat();
+
+			var rv:Boolean = true;
+			for (var i:int = 0; i < listenerArray.length; ++i) {
+				if(eventObject.immediatePropogationStopped){
+					break;
+				}
+				var listener:goog.events.Listener = listenerArray[i];
+				// We might not have a listener if the listener was removed.
+				if (listener && !listener.removed && listener.capture == capture) {
+					var listenerFn:Object = listener.listener;
+					var listenerHandler:Object = listener.handler || listener.src;
+
+					if (listener.callOnce) {
+						this.unlistenByKey(listener);
+					}
+					rv = listenerFn.call(listenerHandler, eventObject) !== false && rv;
+				}
+			}
+
+			return rv && eventObject.returnValue_ != false;			
+		}
+
+		public function toString():String
+		{
+				return "[object Object]";
+		}
 	}
 }

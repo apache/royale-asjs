@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<project name="filereference" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../../.."/>
+    <property name="example" value="FileReference" />
+    
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+    <property name="config_arg" value="flex"/>
+
+    <include file="${basedir}/../../build_example.xml" />
+    
+    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    </target>
+    
+    <target name="clean">
+        <delete dir="${basedir}/bin" failonerror="false" />
+        <delete dir="${basedir}/bin-debug" failonerror="false" />
+        <delete dir="${basedir}/bin-release" failonerror="false" />
+        <delete dir="${basedir}/target" failonerror="false" />
+    </target>
+
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="Make sure label appears."/>
+        <exec executable="${browser}" dir="${basedir}/bin-${which}" failonerror="true">
+            <arg value="${basedir}/bin-${which}/${example}.html"/>
+        </exec>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
+</project>

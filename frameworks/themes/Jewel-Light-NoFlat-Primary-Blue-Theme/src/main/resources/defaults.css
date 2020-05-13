@@ -16,48 +16,20 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-j|Application {
-  background: white;
+.jewel.application {
+  background: #f5f8fa;
   font-family: "Lato", sans-serif;
   color: #808080;
   padding: 0px;
   margin: 0px;
 }
 
-input, select, textarea, button {
-  font-family: inherit;
-}
-
 j|Form {
   gap: 3;
 }
 
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-h4 {
-  font-size: 1.25em;
-}
-
-h5 {
-  font-size: 1em;
-}
-
-span {
-  font-size: 1em;
-}
-
-div {
-  font-size: 14px;
+input, select, textarea, button {
+  font-family: inherit;
 }
 
 hr {
@@ -65,23 +37,27 @@ hr {
 }
 
 .jewel.xsmall {
-  font-size: 0.6em !important;
+  font-size: 0.6em;
 }
 
 .jewel.small {
-  font-size: 0.8em !important;
+  font-size: 0.8em;
 }
 
 .jewel {
-  font-size: 1em !important;
+  font-size: 1em;
 }
 
 .jewel.large {
-  font-size: 1.2em !important;
+  font-size: 1.2em;
 }
 
 .jewel.xlarge {
-  font-size: 1.4em !important;
+  font-size: 1.4em;
+}
+
+.jewel.imagebutton {
+  outline: 0;
 }
 
 .jewel.alert {
@@ -91,7 +67,7 @@ hr {
   min-width: 320px;
   min-height: 240px;
   border: 0px solid;
-  background-color: white;
+  background: white;
   box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
   border-radius: 3px;
   opacity: 0;
@@ -146,7 +122,6 @@ hr {
 
 .jewel.badge {
   border-radius: 500em;
-  background: #d9d9d9;
   color: #808080;
   font-size: 0.85em !important;
   line-height: 1em;
@@ -157,26 +132,32 @@ hr {
 }
 
 .jewel.button {
+  margin: 0;
+  padding: 0.679em 1.12em;
   background: linear-gradient(#e6e6e6, #cccccc);
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
   border-radius: 0.25rem;
   color: #808080;
+  text-shadow: none;
   font-weight: bold;
   text-transform: uppercase;
 }
 .jewel.button:hover, .jewel.button:hover:focus {
   background: linear-gradient(#d9d9d9, silver);
   border: 1px solid #a6a6a6;
+  color: #808080;
 }
 .jewel.button:active, .jewel.button:active:focus {
   background: linear-gradient(silver, #a6a6a6);
   border: 1px solid #8d8d8d;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #808080;
 }
 .jewel.button:focus {
   border: 1px solid #b3b3b3;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #808080;
 }
 .jewel.button[disabled] {
   background: #f3f3f3 !important;
@@ -185,18 +166,24 @@ hr {
   color: silver;
   text-shadow: unset;
 }
+.jewel.button[disabled]:hover, .jewel.button[disabled]:hover:focus {
+  color: silver;
+}
 .jewel.button[disabled] {
   font-weight: 400;
+}
+.jewel.button.icon {
+  padding: 0.429em 0.87em;
 }
 .jewel.button.icon i {
   margin-left: 0px;
   margin-right: 0px;
 }
-.jewel.button.iconLSpace i {
+.jewel.button.left-space i {
   margin-left: 0px;
   margin-right: 8px;
 }
-.jewel.button.iconRSpace i {
+.jewel.button.right-space i {
   margin-left: 8px;
   margin-right: 0px;
 }
@@ -212,15 +199,18 @@ hr {
 .jewel.button.primary:hover, .jewel.button.primary:hover:focus {
   background: linear-gradient(#3CADF1, #1198e9);
   border: 1px solid #0d79ba;
+  color: #FFFFFF;
 }
 .jewel.button.primary:active, .jewel.button.primary:active:focus {
   background: linear-gradient(#1198e9, #0d79ba);
   border: 1px solid #0a5a8a;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
 }
 .jewel.button.primary:focus {
   border: 1px solid #0f88d1;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
 }
 .jewel.button.primary[disabled] {
   background: #f3f3f3 !important;
@@ -229,17 +219,184 @@ hr {
   color: silver;
   text-shadow: unset;
 }
+.jewel.button.primary[disabled]:hover, .jewel.button.primary[disabled]:hover:focus {
+  color: silver;
+}
+
+.jewel.button.outlined {
+  background: rgba(179, 179, 179, 0.05);
+  border: 1px solid #999999;
+  box-shadow: none;
+  color: #8d8d8d;
+  text-shadow: none;
+}
+.jewel.button.outlined:hover, .jewel.button.outlined:hover:focus {
+  background: rgba(179, 179, 179, 0.15);
+  border: 1px solid #8d8d8d;
+  color: #737373;
+}
+.jewel.button.outlined:active, .jewel.button.outlined:active:focus {
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid #858585;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.button.outlined:focus {
+  border: 1px solid gray;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.button.outlined[disabled] {
+  background: rgba(243, 243, 243, 0.1) !important;
+  border: 1px solid #d9d9d9 !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.button.outlined[disabled]:hover, .jewel.button.outlined[disabled]:hover:focus {
+  color: silver;
+}
+
+.jewel.button.primary.outlined {
+  background: rgba(60, 173, 241, 0.05);
+  border: 1px solid #1198e9;
+  box-shadow: none;
+  color: #0f88d1;
+  text-shadow: none;
+}
+.jewel.button.primary.outlined:hover, .jewel.button.primary.outlined:hover:focus {
+  background: rgba(60, 173, 241, 0.15);
+  border: 1px solid #0f88d1;
+  color: #0c69a2;
+}
+.jewel.button.primary.outlined:active, .jewel.button.primary.outlined:active:focus {
+  background: rgba(60, 173, 241, 0.25);
+  border: 1px solid #0e7fc3;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.button.primary.outlined:focus {
+  border: 1px solid #0d79ba;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.button.primary.outlined[disabled] {
+  background: rgba(243, 243, 243, 0.1) !important;
+  border: 1px solid #d9d9d9 !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.button.primary.outlined[disabled]:hover, .jewel.button.primary.outlined[disabled]:hover:focus {
+  color: silver;
+}
+
+.jewel.button.unboxed {
+  background: rgba(179, 179, 179, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8d8d8d;
+  text-shadow: none;
+}
+.jewel.button.unboxed:hover, .jewel.button.unboxed:hover:focus {
+  background: rgba(179, 179, 179, 0.15);
+  border: 1px solid transparent;
+  color: #737373;
+}
+.jewel.button.unboxed:active, .jewel.button.unboxed:active:focus {
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.button.unboxed:focus {
+  background: rgba(179, 179, 179, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.button.unboxed[disabled] {
+  background: rgba(243, 243, 243, 0) !important;
+  border: 1px solid transparent !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.button.unboxed[disabled]:hover, .jewel.button.unboxed[disabled]:hover:focus {
+  color: silver;
+}
+
+.jewel.button.primary.unboxed {
+  background: rgba(60, 173, 241, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #0f88d1;
+  text-shadow: none;
+}
+.jewel.button.primary.unboxed:hover, .jewel.button.primary.unboxed:hover:focus {
+  background: rgba(60, 173, 241, 0.15);
+  border: 1px solid transparent;
+  color: #0c69a2;
+}
+.jewel.button.primary.unboxed:active, .jewel.button.primary.unboxed:active:focus {
+  background: rgba(60, 173, 241, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.button.primary.unboxed:focus {
+  background: rgba(60, 173, 241, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.button.primary.unboxed[disabled] {
+  background: rgba(243, 243, 243, 0) !important;
+  border: 1px solid transparent !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.button.primary.unboxed[disabled]:hover, .jewel.button.primary.unboxed[disabled]:hover:focus {
+  color: silver;
+}
 
 .jewel.card {
   font-size: 1em;
   font-weight: 400;
-  background: #ebebeb;
-  border: 0px;
-  border-radius: 10px;
+  background: white;
+  border: 1px solid #d2dadf;
+  border-radius: 0.25rem;
+}
+.jewel.card.simple {
   padding: 20px;
+}
+.jewel.card .card-header {
+  border-bottom: 1px solid #d2dadf;
+  padding: 12px 20px;
+}
+.jewel.card .card-header .card-title {
+  font-size: 1.5em;
+  margin: 0.408rem 0rem;
+  letter-spacing: 0.0125em;
+}
+.jewel.card .card-primary-content {
+  padding: 20px;
+}
+.jewel.card .card-actions {
+  border-top: 1px solid #d2dadf;
+  padding: 18px 20px;
 }
 
 j|Card {
+  gap: 3;
+}
+
+j|CardHeader {
+  gap: 3;
+}
+
+j|CardPrimaryContent {
+  gap: 3;
+}
+
+j|CardActions {
   gap: 3;
 }
 
@@ -251,6 +408,7 @@ j|Card {
 .jewel.checkbox input + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
   border: 1px solid transparent;
+  border-radius: 3px;
   transition: all 0.3s ease;
   transform: scale(0);
 }
@@ -260,10 +418,12 @@ j|Card {
 .jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
   background: linear-gradient(#cbe9fb, #9bd5f8);
   border: 1px solid #0f88d1;
+  border-radius: 3px;
 }
 .jewel.checkbox input[disabled] + span::before {
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
+  border-radius: 3px;
 }
 .jewel.checkbox input[disabled] + span {
   color: silver;
@@ -273,7 +433,6 @@ j|Card {
 }
 .jewel.checkbox span {
   padding-left: 8px;
-  font-size: 16px;
 }
 
 .jewel.combobox .jewel.textinput input {
@@ -285,9 +444,16 @@ j|Card {
   border-top-left-radius: 0px;
   border-left: 0px;
 }
+.jewel.combobox .jewel.button::before {
+  line-height: 22px;
+}
 .jewel.combobox .jewel.button::after {
   background-size: 66%;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  width: 14px;
+  height: 22px;
+  left: calc(50% - 8px);
+  top: calc(50% - 11px);
 }
 .jewel.combobox .jewel.button[disabled] {
   border-left: 0px !important;
@@ -295,6 +461,43 @@ j|Card {
 .jewel.combobox .jewel.button[disabled]::after {
   background-size: 66%;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.first {
+  border-bottom-left-radius: 0;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.last {
+  border-bottom-right-radius: 0;
+}
+.jewel.datagrid .listarea {
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-style: solid;
+  border-color: #b3b3b3;
+}
+.jewel.datagrid .jewel.list.column {
+  border-radius: 0px;
+  border-bottom-width: 0px;
+  box-shadow: inset 0px 0.5px 0px 0px rgba(0, 0, 0, 0.25);
+}
+.jewel.datagrid .jewel.list.column.first {
+  border-bottom-left-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column.last {
+  border-bottom-right-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid {
+  border-bottom: 1px solid #ededed;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.hovered {
+  background: #75c5f5;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.selected, .jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.selectable:active {
+  background: #5dbbf3;
 }
 
 .jewel.datechooser .jewel.table {
@@ -309,6 +512,7 @@ j|Card {
   box-shadow: none;
 }
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
+  padding: 12px 0px;
   background: white;
   box-shadow: none;
   border-left: 0px;
@@ -327,25 +531,32 @@ j|Card {
   background: #e6e6e6;
 }
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
-  background-size: 54%;
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
-  background-size: 40%;
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  width: 14px;
+  height: 8px;
+  padding-right: 8px;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-position: right 0 center;
   background-repeat: no-repeat;
 }
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  width: 14px;
+  height: 14px;
+  top: calc(50% - 7px);
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after {
+  left: calc(50% - 9px);
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%233CADF1' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  left: calc(50% - 5px);
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%233CADF1' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.datechooser .jewel.table .jewel.tablecell {
   border-top: 0px;
   border-left: 0px;
+  padding: 4px;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
   padding: 4px;
 }
 .jewel.datechooser[disabled] {
@@ -379,11 +590,15 @@ j|Card {
 .jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23cccccc' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
+.jewel.datechooser[disabled] .jewel.tableitem {
+  height: 38px;
+}
 .jewel.datechooser[disabled] .jewel.tableitem.selected, .jewel.datechooser[disabled] .jewel.tableitem.selectable:active {
   background: #cccccc;
 }
 
 .calendar.item {
+  padding: 10px;
   font-size: 1em;
 }
 .calendar.item.dayName {
@@ -467,19 +682,49 @@ j|Card {
   padding: 16px;
 }
 
+.jewel.drawerfooter {
+  background: linear-gradient(#404040, #262626);
+  border-top: 1px solid #595959;
+  border-bottom: 1px solid black;
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+}
+.jewel.drawerfooter .jewel.barsection {
+  padding: 8px 12px;
+}
+.jewel.drawerfooter .jewel.barsection button {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 12px;
+  fill: #FFFFFF;
+  color: inherit;
+  text-shadow: 0 -1px 0 rgba(10, 90, 138, 0.7);
+}
+.jewel.drawerfooter .jewel.barsection button:hover, .jewel.drawerfooter .jewel.barsection button:hover:focus, .jewel.drawerfooter .jewel.barsection button:active, .jewel.drawerfooter .jewel.barsection button:active:focus, .jewel.drawerfooter .jewel.barsection button:focus {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.drawerfooter .jewel.barsection button[disabled] {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
 .jewel.dropdownlist {
   background-color: white;
+  border: 1px solid #b3b3b3;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 1.08em;
   background-position: right 0.7em center;
   background-repeat: no-repeat;
-  border: 1px solid #b3b3b3;
   border-radius: 0.25rem;
 }
 .jewel.dropdownlist[disabled] {
   background-color: #f3f3f3;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   border: 1px solid #d9d9d9;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   box-shadow: none;
   color: silver;
 }
@@ -570,18 +815,27 @@ j|FormItem {
 
 .jewel.item {
   padding: 8px;
+  background: transparent;
 }
-.jewel.item.hovered:hover {
+.jewel.item.hovered {
   color: #FFFFFF;
-  background: #3CADF1;
 }
 .jewel.item.selected, .jewel.item.selectable:active {
   color: #FFFFFF;
+}
+.jewel.item.primary.hovered {
+  background: #3CADF1;
+}
+.jewel.item.primary.selected, .jewel.item.primary.selectable:active {
   background: #24a3ef;
 }
 
 .jewel.label {
-  font-size: 1em;
+  line-height: 1em;
+}
+.jewel.label.multiline {
+  line-height: normal;
+  max-width: 100%;
 }
 
 .jewel.list {
@@ -593,7 +847,7 @@ j|FormItem {
 .jewel.list[disabled] {
   pointer-events: none;
   color: silver;
-  color-text-shadow: unset;
+  text-shadow: unset;
   font-weight: normal;
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
@@ -606,6 +860,9 @@ j|FormItem {
 .jewel.navigation {
   background-color: #ffffff;
 }
+.jewel.navigation .layout.vertical {
+  align-items: stretch;
+}
 
 .jewel.navigationlink {
   margin: 0;
@@ -614,8 +871,19 @@ j|FormItem {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
 }
-.jewel.navigationlink.hovered:hover {
+.jewel.navigationlink.hovered {
   background: #f3f3f3 !important;
+}
+.jewel.navigationlink .hint.fonticon {
+  margin-left: auto;
+}
+
+.navigation-section-group {
+  transition: height 0.5s;
+  overflow: hidden !important;
+}
+.navigation-section-group .navigationlink {
+  padding-left: 34px;
 }
 
 .jewel.numericstepper .jewel.textinput input {
@@ -624,6 +892,13 @@ j|FormItem {
 }
 
 @media (max-width: 992px) {
+  .jewel.numericstepper {
+    width: 190px;
+    height: 39px;
+  }
+  .jewel.numericstepper .jewel.textinput {
+    left: 38px;
+  }
   .jewel.numericstepper .jewel.textinput input {
     border-radius: 0;
   }
@@ -634,32 +909,50 @@ j|FormItem {
 .jewel.spinner .jewel.button {
   padding: 0px;
   height: 19px;
-  color: transparent;
   border-radius: 0 0.25rem 0.25rem 0;
   border-left: 0px;
+}
+.jewel.spinner .jewel.button, .jewel.spinner .jewel.button:hover, .jewel.spinner .jewel.button:hover:focus, .jewel.spinner .jewel.button:active, .jewel.spinner .jewel.button:active:focus {
+  color: transparent;
 }
 .jewel.spinner .jewel.button.up {
   border-bottom-right-radius: 0px;
 }
 .jewel.spinner .jewel.button.up::after {
-  background-size: 46%;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23808080' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  width: 12px;
+  height: 7px;
+  left: calc(50% - 6px);
+  top: calc(50% - 3.5px);
 }
 .jewel.spinner .jewel.button.down {
   border-top-right-radius: 0px;
   border-top-style: groove;
 }
 .jewel.spinner .jewel.button.down::after {
-  background-size: 46%;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23808080' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  width: 12px;
+  height: 7px;
+  left: calc(50% - 6px);
+  top: calc(50% - 3.5px);
 }
 
 @media (max-width: 992px) {
+  .jewel.spinner {
+    left: -112px;
+    width: auto;
+  }
+  .jewel.spinner .jewel.button {
+    width: 39px;
+    height: 38px;
+  }
   .jewel.spinner .jewel.button.up {
+    left: 149px;
     border: 1px solid #b3b3b3;
     border-radius: 0 0.25rem 0.25rem 0;
   }
   .jewel.spinner .jewel.button.down {
+    left: -39px;
     border: 1px solid #b3b3b3;
     border-radius: 0.25rem 0 0 0.25rem;
     border-top-style: solid;
@@ -691,6 +984,7 @@ j|FormItem {
 .jewel.radiobutton input + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Ccircle fill='%233CADF1' cx='11' cy='11' r='6'/%3E%3C/svg%3E") no-repeat center center;
   border: 1px solid transparent;
+  border-radius: 50%;
   transition: all 0.3s ease;
   transform: scale(0);
 }
@@ -700,10 +994,12 @@ j|FormItem {
 .jewel.radiobutton input:focus + span::before, .jewel.radiobutton input:checked:focus + span::before, .jewel.radiobutton input:checked:active:focus + span::before {
   background: linear-gradient(#cbe9fb, #9bd5f8);
   border: 1px solid #0f88d1;
+  border-radius: 50%;
 }
 .jewel.radiobutton input[disabled] + span::before {
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
+  border-radius: 50%;
 }
 .jewel.radiobutton input[disabled] + span {
   color: silver;
@@ -716,9 +1012,6 @@ j|FormItem {
   font-size: 16px;
 }
 
-.jewel.slider input {
-  color: #3CADF1;
-}
 .jewel.slider input::-ms-fill-lower {
   background: linear-gradient(#4ab3f2, #2ea7f0);
   border: 1px solid #0f88d1;
@@ -730,7 +1023,15 @@ j|FormItem {
   border: 1px solid #b3b3b3;
   border-radius: 3px;
 }
-.jewel.slider input::-webkit-slider-thumb, .jewel.slider input::-moz-range-thumb {
+.jewel.slider input::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(#4ab3f2, #2ea7f0);
+  border: 1px solid #0f88d1;
+  box-shadow: inset 0 1px 0 #9bd5f8, 0 0 0 1px rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+}
+.jewel.slider input::-moz-range-thumb {
   width: 18px;
   height: 18px;
   background: linear-gradient(#4ab3f2, #2ea7f0);
@@ -865,7 +1166,7 @@ j|FormItem {
   height: 2px;
   background-color: #3CADF1;
 }
-.jewel.tabbarbutton.hovered:hover {
+.jewel.tabbarbutton.hovered {
   background: rgba(60, 173, 241, 0.2);
 }
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
@@ -941,7 +1242,7 @@ j|FormItem {
   box-shadow: inset 0 1px 0 white;
 }
 
-.jewel.tableitem.hovered:hover {
+.jewel.tableitem.hovered {
   color: #FFFFFF;
   background: #3CADF1;
 }
@@ -956,6 +1257,59 @@ a:link {
 
 a:active {
   color: #0f88d1;
+}
+
+.primary-lightest {
+  color: #fafdff;
+}
+
+.primary-light {
+  color: #9bd5f8;
+}
+
+.primary-normal {
+  color: #3CADF1;
+}
+
+.primary-dark {
+  color: #0d79ba;
+}
+
+.primary-darkest {
+  color: #063b5b;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.8rem 0rem;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0.58rem 0rem;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 0.408rem 0rem;
+}
+
+h4 {
+  font-size: 1.25em;
+  margin: 0.35rem 0rem;
+}
+
+h5 {
+  font-size: 1em;
+  margin: 0.2rem 0rem;
+}
+
+span {
+  font-size: 1em;
+}
+
+div {
+  font-size: 14px;
 }
 
 .jewel.textinput {
@@ -1019,26 +1373,32 @@ a:active {
 }
 
 .jewel.togglebutton {
+  margin: 0;
+  padding: 0.679em 1.12em;
   background: linear-gradient(#e6e6e6, #cccccc);
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
   border-radius: 0.25rem;
   color: #808080;
+  text-shadow: none;
   font-weight: bold;
   text-transform: uppercase;
 }
 .jewel.togglebutton:hover, .jewel.togglebutton:hover:focus {
   background: linear-gradient(#d9d9d9, silver);
   border: 1px solid #a6a6a6;
+  color: #808080;
 }
 .jewel.togglebutton:active, .jewel.togglebutton:active:focus {
   background: linear-gradient(silver, #a6a6a6);
   border: 1px solid #8d8d8d;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #808080;
 }
 .jewel.togglebutton:focus {
   border: 1px solid #b3b3b3;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #808080;
 }
 .jewel.togglebutton[disabled] {
   background: #f3f3f3 !important;
@@ -1051,19 +1411,23 @@ a:active {
   background: linear-gradient(silver, #a6a6a6);
   border: 1px solid #8d8d8d;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #808080;
 }
 .jewel.togglebutton[disabled] {
   font-weight: 400;
+}
+.jewel.togglebutton.icon {
+  padding: 0.429em 0.87em;
 }
 .jewel.togglebutton.icon i {
   margin-left: 0px;
   margin-right: 0px;
 }
-.jewel.togglebutton.iconLSpace i {
+.jewel.togglebutton.left-space i {
   margin-left: 0px;
   margin-right: 8px;
 }
-.jewel.togglebutton.iconRSpace i {
+.jewel.togglebutton.right-space i {
   margin-left: 8px;
   margin-right: 0px;
 }
@@ -1079,15 +1443,18 @@ a:active {
 .jewel.togglebutton.primary:hover, .jewel.togglebutton.primary:hover:focus {
   background: linear-gradient(#3CADF1, #1198e9);
   border: 1px solid #0d79ba;
+  color: #FFFFFF;
 }
 .jewel.togglebutton.primary:active, .jewel.togglebutton.primary:active:focus {
   background: linear-gradient(#1198e9, #0d79ba);
   border: 1px solid #0a5a8a;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
 }
 .jewel.togglebutton.primary:focus {
   border: 1px solid #0f88d1;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
 }
 .jewel.togglebutton.primary[disabled] {
   background: #f3f3f3 !important;
@@ -1100,6 +1467,153 @@ a:active {
   background: linear-gradient(#1198e9, #0d79ba);
   border: 1px solid #0a5a8a;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
+}
+
+.jewel.togglebutton.outlined {
+  background: rgba(179, 179, 179, 0.05);
+  border: 1px solid #999999;
+  box-shadow: none;
+  color: #8d8d8d;
+  text-shadow: none;
+}
+.jewel.togglebutton.outlined:hover, .jewel.togglebutton.outlined:hover:focus {
+  background: rgba(179, 179, 179, 0.15);
+  border: 1px solid #8d8d8d;
+  color: #737373;
+}
+.jewel.togglebutton.outlined:active, .jewel.togglebutton.outlined:active:focus {
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid #858585;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.togglebutton.outlined:focus {
+  border: 1px solid gray;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.togglebutton.outlined[disabled] {
+  background: rgba(243, 243, 243, 0.1) !important;
+  border: 1px solid #d9d9d9 !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.outlined.selected {
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid #858585;
+  box-shadow: none;
+  color: #737373;
+}
+
+.jewel.togglebutton.primary.outlined {
+  background: rgba(60, 173, 241, 0.05);
+  border: 1px solid #1198e9;
+  box-shadow: none;
+  color: #0f88d1;
+  text-shadow: none;
+}
+.jewel.togglebutton.primary.outlined:hover, .jewel.togglebutton.primary.outlined:hover:focus {
+  background: rgba(60, 173, 241, 0.15);
+  border: 1px solid #0f88d1;
+  color: #0c69a2;
+}
+.jewel.togglebutton.primary.outlined:active, .jewel.togglebutton.primary.outlined:active:focus {
+  background: rgba(60, 173, 241, 0.25);
+  border: 1px solid #0e7fc3;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.togglebutton.primary.outlined:focus {
+  border: 1px solid #0d79ba;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.togglebutton.primary.outlined[disabled] {
+  background: rgba(243, 243, 243, 0.1) !important;
+  border: 1px solid #d9d9d9 !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.primary.outlined.selected {
+  background: rgba(60, 173, 241, 0.25);
+  border: 1px solid #0e7fc3;
+  box-shadow: none;
+  color: #0c69a2;
+}
+
+.jewel.togglebutton.unboxed {
+  background: rgba(179, 179, 179, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8d8d8d;
+  text-shadow: none;
+}
+.jewel.togglebutton.unboxed:hover, .jewel.togglebutton.unboxed:hover:focus {
+  background: rgba(179, 179, 179, 0.15);
+  border: 1px solid transparent;
+  color: #737373;
+}
+.jewel.togglebutton.unboxed:active, .jewel.togglebutton.unboxed:active:focus {
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.togglebutton.unboxed:focus {
+  background: rgba(179, 179, 179, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #737373;
+}
+.jewel.togglebutton.unboxed[disabled] {
+  background: rgba(243, 243, 243, 0) !important;
+  border: 1px solid transparent !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.unboxed.selected {
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #737373;
+}
+
+.jewel.togglebutton.primary.unboxed {
+  background: rgba(60, 173, 241, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #0f88d1;
+  text-shadow: none;
+}
+.jewel.togglebutton.primary.unboxed:hover, .jewel.togglebutton.primary.unboxed:hover:focus {
+  background: rgba(60, 173, 241, 0.15);
+  border: 1px solid transparent;
+  color: #0c69a2;
+}
+.jewel.togglebutton.primary.unboxed:active, .jewel.togglebutton.primary.unboxed:active:focus {
+  background: rgba(60, 173, 241, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.togglebutton.primary.unboxed:focus {
+  background: rgba(60, 173, 241, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #0c69a2;
+}
+.jewel.togglebutton.primary.unboxed[disabled] {
+  background: rgba(243, 243, 243, 0) !important;
+  border: 1px solid transparent !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.primary.unboxed.selected {
+  background: rgba(60, 173, 241, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #0c69a2;
 }
 
 .jewel.tooltip {

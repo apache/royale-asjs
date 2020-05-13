@@ -34,6 +34,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.sendEvent;
 
     COMPILE::JS
     {
@@ -253,7 +254,7 @@ package org.apache.royale.core
 			
 			_explicitWidth = value;
 			
-			dispatchEvent(new Event("explicitWidthChanged"));
+			sendEvent(this,"explicitWidthChanged");
 		}
 		
 		protected var _explicitHeight:Number;
@@ -286,10 +287,10 @@ package org.apache.royale.core
 			
 			_explicitHeight = value;
 			
-			dispatchEvent(new Event("explicitHeightChanged"));
+			sendEvent(this,"explicitHeightChanged");
 		}
 		
-		private var _percentWidth:Number;
+		protected var _percentWidth:Number;
 
         /**
          *  The requested percentage width this component
@@ -329,10 +330,10 @@ package org.apache.royale.core
 					this._explicitWidth = NaN;
 			}
 			
-			dispatchEvent(new Event("percentWidthChanged"));
+			sendEvent(this,"percentWidthChanged");
 		}
 
-        private var _percentHeight:Number;
+        protected var _percentHeight:Number;
         
         /**
          *  The requested percentage height this component
@@ -373,10 +374,10 @@ package org.apache.royale.core
 					this._explicitHeight = NaN;
 			}
 			
-			dispatchEvent(new Event("percentHeightChanged"));
+			sendEvent(this,"percentHeightChanged");
 		}
 		
-		private var _width:Number;
+		protected var _width:Number;
 
         [Bindable("widthChanged")]
         [PercentProxy("percentWidth")]
@@ -472,7 +473,7 @@ package org.apache.royale.core
 			return super.width;
 		}
 		
-		private var _height:Number;
+		protected var _height:Number;
 
         [Bindable("heightChanged")]
         [PercentProxy("percentHeight")]
@@ -586,7 +587,7 @@ package org.apache.royale.core
                     this.positioner.style.height = value.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("heightChanged"));
+                    sendEvent(this,"heightChanged");
             }            
         }
 
@@ -608,7 +609,7 @@ package org.apache.royale.core
                     this.positioner.style.width = value.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("widthChanged"));
+                    sendEvent(this,"widthChanged");
             }
         }
         
@@ -622,27 +623,30 @@ package org.apache.royale.core
          */
         public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void
         {
-            if (_width !== newWidth)
+			var widthChanged:Boolean = _width !== newWidth;
+			var heightChanged:Boolean = _height !== newHeight;
+            if (widthChanged)
             {
                 _width = newWidth;
                 COMPILE::JS
                 {
                     this.positioner.style.width = newWidth.toString() + 'px';        
                 }
-                if (!noEvent) 
-                    dispatchEvent(new Event("widthChanged"));
+                if (!noEvent && !heightChanged) 
+                    sendEvent(this,"widthChanged");
             }
-            if (_height !== newHeight)
+            if (heightChanged)
             {
                 _height = newHeight;
                 COMPILE::JS
                 {
                     this.positioner.style.height = newHeight.toString() + 'px';        
                 }
-                if (!noEvent)
-                    dispatchEvent(new Event("heightChanged"));
+                if (!noEvent && !widthChanged)
+                    sendEvent(this,"heightChanged");
             }            
-            dispatchEvent(new Event("sizeChanged"));
+			if (widthChanged && heightChanged)
+	            sendEvent(this,"sizeChanged");
         }
         
         /**
@@ -662,7 +666,6 @@ package org.apache.royale.core
             var left:* = ValuesManager.valuesImpl.getValue(this, "left");
             var right:* = ValuesManager.valuesImpl.getValue(this, "right");
             return (left === undefined || right === undefined);
-
         }
         
         /**
@@ -684,7 +687,7 @@ package org.apache.royale.core
             return (top === undefined || bottom === undefined);          
         }
 		
-        private var _x:Number;
+        protected var _x:Number;
         
         /**
          *  @private
@@ -746,20 +749,13 @@ package org.apache.royale.core
 			COMPILE::JS
 			{
 				//positioner.style.position = 'absolute';
-                if(!isNaN(value))
-                {
-                    if (positioner.parentNode != positioner.offsetParent)
-                        value += (positioner.parentNode as HTMLElement).offsetLeft;
-                    positioner.style.left = value.toString() + 'px';
-                } else
-                {
-                    // is NaN remove style
-                    positioner.style.left = "initial";
-                }
+                if (positioner.parentNode != positioner.offsetParent)
+                    value += (positioner.parentNode as HTMLElement).offsetLeft;
+                positioner.style.left = value.toString() + 'px';
 			}
         }
         
-        private var _y:Number;
+        protected var _y:Number;
         
         /**
          *  @private
@@ -822,16 +818,9 @@ package org.apache.royale.core
 			COMPILE::JS
 			{
 				//positioner.style.position = 'absolute';
-                if(!isNaN(value))
-                {
-                    if (positioner.parentNode != positioner.offsetParent)
-                        value += (positioner.parentNode as HTMLElement).offsetTop;
-                    positioner.style.top = value.toString() + 'px';
-                } else
-                {
-                    // is NaN remove style
-                    positioner.style.top = "initial";
-                }
+                if (positioner.parentNode != positioner.offsetParent)
+                    value += (positioner.parentNode as HTMLElement).offsetTop;
+                positioner.style.top = value.toString() + 'px';
 			}
         }
         
@@ -843,8 +832,8 @@ package org.apache.royale.core
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;
-			dispatchEvent(new Event(value?"show":"hide"));
-			dispatchEvent(new Event("visibleChanged"));
+			sendEvent(this,new Event(value?"show":"hide"));
+			sendEvent(this,new Event("visibleChanged"));
         }
         /**
          * @private
@@ -887,15 +876,15 @@ package org.apache.royale.core
                 {
 					displayStyleForLayout = positioner.style.display;
                     positioner.style.display = 'none';
-                    dispatchEvent(new Event('hide'));
+                    sendEvent(this,'hide');
                 } 
                 else 
                 {
                     if (displayStyleForLayout != null)
                         positioner.style.display = displayStyleForLayout;
-                    dispatchEvent(new Event('show'));
+                    sendEvent(this,'show');
                 }
-                dispatchEvent(new Event('visibleChanged'));
+                sendEvent(this,'visibleChanged');
             }
         }
         
@@ -936,7 +925,7 @@ package org.apache.royale.core
             if (_view != value)
             {
                 addBead(value);
-                dispatchEvent(new Event("viewChanged"));
+                sendEvent(this,"viewChanged");
             }
         }
 
@@ -963,7 +952,7 @@ package org.apache.royale.core
 			if (_id !== value)
 			{
 				_id = value;
-				dispatchEvent(new Event("idChanged"));
+				sendEvent(this,"idChanged");
 			}
             COMPILE::JS
             {
@@ -1016,7 +1005,7 @@ package org.apache.royale.core
 					if (parent)
 						ValuesManager.valuesImpl.applyStyles(this, _style);
 				}
-                dispatchEvent(new Event("stylesChanged"));
+                sendEvent(this,"stylesChanged");
 
                 // if the new style is an IStyleObject, set the reference back to us to get updates
                 var styleObject : IStyleObject = _style as IStyleObject;
@@ -1079,10 +1068,10 @@ package org.apache.royale.core
                     // set it now if it was set once in addedToParent
                     // otherwise just wait for addedToParent
                     if (parent)
-                        setClassName(computeFinalClassNames());             
+                        setClassName(computeFinalClassNames());
                 }
                 
-                dispatchEvent(new Event("classNameChanged"));
+                sendEvent(this,"classNameChanged");
             }
         }
 
@@ -1146,7 +1135,7 @@ package org.apache.royale.core
 			}
 			
 			if (isView) {
-				dispatchEvent(new Event("viewChanged"));
+				sendEvent(this,"viewChanged");
 			}
 		}
 		
@@ -1340,7 +1329,9 @@ package org.apache.royale.core
 			
             COMPILE::JS
             {
-			    setClassName(computeFinalClassNames());
+                var classNames:String = computeFinalClassNames().trim();
+                if(classNames)
+			        setClassName(classNames);
                 
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
@@ -1396,7 +1387,7 @@ package org.apache.royale.core
 			loadBeadFromValuesManager(IBeadModel, "iBeadModel", this);
             loadBeadFromValuesManager(IBeadView, "iBeadView", this);
 			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
-            dispatchEvent(new Event("beadsAdded"));
+            sendEvent(this,"beadsAdded");
         }
 
         private var _measurementBead:IMeasurementBead;
@@ -1461,7 +1452,7 @@ package org.apache.royale.core
          */
         protected function repeaterListener(event:Event):void
         {
-            dispatchEvent(event);
+            sendEvent(this,event);
         }
         
         /**

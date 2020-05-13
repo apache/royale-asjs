@@ -29,6 +29,7 @@ package org.apache.royale.textLayout.edit
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.utils.event.hasPlatformModifier;
 	import org.apache.royale.text.engine.ITextLine;
 	import org.apache.royale.text.engine.TextRotation;
 	import org.apache.royale.text.events.IMEEvent;
@@ -2411,18 +2412,19 @@ package org.apache.royale.textLayout.edit
 		private function handleLeftArrow(event:KeyboardEvent):SelectionState
 		{
 			var selState:SelectionState = getSelectionState();
+			var platformModifier:Boolean = hasPlatformModifier(event);
 			if (_textFlow.computedFormat.blockProgression != BlockProgression.RL)
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
@@ -2433,7 +2435,7 @@ package org.apache.royale.textLayout.edit
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.endOfParagraph(selState, event.shiftKey);
-				else if (event.specialKey)
+				else if (platformModifier)
 					NavigationUtil.endOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.nextLine(selState, event.shiftKey);
@@ -2443,13 +2445,14 @@ package org.apache.royale.textLayout.edit
 
 		private function handleUpArrow(event:KeyboardEvent):SelectionState
 		{
+			var platformModifier:Boolean = hasPlatformModifier(event);
 			var selState:SelectionState = getSelectionState();
 			if (_textFlow.computedFormat.blockProgression != BlockProgression.RL)
 			{
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.startOfParagraph(selState, event.shiftKey);
-				else if (event.specialKey)
+				else if (platformModifier)
 					NavigationUtil.startOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.previousLine(selState, event.shiftKey);
@@ -2458,14 +2461,14 @@ package org.apache.royale.textLayout.edit
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
@@ -2476,20 +2479,21 @@ package org.apache.royale.textLayout.edit
 
 		private function handleRightArrow(event:KeyboardEvent):SelectionState
 		{
+			var platformModifier:Boolean = hasPlatformModifier(event);
 			var selState:SelectionState = getSelectionState();
 
 			if (_textFlow.computedFormat.blockProgression != BlockProgression.RL)
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
@@ -2500,7 +2504,7 @@ package org.apache.royale.textLayout.edit
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.startOfParagraph(selState, event.shiftKey);
-				else if (event.specialKey)
+				else if (platformModifier)
 					NavigationUtil.startOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.previousLine(selState, event.shiftKey);
@@ -2510,6 +2514,7 @@ package org.apache.royale.textLayout.edit
 
 		private function handleDownArrow(event:KeyboardEvent):SelectionState
 		{
+			var platformModifier:Boolean = hasPlatformModifier(event);
 			var selState:SelectionState = getSelectionState();
 
 			if (_textFlow.computedFormat.blockProgression != BlockProgression.RL)
@@ -2517,7 +2522,7 @@ package org.apache.royale.textLayout.edit
 				// always test for altkey first - that way ctrl-alt is the same as alt
 				if (event.altKey)
 					NavigationUtil.endOfParagraph(selState, event.shiftKey);
-				else if (event.specialKey)
+				else if (platformModifier)
 					NavigationUtil.endOfDocument(selState, event.shiftKey);
 				else
 					NavigationUtil.nextLine(selState, event.shiftKey);
@@ -2526,14 +2531,14 @@ package org.apache.royale.textLayout.edit
 			{
 				if (_textFlow.computedFormat.direction == Direction.LTR)
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.nextWord(selState, event.shiftKey);
 					else
 						NavigationUtil.nextCharacter(selState, event.shiftKey);
 				}
 				else
 				{
-					if (event.specialKey || event.altKey)
+					if (platformModifier || event.altKey)
 						NavigationUtil.previousWord(selState, event.shiftKey);
 					else
 						NavigationUtil.previousCharacter(selState, event.shiftKey);
@@ -2545,8 +2550,9 @@ package org.apache.royale.textLayout.edit
 
 		private function handleHomeKey(event:KeyboardEvent):SelectionState
 		{
+			var platformModifier:Boolean = hasPlatformModifier(event);
 			var selState:SelectionState = getSelectionState();
-			if (event.specialKey && !event.altKey)
+			if (platformModifier && !event.altKey)
 				NavigationUtil.startOfDocument(selState, event.shiftKey);
 			else
 				NavigationUtil.startOfLine(selState, event.shiftKey);
@@ -2555,8 +2561,9 @@ package org.apache.royale.textLayout.edit
 
 		private function handleEndKey(event:KeyboardEvent):SelectionState
 		{
+			var platformModifier:Boolean = hasPlatformModifier(event);
 			var selState:SelectionState = getSelectionState();
-			if (event.specialKey && !event.altKey)
+			if (platformModifier && !event.altKey)
 				NavigationUtil.endOfDocument(selState, event.shiftKey);
 			else
 				NavigationUtil.endOfLine(selState, event.shiftKey);
@@ -2641,7 +2648,8 @@ package org.apache.royale.textLayout.edit
 			// in Flash there is special events for this.
 			COMPILE::JS
 			{
-				if(event.specialKey && !event.altKey && !event.defaultPrevented)
+				var platformModifier:Boolean = hasPlatformModifier(event);
+				if(platformModifier && !event.altKey && !event.defaultPrevented)
 				{
 					switch(event.code)
 					{

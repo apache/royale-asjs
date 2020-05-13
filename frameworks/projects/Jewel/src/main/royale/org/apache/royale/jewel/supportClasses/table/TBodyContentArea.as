@@ -24,12 +24,13 @@ package org.apache.royale.jewel.supportClasses.table
 	import org.apache.royale.html.util.addElementToWrapper;
     }
     import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.ItemAddedEvent;
     import org.apache.royale.events.ItemRemovedEvent;
-    import org.apache.royale.html.supportClasses.ContainerContentArea;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+    import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
+    import org.apache.royale.jewel.supportClasses.container.StyledContainerContentArea;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
 
 
@@ -46,7 +47,7 @@ package org.apache.royale.jewel.supportClasses.table
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TBodyContentArea extends ContainerContentArea implements IItemRendererParent
+	public class TBodyContentArea extends StyledContainerContentArea implements IItemRendererOwnerView
 	{
 		/**
 		 *  constructor.
@@ -75,11 +76,11 @@ package org.apache.royale.jewel.supportClasses.table
 		private var itemRenderers:Array = [];
 
 		/*
-		* IItemRendererParent
+		* IItemRendererOwnerView
 		*/
 		
 		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererOwnerView#addItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -90,8 +91,8 @@ package org.apache.royale.jewel.supportClasses.table
 		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
 			// this method is not used for now, so it needs to be tested to see if it's correctly implemented
-			var r:DataItemRenderer = renderer as DataItemRenderer;
-			r.itemRendererParent = host; // easy access from renderer to table
+			var r:ListItemRenderer = renderer as ListItemRenderer;
+			r.itemRendererOwnerView = this; // easy access from renderer to table
 			var tableCell:TableCell = new TableCell();
 			tableCell.addElement(r);
 
@@ -113,7 +114,7 @@ package org.apache.royale.jewel.supportClasses.table
 		}
 		
 		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#addItemRendererAt()
+		 * @copy org.apache.royale.core.IItemRendererOwnerView#addItemRendererAt()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -123,8 +124,8 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
-			var r:DataItemRenderer = renderer as DataItemRenderer;
-			r.itemRendererParent = host; // easy access from renderer to table
+			var r:ListItemRenderer = renderer as ListItemRenderer;
+			r.itemRendererOwnerView = this; // easy access from renderer to table
 			var tableCell:TableCell = new TableCell();
 			tableCell.addElement(r);
 
@@ -157,7 +158,7 @@ package org.apache.royale.jewel.supportClasses.table
 		}
 		
 		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererOwnerView#removeItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -176,7 +177,7 @@ package org.apache.royale.jewel.supportClasses.table
 		private var processedRow:TableRow;
 		
 		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+		 * @copy org.apache.royale.core.IItemRendererOwnerView#removeAllItemRenderers()
 		 * @private
 		 *
 		 *  @langversion 3.0
@@ -200,7 +201,7 @@ package org.apache.royale.jewel.supportClasses.table
 		}
 		
 		/**
-		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererAt()
+		 *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererAt()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -214,7 +215,7 @@ package org.apache.royale.jewel.supportClasses.table
 		}
 
 		/**
-		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
+		 *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererForIndex()
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -231,7 +232,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  Refreshes the itemRenderers. Useful after a size change by the data group.
 		 *  Not used for now. This should be revised in this case
 		 *
-		 *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
+		 *  @copy org.apache.royale.core.IItemRendererOwnerView#updateAllItemRenderers()
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -242,7 +243,7 @@ package org.apache.royale.jewel.supportClasses.table
 			var n:Number = numElements;
 			for (var i:Number = 0; i < n; i++)
 			{
-				var renderer:DataItemRenderer = getItemRendererAt(i) as DataItemRenderer;
+				var renderer:StyledDataItemRenderer = getItemRendererAt(i) as StyledDataItemRenderer;
 				if (renderer) {
 					renderer.setWidth(this.width,true);
 					renderer.adjustSize();
@@ -251,7 +252,7 @@ package org.apache.royale.jewel.supportClasses.table
 		}
 
 		/**
-         *  @copy org.apache.royale.core.IItemRendererParent#numItemRenderers()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#numItemRenderers()
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

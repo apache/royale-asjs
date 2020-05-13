@@ -23,10 +23,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
 	/**
 	 *  The SearchFilterForList bead class is a specialty bead that can be used with
@@ -209,7 +209,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 					//decorate text
 					if(useDecoration)
 					{
-						ir.text = filterText != "" ? decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData;
+						ir.text = "<span>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
 					}
                 } else {
                     ir.visible = false;

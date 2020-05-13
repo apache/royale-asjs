@@ -18,22 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.ContainerBase;
     import org.apache.royale.core.IMXMLDocument;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
-    import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.jewel.supportClasses.container.ContainerBase;
     import org.apache.royale.utils.MXMLDataInterpreter;
-    import org.apache.royale.utils.StringUtil;
 	
 	/**
 	 * The default property uses when additional MXML content appears within an element's
 	 * definition in an MXML file.
 	 */
 	[DefaultProperty("mxmlContent")]
-
 	
     /**
      *  The Container class implements a basic container for
@@ -71,7 +66,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */    
-	public class Container extends ContainerBase implements IMXMLDocument, IClassSelectorListSupport
+	public class Container extends ContainerBase implements IMXMLDocument
 	{
         /**
          *  Constructor.
@@ -84,195 +79,8 @@ package org.apache.royale.jewel
 		public function Container()
 		{
 			super();
-			classSelectorList = new ClassSelectorList(this);
-			typeNames = "";
+			typeNames = "jewel container";
 		}
-
-		protected var classSelectorList:ClassSelectorList;
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
-        }
-		
-		/**
-         * Add a class selector to the list.
-         * 
-         * @param name Name of selector to add.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.4
-         */
-        public function addClass(name:String):void
-        {
-            COMPILE::JS
-            {
-            classSelectorList.add(name);
-            }
-        }
-
-        /**
-         * Removes a class selector from the list.
-         * 
-         * @param name Name of selector to remove.
-         *
-         * @royaleignorecoercion HTMLElement
-         * @royaleignorecoercion DOMTokenList
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.4
-         */
-        public function removeClass(name:String):void
-        {
-            COMPILE::JS
-            {
-            classSelectorList.remove(name);
-            }
-        }
-
-        /**
-         * Add or remove a class selector to/from the list.
-         * 
-         * @param name Name of selector to add or remove.
-         * @param value True to add, False to remove.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.4
-         */
-        public function toggleClass(name:String, value:Boolean):void
-        {
-            COMPILE::JS
-            {
-            classSelectorList.toggle(name, value);
-            }
-        }
-
-		/**
-		 *  Search for the name in the element class list 
-		 *
-         *  @param name Name of selector to find.
-         *  @return return true if the name is found or false otherwise.
-         * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function containsClass(name:String):Boolean
-        {
-            COMPILE::JS
-            {
-            return classSelectorList.contains(name);
-            }
-            COMPILE::SWF
-            {//not implemented
-            return false;
-            }
-        }
-
-        protected var _layout:StyledLayoutBase;
-
-        /**
-		 *  Distribute all items horizontally
-		 *  Possible values are:
-		 *  - itemsLeft
-		 *  - itemsCenter
-		 *  - itemsRight
-		 *  - itemsSpaceBetween
-		 *  - itemsSpaceAround
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get itemsHorizontalAlign():String
-        {
-            return _layout.itemsHorizontalAlign;
-        }
-
-        [Inspectable(category="General", enumeration="itemsLeft,itemsCenter,itemsRight,itemsSpaceBetween,itemsSpaceAround")]
-        public function set itemsHorizontalAlign(value:String):void
-        {
-			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsHorizontalAlign);
-			_layout.itemsHorizontalAlign = value;
-			typeNames += " " + _layout.itemsHorizontalAlign;
-
-			COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-        }
-
-		/**
-		 *  Distribute all items vertically
-		 *  Possible values are:
-		 *  - itemsSameHeight
-		 *  - itemsCentered
-		 *  - itemsTop
-		 *  - itemsBottom
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get itemsVerticalAlign():String
-        {
-            return _layout.itemsVerticalAlign;
-        }
-
-        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCentered,itemsTop,itemsBottom")]
-        public function set itemsVerticalAlign(value:String):void
-        {
-			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsVerticalAlign);
-			_layout.itemsVerticalAlign = value;
-			typeNames += " " + _layout.itemsVerticalAlign;
-
-			COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-        }
-
-        /**
-		 *  A boolean flag to activate "itemsExpand" effect selector.
-		 *  Make items resize to the fill all container space
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get itemsExpand():Boolean
-        {
-            return _layout.itemsExpand;
-        }
-
-        public function set itemsExpand(value:Boolean):void
-        {
-            typeNames = StringUtil.removeWord(typeNames, " itemsExpand");
-            _layout.itemsExpand = value;
-            if(_layout.itemsExpand)
-            {
-                typeNames += " itemsExpand";
-            }
-
-            COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-        }
 
 		private var _mxmlDescriptor:Array;
 		private var _mxmlDocument:Object = this;

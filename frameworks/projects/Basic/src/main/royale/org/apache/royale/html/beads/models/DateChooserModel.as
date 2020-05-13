@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {	
-	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
@@ -33,7 +33,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateChooserModel extends EventDispatcher implements IDateChooserModel
+	public class DateChooserModel extends EventDispatcher implements IDateChooserModelWithChangeCheck
 	{
 		public function DateChooserModel()
 		{
@@ -65,6 +65,7 @@ package org.apache.royale.html.beads.models
 		private var _displayedMonth:Number;
 		private var _firstDayOfWeek:Number = 0;
 		private var _selectedDate:Date;
+        private var _disableChangeCheck:Boolean;
 		
 		/**
 		 *  An array of strings used to name the days of the week with Sunday being the
@@ -192,6 +193,12 @@ package org.apache.royale.html.beads.models
 		}
 		public function set selectedDate(value:Date):void
 		{
+            COMPILE::JS
+            {
+                // in JS, date compare does not compare values, only if same instance
+                if (!disableChangeCheck && value != null && _selectedDate != null && value.getTime() == _selectedDate.getTime())
+                    return;
+            }
 			if (value != _selectedDate) {
 				_selectedDate = value;
 				
@@ -210,6 +217,25 @@ package org.apache.royale.html.beads.models
                 
                 dispatchEvent( new Event("selectedDateChanged") );
             }
+            else if (disableChangeCheck)
+                dispatchEvent( new Event("selectedDateChanged") );
+        }
+        
+        /**
+         *  The currently selected date or null if no date has been selected.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get disableChangeCheck():Boolean
+        {
+            return _disableChangeCheck;
+        }
+        public function set disableChangeCheck(value:Boolean):void
+        {
+            _disableChangeCheck = value;
         }
         
         // Utilities

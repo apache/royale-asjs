@@ -68,6 +68,7 @@ package org.apache.royale.svg
 		public function set rx(value:Number):void
 		{
 			_rx = value;
+            updateView();
 		}
 
  		private var _ry:Number;
@@ -88,6 +89,7 @@ package org.apache.royale.svg
 		public function set ry(value:Number):void
 		{
 			_ry = value;
+            updateView();
 		}
 
         override public function get width():Number
@@ -98,6 +100,7 @@ package org.apache.royale.svg
         override public function set width(value:Number):void
         {
             _rx = value/2;
+            updateView();
         }
 
         override public function get height():Number
@@ -108,6 +111,7 @@ package org.apache.royale.svg
         override public function set height(value:Number):void
         {
             _ry = value/2;
+            updateView();
         }
 
         COMPILE::JS

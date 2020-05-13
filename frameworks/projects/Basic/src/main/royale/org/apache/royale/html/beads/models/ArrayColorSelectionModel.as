@@ -47,7 +47,7 @@ package org.apache.royale.html.beads.models
 			addEventListener("selectedIndexChanged", dispatchChangeEvent);
 		}
 		
-		private function dispatchChangeEvent(event:Event):void
+		protected function dispatchChangeEvent(event:Event):void
 		{
 			dispatchEvent(new Event("change"));
 		}

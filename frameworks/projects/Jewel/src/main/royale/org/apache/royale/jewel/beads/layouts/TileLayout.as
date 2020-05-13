@@ -18,19 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
-    import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.layout.ILayoutStyleProperties;
-	import org.apache.royale.core.UIBase;
-
 	COMPILE::JS
 	{
-		import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.core.WrappedHTMLElement;
 	}
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.ILayoutStyleProperties;
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -41,7 +40,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.4
 	 */
 	public class TileLayout extends LayoutBase implements ILayoutStyleProperties
 	{
@@ -51,7 +50,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function TileLayout()
 		{
@@ -68,7 +67,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get numColumns():Number
 		{
@@ -87,7 +86,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get columnWidth():Number
 		{
@@ -106,7 +105,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get rowHeight():Number
 		{
@@ -115,110 +114,6 @@ package org.apache.royale.jewel.beads.layouts
 		public function set rowHeight(value:Number):void
 		{
 			_rowHeight = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingTop:Number = 0;
-
-		/**
-		 *  The top padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingTop():Number
-		{
-			return _paddingTop;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingTop(value:Number):void
-		{
-			_paddingTop = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingRight:Number = 0;
-
-		/**
-		 *  The right padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingRight():Number
-		{
-			return _paddingRight;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingRight(value:Number):void
-		{
-			_paddingRight = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingBottom:Number = 0;
-
-		/**
-		 *  The top padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingBottom():Number
-		{
-			return _paddingBottom;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingBottom(value:Number):void
-		{
-			_paddingBottom = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingLeft:Number = 0;
-
-		/**
-		 *  The left padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingLeft():Number
-		{
-			return _paddingLeft;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingLeft(value:Number):void
-		{
-			_paddingLeft = value;
 		}
 
 		/**
@@ -445,7 +340,7 @@ package org.apache.royale.jewel.beads.layouts
 					
 					if(i < numCols)
 					{
-						childW.style.marginTop = _paddingTop + 'px';
+						childW.style.marginTop = 0 + 'px';//_paddingTop
 					}
 					else
 					{
@@ -458,7 +353,7 @@ package org.apache.royale.jewel.beads.layouts
 					}
 					else
 					{
-						childW.style.marginLeft = _paddingLeft + 'px';
+						childW.style.marginLeft = 0 + 'px';//_paddingLeft
 					}
 
 					childW.royale_wrapper.dispatchEvent('sizeChanged');				

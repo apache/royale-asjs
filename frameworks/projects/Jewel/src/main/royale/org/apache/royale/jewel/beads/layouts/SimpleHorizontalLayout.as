@@ -18,24 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS 
+	COMPILE::SWF
 	{
-		import org.apache.royale.core.UIBase;
-	}
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
+	}
+	COMPILE::JS
+	{
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.UIBase;
+	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
-
+	
     /**
-     *  The HorizontalLayout class is a simple layout
-     *  bead.  It takes the set of children and lays them out
-     *  horizontally in one row, separating them according to
-     *  CSS layout rules for margin and vertical-align styles.
+     *  The SimpleHorizontalLayout class is a simple layout
+     *  bead that takes the set of children and lays them out
+     *  horizontally in one row. In JS we make use of the CSS flex layout rules.
+	 * 
+	 *  Note:SWF comes from basic layouts and are not tested
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -88,7 +93,7 @@ package org.apache.royale.jewel.beads.layouts
 		}
 
         /**
-		 *  Layout children vertically
+		 *  Layout children horizontally
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -187,8 +192,26 @@ package org.apache.royale.jewel.beads.layouts
 				 *		flex-flow: row nowrap;
 				 *      align-items: flex-start
 				 *	}
+				 *  
+				 *  .layout.horizontal > * {
+				 *    flex: 0 0 auto
+				 *  }
 				 */
 
+				// We just need to make chids resize themselves (through `sizeChanged` event)
+				var contentView:ILayoutView = layoutView;
+				var n:int = contentView.numElements;
+				var child:UIBase;
+
+				if (n == 0) return false;
+				
+				for(var i:int=0; i < n; i++) {
+					child = contentView.getElementAt(i) as UIBase;
+					if (!child)
+						continue;
+					child.dispatchEvent('sizeChanged');
+				}
+				
                 return true;
             }
 		}

@@ -21,9 +21,14 @@
     "compilerOptions": {
         "debug": false,
         "targets": ["JSRoyale","SWF"],
-        "source-map": true
+        "source-map": true,
+        "source-path": [
+            "src/main/royale",
+            "src/main/resources"
+		]
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
+    "copySourcePathAssets": true,
     "files":
     [
         "src/main/royale/DataGridExample.mxml"

@@ -41,6 +41,7 @@ import mx.controls.beads.ToolTipBead;
 import mx.core.mx_internal;
 COMPILE::SWF
 {
+import flash.display.DisplayObject;
 import flash.display.Graphics;
 }
 import mx.display.Graphics;
@@ -50,6 +51,8 @@ import mx.events.KeyboardEvent;
 import mx.events.MoveEvent;
 import mx.events.PropertyChangeEvent;
 import mx.events.ResizeEvent;
+import mx.events.utils.KeyboardEventConverter;
+import mx.events.utils.FocusEventConverter;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
@@ -62,16 +65,20 @@ import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
+import org.apache.royale.utils.MXMLDataInterpreter;
 use namespace mx_internal;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IChild;
+import org.apache.royale.core.IMXMLDocument;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+import org.apache.royale.core.styles.BorderStyles;
 import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
@@ -83,11 +90,15 @@ import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
+import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
 import mx.validators.IValidatorListener;
 import mx.validators.ValidationResult;
 import mx.events.ValidationResultEvent;
+import org.apache.royale.utils.MXMLDataInterpreter;
+import mx.managers.IFocusManagerComponent;
+import mx.events.FocusEvent;
 
 /**
  *  Set a different class for click events so that
@@ -153,21 +164,23 @@ import mx.events.ValidationResultEvent;
 [Event(name="valid", type="mx.events.FlexEvent")]
 
 /**
- *  Dispatched when the component has finished its construction
- *  and has all initialization properties set.
- *
- *  <p>After the initialization phase, properties are processed, the component
- *  is measured, laid out, and drawn, after which the
- *  <code>creationComplete</code> event is dispatched.</p>
+ * The "preinitialize" event gets dispatched after everything about this
+ * UIComponent has been initialized, and it has been attached to
+ * its parent, but before any of its children have been created.
+
+ * <p>This allows a "preinitialize" event handler to set properties which
+ * affect child creation.
+ * Note that this implies that "preinitialize" handlers are called
+ * top-down; i.e., parents before children..</p>
  * 
- *  @eventType mx.events.FlexEvent.INITIALIZE
+ *  @eventType mx.events.FlexEvent.PREINITIALIZE
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
- 
+[Event(name="preinitialize", type="mx.events.FlexEvent")]
 /**
  *  Dispatched when the component has finished its construction
  *  and has all initialization properties set.
@@ -477,6 +490,7 @@ import mx.events.ValidationResultEvent;
 public class UIComponent extends UIBase
     implements IChildList,
     IFlexDisplayObject,
+    IMXMLDocument,
     IInvalidating,
     IStatesObject,
     ISimpleStyleClient,
@@ -609,6 +623,18 @@ public class UIComponent extends UIBase
     public function UIComponent()
     {
         super();
+        if (this is IFocusManagerComponent)
+        {
+			COMPILE::SWF
+			{
+				KeyboardEventConverter.setupInstanceConverters(this);
+				FocusEventConverter.setupInstanceConverters(this);
+			}
+            addEventListener(FocusEvent.FOCUS_IN, focusInHandler);
+            addEventListener(FocusEvent.FOCUS_OUT, focusOutHandler);
+            addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+            addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -625,7 +651,25 @@ public class UIComponent extends UIBase
 	
 	}
 	
+	private var _index:int;
 	
+	/**
+	 *  The position with the dataProvider being shown by the itemRenderer instance.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	public function get index():int
+	{
+		return _index;
+	}
+	public function set index(value:int):void
+	{
+		_index = value;
+	}				
+				
     //----------------------------------
     //  chromeColor
     //----------------------------------
@@ -733,6 +777,12 @@ public class UIComponent extends UIBase
             return _graphics;
         }            
             
+        COMPILE::SWF
+        public function get flashgraphics():flash.display.Graphics
+        {
+            return super.graphics;
+        }            
+        
     COMPILE::JS{
 	private var _mask:UIComponent;
 		 public function set mask(value:UIComponent):void
@@ -964,16 +1014,16 @@ public class UIComponent extends UIBase
 	}
     }
     
-    
+    private var _accessibilityEnabled:Boolean = true;
+
     public function get accessibilityEnabled():Boolean
     {
-        trace("accessibilityEnabled not implemented");
-        return false;
+        return _accessibilityEnabled;
     }
     
     public function set accessibilityEnabled(value:Boolean):void
     {
-        trace("accessibilityEnabled not implemented");
+      _accessibilityEnabled = value;
     }
     
     /**
@@ -1122,6 +1172,10 @@ public class UIComponent extends UIBase
         oldErrorString = _errorString;
         _errorString = value;
         
+        toolTip = value;
+        if (_toolTipBead)
+            _toolTipBead.isError = value != null && value != "";
+        
         //errorStringChanged = true;
         setBorderColorForErrorString();
         dispatchEvent(new Event("errorStringChanged"));
@@ -1171,6 +1225,18 @@ public class UIComponent extends UIBase
                 {
                     saveBorderColor = false;
                     origBorderColor = getStyle("borderColor");
+                    COMPILE::JS
+                    {
+                        if (isNaN(origBorderColor))
+                        {
+                            var borderImpl:IBorderPaddingMarginValuesImpl = ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl;
+                            if (borderImpl)
+                            {
+                                var bs:BorderStyles = borderImpl.getBorderStyles(this);
+                                origBorderColor = bs.color;
+                            }
+                        }
+                    }                    
                 }
                 
                 setStyle("borderColor", getStyle("errorColor"));
@@ -1274,6 +1340,7 @@ public class UIComponent extends UIBase
     private var _enabled:Boolean = true;
 
     [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
+    [Bindable("disabledChange")]
 
     /**
      *  @copy mx.core.IUIComponent#enabled
@@ -1863,6 +1930,8 @@ COMPILE::JS
      */
     public function get mxmlDocument():Object
     {
+        if (!_mxmlDocument && MXMLDescriptor != null)
+            _mxmlDocument = this;
         return _mxmlDocument;
     }
     
@@ -1898,16 +1967,35 @@ COMPILE::JS
         _mxmlDocument = value;
     }
     
+    /**
+     * If the component is going to be used in an absolute positioning layout
+     */
+    COMPILE::JS
+    public var isAbsolute:Boolean = true;
     
     override public function addedToParent():void
     {
         COMPILE::JS
         {
-            // Flex layouts don't use percentages the way the browser
-            // does, so we have to absolute position everything.
-            element.style.position = "absolute";
+            if (isAbsolute)
+                // Flex layouts don't use percentages the way the browser
+                // does, so we have to absolute position everything.
+                element.style.position = "absolute";
         }
         super.addedToParent();
+        
+        COMPILE::JS
+        {
+            if (!isNaN(_backgroundAlpha) && _backgroundColor !== null)
+            {
+                var red:Number = parseInt("0x" + _backgroundColor.substring(1, 3));
+                var green:Number = parseInt("0x" + _backgroundColor.substring(3, 5));
+                var blue:Number = parseInt("0x" + _backgroundColor.substring(5, 7));
+                var rgba:String = "rgba(" + red + "," + green + "," + blue + "," + _backgroundAlpha + ")";
+                (element as HTMLElement).style['backgroundColor'] = rgba;
+            }                
+        }
+
         
         if (!initialized)
         {
@@ -2152,7 +2240,7 @@ COMPILE::JS
                 if (oldWidth.length)
                     this.positioner.style.width = "";
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
-                    this.positioner.style.left = "";
+                    return 0; // this.positioner.style.left = "";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
@@ -2168,6 +2256,8 @@ COMPILE::JS
                     this.positioner.style.width = oldWidth;
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     this.positioner.style.left = oldLeft;
+                if (!isNaN(percentWidth))
+                    _measuredMinWidth = mw;
                 return mw;
 			}
 		}
@@ -2225,7 +2315,7 @@ COMPILE::JS
                 if (oldHeight.length)
                     this.positioner.style.height = "";
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
-                    this.positioner.style.top = "";
+                    return 0; //this.positioner.style.top = "";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && numChildren > 0)
                 {
@@ -2240,6 +2330,8 @@ COMPILE::JS
                     this.positioner.style.height = oldHeight;
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates width
                     this.positioner.style.top = oldTop;
+                if (!isNaN(percentHeight))
+                    _measuredMinHeight = mh;
                 return mh;
             }
 		}
@@ -2922,6 +3014,8 @@ COMPILE::JS
         if (_alpha != value)
         {
             _alpha = value;
+            
+            super.alpha = value;
         
            /*  if (designLayer)
                 value = value * designLayer.effectiveAlpha; 
@@ -3051,12 +3145,18 @@ COMPILE::JS
      */
     public function set currentState(value:String):void
     {
+    	if (value == _currentState) return;
         var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
         _currentState = value;
         addEventListener("stateChangeComplete", stateChangeCompleteHandler);
         dispatchEvent(event);
     }
-
+    
+    public function setCurrentState(stateName:String, playTransition:Boolean=true):void
+    {
+        currentState = stateName;
+    }
+    
     private function stateChangeCompleteHandler(event:Event):void
     {
         callLater(dispatchUpdateComplete); 
@@ -3248,8 +3348,6 @@ COMPILE::JS
 			addBead(_toolTipBead);
 		}
 		else if ((_toolTip == null || _toolTip == "") && _toolTipBead != null) {
-			removeBead(_toolTipBead);
-			_toolTipBead = null;
 		}
 		
 		if (_toolTipBead) {
@@ -3451,10 +3549,16 @@ COMPILE::JS
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
     COMPILE::SWF 
     { override }
-    public function contains(child:IUIComponent):Boolean
+    public function contains(child:IUIBase):Boolean
     {
-        trace("contains not implemented");
-        return true;
+        COMPILE::SWF
+        {
+            return super.contains(child as DisplayObject);
+        }
+        COMPILE::JS
+        {
+            return element.contains(child.element);
+        }
     }
     
     /**
@@ -3558,7 +3662,9 @@ COMPILE::JS
         dispatchEvent(new FlexEvent(FlexEvent.PREINITIALIZE));
             
         createChildren();
-                
+		_measuredWidth = NaN;
+		_measuredHeight = NaN;
+		                
         // This should always be the last thing that initialize() calls.
         initializationComplete();
     }
@@ -3609,8 +3715,59 @@ COMPILE::JS
      */
     protected function createChildren():void
     {
+        MXMLDataInterpreter.generateMXMLInstances(mxmlDocument, this, MXMLDescriptor);
     }
     
+    private var _mxmlDescriptor:Array;
+    
+    /**
+     *  @copy org.apache.royale.core.Application#MXMLDescriptor
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get MXMLDescriptor():Array
+    {
+        return _mxmlDescriptor;
+    }
+    
+    /**
+     *  @private
+     */
+    public function setMXMLDescriptor(document:Object, value:Array):void
+    {
+        _mxmlDocument = document;
+        _mxmlDescriptor = value;
+    }
+    
+    /**
+     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function generateMXMLAttributes(data:Array):void
+    {
+        if (!_mxmlDocument)
+            _mxmlDocument = this;
+        MXMLDataInterpreter.generateMXMLProperties(this, data);
+    }
+    
+    /**
+     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
+    public var mxmlContent:Array;
 
     //--------------------------------------------------------------------------
     //
@@ -3671,6 +3828,8 @@ COMPILE::JS
      */
     public function invalidateSize():void
     {
+		_measuredWidth = NaN;
+		_measuredHeight = NaN;
         if (parent)
             (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded")); // might cause too many layouts
     }
@@ -4152,8 +4311,8 @@ COMPILE::JS
 			return new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
 		}
 		COMPILE::JS {
-			var body:HTMLBodyElement = document.getElementsByTagName('body')[0] as HTMLBodyElement;
-			return new Rectangle(0, 0, body.clientWidth, body.clientHeight);
+            var topLevelApplication:IUIBase = FlexGlobals.topLevelApplication as IUIBase;
+			return new Rectangle(0, 0, topLevelApplication.width, topLevelApplication.height);
 		}
 	}
 
@@ -4234,6 +4393,41 @@ COMPILE::JS
         invalidateDisplayListFlag = false;
     }
 
+    override public function isWidthSizedToContent():Boolean
+    {
+        if (!isNaN(_explicitWidth))
+            return false;
+        if (!isNaN(percentWidth))
+            return false;
+        var left:* = ValuesManager.valuesImpl.getValue(this, "left");
+        var right:* = ValuesManager.valuesImpl.getValue(this, "right");
+        if (typeof(left) === "string" && String(left).indexOf(":") != -1)
+            left = undefined;
+        if (typeof(right) === "string" && String(right).indexOf(":") != -1)
+            right = undefined;        
+        if (left === undefined || right === undefined) return true;
+        if (parent is UIComponent)
+            return (parent as UIComponent).isWidthSizedToContent();
+        return false;
+    }
+
+    override public function isHeightSizedToContent():Boolean
+    {
+        if (!isNaN(_explicitHeight))
+            return false;
+        if (!isNaN(percentHeight))
+            return false;
+        var top:* = ValuesManager.valuesImpl.getValue(this, "top");
+        var bottom:* = ValuesManager.valuesImpl.getValue(this, "bottom");
+        if (typeof(top) === "string" && String(top).indexOf(":") != -1)
+            top = undefined;
+        if (typeof(bottom) === "string" && String(bottom).indexOf(":") != -1)
+            bottom = undefined;        
+        if (top === undefined || bottom === undefined) return true;
+        if (parent is UIComponent)
+            return (parent as UIComponent).isHeightSizedToContent();
+        return false;
+    }
     
     [Inspectable(category="General")]
 
@@ -4556,15 +4750,64 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get uid():Object
+    private var _uid:String;
+    public function get uid():String
     {
-        trace("uid not implemented");
-        return 0;
+        if (!_uid)
+            _uid = toString();
+
+        return _uid;
     }
-    public function set uid(value:Object):void
+    public function set uid(uid:String):void
     {
-        trace("uid not implemented");
+        this._uid = uid;
     }
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get showErrorSkin():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "showErrorSkin");
+    }
+    public function set showErrorSkin(value:Object):void
+    {
+        setStyle("showErrorSkin", value);
+    }
+
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get showErrorTip():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "showErrorTip");
+    }
+    public function set showErrorTip(value:Object):void
+    {
+        setStyle("showErrorTip", value);
+    }
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get baseline():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "baseline");
+    }
+    public function set baseline(value:Object):void
+    {
+        setStyle("baseline", value);
+    }
+    
 	[Inspectable(category="General")]
 	
 	/*	  
@@ -4581,6 +4824,23 @@ COMPILE::JS
     {
         setStyle("fontSize", value);
     }
+    [Inspectable(category="General")]
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get fontStyle():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "fontStyle");
+    }
+    public function set fontStyle(value:Object):void
+    {
+        setStyle("fontStyle", value);
+    }
+    
 	[Inspectable(category="General")]
 	
 	/*	  
@@ -4608,12 +4868,16 @@ COMPILE::JS
      */
     public function get color():Object
     {
-        trace("color not implemented");
-        return 0;
+        return getStyle("color");
     }
     public function set color(value:Object):void
     {
-        trace("color not implemented");
+        if (value is String && value.charAt(0) != '#')
+        {
+            var c:uint = parseInt(value as String);
+            value = '#' + c.toString(16);
+        }
+        setStyle("color", value);
     }
 	[Inspectable(category="General")]
 
@@ -4633,16 +4897,16 @@ COMPILE::JS
         trace("selectedField not implemented");
     }
     
-     private var contentMouseX:Number;
+     private var _contentMouseX:Number;
      public function get contentMouseX():Number
      {
-	return 0;
+	    return 0;
      }
      
-     private var contentMouseY:Number;
+     private var _contentMouseY:Number;
      public function get contentMouseY():Number
      {
-	return 0;
+	    return 0;
      }
 	
 	[Inspectable(category="General")]
@@ -4805,6 +5069,25 @@ COMPILE::JS
 		return value;
     }
 
+    private var _backgroundAlpha:Number = NaN;
+    private var _backgroundColor:String = null;
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get backgroundColor():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "backgroundColor");
+    }
+    public function set backgroundColor(value:Object):void
+    {
+        setStyle("backgroundColor", value);
+    }
+
+    
     /**
      *  Sets a style property on this component instance.
      *
@@ -4824,13 +5107,38 @@ COMPILE::JS
      */
     public function setStyle(styleProp:String, newValue:*):void
     {
-        if (!style)
-            style = new FlexCSSStyles();
-        style[styleProp] = newValue;
+        if (styleProp == "backgroundAlpha")
+            _backgroundAlpha = Number(newValue);
+        else
+        {
+            if (styleProp == "backgroundColor")
+            {
+                if (typeof(newValue) === 'number')
+                    _backgroundColor = CSSUtils.attributeFromColor(newValue);
+                else
+                    _backgroundColor = String(newValue);
+            }
+            if (!style)
+                style = new FlexCSSStyles();
+            style[styleProp] = newValue;
+            COMPILE::JS
+            {
+                if (initialized)
+                {
+                    ValuesManager.valuesImpl.applyStyles(this, style);
+                }
+            }
+        }
         COMPILE::JS
         {
-        if (initialized)
-            ValuesManager.valuesImpl.applyStyles(this, style);
+            if (!isNaN(_backgroundAlpha) && _backgroundColor !== null)
+            {
+                var red:Number = parseInt("0x" + _backgroundColor.substring(1, 3));
+                var green:Number = parseInt("0x" + _backgroundColor.substring(3, 5));
+                var blue:Number = parseInt("0x" + _backgroundColor.substring(5, 7));
+                var rgba:String = "rgba(" + red + "," + green + "," + blue + "," + _backgroundAlpha + ")";
+                (element as HTMLElement).style['backgroundColor'] = rgba;
+            }                
         }
     }
 
@@ -4874,6 +5182,39 @@ COMPILE::JS
         // You must override this function if your component accepts focus
     }
 
+    /**
+     *  The event handler called for a <code>focusIn</code> event.
+     *  If you override this method, make sure to call the base class version.
+     *
+     *  @param event The event object.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function focusInHandler(event:FocusEvent):void
+    {
+        // You must override this function if your component accepts focus
+    }
+
+
+    /**
+     *  The event handler called for a <code>focusOut</code> event.
+     *  If you override this method, make sure to call the base class version.
+     *
+     *  @param event The event object.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function focusOutHandler(event:FocusEvent):void
+    {
+        // You must override this function if your component accepts focus
+    }
+
 
     //--------------------------------------------------------------------------
     //
@@ -4894,10 +5235,12 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function owns(child:IUIComponent):Boolean
+    public function owns(child:IUIBase):Boolean
     {
-        trace("owns not implemented");
-        return true;
+		if (!(child is IUIBase))
+			return false;
+			
+        return contains(child as IUIBase);
     }
     
     /**
@@ -4912,20 +5255,19 @@ COMPILE::JS
     {
         COMPILE::JS
         {
-        var oldValue:Boolean = positioner.style.display !== 'none';
-        if (value !== oldValue) 
-        {
-            if (!value) 
+            var oldValue:Boolean = (!positioner.style.visibility) ||
+                                    positioner.style.visibility == 'visible';
+            if (Boolean(value) !== oldValue)
             {
-                displayStyleForLayout = positioner.style.display;
-                positioner.style.display = 'none';
-            } 
-            else 
-            {
-                if (displayStyleForLayout != null)
-                    positioner.style.display = displayStyleForLayout;
+                if (!value) 
+                {
+                    positioner.style.visibility = 'hidden';
+                } 
+                else 
+                {
+                    positioner.style.visibility = null;
+                }
             }
-        }
         }
         COMPILE::SWF
         {
@@ -5664,6 +6006,8 @@ COMPILE::JS
             }
         }
         */
+		_measuredWidth = NaN;
+		_measuredHeight = NaN;
     }
     
     /**
@@ -5750,7 +6094,7 @@ COMPILE::JS
     {
         if (!positioner.style.visibility) return true;
         
-        return positioner.style.visibility == 'visible';
+        return positioner.style.visibility != 'hidden';
     }
     
     COMPILE::JS
@@ -5767,7 +6111,7 @@ COMPILE::JS
             } 
             else 
             {
-                positioner.style.visibility = 'visible';
+                positioner.style.visibility = null;
                 dispatchEvent(new Event('show'));
             }
             dispatchEvent(new Event('visibleChanged'));

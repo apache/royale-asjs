@@ -20,7 +20,8 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.IChild;
@@ -51,11 +52,15 @@ package org.apache.royale.html.supportClasses
             addEventListener("layoutNeeded", forwardEventHandler);
 		}
 		
-		protected var host:IStrand;
+        private var _host:IUIBase;
+		public function get host():IUIBase
+        {
+            return _host;
+        }
 		
 		public function set strand(value:IStrand):void
 		{
-			host = value;
+			_host = value as IUIBase;
 		}
 
         private function forwardEventHandler(event:Event):void

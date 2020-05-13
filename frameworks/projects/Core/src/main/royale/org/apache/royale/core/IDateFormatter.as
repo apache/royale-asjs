@@ -27,7 +27,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-  public interface IDateFormatter
+  public interface IDateFormatter extends IFormatter
   {
     function get dateFormat():String;
     function set dateFormat(value:String):void;

@@ -30,7 +30,7 @@ package flexUnitTests
         public function NetworkTester()
         {
             // for JS, force-link these classes in the output
-            var arr:Array = [AMFBinaryDataTesterTest];
+            var arr:Array = [AMFBinaryDataTesterTest, URLVariablesTesterTest];
         }
         
         // in JS, using a class as a type won't include the class in
@@ -41,6 +41,9 @@ package flexUnitTests
         // of tests?  I would think an array of tests would wokr
         // better and allow you to define order.
         public var amfBinaryDataTesterTest:AMFBinaryDataTesterTest;
+    
+    
+        public var urlVariablesTesterTest:URLVariablesTesterTest;
         
     }
 }

@@ -18,16 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	COMPILE::JS
-	{
-	import org.apache.royale.core.WrappedHTMLElement;
-	}
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrandWithPresentationModel;
+	import org.apache.royale.jewel.beads.layouts.IVariableRowHeight;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.jewel.supportClasses.DataContainerBase;
+	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -41,7 +41,7 @@ package org.apache.royale.jewel
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
 	/**
-	 * The change event is dispatched whenever the list's selection changes.
+	 *  The change event is dispatched whenever the list's selection changes.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -67,7 +67,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class List extends DataContainerBase
+	public class List extends DataContainerBase implements IStrandWithPresentationModel, IVariableRowHeight
 	{
 		/**
 		 *  constructor.
@@ -81,6 +81,8 @@ package org.apache.royale.jewel
 		{
 			super();
             typeNames = "jewel list";
+			// rowHeight is not set by default, so set it to NaN
+			rowHeight = NaN;
 		}
 
         [Bindable("labelFieldChanged")]
@@ -180,6 +182,7 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
         public function get rowHeight():Number
         {
@@ -212,6 +215,31 @@ package org.apache.royale.jewel
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
+		
+		protected var _variableRowHeight:Boolean;
+		/**
+		 *  Specifies whether layout elements are allocated their preferred height.
+		 *  Setting this property to false specifies fixed height rows.
+		 *  
+		 *  If false, the actual height of each layout element is the value of rowHeight.
+		 *  The default value is true. 
+		 *  
+		 *  Note: From Flex but we should see what to do in Royale -> Setting this property to false causes the layout to ignore the layout elements' percentHeight property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		[Bindable("variableRowHeightChanged")]
+        public function get variableRowHeight():Boolean
+        {
+			return (presentationModel as IListPresentationModel).variableRowHeight;
+        }
+        public function set variableRowHeight(value:Boolean):void
+        {
+			(presentationModel as IListPresentationModel).variableRowHeight = value;
+        }
 
 		/**
 		 *  The presentation model for the list.
@@ -222,7 +250,7 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
-		public function get presentationModel():IListPresentationModel
+		public function get presentationModel():IBead
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
@@ -232,6 +260,21 @@ package org.apache.royale.jewel
 			return presModel;
 		}
 
-
+		/**
+		 *  Ensures that the data provider item at the given index is visible.
+		 *  
+		 *  @param index The index of the item in the data provider.
+		 *
+		 *  @return <code>true</code> if the scroll changed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.7
+		 */
+		public function scrollToIndex(index:int):Boolean
+		{
+			return (view as IScrollToIndexView).scrollToIndex(index);
+		}
    	}
 }

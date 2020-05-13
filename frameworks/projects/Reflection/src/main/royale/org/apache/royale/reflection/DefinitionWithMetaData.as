@@ -102,7 +102,9 @@ package org.apache.royale.reflection
             var source:Array = _metaData || metadata;
             var results:Array = [];
             var i:uint=0, l:uint = source.length;
-            for(;i<l;i++) if (source[i].name == name) results.push(source[i]);
+            if (l != 0) {
+                for(;i<l;i++) if (source[i].name == name) results.push(source[i]);
+            }
             return results;
         }
     }

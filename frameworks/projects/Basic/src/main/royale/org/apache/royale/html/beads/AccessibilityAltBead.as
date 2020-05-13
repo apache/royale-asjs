@@ -23,6 +23,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	COMPILE::SWF {
 		import org.apache.royale.html.accessories.ToolTipBead;
@@ -106,7 +108,7 @@ package org.apache.royale.html.beads
                 (_strand as Object).element.alt = _alt;
             }
 
-			IEventDispatcher(_strand).dispatchEvent(new ValueEvent("altChange", alt));
+			sendStrandEvent(_strand,new ValueEvent("altChange", alt));
 				
 		}
 		

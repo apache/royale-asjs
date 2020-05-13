@@ -95,7 +95,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
         COMPILE::SWF
         {
             timer.start();
-            return getTimer();
+            return flash.utils.getTimer();
         }
         COMPILE::JS
         {
@@ -126,7 +126,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
     private function timerHandler(event:flash.events.TimerEvent):void
     {
         event.updateAfterEvent();
-        dispatchEvent(new ValueEvent("update", getTimer()));
+        dispatchEvent(new ValueEvent("update", flash.utils.getTimer()));
     }
 
     COMPILE::JS

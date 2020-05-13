@@ -20,7 +20,6 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.html.Container;
 	
 	/**
 	 *  The IDataGridView interface marks as a component as being the bead that
@@ -34,7 +33,7 @@ package org.apache.royale.html.beads
 	public interface IDataGridView extends IBeadView
 	{
 		function get columnLists():Array;
-		function get listArea():Container;
+		function get listArea():IUIBase;
 		function get header():IUIBase;
 	}
 }

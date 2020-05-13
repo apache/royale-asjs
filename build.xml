@@ -41,7 +41,7 @@
 
     <property name="debug" value="true"/>
     <property name="strict" value="true"/>
-    <property name="javac.src" value="1.5"/>
+    <property name="javac.src" value="1.7"/>
     
     <property name="kit.prefix" value="apache-royale-${release.version}"/>
     <property name="source.kit" value="${kit.prefix}-src"/>
@@ -510,6 +510,20 @@ limitations under the License.
                 <include name="**"/>
             </fileset>
         </copy>
+        <!--
+            compiler-jx has some optional scripts that override the ones from
+            compiler. the core SWF compiler doesn't understand our
+            royale-config.xml because it sets a number of JS-related compiler
+            options, so its original scripts will fail when executed and report
+            unknown tag errors. the override scripts call compiler-jx with
+            -targets=SWF to preserve the original behavior while handling the
+            extended options included in royale-config.xml.
+        -->
+        <copy todir="${basedir}/bin" overwrite="true">
+            <fileset dir="${ROYALE_COMPILER_REPO}/compiler-jx/src/assembly/compiler-override-scripts">
+                <include name="**"/>
+            </fileset>
+        </copy>
         <chmod dir="${basedir}/bin" excludes="**/*.bat" perm="+x" />
         <mkdir dir="${basedir}/js/lib" />
         <echo>Copying Transpiler from ${ROYALE_COMPILER_REPO}</echo>
@@ -850,7 +864,7 @@ limitations under the License.
                 <exclude name="manualtests/**"/>
                 <exclude name="marmotinni/**"/>
                 <exclude name="mustella/**"/>
-                <exclude name="src/**"/>
+                <exclude name="src/site/**"/>
                 <exclude name="testsuite/**"/>
                 <exclude name="fxg2svg/**"/>
                 <exclude name="temp/**"/>
@@ -888,12 +902,17 @@ limitations under the License.
         <echo message="Updating config file node-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/node-config-template.xml" version="${build.version}" />
         
-        
+        <fixcrlf srcdir="${staging-dir}/bin" eol="crlf" fixlast="false">
+            <include name="**/*.bat"/>
+        </fixcrlf>
         <fixcrlf srcdir="${staging-dir}/js/bin" eol="crlf" fixlast="false">
             <include name="**/*.bat"/>
         </fixcrlf>
         
         <!-- Unix shell scripts need the correct line endings. -->
+        <fixcrlf srcdir="${staging-dir}/bin" eol="unix" fixlast="false">
+            <exclude name="**/*.bat"/>
+        </fixcrlf>
         <fixcrlf srcdir="${staging-dir}/js/bin" eol="unix" fixlast="false">
             <exclude name="**/*.bat"/>
         </fixcrlf>
@@ -1008,6 +1027,8 @@ limitations under the License.
                 <include name="royale-config.xml"/>
             </fileset>
         </replace>
+        <replaceregexp file="${staging-dir}/frameworks/royale-config.xml" match="(\s+?)&lt;path-element&gt;libs\/[^\.]+\.swc&lt;\/path-element&gt;(\s+?)" replace="" flags ="g"/>
+        <replace file="${staging-dir}/frameworks/royale-config.xml" token="&lt;path-element&gt;libs/player/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}&lt;/path-element&gt;" value="&lt;path-element&gt;libs/KeepsFBFromHanging.swc&lt;/path-element&gt;"/>
         <!-- replace npm descriptor with js-only descriptor -->
         <antcall target="create-jsonly-description" />
         <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
@@ -1058,8 +1079,18 @@ limitations under the License.
 	
     <target name="tweak-for-jsonly" unless="env.AIR_HOME" description="do a few more things so the JSOnly package works">
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
-        tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" />
+        tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" failonerror="false"/>
         <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
+        <antcall target="fixup-royale-config" />
+    </target>
+    
+    <target name="check-royale-config">
+        <condition property="royale-config-fixed">
+                <resourcecontains resource="${ROYALE_HOME}/frameworks/royale-config.xml" substring="KeepsFBFromHanging.swc" />
+        </condition>
+    </target>
+    
+    <target name="fixup-royale-config" depends="check-royale-config" unless="royale-config-fixed">
         <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml" match="(\s+?)&lt;path-element&gt;libs\/[^\.]+\.swc&lt;\/path-element&gt;(\s+?)" replace="" flags ="g"/>
         <replace file="${ROYALE_HOME}/frameworks/royale-config.xml" token="&lt;path-element&gt;libs/player/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}&lt;/path-element&gt;" value="&lt;path-element&gt;libs/KeepsFBFromHanging.swc&lt;/path-element&gt;"/>
     </target>

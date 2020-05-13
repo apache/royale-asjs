@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-	import org.apache.royale.collections.ICollectionView;
-	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.models.IDropDownListModel;
 	import org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer;
 
@@ -39,45 +43,75 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			if (!dataProviderModel)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			
+			removeAllItemRenderers(dataGroup);
+
+			dp = dataProviderModel.dataProvider;
 			if (!dp)
 				return;
 			
-			dataGroup.removeAllItemRenderers();
-			
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			labelField = dataProviderModel.labelField;
-			
-			var ir:ISelectableItemRenderer;
-			var item:Object;
-			
-			var model:IDropDownListModel = _strand.getBeadByType(IDropDownListModel) as IDropDownListModel;
-			var offset:int = model.offset;
-
-			if(offset == 1)
-			{
-				ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-				item = DropDownListItemRenderer.OPTION_DISABLED;
-				fillRenderer(0, item, ir, presentationModel);
+			var offset:int = (dataProviderModel as IDropDownListModel).offset;
+			var data:Object;
+			if(offset == 1) {
+				promptRender = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+				data = DropDownListItemRenderer.OPTION_DISABLED;
+				(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(promptRender, data, 0);
+				promptRender.data = data;				
+				dataGroup.addItemRenderer(promptRender, false);
 			}
-
-			var n:int = dp.length;
+			
+			var n:int = dataProviderLength;
+			var ir:IIndexedItemRenderer;
 			for (var i:int = 0; i < n; i++)
-			{
-				ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-				item = dp.getItemAt(i);
-				fillRenderer(i + offset, item, ir, presentationModel);
+			{				
+				ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+				data = getItemAt(i);
+				(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, i + offset);
+				ir.data = data;				
+				dataGroup.addItemRenderer(ir, false);
 			}
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			dispatchItemCreatedEvent();
+			
+			if(dped)
+			{
+				dped.removeEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+				dped.removeEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+				dped.removeEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+			}
+			// listen for individual items being added in the future.
+			dped = dp as IEventDispatcher;
+			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+		}
+
+		/**
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var promptRender:IIndexedItemRenderer;
+
+		/**
+		 * used when need to update prompt at runtime
+		 */
+		public function updatePromptRender():void
+		{
+			if(promptRender)
+			{
+				promptRender.index = 0;
+				promptRender.data = DropDownListItemRenderer.OPTION_DISABLED;
+			}
 		}
 	}
 }

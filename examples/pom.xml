@@ -16,19 +16,18 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
   </parent>
 
   <groupId>org.apache.royale.examples</groupId>
   <artifactId>examples</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Examples</name>
@@ -38,8 +37,8 @@
     <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
     <!-- In Release mode we only want to copy assets folder content to assets destination folder, the rest is managed by compiler -->
     <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
-    <royale.framework.version>0.9.6-SNAPSHOT</royale.framework.version>
-  </properties>
+    <royale.framework.version>0.9.7-SNAPSHOT</royale.framework.version>
+  <project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
 
   <modules>
     <module>express</module>
@@ -50,8 +49,8 @@
     <module>node</module>
     <module>amf</module>
     <module>crux</module>
+    <module>jewel</module>
     <module>examples-tests</module>
-    <module>examples-integrationtests</module>
   </modules>
 
   <build>
@@ -62,7 +61,6 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.1.0</version>
           <executions>
             <execution>
               <id>copy-resources-debug</id>
@@ -102,19 +100,16 @@
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
           <artifactId>royale-maven-plugin</artifactId>
-          <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
-          <configuration>
-              <targets>${royale.example.targets}</targets>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.jboss.errai</groupId>
           <artifactId>cordova-maven-plugin</artifactId>
-          <version>4.0.0.Beta2</version>
+          <version>4.0.0.Beta3</version>
         </plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
       <!-- Makes it possible to run the example directly by running 'mvn tomcat7:run' -->
       <plugin>
@@ -131,15 +126,21 @@
   </build>
 
   <!--
-        When doing a release build tell the war plugin to package a different directory.
+        When doing a build for release artifacts, tell the war plugin to package a different directory.
   -->
   <profiles>
     <profile>
-      <id>release</id>
-
+      <id>apache-release</id>
       <properties>
         <compiler.output-dir>${basedir}/target/javascript/bin/js-release</compiler.output-dir>
       </properties>
+    </profile>
+
+    <profile>
+      <id>with-ui-testsuite</id>
+      <modules>
+        <module>examples-integrationtests</module>
+      </modules>
     </profile>
 
     <profile>
@@ -150,7 +151,7 @@
             <plugin>
               <groupId>org.jboss.errai</groupId>
               <artifactId>cordova-maven-plugin</artifactId>
-              <version>4.0.0.Beta2</version>
+              <version>4.0.0.Beta3</version>
               <executions>
                 <execution>
                   <id>build</id>

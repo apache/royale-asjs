@@ -367,8 +367,9 @@ package org.apache.royale.utils
          * @param arr
          * @param names
          * @param opt
+         * @royaleignorecoercion Array
          */
-        public static function sortOn(arr:Array, names:Object, opt:Object = 0):void
+        public static function sortOn(arr:Array, names:Object, opt:Object = 0):Array
         {
             if (names is Array)
             {
@@ -390,6 +391,11 @@ package org.apache.royale.utils
                 opt2 = /*opt as int*/ (int(opt) == opt) ? int(opt) : 0;
             }
             muler = (Array.DESCENDING & opt2) > 0 ? -1 : 1;
+            var orig:Array;               
+            if (opt2 & Array.RETURNINDEXEDARRAY)
+            {
+                orig = arr.slice();                
+            }
             if (opt2 & Array.NUMERIC)
             {
                 arr.sort(compareNumber);
@@ -400,6 +406,18 @@ package org.apache.royale.utils
             {
                 arr.sort(compareString);
             }
+            if (opt2 & Array.RETURNINDEXEDARRAY)
+            {
+                var retArr:Array = [];
+                var n:int = arr.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var item:Object = orig[i];
+                    retArr.push(arr.indexOf(item));
+                }
+                return retArr;
+            }
+            return arr;
         }
         
         private static function compareStringCaseinsensitive(a:Object, b:Object):int
@@ -526,7 +544,7 @@ package org.apache.royale.utils
                             return typeof v == 'function'
                                     && v.prototype
                                     && v.prototype['constructor'] == v
-                                    && (v.prototype.ROYALE_CLASS_INFO || v.constructor == _synthType || Object.getOwnPropertyNames(v).join().replace(excludeName,'') != isFunc )
+                                    && (v.prototype.ROYALE_CLASS_INFO || v.constructor == _synthType || v == Boolean || Object.getOwnPropertyNames(v).join().replace(excludeName,'') != isFunc )
                         };
                         snythTypeInst = typeStore['Class'] = new _synthType('Class',
                                 function():void{throw new TypeError('Error #1115: Class is not a constructor.')},

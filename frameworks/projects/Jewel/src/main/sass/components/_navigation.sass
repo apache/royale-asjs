@@ -29,12 +29,14 @@ j|Navigation
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
-    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer")
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.NavigationItemRendererInitializer")
+    ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
 
 
 // Jewel NavigationLinkItemRenderer
@@ -44,4 +46,4 @@ j|Navigation
     min-height: 48px
 
 j|NavigationLinkItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")

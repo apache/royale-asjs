@@ -26,9 +26,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
@@ -41,8 +41,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.supportClasses.TreeListData;
 	
-	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
-
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a
      *  HierarchicalData object and creates an item renderer for every
@@ -68,52 +66,6 @@ package org.apache.royale.html.beads
 		public function DataItemRendererFactoryForHierarchicalData()
 		{
 			super();
-		}
-
-		private var _strand:IStrand;
-
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			super.strand = value;
-		}
-		
-		/**
-		 * Sets the itemRenderer's data with additional tree-related data.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 */
-		override protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
-		{
-			if (!dataProviderModel)
-				return;
-			
-			var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
-			var depth:int = treeData.getDepth(data);
-			var isOpen:Boolean = treeData.isOpen(data);
-			var hasChildren:Boolean = treeData.hasChildren(data);
-			
-			// Set the listData with the depth of this item
-			var treeListData:TreeListData = new TreeListData();
-			treeListData.depth = depth;
-			treeListData.isOpen = isOpen;
-			treeListData.hasChildren = hasChildren;
-			
-			ir.listData = treeListData;
-			
-			super.setData(ir, data, index);
 		}
 	}
 }

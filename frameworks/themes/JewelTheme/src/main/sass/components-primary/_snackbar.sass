@@ -39,13 +39,12 @@ $snackbar-popup-margin-offset: 10px
 			@if $flat
 				background: $primary-color
 				border: 0px solid
+				box-shadow: none
 			@else
 				background: linear-gradient(lighten($primary-color, 5%), darken($primary-color, 5%))
 				border: 1px solid darken($primary-color, 15%)
 				box-shadow: inset 0 1px 0 lighten($primary-color, 20%)
 				border-bottom: none
-			
-			// +jewel-bg-border("normal", $primary-color, $snackbar-border-radius) --> we want only rounded corners on top corners
 		
 		.jewel.snackbar-message
 			color: $font-theme-color
@@ -59,9 +58,6 @@ $snackbar-popup-margin-offset: 10px
 					border: none
 				@else
 					background: linear-gradient($primary-color, darken($primary-color, 10%))
-				// +jewel-bg-border("hover", $primary-color)
-				// @if $flat == false
-				// 	border: none
 
 .jewel.snackbar-content
 	background: $snackbar-default-color

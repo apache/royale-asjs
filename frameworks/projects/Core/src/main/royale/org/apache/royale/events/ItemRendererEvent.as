@@ -35,7 +35,7 @@ package org.apache.royale.events
 	 */
 	public class ItemRendererEvent extends CustomEvent
 	{
-		// dispatched when a new itemRenderer has been created and added to the IItemRendererParent.
+		// dispatched when a new itemRenderer has been created and added to the IItemRendererOwnerView.
 		static public const CREATED:String = "itemRendererCreated";
 		
 		//--------------------------------------
@@ -71,7 +71,6 @@ package org.apache.royale.events
 		/**
 		 * The itemRenderer that has been created.
 		 *
-		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6

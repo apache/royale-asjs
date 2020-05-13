@@ -27,12 +27,16 @@
             "../../../../frameworks/libs/air/airglobal.swc"
         ],
         "include-classes": [
-            "CoreClasses"
+            "src/main/royale/CoreClasses.as"
+        ],
+        "source-path": [
+            "src/main/royale"
         ],
         "include-sources": [
             "src/main/royale",
             "src/test/royale/flexUnitTests"
         ],
+        "source-map": true,
         "output": "target/Core.swc"
     }
 }

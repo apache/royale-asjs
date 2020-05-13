@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:mx="library://ns.apache.org/royale/mx"
+                   width="600" height="400" >
+	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
+	<fx:Style>
+		@namespace mx "library://ns.apache.org/royale/mx";
+		
+		/* set position:absolute to make the (x,y) properties work */
+		mx|Label {
+			position: absolute;
+		}
+		
+	</fx:Style>
+    <fx:Script>
+        <![CDATA[
+            import mx.net.SharedObject;
+            private var so:SharedObject;
+            
+            private function saveIt():void
+            {
+                if (!so)
+                    so = SharedObject.getLocal("foo");
+                
+                so.data[key.text] = value.text;
+                so.flush();
+            }
+            
+            private function showIt():void
+            {
+                if (!so)
+                    so = SharedObject.getLocal("foo");
+                
+                value.text = so.data[key.text];
+            }
+            
+            private function deleteIt():void
+            {
+                if (!so)
+                    so = SharedObject.getLocal("foo");
+                
+                delete so.data[key.text];
+                so.flush();
+            }
+        ]]>
+    </fx:Script>
+	<mx:Label text="Enter a key" x="20" y="20" />
+    <mx:TextInput id="key" x="20" y="40" />
+    <mx:Label text="Enter a value" x="20" y="70" />
+    <mx:TextInput id="value" x="20" y="90" />
+    <mx:Button label="Save" x="20" y="120" click="saveIt()"/>
+    <mx:Button label="Show" x="120" y="120" click="showIt()" />
+    <mx:Button label="Delete" x="220" y="120" click="deleteIt()" />
+            
+</mx:Application>

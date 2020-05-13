@@ -15,15 +15,13 @@
  */
 package org.apache.royale.crux
 {
-
-	import org.apache.royale.core.ApplicationBase;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.crux.processors.IProcessor;
-    import org.apache.royale.crux.processors.IMetadataProcessor;
 	COMPILE::SWF{
 		import flash.utils.Dictionary;
 	}
-
+	import org.apache.royale.core.IFlexInfo;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.crux.processors.IMetadataProcessor;
+	import org.apache.royale.crux.processors.IProcessor;
 	import org.apache.royale.crux.utils.view.applicationContains;
 
     public class CruxManager
@@ -85,7 +83,7 @@ package org.apache.royale.crux
 			{
 				var crux:ICrux = ICrux( cruxes[ i ] );
 
-				if (applicationContains(ApplicationBase( crux.dispatcher ), view))
+				if (applicationContains(IFlexInfo( crux.dispatcher ), view))
 				{
 					setUpView( view, crux );
 					return;
@@ -168,7 +166,24 @@ package org.apache.royale.crux
 				}
 			}
 			COMPILE::JS{
-				var iterator:IteratorIterable = wiredViews.keys();
+				//Don't use an IteratorIterable approach to maintain compatibility with IE11
+				//IE11
+				//ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
+				
+				wiredViews.forEach(
+					function(value:Object, wiredView:*):void {
+						if (value == cruxInstance) {
+							tearDownWiredView(wiredView, cruxInstance);
+						}
+					} //no second 'this' arg here - we are static
+				)
+				
+				//otherwise (for other browsers) IteratorIterable might be faster (tbc):
+				//both could be supported with 'if (wireViews.keys) or maybe 'if (Map.prototype.keys)' tests
+				//as a feature check, but the above is common to all, and so deferring to IE's needs for now
+				//leaving this below as possible future improvement:
+
+				/*var iterator:IteratorIterable = wiredViews.keys();
 				var result:* = iterator.next();
 				while(!result.done)
 				{
@@ -179,7 +194,7 @@ package org.apache.royale.crux
 						tearDownWiredView(wiredView, cruxInstance);
 					}
 					result = iterator.next();
-				}
+				}*/
 			}
 		}
 	}

@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="asjs" default="main" basedir=".">
+
+    <property name="ROYALE_HOME" location="${basedir}"/>
+    
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+    
+    <property name="file1" value="jsonly/royale-asjs/frameworks/royale-config.xml" />
+    <property name="file2" value="jsswf/royale-asjs/frameworks/royale-config.xml" />
+
+    <echo>HomeDrive is ${env.HOMEDRIVE}</echo>
+    <echo>HomePath is ${env.HOMEPATH}</echo>
+
+    <!--
+        Notes: If you're running the main target, then there is no need to call clean first.
+        Each of the main targets for the modules will call clean themselves before proceeding.
+    -->
+
+    <target name="main">
+        <echo>This script is used to verify Jenkins CI builds</echo>
+    </target>
+
+    <target name="compare-royale-config" description="Used this to verify that the jsonly royale-config.xml is the same between the jsonly and js-swf builds." >
+        <delete dir="jsonly" failonerror="false" />
+        <delete dir="jsswf" failonerror="false" />
+        <mkdir dir="jsonly" />
+        <mkdir dir="jsswf" />
+        <get src="${JSONLY_URL}/lastSuccessfulBuild/artifact/out/apache-royale-${release.version}-bin-js.zip" dest="jsonly/apache-royale-${release.version}-bin-js.zip" />
+        <get src="${JSSWF_URL}/lastSuccessfulBuild/artifact/out/apache-royale-${release.version}-bin-js.zip" dest="jsswf/apache-royale-${release.version}-bin-js.zip" />
+        <unzip src="jsonly/apache-royale-${release.version}-bin-js.zip" dest="jsonly"/>
+        <unzip src="jsswf/apache-royale-${release.version}-bin-js.zip" dest="jsswf"/>
+        
+        <available file="${file1}"
+        type="file"
+        property="file1.found"/>
+        
+        <fail message="${file1} not found" unless="file1.found"/>
+        
+        <available file="${file2}"
+        type="file"
+        property="file2.found"/>
+        
+        <fail message="${file2} not found" unless="file2.found"/>
+        
+        <condition property="royale-config-matches">
+            <filesmatch file1="${file1}" file2="${file2}" textfile="true"/>
+        </condition>
+        <fail message="royale-config.xml does not match" unless="royale-config-matches" />
+    </target>
+    
+</project>

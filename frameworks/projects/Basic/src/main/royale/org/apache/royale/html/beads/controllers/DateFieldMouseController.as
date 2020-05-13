@@ -29,6 +29,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.beads.DateFieldView;
     import org.apache.royale.utils.Timer;
     import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -82,6 +83,10 @@ package org.apache.royale.html.beads.controllers
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;
 			IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+			COMPILE::JS
+			{
+				(viewBead.popUp as IUIBase).element.tabIndex = 0;
+			}
                                    
             removeDismissHandler();
             
@@ -100,6 +105,9 @@ package org.apache.royale.html.beads.controllers
             var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
             if (host) {
                 host.addEventListener("click", dismissHandler);
+                // also listen in capture to intercept before a component can 
+                // see the click and stop its propagation
+                host.addEventListener("click", dismissHandler, true);
             }
         }
         
@@ -111,6 +119,7 @@ package org.apache.royale.html.beads.controllers
             var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
             if (host) {
                 host.removeEventListener("click", dismissHandler);
+                host.removeEventListener("click", dismissHandler, true);
             }
 		}
 		
@@ -127,7 +136,7 @@ package org.apache.royale.html.beads.controllers
 			model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
 
 			viewBead.popUpVisible = false;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			sendStrandEvent(_strand,"change");
             
             removeDismissHandler();
 		}

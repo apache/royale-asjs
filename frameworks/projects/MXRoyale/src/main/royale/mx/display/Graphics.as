@@ -21,11 +21,29 @@ package mx.display
 	//import org.apache.royale.svg.CompoundGraphic;
 	import mx.core.UIComponent;
 	import mx.geom.Matrix;
+	import mx.graphics.GradientEntry;
 
 	public class Graphics// extends org.apache.royale.svg.CompoundGraphic
 	{
 		private var displayObject:UIComponent;
         
+        private static var _matrix_rotate90:Matrix;
+        
+        private static const FILLTYPE_NONE:String = "none";
+        private static const FILLTYPE_SOLID:String = "solid";
+        private static const FILLTYPE_LINEARGRADIENT:String = "linearGradient";
+        
+        /**
+         * @royaleignorecoercion mx.geom.Matrix
+         */
+        public static function get MATRIX_ROTATE90():Matrix
+        {
+            if (!_matrix_rotate90)
+            {
+                _matrix_rotate90 = new Matrix().rotate(90) as Matrix;
+            }
+            return _matrix_rotate90;
+        }
         COMPILE::JS
         private var element:HTMLElement;
 
@@ -53,9 +71,10 @@ package mx.display
         public function clear():void
         {
             fillInProgress = false;
+            fillType = FILLTYPE_NONE;
             COMPILE::SWF
             {
-                displayObject.graphics.clear();
+                displayObject.flashgraphics.clear();
             }
             COMPILE::JS
             {
@@ -64,19 +83,20 @@ package mx.display
                 svg = document.createElementNS("http://www.w3.org/2000/svg", "svg") as HTMLElement;
                 svg.setAttribute("width", displayObject.width.toString() + "px");
                 svg.setAttribute("height", displayObject.height.toString() + "px");
+                svg.style.position = "absolute";
                 element.appendChild(svg);
             }
         }
         
         private var pathParts:Array;
         private var fillColor:uint;
-        private var fillAlpha:Number;
+        private var fillAlpha:Number = 1.0;
         
         public function beginFill(color:uint, alpha:Number = 1.0):void
         {
             COMPILE::SWF
             {
-                displayObject.graphics.beginFill(color, alpha);
+                displayObject.flashgraphics.beginFill(color, alpha);
             }
             COMPILE::JS
             {
@@ -86,6 +106,7 @@ package mx.display
                 fillAlpha = alpha;
             }
             fillInProgress = true;
+            fillType = FILLTYPE_SOLID;
         }
         
         /**
@@ -95,7 +116,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.endFill();
+                displayObject.flashgraphics.endFill();
             }
             COMPILE::JS
             {
@@ -108,10 +129,19 @@ package mx.display
                     path.setAttribute("stroke-width", widthString);
                     if (alpha != 1)
                         path.setAttribute("stroke-opacity", alpha.toString());
-                    colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
-                    path.setAttribute("fill", colorString);
-                    if (fillAlpha != 1)
-                        path.setAttribute("fill-opacity", fillAlpha.toString());
+                    if (fillType == FILLTYPE_LINEARGRADIENT)
+                    {
+                        path.setAttribute("fill", "url(#gradientFill)");                        
+                    }
+                    else if (fillType == FILLTYPE_SOLID)
+                    {
+                        colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
+                        path.setAttribute("fill", colorString);
+                        if (fillAlpha != 1)
+                            path.setAttribute("fill-opacity", fillAlpha.toString());                        
+                    }
+                    else
+                        path.setAttribute("fill", "transparent");
                     var pathString:String = pathParts.join(" ");
                     path.setAttribute("d", pathString);
                     path.setAttribute("pointer-events", "none");
@@ -177,11 +207,60 @@ package mx.display
             }            
         }
         
+        private var fillType:String;
+        private var gradientColors:Array;
+        private var gradientAlphas:Array;
+        private var graidentRatios:Array;
+        private var gradientMatrix:Matrix;
+        private var gradientSpreadMethod:String;
+        private var gradientInterpolationMethod:String;
+        private var gradientFocalPointRatio:Number;
 		public function beginGradientFill(type:String, colors:Array, alphas:Array, ratios:Array, matrix:Matrix = null, spreadMethod:String = "pad", interpolationMethod:String = "rgb", focalPointRatio:Number = 0):void
 		{
+            COMPILE::JS
+            {
+                fillType = FILLTYPE_LINEARGRADIENT;
+                gradientColors = colors;
+                gradientAlphas = alphas;
+                graidentRatios = ratios;
+                gradientMatrix = matrix;
+                gradientSpreadMethod = spreadMethod;
+                gradientInterpolationMethod = interpolationMethod;
+                gradientFocalPointRatio = focalPointRatio;
+                var gradient:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", fillType) as SVGElement;
+                gradient.id = "gradientFill";
+                if (matrix == Graphics.MATRIX_ROTATE90)
+                    gradient.setAttribute("gradientTransform", "rotate(90)");
+                var n:int = colors.length;
+                var chunk:Number = 100 / (n - 1);
+                var chunks:Array = [];
+                var k:Number = 0;
+                for (var j:int = 0; j < n; j++)
+                {
+                    chunks.push(k);
+                    k += chunk;
+                }
+                for (var i:int = 0; i < n; i++)
+                {
+                    var entry:GradientEntry = colors[i] as GradientEntry;
+                    var stop:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "stop") as SVGElement;
+                    var color:uint = entry.color;
+                    var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
+                    stop.setAttribute("stop-color", colorString);
+                    stop.setAttribute("offset", chunks[i] + "%");
+                    gradient.appendChild(stop);
+                }
+                var defs:SVGElement = svg.querySelector('defs') as SVGElement;
+                if (!defs)
+                {
+                    defs = document.createElementNS("http://www.w3.org/2000/svg", "defs") as SVGElement;
+                    svg.insertBefore(defs, svg.firstChild);
+                }
+                defs.appendChild(gradient);
+            }
 		} 
 		
-        private var thickness:Number = 0.5;
+        private var thickness:Number = NaN;
         private var color:uint = 0;
         private var alpha:Number = 1.0;
         
@@ -189,7 +268,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.lineStyle(thickness, color, alpha);
+                displayObject.flashgraphics.lineStyle(thickness, color, alpha);
             }
             COMPILE::JS
             {
@@ -203,7 +282,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.moveTo(x, y);
+                displayObject.flashgraphics.moveTo(x, y);
             }
             COMPILE::JS
             {
@@ -217,7 +296,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.lineTo(x, y);
+                displayObject.flashgraphics.lineTo(x, y);
             }
             COMPILE::JS
             {
@@ -231,7 +310,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.curveTo(controlX, controlY, anchorX, anchorY);
+                displayObject.flashgraphics.curveTo(controlX, controlY, anchorX, anchorY);
             }
             COMPILE::JS
             {
@@ -248,21 +327,33 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawEllipse(x, y, width, height);
+                displayObject.flashgraphics.drawEllipse(x, y, width, height);
             }
             COMPILE::JS
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "ellipse") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
-                colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
-                path.setAttribute("fill", colorString);
-                if (fillAlpha != 1)
-                    path.setAttribute("fill-opacity", fillAlpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
+                if (fillType == FILLTYPE_LINEARGRADIENT)
+                {
+                    path.setAttribute("fill", "url(#gradientFill)");                        
+                }
+                else if (fillType == FILLTYPE_SOLID)
+                {
+                    colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
+                    path.setAttribute("fill", colorString);
+                    if (fillAlpha != 1)
+                        path.setAttribute("fill-opacity", fillAlpha.toString());
+                }
+                else
+                    path.setAttribute("fill", "transparent");
                 path.setAttribute("cx", x.toString());
                 path.setAttribute("cy", y.toString());
                 path.setAttribute("rx", width.toString());
@@ -279,21 +370,33 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawRoundRect(x, y, width, height, radiusX, radiusY);
+                displayObject.flashgraphics.drawRoundRect(x, y, width, height, radiusX, radiusY);
             }
             COMPILE::JS
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "rect") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
-                colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
-                path.setAttribute("fill", colorString);
-                if (fillAlpha != 1)
-                    path.setAttribute("fill-opacity", fillAlpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
+                if (fillType == FILLTYPE_LINEARGRADIENT)
+                {
+                    path.setAttribute("fill", "url(#gradientFill)");                        
+                }
+                else if (fillType == FILLTYPE_SOLID)
+                {
+                    colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
+                    path.setAttribute("fill", colorString);
+                    if (fillAlpha != 1)
+                        path.setAttribute("fill-opacity", fillAlpha.toString());
+                }
+                else
+                    path.setAttribute("fill", "transparent");
                 path.setAttribute("x", x.toString());
                 path.setAttribute("y", y.toString());
                 path.setAttribute("rx", radiusX.toString());
@@ -315,21 +418,33 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawRect(x, y, width, height);
+                displayObject.flashgraphics.drawRect(x, y, width, height);
             }
             COMPILE::JS
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "rect") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
-                colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
-                path.setAttribute("fill", colorString);
-                if (fillAlpha != 1)
-                    path.setAttribute("fill-opacity", fillAlpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
+                if (fillType == FILLTYPE_LINEARGRADIENT)
+                {
+                    path.setAttribute("fill", "url(#gradientFill)");                        
+                }
+                else if (fillType == FILLTYPE_SOLID)
+                {
+                    colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
+                    path.setAttribute("fill", colorString);
+                    if (fillAlpha != 1)
+                        path.setAttribute("fill-opacity", fillAlpha.toString());
+                }
+                else
+                    path.setAttribute("fill", "transparent");
                 path.setAttribute("x", x.toString());
                 path.setAttribute("y", y.toString());
                 path.setAttribute("width", width.toString());
@@ -346,21 +461,33 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawCircle(x, y, radius);
+                displayObject.flashgraphics.drawCircle(x, y, radius);
             }
             COMPILE::JS
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "circle") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
-                colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
-                path.setAttribute("fill", colorString);
-                if (fillAlpha != 1)
-                    path.setAttribute("fill-opacity", fillAlpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
+                if (fillType == FILLTYPE_LINEARGRADIENT)
+                {
+                    path.setAttribute("fill", "url(#gradientFill)");                        
+                }
+                else if (fillType == FILLTYPE_SOLID)
+                {
+                    colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
+                    path.setAttribute("fill", colorString);
+                    if (fillAlpha != 1)
+                        path.setAttribute("fill-opacity", fillAlpha.toString());
+                }
+                else
+                    path.setAttribute("fill", "transparent");
                 path.setAttribute("cx", x.toString());
                 path.setAttribute("cy", y.toString());
                 path.setAttribute("r", radius.toString());

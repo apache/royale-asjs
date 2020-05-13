@@ -18,15 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+    COMPILE::SWF
+    {
     import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.beads.models.ImageModel;
-
+    }
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.events.Event;
+    import org.apache.royale.jewel.beads.models.ImageModel;
 
     /**
      *  The ImageButton class presents an image as a button.
@@ -46,7 +48,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.4
          */
 		public function ImageButton()
 		{

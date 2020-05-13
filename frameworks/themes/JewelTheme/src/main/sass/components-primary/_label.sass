@@ -17,11 +17,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
+.jewel
+
+	&.label
+		// font:
+			// family: $font-stack
+			// size: $font-size
+		line-height: $font-size
+
+		&.multiline
+			line-height: normal
+			max-width: 100%
+
 j|Label
 	//IBeadView: ClassReference("org.apache.royale.html.beads.textinputView")
 	//IBeadView: ClassReference("org.apache.royale.jewel.beads.views.LabelViewBead")
-	
-.jewel.label
-	font:
-		// family: $font-stack
-		size: $font-size

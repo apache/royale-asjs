@@ -30,15 +30,19 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.ui.Keyboard; */
 
-//import mx.controls.dataGridClasses.DataGridListData;
+import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.beads.DateFieldView;
 import mx.controls.listClasses.BaseListData;
+import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.listClasses.ListData;
 import mx.core.ClassFactory;
 import mx.core.IDataRenderer;
 import mx.core.IFactory;
 import mx.core.mx_internal;
 import mx.events.CalendarLayoutChangeEvent;
 import mx.events.FlexEvent;
+import mx.events.FocusEvent;
 import mx.events.SandboxMouseEvent;
 import mx.managers.IFocusManagerComponent;
 import mx.managers.ISystemManager;
@@ -49,6 +53,15 @@ import mx.utils.ObjectUtil;
 use namespace mx_internal;
 
 import org.apache.royale.core.IDateChooserModel;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IFormatter;
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.DateFormatMMDDYYYY;
+import org.apache.royale.html.accessories.DateFormatDDMMYYYY;
+import org.apache.royale.html.accessories.DateFormatYYYYMMDD;
+import org.apache.royale.utils.loadBeadFromValuesManager;
+import mx.controls.TextInput;
 
 //--------------------------------------
 //  Events
@@ -395,10 +408,9 @@ include "../styles/metadata/TextStyles.as" */
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DateField extends ComboBase 
-                      
+public class DateField extends ComboBase implements IDataRenderer,IFocusManagerComponent, IDropInListItemRenderer, IListItemRenderer                      
 {
- /* implements IDataRenderer,IFocusManagerComponent, IDropInListItemRenderer, IListItemRenderer */
+ 
    // include "../core/Version.as";
 
     //--------------------------------------------------------------------------
@@ -425,8 +437,9 @@ public class DateField extends ComboBase
 	 * 
 	 * TODO move short names to resource bundles.
 	 */
-	/*  protected static function shortMonthName(monthName:String, locale:Locale, monthNames:Array):String
+	 protected static function shortMonthName(monthName:String, /*locale:Locale,*/ monthNames:Array):String
 	 {
+        /*
 		if (locale && locale.language == "fr") {
 			if (monthName == monthNames[5]) {
 				return "JUN";
@@ -434,11 +447,15 @@ public class DateField extends ComboBase
 			else if (monthName == monthNames[6]) {
 				return "JUL";	
 			}
-		}
+		}*/
 		
 		return monthName.substr(0,3);
-	 } */
+	 }
 	 
+    public static var monthNames:Array = ["January", 
+            "February", "March", "April", "May", "June", 
+            "July", "August", "September", "October", "November", "December"];
+
     /**
      *  Parses a String object that contains a date, and returns a Date
      *  object corresponding to the String.
@@ -472,7 +489,7 @@ public class DateField extends ComboBase
      */
     public static function stringToDate(valueString:String, inputFormat:String):Date
     {
-        /* var maskChar:String
+        var maskChar:String
 		var dateChar:String;
 		var dateString:String;
 		var monthString:String;
@@ -486,14 +503,16 @@ public class DateField extends ComboBase
 		if (valueString == null || inputFormat == null)
 			return null;
 		
-		var monthNames:Array = ResourceManager.getInstance().getStringArray("SharedResources", "monthNames");	
-		var noMonths:int = monthNames.length;
+		//var monthNames:Array = ResourceManager.getInstance().getStringArray("SharedResources", "monthNames");	
+        var noMonths:int = monthNames.length;
+        /*
 		var locales:Array = ResourceManager.getInstance().localeChain;
 		var locale:Locale = new Locale(locales[0]);
-		
+		*/
+        
 		for (var i:int = 0; i < noMonths; i++) {
 			valueString = valueString.replace(monthNames[i], (i+1).toString());
-			valueString = valueString.replace(shortMonthName(monthNames[i], locale, monthNames), (i+1).toString());
+			valueString = valueString.replace(shortMonthName(monthNames[i], /*locale,*/ monthNames), (i+1).toString());
 		}
 		
 		length = valueString.length;
@@ -594,9 +613,7 @@ public class DateField extends ComboBase
         if (dayNum != newDate.getDate() || (monthNum - 1) != newDate.getMonth())
             return null;
 
-        return newDate; */ 
-		var newDate:Date =new Date();
-		return newDate;
+        return newDate; 
     }
 
     /**
@@ -849,6 +866,11 @@ public class DateField extends ComboBase
        // invalidateProperties();
     }
 
+    override protected function set textInput(value:Object):void
+    {
+        (view as DateFieldView).textInputField = value;
+    }
+
     
     //--------------------------------------------------------------------------
     //
@@ -864,10 +886,10 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the data property
      */
-  /*   private var _data:Object;
+    private var _data:Object;
 
     [Bindable("dataChange")]
-    [Inspectable(environment="none")] */
+    [Inspectable(environment="none")]
 
     /**
      *  The <code>data</code> property lets you pass a value
@@ -887,15 +909,15 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get data():Object
+    public function get data():Object
     {
         return _data;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set data(value:Object):void
+    public function set data(value:Object):void
     {
         var newDate:Date;
 
@@ -913,14 +935,14 @@ public class DateField extends ComboBase
         else
             newDate = _data as Date;
 
-        if (!selectedDateSet)
-        {
+        //if (!selectedDateSet)
+        //{
             selectedDate = newDate;
-            selectedDateSet = false;
-        }
+        //    selectedDateSet = false;
+        //}
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
-    } */
+    }
 
     //----------------------------------
     //  dayNames
@@ -1349,7 +1371,7 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the formatString property.
      */
-    private var _formatString:String = null;
+    private var _formatString:String = "MM/DD/YYYY";
 
     [Bindable("formatStringChanged")]
     [Inspectable(defaultValue="null")]
@@ -1388,11 +1410,24 @@ public class DateField extends ComboBase
     {
         formatStringOverride = value;
 
-       /*  _formatString = value != null ?
+        if (value != _formatString)
+        {
+            _formatString = value /* != null ?
                         value :
                         resourceManager.getString(
-                            "SharedResources", "dateFormat");
-
+                            "SharedResources", "dateFormat")*/;
+            var formatter:IBead = getBeadByType(IFormatter);
+            if (formatter)
+                removeBead(formatter);
+            if (value == "MM/DD/YYYY")
+                addBead(new DateFormatMMDDYYYY());
+            else if (value == "DD/MM/YYYY")
+                addBead(new DateFormatDDMMYYYY());
+            else if (value == "YYYY/MM/DD")
+                addBead(new DateFormatYYYYMMDD());
+        }
+        
+        /*
         updateDateFiller = true;
 
         invalidateProperties();
@@ -1470,10 +1505,10 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the listData property
      */
-  /*   private var _listData:BaseListData;
+    private var _listData:Object;
 
     [Bindable("dataChange")]
-    [Inspectable(environment="none")] */
+    [Inspectable(environment="none")]
 
     /**
      *  When a component is used as a drop-in item renderer or drop-in
@@ -1495,18 +1530,18 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
         _listData = value;
-    } */
+    }
 
     //----------------------------------
     //  maxYear
@@ -1733,9 +1768,9 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the parseFunction property.
      */
-   /*  private var _parseFunction:Function = DateField.stringToDate;
+    private var _parseFunction:Function = DateField.stringToDate;
 
-    [Bindable("parseFunctionChanged")] */
+    [Bindable("parseFunctionChanged")]
 
     /**
      *  Function used to parse the date entered as text
@@ -1772,20 +1807,20 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get parseFunction():Function
+    public function get parseFunction():Function
     {
         return _parseFunction;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set parseFunction(value:Function):void
+    public function set parseFunction(value:Function):void
     {
         _parseFunction = value;
 
         dispatchEvent(new Event("parseFunctionChanged"));
-    } */
+    }
 
     //----------------------------------
     //  selectableRange
@@ -2223,9 +2258,20 @@ public class DateField extends ComboBase
         super.commitProperties();
     } */
 
-    /**
-     *  @private
-     */
+    override public function get measuredHeight():Number
+    {
+        _measuredHeight = Math.max(((view as DateFieldView).textInputField as TextInput).height,
+            ((view as DateFieldView).popupButton as IUIBase).height);
+        return _measuredHeight;
+    }
+    
+    override public function get measuredWidth():Number
+    {
+        _measuredWidth = ((view as DateFieldView).textInputField as TextInput).width +
+            ((view as DateFieldView).popupButton as IUIBase).width;        
+        return _measuredWidth;
+    }
+    
     /* override protected function measure():void
     {
         // skip base class, we do our own calculation here
@@ -2624,8 +2670,9 @@ public class DateField extends ComboBase
     /**
      *  @private
      */
-   /*  override protected function focusOutHandler(event:FocusEvent):void
+    override protected function focusOutHandler(event:FocusEvent):void
     {
+		/*
         if (showingDropdown && event != null &&
             this.contains(DisplayObject(event.target)))
             displayDropdown(false);
@@ -2636,7 +2683,12 @@ public class DateField extends ComboBase
             checkYearSetSelectedDate(_parseFunction(text, formatString));
         
         selectedDate_changeHandler(event);
-    } */
+		*/
+		if (owns(event.relatedObject as IUIBase))
+		{
+			setFocus();
+		}
+    }
 
     /**
      *  @private
@@ -2868,7 +2920,7 @@ public class DateField extends ComboBase
      */
     override public function get text():String
     {
-        var s:String = (view as DateFieldView).textInput.text;
+        var s:String = ((view as DateFieldView).textInputField as TextInput).text;
         return s == null ? "" : s;
     }
    
@@ -2877,6 +2929,29 @@ public class DateField extends ComboBase
         return (view as DateFieldView).setFocus();
         
     }
+    
+    /**
+     * The method called when added to a parent. The DateField class uses
+     * this opportunity to install additional beads.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        loadBeadFromValuesManager(IFormatter, "iFormatter", this);
+        
+        dispatchEvent(new Event("initComplete"));
+    }
+
+	override public function owns(child:IUIBase):Boolean
+	{
+		if (child == (view as DateFieldView).popUp) return true;
+		return super.owns(child);
+	}
 }
 
 }

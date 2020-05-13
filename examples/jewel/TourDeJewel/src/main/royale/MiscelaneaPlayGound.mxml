@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:c="components.*" sourceCodeUrl="MiscelaneaPlayGound.mxml">
+
+    <c:beads>
+        <js:ContainerDataBinding/>
+    </c:beads>
+
+    <j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+        <j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
+		<c:ExampleHeader title="Jewel Icons">
+			<c:description>
+				<![CDATA[<strong>Jewel Icons</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+                <j:CardHeader>
+                    <html:H3 text="Material Icon Sizes" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="18"/>
+                    <j:Label text="18px"/>
+                
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="24"/>
+                    <j:Label text="24px (default)"/>
+
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="36"/>
+                    <j:Label text="36px"/>
+                
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="48"/>
+                    <j:Label text="48px"/>             
+                </j:CardPrimaryContent>
+            </j:Card>
+        </j:GridCell>
+
+        <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+                <j:CardHeader>
+                    <html:H3 text="Material Icon Dark / Light" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true"/>
+                    <j:Label text="dark"/>
+                    
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true" inactive="true"/>
+                    <j:Label text="dark - inactive"/>
+                    
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true"/>
+                    <j:Label text="light"/>
+                    
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true" inactive="true"/>
+                    <j:Label text="light - inactive"/>
+                </j:CardPrimaryContent>
+            </j:Card>
+        </j:GridCell>
+        
+        <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+                <j:CardHeader>
+                    <html:H3 text="FontAwesome Icons" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+                    <j:beads>
+                        <j:HorizontalFlowLayout gap="6"/>
+                    </j:beads>
+
+                    <j:HGroup gap="3">
+                        <j:VGroup gap="3">
+                            <html:H3 text="Sizes" className="secondary-normal"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}"/>
+                            <j:Label text="normal"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_LG}"/>
+                            <j:Label text="lg"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                            <j:Label text="2x"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}"/>
+                            <j:Label text="3x"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X4}"/>
+                            <j:Label text="4x"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X5}"/>
+                            <j:Label text="5x"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" size="48"/>
+                            <j:Label text="size=48"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" fixedWidth="true"/>
+                            <j:Label text="fixed width"/>
+                        </j:VGroup>
+                        
+                        <j:VGroup gap="3">
+                            <html:H3 text="Rotations" className="secondary-normal"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" rotation="{FontAwesomeIcon.ROTATE_90}"/>
+                            <j:Label text="rotation 90º"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" rotation="{FontAwesomeIcon.ROTATE_180}"/>
+                            <j:Label text="rotation 180º"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" rotation="{FontAwesomeIcon.ROTATE_270}"/>
+                            <j:Label text="rotation 270º"/>
+                            
+                            <html:H3 text="Flips" className="secondary-normal"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" flipHorizontal="true"/>
+                            <j:Label text="flipHorizontal"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" flipVertical="true"/>
+                            <j:Label text="flipVertical"/>
+                            
+                            <html:H3 text="Animations" className="secondary-normal"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" spin="true"/>
+                            <j:Label text="spin"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" pulse="true"/>
+                            <j:Label text="pulse"/>
+                            
+                        </j:VGroup>
+
+                        <j:VGroup gap="3">
+                            <html:H3 text="Borders" className="secondary-normal"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" border="true"/>
+                            <j:Label text="with border"/>
+                            
+                            <html:Div width="250">
+                                <html:P>
+                                    <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" border="true" pullRight="true"/>
+                                    <js:TextNode text="Lorem ipsum dolor si amet, consectetur adipiscing incidunt ut labore et dolore magna aliquam erat nostrud exercitation ullamcorper suscipit laboris nis duis autem vel eum irure dolor in reprehenderit i, dolore eu fugiat nulla pariatur."/>
+                                </html:P>
+                            </html:Div>
+
+                            <j:Label text="with border + pull right"/>
+
+                            <html:Div width="250">
+                                <html:P>
+                                    <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" border="true" pullLeft="true"/>
+                                    <js:TextNode text="Lorem ipsum dolor si amet, consectetur adipiscing incidunt ut labore et dolore magna aliquam erat nostrud exercitation ullamcorper suscipit laboris nis duis autem vel eum irure dolor in reprehenderit i, dolore eu fugiat nulla pariatur."/>
+                                </html:P>
+                            </html:Div>
+                            
+                            <j:Label text="with border + pull left"/>
+
+                            <html:Div width="250">
+                                <html:P>
+                                    <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.ANGELLIST}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" pullRight="true"/>
+                                    <js:TextNode text="Lorem ipsum dolor si amet, consectetur adipiscing incidunt ut labore et dolore magna aliquam erat nostrud exercitation ullamcorper suscipit laboris nis duis autem vel eum irure dolor in reprehenderit i, dolore eu fugiat nulla pariatur."/>
+                                </html:P>
+                            </html:Div>
+                            
+                            <j:Label text="no border + pull right"/>
+                        </j:VGroup>
+
+                        <j:VGroup gap="3">
+                            <html:H3 text="Styles (FAv5.0)" className="secondary-normal"/>
+
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.SOLID}"/>
+                            <j:Label text="Solid Style"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}"/>
+                            <j:Label text="Regular Style"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.LIGHT}"/>
+                            <j:Label text="Light Style"/>
+
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.DUOTONE}"/>
+                            <j:Label text="Duotone Style"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.TWITTER_SQUARE}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.BRANDS}"/>
+                            <j:Label text="Brands Style"/>
+                            
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.PUMP_SOAP}" relativeSize="{FontAwesomeIcon.SIZE_X3}"/>
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.BACTERIA}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.LIGHT}"/>
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.VIRUS_SLASH}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.DUOTONE}"/>
+                            <js:FontAwesomeIcon className="primary-normal" type="{FontAwesome5IconType.FINGERPRINT}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.DUOTONE}"/>
+
+                            <html:H3 text="IconButton" className="secondary-normal"/>
+
+                            <j:IconButton emphasis="primary" text="Twitter">
+                                <j:icon>
+                                    <js:FontAwesomeIcon type="{FontAwesome5IconType.TWITTER}" faStyle="{FontAwesomeIcon.BRANDS}" relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                                </j:icon>
+                            </j:IconButton>
+                            
+                            <html:H3 text="ToggleButton" className="secondary-normal"/>
+
+                            <j:ToggleButton emphasis="primary" text="Black Book" selectedText="White Book">
+                                <j:icon>
+                                    <js:FontAwesomeToggleIcon type="{FontAwesome5IconType.ADDRESS_BOOK}"
+                                                            relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                                </j:icon>
+                            </j:ToggleButton>
+
+                            <j:Label text="selected Type and Style not set"/>
+                            
+                            <j:ToggleButton emphasis="secondary" text="Black Book" selectedText="White Book">
+                                <j:icon>
+                                    <js:FontAwesomeToggleIcon type="{FontAwesome5IconType.ADDRESS_BOOK}" faStyle="{FontAwesomeIcon.SOLID}"
+                                                            faSelectedStyle="{FontAwesomeIcon.REGULAR}"
+                                                            relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                                </j:icon>
+                            </j:ToggleButton>
+                            
+                            <j:Label text="selected Style set"/>
+
+                            <j:ToggleButton emphasis="emphasized" text="Go Down" selectedText="Go Up">
+                                <j:icon>
+                                    <js:FontAwesomeToggleIcon type="{FontAwesome5IconType.ANGLE_DOUBLE_DOWN}" faStyle="{FontAwesomeIcon.LIGHT}"
+                                                            selectedType="{FontAwesome5IconType.ANGLE_DOUBLE_UP}" faSelectedStyle="{FontAwesomeIcon.DUOTONE}"
+                                                            relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                                </j:icon>
+                            </j:ToggleButton>
+
+                            <j:Label text="selected Type and Style set"/>
+                            
+                            <j:ToggleButton text="Go Down" selectedText="Go Up" selected="true">
+                                <j:icon>
+                                    <js:FontAwesomeToggleIcon type="{FontAwesome5IconType.CHEVRON_CIRCLE_DOWN}"
+                                                            selectedType="{FontAwesome5IconType.CHEVRON_CIRCLE_UP}"
+                                                            relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
+                                </j:icon>
+                            </j:ToggleButton>
+                            
+                            <j:Label text="No Style set"/>
+                        </j:VGroup>
+                    </j:HGroup>
+                </j:CardPrimaryContent>
+                
+            </j:Card>
+        </j:GridCell>
+	</j:Grid>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

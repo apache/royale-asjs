@@ -16,18 +16,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>distribution</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Distribution</name>
@@ -41,13 +40,19 @@
     <playerglobalHome>libs/player</playerglobalHome>
     <targetPlayerMajorVersion>20</targetPlayerMajorVersion>
     <targetPlayerMinorVersion>0</targetPlayerMinorVersion>
-  </properties>
+
+    <assembly.bin>bin.xml</assembly.bin>
+    <assembly.dir>dir.xml</assembly.dir>
+    <assembly.sdk-description>royale-sdk-description.xml</assembly.sdk-description>
+  <project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
 
   <modules>
     <module>jars/compc</module>
     <module>jars/compiler-asc</module>
     <module>jars/compiler-compc</module>
+    <module>jars/compiler-compjsc</module>
     <module>jars/compiler-mxmlc</module>
+    <module>jars/compiler-mxmljsc</module>
     <module>jars/compiler-optimizer</module>
     <module>jars/compiler-swfdump</module>
     <module>jars/mxmlc</module>
@@ -81,344 +86,186 @@
       <version>${royale.compiler.version}</version>
     </dependency>
 
-    <!-- Add the framework swc modules -->
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Binding</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Charts</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Collections</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>CreateJS</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>DragDrop</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Effects</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Express</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Flat</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>FontAwesome</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Formatters</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>GoogleMaps</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Graphics</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>HTML</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>HTML5</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>JQuery</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Language</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>MaterialDesignLite</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Mobile</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Network</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Icons</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Reflection</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Storage</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>XML</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Jewel</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Crux</artifactId>
-      <version>0.9.6</version>
-      <type>swc</type>
-    </dependency>
-
     <!-- Add the framework js-swc modules -->
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Charts</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>CreateJS</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>DragDrop</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Effects</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Express</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Flat</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
  	  <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>FontAwesome</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>GoogleMaps</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML5</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JQuery</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>MaterialDesignLite</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Mobile</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Icons</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Reflection</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Storage</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>XML</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Crux</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -493,52 +340,67 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Fonts</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
       <type>war</type>
-    </dependency>
-
-    <!-- SWFObject -->
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>swfobject</artifactId>
-      <version>2.2</version>
     </dependency>
 
     <!-- Add the dummy jars -->
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compc</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>mxmlc</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-asc</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-compc</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-mxmlc</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework.distribution</groupId>
+      <artifactId>compiler-compjsc</artifactId>
+      <version>0.9.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework.distribution</groupId>
+      <artifactId>compiler-mxmljsc</artifactId>
+      <version>0.9.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-optimizer</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-swfdump</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7</version>
+    </dependency>
+    
+    <!-- google closure compiler and library will be needed unpacked in js/lib/google -->
+    <dependency>
+      <groupId>com.google.javascript</groupId>
+      <artifactId>closure-compiler</artifactId>
+      <version>v20181210</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>google-closure-library</artifactId>
+      <version>0.0-20170809-b9c14c6b</version>
     </dependency>
   </dependencies>
 
@@ -560,7 +422,26 @@
         <version>2.10</version>
         <executions>
           <execution>
-            <id>unpack-swfobject</id>
+            <id>copy-compiler-jx</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.royale.compiler</groupId>
+                  <artifactId>compiler-jx</artifactId>
+                  <version>${royale.compiler.version}</version>
+                  <type>jar</type>
+                  <destFileName>jsc.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/jsc</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-compiler</id>
             <phase>process-resources</phase>
             <goals>
               <goal>unpack</goal>
@@ -568,12 +449,31 @@
             <configuration>
               <artifactItems>
                 <artifactItem>
-                  <groupId>org.webjars</groupId>
-                  <artifactId>swfobject</artifactId>
-                  <version>2.2</version>
+                  <groupId>com.google.javascript</groupId>
+                  <artifactId>closure-compiler</artifactId>
+                  <version>v20181210</version>
                   <type>jar</type>
-                  <outputDirectory>${project.build.directory}/swfobject-temp</outputDirectory>
-                  <includes>META-INF/resources/**</includes>
+                  <outputDirectory>${project.build.directory}/closure-compiler-temp</outputDirectory>
+                  <includes>**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-library</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.clojure</groupId>
+                  <artifactId>google-closure-library</artifactId>
+                  <version>0.0-20170809-b9c14c6b</version>
+                  <type>jar</type>
+                  <outputDirectory>${project.build.directory}/closure-library-temp</outputDirectory>
+                  <includes>**</includes>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -592,7 +492,7 @@
             </goals>
             <configuration>
               <descriptors>
-                <descriptor>src/main/assembly/bin.xml</descriptor>
+                <descriptor>src/main/assembly/${assembly.bin}</descriptor>
               </descriptors>
             </configuration>
           </execution>
@@ -627,14 +527,210 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
-      <id>create-distribution-in-folder</id>
-      <activation>
-        <property>
-          <name>distributionTargetFolder</name>
-        </property>
-      </activation>
+      <id>option-with-swf</id>
+      <properties>
+        <assembly.bin>bin-with-swf.xml</assembly.bin>
+        <assembly.dir>dir-with-swf.xml</assembly.dir>
+        <assembly.sdk-description>royale-sdk-description-with-swf.xml</assembly.sdk-description>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.10</version>
+            <executions>
+              <execution>
+                <id>unpack-swfobject</id>
+                <phase>process-resources</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>org.webjars</groupId>
+                      <artifactId>swfobject</artifactId>
+                      <version>2.2</version>
+                      <type>jar</type>
+                      <outputDirectory>${project.build.directory}/swfobject-temp</outputDirectory>
+                      <includes>META-INF/resources/**</includes>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
       <dependencies>
+        <!-- Add the framework swc modules -->
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Binding</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Charts</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Collections</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Core</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>CreateJS</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>DragDrop</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Effects</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Express</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Flat</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>FontAwesome</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Formatters</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>GoogleMaps</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Graphics</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>HTML</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>HTML5</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>JQuery</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Language</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>MaterialDesignLite</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Mobile</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Network</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Icons</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Reflection</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Storage</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>XML</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Jewel</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Crux</artifactId>
+          <version>0.9.7</version>
+          <type>swc</type>
+        </dependency>
+
+        <!-- SWFObject -->
+        <dependency>
+          <groupId>org.webjars</groupId>
+          <artifactId>swfobject</artifactId>
+          <version>2.2</version>
+        </dependency>
+
         <dependency>
           <groupId>com.adobe.flash</groupId>
           <artifactId>framework</artifactId>
@@ -690,12 +786,12 @@
           <type>zip</type>
         </dependency>
 
-      <!--  <dependency>
-          <groupId>com.adobe</groupId>
-          <artifactId>fontkit</artifactId>
-          <version>1.0</version>
-        </dependency>
-          -->
+        <!--  <dependency>
+            <groupId>com.adobe</groupId>
+            <artifactId>fontkit</artifactId>
+            <version>1.0</version>
+          </dependency>
+            -->
         <dependency>
           <groupId>com.adobe.air</groupId>
           <artifactId>templates</artifactId>
@@ -710,18 +806,27 @@
           <type>zip</type>
         </dependency>
       </dependencies>
+    </profile>
+    <profile>
+      <id>_create-distribution-in-folder</id>
+      <activation>
+        <property>
+          <name>distributionTargetFolder</name>
+        </property>
+      </activation>
       <build>
         <plugins>
-          <!--plugin>
+          <!-- Not clean since this removes unpacked closure-library from temp folder and prevents the copy to js/lib/google folder -->
+          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-clean-plugin</artifactId>
             <executions>
               <execution>
+                <id>clean-distribution-target-folder</id>
+                <phase>clean</phase>
                 <goals>
                   <goal>clean</goal>
                 </goals>
-                <id>clean-target-folder</id>
-                <phase>prepare-package</phase>
                 <configuration>
                   <filesets>
                     <fileset>
@@ -732,7 +837,7 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin-->
+          </plugin>
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
@@ -748,7 +853,7 @@
                   <attach>false</attach>
                   <outputDirectory>${distributionTargetFolder}</outputDirectory>
                   <descriptors>
-                    <descriptor>src/main/assembly/dir.xml</descriptor>
+                    <descriptor>src/main/assembly/${assembly.dir}</descriptor>
                   </descriptors>
                 </configuration>
               </execution>
@@ -757,8 +862,8 @@
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>windows</id>
+    <!-- <profile>
+      <id>_os-windows</id>
       <activation>
         <os>
           <family>Windows</family>
@@ -799,7 +904,7 @@
       </dependencies>
     </profile>
     <profile>
-      <id>mac</id>
+      <id>_os-mac</id>
       <activation>
         <os>
           <family>Mac</family>
@@ -831,6 +936,6 @@
           <type>zip</type>
         </dependency>
       </dependencies>
-    </profile>
+    </profile> -->
   </profiles>
 </project>

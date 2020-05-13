@@ -18,15 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IParentIUIBase;
-    import org.apache.royale.events.Event;
-
+	import org.apache.royale.events.Event;
+    
 	/**
 	 *  The MXMLItemRenderer class is the base class for itemRenderers that are MXML-based
 	 *  and provides support for a layout and a data object.
@@ -80,16 +78,15 @@ package org.apache.royale.html.supportClasses
 			}
 		}
 		
-		public function beforeLayout():void
+		public function beforeLayout():Boolean
 		{
-			
+			return true;
 		}
 		
 		public function afterLayout():void
 		{
 			
 		}
-
 
 	}
 }

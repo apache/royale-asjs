@@ -18,15 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+    import mx.collections.CursorBookmark;
+    import mx.collections.ICollectionView;
+    import mx.collections.IViewCursor;
+    import mx.controls.dataGridClasses.DataGridColumn;
+    import mx.controls.dataGridClasses.DataGridColumnList;
+    import mx.core.UIComponent;
+    import mx.core.mx_internal;
+    import mx.events.CollectionEvent;
+    import mx.utils.ObjectUtil;
+    use namespace mx_internal;
+    
+    import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IDataGrid;
+    import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.DataGridView;
-    
-    import mx.events.CollectionEvent;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
-    import mx.controls.AdvancedDataGrid;
+    import org.apache.royale.html.DataGridButtonBar;
+    import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	
     /**
      *  The AlertView class.
@@ -50,11 +61,20 @@ package mx.controls.beads
 		{
         }
 
+        protected var columnClass:Class = DataGridColumn;
+        
+        public var visibleColumns:Array = [];
+        
         override protected function handleInitComplete(event:Event):void
         {
-            super.handleInitComplete(event);
-            
             var host:IDataGrid = _strand as IDataGrid;
+            
+            if (host.model.columns == null && host.model.dataProvider != null)
+            {
+                generateCols();
+            }
+            
+            super.handleInitComplete(event);
             
             IEventDispatcher(host).addEventListener(CollectionEvent.COLLECTION_CHANGE, handleCollectionChanged);
             if (host.model.dataProvider != null && host.model.dataProvider.length > 0)
@@ -68,16 +88,111 @@ package mx.controls.beads
             }
         }		
         
-        private function handleCollectionChanged(event:Event):void
+        protected function handleCollectionChanged(event:Event):void
         {
+            if (columnLists == null) return;
+            
             for (var i:int=0; i < columnLists.length; i++)
             {
-                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
-                list.adg = _strand as AdvancedDataGrid;
+                var list:DataGridColumnList = columnLists[i] as DataGridColumnList;
                 list.model.dispatchEvent(new Event("dataProviderChanged"));
             }
             host.dispatchEvent(new Event("layoutNeeded"));
             
+        }
+        
+        /**
+         * @private
+         */
+        override protected function handleDataProviderChanged(event:Event):void
+        {
+            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            if (sharedModel.columns == null && sharedModel.dataProvider != null && sharedModel.dataProvider.length > 0)
+            {
+                generateCols();
+                createLists();
+                (header as DataGridButtonBar).dataProvider = sharedModel.columns;            
+            }
+            if (sharedModel.columns == null)
+                return;
+            super.handleDataProviderChanged(event);
+        }
+
+        /**
+         *  @private
+         *  Searches the iterator to determine columns.
+         */
+        private function generateCols():void
+        {
+            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            if (sharedModel.dataProvider.length > 0)
+            {
+                var col:DataGridColumn;
+                var newCols:Array = [];
+                var cols:Array;
+                if (sharedModel.dataProvider)
+                {
+                    var iterator:IViewCursor = sharedModel.dataProvider.createCursor();
+                    //try
+                    //{
+                        iterator.seek(CursorBookmark.FIRST);
+                    //}
+                    /*
+                    catch (e:ItemPendingError)
+                    {
+                        lastSeekPending = new ListBaseSeekPending(CursorBookmark.FIRST, 0);
+                        e.addResponder(new ItemResponder(generateColumnsPendingResultHandler, seekPendingFailureHandler,
+                            lastSeekPending));
+                        iteratorValid = false;
+                        return;
+                    }
+                        */
+                    var info:Object =
+                        ObjectUtil.getClassInfo(iterator.current,
+                            ["uid", "mx_internal_uid"]);
+                    
+                    if(info)
+                        cols = info.properties;
+                }
+                
+                if (!cols)
+                {
+                    var index:int = 0;
+                    // introspect the first item and use its fields
+                    var itmObj:Object = iterator.current;
+
+                    for (var p:String in itmObj)
+                    {
+                        if (p != "uid")
+                        {
+                            col = new columnClass() as DataGridColumn;
+                            col.dataField = p;
+                            newCols.push(col);
+                            col.owner = _strand as UIComponent;
+                            col.colNum = index++;
+                        }
+                    }
+                }
+                else
+                {
+                    // this is an old recordset - use its columns
+                    var n:int = cols.length;
+                    var colName:Object;
+                    for (var i:int = 0; i < n; i++)
+                    {
+                        colName = cols[i];
+                        if (colName is QName)
+                            colName = QName(colName).localName;
+                        col = new columnClass() as DataGridColumn;
+                        col.dataField = String(colName);
+                        col.owner = _strand as UIComponent;
+                        col.colNum = i;
+                        newCols.push(col);
+                    }
+                }
+                sharedModel.columns = newCols;
+                //generatedColumns = true;
+            }
         }
 	}
 }

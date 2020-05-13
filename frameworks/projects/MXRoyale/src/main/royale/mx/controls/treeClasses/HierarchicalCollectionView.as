@@ -1130,28 +1130,32 @@ public class HierarchicalCollectionView extends EventDispatcher
         var uid:String = itemToUID(node);
         openNodes[uid] = 1;
         var index:int = getItemIndex(node);
-        dispatchAddOrRemoveEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_ADDED);
+        dispatchAddEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_ADDED);
+		var collectionEvent:org.apache.royale.events.CollectionEvent;
+        collectionEvent = new org.apache.royale.events.CollectionEvent(org.apache.royale.events.CollectionEvent.ITEM_UPDATED);
+        collectionEvent.item = node;
+        collectionEvent.index = index;
+		dispatchEvent(collectionEvent);
     }
     
-    private function dispatchAddOrRemoveEvents(node:Object, index:int, type:String):int
+    private function dispatchAddEvents(node:Object, index:int, type:String):int
     {
-        var adding:Boolean = (type == org.apache.royale.events.CollectionEvent.ITEM_ADDED);
         var children:ICollectionView = getChildren(node);
         var cursor:IViewCursor = children.createCursor();
+		var item:Object;
+		var collectionEvent:org.apache.royale.events.CollectionEvent;
         do
         {
-            var item:Object = cursor.current;
-            var collectionEvent:org.apache.royale.events.CollectionEvent = new org.apache.royale.events.CollectionEvent(type);
+            item = cursor.current;
+            collectionEvent = new org.apache.royale.events.CollectionEvent(type);
             collectionEvent.item = item;
-            collectionEvent.index = index++;
+            collectionEvent.index = index;
             dispatchEvent(collectionEvent);
-            if (adding)
-                currentLength++;
-            else
-                currentLength--;
+            currentLength++;
+			index++;
             if (isOpen(item))
             {
-                index = dispatchAddOrRemoveEvents(node, index, type);
+                index = dispatchAddEvents(item, index, type);
             }
    
         } while (cursor.moveNext());
@@ -1163,8 +1167,52 @@ public class HierarchicalCollectionView extends EventDispatcher
         var uid:String = itemToUID(node);
         delete openNodes[uid];        
         var index:int = getItemIndex(node);
-        dispatchAddOrRemoveEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_REMOVED);
+        dispatchRemoveEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_REMOVED);
+		var collectionEvent:org.apache.royale.events.CollectionEvent;
+        collectionEvent = new org.apache.royale.events.CollectionEvent(org.apache.royale.events.CollectionEvent.ITEM_UPDATED);
+        collectionEvent.item = node;
+        collectionEvent.index = index;
+		dispatchEvent(collectionEvent);
     }
+
+    private function dispatchRemoveEvents(node:Object, index:int, type:String, eventQueue:Array = null):int
+    {
+        var children:ICollectionView = getChildren(node);
+        var cursor:IViewCursor = children.createCursor();
+		var item:Object;
+		var collectionEvent:org.apache.royale.events.CollectionEvent;
+		var topLevel:Boolean = (eventQueue == null);
+		if (!eventQueue) 
+			eventQueue = [];
+        do
+        {
+            item = cursor.current;
+            collectionEvent = new org.apache.royale.events.CollectionEvent(type);
+            collectionEvent.item = item;
+            collectionEvent.index = index;
+            eventQueue.push(collectionEvent);
+			index++;
+            if (isOpen(item))
+            {
+                index = dispatchRemoveEvents(item, index, type, eventQueue);
+            }
+   
+        } while (cursor.moveNext());
+
+		if (topLevel)
+		{
+			// dispatch events in reverse order
+			while (eventQueue.length)
+			{
+				collectionEvent = eventQueue.pop() as org.apache.royale.events.CollectionEvent;
+				dispatchEvent(collectionEvent);
+                currentLength--;
+			}
+		}
+
+        return index;
+    }
+    
 }
 
 }

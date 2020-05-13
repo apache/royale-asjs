@@ -51,12 +51,14 @@ j|TabBar
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TabBarView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
-    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer")
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer")
+    ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
 
 // Jewel TabBarButtonItemRenderer
 $tabbarbutton-margin: 0 !default
@@ -108,7 +110,7 @@ $tabbarbutton-padding: 0 24px !default
                     opacity: 1
 
 j|TabBarButtonItemRenderer
-    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
 
 
 j|TabBarContent

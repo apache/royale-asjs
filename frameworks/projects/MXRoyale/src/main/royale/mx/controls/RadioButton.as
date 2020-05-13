@@ -26,6 +26,8 @@ COMPILE::JS
     import org.apache.royale.html.supportClasses.RadioButtonIcon;
     import org.apache.royale.html.util.addElementToWrapper;
 }
+import org.apache.royale.core.ILayoutChild;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.Event;
 /*
 import flash.events.Event;
@@ -223,7 +225,7 @@ public class RadioButton extends Button
     COMPILE::JS
     private var labelFor:HTMLLabelElement;
     COMPILE::JS
-    private var textNode:window.Text;
+    private var textNode:HTMLSpanElement;
     COMPILE::JS
     private var rbicon:RadioButtonIcon;
 
@@ -242,7 +244,7 @@ public class RadioButton extends Button
         rbicon = new RadioButtonIcon()
         rbicon.id = '_radio_' + RadioButton.radioCounter++;
         
-        textNode = document.createTextNode('') as window.Text;
+        textNode = document.createElement('span') as HTMLSpanElement;
         
         labelFor = addElementToWrapper(this,'label') as HTMLLabelElement;
         labelFor.appendChild(rbicon.element);
@@ -299,13 +301,17 @@ public class RadioButton extends Button
     COMPILE::JS
     override public function get label():String
     {
-        return textNode.nodeValue as String;
+        return textNode.innerText as String;
     }
     
     COMPILE::JS
     override public function set label(value:String):void
     {
-        textNode.nodeValue = value;
+        textNode.innerText = value;
+        if (this.parent is ILayoutChild && (this.parent as ILayoutChild).isWidthSizedToContent())
+        {
+            (this.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
     }
     
     /**
@@ -364,6 +370,7 @@ public class RadioButton extends Button
     public function set group(value:RadioButtonGroup):void
     {
         _group = value;
+        groupChanged = true;
     }
 
     //----------------------------------
@@ -520,6 +527,11 @@ public class RadioButton extends Button
 
     override public function get measuredWidth():Number
     {
+		COMPILE::JS
+		{
+			var ww:Number = rbicon.element.offsetWidth + textNode.offsetWidth + 8;
+			return ww;
+		}
         // on Safari, we seem to come up one pixel short sometimes
         // causing the label to appear on another line if the
         // width is set the the measuredWidth.  Probably a fractional error.

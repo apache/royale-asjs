@@ -26,19 +26,22 @@ package org.apache.royale.utils.css
 	 * 
 	 * @langversion 3.0
 	 * @productversion Royale 0.9.6
+	 * @royalesuppressexport
 	 * @royaleignorecoercion HTMLLinkElement
 	 */
 	COMPILE::JS
-	public function loadCSS(url:String, callback:Function = null):void
+	public function loadCSS(url:String, callback:Function = null):String
 	{
 		var link:HTMLLinkElement = document.createElement('link') as HTMLLinkElement;
 		link.setAttribute('rel', 'stylesheet');
 		link.setAttribute('type', 'text/css');
 		link.setAttribute('href', url);
+		link.id = 'link' + new Date().getTime();
 		if (callback)
 		{
 			link.onload = callback;
 		}
 		document.head.appendChild(link);
+		return link.id;
 	}
 }

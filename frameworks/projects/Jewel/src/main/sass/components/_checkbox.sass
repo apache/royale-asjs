@@ -20,7 +20,7 @@
 // Jewel CheckBox
 
 // CheckBox variables
-$checkbox-button-size: 22px
+$checkbox-button-size: 24px
 $checkbox-button-xoffset: 0px
 $checkbox-button-yoffset: 0px
 
@@ -45,7 +45,7 @@ $checkbox-button-yoffset: 0px
 		width: $checkbox-button-size
 		height: $checkbox-button-size
 
-		line-height: $checkbox-button-size
+		// line-height: $checkbox-button-size
 		opacity: 0
 
 		+ span::before
@@ -55,15 +55,15 @@ $checkbox-button-yoffset: 0px
 			left: $checkbox-button-xoffset
 			top: $checkbox-button-yoffset
 
-			width: $checkbox-button-size
-			height: $checkbox-button-size
+			width: $checkbox-button-size - 2
+			height: $checkbox-button-size - 2
 		
 		+ span::after
 			content: ' '
 			position: absolute
 
-			width: $checkbox-button-size
-			height: $checkbox-button-size
+			width: $checkbox-button-size - 2
+			height: $checkbox-button-size - 2
 
 			left: $checkbox-button-xoffset
 			top: $checkbox-button-yoffset
@@ -84,12 +84,16 @@ $checkbox-button-yoffset: 0px
 	span
 		cursor: pointer
 
-		margin: 0
-		vertical-align: top
+		margin: auto
+		width: inherit
+		// vertical-align: top
 
-		line-height: $checkbox-button-size + 2
+		// line-height: $checkbox-button-size + 2
 
-@media -royale-swf
+j|CheckBox
+	// IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.CheckBoxView")
+
+// @media -royale-swf
 	j|CheckBox
 		// --- IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel")
 		IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.CheckBoxView")

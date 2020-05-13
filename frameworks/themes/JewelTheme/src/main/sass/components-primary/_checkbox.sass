@@ -31,8 +31,8 @@ $checkbox-label-font-size: 16px
         
         + span::before
             @if $flat
-                background: $default-color
-                border: 1px solid transparent
+                background: lighten($default-color, 15%)
+                border: 1px solid $default-color
             @else
                 background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
                 border: 1px solid darken($default-color, 15%)
@@ -41,6 +41,7 @@ $checkbox-label-font-size: 16px
         + span::after
             background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{$primary-color}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
             border: 1px solid transparent
+            border-radius: $checkbox-border-radius
             
             transition: all .3s ease
             transform: scale(0)
@@ -51,19 +52,21 @@ $checkbox-label-font-size: 16px
         &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
             @if $flat
                 background: lighten($primary-color, 25%)
-                border: 1px solid transparent
+                border: 1px solid $primary-color
             @else
                 background: linear-gradient(lighten($primary-color, 30%), lighten($primary-color, 20%))
                 border: 1px solid darken($primary-color, 15%)
+            border-radius: $checkbox-border-radius
 
         &[disabled]
 
             & + span::before
                 background: $disabled-color
                 @if $flat
-                    border: 1px solid transparent
+                    border: 1px solid $disabled-border-color
                 @else
                     border: 1px solid $disabled-border-color// .094em
+                border-radius: $checkbox-border-radius
 
             & + span
                 color: $disabled-font-color
@@ -74,5 +77,5 @@ $checkbox-label-font-size: 16px
     // -- LABEL
     span
         padding-left: $checkbox-label-separation
-        font-size: $checkbox-label-font-size
+        //font-size: $checkbox-label-font-size
         

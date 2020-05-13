@@ -33,14 +33,13 @@ package spark.components.supportClasses
 //import flash.geom.Rectangle;
 
 //import mx.core.ILayoutElement;
-import org.apache.royale.geom.Point;
-	
 import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.PropertyChangeEvent;
 
+import spark.core.IViewport;
 import spark.layouts.BasicLayout;
 import spark.layouts.supportClasses.LayoutBase;
 
@@ -54,6 +53,7 @@ import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
+import org.apache.royale.geom.Point;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -332,8 +332,8 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class GroupBase extends UIComponent implements ILayoutParent, IContainer
-{ //implements IViewport
+public class GroupBase extends UIComponent implements ILayoutParent, IContainer, IViewport
+{
 
     //--------------------------------------------------------------------------
     //
@@ -1217,64 +1217,14 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer
         if (!layout)
             layout = new BasicLayout();
         
-        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        super.createChildren();
         
-        if (getBeadByType(DataBindingBase) == null)
+        if (getBeadByType(DataBindingBase) == null && mxmlDocument == this)
             addBead(new ContainerDataBinding());
         
         dispatchEvent(new Event("initBindings"));
     }
 
-    private var _mxmlDescriptor:Array;
-    private var _mxmlDocument:Object = this;
-
-    /**
-     *  @copy org.apache.royale.core.Application#MXMLDescriptor
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function get MXMLDescriptor():Array
-    {
-        return _mxmlDescriptor;
-    }
-    
-    /**
-     *  @private
-     */
-    public function setMXMLDescriptor(document:Object, value:Array):void
-    {
-        _mxmlDocument = document;
-        _mxmlDescriptor = value;
-    }
-    
-    /**
-     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function generateMXMLAttributes(data:Array):void
-    {
-        MXMLDataInterpreter.generateMXMLProperties(this, data);
-    }
-    
-    /**
-     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     * 
-     *  @royalesuppresspublicvarwarning
-     */
-    public var mxmlContent:Array;
-    
     /**
      *  @private
      */ 

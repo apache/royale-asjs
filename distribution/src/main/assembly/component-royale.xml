@@ -1,0 +1,423 @@
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<component xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.3 http://maven.apache.org/xsd/component-1.1.3.xsd">
+  <dependencySets>
+    <!--
+          Every lib - except the jx related ones - in the royale.compiler namespace
+          should go to the lib directory.
+    -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>lib</outputDirectory>
+      <!-- FlashBuilder doesn't like us appending the version to the jar name -->
+      <!--outputFileNameMapping>${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}</outputFileNameMapping-->
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+      <includes>
+        <include>org.apache.royale.compiler:*:jar</include>
+        <include>org.apache.royale.framework.distribution:*:jar</include>
+      </includes>
+      <excludes>
+        <exclude>org.apache.royale.compiler:compiler-jx:jar</exclude>
+      </excludes>
+    </dependencySet>
+    <!-- Everything else should go to the lib/ext directory -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>lib/external</outputDirectory>
+      <includes>
+        <include>*:jar</include>
+      </includes>
+      <excludes>
+        <exclude>org.apache.royale.compiler:*</exclude>
+        <exclude>*:args4j:jar</exclude>
+        <exclude>*:google-closure-library*:jar</exclude>
+        <exclude>*:org.json:jar</exclude>
+      </excludes>
+    </dependencySet>
+    <!-- Put the externs swcs into the externs directory -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>externs</outputDirectory>
+      <includes>
+        <include>org.apache.royale.typedefs:*</include>
+      </includes>
+      <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}-${artifact.classifier}.${artifact.extension}</outputFileNameMapping>
+    </dependencySet>
+    <!-- Put the framework js-swcs into the frameworks/libs directory -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/js/libs</outputDirectory>
+      <includes>
+        <include>org.apache.royale.framework:*:swc:js</include>
+      </includes>
+    </dependencySet>
+
+    <!-- Put all the jx libs in the js/lib directory -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>js/lib</outputDirectory>
+      <includes>
+        <!-- <include>org.apache.royale.compiler:compiler-jx:jar</include> -->
+        <include>*:args4j:jar</include>
+        <include>*:commons-io:*</include>
+        <include>*:flex-tool-api:*</include>
+        <!-- <include>*:google-closure-library*:jar</include> -->
+        <include>*:guava:*</include>
+        <include>*:org.json:jar</include>
+      </includes>
+    </dependencySet>
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>js/libs</outputDirectory>
+      <includes>
+        <include>org.apache.royale.typedefs:*:swc</include>
+      </includes>
+      <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}-${artifact.classifier}.${artifact.extension}</outputFileNameMapping>
+    </dependencySet>
+
+    <!-- Put the framework swcs into the frameworks/libs directory (needed for IDEs) -->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/libs</outputDirectory>
+      <includes>
+        <include>org.apache.royale.framework:*:swc</include>
+      </includes>
+      <excludes>
+        <exclude>org.apache.royale.framework:*:swc:typedefs</exclude>
+      </excludes>
+    </dependencySet>
+
+    <!-- Copy the fonts -->
+    <!-- Disabled as currently font swf compilation is deactivated -->
+    <!--dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/fonts</outputDirectory>
+      <includes>
+        <include>org.apache.royale.framework:Fonts:swf</include>
+      </includes>
+      <outputFileNameMapping>flat-ui-icons-regular.swf</outputFileNameMapping>
+    </dependencySet-->
+    <dependencySet>
+      <useProjectArtifact>false</useProjectArtifact>
+      <outputDirectory>frameworks/fonts</outputDirectory>
+      <unpack>true</unpack>
+      <includes>
+        <include>org.apache.royale.framework:Fonts:war</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+
+  <fileSets>
+    <!-- Include the LICENSE, NOTICE, README, RELEASE_NOTES from the root -->
+    <fileSet>
+      <directory>..</directory>
+      <includes>
+        <include>LICENSE*</include>
+        <include>NOTICE</include>
+        <include>README*</include>
+        <include>RELEASE*</include>
+        <include>ide/**</include>
+      </includes>
+    </fileSet>
+
+    <!-- Copy the bin scripts -->
+    <fileSet>
+      <directory>src/main/resources/bin</directory>
+      <outputDirectory>bin</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+      <!-- Make all scripts in here executable -->
+      <fileMode>0755</fileMode>
+    </fileSet>
+
+    <!-- Copy the js scripts -->
+    <fileSet>
+      <directory>src/main/resources/js/bin</directory>
+      <outputDirectory>js/bin</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+      <!-- Make all scripts in here executable -->
+      <fileMode>0755</fileMode>
+    </fileSet>
+
+    <!-- Copy the configurations -->
+    <fileSet>
+      <directory>src/main/resources/frameworks</directory>
+      <outputDirectory>frameworks</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+      <filtered>true</filtered>
+    </fileSet>
+    
+    <!-- Copy the themes -->
+    <fileSet>
+      <directory>../frameworks/themes</directory>
+      <outputDirectory>frameworks/themes</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
+
+    <!-- Copy the sdk descriptor -->
+    <fileSet>
+      <directory>src/main/resources</directory>
+      <outputDirectory></outputDirectory>
+      <includes>
+        <include>flex-sdk-description.xml</include>
+      </includes>
+      <filtered>true</filtered>
+    </fileSet>
+
+    <!-- Copy the unpacked closure-compiler -->
+    <fileSet>
+      <outputDirectory>js/lib/google/closure-compiler/compiler</outputDirectory>
+      <directory>target/closure-compiler-temp</directory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
+    <!-- Copy all from the parent -->
+    <!-- <fileSet>
+      <directory>../js/lib/google/closure-compiler/compiler</directory>
+      <outputDirectory>js/lib/google/closure-compiler/compiler</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet> -->
+    
+    <!-- Copy the unpacked closure-library -->
+    <fileSet>
+      <outputDirectory>js/lib/google/closure-library/closure</outputDirectory>
+      <directory>target/closure-library-temp</directory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
+    <!-- Copy all from the parent -->
+    <!-- <fileSet>
+      <directory>../js/lib/google/closure-library/closure</directory>
+      <outputDirectory>js/lib/google/closure-library/closure</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet> -->
+  </fileSets>
+
+  <files>
+    <!-- Copy the right sdk-description -->
+    <file>
+      <source>src/main/resources/${assembly.sdk-description}</source>
+      <outputDirectory></outputDirectory>
+      <destName>royale-sdk-description.xml</destName>
+      <filtered>true</filtered>
+    </file>
+
+    <!-- Rename main js dummy jar artifacts to "mxmlc.jar" and "compc.jar" that is what an IDE expects to find -->
+    <file>
+      <source>jars/compiler-mxmljsc/target/compiler-mxmljsc-${royale.compiler.version}.jar</source>
+      <outputDirectory>js/lib</outputDirectory>
+      <destName>mxmlc.jar</destName>
+    </file>
+    <file>
+      <source>jars/compiler-compjsc/target/compiler-compjsc-${royale.compiler.version}.jar</source>
+      <outputDirectory>js/lib</outputDirectory>
+      <destName>compc.jar</destName>
+    </file>
+    <file>
+      <source>${project.build.directory}/jsc/jsc.jar</source>
+      <outputDirectory>js/lib</outputDirectory>
+    </file>
+
+    <!-- Copy the manifests -->
+    <file>
+      <source>../frameworks/projects/Binding/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-binding.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/basic-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-as-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Basic/src/main/resources/svg-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>svg-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Charts/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-charts.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Collections/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-collections.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Core/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-core.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/CreateJS/src/main/resources/createjs-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>createjs-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/DragDrop/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-dragdrop.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Effects/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-effects.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Flat/src/main/resources/flat-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>flat-as-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Flat/src/main/resources/flat-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>flat-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Formatters/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-formatters.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/GoogleMaps/src/main/resources/google-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>google-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Graphics/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-graphics.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Graphics/src/main/resources/svg-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>svg-manifest-graphics.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/HTML/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-html.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/HTML/src/main/resources/html-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>html-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/HTML5/src/main/resources/html5-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>html5-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/JQuery/src/main/resources/jquery-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>jquery-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Mobile/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-mobile.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Mobile/src/main/resources/cordova-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>cordova-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Network/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-network.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Icons/src/main/resources/icons-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-icons.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Storage/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-storage.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/XML/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-xml.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Express/src/main/resources/express-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>express-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/FontAwesome/src/main/resources/fa-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>fa-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>mdl-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Jewel/src/main/resources/jewel-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>jewel-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Crux/src/main/resources/crux-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>crux-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Icons/src/main/resources/icons-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>icons-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/MXRoyale/src/main/resources/mx-royale-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>mx-royale-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/SparkRoyale/src/main/resources/spark-royale-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>spark-royale-manifest.xml</destName>
+    </file>
+  </files>
+</component>

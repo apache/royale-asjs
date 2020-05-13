@@ -20,10 +20,10 @@
     "compilerOptions": {
         "debug": true,
         "targets": [
-            "SWF", "JSRoyale"
+            "JSRoyale","SWF"
         ],
         "include-classes": [
-            "BasicClasses"
+            "src/main/royale/BasicClasses.as"
         ],
         "include-sources": [
             "src/main/royale"

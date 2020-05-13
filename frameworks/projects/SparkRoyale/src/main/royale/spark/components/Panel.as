@@ -20,13 +20,15 @@
 package spark.components
 {
 
-import spark.components.beads.PanelView;
+import spark.components.beads.SkinnableContainerView;
 import mx.containers.beads.models.PanelModel;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 
+import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
+import org.apache.royale.core.IParent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
 
@@ -326,7 +328,7 @@ public class Panel extends SkinnableContainer
     //  titleField
     //---------------------------------- 
     
-   // [SkinPart(required="false")]
+    [SkinPart(required="false")]
     
     /**
      *  The skin part that defines the appearance of the 
@@ -339,7 +341,7 @@ public class Panel extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   // public var titleDisplay:IDisplayText;
+    public var titleDisplay:Label; //IDisplayText;
     
     //--------------------------------------------------------------------------
     //
@@ -526,6 +528,8 @@ public class Panel extends SkinnableContainer
     public function set title(value:String):void
     {
         (model as PanelModel).title = value;
+		if (titleDisplay)
+			titleDisplay.text = value;
     }
     
     //--------------------------------------------------------------------------
@@ -647,89 +651,96 @@ public class Panel extends SkinnableContainer
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
-     */
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     * @royaleignorecoercion org.apache.royale.core.IParent
     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
-        var panelView:PanelView = view as PanelView;
-        panelView.contentArea.addElement(c, dispatchEvent);
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        (panelView.contentView as IParent).addElement(c, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
     }
+     */
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
-     */
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
     override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
     {
-        var panelView:PanelView = view as PanelView;
-        panelView.contentArea.addElementAt(c, index, dispatchEvent);
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        (panelView.contentView as IParent).addElementAt(c, index, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
     }
+     */
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
-     */
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
     override public function getElementIndex(c:IChild):int
     {
-        var panelView:PanelView = view as PanelView;
-        return panelView.contentArea.getElementIndex(c);
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        return (panelView.contentView as IParent).getElementIndex(c);
     }
+     */
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
-     */
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
     override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
     {
-        var panelView:PanelView = view as PanelView;
-        panelView.contentArea.removeElement(c, dispatchEvent);
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        (panelView.contentView as IParent).removeElement(c, dispatchEvent);
     }
+     */
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
-     */
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
     override public function get numElements():int
     {
-        var panelView:PanelView = view as PanelView;
-        return panelView.contentArea.numElements;
+        // the view getter below will instantiate the view which can happen
+        // earlier than we would like (when setting mxmlDocument) so we
+        // see if the view bead exists on the strand.  If not, nobody
+        // has added any children so numElements must be 0
+        if (!getBeadByType(IBeadView))
+            return 0;
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        return (panelView.contentView as IParent).numElements;
     }
+     */
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
-     */
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
     override public function getElementAt(index:int):IChild
     {
-        var panelView:PanelView = view as PanelView;
-        return panelView.contentArea.getElementAt(index);
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        return (panelView.contentView as IParent).getElementAt(index);
     }
+     */
     
     // override and proxy to content area.  Otherwise Panel's TitleBar and other chrome will
     // have this padding between the border and chrome
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function get paddingLeft():Object
     {
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        var contentView:UIComponent = panelView.contentView as UIComponent;
         return contentView.paddingLeft;
     }
     
     /**
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
-     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set paddingLeft(value:Object):void
     {
@@ -738,28 +749,28 @@ public class Panel extends SkinnableContainer
         (model as PanelModel).paddingLeft = value as String;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.paddingLeft = value;
         }
     }
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function get paddingRight():Object
     {
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        var contentView:UIComponent = panelView.contentView as UIComponent;
         return contentView.paddingRight;
     }
     
     /**
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
-     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set paddingRight(value:Object):void
     {
@@ -768,27 +779,27 @@ public class Panel extends SkinnableContainer
         (model as PanelModel).paddingRight = value as String;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.paddingRight = value;
         }
     }
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function get paddingTop():Object
     {
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        var contentView:UIComponent = panelView.contentView as UIComponent;
         return contentView.paddingTop;
     }
     
     /**
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
-     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set paddingTop(value:Object):void
     {
@@ -797,28 +808,28 @@ public class Panel extends SkinnableContainer
         (model as PanelModel).paddingTop = value as String;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.paddingTop = value;
         }
     }
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function get paddingBottom():Object
     {
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        var contentView:UIComponent = panelView.contentView as UIComponent;
         return contentView.paddingBottom;
     }
     
     /**
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
-     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set paddingBottom(value:Object):void
     {
@@ -828,8 +839,8 @@ public class Panel extends SkinnableContainer
         (model as PanelModel).paddingBottom = value as String;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.paddingBottom = value;
         }
     }
@@ -839,60 +850,60 @@ public class Panel extends SkinnableContainer
     // to make sure the contentArea gets set up correctly
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set percentWidth(value:Number):void
     {
         super.percentWidth = value;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.percentWidth = 100;
         }
     }
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set explicitWidth(value:Number):void
     {
         super.explicitWidth = value;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.percentWidth = 100;
         }
     }
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set percentHeight(value:Number):void
     {
         super.percentHeight = value;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.percentHeight = 100;
         }
     }
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function set explicitHeight(value:Number):void
     {
         super.explicitHeight = value;
         if (parent)
         {
-            var panelView:PanelView = view as PanelView;
-            var contentView:UIComponent = panelView.contentArea as UIComponent;
+            var panelView:SkinnableContainerView = view as SkinnableContainerView;
+            var contentView:UIComponent = panelView.contentView as UIComponent;
             contentView.percentHeight = 100;
         }
     }
@@ -900,15 +911,27 @@ public class Panel extends SkinnableContainer
     
     /**
      * @private
-     * @royaleignorecoercion mx.containers.beads.PanelView
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      */
     override public function childrenAdded():void
     {
-        var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
-        panelView.contentArea.dispatchEvent(new ValueEvent("childrenAdded"));
+        var panelView:SkinnableContainerView = view as SkinnableContainerView;
+        var contentView:UIComponent = panelView.contentView as UIComponent;
+        contentView.dispatchEvent(new ValueEvent("childrenAdded"));
         super.childrenAdded();
     }
 
+    /**
+     *  @private
+     */
+    override protected function partAdded(partName:String, instance:Object):void
+    {
+        super.partAdded(partName, instance);
+        
+        if (instance == titleDisplay)
+        {
+            titleDisplay.text = title;
+        }
+    }
 }
 }

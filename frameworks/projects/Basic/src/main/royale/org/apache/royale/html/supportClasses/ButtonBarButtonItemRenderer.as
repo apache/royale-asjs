@@ -19,7 +19,7 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
@@ -69,7 +69,6 @@ package org.apache.royale.html.supportClasses
 		protected function handleClickEvent(event:MouseEvent):void
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
-			newEvent.multipleSelection = event.shiftKey;
 			newEvent.index = index;
 			newEvent.data = data;
 			dispatchEvent(newEvent);
@@ -158,8 +157,6 @@ package org.apache.royale.html.supportClasses
 		{
 			textButton.width = this.width;
 			textButton.height = this.height;
-			
-			updateRenderer();
 		}
 	}
 }

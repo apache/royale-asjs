@@ -22,9 +22,9 @@ package mx.controls.beads.layouts
     import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
     import org.apache.royale.core.ILayoutView;
-    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.html.IListPresentationModel;
     import org.apache.royale.core.IScrollingViewport;
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithPresentationModel;
     import org.apache.royale.core.IUIBase;
@@ -209,7 +209,7 @@ package mx.controls.beads.layouts
                     {
                         if (i >= dp.length) continue; // no more renderers needed
                         
-                        var ir:ISelectableItemRenderer;
+                        var ir:IIndexedItemRenderer;
                         if (i < firstIndex)
                         {
                             ir  = factory.getItemRendererForIndex(i, i - startIndex);
@@ -247,7 +247,8 @@ package mx.controls.beads.layouts
                         return true;
                     }
                     var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
-                    var totalHeight:Number = presentationModel.rowHeight * dp.length;
+                    var actualRowHeight:Number = presentationModel.rowHeight + presentationModel.separatorThickness;
+                    var totalHeight:Number = actualRowHeight * dp.length;
                     var viewportTop:Number = getVerticalScrollPosition();
                     // correct overscroll on Safari?
                     var top:String = host.element.style.top;
@@ -263,9 +264,9 @@ package mx.controls.beads.layouts
                     }
                     // end correct overscroll on Safari
                     var viewportHeight:Number = contentView.element.clientHeight;
-                    var startIndex:int = Math.floor(viewportTop / presentationModel.rowHeight);
+                    var startIndex:int = Math.floor(viewportTop / actualRowHeight);
                     var factory:IDataProviderVirtualItemRendererMapper = host.getBeadByType(IDataProviderVirtualItemRendererMapper) as IDataProviderVirtualItemRendererMapper;
-                    var endIndex:int = Math.ceil((viewportTop + viewportHeight) / presentationModel.rowHeight);
+                    var endIndex:int = Math.ceil((viewportTop + viewportHeight) / actualRowHeight);
                     var freeIndex:int;
                     var firstIndex:int;
                     var lastIndex:int;
@@ -328,7 +329,7 @@ package mx.controls.beads.layouts
                     {
                         if (i >= dp.length) continue; // no more renderers needed
                         
-                        var ir:ISelectableItemRenderer;
+                        var ir:IIndexedItemRenderer;
                         if (i < firstIndex)
                         {
                             // the base class adds 1 because the div/scroll padding is in the

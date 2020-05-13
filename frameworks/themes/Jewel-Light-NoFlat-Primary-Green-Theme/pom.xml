@@ -16,18 +16,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>themes</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>Jewel-Light-NoFlat-Primary-Green-Theme</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Themes: Jewel-Light-NoFlat-Primary-Green-Theme</name>
@@ -53,34 +52,7 @@
           </includeFiles>
         </configuration>
       </plugin>
-
-       <plugin>
-        <groupId>nl.geodienstencentrum.maven</groupId>
-        <artifactId>sass-maven-plugin</artifactId>
-        <configuration>
-          <resources>
-            <!-- Depends on JewelTheme SASS framework files-->
-            <resource>
-                <source>
-                    <directory>${basedir}/src/main/sass</directory>
-                    <includes>
-                        <include>defaults.sass</include>
-                    </includes>
-                </source>
-                <destination>${basedir}/src/main/resources</destination>
-            </resource>
-          </resources>
-        </configuration>
-        <executions>
-          <execution>
-              <id>generate-css-using-sass</id>
-              <goals>
-                  <goal>update-stylesheets</goal>
-              </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
-</project>
+<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>

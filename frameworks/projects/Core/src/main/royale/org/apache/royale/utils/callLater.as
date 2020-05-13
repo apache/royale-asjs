@@ -22,7 +22,9 @@ package org.apache.royale.utils
     {
         import flash.utils.setTimeout;
     }
-    
+    /**
+     * @royalesuppressexport
+     */
     public function callLater(fn:Function, args:Array = null, thisArg:Object = null):void
     {
         var calls:Array = [ {thisArg: thisArg, fn: fn, args: args } ];

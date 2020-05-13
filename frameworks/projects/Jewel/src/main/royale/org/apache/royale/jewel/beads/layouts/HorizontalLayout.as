@@ -18,30 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS {
-        import org.apache.royale.core.UIBase;
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
+	COMPILE::SWF
+	{
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.layout.EdgeData;
+	}
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
 
     /**
-	 *  The HorizontalLayout class is a simple layout
-	 *  bead similar to HorizontalLayout, but it adds support for
-	 *  padding and gap values.
+	 *  The HorizontalLayout class is a horizontal layout
+	 *  bead similar to SimpleHorizontalLayout, but add support for gap values.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class HorizontalLayout extends SimpleHorizontalLayout implements ILayoutStyleProperties
+	public class HorizontalLayout extends SimpleHorizontalLayout implements ILayoutStyleProperties, IGap, IVariableRowHeight
 	{
         /**
          *  Constructor.
@@ -79,114 +77,11 @@ package org.apache.royale.jewel.beads.layouts
 			{
 				applyStyleToLayout(hostComponent, "gap");
 				setGap(_gap);
+				applyStyleToLayout(hostComponent, "variableRowHeight");
+				setVariableRowHeight(_variableRowHeight);
 			}
 		}
 
-		/**
-		 *  @private
-		 */
-		private var _paddingTop:Number = 0;
-
-		/**
-		 *  The top padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingTop():Number
-		{
-			return _paddingTop;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingTop(value:Number):void
-		{
-			_paddingTop = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingRight:Number = 0;
-
-		/**
-		 *  The right padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingRight():Number
-		{
-			return _paddingRight;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingRight(value:Number):void
-		{
-			_paddingRight = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingBottom:Number = 0;
-
-		/**
-		 *  The top padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingBottom():Number
-		{
-			return _paddingBottom;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingBottom(value:Number):void
-		{
-			_paddingBottom = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingLeft:Number = 0;
-
-		/**
-		 *  The left padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingLeft():Number
-		{
-			return _paddingLeft;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingLeft(value:Number):void
-		{
-			_paddingLeft = value;
-		}
-
-		private var gapInitialized:Boolean;
 		// private var _gap:Boolean;
 		/**
 		 *  Assigns variable gap to grid from 1 to 20
@@ -243,8 +138,10 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.4
  		 */
-		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		override public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
+			super.applyStyleToLayout(component, cssProperty);
+			
 			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
 			if (cssValue !== undefined)
 			{
@@ -254,25 +151,17 @@ package org.apache.royale.jewel.beads.layouts
 						if(!gapInitialized)
 							gap = Number(cssValue);
 						break;
-					case "itemsVerticalAlign":
-						if(!itemsVerticalAlignInitialized)
-							itemsVerticalAlign = cssValue;
-						break;
-					case "itemsHorizontalAlign":
-						if(!itemsHorizontalAlignInitialized)
-							itemsHorizontalAlign = cssValue;
+					case "variableRowHeight":
+						if(!variableRowHeightInitialized)
+							variableRowHeight = Boolean(cssValue);
 						break;
 					default:
 						break;
 				}	
 			}
 		}
-
-		// number of gap styles available in CSS @see $gaps variable in _layout.sass
-		public static const GAPS:Number = 10;
-		// gap step size in each gap style rule in CSS @see $gap-step variable in _layout.sass
-		public static const GAP_STEP:Number = 3;
-
+		
+		private var gapInitialized:Boolean;
 		protected var _gap:Number = 0;
 		/**
 		 *  Assigns variable gap in steps of GAP_STEP. You have available GAPS*GAP_STEP gap styles
@@ -310,21 +199,59 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setGap(value:Number):void
 		{
-			if (value >= 0 && value <= GAPS*GAP_STEP)
+			if (value >= 0 && value <= GapConstants.GAPS)
 			{
-				if (hostClassList.contains("gap-" + _gap + "x" + GAP_STEP + "px"))
-					hostClassList.remove("gap-" + _gap + "x" + GAP_STEP + "px");
+				if (hostClassList.contains("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px"))
+					hostClassList.remove("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px");
 				if(value != 0)
-					hostClassList.add("gap-" + value + "x" + GAP_STEP + "px");
+					hostClassList.add("gap-" + value + "x" + GapConstants.GAP_STEP + "px");
 			} else
-				throw new Error("Gap needs to be between 0 and " + GAPS*GAP_STEP);
+				throw new Error("Gap needs to be between 0 and " + GapConstants.GAPS);
+		}
+
+		private var variableRowHeightInitialized:Boolean;
+		private var _variableRowHeight:Boolean = false;
+		/**
+		 *  Specifies whether layout elements are allocated their preferred height.
+		 *  Setting this property to false specifies fixed height rows.
+		 *  
+		 *  If false, the actual height of each layout element is the value of rowHeight.
+		 *  The default value is true. 
+		 *  
+		 *  Note: From Flex but we should see what to do in Royale -> Setting this property to false causes the layout to ignore the layout elements' percentHeight property.
+		 */
+		public function get variableRowHeight():Boolean
+		{
+			return _variableRowHeight;
+		}
+		public function set variableRowHeight(value:Boolean):void
+		{
+			if(_variableRowHeight != value)
+			{
+				COMPILE::JS
+				{
+					if(hostComponent)
+						setVariableRowHeight(value);
+					
+					_variableRowHeight = value;
+					variableRowHeightInitialized = true;
+				}
+			}
+		}
+
+		COMPILE::JS
+		private function setVariableRowHeight(value:Boolean):void
+		{
+			hostClassList.toggle("variableRowHeight", value);
 		}
 		
         /**
-         * @copy org.apache.royale.core.IBeadLayout#layout
-         * @royaleignorecoercion org.apache.royale.core.ILayoutHost
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 *  Layout children horizontally
+		 * 
+         *  @copy org.apache.royale.core.IBeadLayout#layout
+         *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean
 		{
@@ -346,20 +273,20 @@ package org.apache.royale.jewel.beads.layouts
 				var data:Object;
 				var canAdjust:Boolean = false;
 
-				var paddingMetrics:EdgeData = new EdgeData();
-                paddingMetrics.left = _paddingLeft;
-                paddingMetrics.top = _paddingTop;
-                paddingMetrics.right = _paddingRight;
-                paddingMetrics.bottom = _paddingBottom;
-				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+				// var paddingMetrics:EdgeData = new EdgeData();
+                // paddingMetrics.left = _paddingLeft;
+                // paddingMetrics.top = _paddingTop;
+                // paddingMetrics.right = _paddingRight;
+                // paddingMetrics.bottom = _paddingBottom;
+				// var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.
-				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
-				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+				hostWidth -= 0;//paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+				hostHeight -= 0;//paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
-				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.top;
+				var xpos:Number = 0;//borderMetrics.left + paddingMetrics.left;
+				var ypos:Number = 0;//borderMetrics.top + paddingMetrics.top;
 
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
@@ -406,34 +333,7 @@ package org.apache.royale.jewel.beads.layouts
             }
             COMPILE::JS
             {
-				//applyStyleToLayout(c, "gap");
-
-				/*var children:Array = contentView.internalChildren();
-				var i:int;
-				var n:int = children.length;
-				for (i = 0; i < n; i++)
-                {
-                    var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
-					if (child == null) continue;
-					child.style.marginTop = _paddingTop + 'px';
-					if(i === (n - 1))
-					{
-						child.style.marginRight = _paddingRight + 'px';
-					}
-					else
-					{
-						child.style.marginRight = '0px';
-					}
-					child.style.marginBottom = _paddingBottom + 'px';
-					if(i == 0)
-					{
-						child.style.marginLeft = _paddingLeft + 'px';
-					}
-					else
-					{
-						child.style.marginLeft = _gap + 'px';
-					}					
-				}*/
+				super.layout();
 
                 return true;
             }

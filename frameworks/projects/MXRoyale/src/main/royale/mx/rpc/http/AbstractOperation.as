@@ -44,6 +44,7 @@ package mx.rpc.http
 	import mx.rpc.Fault;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.mxml.Concurrency;
+	import mx.rpc.xml.SimpleXMLDecoder;
 	import mx.utils.ObjectProxy;
 	import mx.utils.ObjectUtil;
 	import mx.utils.StringUtil;
@@ -1037,79 +1038,86 @@ package mx.rpc.http
 			{
 				if (/*resultFormat == RESULT_FORMAT_XML || */resultFormat == RESULT_FORMAT_OBJECT 
 					|| resultFormat == RESULT_FORMAT_ARRAY)
-				{/*
-					//old XML style
-					var tmp:Object = new XMLDocument();
-					XMLDocument(tmp).ignoreWhite = true;
-					try
+				{
+					var oldSettings:Object = XML.settings();
+					try{
+						XML.setSettings(XML.defaultSettings());
+						var temp:XMLList = new XMLList(String(body));
+						var tmp:XML = new XML('<root>'+temp.toXMLString()+'</root>');
+					} catch(parseError:Error)
 					{
-					XMLDocument(tmp).parseXML(String(body));
+						//restore whatever settings were active
+						XML.setSettings(oldSettings);
+						var fault:Fault = new Fault(ERROR_DECODING, parseError.message);
+						dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
+						return false;
 					}
-					catch(parseError:Error)
-					{
-					var fault:Fault = new Fault(ERROR_DECODING, parseError.message);
-					dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
-					return false;
-					}
+					//restore whatever settings were active
+					XML.setSettings(oldSettings);
 					if (resultFormat == RESULT_FORMAT_OBJECT || resultFormat == RESULT_FORMAT_ARRAY)
 					{
-					var decoded:Object;
-					var msg:String;
-					if (xmlDecode != null)
-					{
-					decoded = xmlDecode(tmp);
-					if (decoded == null)
-					{
-					msg = resourceManager.getString(
-					"rpc", "xmlDecodeReturnNull");
-					var fault1:Fault = new Fault(ERROR_DECODING, msg);
-					dispatchRpcEvent(FaultEvent.createEvent(fault1, token, message));
+						var decoded:Object;
+						var msg:String;
+						if (xmlDecode != null)
+						{
+							decoded = xmlDecode(tmp);
+							if (decoded == null)
+							{
+								/*msg = resourceManager.getString(
+										"rpc", "xmlDecodeReturnNull");*/
+								msg = 'XMLDecode returned null';
+								var fault1:Fault = new Fault(ERROR_DECODING, msg);
+								dispatchRpcEvent(FaultEvent.createEvent(fault1, token, message));
+							}
+						}
+						else
+						{
+							var decoder:SimpleXMLDecoder = new SimpleXMLDecoder(makeObjectsBindable);
+							
+							decoded = decoder.decodeXML(tmp);
+							
+							if (decoded == null)
+							{
+								/*msg = resourceManager.getString(
+										"rpc", "defaultDecoderFailed");*/
+								msg = "defaultDecoderFailed";
+								
+								var fault2:Fault = new Fault(ERROR_DECODING, msg);
+								dispatchRpcEvent(FaultEvent.createEvent(fault2, token, message));
+							}
+						}
+						
+						if (decoded == null)
+						{
+							return false;
+						}
+						
+						if (makeObjectsBindable && false /*(getQualifiedClassName(decoded) == "Object")*/)
+						{
+							decoded = new ObjectProxy(decoded);
+						}
+						else
+						{
+							decoded = decoded;
+						}
+						
+						if (resultFormat == RESULT_FORMAT_ARRAY)
+						{
+							decoded = decodeArray(decoded);
+						}
+						
+						_result = decoded;
 					}
-					}
-					else
+					/*else
 					{
-					var decoder:SimpleXMLDecoder = new SimpleXMLDecoder(makeObjectsBindable);
-					
-					decoded = decoder.decodeXML(XMLNode(tmp));
-					
-					if (decoded == null)
-					{
-					msg = resourceManager.getString(
-					"rpc", "defaultDecoderFailed");
-					var fault2:Fault = new Fault(ERROR_DECODING, msg);
-					dispatchRpcEvent(FaultEvent.createEvent(fault2, token, message));
-					}
-					}
-					
-					if (decoded == null)
-					{
-					return false;
-					}
-					
-					if (makeObjectsBindable && (getQualifiedClassName(decoded) == "Object"))
-					{
-					decoded = new ObjectProxy(decoded);
-					}
-					else
-					{
-					decoded = decoded;
-					}
-					
-					if (resultFormat == RESULT_FORMAT_ARRAY)
-					{
-					decoded = decodeArray(decoded);
-					}
-					
-					_result = decoded;
-					}
-					else
-					{
-					if (tmp.childNodes.length == 1)
-					{
-					tmp = tmp.firstChild;
-					}
-					_result = tmp;
+						if (tmp.children().length() == 1)
+						{
+							tmp = tmp.children()[0];
+						}
+						// key difference here is that it will also be E4X:
+						_result = tmp;
 					}*/
+					
 				}
 				else if (resultFormat == RESULT_FORMAT_E4X)
 				{

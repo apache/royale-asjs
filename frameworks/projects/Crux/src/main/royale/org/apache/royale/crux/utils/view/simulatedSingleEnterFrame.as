@@ -21,13 +21,13 @@
  * Swiz Framework library by Chris Scott, Ben Clinkinbeard, Sönke Rohde, John Yanarella, Ryan Campbell, and others https://github.com/swiz/swiz-framework
  */
 package org.apache.royale.crux.utils.view {
-
-
-	import org.apache.royale.core.ApplicationBase;
+	
+	import org.apache.royale.core.IFlexInfo;
 
 	COMPILE::SWF{
-
 		import flash.events.Event;
+		import flash.display.DisplayObjectContainer;
+		import flash.display.DisplayObject;
 	}
 
 
@@ -40,17 +40,17 @@ package org.apache.royale.crux.utils.view {
 	 *
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */
-	public function simulatedSingleEnterFrame(container:ApplicationBase, callback:Function, removeOnly:Boolean = false):void {
+	public function simulatedSingleEnterFrame(container:IFlexInfo, callback:Function, removeOnly:Boolean = false):void {
 		if (!container) return ;
 		COMPILE::SWF{
 
 			var listener:Function = Support.map[container];
 			if (listener != null) {
-				container.removeEventListener(Event.ENTER_FRAME, listener);
+				DisplayObjectContainer(container).removeEventListener(Event.ENTER_FRAME, listener);
 			}
 			if (!removeOnly) {
 				Support.map[container] = Support.getListener(callback, container);
-				container.addEventListener(Event.ENTER_FRAME, Support.map[container]);
+				DisplayObjectContainer(container).addEventListener(Event.ENTER_FRAME, Support.map[container]);
 			}
 
 		}
@@ -67,10 +67,11 @@ package org.apache.royale.crux.utils.view {
 	}
 }
 
-import org.apache.royale.core.ApplicationBase;
+import org.apache.royale.core.IFlexInfo;
 COMPILE::SWF{
 	import flash.utils.Dictionary;
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 }
 
 class Support {
@@ -82,7 +83,7 @@ class Support {
 	public static const map:Dictionary = new Dictionary();
 
 	COMPILE::JS
-	public static function getListener(callback:Function, container:ApplicationBase):Function {
+	public static function getListener(callback:Function, container:IFlexInfo):Function {
 		return function(timeStamp:Number):void{
 				Support.map.delete(container);
 				callback();
@@ -91,9 +92,9 @@ class Support {
 	}
 
 	COMPILE::SWF
-	public static function getListener(callback:Function, container:ApplicationBase):Function {
+	public static function getListener(callback:Function, container:IFlexInfo):Function {
 		var f:Function = function(e:Event):void{
-				container.removeEventListener(Event.ENTER_FRAME, f);
+				EventDispatcher(container).removeEventListener(Event.ENTER_FRAME, f);
 				delete Support.map[container];
 				callback();
 			};

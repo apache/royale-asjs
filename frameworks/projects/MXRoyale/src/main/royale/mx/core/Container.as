@@ -23,6 +23,7 @@ package mx.core
     import org.apache.royale.binding.DataBindingBase;
     import org.apache.royale.core.ContainerBaseStrandChildren;
     import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IContainer;
@@ -40,7 +41,6 @@ package mx.core
     import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.states.State;
-    import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.loadBeadFromValuesManager;
 
 COMPILE::JS
@@ -71,11 +71,11 @@ import mx.binding.BindingManager;
 import mx.containers.utilityClasses.PostScaleAdapter;
 import mx.controls.HScrollBar;
 import mx.controls.VScrollBar;
-import mx.controls.listClasses.IListItemRenderer;
 import mx.controls.scrollClasses.ScrollBar;
 import mx.core.IUITextField;
 import mx.events.ChildExistenceChangedEvent;
 */
+import mx.controls.listClasses.IListItemRenderer;
 import mx.events.FlexEvent;
 import mx.events.IndexChangedEvent;
 import mx.managers.IFocusManagerContainer;
@@ -318,8 +318,7 @@ public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
 					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer,
-                       //implements IContainer, IDataRenderer,
-                       //IListItemRenderer,
+                       IListItemRenderer,
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
                        INavigatorContent
 
@@ -575,6 +574,51 @@ public class Container extends UIComponent
     }
 
     /**
+     *  Respond to size changes by setting the positions and sizes
+     *  of this container's borders.
+     *  This is an advanced method that you might override
+     *  when creating a subclass of Container.
+     *
+     *  <p>Flex calls the <code>layoutChrome()</code> method when the
+     *  container is added to a parent container using the <code>addChild()</code> method,
+     *  and when the container's <code>invalidateDisplayList()</code> method is called.</p>
+     *
+     *  <p>The <code>Container.layoutChrome()</code> method is called regardless of the
+     *  value of the <code>autoLayout</code> property.</p>
+     *
+     *  <p>The <code>Container.layoutChrome()</code> method sets the
+     *  position and size of the Container container's border.
+     *  In every subclass of Container, the subclass's <code>layoutChrome()</code>
+     *  method should call the <code>super.layoutChrome()</code> method,
+     *  so that the border is positioned properly.</p>
+     *
+     *  @param unscaledWidth Specifies the width of the component, in pixels,
+     *  in the component's coordinates, regardless of the value of the
+     *  <code>scaleX</code> property of the component.
+     *
+     *  @param unscaledHeight Specifies the height of the component, in pixels,
+     *  in the component's coordinates, regardless of the value of the
+     *  <code>scaleY</code> property of the component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function layoutChrome(unscaledWidth:Number,
+                                    unscaledHeight:Number):void
+    {
+        // Border covers the whole thing.
+//        if (border)
+//        {
+//            updateBackgroundImageRect();
+//
+//            border.move(0, 0);
+//            border.setActualSize(unscaledWidth, unscaledHeight);
+//        }
+    }
+
+    /**
      *  Number of pixels between the container's bottom border
      *  and the bottom of its content area.
      *
@@ -638,12 +682,11 @@ public class Container extends UIComponent
     
 	public function get horizontalGap():Object
     {
-        trace("horizontalGap not implemented");
-        return 0;
+        return getStyle("horizontalGap");
     }
     public function set horizontalGap(value:Object):void
     {
-        trace("horizontalGap not implemented");
+        setStyle("horizontalGap", value);
     }
      public function get verticalAlign():Object
     {
@@ -671,20 +714,6 @@ public class Container extends UIComponent
     }
 	[Inspectable(category="General")]
 	
-	/*	  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get backgroundColor():Object
-    {
-        return ValuesManager.valuesImpl.getValue(this, "backgroundColor");
-    }
-    public function set backgroundColor(value:Object):void
-    {
-        setStyle("backgroundColor", value);
-    }
     
     //----------------------------------
     //  icon
@@ -752,7 +781,11 @@ public class Container extends UIComponent
     }
     public function set label(value:String):void
     {
-        _label = value;
+        if (value != _label)
+        {
+            _label = value;
+            dispatchEvent(new Event("labelChanged"));
+        }        
     }
 
 	[Inspectable(category="General")]
@@ -770,8 +803,6 @@ public class Container extends UIComponent
 	//  IMXMLDocument et al
 	//
 	//--------------------------------------------------------------------------
-	
-	private var _mxmlDescriptor:Array;
 	
 	override public function addedToParent():void
 	{
@@ -792,9 +823,9 @@ public class Container extends UIComponent
 	
     override protected function createChildren():void
     {
-        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-
-        if (getBeadByType(DataBindingBase) == null)
+        super.createChildren();
+        
+        if (getBeadByType(DataBindingBase) == null && mxmlDocument == this)
             addBead(new ContainerDataBinding());
 
         dispatchEvent(new Event("initBindings"));
@@ -816,61 +847,6 @@ public class Container extends UIComponent
         }
     }
     
-    override public function get mxmlDocument():Object
-    {
-        if (!_mxmlDocument && MXMLDescriptor != null)
-            _mxmlDocument = this;
-        return _mxmlDocument;
-    }
-    
-	/**
-	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 */
-	public function get MXMLDescriptor():Array
-	{
-		return _mxmlDescriptor;
-	}
-	
-	/**
-	 *  @private
-	 */
-	public function setMXMLDescriptor(document:Object, value:Array):void
-	{
-		_mxmlDocument = document;
-		_mxmlDescriptor = value;
-	}
-	
-	/**
-	 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 */
-	public function generateMXMLAttributes(data:Array):void
-	{
-        if (!_mxmlDocument)
-            _mxmlDocument = this;
-		MXMLDataInterpreter.generateMXMLProperties(this, data);
-	}
-	
-	/**
-	 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 * 
-	 *  @royalesuppresspublicvarwarning
-	 */
-	public var mxmlContent:Array;
 	
 	/*
 	* IContainer
@@ -1037,7 +1013,13 @@ public class Container extends UIComponent
 		o.bottom = vm.bottom + pd.bottom;
 		
         if (isNaN(o.left) || isNaN(o.top))
+        {
             _viewMetricsAndPadding = null; // don't cache invalid entry
+            if (isNaN(o.left)) o.left = 0;
+            if (isNaN(o.top)) o.top = 0;
+        }
+        if (isNaN(o.right)) o.right = 0;
+        if (isNaN(o.bottom)) o.bottom = 0;
 		return o;
 	}
 	
@@ -1169,6 +1151,12 @@ public class Container extends UIComponent
 	COMPILE::SWF
 	override public function get numElements():int
 	{
+        // the view getter below will instantiate the view which can happen
+        // earlier than we would like (when setting mxmlDocument) so we
+        // see if the view bead exists on the strand.  If not, nobody
+        // has added any children so numElements must be 0
+        if (!getBeadByType(IBeadView))
+            return 0;
 		var layoutHost:ILayoutHost = view as ILayoutHost;
 		var contentView:IParent = layoutHost.contentView as IParent;
 		return contentView.numElements;

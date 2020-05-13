@@ -31,6 +31,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.utils.sendBeadEvent;
 	/**
 	 *  The DataGridColumnForceChangePropagator picks up the dataProviderChanged event
 	 *  and lets the data grid columns know about it, whether or not the data provider object was changed.
@@ -71,7 +72,7 @@ package org.apache.royale.html.beads
 					listModel.dataProvider = sharedModel.dataProvider;
 				} else
 				{
-					(listModel as IEventDispatcher).dispatchEvent(new Event('dataProviderChanged'));
+					sendBeadEvent(listModel,'dataProviderChanged');
 				}
 			}
 		}

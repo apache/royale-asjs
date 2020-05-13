@@ -130,7 +130,7 @@ package org.apache.royale.test
 		{
 			if(actual == expected)
 			{
-				failWithUserMessage("expected: <" + expected + "> not to be equal to <" + actual + ">", message);
+				failWithUserMessage("expected <" + actual + "> not to be equal to <" + expected + ">", message);
 			}
 		}
 
@@ -141,7 +141,7 @@ package org.apache.royale.test
 		{
 			if(actual != expected)
 			{
-				failWithUserMessage("expected: <" + expected + "> to be equal to <" + actual + ">", message);
+				failWithUserMessage("expected <" + actual + "> to be equal to <" + expected + ">", message);
 			}
 		}
 
@@ -152,7 +152,7 @@ package org.apache.royale.test
 		{
 			if(actual === expected)
 			{
-				failWithUserMessage("expected: <" + expected + "> not to be strictly equal to <" + actual + ">", message);
+				failWithUserMessage("expected <" + actual + "> not to be strictly equal to <" + expected + ">", message);
 			}
 		}
 
@@ -163,7 +163,7 @@ package org.apache.royale.test
 		{
 			if(actual !== expected)
 			{
-				failWithUserMessage("expected: <" + expected + "> to be strictly equal to <" + actual + ">", message);
+				failWithUserMessage("expected <" + actual + "> to be strictly equal to <" + expected + ">", message);
 			}
 		}
 

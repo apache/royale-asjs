@@ -35,6 +35,7 @@ package flexUnitTests.reflection
         public static function setUpBeforeClass():void
         {
             isJS = COMPILE::JS;
+            ExtraData.addAll();
         }
         
         [AfterClass]
@@ -45,7 +46,7 @@ package flexUnitTests.reflection
         [Before]
         public function setUp():void
         {
-            ExtraData.addAll();
+
         }
         
         [After]

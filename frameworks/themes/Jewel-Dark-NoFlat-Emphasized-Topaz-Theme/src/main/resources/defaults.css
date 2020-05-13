@@ -16,74 +16,6 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-j|Application {
-  background: black;
-  font-family: "Lato", sans-serif;
-  color: #FFFFFF;
-  padding: 0px;
-  margin: 0px;
-}
-
-input, select, textarea, button {
-  font-family: inherit;
-}
-
-j|Form {
-  gap: 3;
-}
-
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-h4 {
-  font-size: 1.25em;
-}
-
-h5 {
-  font-size: 1em;
-}
-
-span {
-  font-size: 1em;
-}
-
-div {
-  font-size: 14px;
-}
-
-hr {
-  background-color: #595959;
-}
-
-.jewel.xsmall {
-  font-size: 0.6em !important;
-}
-
-.jewel.small {
-  font-size: 0.8em !important;
-}
-
-.jewel {
-  font-size: 1em !important;
-}
-
-.jewel.large {
-  font-size: 1.2em !important;
-}
-
-.jewel.xlarge {
-  font-size: 1.4em !important;
-}
-
 .jewel.badge.emphasized {
   background: #EF5A2A;
   color: #FFFFFF;
@@ -93,22 +25,25 @@ hr {
   background: linear-gradient(#f16c42, #ed4812);
   border: 1px solid #be390e;
   box-shadow: inset 0 1px 0 #f6a389;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(119, 36, 9, 0.7);
 }
 .jewel.button.emphasized:hover, .jewel.button.emphasized:hover:focus {
   background: linear-gradient(#EF5A2A, #d64010);
   border: 1px solid #a6320d;
+  color: #FFFFFF;
 }
 .jewel.button.emphasized:active, .jewel.button.emphasized:active:focus {
   background: linear-gradient(#d64010, #a6320d);
   border: 1px solid #772409;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
 }
 .jewel.button.emphasized:focus {
   border: 1px solid #be390e;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
 }
 .jewel.button.emphasized[disabled] {
   background: #404040 !important;
@@ -116,6 +51,90 @@ hr {
   box-shadow: none !important;
   color: #737373;
   text-shadow: unset;
+}
+.jewel.button.emphasized[disabled]:hover, .jewel.button.emphasized[disabled]:hover:focus {
+  color: #737373;
+}
+
+.jewel.button.emphasized.outlined {
+  background: rgba(239, 90, 42, 0.05);
+  border: 1px solid #d64010;
+  box-shadow: none;
+  color: #be390e;
+  text-shadow: none;
+}
+.jewel.button.emphasized.outlined:hover, .jewel.button.emphasized.outlined:hover:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid #be390e;
+  color: #8f2b0b;
+}
+.jewel.button.emphasized.outlined:active, .jewel.button.emphasized.outlined:active:focus {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid #b0350d;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.button.emphasized.outlined:focus {
+  border: 1px solid #a6320d;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.button.emphasized.outlined[disabled] {
+  background: rgba(64, 64, 64, 0.1) !important;
+  border: 1px solid #0d0d0d !important;
+  color: #737373;
+  text-shadow: unset;
+}
+.jewel.button.emphasized.outlined[disabled]:hover, .jewel.button.emphasized.outlined[disabled]:hover:focus {
+  color: #737373;
+}
+
+.jewel.button.emphasized.unboxed {
+  background: rgba(239, 90, 42, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #be390e;
+  text-shadow: none;
+}
+.jewel.button.emphasized.unboxed:hover, .jewel.button.emphasized.unboxed:hover:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid transparent;
+  color: #8f2b0b;
+}
+.jewel.button.emphasized.unboxed:active, .jewel.button.emphasized.unboxed:active:focus {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.button.emphasized.unboxed:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.button.emphasized.unboxed[disabled] {
+  background: rgba(64, 64, 64, 0) !important;
+  border: 1px solid transparent !important;
+  color: #737373;
+  text-shadow: unset;
+}
+.jewel.button.emphasized.unboxed[disabled]:hover, .jewel.button.emphasized.unboxed[disabled]:hover:focus {
+  color: #737373;
+}
+
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.emphasized.hovered {
+  background: #f38663;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.emphasized.selected, .jewel.datagrid .jewel.list.column .jewel.item.datagrid.emphasized.selectable:active {
+  background: #f1744b;
+}
+
+.jewel.item.emphasized.hovered {
+  background: #EF5A2A;
+}
+.jewel.item.emphasized.selected, .jewel.item.emphasized.selectable:active {
+  background: #ed4812;
 }
 
 .jewel.snackbar.emphasized .jewel.snackbar-content {
@@ -134,26 +153,49 @@ hr {
   background: linear-gradient(#EF5A2A, #d64010);
 }
 
+.emphasized-lightest {
+  color: #fdede8;
+}
+
+.emphasized-light {
+  color: #f6a389;
+}
+
+.emphasized-normal {
+  color: #EF5A2A;
+}
+
+.emphasized-dark {
+  color: #a6320d;
+}
+
+.emphasized-darkest {
+  color: #481605;
+}
+
 .jewel.togglebutton.emphasized {
   background: linear-gradient(#f16c42, #ed4812);
   border: 1px solid #be390e;
   box-shadow: inset 0 1px 0 #f6a389;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(119, 36, 9, 0.7);
 }
 .jewel.togglebutton.emphasized:hover, .jewel.togglebutton.emphasized:hover:focus {
   background: linear-gradient(#EF5A2A, #d64010);
   border: 1px solid #a6320d;
+  color: #FFFFFF;
 }
 .jewel.togglebutton.emphasized:active, .jewel.togglebutton.emphasized:active:focus {
   background: linear-gradient(#d64010, #a6320d);
   border: 1px solid #772409;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
 }
 .jewel.togglebutton.emphasized:focus {
   border: 1px solid #be390e;
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
 }
 .jewel.togglebutton.emphasized[disabled] {
   background: #404040 !important;
@@ -166,6 +208,80 @@ hr {
   background: linear-gradient(#d64010, #a6320d);
   border: 1px solid #772409;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
+}
+
+.jewel.togglebutton.emphasized.outlined {
+  background: rgba(239, 90, 42, 0.05);
+  border: 1px solid #d64010;
+  box-shadow: none;
+  color: #be390e;
+  text-shadow: none;
+}
+.jewel.togglebutton.emphasized.outlined:hover, .jewel.togglebutton.emphasized.outlined:hover:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid #be390e;
+  color: #8f2b0b;
+}
+.jewel.togglebutton.emphasized.outlined:active, .jewel.togglebutton.emphasized.outlined:active:focus {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid #b0350d;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.togglebutton.emphasized.outlined:focus {
+  border: 1px solid #a6320d;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.togglebutton.emphasized.outlined[disabled] {
+  background: rgba(64, 64, 64, 0.1) !important;
+  border: 1px solid #0d0d0d !important;
+  color: #737373;
+  text-shadow: unset;
+}
+.jewel.togglebutton.emphasized.outlined.selected {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid #b0350d;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+
+.jewel.togglebutton.emphasized.unboxed {
+  background: rgba(239, 90, 42, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #be390e;
+  text-shadow: none;
+}
+.jewel.togglebutton.emphasized.unboxed:hover, .jewel.togglebutton.emphasized.unboxed:hover:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid transparent;
+  color: #8f2b0b;
+}
+.jewel.togglebutton.emphasized.unboxed:active, .jewel.togglebutton.emphasized.unboxed:active:focus {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.togglebutton.emphasized.unboxed:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8f2b0b;
+}
+.jewel.togglebutton.emphasized.unboxed[disabled] {
+  background: rgba(64, 64, 64, 0) !important;
+  border: 1px solid transparent !important;
+  color: #737373;
+  text-shadow: unset;
+}
+.jewel.togglebutton.emphasized.unboxed.selected {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8f2b0b;
 }
 
 /*# sourceMappingURL=defaults.css.map */

@@ -18,23 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.ILayoutChild;
-    import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IRangeModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.Label;
+	import org.apache.royale.html.Label;
 	import org.apache.royale.html.Spinner;
 	import org.apache.royale.html.TextInput;
 	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 
@@ -62,8 +63,8 @@ package org.apache.royale.html.beads
 		}
 		
 		protected var label:Label;
-        protected var input:TextInput;
-        protected var spinner:Spinner;
+		protected var input:TextInput;
+		protected var spinner:Spinner;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -80,16 +81,16 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-            
+			
 			// add an input field
 			input = new TextInput();
-            input.className = "NumericStepperInput";
-            input.typeNames = "NumericStepperInput";
+			input.className = "NumericStepperInput";
+			input.typeNames = "NumericStepperInput";
 			(value as IParent).addElement(input);
 			COMPILE::JS
 			{
-	            input.positioner.style.display = 'inline-block';
-    	        input.positioner.style.width = '100px';
+				input.positioner.style.display = 'inline-block';
+				input.positioner.style.width = '100px';
 			}
 			// add a spinner
 			spinner = new Spinner();
@@ -103,8 +104,8 @@ package org.apache.royale.html.beads
 			}
 			COMPILE::JS
 			{
-	            spinner.positioner.style.display = 'inline-block';
-                spinner.positioner.style.position = '';
+				spinner.positioner.style.display = 'inline-block';
+				spinner.positioner.style.position = '';
 			}
 			
 			// listen for changes to the text input field which will reset the
@@ -116,9 +117,9 @@ package org.apache.royale.html.beads
 			// listen for change events on the spinner so the value can be updated as
 			// as resizing the component
 			spinner.addEventListener("valueChange",spinnerValueChanged);
-			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
-            IEventDispatcher(value).addEventListener("sizeChanged",sizeChangeHandler);
+			listenOnStrand("widthChanged",sizeChangeHandler);
+			listenOnStrand("heightChanged",sizeChangeHandler);
+			listenOnStrand("sizeChanged",sizeChangeHandler);
 			
 			// listen for changes to the model itself and update the UI accordingly
 			IEventDispatcher(UIBase(value).model).addEventListener("valueChange",modelChangeHandler);
@@ -154,7 +155,7 @@ package org.apache.royale.html.beads
 		private function sizeChangeHandler(event:Event) : void
 		{
 			// first reads
-			var widthToContent:Boolean = (_strand as UIBase).isWidthSizedToContent();
+			var widthToContent:Boolean = (event == null) && (_strand as UIBase).isWidthSizedToContent();
 			var inputWidth:Number = input.width;
 			var inputHeight:Number = input.height;
 			var strandWidth:Number;
@@ -189,7 +190,7 @@ package org.apache.royale.html.beads
 			input.text = "" + spinner.value;
 			
 			var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", event.oldValue, event.newValue);
-			IEventDispatcher(_strand).dispatchEvent(newEvent);
+			sendStrandEvent(_strand,newEvent);
 		}
 		
 		/**

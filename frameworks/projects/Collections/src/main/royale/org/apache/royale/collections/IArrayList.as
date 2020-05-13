@@ -27,8 +27,17 @@ package org.apache.royale.collections
     import org.apache.royale.collections.converters.IItemConverter;
 
     //--------------------------------------
-
-
+	
+	/**
+	 *  Support for Arraylike access (typed index access via []) and also via iteration when used with for-each loops.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[RoyaleArrayLike(getValue="getItemAt",setValue="setItemAt",setterArgSequence="value,index",length="length",lengthAccess="getter")]
+	
     /**
      *  The ArrayList class provides an event-driven wrapper for the
 	 *  standard Array. Events are dispatched when items are added, removed,
@@ -39,7 +48,7 @@ package org.apache.royale.collections
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IArrayList
+	public interface IArrayList extends IEventDispatcher
 	{
         /**
          *  The array of raw data needing conversion.

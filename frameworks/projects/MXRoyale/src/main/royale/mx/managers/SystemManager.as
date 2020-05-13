@@ -2950,6 +2950,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     {
         var body:HTMLElement = document.getElementsByTagName('body')[0];
         body.appendChild(element);
+        element.className = "royale";  // to pick up box-model
         
         SystemManagerGlobals.info = info();
         
@@ -2985,7 +2986,23 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         mxmlDocument.moduleFactory = this;
         addChild(mxmlDocument as IUIComponent);
         var screen:Rectangle = this.screen;
-        mxmlDocument.setActualSize(screen.width, screen.height);            
+        mxmlDocument.setActualSize(screen.width, screen.height);
+        
+        COMPILE::JS
+        {
+            window.addEventListener('resize',
+                this.resizeHandler, false);        
+        }
+    }
+    
+    /**
+     * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+     */
+    private function resizeHandler(event:Event):void
+    {
+        _screen = null;
+        var screen:Rectangle = this.screen;
+        mxmlDocument.setActualSize(screen.width, screen.height);        
     }
     
     private function applicationCompleteHandler(event:Event):void
@@ -3716,8 +3733,14 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     { override }
     public function contains(child:IUIComponent):Boolean
     {
-        trace("contains not implemented");
-        return true;
+        COMPILE::SWF
+        {
+            return super.contains(child as DisplayObject);
+        }
+        COMPILE::JS
+        {
+            return element.contains(child.element);
+        }
     }
     
     /**

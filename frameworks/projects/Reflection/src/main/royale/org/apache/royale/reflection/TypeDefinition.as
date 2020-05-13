@@ -118,6 +118,17 @@ COMPILE::SWF {
             return def;
         }
         
+        /**
+         * The static getNativeDefinition method is a way to get a TypeDefinition for non-Royale types
+		 * like String, etc.
+         * @param name the qualified name of the definition,
+         * @return a TypeDefinition representing the class or interface represented by the parameters
+         */
+        public static function getNativeDefinition(name:String):TypeDefinition {
+            const def:TypeDefinition = internalGetDefinition(name);
+            return def;
+        }
+        
         internal static function internalGetDefinition(name:String, rawData:Object = null):TypeDefinition{
             COMPILE::SWF {
                 //normalize Vector naming
@@ -754,7 +765,7 @@ COMPILE::SWF {
                if (data) {
                    results = TypeDefinition.getDefinition(data.names[0].qName, data)[collection];
                    l=results.length;
-                   for (i=0;i<l;i++) oldNames[i]=results[i].name;
+                   for (i=0;i<l;i++) oldNames[i]=results[i].uri+"::"+results[i].name;
                } else results=[];
            }
            //get the local definitions
@@ -769,23 +780,33 @@ COMPILE::SWF {
                         if (isStatic) {
                             //we are looking for static members only
 							if (item.charAt(0)=="|") results[i++] = new itemClass(item.substr(1), true, this, itemDef);
-							
-                           // if ( itemDef.isStatic) results[i++] = new itemClass(item, itemDef);
+                        
                         } else {
                             //ignore statics here, because this is for instance members:
 							if (item.charAt(0)=="|") continue;
-                            //if (itemDef.isStatic) continue;
+                            
                             //instance member:
-                            var itemClassDef:MemberDefinitionBase = new itemClass(item, false, this, itemDef);
+                            var itemClassDef:MemberDefinitionBase;
                             if (resolve) {
                                 //resolve against older versions ("overrides")
-                                var oldIdx:int = oldNames.indexOf(itemClassDef.name);
+                                var oldIdx:int = oldNames.indexOf(item);
                                 if (oldIdx != -1) {
                                     //we have an override of an ancestor's definition, replace it
-                                    results[oldIdx] = itemClassDef;
+                                    //resolve access for accessors - combine readonly/writeOnly via ancestry to readwrite if applicable
+                                    if (collection == 'accessors') {
+                                        if (itemDef.access != 'readwrite') {
+                                            var oldAccess:String = results[oldIdx].access;
+                                            if (oldAccess == 'readwrite') itemDef.access = 'readwrite';
+                                            else {
+                                                if (itemDef.access != oldAccess) itemDef.access = 'readwrite';
+                                            }
+                                        }
+                                    }
+                                    results[oldIdx] = new itemClass(item, false, this, itemDef);
                                     continue;
                                 }
                             }
+                            itemClassDef = new itemClass(item, false, this, itemDef);
                             //add the new definition item to the collection
                             results[i++] = itemClassDef;
                         }

@@ -20,6 +20,7 @@ package org.apache.royale.core
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.utils.sendEvent;
 
     /**
      *  Indicates that the state change has completed.  All properties
@@ -108,7 +109,7 @@ package org.apache.royale.core
 			var contentView:IParent = getLayoutHost().contentView as IParent;
 			contentView.addElement(c, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new ValueEvent("childrenAdded", c));
+                sendEvent(this,new ValueEvent("childrenAdded", c));
 		}
 		
 		/**
@@ -120,7 +121,7 @@ package org.apache.royale.core
 			var contentView:IParent = getLayoutHost().contentView as IParent;
 			contentView.addElementAt(c, index, dispatchEvent);
             if (dispatchEvent)
-                this.dispatchEvent(new ValueEvent("childrenAdded", c));
+                sendEvent(this,new ValueEvent("childrenAdded", c));
 		}
 		
 		/**
@@ -145,7 +146,7 @@ package org.apache.royale.core
 			contentView.removeElement(c, dispatchEvent);
 			//TODO This should possibly be ultimately refactored to be more PAYG
 			if(dispatchEvent)
-				this.dispatchEvent(new ValueEvent("childrenRemoved", c));
+				sendEvent(this,new ValueEvent("childrenRemoved", c));
 		}
 		
 		/**

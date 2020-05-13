@@ -80,28 +80,280 @@ public class NumberValidator extends Validator
 
     /**
      *  Convenience method for calling a validator
-	 *  from within a custom validation function.
-	 *  Each of the standard Flex validators has a similar convenience method.
-	 *
-	 *  @param validator The NumberValidator instance.
-	 *
-	 *  @param value A field to validate.
-	 *
+     *  from within a custom validation function.
+     *  Each of the standard Flex validators has a similar convenience method.
+     *
+     *  @param validator The NumberValidator instance.
+     *
+     *  @param value A field to validate.
+     *
      *  @param baseField Text representation of the subfield
-	 *  specified in the <code>value</code> parameter.
-	 *  For example, if the <code>value</code> parameter specifies value.number,
-	 *  the <code>baseField</code> value is "number".
-	 *
-	 *  @return An Array of ValidationResult objects, with one ValidationResult 
-	 *  object for each field examined by the validator. 
-	 *
-	 *  @see mx.validators.ValidationResult
+     *  specified in the <code>value</code> parameter.
+     *  For example, if the <code>value</code> parameter specifies value.number,
+     *  the <code>baseField</code> value is "number".
+     *
+     *  @return An Array of ValidationResult objects, with one ValidationResult 
+     *  object for each field examined by the validator. 
+     *
+     *  @see mx.validators.ValidationResult
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
+    public static function validateNumber(validator:NumberValidator,
+                                          value:Object,
+                                          baseField:String):Array
+    {
+        var results:Array = [];
+        
+        // Resource-backed properties of the validator.
+        var allowNegative:Boolean = validator.allowNegative;		
+        var decimalSeparator:String = validator.decimalSeparator;
+        var domain:String = validator.domain;	
+        var maxValue:Number = Number(validator.maxValue);
+        var minValue:Number = Number(validator.minValue);
+        var precision:int = int(validator.precision);
+        var thousandsSeparator:String = validator.thousandsSeparator;
+        var input:String = String(value);
+        var len:int = input.length;
+        var isNegative:Boolean = false;
+        var i:int;
+        var c:String;
+        var isNumber:Boolean = (value is Number);
+        
+        // Make sure the formatting character parameters are unique,
+        // are not digits or the negative sign,
+        // and that the separators are one character.
+        var invalidFormChars:String = DECIMAL_DIGITS + "-";
+        
+        if (decimalSeparator == thousandsSeparator ||
+            invalidFormChars.indexOf(decimalSeparator) != -1 ||
+            invalidFormChars.indexOf(thousandsSeparator) != -1 ||
+            decimalSeparator.length != 1 ||
+            thousandsSeparator.length != 1)
+        {
+            results.push(new ValidationResult(
+                true, baseField, "invalidFormatChar",
+                validator.invalidFormatCharsError));
+            return results;
+        }
+        
+        // Check for invalid characters in input.
+        var validChars:String = DECIMAL_DIGITS + "-" +
+            decimalSeparator + thousandsSeparator;
+        for (i = 0; i < len; i++)
+        {
+            c = input.charAt(i);
+            if (validChars.indexOf(c) == -1)
+            {
+                results.push(new ValidationResult(
+                    true, baseField, "invalidChar",
+                    validator.invalidCharError));
+                return results;
+            }
+        }
+        
+        // Check if the input is negative.
+        if (input.charAt(0) == "-")
+        {
+            if (len == 1) // we have only '-' char
+            {
+                results.push(new ValidationResult(
+                    true, baseField, "invalidChar",
+                    validator.invalidCharError));
+                return results;
+            }
+            else if (len == 2 && input.charAt(1) == '.') // handle "-."
+            {
+                results.push(new ValidationResult(
+                    true, baseField, "invalidChar",
+                    validator.invalidCharError));
+                return results;
+            }
+            
+            // Check if negative input is allowed.
+            if (!allowNegative)
+            {
+                results.push(new ValidationResult(
+                    true, baseField, "negative",
+                    validator.negativeError));
+                return results;
+            }
+            
+            // Strip off the minus sign, update some variables.
+            input = input.substring(1);
+            len--;
+            isNegative = true;
+        }
+        
+        // Make sure there's only one decimal point.
+        if (input.indexOf(decimalSeparator) !=
+            input.lastIndexOf(decimalSeparator))
+        {
+            results.push(new ValidationResult(
+                true, baseField, "decimalPointCount",
+                validator.decimalPointCountError));
+            return results;
+        }
+        
+        // Make sure every character after the decimal is a digit,
+        // and that there aren't too many digits after the decimal point:
+        // if domain is int there should be none,
+        // otherwise there should be no more than specified by precision.
+        var decimalSeparatorIndex:Number = input.indexOf(decimalSeparator);
+        if (decimalSeparatorIndex != -1)
+        {
+            var numDigitsAfterDecimal:Number = 0;
+            
+            if (i == 1 && i == len) // we only have a '.'
+            {
+                results.push(new ValidationResult(
+                    true, baseField, "invalidChar",
+                    validator.invalidCharError));
+                return results;
+            }
+            
+            for (i = decimalSeparatorIndex + 1; i < len; i++)
+            {
+                // This character must be a digit.
+                if (DECIMAL_DIGITS.indexOf(input.charAt(i)) == -1)
+                {
+                    results.push(new ValidationResult(
+                        true, baseField, "invalidChar",
+                        validator.invalidCharError));
+                    return results;
+                }
+                
+                ++numDigitsAfterDecimal;
+                
+                // There may not be any non-zero digits after the decimal
+                // if domain is int.
+                if (domain == NumberValidatorDomainType.INT && input.charAt(i) != "0")
+                {
+                    results.push(new ValidationResult(
+                        true, baseField,"integer",
+                        validator.integerError));
+                    return results;
+                }
+                
+                // Make sure precision is not exceeded.
+                if (precision != -1 &&
+                    numDigitsAfterDecimal > precision)
+                {
+                    results.push(new ValidationResult(
+                        true, baseField, "precision",
+                        validator.precisionError));
+                    return results;
+                }
+            }
+        }
+        
+        // Make sure the input begins with a digit or a decimal point.
+        if (DECIMAL_DIGITS.indexOf(input.charAt(0)) == -1 &&
+            input.charAt(0) != decimalSeparator)
+        {
+            results.push(new ValidationResult(
+                true, baseField, "invalidChar",
+                validator.invalidCharError));
+            return results;
+        }
+        
+        // Make sure that every character before the decimal point
+        // is a digit or is a thousands separator.
+        // If it's a thousands separator,
+        // make sure it's followed by three consecutive digits.
+        var end:int = decimalSeparatorIndex == -1 ?
+            len :
+            decimalSeparatorIndex;
+        if (!isNumber)
+        {
+            for (i = 1; i < end; i++)
+            {
+                c = input.charAt(i);
+                if (c == thousandsSeparator)
+                {
+                    if (c == thousandsSeparator)
+                    {
+                        if ((end - i != 4 &&
+                            input.charAt(i + 4) != thousandsSeparator) ||
+                            DECIMAL_DIGITS.indexOf(input.charAt(i + 1)) == -1 ||
+                            DECIMAL_DIGITS.indexOf(input.charAt(i + 2)) == -1 ||
+                            DECIMAL_DIGITS.indexOf(input.charAt(i + 3)) == -1)
+                        {
+                            results.push(new ValidationResult(
+                                true, baseField, "separation",
+                                validator.separationError));
+                            return results;
+                        }
+                    }
+                }
+                else if (DECIMAL_DIGITS.indexOf(c) == -1)
+                {
+                    results.push(new ValidationResult(
+                        true, baseField,"invalidChar",
+                        validator.invalidCharError));
+                    return results;
+                }
+            }
+        }
+        
+        // Make sure the input is within the specified range.
+        if (!isNaN(minValue) || !isNaN(maxValue))
+        {
+            // First strip off the thousands separators.
+            for (i = 0; i < end; i++)
+            {
+                if (input.charAt(i) == thousandsSeparator)
+                {
+                    var left:String = input.substring(0, i);
+                    var right:String = input.substring(i + 1);
+                    input = left + right;
+                }
+            }
+            
+            // Translate the value back into standard english
+            // If the decimalSeperator is not '.' we need to change it to '.' 
+            // so that the number casting will work properly
+            if (validator.decimalSeparator != '.')
+            {
+                var dIndex:int = input.indexOf( validator.decimalSeparator );
+                if (dIndex != -1)
+                { 
+                    var dLeft:String = input.substring(0, dIndex);
+                    var dRight:String = input.substring(dIndex + 1);
+                    input = dLeft + '.' + dRight;
+                }
+            }
+            
+            // Check bounds
+            
+            var x:Number = Number(input);
+            
+            if (isNegative)
+                x = -x;
+            
+            if (!isNaN(minValue) && x < minValue)
+            {
+                results.push(new ValidationResult(
+                    true, baseField, "lowerThanMin",
+                    validator.lowerThanMinError));
+                return results;
+            }
+            
+            if (!isNaN(maxValue) && x > maxValue)
+            {
+                results.push(new ValidationResult(
+                    true, baseField, "exceedsMax",
+                    validator.exceedsMaxError));
+                return results;
+            }
+        }
+        
+        return results;
+    }
+    
    
 	//--------------------------------------------------------------------------
 	//
@@ -136,7 +388,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the allowNegative property.
 	 */
-	private var _allowNegative:Object;
+	private var _allowNegative:Object = true;
 	
     /**
 	 *  @private
@@ -169,7 +421,7 @@ public class NumberValidator extends Validator
 		//allowNegativeOverride = value;
 
 		_allowNegative = value != null ?
-						 Boolean(value) : false;
+						 Boolean(value) : true;
 	//					 resourceManager.getBoolean(
 	//					     "validators", "allowNegative");
 	}
@@ -182,7 +434,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the decimalSeparator property.
 	 */
-	private var _decimalSeparator:String;
+	private var _decimalSeparator:String = ".";
 	
     /**
 	 *  @private
@@ -217,7 +469,7 @@ public class NumberValidator extends Validator
 		//decimalSeparatorOverride = value;
 
 		_decimalSeparator = value != null ?
-							value : "";
+							value : ".";
 	//						resourceManager.getString(
 	//						    "validators", "decimalSeparator");
 	}
@@ -230,7 +482,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the domain property.
 	 */
-	private var _domain:String;
+	private var _domain:String = "real";
 	
     /**
 	 *  @private
@@ -267,7 +519,7 @@ public class NumberValidator extends Validator
 		//domainOverride = value;
 
 		_domain = value != null ?
-				  value : "";
+				  value : "real";
 	//			  resourceManager.getString(
 	//			      "validators", "numberValidatorDomain");
 	}
@@ -280,7 +532,7 @@ public class NumberValidator extends Validator
      *  @private
      *  Storage for the integerError property.
      */
-    private var _integerError:String;
+    private var _integerError:String = "The number must be an integer.";
     
     /**
      *  @private
@@ -313,9 +565,9 @@ public class NumberValidator extends Validator
         //integerErrorOverride = value;
         
         _integerError = value != null ?
-            value :
-            /*resourceManager.getString(
-                "validators", */"integerError"/*)*/;
+            value : "";
+    //        resourceManager.getString(
+    //            "validators", "integerError");
     }
     
 	//----------------------------------
@@ -358,7 +610,7 @@ public class NumberValidator extends Validator
 		//maxValueOverride = value;
 
 		_maxValue = value != null ?
-					Number(value) : 0;
+					Number(value) : NaN;
 	//				resourceManager.getNumber(
 	//					"validators", "maxValue");
 	}
@@ -403,7 +655,7 @@ public class NumberValidator extends Validator
 		//minValueOverride = value;
 
 		_minValue = value != null ?
-					Number(value) : 0;
+					Number(value) : NaN;
 	//				resourceManager.getNumber(
 	//					"validators", "minValue");
 	}
@@ -416,7 +668,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the precision property.
 	 */
-	private var _precision:Object;
+	private var _precision:Object = -1;
 	
     /**
 	 *  @private
@@ -452,7 +704,7 @@ public class NumberValidator extends Validator
 		//precisionOverride = value;
 
 		_precision = value != null ?
-					 int(value) : 0;
+					 int(value) : -1;
 	//				 resourceManager.getInt(
 	//				     "validators", "numberValidatorPrecision");
 	}
@@ -465,7 +717,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the thousandsSeparator property.
 	 */
-	private var _thousandsSeparator:String;
+	private var _thousandsSeparator:String = ",";
 	
     /**
 	 *  @private
@@ -500,7 +752,7 @@ public class NumberValidator extends Validator
 		//thousandsSeparatorOverride = value;
 
 		_thousandsSeparator = value != null ?
-							  value : "";
+							  value : ",";
 	//						  resourceManager.getString(
 	//						      "validators", "thousandsSeparator");
 	}
@@ -519,7 +771,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the decimalPointCountError property.
 	 */
-	private var _decimalPointCountError:String;
+	private var _decimalPointCountError:String = "The decimal separator can occur only once.";
 	
     /**
 	 *  @private
@@ -564,7 +816,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the exceedsMaxError property.
 	 */
-	private var _exceedsMaxError:String;
+	private var _exceedsMaxError:String = "The number entered is too large.";
 	
     /**
 	 *  @private
@@ -609,7 +861,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the invalidCharError property.
 	 */
-	private var _invalidCharError:String;
+	private var _invalidCharError:String = "The input contains invalid characters.";
 	
     /**
 	 *  @private
@@ -646,6 +898,52 @@ public class NumberValidator extends Validator
 	//							"validators", "invalidCharError");
 	}
 
+    //----------------------------------
+    //  invalidFormatCharsError
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the invalidFormatCharsError property.
+     */
+    private var _invalidFormatCharsError:String = "One of the formatting parameters is invalid.";
+    
+    /**
+     *  @private
+     */
+    private var invalidFormatCharsErrorOverride:String;
+    
+    [Inspectable(category="Errors", defaultValue="null")]
+    
+    /**
+     *  Error message when the value contains invalid format characters, which means that 
+     *  it contains a digit or minus sign (-) as a separator character, 
+     *  or it contains two or more consecutive separator characters.
+     *
+     *  @default "One of the formatting parameters is invalid."
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get invalidFormatCharsError():String
+    {
+        return _invalidFormatCharsError;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set invalidFormatCharsError(value:String):void
+    {
+        invalidFormatCharsErrorOverride = value;
+        
+        _invalidFormatCharsError = value != null ?
+            value : "";
+    //        resourceManager.getString(
+    //            "validators", "invalidFormatCharsError");
+    }
 	//----------------------------------
 	//  lowerThanMinError
 	//----------------------------------
@@ -654,7 +952,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the lowerThanMinError property.
 	 */
-	private var _lowerThanMinError:String;
+	private var _lowerThanMinError:String = "The amount entered is too small.";
 	
     /**
 	 *  @private
@@ -699,7 +997,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the negativeError property.
 	 */
-	private var _negativeError:String;
+	private var _negativeError:String = "The amount may not be negative.";
 	
     /**
 	 *  @private
@@ -745,7 +1043,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the precisionError property.
 	 */
-	private var _precisionError:String;
+	private var _precisionError:String = "The amount entered has too many digits beyond the decimal point.";
 	
     /**
 	 *  @private
@@ -791,7 +1089,7 @@ public class NumberValidator extends Validator
 	 *  @private
 	 *  Storage for the separationError property.
 	 */
-	private var _separationError:String;
+	private var _separationError:String = "The thousands separator must be followed by three digits.";
 	
     /**
 	 *  @private
@@ -827,6 +1125,37 @@ public class NumberValidator extends Validator
 	//					   resourceManager.getString(
 	//					       "validators", "separationError");
 	}
+    
+    /**
+     *  Override of the base class <code>doValidation()</code> method 
+     *  to validate a number.
+     *
+     *  <p>You do not call this method directly;
+     *  Flex calls it as part of performing a validation.
+     *  If you create a custom Validator class, you must implement this method. </p>
+     *
+     *  @param value Object to validate.
+     *
+     *  @return An Array of ValidationResult objects, with one ValidationResult 
+     *  object for each field examined by the validator. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override protected function doValidation(value:Object):Array
+    {
+        var results:Array = super.doValidation(value);
+        
+        // Return if there are errors
+        // or if the required property is set to <code>false</code> and length is 0.
+        var val:String = value ? String(value) : "";
+        if (results.length > 0 || ((val.length == 0) && !required))
+            return results;
+        else
+            return NumberValidator.validateNumber(this, value, null);
+    }
     
  }
 

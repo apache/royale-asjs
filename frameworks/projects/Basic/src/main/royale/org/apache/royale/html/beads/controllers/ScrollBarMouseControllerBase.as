@@ -25,6 +25,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.IScrollBarView;
+	import org.apache.royale.utils.sendStrandEvent;
 
     /**
      *  The ScrollBarMouseControllerBase class is the base class
@@ -138,7 +139,7 @@ package org.apache.royale.html.beads.controllers
 		protected function decrementClickHandler(event:MouseEvent):void
 		{
 			sbModel.value = snap(Math.max(sbModel.minimum, sbModel.value - sbModel.stepSize));
-			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
+			sendStrandEvent(_strand,"scroll");
 		}
 		
         /**
@@ -152,7 +153,7 @@ package org.apache.royale.html.beads.controllers
 		protected function incrementClickHandler(event:MouseEvent):void
 		{
 			sbModel.value = snap(Math.min(sbModel.maximum - sbModel.pageSize, sbModel.value + sbModel.stepSize));	
-			IEventDispatcher(_strand).dispatchEvent(new Event("scroll"));
+			sendStrandEvent(_strand,"scroll");
 		}
 		
         /**

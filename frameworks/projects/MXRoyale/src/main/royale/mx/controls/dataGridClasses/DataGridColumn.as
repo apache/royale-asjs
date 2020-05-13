@@ -34,12 +34,15 @@ import mx.core.IFactory;
 import mx.core.IFlexModuleFactory;
 import mx.core.IIMESupport;
 import mx.core.Singleton;
-import mx.core.mx_internal;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
 
-use namespace mx_internal;
 */
+import mx.core.UIComponent;
+import mx.core.mx_internal;
+use namespace mx_internal;
+
+import org.apache.royale.events.Event;
 import org.apache.royale.html.supportClasses.DataGridColumn;
     
 //--------------------------------------
@@ -278,6 +281,7 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     {
         _headerText = value;
         label = value;
+        dispatchEvent(new Event("headerTextChanged"));
     }
 
 
@@ -306,6 +310,67 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     //----------------------------------
     //  labelFunction
     //----------------------------------
+
+    public function itemToLabel(data:Object):String
+    {
+        if (data == null)
+            return " ";
+        
+        /*
+        if (labelFunction != null)
+            return labelFunction(data);
+        */
+        
+        if (data is XML)
+        {
+            try
+            {
+                if ((data as XML)[labelField].length() != 0)
+                    data = (data as XML)[labelField];
+                //by popular demand, this is a default XML labelField
+                //else if (data.@label.length() != 0)
+                //  data = data.@label;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        else if (data is Object)
+        {
+            try
+            {
+                if (data[labelField] != null)
+                    data = data[labelField];
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        if (data is String)
+            return String(data);
+        
+        try
+        {
+            return data.toString();
+        }
+        catch(e:Error)
+        {
+        }
+        
+        return " ";
+    }
+
+    private var _labelField:String;
+    public function get labelField():String
+    {
+        return _labelField;
+    }
+
+    public function set labelField(value:String):void
+    {
+        _labelField = value;
+    }
 
     /**
      *  @private
@@ -394,6 +459,114 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
         // otherwise, just store the size
         _width = value;
     }
+    
+    //----------------------------------
+    //  minWidth
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the width property.
+     */
+    private var _minWidth:Number = 20;
+    
+    [Inspectable(category="General", defaultValue="20")]
+    
+    /**
+     *  The width of the column, in pixels. 
+     *  If the DataGrid's <code>horizontalScrollPolicy</code> property 
+     *  is <code>false</code>, all visible columns must fit in the displayable 
+     *  area, and the DataGrid will not always honor the width of
+     *  the columns if the total width of the columns is too
+     *  small or too large for the displayable area.
+     *
+     *  @default 100
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get minWidth():Number
+    {
+        return _minWidth;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set minWidth(value:Number):void
+    {
+        _minWidth = value;
+    }
+
+
+    public function get textAlign():Object
+    {
+        trace("textAlign not implemented");
+        return 0;
+    }
+    public function set textAlign(value:Object):void
+    {
+        trace("textAlign not implemented");
+    }
+
+    //----------------------------------
+    //  wordWrap
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the wordWrap property.
+     */
+    private var _wordWrap:*;
+
+    [Inspectable(category="Advanced")]
+
+    /**
+     *  Set to <code>false</code> to wrap the text in a row of this column
+     *  because it does not fit on one line
+     *  If <code>undefined</code>, the AdvancedDataGrid control's <code>wordWrap</code> property 
+     *  is used.
+     *
+     *  @default undefined
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get wordWrap():*
+    {
+        return _wordWrap;
+    }
+
+    /**
+     *  @private
+     */
+    public function set wordWrap(value:*):void
+    {
+        _wordWrap = value;
+
+       /*  if (owner)
+        {
+            owner.invalidateList();
+        } */
+    }
+
+    public var sortDescending:Boolean = false;
+    
+    mx_internal var owner:UIComponent;
+    
+    /**
+     *  @private
+     *  The zero-based index of this column as it is displayed in the grid.
+     *  It is not related to the structure of the data being displayed.
+     *  In MXML, the default order of the columns is the order of the
+     *  <code>mx:DataGridColumn</code> tags.
+     */
+    mx_internal var colNum:Number;
+    
 
 }
 

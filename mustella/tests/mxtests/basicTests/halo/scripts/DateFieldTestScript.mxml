@@ -65,7 +65,7 @@
 				<DispatchMouseEvent target="haloDateFieldTests.testDateField.dropdown" type="mouseOver" localX="89" localY="67" />
 				<DispatchMouseClickEvent target="haloDateFieldTests.testDateField.dropdown" localX="89" localY="67" />
 				<!--<AssertEvent target="haloDateFieldTests.testDateField" eventName="close" eventClass="mx.events::DropdownEvent" />-->
-				<AssertPropertyValue target="haloDateFieldTests.testDateField" propertyName="selectedDate" valueExpression="value = new Date(2005, 4, 3)" />
+				<AssertPropertyValue target="haloDateFieldTests.testDateField" propertyName="selectedDate" valueExpression="value = new Date(2005, 4, 4)" />
 			</body>
 		</TestCase>
 	</testCases>

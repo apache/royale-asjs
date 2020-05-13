@@ -19,9 +19,9 @@
 
 DESCRIPTION
 
-Using the Jewel Slider Control
+Using the Jewel HSlider Control
 
-See the basic use of the Jewel Slider control in a Royale application.
+See the basic use of the Jewel HSlider control in a Royale application.
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 

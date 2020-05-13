@@ -24,6 +24,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
@@ -31,7 +33,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.Tree;
@@ -42,6 +43,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 * The TreeGridView class is responsible for creating the sub-components of the TreeGrid:
@@ -69,9 +71,8 @@ package org.apache.royale.html.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
 		private var _header:DataGridButtonBar;
-		private var _listArea:Container;
+		private var _listArea:IUIBase;
 		
 		private var _lists:Array;
 		
@@ -87,7 +88,7 @@ package org.apache.royale.html.beads
 		 * The area used to hold the columns
 		 *
 		 */
-		public function get listArea():Container
+		public function get listArea():IUIBase
 		{
 			return _listArea;
 		}
@@ -127,7 +128,7 @@ package org.apache.royale.html.beads
 				_strand.addBead(layout);
 			}
 
-			IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
+			listenOnStrand("beadsAdded", finishSetup);
 		}
 		
 		public function refreshContent():void
@@ -138,6 +139,7 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IBeadModel
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
@@ -151,8 +153,8 @@ package org.apache.royale.html.beads
 			// see if there is a presentation model already in place. if not, add one.
 			var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
-			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
-			IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
+			sharedModel.addEventListener("dataProviderChanged",handleDataProviderChanged);
+			sharedModel.addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 			
 			_header = new DataGridButtonBar();
 			// header's height is set in CSS
@@ -162,7 +164,7 @@ package org.apache.royale.html.beads
 			sharedModel.headerModel = _header.model as IBeadModel;
 			
 			_listArea = new TreeGridListArea();
-			_listArea.percentWidth = 100;
+			(_listArea as ILayoutChild).percentWidth = 100;
 				
 			createColumns();
 			
@@ -195,11 +197,11 @@ package org.apache.royale.html.beads
 				
 			handleDataProviderChanged(event);
 			
-			host.addEventListener("widthChanged", handleSizeChanges);
-			host.addEventListener("heightChanged", handleSizeChanges);
+			listenOnStrand("widthChanged", handleSizeChanges);
+			listenOnStrand("heightChanged", handleSizeChanges);
 			
-			host.dispatchEvent(new Event("dataGridViewCreated"));
-			host.dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"dataGridViewCreated");
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -216,7 +218,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDataProviderChanged(event:Event):void
 		{
-			host.dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -251,13 +253,14 @@ package org.apache.royale.html.beads
 				return;
 			}
 			
-			host.dispatchEvent(new Event('change'));
+			sendStrandEvent(_strand,'change');
 		}
 		
 		/**
 		 * @private
 		 * @royaleignorecoercion Class
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.core.IParent
 		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
          * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
@@ -302,12 +305,12 @@ package org.apache.royale.html.beads
 				column.addBead(new Viewport());
 				column.addEventListener('change', handleColumnListChange);
 				
-				_listArea.addElement(column);
+				(_listArea as IParent).addElement(column);
 				_lists.push(column);
 				
 			}
 			
-			host.dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 	}
 }

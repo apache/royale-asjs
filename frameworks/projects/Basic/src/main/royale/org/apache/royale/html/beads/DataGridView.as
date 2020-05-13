@@ -23,20 +23,24 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.sendEvent;
 
 		/**
 		 *  The DataGridView class is the visual bead for the org.apache.royale.html.DataGrid.
@@ -64,8 +68,19 @@ package org.apache.royale.html.beads
 				super();
 			}
 
+		    /**
+		     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		     */
+		    override public function set strand(value:IStrand):void
+		    {
+		        super.strand = value;
+				host.addEventListener("widthChanged", handleSizeChanges);
+				host.addEventListener("heightChanged", handleSizeChanges);
+				host.addEventListener("sizeChanged", handleSizeChanges);
+			}
+
 			private var _header:DataGridButtonBar;
-			private var _listArea:Container;
+			private var _listArea:IUIBase;
 
 			private var _lists:Array;
 
@@ -81,7 +96,7 @@ package org.apache.royale.html.beads
 			 * The area used to hold the columns
 			 *
 			 */
-			public function get listArea():Container
+			public function get listArea():IUIBase
 			{
 				return _listArea;
 			}
@@ -99,6 +114,8 @@ package org.apache.royale.html.beads
                 handleInitComplete(null);
             }
 
+			private var sawInitComplete:Boolean;
+			
 			/**
 			 * @private
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
@@ -106,10 +123,14 @@ package org.apache.royale.html.beads
 			 * @royaleignorecoercion org.apache.royale.core.IBead
 			 * @royaleignorecoercion org.apache.royale.core.IBeadModel
 			 * @royaleignorecoercion org.apache.royale.core.IChild
+			 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+			 * @royaleignorecoercion org.apache.royale.core.IUIBase
 			 * @royaleignorecoercion org.apache.royale.html.DataGrid
 			 */
 			override protected function handleInitComplete(event:Event):void
 			{
+				sawInitComplete = event != null;
+				
 				var host:IDataGrid = _strand as IDataGrid;
 
 				// see if there is a presentation model already in place. if not, add one.
@@ -128,14 +149,15 @@ package org.apache.royale.html.beads
 
                 var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
                 assert(listAreaClass != null,"listAreaClass for DataGrid must be set!")
-				_listArea = new listAreaClass() as DataGridListArea;
-				_listArea.percentWidth = 100;
+				_listArea = new listAreaClass() as IUIBase;
+				(_listArea as ILayoutChild).percentWidth = 100;
 
-				createLists();
+                if (sharedModel.columns)
+    				createLists();
 
                 var columnLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "columnLayoutClass") as Class;
                 assert(columnLayoutClass != null,"columnLayoutClass for DataGrid must be set!")
-				var bblayout:ButtonBarLayout = new columnLayoutClass() as ButtonBarLayout;
+				var bblayout:IBead = new columnLayoutClass() as IBead;
 				_header.addBead(bblayout as IBead);
 				_header.addBead(new Viewport() as IBead);
 				host.strandChildren.addElement(_header as IChild);
@@ -144,25 +166,27 @@ package org.apache.royale.html.beads
 
 				handleDataProviderChanged(event);
 
-				host.addEventListener("widthChanged", handleSizeChanges);
-				host.addEventListener("heightChanged", handleSizeChanges);
-
-				host.dispatchEvent(new Event("dataGridViewCreated"));
+				sendStrandEvent(_strand,"dataGridViewCreated");
 			}
 
+			private var sawSizeChanged:Boolean;
+			
 			/**
 			 * @private
 			 */
 			private function handleSizeChanges(event:Event):void
 			{
-				_header.dispatchEvent(new Event("layoutChanged"));
-				_listArea.dispatchEvent(new Event("layoutChanged"));
+				sawSizeChanged = true;
+				if (_header)
+					sendEvent(_header,"layoutChanged");
+				if (_listArea)
+					sendEvent(_listArea,"layoutChanged");
 			}
 
 			/**
 			 * @private
 			 */
-			private function handleDataProviderChanged(event:Event):void
+			protected function handleDataProviderChanged(event:Event):void
 			{
                 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
                 for (var i:int=0; i < _lists.length; i++)
@@ -170,7 +194,7 @@ package org.apache.royale.html.beads
                     var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
                     list.dataProvider = sharedModel.dataProvider;
                 }
-				host.dispatchEvent(new Event("layoutNeeded"));
+				sendStrandEvent(_strand,"layoutNeeded");
 			}
 
 			/**
@@ -208,7 +232,7 @@ package org.apache.royale.html.beads
 					}
 				}
 
-				host.dispatchEvent(new Event('change'));
+				sendStrandEvent(_strand,'change');
 			}
 
 			/**
@@ -218,11 +242,12 @@ package org.apache.royale.html.beads
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 			 * @royaleignorecoercion org.apache.royale.core.IBead
 			 * @royaleignorecoercion org.apache.royale.core.IChild
+			 * @royaleignorecoercion org.apache.royale.core.IParent
 			 * @royaleignorecoercion org.apache.royale.core.IDataGrid
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 			 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
 			 */
-			private function createLists():void
+			protected function createLists():void
 			{
 				var host:IDataGrid = _strand as IDataGrid;
 				
@@ -261,12 +286,30 @@ package org.apache.royale.html.beads
 					list.addEventListener('change',handleColumnListChange);
 					list.addBead(presentationModel as IBead);
 
-					_listArea.addElement(list as IChild);
+					(_listArea as IParent).addElement(list as IChild);
 					_lists.push(list);
 				}
 
-				host.dispatchEvent(new Event("layoutNeeded"));
+				sendStrandEvent(_strand,"layoutNeeded");
 			}
+			
+			/**
+			 * Provides a place for pre-layout actions.
+			 *
+			 *  @langversion 3.0
+			 *  @playerversion Flash 10.2
+			 *  @playerversion AIR 2.6
+			 *  @productversion Royale 0.8
+			 */
+			override public function beforeLayout():Boolean
+			{
+				var host:ILayoutChild = _strand as ILayoutChild;
+				if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+					return sawInitComplete;
+				return sawSizeChanged;
+			}
+
+
 		}
 }
 

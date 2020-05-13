@@ -19,16 +19,16 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.supportClasses.StyledImageBase;
-	import org.apache.royale.events.MouseEvent;
 
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	  /**
-	   *  Load Images. For button images use ImageButton
+	   *  The Jewel Image is a simple component that loads an Image.
+	   *  For button images use ImageButton
 	   *
 	   *  @toplevel
 	   *  @langversion 3.0

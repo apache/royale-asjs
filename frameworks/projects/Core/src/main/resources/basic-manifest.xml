@@ -55,4 +55,6 @@
     
     <component id="CompoundAsyncTask" class="org.apache.royale.utils.async.CompoundAsyncTask"/>
     <component id="SequentialAsyncTask" class="org.apache.royale.utils.async.SequentialAsyncTask"/>
+    
+    <component id="OverridableSelectableItemRendererClassFactory" class="org.apache.royale.core.OverridableSelectableItemRendererClassFactory"/>
 </componentPackage>

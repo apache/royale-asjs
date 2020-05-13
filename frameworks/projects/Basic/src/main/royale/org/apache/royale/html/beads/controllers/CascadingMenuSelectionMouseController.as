@@ -30,6 +30,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.Menu;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
 
 	COMPILE::JS {
 		import org.apache.royale.events.BrowserEvent;
@@ -95,8 +96,9 @@ package org.apache.royale.html.beads.controllers
 			var model:CascadingMenuModel = _strand.getBeadByType(IBeadModel) as CascadingMenuModel;
 			
 			if (getHasMenu(node, model)) {
+				var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iMenu");
 				var component:IUIBase = event.target as IUIBase;
-				var menu:IMenu = new CascadingMenu();
+				var menu:IMenu = new c() as IMenu;
 				menu.dataProvider = getSubMenuDataProvider(node, model);
 				menu.labelField = model.labelField;
 				menu.parentMenuBar = (_strand as IMenu).parentMenuBar;

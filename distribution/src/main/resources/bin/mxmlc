@@ -68,4 +68,4 @@ fi
 
 VMARGS="-Xmx384m -Dsun.io.useCanonCaches=false "
 
-java $VMARGS $D32 $SETUP_SH_VMARGS -Droyalelib="$ROYALE_HOME/frameworks" -jar "${ROYALE_COMPILER_HOME}/lib/compiler-mxmlc.jar" "$@"
+java $VMARGS $D32 $SETUP_SH_VMARGS -Droyalelib="$ROYALE_HOME/frameworks" -jar "${ROYALE_COMPILER_HOME}/js/lib/mxmlc.jar" --targets=SWF "$@"

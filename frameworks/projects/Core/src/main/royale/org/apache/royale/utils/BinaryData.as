@@ -27,7 +27,16 @@ COMPILE::JS
 {
     import goog.DEBUG;
 }
-
+    
+/**
+ *  Support for Arraylike access (typed index access via []) and also iteration when used with for-each loops.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[RoyaleArrayLike(getValue="readByteAt",setValue="writeByteAt",setterArgSequence="index,value",length="length",lengthAccess="getter")]
 
 /**
  *  The BinaryData class is a class that represents binary data.  The way

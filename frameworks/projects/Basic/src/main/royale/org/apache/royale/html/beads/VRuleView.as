@@ -65,9 +65,9 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 			
-			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
-			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
-            IEventDispatcher(_strand).addEventListener("sizeChanged",handleSizeChange);
+			listenOnStrand("widthChanged",handleSizeChange);
+			listenOnStrand("heightChanged",handleSizeChange);
+      listenOnStrand("sizeChanged",handleSizeChange);
 			
 			handleSizeChange(null);
 		}

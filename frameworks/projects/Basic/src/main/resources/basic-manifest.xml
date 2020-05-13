@@ -45,6 +45,7 @@
     <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
     <component id="DataContainer" class="org.apache.royale.html.DataContainer"/>
     <component id="List" class="org.apache.royale.html.List"/>
+    <component id="MultiSelectionList" class="org.apache.royale.html.MultiSelectionList"/>
     <component id="DynamicList" class="org.apache.royale.html.DynamicList"/>
     <component id="PopUpList" class="org.apache.royale.html.PopUpList"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
@@ -83,10 +84,15 @@
     <component id="TitleBarTitle" class="org.apache.royale.html.beads.TitleBarTitle"/>
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
+    <component id="ArrayMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayMultiSelectionModel"/>
     <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
+    <component id="MultiSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.MultiSelectionCollectionViewModel"/>
+    <component id="MultiSelectionTreeModel" class="org.apache.royale.html.beads.models.MultiSelectionTreeModel"/>
+    <component id="SingleSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>
+    <component id="MultiSelectionTree" class="org.apache.royale.html.MultiSelectionTree"/>
     <component id="NoLayout" class="org.apache.royale.html.beads.layouts.NoLayout"/>
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
@@ -122,6 +128,7 @@
     <component id="ApplicationParameters" class="org.apache.royale.html.beads.ApplicationParametersBead"/>
     <component id="ApplicationParametersCaseInsensitive" class="org.apache.royale.html.beads.ApplicationParametersCaseInsensitiveBead"/>
     <component id="IEEventAdapter" class="org.apache.royale.html.beads.IEEventAdapterBead"/>
+    <component id="ConstraintSize" class="org.apache.royale.core.ConstraintSize"/>
 
     <component id="SimpleAlert" class="org.apache.royale.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.royale.html.Alert"/>
@@ -130,19 +137,21 @@
     <component id="Slider" class="org.apache.royale.html.Slider"/>
     <component id="NumericStepper" class="org.apache.royale.html.NumericStepper" />
     <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
+    <component id="StyledDataItemRenderer" class="org.apache.royale.html.supportClasses.StyledDataItemRenderer"/>
     <component id="MXMLBeadView" class="org.apache.royale.html.MXMLBeadView"/>
     <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
+    <component id="StyledMXMLItemRenderer" class="org.apache.royale.core.StyledMXMLItemRenderer"/>
+    <component id="MXMLStatesItemRenderer" class="org.apache.royale.html.supportClasses.MXMLStatesItemRenderer"/>
     <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
     <component id="ColorItemRenderer" class="org.apache.royale.html.supportClasses.ColorItemRenderer"/>
     <component id="AccordionItemRenderer" class="org.apache.royale.html.supportClasses.AccordionItemRenderer"/>
     <component id="AccordionCollapseBead" class="org.apache.royale.html.beads.AccordionCollapseBead"/>
     <component id="DispatchInputFinishedBead" class="org.apache.royale.html.beads.DispatchInputFinishedBead"/>
+    <component id="SetFocus" class="org.apache.royale.html.beads.SetFocus"/>
     <component id="DispatchKeyboardEventBead" class="org.apache.royale.html.beads.DispatchKeyboardEventBead"/>
     <component id="TreeItemRenderer" class="org.apache.royale.html.supportClasses.TreeItemRenderer"/>
     <component id="TreeXMLItemRenderer" class="org.apache.royale.html.supportClasses.TreeXMLItemRenderer"/>
-    <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
-    <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.html.supportClasses.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.royale.html.supportClasses.DayNameItemRenderer"/>
     <component id="TextButtonItemRenderer" class="org.apache.royale.html.supportClasses.TextButtonItemRenderer"/>
@@ -227,6 +236,7 @@
 
     <component id="ToolTipBead" class="org.apache.royale.html.accessories.ToolTipBead" />
     <component id="AdaptiveToolTipBead" class="org.apache.royale.html.accessories.AdaptiveToolTipBead" />
+    <component id="ToolTipRemovalWhenItemRemoved" class="org.apache.royale.html.accessories.ToolTipRemovalWhenItemRemoved" />
     
     <component id="LayoutOnShow" class="org.apache.royale.html.beads.layouts.LayoutOnShow"/>
     <component id="ImageButton" class="org.apache.royale.html.ImageButton"/>
@@ -269,5 +279,17 @@
 
     <component id="ModalDisplay" class="org.apache.royale.html.beads.plugin.ModalDisplay"/>
     <component id="ModalOverlay" class="org.apache.royale.html.beads.plugin.ModalOverlay"/>
+
+    <component id="ComponentRoute" class="org.apache.royale.routing.ComponentRoute"/>
+    <component id="LinkInterceptor" class="org.apache.royale.routing.LinkInterceptor"/>
+    <component id="ParameterRoute" class="org.apache.royale.routing.ParameterRoute"/>
+    <component id="RouteToComponent" class="org.apache.royale.routing.RouteToComponent"/>
+    <component id="RouteToParameters" class="org.apache.royale.routing.RouteToParameters"/>
+    <component id="RouteToState" class="org.apache.royale.routing.RouteToState"/>
+    <component id="SetRouteTitle" class="org.apache.royale.routing.SetRouteTitle"/>
+    <component id="RouteTitleLookup" class="org.apache.royale.routing.RouteTitleLookup"/>
+    <component id="Router" class="org.apache.royale.routing.Router"/>
+
+    <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
 
 </componentPackage>

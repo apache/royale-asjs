@@ -24,15 +24,15 @@ package org.apache.royale.jewel.beads.views
 
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IChild;
     import org.apache.royale.core.IStrand;
-	import org.apache.royale.jewel.Button;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.IChild;
+    import org.apache.royale.jewel.Button;
 	
 	/**
 	 *  The SliderThumbView class creates the draggable input element for the 
-	 *  org.apache.royale.jewel.Slider component.
+	 *  org.apache.royale.jewel.HSlider component for the SWF platform.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0

@@ -21,8 +21,8 @@ package org.apache.royale.mdl.beads
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IItemRendererParent;
-    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.html.IListPresentationModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
@@ -127,7 +127,7 @@ package org.apache.royale.mdl.beads
         }
 
         /**
-         *  The org.apache.royale.core.IItemRendererParent that will
+         *  The org.apache.royale.core.IItemRendererOwnerView that will
          *  parent the item renderers.
          *
          *  @langversion 3.0
@@ -135,7 +135,7 @@ package org.apache.royale.mdl.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          */
-        protected var dataGroup:IItemRendererParent;
+        protected var dataGroup:IItemRendererOwnerView;
 
         /**
          * @royaleignorecoercion Array
@@ -159,7 +159,7 @@ package org.apache.royale.mdl.beads
             var n:int = dp.length;
             for (var i:int = 0; i < n; i++)
             {
-                var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
+                var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer() as ITabItemRenderer;
                 dataGroup.addItemRenderer(ir, false);
                 ir.index = i;
                 ir.labelField = labelField;

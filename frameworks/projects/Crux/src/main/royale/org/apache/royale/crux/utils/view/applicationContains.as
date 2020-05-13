@@ -23,12 +23,16 @@
 package org.apache.royale.crux.utils.view {
 
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ApplicationBase;
+	import org.apache.royale.core.IFlexInfo;
 
 	COMPILE::SWF{
 		import flash.display.DisplayObjectContainer;
 		import flash.display.DisplayObject;
 	}
+    
+    COMPILE::JS{
+        import org.apache.royale.core.ElementWrapper;
+    }
 
 
 	/**
@@ -38,9 +42,9 @@ package org.apache.royale.crux.utils.view {
 	 * @param content
 	 * @return true if the content is present in the child hierarchy of the container
 	 *
-	 * @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+	 * @royaleignorecoercion org.apache.royale.core.ElementWrapper
 	 */
-	public function applicationContains(container:ApplicationBase, content:UIBase):Boolean {
+	public function applicationContains(container:IFlexInfo, content:UIBase):Boolean {
 		if (!content) return false;
 		if (!container) return false;
 		COMPILE::SWF{
@@ -48,7 +52,7 @@ package org.apache.royale.crux.utils.view {
 		}
 
 		COMPILE::JS{
-			return container.element.contains(content.element)
+			return (container as ElementWrapper).element.contains(content.element)
 		}
 
 	}

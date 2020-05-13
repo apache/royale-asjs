@@ -18,18 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IChrome;
-	import org.apache.royale.core.ITitleBarModel;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
-
+    import org.apache.royale.core.IBeadLayout;
+    import org.apache.royale.core.IChrome;
+    import org.apache.royale.core.ITitleBarModel;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The TitleBar class is a Container component that displays a title and an

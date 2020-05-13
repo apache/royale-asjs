@@ -37,7 +37,28 @@ package org.apache.royale.core
      */
 	public interface IDataProviderVirtualItemRendererMapper extends IDataProviderItemRendererMapper
 	{
+		/**
+         *  Get an item renderer for a given index.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.0
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+         */
+        function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer;
+
+		/**
+         *  Free an item renderer for a given index.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.0
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+         */
         function freeItemRendererForIndex(index:int):void;
-        function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer;
 	}
 }

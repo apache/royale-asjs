@@ -34,6 +34,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.MenuBar;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 * The MenuBarMouseController handles mouse events for the MenuBar. While the menu bar is
@@ -58,9 +59,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			super();
 		}
-		
-		protected var _strand:IStrand;
-		
+				
 		/**
 		 * @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -102,12 +101,17 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IFactory
+		 *  @royaleignorecoercion org.apache.royale.core.IMenuBarModel
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
 			// close any previously open menus
 			var host:UIBase = UIUtils.findPopUpHost(_strand as IUIBase) as UIBase;
-			host.dispatchEvent(new Event("hideMenus"));
+			sendEvent(host,"hideMenus");
 			
 			var component:IUIBase = event.target as IUIBase;
 			

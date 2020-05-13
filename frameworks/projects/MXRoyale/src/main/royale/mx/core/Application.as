@@ -64,9 +64,10 @@ import mx.events.utils.KeyboardEventConverter;
 import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
+import mx.events.FlexEvent;
 
 COMPILE::JS {
-    import org.apache.royale.core.HTMLElementWrapper;
+    import org.apache.royale.core.ElementWrapper;
     import org.apache.royale.events.ElementEvents;
 }
 
@@ -88,6 +89,7 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.ValueChangeEvent;
+import org.apache.royale.reflection.beads.ClassAliasBead;
 import org.apache.royale.states.State;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.MixinManager;
@@ -314,6 +316,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		this.valuesImpl = new AllCSSValuesImpl();
 		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
 		addBead(new ApplicationLayout());
+        addBead(new ClassAliasBead());
 
         instanceParent = this;
         
@@ -366,8 +369,10 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	private function initHandler(event:flash.events.Event):void
 	{
 		MouseEventConverter.setupAllConverters(stage);
+		FocusEventConverter.setupAllConverters(stage);
+		KeyboardEventConverter.setupAllConverters(stage);
 		
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 			this.initializeApplication();
 		else
 			addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
@@ -377,7 +382,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::SWF
 	private function enterFrameHandler(event:flash.events.Event):void
 	{
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 		{
 			removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
 			this.initializeApplication();
@@ -452,7 +457,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         
 		this.initManagers();
 
-        dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+        dispatchEvent(new FlexEvent("applicationComplete"));
     }
 	
 	//--------------------------------------------------------------------------
@@ -583,11 +588,17 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	protected var startupTimer:Timer;
 	
+    private var _started:Boolean = false;
+    
     COMPILE::JS
     override public function setActualSize(w:Number, h:Number):void
     {
         super.setActualSize(w, h);
-        start();
+        if (!_started)
+        {
+            start();
+            _started = true;
+        }
     }
     
 	/**
@@ -596,7 +607,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function start():void
 	{
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new FlexEvent("preinitialize", false, true)))
 			initializeApplication();
 		else {			
 			startupTimer = new Timer(34, 0);
@@ -611,7 +622,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	protected function handleStartupTimer(event:Event):void
 	{
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new FlexEvent("preinitialize", false, true)))
 		{
 			startupTimer.stop();
 			initializeApplication();
@@ -624,9 +635,9 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
-        HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
-        HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
-        HTMLElementWrapper.converterMap["FocusEvent"] = FocusEventConverter;
+        ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter.convert;
+        ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter.convert;
+        ElementWrapper.converterMap["FocusEvent"] = FocusEventConverter.convert;
         addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
         
         initManagers();
@@ -645,7 +656,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 //			
 //			dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
 //		}
-		dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+		dispatchEvent(new FlexEvent("applicationComplete"));
 	}
 	
     COMPILE::JS

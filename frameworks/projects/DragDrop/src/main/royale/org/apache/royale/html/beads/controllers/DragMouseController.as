@@ -23,6 +23,10 @@ package org.apache.royale.html.beads.controllers
 	import flash.display.DisplayObjectContainer;
 	}
 
+    COMPILE::JS
+    {
+        import org.apache.royale.events.utils.MouseEventConverter;
+    }
 
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDragInitiator;
@@ -223,9 +227,19 @@ package org.apache.royale.html.beads.controllers
         private function dragMouseDownHandler(event:MouseEvent):void
         {
 //            trace("DRAG-MOUSE: dragMouseDown");
-            IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
-            IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
+            (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            COMPILE::SWF
+            {
+                (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
+            /**
+             * In browser, we need to listen to window to get mouseup events outside the window
+             */
+            COMPILE::JS
+            {
+                window.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
             mouseDownX = event.screenX;
             mouseDownY = event.screenY;
             event.preventDefault();
@@ -319,9 +333,26 @@ package org.apache.royale.html.beads.controllers
             if (dragging && event.target)
             {
                 //trace("DRAG-MOUSE: sending dragEnd via: "+event.target.toString());
-
+                COMPILE::JS
+                {
+                    event = MouseEventConverter.convert(event);
+                }
 				var screenPoint:Point = new Point(event.screenX, event.screenY);
-				var newPoint:Point = PointUtils.globalToLocal(screenPoint, event.target);
+                // if dragged out of the browser window the target will be the document
+                // and trying to get the local coordinates will casue a RTE.
+                var royaleEvent:Boolean;
+                var newPoint:Point;
+                // these values are relative to the browser window and can be negative.
+                if(event.target.constructor.name == "HTMLHtmlElement")
+                {
+                    royaleEvent = false;
+                    newPoint = new Point(event.clientX,event.clientY);
+                }
+                else 
+				{
+                    royaleEvent = true;
+                    newPoint = PointUtils.globalToLocal(screenPoint, event.target);
+                }
 				dragEvent = DragEvent.createDragEvent("dragEnd", event);
 				dragEvent.clientX = newPoint.x;
 				dragEvent.clientY = newPoint.y;
@@ -331,8 +362,10 @@ package org.apache.royale.html.beads.controllers
 				COMPILE::JS {
 					dragEvent.relatedObject = event.target;
 				}
-
-                DragEvent.dispatchDragEvent(dragEvent, event.target);
+                if(royaleEvent)
+                {
+                    DragEvent.dispatchDragEvent(dragEvent, event.target);
+                }
 				dispatchEvent(dragEvent);
                 event.preventDefault();
             }
@@ -343,8 +376,18 @@ package org.apache.royale.html.beads.controllers
             dragImage = null;
 
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+
+            COMPILE::SWF
+            {
+                (_strand as IUIBase).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
+            
+            COMPILE::JS
+            {
+                window.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
+
         }
 
 	}

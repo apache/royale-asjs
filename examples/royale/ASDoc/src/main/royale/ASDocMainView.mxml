@@ -247,6 +247,8 @@ limitations under the License.
         	margin-left: 20px;
         	margin-right: 20px;
         	border-style: solid;
+		IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListOwnerViewItemRendererInitializer");
+		IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory"); /* AltBGRenderer installs its own selection bead*/
         }
         
         .HashAnchorAnchor {
@@ -310,11 +312,18 @@ limitations under the License.
             margin-bottom: 3px;
         }
         
+        .inheritanceList {
+		IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
+		IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory"); /* no selection */
+		        }
+        
         .summaryList {
         	margin-bottom: 20px;
         	border-style: solid;
-        }
-        
+		IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListOwnerViewItemRendererInitializer");
+		IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory"); /* AltBGRenderer installs its own selection bead*/
+		        }
+		
         .detailList {
         	margin-bottom: 20px;
         }
@@ -392,21 +401,21 @@ limitations under the License.
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
-		    <local:AlternatingBackgroundColorHashAnchorStringItemRenderer backgroundColor0="#ffffff" backgroundColor1="#ffeeee" />
+		    <local:AlternatingBackgroundColorHashAnchorStringItemRenderer/>
 		</fx:Component>
 	</fx:Declarations>
-	<js:states>
+	<rs:states>
 	  <js:State name="packages" />
       <js:State name="loading" />
 	  <js:State name="classDetail" />
-	</js:states>
-    <js:beads>
+	</rs:states>
+    <rs:beads>
         <js:ViewDataBinding />
         <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />
         <js:HashChangeNotifierBeadWithTitle id="router" hashChange="hashChanged()" />                
         <js:EscapedFragmentBead id="efb" ready="paramsReady()" />                
         <js:CallLaterBead id="clb" />
-    </js:beads>
+    </rs:beads>
     <rs:DocTopBar />
     <rs:DocTagline />
     <js:Group width="100%" id="titleGroup" className="titleGroup">
@@ -477,7 +486,7 @@ limitations under the License.
 		                <js:HorizontalLayout />
 		            </js:beads>
 		            <js:Label className="detailCaption" text="Inheritance" />
-		            <js:List className="detailInfo" id="inheritance" dataProvider="{ASDocModel(applicationModel).inheritance}"
+		            <js:List className="inheritanceList" id="inheritance" dataProvider="{ASDocModel(applicationModel).inheritance}"
 		            	itemRenderer="OptionalHashAnchorStringItemRenderer" labelField="label">
 		            	<js:beads>
 		            		<js:HorizontalLayout />

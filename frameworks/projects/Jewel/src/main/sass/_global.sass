@@ -32,6 +32,9 @@ html, body
 ::-moz-focus-inner, ::-moz-focus-outer
 	border: 0
 
+input:focus, textarea:focus, select:focus, div:focus, label:focus, li:focus
+	outline: none
+
 select::-ms-expand
 	display: none
 
@@ -75,6 +78,9 @@ j|Group
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
 
+.jewel.group
+	overflow: visible // although overflow is visible by default enforce Group has no clipping
+
 j|HGroup
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
 
@@ -98,6 +104,12 @@ j|Container
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 	//align-items: flex-start
 
+j|HContainer
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+
+j|VContainer
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+
 j|Image
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ImageModel")
 	IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ImageView")
@@ -112,9 +124,10 @@ j|DataContainer
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DataProviderModel")
 	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView")		
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
 	IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer")
+	IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataContainerItemRendererInitializer")
 	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 
@@ -139,12 +152,6 @@ j|Form
 hr
 	border: 0
 	height: 1px
-
-.jewel
-	&.multiline
-		white-space: pre-wrap !important
-		word-wrap: break-word
-		max-width: 100%
 
 .responsiveSizeMonitor
 	background: rgba(0,0,0,0.8)

@@ -18,69 +18,69 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.ITextModel;
 
-      /**
-       * FormHeading is a label, and option required indicator (no validation is implied)
-       * and a content with one or more controls
-       */
-      public class FormHeading extends Group
-      {
-            /**
-             *  constructor.
-             *
-             *  @langversion 3.0
-             *  @playerversion Flash 10.2
-             *  @playerversion AIR 2.6
-             *  @productversion Royale 0.9.4
-             */
-            public function FormHeading()
-            {
-                  super();
-
-                  typeNames = "jewel formheading";
-            }
-
-            [Bindable(event="change")]
+	/**
+	 * FormHeading is a label, and option required indicator (no validation is implied)
+	 * and a content with one or more controls
+	 */
+	public class FormHeading extends Group
+	{
 		/**
-             *  @copy org.apache.royale.html.Label#text
-             *
-             *  @langversion 3.0
-             *  @playerversion Flash 10.2
-             *  @playerversion AIR 2.6
-             *  @productversion Royale 0.9.4
-             */
-            public function get label():String
-            {
-                  return ITextModel(model).text;
-            }
-            /**
-             *  @private
-             */
-            public function set label(value:String):void
-            {
-                  ITextModel(model).text = value;
-            }
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function FormHeading()
+		{
+			super();
 
-            [Bindable(event="change")]
+			typeNames = "jewel formheading";
+		}
+
+		[Bindable(event="change")]
 		/**
-             *  @copy org.apache.royale.html.Label#html
-             *
-             *  @langversion 3.0
-             *  @playerversion Flash 10.2
-             *  @playerversion AIR 2.6
-             *  @productversion Royale 0.9.4
-             */
-            public function get html():String
-            {
-                  return ITextModel(model).html;
-            }
-            /**
-             *  @private
-             */
-            public function set html(value:String):void
-            {
-                  ITextModel(model).html = value;
-            }
-      }
+		 *  @copy org.apache.royale.html.Label#text
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get label():String
+		{
+			return ITextModel(model).text;
+		}
+		/**
+		 *  @private
+		 */
+		public function set label(value:String):void
+		{
+			ITextModel(model).text = value;
+		}
+
+		[Bindable(event="change")]
+		/**
+		 *  @copy org.apache.royale.html.Label#html
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get html():String
+		{
+			return ITextModel(model).html;
+		}
+		/**
+		 *  @private
+		 */
+		public function set html(value:String):void
+		{
+			ITextModel(model).html = value;
+		}
+	}
 }

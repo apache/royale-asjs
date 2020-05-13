@@ -25,28 +25,33 @@ import mx.collections.IList;
 import mx.collections.ListCollectionView;
 import mx.collections.XMLListCollection;
 import mx.core.EdgeMetrics;
-import mx.core.IFactory;
 import mx.core.IUIComponent;
+import mx.core.ScrollControlBase;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.utils.UIDUtil;
-import mx.core.ScrollControlBase;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
+import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.IDataProviderItemRendererMapper;
+import org.apache.royale.core.IFactory;
 import org.apache.royale.core.IItemRendererClassFactory;
+import org.apache.royale.core.IItemRendererProvider;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.ILayoutView;
+import org.apache.royale.core.IListPresentationModel;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectionModel;
+import org.apache.royale.core.IStrandWithPresentationModel;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
@@ -87,7 +92,9 @@ use namespace mx_internal;
      *  @productversion Royale 0.0
      *  @royalesuppresspublicvarwarning
 	*/
-	public class ListBase extends ScrollControlBase implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
+	public class ListBase extends ScrollControlBase 
+        implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, 
+                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel
 	{  //extends UIComponent
 	
 	
@@ -342,7 +349,44 @@ use namespace mx_internal;
             (model as ISelectionModel).labelField = value;
         }
         
-	//----------------------------------
+        //----------------------------------
+        //  labelFunction
+        //----------------------------------
+        
+        private var _labelFunction:Function;
+        
+        /**
+         *  The name of the field in the data provider items to display as the label. 
+         *  By default the list looks for a property named <code>label</code> 
+         *  on each item and displays it.
+         *  However, if the data objects do not contain a <code>label</code> 
+         *  property, you can set the <code>labelField</code> property to
+         *  use a different property in the data object. An example would be 
+         *  "FullName" when viewing a set of people names fetched from a database.
+         *
+         *  @default "label"
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
+        public function get labelFunction():Function
+        {
+            return _labelFunction;
+        }
+        
+        /**
+         *  @private
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
+        public function set labelFunction(value:Function):void
+        {
+            _labelFunction = value;
+        }
+
+        //----------------------------------
     //  selectedIndex
     //----------------------------------
 
@@ -689,6 +733,7 @@ use namespace mx_internal;
 		public function ListBase()
 		{
 			super();            
+			rowHeight = 22; //match Flex?
 		}
         
         private var _DCinitialized:Boolean = true;
@@ -754,10 +799,11 @@ use namespace mx_internal;
             return _strandChildren;
         }
         
-        public function scrollToIndex(index:int):void
+        public function scrollToIndex(index:int):Boolean
         {
 
             trace("ListBase:scrollToIndex not implemented");
+			return false;
         }
         
         /**
@@ -780,6 +826,40 @@ use namespace mx_internal;
         public function getLayoutHost():ILayoutHost
         {
             return view as ILayoutHost;
+        }
+        
+        /**
+         * @private
+         */
+        private var _presentationModel:IListPresentationModel;
+        
+        /**
+         *  The DataGrid's presentation model
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         *  @royaleignorecoercion org.apache.royale.core.IBead
+         */
+        public function get presentationModel():IBead
+        {
+            if (_presentationModel == null) {
+                var bead:IBead = getBeadByType(IListPresentationModel);
+                if (bead)
+                    _presentationModel = bead as IListPresentationModel;
+                else
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
+                    if (c) {
+                        _presentationModel = new c() as IListPresentationModel;
+                        addBead(_presentationModel as IBead);
+                    }
+                }
+            }
+            
+            return _presentationModel;
         }
         
         /*
@@ -849,6 +929,12 @@ use namespace mx_internal;
         COMPILE::SWF
         override public function get numElements():int
         {
+            // the view getter below will instantiate the view which can happen
+            // earlier than we would like (when setting mxmlDocument) so we
+            // see if the view bead exists on the strand.  If not, nobody
+            // has added any children so numElements must be 0
+            if (!getBeadByType(IBeadView))
+                return 0;
             var layoutHost:ILayoutHost = view as ILayoutHost;
             var contentView:IParent = layoutHost.contentView as IParent;
             if (contentView == this)
@@ -1086,6 +1172,7 @@ use namespace mx_internal;
         
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
          */
         public function set rowHeight(value:Number):void
         {
@@ -1095,6 +1182,7 @@ use namespace mx_internal;
             {
                 _rowHeight = value;
                 
+                (presentationModel as IListPresentationModel).rowHeight = value;
                 /*
                 invalidateSize();
                 itemsSizeChanged = true;

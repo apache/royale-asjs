@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="SliderPlayGround.mxml">
+	
+	<fx:Script>
+		<![CDATA[
+		import org.apache.royale.core.StyledUIBase;
+		import org.apache.royale.events.ValueChangeEvent;
+		
+		private function clickHandler(event:MouseEvent):void
+		{
+			trace("clickHandler");
+			switch(event.target) {
+				case button1:
+					slider_w.value = 400;
+					slider_h.value = 200;
+					break;
+				case button2:
+					vslider_w.value = 190;
+					vslider_h.value = 160;
+					break;
+			}
+
+		}
+
+		private function onChange(event:Event):void
+        {
+			trace("onChange");
+		}
+
+		private function onValueChange(event:ValueChangeEvent):void
+        {
+			trace("[onValueChange] oldValue: " + event.oldValue + ", newValue: " + event.newValue); // if target IE11 you must use this event handler
+			switch(event.target){
+				case slider_w:
+				case slider_h:
+					button1.width = slider_w.value;
+					button1.height = slider_h.value;
+					button1.text = "HSlider to " + slider_w.value + "x" + slider_h.value;
+					break;
+				case vslider_w:
+				case vslider_h:
+					button2.width = vslider_w.value;
+					button2.height = vslider_h.value;
+					button2.text = "VSlider to " + vslider_w.value + "x" + vslider_h.value;
+					break;
+			}
+		}
+    	]]>
+	</fx:Script>
+
+	<c:beads>
+		<js:ContainerDataBinding/>
+	</c:beads>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
+		<c:ExampleHeader title="Jewel Slider">
+			<c:description>
+				<![CDATA[<strong>Jewel Slider</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HSlider"/>
+
+				<j:HSlider localId="slider_w" width="250" value="250" minimum="100" maximum="420" change="onChange(event)" valueChange="onValueChange(event)"/>
+				<j:HSlider localId="slider_h" width="250" value="80" minimum="40" maximum="300" change="onChange(event)" valueChange="onValueChange(event)"/>
+
+				<j:HSlider localId="slider_dis" width="250" value="70" minimum="0" maximum="100">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:HSlider>
+
+				<j:Button localId="button1" text="HSlider to 250x80" width="250" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
+
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VSlider"/>
+				<j:HGroup gap="3" width="100%">
+					<j:VSlider localId="vslider_w" height="250" value="250" minimum="100" maximum="420" change="onChange(event)" valueChange="onValueChange(event)"/>
+					<j:VSlider localId="vslider_h" height="250" value="80" minimum="40" maximum="300" change="onChange(event)" valueChange="onValueChange(event)"/>
+					
+					<j:VSlider localId="vslider_dis" height="250" value="70" minimum="0" maximum="100">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:VSlider>
+
+					<j:Button localId="button2" text="VSlider to 250x80" width="250" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
+				</j:HGroup>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

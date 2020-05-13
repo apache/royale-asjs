@@ -50,6 +50,25 @@ package org.apache.royale.net
 	 */
     public class URLLoader extends URLLoaderBase
     {
+        COMPILE::JS
+        private static var _corsCredentialsChecker:Function;
+        COMPILE::JS
+        /**
+         * Intended as global configuration of CORS withCredentials setting on requests
+         * This method is not reflectable, is js-only and is eliminated via dead-code-elimination
+         * in js-release builds if it is never used.
+         * URLLoader is used a service base in other service classes, so this provides
+         * a 'low level' solution for a bead that can work at application level.
+         * The 'checker' function parameter should be a function that takes a url as its single argument
+         * and returns true or false depending on whether 'withCredentials' should be set for
+         * that http request. Set it to null to always be false.
+         * @private
+         * @royalesuppressexport
+         */
+        public static function setCORSCredentialsChecker(checker:Function):void{
+            _corsCredentialsChecker = checker;
+        }
+        
         
 		/**
 		 *  The number of bytes loaded so far.
@@ -78,13 +97,14 @@ package org.apache.royale.net
         COMPILE::JS
         private var element:XMLHttpRequest;
         
-        public function URLLoader()
+        public function URLLoader(request:org.apache.royale.net.URLRequest = null)
         {
             super();
             COMPILE::JS
             {
                 element = new XMLHttpRequest();
             }
+            if (request) load(request);
         }
         
         COMPILE::SWF
@@ -198,14 +218,16 @@ package org.apache.royale.net
                         element.setRequestHeader(header.name, header.value);
                     }
                 }
-                
-                /*
-                if (request.method != HTTPConstants.GET &&
+
+                if (request.contentType && request.method != HTTPConstants.GET &&
                     !sawContentType && contentData) {
                     element.setRequestHeader(
-                        HTTPHeader.CONTENT_TYPE, _contentType);
+                        HTTPHeader.CONTENT_TYPE, request.contentType);
                 }
-                */
+
+                if (_corsCredentialsChecker != null) {
+                    element.withCredentials = _corsCredentialsChecker(url);
+                }
                 
                 if (contentData) {
                     element.send(contentData);
@@ -306,6 +328,19 @@ package org.apache.royale.net
             COMPILE::JS
             {
                 return element.responseText;
+            }
+        }
+
+
+        public function close():void{
+            COMPILE::SWF{
+                urlLoader.close();
+            }
+            COMPILE::JS{
+                if (element.readyState ==0 || element.readyState ==4) {
+                    throw new Error('Error #2029: This URLStream object does not have a stream opened.');
+                }
+                element.abort();
             }
         }
         

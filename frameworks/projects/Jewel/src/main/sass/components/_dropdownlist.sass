@@ -24,8 +24,8 @@ $dropdownlist-margin: 0 !default
 $dropdownlist-padding-vertical: .68em !default
 $dropdownlist-padding-horizontal: 1.12em !default
 $dropdownlist-button-size: 22px
-$dropdownlist-button-xoffset: calc(50% - #{$combobox-button-size/2})
-$dropdownlist-button-yoffset: calc(50% - #{$combobox-button-size/2})
+$dropdownlist-button-xoffset: calc(50% - #{$dropdownlist-button-size/2})
+$dropdownlist-button-yoffset: calc(50% - #{$dropdownlist-button-size/2})
 
 .jewel
     &.dropdownlist
@@ -44,15 +44,12 @@ $dropdownlist-button-yoffset: calc(50% - #{$combobox-button-size/2})
 
 j|DropDownList
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DropDownListView")
-    // IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DropDownListModel")
-    // IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererInitializer")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController")
-
-    // IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData")
 
 @media -royale-swf	
     j|DropDownList

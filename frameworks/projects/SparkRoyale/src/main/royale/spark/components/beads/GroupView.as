@@ -65,13 +65,17 @@ public class GroupView extends org.apache.royale.html.beads.GroupView
      *  @productversion Royale 0.0
      *  @royaleignorecoercion org.apache.royale.core.UIBase
      */
-    override public function beforeLayout():void
+    override public function beforeLayout():Boolean
     {
         var host:GroupBase = _strand as GroupBase;
+        // some Groups have left/right but are still sized to content.
+        // the left/right create padding instead.  So isntead of
+        // isWidthSizedToContent, we only check explicit and percent
         if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
         {
             host.layout.measure();
         }
+		return true;
     }
     
     /**

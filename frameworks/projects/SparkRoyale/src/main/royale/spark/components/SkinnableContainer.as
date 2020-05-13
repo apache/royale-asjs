@@ -27,14 +27,16 @@ import mx.core.IVisualElementContainer;
 import mx.events.FlexEvent;
 import mx.utils.BitFlagUtil;
 
-import spark.components.supportClasses.SkinnableContainerBase;
 import spark.events.ElementExistenceEvent;
 */
 import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
 
+import spark.components.supportClasses.SkinnableContainerBase;
 import spark.components.supportClasses.SkinnableComponent;
+import spark.components.supportClasses.GroupBase;
+import spark.components.beads.SkinnableContainerView;
 import spark.layouts.supportClasses.LayoutBase;
 import spark.layouts.BasicLayout;
 
@@ -44,6 +46,7 @@ import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.binding.DataBindingBase;
 import org.apache.royale.core.ContainerBaseStrandChildren;
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
@@ -52,6 +55,7 @@ import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.ValueEvent;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -363,7 +367,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class SkinnableContainer extends SkinnableComponent implements IContainer, IContainerBaseStrandChildrenHost
+public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost
 {// SkinnableContainerBase 
  //    implements IDeferredContentOwner, IVisualElementContainer
    // include "../core/Version.as";
@@ -442,12 +446,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
 	
 	}
     
-     public function get backgroundColor():uint {
-		return 0;
-
-	}
-	public function set backgroundColor(val:uint):void {
-	}
 	
 	public function get contentBackgroundColor():uint{
 	return 0;
@@ -661,13 +659,15 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
             ? contentGroup.layout 
             : contentGroupProperties.layout;
         */
-        if (!_layout)
-            _layout = new BasicLayout();
+        //if (!_layout)
+        //    _layout = new BasicLayout();
         return _layout;
     }
     
     /**
      * @private
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     * @royaleignorecoercion spark.components.supportClasses.GroupBase
      */
     public function set layout(value:LayoutBase):void
     {
@@ -682,6 +682,12 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
             contentGroupProperties.layout = value;
         */
         _layout = value;
+        if (getBeadByType(IBeadView))
+        {
+            ((view as SkinnableContainerView).contentView as GroupBase).layout = value;
+            if (parent)
+                ((view as SkinnableContainerView).contentView as GroupBase).dispatchEvent(new Event("layoutNeeded"));       
+        }
     }
     
     //----------------------------------
@@ -728,18 +734,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
     }
      */
      
-     /**
-      *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-      *  
-      *  @langversion 3.0
-      *  @playerversion Flash 10.2
-      *  @playerversion AIR 2.6
-      *  @productversion Royale 0.8
-      * 
-      *  @royalesuppresspublicvarwarning
-      */
-     public var mxmlContent:Array;
-
     /**
      *  override setting of children
      */
@@ -902,41 +896,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
         currentContentGroup.removeAllElements(); */
     } 
     
-    /**
-     *  @copy org.apache.royale.core.Application#MXMLDescriptor
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function get MXMLDescriptor():Array
-    {
-        return _mxmlDescriptor;
-    }
-    
-    /**
-     *  @private
-     */
-    public function setMXMLDescriptor(document:Object, value:Array):void
-    {
-        _mxmlDocument = document;
-        _mxmlDescriptor = value;
-    }
-    
-    /**
-     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function generateMXMLAttributes(data:Array):void
-    {
-        MXMLDataInterpreter.generateMXMLProperties(this, data);
-    }
-    
     /*
     * IContainer
     */
@@ -946,6 +905,11 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      */
     public function childrenAdded():void
     {
+        if (skin)
+        {
+            var skinDispatcher:IEventDispatcher = (view as SkinnableContainerView).contentView as IEventDispatcher;
+            skinDispatcher.dispatchEvent(new ValueEvent("childrenAdded"));
+        }
         dispatchEvent(new ValueEvent("childrenAdded"));
     }
     
@@ -1018,6 +982,7 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
         // Load the layout bead if it hasn't already been loaded.
         loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
         
+        dispatchEvent(new Event("beadsAdded"));
         dispatchEvent(new Event("initComplete"));
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
@@ -1026,7 +991,7 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
     
     override protected function createChildren():void
     {
-        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        super.createChildren();
         
         if (getBeadByType(DataBindingBase) == null)
             addBead(new ContainerDataBinding());
@@ -1042,10 +1007,11 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-     protected function partAdded(partName:String, instance:Object):void
-    { //override
-        /* super.partAdded(partName, instance);
+    override protected function partAdded(partName:String, instance:Object):void
+    { 
+        super.partAdded(partName, instance);
 
+        /* 
         if (instance == contentGroup)
         {
             if (_contentModified)
@@ -1308,6 +1274,8 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
          if (c == contentView)
          {
              super.addElement(c); // ContainerView uses addElement to add inner contentView
+             if (c == skin)
+                 findSkinParts();
              return;
          }
          contentView.addElement(c, dispatchEvent);
@@ -1354,6 +1322,12 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
       */
      override public function get numElements():int
      {
+         // the view getter below will instantiate the view which can happen
+         // earlier than we would like (when setting mxmlDocument) so we
+         // see if the view bead exists on the strand.  If not, nobody
+         // has added any children so numElements must be 0
+         if (!getBeadByType(IBeadView))
+             return 0;
          var layoutHost:ILayoutHost = view as ILayoutHost;
          if (!layoutHost) return 0; // view is null when called in addingChild from MXMLDataInterpreter before children are added
          var contentView:IParent = layoutHost.contentView as IParent;

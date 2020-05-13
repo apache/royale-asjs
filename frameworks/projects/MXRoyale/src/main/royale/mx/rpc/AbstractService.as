@@ -469,11 +469,12 @@ public dynamic class AbstractService extends Proxy implements IEventDispatcher
     }
     
     COMPILE::JS
-    override public function deleteProperty(propName:String):void
+    override public function deleteProperty(propName:String):Boolean
     {
         var message:String = resourceManager.getString(
             "rpc", "operationsNotAllowedInService", [ propName ]);
-        throw new Error(message);        
+        throw new Error(message);
+       // return false;
     }
 
     /**

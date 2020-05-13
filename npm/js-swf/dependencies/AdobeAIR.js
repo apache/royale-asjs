@@ -98,6 +98,8 @@ function downloadAdobeAIR()
 
 function extract()
 {
+	if (inExpand) return;
+	inExpand = true;
 	var pathResolver = require('path');
 	// ROYALE_FOLDER is the base of the tar.gz package which has the 3 repos as children
 	// and not the royale-asjs repo

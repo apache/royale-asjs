@@ -31,7 +31,6 @@ package org.apache.royale.crux.utils.view {
 	}
 
 	COMPILE::JS{
-		import org.apache.royale.core.HTMLElementWrapper;
 	}
 
 	/**
@@ -41,7 +40,6 @@ package org.apache.royale.crux.utils.view {
 	 * @param content
 	 * @return true if the content is present in the child hierarchy of the container
 	 *
-	 * @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 	 */
 	public function containerContains(container:ContainerBase, content:UIBase):Boolean {
 		if (!content) return false;
@@ -51,7 +49,7 @@ package org.apache.royale.crux.utils.view {
 		}
 
 		COMPILE::JS{
-			return HTMLElementWrapper(container).element.contains(HTMLElementWrapper(content).element);
+			return container.element.contains(content.element);
 		}
 
 	}

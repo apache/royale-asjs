@@ -102,6 +102,8 @@ package org.apache.royale.core
             if (!sawInitComplete)
                 return;
             
+            transitionEffects = [];
+            
             var doc:IStatesObject = _strand as IStatesObject;
             var transitions:Array = doc.transitions;
             if (transitions && transitions.length > 0)
@@ -112,12 +114,12 @@ package org.apache.royale.core
                     {
                         if (t.toState == "*" || t.toState == event.newValue)
                         {
-                            transitionEffects = t.effects.slice();
-                            for each (var e:Effect in transitionEffects)
+                            var theseEffects:Array = t.effects.slice();
+                            for each (var e:Effect in theseEffects)
                             {
                                 e.captureStartValues();
                             }
-                            break;
+                            transitionEffects = transitionEffects.concat.apply(transitionEffects, theseEffects);
                         }
                     }
                 }
@@ -311,11 +313,21 @@ package org.apache.royale.core
                     var childrenAdded:Boolean = false;
                     for each (var item:IChild in ai.items)
                     {
-                        if (!isItemInState(item, oldState))
+						// if item.parent == null then the item wasn't parented in the 
+						// old state possibly because its parent was excluded in the old statte
+						// see GH issue #737
+                        if (!isItemInState(item, oldState) || item.parent == null)
                         {
                             var parent:IParent = ai.document as IParent;
                             if (ai.destination != null)
+							{
                                 parent = parent[ai.destination] as IParent;
+								// SimpleStatesImpl assumes the parent exists (no complex nested states)
+								// but we will check here
+								if (parent == null) continue;
+								// if no parent, might might be excluded in current state.
+								// we might later find that the parent hasn't been added yet, not sure.
+							}
                             if (ai.relativeTo != null)
                             {
                                 var child:IChild = ai.document[ai.relativeTo] as IChild;
@@ -330,6 +342,10 @@ package org.apache.royale.core
 	                                childrenAdded = true;
 								}
                             }
+							else if (ai.position == "first")
+							{
+								parent.addElementAt(item, 0);
+							}
                             else
                             {
                                 parent.addElement(item);

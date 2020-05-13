@@ -23,6 +23,10 @@ package org.apache.royale.net.remoting.amf {
 	import org.apache.royale.utils.net.IDynamicPropertyWriter;
 	import org.apache.royale.utils.net.IExternalizable;
 	import org.apache.royale.utils.BinaryData;
+
+	COMPILE::JS{
+		import goog.DEBUG;
+	}
 	
 	COMPILE::SWF{
 		import flash.net.ObjectEncoding;
@@ -115,6 +119,9 @@ package org.apache.royale.net.remoting.amf {
 			var value:* = _serializationContext.readObjectExternal();
 			var err:Error = _serializationContext.getError();
 			if (err) {
+				if (goog.DEBUG){
+					console.log('%c[AMFBinaryData.readObject] - Deserialization Error :'+ err.message,'color:red');
+				}
 				throw new Error(err.message);
 			}
 			return value;
@@ -167,6 +174,9 @@ import org.apache.royale.utils.net.IDataOutput;
 
 
 COMPILE::JS
+/**
+ * @royalesuppressexport
+ */
 class SerializationContext extends BinaryData  implements IDataInput, IDataOutput, IDynamicPropertyOutput {
 	import goog.DEBUG;
 	
@@ -235,12 +245,17 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		return _err;
 	}
 	
+	/**
+	 * @royaleignorecoercion Class
+	 */
 	public function SerializationContext(ownerReference:AMFBinaryData){
 		owner = ownerReference;
 		reset();
 		if (!_xmlChecked) {
 			_xmlChecked = true;
-			_xmlClass = getDefinitionByName('XML') as Class;
+			try{
+				_xmlClass = getDefinitionByName('XML') as Class;
+			} catch(e:Error){}
 		}
 		super();
 	}
@@ -490,6 +505,8 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		for (fieldName in fieldSet) {
 			//exclude all static props
 			if (fieldName.charAt(0) == '|') continue;
+			//exclude all non-public namespaces (identified by '::' between uri and name)
+			if (fieldName.indexOf('::') != -1) continue;
 			var field:Object = fieldSet[fieldName];
 			exclude = false;
 			if (asAccessors) {
@@ -549,11 +566,12 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		return into;
 	}
 	
+	private const nothing:Object = {};
 	private function populateSerializableMembers(reflectionInfo:Object, accessChecks:Object, localTraits:Traits):Array {
 		if (!reflectionInfo) return localTraits.props;
-		var fields:Object = reflectionInfo.variables();
+		var fields:Object = reflectionInfo.variables ? reflectionInfo.variables() : nothing;
 		filterSerializableMembers(fields, accessChecks, localTraits, false, true);
-		fields = reflectionInfo.accessors();
+		fields = reflectionInfo.accessors ? reflectionInfo.accessors() : nothing;
 		filterSerializableMembers(fields, accessChecks, localTraits, true, true);
 		return localTraits.props;
 	}
@@ -1206,7 +1224,13 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				try {
 					value = readScriptObject();
 				} catch (e:Error) {
-					throw new Error("Failed to deserialize: " + e);
+					if (goog.DEBUG){
+						var err:Error = (e.message.indexOf("Failed to deserialize") == -1)
+								? new Error("Failed to deserialize: " + e.message +' '+e.stack.split('\n')[1])
+								: e;
+						throw err;
+					}
+					else throw new Error("Failed to deserialize: " + e.message);
 				}
 				break;
 			case AMF3_ARRAY:
@@ -1258,6 +1282,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 COMPILE::JS
 /**
  *  @royalesuppresspublicvarwarning
+ *  @royalesuppressexport
  */
 class Traits {
 	import goog.DEBUG;

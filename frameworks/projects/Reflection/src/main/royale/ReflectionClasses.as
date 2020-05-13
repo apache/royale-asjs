@@ -47,8 +47,11 @@ internal class ReflectionClasses
 	import org.apache.royale.reflection.registerClassAlias; registerClassAlias;
 	//utils
 	import org.apache.royale.reflection.utils.getMembersWithMetadata; getMembersWithMetadata;
+	import org.apache.royale.reflection.utils.getMembers; getMembers;
+	import org.apache.royale.reflection.utils.MemberTypes; MemberTypes;
 	import org.apache.royale.reflection.utils.getStaticConstantsByConvention; getStaticConstantsByConvention;
 	import org.apache.royale.reflection.utils.getMembersWithNameMatch; getMembersWithNameMatch;
+	import org.apache.royale.reflection.utils.getMembersWithQNameMatch; getMembersWithQNameMatch;
 	import org.apache.royale.reflection.utils.filterForMetaTags; filterForMetaTags;
 	
 	import org.apache.royale.reflection.ExtraData; ExtraData;
@@ -58,6 +61,7 @@ internal class ReflectionClasses
 	import org.apache.royale.reflection.DefinitionWithMetaData; DefinitionWithMetaData;
 	import org.apache.royale.reflection.FunctionDefinition; FunctionDefinition;
 	import org.apache.royale.reflection.MemberDefinitionBase; MemberDefinitionBase;
+	import org.apache.royale.reflection.MetaDataDefinition; MetaDataDefinition;
 	import org.apache.royale.reflection.MetaDataArgDefinition; MetaDataArgDefinition;
 	import org.apache.royale.reflection.MethodDefinition; MethodDefinition;
 	import org.apache.royale.reflection.ParameterDefinition; ParameterDefinition;

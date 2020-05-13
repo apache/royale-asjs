@@ -40,10 +40,10 @@ COMPILE::SWF
 public class NetStatusEvent extends flash.events.NetStatusEvent
 {
 	public function NetStatusEvent(type:String, bubbles:Boolean = false,
-							  cancelable:Boolean = false, text:String = "", id:int = 0
+							  cancelable:Boolean = false, info:Object = null
 							  )
 	{
-		super(type, bubbles, cancelable,text);
+		super(type, bubbles, cancelable,info);
 	}
 }
 
@@ -94,10 +94,11 @@ public class NetStatusEvent extends org.apache.royale.events.Event
 	 *  @productversion Royale 0.9.3
 	 */
 	public function NetStatusEvent(type:String, bubbles:Boolean = false,
-							  cancelable:Boolean = false, text:String = "", id:int = 0
+							  cancelable:Boolean = false, info:Object = null
 							  )
 	{
 		super(type, bubbles, cancelable);
+		this.info = info;
 	}
 	
 

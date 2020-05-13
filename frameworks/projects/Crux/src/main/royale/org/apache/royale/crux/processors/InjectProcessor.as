@@ -14,37 +14,29 @@
  * the License.
  */
 package org.apache.royale.crux.processors
-{
-	import org.apache.royale.crux.reflection.MetadataHostProperty;
-	import org.apache.royale.reflection.AccessorDefinition;
-	import org.apache.royale.reflection.utils.getMembersWithNameMatch;
-	import org.apache.royale.reflection.MemberDefinitionBase;
-	import org.apache.royale.reflection.describeType;
-	import org.apache.royale.reflection.TypeDefinition;
-	
+{	
 	COMPILE::SWF{
 		import flash.utils.Dictionary;
 	}
 
-	import org.apache.royale.utils.UIDUtil;
-
 	import org.apache.royale.crux.Bean;
 	import org.apache.royale.crux.ICruxAware;
-	
-    import org.apache.royale.crux.metadata.InjectMetadataTag;
-	
-    import org.apache.royale.crux.reflection.IMetadataTag;
-    import org.apache.royale.crux.reflection.MetadataHostClass;
-    import org.apache.royale.crux.reflection.MetadataHostMethod;
-    import org.apache.royale.crux.reflection.MethodParameter;
-	
+	import org.apache.royale.crux.binding.*;
+	import org.apache.royale.crux.metadata.InjectMetadataTag;
+	import org.apache.royale.crux.reflection.IMetadataTag;
+	import org.apache.royale.crux.reflection.MetadataHostClass;
+	import org.apache.royale.crux.reflection.MetadataHostMethod;
+	import org.apache.royale.crux.reflection.MetadataHostProperty;
+	import org.apache.royale.crux.reflection.MethodParameter;
+	import org.apache.royale.crux.utils.services.IServiceHelper;
 	import org.apache.royale.crux.utils.services.IURLRequestHelper;
 	import org.apache.royale.crux.utils.services.MockDelegateHelper;
 	import org.apache.royale.crux.utils.services.ServiceHelper;
-	import org.apache.royale.crux.utils.services.IServiceHelper;
 	import org.apache.royale.crux.utils.services.URLRequestHelper;
-	
-	import org.apache.royale.crux.binding.*;
+	import org.apache.royale.reflection.AccessorDefinition;
+	import org.apache.royale.reflection.TypeDefinition;
+	import org.apache.royale.reflection.utils.getMembersWithNameMatch;
+	import org.apache.royale.utils.UIDUtil;
 
     /**
 	 * Inject Processor
@@ -412,7 +404,7 @@ package org.apache.royale.crux.processors
 			}
 			catch( error:ReferenceError )
 			{
-				trace('todo')
+				trace('todo ReferenceError caught', error)
 			}
 			
 		}

@@ -24,6 +24,7 @@ package org.apache.royale.core
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.sendBeadEvent;
     
     /**
      *  The ParentDocumentBead class looks up the parent
@@ -42,7 +43,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ParentDocumentBead extends EventDispatcher implements IBead
+	public class ParentDocumentBead extends DispatcherBead
 	{
         /**
          *  Constructor.
@@ -57,22 +58,8 @@ package org.apache.royale.core
 			super();
 		}
         
-        private var _strand:IStrand;
-        
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function set strand(value:IStrand):void
-        {
-            _strand = value;
             
-            //TODO (aharui) watch for re-parenting
-        }    
+        //TODO (aharui) watch for re-parenting
 
         private var _id:String;
         
@@ -97,7 +84,7 @@ package org.apache.royale.core
             if (_id != value)
             {
                 _id = value;
-                dispatchEvent(new org.apache.royale.events.Event("idChanged"));
+                sendBeadEvent(this,"idChanged");
             }
         }
         

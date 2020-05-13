@@ -19,6 +19,7 @@
 package org.apache.royale.charts.core
 {
 	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	
 	/**
 	 *  The IChartItemRenderer interface is the interface implemented by any
@@ -133,5 +134,17 @@ package org.apache.royale.charts.core
 		 *  @productversion Royale 0.0
 		 */
 		function updateRenderer():void;
+        
+        /**
+         * Invoke this function to force the itemRenderer to redraw.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        function get itemRendererOwnerView():IItemRendererOwnerView;
+        function set itemRendererOwnerView(value:IItemRendererOwnerView):void;
+
 	}
 }

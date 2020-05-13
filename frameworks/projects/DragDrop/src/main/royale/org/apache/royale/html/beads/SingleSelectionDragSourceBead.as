@@ -22,27 +22,17 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.IDragInitiator;
 	import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.ItemRendererOwnerViewBead;
 	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.DragEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.geom.Rectangle;
-	import org.apache.royale.html.Group;
-	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.controllers.DragMouseController;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
-	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.getParentOrSelfByType;
 
 	/**
@@ -80,7 +70,26 @@ package org.apache.royale.html.beads
 	 */
 	[Event(name="complete", type="org.apache.royale.events.Event")]
 
+	/**
+	 * The dragMove event is dispatched while the drag action moves.
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
+	[Event(name="dragMove", type="org.apache.royale.events.DragEvent")]
 
+	/**
+	 * The dragEnd event is dispatched while the drag action stops.
+	 * This is dispatched even when the drag event is aborted.
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
+	[Event(name="dragEnd", type="org.apache.royale.events.DragEvent")]
 	/**
 	 *  The SingleSelectionDragSourceBead brings drag capability to single-selection List components.
 	 *  By adding this bead, a user can drag a row of the List to a new location within the list. This bead
@@ -145,9 +154,9 @@ package org.apache.royale.html.beads
 			_dragController = new DragMouseController();
 			_strand.addBead(_dragController);
 
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_END, handleDragEnd);
+			_dragController.addEventListener(DragEvent.DRAG_START, handleDragStart);
+			_dragController.addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
+			_dragController.addEventListener(DragEvent.DRAG_END, handleDragEnd);
 		}
 
 		private var _dragSourceIndex:int = -1;
@@ -181,12 +190,14 @@ package org.apache.royale.html.beads
 			var itemRenderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
 
 			if (itemRenderer) {
-				var p:IParent = (itemRenderer.itemRendererParent as ILayoutHost).contentView as IParent;
+                var ownerViewBead:ItemRendererOwnerViewBead = itemRenderer.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead;
+				var p:IParent = (ownerViewBead.ownerView as ILayoutHost).contentView as IParent;
 				_dragSourceIndex = p.getElementIndex(itemRenderer as IChild);
 				DragEvent.dragSource = (itemRenderer as IItemRenderer).data;
 			}
 
 			var newEvent:Event = new Event("start", false, true);
+			continueDragOperation = true;
 			dispatchEvent(newEvent);
 			if (newEvent.defaultPrevented) {
 				continueDragOperation = false;
@@ -198,7 +209,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function handleDragMove(event:DragEvent):void
 		{
-			// ignored for now
+			dispatchEvent(event);
 		}
 
 		/**
@@ -206,7 +217,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function handleDragEnd(event:DragEvent):void
 		{
-			// ignored for now
+			dispatchEvent(event);
 		}
 
 		/* IDragInitiator */

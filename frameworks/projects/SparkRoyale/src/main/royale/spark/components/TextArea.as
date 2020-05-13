@@ -20,19 +20,12 @@
 package spark.components
 {
 	
-	import org.apache.royale.textLayout.elements.TextFlow;
-	/* import flash.events.Event;
-	
-	import flashx.textLayout.formats.TextLayoutFormat;
-	
-	import mx.core.ScrollPolicy;
-	import mx.core.mx_internal;
-	import mx.events.FlexEvent;
-	
-	import spark.events.TextOperationEvent;
-	
-	use namespace mx_internal */;
+    import spark.core.IViewport;
+    
 	import spark.components.supportClasses.SkinnableTextBase;
+    
+	import org.apache.royale.events.Event;
+	import org.apache.royale.textLayout.elements.TextFlow;
 	
 	//--------------------------------------
 	//  Styles
@@ -337,9 +330,20 @@ package spark.components
 		public function TextArea()
 		{
 			super();
-            typeNames += " TextArea";
+            typeNames += " SparkTextArea";
 		}
 		
+        override protected function createChildren():void
+        {
+            scroller = new Scroller();
+            scroller.percentHeight = 100;
+            scroller.percentWidth = 100;
+            textDisplay = new RichEditableText();
+            partAdded("textDisplay", textDisplay);
+            scroller.viewport = textDisplay as IViewport;
+            addElement(scroller);
+        }
+        
 		//--------------------------------------------------------------------------
 		//
 		//  Variables
@@ -417,15 +421,15 @@ package spark.components
 		/**
 		 *  @private
 		 */
-		/* override public function set text(value:String):void
+		override public function set text(value:String):void
 		{
-		// Of 'text', 'textFlow', and 'content', the last one set wins.
+			// Of 'text', 'textFlow', and 'content', the last one set wins.
 		
-		super.text = value;
+			super.text = value;
 		
-		// Trigger bindings to textChanged.
-		dispatchEvent(new Event("textChanged"));        
-		} */
+			// Trigger bindings to textChanged.
+			dispatchEvent(new Event("textChanged"));        
+		}
 		
 		//--------------------------------------------------------------------------
 		//
@@ -489,20 +493,20 @@ package spark.components
 		 *  @playerversion AIR 1.5
 		 *  @productversion Royale 0.9.4
 		 */
-		/* public function get content():Object
+		public function get content():Object
 		{
-		return textFlow;
-		} */
+			return textFlow;
+		}
 		
 		/**
 		 *  @private
 		 */   
-		/* public function set content(value:Object):void
+		public function set content(value:Object):void
 		{
-		// Of 'text', 'textFlow', and 'content', the last one set wins.
+			// Of 'text', 'textFlow', and 'content', the last one set wins.
 		
-		setContent(value);
-		} */
+			setContent(value);
+		}
 		
 		//----------------------------------
 		//  heightInLines
@@ -568,9 +572,9 @@ package spark.components
 		 */
 		public function get textFlow():TextFlow
 		{
-			trace("TextArea textFlow not implemented");
-			//return getTextFlow();
-			return null;
+			//trace("TextArea textFlow not implemented");
+			return getTextFlow();
+			//return null;
 		}
 		
 		/**
@@ -580,7 +584,7 @@ package spark.components
 		{
 			// Of 'text', 'textFlow', and 'content', the last one set wins.
 			
-			// setTextFlow(value);
+			setTextFlow(value);
 		} 
 		
 		//----------------------------------
@@ -759,7 +763,7 @@ package spark.components
 			//    return;
 			
 			// textDisplay.scrollToRange(anchorPosition, activePosition);
-		}
+		}        
 	}
 	
 }

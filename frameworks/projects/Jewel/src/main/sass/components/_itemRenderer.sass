@@ -23,18 +23,19 @@
 $item-min-height: 34px
 
 .jewel.item, .jewel.navigationlink, .jewel.tabbarbutton
-    display: block // this works better when render is just text
+    display: flex
     min-height: $item-min-height
     text-decoration: none
     letter-spacing: 0
     line-height: normal !important
     overflow: hidden
     cursor: auto
+    // align-items: center -> this need to be in mxmlContent to not modify basic list renders
     // pointer-events: none
 
     // used when the renderer is extended, so we change to flex display
     &.mxmlContent
-        display: flex
+        flex: 0 0 auto
         align-items: center
 
     &.selectable

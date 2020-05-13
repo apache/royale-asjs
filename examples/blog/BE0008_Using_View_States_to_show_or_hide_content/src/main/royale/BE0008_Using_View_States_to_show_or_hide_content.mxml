@@ -31,22 +31,33 @@
             
             <j:beads>
                 <js:SimpleStatesImpl/>
+                <j:VerticalCenteredLayout/>
             </j:beads>
 
             <j:Card id="loginForm" includeIn="login">
-                <html:H1 text="Royale login"/>
-                <j:TextInput id="username" text="someuser"/>
-                <j:TextInput id="password" text="somepass">
-                    <j:beads>
-                        <j:PasswordInput/>
-                    </j:beads>
-                </j:TextInput>
-                <j:Button text="Login" emphasis="primary" click="view.currentState = 'loggedIn'" />
+                <j:CardHeader>
+                    <html:H3 text="Royale login" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+                    <j:TextInput id="username" text="someuser"/>
+                    <j:TextInput id="password" text="somepass">
+                        <j:beads>
+                            <j:PasswordInput/>
+                        </j:beads>
+                    </j:TextInput>
+                </j:CardPrimaryContent>
+                <j:CardActions itemsHorizontalAlign="itemsRight">
+                    <j:Button text="Login" emphasis="primary" click="view.currentState = 'loggedIn'" />
+                </j:CardActions>
             </j:Card>
 
-            <j:Card id="loggedInForm" includeIn="loggedIn">
-                <html:H1 text="You are logged in!! :)"/>
-                <j:Button text="Logout" click="view.currentState = 'login'"/>
+            <j:Card id="loggedInForm" includeIn="loggedIn" width="50%" height="50%">
+                <j:CardHeader>
+                    <html:H3 text="You are logged in!! :)" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent itemsHorizontalAlign="itemsCenter" itemsVerticalAlign="itemsCenter">
+                    <j:Button text="Logout" click="view.currentState = 'login'"/>
+                </j:CardPrimaryContent>
             </j:Card>
         </j:View>
     </j:initialView>

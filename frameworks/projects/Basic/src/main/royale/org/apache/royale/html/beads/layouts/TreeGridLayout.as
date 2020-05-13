@@ -19,12 +19,12 @@
 package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.IBeadLayout;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
@@ -128,7 +128,7 @@ package org.apache.royale.html.beads.layouts
 			}
 			var model:TreeGridModel = uiHost.model as TreeGridModel;
 			var header:ButtonBar = (uiHost.view as TreeGridView).header as ButtonBar;
-			var contentArea:UIBase = (uiHost.view as TreeGridView).listArea;
+			var contentArea:UIBase = (uiHost.view as TreeGridView).listArea as UIBase;
 			var displayedColumns:Array = (uiHost.view as TreeGridView).columnLists;
 			
 			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);

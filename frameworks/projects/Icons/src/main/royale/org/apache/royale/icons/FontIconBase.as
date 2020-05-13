@@ -18,15 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
-    import org.apache.royale.core.IIcon;
-    import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.utils.StringUtil;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IIcon;
+    import org.apache.royale.core.StyledUIBase;
 
     /**
      *  FontIconBase is the base class to provide most common features 
@@ -54,6 +52,24 @@ package org.apache.royale.icons
             typeNames = "";
         }
 
+        protected var _text:String = "";
+        /**
+         *  The text of the icon
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		public function get text():String
+		{
+            return _text;            
+		}
+        public function set text(value:String):void
+		{
+            _text = value;
+		}
+
         COMPILE::JS
         protected var textNode:Text;
 
@@ -68,11 +84,10 @@ package org.apache.royale.icons
 			var i:WrappedHTMLElement = addElementToWrapper(this,'i');
             
             textNode = document.createTextNode(iconText) as Text;
+            textNode.textContent = '';
             i.appendChild(textNode); 
 
-            positioner = element;
-            
-            return i;
+            return element;
         }
 
         /**
@@ -87,39 +102,6 @@ package org.apache.royale.icons
         protected function get iconText():String
         {
             return "";
-        }
-
-        private var _material:Boolean;
-        /**
-         *  add class name "material-icons" since in IE11 this font only
-         *  works with that class name strangely. it seems we can avoid this 
-         *  self-hosting the fonts @see https://google.github.io/material-design-icons/
-         *  but we must think if this is or not the right way.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        public function get material():Boolean
-        {
-            return _material;
-        }
-        public function set material(value:Boolean):void
-        {
-            if (_material != value)
-            {
-                _material = value;
-
-                typeNames = StringUtil.removeWord(typeNames, " material-icons");
-                typeNames += " material-icons";
-
-                COMPILE::JS
-                {
-                    if (parent)
-                        setClassName(computeFinalClassNames()); 
-                }
-            }
         }
 
         private var _size:Number = 24;

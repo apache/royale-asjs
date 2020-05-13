@@ -20,13 +20,8 @@
 // Jewel Button
 
 // Button variables
-$button-margin: 0 !default
-$button-padding: 0.68em 1.12em !default
 
 .jewel.button
-    margin: $button-margin
-    padding: $button-padding
-
     cursor: pointer
     user-select: none
 
@@ -52,12 +47,15 @@ $button-padding: 0.68em 1.12em !default
     &[disabled]
         cursor: default
 
-    //&.multiline
-    //   white-space: pre-wrap
+    &.multiline
+        white-space: pre-wrap
 
     .fonticon
         cursor: inherit
 
+    // temporal for badges (we need to refactor it)
+    &.viewport
+        overflow: visible
 
 @media -royale-swf
     j|Button

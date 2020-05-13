@@ -15,12 +15,9 @@
  */
 package org.apache.royale.crux.processors
 {
-
 	COMPILE::SWF{
-		import flash.utils.Dictionary;
+	import flash.utils.Dictionary;
 	}
-
-	
 	import org.apache.royale.crux.Bean;
 	import org.apache.royale.crux.reflection.IMetadataTag;
 	import org.apache.royale.crux.reflection.MetadataHostMethod;
@@ -207,46 +204,92 @@ package org.apache.royale.crux.processors
 		/**
 		 * Examine stored refs to see if any mediators have registered to
 		 * be notified when a view of this type has been added or removed.
+		 * @royaleignorecoercion Array
+		 *
 		 */
 		COMPILE::JS
 		protected function processViewBean( bean:Bean, tagName:String ):void
 		{
 			// iterate over the keys of our Dictionary
 			// the keys are the types we've found in [ViewAdded] and [ViewRemoved] declarations
-
-			var iterator:IteratorIterable = views.keys();
-			var result:* = iterator.next();
-			while ( !result.done )
-			{
-				var type:* = result.value;
-				// check to see if the view that was added/removed is a compatible type
-				// using "is" lets us match subclasses and interface implementations
-				if( bean.source is type )
+			
+			//Don't use an IteratorIterable approach to maintain compatibility with IE11
+			//IE11
+			//ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
+			
+			
+			
+			/*if (views.keys != null) {
+				var iterator:IteratorIterable = views.keys();
+				var result:* = iterator.next();
+				while ( !result.done )
 				{
-					// get refs to all the metadata tag instances
-					var refs:Array = views.get(type) as Array;
-
-					// iterate over all the metadata tag instances
-					for each( var ref:ViewRef in refs )
+					var type:* = result.value;
+					// check to see if the view that was added/removed is a compatible type
+					// using "is" lets us match subclasses and interface implementations
+					if( bean.source is type )
 					{
-						// if view was added, only process [ViewAdded] tags
-						// if view was removed, only process [ViewRemoved] tags
-						if( ref.tag.name != tagName && ref.tag.name != VIEW_NAVIGATOR )
-							continue;
-
-						// if tag was declared on a method pass the view in as the only argument
-						if( ref.tag.host is MetadataHostMethod )
+						// get refs to all the metadata tag instances
+						var refs:Array = views.get(type) as Array;
+						
+						// iterate over all the metadata tag instances
+						for each( var ref:ViewRef in refs )
 						{
-							var f:Function = ref.mediator[ ref.tag.host.name ] as Function;
-							f.apply( null, [ bean.source ] );
-						}
-						else // if tag was declared on a property do a simple assignment
-						{
-							ref.mediator[ ref.tag.host.name ] = bean.source;
+							// if view was added, only process [ViewAdded] tags
+							// if view was removed, only process [ViewRemoved] tags
+							if( ref.tag.name != tagName && ref.tag.name != VIEW_NAVIGATOR )
+								continue;
+							
+							// if tag was declared on a method pass the view in as the only argument
+							if( ref.tag.host is MetadataHostMethod )
+							{
+								var f:Function = ref.mediator[ ref.tag.host.name ] as Function;
+								f.apply( null, [ bean.source ] );
+							}
+							else // if tag was declared on a property do a simple assignment
+							{
+								ref.mediator[ ref.tag.host.name ] = bean.source;
+							}
 						}
 					}
 				}
-			}
+			} else {*/
+				//IE11
+				views.forEach(
+						function(value:Object, key:Object):void{
+							var type:* = key;
+							// check to see if the view that was added/removed is a compatible type
+							// using "is" lets us match subclasses and interface implementations
+							if( bean.source is type )
+							{
+								// get refs to all the metadata tag instances
+								var refs:Array = value/*views.get(type)*/ as Array;
+								
+								// iterate over all the metadata tag instances
+								for each( var ref:ViewRef in refs )
+								{
+									// if view was added, only process [ViewAdded] tags
+									// if view was removed, only process [ViewRemoved] tags
+									if( ref.tag.name != tagName && ref.tag.name != VIEW_NAVIGATOR )
+										continue;
+									
+									// if tag was declared on a method pass the view in as the only argument
+									if( ref.tag.host is MetadataHostMethod )
+									{
+										var f:Function = ref.mediator[ ref.tag.host.name ] as Function;
+										f.apply( null, [ bean.source ] );
+									}
+									else // if tag was declared on a property do a simple assignment
+									{
+										ref.mediator[ ref.tag.host.name ] = bean.source;
+									}
+								}
+							}
+						} //no need for second 'this' argument
+				)
+				
+			//}
+
 		}
 	}
 }

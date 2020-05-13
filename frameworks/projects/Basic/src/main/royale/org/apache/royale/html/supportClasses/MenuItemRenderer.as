@@ -60,10 +60,6 @@ package org.apache.royale.html.supportClasses
 			label = new Label();
 			label.typeNames = "MenuItemLabel";
 			addElement(label);
-            COMPILE::JS
-            {
-                label.setParentEventTarget(this);        
-            }
 		}
 		
 		/**
@@ -109,8 +105,6 @@ package org.apache.royale.html.supportClasses
 			
 			label.x = 0;
 			label.y = cy - label.height/2;
-
-			updateRenderer();
 		}
 	}
 }

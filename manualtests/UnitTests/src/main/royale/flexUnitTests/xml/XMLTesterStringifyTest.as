@@ -90,7 +90,7 @@ package flexUnitTests.xml
         
         
         [Test]
-        [TestVariance(variance="JS",description="Some browsers can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
+        [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
         public function testStringifyAdvanced():void{
             XML.ignoreWhitespace = true;
             XML.prettyPrinting = false;
@@ -316,8 +316,30 @@ package flexUnitTests.xml
                     '<script><![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]></script>',
                     script.toXMLString(), 'unexpected toXMLString with child CDATA')
         }
-        
-
+    
+        [Test]
+        [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
+        public function testDeclarationOrder():void{
+            var xml:XML = <root xmlns:also="def" xmlns="def"><child/></root>;
+            var check:String = xml.children().toXMLString();
+            var options:Array = ['<also:child xmlns:also="def" xmlns="def"/>','<child xmlns="def" xmlns:also="def"/>'];
+            if (options.indexOf(check) != 0) {
+               // trace('testDeclarationOrder: this browser does not conform to swf behavior')
+                RoyaleUnitTestRunner.consoleOut('testDeclarationOrder:0 this browser does not conform to swf behavior')
+            }
+            assertTrue(
+                    options.indexOf(check) != -1, 'unexpected toXMLString with declaration order')
+    
+            xml = <root xmlns="def" xmlns:also="def"><child/></root>;
+            check = xml.children().toXMLString();
+            if (options.indexOf(check) != 1) {
+                // trace('testDeclarationOrder: this browser does not conform to swf behavior')
+                RoyaleUnitTestRunner.consoleOut('testDeclarationOrder:1 this browser does not conform to swf behavior')
+            }
+            assertTrue(
+                    options.indexOf(check) != -1, 'unexpected toXMLString content')
+    
+        }
         
     }
 }

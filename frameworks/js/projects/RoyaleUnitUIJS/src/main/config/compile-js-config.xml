@@ -1,0 +1,104 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<royale-config>
+
+    <compiler>
+        <accessible>false</accessible>
+        
+        <!-- build both SWF and JS. -->
+        <targets>
+            <target>SWF</target>
+            <target>JSRoyale</target>
+        </targets>
+        <strict-xml>true</strict-xml>
+
+        <mxml>
+          <children-as-data>true</children-as-data>
+        </mxml>
+        <binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+        <binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
+        <binding-value-change-event-type>valueChange</binding-value-change-event-type>
+
+        <define>
+            <name>COMPILE::SWF</name>
+            <value>false</value>
+        </define>
+        <define>
+            <name>COMPILE::JS</name>
+            <value>true</value>
+        </define>
+
+        <keep-as3-metadata>
+          <name>Bindable</name>
+          <name>Managed</name>
+          <name>ChangeEvent</name>
+          <name>NonCommittingChangeEvent</name>
+          <name>Transient</name>
+
+          <!-- RoyaleUnit -->
+          <name>Test</name>
+          <name>Before</name>
+          <name>After</name>
+          <name>BeforeClass</name>
+          <name>AfterClass</name>
+          <name>Ignore</name>
+          <name>Suite</name>
+          <name>RunWith</name>
+        </keep-as3-metadata>
+	  
+        <locale/>
+        
+        <external-library-path append="true">
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/ReflectionJS.swc</path-element>
+            <path-element>../../../../../libs/RoyaleUnitJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
+            <path-element>../../../../../libs/BindingJS.swc</path-element>
+            <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+        </external-library-path>
+        
+        <source-path>
+            <path-element>../../../../../../projects/RoyaleUnitUI/src/main/royale</path-element>
+        </source-path>
+        
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>../../../../../../projects/RoyaleUnitUI/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
+        <warn-no-constructor>false</warn-no-constructor>
+    </compiler>
+    
+    <include-classes>
+        <class>RoyaleUnitUIClasses</class>
+    </include-classes>
+    
+    <include-namespaces>
+        <uri>library://ns.apache.org/royale/basic</uri>
+    </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
+
+    <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
+    <js-resolve-uncertain>false</js-resolve-uncertain>
+    <js-vector-index-checks>false</js-vector-index-checks>
+</royale-config>

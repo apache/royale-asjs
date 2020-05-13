@@ -26,6 +26,21 @@
     <swf-version>30</swf-version>
     <source-map>true</source-map>
     <compiler>
+        <library-path append="true">
+            <path-element>../../../../../frameworks/libs/MXRoyale.swc</path-element>
+        </library-path>
+        <js-library-path append="true">
+            <path-element>../../../../../frameworks/js/libs//MXRoyaleJS.swc</path-element>
+        </js-library-path>
+        <define append="true">
+            <name>COMPILE::Flex</name>
+            <value>false</value>
+        </define>
+        <define append="true">
+            <name>COMPILE::Royale</name>
+            <value>true</value>
+        </define>
+
         <keep-as3-metadata append="true">
             <name>Test</name>
             <name>BeforeClass</name>

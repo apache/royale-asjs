@@ -18,9 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
-    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.html.supportClasses.StyledMXMLStatesItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
     import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.utils.IEmphasis;
 	
 	/**
 	 *  The StyledMXMLItemRenderer class is the base class for itemRenderers that are MXML-based
@@ -31,7 +33,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IRuntimeSelectableItemRenderer
+	public class StyledMXMLItemRenderer extends StyledMXMLStatesItemRenderer implements IClassSelectorListSupport, IEmphasis, IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -45,146 +47,47 @@ package org.apache.royale.core
 		{
 			super();
             typeNames = "";
-            classSelectorList = new ClassSelectorList(this);
 		}
 
-        protected var classSelectorList:ClassSelectorList;
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
-        }
-
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
         /**
-         * Add a class selector to the list.
-         * 
-         * @param name Name of selector to add.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
+         *  The parent container for the itemRenderer instance.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
          */
-        public function addClass(name:String):void
+        public function get itemRendererOwnerView():IItemRendererOwnerView
         {
-            COMPILE::JS
-            {
-            classSelectorList.add(name);
-            }
+            return _itemRendererOwnerView;
         }
-
-        /**
-         * Removes a class selector from the list.
-         * 
-         * @param name Name of selector to remove.
-         *
-         * @royaleignorecoercion HTMLElement
-         * @royaleignorecoercion DOMTokenList
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
-         */
-        public function removeClass(name:String):void
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
         {
-            COMPILE::JS
-            {
-            classSelectorList.remove(name);
-            }
+            _itemRendererOwnerView = value;
         }
-
+        
         /**
-         * Add or remove a class selector to/from the list.
-         * 
-         * @param name Name of selector to add or remove.
-         * @param value True to add, False to remove.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
-         */
-        public function toggleClass(name:String, value:Boolean):void
-        {
-            COMPILE::JS
-            {
-            classSelectorList.toggle(name, value);
-            }
-        }
-
-        /**
-		 *  Search for the name in the element class list 
-		 *
-         *  @param name Name of selector to find.
-         *  @return return true if the name is found or false otherwise.
-         * 
+		 *  The method called when added to a parent. The StyledItemRenderer class uses
+		 *  this opportunity to assign emphasis from the strand if possible, otherwise defaults
+		 *  to PRIMARY.
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
+		 *  @productversion Royale 0.9.7
 		 */
-		public function containsClass(name:String):Boolean
-        {
-            COMPILE::JS
-            {
-            return classSelectorList.contains(name);
-            }
-            COMPILE::SWF
-            {//not implemented
-            return false;
-            }
-        }
-
-        /************************************
-         *  IRuntimeSelectableItemRenderer
-         ************************************/
-
-        private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get selectable():Boolean
+		override public function addedToParent():void
 		{
-			return _selectable;
-		}
-
-		public function set selectable(value:Boolean):void
-		{
-			_selectable = value;	
-		}
-
-        private var _hoverable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get hoverable():Boolean
-		{
-			return _hoverable;
-		}
-
-		public function set hoverable(value:Boolean):void
-		{
-			_hoverable = value;	
+			super.addedToParent();
+			
+			if (itemRendererOwnerView && itemRendererOwnerView.host is IEmphasis && (itemRendererOwnerView.host as IEmphasis).emphasis)
+			{
+				emphasis = (itemRendererOwnerView.host as IEmphasis).emphasis;
+			} else
+			{
+				emphasis = StyledUIBase.PRIMARY;
+			}
 		}
 	}
 }

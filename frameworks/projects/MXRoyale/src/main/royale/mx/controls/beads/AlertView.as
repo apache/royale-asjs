@@ -18,7 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+    import org.apache.royale.core.IAlertModel;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
+    import org.apache.royale.html.TitleBar;
     import org.apache.royale.html.beads.AlertView;
 	
     /**
@@ -43,6 +47,19 @@ package mx.controls.beads
 		{
         }
 
+        override public function set strand(value:IStrand):void
+        {
+            super.strand = value;
+            // MX Alert always has title bar
+            if (!alertModel.title)
+            {
+                titleBar = new TitleBar();
+                titleBar.height = 25;
+                titleBar.title = alertModel.title;
+                IParent(_strand).addElementAt(titleBar, 0);
+            }            
+        }
+        
         /**
          * The content area of the panel.
          *

@@ -616,7 +616,6 @@
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/supportClasses/scrollbar/ScrollBar.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/models/ScrollBarModel.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/ButtonView.as</path-element>
-       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/CheckBoxView.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/RadioButtonView.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/TextFieldView.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/SliderTrackView.as</path-element>
@@ -638,6 +637,8 @@
        <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/effects/effectClasses/ParallelInstance.as</path-element>
        <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/events/ResourceEvent.as</path-element>
        <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/utils/RPCObjectUtil.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/rpc/xml/NamespaceUtil.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/rpc/xml/SimpleXMLEncoder.as</path-element>
        <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/org/apache/royale/maps/google/beads/MapView_original.as</path-element>
        <path-element>${frameworks_dir}/projects/Storage/src/main/royale/org/apache/royale/storage/file/LocalFile.as</path-element>
     </exclude-sources>

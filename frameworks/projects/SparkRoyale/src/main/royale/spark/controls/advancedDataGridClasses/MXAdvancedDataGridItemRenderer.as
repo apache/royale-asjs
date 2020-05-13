@@ -24,8 +24,8 @@ import mx.events.MouseEvent;
 import mx.controls.AdvancedDataGrid;
 import mx.controls.listClasses.AdvancedListBase;
 import mx.controls.listClasses.BaseListData;
-//import mx.controls.listClasses.IDropInListItemRenderer;
-//import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
 import mx.core.mx_internal;
 import mx.managers.IFocusManagerComponent;
 
@@ -33,6 +33,10 @@ import spark.components.Group;
 import spark.components.supportClasses.ItemRenderer;
 
 use namespace mx_internal;
+
+import org.apache.royale.binding.ItemRendererDataBinding;
+import org.apache.royale.events.Event;
+
 
 /**
  *  The MXAdvancedDataGridItemRenderer class defines the Spark item renderer class 
@@ -58,7 +62,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class MXAdvancedDataGridItemRenderer extends ItemRenderer //implements IListItemRenderer, IDropInListItemRenderer
+public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements IListItemRenderer, IDropInListItemRenderer
 {    
     //--------------------------------------------------------------------------
     //
@@ -80,6 +84,12 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer //implements IL
        // focusEnabled = false;
     }
     
+	override protected function createChildren():void
+	{
+		addBead(new ItemRendererDataBinding());
+		super.createChildren();
+	}
+	
     //----------------------------------
     //  listData
     //----------------------------------
@@ -88,10 +98,10 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer //implements IL
      *  @private
      *  Storage for the listData property.
      */
-   /*  private var _listData:BaseListData;
+    private var _listData:Object;
     
     [Bindable("dataChange")]
-     */
+
     /**
      *  The implementation of the <code>listData</code> property
      *  as defined by the IDropInListItemRenderer interface.
@@ -105,21 +115,31 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer //implements IL
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-   /*  public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
         _listData = value;
         
         invalidateProperties();
     }
+    
+    /**
+     *  @private
      */
+    override public function set data(value:Object):void
+    {
+		addBead(new ItemRendererDataBinding());
+        super.data = value;        
+		dispatchEvent(new Event("initBindings"));
+    }
+
     //----------------------------------
     //  editor
     //----------------------------------
@@ -132,7 +152,7 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer //implements IL
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-   // public var editor:IFocusManagerComponent;
+    public var editor:IFocusManagerComponent;
     
     //----------------------------------
     //  text
@@ -153,13 +173,13 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer //implements IL
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-   /*  public function get text():String
+    public function get text():String
     {
         if (editor && ("text" in editor))
             return editor["text"];
         
         return null;
-    } */
+    }
     
     //----------------------------------
     //  disclosureGroup

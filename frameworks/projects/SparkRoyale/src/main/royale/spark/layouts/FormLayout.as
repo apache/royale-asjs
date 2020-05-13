@@ -27,7 +27,9 @@ package spark.layouts
 	import spark.components.supportClasses.GroupBase;
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.layouts.supportClasses.LayoutBase;
-	
+
+    import org.apache.royale.events.Event;
+    
 	use namespace mx_internal;
 	
 	/**
@@ -294,6 +296,11 @@ package spark.layouts
 				// Recalculate contentWidth; contentHeight already includes padding.
 				var contentWidth:Number = calculateColumnWidthsSum(columnMaxWidths);
 				layoutTarget.setContentSize(contentWidth + hPadding, layoutTarget.contentHeight);
+                
+                for each (formItem in formItems)
+                {
+                    formItem.dispatchEvent(new Event("layoutNeeded"));
+                }
 			}
 		}
 		
@@ -369,16 +376,16 @@ package spark.layouts
 		 *  percent widths.
 		 */
 		private function constrainPercentColumnWidths(colWidths:Vector.<Number>, constrainedWidth:Number, formItems:Vector.<ILayoutElement>):void
-		{/*
+		{
 			if (formItems.length == 0)
 				return;
 			
 			// TODO (klin): What happens when the form items have different types of columns?
 			const fiLayout:FormItemLayout = getElementLayout(formItems[0]) as FormItemLayout;
-			const constraintColumns:Vector.<ConstraintColumn> = fiLayout.constraintColumns;
+			const constraintColumns:Array /*Vector.<ConstraintColumn>*/ = fiLayout.constraintColumns;
 			const numCols:int = constraintColumns.length;
 			var col:ConstraintColumn;
-			var childInfoArray:Array*/ /* of ColumnFlexChildInfo *//* = [];
+			var childInfoArray:Array /* of ColumnFlexChildInfo */ = [];
 			var childInfo:ColumnFlexChildInfo;
 			var remainingWidth:Number = constrainedWidth;
 			var percentMinWidths:Number = 0;
@@ -430,7 +437,7 @@ package spark.layouts
 					remainingWidth -= colWidth;
 				}
 				// TODO (klin): What do we do if there's remainingWidth after all this?
-			}*/
+			}
 		}
 	}
 }

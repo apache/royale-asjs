@@ -35,7 +35,7 @@ package spark.layouts
 	 *  @playerversion AIR 2.5
 	 *  @productversion Flex 4.5
 	 */ 
-	public class FormItemLayout //extends ConstraintLayout
+	public class FormItemLayout extends ConstraintLayout
 	{
 		//--------------------------------------------------------------------------
 		//
@@ -62,7 +62,7 @@ package spark.layouts
 		 *  @private
 		 *  Only resize columns and rows if setLayoutColumnWidths hasn't been called.
 		 */
-		/*override public function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+		override public function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
 		{
 			checkUseVirtualLayout();
 			
@@ -77,7 +77,7 @@ package spark.layouts
 				setColumnWidths(layoutColumnWidths);
 			
 			layoutContent(unscaledWidth, unscaledHeight);
-		}*/
+		}
 		
 		/**
 		 *  @private
@@ -85,7 +85,7 @@ package spark.layouts
 		 */
 		public function getMeasuredColumnWidths():Vector.<Number>
 		{
-			return null; //measureColumns();
+			return measureColumns();
 		}
 		
 		/**
@@ -98,7 +98,7 @@ package spark.layouts
 			// apply new measurements and position the columns again.
 			layoutColumnWidths = value;
 			
-			// setColumnWidths(layoutColumnWidths);
+			setColumnWidths(layoutColumnWidths);
 			
 			// target.invalidateDisplayList();
 		}

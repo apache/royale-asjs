@@ -59,7 +59,11 @@ package org.apache.royale.utils
             {
                 if(!_localeName)
                 {
-                    _localeName = navigator.language;
+                    if (navigator.languages && navigator.languages.length) {
+                        _localeName = navigator.languages[0];
+                    } else {
+                        _localeName = navigator.language || navigator['userLanguage'] || navigator['browserLanguage'] || 'en';
+                    }
                 }
                 return _localeName;
             }

@@ -277,7 +277,10 @@ public class ModuleLoader extends VBox
      *  @productversion Royale 0.9.3
 	 *	@royalesuppresspublicvarwarning
      */
-    public var child:Object; //DisplayObject;
+    public function get child():Object //DisplayObject
+    {
+        return utils.moduleInstance;
+    }
 
     //----------------------------------
     //  trustContent
@@ -306,7 +309,11 @@ public class ModuleLoader extends VBox
      */
     public function get url():String
     {
-        return utils.modulePath + "/" + utils.moduleName + ".swf";
+	if (!utils.modulePath && !utils.moduleName)
+	{
+		return null;
+	}
+        return utils.modulePath ? utils.modulePath + "/" + utils.moduleName + ".swf" : utils.moduleName + ".swf";
     }
 
     /**
@@ -339,11 +346,11 @@ public class ModuleLoader extends VBox
             }
         }
           */
-        var c:int = value.lastIndexOf("/");
+        var c:int = value ? value.lastIndexOf("/") : -1;
         if (c == -1)
         {
             utils.modulePath = "";
-            utils.moduleName = value.replace(".swf", "");
+            utils.moduleName = value ? value.replace(".swf", "") : "";
         }
         else
         {
@@ -353,7 +360,9 @@ public class ModuleLoader extends VBox
 
         dispatchEvent(new FlexEvent(FlexEvent.URL_CHANGED));
 
-        utils.loadModule(this);
+        
+        if (url != null && url != "" && loadRequested)
+            utils.loadModule(this);
     }
  
 }

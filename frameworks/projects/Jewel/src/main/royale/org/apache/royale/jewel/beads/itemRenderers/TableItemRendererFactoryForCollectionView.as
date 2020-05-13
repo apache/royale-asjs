@@ -24,23 +24,23 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IParent;
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IListView;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.models.TableModel;
     import org.apache.royale.jewel.beads.views.TableView;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
+    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
@@ -141,8 +141,8 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
@@ -197,16 +197,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 						ir = column.itemRenderer.newInstance() as TableItemRenderer;
                     } else
                     {
-                        ir = itemRendererFactory.createItemRenderer(tbody) as TableItemRenderer;
+                        ir = itemRendererFactory.createItemRenderer() as TableItemRenderer;
                     }
 
 					labelField =  column.dataField;
                     var item:Object = dp.getItemAt(i);
 
-                    (ir as DataItemRenderer).dataField = labelField;
-					(ir as DataItemRenderer).rowIndex = i;
-					(ir as DataItemRenderer).columnIndex = j;
-                    fillRenderer(index++, item, (ir as ISelectableItemRenderer), presentationModel);
+                    (ir as StyledDataItemRenderer).dataField = labelField;
+					(ir as StyledDataItemRenderer).rowIndex = i;
+					(ir as StyledDataItemRenderer).columnIndex = j;
+                    fillRenderer(index++, item, (ir as IIndexedItemRenderer), presentationModel);
 			        
                     if(column.align != "")
                     {
@@ -233,21 +233,18 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
 		 */
 		protected function fillRenderer(index:int,
 										item:Object,
-										itemRenderer:ISelectableItemRenderer,
+										itemRenderer:IIndexedItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
 			tbody.addItemRendererAt(itemRenderer, index);
-			itemRenderer.labelField = labelField;
+			(itemRenderer as ILabelFieldItemRenderer).labelField = labelField;
 			
 			if (presentationModel) {
-				var style:SimpleCSSStyles = new SimpleCSSStyles();
-				style.marginBottom = presentationModel.separatorThickness;
-				UIBase(itemRenderer).style = style;
 				UIBase(itemRenderer).height = presentationModel.rowHeight;
-				UIBase(itemRenderer).percentWidth = 100;
 			}
 			
 			setData(itemRenderer, item, index);
@@ -256,7 +253,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 */
-		protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+		protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
 		{
 			itemRenderer.index = index;
 			itemRenderer.data = data;
@@ -307,8 +304,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		// protected function itemAddedHandler(event:CollectionEvent):void
@@ -318,8 +315,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		// protected function itemRemovedHandler(event:CollectionEvent):void
@@ -329,7 +326,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		// protected function itemUpdatedHandler(event:CollectionEvent):void
 		// {

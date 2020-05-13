@@ -18,10 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
-	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.beads.layouts.IVariableRowHeight;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	
 	/**
 	 *  The ListPresentationModel holds values used by list controls for presenting
@@ -34,6 +37,7 @@ package org.apache.royale.jewel.beads.models
 	 */
 	public class ListPresentationModel extends EventDispatcher implements IListPresentationModel
 	{
+		public static const DEFAULT_ROW_HEIGHT:Number = 34;
 		/**
 		 *  constructor.
 		 *
@@ -46,9 +50,9 @@ package org.apache.royale.jewel.beads.models
 		{
 			super();
 		}
+
 		
-		private var _rowHeight:Number = 30;
-		
+		private var _rowHeight:Number = DEFAULT_ROW_HEIGHT;
 		/**
 		 *  The height of each row.
 		 *
@@ -61,36 +65,69 @@ package org.apache.royale.jewel.beads.models
 		{
 			return _rowHeight;
 		}
-		
 		public function set rowHeight(value:Number):void
 		{
-			_rowHeight = value;
-			dispatchEvent(new Event("rowHeightChanged"));
+			if (value != _rowHeight) {
+				_rowHeight = value;
+				if(_strand)
+					(_strand as IEventDispatcher).dispatchEvent(new Event("rowHeightChanged"));
+			}
 		}
-		
-		private var _separatorThickness:Number = 0;
-		
+
+		private var _align:String = "left";
 		/**
-		 *  The distance between rows.
+		 *  How text align in the column
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
-		public function get separatorThickness():Number
+		public function get align():String
 		{
-			return _separatorThickness;
+			return _align;
+		}
+		public function set align(value:String):void
+		{
+			if (value != _align) {
+				_align = value;
+				if(_strand)
+					(_strand as IEventDispatcher).dispatchEvent(new Event("alignChanged"));
+			}
 		}
 		
-		public function set separatorThickness(value:Number):void
+		private var _variableRowHeight:Boolean = true;
+		/**
+		 *  variableRowHeight
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get variableRowHeight():Boolean
 		{
-			_separatorThickness = value;
-			dispatchEvent(new Event("separatorThicknessChanged"));
+			return _variableRowHeight;
+		}
+		public function set variableRowHeight(value:Boolean):void
+		{
+			if (value != _variableRowHeight) {
+				_variableRowHeight = value;
+				if(_strand)
+				{
+					updateVariableRowHeight();
+					(_strand as IEventDispatcher).dispatchEvent(new Event("variableRowHeightChanged"));
+				}
+			}
+		}
+
+		public function updateVariableRowHeight():void
+		{
+			if(layout)
+				layout.variableRowHeight = _variableRowHeight;
 		}
 		
-		private var _strand:IStrand;
-		
+		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -102,6 +139,15 @@ package org.apache.royale.jewel.beads.models
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			(_strand as IEventDispatcher).addEventListener('initComplete', initCompleteHandler);
 		}
+		protected function initCompleteHandler(e:Event):void
+		{
+			(_strand as IEventDispatcher).removeEventListener('initComplete', initCompleteHandler);
+			layout = _strand.getBeadByType(IBeadLayout) as IVariableRowHeight;
+			updateVariableRowHeight();
+		}
+
+		private var layout:IVariableRowHeight;
 	}
 }

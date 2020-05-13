@@ -703,6 +703,8 @@ package org.apache.royale.net
         COMPILE::SWF
         protected function completeHandler(event:flash.events.Event):void
         {
+            //unset any json Object decoded (and cached) from previous response first:
+            _json = null;
             dispatchEvent(new Event(event.type));
         }
         
@@ -718,6 +720,8 @@ package org.apache.royale.net
                 dispatchEvent(HTTPConstants.RESPONSE_STATUS);
                 dispatchEvent(HTTPConstants.STATUS);
             } else if (element.readyState == 4) {
+                //unset any json Object decoded (and cached) from previous response first:
+                _json = null;
                 dispatchEvent(HTTPConstants.COMPLETE);
             }
         }

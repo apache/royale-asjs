@@ -34,6 +34,7 @@ internal class XMLClasses
 		import Namespace; Namespace;
 		import org.apache.royale.language.toXML; toXML;
 		import org.apache.royale.language.toXMLList; toXMLList;
+		import org.apache.royale.language.toAttributeName; toAttributeName;
 	}
 }
 }

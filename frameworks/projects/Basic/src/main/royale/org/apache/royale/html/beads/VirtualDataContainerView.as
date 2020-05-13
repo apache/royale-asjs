@@ -18,35 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {	
-	import org.apache.royale.html.beads.DataContainerView;
-	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.ContainerBase;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.Strand;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.Border;
-	import org.apache.royale.html.supportClasses.DataGroup;
-	import org.apache.royale.html.beads.IListView;
     COMPILE::SWF {
-        import org.apache.royale.geom.Size;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.geom.Size;
     }
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.beads.IListView;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.
@@ -105,7 +86,7 @@ package org.apache.royale.html.beads
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#removeAllItemRenderers()
          * @private
          *
          *  @langversion 3.0
@@ -123,7 +104,5 @@ package org.apache.royale.html.beads
                 (contentView as IParent).removeElement(child);
             }
         }
-
 	}
-	
 }

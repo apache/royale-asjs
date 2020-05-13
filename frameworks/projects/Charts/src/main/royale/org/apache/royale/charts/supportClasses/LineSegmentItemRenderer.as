@@ -21,7 +21,6 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.charts.core.IChartSeries;
 	import org.apache.royale.graphics.IStroke;
 	import org.apache.royale.svg.Path;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	/**
 	 *  The LineSegmentItemRenderer class draws a line between the vertices of a LineSeries. 
@@ -31,32 +30,13 @@ package org.apache.royale.charts.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class LineSegmentItemRenderer extends DataItemRenderer implements ILineSegmentItemRenderer
+	public class LineSegmentItemRenderer extends ChartItemRenderer implements ILineSegmentItemRenderer
 	{
 		public function LineSegmentItemRenderer()
 		{
 			super();
 		}
 		
-		private var _series:IChartSeries;
-		
-		/**
-		 *  The series to which this itemRenderer instance belongs. Or, the series
-		 *  being presented.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get series():IChartSeries
-		{
-			return _series;
-		}
-		public function set series(value:IChartSeries):void
-		{
-			_series = value;
-		}
 				
 		private var _points:Array;
 		
@@ -91,56 +71,7 @@ package org.apache.royale.charts.supportClasses
 		}
 		
 		private var path:Path;
-		
-		/**
-		 *  @copy org.apache.royale.supportClasses.UIItemRendererBase#data
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		override public function set data(value:Object):void
-		{
-			super.data = value;	
-		}
-		override public function get data():Object
-		{
-			return super.data;
-		}
-		
-		/**
-		 *  The name of the field containing the value for the Y axis. This is not implemented by this class.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get yField():String
-		{
-			return null;
-		}
-		public function set yField(value:String):void
-		{
-		}
-		
-		/**
-		 *  The name of the field containing the value for the X axis. This is not implemented by this class.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get xField():String
-		{
-			return null;
-		}
-		public function set xField(value:String):void
-		{
-		}
-		
+				
 		private var _fillColor:uint;
 		
 		/**

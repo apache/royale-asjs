@@ -22,7 +22,9 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IToolTipBead;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.geom.Point;
@@ -41,7 +43,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ToolTip implements IBead
+	public class ToolTip implements IBead, IToolTipBead
 	{
 		/**
 		 *  constructor.
@@ -131,8 +133,13 @@ package org.apache.royale.jewel.beads.controls
 			//ToolTip in iOS produces a bad behaviour, used in a button and user has to do a second touch to trigger click event
 			if(OSUtils.getOS() != OSUtils.IOS_OS)
 			{
-            	IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+            	IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OVER, rollOverHandler, false);
 			}
+		}
+
+		protected function changeHandler(event:Event):void
+		{
+			tt.html = toolTip;
 		}
 
 		/**
@@ -145,14 +152,15 @@ package org.apache.royale.jewel.beads.controls
 			if (!toolTip || tt)
 				return;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			IEventDispatcher(_strand).addEventListener("change", changeHandler, false);
+            IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler, false);
 
-            var comp:IUIBase = _strand as IUIBase
+            var comp:IUIBase = _strand as IUIBase;
             host = UIUtils.findPopUpHost(comp);
 			if (tt) host.popUpParent.removeElement(tt);
 
             tt = new ToolTipLabel();
-            tt.text = toolTip;
+            tt.html = toolTip;
 
 			// add this before measuring or measurement is not accurate.
             host.popUpParent.addElement(tt, false); // don't trigger a layout
@@ -218,15 +226,28 @@ package org.apache.royale.jewel.beads.controls
 		}
 
         /**
-         * @private
-		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * rollOutHandler
+		 * @private
          */
-        protected function rollOutHandler(event:MouseEvent):void
+        protected function rollOutHandler(event:MouseEvent = null):void
         {
+			removeTip();
+		}
+
+		/**                         	
+		 *  @copy org.apache.royale.core.IToolTipBead#removeTip()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		public function removeTip():void {
+			IEventDispatcher(_strand).removeEventListener("change", changeHandler, false);
 			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
-			
-			var comp:IUIBase = _strand as IUIBase;
-            if (tt) {
+
+			if (tt) {
                 host.popUpParent.removeElement(tt);
 				tt = null;
 			}

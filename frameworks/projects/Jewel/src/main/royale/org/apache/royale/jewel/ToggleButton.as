@@ -20,18 +20,18 @@ package org.apache.royale.jewel
 {
     COMPILE::SWF
     {
-        import flash.events.MouseEvent;
+    import flash.events.MouseEvent;
+
+    import org.apache.royale.core.IToggleButtonModel;
     }
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.events.MouseEvent;
     }
 	import org.apache.royale.core.IIcon;
 	import org.apache.royale.core.ISelectable;
-	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.events.Event;
-
 
     //--------------------------------------
     //  Events
@@ -58,8 +58,7 @@ package org.apache.royale.jewel
     [Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
-     *  The ToggleButton class is a Button that supports
-     *  a selected property.
+     *  The ToggleButton class is a Button that supports a selected property.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -110,7 +109,6 @@ package org.apache.royale.jewel
             return _selected;
             }
         }
-
         /**
          *  @private
          */
@@ -134,6 +132,8 @@ package org.apache.royale.jewel
         }
 
         private var _selectedText:String = null;
+
+        [Bindable("selectedTextChange")]
         /**
          *  The selectedText of the icon
          *  
@@ -211,7 +211,7 @@ package org.apache.royale.jewel
 
             COMPILE::JS
 			{
-                textNode.nodeValue = _selected ? selectedText : text;	
+                textNode.nodeValue = _selected ? selectedText : text;
 			}
         }
 

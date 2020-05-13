@@ -50,9 +50,10 @@ package org.apache.royale.utils
 			_source = source;
 		}
 		
-		public function beforeLayout():void
+		public function beforeLayout():Boolean
 		{
 			// TODO ??
+			return true;
 		}
 		
 		public function afterLayout():void

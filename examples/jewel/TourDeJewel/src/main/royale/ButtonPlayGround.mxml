@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="ButtonPlayGround.mxml">
+	
+	<fx:Script>
+		<![CDATA[      
+            import org.apache.royale.core.StyledUIBase;
+
+            private function clickHandler(event:MouseEvent):void {
+                event.target.emphasis = event.target.emphasis == StyledUIBase.PRIMARY ? "" : StyledUIBase.PRIMARY;
+				event.target.width = event.target.emphasis == StyledUIBase.PRIMARY ? NaN : 250;
+				event.target.text = event.target.emphasis == StyledUIBase.PRIMARY ? "Width 'auto'" : "Width = 250";
+            }
+
+			private function onValueChange(event:Event):void
+			{
+				// trace("onValueChange"); // if target IE11 you must use this event handler
+				reizableButton.width = slider_w.value;
+				reizableButton.height = slider_h.value;
+			}
+		]]>
+	</fx:Script>
+
+	<c:beads>
+		<js:ContainerDataBinding/>
+	</c:beads>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
+		<c:ExampleHeader title="Jewel Button">
+			<c:description>
+				<![CDATA[<strong>Jewel Button</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel SimpleButton" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p><b>SimpleButton</b> is a button without text or icons. It supports emphasis, outlined and unboxed styles. Is the base class for <b>Button</b>.</p>]]></j:html>
+					</j:Label>
+					<j:Group>
+						<j:beads>
+							<j:HorizontalFlowLayout gap="3"/>
+						</j:beads>
+						<j:SimpleButton/>
+						<j:SimpleButton>
+							<j:beads>
+								<j:Disabled/>
+							</j:beads>
+						</j:SimpleButton>
+						<j:SimpleButton emphasis="{StyledUIBase.PRIMARY}"/>
+						<j:SimpleButton emphasis="{StyledUIBase.SECONDARY}"/>
+						<j:SimpleButton emphasis="{StyledUIBase.EMPHASIZED}"/>
+						<j:SimpleButton emphasis="{StyledUIBase.PRIMARY}" outlined="true"/>
+						<j:SimpleButton emphasis="{StyledUIBase.SECONDARY}" outlined="true"/>
+						<j:SimpleButton emphasis="{StyledUIBase.EMPHASIZED}" outlined="true"/>
+						<j:SimpleButton emphasis="{StyledUIBase.PRIMARY}" unboxed="true"/>
+						<j:SimpleButton emphasis="{StyledUIBase.SECONDARY}" unboxed="true"/>
+						<j:SimpleButton emphasis="{StyledUIBase.EMPHASIZED}" unboxed="true"/>
+					</j:Group>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel Button" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Button text="Default"/>
+					<j:Button text="Disabled">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="Primary" emphasis="{StyledUIBase.PRIMARY}"/>
+					<j:Button text="Secondary" emphasis="{StyledUIBase.SECONDARY}"/>
+					<j:Button text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}"/>
+					<j:Button text="Disabled (Primary)" emphasis="{StyledUIBase.PRIMARY}">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:Button>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel Button Sizes" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Button text="xsmall">
+						<j:beads>
+							<j:SizeControl size="{SizeControl.XSMALL}"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="small" emphasis="{StyledUIBase.PRIMARY}">
+						<j:beads>
+							<j:SizeControl size="{SizeControl.SMALL}"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="large" emphasis="{StyledUIBase.SECONDARY}">
+						<j:beads>
+							<j:SizeControl size="{SizeControl.LARGE}"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="xlarge" emphasis="{StyledUIBase.EMPHASIZED}">
+						<j:beads>
+							<j:SizeControl size="{SizeControl.XLARGE}"/>
+						</j:beads>
+					</j:Button>
+
+					<j:Button text="Show Width Defaults" click="clickHandler(event)" width="250"/>
+
+					<j:Button text="Button With Multi line" width="140">
+						<j:beads>
+							<j:MultiLine multiline="true"/>
+						</j:beads>
+					</j:Button>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel Button Outlined" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<!-- <j:Label multiline="true">
+						<j:html><![CDATA[<p>This Card adds a <b>CardHeader</b> as the first element and the title is colored with "secondary-normal", then <b>CardPrimaryContent</b> and <b>CardActions</b> card parts. Actions use IconButton to add icons and the "outlined" style.</p>]]></j:html>
+					</j:Label> -->
+					<j:Button text="Default" outlined="true"/>
+				
+					<j:Button text="Disabled" outlined="true">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:Button>
+				
+					<j:Button text="Primary" emphasis="{StyledUIBase.PRIMARY}" outlined="true"/>
+					<j:Button text="Secondary" emphasis="{StyledUIBase.SECONDARY}" outlined="true"/>
+					<j:Button text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}" outlined="true"/>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel Button Unboxed" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<!-- <j:Label multiline="true">
+						<j:html><![CDATA[<p>This Card adds a <b>CardHeader</b> as the first element and the title is colored with "secondary-normal", then <b>CardPrimaryContent</b> and <b>CardActions</b> card parts. Actions use IconButton to add icons and the "outlined" style.</p>]]></j:html>
+					</j:Label> -->
+					<j:Button text="Default" unboxed="true"/>
+				
+					<j:Button text="Disabled" unboxed="true">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:Button>
+				
+					<j:Button text="Primary" emphasis="{StyledUIBase.PRIMARY}" unboxed="true"/>
+					<j:Button text="Secondary" emphasis="{StyledUIBase.SECONDARY}" unboxed="true"/>
+					<j:Button text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}" unboxed="true"/>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel IconButton" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:IconButton text="print" emphasis="primary">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.PRINT}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton emphasis="secondary">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.FACE}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton text="wifi" emphasis="emphasized">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.WIFI}" />
+						</j:icon>
+					</j:IconButton>
+
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:IconButton localId="ib_lor" text="Do not disturb">
+							<j:icon>
+								<js:MaterialIcon text="{MaterialIconType.DO_NOT_DISTURB}" />
+							</j:icon>
+						</j:IconButton>
+						<j:CheckBox text="rightPosition" change="ib_lor.rightPosition = !ib_lor.rightPosition"/>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel IconButton Outlined" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:IconButton text="print" emphasis="primary" outlined="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.PRINT}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton emphasis="secondary" outlined="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.FACE}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton text="wifi" emphasis="emphasized" outlined="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.WIFI}" />
+						</j:icon>
+					</j:IconButton>
+					
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:IconButton localId="ib_lor2" text="Do not disturb" outlined="true">
+							<j:icon>
+								<js:MaterialIcon text="{MaterialIconType.DO_NOT_DISTURB}" />
+							</j:icon>
+						</j:IconButton>
+						<j:CheckBox text="rightPosition" change="ib_lor2.rightPosition = !ib_lor2.rightPosition"/>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel IconButton Unboxed" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:IconButton text="print" emphasis="primary" unboxed="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.PRINT}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton emphasis="secondary" unboxed="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.FACE}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton text="wifi" emphasis="emphasized" unboxed="true">
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.WIFI}"/>
+						</j:icon>
+					</j:IconButton>
+					
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:IconButton localId="ib_lor3" text="Do not disturb" unboxed="true">
+							<j:icon>
+								<js:MaterialIcon text="{MaterialIconType.DO_NOT_DISTURB}" />
+							</j:icon>
+						</j:IconButton>
+						<j:CheckBox text="rightPosition" change="ib_lor3.rightPosition = !ib_lor3.rightPosition"/>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel Button Size" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:SimpleTable>
+						<j:TBody>
+							<j:TableRow>
+								<j:TableCell/>
+								<j:TableCell align="center">
+									<j:HSlider localId="slider_w" value="140" minimum="120" maximum="250" valueChange="onValueChange(event)"/>
+								</j:TableCell>
+							</j:TableRow>
+							<j:TableRow>
+								<j:TableCell align="center">
+									<j:VSlider localId="slider_h" value="50" minimum="40" maximum="250" valueChange="onValueChange(event)"/>
+								</j:TableCell>
+								<j:TableCell width="270" height="270" align="center">
+									<j:Button localId="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{StyledUIBase.PRIMARY}" width="140" height="50"/>
+								</j:TableCell>
+							</j:TableRow>
+						</j:TBody>
+					</j:SimpleTable>
+					<j:Label text="Resize button to: '{reizableButton.width}x{reizableButton.height}'"/>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel ToggleButton" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:HGroup gap="3">
+						<j:ToggleButton text="Default" change="tb_lb.text = 'selected? ' + event.target.selected"/>
+						<j:Label localId="tb_lb"/>
+					</j:HGroup>
+					<j:ToggleButton text="Disabled">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:ToggleButton>
+					<j:ToggleButton text="Button With More Text"/>
+					<j:ToggleButton text="Primary" emphasis="{StyledUIBase.PRIMARY}"/>
+					<j:ToggleButton text="Secondary" emphasis="{StyledUIBase.SECONDARY}"/>
+					<j:ToggleButton text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}"/>
+					<j:ToggleButton text="Disabled" emphasis="{StyledUIBase.PRIMARY}">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:ToggleButton>
+					<j:ToggleButton>
+						<j:icon>
+							<js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" />
+						</j:icon>
+						<j:beads>
+							<j:ToolTip toolTip="show/hide FooterBar"/>
+						</j:beads>
+					</j:ToggleButton>
+					<j:ToggleButton text="Icon and Text" selectedText="Icon and Text" emphasis="{StyledUIBase.SECONDARY}">
+						<j:icon>
+							<js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}"/>
+						</j:icon>
+						<j:beads>
+							<j:ToolTip toolTip="show/hide FooterBar"/>
+						</j:beads>
+					</j:ToggleButton>
+					<j:ToggleButton outlined="true" emphasis="secondary"
+                            text="Show it" selected="true">
+                            <j:icon>
+                                <js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" />
+                            </j:icon>
+                        </j:ToggleButton>
+					<j:ToggleButton unboxed="true" emphasis="primary"
+                            text="Show it" selected="true">
+                            <j:icon>
+                                <js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" />
+                            </j:icon>
+                        </j:ToggleButton>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:ToggleButton localId="tb_lor" text="No Print" selectedText="Print">
+							<j:icon>
+								<js:MaterialToggleIcon text="{MaterialIconType.PRINT_DISABLED}" selectedText="{MaterialIconType.PRINT}" />
+							</j:icon>
+						</j:ToggleButton>
+						<j:CheckBox selected="true" text="rightPosition" change="tb_lor.rightPosition = !tb_lor.rightPosition"/>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Buttons with Badges" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Button text="Badge Top-Right">
+						<j:beads>
+							<j:Badge text="tr" emphasis="secondary"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="Badge Bottom-Right">
+						<j:beads>
+							<j:Badge text="br" emphasis="secondary" subindex="true"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="Badge Top-Left">
+						<j:beads>
+							<j:Badge text="tl" emphasis="secondary" preindex="true"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="Badge Bottom-Left">
+						<j:beads>
+							<j:Badge text="bl" emphasis="secondary" subindex="true" preindex="true"/>
+						</j:beads>
+					</j:Button>
+
+					<j:Button text="Badge Top-Right (Overlap)" emphasis="primary">
+						<j:beads>
+							<j:Badge text="tr" emphasis="emphasized" overlap="true"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="Badge Bottom-Right (Overlap)" emphasis="primary">
+						<j:beads>
+							<j:Badge text="br" emphasis="emphasized" subindex="true" overlap="true"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="Badge Top-Left (Overlap)" emphasis="primary">
+						<j:beads>
+							<j:Badge text="tl" emphasis="emphasized" preindex="true" overlap="true"/>
+						</j:beads>
+					</j:Button>
+					<j:Button text="Badge Bottom-Left (Overlap)" emphasis="primary">
+						<j:beads>
+							<j:Badge text="bl" emphasis="emphasized" subindex="true" preindex="true" overlap="true"/>
+						</j:beads>
+					</j:Button>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+	
+</c:ExampleAndSourceCodeTabbedSectionContent>

@@ -56,6 +56,7 @@
           <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Binding/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Charts/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Language/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Collections/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Core/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/CreateJS/src/main/royale</path-element>
@@ -509,6 +510,7 @@
    <exclude-classes>
        <class>org.apache.royale.utils.Language</class>
        <class>org.apache.royale.core.IRoyaleElement</class>
+       <class>org.apache.royale.svg.elements.SVGBase</class>
        <class>org.apache.royale.core.WrappedHTMLElement</class>
        <class>org.apache.royale.events.BrowserEvent</class>
        <class>org.apache.royale.html.beads.CSSTextButtonView</class>

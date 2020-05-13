@@ -20,7 +20,7 @@ package org.apache.royale.html.beads
 {
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.HTMLElementWrapper;
+	import org.apache.royale.core.ElementWrapper;
     COMPILE::JS  
 	{
         import goog.events;
@@ -77,17 +77,17 @@ package org.apache.royale.html.beads
 			var constructorName:String = nativeEvent.constructor.toString();
 			if (constructorName.indexOf('KeyboardEvent') > -1)
 			{
-				e = KeyboardEventConverter.convert(nativeEvent);
+				e = KeyboardEventConverter.convert(nativeEvent,eventObject);
 			} else if (constructorName.indexOf('MouseEvent') > -1)
 			{
-				e = MouseEventConverter.convert(nativeEvent);
+				e = MouseEventConverter.convert(nativeEvent,eventObject);
 			} else
 			{
 				e = new org.apache.royale.events.BrowserEvent();
 			}
 
 			e.wrapEvent(eventObject);
-			return HTMLElementWrapper.googFireListener(listener, e);
+			return ElementWrapper.googFireListener(listener, e);
 		}
     }
 }

@@ -18,26 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.scrollbar
 {
-	import org.apache.royale.jewel.supportClasses.Viewport;
-	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IContainer;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IScrollingViewport;
-    import org.apache.royale.core.layout.EdgeData;
-    import org.apache.royale.core.ValuesManager;
     COMPILE::SWF
     {
-        import org.apache.royale.core.IViewportScroller;
-		import org.apache.royale.jewel.beads.models.ScrollBarModel;
-		import flash.geom.Rectangle;
-		import org.apache.royale.geom.Rectangle;
-    }
+	import flash.geom.Rectangle;
+
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewportScroller;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.geom.Size;
 	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.jewel.beads.models.ScrollBarModel;
+    }
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IScrollingViewport;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.jewel.supportClasses.Viewport;
 
 	/**
 	 * The ScrollingViewport extends the Viewport class by adding horizontal and
@@ -83,26 +82,48 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		{
 			this.contentView.positioner.scrollLeft = value;
 		}
-		
+
+		private var _scroll:Boolean = true;
 		/**
-		 * @royaleignorecoercion HTMLElement
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  enable or disable scrolling on the strand
+		 *  
+		 *  @return true for scroll, false for no scroll
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
 		 */
-		override public function set strand(value:IStrand):void
+		public function get scroll():Boolean
 		{
-			super.strand = value;
-			var component:UIBase;
-			if (contentView == null) {
-				component = value as UIBase;
-			} else {
-				component = contentView as UIBase;
+			return _scroll;
+		}
+		public function set scroll(value:Boolean):void
+		{
+			if(value != _scroll)
+			{
+				_scroll = value;
+				if(contentArea)
+					setScrollStyle();
 			}
-			//component.element.style.overflow = "auto";
-			
-			//remove hard coded style in Viewport (overflow: hidden)
-			//contentArea.element.removeAttribute("style");
-			// contentArea.element.classList.add("viewport");
-			contentArea.element.classList.add("scroll");
+		}
+
+		/**
+		 * Subclasses override this method to change scrolling behavior
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		COMPILE::JS
+		override protected function setScrollStyle():void
+		{
+			super.setScrollStyle();
+
+			_scroll ?
+				contentArea.element.classList.add("scroll"):
+				contentArea.element.classList.remove("scroll");
 		}
 		
 		/**
@@ -350,6 +371,28 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		{
 			if (_horizontalScroller) {
 				ScrollBarModel(_horizontalScroller.model).value = horizontalScrollPosition;
+			}
+		}
+
+		private var _scroll:Boolean = true;
+		/**
+		 * enable or disable scrolling on the strand
+		 * @return true for scroll, false for no scroll
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get scroll():Boolean
+		{
+			return _scroll;
+		}
+		public function set scroll(value:Boolean):void
+		{
+			if(value != _scroll)
+			{
+				_scroll = value;
+				// implement setScrollStyle() in SWF
 			}
 		}
 	}

@@ -23,6 +23,8 @@ package mx.controls.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.accessories.ToolTipBead;
+    
+    import mx.core.UIComponent;
 	
 	public class ToolTipBead extends org.apache.royale.html.accessories.ToolTipBead
 	{
@@ -52,5 +54,27 @@ package mx.controls.beads
 		{
 			super.rollOutHandler(event);
 		}
+        
+        private var _isError:Boolean;
+        public function get isError():Boolean
+        {
+            return _isError;    
+        }
+        public function set isError(value:Boolean):void
+        {
+            _isError = value;
+        }
+        
+        override protected function rollOverHandler(event:MouseEvent):void
+        {
+            super.rollOverHandler(event);
+            COMPILE::JS
+            {
+                if (tt)
+                {
+                    tt.element.style.color = isError ? "#ff0000" : "#000";
+                }
+            }
+        }
 	}
 }

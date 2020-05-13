@@ -80,6 +80,7 @@ package org.apache.royale.textLayout.edit
 	import org.apache.royale.utils.AnimationUtil;
 	import org.apache.royale.utils.undo.IOperation;
 	import org.apache.royale.utils.undo.IUndoManager;
+	import org.apache.royale.utils.event.hasPlatformModifier;
 //	import flash.errors.IllegalOperationError;
 		
 
@@ -281,8 +282,9 @@ package org.apache.royale.textLayout.edit
 				updateAllControllers();
 			
 			super.keyDownHandler(event);
+			var platformModifier:Boolean = hasPlatformModifier(event);
 			
-			if (event.specialKey)
+			if (platformModifier)
 			{
 				// The player subsequently sends a text input event (which should be ignored) as listed below:
 				// CTRL/CMD+z: Only on Mac when using a pre-Argo player version

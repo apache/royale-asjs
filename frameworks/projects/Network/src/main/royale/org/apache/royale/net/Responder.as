@@ -22,9 +22,7 @@ package org.apache.royale.net
     {
         import flash.net.Responder;
     }
-        
-	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
-	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
+
 	public class Responder
 	{		
 		/** 

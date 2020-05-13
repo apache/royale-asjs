@@ -19,7 +19,7 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.jewel.beads.layouts.VerticalLayout;
-    import org.apache.royale.utils.StringUtil;
+    import org.apache.royale.jewel.supportClasses.group.AlignmentItemsGroupWithGap;
 
     /**
      *  This Group subclass uses VerticalLayout as its default layout.
@@ -31,7 +31,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class VGroup extends Group
+	public class VGroup extends AlignmentItemsGroupWithGap
 	{
         /**
          *  Constructor.
@@ -45,12 +45,12 @@ package org.apache.royale.jewel
 		{
 			super();
 
-			typeNames = "jewel " + VerticalLayout.LAYOUT_TYPE_NAMES;
+			typeNames += " " + VerticalLayout.LAYOUT_TYPE_NAMES;
 
 			layout = new VerticalLayout();
 			addBead(layout);
 		}
-
+		
         public function get layout():VerticalLayout
         {
             return _layout as VerticalLayout;
@@ -58,55 +58,6 @@ package org.apache.royale.jewel
 		public function set layout(value:VerticalLayout):void
         {
             _layout = value;
-        }
-
-        // public function get gap():Boolean
-        // {
-        //     return layout.gap;
-        // }
-
-        // public function set gap(value:Boolean):void
-        // {
-		// 	typeNames = StringUtil.removeWord(typeNames, " gap");
-		// 	typeNames += " gap";
-
-		// 	COMPILE::JS
-        //     {
-		// 		if (parent)
-        //         	setClassName(computeFinalClassNames()); 
-		// 	}
-
-		// 	layout.gap = value;
-        // }
-
-        /**
-		 *  Assigns variable gap in steps of GAP_STEP. You have available GAPS*GAP_STEP gap styles
-		 *  Activate "gap-{X}x{GAP_STEP}px" effect selector to set a numeric gap between elements.
-		 *  i.e: gap-2x3px will result in a gap of 6px
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get gap():Number
-        {
-            return layout.gap;
-        }
-
-        public function set gap(value:Number):void
-        {
-			typeNames = StringUtil.removeWord(typeNames, " gap-" + layout.gap + "x" + VerticalLayout.GAP_STEP + "px");
-			if(value != 0)
-				typeNames += " gap-" + value + "x" + VerticalLayout.GAP_STEP + "px";
-
-			COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-
-			layout.gap = value;
         }
 	}
 }

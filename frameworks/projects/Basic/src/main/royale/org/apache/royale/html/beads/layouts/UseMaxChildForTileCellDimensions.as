@@ -19,7 +19,7 @@
 package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
@@ -59,7 +59,7 @@ package org.apache.royale.html.beads.layouts
 		private function layoutNeededHandler(e:Event):void
 		{
 			var strand:IStrand = e.target as IStrand;
-			var dataGroup:IItemRendererParent = (strand.getBeadByType(IListView) as IListView).dataGroup;
+			var dataGroup:IItemRendererOwnerView = (strand.getBeadByType(IListView) as IListView).dataGroup;
 			var maxWidth:int = 0;
 			var maxHeight:int = 0;
 			for (var i:int = 0; i < dataGroup.numItemRenderers; i++)

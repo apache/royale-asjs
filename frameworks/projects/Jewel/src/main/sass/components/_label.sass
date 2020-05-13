@@ -18,9 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 .jewel
+
 	&.label
+		-webkit-font-smoothing: antialiased
 		cursor: default
 		white-space: nowrap
+
+		&.multiline
+			white-space: pre-wrap
+			word-wrap: break-word
 
 j|Label
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")

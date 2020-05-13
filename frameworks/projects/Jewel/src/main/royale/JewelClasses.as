@@ -42,6 +42,8 @@ package
         import org.apache.royale.jewel.beads.models.WizardModel; WizardModel;
         import org.apache.royale.jewel.beads.models.WizardStep; WizardStep;
         import org.apache.royale.jewel.beads.models.PopUpModel; PopUpModel;
+        import org.apache.royale.jewel.beads.models.ListPresentationModel; ListPresentationModel;
+        import org.apache.royale.jewel.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 
         import org.apache.royale.jewel.beads.controllers.PopUpMouseController; PopUpMouseController;
         import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;
@@ -49,7 +51,6 @@ package
         import org.apache.royale.jewel.beads.controllers.DateChooserMouseController; DateChooserMouseController;
         import org.apache.royale.jewel.beads.controllers.DateFieldMouseController; DateFieldMouseController;
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
-        import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController; TableCellSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.ComboBoxController; ComboBoxController;
@@ -73,10 +74,13 @@ package
         import org.apache.royale.jewel.beads.views.TableView; TableView;
         import org.apache.royale.jewel.beads.views.ComboBoxView; ComboBoxView;
         import org.apache.royale.jewel.beads.views.ComboBoxPopUpView; ComboBoxPopUpView;
+        import org.apache.royale.jewel.beads.views.VirtualComboBoxPopUpView; VirtualComboBoxPopUpView;
 		import org.apache.royale.jewel.beads.views.SnackbarView; SnackbarView;
         import org.apache.royale.jewel.beads.views.FormItemView; FormItemView;
         import org.apache.royale.jewel.beads.views.FormHeadingView; FormHeadingView;
         import org.apache.royale.jewel.beads.views.WizardView; WizardView;
+        import org.apache.royale.jewel.beads.views.ButtonBarView; ButtonBarView;
+	    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
 
         COMPILE::SWF
 	    {
@@ -86,7 +90,6 @@ package
             import org.apache.royale.jewel.beads.views.SliderTrackView; SliderTrackView;
 
             import org.apache.royale.jewel.beads.views.RadioButtonView; RadioButtonView;
-		    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
             import org.apache.royale.jewel.beads.views.ButtonView; ButtonView;
 
             // import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
@@ -99,11 +102,9 @@ package
         import org.apache.royale.jewel.supportClasses.ISelectableContent; ISelectableContent;
         import org.apache.royale.jewel.supportClasses.textinput.ITextInput; ITextInput;
 
-        import org.apache.royale.jewel.supportClasses.DataContainerBase; DataContainerBase;
         import org.apache.royale.jewel.supportClasses.Viewport; Viewport;
         import org.apache.royale.jewel.supportClasses.NoViewport; NoViewport;
         import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
-        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;
@@ -111,6 +112,9 @@ package
         import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy; FormItemLayoutProxy;
         import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy; WizardLayoutProxy;
         import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase; SelectableButtonBase;
+        
+        import org.apache.royale.jewel.beads.views.DataGridView; DataGridView;
+        import org.apache.royale.jewel.beads.layouts.DataGridLayout; DataGridLayout;
 
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 
@@ -123,6 +127,18 @@ package
         COMPILE::JS
         {
         import dialogPolyfill; dialogPolyfill;
+        import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
         }
+        
+        import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead; ClassSelectorListSelectableItemRendererBead;
+        import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead; ClassSelectorListHoverOnlySelectableItemRendererBead;
+        
+        import org.apache.royale.jewel.beads.itemRenderers.DataContainerItemRendererInitializer; DataContainerItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.ListItemRendererInitializer; ListItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.DataGridColumnListItemRendererInitializer; DataGridColumnListItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer; ButtonBarItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer; TabBarItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.NavigationItemRendererInitializer; NavigationItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererInitializer; DropDownListItemRendererInitializer;
     }
 }

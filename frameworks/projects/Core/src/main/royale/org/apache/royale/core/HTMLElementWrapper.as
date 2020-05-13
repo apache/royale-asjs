@@ -38,6 +38,7 @@ package org.apache.royale.core
         import goog.events.EventTarget;
         import goog.DEBUG;
         import org.apache.royale.events.utils.EventUtils;
+        import org.apache.royale.utils.sendStrandEvent;
     }
 
     COMPILE::SWF
@@ -144,83 +145,13 @@ package org.apache.royale.core
     }
     
 	COMPILE::JS
-	public class HTMLElementWrapper extends EventDispatcher implements IStrand
+	public class HTMLElementWrapper extends ElementWrapper
 	{
 
-		//--------------------------------------
-		//   Static Function
-		//--------------------------------------
-
-        /**
-         * @param listener The listener object to call {goog.events.Listener}.
-         * @param eventObject The event object to pass to the listener.
-         * @return Result of listener.
-         */
-		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
-		{
-            var e:IBrowserEvent;
-            var nativeEvent:Object = eventObject.getBrowserEvent();
-            var converter:Object = converterMap[nativeEvent.constructor.name];
-            if (converter)
-                e = converter["convert"](nativeEvent);
-            else
-                e = new org.apache.royale.events.BrowserEvent();
-
-			e.wrapEvent(eventObject);
-			return HTMLElementWrapper.googFireListener(listener, e);
-		}
-        
-        /**
-         * @royalesuppresspublicvarwarning
-         */
-        static public var converterMap:Object = {};
-
-        /**
-         * Static initializer
-         */
-		static public function installOverride():Boolean
-		{
-			HTMLElementWrapper.googFireListener = goog.events.fireListener;
-			goog.events.fireListener = HTMLElementWrapper.fireListenerOverride;
-			return true;
-		}
-
-        //--------------------------------------
-        //   Static Property
-        //--------------------------------------
-        
-        /**
-         * The original fireListener.
-         * 
-         *  @royalesuppresspublicvarwarning
-         */
-        static public var googFireListener:Function;
-        
-        /**
-         * The properties that triggers the static initializer.
-         * Note, in JS, this property has to be declared
-         * after the installOverride.
-         * 
-         *  @royalesuppresspublicvarwarning
-         */
-        static public var installedOverride:Boolean = installOverride();
         
 		//--------------------------------------
 		//   Property
 		//--------------------------------------
-
-		private var _element:WrappedHTMLElement;
-        
-        public function get element():WrappedHTMLElement
-        {
-            return _element;
-        }
-        
-        public function set element(value:WrappedHTMLElement):void
-        {
-            _element = value;
-            _element.royale_wrapper = this;
-        }
         
         /**
          * allow access from overrides
@@ -257,11 +188,10 @@ package org.apache.royale.core
                     addBead(value as IBead);
                 else
                     _model = IBeadModel(value);
-                dispatchEvent(new org.apache.royale.events.Event("modelChanged"));
+
+                sendStrandEvent(this,"modelChanged");
             }
         }
-        
-		private var _beads:Array;
         
 		//--------------------------------------
 		//   Function
@@ -271,150 +201,13 @@ package org.apache.royale.core
          * @param bead The new bead.
          * @royaleignorecoercion org.apache.royale.core.IBeadModel 
          */
-		public function addBead(bead:IBead):void
+		override public function addBead(bead:IBead):void
 		{
-			if (!_beads)
-			{
-				_beads = [];
-			}
-            if (goog.DEBUG && !(bead is IBead)) throw new TypeError('Cannot convert '+bead+' to IBead')
-			_beads.push(bead);
-
-			if (bead is IBeadModel)
+    		if (bead is IBeadModel)
 			{
 				_model = bead as IBeadModel;
 			}
-
-			bead.strand = this;
-		}
-
-        /**
-         * @param classOrInterface The requested bead type.
-         * @return The bead.
-         */
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			var bead:IBead, i:uint, n:uint;
-
-            if (!_beads) return null;
-            
-			n = _beads.length;
-
-			for (i = 0; i < n; i++)
-			{
-				bead = _beads[i];
-
-				if (bead is classOrInterface)
-				{
-					return bead;
-				}
-			}
-
-			return null;
-		}
-
-		/**
-		 * @param bead The bead to remove.
-		 * @return The bead.
-		 */
-		public function removeBead(bead:IBead):IBead
-		{
-			var i:uint, n:uint, value:Object;
-
-			n = _beads.length;
-
-			for (i = 0; i < n; i++)
-			{
-				value = _beads[i];
-
-				if (bead === value)
-				{
-					_beads.splice(i, 1);
-                    bead.strand = null;
-					return bead;
-				}
-			}
-
-			return null;
-		}
-        
-        override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
-        {
-            var source:Object = getActualDispatcher_(type);
-            goog.events.listen(source, type, handler);
-        }
-        
-        override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
-        {
-            var source:Object = getActualDispatcher_(type);
-            goog.events.unlisten(source, type, handler);
-        }
-        
-        private function getActualDispatcher_(type:String):Object
-        {
-            var source:Object = this;
-            if (ElementEvents.elementEvents[type]) {
-                // mouse and keyboard events also dispatch off the element.
-                source = this.element;
-            }
-            return source;
-        }
-        
-        override public function hasEventListener(type:String):Boolean
-        {
-            var source:Object = this.getActualDispatcher_(type);
-            
-            return goog.events.hasListener(source, type);
-        }
-
-        /**
-         * @royaleignorecoercion String
-         */
-        override public function dispatchEvent(e:Object):Boolean
-        {
-            var eventType:String = "";
-            if (typeof(e) === 'string')
-            {
-                eventType = e as String;
-                if (e === org.apache.royale.events.Event.CHANGE)
-                {
-                    e = EventUtils.createEvent(eventType, e.bubbles);
-                }
-            }
-            else
-            {
-                eventType = e.type;
-                if (ElementEvents.elementEvents[eventType])
-                {
-                    e = EventUtils.createEvent(eventType, e.bubbles);
-                }
-            }
-            var source:Object = this.getActualDispatcher_(eventType);
-			if (e.bubbles) {
-				return dispatchBubblingEvent(source, e);
-			}
-            if (source == this)
-            {
-                return super.dispatchEvent(e);
-            }
-            
-            return source.dispatchEvent(e);
-        }
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
-		public function dispatchBubblingEvent(source:Object, e:Object):Boolean
-		{
-			// build the ancestors tree without setting the actual parentEventTarget
-			var ancestorsTree:Array = [];
-			var t:IEventDispatcher = source["parent"] as IEventDispatcher;
-			while (t != null) {
-				ancestorsTree.push(t);
-				t = t["parent"] as IEventDispatcher;
-			}
-			
-			return goog.events.EventTarget.dispatchEventInternal_(source, e, ancestorsTree);
+	        super.addBead(bead);
 		}
 	}
 }

@@ -22,6 +22,7 @@ package org.apache.royale.html.beads
 	import flash.display.DisplayObjectContainer;
 	}
 	
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -29,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
@@ -44,7 +46,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DisableChildrenBead implements IBead
+	public class DisableChildrenBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -58,7 +60,6 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
 		private var _disabled:Boolean;
 		
 		/**
@@ -71,10 +72,10 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-			host.addEventListener("childrenAdded",childrenAddedHandler);
+			listenOnStrand("childrenAdded",childrenAddedHandler);
 		}
 		
 		public function get disabled():Boolean
@@ -145,7 +146,7 @@ package org.apache.royale.html.beads
 		{
 			if (_strand)
 			{
-				IEventDispatcher(_strand).dispatchEvent(new ValueEvent("disabledChange", disabled));
+				sendStrandEvent(_strand,new ValueEvent("disabledChange", disabled));
 			}
 		}
 

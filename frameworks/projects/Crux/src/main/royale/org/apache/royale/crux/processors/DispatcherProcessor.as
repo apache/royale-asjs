@@ -15,13 +15,12 @@
  */
 package org.apache.royale.crux.processors
 {
-	import org.apache.royale.events.IEventDispatcher;
-	
 	import org.apache.royale.crux.Bean;
 	import org.apache.royale.crux.CruxConfig;
 	import org.apache.royale.crux.reflection.IMetadataTag;
 	import org.apache.royale.crux.reflection.MetadataArg;
 	import org.apache.royale.crux.reflection.MetadataHostProperty;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
 	 * Dispatcher Processor

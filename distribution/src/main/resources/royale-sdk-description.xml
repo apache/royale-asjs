@@ -24,6 +24,5 @@
 
     <output-targets>
       <output-target name="js" version="Ecma5Strict" />
-      <output-target name="swf" version="AS3" AIR="14.0" Flash="11.7" />
     </output-targets>
 </royale-sdk-description>

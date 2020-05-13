@@ -1343,14 +1343,14 @@ public class ChannelSet extends EventDispatcher
             var i:int = 0;
             for (; i < n; i++)
             {
-                _messageAgents[i].internalSetCredentials(null);
+                MessageAgent(_messageAgents[i]).internalSetCredentials(null);
             }
             n = _channels.length;
             for (i = 0; i < n; i++)
             {
                 if (_channels[i] != null)
                 {
-                    _channels[i].internalSetCredentials(null);
+                    Channel(_channels[i]).internalSetCredentials(null);
                     if (_channels[i] is PollingChannel)
                         PollingChannel(_channels[i]).disablePolling();
                 }
@@ -1528,13 +1528,13 @@ public class ChannelSet extends EventDispatcher
             var i:int = 0;
             for (; i < n; i++)
             {
-                _messageAgents[i].internalSetCredentials(creds);
+                MessageAgent(_messageAgents[i]).internalSetCredentials(creds);
             }
             n = _channels.length;
             for (i = 0; i < n; i++)
             {
                 if (_channels[i] != null)
-                    _channels[i].internalSetCredentials(creds);
+                    Channel(_channels[i]).internalSetCredentials(creds);
             }
 
             agent.state = AuthenticationAgent.LOGGED_IN_STATE;

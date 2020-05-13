@@ -158,6 +158,12 @@
 				<isset property="no.js"/>
 			</not>
 		</condition>
+
+        <condition property="wrapperTarget" value="build_example.wrapper" else="build_example.skipWrapper">
+            <not>
+                <isset property="no.wrapper"/>
+            </not>
+        </condition>
 		 <!-- Load the <compc> task. We can't do this at the <project> level -->
         <!-- because targets that run before flexTasks.jar gets built would fail. -->
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
@@ -187,7 +193,7 @@
              -->
         </mxmlc>
 
-        <antcall target="build_example.wrapper">
+        <antcall target="${wrapperTarget}">
 			<param name="output" value="${destDir}"/>
 			<param name="templatebase" value="${html_template_base}"/>
 		</antcall>
@@ -204,7 +210,7 @@
             </fileset>
         </copy>
 		
-		<antcall target="build_example.compile-js-release"/>
+		<!--<antcall target="build_example.compile-js-release"/>-->
 		<antcall target="build_example.copy-app-xml" />
     </target>
     
@@ -337,8 +343,8 @@
             <arg line="${optional_arg}" />
 			<arg value="${theme_arg}" />
 			<arg value="${extlib_arg}" />
-			<arg value="-define=COMPILE::SWF,false" />
-            <arg value="-define=COMPILE::JS,true" />
+			<arg value="-define+=COMPILE::SWF,false" />
+            <arg value="-define+=COMPILE::JS,true" />
 			<arg value="-targets=${js.release.target}" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
 			<arg value="-js-output=${jsDir}" />
@@ -349,6 +355,10 @@
         <condition property="is.air" value="true">
             <equals arg1="${config_arg}" arg2="air" />
         </condition>
+    </target>
+
+    <target name="skipWrapper">
+        <echo>Wrapper build was skipped</echo>
     </target>
 	
 	<target name="wrapper" depends="check-air" unless="is.air">

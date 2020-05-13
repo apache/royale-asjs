@@ -50,17 +50,37 @@ package org.apache.royale.svg
             radius = r;
         }
 
-        private var _radius:Number;
+		private var _radius:Number;
 
-        public function get radius():Number
-        {
-            return _radius;
-        }
+		public function get radius():Number
+		{
+			return _radius;
+		}
 
-        public function set radius(value:Number):void
-        {
-            _radius = value;
-        }
+		public function set radius(value:Number):void
+		{
+			_radius = value;
+			updateView();
+		}
+		override public function get width():Number
+		{
+			return _radius*2;
+		}
+
+		override public function set width(value:Number):void
+		{
+			radius = value/2;
+		}
+
+		override public function get height():Number
+		{
+			return _radius*2;
+		}
+
+		override public function set height(value:Number):void
+		{
+			radius = value/2;
+		}
 
         COMPILE::JS
         private var _circle:WrappedHTMLElement;

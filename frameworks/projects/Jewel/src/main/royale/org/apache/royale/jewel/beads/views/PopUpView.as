@@ -20,9 +20,8 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-		import flash.utils.setTimeout;
+	import flash.utils.setTimeout;
     }
-	
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IChild;
@@ -167,12 +166,14 @@ package org.apache.royale.jewel.beads.views
 
 		private function prepareForPopUp():void
         {
-			_popUp.addClass("open");
-			COMPILE::JS
-			{
+			if(_popUp) {
+				_popUp.addClass("open");
+				COMPILE::JS
+				{
 				//avoid scroll in html
 				document.body.classList.add("viewport");
 				//cancelAnimationFrame(rq);
+				}
 			}
 		}
 	}

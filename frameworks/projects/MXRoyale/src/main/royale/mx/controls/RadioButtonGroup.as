@@ -345,6 +345,8 @@ public class RadioButtonGroup extends EventDispatcher
      */
     public function set selectedValue(value:Object):void
     {
+		 if (_selectedValue == value) return;
+		
          _selectedValue = value;
 
          // Clear the exisiting selecton if there is one.
@@ -360,7 +362,7 @@ public class RadioButtonGroup extends EventDispatcher
          {
              var radioButton:RadioButton = getRadioButtonAt(i);
              if (radioButton.value == value ||
-                 radioButton.label == value)
+                 value != "" && radioButton.label == value)
              {
                  changeSelection(i, false);
                  break;
@@ -454,6 +456,11 @@ public class RadioButtonGroup extends EventDispatcher
          if (_selectedValue != null)
              selectedValue = _selectedValue;
 
+        // If this radio button is selected, then it becomes the selection
+        // for the group.
+        if (instance.selected == true)
+            selection = instance;
+
 // 		dispatchEvent(new Event("numRadioButtonsChanged"));
     }
 
@@ -524,7 +531,7 @@ public class RadioButtonGroup extends EventDispatcher
     /**
      *  @private
      */
-    mx_internal function setSelection(value:RadioButton, fireChange:Boolean = true):void
+    public function setSelection(value:RadioButton, fireChange:Boolean = true):void
     {
          if (inSetSelection) return;
         

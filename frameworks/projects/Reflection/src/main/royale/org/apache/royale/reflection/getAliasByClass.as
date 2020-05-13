@@ -27,7 +27,7 @@ COMPILE::SWF {
      * registerClassAlias, or possibly using [RemoteClass(alias='someAlias')] metadata
      *
      * @param classObject the class to retrieve the alias for
-     * @return the most recently mapped alias, if found otherwise "" (empty string)
+     * @return the most recently mapped alias, if found otherwise null
      */
     public function getAliasByClass(classObject:Class):String {
         var ret:String;

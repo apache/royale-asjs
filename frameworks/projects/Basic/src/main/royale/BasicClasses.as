@@ -32,11 +32,12 @@ internal class BasicClasses
 		import org.apache.royale.html.util.addElementToWrapper; addElementToWrapper;
 		import org.apache.royale.html.util.addSvgElementToWrapper; addSvgElementToWrapper;
 		import org.apache.royale.html.util.createSVG; createSVG;
+		import org.apache.royale.html.util.removeCSSStyleProperty; removeCSSStyleProperty;
 	}
     import org.apache.royale.html.ToolTip; ToolTip;
 	import org.apache.royale.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
-    import org.apache.royale.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
-	import org.apache.royale.html.accessories.PasswordInputBead; PasswordInputBead;
+    import org.apache.royale.html.accessories.RestrictTextInputBead; RestrictTextInputBead;
+    import org.apache.royale.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.royale.html.accessories.PasswordInputRemovableBead; PasswordInputRemovableBead;
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
@@ -68,10 +69,14 @@ internal class BasicClasses
 	import org.apache.royale.html.supportClasses.MenuItemRenderer; MenuItemRenderer;
 	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
 	import org.apache.royale.html.CascadingMenu; CascadingMenu;
+	import org.apache.royale.html.CascadingMenuWithOnScreenCheck; CascadingMenuWithOnScreenCheck;
 	import org.apache.royale.html.beads.CascadingMenuFactory; CascadingMenuFactory;
 	import org.apache.royale.html.beads.models.CascadingMenuModel; CascadingMenuModel;
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
 	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
+    import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead; SolidBackgroundSelectableItemRendererBead;
+    import org.apache.royale.html.beads.SolidBackgroundRuntimeSelectableItemRendererBead; SolidBackgroundRuntimeSelectableItemRendererBead;
+    import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead; AlternatingBackgroundColorSelectableItemRendererBead;
 	
 	COMPILE::SWF
 	{
@@ -90,6 +95,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.GroupView; GroupView;
 	import org.apache.royale.html.beads.ContainerView; ContainerView;
 	import org.apache.royale.core.supportClasses.StyledImageBase; StyledImageBase;
+    import org.apache.royale.html.beads.plugin.ModalDisplay; ModalDisplay;
 
 
 	COMPILE::SWF
@@ -109,6 +115,10 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.BinaryImageModel; BinaryImageModel;
 
 	import org.apache.royale.html.beads.ListView; ListView;
+    import org.apache.royale.html.beads.ListOwnerViewItemRendererInitializer; ListOwnerViewItemRendererInitializer;
+    import org.apache.royale.html.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
+	
+	import org.apache.royale.html.beads.MultiSelectionListView; MultiSelectionListView;
 	import org.apache.royale.html.beads.NumericStepperView; NumericStepperView;
     import org.apache.royale.html.beads.PanelView; PanelView;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
@@ -150,7 +160,9 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.ArraySelectionModel; ArraySelectionModel;
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
+	import org.apache.royale.html.beads.models.MultiSelectionCollectionViewModel; MultiSelectionCollectionViewModel;
 	import org.apache.royale.html.beads.models.TreeModel; TreeModel;
+	import org.apache.royale.html.beads.models.MultiSelectionTreeModel; MultiSelectionTreeModel;
 	import org.apache.royale.html.beads.models.MenuModel; MenuModel;
     import org.apache.royale.html.beads.models.RangeModel; RangeModel;
     import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
@@ -188,6 +200,9 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.AccordionItemRendererMouseController; AccordionItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+    import org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
+    import org.apache.royale.html.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
+	import org.apache.royale.html.beads.controllers.TreeMultiSelectionMouseController; TreeMultiSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
     import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;

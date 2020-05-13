@@ -20,8 +20,6 @@
 // Jewel Card
 
 // Card variables
-// $card-width: 320px !default
-// $card-height: 180px !default
 
 .jewel.card
     font:
@@ -31,11 +29,46 @@
     @if $dark
         background: lighten($background-color, 10%)
     @else
-        background: darken($background-color, 8%)
+        background: lighten($background-color, 10%)
+    @if $flat
+        border: 1px solid transparent
+    @else
+        border: 1px solid desaturate(lighten($primary-color, 26%), 70%)
+    border-radius: $border-radius
 
-    border: 0px
-    border-radius: 10px
-    padding: 20px
+    &.simple
+        padding: 20px
+
+    .card-header
+        @if $flat
+            border-bottom: 1px solid transparent
+        @else
+            border-bottom: 1px solid desaturate(lighten($primary-color, 26%), 70%)
+        padding: 12px 20px
+
+        .card-title
+            font-size: 1.5em
+            margin: 0.408rem 0rem
+            letter-spacing: 0.0125em
+
+    .card-primary-content
+        padding: 20px
+
+    .card-actions
+        @if $flat
+            border-top: 1px solid transparent
+        @else
+            border-top: 1px solid desaturate(lighten($primary-color, 26%), 70%)
+        padding: 18px 20px
 
 j|Card
+    gap: 3
+
+j|CardHeader
+    gap: 3
+
+j|CardPrimaryContent
+    gap: 3
+
+j|CardActions
     gap: 3

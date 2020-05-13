@@ -18,11 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	import org.apache.royale.core.ISelectableItemRenderer;
+
 	COMPILE::JS
 	{
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;
 	}
+	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
 	 *  The TabBarView class creates the visual elements of the org.apache.royale.jewel.TabBar
@@ -40,8 +43,8 @@ package org.apache.royale.jewel.beads.views
 		 *  constructor.
 		 *
 		 *  <inject_html>
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
-         *  </inject_html>
+		 *  <script src="https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js"></script>
+		 *  </inject_html>
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -62,21 +65,28 @@ package org.apache.royale.jewel.beads.views
 		{
 			var prev_ir:TabBarButtonItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as TabBarButtonItemRenderer;
 			var ir:TabBarButtonItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as TabBarButtonItemRenderer;
-
-			if(prev_ir) {
-				prev_ir.selected = false;
-				var lastRect:ClientRect = prev_ir.getBoundingBox;
-				var currentRect:ClientRect = ir.getBoundingBox;
-				var widthDiff:Number = lastRect.width / currentRect.width;
-				if(isNaN(widthDiff))
-					widthDiff = 1;
-				var positionDiff:Number = lastRect.left - currentRect.left;
-				
-				ir.selected = true;
-				ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
-			} else
+			var selectionBead:ISelectableItemRenderer;
+			
+			if(listModel.selectedIndex != -1)
 			{
-				ir.selected = true;
+				if(prev_ir) {
+					selectionBead = getSelectionRenderBead(prev_ir);
+					selectionBead.selected = false;
+					var lastRect:ClientRect = prev_ir.getBoundingBox;
+					var currentRect:ClientRect = ir.getBoundingBox;
+					var widthDiff:Number = lastRect.width / currentRect.width;
+					if(isNaN(widthDiff))
+						widthDiff = 1;
+					var positionDiff:Number = lastRect.left - currentRect.left;
+					
+					selectionBead = getSelectionRenderBead(ir);
+					selectionBead.selected = true;
+					ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
+				} else
+				{
+					selectionBead = getSelectionRenderBead(ir);
+					selectionBead.selected = true;
+				}
 			}
 			
 			lastSelectedIndex = listModel.selectedIndex;

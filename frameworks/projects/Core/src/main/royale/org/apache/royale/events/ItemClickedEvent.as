@@ -21,7 +21,7 @@ package org.apache.royale.events
 {
 
 	import org.apache.royale.events.CustomEvent;
-	
+
 	/**
 	 * The ItemClickedEvent is a custom event issued by an itemRenderer to
 	 * convey information about itself when it has determined that the
@@ -31,8 +31,8 @@ package org.apache.royale.events
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
 	 * @productversion Royale 0.0
-     * 
-     *  @royalesuppresspublicvarwarning
+	 * 
+	 *  @royalesuppresspublicvarwarning
 	 */
 	public class ItemClickedEvent extends CustomEvent
 	{
@@ -51,66 +51,58 @@ package org.apache.royale.events
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.0
+		 * @productversion Royale 0.9.7
 		 */
 		public function ItemClickedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
-            COMPILE::SWF
-            {
-                super(type, bubbles, cancelable);                    
-            }
-            COMPILE::JS
-            {
-                super(type);
-            }
-			
+			COMPILE::SWF
+			{
+				super(type, bubbles, cancelable);                    
+			}
+			COMPILE::JS
+			{
+				super(type);
+			}
+
 			index = -1;
 			data = null;
-			multipleSelection = false;
 		}
-		
+
 		/**
 		 * The index of the item beginning with zero.
 		 *
-		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
 		 * @productversion Royale 0.0
 		 */
 		public var index:Number;
-		
+
 		/**
 		 * The data of the item.
 		 *
-		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
 		 * @productversion Royale 0.0
 		 */
 		public var data:Object;
-		
+
 		/**
-		 * Whether or not this click is part of a multi-selection sequence.
+		 * Whether or not this click was done while holding the shift key
 		 *
-		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.0
+		 * @productversion Royale 0.9.7
 		 */
-		public var multipleSelection:Boolean;
-		
-		/**
-		 * @private
-		 */
+
+
 		override public function cloneEvent():IRoyaleEvent
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent(type);
 			newEvent.index = index;
 			newEvent.data = data;
-			newEvent.multipleSelection = multipleSelection;
 			return newEvent;
 		}
 	}

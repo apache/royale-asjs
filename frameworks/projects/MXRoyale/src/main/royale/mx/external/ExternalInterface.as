@@ -168,7 +168,20 @@ package mx.external
             COMPILE::JS
             {
                 // find a function with the name...
-                var fnc : Function = window[functionName];
+                var fnc : Function;
+                if (functionName) {
+                    var base:Object = window;
+                    var dotIdx:int = functionName.indexOf('.');
+                    if (dotIdx != -1) {
+                        while(dotIdx != -1) {
+                            base = base[functionName.substr(0, dotIdx)];
+                            functionName = functionName.substr(dotIdx + 1);
+                            dotIdx = functionName.indexOf('.');
+                        }
+                    }
+                    fnc = base[functionName];
+                }
+
                 if (fnc)
                 {
                     return fnc.apply(null, args);

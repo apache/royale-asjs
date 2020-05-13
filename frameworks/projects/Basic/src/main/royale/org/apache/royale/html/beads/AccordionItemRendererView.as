@@ -23,6 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.supportClasses.ICollapsible;
 	import org.apache.royale.html.supportClasses.AccordionItemRenderer
+	import org.apache.royale.utils.sendStrandEvent;
     
 	/**
 	 * This class creates and manages the contents of an AccordionItemRenderer
@@ -77,7 +78,7 @@ package org.apache.royale.html.beads
 			var collapsibleStrand:ICollapsible = _strand as ICollapsible;
 			if (!collapsibleStrand.collapsed)
 			{
-				IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+				sendStrandEvent(_strand,"layoutNeeded");
 //				super.performLayout(event);
 			} else // skip layout for viewport children
 			{

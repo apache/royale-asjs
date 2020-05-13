@@ -20,12 +20,15 @@
     "config": "royale",
     "compilerOptions": {
         "debug": false,
-        "targets": ["JSRoyale","SWF"],
-        "source-map": true
+        "targets": ["JSRoyale"],
+        "source-map": true,
+        "html-template": "src/main/resources/jewel-example-index-template.html",
+        "theme": "${royalelib}/themes/Jewel-Light-NoFlat-Primary-Green-Theme/src/main/resources/defaults.css"
     },
+    "copySourcePathAssets": true,
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "src/main/royale/App.mxml"
+        "src/main/royale/BE0009_Using_an_Item_Renderer_with_a_List.mxml"
     ]
 }

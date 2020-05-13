@@ -37,6 +37,7 @@ package org.apache.royale.textLayout.events
 	import org.apache.royale.textLayout.utils.GeometryUtil;
 	import org.apache.royale.textLayout.utils.HitTestArea;
 	import org.apache.royale.utils.ObjectMap;
+	import org.apache.royale.utils.event.hasPlatformModifier;
 
 
 	
@@ -500,8 +501,9 @@ package org.apache.royale.textLayout.events
 		 */
 		private function hitTestKeyEventHandler(evt:KeyboardEvent):void
 		{
+			var platformModifier:Boolean = hasPlatformModifier(evt);
 			if (!_blockInteraction)
-				checkCtrlKeyState(evt.specialKey);
+				checkCtrlKeyState(platformModifier);
 		}
 		
 		/**

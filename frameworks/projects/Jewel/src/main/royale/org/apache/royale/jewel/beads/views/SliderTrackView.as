@@ -20,20 +20,19 @@ package org.apache.royale.jewel.beads.views
 {
 	import flash.display.Graphics;
 	import flash.display.Shape;
-	import flash.display.SimpleButton;			
-	
+	import flash.display.SimpleButton;
+
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.jewel.Button;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.core.IChild;
+	import org.apache.royale.jewel.Button;
 	
 	/**
-	 *  The SliderTrackView class creates the track area for the org.apache.royale.jewel.Slider
-	 *  component.
+	 *  The SliderTrackView class creates the track area for the org.apache.royale.jewel.HSlider
+	 *  component for the SWF platform.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0

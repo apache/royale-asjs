@@ -42,7 +42,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	public class SimpleStatesImpl extends EventDispatcher implements IStatesImpl, IBead
+	public class SimpleStatesImpl extends DispatcherBead implements IStatesImpl
 	{
         /**
          *  Constructor.
@@ -56,9 +56,7 @@ package org.apache.royale.core
 		{
 			super();
 		}
-        
-        private var _strand:IStrand;
-        
+                
         private var sawInitComplete:Boolean;
         
         /**
@@ -70,11 +68,11 @@ package org.apache.royale.core
          *  @productversion Royale 0.8
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
-        public function set strand(value:IStrand):void
+        override public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(_strand).addEventListener("currentStateChange", stateChangeHandler);
-            IEventDispatcher(_strand).addEventListener("initComplete", initialStateHandler);
+            listenOnStrand("currentStateChange", stateChangeHandler);
+            listenOnStrand("initComplete", initialStateHandler);
         }
         
         /**

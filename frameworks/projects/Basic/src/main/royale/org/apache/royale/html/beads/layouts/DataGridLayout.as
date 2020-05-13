@@ -23,6 +23,7 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IDataGridModel;
+    import org.apache.royale.core.ILayoutHost;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
@@ -91,18 +92,43 @@ package org.apache.royale.html.beads.layouts
 		
 		private function handleSizeChanges(event:Event):void
 		{
-			layout();
+			var viewBead:ILayoutHost = uiHost.view as ILayoutHost;
+			if (viewBead.beforeLayout())
+				layout();
 		}
 		
 		private function handleLayoutNeeded(event:Event):void
 		{
-			layout();
+			var viewBead:ILayoutHost = uiHost.view as ILayoutHost;
+			if (viewBead.beforeLayout())
+				layout();
 		}
 		
+        protected function getColumnsForLayout():Array
+        {
+            var header:IUIBase = (uiHost.view as IDataGridView).header;
+            // fancier DG's will filter invisible columns and only put visible columns
+            // in the bbmodel, so do all layout based on the bbmodel, not the set
+            // of columns that may contain invisible columns
+            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            return bbmodel.dataProvider as Array;
+        }
+
+        protected function setHeaderWidths(columnWidths:Array):void
+        {
+            var header:IUIBase = (uiHost.view as IDataGridView).header;
+            // fancier DG's will filter invisible columns and only put visible columns
+            // in the bbmodel, so do all layout based on the bbmodel, not the set
+            // of columns that may contain invisible columns
+            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            bbmodel.buttonWidths = columnWidths;
+        }
+        
 		/**
 		 * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+         * @royaleignorecoercion org.apache.royale.core.ILayoutHost
          * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
@@ -112,10 +138,7 @@ package org.apache.royale.html.beads.layouts
 		public function layout():Boolean
 		{
 			var header:IUIBase = (uiHost.view as IDataGridView).header;
-            // fancier DG's will filter invisible columns and only put visible columns
-            // in the bbmodel, so do all layout based on the bbmodel, not the set
-            // of columns that may contain invisible columns
-            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            var arrayOfColumns:Array = getColumnsForLayout();
 			var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
 			
 			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
@@ -126,11 +149,11 @@ package org.apache.royale.html.beads.layouts
 			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			
 			var xpos:Number = 0;
-			var defaultColumnWidth:Number = (useWidth) / bbmodel.dataProvider.length;
+			var defaultColumnWidth:Number = (useWidth) / arrayOfColumns.length;
 			var columnWidths:Array = [];
 			
-			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
-				var columnDef:IDataGridColumn = bbmodel.dataProvider[i] as IDataGridColumn;
+			for(var i:int=0; i < arrayOfColumns.length; i++) {
+				var columnDef:IDataGridColumn = arrayOfColumns[i] as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
 				
 				// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
@@ -148,7 +171,7 @@ package org.apache.royale.html.beads.layouts
 				xpos += columnList.width;
 			}
 			
-			bbmodel.buttonWidths = columnWidths;
+            setHeaderWidths(columnWidths);
 			
 			COMPILE::SWF {
                 header.y = borderMetrics.top;

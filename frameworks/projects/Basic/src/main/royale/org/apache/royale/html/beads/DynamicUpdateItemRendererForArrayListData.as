@@ -18,19 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.sendStrandEvent;
 
-    /**
+	/**
 	 * Handles the update of an itemRenderer once the corresponding datum has been updated
 	 * from the IDataProviderModel.
 	 *
@@ -39,7 +37,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.0
 	 */
-	public class DynamicUpdateItemRendererForArrayListData implements IBead
+	public class DynamicUpdateItemRendererForArrayListData extends ItemRendererFactoryBase
 	{
 		/**
 		 * Constructor
@@ -52,57 +50,23 @@ package org.apache.royale.html.beads
 		public function DynamicUpdateItemRendererForArrayListData()
 		{
 		}
-
-		protected var _strand:IStrand;
-
-        protected var labelField:String;
-
-		/**
-		 * @copy org.apache.royale.core.IStrand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete", initComplete);
-		}
 		
+		private var dp:IEventDispatcher;
 		/**
-		 *  finish setup
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function initComplete(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
-			
-			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			labelField = _dataProviderModel.labelField;
-
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
-
-			// invoke now in case "dataProviderChanged" has already been dispatched.
-			dataProviderChangeHandler(null);
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function dataProviderChangeHandler(event:Event):void
-		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
+			}
+			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
 			// listen for individual items being added in the future.
-			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemAdded);
+			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 		}
 
 		/**
@@ -112,64 +76,22 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		protected function handleItemAdded(event:CollectionEvent):void
+		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-            var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(event.index) as IIndexedItemRenderer;
 
-            setData(ir, event.item, event.index);
-
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			var data:Object = event.item;
+			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
+			ir.data = data;
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 
-		private var _dataProviderModel: IDataProviderModel;
-
-		/**
-		 *  The org.apache.royale.core.IDataProviderModel that contains the
-		 *  data source.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-		 */
-		public function get dataProviderModel(): IDataProviderModel
-		{
-			if (_dataProviderModel == null && _strand != null) {
-				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			}
-			return _dataProviderModel;
-		}
-
-		private var _itemRendererParent: IItemRendererParent;
-
-		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
-		 *  to generate instances of item renderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 */
-		public function get itemRendererParent():IItemRendererParent
-		{
-			if (_itemRendererParent == null) {
-                var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-                _itemRendererParent = view.dataGroup;
-			}
-			return _itemRendererParent;
-		}
-
-        /**
-         * @private
-         */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
-        {
-            itemRenderer.index = index;
-            itemRenderer.data = data;
-        }
 	}
 }

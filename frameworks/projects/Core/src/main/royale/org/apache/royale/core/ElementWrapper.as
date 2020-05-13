@@ -22,10 +22,12 @@ package org.apache.royale.core
     {
         import org.apache.royale.events.utils.EventUtils;
         import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.events.IBrowserEvent
         import goog.events.BrowserEvent;
         import org.apache.royale.events.ElementEvents;
         import goog.events;
         import goog.events.EventTarget;
+        import goog.DEBUG;
     }
     COMPILE::SWF
     {
@@ -76,8 +78,7 @@ package org.apache.royale.core
             if (!_beads)
             {
                 _beads = new Vector.<IBead>();
-            }
-            
+            }            
             _beads.push(bead);
             bead.strand = this;
         }
@@ -114,9 +115,7 @@ package org.apache.royale.core
         public function removeBead(bead:IBead):IBead
         {
             var i:uint, n:uint, value:Object;
-            
             n = _beads.length;
-            
             for (i = 0; i < n; i++)
             {
                 value = _beads[i];
@@ -124,7 +123,7 @@ package org.apache.royale.core
                 if (bead === value)
                 {
                     _beads.splice(i, 1);
-                    
+                    bead.strand = null;
                     return bead;
                 }
             }
@@ -172,6 +171,11 @@ package org.apache.royale.core
 	public class ElementWrapper extends EventDispatcher implements IStrand
 	{
 
+        /**
+         * @royalesuppresspublicvarwarning
+         */
+        static public var converterMap:Object = {};
+
 		//--------------------------------------
 		//   Static Function
 		//--------------------------------------
@@ -180,18 +184,27 @@ package org.apache.royale.core
          * @param listener The listener object to call {goog.events.Listener}.
          * @param eventObject The event object to pass to the listener.
          * @return Result of listener.
+         * @royaleignorecoercion org.apache.royale.events.IBrowserEvent
          */
-		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
+		static private function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
-			var e:org.apache.royale.events.BrowserEvent = new org.apache.royale.events.BrowserEvent();
-			e.wrapEvent(eventObject);
+            var e:IBrowserEvent;
+            var nativeEvent:Object = eventObject.getBrowserEvent();
+            var converter:Function = converterMap[nativeEvent.constructor.name];
+            if (converter)
+                e = converter(nativeEvent,eventObject);
+            else
+            {
+                e = new org.apache.royale.events.BrowserEvent();
+                e.wrapEvent(eventObject);
+            }
 			return ElementWrapper.googFireListener(listener, e);
 		}
 
         /**
          * Static initializer
          */
-		static public function installOverride():Boolean
+		static private function installOverride():Boolean
 		{
 			ElementWrapper.googFireListener = goog.events.fireListener;
 			goog.events.fireListener = ElementWrapper.fireListenerOverride;
@@ -214,7 +227,7 @@ package org.apache.royale.core
          *
          *  @royalesuppresspublicvarwarning
          */
-        static public var installedOverride:Boolean = installOverride();
+        static public var __:Boolean = installOverride();
         
 		//--------------------------------------
 		//   Property
@@ -252,7 +265,7 @@ package org.apache.royale.core
 			{
 				_beads = new Vector.<IBead>();
 			}
-
+            if (goog.DEBUG && !(bead is IBead)) throw new TypeError('Cannot convert '+bead+' to IBead');
 			_beads.push(bead);
 			bead.strand = this;
 		}
@@ -264,11 +277,8 @@ package org.apache.royale.core
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
 			var bead:IBead, i:uint, n:uint;
-
             if (!_beads) return null;
-            
 			n = _beads.length;
-
 			for (i = 0; i < n; i++)
 			{
 				bead = _beads[i];
@@ -289,9 +299,7 @@ package org.apache.royale.core
 		public function removeBead(bead:IBead):IBead
 		{
 			var i:uint, n:uint, value:Object;
-
 			n = _beads.length;
-
 			for (i = 0; i < n; i++)
 			{
 				value = _beads[i];
@@ -299,7 +307,6 @@ package org.apache.royale.core
 				if (bead === value)
 				{
 					_beads.splice(i, 1);
-
 					return bead;
 				}
 			}
@@ -310,13 +317,13 @@ package org.apache.royale.core
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
             var source:Object = getActualDispatcher_(type);
-            goog.events.listen(source, type, handler);
+            goog.events.listen(source, type, handler, opt_capture ? { capture: true } : null);
         }
         
         override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
             var source:Object = getActualDispatcher_(type);
-            goog.events.unlisten(source, type, handler);
+            goog.events.unlisten(source, type, handler, opt_capture ? { capture: true } : null);
         }
         
         private function getActualDispatcher_(type:String):Object
@@ -341,12 +348,12 @@ package org.apache.royale.core
         override public function dispatchEvent(e:Object):Boolean
         {
             var eventType:String = "";
-            if (typeof(e) === 'string')
+            if (typeof(e) == 'string')
             {
                 eventType = e as String;
-                if (e === Event.CHANGE)
+                if (e == "change")
                 {
-                    e = EventUtils.createEvent(eventType);
+                    e = EventUtils.createEvent(eventType, e["bubbles"]);
                 }
             }
             else
@@ -354,7 +361,7 @@ package org.apache.royale.core
                 eventType = e.type;
                 if (ElementEvents.elementEvents[eventType])
                 {
-                    e = EventUtils.createEvent(eventType);
+                    e = EventUtils.createEvent(eventType, e["bubbles"]);
                 }
             }
             var source:Object = this.getActualDispatcher_(eventType);

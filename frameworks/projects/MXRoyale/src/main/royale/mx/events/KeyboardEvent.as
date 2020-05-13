@@ -46,7 +46,14 @@ public class KeyboardEvent extends flash.events.KeyboardEvent
 	shiftKeyValue:Boolean = false, 
 	controlKeyValue:Boolean = false, commandKeyValue:Boolean = false)
     {
-        super(type, bubbles, cancelable,charCodeValue,keyCodeValue,keyLocationValue,ctrlKeyValue,altKeyValue,shiftKeyValue,controlKeyValue,commandKeyValue);
+        super(type, bubbles, cancelable);
+		charCode = charCodeValue;
+		keyCode = keyCodeValue;
+		//,keyLocationValue,
+		ctrlKey = ctrlKeyValue;
+		altKey = altKeyValue;
+		shiftKey = shiftKeyValue;
+		//,controlKeyValue,commandKeyValue);
     }
 	
 	
@@ -58,16 +65,12 @@ public class KeyboardEvent extends flash.events.KeyboardEvent
 	public static const DELETE:uint = platformConstant(46);
 	public static const END:uint = platformConstant(35);
 	public static const KEY_UP:String = platformConstant1("keyUp");
-	
-	public function get KEY_DOWN():String
-	{
-		return "keyDown";
-	}
 		
-	public function set KEY_DOWN(val:String):void
-	{
-	} 
-	
+    public function get key():String
+    {
+        return String.fromCharCode(charCode);
+    }
+    
 	private static function platformConstant(s:uint):uint
         {
             return s;
@@ -98,7 +101,7 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 		
 		public function get keyCode():uint
 		{
-		return 0;
+		    return nativeEvent["keyCode"];
 		}
 		
 		public function set keyCode(val:uint):void
@@ -122,10 +125,6 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
         	{
             	return s.toLowerCase();
         	}
-		public static function get capsLock():Boolean
-	        {
-	        return true;
-	        }
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
@@ -180,7 +179,12 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 	}
 	
 	
-	
+	public function get charCode():uint
+	{
+		if (code == "Enter")
+			return 13;
+		return code.charCodeAt();
+	}
 }
 
 }

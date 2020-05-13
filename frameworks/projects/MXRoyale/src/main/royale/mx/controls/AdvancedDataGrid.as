@@ -44,19 +44,59 @@ package mx.controls
     import mx.collections.IHierarchicalCollectionView;
     import mx.collections.IHierarchicalCollectionViewCursor;
     import mx.collections.IHierarchicalData;
+    import mx.collections.ISort;
     import mx.collections.IViewCursor;
+    import mx.collections.Sort;
+    import mx.collections.SortField;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderInfo;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+    import mx.controls.beads.AdvancedDataGridSortBead;
+    import mx.controls.beads.AdvancedDataGridView;
+    import mx.controls.beads.DataGridColumnResizeBead;
+    import mx.controls.beads.DataGridLinesBeadForICollectionView;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.controls.listClasses.AdvancedListBase;
+    import mx.controls.listClasses.IDropInListItemRenderer;
+    import mx.controls.listClasses.IListItemRenderer;
+    import mx.controls.listClasses.ListRowInfo;
+    import mx.containers.beads.AdvancedDataGridListVirtualListView;
+    import mx.core.ClassFactory;
+    import mx.core.IFactory;
+	import mx.core.IPropertyChangeNotifier;
+	import mx.core.IUIComponent;
+	import mx.core.Keyboard;
     import mx.core.mx_internal;
+	import mx.core.UIComponent;
+    import mx.events.AdvancedDataGridEvent;
+	import mx.events.AdvancedDataGridEventReason;
     import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
-    
+    import mx.events.FocusEvent;
+    import mx.events.KeyboardEvent;
+    import mx.events.ListEvent;
+    import mx.events.MouseEvent;
+    import mx.managers.IFocusManager;
+	import mx.managers.IFocusManagerComponent;
+	import mx.utils.UIDUtil;
+
     import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.DataGridButtonBar;
+    import org.apache.royale.reflection.describeType;
+    import org.apache.royale.reflection.VariableDefinition;
+    import org.apache.royale.reflection.TypeDefinition;
 
 use namespace mx_internal;
 //--------------------------------------
@@ -585,6 +625,85 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     //
     //--------------------------------------------------------------------------
 
+    // 'Cell Selection' constants
+    /**
+     *  Constant definition for the <code>selectionMode</code> property.
+     *  No selection is allowed in the control, 
+     *  and the <code>selectedCells</code> property is null. 
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const NONE:String           = "none";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of a single row.
+     *  Click any cell in the row to select the row.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const SINGLE_ROW:String     = "singleRow";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of multiple rows.
+     *  Click any cell in the row to select the row.
+     *  While holding down the Control key, click any cell in another row to select 
+     *  the row for discontiguous selection. 
+     *  While holding down the Shift key, click any cell in another row to select 
+     *  multiple, contiguous rows.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const MULTIPLE_ROWS:String  = "multipleRows";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of a single cell.
+     *  Click any cell to select the cell.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const SINGLE_CELL:String    = "singleCell";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of multiple cells.
+     *  Click any cell in the row to select the cell.
+     *  While holding down the Control key, click any cell to select 
+     *  the cell for discontiguous selection. 
+     *  While holding down the Shift key, click any cell to select 
+     *  multiple, contiguous cells.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const MULTIPLE_CELLS:String = "multipleCells";
+    
     /**
      * Indicates mouse is over the text part of the header.
      * Used as a return value by mouseEventToHeaderPart.
@@ -643,6 +762,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                          false, EventPriority.DEFAULT_HANDLER);
 
         addEventListener(FlexEvent.UPDATE_COMPLETE, updateCompleteHandler); */
+        
+        addBead(new DataGridLinesBeadForICollectionView());
+        addBead(new DataGridColumnResizeBead());
+
     }
 
     //--------------------------------------------------------------------------
@@ -650,6 +773,121 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     //  Variables
     //
     //--------------------------------------------------------------------------
+
+    /**
+     *  @private
+     *  true if we want to block editing on mouseUp
+     */
+    private var losingFocus:Boolean = false;
+    
+    /**
+     *  @private
+    private var _focusPane:Sprite;
+     */
+
+    /**
+     *  @private
+     *  true if we're in the endEdit call.  Used to handle
+     *  some timing issues with collection updates
+     */
+    private var inEndEdit:Boolean = false;
+
+    /**
+     *  @private
+     */
+    private var bEditedItemPositionChanged:Boolean = false;
+
+    /**
+     *  @private
+     *  undefined means we've processed it
+     *  null means don't put up an editor
+     *  {} is the coordinates for the editor
+     */
+    private var _proposedEditedItemPosition:*;
+
+    /**
+     *  @private
+     *  the last editedItemPosition.  We restore editing
+     *  to this point if we get focus from the TAB key
+     */
+    private var lastEditedItemPosition:*;
+    
+    /**
+     *  @private
+     *  true if we want to block editing on mouseUp
+     */
+    private var dontEdit:Boolean = false;
+
+    // last known position of item editor instance
+    private var actualRowIndex:int;
+    private var actualColIndex:int;
+
+    /**
+     *  @private
+     *  true if we've disabled updates in the collection
+     */
+    private var collectionUpdatesDisabled:Boolean = false;
+
+    //----------------------------------
+    //  itemEditorInstance
+    //----------------------------------
+    
+    [Inspectable(environment="none")]
+
+    /**
+     *  A reference to the currently active instance of the item editor, 
+     *  if it exists.
+     *
+     *  <p>To access the item editor instance and the new item value when an 
+     *  item is being edited, you use the <code>itemEditorInstance</code> 
+     *  property. The <code>itemEditorInstance</code> property
+     *  is not valid until after the event listener for
+     *  the <code>itemEditBegin</code> event executes. Therefore, you typically
+     *  only access the <code>itemEditorInstance</code> property from within 
+     *  the event listener for the <code>itemEditEnd</code> event.</p>
+     *
+     *  <p>The <code>AdvancedDataGridColumn.itemEditor</code> property defines the
+     *  class of the item editor,
+     *  and therefore the data type of the item editor instance.</p>
+     *
+     *  <p>You do not set this property in MXML.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var itemEditorInstance:IListItemRenderer;
+    
+	private function getListItem(row:int, column:int):IListItemRenderer
+	{
+		return ((view as AdvancedDataGridView).columnLists[column].view as AdvancedDataGridListVirtualListView).getItemRendererForIndex(row) as IListItemRenderer;
+	}
+	
+    //----------------------------------
+    //  editedItemRenderer
+    //----------------------------------
+    
+    /**
+     *  A reference to the item renderer
+     *  in the AdvancedDataGrid control whose item is currently being edited.
+     *
+     *  <p>From within an event listener for the <code>itemEditBegin</code>
+     *  and <code>itemEditEnd</code> events,
+     *  you can access the current value of the item being edited
+     *  using the <code>editedItemRenderer.data</code> property.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get editedItemRenderer():IListItemRenderer
+    {
+        if (!itemEditorInstance) return null;
+
+        return getListItem(actualRowIndex, actualColIndex);
+    }
 
     /**
 	 *  Maps renders to row and column spanning info.
@@ -721,7 +959,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    //mx_internal var cellSelectionIndicators:Object = {};
+    mx_internal var cellSelectionIndicators:Object = {};
 
     /**
      *  A hash table of data provider item renderers currently in view. The
@@ -1285,11 +1523,13 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                         columnGroupRendererChanged(AdvancedDataGridColumnGroup(_groupedColumns[i]));
                 }
             }
-            
+            */
             _groupedColumns = value;
+            /*
             groupedColumnsChanged = true;
             invalidateProperties();
         } */
+        /*super.*/columns = getLeafColumns(_groupedColumns.slice(0));
     }
 
     //
@@ -1903,9 +2143,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *  Storage for the treeColumn property.
      */
-    /* private var _treeColumn:AdvancedDataGridColumn = null;
+    private var _treeColumn:AdvancedDataGridColumn = null;
 
-    [Inspectable(category="General")] */
+    /*[Inspectable(category="General")] */
     /**
      *  The column in which the tree is displayed.
      *  Set this property to the value of the <code>id</code> property of an
@@ -1974,13 +2214,13 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function get treeColumnIndex():int
+    protected function get treeColumnIndex():int
     {
         if (_treeColumn)
             return _treeColumn.colNum;
         
         return 0;
-    } */
+    }
     
     //----------------------------------
     //  movingColumnIndex
@@ -2176,8 +2416,13 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *
      */
-    /* override protected function mouseEventToItemRenderer(event:MouseEvent):IListItemRenderer
+    override protected function mouseEventToItemRenderer(event:MouseEvent):IItemRenderer
     {
+		if (itemEditorInstance && itemEditorInstance.owns(event.target as IUIBase))
+			return null;
+			
+		return super.mouseEventToItemRenderer(event);
+		/*
         if(!columnGrouping)
         {
             return super.mouseEventToItemRenderer(event);
@@ -2208,8 +2453,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 
             return r == itemEditorInstance ? null : r;
 
-        }
-    } */
+        }*/
+    }
 
     /**
      *  @private
@@ -3514,24 +3759,6 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             super.selectColumnHeader(columnNumber);
         else
             selectColumnGroupHeader(selectedHeaderInfo);
-    } */
-
-    /**
-     *  @private
-     */
-    /* override public function createItemEditor(colIndex:int, rowIndex:int):void
-    {
-        // TODO - Check for the item renderer instead of the column number
-        if (_rootModel is IHierarchicalData && colIndex == treeColumnIndex)
-        {
-            var col:AdvancedDataGridColumn = displayableColumns[colIndex];
-            if (col.editorXOffset == 0 || col.editorWidthOffset == 0)
-            {
-                col.editorXOffset = 12;
-                col.editorWidthOffset = -12;
-            }
-        }
-        super.createItemEditor(colIndex, rowIndex);
     } */
 
     /**
@@ -6421,11 +6648,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     /**
      *  @private
      */
-    /* private function getLeafColumns(groupedColumns:Array):Array
+    private function getLeafColumns(groupedColumns:Array):Array
     {
         var i:int=0; 
         while (i < groupedColumns.length)
         {
+            (groupedColumns[i] as AdvancedDataGridColumn).owner = this;
             if (groupedColumns[i] is AdvancedDataGridColumnGroup && groupedColumns[i].children && groupedColumns[i].children.length >0)
             {
                 var prefix:Array = groupedColumns.slice(0,i);
@@ -6440,7 +6668,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             }
         }
         return groupedColumns;
-    } */
+    }
 
     /**
      *  @private
@@ -7670,8 +7898,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function removeCellSelectionData(uid:String, columnIndex:int):void
+    protected function removeCellSelectionData(uid:String, columnIndex:int):void
     {
+        /*
         if (!cellSelectionData[uid])
             return;
 
@@ -7694,7 +7923,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         // Remove uid if there are no columns for that uid in cellSelectionData
         if (!atLeastOneProperty(cellSelectionData[uid]))
             delete cellSelectionData[uid];
-    } */
+        */
+    }
 
     /**
      *  Returns <code>true</code> if the Object has at least one property,
@@ -8058,8 +8288,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     /**
      *  @private
      */
-    /* protected function removeCellIndicators(uid:String, columnIndex:int):void
+    protected function removeCellIndicators(uid:String, columnIndex:int):void
     {
+        /*
         if (cellSelectionTweens[uid] && cellSelectionTweens[uid][columnIndex])
         {
             cellSelectionTweens[uid][columnIndex].removeEventListener(
@@ -8101,8 +8332,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             caretUID = null;
             if (caretIndicator)
                 Sprite(caretIndicator).graphics.clear();
-        }
-    } */
+        }*/
+    }
     
     /**
      *  @inheritDoc mx.controls.listClasses.ListBase#clearIndicators()
@@ -8112,18 +8343,18 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* override protected function clearIndicators():void
+    override protected function clearIndicators():void
     {
         if (isCellSelectionMode())
             clearCellIndicators();
 
         super.clearIndicators();
-    } */
+    }
 
     /**
      *  @private
      */
-    /* protected function clearCellIndicators():void
+    protected function clearCellIndicators():void
     {
 		for (var p:String in cellSelectionIndicators)
 		{
@@ -8138,10 +8369,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 			}
 		}
 
-        cellSelectionTweens     = {};
+        //cellSelectionTweens     = {};
         cellSelectionIndicators = {};
-        visibleCellRenderers    = {};
-    } */
+        //visibleCellRenderers    = {};
+    }
     
     /**
      * @private
@@ -9365,7 +9596,13 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
     public function set columns(value:Array):void
     {
+        var index:int = 0;
         IDataGridModel(model).columns = value;
+        for each (var col:AdvancedDataGridColumn in value)
+        {
+            col.owner = this;
+            col.colNum = index++;
+        }
     }
 
 	//----------------------------------
@@ -9406,9 +9643,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 
     public function set selectionMode(value:String):void
     {
-        /* setSelectionMode(value);
-        itemsSizeChanged = true;
-        invalidateDisplayList(); */
+        setSelectionMode(value);
+        //itemsSizeChanged = true;
+        invalidateDisplayList();
     }
 	
 	//----------------------------------
@@ -9686,7 +9923,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
      *  @royaleignorecoercion org.apache.royale.core.IBead
      */
-    public function get presentationModel():IBead
+    override public function get presentationModel():IBead
     {
         if (_presentationModel == null) {
             var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
@@ -9707,11 +9944,1436 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         _presentationModel = value as IDataGridPresentationModel;
     }
    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        
+        addBead(new AdvancedDataGridSortBead());            
+        addEventListener(AdvancedDataGridEvent.SORT, sortHandler);
+        // Register default handlers for item editing.
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_BEGINNING,
+                         itemEditorItemEditBeginningHandler);
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_BEGIN,
+                         itemEditorItemEditBeginHandler);
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_END,
+                         itemEditorItemEditEndHandler);
+
+    }
+    
+    protected function sortHandler(event:AdvancedDataGridEvent):void
+    {
+        var oldSort:ISort = collection.sort;
+        
+        var sort:Sort = new Sort();
+        var sortField:SortField = new SortField();
+        sortField.name = event.dataField;
+        var column:DataGridColumn = columns[event.columnIndex] as DataGridColumn;
+        if (oldSort && oldSort.fields[0].name == sortField.name)
+            column.sortDescending = !column.sortDescending;
+        sortField.descending = column.sortDescending;
+        
+        sort.fields = [ sortField ];
+        collection.sort = sort;
+        collection.refresh();
+        // force redraw of column headers
+        ((view as AdvancedDataGridView).header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
+    }
+    
+    override public function set rowHeight(value:Number):void
+    {
+        super.rowHeight = value;
+        if ((view as AdvancedDataGridView).header)
+        {
+            (view as AdvancedDataGridView).header.height = value;
+            dispatchEvent(new Event("layoutNeeded"));
+        }
+    }
+    
+    // Cell Selection methods
+    /**
+     * Return <code>true</code> if <code>selectedMode</code> is 
+     * <code>SINGLE_ROW</code> or <code>MULTIPLE_ROWS</code>.
+     *
+     *  @return <code>true</code> if <code>selectedMode</code> is 
+     * <code>SINGLE_ROW</code> or <code>MULTIPLE_ROWS</code>.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function isRowSelectionMode():Boolean
+    {
+        return (selectionMode == SINGLE_ROW || selectionMode == MULTIPLE_ROWS);
+    }
+    
+    /**
+     *  Returns <code>true</code> if <code>selectedMode</code> is 
+     *  <code>SINGLE_CELL</code> or <code>MULTIPLE_CELLS</code>.
+     *
+     *  @return <code>true</code> if <code>selectedMode</code> is 
+     *  <code>SINGLE_CELL</code> or <code>MULTIPLE_CELLS</code>. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function isCellSelectionMode():Boolean
+    {
+        return (selectionMode == SINGLE_CELL || selectionMode == MULTIPLE_CELLS);
+    }
+    
+    /**
+     *  Handle selection mode changing.
+     *
+     *  @private
+     */
+    protected function setSelectionMode(newSelectionMode:String):void
+    {
+        if (selectionMode == newSelectionMode)
+            return;
+        
+        if (newSelectionMode == NONE)
+        {
+            selectable = false;
+        }
+        else
+        {
+            if (!selectable)
+                selectable = true;
+        }
+        
+        if (newSelectionMode == SINGLE_ROW || newSelectionMode == SINGLE_CELL)
+        {
+            if (allowMultipleSelection)
+                allowMultipleSelection = false;
+        }
+        else if (newSelectionMode == MULTIPLE_ROWS || newSelectionMode == MULTIPLE_CELLS)
+        {
+            if (!allowMultipleSelection)
+                allowMultipleSelection = true;
+        }
+        else if (newSelectionMode != NONE)
+        {
+            // Default to single row selection mode
+            newSelectionMode = SINGLE_ROW;
+            if (allowMultipleSelection)
+                allowMultipleSelection = false;
+        }
+        
+        clearAllSelection();
+        
+        _selectionMode = newSelectionMode;
+    }
+    
+    /**
+     * @private
+     *
+     * Clear all the selected data.
+     *
+     */
+    protected function clearAllSelection():void
+    {
+        if (isRowSelectionMode())
+        {
+            clearSelected();
+            clearIndicators();
+        }
+    }
+
+    //----------------------------------
+    //  editable
+    //----------------------------------
+
+    private var _editable:String = "";
+
+    [Inspectable(category="General")]
+    /**
+     *  Indicates whether or not the user can edit items in the data provider.
+     *
+     *  <p>If <code>"item"</code>, the item renderers in the control are editable.
+     *  The user can click on an item renderer to open an editor.</p>
+     *
+     *  <p>If <code>"item group"</code>, the item renderers and grouping headers can be edited.</p>
+     *
+     *  <p>If <code>"item summary"</code>, the item renderers and summary cells can be edited.</p>
+     *
+     *  <p>You can combine these values. For example, <code>editable = "item group summary"</code>.
+     *  Note that item editing has to be enabled if enabling group or summary editing.</p>
+     *
+     *  <p>If you specify an empty String, no editing is allowed.</p>
+     *
+     *  <p>The values <code>"true"</code> and <code>"false"</code> correspond 
+     *  to item editing and no editing.</p>
+     *
+     *  <p>A value of <code>"all"</code> means everything is editable.</p>
+     *
+     *  <p>You can turn off editing for individual columns of the
+     *  AdvancedDataGrid control using the <code>AdvancedDataGridColumn.editable</code> property,
+     *  or by handling the <code>itemEditBeginning</code> and
+     *  <code>itemEditBegin</code> events.</p>
+     *
+     *  @default ""
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get editable():String
+    {
+        return _editable;
+    }
+
+    public function set editable(value:String):void
+    {
+        _editable = "";
+
+        if (!value)
+            return;
+
+        var editableFlags:Array = value.split(" "); // space delimited
+        var n:int = editableFlags.length;
+        var keepProcessingFlags:Boolean = true;
+
+        for (var i:int = 0; i < n && keepProcessingFlags; i++)
+        {
+            switch (editableFlags[i])
+            {
+                case "item":
+                case "group":
+                case "summary":
+                    {
+                        _editable += editableFlags[i] + " ";
+                        break;
+                    }
+
+                case "true":
+                    {
+                        _editable = "item" + " ";
+                        keepProcessingFlags = false;
+                        break;
+                    }
+
+                case "false":
+                    {
+                        _editable = "" + " ";
+                        keepProcessingFlags = false;
+                        break;
+                    }
+
+                case "all":
+                    {
+                        _editable = "item group summary" + " ";
+                        keepProcessingFlags = false;
+                        break;
+                    }
+            }
+        }
+        _editable = _editable.slice(0, -1); // remove trailing space
+    }
+
+    //----------------------------------
+    //  editedItemPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    private var _editedItemPosition:Object;
+
+    [Bindable("itemFocusIn")]
+
+    /**
+     *  The column and row index of the item renderer for the
+     *  data provider item being edited, if any.
+     *
+     *  <p>This Object has two fields, <code>columnIndex</code> and 
+     *  <code>rowIndex</code>,
+     *  the zero-based column and row indexes of the item.
+     *  For example: {columnIndex:2, rowIndex:3}</p>
+     *
+     *  <p>Setting this property scrolls the item into view and
+     *  dispatches the <code>itemEditBegin</code> event to
+     *  open an item editor on the specified item renderer.</p>
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get editedItemPosition():Object
+    {
+        if (_editedItemPosition)
+            return {rowIndex: _editedItemPosition.rowIndex,
+                                  columnIndex: _editedItemPosition.columnIndex};
+        else
+            return _editedItemPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set editedItemPosition(value:Object):void
+    {
+        if (!value)
+        {
+            setEditedItemPosition(null);
+            return;
+        }
+
+        var newValue:Object = {rowIndex: value.rowIndex,
+                               columnIndex: value.columnIndex};
+
+        setEditedItemPosition(newValue);
+    }
+    /**
+     *  @private
+     */
+    private function setEditedItemPosition(coord:Object):void
+    {
+        //bEditedItemPositionChanged = true;
+        _proposedEditedItemPosition = coord;
+        //invalidateDisplayList();
+		commitEditedItemPosition(coord);
+    }
+
+    /**
+     *  @private
+     *  focus an item renderer in the grid - harder than it looks
+     */
+    private function commitEditedItemPosition(coord:Object):void
+    {
+        if (!enabled || !editable.length)
+            return;
+
+        // just give focus back to the itemEditorInstance
+        if (itemEditorInstance && coord &&
+            itemEditorInstance is IFocusManagerComponent &&
+            _editedItemPosition.rowIndex == coord.rowIndex &&
+            _editedItemPosition.columnIndex == coord.columnIndex)
+        {
+            IFocusManagerComponent(itemEditorInstance).setFocus();
+            return;
+        }
+
+        // dispose of any existing editor, saving away its data first
+        if (itemEditorInstance)
+        {
+            var reason:String;
+            if (!coord)
+            {
+                reason = AdvancedDataGridEventReason.OTHER;
+            }
+            else
+            {
+                reason = (!editedItemPosition || coord.rowIndex == editedItemPosition.rowIndex) ?
+                    AdvancedDataGridEventReason.NEW_COLUMN :
+                    AdvancedDataGridEventReason.NEW_ROW;
+            }
+            if (!endEdit(reason) && reason != AdvancedDataGridEventReason.OTHER)
+                return;
+        }
+
+        // store the value
+        _editedItemPosition = coord;
+
+        // allow setting of undefined to dispose item editor instance
+        if (!coord)
+            return;
+
+        if (dontEdit)
+        {
+            return;
+        }
+
+		var displayableColumns:Array = (view as AdvancedDataGridView).visibleColumns;
+        var rowIndex:int = coord.rowIndex;
+        var colIndex:int = coord.columnIndex;
+        if (displayableColumns.length != columns.length)
+        {
+            var n:int = displayableColumns.length;
+            for (var i:int = 0; i < n; i++)
+            {
+				var column:AdvancedDataGridColumn = displayableColumns[i] as AdvancedDataGridColumn;
+                if (column.colNum >= colIndex)
+                {
+                    colIndex = i;
+                    break;
+                }
+            }
+            if (i == displayableColumns.length)
+                colIndex = 0;
+        }
+
+        // trace("commitEditedItemPosition ", coord.rowIndex, selectedIndex);
+
+        var needChangeEvent:Boolean = false;
+        if (selectedIndex != coord.rowIndex)
+        {
+            commitSelectedIndex(coord.rowIndex);
+            needChangeEvent = true;
+        }
+
+		var listItems:Object = { length: ((view as AdvancedDataGridView).columnLists[0].view as IItemRendererOwnerView).numItemRenderers };
+        var actualLockedRows:int = lockedRowCount;
+        var lastRowIndex:int = verticalScrollPosition + listItems.length - 1;
+        var partialRow:int = (getRowInfo(listItems.length - 1).y + getRowInfo(listItems.length - 1).height > listContent.height) ? 1 : 0;
+
+        // actual row/column is the offset into listItems
+        if (rowIndex > actualLockedRows)
+        {
+            // not a locked editable row make sure it is on screen
+            if (rowIndex < verticalScrollPosition + actualLockedRows)
+                verticalScrollPosition = rowIndex - actualLockedRows;
+            else
+            {
+                // variable row heights means that we can't know how far to scroll sometimes so we loop
+                // until we get it right
+                while (rowIndex > lastRowIndex ||
+                       // we're the last row, and we're partially visible, but we're not
+                       // the top scrollable row already
+                       (rowIndex == lastRowIndex && rowIndex > verticalScrollPosition + actualLockedRows &&
+                        partialRow))
+                {
+                    if (verticalScrollPosition == maxVerticalScrollPosition)
+                        break;
+                    verticalScrollPosition = Math.min(verticalScrollPosition + (rowIndex > lastRowIndex ? rowIndex - lastRowIndex : partialRow), maxVerticalScrollPosition);
+                    lastRowIndex = verticalScrollPosition + listItems.length - 1;
+                    partialRow = (getRowInfo(listItems.length - 1).y + getRowInfo(listItems.length - 1).height > listContent.height) ? 1 : 0;
+                }
+            }
+            actualRowIndex = rowIndex - verticalScrollPosition;
+        }
+        else
+        {
+            if (rowIndex == actualLockedRows)
+                verticalScrollPosition = 0;
+
+            actualRowIndex = rowIndex;
+        }
+
+		var visibleColumns:Array = (view as AdvancedDataGridView).visibleColumns;
+		
+        var len:uint = /*(headerItems && headerItems[0]) ? headerItems[0].length :*/ visibleColumns.length;
+        var lastColIndex:int = horizontalScrollPosition + len - 1;
+
+        // TODO with locked columns this won't give correct results?
+        var headerInfo:AdvancedDataGridHeaderInfo = getHeaderInfo(visibleColumns[visibleColumns.length-1]);
+        var partialCol:int = (headerInfo.headerItem.x + headerInfo.column.width
+                                > listContent.width) ? 1 : 0;
+
+        if(colIndex > lockedColumnCount)
+        {
+            if (colIndex < horizontalScrollPosition + lockedColumnCount)
+            {
+                horizontalScrollPosition = colIndex - lockedColumnCount;
+            }
+            else
+            {
+                while (colIndex > lastColIndex ||
+                       (colIndex == lastColIndex && colIndex > horizontalScrollPosition + lockedColumnCount &&
+                        partialCol))
+                {
+                    if (horizontalScrollPosition == maxHorizontalScrollPosition)
+                        break;
+                    horizontalScrollPosition = Math.min(horizontalScrollPosition + (colIndex > lastColIndex ? colIndex - lastColIndex : partialCol), maxHorizontalScrollPosition);
+
+                    lastColIndex = horizontalScrollPosition + visibleColumns.length - 1;
+                    headerInfo = getHeaderInfo(visibleColumns[visibleColumns.length - 1]);
+                    partialCol = (headerInfo.headerItem && headerInfo.headerItem.x + headerInfo.headerItem.width > listContent.width) ? 1 : 0;
+                }
+            }
+            // Need to get the index in visibleColumns
+            actualColIndex = absoluteToVisibleColumnIndex(displayToAbsoluteColumnIndex(colIndex));
+        }
+        else
+        {
+            if (colIndex == lockedColumnCount)
+                horizontalScrollPosition = 0;
+
+            actualColIndex = colIndex;
+        }
+
+        // get the actual references for the column, row, and item
+        var item:IListItemRenderer;
+        if (columns[actualColIndex] && getListItem(actualRowIndex, actualColIndex))
+            item = getListItem(actualRowIndex,actualColIndex);
+        if (!item)
+        {
+            // assume that editing was cancelled
+            commitEditedItemPosition(null);
+            return;
+        }
+
+        if (needChangeEvent)
+        {
+            var evt:ListEvent = new ListEvent(ListEvent.CHANGE);
+            evt.columnIndex = coord.columnIndex;
+            evt.rowIndex = coord.rowIndex;
+            evt.itemRenderer = item;
+            dispatchEvent(evt);
+        }
+
+        var event:AdvancedDataGridEvent =
+            new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_EDIT_BEGIN, false, true);
+        // ITEM_EDIT events are cancelable
+        event.columnIndex = (visibleColumns[colIndex] as AdvancedDataGridColumn).colNum;
+        event.rowIndex = _editedItemPosition.rowIndex;
+        event.itemRenderer = item;
+        dispatchEvent(event);
+
+        lastEditedItemPosition = _editedItemPosition;
+
+        // user may be trying to change the focused item renderer
+        if (bEditedItemPositionChanged)
+        {
+            bEditedItemPositionChanged = false;
+            commitEditedItemPosition(_proposedEditedItemPosition);
+            _proposedEditedItemPosition = undefined;
+
+        }
+
+        if (!itemEditorInstance)
+        {
+            // assume that editing was cancelled
+            commitEditedItemPosition(null);
+        }
+    }
+
+    /**
+     *  Creates the item editor for the item renderer at the
+     *  <code>editedItemPosition</code> using the editor
+     *  specified by the <code>itemEditor</code> property.
+     *
+     *  <p>This method sets the editor instance as the 
+     *  <code>itemEditorInstance</code> property.</p>
+     *
+     *  <p>You may only call this method from within the event listener
+     *  for the <code>itemEditBegin</code> event. 
+     *  To create an editor at other times, set the
+     *  <code>editedItemPosition</code> property to generate 
+     *  the <code>itemEditBegin</code> event.</p>
+     *
+     *  @param colIndex The column index in the data provider of the item to be edited.
+     *
+     *  @param rowIndex The row index in the data provider of the item to be edited.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function createItemEditor(colIndex:int, rowIndex:int):void
+    {
+		var visibleColumns:Array = (view as AdvancedDataGridView).visibleColumns;
+        var col:AdvancedDataGridColumn = visibleColumns[colIndex];
+        // TODO - Check for the item renderer instead of the column number
+        if (_rootModel is IHierarchicalData && colIndex == treeColumnIndex)
+        {
+            if (col.editorXOffset == 0 || col.editorWidthOffset == 0)
+            {
+                col.editorXOffset = 12;
+                col.editorWidthOffset = -12;
+            }
+        }
+
+		var xx:Number = 0;
+        if (visibleColumns.length != columns.length)
+        {
+            var n:int = visibleColumns.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                if ((visibleColumns[i] as AdvancedDataGridColumn).colNum >= colIndex)
+                {
+                    colIndex = i;
+                    break;
+                }
+				xx += visibleColumns[i].width;
+            }
+            if (i == visibleColumns.length)
+			{
+                colIndex = 0;
+				xx = 0;
+			}
+        }
+
+        if (rowIndex > lockedRowCount)
+            rowIndex -= verticalScrollPosition;
+
+        if (colIndex > lockedColumnCount)
+            colIndex -= horizontalScrollPosition;
+
+        var item:IListItemRenderer;
+        item = getListItem(actualRowIndex,actualColIndex);
+        
+        var rowData:ListRowInfo = getRowInfo(actualRowIndex);
+
+        // Before the editor opens up, change the label to the original data
+        // and not the label which is (possibly) formatted data.
+        // See AdvancedDataGridColumn.itemToLabel() regarding formatter.
+        //if (item is IDropInListItemRenderer)
+        //    IDropInListItemRenderer(item).listData.label = col.itemToLabel(item.data, false);
+
+        if (!col.rendererIsEditor)
+        {
+            var dx:Number = 0;
+            var dy:Number = -2;
+            var dw:Number = 0;
+            var dh:Number = 4;
+            // if this isn't implemented, use an input control as editor
+            if (!itemEditorInstance)
+            {
+                var itemEditor:IFactory = col.itemEditor;
+                if (itemEditor == AdvancedDataGridColumn.defaultItemEditorFactory)
+                {
+                    // if it is the default factory, see if someone
+                    // overrode it with this style
+                    var c:Class = getStyle("defaultDataGridItemEditor");
+                    if (c)
+                    {
+						/*
+                        var fontName:String =
+                            StringUtil.trimArrayElements(col.getStyle("fontFamily"), ",");
+                        var fontWeight:String = col.getStyle("fontWeight");
+                        var fontStyle:String = col.getStyle("fontStyle");
+                        var bold:Boolean = (fontWeight == "bold");
+                        var italic:Boolean = (fontStyle == "italic");
+                        
+                        var flexModuleFactory:IFlexModuleFactory =
+                            getFontContext(fontName, bold, italic);
+                        */
+                        itemEditor = col.itemEditor = new ClassFactory(
+                            c /*, flexModuleFactory*/);
+                    }
+                }
+                
+                dx = col.editorXOffset;
+                dy = col.editorYOffset;
+                dw = col.editorWidthOffset;
+                dh = col.editorHeightOffset;
+                itemEditorInstance = itemEditor.newInstance();
+                itemEditorInstance.owner = this;
+                itemEditorInstance.styleName = col;
+                addRendererToContentArea(itemEditorInstance, col);
+            }
+            //itemEditorInstance.parent.setElementIndex(itemEditorInstance as IUIBase, 
+            //                                        itemEditorInstance.parent.numElements - 1);
+            // give it the right size, look and placement
+            itemEditorInstance.visible = true;
+
+            var itemXPos:Number = xx + dx;
+            
+            itemEditorInstance.move(itemXPos, rowData.y + dy);
+
+            // Original code:
+            /*
+              itemEditorInstance.setActualSize(Math.min(col.width + dw, 
+              listContent.width - listContent.x - itemXPos),
+              Math.min(rowData.height + dh, listContent.height - listContent.y - itemEditorInstance.y));
+              DisplayObject(itemEditorInstance).addEventListener(FocusEvent.FOCUS_OUT, itemEditorFocusOutHandler);
+              listContent.width - listContent.x - itemXPos),
+              Math.min(rowData.height + dh, listContent.height - listContent.y - itemEditorInstance.y));
+            */
+
+            // To support column spanning:
+            itemEditorInstance.setActualSize(editedItemRenderer.width + dw,
+                                             Math.min(rowData.height + dh,
+                                                      listContent.height - listContent.y - itemEditorInstance.y));
+
+            IEventDispatcher(itemEditorInstance).addEventListener(FocusEvent.FOCUS_OUT, itemEditorFocusOutHandler);
+            // Commenting to show the item (with disclosure icon) behind the item editor
+            //item.visible = false;
+
+            //layoutItemEditor();
+        }
+        else
+        {
+            // if the item renderer is also the editor, we'll use it
+            itemEditorInstance = item;
+        }
+
+        // listen for keyStrokes on the itemEditorInstance (which lets the grid supervise for ESC/ENTER)
+        IEventDispatcher(itemEditorInstance).addEventListener(KeyboardEvent.KEY_DOWN, editorKeyDownHandler);
+        // we disappear on any mouse down outside the editor
+        systemManager.getSandboxRoot().
+            addEventListener(MouseEvent.MOUSE_DOWN, editorMouseDownHandler, true, 0, true);
+        //systemManager.getSandboxRoot().
+        //    addEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, editorMouseDownHandler, false, 0, true);
+        // we disappear if stage is resized
+        //systemManager.addEventListener(Event.RESIZE, editorStageResizeHandler, true, 0, true);
+    }
+
+    /**
+     *  @private
+     *  Determines the next item renderer to navigate to using the Tab key.
+     *  If the item renderer to be focused falls out of range (the end or beginning
+     *  of the grid) then move focus outside the grid.
+     */
+    private function findNextItemRenderer(shiftKey:Boolean):Boolean
+    {
+        if (!lastEditedItemPosition)
+            return false;
+
+        if (!editable.length)
+        {
+            loseFocus();
+            return false;
+        }
+
+        // some other thing like a collection change has changed the
+        // position, so bail and wait for commit to reset the editor.
+        if (_proposedEditedItemPosition !== undefined)
+            return true;
+
+        _editedItemPosition = lastEditedItemPosition;
+
+        var index:int = _editedItemPosition.rowIndex;
+        var colIndex:int = _editedItemPosition.columnIndex;
+
+        var found:Boolean = false;
+        var incr:int = shiftKey ? -1 : 1;
+        var maxIndex:int = collection.length - 1;
+        var itemRenderer:IListItemRenderer;
+
+        // cycle till we find something worth focusing, or the end of the grid
+        while (!found)
+        {
+            // go to next column
+            colIndex += incr;
+            if (colIndex >= columns.length || colIndex < 0)
+            {
+                // if we fall off the end of the columns, wrap around
+                colIndex = (colIndex < 0) ? columns.length - 1 : 0;
+                // and increment/decrement the row index
+                index += incr;
+                if (index > maxIndex || index < 0)
+                {
+					if (endEdit(AdvancedDataGridEventReason.NEW_ROW))
+					{
+						// if we've fallen off the rows, we need to leave the grid. get rid of the editor
+						setEditedItemPosition(null);
+						
+						// set focus back to the grid so default handler will move it to the next component
+						deferFocus();
+						return false;
+					}
+                    return true;
+                }
+            }
+
+            // We have to skip cells where the item renderer is invisible so
+            // that we handle column spanning i.e. we should not open editors
+            // where column spanning is applied and the column should not be
+            // considered.
+            // TODO here we are checking for
+            // existence even before scrolling.
+            var visibleCoords:Object = absoluteToVisibleIndices(index, colIndex);
+            var visibleRowIndex:int = visibleCoords.rowIndex;
+            var visibleColIndex:int = visibleCoords.columnIndex;
+
+            if (visibleColIndex > -1) // column.visible=false
+            {
+                // Assumption that item renderer is never invisible in the
+                // first column! i.e. When in last row, skip to the new last row's
+                // first column directly without checking the item renderer's
+                // visibility.
+                if (visibleRowIndex == (view as AdvancedDataGridView).columnLists.length) // last row last column -> tab
+                    visibleRowIndex -= 1;
+                else if (visibleRowIndex == -1) // first row first column -> shift-tab
+                    visibleRowIndex = 0;
+                itemRenderer = null;
+                if (columns[visibleRowIndex] && getListItem(visibleRowIndex,visibleColIndex))
+                    itemRenderer = getListItem(visibleRowIndex,visibleColIndex);
+                if (itemRenderer && !itemRenderer.visible) // handle column-spanning
+                    continue;
+            }
+
+            var newData:Object = rowNumberToData(index);
+            if (newData == null)
+                return true;
+			/*
+            if (!isDataEditable(newData))
+                continue;
+			*/
+			
+            // if we find a visible and editable column, move to it
+            // if the item is visible, then only create item editor for it
+            if (columns[colIndex].editable && columns[colIndex].visible)
+            {
+                found = true;
+                // kill the old edit session
+                var reason:String;
+                reason = index == _editedItemPosition.rowIndex ?
+                    AdvancedDataGridEventReason.NEW_COLUMN :
+                    AdvancedDataGridEventReason.NEW_ROW;
+                if (!itemEditorInstance || endEdit(reason))
+                {
+                    // send event to create the new one
+                    var advancedDataGridEvent:AdvancedDataGridEvent =
+                        new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_EDIT_BEGINNING, false, true);
+                    // ITEM_EDIT events are cancelable
+                    advancedDataGridEvent.columnIndex = colIndex;
+                    advancedDataGridEvent.dataField = columns[colIndex].dataField;
+                    advancedDataGridEvent.rowIndex = index;
+                    dispatchEvent(advancedDataGridEvent);
+                }
+            }
+        }
+        return found;
+    }
+
+    private function loseFocus():void
+    {
+        // if we've fallen off the rows, we need to leave the grid. get rid of the editor
+        setEditedItemPosition(null);
+        // set focus back to the grid so default handler will move it to the next component
+        losingFocus = true;
+        setFocus();
+    }
+
+    /**
+     *  This method closes an item editor currently open on an item renderer. 
+     *  You typically call this method only from within the event listener 
+     *  for the <code>itemEditEnd</code> event, after
+     *  you have already called the <code>preventDefault()</code> method to 
+     *  prevent the default event listener from executing.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
     public function destroyItemEditor():void
-	{
+    {
+        // trace("destroyItemEditor");
+        if (itemEditorInstance)
+        {
+            IEventDispatcher(itemEditorInstance).removeEventListener(KeyboardEvent.KEY_DOWN, editorKeyDownHandler);
+            systemManager.getSandboxRoot().
+                removeEventListener(MouseEvent.MOUSE_DOWN, editorMouseDownHandler, true);
+            //systemManager.getSandboxRoot().
+            //    removeEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, editorMouseDownHandler);
+            //systemManager.removeEventListener(Event.RESIZE, editorStageResizeHandler, true);
+
+            var event:AdvancedDataGridEvent =
+                new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_FOCUS_OUT);
+            event.columnIndex = _editedItemPosition.columnIndex;
+            event.rowIndex = _editedItemPosition.rowIndex;
+            event.itemRenderer = itemEditorInstance;
+            dispatchEvent(event);
+
+            if (! columns[_editedItemPosition.columnIndex].rendererIsEditor)
+            {
+                // FocusManager.removeHandler() does not find
+                // itemEditors in focusableObjects[] array
+                // and hence does not remove the focusRectangle
+                //if (itemEditorInstance && itemEditorInstance is UIComponent)
+                //    UIComponent(itemEditorInstance).drawFocus(false);
+
+				// setfocus back to us so something on stage has focus
+				deferFocus();
+				
+				// must call removeChild() so FocusManager.lastFocus becomes null
+				if (itemEditorInstance)
+               		itemEditorInstance.parent.removeElement(itemEditorInstance as IChild);
+
+                // we are not setting the item renderer's visibility to false while creating an editor,
+                // then why set its visibility to true
+                // setting it visible will display the invisible item renderer in case of Custom Rows
+                //editedItemRenderer.visible = true;
+            }
+            itemEditorInstance = null;
+            _editedItemPosition = null;
+        }
+    }
+
+    /**
+     *  @private
+     *  When the user finished editing an item, this method is called.
+     *  It dispatches the AdvancedDataGridEvent.ITEM_EDIT_END event to start the process
+     *  of copying the edited data from
+     *  the itemEditorInstance to the data provider and hiding the itemEditorInstance.
+     *  returns true if nobody called preventDefault.
+     */
+    protected function endEdit(reason:String):Boolean
+    {
+        // this happens if the renderer is removed asynchronously ususally with FDS
+        if (!editedItemRenderer)
+            return true;
+
+        inEndEdit = true;
+
+        var advancedDataGridEvent:AdvancedDataGridEvent =
+            new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_EDIT_END, false, true);
+        // ITEM_EDIT events are cancelable
+        advancedDataGridEvent.columnIndex = editedItemPosition.columnIndex;
+        advancedDataGridEvent.dataField = columns[editedItemPosition.columnIndex].dataField;
+        advancedDataGridEvent.rowIndex = editedItemPosition.rowIndex;
+        advancedDataGridEvent.itemRenderer = editedItemRenderer;
+        advancedDataGridEvent.reason = reason;
+        dispatchEvent(advancedDataGridEvent);
+        // set a flag to not open another edit session if the item editor is still up
+        // this means somebody wants the old edit session to stay.
+        dontEdit = itemEditorInstance != null;
+        // trace("dontEdit", dontEdit);
+
+        if (!dontEdit && reason == AdvancedDataGridEventReason.CANCELLED)
+        {
+            losingFocus = true;
+            setFocus();
+        }
+
+        inEndEdit = false;
+
+        return !(advancedDataGridEvent.isDefaultPrevented())
+    }
 	
+	/**
+	 *  @private
+	 *  Sets focus back to the grid so default handler will move it to the 
+	 *  next component.
+	 */ 
+	private function deferFocus():void
+	{
+		losingFocus = true;
+		setFocus();
+		losingFocus = false;
 	}
 	
+	    /**
+     *  @private
+     *  find the next item renderer down from the currently edited item renderer, and focus it.
+     */
+    private function findNextEnterItemRenderer(event:KeyboardEvent):void
+    {
+        // some other thing like a collection change has changed the
+        // position, so bail and wait for commit to reset the editor.
+        if (_proposedEditedItemPosition !== undefined)
+            return;
+
+        _editedItemPosition = lastEditedItemPosition;
+
+        var rowIndex:int = _editedItemPosition.rowIndex;
+        var columnIndex:int = _editedItemPosition.columnIndex;
+        var newIndex:int = rowIndex;
+
+        do
+        {
+            // modify direction with SHIFT (up or down)
+            newIndex += (event.shiftKey ? -1 : 1);
+            // only move if we're within range
+            if (newIndex < collection.length && newIndex >= 0)
+            {
+                rowIndex = newIndex;
+            }
+            else
+            {
+                setEditedItemPosition(null);
+                return;
+            }
+
+            var newData:Object = rowNumberToData(newIndex);
+            if (newData == null)
+            {
+                setEditedItemPosition(null);
+                return;
+            }
+
+            //if (isDataEditable(newData))
+                break;
+
+        } while (true);
+
+        // send event to create the new one
+        var advancedDataGridEvent:AdvancedDataGridEvent =
+            new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_EDIT_BEGINNING, false, true);
+        // ITEM_EDIT events are cancelable
+        advancedDataGridEvent.columnIndex = columnIndex;
+        advancedDataGridEvent.dataField = columns[columnIndex].dataField;
+        advancedDataGridEvent.rowIndex = rowIndex;
+        dispatchEvent(advancedDataGridEvent);
+    }
+
+    /**
+     *  @private
+     */
+    private function editorMouseDownHandler(event:Event):void
+    {
+        if(event is MouseEvent && owns(event.target as IUIBase))
+            return;
+            
+        endEdit(AdvancedDataGridEventReason.OTHER);
+    }
+
+    /**
+     *  @private
+     */
+    protected function editorKeyDownHandler(event:KeyboardEvent):void
+    {
+        // ESC just kills the editor, no new data
+        if (event.keyCode == Keyboard.ESCAPE)
+        {
+            endEdit(AdvancedDataGridEventReason.CANCELLED);
+        }
+        else if (event.ctrlKey && event.charCode == 46)
+        {   // Check for Ctrl-.
+            endEdit(AdvancedDataGridEventReason.CANCELLED);
+        }
+        else if (event.charCode == Keyboard.ENTER && event.keyCode != 229)
+        {
+            // multiline editors can take the enter key.
+            if (columns[_editedItemPosition.columnIndex].editorUsesEnterKey)
+                return;
+
+            // Enter edits the item, moves down a row
+            // The 229 keyCode is for IME compatability. When entering an IME expression,
+            // the enter key is down, but the keyCode is 229 instead of the enter key code.
+            // Thanks to Yukari for this little trick...
+            if (endEdit(AdvancedDataGridEventReason.NEW_ROW) && !dontEdit)
+                findNextEnterItemRenderer(event);
+        }
+    }
+
+    /**
+     *  @private
+    private function editorStageResizeHandler(event:Event):void
+    {
+        if (event.target is DisplayObjectContainer &&
+            DisplayObjectContainer(event.target).contains(this))
+            endEdit(AdvancedDataGridEventReason.OTHER);
+    }
+     */
+
+    /**
+     *  @private
+     *  Hides the itemEditorInstance.
+     */
+    private function itemEditorFocusOutHandler(event:FocusEvent):void
+    {
+        // trace("itemEditorFocusOut " + event.relatedObject);
+        if (event.relatedObject && (itemEditorInstance is IUIComponent) && 
+			(itemEditorInstance as IUIComponent).owns(event.relatedObject as IUIBase))
+            return;
+
+		if (inEndEdit)
+			return;
+			
+		COMPILE::SWF
+		{
+        // ignore textfields losing focus on mousedowns
+        if (!event.relatedObject)
+            return;
+		}
+
+        // trace("endEdit from itemEditorFocusOut");
+        if (itemEditorInstance)
+            endEdit(AdvancedDataGridEventReason.OTHER);
+    }
+
+    /**
+     *  @private
+     */
+    private function itemEditorItemEditBeginningHandler(event:AdvancedDataGridEvent):void
+    {
+        // trace("itemEditorItemEditBeginningHandler");
+        if (!event.isDefaultPrevented())
+            setEditedItemPosition({columnIndex: event.columnIndex, rowIndex: event.rowIndex});
+        else if (!itemEditorInstance)
+        {
+            _editedItemPosition = null;
+            setFocus();
+        }
+    }
+
+    /**
+     *  @private
+     *  focus an item renderer in the grid - harder than it looks
+     */
+    private function itemEditorItemEditBeginHandler(event:AdvancedDataGridEvent):void
+    {
+        // weak reference for deactivation
+        //if (root)
+        //    systemManager.addEventListener(Event.DEACTIVATE, deactivateHandler, false, 0, true);
+
+        // if not prevented and if data is not null (might be from dataservices)
+        if (!event.isDefaultPrevented() && getListItem(actualRowIndex,actualColIndex).data != null)
+        {
+            createItemEditor(event.columnIndex, event.rowIndex);
+
+            if (editedItemRenderer is IDropInListItemRenderer && itemEditorInstance is IDropInListItemRenderer)
+                IDropInListItemRenderer(itemEditorInstance).listData = IDropInListItemRenderer(editedItemRenderer).listData;
+            // if rendererIsEditor, don't apply the data as the data may have already changed in some way.
+            // This can happen if clicking on a checkbox rendererIsEditor as the checkbox will try to change
+            // its value as we try to stuff in an old value here.
+            if (!columns[event.columnIndex].rendererIsEditor)
+                itemEditorInstance.data = editedItemRenderer.data;
+
+			/*
+            if (itemEditorInstance is IInvalidating)
+                IInvalidating(itemEditorInstance).validateNow();
+
+            if (itemEditorInstance is IIMESupport)
+                IIMESupport(itemEditorInstance).imeMode =
+                    (columns[event.columnIndex].imeMode == null) ? _imeMode : columns[event.columnIndex].imeMode;
+			*/
+			
+            var fm:IFocusManager = focusManager;
+            // trace("setting focus to item editor");
+            if (itemEditorInstance is IFocusManagerComponent)
+                fm.setFocus(IFocusManagerComponent(itemEditorInstance));
+            //fm.defaultButtonEnabled = false;
+
+            var itemFocusInEvent:AdvancedDataGridEvent =
+                new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_FOCUS_IN);
+            itemFocusInEvent.columnIndex = _editedItemPosition.columnIndex;
+            itemFocusInEvent.rowIndex = _editedItemPosition.rowIndex;
+            itemFocusInEvent.itemRenderer = itemEditorInstance;
+            dispatchEvent(itemFocusInEvent);
+        }
+    }
+
+    /**
+     *  @private
+     */
+    private function itemEditorItemEditEndHandler(event:AdvancedDataGridEvent):void
+    {
+        if (!event.isDefaultPrevented())
+        {
+            var bChanged:Boolean = false;
+
+            if (event.reason == AdvancedDataGridEventReason.NEW_COLUMN)
+            {
+                if (!collectionUpdatesDisabled)
+                {
+                    collection.disableAutoUpdate();
+                    collectionUpdatesDisabled = true;
+                }
+            }
+            else
+            {
+                if (collectionUpdatesDisabled)
+                {
+                    collection.enableAutoUpdate();
+                    collectionUpdatesDisabled = false;
+                }
+            }
+
+            if (itemEditorInstance && event.reason != AdvancedDataGridEventReason.CANCELLED)
+            {
+                var newData:Object = itemEditorInstance[columns[event.columnIndex].editorDataField];
+                var property:String = columns[event.columnIndex].dataField;
+                var data:Object = event.itemRenderer.data;
+                var typeInfo:String = "";
+				var props:Array = getProps(data);
+                for each(var variable:VariableDefinition in props)
+                {
+                    if (property == variable.name)
+                    {
+                        typeInfo = variable.type.name;
+                        break;
+                    }
+                }
+
+                if (typeInfo == "String")
+                {
+                    if (!(newData is String))
+                        newData = newData.toString();
+                }
+                else if (typeInfo == "uint")
+                {
+                    if (!(newData is uint))
+                        newData = uint(newData);
+                }
+                else if (typeInfo == "int")
+                {
+                    if (!(newData is int))
+                        newData = int(newData);
+                }
+                else if (typeInfo == "Number")
+                {
+                    if (!(newData is int))
+                        newData = Number(newData);
+                }
+                if (data[property] != newData)
+                {
+                    bChanged = true;
+                    data[property] = newData;
+                }
+                if (bChanged && !(data is IPropertyChangeNotifier))
+                {
+                    collection.itemUpdated(data, property);
+                }
+                //if (event.itemRenderer is IDropInListItemRenderer)
+                //{
+                //    var listData:AdvancedDataGridListData = AdvancedDataGridListData(IDropInListItemRenderer(event.itemRenderer).listData);
+                //    listData.label = columns[event.columnIndex].itemToLabel(data);
+                //    IDropInListItemRenderer(event.itemRenderer).listData = listData;
+                //}
+                event.itemRenderer.data = data;
+            }
+        }
+        else
+        {
+            if (event.reason != AdvancedDataGridEventReason.OTHER)
+            {
+                if (itemEditorInstance && _editedItemPosition)
+                {
+                    // edit session is continued so restore focus and selection
+                    if (selectedIndex != _editedItemPosition.rowIndex)
+                        selectedIndex = _editedItemPosition.rowIndex;
+                    var fm:IFocusManager = focusManager;
+                    // trace("setting focus to itemEditorInstance", selectedIndex);
+                    if (itemEditorInstance is IFocusManagerComponent)
+                        fm.setFocus(IFocusManagerComponent(itemEditorInstance));
+                }
+            }
+        }
+
+        if (event.reason == AdvancedDataGridEventReason.OTHER || !event.isDefaultPrevented())
+        {
+			if (_editedItemPosition
+				&& event.rowIndex == _editedItemPosition.rowIndex
+				&& event.columnIndex == _editedItemPosition.columnIndex)
+            	destroyItemEditor();
+        }
+    }
+
+    /**
+     * @private
+     * Given a row number, get the corresponding data in the dataProvider.
+     */
+    protected function rowNumberToData(rowNumber:int):Object
+    {
+        var iterator:IViewCursor = collection.createCursor();
+        iterator.seek(CursorBookmark.FIRST, rowNumber);
+        if (iterator.afterLast)
+            return null;
+        return iterator.current;
+    }
+
+    /**
+     *  @private
+     */
+    protected function addRendererToContentArea(item:IListItemRenderer, column:AdvancedDataGridColumn):void
+    {
+		var listContent:IParent = (view as AdvancedDataGridView).listArea as IParent;
+		if (item.parent != listContent)
+			listContent.addElement(item as IChild);
+		COMPILE::JS
+		{
+			(item as IUIBase).element.style.position = "absolute";
+		}
+    }
+
+	private function getRowInfo(rowNum:int):ListRowInfo
+	{
+		var data:Object = rowNumberToData(rowNum);
+		var uid:String = UIDUtil.getUID(data);
+		return new ListRowInfo(rowNum * rowHeight, rowHeight, uid, data);
+	}
+	
+	    /**
+     *  Converts an absolute column index to the corresponding index in the
+     *  visible columns. Because users can reorder columns, the 
+     *  absolute column index may be different from the index of the
+     *  visible column.
+     *
+     *  @param columnIndex Absolute index of the column.
+     *
+     *  @return The index of the column as it is currently visible, 
+     *  or -1 if <code>columnIndex</code> is not currently visible.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function absoluteToVisibleColumnIndex(columnIndex:int):int
+    {
+        var optimumColumns:Array = (view as AdvancedDataGridView).visibleColumns;
+        var n:int = optimumColumns.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            if ((optimumColumns[i] as AdvancedDataGridColumn).colNum == columnIndex)
+                return i;
+        }
+        return -1;
+    }
+
+	protected function get listContent():IUIBase
+	{
+		return (view as AdvancedDataGridView).listArea;
+	}
+	
+	/**
+     *  An Array of AdvancedDataGridHeaderInfo instances for all columns
+     *  in the control.
+     *
+     *  @see mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderInfo
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var headerInfos:Array;
+
+	/**
+     *  @private
+     */
+    mx_internal function getHeaderInfo(col:AdvancedDataGridColumn):AdvancedDataGridHeaderInfo
+    {
+		if (!headerInfos)
+			headerInfos = initializeHeaderInfo();
+			
+        return headerInfos[col.colNum];
+    }
+
+    /**
+     *  @private
+	 * 
+	 * Note columns may not have been committed at this point.
+     */
+    protected function initializeHeaderInfo():Array
+    {
+		var header:DataGridButtonBar = (view as AdvancedDataGridView).header as DataGridButtonBar;
+        var result:Array = [];
+        var n:int = columns.length;
+		var headerIndex:int = 0;
+        for(var i:int = 0; i < n; i++)
+        {
+			var info:AdvancedDataGridHeaderInfo = new AdvancedDataGridHeaderInfo(columns[i], null, i, 0);
+			if (columns[i].visible)
+				info.headerItem = (header.view as IItemRendererOwnerView).getItemRendererAt(headerIndex++) as IUIBase;
+            result.push(info);
+        }
+        return result;
+    }
+
+    /**
+     *  Convert an absolute row index and column index into the corresponding 
+     *  row index and column index of the item as it is currently displayed by the control.
+     *
+     *  @param rowIndex An absolute row index.
+     *
+     *  @param columnIndex An absolute column index.
+     *
+     *  @return An Object containing two fields, <code>rowIndex</code> and <code>columnIndex</code>, 
+     *  that contain the row index and column index of the item as it is currently displayed by the control.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function absoluteToVisibleIndices(rowIndex:int, columnIndex:int):Object
+    {
+        var visibleRowIndex:int = -1;
+        var visibleColIndex:int = -1;
+
+		var listItems:Object = { length: ((view as AdvancedDataGridView).columnLists[0].view as IItemRendererOwnerView).numItemRenderers };
+        // Check row display
+        if ( (rowIndex < lockedRowCount || rowIndex >= verticalScrollPosition)
+                && rowIndex <= verticalScrollPosition
+                    + (listItems.length ? listItems.length - 1 : 0))
+        {
+            if (rowIndex >= lockedRowCount && rowIndex >= verticalScrollPosition)
+                visibleRowIndex = rowIndex - verticalScrollPosition;
+            else
+                visibleRowIndex = rowIndex;
+        }
+
+        // Check column display (optimization: calculate only if row is valid)
+        if (visibleRowIndex > -1)
+        {
+            var columnsOnScreen:Array = (view as AdvancedDataGridView).visibleColumns;
+            if (columnsOnScreen && columnsOnScreen.length > 0)
+            {
+                if (columnIndex >= (columnsOnScreen[0] as AdvancedDataGridColumn).colNum
+                        && columnIndex <= (columnsOnScreen[columnsOnScreen.length-1] as AdvancedDataGridColumn).colNum)
+                {
+                    if (columnIndex >= lockedColumnCount)
+                        visibleColIndex = absoluteToVisibleColumnIndex(columnIndex);
+                    else
+                        visibleColIndex = columnIndex;
+                }
+            }
+        }
+
+        return  {
+                    rowIndex : visibleRowIndex,
+                    columnIndex : visibleColIndex
+                };
+    }
+
+    /**
+     *  Converts the current display column index of a column to 
+     *  its corresponding absolute index. 
+     *  Because users can reorder columns, the 
+     *  absolute column index may be different from the index of the
+     *  displayed column.
+     *
+     *  @param columnIndex Index of the column as it is currently displayed by the control.
+     *
+     *  @return The absolute index of the column.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function displayToAbsoluteColumnIndex(columnIndex:int):int
+    {
+		var displayableColumns:Array = (view as AdvancedDataGridView).visibleColumns;
+		var noColumns:int = displayableColumns.length;
+		
+		if (columnIndex >= 0 && columnIndex < noColumns) {
+			return (displayableColumns[columnIndex] as AdvancedDataGridColumn).colNum;
+		}
+		else {
+			return -1;
+		}
+    }
+
+	private function getProps(data:Object):Array
+	{
+		var typeDef:TypeDefinition = describeType(data);
+		if (typeDef)
+			return typeDef.variables;
+		
+		var owner:TypeDefinition = TypeDefinition.getNativeDefinition("Object");
+		var props:Array = [];
+		for (var p:String in data)
+		{
+			var v:Object = data[p];
+			var propType:TypeDefinition = describeType(v);
+			if (!propType)
+			{
+				var s:String = typeof v;
+				var typeQName:String = null;
+				if (s === "string")
+					typeQName = "String";
+				else if (s === "number")
+					typeQName = "Number";
+				else if (s === "boolean")
+					typeQName = "Boolean";				
+				if (typeQName)
+				{
+					var vd:VariableDefinition = new VariableDefinition(p, false, owner, {type: typeQName});
+					props.push(vd);
+				}
+			}
+		}
+		return props;
+	}
+
 }
 
 }

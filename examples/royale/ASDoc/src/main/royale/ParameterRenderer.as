@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+import  org.apache.royale.core.IOwnerViewItemRenderer;
+import  org.apache.royale.core.IItemRendererOwnerView;
 import  org.apache.royale.html.supportClasses.StringItemRenderer;
 import  org.apache.royale.html.DataContainer;
 
@@ -29,7 +31,7 @@ import  org.apache.royale.html.DataContainer;
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ParameterRenderer extends StringItemRenderer
+	public class ParameterRenderer extends StringItemRenderer implements IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -47,9 +49,9 @@ import  org.apache.royale.html.DataContainer;
 		override public function set text(value:String):void
 		{
 			var last:Boolean = false;
-			if (itemRendererParent)
+			if (itemRendererOwnerView)
 			{
-				var n:int = (parent as DataContainer).dataProvider.length;
+				var n:int = (itemRendererOwnerView.host as DataContainer).dataProvider.length;
 				last = n == index + 1; 
 			}			
 			var html:String = "<span class='paramName'>" + data.name + ":</span>";
@@ -68,6 +70,27 @@ import  org.apache.royale.html.DataContainer;
                 this.element.innerHTML = html;
             }
 		}
+		
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The text of the renderer
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
+        
 
 	}
 }

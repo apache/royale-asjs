@@ -19,16 +19,13 @@
 
 package mx.utils
 {
-/*
-import flash.utils.ByteArray;
-import flash.utils.Dictionary;
-import flash.utils.getQualifiedClassName;
-import flash.xml.XMLNode;
-*/
+
 COMPILE::SWF
 {
-import flash.utils.Dictionary;
-import flash.utils.describeType;
+    import flash.utils.Dictionary;
+    import flash.utils.describeType;
+    import flash.utils.ByteArray;
+    import flash.xml.XMLNode;
 }
 COMPILE::JS
 {
@@ -36,9 +33,25 @@ COMPILE::JS
     import org.apache.royale.reflection.TypeDefinition;
     import org.apache.royale.reflection.AccessorDefinition;
     import org.apache.royale.reflection.VariableDefinition;
+    import org.apache.royale.reflection.MetaDataDefinition;
+    import org.apache.royale.reflection.MetaDataArgDefinition;
+    import org.apache.royale.reflection.MemberDefinitionBase;
+
+    import org.apache.royale.reflection.getAliasByClass;
+    import org.apache.royale.reflection.getDefinitionByName;
+    import org.apache.royale.reflection.getDynamicFields;
+    
+    import org.apache.royale.reflection.utils.getMembers;
+    import org.apache.royale.reflection.utils.MemberTypes;
+    
+    import org.apache.royale.net.remoting.amf.AMFBinaryData;
+    import org.apache.royale.utils.BinaryData;
+    import goog.DEBUG;
 }
 import mx.collections.IList;
 import org.apache.royale.reflection.getQualifiedClassName;
+import org.apache.royale.reflection.isDynamicObject;
+import org.apache.royale.reflection.getDynamicFields;
 
 /**
  *  The ObjectUtil class is an all-static class with methods for
@@ -51,6 +64,9 @@ import org.apache.royale.reflection.getQualifiedClassName;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ *
+ *  @royalesuppressexport
+ *  JS PAYG : non-reflectable utility class, unused methods will be subject to deadcode elimination
  */
 public class ObjectUtil
 {
@@ -110,9 +126,12 @@ public class ObjectUtil
      */
     public static function compare(a:Object, b:Object, depth:int = -1):int
     {
-		trace("compare not implemented");
-		return 0;
-        //return internalCompare(a, b, 0, depth, new Dictionary(true));
+        COMPILE::SWF{
+            return internalCompare(a, b, 0, depth, new Dictionary(true));
+        }
+        COMPILE::JS{
+            return internalCompare(a, b, 0, depth, new WeakMap());
+        }
     }
 
     /**
@@ -137,13 +156,18 @@ public class ObjectUtil
      */
     public static function copy(value:Object):Object
     {
-		trace("copy not implemented");
-		return null;
-//        var buffer:ByteArray = new ByteArray();
-//        buffer.writeObject(value);
-//        buffer.position = 0;
-//        var result:Object = buffer.readObject();
-//        return result;
+        COMPILE::SWF{
+            //could use AMFBinaryData here as well, but using direct native ByteArray instead:
+            var buffer:flash.utils.ByteArray = new flash.utils.ByteArray();
+        }
+        COMPILE::JS{
+            var buffer:AMFBinaryData = new AMFBinaryData();
+        }
+        buffer.writeObject(value);
+        buffer.position = 0;
+        var result:Object = buffer.readObject();
+        
+        return result;
     }
 
     /**
@@ -170,11 +194,9 @@ public class ObjectUtil
      */
     public static function clone(value:Object):Object
     {
-		trace("clone not implemented");
-		return null;
-//        var result:Object = copy(value);
-//        cloneInternal(result, value);
-//        return result;
+        var result:Object = copy(value);
+        cloneInternal(result, value);
+        return result;
     }
 
     /**
@@ -183,18 +205,18 @@ public class ObjectUtil
      */
     private static function cloneInternal(result:Object, value:Object):void
     {
-		trace("cloneInternal not implemented");
-//        if (value && value.hasOwnProperty("uid"))
-//            result.uid = value.uid;
-//
-//        var classInfo:Object = getClassInfo(value);
-//        var v:Object;
-//        for each (var p:* in classInfo.properties)
-//        {
-//            v = value[p];
-//            if (v && v.hasOwnProperty("uid"))
-//                cloneInternal(result[p], v);
-//        }
+        if (value && value.hasOwnProperty("uid"))
+            result.uid = value.uid;
+    
+        var classInfo:Object = getClassInfo(value);
+        var v:Object;
+        for each (var p:* in classInfo.properties)
+        {
+            //@todo the following 'v = value[p]' will only be emulated safely in js by using reflection library:
+            v = value[p];
+            if (v && v.hasOwnProperty("uid"))
+                cloneInternal(result[p], v);
+        }
     }
 
     /**
@@ -559,6 +581,7 @@ public class ObjectUtil
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
      */
     public static function toString(value:Object,
                                     namespaceURIs:Array = null,
@@ -577,6 +600,8 @@ public class ObjectUtil
      *  This method cleans up all of the additional parameters that show up in AsDoc
      *  code hinting tools that developers shouldn't ever see.
      *  @private
+     *
+     *  @royaleignorecoercion WeakMap
      */
     private static function internalToString(value:Object,
                                              indent:int = 0,
@@ -584,15 +609,205 @@ public class ObjectUtil
                                              namespaceURIs:Array = null,
                                              exclude:Array = null):String
     {
-		trace("internalToString not implemented");
-
-        return "(unknown)";
+        var str:String;
+        var objectType:String = value == null ? "null" : typeof(value);
+        COMPILE::SWF{
+            //the following only works for swf (covers XML and XMLList):
+            if (objectType == 'xml') return value.toXMLString();
+        }
+        switch (objectType)
+        {
+            case "boolean":
+            case "number":
+            {
+                return value.toString();
+            }
+        
+            case "string":
+            {
+                return "\"" + value.toString() + "\"";
+            }
+        
+            case "object":
+            {
+                COMPILE::SWF{
+                    if (value is XMLNode)
+                    {
+                        return value.toString();
+                    }
+                }
+                COMPILE::JS{
+                    if (value is XML || value is XMLList){
+                        return value.toXMLString();
+                    }
+                }
+                
+                
+                if (value is Date)
+                {
+                    return value.toString();
+                }
+                else if (value is Class)
+                {
+                    return "(" + getQualifiedClassName(value) + ")";
+                }
+                else
+                {
+                    var classInfo:Object = getClassInfo(value, exclude,
+                            { includeReadOnly: true, uris: namespaceURIs });
+                
+                    var properties:Array = classInfo.properties;
+                
+                    str = "(" + classInfo.name + ")";
+                
+                    // refs help us avoid circular reference infinite recursion.
+                    // Each time an object is encoumtered it is pushed onto the
+                    // refs stack so that we can determine if we have visited
+                    // this object already.
+                    COMPILE::SWF{
+                        if (refs == null)
+                            refs = new Dictionary(true);
+                    }
+                    COMPILE::JS{
+                        if (refs == null)
+                            refs = new WeakMap();
+                    }
+                
+                    // Check to be sure we haven't processed this object before
+                    // Dictionary has some bugs, so we want to work around them as best we can
+                    try
+                    {
+                        var id:Object ;
+                        COMPILE::SWF{id = refs[value];}
+                        COMPILE::JS{id = (refs as WeakMap).get(value);}
+                        
+                        if (id != null)
+                        {
+                            str += "#" + int(id);
+                            return str;
+                        }
+                    }
+                    catch (e:Error)
+                    {
+                        //Since we can't test for infinite loop, we simply return toString.
+                        return String(value);
+                    }
+                
+                    if (value != null)
+                    {
+                        str += "#" + refCount.toString();
+                        COMPILE::SWF{
+                            refs[value] = refCount;
+                        }
+                        COMPILE::JS{
+                            WeakMap(refs).set(value,refCount);
+                        }
+                       
+                        refCount++;
+                    }
+                
+                    var isArray:Boolean = value is Array;
+                    var isDict:Boolean;
+                    COMPILE::SWF{
+                        isDict = value is Dictionary
+                    }
+                    COMPILE::JS{
+                        isDict = value instanceof Map || value instanceof WeakMap;
+                    }
+                    var prop:*;
+                    indent += 2;
+                
+                    // Print all of the variable values.
+                    for (var j:int = 0; j < properties.length; j++)
+                    {
+                        str = newline(str, indent);
+                        prop = properties[j];
+                    
+                        if (isArray)
+                            str += "[";
+                        else if (isDict)
+                            str += "{";
+                    
+                    
+                        if (isDict)
+                        {
+                            // in dictionaries, recurse on the key, because it can be a complex object
+                            COMPILE::SWF{
+                                str += internalToString(prop, indent, refs,
+                                        namespaceURIs, exclude);
+                            }
+                           COMPILE::JS{
+                               str += " Map or WeakMap key (not stringified) ";
+                           }
+                        }
+                        else
+                        {
+                            str += prop.toString();
+                        }
+                    
+                        if (isArray)
+                            str += "] ";
+                        else if (isDict)
+                            str += "} = ";
+                        else
+                            str += " = ";
+                    
+                        try
+                        {
+                            // print the value
+                            var val:Object;
+                            COMPILE::JS{
+                                if (isDict) val = value.get(prop);
+                                    else val = value[prop];
+                            }
+                            COMPILE::SWF{
+                                val = value[prop];
+                            }
+                            str += internalToString(val, indent, refs,
+                                    namespaceURIs, exclude);
+                           
+                        }
+                        catch(e:Error)
+                        {
+                            // value[prop] can cause an RTE
+                            // for certain properties of certain objects.
+                            // For example, accessing the properties
+                            //   actionScriptVersion
+                            //   childAllowsParent
+                            //   frameRate
+                            //   height
+                            //   loader
+                            //   parentAllowsChild
+                            //   sameDomain
+                            //   swfVersion
+                            //   width
+                            // of a Stage's loaderInfo causes
+                            //   Error #2099: The loading object is not
+                            //   sufficiently loaded to provide this information
+                            // In this case, we simply output ? for the value.
+                            
+                            //this is for swf target.
+                            str += "?";
+                        }
+                    }
+                    indent -= 2;
+                    return str;
+                }
+                break;
+            }
+       
+            default:
+            {
+                return "(" + objectType + ")";
+            }
+        }
     }
 
     /**
      *  @private
      *  This method will append a newline and the specified number of spaces
      *  to the given string.
+     *
      */
     private static function newline(str:String, n:int = 0):String
     {
@@ -605,7 +820,10 @@ public class ObjectUtil
         }
         return result;
     }
-
+    /**
+     *  @royaleignorecoercion WeakMap
+     *  @royaleignorecoercion BinaryData
+     */
     private static function internalCompare(a:Object, b:Object,
                                             currentDepth:int, desiredDepth:int,
                                             /*refs:Dictionary*/ refs:Object):int
@@ -618,6 +836,7 @@ public class ObjectUtil
 
         if (b == null)
             return -1;
+//@todo ObjectProxy
 
 //        if (a is ObjectProxy)
 //            a = ObjectProxy(a).object_proxy::object;
@@ -648,7 +867,12 @@ public class ObjectUtil
 
                 case "object":
                     var newDepth:int = desiredDepth > 0 ? desiredDepth -1 : desiredDepth;
-
+                    COMPILE::SWF{
+                        const byteArrayClass:Class = flash.utils.ByteArray;
+                    }
+                    COMPILE::JS{
+                        const byteArrayClass:Class = BinaryData;
+                    }
                     // refs help us avoid circular reference infinite recursion.
                     var aRef:Object = getRef(a,refs);
                     var bRef:Object = getRef(b,refs);
@@ -665,8 +889,13 @@ public class ObjectUtil
                     // if we later find that an object (one of the subobjects) is in fact unequal,
                     // then we will return false and quit out of everything.  These refs are thrown away
                     // so it doesn't matter if it's correct.
-                    refs[bRef] = aRef;
-
+                    COMPILE::SWF{
+                        refs[bRef] = aRef;
+                    }
+                    COMPILE::JS{
+                        (refs as WeakMap).set(bRef, aRef);
+                    }
+                    
                     if (desiredDepth != -1 && (currentDepth > desiredDepth))
                     {
                         // once we try to go beyond the desired depth we should
@@ -684,6 +913,50 @@ public class ObjectUtil
                     else if ((a is IList) && (b is IList))
                     {
                         result = listCompare(a as IList, b as IList, currentDepth, desiredDepth, refs);
+                    }
+                    else if ((a is byteArrayClass) && (b is byteArrayClass))
+                    {
+                        COMPILE::SWF{
+                            result = byteArrayCompare(a as flash.utils.ByteArray, b as flash.utils.ByteArray);
+                        }
+                        COMPILE::JS{
+                            result = byteArrayCompare(a as BinaryData, b as BinaryData);
+                        }
+                        
+                    }
+                    else if (getQualifiedClassName(a) == getQualifiedClassName(b))
+                    {
+                        var aProps:Array = getClassInfo(a).properties;
+                        var bProps:Array;
+    
+                        // if the objects are dynamic they could have different
+                        // # of properties and should be treated on that basis first
+                        var isObjectDynamic:Boolean = isDynamicObject(a);
+    
+                        // if it's dynamic, check to see that they have all the same properties
+                        if (isObjectDynamic)
+                        {
+                            bProps = getClassInfo(b).properties;
+                            result = arrayCompare(aProps, bProps, currentDepth, newDepth, refs);
+                            if (result != 0)
+                                return result;
+                        }
+    
+                        // now that we know we have the same properties, let's compare the values
+                        var propName:QName;
+                        var aProp:Object;
+                        var bProp:Object;
+                        for (var i:int = 0; i < aProps.length; i++)
+                        {
+                            propName = aProps[i];
+                            aProp = a[propName];
+                            bProp = b[propName];
+                            result = internalCompare(aProp, bProp, currentDepth+1, newDepth, refs);
+                            if (result != 0)
+                            {
+                                return result;
+                            }
+                        }
                     }
                     else
                     {
@@ -703,6 +976,16 @@ public class ObjectUtil
 
         return result;
     }
+    
+    
+    COMPILE::JS
+    private static var _debugCheck:Boolean;
+    
+    //by default the 'name' in classInfo objects is of legacy form: package.name::ClassName
+    //it can be changed to: package.name.ClassName
+    //this is assumed to be set at startup before cache becomes populated.
+    //otherwise this should be changed to a setter and empty CLASS_INFO_CACHE on toggle.
+    public static var USE_DOUBLE_COLON:Boolean = true;
 
     /**
      *  Returns information about the class, and properties of the class, for
@@ -745,34 +1028,34 @@ public class ObjectUtil
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
     *  @productversion Flex 3
+    *
     */
+    COMPILE::SWF
     public static function getClassInfo(obj:Object,
                                         excludes:Array = null,
                                         options:Object = null):Object
     {
-        COMPILE::SWF
-        {
+        if (options == null)
+            options = { includeReadOnly: true, uris: null, includeTransient: true };
         var n:int;
         var i:int;
         var p:String;
+        //@todo ObjectProxy
         //if (obj is ObjectProxy)
         //    obj = ObjectProxy(obj).object_proxy::object;
-
-        if (options == null)
-            options = { includeReadOnly: true, uris: null, includeTransient: true };
-
+        
         var result:Object;
         var propertyNames:Array = [];
         var cacheKey:String;
-
+        var numericIndex:Boolean = false;
         var className:String;
         var classAlias:String;
         var properties:XMLList;
         var prop:XML;
         var isDynamic:Boolean = false;
         var metadataInfo:Object;
-
-        if (typeof(obj) == "xml")
+        
+        if (typeof(obj) == "xml") //covers both XML and XMLList
         {
             className = "XML";
             properties = obj.text();
@@ -782,35 +1065,40 @@ public class ObjectUtil
         }
         else
         {
-            var classInfo:XML = /*DescribeTypeCache.*/describeType(obj).typeDescription;
+            var classInfo:XML = /*DescribeTypeCache.*/describeType(obj)/*.typeDescription*/;
+            
             className = classInfo.@name.toString();
+            if (!USE_DOUBLE_COLON) {
+                i = className.lastIndexOf('::');
+                if (i != -1) {
+                    className = className.substr(0,i) + '.'+ className.substr(i+2);
+                }
+            }
             classAlias = classInfo.@alias.toString();
             isDynamic = classInfo.@isDynamic.toString() == "true";
-
+            
             if (options.includeReadOnly)
                 properties = classInfo..accessor.(@access != "writeonly") + classInfo..variable;
             else
                 properties = classInfo..accessor.(@access == "readwrite") + classInfo..variable;
-
-            var numericIndex:Boolean = false;
         }
-
-        // If type is not dynamic, check our cache for class info...
-        if (!isDynamic)
+        
+        // If type is not dynamic, check our cache for class info...(except for XML)
+        if (!isDynamic && className != "XML")
         {
             cacheKey = getCacheKey(obj, excludes, options);
             result = CLASS_INFO_CACHE[cacheKey];
             if (result != null)
                 return result;
         }
-
+        
         result = {};
         result["name"] = className;
         result["alias"] = classAlias;
         result["properties"] = propertyNames;
         result["dynamic"] = isDynamic;
-//        result["metadata"] = metadataInfo = recordMetadata(properties);
-
+        result["metadata"] = metadataInfo = recordMetadata(properties);
+        
         var excludeObject:Object = {};
         if (excludes)
         {
@@ -820,10 +1108,10 @@ public class ObjectUtil
                 excludeObject[excludes[i]] = 1;
             }
         }
-
+        
         var isArray:Boolean = (obj is Array);
-        /*var isDict:Boolean  = (obj is Dictionary);
-
+        var isDict:Boolean  = (obj is Dictionary);
+        
         if (isDict)
         {
             // dictionaries can have multiple keys of the same type,
@@ -834,7 +1122,7 @@ public class ObjectUtil
                 propertyNames.push(key);
             }
         }
-        else*/ if (isDynamic)
+        else if (isDynamic)
         {
             for (p in obj)
             {
@@ -856,8 +1144,8 @@ public class ObjectUtil
             }
             numericIndex = isArray && !isNaN(Number(p));
         }
-
-        if (isArray /*|| isDict */|| className == "Object")
+        
+        if (isArray || isDict || className == "Object")
         {
             // Do nothing since we've already got the dynamic members
         }
@@ -882,13 +1170,13 @@ public class ObjectUtil
                 prop = properties[i];
                 p = prop.@name.toString();
                 uri = prop.@uri.toString();
-
+                
                 if (excludeObject[p] == 1)
                     continue;
-
-                //if (!options.includeTransient && internalHasMetadata(metadataInfo, p, "Transient"))
-                //    continue;
-
+                
+                if (!options.includeTransient && internalHasMetadata(metadataInfo, p, "Transient"))
+                    continue;
+                
                 if (uris != null)
                 {
                     if (uris.length == 1 && uris[0] == "*")
@@ -897,7 +1185,7 @@ public class ObjectUtil
                         try
                         {
                             obj[qName]; // access the property to ensure it is supported
-                            propertyNames.push();
+                            propertyNames.push(qName); //<-- (Greg) this was changed compared to the original flex code, only on a hunch... it 'looked' like a bug based on the comment below
                         }
                         catch(e:Error)
                         {
@@ -940,14 +1228,14 @@ public class ObjectUtil
                 }
             }
         }
-
+        
         propertyNames.sort(Array.CASEINSENSITIVE | (numericIndex ? Array.NUMERIC : 0));
-
+        
         // dictionary keys can be indexed by an object reference
         // there's a possibility that two keys will have the same toString()
         // so we don't want to remove duplicates
-        //if (!isDict)
-        //{
+        if (!isDict)
+        {
             // for Arrays, etc., on the other hand...
             // remove any duplicates, i.e. any items that can't be distingushed by toString()
             for (i = 0; i < propertyNames.length - 1; i++)
@@ -960,8 +1248,8 @@ public class ObjectUtil
                     i--; // back up
                 }
             }
-        //}
-
+        }
+        
         // For normal, non-dynamic classes we cache the class info
         // Don't cache XML as it can be dynamic
         if (!isDynamic && className != "XML")
@@ -969,139 +1257,332 @@ public class ObjectUtil
             cacheKey = getCacheKey(obj, excludes, options);
             CLASS_INFO_CACHE[cacheKey] = result;
         }
-
+        
         return result;
-        }
-        COMPILE::JS
+    }
+    
+    
+    /**
+     *  Returns information about the class, and properties of the class, for
+     *  the specified Object.
+     *
+     *  @param obj The Object to inspect.
+     *
+     *  @param excludes Array of Strings specifying the property names that should be
+     *  excluded from the returned result. For example, you could specify
+     *  <code>["currentTarget", "target"]</code> for an Event object since these properties
+     *  can cause the returned result to become large.
+     *
+     *  @param options An Object containing one or more properties
+     *  that control the information returned by this method.
+     *  The properties include the following:
+     *
+     *  <ul>
+     *    <li><code>includeReadOnly</code>: If <code>false</code>,
+     *      exclude Object properties that are read-only.
+     *      The default value is <code>true</code>.</li>
+     *  <li><code>includeTransient</code>: If <code>false</code>,
+     *      exclude Object properties and variables that have <code>[Transient]</code> metadata.
+     *      The default value is <code>true</code>.</li>
+     *  <li><code>uris</code>: Array of Strings of all namespaces that should be included in the output.
+     *      It does allow for a wildcard of "~~".
+     *      By default, it is null, meaning no namespaces should be included.
+     *      For example, you could specify <code>["mx_internal", "mx_object"]</code>
+     *      or <code>["~~"]</code>.</li>
+     *  </ul>
+     *
+     *  @return An Object containing the following properties:
+     *  <ul>
+     *    <li><code>name</code>: String containing the name of the class.</li>
+     *    <li><code>properties</code>: Sorted list of the property names of the specified object,
+     *    or references to the original key if the specified object is a Dictionary. The individual
+     *    array elements are QName instances, which contain both the local name of the property as well as the URI.</li>
+     *  </ul>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     *
+     *  @royaleignorecoercion Class
+     *  @royaleignorecoercion Map
+     *  @royaleignorecoercion WeakMap
+     */
+    COMPILE::JS
+    public static function getClassInfo(obj:Object,
+                                        excludes:Array = null,
+                                        options:Object = null):ClassInfo
+    {
+        if (options == null)
+            options = { includeReadOnly: true, uris: null, includeTransient: true };
+        
+        var n:int;
+        var i:int;
+        var p:String;
+        
+        //@todo ObjectProxy
+        //if (obj is ObjectProxy)
+        //    obj = ObjectProxy(obj).object_proxy::object;
+        
+        var result:ClassInfo;
+        var properties:Array ;
+        var propertyNames:Array = [];
+        var cacheKey:String;
+        
+        var className:String;
+        var classAlias:String='';
+        var isDynamic:Boolean = false;
+        var metadataInfo:Object;
+        
+        var prop:MemberDefinitionBase;
+        var excludeObject:Object = {};
+        if (excludes)
         {
-            var n:int;
-            var i:int;
-            var p:String;
-            //if (obj is ObjectProxy)
-            //    obj = ObjectProxy(obj).object_proxy::object;
-
-            if (options == null)
-                options = { includeReadOnly: true, uris: null, includeTransient: true };
-
-            var result:Object;
-            var propertyNames:Array = [];
-            var cacheKey:String;
-
-            var className:String;
-            var classAlias:String;
-            var isDynamic:Boolean = false;
-            var metadataInfo:Object;
-            var excludeObject:Object = {};
-            if (excludes)
+            n = excludes.length;
+            for (i = 0; i < n; i++)
             {
-                n = excludes.length;
-                for (i = 0; i < n; i++)
-                {
-                    excludeObject[excludes[i]] = 1;
-                }
+                excludeObject[excludes[i]] = 1;
             }
-
-            if (obj is XML)
+        }
+        
+        if (obj is XML || obj is XMLList)
+        {
+            className = "XML";
+            classAlias = null; //<- this is to be consistent with swf implementation results
+            var xmlproperties:XMLList = obj.text();
+            if (xmlproperties.length())
+                propertyNames.push("*");
+            xmlproperties = obj.attributes();
+            n = xmlproperties.length();
+            for (i = 0; i < n; i++)
             {
-                className = "XML";
-                var xmlproperties:XMLList = obj.text();
-                if (xmlproperties.length())
-                    propertyNames.push("*");
-                xmlproperties = obj.attributes();
-                n = xmlproperties.length();
-                for (i = 0; i < n; i++)
-                {
-                    p = xmlproperties[i].name();
-                    if (excludeObject[p] != 1)
-                        propertyNames.push(new QName("", "@" + p));
+                p = xmlproperties[i].name();
+                if (excludeObject[p] != 1)
+                    propertyNames.push(new QName("", "@" + p));
+            }
+        }
+        else
+        {
+            var classInfo:TypeDefinition = describeType(obj);
+            if (classInfo == null) // probably not a Royale class
+            {
+                if (obj && obj.constructor != Object) {
+                    //this can get the name of some native classes without repeating the same logic here.
+                    className = getQualifiedClassName(obj);
+                    if (USE_DOUBLE_COLON) {
+                        i = className.lastIndexOf('.');
+                        if (i != -1) {
+                            className = className.substr(0,i) + '::'+ className.substr(i+1);
+                        }
+                    }
+                    
+                    //warn in debug build:
+                    if (goog.DEBUG) {
+                        if (!_debugCheck) {
+                            _debugCheck = true;
+                            if (describeType([]) == null) {
+                                console.warn("You may need to add ExtraData to support this application's reflection Requirements. Check Reflection Beads for 'ExtraReflectionDataBead'. This warning will not appear in release builds");
+                                console.warn("This warning was generated when trying to classify :", obj);
+                            }
+                        }
+                    }
                 }
+                else className = "Object";
+                //classAlias = null;
+                isDynamic = true;
             }
             else
             {
-                var classInfo:TypeDefinition = describeType(obj);
-                if (classInfo == null) // probably not a Royale class
-                {
-                    className = "Object";
-                    //classAlias = null;
-                    isDynamic = true;
+                className = classInfo.qualifiedName;
+                classAlias = getAliasByClass(getDefinitionByName(className) as Class) || '';
+                if (USE_DOUBLE_COLON) {
+                    i = className.lastIndexOf('.');
+                    if (i != -1) {
+                        className = className.substr(0,i) + '::'+ className.substr(i+1);
+                    }
                 }
-                else
-                {
-                    className = classInfo.qualifiedName;
-                    //classAlias = classInfo.@alias.toString();
-                    //isDynamic = classInfo.@isDynamic.toString() == "true";
-
-                    var accessors:Array = classInfo.accessors;
-                    for each (var accessor:AccessorDefinition in accessors)
-                    {
-                        if (excludeObject[accessor.name] == 1)
-                            continue;
-                        if (options.includeReadOnly)
-                        {
-                            if (accessor.access != "writeonly")
-                                propertyNames.push(accessor.name);
-                        }
-                        else
-                        {
-                            if (accessor.access != "readwrite")
-                                propertyNames.push(accessor.name);
+                
+                isDynamic = org.apache.royale.reflection.isDynamicObject(obj);
+                
+                const isClass:Boolean = obj is Class;
+                var selectors:uint = MemberTypes.ACCESSORS | MemberTypes.VARIABLES;
+                if (isClass) selectors |= MemberTypes.STATIC_ONLY;
+                
+                properties = getMembers(classInfo, isClass, selectors);
+                
+                n = properties.length;
+                for (i = 0; i < n; i++) {
+                    var accessor:AccessorDefinition = properties[i] as AccessorDefinition;
+                    if (accessor) { // otherwise it is a VariableDefinition and does not need scrutiny here
+                        var includeAccessor:Boolean = accessor.access == 'readwrite' || (options.includeReadOnly && accessor.access == 'readonly');
+                        
+                        if (!includeAccessor) {
+                            properties.splice(i,1);
+                            i--;
                         }
                     }
-                    var variables:Array = classInfo.variables;
-                    for each (var variable:VariableDefinition in variables)
-                    {
-                        if (excludeObject[variable.name] == 1)
-                            continue;
-                        propertyNames.push(variable.name);
-                    }
-
-                    var numericIndex:Boolean = false;
+                    
                 }
+                var numericIndex:Boolean = false;
             }
-
-            // If type is not dynamic, check our cache for class info...
-            if (!isDynamic)
-            {
-                cacheKey = getCacheKey(obj, excludes, options);
-                result = CLASS_INFO_CACHE[cacheKey];
-                if (result != null)
-                    return result;
-            }
-
-            result = {};
-            result["name"] = className;
-            result["alias"] = classAlias;
-            result["properties"] = propertyNames;
-            result["dynamic"] = isDynamic;
-//            result["metadata"] = metadataInfo = recordMetadata(properties);
-            var isArray:Boolean = (obj is Array);
-            if (isDynamic)
-            {
-                for (p in obj)
-                {
-                    if (excludeObject[p] != 1)
+        }
+        
+        // If type is not dynamic, check our cache for class info...(except for XML)
+        if (!isDynamic && className != "XML")
+        {
+            cacheKey = getCacheKey(obj, excludes, options);
+            result = CLASS_INFO_CACHE[cacheKey];
+            if (result != null)
+                return result;
+        }
+        if (!properties) properties=[];
+        result = new ClassInfo();
+        result.name = className;
+        result.alias = classAlias;
+        result.properties = propertyNames;
+        result.dynamic = isDynamic;
+        result.metadata = metadataInfo = recordMetadata(properties);
+        
+        var isArray:Boolean = (obj is Array);
+        var isDict:Boolean  = (obj instanceof Map || obj instanceof WeakMap);
+        if (isDict) {
+            if (obj instanceof WeakMap) throw new Error('WeakMap cannot be enumerated, use Map instead');
+            // Map can have multiple keys of the same type,
+            // (they can index by reference rather than QName, String, or number),
+            // which cannot be looked up by QName, so use references to the actual key
+            (obj as Map).forEach(
+                    function(value:Object, key:*):void
                     {
-                        if (isArray)
-                        {
-                            var pi:Number = parseInt(p);
-                            if (isNaN(pi))
-                                propertyNames.push(new QName("", p));
-                            else
-                                propertyNames.push(pi);
-                        }
-                        else
-                        {
+                        propertyNames.push(key);
+                    }
+            )
+        }
+        else if (isDynamic)
+        {
+            var dynFields:Array = getDynamicFields(obj);
+            
+            while (dynFields.length) {
+                p = dynFields.shift();
+                if (excludeObject[p] != 1)
+                {
+                    if (isArray)
+                    {
+                        var pi:Number = parseInt(p);
+                        if (isNaN(pi))
                             propertyNames.push(new QName("", p));
+                        else
+                            propertyNames.push(pi);
+                    }
+                    else
+                    {
+                        propertyNames.push(new QName("", p));
+                    }
+                }
+                
+            }
+            
+            numericIndex = isArray && !isNaN(Number(p));
+        }
+        
+        if (isArray || isDict || className == "Object")
+        {
+            // Do nothing since we've already got the dynamic members
+        }
+        else if (className == "XML")
+        {
+            n = properties.length;
+            for (i = 0; i < n; i++)
+            {
+                p = properties[i].name();
+                if (excludeObject[p] != 1)
+                    propertyNames.push(new QName("", "@" + p));
+            }
+        }
+        else
+        {
+            n = properties.length;
+            var uris:Array = options.uris;
+            var uri:String;
+            var qName:QName;
+            for (i = 0; i < n; i++)
+            {
+                prop = properties[i];
+                p = prop.name;
+                uri = prop.uri;
+                
+                if (excludeObject[p] == 1)
+                    continue;
+                
+                if (!options.includeTransient && internalHasMetadata(metadataInfo, p, "Transient"))
+                    continue;
+                
+                if (uris != null)
+                {
+                    if (uris.length == 1 && uris[0] == "*")
+                    {
+                        qName = new QName(uri, p);
+                        propertyNames.push(qName);
+                        //js won't error trap here... check results:
+                        /*try
+                        {
+                            obj[qName]; // access the property to ensure it is supported
+                            propertyNames.push(qName);
+                        }
+                        catch(e:Error)
+                        {
+                            // don't keep property name
+                        }*/
+                    }
+                    else
+                    {
+                        for (var j:int = 0; j < uris.length; j++)
+                        {
+                            uri = uris[j];
+                            if (prop.uri == uri)
+                            {
+                                qName = new QName(uri, p);
+                                propertyNames.push(qName);
+                                //js won't error trap here... check results:
+                                /*try
+                                {
+                                    obj[qName];
+                                    propertyNames.push(qName);
+                                }
+                                catch(e:Error)
+                                {
+                                    // don't keep property name
+                                }*/
+                            }
                         }
                     }
                 }
-                numericIndex = isArray && !isNaN(Number(p));
+                else if (uri.length == 0)
+                {
+                    qName = new QName(uri, p);
+                    propertyNames.push(qName);
+                    //js won't error trap here... check results:
+                    /*try
+                    {
+                        obj[qName];
+                        propertyNames.push(qName);
+                    }
+                    catch(e:Error)
+                    {
+                        // don't keep property name
+                    }*/
+                }
+                
             }
-
-            propertyNames.sort(Array.CASEINSENSITIVE | (numericIndex ? Array.NUMERIC : 0));
-
+        }
+        
+        propertyNames.sort(Array.CASEINSENSITIVE | (numericIndex ? Array.NUMERIC : 0));
+        // map keys can be indexed by an object reference
+        // there's a possibility that two keys will have the same toString()
+        // so we don't want to remove duplicates
+        if (!isDict)
+        {
             // for Arrays, etc., on the other hand...
-            // remove any duplicates, i.e. any items that can't be distingushed by toString()
+            // remove any duplicates, i.e. any items that can't be distinguished by toString()
             for (i = 0; i < propertyNames.length - 1; i++)
             {
                 // the list is sorted so any duplicates should be adjacent
@@ -1112,17 +1593,16 @@ public class ObjectUtil
                     i--; // back up
                 }
             }
-
-            // For normal, non-dynamic classes we cache the class info
-            // Don't cache XML as it can be dynamic
-            if (!isDynamic && className != "XML")
-            {
-                cacheKey = getCacheKey(obj, excludes, options);
-                CLASS_INFO_CACHE[cacheKey] = result;
-            }
-
-            return result;
         }
+        
+        // For normal, non-dynamic classes we cache the class info
+        // Don't cache XML as it can be dynamic
+        if (!isDynamic && className != "XML")
+        {
+            cacheKey = getCacheKey(obj, excludes, options);
+            CLASS_INFO_CACHE[cacheKey] = result;
+        }
+        return result;
     }
 
     /**
@@ -1148,11 +1628,10 @@ public class ObjectUtil
                 excludes:Array = null,
                 options:Object = null):Boolean
     {
-		trace("hasMetadata not implemented");
-		return false;
-//        var classInfo:Object = getClassInfo(obj, excludes, options);
-//        var metadataInfo:Object = classInfo["metadata"];
-//        return internalHasMetadata(metadataInfo, propName, metadataName);
+
+        var classInfo:Object = getClassInfo(obj, excludes, options);
+        var metadataInfo:Object = classInfo.metadata;
+        return internalHasMetadata(metadataInfo, propName, metadataName);
     }
 
     /**
@@ -1169,19 +1648,7 @@ public class ObjectUtil
      */
     public static function isDynamicObject(object:Object):Boolean
     {
-        try
-        {
-            // this test for checking whether an object is dynamic or not is
-            // pretty hacky, but it assumes that no-one actually has a
-            // property defined called "wootHackwoot"
-            var o:* = object["wootHackwoot"];
-        }
-        catch (e:Error)
-        {
-            // our object isn't an instance of a dynamic class
-            return false;
-        }
-        return true;
+        return org.apache.royale.reflection.isDynamicObject(object);
     }
 
     /**
@@ -1198,15 +1665,7 @@ public class ObjectUtil
      */
     public static function getEnumerableProperties(object:Object):Array
     {
-        var result:Array = [];
-
-        if(!isDynamicObject(object))
-            return result;
-
-        for (var property:Object in object)
-            result.push(property);
-
-        return result;
+        return getDynamicFields(object, null, true, true);
     }
 
 
@@ -1228,30 +1687,29 @@ public class ObjectUtil
      */
     public static function valuesAreSubsetOfObject(values:Object, object:Object):Boolean
     {
-		trace("valuesAresubsetOfObject not implemented");
-		return false;
-//        if(!object && !values)
-//            return true;
-//
-//        if(!object || !values)
-//            return false;
-//
-//        if(object === values)
-//            return true;
-//
-//        var enumerableProperties:Array = ObjectUtil.getEnumerableProperties(values);
-//        var matches:Boolean = enumerableProperties.length > 0 || ObjectUtil.isDynamicObject(values);
-//
-//        for each(var property:String in enumerableProperties)
-//        {
-//            if (!object.hasOwnProperty(property) || object[property] != values[property])
-//            {
-//                matches = false;
-//                break;
-//            }
-//        }
-//
-//        return matches;
+
+        if(!object && !values)
+            return true;
+
+        if(!object || !values)
+            return false;
+
+        if(object === values)
+            return true;
+
+        var enumerableProperties:Array = ObjectUtil.getEnumerableProperties(values);
+        var matches:Boolean = enumerableProperties.length > 0 || ObjectUtil.isDynamicObject(values);
+
+        for each(var property:String in enumerableProperties)
+        {
+            if (!object.hasOwnProperty(property) || object[property] != values[property])
+            {
+                matches = false;
+                break;
+            }
+        }
+
+        return matches;
     }
 
     /**
@@ -1280,8 +1738,17 @@ public class ObjectUtil
 
         var result:* = obj;
         var i:int = -1;
-        while(++i < path.length && result)
-            result = result.hasOwnProperty(path[i]) ? result[path[i]] : undefined;
+        COMPILE::SWF{
+            while(++i < path.length && result)
+                result = result.hasOwnProperty(path[i]) ? result[path[i]] : undefined;
+        }
+        COMPILE::JS{
+            while(++i < path.length && result) {
+                //@todo: this works for public accessors, but need to use reflection here for safety (including vars)
+                result = path[i] in result ? result[path[i]] : undefined;
+            }
+            
+        }
 
         return result;
     }
@@ -1313,10 +1780,20 @@ public class ObjectUtil
             return false;
 
         var secondToLastLink:* = getValue(obj, path.slice(0, -1));
-        if(secondToLastLink && secondToLastLink.hasOwnProperty(path[path.length - 1]))
-        {
-            secondToLastLink[path[path.length - 1]] = newValue;
-            return true;
+        COMPILE::SWF{
+            if(secondToLastLink && secondToLastLink.hasOwnProperty(path[path.length - 1]))
+            {
+                secondToLastLink[path[path.length - 1]] = newValue;
+                return true;
+            }
+        }
+        COMPILE::JS{
+            //@todo: this works for public accessors, but need to use reflection here for safety (including vars)
+            if(secondToLastLink && (path[path.length - 1] in secondToLastLink))
+            {
+                secondToLastLink[path[path.length - 1]] = newValue;
+                return true;
+            }
         }
 
         return false;
@@ -1338,15 +1815,148 @@ public class ObjectUtil
         }
         return false;
     }
-
+    
     /**
      *  @private
      */
-//    private static function recordMetadata(properties:XMLList):Object
-//    {
-//		trace("recordMetadata not implemented");
-//		return null;
-//    }
+    COMPILE::SWF
+    private static function recordMetadata(properties:XMLList):Object
+    {
+        var result:Object = null;
+        
+        try
+        {
+            for each (var prop:XML in properties)
+            {
+                var propName:String = prop.attribute("name").toString();
+                var metadataList:XMLList = prop.metadata;
+                
+                if (metadataList.length() > 0)
+                {
+                    if (result == null)
+                        result = {};
+                    
+                    var metadata:Object = {};
+                    result[propName] = metadata;
+                    
+                    for each (var md:XML in metadataList)
+                    {
+                        var mdName:String = md.attribute("name").toString();
+                        
+                        var argsList:XMLList = md.arg;
+                        var value:Object = {};
+                        
+                        for each (var arg:XML in argsList)
+                        {
+                            var argKey:String = arg.attribute("key").toString();
+                            if (argKey != null)
+                            {
+                                var argValue:String = arg.attribute("value").toString();
+                                value[argKey] = argValue;
+                            }
+                        }
+                        
+                        var existing:Object = metadata[mdName];
+                        if (existing != null)
+                        {
+                            var existingArray:Array;
+                            if (existing is Array)
+                                existingArray = existing as Array;
+                            else
+                            {
+                                existingArray = [existing];
+                                delete metadata[mdName];
+                            }
+                            existingArray.push(value);
+                            existing = existingArray;
+                        }
+                        else
+                        {
+                            existing = value;
+                        }
+                        metadata[mdName] = existing;
+                    }
+                }
+            }
+        }
+        catch(e:Error)
+        {
+        }
+        
+        return result;
+    }
+    
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    private static function recordMetadata(properties:Array):Object
+    {
+        var result:Object = null;
+        //note: VariableDefinition is the base class for AccessorDefinition
+        try
+        {
+            for each (var prop:VariableDefinition in properties)
+            {
+                var propName:String = prop.name;
+                
+                var metadataList:Array = prop.metadata;
+                
+                if (metadataList.length)
+                {
+                    if (result == null)
+                        result = {};
+                    
+                    var metadata:Object = {};
+                    result[propName] = metadata;
+                    
+                    for each (var md:MetaDataDefinition in metadataList)
+                    {
+                        var mdName:String = md.name;
+                        
+                        var argsList:Array = md.args;
+                        var value:Object = {};
+                        
+                        for each (var arg:MetaDataArgDefinition in argsList)
+                        {
+                            var argKey:String = arg.key;
+                            if (argKey != null)
+                            {
+                                var argValue:String = arg.value;
+                                value[argKey] = argValue;
+                            }
+                        }
+                        
+                        var existing:Object = metadata[mdName];
+                        if (existing != null)
+                        {
+                            var existingArray:Array;
+                            if (existing is Array)
+                                existingArray = existing as Array;
+                            else
+                            {
+                                existingArray = [existing];
+                                delete metadata[mdName];
+                            }
+                            existingArray.push(value);
+                            existing = existingArray;
+                        }
+                        else
+                        {
+                            existing = value;
+                        }
+                        metadata[mdName] = existing;
+                    }
+                }
+            }
+        }
+        catch(e:Error)
+        {
+        }
+        
+        return result;
+    }
+    
 
 
     /**
@@ -1427,37 +2037,66 @@ public class ObjectUtil
         return result;
     }
 
-    /**
-     * @private
-     */
-//    private static function byteArrayCompare(a:ByteArray, b:ByteArray):int
-//    {
-//        var result:int = 0;
-//
-//        if (a == b)
-//            return result;
-//
-//        if (a.length != b.length)
-//        {
-//            if (a.length < b.length)
-//                result = -1;
-//            else
-//                result = 1;
-//        }
-//        else
-//        {
-//            for (var i:int = 0; i < a.length; i++)
-//            {
-//                result = numericCompare(a[i], b[i]);
-//                if (result != 0)
-//                {
-//                    i = a.length;
-//                }
-//            }
-//        }
-//        return result;
-//    }
 
+    COMPILE::SWF
+    private static function byteArrayCompare(a:flash.utils.ByteArray, b:flash.utils.ByteArray):int
+    {
+        var result:int = 0;
+
+        if (a == b)
+            return result;
+
+        if (a.length != b.length)
+        {
+            if (a.length < b.length)
+                result = -1;
+            else
+                result = 1;
+        }
+        else
+        {
+            for (var i:int = 0; i < a.length; i++)
+            {
+                result = numericCompare(a[i], b[i]);
+                if (result != 0)
+                {
+                    i = a.length;
+                }
+            }
+        }
+        return result;
+    }
+    
+
+    COMPILE::JS
+    private static function byteArrayCompare(a:BinaryData, b:BinaryData):int
+    {
+        var result:int = 0;
+    
+        if (a == b)
+            return result;
+    
+        if (a.length != b.length)
+        {
+            if (a.length < b.length)
+                result = -1;
+            else
+                result = 1;
+        }
+        else
+        {
+            for (var i:int = 0; i < a.length; i++)
+            {
+                result = numericCompare(a[i], b[i]);
+                if (result != 0)
+                {
+                    i = a.length;
+                }
+            }
+        }
+        return result;
+    }
+    
     /**
      *  @private
      */
@@ -1493,18 +2132,34 @@ public class ObjectUtil
      * @private
      * This is the "find" for our union-find algorithm when doing object searches.
      * The dictionary keeps track of sets of equal objects
+     *
+     * @royaleignorecoercion WeakMap
      */
     private static function getRef(o:Object, /*refs:Dictionary*/ refs:Object):Object
     {
-        var oRef:Object = refs[o];
-        while (oRef && oRef != refs[oRef])
-        {
-            oRef = refs[oRef];
+        COMPILE::SWF{
+            var oRef:Object = refs[o];
+            while (oRef && oRef != refs[oRef])
+            {
+                oRef = refs[oRef];
+            }
+            if (!oRef)
+                oRef = o;
+            if (oRef != refs[o])
+                refs[o] = oRef;
         }
-        if (!oRef)
-            oRef = o;
-        if (oRef != refs[o])
-            refs[o] = oRef;
+        COMPILE::JS{
+            var map:WeakMap = refs as WeakMap;
+            var oRef:Object = map.get(o);
+            while (oRef && oRef != map.get(oRef))
+            {
+                oRef = map.get(oRef);
+            }
+            if (!oRef)
+                oRef = o;
+            if (oRef !=  map.get(o))
+                map.set(o,oRef);
+        }
 
         return oRef;
     }
@@ -1520,4 +2175,50 @@ public class ObjectUtil
     private static var CLASS_INFO_CACHE:Object = {};
 }
 
+}
+COMPILE::JS
+/**
+ * @royalesuppressexport
+ */
+class ClassInfo{
+    private var _obj:Object;
+    function ClassInfo() {
+        _obj = {};
+    }
+    
+    public function get name():String{
+        return _obj['name'];
+    }
+    public function set name(value:String):void{
+        _obj['name'] = value;
+    }
+    
+    public function get alias():String{
+        return _obj['alias'];
+    }
+    public function set alias(value:String):void{
+        _obj['alias'] = value;
+    }
+    public function get properties():Array{
+        return _obj['properties'];
+    }
+    public function set properties(value:Array):void{
+        _obj['properties'] = value;
+    }
+    public function get dynamic():Boolean{
+        return _obj['dynamic'];
+    }
+    public function set dynamic(value:Boolean):void{
+        _obj['dynamic'] = value;
+    }
+    public function get metadata():Object{
+        return _obj['metadata'];
+    }
+    public function set metadata(value:Object):void{
+        _obj['metadata'] = value;
+    }
+    
+    public function toJSON():Object{
+        return _obj;
+    }
 }

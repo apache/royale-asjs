@@ -20,6 +20,13 @@ package org.apache.royale.test.runners
 {
 	import org.apache.royale.test.runners.notification.IRunNotifier;
 
+	/**
+	 * An interface for test runner implementations, such as
+	 * <code>MetadataRunner</code> and <code>SuiteRunner</code>.
+	 * 
+	 * @see org.apache.royale.test.runners.MetadataRunner
+	 * @see org.apache.royale.test.runners.SuiteRunner
+	 */
 	public interface ITestRunner
 	{
 		/**

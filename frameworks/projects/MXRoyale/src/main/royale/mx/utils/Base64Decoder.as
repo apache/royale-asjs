@@ -20,10 +20,9 @@
 package mx.utils
 {
 
-COMPILE::SWF
-{
-    import mx.utils.ByteArray;
-}
+import mx.utils.ByteArray;
+import org.apache.royale.utils.Base64;
+import org.apache.royale.utils.BinaryData;
 
 /*
 import mx.resources.IResourceManager;
@@ -56,19 +55,14 @@ public class Base64Decoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    COMPILE::SWF
     public function Base64Decoder()
     {
         super();
-        data = new ByteArray();
+        COMPILE::SWF
+        {
+            data = new ByteArray();
+        }
     }
-
-	COMPILE::JS
-    public function Base64Decoder()
-    {
-        super();
-    }
-
 
     //--------------------------------------------------------------------------
     //
@@ -95,10 +89,9 @@ public class Base64Decoder
     COMPILE::JS
     public function decode(data:String):String
     {
-
-		var bytes:Object = new Base64JSWrapper().toByteArray(data);
-		var decodedString:String = new TextEncoderLiteWrapper('utf-8').decode(bytes);
-
+        var bytes:BinaryData = Base64.decode(data);
+        bytes.readUTFBytes(bytes.length);
+		decodedString = bytes.readUTFBytes(bytes.length);
 		return decodedString;
     }
 
@@ -138,22 +131,27 @@ public class Base64Decoder
         }
     }
 
-    COMPILE::SWF
     public function drain():ByteArray
     {
         var result:ByteArray = new ByteArray();
 
-        var oldPosition:uint = data.position;    
-        data.position = 0;  // technically, shouldn't need to set this, but carrying over from previous implementation
-        result.writeBytes(data, 0, data.length);        
-        data.position = oldPosition;
-        result.position = 0;
-        
-        filled = 0;
+        COMPILE::SWF
+        {
+            var oldPosition:uint = data.position;    
+            data.position = 0;  // technically, shouldn't need to set this, but carrying over from previous implementation
+            result.writeBytes(data, 0, data.length);        
+            data.position = oldPosition;
+            result.position = 0;
+            
+            filled = 0;
+        }
+        COMPILE::JS
+        {
+            result.writeUTFBytes(decodedString);    
+        }
         return result;
     }
 
-    COMPILE::SWF
     public function flush():ByteArray
     {
         /*
@@ -176,12 +174,19 @@ public class Base64Decoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    COMPILE::SWF
     public function reset():void
     {
-        data = new ByteArray();
-        count = 0;
-        filled = 0;
+        COMPILE::JS
+        {
+            decodedString = "";
+        }
+        
+        COMPILE::SWF
+        {
+            data = new ByteArray();
+            count = 0;
+            filled = 0;
+        }
     }
 
     /**
@@ -196,7 +201,6 @@ public class Base64Decoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    COMPILE::SWF
     public function toByteArray():ByteArray
     {
         var result:ByteArray = flush();
@@ -210,6 +214,9 @@ public class Base64Decoder
     //
     //--------------------------------------------------------------------------
 
+    COMPILE::JS
+    private var decodedString:String;
+    
     COMPILE::SWF
     private var count:int = 0;
     COMPILE::SWF

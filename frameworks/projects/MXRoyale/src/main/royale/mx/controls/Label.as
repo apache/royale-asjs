@@ -28,10 +28,10 @@ import flash.geom.Rectangle;
 import flash.text.StyleSheet;
 import flash.text.TextFormat;
 import flash.text.TextLineMetrics;
+*/
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
-*/
 import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
@@ -49,6 +49,8 @@ COMPILE::JS
     import org.apache.royale.core.WrappedHTMLElement;
 }
 import org.apache.royale.core.ITextModel;
+import org.apache.royale.events.Event;
+import org.apache.royale.binding.ItemRendererDataBinding;
 
 //--------------------------------------
 //  Events
@@ -187,7 +189,7 @@ import org.apache.royale.core.ITextModel;
  *  @productversion Flex 3
  */
 public class Label extends UIComponent
-                   implements IDataRenderer
+                   implements IDataRenderer, IListItemRenderer, IDropInListItemRenderer
 
 {
 
@@ -283,6 +285,8 @@ public class Label extends UIComponent
         typeNames = "Label";
     }
 
+	private var textSet:Boolean;
+	
     //----------------------------------
     //  enabled
     //----------------------------------
@@ -412,6 +416,8 @@ public class Label extends UIComponent
         return _data;
     }
 
+	private var bindingAdded:Boolean;
+	
     /**
      *  @private
      */
@@ -419,11 +425,56 @@ public class Label extends UIComponent
     {
         var newText:*;
 
-        _data = value;
+		_data = value;
+		if (!bindingAdded)
+		{
+			addBead(new ItemRendererDataBinding());
+			bindingAdded = true;
+		}
+		dispatchEvent(new Event("initBindings"));
+		
+        if (_listData)
+        {
+            newText = (_listData as BaseListData).label;
+        }
+        else if (_data != null)
+        {
+            if (_data is String)
+                newText = String(_data);
+            else
+                newText = _data.toString();
+        }
 
+        if (newText !== undefined && !textSet)
+        {
+            text = newText;
+            textSet = false;
+        }
+		
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
     }
 
+    private var _listData:Object;
+    
+    [Bindable("__NoChangeEvent__")]
+    /**
+     *  Additional data about the list structure the itemRenderer may
+     *  find useful.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get listData():Object
+    {
+        return _listData;
+    }
+    public function set listData(value:Object):void
+    {
+        _listData = value;
+    }
+    
     //----------------------------------
     //  htmlText
     //----------------------------------
@@ -680,6 +731,9 @@ public class Label extends UIComponent
 	 */
 	public function set text(value:String):void
 	{
+        if (!value)
+            value = "";
+        
 		COMPILE::SWF
 		{
 			ITextModel(model).text = value;
@@ -693,6 +747,8 @@ public class Label extends UIComponent
 				this.dispatchEvent('textChange');
 			}
 		}
+		
+		textSet = true;
 		
 		invalidateSize();
 

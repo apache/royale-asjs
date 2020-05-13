@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	COMPILE::SWF
-	{
-		import flash.text.TextFieldAutoSize;
-	}
+    import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
+	import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead;
 
 	/**
 	 *  The DateItemRenderer class renders date values for the DateChooser.
@@ -47,6 +45,8 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel tableitem calendar";
+			
+			addBead(new ClassSelectorListSelectableItemRendererBead());
 		}
 
 		/**
@@ -63,8 +63,9 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super.data = value;
 
-			//itemRendererParent.parent is DateChooser
-			var viewState:int = (itemRendererParent.parent.model as DateChooserModel).viewState;
+            var model:DateChooserModel = (itemRendererOwnerView.host.parent as IStrandWithModel).model as DateChooserModel;
+			//itemRendererOwnerView.parent is DateChooser
+			var viewState:int = model.viewState;
 
 			if (value[labelField] is Date) {
 				if(viewState == 0)
@@ -74,7 +75,7 @@ package org.apache.royale.jewel.itemRenderers
 				{
 					text = String( (value[labelField] as Date).getFullYear());
 				} else {
-					var monthNames:Array = (itemRendererParent.parent.model as DateChooserModel).monthNames;
+					var monthNames:Array = model.monthNames;
 					text = String(monthNames[(value[labelField] as Date).getMonth()]);
 				}
 

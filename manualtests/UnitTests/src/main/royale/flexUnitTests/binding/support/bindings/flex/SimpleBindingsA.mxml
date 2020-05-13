@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:s="library://ns.adobe.com/flex/spark"
+          xmlns:mx="library://ns.adobe.com/flex/mx"
+          implements="flexUnitTests.binding.support.IBindingTest"
+          initialize="initCompleteHandler()">
+
+    <fx:Script>
+        <![CDATA[
+
+        import flash.utils.getQualifiedClassName;
+        //IBindingTest methods
+        public function get testName():String {
+
+            return getQualifiedClassName(this);
+        }
+
+
+        public function get internalTestCount():uint {
+            return getTests().length;
+        }
+
+        public function setInboundValue(value:*, internalTestNum:uint = 0):void {
+            getTests()[internalTestNum]['setVal'](value)
+        }
+
+        public function getBindingResultValue(internalTestNum:uint = 0):* {
+            return getTests()[internalTestNum]['getVal']()
+        }
+
+        private var _tests:Array;
+        //only one internal test
+        private function getTests():Array {
+            if (!_tests) {
+                _tests = [
+                    { //test 0
+                        'setVal': function (value:*):void {
+                            labelText = value
+                        },
+                        'getVal': function ():* {
+                            return testLabel.text;
+                        }
+                    }
+                ]
+            }
+            return _tests;
+        }
+
+
+        private function initCompleteHandler():void {
+           // trace('initCompleteHandler', this);
+        }
+
+        [Bindable]
+        public var labelText:String;
+        ]]>
+    </fx:Script>
+
+
+
+    <mx:Label id="testLabel" text="{labelText}" />
+
+</s:HGroup>

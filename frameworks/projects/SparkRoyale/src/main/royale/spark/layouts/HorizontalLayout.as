@@ -36,6 +36,7 @@ import spark.layouts.supportClasses.LinearLayoutVector;
 import org.apache.royale.events.Event;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
+import spark.core.IGapLayout;
 
 use namespace mx_internal;
 
@@ -122,7 +123,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class HorizontalLayout extends LayoutBase
+public class HorizontalLayout extends LayoutBase implements IGapLayout
 {
 //    include "../core/Version.as";
 

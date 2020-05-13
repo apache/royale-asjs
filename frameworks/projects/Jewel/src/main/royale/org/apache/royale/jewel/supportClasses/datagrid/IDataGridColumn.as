@@ -18,78 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
-	import org.apache.royale.core.IFactory;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.jewel.supportClasses.table.ITableColumn;
 
-	public interface IDataGridColumn
-	{
+	/**
+	 *  Jewel IDataGridColumn is the interface used by Jewel DataGridColumn in the Jewel DataGrid.
+	 * 
+	 *  Define which renderer to use for each cell in the column, and other optional data like
+	 *  the width, the label (used in header), and the name of the field in the data containing the value to display 
+	 *  in the column (for the simplest ItemRenderer).
+	 */
+	public interface IDataGridColumn extends ITableColumn
+	{	
 		/**
-		 *  The itemRenderer class or factory to use to make instances of itemRenderers for
-		 *  display of data.
+		 *  Returns a new instance of a UIBase component to be used as the actual
+		 *  column in the grid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
-		function get itemRenderer():IFactory;
-		function set itemRenderer(value:IFactory):void;
-		
-		/**
-		 *  The width of the column (default is 100 pixels).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function get columnWidth():Number;
-		function set columnWidth(value:Number):void;
-		
-		/**
-		 *  The label for the column (appears in the header area).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function get label():String;
-		function set label(value:String):void;
-		
-		/**
-		 *  The name of the field containing the data value presented by the column. This value is used
-		 *  by the itemRenderer is select the property from the data.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function get dataField():String;
-		function set dataField(value:String):void;
-		
-		/**
-		 * The name of the style class to use for this column. If this is not set
-		 * it defaults to DataGridColumnList.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function get className():String;
-		function set className(value:String):void;
-		
-		/**
-		 * Returns a new instance of a UIBase component to be used as the actual
-		 * column in the grid.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function createColumn():IUIBase;
+		function createColumn():IStyledUIBase;
 	}
 }

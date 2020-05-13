@@ -20,15 +20,8 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
+    import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.SnackbarModel;
-
-    COMPILE::JS
-    {
-		import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
-    }
 
     [Event(name="action", type="org.apache.royale.events.Event")]
 	/**
@@ -77,28 +70,7 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9.4
 		 */
 		public static const ACTION:String = "action";
-
-		private var _emphasis:String;
-
-		public function get emphasis():String
-		{
-			return _emphasis;
-		}
-
-		public function set emphasis(value:String):void
-        {
-            if (_emphasis != value)
-            {
-                if(_emphasis)
-                {
-                    removeClass(_emphasis);
-                }
-                _emphasis = value;
-
-                addClass(_emphasis);
-            }
-        }
-
+		
 		/**
 		 *  The number of milliseconds to show the Snackbar.
 		 *
