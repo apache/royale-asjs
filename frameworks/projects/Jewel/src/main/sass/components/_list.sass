@@ -24,6 +24,9 @@
     align-items: stretch
     align-content: flex-start
     -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
+    
+    > *
+        flex: 0 0 auto
 
     &.no-chrome
         background: transparent
@@ -50,9 +53,6 @@ j|List
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
     //IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel")
     //IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData")
-
-j|ListItemRenderer
-    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
 
     
 @media -royale-swf	

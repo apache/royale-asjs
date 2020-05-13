@@ -42,24 +42,14 @@ j|IconButtonBar
     IItemRenderer: ClassReference("itemRenderers.SimpleIconListItemRenderer");
 }
 
-
-
 .iconListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.IconListItemRenderer");
-}
-.iconListItemRenderer .fonticon
-{
-    margin-right: 24px;
 }
 
 .advancedIconListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.AdvancedIconListItemRenderer");
-}
-.advancedIconListItemRenderer .fonticon
-{
-    margin-right: 24px;
 }
 
 .jewel.item .jewelItem {
@@ -81,11 +71,6 @@ j|IconButtonBar
 .navIconLinkItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
-}
-
-.navIconLinkItemRenderer .fonticon
-{
-    margin-right: 24px;
 }
 
 .tabBarVerticalIconItemRenderer
@@ -140,9 +125,5 @@ j|IconButtonBar
 
 .navSectionItemRenderer{
     IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
-}
-.navSectionItemRenderer .fonticon
-{
-    margin-right: 24px;
 }
 

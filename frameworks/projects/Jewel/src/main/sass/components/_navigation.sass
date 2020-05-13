@@ -43,7 +43,13 @@ j|Navigation
 
 // NavigationLinkItemRenderer variables
 .jewel.navigationlink
-    min-height: 48px
 
 j|NavigationLinkItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
+
+// Jewel CollapsibleNavigationSectionRenderer
+.jewel.navigationgroup
+
+j|CollapsibleNavigationSectionRenderer
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
+    // don't add IBeadLayout. We add one in code since this render creates additional elements

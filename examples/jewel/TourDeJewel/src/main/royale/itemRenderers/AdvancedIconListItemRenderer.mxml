@@ -83,13 +83,13 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding/>
+        <j:HorizontalLayout gap="8" itemsVerticalAlign="itemsCenter"/>
     </j:beads>
 
-    <js:MaterialIcon text="{iconListItem ? iconListItem.icon : ''}"
-                
-                visible="{iconListItem ? iconListItem.icon != null : false}"
-                className="{colorClass}"
-                click="clickCloseButton()"/>
+    <js:MaterialIcon text="{iconListItem.icon}"
+            visible="{iconListItem.icon != null}"
+            className="{colorClass}"
+            click="clickCloseButton()"/>
 
     <j:Label html="{text}" multiline="true"/>
 

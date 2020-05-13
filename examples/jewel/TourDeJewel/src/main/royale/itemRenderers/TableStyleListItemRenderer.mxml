@@ -24,13 +24,18 @@ limitations under the License.
 
     <ir:beads>
         <js:ItemRendererDataBinding />
-        <j:HorizontalLayout/>
+        <j:HorizontalLayout itemsVerticalAlign="itemsCenter"/>
     </ir:beads>
 
-    <js:MaterialIcon text="{iconList ? iconList.icon : ''}"  visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()" width="100"/>
-    <j:Label html="{text}" multiline="true" width="300"/>
-    <j:Label html="Third field" multiline="true" width="100"/>
-    <j:Label html="Fourth field" multiline="true" width="200"/>
+    <js:MaterialIcon text="{iconList.icon}"  
+                    visible="{iconList.icon != null}" 
+                    click="clickCloseButton()" width="100"/>
 
+    <j:Label html="{text}" multiline="true" width="300"/>
+    
+    <j:Label html="Third field" multiline="true" width="100"/>
+    
+    <j:Label html="Fourth field" multiline="true" width="200"/>
+    
 </ir:IconListItemRenderer>
 

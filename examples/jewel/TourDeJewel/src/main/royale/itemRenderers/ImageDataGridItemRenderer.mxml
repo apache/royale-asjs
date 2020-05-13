@@ -39,7 +39,7 @@ limitations under the License.
         <j:HorizontalCenteredLayout/>
     </j:beads>
 
-    <j:Image src="{ product ? product.image : '' }"/>
+    <j:Image src="{product.image}"/>
 
 </j:DataGridItemRenderer>
 

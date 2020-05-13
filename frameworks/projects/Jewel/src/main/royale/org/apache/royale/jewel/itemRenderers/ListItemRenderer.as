@@ -23,12 +23,14 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
 	}
+    import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.StyledMXMLItemRenderer;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.util.getLabelFromData;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
@@ -53,11 +55,6 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel item";
-
-			if(MXMLDescriptor != null)
-			{
-				addClass("mxmlContent");
-			}
 		}
 
 		private var _text:String = "";
@@ -143,5 +140,24 @@ package org.apache.royale.jewel.itemRenderers
 			// tabIndex = -1;
             return element;
         }
+
+
+		/**
+		 *  The method called when added to a parent.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			addLayoutBead();
+		}
+
+		public function addLayoutBead():void {
+			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+		}
 	}
 }

@@ -50,8 +50,8 @@ limitations under the License.
         <j:HorizontalCenteredLayout/>
     </j:beads>
 
-    <js:MaterialIcon text="{iconList ? iconList.icon : ''}" 
-        visible="{iconList ? iconList.icon != null : false}"
+    <js:MaterialIcon text="{iconList.icon}" 
+        visible="{iconList.icon != null}"
         click="clickCloseButton(event)"/>
 
 </j:DataGridItemRenderer>

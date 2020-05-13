@@ -47,7 +47,7 @@ limitations under the License.
         <j:HorizontalCenteredLayout/>
     </j:beads>
 
-    <j:CheckBox selected="{detailIconList ? detailIconList.componentSet == 'Jewel' : false}">
+    <j:CheckBox selected="{detailIconList.componentSet == 'Jewel'}">
         <j:beads>
             <j:Disabled disabled="true"/>
         </j:beads>

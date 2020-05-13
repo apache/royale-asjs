@@ -40,7 +40,7 @@ $gap-size: 10px !default
 .layout.basic
 	position: relative
 	> *
-		position: absolute !important
+		position: absolute
 
 .layout
 	display: flex
@@ -54,9 +54,9 @@ $gap-size: 10px !default
 		> *
 			flex: 0 1 auto
 
-		&.variableRowHeight
-			> *
-				flex: 0 0 auto
+		// &.variableRowHeight
+		// 	> *
+		// 		flex: 0 0 auto
 				
 		&.flow
 			flex-wrap: wrap
@@ -110,9 +110,9 @@ $gap-size: 10px !default
 		> *
 			flex: 0 1 auto
 		
-		&.variableRowHeight
-			> *
-				flex: 0 0 auto
+		// &.variableRowHeight
+		// 	> *
+		// 		flex: 0 0 auto
 		
 		&.flow
 			flex-wrap: wrap

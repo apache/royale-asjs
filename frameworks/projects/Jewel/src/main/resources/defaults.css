@@ -979,23 +979,26 @@ j|ImageButton {
 }
 
 .jewel.item, .jewel.navigationlink, .jewel.tabbarbutton {
-  display: flex;
   min-height: 34px;
   text-decoration: none;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
   cursor: auto;
-}
-.jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent {
-  flex: 0 0 auto;
-  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  list-style: none;
 }
 .jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;
 }
 .jewel.item .fonticon, .jewel.navigationlink .fonticon, .jewel.tabbarbutton .fonticon {
   cursor: inherit;
+}
+
+j|ListItemRenderer {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
 .jewel.label {
@@ -1026,7 +1029,7 @@ j|Label {
   position: relative;
 }
 .layout.basic > * {
-  position: absolute !important;
+  position: absolute;
 }
 
 .layout {
@@ -1039,9 +1042,6 @@ j|Label {
 }
 .layout.horizontal > * {
   flex: 0 1 auto;
-}
-.layout.horizontal.variableRowHeight > * {
-  flex: 0 0 auto;
 }
 .layout.horizontal.flow {
   flex-wrap: wrap;
@@ -1141,9 +1141,6 @@ j|Label {
 }
 .layout.vertical > * {
   flex: 0 1 auto;
-}
-.layout.vertical.variableRowHeight > * {
-  flex: 0 0 auto;
 }
 .layout.vertical.flow {
   flex-wrap: wrap;
@@ -3229,6 +3226,9 @@ j|Label {
   align-content: flex-start;
   -webkit-overflow-scrolling: touch;
 }
+.jewel.list > *, .jewel.navigation > * {
+  flex: 0 0 auto;
+}
 .jewel.list.no-chrome, .jewel.navigation.no-chrome {
   background: transparent;
   border: none;
@@ -3253,10 +3253,6 @@ j|List {
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
-}
-
-j|ListItemRenderer {
-  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
 @media -royale-swf {
@@ -3285,11 +3281,11 @@ j|Navigation {
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
 }
 
-.jewel.navigationlink {
-  min-height: 48px;
+j|NavigationLinkItemRenderer {
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
-j|NavigationLinkItemRenderer {
+j|CollapsibleNavigationSectionRenderer {
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
@@ -3832,7 +3828,6 @@ j|Table {
   padding: 10px;
   cursor: pointer;
   text-decoration: none;
-  align-items: center;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
@@ -3857,6 +3852,7 @@ j|Table {
 
 j|TableItemRenderer {
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
 j|TBody {
