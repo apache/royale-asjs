@@ -1819,9 +1819,7 @@ COMPILE::JS
 {
     public function get stage():Object
     {
-        // TODO
-        trace("stage not implemented");
-        return null;
+        return systemManager;
     }
 }
     //--------------------------------------------------------------------------
