@@ -3285,6 +3285,11 @@ j|NavigationLinkItemRenderer {
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
+j|CollapsibleNavigationSectionRenderer {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+}
+
 .jewel.numericstepper .jewel.textinput {
   display: inline-flex;
 }
