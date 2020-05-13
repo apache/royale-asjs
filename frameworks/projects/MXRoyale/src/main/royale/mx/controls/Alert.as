@@ -502,9 +502,6 @@ public class Alert extends Panel
         alert.title = title;
         //alert.iconClass = iconClass;
             
-        if (closeHandler != null)
-            alert.addEventListener(CloseEvent.CLOSE, closeHandler);
-
         // Setting a module factory allows the correct embedded font to be found.
         /*if (moduleFactory)
             alert.moduleFactory = moduleFactory;    
@@ -527,6 +524,11 @@ public class Alert extends Panel
         alert.addEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
 
         PopUpManager.addPopUp(alert, parent, true);
+
+		// let the controller that gets added during addPopUp to get the event first
+
+        if (closeHandler != null)
+            alert.addEventListener(CloseEvent.CLOSE, closeHandler);
 
         return alert;
     }
