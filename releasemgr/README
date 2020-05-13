@@ -40,7 +40,7 @@ Each folder has its own README, RELEASE_NOTES, LICENSE and NOTICE with informati
 Building Royale
 ===============
 
-Royale requires Java SDK 1.7 or greater to be installed on your computer. For more information on installing the Java SDK, see:
+Royale requires Java SDK 1.8 or greater to be installed on your computer. For more information on installing the Java SDK, see:
 
     <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
@@ -66,7 +66,6 @@ Royale requires Maven 3.3.9 or greater to be installed on your computer.
 
 To build Royale with Apache Maven, run Maven in the 3 folders as follows:
 
-royale-compiler:  mvn clean install -P -main,utils
 royale-compiler:  mvn clean install
 royale-typedefs:  mvn clean install
 royale-asjs:      mvn clean install
@@ -78,9 +77,7 @@ to build Royale applications.
 Building Royale With Apache Ant
 ===============================
 
-Royale requires Ant 1.7.1 or greater to be installed on your computer.
-
-Note: if you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8 or greater. If you use Java 1.7 with Ant 1.7 you will get compile errors.
+Royale requires Ant 1.8 or greater to be installed on your computer.
 
 For more information on installing Ant, see:
 

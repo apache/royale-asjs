@@ -31,7 +31,7 @@ Before building Royale you must install the following software and set the corre
 
 ### Java
 
-Royale requires Java SDK 1.7 or greater to be installed on your computer. For more information on installing the Java SDK, see:
+Royale requires Java SDK 1.8 or greater to be installed on your computer. For more information on installing the Java SDK, see:
 
 <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
@@ -55,9 +55,7 @@ Royale requires Java SDK 1.7 or greater to be installed on your computer. For mo
 
 ### Ant
 
-Royale requires Ant 1.7.1 or greater to be installed on your computer.
-
-Note: if you are using Java SDK 1.7 or greater on a Mac you must use Ant 1.8 or greater. If you use Java 1.7 with Ant 1.7 you will get compile errors.
+Royale requires Ant 1.8 or greater to be installed on your computer.
 
 For more information on installing Ant, see:
 

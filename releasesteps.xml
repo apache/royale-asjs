@@ -18,7 +18,8 @@
 
 -->
 
-<project name="CreateFrameworkReleaseCandidate" default="main" basedir=".">
+<project name="CreateFrameworkReleaseCandidate" default="main" basedir="."
+	xmlns:if="ant:if">
 
     <!-- use -Dtag=<tag or commit hash> to build from other than the head -->
 
@@ -194,11 +195,11 @@
         
         <!-- build these modules -->
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
-            <arg value="-Dgenerate.swf.swcs=true" />
+            <arg value="-X" />
+            <arg value="-P" />
+            <arg value="royale-release,apache-release,_reproducible-build,with-distribution,with-examples,with-manualtests,option-with-swf" />
             <arg value="clean" />
             <arg value="install" />
-            <arg value="-P" />
-            <arg value="generate-swcs-for-swf,release-swcs,main" />
         </exec>
     </target>
     
@@ -269,7 +270,7 @@
     </target>
     
     <target name="compare_files" depends="is_theme,compare_swc,compare_theme" />
-    <target name="compare_swc">
+    <target name="compare_swc" unless="theme">
         <condition property="thisFolder" value="Basic">
             <equals arg1="${thisFile}" arg2="BasicTheme" />
         </condition>
@@ -315,40 +316,162 @@
         </condition>
         <fail message="${artifactid}-${release.version}-swf.swc does not match" unless="filesmatch1" />
     </target>
+    
     <target name="compare_theme" if="theme">
-        <echo>comparing ${artifactid}-${release.version}-typedefs.swc</echo>
-        <fail message="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc does not exist" >
+        <echo>comparing ${artifactid}-${release.version}-swf.swc</echo>
+        <fail message="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-swf.swc does not exist" >
             <condition>
                 <not>
-                    <resourceexists><file file="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"/></resourceexists>
+                    <resourceexists><file file="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-swf.swc"/></resourceexists>
                 </not>
             </condition>
         </fail>
-        <fail message="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-extern.swc does not exist" >
+        <fail message="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-swf.swc does not exist" >
             <condition>
                 <not>
-                    <resourceexists><file file="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFolder}/target/${artifactid}-${release.version}-extern.swc"/></resourceexists>
+                    <resourceexists><file file="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFolder}/target/${artifactid}-${release.version}-swf.swc"/></resourceexists>
                 </not>
             </condition>
         </fail>
         <condition property="filesmatch2" value="true">
-            <filesmatch file1="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"
-            file2="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFolder}/target/${artifactid}-${release.version}-extern.swc" />
+            <filesmatch file1="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-swf.swc"
+            file2="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFolder}/target/${artifactid}-${release.version}-swf.swc" />
         </condition>
-        <fail message="${artifactid}-${release.version}-typedefs.swc does not match" unless="filesmatch2" />
+        <fail message="${artifactid}-${release.version}-swf.swc does not match" unless="filesmatch2" />
+        <echo>comparing ${artifactid}-${release.version}-js.swc</echo>
+        <fail message="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-js.swc does not exist" >
+            <condition>
+                <not>
+                    <resourceexists><file file="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-js.swc"/></resourceexists>
+                </not>
+            </condition>
+        </fail>
+        <fail message="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-js.swc does not exist" >
+            <condition>
+                <not>
+                    <resourceexists><file file="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFolder}/target/${artifactid}-${release.version}-js.swc"/></resourceexists>
+                </not>
+            </condition>
+        </fail>
+        <condition property="filesmatch2" value="true">
+            <filesmatch file1="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-js.swc"
+            file2="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFolder}/target/${artifactid}-${release.version}-js.swc" />
+        </condition>
+        <fail message="${artifactid}-${release.version}-js.swc does not match" unless="filesmatch2" />
     </target>
+    
     <target name="is_theme">
+        <condition property="thisFolder" value="Basic">
+            <equals arg1="${thisFile}" arg2="BasicTheme" />
+        </condition>
+        <property name="thisFolder" value="${thisFile}" />
         <condition property="theme">
-            <resourceexists><file file="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"/></resourceexists>
+            <resourceexists><file file="${artifactfolder}/sources/frameworks/themes/${thisFolder}/target/${artifactid}-${release.version}-js.swc"/></resourceexists>
         </condition>
         <condition property="theme_or_project" value="themes" else="projects">
-            <resourceexists><file file="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"/></resourceexists>
+            <resourceexists><file file="${artifactfolder}/sources/frameworks/themes/${thisFolder}/target/${artifactid}-${release.version}-js.swc"/></resourceexists>
         </condition>
     </target>
 
     <target name="Release_Step_011_Sign" depends="get-artifact-folder">
         <fail message="release.version not specified"
             unless="release.version"/>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-optimizer/${release.version}/compiler-optimizer-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-optimizer/${release.version}/compiler-optimizer-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-optimizer/${release.version}/compiler-optimizer-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compc/${release.version}/compc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compc/${release.version}/compc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compc/${release.version}/compc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compc/${release.version}/compiler-compc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compc/${release.version}/compiler-compc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compc/${release.version}/compiler-compc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/mxmlc/${release.version}/mxmlc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/mxmlc/${release.version}/mxmlc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/mxmlc/${release.version}/mxmlc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmljsc/${release.version}/compiler-mxmljsc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmljsc/${release.version}/compiler-mxmljsc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmljsc/${release.version}/compiler-mxmljsc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-asc/${release.version}/compiler-asc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-asc/${release.version}/compiler-asc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-asc/${release.version}/compiler-asc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-src.zip" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-bin.zip" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-src.tar.gz" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-bin.tar.gz" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmlc/${release.version}/compiler-mxmlc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmlc/${release.version}/compiler-mxmlc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmlc/${release.version}/compiler-mxmlc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compjsc/${release.version}/compiler-compjsc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compjsc/${release.version}/compiler-compjsc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compjsc/${release.version}/compiler-compjsc-${release.version}.jar" />
+	</antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" />
         </antcall>
@@ -529,6 +652,114 @@
         <antcall target="sign-theme-artifacts" >
             <param name="swcname" value="JewelTheme" />
         </antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Turquoise-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Sapphire-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Red-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Sunflower-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Violet-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Violet-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Blue-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Turquoise-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Turquoise-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Blue-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Red-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Red-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Amethyst-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Sapphire-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Emerald-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Green-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Orange-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Amethyst-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Sunflower-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Violet-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Orange-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Topaz-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Sapphire-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Emerald-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Yellow-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Topaz-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Orange-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Green-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Yellow-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Green-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Amethyst-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Topaz-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Emerald-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Yellow-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Blue-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Sunflower-Theme" />
+	</antcall>
         <antcall target="sign-theme-artifacts" >
             <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" />
         </antcall>
@@ -754,9 +985,11 @@
     </target>
     
     <target name="sign-theme-artifacts" depends="sign-swc-artifacts">
+        <!-- just in case we need these in the future
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-typedefs.swc" />
         </antcall>
+        -->
     </target>
     
     <target name="sign-swc-artifacts">
@@ -778,6 +1011,7 @@
     </target>
     
     <target name="sign-file">
+	<echo>${file}</echo>
         <exec executable="gpg" failonerror="true">
             <arg value="--armor" />
             <arg value="--output" />
@@ -788,11 +1022,15 @@
     </target>
     
     <target name="Release_Step_011_Upload" depends="get-artifact-folder">
+	    <fail message="release.version not specified"
+		    unless="release.version"/>
+	    <antcall target="uploadSWCs" />
+    </target>
+
+    <target name="Release_Step_011_Upload_Get_Credentials" depends="get-artifact-folder,get-username,get-password">
         <fail message="release.version not specified"
             unless="release.version"/>
         <antcall target="uploadSWCs" />
-        <antcall target="uploadJewelDark" />
-        <antcall target="uploadJewelLight" />
     </target>
     
     <target name="uploadSWCs" depends="get-artifact-folder" description="upload all SWCs except Jewel Themes">
@@ -804,8 +1042,30 @@
             <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
             <!--arg value="-Dwagon.includes=**" />
             <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->
+	    <arg value="-Dwagon.excludes=**/apache/royale/manualtests/**,**/apache/royale/examples/**"/>
+	    <arg value="-Drm.username=${apache.username}" if:set="${apache.username}"/>
+	    <arg value="-Drm.password=${apache.password}" if:set="${apache.password}"/>
             <arg value="-P" />
             <arg value="_releasesteps-upload-release-to-staging" />
+	    <arg value="-N"/>
+        </exec>
+    </target>
+    <target name="retryUploadSWCs" depends="get-artifact-folder" description="upload all SWCs except Jewel Themes">
+        <fail message="release.version not specified"
+        unless="release.version"/>
+        <fail message="rf_arg not specified"
+        unless="rf_arg"/>
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="wagon:upload" />
+            <arg value="-X" />
+            <arg value="-rf" />
+            <arg value="${rf_arg}" />
+            <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
+            <!--arg value="-Dwagon.includes=**" />
+            <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->
+            <arg value="-P" />
+            <arg value="_releasesteps-upload-release-to-staging" />
+	    <arg value="-N"/>
         </exec>
     </target>
     <target name="uploadJewelDark" depends="get-artifact-folder" description="upload Jewel Dark Themes">
@@ -818,6 +1078,7 @@
             <arg value="-Dwagon.includes=**/Jewel-Dark*/**" />
             <arg value="-P" />
             <arg value="-main,upload-release-to-staging" />
+	    <arg value="-N"/>
         </exec>
     </target>
     <target name="uploadJewelLight" depends="get-artifact-folder" description="upload Jewel Light Themes">
@@ -830,6 +1091,7 @@
             <arg value="-Dwagon.includes=**/Jewel-Light*/**" />
             <arg value="-P" />
             <arg value="-main,upload-release-to-staging" />
+	    <arg value="-N"/>
         </exec>
     </target>
     
@@ -1599,7 +1861,9 @@
     <target name="get-password" unless="apache.password" >
         <input
         message="Enter Apache account password:"
-        addproperty="apache.password"/>
+        addproperty="apache.password">
+           <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+	</input>
         <condition property="have.password">
             <not>
                 <equals trim="true" arg1="" arg2="${apache.password}"/>

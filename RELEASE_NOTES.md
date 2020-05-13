@@ -1,19 +1,94 @@
 Apache Royale 0.9.7
 ===================
 
-- Added 'URLVariables' emulation to Network library
-- Reflection support improved (supports access to custom namespaces)
+- Reflection support improved (supports access to custom namespaces) including improved utility methods
 - Added a 'getTimer' emulation to Core library, similar to 'flash.utils.getTimer'
-- Added support for using Command pattern to Crux
-- added [RoyaleArrayLike] implementation support added to Royale Collections, and BinaryData
-- improvements to XML/E4X conformance, and memory footprint (tbc @harbs)
+- added [RoyaleArrayLike] implementation support to Royale Collections, and BinaryData
+- improvements to XML/E4X conformance, and memory footprint
+- General improvements in Bindings, including function bindings
+- Added new Router classes
+- Added AMFLocalStorage, a javascript version of the Flash runtime LSO (Local Shared Object)
+- Added new ItemRendererInitializer bead infrastructure to decouple better item renderers functionality
+- Added ToolTipRemovalWhenItemRemoved for renderers that use tooltips.
 - Fix bin/mxmlc and bin/compc scripts that did not understand certain default compiler options in royale-config.xml
-- [add support for legacy HttpService decoding format](https://github.com/apache/royale-asjs/issues/466)
-- RoyaleUnit: [Test(async)] may be used to define asynchronous tests
-- RoyaleUnit: [BeforeClass] and [AfterClass] metadata must be added to static methods
-- RoyaleUnit: [Test] metadata supports an 'expected' attribute to expect a thrown exception
-- RoyaleUnit: Fixed incorrect order of expected and actual values in assert messages
+- Crux:
+  - Improved:
+    - Crux can now be used in MXRoyale and SparkRoyale applications
+  - New:
+    - Added support for using Command pattern to Crux
+    - Added Documentation in royale-docs site
+- Graphics:
+  - New:
+    - Added new high-parity swf graphics emulation (UIGraphicBase)
+- Jewel:
+  - Improved:
+    - Massive refactors and improvments
+    - Hierachy improved in many Jewel framework branches to make StyleUIBase the base of all components and unify APIs.
+    - StyleUIBase now improve width and height so we can use NaN values to unset values. For JS this means return to default values.
+    - Card: Added new subcomponents (CardHeader, CardTitle, CardPrimaryContent and CardActions)
+    - Button: Added new unboxed and outlined styles (also to IconButton and ToggleButton)
+    - CheckBox and RadioButton now can size the icon part
+    - ComboBox can now confifure custom renders and supports rowCount, and fixed percent width. also popup adapts to data provider length.
+    - List supports now variableRowHeight, scrollToIndex and can be navigated with arrow cursors (up/down)
+    - Item Renderer: Use the new Initializer infrastructure
+    - Remove mappers to rely on basic ones, also remove CRUD beads (Add, Remove and Update item beads)
+    - Layouts, Group and Container supports variableRowHeight
+    - Layouts many fixes and improvements in alignment, and now dispatch childs dispatch a "sizeChanged"
+    - Viewport and ScrollingViewport refactor. Viewport has now clipContent so Container can activate/deactivate
+    - added tabindex in many components and to Disabled bead (=-1)
+    - Prompt beads now support changes at runtime
+    - TabBar: fix AssignTabContent bead when change dataprovider 
+    - Jewel Themes was updated to show many visual improvements in colors and styles. Flat and Light themes are almost finished. Still Dark themes are work in progress.
+    - [Tour De Jewel](https://royale.apache.org/tourdejewel/) was updated to show all the latest updates
+  - New:
+    - Runtime Theme Switch. Can be seen working in Tour De Jewel
+    - StyledUIBase now adds min and max width and height properties.
+    - Added VSlider. The original Slider is now HSlider.
+    - Added Paddings bead
+    - Added VContainer and HContainer for clipped content
+    - Added DataGrid
+    - Added ButtonBar
+    - Added ComboBoxTrucatedText
+    - Added DrawerFooter
+    - Added VirtualList and VirtualComboBox to load huge amounts of data in a performant way
+    - New colors for text and icons (lightest, light, normal, dark and darkest)
+    - Added Jewel TodoMVC and TodoMVC with Crux examples following the [TodoMVC](http://todomvc.com/) website guidelines. Also added more blog examples. 
+- Icons
+    - Refactored classes IIcon classes to support more icons sets
+    - Added FontAwesome v5 support (also v4)
+    - Icons now support Material and FontAwesome (more sets can be added)
+- SVG:
+    - Fixed SVGImage when using Maven
+- Network:
+  - Improved:
+    - URLLoader now respects contentType passed in via URLRequest.
+  - New:
+    - Added URLVariables emulation
+- MXRoyale: 
+  - Improved: 
+    - mx.utils.ObjectUtil - improved parity
+    - mx.net.SharedObject - improved parity
+    - [add support for legacy HttpService decoding format](https://github.com/apache/royale-asjs/issues/466)
+    - Fixes in mx.messaging for polling support, mx.external.ExternalInterface
+  - New:
+    - mx.net.SharedObjectJSON - new alternative
+- Maven:
+  - Massive improvements
+  - Now Maven can generate a valid distribution (SDK) to use in any IDE (tested on VSCode and Moonshine)
+  - distribution can be JS only
+  - SASS generation is now separated from main build to a profile to save lots of time when no need to build themes
+- RoyaleUnit:
+  - [Test(async)] may be used to define asynchronous tests
+  - [BeforeClass] and [AfterClass] metadata must be added to static methods
+  - [Test] metadata supports an 'expected' attribute to expect a thrown exception
+  - Fixed incorrect order of expected and actual values in assert messages
 - RoyaleUnitUI: An optional UI to display the results of RoyaleUnit tests
+- Dozens of bugs reported, investigated, and squashed. For details of
+  closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed).
+
+Updates to the RELEASE_NOTES made after this file was packaged into the release artifacts can be found here:
+
+https://github.com/apache/royale-asjs/wiki/Release-Notes-0.9.7
 
 Apache Royale 0.9.6
 ===================
@@ -45,7 +120,7 @@ Apache Royale 0.9.6
 - int, uint, Class are now represented as simple, distinct types (Class is now not an 'Object', int is now not a 'Number', for example), and these support indirect 'as' or 'is' type checking and instantiation, matching swf behavior.
 - General improvements and additions to the Reflection library.
 - New Apache Royale Crux MVC/DI/IOC application architecture library (based on Swiz Framework) was added, with some simple examples.
-- Added and updated documentation in many areaas of [ASDocs reference](https://royale.apache.org/asdoc/).
+- Added and updated documentation in many areas of [ASDocs reference](https://royale.apache.org/asdoc/).
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed).
 
@@ -128,4 +203,4 @@ Please report new issues to our bugbase at:
     https://github.com/apache/royale-asjs/issues
 
                                           The Apache Royale Project
-                                          <https://royale.apache.org/>
+                                          <http://royale.apache.org/>

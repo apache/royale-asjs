@@ -21,7 +21,7 @@
 
 <project name="0002_Using_Jewel_Alert_Control" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0002_Using_Jewel_Alert_Control" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
