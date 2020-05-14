@@ -24,6 +24,10 @@ package mx.controls.beads.controllers
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController;
 	import org.apache.royale.html.beads.models.CascadingMenuModel;
 	import org.apache.royale.html.CascadingMenu;
+	import org.apache.royale.events.ItemClickedEvent;
+	
+	import mx.controls.Menu;
+	import mx.events.MenuEvent;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -55,6 +59,24 @@ package mx.controls.beads.controllers
 			return (node as XML).children().length() > 0;
 		}
 
+		override protected function selectedHandler(event:ItemClickedEvent):void
+		{
+			super.selectedHandler(event);
+			var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
+			var data:Object = event.target.data;
+			var menu:Menu = findMenuDispatcher() as Menu;
+			var label:String;
+			if (data is XML)
+			{
+				label = data.attribute(menu.labelField);
+			}
+			else
+			{
+				label = data[menu.labelField];
+			}
+			menuEvent.label = label
+			findMenuDispatcher().dispatchEvent(menuEvent);
+		}
 
 		/**
 		 * @private

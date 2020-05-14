@@ -939,7 +939,10 @@ package mx.controls
 				_hasRoot = true;
 				var xl:XMLList = new XMLList();
 				xl += value;
-				_rootModel = new XMLListCollection(xl);
+				if (showRoot)
+					_rootModel = new XMLListCollection(xl);
+				else
+					_rootModel = new XMLListCollection(xl.children());
 			}
 				//if already a collection dont make new one
 			else if (value is ICollectionView)
