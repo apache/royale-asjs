@@ -28,9 +28,11 @@ package
 	{
 		/**
 		 * 
-         * <inject_html>
-		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js"></script>
-		 * </inject_html>
+         * <inject_script>
+		 * var script = document.createElement("script");
+		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js");
+		 * document.head.appendChild(script);
+		 * </inject_script>
 		 * 
 		 * @param presetName String, MarkdownIt provides named presets as a convenience to quickly enable/disable active syntax rules and options for common use cases.
 		 * 
