@@ -6171,7 +6171,7 @@ COMPILE::JS
             } 
             else 
             {
-                positioner.style.visibility = null;
+                positioner.style.visibility = '';
                 dispatchEvent(new Event('show'));
             }
             dispatchEvent(new Event('visibleChanged'));
