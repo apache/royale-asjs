@@ -29,10 +29,6 @@ package mx.controls.beads.controllers
 	
 	import mx.controls.Menu;
 	import mx.events.MenuEvent;
-COMPILE::SWF{
-	import flash.utils.getQualifiedClassName;
-}
-
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -77,14 +73,6 @@ COMPILE::SWF{
 			}
 			else
 			{
-				COMPILE::SWF{
-					trace('data is null' + (data == null))
-					trace('menu is null' + (menu == null))
-					if (!menu) {
-						trace('menu is null (again)' + (findMenuDispatcher() == null))
-						trace('menu is null (again)' + getQualifiedClassName(findMenuDispatcher()))
-					}
-				}
 				label = data[menu.labelField];
 			}
 			menuEvent.label = label
