@@ -41,7 +41,7 @@ COMPILE::SWF{
     import flash.display.DisplayObject;
 }
 COMPILE::JS{
-    import DisplayObject = org.apache.royale.core.UIBase;;
+    import DisplayObject = org.apache.royale.core.UIBase;
 }
 
 import mx.collections.CursorBookmark;
@@ -573,6 +573,8 @@ public class DataGridListBase extends ListBase /* extends UIComponent
 	        iterator = collection.createCursor();
 	        collectionIterator = collection.createCursor(); //IViewCursor(collection);
 		}
+        clearSelectionData();
+        (model as ISelectionModel).selectedIndex = -1;
         super.dataProvider = value;
 
     }
@@ -4885,7 +4887,14 @@ public class DataGridListBase extends ListBase /* extends UIComponent
             return;
         }
 
-        (model as ISelectionModel).selectedIndex/*_selectedIndex*/ = selectedData[p].index;
+        //this should always resolve to the most recently selected index for the single selection model
+        var idx:int = (model as ISelectionModel).selectedIndex;
+        var newIndex:int = this.selectedIndices[0];
+        if (idx == newIndex) {
+            //force a change
+            (model as ISelectionModel).selectedIndex = -1;
+        }
+        (model as ISelectionModel).selectedIndex = newIndex;
         //_selectedItem = selectedData[p].data;
     }
 
@@ -5013,7 +5022,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
             {
                 removeSelectionData(uid);
                 drawItem(selectionData.index, false, uid == highlightUID, true, transition);
-                if (/*item.*/data == selectedItem)
+               // if (/*item.*/data == selectedItem)
                     calculateSelectedIndexAndItem();
             }
             else
@@ -5101,6 +5110,9 @@ public class DataGridListBase extends ListBase /* extends UIComponent
         //        lastSeekPending));
         //
         //}
+
+        //set the selection model index to the most recent index
+        (model as ISelectionModel).selectedIndex = index;
     }
 
     /**
@@ -5660,7 +5672,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
                 }
                 if (items.length == 0)
                 {
-                    (model as ISelectionModel).selectedIndex = index; //_selectedIndex = viewIndex;
+                    (model as ISelectionModel).selectedIndex = viewIndex; //_selectedIndex = viewIndex;
                     //_selectedItem = item;
                     caretIndex = viewIndex;
                     caretBookmark = collectionIterator.bookmark;
@@ -8530,7 +8542,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
                         e.addResponder(new ItemResponder(
                             seekPendingResultHandler, seekPendingFailureHandler,
                             lastSeekPending));
-                        
+
                         // trace("IPE in UpdateDisplayList");
                         iteratorValid = false;
                     }
@@ -8549,6 +8561,10 @@ public class DataGridListBase extends ListBase /* extends UIComponent
                         iterator.seek(CursorBookmark.FIRST,
                                       verticalScrollPosition);
                 */
+                //update the selectedIndices after the sort
+                var items:Array = copySelectedItems(true);
+                commitSelectedItems(items);
+
                         // re-dispatch off strand so DataGridView can pick it up
                         dispatchEvent(event);
                         /*

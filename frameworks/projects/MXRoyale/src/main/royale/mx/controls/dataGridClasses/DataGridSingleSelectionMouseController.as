@@ -16,49 +16,48 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.controls.beads
-{	
-    import org.apache.royale.core.IItemRenderer;   
-    import org.apache.royale.core.SelectableItemRendererClassFactory;
-	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
-    import mx.controls.dataGridClasses.DataGridColumnList;
+package mx.controls.dataGridClasses
+{
 
+	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
+	import org.apache.royale.utils.sendEvent;
 	/**
-	 *  The AdvancedDataGridItemRendererInitializer class initializes item renderers
-     *  in tree classes.
+	 *  The TreeSingleSelectionMouseController class is a controller for 
+	 *  org.apache.royale.html.Tree. This controller watches for selection
+	 *  events on the tree item renderers and uses those events to open
+	 *  or close nodes of the tree.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridSelectableItemRendererClassFactory extends SelectableItemRendererClassFactory
+	public class DataGridSingleSelectionMouseController extends ListSingleSelectionMouseController
 	{
 		/**
-		 *  constructor.
-		 *
+		 *  Constructor.
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function DataGridSelectableItemRendererClassFactory()
+		public function DataGridSingleSelectionMouseController()
 		{
+			super();
 		}
-				
-        override public function createItemRenderer():IItemRenderer
-        {
-            var ir:IItemRenderer = super.createItemRenderer();
-			COMPILE::JS 
-			{
-			ir["outerDocument"] = (_strand as DataGridColumnList).grid.mxmlDocument;
-			}
-			if (ir.getBeadByType(IBeadController) == null) {
-				//add a default mouse controller for DropInRenderers that may not have a mousecontroller
-				ir.addBead(new ItemRendererMouseController());
-			}
-			return ir;
-        }		        
+
+
+		/**
+		 * @private
+		 */
+		override protected function selectedHandler(event:ItemClickedEvent):void
+		{
+			//this class is really just to avoid the following two lines in the ancestor:
+			//listModel.selectedIndex = event.index;
+			//listModel.selectedItem = event.data;
+			sendEvent(listView.host,"change");
+		}
 	}
 }

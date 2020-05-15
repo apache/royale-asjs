@@ -16,16 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package bindables
-{
+package products {
 
-	public class BindableBaseVO
-	{
-			
+    import mx.controls.dataGridClasses.DataGridColumn;
 
-			
-			[Bindable]
-			public var fieldOfBindableBaseVO:String = "fieldOfBindableBaseVO_value";
+    public function addRandomDGColumns(base:Array, max:int=3 , force:int=-1):void {
 
-	}
+        var rand:int = force == -1 ? 1 + uint(Math.random() * max) : force;
+        var col:DataGridColumn = new DataGridColumn('Market Share');
+        col.width = 120;
+        col.dataField = 'marketShare';
+        rand--;
+        base.push(col);
+        if (rand){
+            col = new DataGridColumn('Product Group');
+            col.width = 120;
+            col.dataField = 'productGroup';
+            base.push(col);
+            rand--;
+
+        }
+
+
+        if (rand){
+            col = new DataGridColumn('Budget');
+            col.width = 120;
+            col.dataField = 'budget';
+            base.push(col);
+            rand--;
+        }
+
+    }
+
 }

@@ -75,9 +75,20 @@ package mx.controls.beads.layouts
 
         public var actualRowHeight:Number;
 
-
+        COMPILE::JS
+        private var _deferred:Boolean;
         protected function scrollHandler(e:Event):void
         {
+            COMPILE::JS{
+                (uiHost.view as DataGridView).header.element.scrollLeft = (uiHost.view as DataGridView).listArea.element.scrollLeft;
+                if (_deferred) return;
+                //this seems necessary for some browsers:
+                requestAnimationFrame(layout);
+                _deferred = true;
+            }
+            COMPILE::SWF{
+                layout();
+            }
 
         }
 
@@ -95,10 +106,11 @@ package mx.controls.beads.layouts
                 ww += columnWidths[i];
             }
             var view:DataGridView = (uiHost.view as DataGridView);
-            if (ww > view.listArea.width)
+            if (ww < view.listArea.width)
             {
-                // fudge last column if offscreen so it scrolls horizontally properly if
-                // vertical scrollbar is always on
+                // fudge last column if it has a gap for the vertical scrollbar
+                // so it will appear flush with right border if
+                // vertical scrollbar is showing
                 COMPILE::JS
                 {
                     if (view.listArea.element.offsetWidth > view.listArea.element.clientWidth)
@@ -107,11 +119,44 @@ package mx.controls.beads.layouts
                             view.listArea.element.clientWidth;
                     }
                 }
+            } else {
+                COMPILE::JS
+                {
+                    if ((uiHost as ScrollControlBase).horizontalScrollPolicy != mx.core.ScrollPolicy.OFF) {
+                        columnWidths[columnWidths.length - 1] += view.listArea.element.offsetWidth -
+                                view.listArea.element.clientWidth;
+                    }
+
+                }
             }
             
             super.setHeaderWidths(columnWidths);
         }
-        
+
+
+        protected function scrollPolicyChangedHandler(event:Event):void{
+       /*
+            //temp
+            var policy:String = event.type.substr(0,event.type.indexOf('Changed'));
+            trace(policy, uiHost[policy])*/
+
+            if (event.type == 'verticalScrollPolicyChanged') {
+                //if the recent change was to 'off' then reset the scroll position to top to match what Flex does
+                if ((uiHost as ScrollControlBase).verticalScrollPolicy == ScrollPolicy.OFF) {
+                    //reset the scroll top
+                    var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
+                    COMPILE::JS{
+                        listArea.element.scrollTop = 0;
+                    }
+                }
+            }
+            layout();
+            if (event.type == 'horizontalScrollPolicyChanged') {
+                //request re-render of the vertical column lines for the listArea
+                uiHost.dispatchEvent(new Event("renderColumnsNeeded"))
+            }
+        }
+
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
@@ -126,9 +171,14 @@ package mx.controls.beads.layouts
         {
             COMPILE::JS
             {
-                if (!scrollListening)
+                if (!scrollListening) {
                     (uiHost.view as IDataGridView).listArea.element.addEventListener("scroll", scrollHandler);
-                scrollListening = true;
+                    uiHost.addEventListener('horizontalScrollPolicyChanged', scrollPolicyChangedHandler);
+                    uiHost.addEventListener('verticalScrollPolicyChanged', scrollPolicyChangedHandler);
+                    scrollListening = true;
+                }
+                _deferred = false;
+
             }
             var presentationModel:DataGridPresentationModel = (uiHost as IStrandWithPresentationModel).presentationModel as DataGridPresentationModel;
             var view:DataGridView = (uiHost.view as DataGridView);
@@ -139,6 +189,11 @@ package mx.controls.beads.layouts
             
             var totalWidths:Number = 0;
             var unspecifiedWidths:int = 0;
+            var vScrollbarWidth:Number = 0;
+            COMPILE::JS{
+                vScrollbarWidth = view.listArea.element.offsetWidth - view.listArea.element.clientWidth;
+            }
+
             if (view.visibleColumns)
             {
                 for(var i:int=0; i < view.visibleColumns.length; i++) {
@@ -173,14 +228,14 @@ package mx.controls.beads.layouts
                 }
                 else if (totalWidths > 0)
                 {
-                    if (totalWidths != useWidth)
-                    {
-                        var factor:Number = useWidth / totalWidths;
-                        for(i=0; i < view.visibleColumns.length; i++) {
-                            columnDef = view.visibleColumns[i] as DataGridColumn;
-                            columnDef.columnWidth = columnDef.width * factor;
-                        }                
+
+
+                    var factor:Number = totalWidths != useWidth ? useWidth / totalWidths : 1;
+                    for(i=0; i < view.visibleColumns.length; i++) {
+                        columnDef = view.visibleColumns[i] as DataGridColumn;
+                        columnDef.columnWidth = columnDef.width * factor;
                     }
+
                 }
             }
             
@@ -193,7 +248,7 @@ package mx.controls.beads.layouts
                 {
                    view.header.element.scrollLeft = view.listArea.element.scrollLeft;
                 }
-                if (totalWidths < useWidth)
+                if (totalWidths < useWidth - vScrollbarWidth)
                 {
                     // this loop should prevent totalWidth < useWidth next time through
                     for(i=0; i < view.visibleColumns.length; i++) {
@@ -207,7 +262,11 @@ package mx.controls.beads.layouts
                     for(i=0; i < view.visibleColumns.length; i++) {
                         columnDef = view.visibleColumns[i] as DataGridColumn;
                         columnDef.columnWidth = columnDef.width;
-                    }                
+                    }
+                    if (totalWidths == useWidth && vScrollbarWidth) {
+                        //columnDef is the last column from the above loop:
+                        columnDef.columnWidth -= vScrollbarWidth;
+                    }
                 }
             }
 
@@ -225,7 +284,7 @@ package mx.controls.beads.layouts
             if (!uiHost.isHeightSizedToContent())
             {
                 var header:IUIBase = (uiHost.view as IDataGridView).header;
-                var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+        //        var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
                 // do the proportional sizing of columns
                 /*var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);
                 var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
@@ -270,18 +329,18 @@ package mx.controls.beads.layouts
                         }
                         else
                             lastVisibleIndex = model.dataProvider.length - 1;
-                        if (uiHost.element.style["overflow-x"] == "hidden")
-                            listArea.element.style["overflow-x"] = "hidden";
+                        /*if (uiHost.element.style["overflow-x"] == "hidden")
+                            listArea.element.style["overflow-x"] = "hidden";*/
                     }
                 }
-                COMPILE::JS
+                /*COMPILE::JS
                 {
                     if (listArea.element.offsetHeight > listArea.element.clientHeight)
                     {
                         // horizontal scrollbar is always shown
                         useHeight -= listArea.element.offsetHeight - listArea.element.clientHeight;
                     }
-                }
+                }*/
                 for (i = 0; i < n; i++)
                 {
                     var columnList:UIBase = displayedColumns[i] as UIBase;

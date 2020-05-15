@@ -315,7 +315,12 @@ package mx.controls.beads
             _overlay.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler, false);
             _header.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, false);
             _header.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false);
-            startX = lastX = event.localX;
+            var localX:Number = event.localX;
+            COMPILE::JS{
+                //adjust for the left scroll position of the underlying header
+                localX -= this._header.element.scrollLeft;
+            }
+            startX = lastX = localX;
         }
 
         /**

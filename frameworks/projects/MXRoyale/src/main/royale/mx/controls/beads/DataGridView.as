@@ -27,15 +27,18 @@ package mx.controls.beads
     import mx.controls.dataGridClasses.DataGridColumnList;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;
     import mx.controls.dataGridClasses.DataGridListArea;
+    import mx.containers.beads.DataGridListListView;
     import mx.controls.listClasses.ListBase;
+    import mx.core.ScrollPolicy;
     import mx.core.UIComponent;
     import mx.events.ItemClickEvent;
     import mx.core.mx_internal;
     import mx.events.CollectionEvent;
     import mx.events.ListEvent;
     import mx.utils.ObjectUtil;
+    import mx.core.ScrollControlBase;
     use namespace mx_internal;
-
+    import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
@@ -49,6 +52,9 @@ package mx.controls.beads
     import org.apache.royale.html.DataGridButtonBar;
     import org.apache.royale.html.supportClasses.IDataGridColumnList;
     import org.apache.royale.html.supportClasses.IDataGridColumn;
+    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.utils.getSelectionRenderBead;
 
 COMPILE::JS{
     import goog.events.EventTarget;
@@ -357,17 +363,18 @@ COMPILE::JS{
                                  highlighted:Boolean = false,
                                  caret:Boolean = false):void
         {
-            /*var n:int = columnLists.length;
+            var n:int = columnLists.length;
+            var clearLastCaret:Boolean = caret && index != _lastCaretIndex && _lastCaretIndex > -1;
             for (var i:int = 0; i < n; i++)
             {
-                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
-                var view:AdvancedDataGridListVirtualListView = list.view as AdvancedDataGridListVirtualListView;
+                var list:DataGridColumnList = columnLists[i] as DataGridColumnList;
+                var view:DataGridListListView = list.view as DataGridListListView;
                 var ir:IItemRenderer = view.getItemRendererForIndex(index) as IItemRenderer;
                 if (ir)
                 {
                     var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(ir);
-                    selectionBead.selected = selected;
-                    selectionBead.hovered = highlighted;
+                    if (selectionBead.selected != selected) selectionBead.selected = selected;
+                    if (selectionBead.hovered != highlighted) selectionBead.hovered = highlighted;
                     COMPILE::JS
                     {
                         if (caret)
@@ -376,7 +383,18 @@ COMPILE::JS{
                             (ir as UIBase).element.style.border = "none";
                     }
                 }
-            }*/
+                if (clearLastCaret) {
+                    ir = view.getItemRendererForIndex(_lastCaretIndex) as IItemRenderer;
+                    if (ir)
+                    {
+                        COMPILE::JS
+                        {
+                            (ir as UIBase).element.style.border = "none";
+                        }
+                    }
+                }
+            }
+            if (caret) _lastCaretIndex = index;
 
         }
 	}

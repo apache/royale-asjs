@@ -144,12 +144,15 @@ package mx.controls.beads
 			}
         }
 
-        
+
+        private var _lastCaretIndex:int = -1;
+
         override public function drawItem(index:int, selected:Boolean = false,
                                     highlighted:Boolean = false,
                                     caret:Boolean = false):void
         {
             var n:int = columnLists.length;
+            var clearLastCaret:Boolean = caret && index != _lastCaretIndex && _lastCaretIndex > -1;
             for (var i:int = 0; i < n; i++)
             {
                 var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
@@ -158,6 +161,7 @@ package mx.controls.beads
                 if (ir)
                 {
                     var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(ir);
+                    //these following two might not be needed here:
                     selectionBead.selected = selected;
                     selectionBead.hovered = highlighted;
                     COMPILE::JS
@@ -168,8 +172,19 @@ package mx.controls.beads
                         (ir as UIBase).element.style.border = "none";
                     }                        
                 }
+
+                if (clearLastCaret) {
+                    ir = view.getItemRendererForIndex(_lastCaretIndex) as IItemRenderer;
+                    if (ir)
+                    {
+                        COMPILE::JS
+                        {
+                            (ir as UIBase).element.style.border = "none";
+                        }
+                    }
+                }
             }
-                
+            if (caret) _lastCaretIndex = index;
         }
 
 

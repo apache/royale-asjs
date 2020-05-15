@@ -51,6 +51,7 @@ internal class MXRoyaleClasses
 	import mx.events.MoveEvent; MoveEvent;
 	import mx.events.ValidationResultEvent; ValidationResultEvent;
     import mx.containers.beads.AdvancedDataGridListVirtualListView; AdvancedDataGridListVirtualListView;
+	import mx.containers.beads.DataGridListListView; DataGridListListView;
 	import mx.containers.beads.AdvancedDataGridHeaderLayout; AdvancedDataGridHeaderLayout;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
@@ -183,6 +184,8 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSelectableItemRendererBead; AdvancedDataGridSelectableItemRendererBead;
     import mx.controls.dataGridClasses.DataGridColumnList; DataGridColumnList;
     import mx.controls.dataGridClasses.DataGridListArea; DataGridListArea;
+	import mx.controls.dataGridClasses.DataGridListAreaViewport; DataGridListAreaViewport;
+	import mx.controls.dataGridClasses.DataGridSingleSelectionMouseController; DataGridSingleSelectionMouseController;
     import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
     import mx.controls.beads.DataGridView; DataGridView;
     import mx.controls.beads.layouts.AdvancedDataGridLayout; AdvancedDataGridLayout;
@@ -215,6 +218,7 @@ internal class MXRoyaleClasses
 	import mx.collections.ComplexFieldChangeWatcher; ComplexFieldChangeWatcher;
 	import mx.binding.BindabilityInfo; BindabilityInfo;
 	import mx.binding.utils.ChangeWatcher; ChangeWatcher;
+	import mx.binding.utils.BindingUtils; BindingUtils;
 	import mx.validators.IValidatorListener; IValidatorListener;
 	import mx.managers.IToolTipManagerClient; IToolTipManagerClient;
 	import mx.events.ToolTipEvent; ToolTipEvent;

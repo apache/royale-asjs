@@ -23,11 +23,16 @@ package mx.controls.beads.controllers
 	
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController;
 	import org.apache.royale.html.beads.models.CascadingMenuModel;
+	import org.apache.royale.core.ICascadingMenuModel
 	import org.apache.royale.html.CascadingMenu;
 	import org.apache.royale.events.ItemClickedEvent;
 	
 	import mx.controls.Menu;
 	import mx.events.MenuEvent;
+COMPILE::SWF{
+	import flash.utils.getQualifiedClassName;
+}
+
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -41,7 +46,7 @@ package mx.controls.beads.controllers
 	public class CascadingMenuSelectionMouseController extends org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController
 	{
 
-		override protected function getSubMenuDataProvider(node:Object, model:CascadingMenuModel):Object
+		override protected function getSubMenuDataProvider(node:Object, model:ICascadingMenuModel):Object
 		{
 			if (!(node is XML))
 			{
@@ -50,7 +55,7 @@ package mx.controls.beads.controllers
 			return new XMLListCollection((node as XML).children());
 		}
 		
-		override protected function getHasMenu(node:Object, model:CascadingMenuModel):Boolean
+		override protected function getHasMenu(node:Object, model:ICascadingMenuModel):Boolean
 		{
 			if (!(node is XML))
 			{
@@ -72,6 +77,14 @@ package mx.controls.beads.controllers
 			}
 			else
 			{
+				COMPILE::SWF{
+					trace('data is null' + (data == null))
+					trace('menu is null' + (menu == null))
+					if (!menu) {
+						trace('menu is null (again)' + (findMenuDispatcher() == null))
+						trace('menu is null (again)' + getQualifiedClassName(findMenuDispatcher()))
+					}
+				}
 				label = data[menu.labelField];
 			}
 			menuEvent.label = label

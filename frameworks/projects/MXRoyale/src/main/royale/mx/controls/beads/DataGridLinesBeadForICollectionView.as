@@ -45,6 +45,7 @@ package mx.controls.beads
             super.handleInitComplete(event);
             // column resizing
             IEventDispatcher(_strand).addEventListener("layoutNeeded", drawLines);
+            IEventDispatcher(_strand).addEventListener("renderColumnsNeeded", drawLines);
         }
 
 		
