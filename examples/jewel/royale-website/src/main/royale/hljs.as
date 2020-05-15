@@ -25,12 +25,22 @@ package
 	public class hljs
 	{
 		/** 
-         * <inject_html>
-		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
-		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/actionscript.min.js"></script>
-		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/xml.min.js"></script>
-         * <link rel="stylesheet" title="Atom One Dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
-		 * </inject_html>
+         * <inject_script>
+		 * var script = document.createElement("script");
+		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js");
+		 * document.head.appendChild(script);
+		 * script = document.createElement("script");
+		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/actionscript.min.js");
+		 * document.head.appendChild(script);
+		 * script = document.createElement("script");
+		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/xml.min.js");
+		 * document.head.appendChild(script);
+         * var link = document.createElement("link");
+         * link.setAttribute("rel", "stylesheet");
+         * link.setAttribute("type", "text/css");
+         * link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css");
+         * document.head.appendChild(link);
+		 * </inject_script>
 		 */
 		public function hljs(){}
 

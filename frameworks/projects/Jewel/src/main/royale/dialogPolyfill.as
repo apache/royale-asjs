@@ -25,10 +25,16 @@ package
 	public class dialogPolyfill
 	{
 		/** 
-         * <inject_html>
-         * <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js"></script>
-         * <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css">
-         * </inject_html>
+         * <inject_script>
+         * var script = document.createElement("script");
+         * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js");
+         * document.head.appendChild(script)
+         *  var link = document.createElement("link");
+         *  link.setAttribute("rel", "stylesheet");
+         *  link.setAttribute("type", "text/css");
+         *  link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css");
+         *  document.head.appendChild(link);
+         * </inject_script>
 		 */
 		public function dialogPolyfill(){}
 		 

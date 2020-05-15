@@ -27,12 +27,14 @@ package org.apache.royale.utils
 	public class CompressionUtils
 	{
         /**
-         * The Royale Compiler will inject html into the index.html file.  Surround with
-         * "inject_html" tag as follows:
+         * The Royale Compiler will inject a script into the index.html file.  Surround with
+         * "inject_script" tag as follows:
          *
-         * <inject_html>
-         * <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.3/pako.min.js"></script>
-         * </inject_html>
+         * <inject_script>
+         * var script = document.createElement("script");
+         * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.3/pako.min.js");
+         * document.head.appendChild(script);
+         * </inject_script>
 		 * 
          *  Constructor.
          *  

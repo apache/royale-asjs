@@ -51,9 +51,13 @@ package org.apache.royale.icons
         /**
          *  constructor.
          * 
-         *  <inject_html>
-         *   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous"/>
-	     *  </inject_html>
+         *  <inject_script>
+         *   var link = document.createElement("link");
+         *   link.setAttribute("rel", "stylesheet");
+         *   link.setAttribute("type", "text/css");
+         *   link.setAttribute("href", "https://pro.fontawesome.com/releases/v5.13.0/css/all.css");
+         *   document.head.appendChild(link);
+	     *  </inject_script>
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

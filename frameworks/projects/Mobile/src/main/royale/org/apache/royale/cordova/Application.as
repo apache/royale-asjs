@@ -33,13 +33,18 @@ package org.apache.royale.cordova
 	public class Application extends org.apache.royale.core.AirApplication implements IFlexInfo
 	{
 		/**
-		 * The Royale Compiler will inject html into the index.html file.  Surround with
-		 * "inject_html" tag as follows:
+		 * The Royale Compiler will inject script elements into the index.html file.  Surround with
+		 * "inject_script" tag as follows:
 		 *
-		 * <inject_html>
-		 * <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-		 * <script type="text/javascript" src="cordova.js"></script>
-		 * </inject_html>
+		 * <inject_script>
+		 * var meta = document.createElement("meta");
+		 * meta.setAttribute("name", "viewport");
+		 * meta.setAttribute("content", "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0");
+		 * document.head.appendChild(meta);
+		 * var script = document.createElement("script");
+		 * script.setAttribute("src", "cordova.js");
+		 * document.head.appendChild(script);
+		 * </inject_script>
 		 */
 		public function Application()
 		{

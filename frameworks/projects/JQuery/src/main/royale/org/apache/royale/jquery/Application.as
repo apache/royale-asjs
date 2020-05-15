@@ -25,15 +25,22 @@ package org.apache.royale.jquery
 	public class Application extends org.apache.royale.core.Application implements IFlexInfo
 	{
 		/**
-		 * The Royale Compiler will inject html into the index.html file.  Surround with
-		 * "inject_html" tag as follows:
+		 * The Royale Compiler will inject script elements into the index.html file.  Surround with
+		 * "inject_script" tag as follows:
 		 *
-		 * <inject_html>
-		 * <link rel="stylesheet"
-		 * href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
-		 * <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-		 * <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
-		 * </inject_html>
+		 * <inject_script>
+		 * var link = document.createElement("link");
+		 * link.setAttribute("rel", "stylesheet");
+		 * link.setAttribute("type", "text/css");
+		 * link.setAttribute("href", "http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css");
+		 * document.head.appendChild(link);
+		 * var script = document.createElement("script");
+		 * script.setAttribute("src", "http://code.jquery.com/jquery-1.9.1.js");
+		 * document.head.appendChild(script);
+		 * script = document.createElement("script");
+		 * script.setAttribute("src", "http://code.jquery.com/ui/1.10.2/jquery-ui.js");
+		 * document.head.appendChild(script);
+		 * </inject_script>
 		 */
 		public function Application()
 		{
