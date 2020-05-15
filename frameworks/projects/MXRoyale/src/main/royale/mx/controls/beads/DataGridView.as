@@ -359,6 +359,8 @@ COMPILE::JS{
             return check;
         }
 
+        private var _lastCaretIndex:int = -1;
+
         public function drawItem(index:int, selected:Boolean = false,
                                  highlighted:Boolean = false,
                                  caret:Boolean = false):void
