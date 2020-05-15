@@ -2190,6 +2190,10 @@ public class ListBase  extends SkinnableContainer
         super.addedToParent();
         if (requireSelection && selectedIndex == -1)
             selectedIndex = 0;
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("change", redispatcher);
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("itemClick", redispatcher);
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("doubleClick", redispatcher);
+		
         setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
     }
     
@@ -2198,6 +2202,11 @@ public class ListBase  extends SkinnableContainer
         super.setActualSize(w, h);
         ((view as SparkContainerView).contentView as DataGroup).setActualSize(w, h);
     }
+
+	private function redispatcher(event:Event):void
+	{
+		dispatchEvent(new Event(event.type));
+	}
 }
 
 }

@@ -75,6 +75,15 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
             typeNames = "ListItemRenderer";
             isAbsolute = false;
         }
+        addEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler);
+    }
+
+    private function doubleClickHandler(event:MouseEvent):void
+    {
+        var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_DOUBLE_CLICK);
+        newEvent.rowIndex = index;
+		newEvent.columnIndex = 0;
+		getComponentDispatcher().dispatchEvent(newEvent);        
     }
 
     COMPILE::SWF
