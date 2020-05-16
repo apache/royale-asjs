@@ -21,7 +21,6 @@ limitations under the License.
                                         xmlns:j="library://ns.apache.org/royale/jewel"
                                         xmlns:js="library://ns.apache.org/royale/basic"
                                         xmlns:html="library://ns.apache.org/royale/html"
-                                        
                                         sectionClick="handleNavToggle(event)"
                                         minHeight="48">
                                         <!-- using 'minHeight' instead of 'height' here since collapsible changes heigth of the renderer -->
@@ -69,8 +68,8 @@ limitations under the License.
             var parentNav:Navigation =  this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
             if (parentNav) {
                 //this hierarchy support is a bit kooky, and probably there will be something better later with Hierarchical data setup
-                navlink.selectedChild =selectedItem as NavigationLinkVO;
-                if (parentNav.selectedItem!= this.data){
+                navlink.selectedChild = selectedItem as NavigationLinkVO;
+                if (parentNav.selectedItem != this.data) {
                     parentNav.selectedItem = this.data;
                 }
                 parentNav.dispatchEvent(new Event('change'));

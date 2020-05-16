@@ -239,6 +239,7 @@ package org.apache.royale.jewel.itemRenderers
 			} else {
 				children = null;
 				processChildren();
+				addClass("no-submenu");
 			}
 			
 			//super.data dispatches the dataChange
