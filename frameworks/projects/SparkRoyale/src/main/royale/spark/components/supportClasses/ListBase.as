@@ -1023,6 +1023,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function get selectedItem():*
     {
+        return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem;
         /* if (_pendingSelectedItem !== undefined)
             return _pendingSelectedItem;
             
@@ -1040,6 +1041,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set selectedItem(value:*):void
     {
+        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem = value;
       //  setSelectedItem(value, false);
     }
 

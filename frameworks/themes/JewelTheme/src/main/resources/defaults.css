@@ -887,6 +887,10 @@ j|FormItem {
   margin-left: auto;
 }
 
+.jewel.navigationgroup.no-submenu.hovered {
+  background: #f3f3f3 !important;
+}
+
 .navigation-section-group {
   transition: height 0.5s;
   overflow: hidden !important;
