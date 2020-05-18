@@ -24,12 +24,6 @@ package
 	COMPILE::JS
 	public class hljs
 	{
-		/** 
-         * <inject_html>
-		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-         * <link rel="stylesheet" title="Atom One Dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
-		 * </inject_html>
-		 */
 		public function hljs(){}
 
 		public static function highlightBlock(block:Element):void {}

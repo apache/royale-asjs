@@ -107,6 +107,7 @@ use namespace mx_internal;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IDataGrid;
 import org.apache.royale.core.IDataGridModel;
+import org.apache.royale.html.beads.IDataGridView;
 import org.apache.royale.core.IDataGridPresentationModel;
 import org.apache.royale.core.ValuesManager;
 
@@ -849,7 +850,12 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     override public function addedToParent():void
     {
         super.addedToParent();
+
         addBead(new DataGridSortBead())
+
+        COMPILE::JS{
+            this.element.style['overflow-y'] = 'hidden';
+        }
 
        /* addBead(new AdvancedDataGridSortBead());
         addEventListener(AdvancedDataGridEvent.SORT, sortHandler);
@@ -864,6 +870,22 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
         addEventListener(AdvancedDataGridEvent.ITEM_EDIT_END,
                 itemEditorItemEditEndHandler);*/
 
+    }
+
+    COMPILE::JS
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+     */
+    override protected function getVerticalScrollElement():HTMLElement{
+        return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
+    }
+
+    COMPILE::JS
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+     */
+    override protected function getHorizontalScrollElement():HTMLElement{
+        return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
     }
 }
 

@@ -98,6 +98,7 @@ dg|DataGridHeaderRenderer{
 	border-right: 1px solid #222222;
 	border-left: none;
 	font-weight: bold;
+	overflow: hidden;
 }
 
 adg|AdvancedDataGridHeaderRenderer {
@@ -108,6 +109,7 @@ adg|AdvancedDataGridHeaderRenderer {
 	border-right: 1px solid #222222;
 	border-left: none;
 	font-weight: bold;
+	overflow: hidden;
 }
 
 AdvancedDataGrid
@@ -243,6 +245,8 @@ DataGridColumnList {
 	IBeadModel: ClassReference("mx.controls.beads.models.DataGridColumnICollectionViewModel");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IBeadView:  ClassReference("mx.containers.beads.DataGridListListView");
+	IBeadController:  ClassReference("mx.controls.dataGridClasses.DataGridSingleSelectionMouseController");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("mx.controls.beads.DataGridSelectableItemRendererClassFactory");
 	IItemRendererInitializer: ClassReference("mx.controls.beads.DataGridItemRendererInitializer");
@@ -255,7 +259,7 @@ DataGridColumnList {
 DataGridListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
-	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewport: ClassReference("mx.controls.dataGridClasses.DataGridListAreaViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	flex-grow: 1;
 }

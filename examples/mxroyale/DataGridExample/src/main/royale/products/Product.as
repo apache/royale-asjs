@@ -18,24 +18,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 package products
 {
+	[Bindable]
 	public class Product
 	{
-		private var _id:String;
+		/*private var _id:String;
 		private var _title:String;
 		private var _detail:Number;
 		private var _image:String;
-		private var _sales:Number;
+		private var _sales:Number;*/
+
+
 		
-		public function Product(id:String,title:String,detail:Number,sales:Number,image:String)
+		public function Product(id:String, title:String, detail:Number, sales:Number, image:String)
 		{
-			this._id = id;
+			/*this._id = id;
 			this._title = title;
 			this._detail = detail;
 			this._sales = sales;
-			this._image = image;
+			this._image = image;*/
+
+			this.id = id;
+			this.title = title;
+			this.detail = detail;
+			this.sales = sales;
+			this.image = image;
+			addRandomProductValues(this);
+
 		}
 		
-		public function get id():String
+		/*public function get id():String
 		{
 			return _id;
 		}
@@ -58,7 +69,17 @@ package products
 		public function get sales():Number
 		{
 			return _sales;
-		}
+		}*/
+
+		public var id:String;
+		public var title:String;
+		public var detail:Number;
+		public var image:String;
+		public var sales:Number;
+		public var marketShare:Number;
+		public var productGroup:String;
+		public var budget:Number;
+
 		
 		public function toString():String
 		{

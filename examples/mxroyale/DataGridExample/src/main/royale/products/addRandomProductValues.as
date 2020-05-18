@@ -16,23 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package bindables
-{
+package products {
 
-	public class BindableSetterVO
-	{
-		private var _fieldOfBindableSetterVO:String = "fieldOfBindableSetterVO_value";
-		
-		public function get fieldOfBindableSetterVO():String
-		{
-			return _fieldOfBindableSetterVO;
-		}
-		
-		[Bindable]
-		public function set fieldOfBindableSetterVO(value:String):void
-		{
-			_fieldOfBindableSetterVO = value;
-		}
 
-	}
+
+    public function addRandomProductValues(product:Product):void {
+        //marketShare:Number
+        product.marketShare = (50 + uint(Math.random() * 950))/1000;
+
+        //marketShare:Number
+        product.productGroup = productGroups[uint(Math.random()* productGroups.length)];
+
+        //budget:Number 50K -> 1M
+        product.budget = (50000 + uint(Math.random() * 20)*50000);
+
+    }
+
 }
+var productGroups:Array =['Shooting Stars', 'Stable', 'Unproven', 'CashCows', 'MoneyPits'];

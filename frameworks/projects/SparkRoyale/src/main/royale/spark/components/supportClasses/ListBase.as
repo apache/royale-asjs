@@ -1023,6 +1023,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function get selectedItem():*
     {
+        return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem;
         /* if (_pendingSelectedItem !== undefined)
             return _pendingSelectedItem;
             
@@ -1040,6 +1041,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set selectedItem(value:*):void
     {
+        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem = value;
       //  setSelectedItem(value, false);
     }
 
@@ -2190,6 +2192,10 @@ public class ListBase  extends SkinnableContainer
         super.addedToParent();
         if (requireSelection && selectedIndex == -1)
             selectedIndex = 0;
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("change", redispatcher);
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("itemClick", redispatcher);
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("doubleClick", redispatcher);
+		
         setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
     }
     
@@ -2198,6 +2204,11 @@ public class ListBase  extends SkinnableContainer
         super.setActualSize(w, h);
         ((view as SparkContainerView).contentView as DataGroup).setActualSize(w, h);
     }
+
+	private function redispatcher(event:Event):void
+	{
+		dispatchEvent(new Event(event.type));
+	}
 }
 
 }

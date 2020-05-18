@@ -84,9 +84,10 @@ package mx.controls.advancedDataGridClasses
     				adg.openNode(node);
     			}
             }
-              
-			// reset the selection
-            ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
+
+			//avoid doing this (it breaks ctrl-click de-selection which is managed at the top level):
+			//was: reset the selection
+			//            ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 	    
 	    var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_CLICK);

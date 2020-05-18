@@ -482,6 +482,12 @@ public class ScrollControlBase extends UIComponent
             _horizontalScrollPolicy = newPolicy;
 //            invalidateDisplayList();
 
+            COMPILE::JS{
+                if (parent) {
+                    applyScrollPolicy(true, false);
+                }
+            }
+
             dispatchEvent(new Event("horizontalScrollPolicyChanged"));
         }
     }
@@ -827,6 +833,11 @@ public class ScrollControlBase extends UIComponent
         {
             _verticalScrollPolicy = newPolicy;
 //            invalidateDisplayList();
+            COMPILE::JS{
+                if (parent) {
+                    applyScrollPolicy(false, true);
+                }
+            }
 
             dispatchEvent(new Event("verticalScrollPolicyChanged"));
         }
@@ -1480,10 +1491,40 @@ public class ScrollControlBase extends UIComponent
     override public function addedToParent():void
     {
         super.addedToParent();
-        if (_horizontalScrollPolicy == ScrollPolicy.OFF)
-            element.style["overflow-x"] = "hidden";
-        if (_verticalScrollPolicy == ScrollPolicy.OFF)
-            element.style["overflow-y"] = "hidden";            
+        applyScrollPolicy(true, true);
+    }
+
+    COMPILE::JS
+    private function applyScrollPolicy(horizontal:Boolean, vertical:Boolean):void{
+        var policy:String;
+        var applied:String;
+        var target:HTMLElement
+        if (horizontal) {
+            target = getHorizontalScrollElement();
+            if (target){
+                policy = _horizontalScrollPolicy;
+                applied = policy == ScrollPolicy.OFF ? 'hidden' : (policy == ScrollPolicy.ON ? 'scroll' : 'auto');
+                target.style["overflow-x"] = applied;
+            }
+        }
+        if (vertical) {
+            target = getVerticalScrollElement();
+            if (target) {
+                policy = _verticalScrollPolicy;
+                applied = policy == ScrollPolicy.OFF ? 'hidden' : (policy == ScrollPolicy.ON ? 'scroll' : 'auto');
+                target.style["overflow-y"] = applied;
+            }
+        }
+    }
+
+    COMPILE::JS
+    protected function getHorizontalScrollElement():HTMLElement{
+      return element;
+    }
+
+    COMPILE::JS
+    protected function getVerticalScrollElement():HTMLElement{
+        return element;
     }
 }
 }

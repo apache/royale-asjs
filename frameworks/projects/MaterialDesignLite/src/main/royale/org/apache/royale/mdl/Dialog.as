@@ -52,10 +52,16 @@ package org.apache.royale.mdl
 		/**
 		 *  constructor.
          *
-         *  <inject_html>
-         *  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css">
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js"></script>
-         *  </inject_html>
+         *  <inject_script>
+         *  var link = document.createElement("link");
+         *  link.setAttribute("rel", "stylesheet");
+         *  link.setAttribute("type", "text/css");
+         *  link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css");
+         *  document.head.appendChild(link);
+         *  var script = document.createElement("script");
+         *  script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js");
+         *  document.head.appendChild(script);
+         *  </inject_script>
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

@@ -21,12 +21,12 @@ package mx.controls.beads.controllers
 {
 	import mx.collections.XMLListCollection;
 	
+	import org.apache.royale.core.IMenu;
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController;
-	import org.apache.royale.html.beads.models.CascadingMenuModel;
+	import org.apache.royale.core.ICascadingMenuModel
 	import org.apache.royale.html.CascadingMenu;
 	import org.apache.royale.events.ItemClickedEvent;
 	
-	import mx.controls.Menu;
 	import mx.events.MenuEvent;
 
 /**
@@ -41,7 +41,7 @@ package mx.controls.beads.controllers
 	public class CascadingMenuSelectionMouseController extends org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController
 	{
 
-		override protected function getSubMenuDataProvider(node:Object, model:CascadingMenuModel):Object
+		override protected function getSubMenuDataProvider(node:Object, model:ICascadingMenuModel):Object
 		{
 			if (!(node is XML))
 			{
@@ -50,7 +50,7 @@ package mx.controls.beads.controllers
 			return new XMLListCollection((node as XML).children());
 		}
 		
-		override protected function getHasMenu(node:Object, model:CascadingMenuModel):Boolean
+		override protected function getHasMenu(node:Object, model:ICascadingMenuModel):Boolean
 		{
 			if (!(node is XML))
 			{
@@ -64,7 +64,8 @@ package mx.controls.beads.controllers
 			super.selectedHandler(event);
 			var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
 			var data:Object = event.target.data;
-			var menu:Menu = findMenuDispatcher() as Menu;
+			menuEvent.item = data;
+			var menu:IMenu = _strand as IMenu;
 			var label:String;
 			if (data is XML)
 			{

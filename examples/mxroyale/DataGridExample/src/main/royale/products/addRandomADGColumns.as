@@ -16,23 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package bindables
-{
+package products {
 
-	public class BindableGetterVO
-	{
-		private var _fieldOfBindableGetterVO:String = "fieldOfBindableGetterVO_value";
-		
-		[Bindable]
-		public function get fieldOfBindableGetterVO():String
-		{
-			return _fieldOfBindableGetterVO;
-		}
-		
-		public function set fieldOfBindableGetterVO(value:String):void
-		{
-			_fieldOfBindableGetterVO = value;
-		}
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 
-	}
+    public function addRandomADGColumns(base:Array, max:int=3 , force:int=-1):void {
+
+        var rand:int = force == -1 ? 1 + uint(Math.random() * max) : force;
+        var col:AdvancedDataGridColumn = new AdvancedDataGridColumn('Market Share');
+        col.width = 120;
+        col.dataField = 'marketShare';
+        rand--;
+        base.push(col);
+        if (rand){
+            col = new AdvancedDataGridColumn('Product Group');
+            col.width = 120;
+            col.dataField = 'productGroup';
+            base.push(col);
+            rand--;
+
+        }
+
+        if (rand){
+            col = new AdvancedDataGridColumn('Budget');
+            col.width = 120;
+            col.dataField = 'budget';
+            base.push(col);
+            rand--;
+        }
+
+    }
+
 }

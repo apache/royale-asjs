@@ -34,9 +34,11 @@ package org.apache.royale.ace
 	public class ACEEditor extends org.apache.royale.core.UIBase
 	{
 		/**
-		 * <inject_html>
-		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js"></script>
-		 * </inject_html>
+		 * <inject_script>
+		 * var script = document.createElement("script");
+		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js");
+		 * document.head.appendChild(script);
+		 * </inject_script>
 		 */
 		public function ACEEditor()
 		{

@@ -149,11 +149,11 @@ limitations under the License.
 
 				<html:H4 text="Width 100% and emphasized color, selectedIndex is 2"/>
 
-				<j:ToggleButtonBar localId="tbb" 
+				<j:ToggleButtonBar localId="tbb" className="iconButtonBarFontAwesomeIcon"
 					change="tbbChangeHandler(event)"
 					selectedIndex="2"
 					emphasis="primary" width="100%" 
-					dataProvider="{listModel.iconButtonData}"/>
+					dataProvider="{listModel.iconButtonDataFW}"/>
 				
 				<html:H4 text="No Width and icons to the right, selectedIndex is 0"/>
 

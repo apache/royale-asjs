@@ -91,6 +91,7 @@ package mx.controls
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.DataGridButtonBar;
@@ -9950,7 +9951,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     {
         super.addedToParent();
         
-        addBead(new AdvancedDataGridSortBead());            
+        addBead(new AdvancedDataGridSortBead());
+
+        COMPILE::JS{
+            this.element.style['overflow-y'] = 'hidden';
+        }
+
         addEventListener(AdvancedDataGridEvent.SORT, sortHandler);
         // Register default handlers for item editing.
 
@@ -11375,6 +11381,23 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 		}
 		return props;
 	}
+
+
+    COMPILE::JS
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+     */
+    override protected function getVerticalScrollElement():HTMLElement{
+        return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
+    }
+
+    COMPILE::JS
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+     */
+    override protected function getHorizontalScrollElement():HTMLElement{
+        return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
+    }
 
 }
 

@@ -72,7 +72,7 @@ package org.apache.royale.html.beads
 		}
 
 		protected var _textInput:ITextInput;
-		private var _button:TextButton;
+		protected var _button:TextButton;
 
 		/**
 		 *  The TextButton that triggers the display of the DateChooser pop-up.
@@ -171,7 +171,7 @@ package org.apache.royale.html.beads
 			return _popUp;
 		}
 
-		private var _popUpVisible:Boolean;
+		protected var _popUpVisible:Boolean;
 
 		/**
 		 *  This property is true if the pop-up selection list is currently visible.
@@ -185,7 +185,7 @@ package org.apache.royale.html.beads
 		{
 			return _popUpVisible;
 		}
-		private var _showingPopup:Boolean;
+		protected var _showingPopup:Boolean;
 		public function set popUpVisible(value:Boolean):void
 		{
 			// prevent resursive calls

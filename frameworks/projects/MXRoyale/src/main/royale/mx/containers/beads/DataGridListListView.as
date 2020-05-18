@@ -19,9 +19,10 @@
 
 package mx.containers.beads
 {
-import mx.controls.AdvancedDataGrid;
+import mx.controls.DataGrid;
+import mx.controls.listClasses.IListItemRenderer;
 
-import org.apache.royale.html.beads.VirtualListView;
+import org.apache.royale.html.beads.ListView;
 COMPILE::SWF
 {
     import org.apache.royale.core.IStrand;
@@ -34,11 +35,12 @@ import org.apache.royale.events.Event;
 import org.apache.royale.utils.getSelectionRenderBead;
 
 import mx.controls.dataGridClasses.DataGridColumnList;
+
 /**
  *  @private
- *  The CanvasLayout class is for internal use only.
+ *  The DataGridListListView class is for internal use only.
  */
-public class AdvancedDataGridListVirtualListView extends VirtualListView
+public class DataGridListListView extends ListView
 {
     
 
@@ -56,16 +58,15 @@ public class AdvancedDataGridListVirtualListView extends VirtualListView
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function AdvancedDataGridListVirtualListView()
+    public function DataGridListListView()
     {
         super();
-        firstElementIndex = 0;
     }
 
     private var _lastIndices:Array;
 
     override protected function selectionChangeHandler(event:Event):void{
-        var dataGrid:AdvancedDataGrid = (this._strand as DataGridColumnList).grid as AdvancedDataGrid;
+        var dataGrid:DataGrid = (this._strand as DataGridColumnList).grid as DataGrid;
         if (dataGrid && dataGrid.allowMultipleSelection) {
 
             var selectedIndices:Array = dataGrid.selectedIndices;

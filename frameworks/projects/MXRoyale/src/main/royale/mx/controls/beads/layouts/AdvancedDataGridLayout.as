@@ -58,10 +58,10 @@ package mx.controls.beads.layouts
 		{
         }
         
-        override protected function scrollHandler(e:Event):void
+       /* override protected function scrollHandler(e:Event):void
         {
             layout();
-        }
+        }*/
 
 
         override protected function setHeaderWidths(columnWidths:Array):void

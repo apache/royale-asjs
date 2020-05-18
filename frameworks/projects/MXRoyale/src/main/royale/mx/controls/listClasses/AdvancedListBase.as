@@ -20,6 +20,7 @@
 
 package mx.controls.listClasses
 {
+import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
 
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -70,8 +71,11 @@ import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
+import org.apache.royale.geom.Point;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import org.apache.royale.html.beads.IDataGridView;
+import org.apache.royale.core.IDataGrid;
+import org.apache.royale.core.IDataGridModel;
 
 use namespace mx_internal;
 
@@ -568,6 +572,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 	        iterator = collection.createCursor();
 	        collectionIterator = collection.createCursor(); //IViewCursor(collection);
 		}
+        clearSelectionData();
+        (model as ISelectionModel).selectedIndex = -1;
         super.dataProvider = value;
 
     }
@@ -3670,9 +3676,24 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function itemRendererToIndices(item:IListItemRenderer):Point
+     protected function itemRendererToIndices(item:IListItemRenderer):Point
     {
-        if (!item || !(item.name in rowMap))
+        //inr royale, the renderer is IIndexedItemRenderer
+        if (!item) return null;
+        var index:int = item.index;
+
+
+        var list:AdvancedDataGridColumnList = item.parent as AdvancedDataGridColumnList;
+        if (!list) return null;
+        var column:DataGridColumn = list.columnInfo as DataGridColumn;
+
+        if (column) {
+            var colIndex:int = IDataGridModel(IDataGrid(list.grid).model).columns.indexOf(column);
+            return new Point(colIndex, index);
+        }
+
+        return null;
+       /* if (!item || !(item.name in rowMap))
             return null;
             
         var index:int = rowMap[item.name].rowIndex;
@@ -3688,8 +3709,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                          i + horizontalScrollPosition,
                          index < lockedRowCount ?
                          index :
-                         index + verticalScrollPosition + offscreenExtraRowsTop);
-    } */
+                         index + verticalScrollPosition + offscreenExtraRowsTop);*/
+    }
 
     /**
      *  Get an item renderer for the index of an item in the data provider,
@@ -4865,7 +4886,14 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             return;
         }
 
-        (model as ISelectionModel).selectedIndex/*_selectedIndex*/ = selectedData[p].index;
+        //this should always resolve to the most recently selected index for the single selection model
+        var idx:int = (model as ISelectionModel).selectedIndex;
+        var newIndex:int = this.selectedIndices[0];
+        if (idx == newIndex) {
+            //force a change
+            (model as ISelectionModel).selectedIndex = -1;
+        }
+        (model as ISelectionModel).selectedIndex = newIndex;
         //_selectedItem = selectedData[p].data;
     }
 
@@ -4993,7 +5021,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             {
                 removeSelectionData(uid);
                 drawItem(selectionData.index, false, uid == highlightUID, true, transition);
-                if (/*item.*/data == selectedItem)
+               // if (/*item.*/data == selectedItem)
                     calculateSelectedIndexAndItem();
             }
             else
@@ -5081,6 +5109,9 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         //        lastSeekPending));
         //
         //}
+
+        //set the selection model index to the most recent index
+        (model as ISelectionModel).selectedIndex = index;
     }
 
     /**
@@ -5640,7 +5671,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
                 if (items.length == 0)
                 {
-                    (model as ISelectionModel).selectedIndex = index; //_selectedIndex = viewIndex;
+                    (model as ISelectionModel).selectedIndex = viewIndex; //_selectedIndex = viewIndex;
                     //_selectedItem = item;
                     caretIndex = viewIndex;
                     caretBookmark = collectionIterator.bookmark;
@@ -8529,6 +8560,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                         iterator.seek(CursorBookmark.FIRST,
                                       verticalScrollPosition);
                 */
+
+
+                //update the selectedIndices after the sort
+                var items:Array = copySelectedItems(true);
+                commitSelectedItems(items);
+
                         // re-dispatch off strand so DataGridView can pick it up
                         dispatchEvent(event);
                         /*

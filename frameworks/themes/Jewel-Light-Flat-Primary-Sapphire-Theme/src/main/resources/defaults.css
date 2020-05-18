@@ -844,6 +844,7 @@ j|FormItem {
 }
 
 .jewel.list {
+  color: #808080;
   background: white;
   border: 1px solid #d9d9d9;
   box-shadow: none;
@@ -884,6 +885,10 @@ j|FormItem {
 }
 .jewel.navigationlink .hint.fonticon {
   margin-left: auto;
+}
+
+.jewel.navigationgroup.no-submenu.hovered {
+  background: #f3f3f3 !important;
 }
 
 .navigation-section-group {

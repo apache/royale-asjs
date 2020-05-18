@@ -63,7 +63,7 @@ public class ListRowInfo
 
 		this.y = y;
 		this.height = height;
-		this.uid = uid;
+		this._uid = uid;
 		this.data = data;
 	}
 
@@ -134,7 +134,7 @@ public class ListRowInfo
 	//----------------------------------
 	//  uid
 	//----------------------------------
-
+	private var _uid:String;
 	/**
 	 *  The unique identifier of the item in the dataProvider
 	 *  
@@ -143,7 +143,18 @@ public class ListRowInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var uid:String; 
+	public function get uid():String
+	{
+		return _uid;
+	}
+
+	/**
+	 *  @private
+	 */
+	public function set uid(value:String):void
+	{
+		_uid = value;
+	}
 
 	//----------------------------------
 	//  y
