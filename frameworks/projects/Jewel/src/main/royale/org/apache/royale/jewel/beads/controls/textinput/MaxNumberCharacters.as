@@ -62,14 +62,28 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *
 		 */
 		public function get maxlength():Number
 		{
 			return _maxlength;
 		}
+
+		/**
+		 *
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion HTMLInputElement
+		 */
 		public function set maxlength(value:Number):void
 		{
 			_maxlength = value;
+
+			if (_strand) {
+				COMPILE::JS{
+					var e:HTMLInputElement = (_strand as UIBase).element as HTMLInputElement;
+					e.setAttribute("maxlength", value);
+				}
+			}
 		}
 		
 		protected var _strand:IStrand;
