@@ -129,7 +129,6 @@ package org.apache.royale.icons
             setUpClassName();
 		}
         
-        protected var _type:String;
         /**
          *  the icon type. This field is required.
          *
@@ -138,16 +137,12 @@ package org.apache.royale.icons
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        public function get type():String
-        {
-            return _type;
-        }
-		public function set type(value:String):void
+        override public function set text(value:String):void
 		{
-            removeClass('fa-' + _type);
-            _type = value;
-            if(_type)
-                addClass('fa-' + _type);
+            removeClass('fa-' + _text);
+            _text = value;
+            if(_text)
+                addClass('fa-' + _text);
 		}
 
         protected var _pullRight:Boolean;

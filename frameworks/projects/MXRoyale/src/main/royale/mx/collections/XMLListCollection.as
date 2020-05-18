@@ -19,6 +19,8 @@
 
 package mx.collections
 {
+import mx.events.CollectionEvent;
+import mx.events.CollectionEventKind;
 
 [DefaultProperty("source")]
 
@@ -116,6 +118,10 @@ public class XMLListCollection extends ListCollectionView
             XMLListAdapter(list).source = null;
         
         list = new XMLListAdapter(s);
+
+        var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
+        event.kind = CollectionEventKind.RESET;
+        dispatchEvent(event);
     }
 
     //--------------------------------------------------------------------------

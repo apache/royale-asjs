@@ -110,9 +110,9 @@ package org.apache.royale.icons
             internalSelected();
         }
 
-        private var _selectedType:String = "";
+        private var _selectedText:String = "";
         /**
-         *  The icon selectedType. This is optional.
+         *  The icon selectedText. This is optional.
          *  If not set, defaults to type
          *  
          *  @langversion 3.0
@@ -120,25 +120,25 @@ package org.apache.royale.icons
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-		public function get selectedType():String
+		public function get selectedText():String
 		{
-            return _selectedType;            
+            return _selectedText;            
 		}
-        public function set selectedType(value:String):void
+        public function set selectedText(value:String):void
 		{
-            _selectedType = value;
+            _selectedText = value;
             internalSelected();
 		}
 
         private function internalSelected():void
         {
-            removeClass('fa-' + _type);
-            removeClass('fa-' + _selectedType);
+            removeClass('fa-' + _text);
+            removeClass('fa-' + _selectedText);
 
-            if(_selectedType == "")
-                _selectedType = _type;
+            if(_selectedText == "")
+                _selectedText = _text;
 
-            var cls:String = selected ? _selectedType : _type;
+            var cls:String = selected ? _selectedText : _text;
             if(cls != "")
                 addClass('fa-' + cls);
 

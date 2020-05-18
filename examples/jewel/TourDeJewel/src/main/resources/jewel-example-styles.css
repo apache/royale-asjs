@@ -27,6 +27,11 @@ j|IconButtonBar
     iconClass: ClassReference("org.apache.royale.icons.MaterialIcon")
 }
 
+.iconButtonBarFontAwesomeIcon
+{
+    iconClass: ClassReference("org.apache.royale.icons.FontAwesomeIcon")
+}
+
 .tableStyle
 {
     IItemRenderer: ClassReference("itemRenderers.TableStyleListItemRenderer");

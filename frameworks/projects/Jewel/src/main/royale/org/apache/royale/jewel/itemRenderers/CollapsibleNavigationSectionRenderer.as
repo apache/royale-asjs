@@ -75,7 +75,12 @@ package org.apache.royale.jewel.itemRenderers
 
 			// this check should be smarter, check sectionNavItem and its childs
 			if (event.target == sectionNavItem || event.target.parent == sectionNavItem || event.target.parent.parent == sectionNavItem) {
-				event.stopImmediatePropagation();
+				if(children != null) {
+					event.stopImmediatePropagation();
+				} else {
+					// avoid change event 2 times
+					return;
+				}
 				navTarget = this;
 				//make 'this' the event.target
 				dispatchEvent(new Event('sectionClick'));
@@ -85,6 +90,9 @@ package org.apache.royale.jewel.itemRenderers
 					navTarget.hovered = true;
 				}
 			}
+
+			// avoid double change in submenu items
+			event.stopImmediatePropagation();
 		}
 		
 		public function getSelectedSubmenuItem():Object {

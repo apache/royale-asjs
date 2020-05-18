@@ -21,6 +21,8 @@ package mx.controls.listClasses
     import mx.collections.ArrayCollection;
     import mx.collections.ICollectionView;
     import mx.collections.IViewCursor;
+	import mx.events.CollectionEvent;
+	import mx.events.CollectionEventKind;
     
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadModel;
@@ -101,9 +103,10 @@ package mx.controls.listClasses
             
             // listen for individual items being added in the future.
             var dped:IEventDispatcher = dp as IEventDispatcher;
-            dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+            dped.addEventListener(org.apache.royale.events.CollectionEvent.ITEM_ADDED, itemAddedHandler);
+            dped.addEventListener(org.apache.royale.events.CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+            dped.addEventListener(org.apache.royale.events.CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+            dped.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
             
             super.dataProviderChangeHandler(event);            
         }
@@ -133,7 +136,7 @@ package mx.controls.listClasses
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function itemAddedHandler(event:CollectionEvent):void
+		protected function itemAddedHandler(event:org.apache.royale.events.CollectionEvent):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -169,7 +172,7 @@ package mx.controls.listClasses
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 		
-		protected function itemRemovedHandler(event:CollectionEvent):void
+		protected function itemRemovedHandler(event:org.apache.royale.events.CollectionEvent):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -206,7 +209,7 @@ package mx.controls.listClasses
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
-		protected function itemUpdatedHandler(event:CollectionEvent):void
+		protected function itemUpdatedHandler(event:org.apache.royale.events.CollectionEvent):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -225,6 +228,29 @@ package mx.controls.listClasses
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
             ir.data = data;				
 		}
+		
+				/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
+		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		protected function collectionChangeHandler(event:mx.events.CollectionEvent):void
+		{
+			if (!dataProviderModel)
+				return;
+			dp = dataProviderModel.dataProvider as ICollectionView;
+			if (!dp)
+				return;
+			
+			if (event.kind == CollectionEventKind.RESET)
+			{
+	            super.dataProviderChangeHandler(event);            
+			}
+		}
+		
+		
 		
 	}
 }

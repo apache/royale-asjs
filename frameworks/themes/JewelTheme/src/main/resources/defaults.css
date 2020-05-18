@@ -845,6 +845,7 @@ j|FormItem {
 }
 
 .jewel.list {
+  color: #808080;
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
