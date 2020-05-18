@@ -136,11 +136,7 @@ package components
         public function dataReadyHandler(event:Event):void
         {
             sourceCodeMXMLText.text = event.target.sourceCode;
-            
-            COMPILE::JS
-            {
-            hljs.highlightBlock(sourceCodeMXMLText.element);
-            }
+            hljsFacade.highlightBlock(sourceCodeMXMLText);
         }
 
         /**

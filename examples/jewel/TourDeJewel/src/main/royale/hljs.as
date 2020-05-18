@@ -24,18 +24,6 @@ package
 	COMPILE::JS
 	public class hljs
 	{
-		/** 
-         * <inject_script>
-		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js");
-		 * document.head.appendChild(script);
-         * var link = document.createElement("link");
-         * link.setAttribute("rel", "stylesheet");
-         * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css");
-         * document.head.appendChild(link);
-		 * </inject_script>
-		 */
 		public function hljs(){}
 
 		public static function highlightBlock(block:Element):void {}
