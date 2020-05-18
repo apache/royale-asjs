@@ -166,6 +166,22 @@ package models
 		{
 			return _iconButtonData;
 		}
+		
+		/**
+		 * Used in the IconButtonBar example. This one uses FontAwesomeIcons
+		 */
+		private var _iconButtonDataFW:ArrayList = new ArrayList([
+            new IconListVO("Card", FontAwesome5IconType.ADDRESS_CARD),
+            new IconListVO("Back", FontAwesome5IconType.BACKWARD),
+            new IconListVO("Cloud", FontAwesome5IconType.CLOUD),
+            new IconListVO("File", FontAwesome5IconType.FILE),
+            new IconListVO("Mobile", FontAwesome5IconType.MOBILE)
+        ]);
+
+		public function get iconButtonDataFW():ArrayList
+		{
+			return _iconButtonDataFW;
+		}
 
 		/**
 		 * Used in the Virtual List example example.
