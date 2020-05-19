@@ -2924,6 +2924,14 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
         return s == null ? "" : s;
     }
    
+    /**
+     *  @private
+     */
+    override public function set text(value:String):void
+    {
+        ((view as DateFieldView).textInputField as TextInput).text = value == null ? "" : value;
+    }
+
     override public function setFocus():void
     {
         return (view as DateFieldView).setFocus();
