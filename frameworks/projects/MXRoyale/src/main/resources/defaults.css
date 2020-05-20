@@ -112,6 +112,11 @@ adg|AdvancedDataGridHeaderRenderer {
 	overflow: hidden;
 }
 
+Application
+{
+	IBeadLayout: ClassReference("mx.containers.beads.ApplicationLayout");
+}
+
 AdvancedDataGrid
 {
 	alternatingItemColors: #F7F7F7, #FFFFFF;

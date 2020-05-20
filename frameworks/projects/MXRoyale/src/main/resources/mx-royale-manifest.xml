@@ -54,6 +54,7 @@
 	<component id="ViewStack" class="mx.containers.ViewStack" />
     <component id="TabNavigator" class="mx.containers.TabNavigator" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
+	<component id="BasicLayout" class="mx.containers.beads.layouts.BasicLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
