@@ -189,32 +189,29 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
-				<html:H3 text="Jewel Table"/>
-				<j:HGroup gap="3">
-					<j:VGroup gap="3">
-						<j:Table localId="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
-							<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
-							<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
-							<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
-							<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
-							<j:beads>
-								<!--TableCellCloseIconItemRenderer uses its own ISelectableItemRenderer -->
-								<js:OverridableSelectableItemRendererClassFactory/>
-								<j:AddTableRowForArrayListData/>
-								<j:RemoveTableRowForArrayListData/>
-								<j:UpdateTableRowForArrayListData/>
-								<j:RemoveAllItemRendererForArrayListData/>
-							</j:beads>
-						</j:Table>
-						<j:Label localId="selected"/>
-					</j:VGroup>
-					<j:VGroup gap="3">
-						<j:Button click="changeTableData()" text="Change Data" emphasis="primary"/>
-						<j:Button text="Add Row (item)" click="addItem()"/>
-						<j:Button text="Remove first row (item)" click="removeItemAt()"/>
-						<j:Button text="Update first row (item)" click="updateFirstItem()"/>
-						<j:Button text="Remove all data" click="removeAllData()"/>
-						<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+				<j:CardHeader>
+					<html:H3 text="Jewel Table" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:Table localId="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}" width="100%">
+						<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
+						<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
+						<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
+						<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
+						<j:beads>
+							<!--TableCellCloseIconItemRenderer uses its own ISelectableItemRenderer -->
+							<js:OverridableSelectableItemRendererClassFactory/>
+							<j:AddTableRowForArrayListData/>
+							<j:RemoveTableRowForArrayListData/>
+							<j:UpdateTableRowForArrayListData/>
+							<j:RemoveAllItemRendererForArrayListData/>
+						</j:beads>
+					</j:Table>
+					
+					<j:Label localId="selected"/>
+
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 							<j:Label text="Select table cell by index: "/>
 							<j:NumericStepper valueChange="table.selectedIndex = event.target.value" minimum="0"/>
 						</j:HGroup>
@@ -222,8 +219,49 @@ limitations under the License.
 							<j:Label text="Select table by item: "/>
 							<j:NumericStepper valueChange="table.selectedItemProperty = table.dataProvider.getItemAt(event.target.value)" minimum="0"/>
 						</j:HGroup> -->
-					</j:VGroup>
-				</j:HGroup>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:IconButton click="changeTableData()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Change Data"/>
+						</j:beads>
+						<j:icon>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.RECYCLE}"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="addItem()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Add Row (item)"/>
+						</j:beads>
+						<j:icon>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.PLUS}"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="removeItemAt()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Remove first row (item)"/>
+						</j:beads>
+						<j:icon>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.MINUS}"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="updateFirstItem()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Update first row (item)"/>
+						</j:beads>
+						<j:icon>
+							<js:FontAwesomeIcon text="edit"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="removeAllData()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Remove all data"/>
+						</j:beads>
+						<j:icon>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.REPLY_ALL}"/>
+						</j:icon>
+					</j:IconButton>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 		

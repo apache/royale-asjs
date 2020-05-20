@@ -315,7 +315,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		
 		this.valuesImpl = new AllCSSValuesImpl();
 		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
-		addBead(new ApplicationLayout());
         addBead(new ClassAliasBead());
 
         instanceParent = this;

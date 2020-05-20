@@ -143,12 +143,6 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
         le.columnIndex = 0;
         le.itemRenderer = this;
         getComponentDispatcher().dispatchEvent(le);
-        // not sure why this doesn't use ItemRendererMouseController
-        // selection controller is looking for clicked
-        var ice:ItemClickedEvent = new ItemClickedEvent("itemClicked");
-        ice.index = rowIndex;
-        ice.data = data;
-        dispatchEvent(ice);
     }
 
     private var _itemRendererOwnerView:IItemRendererOwnerView;

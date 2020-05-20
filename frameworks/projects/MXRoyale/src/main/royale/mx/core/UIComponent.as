@@ -598,6 +598,8 @@ public class UIComponent extends UIBase
     // When changing this constant, make sure you change
     // the constant with the same name in LayoutElementUIComponentUtils
 
+    private static var sessionId:int;
+
     //--------------------------------------------------------------------------
     //
     //  Class properties
@@ -4814,7 +4816,16 @@ COMPILE::JS
     public function get uid():String
     {
         if (!_uid)
-            _uid = toString();
+        {
+            COMPILE::SWF
+            {
+                _uid = toString();
+            }
+            COMPILE::JS // toString() doesn't give a unique id, a static var will at least be good for a session
+            {
+                _uid = "session_id" + sessionId++;
+            }
+        }
 
         return _uid;
     }

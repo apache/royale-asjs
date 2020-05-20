@@ -763,7 +763,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set text(value:String):void
     {
-        trace("ComboBox.text not implemented");
+        ((view as IComboBoxView).textInputField as org.apache.royale.html.TextInput).text = value;
     }
     
     //----------------------------------
