@@ -472,6 +472,7 @@ TabNavigator
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
 	IBeadView: ClassReference("mx.containers.beads.TabNavigatorView");
 	ITabNavigatorContentArea: ClassReference("mx.core.Container");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	verticalGap: 0;	
 	background-color: #FFFFFF;
 }
@@ -523,6 +524,7 @@ ToggleButtonBar
 ViewStack
 {
 	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 charts|ChartBase
