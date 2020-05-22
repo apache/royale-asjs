@@ -1495,6 +1495,9 @@ limitations under the License.
             <js-library-path dir="${basedir}" >
                 <include name="frameworks/js/libs"/>
             </js-library-path>
+            <js-library-path dir="${basedir}" >
+                <include name="js/libs/GCL.swc"/>
+            </js-library-path>
             <js-library-path dir="${ROYALE_HOME}" append="true">
                 <include name="mustella/mustella.swc"/>
             </js-library-path>
