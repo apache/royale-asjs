@@ -51,6 +51,28 @@ package org.apache.royale.binding
 
         protected var deferredBindings:Object;
 
+        protected var initEventType:String = "initBindings";
+
+        private var _initialized:Boolean;
+
+        /**
+         * This method is a way to manually initialize the binding support at an earlier time than would
+         * happen by default ( this is usually the timing of 'initBindings' but could vary according to the
+         * timing of whatever initTypeEvent is for a particular sub-class)
+         * This can be useful in some cases when porting legacy code that expects bindings to be active
+         * at a certain alternate time, e.g. before mxml content is created and assigned, for example.
+         *
+         * This method will be dead-code-eliminated in js-release builds if not used in an application's code
+         *
+         * @royalesuppressexport
+         */
+        public function initializeNow():void{
+            if (!_initialized) {
+                IEventDispatcher(_strand).removeEventListener(initEventType, processBindings);
+                processBindings(null);
+            }
+        }
+
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *
@@ -63,11 +85,54 @@ package org.apache.royale.binding
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(_strand).addEventListener("initBindings", initBindingsHandler);
+            if (!_initialized)
+                IEventDispatcher(_strand).addEventListener(initEventType, processBindings);
         }
 
-        protected function initBindingsHandler(event:Event):void
-        {
+        private var _ancestry:Array;
+        protected function processBindings(event:Event):void{
+            if (!("_bindings" in _strand) ||  _initialized)
+                return;
+            _initialized = true;
+            var bindingData:Array = _strand["_bindings"];
+            var first:int = 0;
+            if (bindingData[0] is Array) {
+                _ancestry = [];
+                //process ancestor bindings
+                processAncestors(bindingData[0] as Array, _ancestry);
+                first = 1;
+            }
+            processBindingData(bindingData, first);
+        }
+
+        /**
+         *
+         * @param array the binding data to process
+         * @param strongRefs, an array to push the ancestry items into, stored in the 'parent' DataBindingBase as a private var
+         *
+         * @royaleignorecoercion org.apache.royale.binding.DataBindingBase
+         * @royaleignorecoercion Class
+         */
+        private function processAncestors(array:Array, strongRefs:Array):void{
+            var first:int = 0;
+            var inst:DataBindingBase;
+            var bindingClass:Class = Object(this).constructor as Class;
+            if (array[0] is Array) {
+                //recurse into any more distant ancestors
+                inst = new bindingClass() as DataBindingBase;
+                inst._strand = _strand;
+                strongRefs.push(inst);
+                inst.processAncestors(array[0] as Array, strongRefs);
+                first = 1;
+            }
+            inst = new bindingClass() as DataBindingBase;
+            inst._strand = _strand;
+            strongRefs.push(inst);
+            inst.processBindingData(array, first)
+        }
+
+        protected function processBindingData(array:Array, first:int):void{
+
         }
 
         /**
@@ -323,6 +388,27 @@ package org.apache.royale.binding
 
             prepareCreatedBinding(cb as IBinding, binding);
         }
+
+        protected function makeGenericBinding(binding:Object, index:int, watchers:Object):void
+        {
+            var gb:GenericBinding = new GenericBinding();
+            gb.setDocument(_strand);
+            gb.destinationData = binding.destination;
+            gb.destinationFunction = binding.destFunc;
+            gb.source = binding.source;
+            if (watchers.watchers.length)
+            {
+                setupWatchers(gb, index, watchers.watchers, null);
+            }
+            else
+            {
+                // should be a constant expression.
+                // the value doesn't matter as GenericBinding
+                // should get the value from the source
+                gb.valueChanged(null, true);
+            }
+        }
+
 
         /**
          */

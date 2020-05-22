@@ -61,29 +61,25 @@ package org.apache.royale.binding
 		}
 
         /**
-         * @royaleignorecoercion String
          * @royaleignorecoercion org.apache.royale.core.IBinding
+         * @royaleignorecoercion String
+         * @private
          */
-        override protected function initBindingsHandler(event:Event):void
-        {
-            super.initBindingsHandler(event);
-
-            if (!("_bindings" in _strand))
-                return;
+        override protected function processBindingData(bindingData:Array, first:int):void{
             var fieldWatcher:Object;
             var sb:SimpleBinding;
             var cb:ConstantBinding;
-            var bindingData:Array = _strand["_bindings"];
+            var destinationObject:Object;
             var binding:Object = null;
-            var n:int = bindingData[0];
+            var n:int = bindingData[first];
             var bindings:Array = [];
             var i:int;
-            var index:int = 1;
+            var index:int = first + 1;
             for (i = 0; i < n; i++)
             {
                 binding = {};
                 binding.source = bindingData[index++];
-				binding.destFunc = bindingData[index++];
+                binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
                 bindings.push(binding);
             }
@@ -96,7 +92,8 @@ package org.apache.royale.binding
                     if (binding.source[0] in _strand)
                     {
                         var compWatcher:Object;
-                        if (binding.source.length == 2 && binding.destination.length == 2)
+                        var simpleDest:Boolean = typeof binding.destination == 'string';
+                        if (binding.source.length == 2 && (simpleDest || binding.destination.length == 2 ))
                         {
                             // simple component.property binding
                             // can be simplebinding or constantbinding
@@ -109,13 +106,20 @@ package org.apache.royale.binding
                             if (fieldWatcher && fieldWatcher.eventNames is String)
                             {
                                 sb = new SimpleBinding();
-                                sb.destinationPropertyName = binding.destination[1];
+
+                                sb.destinationPropertyName = simpleDest ? binding.destination : binding.destination[1];
                                 sb.eventName = fieldWatcher.eventNames as String;
+                                if (simpleDest || binding.destination[0] == 'this') {
+                                    sb.destination = _strand;
+                                } else {
+                                    //how do we detect if destination root changes in a simplebinding?
+                                    sb.destination = _strand[binding.destination[0]]
+                                }
                                 sb.sourceID = binding.source[0];
                                 sb.sourcePropertyName = binding.source[1];
                                 sb.setDocument(_strand);
 
-                                prepareCreatedBinding(sb as IBinding, binding);
+                                prepareCreatedBinding(sb as IBinding, binding, destinationObject);
                             }
                             else if (fieldWatcher && fieldWatcher.eventNames == null)
                             {
@@ -140,14 +144,14 @@ package org.apache.royale.binding
                             chb.setDocument(_strand);
                             _strand.addBead(chb);
                         }
-                     }
-                     else if (binding.destination is Array)
-                     {
-                         makeConstantBinding(binding);
-                     }
-                     else  {
-                         makeGenericBinding(binding, i, watchers);
-                     }
+                    }
+                    else if (binding.destination is Array)
+                    {
+                        makeConstantBinding(binding);
+                    }
+                    else  {
+                        makeGenericBinding(binding, i, watchers);
+                    }
                 }
                 else if (binding.source is String && binding.destination is Array)
                 {
@@ -158,7 +162,7 @@ package org.apache.royale.binding
                         cb.destinationPropertyName = binding.destination[1];
                         cb.sourcePropertyName = binding.source;
                         cb.setDocument(_strand);
-                        var destinationObject:Object = null;
+                        destinationObject = null;
                         if (binding.destination[0] == "this")
                         {
                             destinationObject = _strand;
@@ -181,6 +185,7 @@ package org.apache.royale.binding
 
                         prepareCreatedBinding(sb as IBinding, binding);
                     }
+                    //else? is there anything missing here? tbc
                 }
                 else  {
                     makeGenericBinding(binding, i, watchers);
@@ -190,24 +195,5 @@ package org.apache.royale.binding
             }
         }
 
-        private function makeGenericBinding(binding:Object, index:int, watchers:Object):void
-        {
-            var gb:GenericBinding = new GenericBinding();
-            gb.setDocument(_strand);
-            gb.destinationData = binding.destination;
-			gb.destinationFunction = binding.destFunc;
-            gb.source = binding.source;
-            if (watchers.watchers.length)
-            {
-                setupWatchers(gb, index, watchers.watchers, null);
-            }
-            else
-            {
-                // should be a constant expression.
-                // the value doesn't matter as GenericBinding
-                // should get the value from the source
-                gb.valueChanged(null, true);
-            }
-        }
     }
 }

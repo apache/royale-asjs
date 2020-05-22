@@ -58,26 +58,24 @@ package org.apache.royale.binding
 			super();
 		}
 
-        override protected function initBindingsHandler(event:Event):void
-        {
-            super.initBindingsHandler(event);
 
-            if (!("_bindings" in _strand))
-                return;
-
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IBinding
+         * @royaleignorecoercion String
+         * @private
+         */
+        override protected function processBindingData(bindingData:Array, first:int):void {
             var fieldWatcher:Object;
             var sb:SimpleBinding;
-            var bindingData:Array = _strand["_bindings"];
-            var n:int = bindingData[0];
-            var bindings:Array = [];
             var binding:Object = null;
+            var n:int = bindingData[first];
+            var bindings:Array = [];
             var i:int;
-            var index:int = 1;
-            for (i = 0; i < n; i++)
-            {
+            var index:int = first + 1;
+            for (i = 0; i < n; i++) {
                 binding = {};
                 binding.source = bindingData[index++];
-				binding.destFunc = bindingData[index++];
+                binding.destFunc = bindingData[index++];
                 binding.destination = bindingData[index++];
                 bindings.push(binding);
             }
@@ -114,7 +112,7 @@ package org.apache.royale.binding
                     }
                 }
                 else if (binding.source is Array
-                    && binding.source.length == 2 && binding.destination.length == 2)
+                        && binding.source.length == 2 && binding.destination.length == 2)
                 {
                     // can be simplebinding or constantbinding
                     compWatcher = watchers.watcherMap[binding.source[0]];
@@ -145,16 +143,16 @@ package org.apache.royale.binding
                         prepareCreatedBinding(cb as IBinding, binding);
                     }
                 }
-             /*   else if (binding.source is Array && binding.source[0] in _strand)
-                {
-                    compWatcher = watchers.watcherMap[binding.source[0]];
-                    var chb:ChainBinding = new ChainBinding();
-                    chb.destination = binding.destination;
-                    chb.source = binding.source;
-                    chb.watcherChain = compWatcher;
-                    chb.setDocument(_strand);
-                    _strand.addBead(chb);
-                } */
+                /*   else if (binding.source is Array && binding.source[0] in _strand)
+                   {
+                       compWatcher = watchers.watcherMap[binding.source[0]];
+                       var chb:ChainBinding = new ChainBinding();
+                       chb.destination = binding.destination;
+                       chb.source = binding.source;
+                       chb.watcherChain = compWatcher;
+                       chb.setDocument(_strand);
+                       _strand.addBead(chb);
+                   } */
                 else
                 {
                     makeGenericBinding(binding, i, watchers);
@@ -164,14 +162,5 @@ package org.apache.royale.binding
             }
         }
 
-        private function makeGenericBinding(binding:Object, index:int, watchers:Object):void
-        {
-            var gb:GenericBinding = new GenericBinding();
-            gb.setDocument(_strand);
-            gb.destinationData = binding.destination;
-			gb.destinationFunction = binding.destFunc;
-            gb.source = binding.source;
-            setupWatchers(gb, index, watchers.watchers, null);
-        }
     }
 }
