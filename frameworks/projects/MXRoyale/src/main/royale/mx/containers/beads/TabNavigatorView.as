@@ -130,7 +130,12 @@ public class TabNavigatorView extends GroupView
             
         if (!_contentArea) {
             var cls:Class = ValuesManager.valuesImpl.getValue(_strand, "iTabNavigatorContentArea");
+            var viewportClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iViewport");
             _contentArea = new cls() as UIBase;
+            if (viewportClass)
+            {
+                _contentArea.addBead((new viewportClass()) as IBead)
+            }
             _contentArea.id = "tabNavigatorContent";
             _contentArea.typeNames = "TabNavigatorContent";
         }

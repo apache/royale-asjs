@@ -133,6 +133,8 @@ package org.apache.royale.crux.binding
                         return;
                 }
                 obj[arr[n-1]] = value;                
+            } else if (destinationData is String) {
+                document[destinationData] = value;
             }
         }
 		
