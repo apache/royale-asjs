@@ -28,6 +28,8 @@ package
     internal class JewelClasses
     {
         import org.apache.royale.jewel.beads.models.ImageModel; ImageModel;
+		import org.apache.royale.jewel.beads.BinaryImageLoader; BinaryImageLoader;
+	    import org.apache.royale.jewel.beads.models.BinaryImageModel; BinaryImageModel;
         import org.apache.royale.jewel.beads.models.SliderRangeModel; SliderRangeModel;
         import org.apache.royale.jewel.beads.models.AlertModel; AlertModel;
         import org.apache.royale.jewel.beads.models.TitleBarModel; TitleBarModel;
