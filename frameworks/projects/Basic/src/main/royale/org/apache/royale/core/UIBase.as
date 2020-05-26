@@ -38,6 +38,9 @@ package org.apache.royale.core
 
     COMPILE::JS
     {
+		import goog.events.EventTarget;
+		import org.apache.royale.core.IChild;
+        import org.apache.royale.events.EventDispatcher;
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
     }
@@ -1112,6 +1115,15 @@ package org.apache.royale.core
          *  @royalesuppresspublicvarwarning
          */
 		public var beads:Array;
+
+        COMPILE::JS
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IChild
+		 * @royaleemitcoercion org.apache.royale.events.EventDispatcher
+		 */
+		override public function getParentEventTarget():goog.events.EventTarget{
+			return (this as IChild).parent as EventDispatcher;
+		}
 		
         
         /**

@@ -20,17 +20,16 @@ package org.apache.royale.events
 {
 	COMPILE::JS
 	{
-    import goog.events;
+		import goog.events;
 		import goog.events.Listener;
 		import goog.events.EventTarget;
-    import org.apache.royale.core.IChild;
 		import org.apache.royale.events.Event;
 	}
 
 	COMPILE::SWF
 	{
 		import flash.events.EventDispatcher;
-    import flash.events.IEventDispatcher;
+		import flash.events.IEventDispatcher;
 	}
 
 	/**
@@ -107,13 +106,6 @@ package org.apache.royale.events
 			}
 
 			return goog.events.EventTarget.dispatchEventInternal_(this, event1, ancestorsTree);
-		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.IChild
-		 * @royaleemitcoercion org.apache.royale.events.EventDispatcher
-		 */
-		override public function getParentEventTarget():goog.events.EventTarget{
-			return (this as IChild).parent as EventDispatcher;
 		}
 		override public function fireListeners(type:Object, capture:Boolean, eventObject:Object):Boolean{
 			var listenerArray:Array = getListeners(type, capture);
