@@ -19,6 +19,7 @@
 
 package mx.controls
 {
+import mx.controls.beads.HideComboPopupOnMouseDownBead;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.listClasses.BaseListData;
 //import mx.controls.listClasses.ListData;
@@ -659,6 +660,7 @@ public class ComboBox extends ComboBase
         super();
         if((model as ISelectionModel).labelField == null) 
 			labelField =  "label";
+        addBead(new HideComboPopupOnMouseDownBead());
 
         // It it better to start out with an empty data provider rather than
         // an undefined one. Otherwise, code in getDropdown() sets it to []

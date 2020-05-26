@@ -208,8 +208,8 @@ package org.apache.royale.test.listeners
 			//whitespace in the XML to be formatted in an exact way
 			var xml:String =
 				"<testcase" +
-					" classname=\"" + escapeXML(descriptor.suite) + "\"" +
-					" name=\"" + escapeXML(descriptor.method) + "\"" +
+					" classname=\"" + escapeXMLAttribute(descriptor.suite) + "\"" +
+					" name=\"" + escapeXMLAttribute(descriptor.method) + "\"" +
 					" time=\"" + lastTestTime + "\"" +
 					" status=\"" + STATUS_SUCCESS + "\"" +
 					" />"
@@ -220,7 +220,7 @@ package org.apache.royale.test.listeners
 		/**
 		 * @private
 		 */
-		protected function escapeXML(value:String):String
+		protected function escapeXMLAttribute(value:String):String
 		{
 			if(value == null)
 			{
@@ -234,8 +234,9 @@ package org.apache.royale.test.listeners
 			COMPILE::JS
 			{
 				var serializer:XMLSerializer = new XMLSerializer()
-				var textNode:Text = document.createTextNode(value);
-				return serializer.serializeToString(textNode);
+				var attr:Attr = document.createAttribute("attr");
+				attr.value = value;
+				return serializer.serializeToString(attr);
 			}
 		}
 		
@@ -250,8 +251,8 @@ package org.apache.royale.test.listeners
 			//whitespace in the XML to be formatted in an exact way
 			var xml:String =
 				"<testcase" +
-					" classname=\"" + escapeXML(descriptor.suite) + "\"" +
-					" name=\"" + escapeXML(descriptor.method) + "\"" +
+					" classname=\"" + escapeXMLAttribute(descriptor.suite) + "\"" +
+					" name=\"" + escapeXMLAttribute(descriptor.method) + "\"" +
 					" time=\"0\"" +
 					" status=\"" + STATUS_IGNORE + "\"" +
 					">" +
@@ -276,14 +277,14 @@ package org.apache.royale.test.listeners
 				//whitespace in the XML to be formatted in an exact way
 				xml =
 					"<testcase" +
-						" classname=\"" + escapeXML(descriptor.suite) + "\"" +
-						" name=\"" + escapeXML(descriptor.method) + "\"" +
+						" classname=\"" + escapeXMLAttribute(descriptor.suite) + "\"" +
+						" name=\"" + escapeXMLAttribute(descriptor.method) + "\"" +
 						" time=\"" + lastTestTime + "\"" +
 						" status=\"" + STATUS_FAILURE + "\"" +
 						">" +
 						"<failure" +
-							" message=\"" + escapeXML(failure.message) + "\"" +
-							" type=\"" + escapeXML(failure.description) + "\"" +
+							" message=\"" + escapeXMLAttribute(failure.message) + "\"" +
+							" type=\"" + escapeXMLAttribute(failure.description) + "\"" +
 							">" +
 							"<![CDATA[" + failure.stackTrace + "]]>" +
 						"</failure>" +
@@ -295,14 +296,14 @@ package org.apache.royale.test.listeners
 				//whitespace in the XML to be formatted in an exact way
 				xml =
 					"<testcase" +
-						" classname=\"" + escapeXML(descriptor.suite) + "\"" +
-						" name=\"" + escapeXML(descriptor.method) + "\"" +
+						" classname=\"" + escapeXMLAttribute(descriptor.suite) + "\"" +
+						" name=\"" + escapeXMLAttribute(descriptor.method) + "\"" +
 						" time=\"" + lastTestTime + "\"" +
 						" status=\"" + STATUS_ERROR + "\"" +
 						">" +
 						"<error" +
-							" message=\"" + escapeXML(failure.message) + "\"" +
-							" type=\"" + escapeXML(failure.description) + "\"" +
+							" message=\"" + escapeXMLAttribute(failure.message) + "\"" +
+							" type=\"" + escapeXMLAttribute(failure.description) + "\"" +
 							">" +
 							"<![CDATA[" + failure.stackTrace + "]]>" +
 						"</error>" +
