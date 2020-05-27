@@ -119,6 +119,12 @@ j|Image {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ImageView");
 }
 
+j|BinaryImage {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.BinaryImageModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ImageView");
+  IBinaryImageLoader: ClassReference("org.apache.royale.html.beads.BinaryImageLoader");
+}
+
 j|DataGroup {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer");
