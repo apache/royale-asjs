@@ -42,6 +42,9 @@ package org.apache.royale.createjs.core
         import createjs.Container;
         import createjs.DisplayObject;
         import createjs.Stage;
+		import goog.events.EventTarget;
+		import org.apache.royale.core.IChild;
+        import org.apache.royale.events.EventDispatcher;
         import org.apache.royale.core.WrappedHTMLElement;
     }
 	
@@ -221,6 +224,15 @@ package org.apache.royale.createjs.core
          *  @royalesuppresspublicvarwarning
 		 */
 		public var beads:Array;
+
+        COMPILE::JS
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IChild
+		 * @royaleemitcoercion org.apache.royale.events.EventDispatcher
+		 */
+		override public function getParentEventTarget():goog.events.EventTarget{
+			return (this as IChild).parent as EventDispatcher;
+		}
 		
 		/**
 		 *  The method called when added to a parent.  This is a good
