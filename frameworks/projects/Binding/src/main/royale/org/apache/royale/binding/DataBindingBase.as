@@ -144,7 +144,8 @@ package org.apache.royale.binding
         {
             if (!destinationObject)
             {
-                destinationObject = _strand[bindingObject.destination[0]];
+                if (bindingObject.destination[0] == 'this') destinationObject = _strand
+                else destinationObject = _strand[bindingObject.destination[0]];
             }
 
             var destination:IStrand = destinationObject as IStrand;
