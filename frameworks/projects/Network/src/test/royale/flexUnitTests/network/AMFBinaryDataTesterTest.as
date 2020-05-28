@@ -27,7 +27,9 @@ package flexUnitTests.network
     import flexUnitTests.network.support.TestClass3;
     import flexUnitTests.network.support.TestClass4;
     import flexUnitTests.network.support.DynamicTestClass;
-    
+    import flexUnitTests.network.support.TestClass6;
+    import flexUnitTests.network.support.TestClass7a;
+    import flexUnitTests.network.support.TestClass7b;
     import org.apache.royale.test.asserts.*;
     
     import org.apache.royale.net.remoting.amf.AMFBinaryData;
@@ -531,6 +533,111 @@ package flexUnitTests.network
             
             //javascript toXMLString pretty printing does not match exactly flash...
             assertTrue( xml.toXMLString() === xml2.toXMLString(), "XML round-tripping failed");
+        }
+
+
+        [Test]
+        public function testWithCustomNS():void
+        {
+            var ba:AMFBinaryData = new AMFBinaryData();
+            var test:TestClass6 = new TestClass6();
+            ba.writeObject(test);
+            ba.position = 0;
+            assertEquals(ba.length, 50, 'unexpected serialized content with custom namespaces');
+            //cover variation in order
+            const validOptions:Array = [
+                '0a23010b6d79566172156d794163636573736f7206177075626c69634d79566172061f7075626c6963206163636573736f72',
+                '0a2301156d794163636573736f720b6d79566172061f7075626c6963206163636573736f7206177075626c69634d79566172'
+            ];
+
+            assertTrue(validOptions.indexOf(getBytesOut(ba)) != -1, 'unexpected byte content with custom namespace content');
+
+           /* var restored:Object = ba.readObject();
+
+            var json:String = JSON.stringify(restored)*/
+            //order may be different... need json object check here for: {"myAccessor":"public accessor","myVar":"publicMyVar"}
+        }
+
+        [Test]
+        public function testTransientAndBindable():void{
+            var ba:AMFBinaryData = new AMFBinaryData();
+            registerClassAlias('TestClass7a', TestClass7a);
+            registerClassAlias('TestClass7b', TestClass7b);
+            var test1:TestClass7a = new TestClass7a();
+            test1.something = 'whatever';
+            ba.writeObject(test1);
+
+            ba.position = 0;
+
+            var retrieved:Object = ba.readObject();
+
+            assertTrue(retrieved is TestClass7a, 'unexpected deserialization');
+
+            var test2:TestClass7b = new TestClass7b();
+            test1.something = 'whatever';
+            ba.length = 0;
+            ba.writeObject(test2);
+
+            ba.position = 0;
+            retrieved = ba.readObject();
+
+            assertTrue(retrieved is TestClass7b, 'unexpected deserialization');
+
+        }
+
+
+        [Test]
+        public function testTransientDeserialized():void{
+            //if a transient field is already serialized, then we do deserialize it
+            //this means it can be sent from the server (for example) but is not sent to the server
+
+            //to test this we will use TestClass7b (where 'something' is not Transient) which will serialize the 'something' field with an alias that matches
+            //a subsequent deserialization to a TestClass7a instance (where 'something' is Transient);
+            //the expected result will be that the Transient field is still deserialized
+
+            var ba:AMFBinaryData = new AMFBinaryData();
+            registerClassAlias('TestClass7a', TestClass7b);
+            var test1:TestClass7b = new TestClass7b();
+            test1.something = 'something interesting';
+            ba.length = 0;
+            //non-transient inbound:
+            ba.writeObject(test1);
+
+            //The bytes for the above can differ between swf and js. 54 vs. 57 bytes length
+            //It is possible to correct that. But it is the swf output that is serializing the 'something' field twice
+            // (second time is string ref for both field and value, so quite compact, but still unnecessary)
+            //so not trying to match that exactly, because it is redundant data.
+
+            ba.position = 0;
+
+            //read it back as TestClass7a
+            registerClassAlias('TestClass7a', TestClass7a);
+
+            var retrieved:Object = ba.readObject();
+
+
+            assertTrue(retrieved is TestClass7a, 'unexpected deserialization');
+            assertEquals(retrieved.something , 'something interesting', 'unexpected deserialization');
+            assertEquals(retrieved.test , 'test', 'unexpected deserialization');
+
+            //this time round it won't be read out because it is Transient for serialization/inbound:
+            ba.position = 0;
+            ba.length=0;
+            ba.writeObject(retrieved);
+            ba.position = 0;
+            retrieved = ba.readObject();
+            assertTrue(retrieved is TestClass7a, 'unexpected deserialization');
+            assertEquals(retrieved.something , null, 'unexpected deserialization');
+            assertEquals(retrieved.test , 'test', 'unexpected deserialization');
+        }
+
+
+        private function getBytesOut(bytes:AMFBinaryData):String{
+            var out:Array = [];
+            for each(var byte:uint in bytes) {
+                out.push(('0'+byte.toString(16)).substr(-2));
+            }
+            return out.join('');
         }
         
     }
