@@ -29,8 +29,6 @@ internal class MXRoyaleClasses
 {
 	import mx.core.mx_internal; mx_internal;
 	import mx.core.ScrollPolicy; ScrollPolicy;
-	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
-	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	import mx.effects.IEffectInstance; IEffectInstance;
 	import mx.events.EffectEvent; EffectEvent;
@@ -96,7 +94,7 @@ internal class MXRoyaleClasses
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
 	import mx.charts.HitData; HitData;
-	import mx.events.MenuEvent; MenuEvent;
+
 	import mx.events.FlexEvent; FlexEvent;
 	import mx.managers.PopUpManager; PopUpManager; 
 	import mx.core.IVisualElementContainer; IVisualElementContainer;
@@ -191,7 +189,7 @@ internal class MXRoyaleClasses
     import mx.controls.beads.layouts.AdvancedDataGridLayout; AdvancedDataGridLayout;
     import mx.controls.beads.layouts.DataGridLayout; DataGridLayout;
     import mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout; AdvancedDataGridVirtualListVerticalLayout;
-	import  mx.controls.beads.layouts.DataGridHeaderLayout; DataGridHeaderLayout;
+	import mx.controls.beads.layouts.DataGridHeaderLayout; DataGridHeaderLayout;
 	import mx.controls.listClasses.VirtualListVerticalLayout; VirtualListVerticalLayout;
     import mx.controls.listClasses.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
     import mx.controls.treeClasses.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
@@ -242,6 +240,7 @@ internal class MXRoyaleClasses
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
 	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
+	import mx.events.DynamicEvent; DynamicEvent;
 	
 	import mx.controls.PopUpButton; PopUpButton;
 	import mx.controls.PopUpMenuButton; PopUpMenuButton;

@@ -499,6 +499,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		var l:uint;
 		var metas:Array;
 		var exclude:Boolean;
+		var transient:Boolean;
 		var fieldName:String;
 		const into:Array = localTraits.props;
 		
@@ -509,9 +510,11 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			if (fieldName.indexOf('::') != -1) continue;
 			var field:Object = fieldSet[fieldName];
 			exclude = false;
+			transient = false;
+			var alreadyPresent:Boolean = into.indexOf(fieldName) != -1 ;
 			if (asAccessors) {
 				exclude = field.access != 'readwrite';
-				if (exclude && into.indexOf(fieldName) == -1) { //<-- if at some level we already have read-write access, then that wins
+				if (exclude && !alreadyPresent) { //<-- if at some level we already have read-write access, then that wins
 					//check: does it combine to provide 'readwrite' permissions via accessChecks through inheritance chain
 					if (accessChecks[fieldName] && accessChecks[fieldName] != field.access) {
 						//readonly or writeonly overridde at one level and different at another == readwrite
@@ -524,20 +527,17 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 					}
 				}
 			}
-			if (!exclude && excludeTransient && field.metadata != null) {
-				//exclude anything marked as Transient
+			//if a subclass override does not redeclare the field as transient, then it is already considered explicitly 'non-transient'
+			if (!exclude && !alreadyPresent && excludeTransient && field.metadata != null) {
+				//we need to mark Transient fields as special case
 				metas = field.metadata();
 				l = metas.length;
 				while (l--) {
 					if (metas[l].name == 'Transient') {
-						exclude = true;
+						transient = true;
+						Traits.markTransient(fieldName, localTraits);
+						break;
 					}
-				}
-				if (exclude && into.indexOf(fieldName) != -1) {
-					//?possible case where it is marked transient on an ancestor but not in a subclass override
-					//it will not have been excluded when processing the subclass, which occurs first, so remove it now
-					//@todo untested : check this scenario, assume it should be removed
-					into.splice(into.indexOf(fieldName), 1);
 				}
 			}
 			if (!exclude) {
@@ -554,7 +554,10 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				} else {
 					nullValues[fieldName] = null;
 				}
-				into.push(fieldName);
+				if (alreadyPresent) {
+					into.splice(into.indexOf(fieldName), 1);
+				}
+				if (!transient) into.push(fieldName);
 				if (asAccessors) {
 					localTraits.getterSetters[fieldName] = Traits.createInstanceAccessorGetterSetter(fieldName);
 				} else {
@@ -610,6 +613,9 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 					classInfo = c.constructor.superClass_.ROYALE_CLASS_INFO;
 					c = c.constructor.superClass_;
 				}
+				//sometimes flash native seriazliation double-counts props and outputs some props data twice.
+				//this can happen with overrides (it was noticed with Transient overrides)
+				//it may mean that js amf output can sometimes be more compact, but should always deserialize to the same result.
 				localTraits.count = localTraits.props.length;
 				//not required, but useful when testing:
 				localTraits.props.sort();
@@ -632,7 +638,6 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			}
 			//not required, but useful when testing:
 			localTraits.props.sort();
-			
 		}
 		return localTraits;
 	}
@@ -1102,7 +1107,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				for (var i:uint = 0; i < l; i++) {
 					var fieldValue:* = readObject();
 					var prop:String = decodedTraits.props[i];
-					hasProp = localTraits &&  (localTraits.hasProp(prop) || localTraits.isDynamic);
+					hasProp = localTraits &&  (localTraits.hasProp(prop) || localTraits.isDynamic || localTraits.isTransient(prop));
 					if (hasProp) {
 						localTraits.getterSetters[prop].setValue(obj, fieldValue);
 					} else {
@@ -1319,6 +1324,11 @@ class Traits {
 			}
 		};
 	}
+
+	public static function markTransient(fieldName:String, traits:Traits):void{
+		if (!traits.transients) traits.transients={};
+		traits.transients[fieldName] = true;
+	}
 	
 	private static var _emtpy_object:Traits;
 	
@@ -1362,9 +1372,14 @@ class Traits {
 	public var nullValues:Object = {};
 	
 	public var getterSetters:Object = {};
+	public var transients:Object ;
 	
 	public function hasProp(prop:String):Boolean {
 		return props.indexOf(prop) != -1;
+	}
+
+	public function isTransient(prop:String):Boolean {
+		return transients && prop in transients;
 	}
 	
 	public function toString():String {

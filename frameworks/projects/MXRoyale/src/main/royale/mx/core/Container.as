@@ -825,7 +825,7 @@ public class Container extends UIComponent
     {
         super.createChildren();
         
-        if (getBeadByType(DataBindingBase) == null && mxmlDocument == this)
+        if (getBeadByType(DataBindingBase) == null && '_bindings' in this /*mxmlDocument == this*/)
             addBead(new ContainerDataBinding());
 
         dispatchEvent(new Event("initBindings"));
