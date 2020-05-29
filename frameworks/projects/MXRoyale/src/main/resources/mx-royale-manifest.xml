@@ -215,4 +215,5 @@
     <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
     <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
 
+    <component id="DownloadButton" class="mx.controls.DownloadButton"/>
 </componentPackage>

@@ -108,10 +108,22 @@ package mx.net
 		  dispatchEvent(new Event(Event.SELECT));
 	  }
 	  
+	  /**
+	   *  @royaleignorecoercion HTMLAnchorElement
+	   */
 	  public function save(data:*, defaultFileName:String = null):void
-          {
-
-          }
+      {
+		COMPILE::JS
+		{
+		  var a:HTMLAnchorElement = document.createElement("a") as HTMLAnchorElement;
+		  a.href = URL.createObjectURL(new Blob([data]));
+		  a.setAttribute("download", defaultFileName);
+		  a.text = defaultFileName;
+  		  document.body.appendChild(a);
+//  		  a.click();
+//  		  document.body.removeChild(a);
+		}
+      }
 
       
 

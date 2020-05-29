@@ -287,6 +287,12 @@ DateField {
 	IPopUp: ClassReference("mx.controls.dateFieldClasses.DateFieldDateChooser");
 }
 
+DownloadButton
+{
+	border: solid 1px #000;
+	text-decoration: none;
+}
+
 FormItem
 {
 	IBeadView: ClassReference("mx.containers.beads.FormItemView");
