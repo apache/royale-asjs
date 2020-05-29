@@ -96,7 +96,7 @@ package org.apache.royale.jewel.itemRenderers
 		}
 		
 		public function getSelectedSubmenuItem():Object {
-			if (childNavigation && open) return childNavigation.selectedItem;
+			if (childNavigation) return childNavigation.selectedItem;
 			return null;
 		}
 
