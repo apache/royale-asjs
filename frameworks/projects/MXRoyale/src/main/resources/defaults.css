@@ -291,6 +291,7 @@ DownloadButton
 {
 	border: solid 1px #000;
 	text-decoration: none;
+	white-space: nowrap;
 }
 
 FormItem
