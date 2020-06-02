@@ -92,6 +92,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable]
 		public function get columnCount():Number
 		{
 			return _columnCount;
@@ -113,6 +114,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable]
 		public function get columnWidth():Number
 		{
 			return _columnWidth;
@@ -132,6 +134,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
+		[Bindable]
 		public function get rowCount():Number
 		{
 			return _rowCount;
@@ -153,6 +156,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable]
 		public function get rowHeight():Number
 		{
 			return _rowHeight;
@@ -177,6 +181,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable]
 		public function get verticalGap():Number
 		{
 			return _verticalGap;
@@ -204,6 +209,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable]
 		public function get horizontalGap():Number
 		{
 			return _horizontalGap;
@@ -363,13 +369,13 @@ package org.apache.royale.jewel.beads.layouts
 				{
 				trace("  -- calculate useWidth & useHeight");
 					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
-					var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
-					trace(" - adjustedWidth", adjustedWidth);
-					var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
-					trace(" - adjustedHeight", adjustedHeight);
+					var adjustedHostWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+					trace(" - adjustedWidth", adjustedHostWidth);
+					var adjustedHostHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
+					trace(" - adjustedHeight", adjustedHostHeight);
 					if (needWidth)
 					{
-						useWidth = Math.floor(adjustedWidth / columnCount) + horizontalGap; // + gap
+						useWidth = Math.floor((adjustedHostWidth + horizontalGap)/ columnCount);
 						trace("  -- useWidth", useWidth);
 					}
 					
@@ -379,7 +385,7 @@ package org.apache.royale.jewel.beads.layouts
 						var numRows:Number = Math.ceil(realN / columnCount);
 						trace("  -- numRows", numRows);
 						if (host.isHeightSizedToContent()) useHeight = 30; // default height
-						else useHeight = Math.floor(adjustedHeight / numRows) + verticalGap;
+						else useHeight = Math.floor((adjustedHostHeight + verticalGap) / numRows);
 						trace("  -- useHeight", useHeight);
 					}
 				}
@@ -394,13 +400,13 @@ package org.apache.royale.jewel.beads.layouts
 					trace(i, i % columnCount, i % rowCount);
 					
 					// add horizontalGap
-					if(i % (columnCount - 1) != 0)
+					if(i % columnCount != 0)
 						child.positioner.style.marginLeft = horizontalGap + "px";
 					else
 						child.positioner.style.marginLeft = null;
 					
 					// add verticalGap
-					if(i % (columnCount - 1) != 0)
+					if(i >= columnCount)
 						child.positioner.style.marginTop = verticalGap + "px";
 					else
 						child.positioner.style.marginTop = null;
@@ -408,9 +414,9 @@ package org.apache.royale.jewel.beads.layouts
 					//child.setDisplayStyleForLayout('inline-flex');
 					//if the parent width/height not explicitly set, we can't calculate the child width/height
 					if(useWidth > 0)
-						child.width = useWidth;
+						child.width = useWidth - horizontalGap;
 					if(useHeight > 0)
-						child.height = useHeight;
+						child.height = useHeight - verticalGap;
 					child.dispatchEvent('sizeChanged');
 				}
 				return true;
