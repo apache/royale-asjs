@@ -198,7 +198,7 @@ limitations under the License.
 
 					<j:Group className="wrapper" width="100%" height="200">
 						<j:beads>
-							<j:TileLayout localId="tl" horizontalGap="6" waitForSize="true"/>
+							<j:TileLayout localId="tl" horizontalGap="6" verticalGap="6" waitForSize="true"/>
 						</j:beads>
 						<j:Button text="1" emphasis="primary" width="60" height="60"/>
 						<j:Button text="2" emphasis="secondary" width="60" height="60"/>
@@ -218,7 +218,7 @@ limitations under the License.
 				<j:CardActions itemsHorizontalAlign = "itemsCenter">
 					<j:VGroup>
 						<j:VGroup>
-							<j:Label text="columnCount"/>
+							<j:Label text="columnCount = {tl.columnCount}"/>
 							<j:HSlider width="200" value="3" minimum="1" maximum="6" valueChange="tl.columnCount = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
@@ -233,11 +233,11 @@ limitations under the License.
 					<j:VGroup>
 						<j:VGroup>
 							<j:Label text="verticalGap"/>
-							<j:HSlider width="200" value="0" minimum="0" maximum="10" valueChange="tl.verticalGap = event.target.value"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="10" valueChange="tl.verticalGap = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="horizontalGap"/>
-							<j:HSlider width="200" value="0" minimum="0" maximum="10" valueChange="tl.horizontalGap = event.target.value"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="10" valueChange="tl.horizontalGap = event.target.value"/>
 						</j:VGroup>
 					</j:VGroup>
 				</j:CardActions>
