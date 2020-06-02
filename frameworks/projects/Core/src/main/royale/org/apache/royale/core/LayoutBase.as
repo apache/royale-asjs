@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	COMPILE::SWF
+	{
+	import org.apache.royale.events.IEventDispatcher;
+	}
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
@@ -30,7 +34,6 @@ package org.apache.royale.core
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.MarginData;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
