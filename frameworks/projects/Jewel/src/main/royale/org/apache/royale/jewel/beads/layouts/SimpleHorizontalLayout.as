@@ -83,12 +83,12 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				if (hostClassList.contains("layout"))
-					hostClassList.remove("layout");
-				hostClassList.add("layout");
-				if(hostClassList.contains("horizontal"))
-					hostClassList.remove("horizontal");
-				hostClassList.add("horizontal");
+				if (hostComponent.containsClass("layout"))
+					hostComponent.removeClass("layout");
+				hostComponent.addClass("layout");
+				if(hostComponent.containsClass("horizontal"))
+					hostComponent.removeClass("horizontal");
+				hostComponent.addClass("horizontal");
 			}
 		}
 

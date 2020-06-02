@@ -18,12 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS {
-    	import org.apache.royale.core.UIBase;
-    }
-	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 
     /**
@@ -73,9 +67,9 @@ package org.apache.royale.jewel.beads.layouts
 			
 			COMPILE::JS
 			{
-				if(hostClassList.contains("form"))
-					hostClassList.remove("form");
-				hostClassList.add("form");
+				if(hostComponent.containsClass("form"))
+					hostComponent.removeClass("form");
+				hostComponent.addClass("form");
 			}
 		}
 

@@ -21,11 +21,11 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	
     /**
      *  The StyledLayoutBase class is an extension of LayoutBase
@@ -57,10 +57,7 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public static const LAYOUT_TYPE_NAMES:String = "";
 
-		protected var hostComponent:UIBase;
-
-		COMPILE::JS
-		protected var hostClassList:DOMTokenList;
+		protected var hostComponent:StyledUIBase;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -75,13 +72,7 @@ package org.apache.royale.jewel.beads.layouts
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-
-			COMPILE::JS
-			{
-				hostComponent = host as UIBase;
-				hostClassList = hostComponent.positioner.classList;
-			}
-
+			hostComponent = host as StyledUIBase;
 			IEventDispatcher(value).addEventListener("beadsAdded", beadsAddedHandler);
 			beadsAddedHandler();
 		}
@@ -101,13 +92,13 @@ package org.apache.royale.jewel.beads.layouts
 			COMPILE::JS
 			{
 				applyStyleToLayout(hostComponent, "itemsExpand");
-				setHostClassList("itemsExpand", _itemsExpand ? "itemsExpand":"");
+				setHostComponentClass("itemsExpand", _itemsExpand ? "itemsExpand":"");
 
 				applyStyleToLayout(hostComponent, "itemsHorizontalAlign");
-				setHostClassList(_itemsHorizontalAlign, _itemsHorizontalAlign);
+				setHostComponentClass(_itemsHorizontalAlign, _itemsHorizontalAlign);
 
 				applyStyleToLayout(hostComponent, "itemsVerticalAlign");
-				setHostClassList(_itemsVerticalAlign, _itemsVerticalAlign);
+				setHostComponentClass(_itemsVerticalAlign, _itemsVerticalAlign);
 			}
 		}
 
@@ -175,7 +166,7 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					setHostClassList(_itemsHorizontalAlign, value);
+					setHostComponentClass(_itemsHorizontalAlign, value);
 					_itemsHorizontalAlign = value;
 					itemsHorizontalAlignInitialized = true;
 				}
@@ -210,7 +201,7 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					setHostClassList(_itemsVerticalAlign, value);
+					setHostComponentClass(_itemsVerticalAlign, value);
 					_itemsVerticalAlign = value;
 					itemsVerticalAlignInitialized = true;
 				}
@@ -240,7 +231,7 @@ package org.apache.royale.jewel.beads.layouts
                 
 				COMPILE::JS
                 {
-				    setHostClassList("itemsExpand", value ? "itemsExpand" : "");
+				    setHostComponentClass("itemsExpand", value ? "itemsExpand" : "");
 					_itemsExpand = value;
 					itemsExpandInitialized = true;
 				}
@@ -248,15 +239,15 @@ package org.apache.royale.jewel.beads.layouts
         }
 
         COMPILE::JS
-        protected function setHostClassList(oldValue:String, newValue:String):void {
+        protected function setHostComponentClass(oldValue:String, newValue:String):void {
             if (!hostComponent) return;
 			
-            if (oldValue && hostClassList.contains(oldValue)) {
+            if (oldValue && hostComponent.containsClass(oldValue)) {
 				if (oldValue == newValue) return;
-                hostClassList.remove(oldValue);
+                hostComponent.removeClass(oldValue);
 			}
         
-            if (newValue) hostClassList.add(newValue);
+            if (newValue) hostComponent.addClass(newValue);
         }
 	}
 }

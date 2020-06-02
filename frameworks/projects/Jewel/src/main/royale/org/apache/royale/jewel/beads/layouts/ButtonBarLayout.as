@@ -100,35 +100,35 @@ package org.apache.royale.jewel.beads.layouts
                 {
 				if(hostComponent)
 				{
-					if (hostClassList.contains("pixelWidths"))
-						hostClassList.remove("pixelWidths");
-					if (hostClassList.contains("proportinalWidths"))
-						hostClassList.remove("proportinalWidths");
-					if (hostClassList.contains("percentWidths"))
-						hostClassList.remove("percentWidths");
-					if (hostClassList.contains("naturalWidths"))
-						hostClassList.remove("naturalWidths");
-					if (hostClassList.contains("sameWidths"))
-						hostClassList.remove("sameWidths");
+					if (hostComponent.containsClass("pixelWidths"))
+						hostComponent.removeClass("pixelWidths");
+					if (hostComponent.containsClass("proportinalWidths"))
+						hostComponent.removeClass("proportinalWidths");
+					if (hostComponent.containsClass("percentWidths"))
+						hostComponent.removeClass("percentWidths");
+					if (hostComponent.containsClass("naturalWidths"))
+						hostComponent.removeClass("naturalWidths");
+					if (hostComponent.containsClass("sameWidths"))
+						hostComponent.removeClass("sameWidths");
 					if(isNaN(model.widthType))
 					{
-						hostClassList.add("sameWidths");
+						hostComponent.addClass("sameWidths");
 					}
 					else
 					{
 						switch(model.widthType)
 						{
 							case ButtonBarModel.PIXEL_WIDTHS:
-								hostClassList.add("pixelWidths");
+								hostComponent.addClass("pixelWidths");
 								break;
 							case ButtonBarModel.PROPORTIONAL_WIDTHS:
-								hostClassList.add("proportinalWidths");
+								hostComponent.addClass("proportinalWidths");
 								break;
 							case ButtonBarModel.PERCENT_WIDTHS:
-								hostClassList.add("percentWidths");
+								hostComponent.addClass("percentWidths");
 								break;
 							case ButtonBarModel.NATURAL_WIDTHS:
-								hostClassList.add("naturalWidths");
+								hostComponent.addClass("naturalWidths");
 								break;
 						}
 					}

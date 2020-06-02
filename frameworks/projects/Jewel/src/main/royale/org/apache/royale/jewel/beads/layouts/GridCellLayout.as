@@ -325,9 +325,9 @@ package org.apache.royale.jewel.beads.layouts
 				if (den <= 0 || den > MAX_COLUMNS)
 					throw new Error(screen + " denominator must be between 1 and " + MAX_COLUMNS);
 				
-				if (hostClassList.contains(screen + "-col-" + _desktopNumerator + "-" + _desktopDenominator))
-					hostClassList.remove(screen + "-col-" + _desktopNumerator + "-" + _desktopDenominator);
-				hostClassList.add(screen + "-col-" + num + "-" + den);
+				if (hostComponent.containsClass(screen + "-col-" + _desktopNumerator + "-" + _desktopDenominator))
+					hostComponent.removeClass(screen + "-col-" + _desktopNumerator + "-" + _desktopDenominator);
+				hostComponent.addClass(screen + "-col-" + num + "-" + den);
 			}
         }
 
@@ -358,14 +358,14 @@ package org.apache.royale.jewel.beads.layouts
 					{
 						if(_phoneVisible)
 						{
-							if (hostClassList.contains("hidden-phone"))
-								hostClassList.remove("hidden-phone");
-							hostClassList.add("visible-phone");
+							if (hostComponent.containsClass("hidden-phone"))
+								hostComponent.removeClass("hidden-phone");
+							hostComponent.addClass("visible-phone");
 						} else
 						{
-							if (hostClassList.contains("visible-phone"))
-								hostClassList.remove("visible-phone");
-							hostClassList.add("hidden-phone");
+							if (hostComponent.containsClass("visible-phone"))
+								hostComponent.removeClass("visible-phone");
+							hostComponent.addClass("hidden-phone");
 						}
 					}
 				}
@@ -399,14 +399,14 @@ package org.apache.royale.jewel.beads.layouts
 					{
 						if(_tabletVisible)
 						{
-							if (hostClassList.contains("hidden-tablet"))
-								hostClassList.remove("hidden-tablet");
-							hostClassList.add("visible-tablet");
+							if (hostComponent.containsClass("hidden-tablet"))
+								hostComponent.removeClass("hidden-tablet");
+							hostComponent.addClass("visible-tablet");
 						} else
 						{
-							if (hostClassList.contains("visible-tablet"))
-								hostClassList.remove("visible-tablet");
-							hostClassList.add("hidden-tablet");
+							if (hostComponent.containsClass("visible-tablet"))
+								hostComponent.removeClass("visible-tablet");
+							hostComponent.addClass("hidden-tablet");
 						}
 					}
 				}
@@ -440,14 +440,14 @@ package org.apache.royale.jewel.beads.layouts
 					{
 						if(_desktopVisible)
 						{
-							if (hostClassList.contains("hidden-desktop"))
-								hostClassList.remove("hidden-desktop");
-							hostClassList.add("visible-desktop");
+							if (hostComponent.containsClass("hidden-desktop"))
+								hostComponent.removeClass("hidden-desktop");
+							hostComponent.addClass("visible-desktop");
 						} else
 						{
-							if (hostClassList.contains("visible-desktop"))
-								hostClassList.remove("visible-desktop");
-							hostClassList.add("hidden-desktop");
+							if (hostComponent.containsClass("visible-desktop"))
+								hostComponent.removeClass("visible-desktop");
+							hostComponent.addClass("hidden-desktop");
 						}
 					}
 				}
@@ -481,14 +481,14 @@ package org.apache.royale.jewel.beads.layouts
 					{
 						if(_wideScreenVisible)
 						{
-							if (hostClassList.contains("hidden-widescreen"))
-								hostClassList.remove("hidden-widescreen");
-							hostClassList.add("visible-widescreen");
+							if (hostComponent.containsClass("hidden-widescreen"))
+								hostComponent.removeClass("hidden-widescreen");
+							hostComponent.addClass("visible-widescreen");
 						} else
 						{
-							if (hostClassList.contains("visible-widescreen"))
-								hostClassList.remove("visible-widescreen");
-							hostClassList.add("hidden-widescreen");
+							if (hostComponent.containsClass("visible-widescreen"))
+								hostComponent.removeClass("visible-widescreen");
+							hostComponent.addClass("hidden-widescreen");
 						}
 					}
 				}
