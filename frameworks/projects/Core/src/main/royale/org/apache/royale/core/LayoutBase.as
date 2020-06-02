@@ -302,7 +302,7 @@ package org.apache.royale.core
 			return viewBead.contentView;
 		}
 		
-		private var isLayoutRunning:Boolean = false;
+		protected var isLayoutRunning:Boolean = false;
 		
 		/**
 		 * Performs the layout in three parts: before, layout, after.
