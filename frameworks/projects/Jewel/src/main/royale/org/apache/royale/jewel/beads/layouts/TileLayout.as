@@ -18,23 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS
+	COMPILE::SWF
 	{
-	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.core.IUIBase;
 	}
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
+	import org.apache.royale.events.Event;
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
 	 *  The size of each element is determined either by setting TileLayout's columnWidth and rowHeight
-	 *  properties, or having the tile size determined by factoring the numColumns into the area assigned
+	 *  properties, or having the tile size determined by factoring the columnCount into the area assigned
 	 *  for the layout.
 	 *
 	 *  @langversion 3.0
@@ -42,7 +41,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TileLayout extends LayoutBase implements ILayoutStyleProperties
+	public class TileLayout extends StyledLayoutBase implements ILayoutStyleProperties
 	{
 		/**
 		 *  constructor.
@@ -57,10 +56,34 @@ package org.apache.royale.jewel.beads.layouts
 			super();
 		}
 
-		private var _numColumns:Number = 4;
-		private var _columnWidth:Number = Number.NaN;
-		private var _rowHeight:Number = Number.NaN;
+		public static const LAYOUT_TYPE_NAMES:String = "layout tile";
 
+		/**
+		 *  Add class selectors when the component is addedToParent
+		 *  Otherwise component will not get the class selectors when 
+		 *  perform "removeElement" and then "addElement"
+		 * 
+ 		 *  @langversion 3.0
+ 		 *  @playerversion Flash 10.2
+ 		 *  @playerversion AIR 2.6
+ 		 *  @productversion Royale 0.9.4
+ 		 */
+		override public function beadsAddedHandler(event:Event = null):void
+		{
+			super.beadsAddedHandler();
+
+			COMPILE::JS
+			{
+				if (hostComponent.containsClass("layout"))
+					hostComponent.removeClass("layout");
+				hostComponent.addClass("layout");
+				if(hostComponent.containsClass("tile"))
+					hostComponent.removeClass("tile");
+				hostComponent.addClass("tile");
+			}
+		}
+
+		private var _columnCount:Number = 4;
 		/**
 		 *  The number of tiles to fit horizontally into the layout.
 		 *
@@ -69,18 +92,20 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get numColumns():Number
+		public function get columnCount():Number
 		{
-			return _numColumns;
+			return _columnCount;
 		}
-		public function set numColumns(value:Number):void
+		public function set columnCount(value:Number):void
 		{
-			_numColumns = value;
+			_columnCount = value;
+			layout();
 		}
 
+		private var _columnWidth:Number = Number.NaN;
 		/**
 		 *  The width of each column, in pixels. If left unspecified, the
-		 *  columnWidth is determined by dividing the numColumns into the
+		 *  columnWidth is determined by dividing the columnCount into the
 		 *  strand's bounding box width.
 		 *
 		 *  @langversion 3.0
@@ -95,8 +120,29 @@ package org.apache.royale.jewel.beads.layouts
 		public function set columnWidth(value:Number):void
 		{
 			_columnWidth = value;
+			layout();
 		}
 
+		private var _rowCount:Number = 4;
+		/**
+		 *  The number of tiles to fit horizontally into the layout.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		public function get rowCount():Number
+		{
+			return _rowCount;
+		}
+		public function set rowCount(value:Number):void
+		{
+			_rowCount = value;
+			layout();
+		}
+
+		private var _rowHeight:Number = Number.NaN;
 		/**
 		 *  The height of each row, in pixels. If left unspecified, the
 		 *  rowHeight is determine by dividing the possible number of rows
@@ -114,6 +160,7 @@ package org.apache.royale.jewel.beads.layouts
 		public function set rowHeight(value:Number):void
 		{
 			_rowHeight = value;
+			layout();
 		}
 
 		/**
@@ -122,7 +169,6 @@ package org.apache.royale.jewel.beads.layouts
 		private var verticalGapInitialized:Boolean;
 		public static const VERTICAL_GAP_STYLE:String = "verticalGap"
 		private var _verticalGap:Number = 0;
-
 		/**
 		 *  The verticalGap between items.
 		 *
@@ -135,7 +181,6 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			return _verticalGap;
 		}
-
 		/**
 		 *  @private
 		 */
@@ -151,7 +196,6 @@ package org.apache.royale.jewel.beads.layouts
 		private var horizontalGapInitialized:Boolean;
 		public static const HORIZONTAL_GAP_STYLE:String = "horizontalGap"
 		private var _horizontalGap:Number = 0;
-
 		/**
 		 *  The horizontalGap between items.
 		 *
@@ -164,7 +208,6 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			return _horizontalGap;
 		}
-
 		/**
 		 *  @private
 		 */
@@ -187,23 +230,38 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
-		{	
-			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
-			if (cssValue !== undefined)
-			{
-				switch(cssProperty)
-				{
-					case VERTICAL_GAP_STYLE:
-						if(!verticalGapInitialized)
-						{
-							verticalGap = Number(cssValue);
-						}
-						break;
-					default:
-						break;
-				}	
+		// override public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		// {	
+		// 	var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
+		// 	if (cssValue !== undefined)
+		// 	{
+		// 		switch(cssProperty)
+		// 		{
+		// 			case VERTICAL_GAP_STYLE:
+		// 				if(!verticalGapInitialized)
+		// 				{
+		// 					verticalGap = Number(cssValue);
+		// 				}
+		// 				break;
+		// 			default:
+		// 				break;
+		// 		}	
+		// 	}
+		// }
+
+		/**
+		 *  Used at begining of layout for % height
+		 */
+		protected var _noSize:Boolean = true;
+
+		COMPILE::JS
+		protected function checkHostSize():Boolean {
+			if(host.width == 0 && !isNaN(host.percentWidth)) {
+				requestAnimationFrame(layout);
+				return false;
 			}
+			
+			return true;
 		}
 
 		/**
@@ -240,10 +298,10 @@ package org.apache.royale.jewel.beads.layouts
 					if (testChild == null || !testChild.visible) realN--;
 				}
 
-				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / numColumns); // + verticalGap
+				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / columnCount); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.ceil(realN/numColumns);
+					var numRows:Number = Math.ceil(realN/columnCount);
 					if (host.isHeightSizedToContent()) useHeight = 30; // default height
 					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
@@ -263,7 +321,7 @@ package org.apache.royale.jewel.beads.layouts
 					xpos += useWidth;
 					maxWidth = Math.max(maxWidth,xpos);
 
-					var test:Number = (i+1)%numColumns;
+					var test:Number = (i+1)%columnCount;
 
 					if (test == 0) {
 						xpos = 0;
@@ -272,7 +330,7 @@ package org.apache.royale.jewel.beads.layouts
 					}
 				}
 
-				maxWidth = Math.max(maxWidth, numColumns*useWidth);
+				maxWidth = Math.max(maxWidth, columnCount*useWidth);
 				maxHeight = Math.max(maxHeight, numRows*useHeight);
 
 				// Only return true if the contentView needs to be larger; that new
@@ -283,80 +341,95 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				var c:UIBase = (contentView as UIBase);
-				c.element.classList.add("layout");
-				c.element.classList.add("tile");
-				
-				var children:Array = contentView.internalChildren();
+				if(_noSize)
+					checkHostSize();
+
+				trace(" **** TILE LAYOUT ****");
+				trace(" - columnCount", columnCount);
+				trace(" - columnWidth", columnWidth);
+				trace(" - horizontalGap", horizontalGap);
+				trace(" - rowCount", rowCount);
+				trace(" - rowHeight", rowHeight);
+				trace(" - verticalGap", verticalGap);
 				var i:int;
-				var n:int = children.length;
+				var n:int;
+				var child:UIBase;
+				var useWidth:Number;
+				var useHeight:Number;
+
+				var contentView:ILayoutView = layoutView as ILayoutView;
+				n = contentView.numElements;
+
 				if (n === 0) return false;
 
 				var realN:int = n;
 				for (i = 0; i < n; i++)
 				{
-					child = children[i].royale_wrapper;
+					child = contentView.getElementAt(i) as UIBase;
 					if (!child.visible) realN--;
 				}
-				
-				var useWidth:Number = columnWidth;
-				var useHeight:Number = rowHeight;
+
+				useWidth = columnWidth;
+				trace(" - useWidth", useWidth);
+				useHeight = rowHeight;
+				trace(" - useHeight", useHeight);
 				var needWidth:Boolean = isNaN(useWidth);
+				trace(" - needWidth", needWidth);
 				var needHeight:Boolean = isNaN(useHeight);
-				
-				// given the width and total number of items, how many rows?
-				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
-				var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
-				var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
-				var numRows:Number = Math.ceil(realN / (numColumns + _verticalGap));
-				
-				if(needWidth || needHeight)
+				trace(" - needHeight", needHeight);
+				if(needHeight || needWidth)
 				{
+				trace("  -- calculate useWidth & useHeight");
+					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+					var adjustedWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+					trace(" - adjustedWidth", adjustedWidth);
+					var adjustedHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
+					trace(" - adjustedHeight", adjustedHeight);
 					if (needWidth)
-						useWidth = Math.floor(adjustedWidth / numColumns);// + _horizontalGap;
+					{
+						useWidth = Math.floor(adjustedWidth / columnCount) + horizontalGap; // + gap
+						trace("  -- useWidth", useWidth);
+					}
 					
 					if (needHeight)
 					{
-						if (host.isHeightSizedToContent()) 
-							useHeight = 30; // default height
-						else 
-							useHeight = Math.floor(adjustedHeight / numRows);// + _verticalGap;
+						// given the width and total number of items, how many rows?
+						var numRows:Number = Math.ceil(realN / columnCount);
+						trace("  -- numRows", numRows);
+						if (host.isHeightSizedToContent()) useHeight = 30; // default height
+						else useHeight = Math.floor(adjustedHeight / numRows) + verticalGap;
+						trace("  -- useHeight", useHeight);
 					}
 				}
-
-				var child:UIBase;
-				var numCols:Number = Math.floor(1+(adjustedWidth - useWidth) / (useWidth + _horizontalGap));
 				
+				trace("  -- useHeight", useHeight);
 				for (i = 0; i < n; i++)
 				{
-					child = children[i].royale_wrapper;
+					child = contentView.getElementAt(i) as UIBase;
+
 					if (!child.visible) continue;
-					child.width = useWidth;
-					child.height = useHeight;
-
-					var childW:WrappedHTMLElement = children[i];
-					if (childW == null) continue;
 					
-					if(i < numCols)
-					{
-						childW.style.marginTop = 0 + 'px';//_paddingTop
-					}
+					trace(i, i % columnCount, i % rowCount);
+					
+					// add horizontalGap
+					if(i % (columnCount - 1) != 0)
+						child.positioner.style.marginLeft = horizontalGap + "px";
 					else
-					{
-						childW.style.marginTop = _verticalGap + 'px';
-					}
-
-					if(i % numCols)
-					{
-						childW.style.marginLeft = _horizontalGap + 'px';
-					}
+						child.positioner.style.marginLeft = null;
+					
+					// add verticalGap
+					if(i % (columnCount - 1) != 0)
+						child.positioner.style.marginTop = verticalGap + "px";
 					else
-					{
-						childW.style.marginLeft = 0 + 'px';//_paddingLeft
-					}
+						child.positioner.style.marginTop = null;
 
-					childW.royale_wrapper.dispatchEvent('sizeChanged');				
+					//child.setDisplayStyleForLayout('inline-flex');
+					//if the parent width/height not explicitly set, we can't calculate the child width/height
+					if(useWidth > 0)
+						child.width = useWidth;
+					if(useHeight > 0)
+						child.height = useHeight;
+					child.dispatchEvent('sizeChanged');
 				}
 				return true;
 			}
