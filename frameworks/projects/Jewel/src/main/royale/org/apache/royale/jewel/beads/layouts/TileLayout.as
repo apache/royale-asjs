@@ -74,12 +74,12 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				if (hostComponent.containsClass("layout"))
-					hostComponent.removeClass("layout");
-				hostComponent.addClass("layout");
-				if(hostComponent.containsClass("tile"))
-					hostComponent.removeClass("tile");
-				hostComponent.addClass("tile");
+			if (hostComponent.containsClass("layout"))
+				hostComponent.removeClass("layout");
+			hostComponent.addClass("layout");
+			if(hostComponent.containsClass("tile"))
+				hostComponent.removeClass("tile");
+			hostComponent.addClass("tile");
 			}
 		}
 
@@ -248,22 +248,7 @@ package org.apache.royale.jewel.beads.layouts
 		// 		}	
 		// 	}
 		// }
-
-		/**
-		 *  Used at begining of layout for % height
-		 */
-		protected var _noSize:Boolean = true;
-
-		COMPILE::JS
-		protected function checkHostSize():Boolean {
-			if(host.width == 0 && !isNaN(host.percentWidth)) {
-				requestAnimationFrame(layout);
-				return false;
-			}
-			
-			return true;
-		}
-
+		
 		/**
 		 *  Layout children
 		 *
@@ -341,9 +326,6 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				if(_noSize)
-					checkHostSize();
-
 				trace(" **** TILE LAYOUT ****");
 				trace(" - columnCount", columnCount);
 				trace(" - columnWidth", columnWidth);

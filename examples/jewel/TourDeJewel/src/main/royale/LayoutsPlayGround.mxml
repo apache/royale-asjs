@@ -198,7 +198,7 @@ limitations under the License.
 
 					<j:Group className="wrapper" width="100%" height="200">
 						<j:beads>
-							<j:TileLayout localId="tl" horizontalGap="6" />
+							<j:TileLayout localId="tl" horizontalGap="6" waitForSize="true"/>
 						</j:beads>
 						<j:Button text="1" emphasis="primary" width="60" height="60"/>
 						<j:Button text="2" emphasis="secondary" width="60" height="60"/>

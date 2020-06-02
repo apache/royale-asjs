@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.LayoutBase;
@@ -26,6 +28,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.sendStrandEvent;
 	
     /**
      *  The StyledLayoutBase class is an extension of LayoutBase
@@ -91,14 +94,14 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			COMPILE::JS
 			{
-				applyStyleToLayout(hostComponent, "itemsExpand");
-				setHostComponentClass("itemsExpand", _itemsExpand ? "itemsExpand":"");
+			applyStyleToLayout(hostComponent, "itemsExpand");
+			setHostComponentClass("itemsExpand", _itemsExpand ? "itemsExpand":"");
 
-				applyStyleToLayout(hostComponent, "itemsHorizontalAlign");
-				setHostComponentClass(_itemsHorizontalAlign, _itemsHorizontalAlign);
+			applyStyleToLayout(hostComponent, "itemsHorizontalAlign");
+			setHostComponentClass(_itemsHorizontalAlign, _itemsHorizontalAlign);
 
-				applyStyleToLayout(hostComponent, "itemsVerticalAlign");
-				setHostComponentClass(_itemsVerticalAlign, _itemsVerticalAlign);
+			applyStyleToLayout(hostComponent, "itemsVerticalAlign");
+			setHostComponentClass(_itemsVerticalAlign, _itemsVerticalAlign);
 			}
 		}
 
@@ -166,9 +169,9 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					setHostComponentClass(_itemsHorizontalAlign, value);
-					_itemsHorizontalAlign = value;
-					itemsHorizontalAlignInitialized = true;
+				setHostComponentClass(_itemsHorizontalAlign, value);
+				_itemsHorizontalAlign = value;
+				itemsHorizontalAlignInitialized = true;
 				}
 			}
         }
@@ -201,9 +204,9 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					setHostComponentClass(_itemsVerticalAlign, value);
-					_itemsVerticalAlign = value;
-					itemsVerticalAlignInitialized = true;
+				setHostComponentClass(_itemsVerticalAlign, value);
+				_itemsVerticalAlign = value;
+				itemsVerticalAlignInitialized = true;
 				}
 			}
         }
@@ -231,9 +234,9 @@ package org.apache.royale.jewel.beads.layouts
                 
 				COMPILE::JS
                 {
-				    setHostComponentClass("itemsExpand", value ? "itemsExpand" : "");
-					_itemsExpand = value;
-					itemsExpandInitialized = true;
+				setHostComponentClass("itemsExpand", value ? "itemsExpand" : "");
+				_itemsExpand = value;
+				itemsExpandInitialized = true;
 				}
             }
         }
@@ -249,5 +252,106 @@ package org.apache.royale.jewel.beads.layouts
         
             if (newValue) hostComponent.addClass(newValue);
         }
+
+		/**
+		 *  Allow user to wait for the host size to be set in case of unset or %
+		 *  or  avoid and perform layout
+		 */
+		COMPILE::JS
+		public var waitForSize:Boolean = false;
+
+		/**
+		 * If waitForSize is true, sizeInitialized will be true when host get size.
+		 */
+		COMPILE::JS
+		protected var sizeInitialized:Boolean = false;
+		
+		/**
+		 * We call requestAnimationFrame until we get width and height
+		 */
+		COMPILE::JS
+		protected function checkHostSize():void {
+			if(sizeInitialized) return;
+			if((host.width == 0 && !isNaN(host.percentWidth)) || 
+				(host.height == 0 && !isNaN(host.percentHeight)))
+			{
+				requestAnimationFrame(checkHostSize);
+			} else
+			{
+				sizeInitialized = true;
+				executeLayout();
+			}
+		}
+
+		/**
+		 *  Performs the layout in three parts: before, layout, after.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutParent
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		override public function performLayout():void
+		{
+			// avoid running this layout instance recursively.
+			if (isLayoutRunning) return;
+			
+			isLayoutRunning = true;
+			/* Not all components need measurement
+			COMPILE::SWF
+			{
+				host.measuredHeight = host.height;
+				host.measuredWidth = host.width;
+			}
+			*/
+			
+			viewBead = (host as ILayoutParent).getLayoutHost();
+			
+			if (viewBead.beforeLayout())
+			{
+				COMPILE::SWF
+				{
+				executeLayout();
+				}
+
+				COMPILE::JS
+				{
+				if(waitForSize) {
+					checkHostSize();
+				} else
+					executeLayout();
+				}
+			}
+		}
+
+		protected var viewBead:ILayoutHost;
+
+		public function executeLayout():void
+		{
+			if (layout()) {
+				viewBead.afterLayout();
+			}
+
+			isLayoutRunning = false;
+			
+			sendStrandEvent(_strand, "layoutComplete");
+			
+			/* measurement may not matter for all components
+			COMPILE::SWF
+			{
+				// check sizes to see if layout changed the size or not
+				// and send an event to re-layout parent of host
+				if (host.width != host.measuredWidth ||
+					host.height != host.measuredHeight)
+				{
+					isLayoutRunning = true;
+					host.dispatchEvent(new Event("sizeChanged"));
+					isLayoutRunning = false;
+				}
+			}
+			*/
+		}
 	}
 }
