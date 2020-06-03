@@ -219,7 +219,7 @@ limitations under the License.
 					<j:VGroup>
 						<j:VGroup>
 							<j:Label text="columnCount = {tl.columnCount}"/>
-							<j:HSlider width="200" value="3" minimum="1" maximum="6" valueChange="tl.columnCount = event.target.value"/>
+							<j:HSlider width="200" value="4" minimum="1" maximum="6" valueChange="tl.columnCount = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="columnWidth"/>
