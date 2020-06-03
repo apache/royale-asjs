@@ -83,28 +83,51 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
-		private var _columnCount:Number = 4;
+		private var _columnCount:int = -1;
 		/**
 		 *  The number of tiles to fit horizontally into the layout.
+		 *  Contain the actual column count.
+		 *  The default value is -1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		[Bindable("columnCountChanged")]
-		public function get columnCount():Number
+		public function get columnCount():int
 		{
 			return _columnCount;
 		}
-		public function set columnCount(value:Number):void
+
+		private var _requestedColumnCount:int = -1;
+		/**
+		 *  Number of columns to be displayed.
+		 *  Set to -1 to allow the TileLayout to determine the column count automatically.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		[Bindable("requestedColumnCountChanged")]
+		public function get requestedColumnCount():int
 		{
-			_columnCount = value;
+			return _requestedColumnCount;
+		}
+		public function set requestedColumnCount(value:int):void
+		{
+			_requestedColumnCount = value;
 			layout();
 		}
 
 		private var _columnWidth:Number = Number.NaN;
 		/**
+		 *  Contain the actual column width, in pixels.
+		 *  If not explicitly set, the column width is determined from the width of the widest element.
+		 *  If the columnAlign property is set to "justifyUsingWidth", the column width grows to the container width to justify the fully-visible columns.
+		 *  The default value is NaN.
+		 *  This property can be used as the source for data binding.
+		 *  
 		 *  The width of each column, in pixels. If left unspecified, the
 		 *  columnWidth is determined by dividing the columnCount into the
 		 *  strand's bounding box width.
@@ -125,9 +148,11 @@ package org.apache.royale.jewel.beads.layouts
 			layout();
 		}
 
-		private var _rowCount:Number = 4;
+		private var _rowCount:int = -1;
 		/**
 		 *  The number of tiles to fit horizontally into the layout.
+		 *  The row count.
+		 *  The default value is -1.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -135,18 +160,42 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @productversion Royale 0.9.8
 		 */
 		[Bindable("rowCountChanged")]
-		public function get rowCount():Number
+		public function get rowCount():int
 		{
 			return _rowCount;
 		}
-		public function set rowCount(value:Number):void
+		
+		private var _requestedRowCount:int = -1;
+		/**
+		 *  Number of rows to be displayed.
+		 *  Set to -1 to remove explicit override and allow the TileLayout to determine the row count automatically.
+		 *  If the orientation property is set to TileOrientation.COLUMNS, setting this property has no effect. in this case, columnCount is explicitly set, and the container height is explicitly set.
+		 *  The default value is -1.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		[Bindable("requestedRowCountChanged")]
+		public function get requestedRowCount():int
 		{
-			_rowCount = value;
+			return _requestedRowCount;
+		}
+		public function set requestedRowCount(value:int):void
+		{
+			_requestedRowCount = value;
 			layout();
 		}
 
 		private var _rowHeight:Number = Number.NaN;
 		/**
+		 *  The row height, in pixels.
+		 *  If not explicitly set, the row height is determined from the maximum of elements' height.
+		 *  If rowAlign is set to "justifyUsingHeight", the actual row height increases to justify the fully-visible rows to the container height.
+		 *  The default value is NaN.
+		 *  This property can be used as the source for data binding.
+		 *  
 		 *  The height of each row, in pixels. If left unspecified, the
 		 *  rowHeight is determine by dividing the possible number of rows
 		 *  into the strand's bounding box height.
@@ -193,6 +242,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_horizontalGap = value;
 			horizontalGapInitialized = true;
+			// layout();
 		}
 
 		/**
@@ -221,6 +271,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_verticalGap = value;
 			verticalGapInitialized = true;
+			// layout();
 		}
 
 		/**
@@ -333,12 +384,17 @@ package org.apache.royale.jewel.beads.layouts
 			COMPILE::JS
 			{
 				trace(" **** TILE LAYOUT ****");
+				
+				trace(" - requestedColumnCount", requestedColumnCount);
 				trace(" - columnCount", columnCount);
 				trace(" - columnWidth", columnWidth);
 				trace(" - horizontalGap", horizontalGap);
+
+				trace(" - requestedRowCount", requestedRowCount);
 				trace(" - rowCount", rowCount);
 				trace(" - rowHeight", rowHeight);
 				trace(" - verticalGap", verticalGap);
+				
 				var i:int;
 				var n:int;
 				var child:UIBase;
@@ -350,12 +406,6 @@ package org.apache.royale.jewel.beads.layouts
 
 				if (n === 0) return false;
 
-				var realN:int = n;
-				for (i = 0; i < n; i++)
-				{
-					child = contentView.getElementAt(i) as UIBase;
-					if (!child.visible) realN--;
-				}
 
 				useWidth = columnWidth;
 				trace(" - useWidth", useWidth);
@@ -365,9 +415,23 @@ package org.apache.royale.jewel.beads.layouts
 				trace(" - needWidth", needWidth);
 				var needHeight:Boolean = isNaN(useHeight);
 				trace(" - needHeight", needHeight);
+				
+				var realN:int = n;
+				var widestTile:Number = 0; // hold the widest tile
+				var tallestTile:Number = 0; // hold the widest tile
+				for (i = 0; i < n; i++)
+				{
+					child = contentView.getElementAt(i) as UIBase;
+					if (!child.visible) realN--;
+					if (needWidth && child.width > widestTile) widestTile = child.width;
+					if (needWidth && child.height > tallestTile) tallestTile = child.height;
+				}
+				trace(" - widestTile", widestTile);
+				trace(" - tallestTile", tallestTile);
+				
 				if(needHeight || needWidth)
 				{
-				trace("  -- calculate useWidth & useHeight");
+					trace("  -- calculate useWidth & useHeight");
 					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 					var adjustedHostWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
 					trace(" - adjustedWidth", adjustedHostWidth);
@@ -375,25 +439,36 @@ package org.apache.royale.jewel.beads.layouts
 					trace(" - adjustedHeight", adjustedHostHeight);
 					if (needWidth)
 					{
-						useWidth = Math.floor((adjustedHostWidth + horizontalGap)/ columnCount);
-						trace("  -- useWidth", useWidth);
+						// calculate columnCount in base of the widesTile
+						_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth / (widestTile + horizontalGap));
+						useWidth = _requestedColumnCount == -1 ? widestTile : Math.floor((adjustedHostWidth + horizontalGap)/ columnCount);
 					} else {
-						// we have tile width so calculate columnCount
-						_columnCount = Math.floor((adjustedHostWidth + horizontalGap)/ useWidth);
+						_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth/ (_columnWidth + horizontalGap));
+						useWidth = _requestedColumnCount == -1 ? _columnWidth : Math.floor((adjustedHostWidth + horizontalGap)/ columnCount);
 					}
+					trace("  -- _columnCount", _columnCount);
+					trace("  -- useWidth", useWidth);
+
+					// given the width and total number of items, how many rows?
+					// _rowCount = _requestedRowCount != -1 ? _requestedRowCount : Math.floor(adjustedHostHeight / (tallestTile + verticalGap));
+					_rowCount = Math.ceil(realN / columnCount);
+					trace("  -- _rowCount", _rowCount);
 					
 					if (needHeight)
-					{
-						// given the width and total number of items, how many rows?
-						var numRows:Number = Math.ceil(realN / columnCount);
-						trace("  -- numRows", numRows);
-						if (host.isHeightSizedToContent()) useHeight = 30; // default height
-						else useHeight = Math.floor((adjustedHostHeight + verticalGap) / numRows);
-						trace("  -- useHeight", useHeight);
+					{	
+						useHeight = tallestTile;
+						
+						// if (host.isHeightSizedToContent()) useHeight = 30; // default height
+						// else useHeight = Math.floor((adjustedHostHeight + verticalGap) / numRows);
+						// trace("  -- useHeight", useHeight);
 					} else {
-						// we have tile height so calculate rowCount
-						_rowCount = Math.floor((adjustedHostHeight + verticalGap)/ useHeight);
+						// _rowCount = _requestedRowCount != -1 ? _requestedRowCount : Math.floor(adjustedHostHeight / (_rowHeight + verticalGap));
+						useHeight = _rowHeight;
 					}
+					// else {
+					// 	// we have tile height so calculate rowCount
+					// 	_rowCount = Math.floor((adjustedHostHeight + verticalGap)/ useHeight);
+					// }
 				}
 				
 				trace("  -- useHeight", useHeight);
@@ -420,9 +495,9 @@ package org.apache.royale.jewel.beads.layouts
 					//child.setDisplayStyleForLayout('inline-flex');
 					//if the parent width/height not explicitly set, we can't calculate the child width/height
 					if(useWidth > 0)
-						child.width = useWidth - horizontalGap;
+						child.width = _requestedColumnCount == -1 ? useWidth : useWidth - horizontalGap;
 					if(useHeight > 0)
-						child.height = useHeight - verticalGap;
+						child.height = _requestedRowCount == -1 ? useHeight : useHeight - verticalGap;
 					child.dispatchEvent('sizeChanged');
 				}
 				return true;
