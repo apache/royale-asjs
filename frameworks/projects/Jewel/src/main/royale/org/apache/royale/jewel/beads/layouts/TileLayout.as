@@ -441,10 +441,10 @@ package org.apache.royale.jewel.beads.layouts
 					{
 						// calculate columnCount in base of the widesTile
 						_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth / (widestTile + horizontalGap));
-						useWidth = _requestedColumnCount == -1 ? widestTile : Math.floor((adjustedHostWidth + horizontalGap)/ columnCount);
+						useWidth = _requestedColumnCount == -1 ? widestTile : Math.floor((adjustedHostWidth - horizontalGap) / columnCount);
 					} else {
 						_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth/ (_columnWidth + horizontalGap));
-						useWidth = _requestedColumnCount == -1 ? _columnWidth : Math.floor((adjustedHostWidth + horizontalGap)/ columnCount);
+						useWidth = _requestedColumnCount == -1 ? _columnWidth : Math.floor((adjustedHostWidth - horizontalGap) / columnCount);
 					}
 					trace("  -- _columnCount", _columnCount);
 					trace("  -- useWidth", useWidth);
@@ -498,6 +498,13 @@ package org.apache.royale.jewel.beads.layouts
 						child.width = _requestedColumnCount == -1 ? useWidth : useWidth - horizontalGap;
 					if(useHeight > 0)
 						child.height = _requestedRowCount == -1 ? useHeight : useHeight - verticalGap;
+					
+					// avoid a tile from the next row stay in the previous row due to flexbox algorithm
+					if(i % columnCount == columnCount - 1)
+						child.positioner.style.marginRight = Math.floor(adjustedHostWidth - (1 + child.width + (child.width + horizontalGap) * (_columnCount - 1))) + "px";
+					else
+						child.positioner.style.marginRight = null;
+					
 					child.dispatchEvent('sizeChanged');
 				}
 				return true;
