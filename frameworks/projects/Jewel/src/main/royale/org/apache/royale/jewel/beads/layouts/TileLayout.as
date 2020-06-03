@@ -92,7 +92,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		[Bindable]
+		[Bindable("columnCountChanged")]
 		public function get columnCount():Number
 		{
 			return _columnCount;
@@ -114,7 +114,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		[Bindable]
+		[Bindable("columnWidthChanged")]
 		public function get columnWidth():Number
 		{
 			return _columnWidth;
@@ -134,7 +134,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
-		[Bindable]
+		[Bindable("rowCountChanged")]
 		public function get rowCount():Number
 		{
 			return _rowCount;
@@ -156,7 +156,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		[Bindable]
+		[Bindable("rowHeightChanged")]
 		public function get rowHeight():Number
 		{
 			return _rowHeight;
@@ -165,34 +165,6 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_rowHeight = value;
 			layout();
-		}
-
-		/**
-		 *  @private
-		 */
-		private var verticalGapInitialized:Boolean;
-		public static const VERTICAL_GAP_STYLE:String = "verticalGap"
-		private var _verticalGap:Number = 0;
-		/**
-		 *  The verticalGap between items.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		[Bindable]
-		public function get verticalGap():Number
-		{
-			return _verticalGap;
-		}
-		/**
-		 *  @private
-		 */
-		public function set verticalGap(value:Number):void
-		{
-			_verticalGap = value;
-			verticalGapInitialized = true;
 		}
 
 		/**
@@ -209,7 +181,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		[Bindable]
+		[Bindable("horizontalGapChanged")]
 		public function get horizontalGap():Number
 		{
 			return _horizontalGap;
@@ -221,6 +193,34 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_horizontalGap = value;
 			horizontalGapInitialized = true;
+		}
+
+		/**
+		 *  @private
+		 */
+		private var verticalGapInitialized:Boolean;
+		public static const VERTICAL_GAP_STYLE:String = "verticalGap"
+		private var _verticalGap:Number = 0;
+		/**
+		 *  The verticalGap between items.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		[Bindable("verticalGapChanged")]
+		public function get verticalGap():Number
+		{
+			return _verticalGap;
+		}
+		/**
+		 *  @private
+		 */
+		public function set verticalGap(value:Number):void
+		{
+			_verticalGap = value;
+			verticalGapInitialized = true;
 		}
 
 		/**
@@ -377,6 +377,9 @@ package org.apache.royale.jewel.beads.layouts
 					{
 						useWidth = Math.floor((adjustedHostWidth + horizontalGap)/ columnCount);
 						trace("  -- useWidth", useWidth);
+					} else {
+						// we have tile width so calculate columnCount
+						_columnCount = Math.floor((adjustedHostWidth + horizontalGap)/ useWidth);
 					}
 					
 					if (needHeight)
@@ -387,6 +390,9 @@ package org.apache.royale.jewel.beads.layouts
 						if (host.isHeightSizedToContent()) useHeight = 30; // default height
 						else useHeight = Math.floor((adjustedHostHeight + verticalGap) / numRows);
 						trace("  -- useHeight", useHeight);
+					} else {
+						// we have tile height so calculate rowCount
+						_rowCount = Math.floor((adjustedHostHeight + verticalGap)/ useHeight);
 					}
 				}
 				
