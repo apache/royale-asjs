@@ -94,6 +94,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
+		[Bindable("columnCountChanged")]
 		public function get columnCount():int
 		{
 			return _columnCount;
@@ -116,6 +117,8 @@ package org.apache.royale.jewel.beads.layouts
 		}
 		public function set requestedColumnCount(value:int):void
 		{
+			if(!isNaN(value))
+				_columnWidth = NaN;
 			_requestedColumnCount = value;
 			layout();
 		}
@@ -144,6 +147,8 @@ package org.apache.royale.jewel.beads.layouts
 		}
 		public function set columnWidth(value:Number):void
 		{
+			if(!isNaN(value))
+				_requestedColumnCount = -1;
 			_columnWidth = value;
 			layout();
 		}
@@ -165,29 +170,6 @@ package org.apache.royale.jewel.beads.layouts
 			return _rowCount;
 		}
 		
-		private var _requestedRowCount:int = -1;
-		/**
-		 *  Number of rows to be displayed.
-		 *  Set to -1 to remove explicit override and allow the TileLayout to determine the row count automatically.
-		 *  If the orientation property is set to TileOrientation.COLUMNS, setting this property has no effect. in this case, columnCount is explicitly set, and the container height is explicitly set.
-		 *  The default value is -1.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
-		 */
-		[Bindable("requestedRowCountChanged")]
-		public function get requestedRowCount():int
-		{
-			return _requestedRowCount;
-		}
-		public function set requestedRowCount(value:int):void
-		{
-			_requestedRowCount = value;
-			layout();
-		}
-
 		private var _rowHeight:Number = Number.NaN;
 		/**
 		 *  The row height, in pixels.
@@ -242,7 +224,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_horizontalGap = value;
 			horizontalGapInitialized = true;
-			// layout();
+			layout();
 		}
 
 		/**
@@ -271,7 +253,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_verticalGap = value;
 			verticalGapInitialized = true;
-			// layout();
+			layout();
 		}
 
 		/**
@@ -325,8 +307,8 @@ package org.apache.royale.jewel.beads.layouts
 
 				var xpos:Number = 0;
 				var ypos:Number = 0;
-				var useWidth:Number = columnWidth;
-				var useHeight:Number = rowHeight;
+				var useWidth:Number = _columnWidth;
+				var useHeight:Number = _rowHeight;
 				var n:Number = area.numElements;
 				if (n == 0) return false;
 				
@@ -340,10 +322,10 @@ package org.apache.royale.jewel.beads.layouts
 					if (testChild == null || !testChild.visible) realN--;
 				}
 
-				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / columnCount); // + gap
+				if (isNaN(useWidth)) useWidth = Math.floor(adjustedWidth / _columnCount); // + gap
 				if (isNaN(useHeight)) {
 					// given the width and total number of items, how many rows?
-					var numRows:Number = Math.ceil(realN/columnCount);
+					var numRows:Number = Math.ceil(realN/_columnCount);
 					if (host.isHeightSizedToContent()) useHeight = 30; // default height
 					else useHeight = Math.floor(adjustedHeight / numRows);
 				}
@@ -363,7 +345,7 @@ package org.apache.royale.jewel.beads.layouts
 					xpos += useWidth;
 					maxWidth = Math.max(maxWidth,xpos);
 
-					var test:Number = (i+1)%columnCount;
+					var test:Number = (i+1)%_columnCount;
 
 					if (test == 0) {
 						xpos = 0;
@@ -372,7 +354,7 @@ package org.apache.royale.jewel.beads.layouts
 					}
 				}
 
-				maxWidth = Math.max(maxWidth, columnCount*useWidth);
+				maxWidth = Math.max(maxWidth, _columnCount*useWidth);
 				maxHeight = Math.max(maxHeight, numRows*useHeight);
 
 				// Only return true if the contentView needs to be larger; that new
@@ -383,17 +365,16 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				trace(" **** TILE LAYOUT ****");
+				// trace(" **** TILE LAYOUT ****");
 				
-				trace(" - requestedColumnCount", requestedColumnCount);
-				trace(" - columnCount", columnCount);
-				trace(" - columnWidth", columnWidth);
-				trace(" - horizontalGap", horizontalGap);
+				// trace(" - requestedColumnCount", _requestedColumnCount);
+				// trace(" - columnCount", _columnCount);
+				// trace(" - columnWidth", _columnWidth);
+				// trace(" - horizontalGap", _horizontalGap);
 
-				trace(" - requestedRowCount", requestedRowCount);
-				trace(" - rowCount", rowCount);
-				trace(" - rowHeight", rowHeight);
-				trace(" - verticalGap", verticalGap);
+				// trace(" - rowCount", _rowCount);
+				// trace(" - rowHeight", _rowHeight);
+				// trace(" - verticalGap", _verticalGap);
 				
 				var i:int;
 				var n:int;
@@ -406,15 +387,14 @@ package org.apache.royale.jewel.beads.layouts
 
 				if (n === 0) return false;
 
-
-				useWidth = columnWidth;
-				trace(" - useWidth", useWidth);
-				useHeight = rowHeight;
-				trace(" - useHeight", useHeight);
+				useWidth = _columnWidth;
+				// trace(" - useWidth", useWidth);
+				useHeight = _rowHeight;
+				// trace(" - useHeight", useHeight);
 				var needWidth:Boolean = isNaN(useWidth);
-				trace(" - needWidth", needWidth);
+				// trace(" - needWidth", needWidth);
 				var needHeight:Boolean = isNaN(useHeight);
-				trace(" - needHeight", needHeight);
+				// trace(" - needHeight", needHeight);
 				
 				var realN:int = n;
 				var widestTile:Number = 0; // hold the widest tile
@@ -426,82 +406,77 @@ package org.apache.royale.jewel.beads.layouts
 					if (needWidth && child.width > widestTile) widestTile = child.width;
 					if (needWidth && child.height > tallestTile) tallestTile = child.height;
 				}
-				trace(" - widestTile", widestTile);
-				trace(" - tallestTile", tallestTile);
+				// trace(" - widestTile", widestTile);
+				// trace(" - tallestTile", tallestTile);
 				
-				if(needHeight || needWidth)
-				{
-					trace("  -- calculate useWidth & useHeight");
-					var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
-					var adjustedHostWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
-					trace(" - adjustedWidth", adjustedHostWidth);
-					var adjustedHostHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
-					trace(" - adjustedHeight", adjustedHostHeight);
-					if (needWidth)
-					{
-						// calculate columnCount in base of the widesTile
-						_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth / (widestTile + horizontalGap));
-						useWidth = _requestedColumnCount == -1 ? widestTile : Math.floor((adjustedHostWidth - horizontalGap) / columnCount);
-					} else {
-						_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth/ (_columnWidth + horizontalGap));
-						useWidth = _requestedColumnCount == -1 ? _columnWidth : Math.floor((adjustedHostWidth - horizontalGap) / columnCount);
-					}
-					trace("  -- _columnCount", _columnCount);
-					trace("  -- useWidth", useWidth);
+				
+				// trace("  -- calculate useWidth & useHeight");
+				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+				var adjustedHostWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+				// trace(" - adjustedWidth", adjustedHostWidth);
+				var adjustedHostHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
+				// trace(" - adjustedHeight", adjustedHostHeight);
 
-					// given the width and total number of items, how many rows?
-					// _rowCount = _requestedRowCount != -1 ? _requestedRowCount : Math.floor(adjustedHostHeight / (tallestTile + verticalGap));
-					_rowCount = Math.ceil(realN / columnCount);
-					trace("  -- _rowCount", _rowCount);
-					
-					if (needHeight)
-					{	
-						useHeight = tallestTile;
-						
-						// if (host.isHeightSizedToContent()) useHeight = 30; // default height
-						// else useHeight = Math.floor((adjustedHostHeight + verticalGap) / numRows);
-						// trace("  -- useHeight", useHeight);
-					} else {
-						// _rowCount = _requestedRowCount != -1 ? _requestedRowCount : Math.floor(adjustedHostHeight / (_rowHeight + verticalGap));
-						useHeight = _rowHeight;
-					}
-					// else {
-					// 	// we have tile height so calculate rowCount
-					// 	_rowCount = Math.floor((adjustedHostHeight + verticalGap)/ useHeight);
-					// }
+				if (needWidth)
+				{
+					// calculate columnCount based of the widesTile
+					_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth / (widestTile + _horizontalGap));
+					useWidth = _requestedColumnCount == -1 ? widestTile : Math.floor((adjustedHostWidth - _horizontalGap) / _columnCount);
+				} else {
+					// calculate columnCount based on columnWidth
+					_columnCount = _requestedColumnCount != -1 ? _requestedColumnCount : Math.floor(adjustedHostWidth/ (_columnWidth + _horizontalGap));
+					useWidth = _requestedColumnCount == -1 ? _columnWidth : Math.floor((adjustedHostWidth - _horizontalGap) / _columnCount);
 				}
+				// trace("  -- _columnCount", _columnCount);
+				// trace("  -- useWidth", useWidth);
+
+				// given the width and total number of items, how many rows?
+				// _rowCount = _requestedRowCount != -1 ? _requestedRowCount : Math.floor(adjustedHostHeight / (tallestTile + _verticalGap));
+				_rowCount = Math.ceil(realN / _columnCount);
+				// trace("  -- _rowCount", _rowCount);
 				
-				trace("  -- useHeight", useHeight);
+				if (needHeight)
+				{	
+					useHeight = tallestTile;
+					// if (host.isHeightSizedToContent()) useHeight = 30; // default height
+					// else useHeight = Math.floor((adjustedHostHeight + _verticalGap) / numRows);
+					// trace("  -- useHeight", useHeight);
+				} else {
+					// _rowCount = _requestedRowCount != -1 ? _requestedRowCount : Math.floor(adjustedHostHeight / (_rowHeight + _verticalGap));
+					useHeight = _rowHeight;
+				}
+				// trace("  -- useHeight", useHeight);
+				
 				for (i = 0; i < n; i++)
 				{
 					child = contentView.getElementAt(i) as UIBase;
 
 					if (!child.visible) continue;
 					
-					trace(i, i % columnCount, i % rowCount);
+					// trace(i, i % _columnCount, i % _rowCount);
 					
 					// add horizontalGap
-					if(i % columnCount != 0)
-						child.positioner.style.marginLeft = horizontalGap + "px";
+					if(i % _columnCount != 0)
+						child.positioner.style.marginLeft = _horizontalGap + "px";
 					else
 						child.positioner.style.marginLeft = null;
 					
 					// add verticalGap
-					if(i >= columnCount)
-						child.positioner.style.marginTop = verticalGap + "px";
+					if(i >= _columnCount)
+						child.positioner.style.marginTop = _verticalGap + "px";
 					else
 						child.positioner.style.marginTop = null;
 
-					//child.setDisplayStyleForLayout('inline-flex');
 					//if the parent width/height not explicitly set, we can't calculate the child width/height
 					if(useWidth > 0)
-						child.width = _requestedColumnCount == -1 ? useWidth : useWidth - horizontalGap;
+						child.width = _requestedColumnCount == -1 ? useWidth : useWidth - _horizontalGap;
 					if(useHeight > 0)
-						child.height = _requestedRowCount == -1 ? useHeight : useHeight - verticalGap;
+						child.height = useHeight;// - _verticalGap;
+						// child.height = _requestedColumnCount == -1 ? useHeight : useHeight - _verticalGap;
 					
-					// avoid a tile from the next row stay in the previous row due to flexbox algorithm
-					if(i % columnCount == columnCount - 1)
-						child.positioner.style.marginRight = Math.floor(adjustedHostWidth - (1 + child.width + (child.width + horizontalGap) * (_columnCount - 1))) + "px";
+					// add dummy margin: avoid a tile from the next row stay in the previous row due to flexbox algorithm
+					if(i % _columnCount == _columnCount - 1)
+						child.positioner.style.marginRight = Math.floor(adjustedHostWidth - (1 + child.width + (child.width + _horizontalGap) * (_columnCount - 1))) + "px";
 					else
 						child.positioner.style.marginRight = null;
 					
