@@ -41,7 +41,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class TileHorizontalLayout extends StyledLayoutBase implements ILayoutStyleProperties
+	public class TileHorizontalLayout extends SimpleHorizontalLayout implements ILayoutStyleProperties
 	{
 		/**
 		 *  constructor.
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.layouts
 			super();
 		}
 
-		public static const LAYOUT_TYPE_NAMES:String = "layout tile";
+		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal tile";
 
 		/**
 		 *  Add class selectors when the component is addedToParent
@@ -74,9 +74,6 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-			if (hostComponent.containsClass("layout"))
-				hostComponent.removeClass("layout");
-			hostComponent.addClass("layout");
 			if(hostComponent.containsClass("tile"))
 				hostComponent.removeClass("tile");
 			hostComponent.addClass("tile");
