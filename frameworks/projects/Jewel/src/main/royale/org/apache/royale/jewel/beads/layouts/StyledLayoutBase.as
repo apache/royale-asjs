@@ -256,7 +256,6 @@ package org.apache.royale.jewel.beads.layouts
 		 *  Allow user to wait for the host size to be set in case of unset or %
 		 *  or  avoid and perform layout
 		 */
-		COMPILE::JS
 		public var waitForSize:Boolean = false;
 
 		/**
