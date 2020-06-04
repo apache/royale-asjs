@@ -198,7 +198,7 @@ limitations under the License.
 
 					<j:Group className="wrapper" width="100%">
 						<j:beads>
-							<j:TileHorizontalLayout localId="tl" waitForSize="true"/>
+							<j:TileHorizontalLayout localId="thl" waitForSize="true"/>
 						</j:beads>
 						<j:Button text="1" emphasis="primary" width="60" height="60"/>
 						<j:Button text="2" emphasis="secondary" width="60" height="60"/>
@@ -219,29 +219,80 @@ limitations under the License.
 					<j:VGroup>
 						<j:VGroup>
 							<j:Label text="columnWidth"/>
-							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="tl.columnWidth = event.target.value"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="thl.columnWidth = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="horizontalGap"/>
-							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="tl.horizontalGap = event.target.value"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.horizontalGap = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="requestedColumnCount"/>
-							<j:HSlider width="200" value="4" minimum="1" maximum="8" valueChange="tl.requestedColumnCount = event.target.value"/>
+							<j:HSlider width="200" value="4" minimum="1" maximum="8" valueChange="thl.requestedColumnCount = event.target.value"/>
 						</j:VGroup>
 					</j:VGroup>
 					<j:VGroup>
-						<!-- <j:VGroup>
-							<j:Label text="requestedRowCount"/>
-							<j:HSlider width="200" value="2" minimum="1" maximum="8" valueChange="tl.requestedRowCount = event.target.value"/>
-						</j:VGroup> -->
 						<j:VGroup>
 							<j:Label text="rowHeight"/>
-							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="tl.rowHeight = event.target.value"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="thl.rowHeight = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="verticalGap"/>
-							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="tl.verticalGap = event.target.value"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.verticalGap = event.target.value"/>
+						</j:VGroup>
+					</j:VGroup>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="TileVerticalLayout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:Group className="wrapper" width="100%" height="300">
+						<j:beads>
+							<j:TileVerticalLayout localId="tvl" waitForSize="true"/>
+						</j:beads>
+						<j:Button text="1" emphasis="primary" width="60" height="60"/>
+						<j:Button text="2" emphasis="secondary" width="60" height="60"/>
+						<j:Button text="3" emphasis="emphasized" width="60" height="60"/>
+						<j:Button text="4" width="60" height="60"/>
+						<j:Button text="5" emphasis="primary" width="60" height="60"/>
+						<j:Button text="6" emphasis="secondary" width="60" height="60"/>
+						<j:Button text="7" emphasis="emphasized" width="60" height="60"/>
+						<j:Button text="8" width="60" height="60"/>
+						<j:Button text="9" emphasis="primary" width="60" height="60"/>
+						<j:Button text="10" emphasis="secondary" width="60" height="60"/>
+						<j:Button text="11" emphasis="emphasized" width="60" height="60"/>
+						<j:Button text="12" width="60" height="60"/>
+					</j:Group>
+				
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:VGroup>
+						<j:VGroup>
+							<j:Label text="rowHeight"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="tvl.rowHeight = event.target.value"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="verticalGap"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="tvl.verticalGap = event.target.value"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="requestedRowCount"/>
+							<j:HSlider width="200" value="2" minimum="1" maximum="8" valueChange="tvl.requestedRowCount = event.target.value"/>
+						</j:VGroup>
+					</j:VGroup>
+					<j:VGroup>
+						<j:VGroup>
+							<j:Label text="columnWidth"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="tvl.columnWidth = event.target.value"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="horizontalGap"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="tvl.horizontalGap = event.target.value"/>
 						</j:VGroup>
 					</j:VGroup>
 				</j:CardActions>
