@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:html="library://ns.apache.org/royale/html">
+
+    <fx:Script>
+    <![CDATA[
+        
+        
+    ]]>
+    </fx:Script>
+
+    <j:valuesImpl>
+        <js:AllCSSValuesImpl />
+    </j:valuesImpl>
+
+    <j:beads>
+        <js:ApplicationDataBinding/>
+    </j:beads>
+
+    <j:initialView>
+        <j:View>
+            <j:beads>
+                <j:HorizontalCenteredLayout/>
+                <j:Paddings padding="50"/>
+            </j:beads>
+
+            <j:Card width="460" height="680">
+                <j:CardHeader>
+                    <html:H3 text="Using Ti" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent itemsHorizontalAlign="itemsCentered">
+                    <j:Container localId="fgShape" width="400" height="500">
+                        
+                        <!-- <j:Group className="wrapper" width="100%">
+						<j:beads>
+							<j:TileHorizontalLayout localId="thl" waitForSize="true"/>
+						</j:beads>
+						<j:Button text="1" emphasis="primary" width="60" height="60"/>
+						<j:Button text="2" emphasis="secondary" width="60" height="60"/>
+						<j:Button text="3" emphasis="emphasized" width="60" height="60"/>
+						<j:Button text="4" width="60" height="60"/>
+						<j:Button text="5" emphasis="primary" width="60" height="60"/>
+						<j:Button text="6" emphasis="secondary" width="60" height="60"/>
+						<j:Button text="7" emphasis="emphasized" width="60" height="60"/>
+						<j:Button text="8" width="60" height="60"/>
+						<j:Button text="9" emphasis="primary" width="60" height="60"/>
+						<j:Button text="10" emphasis="secondary" width="60" height="60"/>
+						<j:Button text="11" emphasis="emphasized" width="60" height="60"/>
+						<j:Button text="12" width="60" height="60"/>
+					</j:Group> -->
+
+                    </j:Container>
+                </j:CardPrimaryContent>
+                <j:CardActions itemsVerticalAlign="itemsCentered">
+                    <j:BarSection width="50%">
+                        <!-- <j:VGroup>
+							<j:Label text="columnWidth"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="thl.columnWidth = event.target.value"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="horizontalGap"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.horizontalGap = event.target.value"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="requestedColumnCount"/>
+							<j:HSlider width="200" value="4" minimum="1" maximum="8" valueChange="thl.requestedColumnCount = event.target.value"/>
+						</j:VGroup> -->
+                        <!-- <j:ToggleButton localId="ruleVisibility" 
+                            outlined="true" emphasis="emphasized"
+                            text="Hide Rule" selectedText="Show Rule" selected="true">
+                            <j:icon>
+                                <js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}"/>
+                            </j:icon>
+                        </j:ToggleButton> -->
+                    </j:BarSection>
+                    <j:BarSection width="50%" itemsHorizontalAlign="itemsRight">
+                        <!-- <j:Label text="Slide to fill"/>
+                        <j:HSlider localId="slider" value="0" minimum="0" maximum="500" valueChange="changeFill(event)"/> -->
+                        <!-- <j:VGroup>
+							<j:Label text="rowHeight"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="thl.rowHeight = event.target.value"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="verticalGap"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.verticalGap = event.target.value"/>
+						</j:VGroup> -->
+                    </j:BarSection>
+                </j:CardActions>
+            </j:Card>
+        </j:View>
+    </j:initialView>
+
+</j:Application>
