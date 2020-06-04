@@ -27,7 +27,6 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.sendStrandEvent;
 	
     /**
@@ -76,7 +75,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.strand = value;
 			hostComponent = host as StyledUIBase;
-			IEventDispatcher(value).addEventListener("beadsAdded", beadsAddedHandler);
+			listenOnStrand("beadsAdded", beadsAddedHandler);
 			beadsAddedHandler();
 		}
 
