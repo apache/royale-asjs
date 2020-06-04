@@ -137,10 +137,14 @@ package org.apache.royale.jewel.beads.layouts
 		}
 		public function set requestedColumnCount(value:int):void
 		{
-			if(!isNaN(value))
-				_columnWidth = NaN;
-			_requestedColumnCount = value;
-			layout();
+			if (_requestedColumnCount != value)
+            {
+				_requestedColumnCount = value;
+				if(!isNaN(value))
+					_columnWidth = NaN;
+				if(hostComponent)
+					updateLayout();
+            }
 		}
 
 		private var _columnWidth:Number = Number.NaN;
@@ -167,10 +171,14 @@ package org.apache.royale.jewel.beads.layouts
 		}
 		public function set columnWidth(value:Number):void
 		{
-			if(!isNaN(value))
-				_requestedColumnCount = -1;
-			_columnWidth = value;
-			layout();
+			if (_columnWidth != value)
+            {
+				_columnWidth = value;
+				if(!isNaN(value))
+					_requestedColumnCount = -1;
+				if(hostComponent)
+					updateLayout();
+            }
 		}
 
 		private var _rowCount:int = -1;
@@ -214,15 +222,18 @@ package org.apache.royale.jewel.beads.layouts
 		}
 		public function set rowHeight(value:Number):void
 		{
-			_rowHeight = value;
-			layout();
+			if (_rowHeight != value)
+            {
+				_rowHeight = value;
+				if(hostComponent)
+					updateLayout();
+            }
 		}
 
 		/**
 		 *  @private
 		 */
-		private var horizontalGapInitialized:Boolean;
-		public static const HORIZONTAL_GAP_STYLE:String = "horizontalGap"
+		// private var horizontalGapInitialized:Boolean;
 		private var _horizontalGap:Number = 0;
 		/**
 		 *  The horizontalGap between items.
@@ -242,16 +253,19 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public function set horizontalGap(value:Number):void
 		{
-			_horizontalGap = value;
-			horizontalGapInitialized = true;
-			layout();
+			if (_horizontalGap != value)
+            {
+				_horizontalGap = value;
+				// horizontalGapInitialized = true;
+				if(hostComponent)
+					updateLayout();
+            }
 		}
 
 		/**
 		 *  @private
 		 */
-		private var verticalGapInitialized:Boolean;
-		public static const VERTICAL_GAP_STYLE:String = "verticalGap"
+		// private var verticalGapInitialized:Boolean;
 		private var _verticalGap:Number = 0;
 		/**
 		 *  The verticalGap between items.
@@ -271,8 +285,17 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public function set verticalGap(value:Number):void
 		{
-			_verticalGap = value;
-			verticalGapInitialized = true;
+			if (_verticalGap != value)
+            {
+				_verticalGap = value;
+				// verticalGapInitialized = true;
+				if(hostComponent)
+					updateLayout();
+            }
+		}
+
+		private function updateLayout():void
+		{
 			layout();
 		}
 
