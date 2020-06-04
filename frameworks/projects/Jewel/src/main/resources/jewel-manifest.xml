@@ -207,6 +207,7 @@
     <component id="HorizontalFlowLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalFlowLayout"/>
     <component id="VerticalFlowLayout" class="org.apache.royale.jewel.beads.layouts.VerticalFlowLayout"/>
     <component id="TileLayout" class="org.apache.royale.jewel.beads.layouts.TileLayout"/>
+    <component id="TileHorizontalLayout" class="org.apache.royale.jewel.beads.layouts.TileHorizontalLayout"/>
     <component id="GridLayout" class="org.apache.royale.jewel.beads.layouts.GridLayout"/>
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     <component id="TableLayout" class="org.apache.royale.jewel.beads.layouts.TableLayout"/>
