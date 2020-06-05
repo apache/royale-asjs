@@ -123,7 +123,7 @@ package org.apache.royale.jewel.beads.layouts
 		private var _requestedColumnCount:int = -1;
 		/**
 		 *  Number of columns to be displayed.
-		 *  Set to -1 to allow the TileLayout to determine the column count automatically.
+		 *  Set to -1 to allow the TileHorizontalLayout to determine the column count automatically.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
