@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS {
-    	import org.apache.royale.core.UIBase;
-    }
-	import org.apache.royale.core.ILayoutChild;
+	COMPILE::SWF {
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ILayoutChild;
+	}
 	import org.apache.royale.events.Event;
+	
 
     /**
      *  The TableLayout class is a simple layout
@@ -72,12 +72,12 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				if (hostClassList.contains("layout"))
-					hostClassList.remove("layout");
-				hostClassList.add("layout");
-				if(hostClassList.contains("table"))
-					hostClassList.remove("table");
-				hostClassList.add("table");
+				if (hostComponent.containsClass("layout"))
+					hostComponent.removeClass("layout");
+				hostComponent.addClass("layout");
+				if(hostComponent.containsClass("table"))
+					hostComponent.removeClass("table");
+				hostComponent.addClass("table");
 			}
 		}
 

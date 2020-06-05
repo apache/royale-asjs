@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 400 500" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <path id="shape" d="M350.968,500L49.691,500C39.182,500 29.44,494.501 24.009,485.505C18.577,476.509 18.249,465.327 23.143,456.028C62.915,380.462 140,234 140,234L140,30L264,30L264,234C264,234 339.092,380.871 377.679,456.343C382.434,465.643 382.01,476.747 376.558,485.657C371.107,494.567 361.413,500 350.968,500ZM254,40L150,40L150,234C149.95,235.635 149.616,237.2 148.849,238.657C109.902,312.67 70.942,386.674 31.993,460.685C30.891,462.779 30.165,465.067 29.859,467.413C28.302,479.353 37.815,489.806 49.691,490L350.968,490C357.931,490 364.394,486.378 368.028,480.438C371.662,474.498 371.945,467.096 368.775,460.895C330.188,385.423 255.096,238.552 255.096,238.552C254.376,237.143 254,235.583 254,234L254,40Z"/>
+</svg>

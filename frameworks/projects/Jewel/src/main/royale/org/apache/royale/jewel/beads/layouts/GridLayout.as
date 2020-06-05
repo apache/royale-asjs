@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS {
-		import org.apache.royale.core.UIBase;
-		import org.apache.royale.core.WrappedHTMLElement;
-    }
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 
@@ -70,12 +66,12 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				if (hostClassList.contains("layout"))
-					hostClassList.remove("layout");
-				hostClassList.add("layout");
-				if(hostClassList.contains("grid"))
-					hostClassList.remove("grid");
-				hostClassList.add("grid");
+				if (hostComponent.containsClass("layout"))
+					hostComponent.removeClass("layout");
+				hostComponent.addClass("layout");
+				if(hostComponent.containsClass("grid"))
+					hostComponent.removeClass("grid");
+				hostComponent.addClass("grid");
 
 				setGap(_gap);
 			}
@@ -117,7 +113,7 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setGap(value:Boolean):void
 		{
-			value ? hostClassList.add("gap") : hostClassList.remove("gap");
+			value ? hostComponent.addClass("gap") : hostComponent.removeClass("gap");
 		}
 
 		// protected var _gap:Number = 0;
@@ -158,10 +154,10 @@ package org.apache.royale.jewel.beads.layouts
 		// {
 		// 	if (value >= 0 && value <= 20)
 		// 	{
-		// 		if (hostClassList.contains("gap-" + _gap + "dp"))
-		// 			hostClassList.remove("gap-" + _gap + "dp");
+		// 		if (hostComponent.containsClass("gap-" + _gap + "dp"))
+		// 			hostComponent.removeClass("gap-" + _gap + "dp");
 		// 		if(value != 0)
-		// 			hostClassList.add("gap-" + value + "dp");
+		// 			hostComponent.addClass("gap-" + value + "dp");
 		// 	} else
 		// 		throw new Error("Grid gap needs to be between 0 and 20");
 		// }

@@ -72,6 +72,9 @@ $gap-size: 10px !default
 			> *
 				flex: 0 0 auto !important
 
+		&.tile
+			flex-wrap: wrap
+
 		// FormItemLayout
 		&.formitem
 			width: 100%
@@ -128,10 +131,13 @@ $gap-size: 10px !default
 			> * 
 				flex: 0 0 auto !important
 
+		&.tile
+			flex-wrap: wrap
+
 		// FormLayout (consider for now Forms are always vertical)
 		&.form
 			width: 100%
-		
+
 		// FormItemLayout
 		// &.formitem
 		// 	width: 100%
@@ -142,11 +148,6 @@ $gap-size: 10px !default
 					margin-top: 0px
 				> *
 					margin-top: $gap + $i * $gap-step
-
-	// Tile	
-	&.tile
-		flex-flow: row wrap
-		align-items: flex-start
 	
 	// this not compile******
 	// &.gap

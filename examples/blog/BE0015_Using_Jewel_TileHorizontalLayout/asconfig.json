@@ -16,28 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
 {
-	/**
-	 * @externs
-	 */
-	COMPILE::JS
-	public class hljs
-	{
-		/** 
-         * <inject_script>
-		 * var script = document.createElement("script");
-		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js");
-		 * document.head.appendChild(script);
-         * var link = document.createElement("link");
-         * link.setAttribute("rel", "stylesheet");
-         * link.setAttribute("type", "text/css");
-         * link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css");
-         * document.head.appendChild(link);
-		 * </inject_script>
-		 */
-		public function hljs(){}
-
-		public static function highlightBlock(block:Element):void {}
-	}
+    "config": "royale",
+    "compilerOptions": {
+        "debug": false,
+        "targets": ["JSRoyale"],
+        "source-map": true,
+        "html-template": "src/main/resources/jewel-example-index-template.html",
+        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
+    },
+    "copySourcePathAssets": true,
+    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
+    "files":
+    [
+        "src/main/royale/BE0014_Working_with_vector_graphics.mxml"
+    ]
 }
