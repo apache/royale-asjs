@@ -114,10 +114,11 @@ package org.apache.royale.html.beads
 			}
 
 			//adjust the model's selectedIndex, if applicable
-			if (event.index <= ISelectionModel(dataProviderModel).selectedIndex) {
-				ISelectionModel(dataProviderModel).selectedIndex = ISelectionModel(dataProviderModel).selectedIndex + 1;
+			if(dataProviderModel is ISelectionModel) {
+				if (event.index <= ISelectionModel(dataProviderModel).selectedIndex) {
+					ISelectionModel(dataProviderModel).selectedIndex = ISelectionModel(dataProviderModel).selectedIndex + 1;
+				}
 			}
-
 			
 			sendStrandEvent(_strand,"itemsCreated");
 			sendStrandEvent(_strand,"layoutNeeded");
@@ -159,13 +160,15 @@ package org.apache.royale.html.beads
 			}
 
 			//adjust the model's selectedIndex, if applicable
-			if (event.index < ISelectionModel(dataProviderModel).selectedIndex)
-			{
-				ISelectionModel(dataProviderModel).selectedIndex = ISelectionModel(dataProviderModel).selectedIndex - 1;
-			} 
-			else if (event.index == ISelectionModel(dataProviderModel).selectedIndex)
-			{
-				ISelectionModel(dataProviderModel).selectedIndex = -1;
+			if(dataProviderModel is ISelectionModel) {
+				if (event.index < ISelectionModel(dataProviderModel).selectedIndex)
+				{
+					ISelectionModel(dataProviderModel).selectedIndex = ISelectionModel(dataProviderModel).selectedIndex - 1;
+				} 
+				else if (event.index == ISelectionModel(dataProviderModel).selectedIndex)
+				{
+					ISelectionModel(dataProviderModel).selectedIndex = -1;
+				}
 			}
 
 			sendStrandEvent(_strand,"layoutNeeded");
@@ -195,11 +198,13 @@ package org.apache.royale.html.beads
 			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
 			ir.data = data;
 
-			if (event.index == ISelectionModel(dataProviderModel).selectedIndex) {
-				//manually trigger a selection change, even if there was actually none.
-				//This causes selection-based bindings to work
-                IEventDispatcher(dataProviderModel).dispatchEvent(new Event('selectedIndexChanged'));
-            }			
+			if(dataProviderModel is ISelectionModel) {
+				if (event.index == ISelectionModel(dataProviderModel).selectedIndex) {
+					//manually trigger a selection change, even if there was actually none.
+					//This causes selection-based bindings to work
+					IEventDispatcher(dataProviderModel).dispatchEvent(new Event('selectedIndexChanged'));
+				}
+			}
 		}
 
 		override protected function get dataProviderLength():int
