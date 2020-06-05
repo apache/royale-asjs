@@ -332,6 +332,9 @@ j|ToggleButtonBar {
   text-transform: inherit;
   z-index: 1;
 }
+.jewel.card .card-expanded-content {
+  width: 100%;
+}
 .jewel.card .card-primary-content {
   width: 100%;
   min-height: 152px;
