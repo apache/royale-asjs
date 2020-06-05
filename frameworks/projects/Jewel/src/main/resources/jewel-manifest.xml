@@ -152,6 +152,7 @@
     <component id="Card" class="org.apache.royale.jewel.Card"/>
     <component id="CardHeader" class="org.apache.royale.jewel.supportClasses.card.CardHeader"/>
     <component id="CardTitle" class="org.apache.royale.jewel.supportClasses.card.CardTitle"/>
+    <component id="CardExpandedContent" class="org.apache.royale.jewel.supportClasses.card.CardExpandedContent"/>
     <component id="CardPrimaryContent" class="org.apache.royale.jewel.supportClasses.card.CardPrimaryContent"/>
     <component id="CardActions" class="org.apache.royale.jewel.supportClasses.card.CardActions"/>
 
