@@ -37,17 +37,18 @@
             
             [Bindable]
             public var listData:ArrayList = new ArrayList([
-                new IconListVO("All Jewel UI Set Controls", FontAwesome5IconType.ANCHOR),
-                new IconListVO("Alert", FontAwesome5IconType.AREA_CHART),
-                new IconListVO("Button", FontAwesome5IconType.BACKWARD),
-                new IconListVO("DropDownList", FontAwesome5IconType.DASHCUBE),
-                new IconListVO("CheckBox", FontAwesome5IconType.CALENDAR_MINUS),
-                new IconListVO("Label", FontAwesome5IconType.EDGE),
-                new IconListVO("List", FontAwesome5IconType.FEMALE),
-                new IconListVO("RadioButton", FontAwesome5IconType.FILE),
-                new IconListVO("Slider", FontAwesome5IconType.GENDERLESS),
-                new IconListVO("Text", FontAwesome5IconType.HACKER_NEWS),
-                new IconListVO("TextInput", FontAwesome5IconType.GIFT)
+                new IconListVO("Ank", FontAwesome5IconType.ANKH),
+                new IconListVO("Atom", FontAwesome5IconType.ATOM),
+                new IconListVO("Burn", FontAwesome5IconType.BURN),
+                new IconListVO("Candy Cane", FontAwesome5IconType.CANDY_CANE),
+                new IconListVO("Fire", FontAwesome5IconType.FIRE_ALT),
+                new IconListVO("Duck", FontAwesome5IconType.DUCK),
+                new IconListVO("Clound And Moon", FontAwesome5IconType.CLOUD_MOON),
+                new IconListVO("Europe", FontAwesome5IconType.GLOBE_EUROPE),
+                new IconListVO("Electric Guitar", FontAwesome5IconType.GUITAR_ELECTRIC),
+                new IconListVO("Mask", FontAwesome5IconType.MASK),
+                new IconListVO("Skull", FontAwesome5IconType.SKULL),
+                new IconListVO("Spider", FontAwesome5IconType.SPIDER)
             ]);
         ]]>
     </fx:Script>
@@ -90,7 +91,7 @@
                                 <j:beads>
                                     <j:ScrollingViewport/>
                                     <j:TileHorizontalLayout localId="thl" waitForSize="true" 
-                                        horizontalGap="6" verticalGap="6" columnWidth="85" rowHeight="60"/>
+                                        horizontalGap="6" verticalGap="6" requestedColumnCount="3"/>
                                 </j:beads>
                                 <html:Div className="box" text="1"/>
                                 <html:Div className="box" text="2"/>
@@ -108,12 +109,12 @@
                         </j:SectionContent>
                             
 						<j:SectionContent name="sec2">
-                            <j:List width="100%" height="280"
+                            <j:List width="100%" height="250"
                                 itemRenderer="itemRenderers.VerticalIconListItemRenderer"
                                 dataProvider="{listData}">
                                 <j:beads>
                                     <j:TileHorizontalLayout localId="thll" waitForSize="true" 
-                                            horizontalGap="6" verticalGap="6" columnWidth="120" rowHeight="60"/>
+                                            horizontalGap="6" verticalGap="6" columnWidth="140" rowHeight="70"/>
                                 </j:beads>
                             </j:List>
                         </j:SectionContent>
