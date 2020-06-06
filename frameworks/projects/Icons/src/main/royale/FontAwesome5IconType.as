@@ -222,6 +222,7 @@ package
 		public static const DROPBOX:String = "dropbox";
 		public static const DRUPAL:String = "drupal";
 		public static const EDGE:String = "edge";
+		public static const EDIT:String = "edit";
 		public static const EERCAST:String = "eercast";
 		public static const EJECT:String = "eject";
 		public static const ELLIPSIS_H:String = "ellipsis-h";
@@ -571,6 +572,7 @@ package
 		public static const SUN:String = "sun";
 		public static const SUPERPOWERS:String = "superpowers";
 		public static const SUPERSCRIPT:String = "superscript";
+		public static const SYNC:String = "sync";
 		public static const TABLE:String = "table";
 		public static const TABLET:String = "tablet";
 		public static const TACHOMETER:String = "tachometer";
