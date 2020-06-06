@@ -18,12 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.layouts
 {	
-	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
@@ -75,7 +72,6 @@ package org.apache.royale.html.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IBeadView
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set watchedProperty(value:Object):void
 		{
@@ -84,8 +80,10 @@ package org.apache.royale.html.beads.layouts
                 _value = value;
                 if (_strand is IBeadView)
                     IBeadView(_strand).host.dispatchEvent(new Event("layoutNeeded"));
-                else
-                    sendStrandEvent(_strand,"layoutNeeded");
+                else {
+					if (_strand)
+                    	sendStrandEvent(_strand, "layoutNeeded");
+				}
             }
 		}
 		
