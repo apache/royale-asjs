@@ -18,9 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-    import org.apache.royale.core.IStrand;
     import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
-    import org.apache.royale.utils.IClassSelectorListSupport;
 
 	/**
 	 *  NoClassSelectorListRuntimeSelectableItemRendererBead bead disables selection visuals
