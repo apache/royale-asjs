@@ -704,6 +704,19 @@ package
         public static const STORE_SLASH:String = "store-slash";
         public static const TOILET_PAPEL_SLASH:String = "toilet-paper-slash";
         public static const USERS_SLASH:String = "users-slash";
+        public static const ANKH:String = "ankh";
+        public static const ATOM:String = "atom";
+        public static const BURN:String = "burn";
+        public static const CANDY_CANE:String = "candy-cane";
+        public static const FIRE_ALT:String = "fire-alt";
+        public static const DUCK:String = "duck";
+        public static const CLOUD_MOON:String = "cloud-moon";
+        public static const GLOBE_EUROPE:String = "globe-europe";
+        public static const GUITAR_ELECTRIC:String = "guitar-electric";
+        public static const MASK:String = "mask";
+        public static const SKULL:String = "skull";
+        public static const SPIDER:String = "spider";
+
 
     }
 }

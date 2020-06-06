@@ -171,13 +171,17 @@ package mx.events.utils
 		 *  @royaleignorecoercion goog.events.BrowserEvent
 		 */
 		COMPILE::JS
-		public static function convert(nativeEvent:Object):FocusEvent
+		public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):mx.events.FocusEvent
 		{
             var type:String = nativeEvent.type;
             if (type == "focusin") type = "focusIn";
             if (type == "focusout") type = "focusOut";
 			var newEvent:FocusEvent = new FocusEvent(type, true);
-			newEvent.wrapEvent(nativeEvent as BrowserEvent);
+			if(!browserEvent)
+			{
+				browserEvent = new goog.events.BrowserEvent(nativeEvent as goog.events.Event,nativeEvent["currentTarget"]);
+			}
+			newEvent.wrapEvent(browserEvent);
 			return newEvent;
 		}
 	}

@@ -29,7 +29,6 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event
-	import org.apache.royale.core.IStrand;
 
 	/**
 	 *  The TileVerticalLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -125,7 +124,7 @@ package org.apache.royale.jewel.beads.layouts
 		private var _requestedRowCount:int = -1;
 		/**
 		 *  Number of columns to be displayed.
-		 *  Set to -1 to allow the TileLayout to determine the column count automatically.
+		 *  Set to -1 to allow the TileVerticalLayout to determine the column count automatically.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

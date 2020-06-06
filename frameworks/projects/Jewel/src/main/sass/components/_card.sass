@@ -49,6 +49,9 @@ $card-primary-content-minheight: 152px !default
             text-transform: inherit
             z-index: 1
 
+    .card-expanded-content
+        width: 100%
+        
     .card-primary-content
         width: 100%
         min-height: $card-primary-content-minheight
@@ -76,6 +79,11 @@ j|CardHeader
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     //IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+
+j|CardExpandedContent
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
+    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    //IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
 
 j|CardPrimaryContent
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")

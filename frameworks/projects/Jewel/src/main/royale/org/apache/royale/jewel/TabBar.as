@@ -99,5 +99,32 @@ package org.apache.royale.jewel
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(element);
 		}
+
+		private var _sameWidths:Boolean = false;
+		/**
+		 *  Assigns variable gap to grid from 1 to 20
+		 *  Activate "gap-Xdp" effect selector to set a numeric gap 
+		 *  between grid cells
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        public function get sameWidths():Boolean
+        {
+            return _sameWidths;
+        }
+		/**
+         *  @private
+         */
+		public function set sameWidths(value:Boolean):void
+		{
+			if (value != _sameWidths)
+			{
+				_sameWidths = value;
+				toggleClass("sameWidths", _sameWidths);
+			}
+		}
 	}
 }

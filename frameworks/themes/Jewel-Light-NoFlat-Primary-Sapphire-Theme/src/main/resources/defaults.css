@@ -1159,6 +1159,10 @@ j|FormItem {
     border-radius: 0px;
   }
 }
+.jewel.tabbar.sameWidths .content > * {
+  flex: 1 0 0%;
+}
+
 .jewel.tabbarbutton {
   font-size: 1em;
   font-weight: 500;
