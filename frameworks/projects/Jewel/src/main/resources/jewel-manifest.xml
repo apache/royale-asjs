@@ -196,6 +196,7 @@
 
     <component id="LayoutChildren" class="org.apache.royale.jewel.beads.layouts.LayoutChildren"/>
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
+    <component id="ViewLayout" class="org.apache.royale.jewel.beads.layouts.ViewLayout"/>
     <component id="NullLayout" class="org.apache.royale.jewel.beads.layouts.NullLayout"/>
     <component id="SimpleHorizontalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleHorizontalLayout"/>
     <component id="SimpleVerticalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout"/>
