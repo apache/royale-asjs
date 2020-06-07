@@ -59,29 +59,6 @@ package org.apache.royale.jewel.beads.layouts
 		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal tile";
 
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
-		 */
-		// override public function set strand(value:IStrand):void
-		// {
-		// 	super.strand = value;
-		// 	listenOnStrand("sizeChanged", sizeChangedNeeded);
-		// }
-
-		/**
-		 *  sizeChangedNeeded
-		 * 
-		 *  @param event 
-		 */
-		// private function sizeChangedNeeded(event:Event):void
-		// {
-		// 	layout();
-		// }
-		/**
 		 *  Add class selectors when the component is addedToParent
 		 *  Otherwise component will not get the class selectors when 
 		 *  perform "removeElement" and then "addElement"

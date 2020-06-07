@@ -64,11 +64,6 @@ j|ApplicationResponsiveView {
   height: 100%;
 }
 
-j|ApplicationView {
-  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
-}
-
 j|Group {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
