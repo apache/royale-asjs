@@ -216,6 +216,9 @@ limitations under the License.
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card localId="card2" height="400">
+				<j:beads>
+					<j:LayoutChildren/>
+				</j:beads>
 				<j:CardHeader itemsVerticalAlign="itemsCenter">
 					<j:BarSection>
 						<html:H3 text="Percentage Width and Height" className="primary-normal"/>
@@ -225,6 +228,9 @@ limitations under the License.
 					</j:BarSection>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
+					<j:beads>
+						<j:LayoutChildren/>
+					</j:beads>
 					<j:Label multiline="true">
 						<j:html><![CDATA[<p><i>width</i> and <i>height</i> set to 100%, no <i>columnWidth</i> or <i>rowHeight</i>, and default <i>dataProvider</i>.<br>Note: this card need to set <i>height</i> so datagrid 100% could work.</p>]]></j:html>
 					</j:Label>
