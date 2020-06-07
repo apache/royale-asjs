@@ -25,8 +25,10 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.ILayoutChildren;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendStrandEvent;
 	
     /**
@@ -329,7 +331,9 @@ package org.apache.royale.jewel.beads.layouts
 		public function executeLayout():void
 		{
 			if (layout()) {
-				viewBead.afterLayout();
+				if(layoutChildren)
+					layoutChildren.executeLayoutChildren();
+				viewBead.afterLayout();	
 			}
 
 			isLayoutRunning = false;
@@ -351,5 +355,33 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			*/
 		}
+
+		private var _layoutChildren:ILayoutChildren;
+        
+        /**
+         *  The org.apache.royale.core.ILayoutChildren used 
+         *  to initialize instances of item renderers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.10.0
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererInitializer
+         */
+        public function get layoutChildren():ILayoutChildren
+        {
+            if(!_layoutChildren)
+                _layoutChildren = loadBeadFromValuesManager(ILayoutChildren, "iItemRendererInitializer", _strand) as ILayoutChildren;
+            
+            return _layoutChildren;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set layoutChildren(value:ILayoutChildren):void
+        {
+            _layoutChildren = value;
+        }
 	}
 }
