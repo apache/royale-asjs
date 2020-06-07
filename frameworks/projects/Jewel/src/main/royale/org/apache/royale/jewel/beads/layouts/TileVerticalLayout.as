@@ -473,7 +473,7 @@ package org.apache.royale.jewel.beads.layouts
 					// else
 					// 	child.positioner.style.marginRight = null;
 					
-					child.dispatchEvent('sizeChanged');
+					child.dispatchEvent(new Event('sizeChanged'));
 				}
 				return true;
 			}

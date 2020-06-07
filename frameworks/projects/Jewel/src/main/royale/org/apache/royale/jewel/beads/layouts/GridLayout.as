@@ -200,8 +200,6 @@ package org.apache.royale.jewel.beads.layouts
 				 *		padding: 1em 0 0 1em;
 				 *	}
 				 */
-				super.layout();
-
                 return true;
             }
 		}
