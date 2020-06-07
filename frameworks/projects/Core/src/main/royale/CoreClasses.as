@@ -60,6 +60,7 @@ internal class CoreClasses
 
 	import org.apache.royale.core.layout.IPaddings; IPaddings;
 	import org.apache.royale.core.layout.ILayoutStyleProperties; ILayoutStyleProperties;
+	import org.apache.royale.core.layout.ILayoutChildren; ILayoutChildren;
 
 	COMPILE::SWF
 	{
