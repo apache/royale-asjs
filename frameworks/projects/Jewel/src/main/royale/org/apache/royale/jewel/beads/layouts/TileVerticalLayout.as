@@ -35,11 +35,16 @@ package org.apache.royale.jewel.beads.layouts
 	 *  The size of each element is determined either by setting TileVerticalLayout's columnWidth and rowHeight
 	 *  properties, or having the tile size determined by factoring the columnCount into the area assigned
 	 *  for the layout.
+	 * 
+	 *  Notice that Vertical layout based on Flexbox has the following problems (take from : https://stackoverflow.com/questions/34480760/is-it-possible-for-flex-items-to-align-tightly-to-the-items-above-them)
+	 *   - It expands the container horizontally, not vertically (like the Pinterest layout).
+     *   - It requires the container to have a fixed height, so the items know where to wrap.
+     *   - As of this writing, it has a deficiency in all major browsers where the container doesn't expand to accommodate additional columns.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.8
+	 *  @productversion Royale 0.10.0
 	 */
 	public class TileVerticalLayout extends SimpleVerticalLayout implements ILayoutStyleProperties
 	{
@@ -49,7 +54,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		public function TileVerticalLayout()
 		{
@@ -66,7 +71,7 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @langversion 3.0
  		 *  @playerversion Flash 10.2
  		 *  @playerversion AIR 2.6
- 		 *  @productversion Royale 0.9.8
+ 		 *  @productversion Royale 0.10.0
  		 */
 		override public function beadsAddedHandler(event:Event = null):void
 		{
@@ -89,7 +94,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		[Bindable("columnCountChanged")]
 		public function get columnCount():int
@@ -105,7 +110,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		[Bindable("requestedRowCountChanged")]
 		public function get requestedRowCount():int
@@ -135,7 +140,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		[Bindable("columnWidthChanged")]
 		public function get columnWidth():Number
@@ -159,7 +164,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		[Bindable("rowCountChanged")]
 		public function get rowCount():int
@@ -182,7 +187,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		[Bindable("rowHeightChanged")]
 		public function get rowHeight():Number
@@ -207,7 +212,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		[Bindable("horizontalGapChanged")]
 		public function get horizontalGap():Number
@@ -236,7 +241,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		[Bindable("verticalGapChanged")]
 		public function get verticalGap():Number
@@ -264,7 +269,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 */
 		// override public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		// {	
@@ -291,7 +296,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
+		 *  @productversion Royale 0.10.0
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
