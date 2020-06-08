@@ -148,6 +148,8 @@
 
     <component id="Image" class="org.apache.royale.jewel.Image"/>
 	<component id="BinaryImage" class="org.apache.royale.jewel.BinaryImage"/>
+	
+    <component id="ClipImage" class="org.apache.royale.jewel.beads.controls.image.ClipImage"/>
 
     <component id="Card" class="org.apache.royale.jewel.Card"/>
     <component id="CardHeader" class="org.apache.royale.jewel.supportClasses.card.CardHeader"/>
