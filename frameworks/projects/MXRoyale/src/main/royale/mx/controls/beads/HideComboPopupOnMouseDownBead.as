@@ -28,7 +28,7 @@ package mx.controls.beads
 	/**
 	 *  The HideComboPopupOnMouseDownBead can be used with ComboBox to make sure mouse down events
 	 *  close an open popup. For this bead to work the application needs to be sized to the
-	 *  window size. See org.apache.royale.core.BrowserResizeListener for a way to achieve this.
+	 *  window size. See org.apache.royale.core.BrowserResizeListener or BrowserResizeApplicationListener for a way to achieve this.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
