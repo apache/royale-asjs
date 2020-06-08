@@ -34,6 +34,8 @@ package mx.containers.beads
 	import org.apache.royale.core.UIBase;
     import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 
 	//import mx.core.mx_internal;
 	//import mx.core.ScrollPolicy;
@@ -80,7 +82,9 @@ package mx.containers.beads
 			_strand = value;
 			_target = value as Container;
 			super.strand = value;
-			
+			// The main layout may not get put on the strand until
+			// after children are added so listen here as well
+			listenToChildren();			
 		}
 		
 		private var _target:Container;
@@ -193,8 +197,12 @@ package mx.containers.beads
 			target.measuredHeight = preferredHeight + hPadding;
 		}
 		
+		private var ranLayout:Boolean;
+		
 		override public function layout():Boolean
 		{
+			ranLayout = true;
+			
 			var n:int = layoutView.numElements;
 			if (n == 0)
 				return false;
@@ -214,6 +222,8 @@ package mx.containers.beads
 			return true;
 		}
 		
+		private var inUpdateDisplayList:Boolean;
+		
 		/**
 		 *  @private
 		 *  Lay out children as per Box layout rules.
@@ -223,6 +233,7 @@ package mx.containers.beads
 		{			
 			var n:int = layoutView.numElements;
 			if (n == 0) return;
+			inUpdateDisplayList = true;
 			
 			var vm:EdgeMetrics = target.viewMetricsAndPadding;
             var pd:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(target);
@@ -417,6 +428,7 @@ package mx.containers.beads
 						left += obj.width + gap;
 				}
 			}
+			inUpdateDisplayList = false;
 		}
 		
 		//--------------------------------------------------------------------------
@@ -504,6 +516,34 @@ package mx.containers.beads
 			// default = top
 			return 0;
 		}
+		
+		override protected function handleChildrenAdded(event:Event):void
+		{
+			COMPILE::JS {
+				super.handleChildrenAdded(event);
+				listenToChildren();
+			}
+		}
+		
+		private function listenToChildren():void
+		{
+			var n:Number = layoutView.numElements;
+			for(var i:int=0; i < n; i++) {
+				var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
+				child.addEventListener("widthChanged", childResizeHandler);
+				child.addEventListener("heightChanged", childResizeHandler);
+				child.addEventListener("sizeChanged", childResizeHandler);
+			}
+		}
+		
+		override protected function childResizeHandler(event:Event):void
+		{
+			if (inUpdateDisplayList) return;
+			ranLayout = false;
+			super.childResizeHandler(event); // will set ranLayout if it did
+			if (!ranLayout)
+				performLayout();
+		}		
 	}
 	
 }
