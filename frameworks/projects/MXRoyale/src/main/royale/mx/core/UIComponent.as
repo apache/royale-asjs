@@ -5040,8 +5040,6 @@ COMPILE::JS
      */
     public function setActualSize(w:Number, h:Number):void
     {
-    
-    //    trace("setActualSize not implemented");
 		this.setWidthAndHeight(w, h);
     }
 
