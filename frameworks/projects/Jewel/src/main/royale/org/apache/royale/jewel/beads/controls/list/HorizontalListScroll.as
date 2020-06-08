@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controls.list
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.jewel.List;
+	import org.apache.royale.utils.IClassSelectorListSupport;
 	
 	/**
 	 *  The HorizontalListScroll bead is a specialty bead that can be used with
@@ -52,11 +52,10 @@ package org.apache.royale.jewel.beads.controls.list
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
-			var l:List = value as List;
+			var l:IClassSelectorListSupport = value as IClassSelectorListSupport;
 			l.addClass("horizontalScroll");
 		}
 	}
