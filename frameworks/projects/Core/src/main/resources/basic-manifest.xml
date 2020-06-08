@@ -26,7 +26,7 @@
     <component id="CSSFontFaceBead" class="org.apache.royale.core.CSSFontFaceBead" />
     <component id="EventLoggingBead" class="org.apache.royale.core.EventLoggingBead" />
     <component id="BrowserScroller" class="org.apache.royale.core.BrowserScroller"/>
-    <component id="BrowserResizeListener" class="org.apache.royale.core.BrowserResizeListener"/>
+    <component id="BrowserResizeApplicationListener" class="org.apache.royale.core.BrowserResizeApplicationListener"/>
     <component id="BrowserOrientation" class="org.apache.royale.core.BrowserOrientation"/>
     <component id="SimpleValuesImpl" class="org.apache.royale.core.SimpleValuesImpl"/>
     <component id="SimpleStatesImpl" class="org.apache.royale.core.SimpleStatesImpl"/>

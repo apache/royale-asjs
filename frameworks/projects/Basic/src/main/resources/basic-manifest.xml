@@ -21,6 +21,7 @@
 
 <componentPackage>
 
+    <component id="BrowserResizeListener" class="org.apache.royale.core.BrowserResizeListener"/>
     <component id="Application" class="org.apache.royale.core.Application"/>
     <component id="AirApplication" class="org.apache.royale.core.AirApplication"/>
     <component id="View" class="org.apache.royale.core.View"/>

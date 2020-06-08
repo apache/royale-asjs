@@ -31,7 +31,7 @@ COMPILE::JS
 }
 
     /**
-     *  The BrowserResizeListener class listens for browser
+     *  The BrowserResizeApplicationListener class listens for browser
      *  resizing and resizes the application accordingly.
      *  
      *  @langversion 3.0
@@ -39,7 +39,7 @@ COMPILE::JS
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	public class BrowserResizeListener implements IBead
+	public class BrowserResizeApplicationListener implements IBead
 	{
         /**
          *  Constructor.
@@ -49,7 +49,7 @@ COMPILE::JS
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          */
-		public function BrowserResizeListener()
+		public function BrowserResizeApplicationListener()
 		{
 		}
 		
