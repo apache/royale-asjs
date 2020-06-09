@@ -19,19 +19,22 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.core.layout.IPaddings;
+	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
+	import org.apache.royale.jewel.beads.layouts.Paddings;
 
 	/**
-	 *  The DataGridColumnListItemRendererInitializer class initializes item renderers
-     *  in list classes and use the base class of many other initializers based on lists
+	 *  The IndexedItemRendererInitializer class initializes jewel item renderers
+     *  adding paddings and other needs.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.10.0
 	 */
-	public class DataGridColumnListItemRendererInitializer extends ListItemRendererInitializer
+	public class IndexedItemRendererInitializer extends org.apache.royale.html.beads.IndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -39,34 +42,42 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.10.0
 		 */
-		public function DataGridColumnListItemRendererInitializer()
+		public function IndexedItemRendererInitializer()
 		{
 		}
-		
-        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
-        {
-			super.setupVisualsForItemRenderer(ir);
 
-            if (presentationModel) {
-				if(!presentationModel.variableRowHeight)
-                	StyledUIBase(ir).height = presentationModel.rowHeight;
-                //StyledUIBase(ir).height = presentationModel.rowHeight;
-                
-                if(ir is IAlignItemRenderer)
-                {
-                    (ir as IAlignItemRenderer).align = presentationModel.align;
-                }
-            }
-            if (ir is StyledMXMLItemRenderer && ownerView)
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.10.0
+		 */
+		override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        {
+			setPaddings(ir);
+		}
+		
+		/**
+		 * set padding for this renderer.
+		 * 
+		 * try to retrieve paddings from the item renderer.
+		 * If not exits create one with default padding setting
+		 */
+		public function setPaddings(ir:IStrand):void {
+			var paddings:Paddings = StyledUIBase(ir).getBeadByType(IPaddings) as Paddings;
+			
+			if(!paddings)
 			{
-                (ir as StyledMXMLItemRenderer).itemRendererOwnerView = ownerView;
-				if(StyledUIBase(_strand).emphasis != null)
-				{
-					(ir as StyledMXMLItemRenderer).emphasis = StyledUIBase(_strand).emphasis;
-				}
+				paddings = new Paddings();
+				paddings.padding = DEFAULT_PADDING;
+				ir.addBead(paddings)
 			}
 		}
+
+		public static const DEFAULT_PADDING:Number = 8;
 	}
 }

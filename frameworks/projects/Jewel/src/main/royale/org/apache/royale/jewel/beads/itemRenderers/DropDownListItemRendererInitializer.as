@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -35,7 +34,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DropDownListItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
+	public class DropDownListItemRendererInitializer extends org.apache.royale.html.beads.IndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.

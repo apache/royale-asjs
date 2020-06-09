@@ -132,6 +132,7 @@ package
         import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
         }
         
+        import org.apache.royale.jewel.beads.itemRenderers.IndexedItemRendererInitializer; IndexedItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead; ClassSelectorListSelectableItemRendererBead;
         import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead; ClassSelectorListHoverOnlySelectableItemRendererBead;
         

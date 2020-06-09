@@ -19,14 +19,12 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
@@ -38,7 +36,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ListItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
+	public class ListItemRendererInitializer extends IndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -74,12 +72,12 @@ package org.apache.royale.jewel.beads.itemRenderers
         
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
+			super.setupVisualsForItemRenderer(ir);
+
             if (presentationModel) {
 				if(!presentationModel.variableRowHeight)
                 	StyledUIBase(ir).height = presentationModel.rowHeight;
-				// else
-                // 	StyledUIBase(ir).minHeight = presentationModel.rowHeight;
-
+				
                 if(ir is IAlignItemRenderer)
                 {
                     (ir as IAlignItemRenderer).align = presentationModel.align;

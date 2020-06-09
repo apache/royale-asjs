@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {	
+	import org.apache.royale.core.IStrand;
+
 	/**
 	 *  The TabBarItemRendererInitializer class initializes item renderers
      *  in TabBar component.
@@ -44,10 +46,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
         
-        // override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
-        // {
-		// 	super.setupVisualsForItemRenderer(ir);
-		// 	trace("[TabBarItemRendererInitializer]");
-		// }
+        // remove paddings, since tabbarbutton doesn't use it
+		override public function setPaddings(ir:IStrand):void {
+		}	
 	}
 }
