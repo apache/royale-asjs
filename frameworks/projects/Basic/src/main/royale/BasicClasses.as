@@ -117,6 +117,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.ListView; ListView;
     import org.apache.royale.html.beads.ListOwnerViewItemRendererInitializer; ListOwnerViewItemRendererInitializer;
     import org.apache.royale.html.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
+    import org.apache.royale.html.beads.HorizontalListItemRendererInitializer; HorizontalListItemRendererInitializer;
 	
 	import org.apache.royale.html.beads.MultiSelectionListView; MultiSelectionListView;
 	import org.apache.royale.html.beads.NumericStepperView; NumericStepperView;
