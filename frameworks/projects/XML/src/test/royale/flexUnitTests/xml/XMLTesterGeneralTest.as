@@ -1124,6 +1124,35 @@ package flexUnitTests.xml
         }
 
         [Test]
+        public function testElements():void{
+            XML.setSettings(XML.defaultSettings());
+            var xml:XML = <root>   <test/><?foo bar?>Something<el1/><!-- comment --> surrounded With Whitespace <el2/></root>;
+
+
+            var elements:XMLList = xml.elements();
+
+
+            assertEquals(
+                    elements.toString(),
+                    '<test/>\n' +
+                    '<el1/>\n' +
+                    '<el2/>', 'elements only should be 3 elements');
+
+            elements = xml.elements('el1')
+            assertEquals(
+                    elements.toXMLString(),
+                    '<el1/>', 'elements query should return 1 element');
+
+            var el:XML = <el1/>;
+            xml.appendChild(el)
+
+            elements = xml.elements('el1')
+            assertEquals(
+                    elements.toXMLString(),
+                    '<el1/>\n<el1/>', 'elements query should return 2 elements');
+        }
+
+        [Test]
         public function testDelete():void{
             XML.setSettings(XML.defaultSettings());
             XML.prettyPrinting = false;

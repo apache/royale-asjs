@@ -1299,7 +1299,7 @@ package
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].getNodeRef == ELEMENT && (all || name.matches(_children[i].name())))
+				if(_children[i].getNodeRef() == ELEMENT && (all || name.matches(_children[i].name())))
 					list.append(_children[i]);
 			}
 			
