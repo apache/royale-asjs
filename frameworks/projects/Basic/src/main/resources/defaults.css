@@ -253,6 +253,7 @@ DateChooserList {
 
 DateChooserHeader {	
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.DayNameItemRenderer");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.HorizontalListItemRendererInitializer");
 	height: 20px;
 	border-style: solid;
 	border-color: #000000;
