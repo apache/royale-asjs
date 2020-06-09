@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.layout.IPaddings;
 
     /**
      *  The Paddings class is a bead that adds padding to its host
@@ -30,7 +30,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public class Paddings implements IBead
+	public class Paddings implements IPaddings
 	{
 		protected var host:IUIBase;
 		/**
