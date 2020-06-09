@@ -82,6 +82,7 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
     {
         super();
        // focusEnabled = false;
+		typeNames = "MXAdvancedDataGridItemRenderer";
     }
     
 	override protected function createChildren():void
