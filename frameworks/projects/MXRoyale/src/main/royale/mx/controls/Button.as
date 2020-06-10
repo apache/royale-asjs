@@ -361,6 +361,8 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		if (parent)
 			(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 	}
+
+
 	
 	//----------------------------------
 	//  toolTip
@@ -694,9 +696,11 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	COMPILE::JS
 	protected function setInnerHTML():void
 	{
+		var label:String = ITextModel(model).text;
 		if (label != null) {
 			element.innerHTML = label;
 		}
+		var icon:String = ImageAndTextModel(model).image;
 		if (icon != null) {
 			element.style.background = "url('"+icon+"') no-repeat 2px center";
 			
@@ -710,7 +714,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		
 		measuredWidth = Number.NaN;
 		measuredHeight = Number.NaN;
-	};
+	}
 	
 	/**
 	 * 

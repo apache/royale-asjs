@@ -229,7 +229,11 @@ public class PopUpMenuButton extends PopUpButton
         // labelSet is different from labelChanged as it is never unset.
         labelSet = true;
         _label = value;
-        setLabel();
+        if (parent)
+        {
+            setLabel();
+            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
     }
 
     override public function get label():String{
