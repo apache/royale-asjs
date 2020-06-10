@@ -50,61 +50,77 @@ package org.apache.royale.jewel.beads.controls.image
 		{
 		}
 
-		private var _shape:String = "circle";
+		private var _shape:String;
 		/**
 		 * the shape for the clip. values can be "inset", "circle", "ellipse", "polygon"
 		 */
-		private function get shape():String
+		public function get shape():String
 		{
 			return _shape;
 		}
-		private function set shape(value:String):void
+		public function set shape(value:String):void
 		{
 			_shape = value;
+			createClipShape();
 		}
 
-		private var _radius:Number = 46;
+		private var _radius:Number;
 		/*
 		 * when circle or ellipse the radius
 		 */
-		private function get radius():Number {
+		public function get radius():Number {
 			return _radius;
 		}
-		private function set radius(value:Number):void {
+		public function set radius(value:Number):void {
 			_radius = value;
 		}
 		
-		private var _x:Number = 50;
+		private var _x:Number;
 		/*
 		 * x-position
 		 */
-		private function get x():Number {
+		public function get x():Number {
 			return _x;
 		}
-		private function set x(value:Number):void {
+		public function set x(value:Number):void {
 			_x = value;
 		}
 
-		private var _y:Number = 50;
+		private var _y:Number;
 		/*
 		 * y-position
 		 */
-		private function get y():Number {
+		public function get y():Number {
 			return _y;
 		}
-		private function set y(value:Number):void {
+		public function set y(value:Number):void {
 			_y = value;
 		}
 
 		private var _units:String = "%";
 		/**
 		 * the units to use . values can be "px", "%"
+		 * defauls to "%""
 		 */
-		private function get units():String {
+		public function get units():String {
 			return _units;
 		}
-		private function set units(value:String):void {
+		public function set units(value:String):void {
 			_units = value;
+		}
+		
+		private var _points:Array;
+		/**
+		 * An Array of x and y points used in POLYGON shapes. Minimun 3 points
+		 * If you want just 3 points add them in the following way: [x1, y1, x2, y2, x3, y3]
+		 */
+		public function get points():Array {
+			return _points;
+		}
+		public function set points(value:Array):void {
+			points_str = "";
+			_points = value;
+			_points.forEach(everyTwo);
 		}
 		
 		private var host:StyledUIBase;
@@ -120,35 +136,42 @@ package org.apache.royale.jewel.beads.controls.image
 		{
 			host = value as StyledUIBase;
 
-			createClip();
+			ruleName = "clipPath-" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
+			selectors = "";
+			host.addClass(ruleName);
+
+			if(_shape)
+				createClipShape();
 		}
 
-		protected function createClip():void
-		{
-			var ruleName:String = "clipPath-" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
-			var selectors:String = "";
-			
-			if(shape == INSET_SHAPE)
-			{
-				//selectors = "clip-path: " + shape + "(46" + units + " at 50" + units + " 50" + units + ");";
+		private var ruleName:String;
+		private var selectors:String;
 
-			} else if(shape == CIRCLE_SHAPE)
+		protected function createClipShape():void
+		{
+			if(shape == CIRCLE_SHAPE || shape == ELLIPSE_SHAPE)
 			{
 				selectors = "clip-path: " + shape + "(" + radius + units + " at " + x + units + " "+ y + units + ");";
-
-			} else if(shape == ELLIPSE_SHAPE)
+			}
+			else if(shape == POLYGON_SHAPE)
 			{
-				//selectors = "clip-path: " + shape + "(46" + units + " at 50" + units + " 50" + units + ");";
-
-			} else if(shape == POLYGON_SHAPE)
+				selectors = "clip-path: " + shape + "(" + points_str +  ");";
+			}
+			else if(shape == INSET_SHAPE)
 			{
-				//selectors = "clip-path: " + shape + "(46" + units + " at 50" + units + " 50" + units + ");";
-
+				selectors = "clip-path: " + shape + "(" + radius + units + " at " + x + units + " "+ y + units + ");";
 			}
 
 			addDynamicSelector(".jewel.image." + ruleName, selectors);
-
-			host.addClass(ruleName);
 		}
+
+		private var points_str:String;
+
+		private function everyTwo(element:*, index:Number, arr:Array):void {
+			if((index % 2) && (index != arr.length - 1))
+            	points_str += element + units + ", ";
+			else
+            	points_str += element + units + " ";
+        }
 	}
 }
