@@ -430,6 +430,7 @@ package org.apache.royale.collections
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
+		[Bindable("lengthChanged")]
         public function get length():int
         {
             return _source ? _source.length : 0;
