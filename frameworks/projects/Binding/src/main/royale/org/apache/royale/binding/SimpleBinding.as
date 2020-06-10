@@ -210,16 +210,16 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 			if (sourceID != null)
 			{
 				source = dispatcher = document[sourceID] as IEventDispatcher;
+				document.addEventListener("valueChange", sourceChangeHandler);
 				if (source == null)
 				{
-					document.addEventListener("valueChange",
-							sourceChangeHandler);
 					return;
 				}
-			} else
-			source = dispatcher = document as IEventDispatcher;
-		}
+			} else {
+				source = dispatcher = document as IEventDispatcher;
+			}
 
+		}
 
 		dispatcher.addEventListener(eventName, changeHandler);
 		try
