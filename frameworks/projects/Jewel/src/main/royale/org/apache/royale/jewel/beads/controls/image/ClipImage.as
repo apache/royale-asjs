@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.controls.image
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.utils.css.addDynamicSelector;
 	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.debugging.throwError;
 	
 	/**
 	 *  The HorizontalListScroll bead is a specialty bead that can be used with
@@ -66,13 +67,24 @@ package org.apache.royale.jewel.beads.controls.image
 
 		private var _radius:Number;
 		/*
-		 * when circle or ellipse the radius
+		 * The radius value for CIRCLE or ELLIPSE shapes
 		 */
 		public function get radius():Number {
 			return _radius;
 		}
 		public function set radius(value:Number):void {
 			_radius = value;
+		}
+		
+		private var _bradius:Number;
+		/*
+		 * The additional radius value only for ELLIPSE shapes
+		 */
+		public function get bradius():Number {
+			return _bradius;
+		}
+		public function set bradius(value:Number):void {
+			_bradius = value;
 		}
 		
 		private var _x:Number;
@@ -109,8 +121,10 @@ package org.apache.royale.jewel.beads.controls.image
 			_units = value;
 		}
 		
+		private var points_str:String;
 		private var _points:Array;
 		/**
+		 * Only for POLYGON shapes
 		 * An Array of x and y points used in POLYGON shapes. Minimun 3 points
 		 * If you want just 3 points add them in the following way: [x1, y1, x2, y2, x3, y3]
 		 */
@@ -122,6 +136,51 @@ package org.apache.royale.jewel.beads.controls.image
 			_points = value;
 			_points.forEach(everyTwo);
 		}
+		private function everyTwo(element:*, index:Number, arr:Array):void {
+			if((index % 2) && (index != arr.length - 1))
+            	points_str += element + units + ", ";
+			else
+            	points_str += element + units + " ";
+        }
+		
+		private var inset_str:String;
+		private var _inset:Array;
+		/**
+		 * Only for INSET shapes
+		 * An Array of 4 values used in INSET shapes to limit the inset shape
+		 */
+		public function get inset():Array {
+			return _inset;
+		}
+		public function set inset(value:Array):void {
+			inset_str = "";
+			_inset = value;
+			_inset.forEach(processInsetValues);
+		}
+		private function processInsetValues(element:*, index:Number, arr:Array):void {
+			if(arr.length == 4)
+				inset_str += element + units + " ";
+			else
+				throwError("ClipImage INSET values must have four.")
+        }
+		
+		private var rounds_str:String;
+		private var _rounds:Array;
+		/**
+		 * Only for INSET shapes
+		 * An Array of 4 values used in INSET shapes to round the corners between inset values
+		 */
+		public function get rounds():Array {
+			return _rounds;
+		}
+		public function set rounds(value:Array):void {
+			rounds_str = "round ";
+			_rounds = value;
+			_rounds.forEach(processRoundsValues);
+		}
+		private function processRoundsValues(element:*, index:Number, arr:Array):void {
+			rounds_str += element + units + " ";
+        }
 		
 		private var host:StyledUIBase;
 		/**
@@ -149,7 +208,7 @@ package org.apache.royale.jewel.beads.controls.image
 
 		protected function createClipShape():void
 		{
-			if(shape == CIRCLE_SHAPE || shape == ELLIPSE_SHAPE)
+			if(shape == CIRCLE_SHAPE)
 			{
 				selectors = "clip-path: " + shape + "(" + radius + units + " at " + x + units + " "+ y + units + ");";
 			}
@@ -157,21 +216,16 @@ package org.apache.royale.jewel.beads.controls.image
 			{
 				selectors = "clip-path: " + shape + "(" + points_str +  ");";
 			}
+			else if(shape == ELLIPSE_SHAPE)
+			{
+				selectors = "clip-path: " + shape + "(" + radius + units + " " + bradius + units + " at " + x + units + " "+ y + units + ");";
+			}
 			else if(shape == INSET_SHAPE)
 			{
-				selectors = "clip-path: " + shape + "(" + radius + units + " at " + x + units + " "+ y + units + ");";
+				selectors = "clip-path: " + shape + "(" + inset_str + rounds_str + ");";
 			}
 
 			addDynamicSelector(".jewel.image." + ruleName, selectors);
 		}
-
-		private var points_str:String;
-
-		private function everyTwo(element:*, index:Number, arr:Array):void {
-			if((index % 2) && (index != arr.length - 1))
-            	points_str += element + units + ", ";
-			else
-            	points_str += element + units + " ";
-        }
 	}
 }
