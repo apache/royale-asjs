@@ -2614,7 +2614,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         if (collection)
             value = Math.min(collection.length - 1, value);
         clearSelected();
-        super.selectedIndex = value;
+		if (allowMultipleSelection)
+			commitSelectedIndices([value]);
+		else
+	        super.selectedIndex = value;
     }
     
     //----------------------------------
@@ -5545,6 +5548,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      */
     private function setSelectionIndicesLoop(index:int, indices:Array, firstTime:Boolean = false):void
     {
+		
         while (indices.length)
         {
             if (index != indices[0])
@@ -5565,6 +5569,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             indices.shift();
 
             var data:Object = collectionIterator.current;
+            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
+            // trace("uid = " + itemToUID(data));
             if (firstTime)
             {
                 (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
@@ -5575,8 +5581,6 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 				anchorBookmark = collectionIterator.bookmark;
                 firstTime = false;
             }
-            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
-            // trace("uid = " + itemToUID(data));
         }
 
         if (initialized)
