@@ -20,13 +20,32 @@ package org.apache.royale.jewel.beads.controls.image
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.utils.css.addDynamicSelector;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.debugging.throwError;
+	import org.apache.royale.jewel.Group;
+	import org.apache.royale.utils.css.addDynamicSelector;
 	
 	/**
 	 *  The HorizontalListScroll bead is a specialty bead that can be used with
 	 *  Jewel List control and gives horizontal scroll to the list
+	 * 
+	 *  examples of use:
+	 * 
+	 *  CIRCLE_SHAPE
+	 *  <j:ClipImage shape="{ClipImage.CIRCLE_SHAPE}" radius="46" x="50" y="50" units="%"/>
+	 * 
+	 *  - using a border:
+	 *    <j:ClipImage shape="{ClipImage.CIRCLE_SHAPE}" radius="46" x="50" y="50" units="%" border="1" borderColor="#666666"/>
+	 *  
+	 *  POLYGON_SHAPE
+     *  <j:ClipImage shape="{ClipImage.POLYGON_SHAPE}" units="%" points="[50,0,0,100,100,100]"/>
+     *  <j:ClipImage shape="{ClipImage.POLYGON_SHAPE}" units="%" points="[20, 0, 0, 20, 30, 50, 0, 80, 20, 100, 50, 70, 80, 100, 100, 80, 70, 50, 100, 20, 80, 0, 50, 30]"/>
+	 *  
+	 *  ELLIPSE_SHAPE
+	 *  <j:ClipImage shape="{ClipImage.ELLIPSE_SHAPE}" radius="46" bradius="20" x="50" y="50" units="%"/>
+	 * 
+	 *  INSET_SHAPE
+	 *  <j:ClipImage shape="{ClipImage.INSET_SHAPE}" inset="[5, 20, 15, 10]" rounds="[5, 20, 0, 10]"  units="%"/>
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -62,7 +81,40 @@ package org.apache.royale.jewel.beads.controls.image
 		public function set shape(value:String):void
 		{
 			_shape = value;
-			createClipShape();
+			createClipShape(ruleName);
+			
+			if(_border && _borderColor)
+			{
+				borderShape = new Group();
+				borderShape.className = ruleName;
+				borderShape.width = host.width;
+				borderShape.minWidth = host.width;
+				borderShape.height = host.height;
+				borderShape.minHeight = host.height;
+
+				
+				host.parent.addElementAt(borderShape, host.parent.getElementIndex(host), false);
+				
+				COMPILE::JS
+				{
+				borderShape.element.style.backgroundColor = borderColor;
+				borderShape.element.style.display = "inline-flex";
+				borderShape.element.style.position = "relative";
+				
+				host.element.style.position = "absolute";
+				host.element.style.left = border + "px";
+				host.element.style.top = border + "px";
+				host.element.style.position = "relative";
+				}
+
+				host.width = host.width - border*2;
+				host.height = host.height - border*2;
+
+				borderShape.addElement(host);
+
+				createClipShape(ruleName, true);
+			}
+			
 		}
 
 		private var _radius:Number;
@@ -181,6 +233,28 @@ package org.apache.royale.jewel.beads.controls.image
 		private function processRoundsValues(element:*, index:Number, arr:Array):void {
 			rounds_str += element + units + " ";
         }
+
+		private var _border:Number;
+		/**
+		 * the border tickness
+		 */
+		public function get border():Number {
+			return _border;
+		}
+		public function set border(value:Number):void {
+			_border = value;
+		}
+		
+		private var _borderColor:String;
+		/**
+		 * the border color
+		 */
+		public function get borderColor():String {
+			return _borderColor;
+		}
+		public function set borderColor(value:String):void {
+			_borderColor = value;
+		}
 		
 		private var host:StyledUIBase;
 		/**
@@ -196,36 +270,36 @@ package org.apache.royale.jewel.beads.controls.image
 			host = value as StyledUIBase;
 
 			ruleName = "clipPath-" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
-			selectors = "";
-			host.addClass(ruleName);
 
-			if(_shape)
-				createClipShape();
+			host.addClass(ruleName);
 		}
 
+		private var borderShape:Group;
 		private var ruleName:String;
 		private var selectors:String;
 
-		protected function createClipShape():void
+		protected function createClipShape(ruleName:String, before:Boolean = false):void
 		{
+			selectors = "";
+
 			if(shape == CIRCLE_SHAPE)
 			{
-				selectors = "clip-path: " + shape + "(" + radius + units + " at " + x + units + " "+ y + units + ");";
+				selectors += "clip-path: " + shape + "(" + radius + units + " at " + x + units + " "+ y + units + ");";
 			}
 			else if(shape == POLYGON_SHAPE)
 			{
-				selectors = "clip-path: " + shape + "(" + points_str +  ");";
+				selectors += "clip-path: " + shape + "(" + points_str +  ");";
 			}
 			else if(shape == ELLIPSE_SHAPE)
 			{
-				selectors = "clip-path: " + shape + "(" + radius + units + " " + bradius + units + " at " + x + units + " "+ y + units + ");";
+				selectors += "clip-path: " + shape + "(" + radius + units + " " + bradius + units + " at " + x + units + " "+ y + units + ");";
 			}
 			else if(shape == INSET_SHAPE)
 			{
-				selectors = "clip-path: " + shape + "(" + inset_str + rounds_str + ");";
+				selectors += "clip-path: " + shape + "(" + inset_str + rounds_str + ");";
 			}
 
-			addDynamicSelector(".jewel.image." + ruleName, selectors);
+			addDynamicSelector("." + ruleName, selectors);
 		}
 	}
 }
