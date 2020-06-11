@@ -20,9 +20,9 @@ package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -32,8 +32,8 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The ListSingleSelectionMouseController class is a controller for
