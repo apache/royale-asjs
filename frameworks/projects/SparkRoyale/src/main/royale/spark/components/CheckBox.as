@@ -342,6 +342,7 @@ public class CheckBox extends ToggleButtonBase
         element.appendChild(_icon.element);
         
         element.appendChild(document.createTextNode(''));
+		element.addEventListener("change", changeHandler);
         
         typeNames = 'CheckBox CheckBoxIcon';
         
@@ -380,6 +381,11 @@ public class CheckBox extends ToggleButtonBase
         return mw + 1; // factor in gap between icon and label?
     }
 
+    COMPILE::JS
+    private function changeHandler(event:Event):void
+    {
+		dispatchEvent(new Event("valueCommit"));
+    }
 }
 
 }
