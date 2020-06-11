@@ -146,7 +146,6 @@ internal class CoreClasses
 		import org.apache.royale.core.IScrollBarModel; IScrollBarModel;
 	}
 	import org.apache.royale.core.IListDataItemRenderer; IListDataItemRenderer;
-	import org.apache.royale.core.IRuntimeSelectableItemRenderer; IRuntimeSelectableItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectable; ISelectable;
 	import org.apache.royale.core.ISelectionModel; ISelectionModel;
