@@ -345,11 +345,8 @@ public class PopUpMenuButton extends PopUpButton
             var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
             
             menuEvent.label = popUpMenu.itemToLabel(event.item);
-            /*if (labelSet)
-                super.label = _label;
-            else*/
-            //    super.label = popUpMenu.itemToLabel(event.item).replace(" ", "&nbsp;") + downArrowString;
 
+            var oldLabel:String = super.label;
             var labelBase:String = labelSet ? _label || '' : popUpMenu.itemToLabel(event.item);
             super.label = labelBase.replace(" ", "&nbsp;") + downArrowString
 
@@ -361,8 +358,9 @@ public class PopUpMenuButton extends PopUpButton
             /*itemRenderer = */menuEvent.itemRenderer = 
                 event.itemRenderer;
             dispatchEvent(menuEvent);
-            PopUpManager.removePopUp(popUp);
-            if (parent)
+            //@todo here could be possible need to check for 'closeOnActivity != false' or via implementation in PopUpButton
+            close(); //instead of 'PopUpManager.removePopUp(popUp)' ensures the showing/not showing state in the base component is maintained
+            if (parent && oldLabel != super.label)
                 (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
         }
     }
@@ -391,6 +389,7 @@ public class PopUpMenuButton extends PopUpButton
             }
         } else {
             if (popUpMenu) {
+                popUpMenu.removeEventListener(MenuEvent.ITEM_CLICK, menuChangeHandler);
                 close();
                 popUpMenu = null; //tbc
             }
