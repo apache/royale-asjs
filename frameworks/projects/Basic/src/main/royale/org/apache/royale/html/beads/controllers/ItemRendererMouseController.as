@@ -185,7 +185,7 @@ package org.apache.royale.html.beads.controllers
 				if (selectionBead)
 				{
 					selectionBead.down = true;
-					selectionBead.hovered = false;
+					//selectionBead.hovered = false;
 				}
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
