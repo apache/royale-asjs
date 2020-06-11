@@ -34,6 +34,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.events.utils.WhitespaceKeys;
+	import org.apache.royale.events.utils.NavigationKeys;
 
 	/**
 	 *  The SearchFilterForList bead class is a specialty bead that can be used with
@@ -110,19 +112,19 @@ package org.apache.royale.jewel.beads.controls.textinput
 		protected function keyDownEventHandler(event:KeyboardEvent):void
 		{
 			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
+			if(event.key === WhitespaceKeys.TAB)
 				return;
 			
 			event.preventDefault();
 
 			var index:int = visibleIndexes.indexOf(list.selectedIndex);
 			
-			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
+			if(event.key === NavigationKeys.UP || event.key === NavigationKeys.LEFT)
 			{
 				if(index > 0)
 					list.selectedIndex = visibleIndexes[index - 1];
 			} 
-			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
+			else if(event.key === NavigationKeys.DOWN || event.key === NavigationKeys.RIGHT)
 			{
 				if(index < visibleIndexes.length - 1)
 					list.selectedIndex = visibleIndexes[index + 1];
@@ -247,7 +249,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function textInputKeyUpHandler(event:KeyboardEvent):void
 		{
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
+			if(event.key === WhitespaceKeys.TAB)
 				return;
 				
 			const inputBase:TextInputBase = event.target as TextInputBase;

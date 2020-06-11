@@ -38,6 +38,8 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -157,7 +159,7 @@ package org.apache.royale.jewel.beads.controllers
 			
 			// from this point we don't want to perform this actions if textinput is not active
 
-			if(event.key === KeyboardEvent.KEYCODE__DOWN)
+			if(event.key === NavigationKeys.DOWN)
 			{
 				keyPressed = true;
 				var view:IListView = list.view as IListView;
@@ -185,7 +187,7 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function listKeyEventHandler(event:KeyboardEvent):void
 		{
-			if(event.key === KeyboardEvent.KEYCODE__ENTER || event.key === KeyboardEvent.KEYCODE__TAB)
+			if(event.key === WhitespaceKeys.ENTER || event.key === WhitespaceKeys.TAB)
 			{
 				dismissPopUp();
 			}
