@@ -998,7 +998,7 @@ j|ImageButton {
   position: relative;
   list-style: none;
 }
-.jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
+.jewel.item.selectable, .jewel.item.hoverable, .jewel.navigationlink.selectable, .jewel.navigationlink.hoverable, .jewel.tabbarbutton.selectable, .jewel.tabbarbutton.hoverable {
   cursor: pointer;
 }
 .jewel.item .fonticon, .jewel.navigationlink .fonticon, .jewel.tabbarbutton .fonticon {
