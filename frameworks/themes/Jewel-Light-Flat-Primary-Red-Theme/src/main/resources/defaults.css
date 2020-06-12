@@ -1295,6 +1295,26 @@ a:active {
   color: #370507;
 }
 
+.weight-lightest {
+  font-weight: 100;
+}
+
+.weight-light {
+  font-weight: 300;
+}
+
+.weight-regular {
+  font-weight: 400;
+}
+
+.weight-bold {
+  font-weight: 600;
+}
+
+.weight-bolder {
+  font-weight: 800;
+}
+
 h1 {
   font-size: 2em;
   margin: 0.8rem 0rem;
