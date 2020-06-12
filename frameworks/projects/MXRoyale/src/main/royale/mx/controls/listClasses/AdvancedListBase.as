@@ -4968,8 +4968,11 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
                 //Clear all other selections, this is a single click
                 clearSelected(transition);
-                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
-                drawItem(index, true, uid == highlightUID, true, transition);
+				if (allowMultipleSelection)
+				{
+	                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
+    	            drawItem(index, true, uid == highlightUID, true, transition);
+				}
                 (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
                 //_selectedItem = item.data;
                 iterator.seek(CursorBookmark.CURRENT, (model as ISelectionModel).selectedIndex /*_selectedIndex*/ - 
@@ -9070,8 +9073,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         }
         else
         {*/
-            if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
-                mouseDownItem = item;
+        if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
+            mouseDownItem = item;
         /*}*/
     }
 
