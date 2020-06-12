@@ -3939,6 +3939,9 @@ j|TableRow {
   right: initial;
   position: absolute;
   text-align: center;
+  margin-top: -6px;
+}
+.jewel.textinput.icon i.fonticon.material-icons {
   margin-top: -0.5em;
 }
 .jewel.textinput.icon.right i.fonticon {

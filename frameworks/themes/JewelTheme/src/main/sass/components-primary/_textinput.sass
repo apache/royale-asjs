@@ -23,8 +23,7 @@
 $textinput-border-radius: $border-radius
 $textinput-margin: 0 !default
 $textinput-padding-vertical: .679em !default
-$textinput-padding-horizontal: 16px !default
-$textinput-padding-icon-offset: 20px !default
+$textinput-padding-horizontal: 14px !default
 
 =textinput-theme($textinput-text-color)
 	
@@ -91,21 +90,25 @@ $textinput-padding-icon-offset: 20px !default
 			// 	family: $font-stack
 		&.icon
 			input
-				padding-left: $textinput-padding-horizontal + $textinput-padding-icon-offset
+				padding-left: $textinput-padding-horizontal + ($textinput-padding-horizontal*2)
 				padding-right: $textinput-padding-horizontal
 
 			i
 				&.fonticon
-					left: 8px
+					left: $textinput-padding-horizontal
+					&.material-icons
+						left: $textinput-padding-horizontal - 4
 
 			&.right
 				input
 					padding-left: $textinput-padding-horizontal
-					padding-right: $textinput-padding-horizontal + $textinput-padding-icon-offset
+					padding-right: $textinput-padding-horizontal + ($textinput-padding-horizontal*2)
 
 				i
-					&.fonticon
-						right: 8px
+					&.fonticon 
+						right: $textinput-padding-horizontal
+						&.material-icons
+							right: $textinput-padding-horizontal - 4
 
 			&.truncate
 			input
