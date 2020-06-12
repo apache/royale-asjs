@@ -1379,21 +1379,27 @@ div {
 }
 .jewel.textinput input {
   margin: 0;
-  padding: 0.679em 16px;
+  padding: 0.679em 14px;
 }
 .jewel.textinput.icon input {
-  padding-left: 36px;
-  padding-right: 16px;
+  padding-left: 42px;
+  padding-right: 14px;
 }
 .jewel.textinput.icon i.fonticon {
-  left: 8px;
+  left: 14px;
+}
+.jewel.textinput.icon i.fonticon.material-icons {
+  left: 10px;
 }
 .jewel.textinput.icon.right input {
-  padding-left: 16px;
-  padding-right: 36px;
+  padding-left: 14px;
+  padding-right: 42px;
 }
 .jewel.textinput.icon.right i.fonticon {
-  right: 8px;
+  right: 14px;
+}
+.jewel.textinput.icon.right i.fonticon.material-icons {
+  right: 10px;
 }
 .jewel.textinput.errorBorder input {
   border: 1px #EC1C24 solid;
