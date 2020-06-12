@@ -292,7 +292,7 @@ j|ButtonBar {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer");
   IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer");
@@ -3263,7 +3263,7 @@ j|List {
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
 }
 
 @media -royale-swf {
@@ -3289,7 +3289,7 @@ j|Navigation {
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
 }
 
 j|NavigationLinkItemRenderer {
@@ -3704,7 +3704,7 @@ j|TabBar {
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
 }
 
 .jewel.tabbarbutton {
