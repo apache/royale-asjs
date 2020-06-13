@@ -64,6 +64,15 @@ package mx.net
 			{
 				var fileFilter:FileFilter = typeFilter[i] as FileFilter;
 				var filters:Array = fileFilter.extension.split(";");
+				for (var j:int = 0; j < filters.length; j++)
+				{
+					var filter:String = filters[j];
+					if (filter.charAt(0) == '*')
+					{
+						filter = filter.substring(1);
+						filters[j] = filter;
+					}
+				}
 				allFilters = allFilters.concat(filters);
 			}
 			_browser.filter = allFilters.join(",");
