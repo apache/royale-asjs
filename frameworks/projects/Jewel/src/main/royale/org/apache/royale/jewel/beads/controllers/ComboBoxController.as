@@ -158,7 +158,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			COMPILE::JS
 			{
-			if (isFocused(viewBead.textinput as UIBase))
+			if (!isFocused(viewBead.textinput as UIBase))
 				return;	
 			}
 			
