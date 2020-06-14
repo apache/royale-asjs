@@ -22,15 +22,22 @@ package org.apache.royale.jewel.beads.controllers
 	{
 	import flash.utils.setTimeout;
     }
+	COMPILE::JS
+	{
+	import org.apache.royale.utils.html.isFocused;
+    }
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
 	import org.apache.royale.jewel.List;
@@ -38,8 +45,6 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
-	import org.apache.royale.events.utils.NavigationKeys;
-	import org.apache.royale.events.utils.WhitespaceKeys;
 
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -153,7 +158,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			COMPILE::JS
 			{
-			if (document.activeElement !== viewBead.textinput.element)
+			if (isFocused(viewBead.textinput as UIBase))
 				return;	
 			}
 			
