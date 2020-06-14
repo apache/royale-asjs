@@ -351,6 +351,7 @@ internal class CoreClasses
 	{
 	import org.apache.royale.utils.css.transitionEventAvailable; transitionEventAvailable;
 	import org.apache.royale.utils.html.getStyle; getStyle;
+	import org.apache.royale.utils.html.isFocused; isFocused;
 	}
 	
 	import org.apache.royale.utils.replaceBead; replaceBead;
