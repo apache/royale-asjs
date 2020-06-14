@@ -83,7 +83,7 @@ package org.apache.royale.jewel
             {
                 _text = value;
                 textNode.nodeValue = value;
-                this.dispatchEvent(new Event('textChange'));
+                dispatchEvent(new Event('textChange'));
             }
 		}
 
