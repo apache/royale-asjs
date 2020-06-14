@@ -114,7 +114,7 @@ package org.apache.royale.jewel.beads.controllers
 			IEventDispatcher(viewBead.textinput).addEventListener(KeyboardEvent.KEY_DOWN, textInputKeyEventHandler);
             COMPILE::JS{
 			//keyboard navigation from textfield should also close the popup
-			viewBead.textinput.element.addEventListener('blur', handleFocusOut);
+			viewBead.textinput.element.addEventListener('blur', handleTextInputFocusOut);
 			}
 		}
 
@@ -143,6 +143,10 @@ package org.apache.royale.jewel.beads.controllers
 			list.addEventListener(KeyboardEvent.KEY_DOWN, listKeyEventHandler);
 			list.addEventListener(Event.CHANGE, changeHandler);
 			list.addEventListener(MouseEvent.CLICK, listClickHandler);
+			COMPILE::JS{
+			//keyboard navigation from textfield should also close the popup
+			list.element.addEventListener('blur', handleListFocusOut);
+			}
             if (model is IJewelSelectionModel) {
 				//don't let the pop-up's list take over as primary dispatcher
 				//it needs to stay with the ComboBox (for selection bindings to work)
@@ -208,20 +212,40 @@ package org.apache.royale.jewel.beads.controllers
 
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{
+			list.setFocus();
 			event.stopImmediatePropagation();
+		}
+        /**
+         * @private
+         */
+        protected function handleTextInputFocusOut(event:Event):void
+        {
+			if (viewBead.popUpVisible) {
+				//allow a time to handle a selection from
+				//the popup as the possible reason for loss of focus
+				//(event.relatedObject seems null, so cannot check here)
+				//this should be less than 300
+                setTimeout(textInputDismissPopUp, 280); // ret
+            }
+        }
+
+		protected function textInputDismissPopUp():void
+		{
+			COMPILE::JS
+			{
+			if (isFocused(list))
+				return;	
+			}
+			dismissPopUp();
 		}
 
         /**
          * @private
          */
-        protected function handleFocusOut(event:Event):void
+        protected function handleListFocusOut(event:Event):void
         {
-            if (viewBead.popUpVisible) {
-				//allow a time to handle a selection from
-				//the popup as the possible reason for loss of focus
-				//(event.relatedObject seems null, so cannot check here)
-				//this should be less than 300
-                setTimeout(dismissPopUp, 280);
+			if (viewBead.popUpVisible) {
+				setTimeout(dismissPopUp, 280); //ret
             }
         }
 		
@@ -273,6 +297,10 @@ package org.apache.royale.jewel.beads.controllers
 				list.removeEventListener(Event.CHANGE, changeHandler);
 				list.removeEventListener(KeyboardEvent.KEY_DOWN, listKeyEventHandler);
 				list.removeEventListener(MouseEvent.CLICK, listClickHandler);
+				COMPILE::JS{
+				//keyboard navigation from textfield should also close the popup
+				list.element.removeEventListener('blur', handleListFocusOut);
+				}
 				viewBead.popUpVisible = false;
 			}
 			keyPressed = false;
