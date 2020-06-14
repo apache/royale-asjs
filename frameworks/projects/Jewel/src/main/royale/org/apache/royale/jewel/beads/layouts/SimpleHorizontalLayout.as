@@ -75,16 +75,9 @@ package org.apache.royale.jewel.beads.layouts
 		override public function beadsAddedHandler(event:Event = null):void
 		{
 			super.beadsAddedHandler();
-
-			COMPILE::JS
-			{
-				if (hostComponent.containsClass("layout"))
-					hostComponent.removeClass("layout");
-				hostComponent.addClass("layout");
-				if(hostComponent.containsClass("horizontal"))
-					hostComponent.removeClass("horizontal");
-				hostComponent.addClass("horizontal");
-			}
+			
+			hostComponent.replaceClass("layout");
+			hostComponent.replaceClass("horizontal");
 		}
 
         /**

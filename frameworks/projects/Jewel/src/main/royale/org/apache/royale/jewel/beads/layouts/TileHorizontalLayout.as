@@ -72,12 +72,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
-			COMPILE::JS
-			{
-			if(hostComponent.containsClass("tile"))
-				hostComponent.removeClass("tile");
-			hostComponent.addClass("tile");
-			}
+			hostComponent.replaceClass("tile");
 		}
 
 		private var _columnCount:int = -1;

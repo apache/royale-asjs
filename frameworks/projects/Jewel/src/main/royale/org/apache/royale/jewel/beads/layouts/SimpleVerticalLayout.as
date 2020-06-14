@@ -77,15 +77,8 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
-			COMPILE::JS
-			{
-				if (hostComponent.containsClass("layout"))
-					hostComponent.removeClass("layout");
-				hostComponent.addClass("layout");
-				if(hostComponent.containsClass("vertical"))
-					hostComponent.removeClass("vertical");
-				hostComponent.addClass("vertical");
-			}
+			hostComponent.replaceClass("layout");
+			hostComponent.replaceClass("vertical");
 		}
 
 		/**

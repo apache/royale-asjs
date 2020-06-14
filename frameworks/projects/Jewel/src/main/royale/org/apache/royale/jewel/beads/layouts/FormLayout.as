@@ -65,12 +65,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 			
-			COMPILE::JS
-			{
-				if(hostComponent.containsClass("form"))
-					hostComponent.removeClass("form");
-				hostComponent.addClass("form");
-			}
+			hostComponent.replaceClass("form");
 		}
 
         /**

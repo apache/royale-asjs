@@ -64,16 +64,12 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
+			hostComponent.replaceClass("layout");
+			hostComponent.replaceClass("grid");
+
 			COMPILE::JS
 			{
-				if (hostComponent.containsClass("layout"))
-					hostComponent.removeClass("layout");
-				hostComponent.addClass("layout");
-				if(hostComponent.containsClass("grid"))
-					hostComponent.removeClass("grid");
-				hostComponent.addClass("grid");
-
-				setGap(_gap);
+			setGap(_gap);
 			}
 		}
 
