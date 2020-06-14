@@ -26,6 +26,6 @@ package org.apache.royale.utils.html
 	COMPILE::JS
 	public function isFocused(host:ElementWrapper):Boolean
 	{
-		return host.element == document.activeElement;
+		return host.element === document.activeElement;
 	}
 }
