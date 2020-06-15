@@ -36,6 +36,7 @@ internal class CoreClasses
 	import org.apache.royale.core.ApplicationBase; ApplicationBase;
 	import org.apache.royale.core.IList; IList;
 	import org.apache.royale.core.IIcon; IIcon;
+	import org.apache.royale.core.ITextButton; ITextButton;
 	import org.apache.royale.core.IIconSupport; IIconSupport;
 	import org.apache.royale.core.ITextInput; ITextInput;
 	import org.apache.royale.html.beads.IListView; IListView;
