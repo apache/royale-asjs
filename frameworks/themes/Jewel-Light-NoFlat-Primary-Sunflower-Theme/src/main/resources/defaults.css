@@ -175,17 +175,17 @@ hr {
 .jewel.button.icon {
   padding: 0.429em 0.87em;
 }
-.jewel.button.icon i {
+.jewel.button.icon span {
   margin-left: 0px;
   margin-right: 0px;
 }
-.jewel.button.left-space i {
-  margin-left: 0px;
-  margin-right: 8px;
-}
-.jewel.button.right-space i {
+.jewel.button.left-space span {
   margin-left: 8px;
   margin-right: 0px;
+}
+.jewel.button.right-space span {
+  margin-left: 0px;
+  margin-right: 8px;
 }
 
 .jewel.button.primary {
