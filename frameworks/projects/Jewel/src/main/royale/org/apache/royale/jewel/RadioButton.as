@@ -32,6 +32,7 @@ package org.apache.royale.jewel
     import org.apache.royale.html.util.addElementToWrapper;
     }
 
+    import org.apache.royale.core.ITextButton;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.jewel.supportClasses.IInputButton;
     import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase;
@@ -50,7 +51,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class RadioButton extends SelectableButtonBase implements IInputButton
+    public class RadioButton extends SelectableButtonBase implements IInputButton, ITextButton
     {
         /**
          *  Constructor.
@@ -309,11 +310,23 @@ package org.apache.royale.jewel
         }
         
         COMPILE::JS
-        /**
-         * a HTMLSpanElement decorator for this component
-         * added to the positioner.
+		private var _spanLabel:HTMLSpanElement;
+		/**
+         *  the span for the label text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.10.0
          */
-        protected var radio:HTMLSpanElement;
+		COMPILE::JS
+		public function get spanLabel():HTMLSpanElement {
+			return _spanLabel;
+		}
+		COMPILE::JS
+		public function set spanLabel(value:HTMLSpanElement):void {
+			_spanLabel = value;
+		}
 
         COMPILE::JS
         /**
@@ -336,8 +349,8 @@ package org.apache.royale.jewel
             icon.value = String(value);
             
             textNode = document.createTextNode('') as Text;
-            radio = document.createElement('span') as HTMLSpanElement;
-            radio.appendChild(textNode);
+            spanLabel = document.createElement('span') as HTMLSpanElement;
+            spanLabel.appendChild(textNode);
             
             positioner = document.createElement('label') as WrappedHTMLElement;
             
@@ -365,7 +378,7 @@ package org.apache.royale.jewel
 			_positioner = value;
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(element);
-            _positioner.appendChild(radio);
+            _positioner.appendChild(spanLabel);
 		}
 
         /**

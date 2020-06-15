@@ -169,7 +169,8 @@
 
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
     
-    <component id="InputButtonSize" class="org.apache.royale.jewel.beads.controls.InputButtonSize"/>
+    <component id="InputButtonSize" class="org.apache.royale.jewel.beads.controls.button.InputButtonSize"/>
+    <component id="ResponsiveLabelVisibility" class="org.apache.royale.jewel.beads.controls.button.ResponsiveLabelVisibility"/>
 
     <component id="MultiLine" class="org.apache.royale.jewel.beads.controls.MultiLine"/>
     <component id="NavigationActionNotifier" class="org.apache.royale.jewel.beads.controls.NavigationActionNotifier"/>

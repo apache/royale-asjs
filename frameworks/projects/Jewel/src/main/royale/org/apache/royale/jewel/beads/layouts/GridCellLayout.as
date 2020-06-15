@@ -74,13 +74,10 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
-			COMPILE::JS
-			{
-				setFractionForScreen(WIDESCREEN, _wideScreenNumerator, _wideScreenDenominator);
-				setFractionForScreen(DESKTOP, _desktopNumerator, _desktopDenominator);
-				setFractionForScreen(TABLET, _tabletNumerator, _tabletDenominator);
-				setFractionForScreen(PHONE, _phoneNumerator, _phoneDenominator);
-			}
+			setFractionForScreen(WIDESCREEN, _wideScreenNumerator, _wideScreenDenominator);
+			setFractionForScreen(DESKTOP, _desktopNumerator, _desktopDenominator);
+			setFractionForScreen(TABLET, _tabletNumerator, _tabletDenominator);
+			setFractionForScreen(PHONE, _phoneNumerator, _phoneDenominator);
 		}
 
 		private var _wideScreenNumerator:Number;
@@ -103,11 +100,8 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_wideScreenNumerator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(WIDESCREEN, value, _wideScreenDenominator);
-				}
+				if(hostComponent)
+					setFractionForScreen(WIDESCREEN, value, _wideScreenDenominator);
 				_wideScreenNumerator = value;
 			}
 		}
@@ -132,11 +126,8 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_wideScreenDenominator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(WIDESCREEN, _wideScreenNumerator, value);
-				}
+				if(hostComponent)
+					setFractionForScreen(WIDESCREEN, _wideScreenNumerator, value);
 				_wideScreenDenominator = value;
 			}
 		}
@@ -161,11 +152,8 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_desktopNumerator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(DESKTOP, value, _desktopDenominator);
-				}
+				if(hostComponent)
+					setFractionForScreen(DESKTOP, value, _desktopDenominator);
 				_desktopNumerator = value;
 			}
 		}
@@ -190,11 +178,8 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_desktopDenominator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(DESKTOP, _desktopNumerator, value);
-				}
+				if(hostComponent)
+					setFractionForScreen(DESKTOP, _desktopNumerator, value);
 				_desktopDenominator = value;
 			}
 		}
@@ -219,11 +204,8 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_tabletNumerator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(TABLET, value, _tabletDenominator);
-				}
+				if(hostComponent)
+					setFractionForScreen(TABLET, value, _tabletDenominator);
 				_tabletNumerator = value;
 			}
 		}
@@ -248,11 +230,8 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_tabletDenominator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(TABLET, _tabletNumerator, value);
-				}
+				if(hostComponent)
+					setFractionForScreen(TABLET, _tabletNumerator, value);
 				_tabletDenominator = value;
 			}
 		}
@@ -277,11 +256,8 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_phoneNumerator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(PHONE, value, _phoneDenominator);
-				}
+				if(hostComponent)
+					setFractionForScreen(PHONE, value, _phoneDenominator);
 				_phoneNumerator = value;
 			}
 		}
@@ -306,16 +282,12 @@ package org.apache.royale.jewel.beads.layouts
         {
 			if (_phoneDenominator != value)
             {
-                COMPILE::JS
-                {
-					if(hostComponent)
-						setFractionForScreen(PHONE, _phoneNumerator, value);
-				}
+				if(hostComponent)
+					setFractionForScreen(PHONE, _phoneNumerator, value);
 				_phoneDenominator = value;
 			}
 		}
 
-		COMPILE::JS
 		private function setFractionForScreen(screen:String, num:Number, den:Number):void
 		{
 			if(num && den)
@@ -350,15 +322,12 @@ package org.apache.royale.jewel.beads.layouts
             {
 				_phoneVisible = value;
 
-                COMPILE::JS
-                {
-					if(hostComponent)
-					{
-						if(_phoneVisible)
-							hostComponent.replaceClass("hidden-phone", "visible-phone");
-						else
-							hostComponent.replaceClass("visible-phone", "hidden-phone");
-					}
+				if(hostComponent)
+				{
+					if(_phoneVisible)
+						hostComponent.replaceClass("hidden-phone", "visible-phone");
+					else
+						hostComponent.replaceClass("visible-phone", "hidden-phone");
 				}
 			}
 		}
@@ -384,15 +353,12 @@ package org.apache.royale.jewel.beads.layouts
             {
 				_tabletVisible = value;
 
-                COMPILE::JS
-                {
-					if(hostComponent)
-					{
-						if(_tabletVisible)
-							hostComponent.replaceClass("hidden-tablet", "visible-tablet");
-						else
-							hostComponent.replaceClass("visible-tablet", "hidden-tablet");
-					}
+				if(hostComponent)
+				{
+					if(_tabletVisible)
+						hostComponent.replaceClass("hidden-tablet", "visible-tablet");
+					else
+						hostComponent.replaceClass("visible-tablet", "hidden-tablet");
 				}
 			}
 		}
@@ -418,15 +384,12 @@ package org.apache.royale.jewel.beads.layouts
             {
 				_desktopVisible = value;
                 
-				COMPILE::JS
-                {
-					if(hostComponent)
-					{
-						if(_desktopVisible)
-							hostComponent.replaceClass("hidden-desktop", "visible-desktop");
-						else
-							hostComponent.replaceClass("visible-desktop", "hidden-desktop");
-					}
+				if(hostComponent)
+				{
+					if(_desktopVisible)
+						hostComponent.replaceClass("hidden-desktop", "visible-desktop");
+					else
+						hostComponent.replaceClass("visible-desktop", "hidden-desktop");
 				}
 			}
 		}
@@ -452,15 +415,12 @@ package org.apache.royale.jewel.beads.layouts
             {
 				_wideScreenVisible = value;
 
-                COMPILE::JS
-                {
-					if(hostComponent)
-					{
-						if(_wideScreenVisible)
-							hostComponent.replaceClass("hidden-widescreen", "visible-widescreen");
-						else
-							hostComponent.replaceClass("visible-widescreen", "hidden-widescreen");
-					}
+				if(hostComponent)
+				{
+					if(_wideScreenVisible)
+						hostComponent.replaceClass("hidden-widescreen", "visible-widescreen");
+					else
+						hostComponent.replaceClass("visible-widescreen", "hidden-widescreen");
 				}
 			}
 		}
@@ -585,9 +545,7 @@ package org.apache.royale.jewel.beads.layouts
 
             COMPILE::JS
             {
-				super.layout();
-				
-                return true;
+			return true;
             }
 		}
 	}

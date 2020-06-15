@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls
+package org.apache.royale.jewel.beads.controls.button
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
