@@ -28,8 +28,10 @@ package org.apache.royale.jewel
     //but IE11 will break if the following import is removed:
     //@carlosrovira: Probably the above issue is due to the need to be in COMPILE::JS, so IDEs organizing imports don't remove this one
     import org.apache.royale.events.Event;
+    import org.apache.royale.core.WrappedHTMLElement;
     }
     import org.apache.royale.jewel.supportClasses.button.SimpleButton;
+    import org.apache.royale.core.ITextButton;
 
     [DefaultProperty("text")]
 
@@ -46,7 +48,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class Button extends SimpleButton
+    public class Button extends SimpleButton implements ITextButton
     {
 		/**
 		 *  Constructor.
@@ -80,7 +82,7 @@ package org.apache.royale.jewel
 			}
 			COMPILE::JS
 			{
-			return (element as HTMLButtonElement).textContent;
+			return spanLabel.textContent;
 			}
 		}
 		/**
@@ -94,7 +96,7 @@ package org.apache.royale.jewel
 			}
 			COMPILE::JS
 			{
-			(element as HTMLButtonElement).textContent = value;
+			spanLabel.textContent = value;
 			dispatchEvent(new Event('textChange'));
 			}
 		}
@@ -119,7 +121,7 @@ package org.apache.royale.jewel
 			}
 			COMPILE::JS
 			{
-			return (element as HTMLButtonElement).innerHTML;
+			return spanLabel.innerHTML;
 			}
 		}
 		/**
@@ -133,9 +135,43 @@ package org.apache.royale.jewel
 			}
 			COMPILE::JS
 			{
-			(element as HTMLButtonElement).innerHTML = value;
+			spanLabel.innerHTML = value;
 			dispatchEvent(new Event('htmlChange'));
 			}
 		}
+
+		COMPILE::JS
+		private var _spanLabel:HTMLSpanElement;
+		/**
+         *  the span for the label text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.10.0
+         */
+		COMPILE::JS
+		public function get spanLabel():HTMLSpanElement {
+			return _spanLabel;
+		}
+		COMPILE::JS
+		public function set spanLabel(value:HTMLSpanElement):void {
+			_spanLabel = value;
+		}
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         */
+		COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			super.createElement();
+            
+			spanLabel = document.createElement('span') as HTMLSpanElement;
+			spanLabel.textContent = text;
+			element.appendChild(spanLabel);
+
+            return element;
+        }
 	}
 }

@@ -54,9 +54,6 @@ package org.apache.royale.jewel
 		}
 
         COMPILE::JS
-        protected var textNode:Text;
-
-        COMPILE::JS
         private var _text:String = "";
 
         [Bindable("textChange")]
@@ -79,10 +76,10 @@ package org.apache.royale.jewel
         COMPILE::JS
 		override public function set text(value:String):void
 		{
-            if (textNode)
+            if (spanLabel)
             {
                 _text = value;
-                textNode.nodeValue = value;
+                spanLabel.textContent = value;
                 dispatchEvent(new Event('textChange'));
             }
 		}
@@ -149,22 +146,6 @@ package org.apache.royale.jewel
             
             addElementAt(_icon, rightPosition? numElements : 0);
             }
-        }
-
-        /**
-		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion org.apache.royale.html.util.addElementToWrapper
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			addElementToWrapper(this, 'button');
-            element.setAttribute('type', 'button');
-            
-            textNode = document.createTextNode(_text) as Text;
-            element.appendChild(textNode);
-
-            return element;
         }
 	}
 }
