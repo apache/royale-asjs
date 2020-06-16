@@ -37,7 +37,7 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 	 */
 	[Event(name="stateChange", type="org.apache.royale.events.Event")]
 
@@ -47,7 +47,7 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 	 */
 	[Event(name="initBindings", type="org.apache.royale.events.Event")]
 
@@ -62,7 +62,7 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 	 */
   public class BrowserRouter extends Strand implements IRouter, IBead, IMXMLDocument
   {
@@ -80,7 +80,7 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 		 */
 		public function get basePath():String
 		{
@@ -175,7 +175,7 @@ package org.apache.royale.routing
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function setState():void
 		{
@@ -199,7 +199,7 @@ package org.apache.royale.routing
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function renderState():void
 		{

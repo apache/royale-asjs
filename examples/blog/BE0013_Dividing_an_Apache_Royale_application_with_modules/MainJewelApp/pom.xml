@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>BE0013_Dividing_an_Apache_Royale_application_with_modules</artifactId>
-    <version>0.10.0-SNAPSHOT</version>
+    <version>0.9.8-SNAPSHOT</version>
   </parent>
 
   <artifactId>MainJewelApp</artifactId>
-  <version>0.10.0-SNAPSHOT</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0013:  - MainJewelApp</name>
