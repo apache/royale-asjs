@@ -34,6 +34,8 @@
     <component id="Grid" class="org.apache.royale.jewel.Grid"/>
     <component id="ScrollableGrid" class="org.apache.royale.jewel.ScrollableGrid"/>
     <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
+    
+    <component id="SimpleLoader" class="org.apache.royale.jewel.SimpleLoader"/>
 
     <component id="SimpleTable" class="org.apache.royale.jewel.SimpleTable"/>
     <component id="Table" class="org.apache.royale.jewel.Table"/>
