@@ -48,14 +48,54 @@ package org.apache.royale.jewel
 			
 		}
 		
-		public function start():void
+		COMPILE::JS
+		private var animation:Animation;
+
+		private var _indeterminate:Boolean;
+		/**
+		 * stop the animation to indicate load end
+		 */
+		public function get start():Boolean
 		{
-			COMPILE::JS
+			return _indeterminate;
+		}
+		/**
+		 * start the animation to indicate a loading state
+		 */
+		public function set indeterminate(value:Boolean):void
+		{
+			if(_indeterminate !== value)
 			{
-			var timing:Object =  new Object();
-			timing["duration"] = 1000;
-			timing["iterations"] = Infinity;
-			element["animate"]([{ transform: "rotate(0deg)"},{ transform: "rotate(360deg)"}], timing);
+				_indeterminate = value;
+
+				if(_indeterminate)
+				{
+					COMPILE::JS
+					{
+					if(!animation)
+					{
+						var timings:Object =  new Object();
+						timings["duration"] = 1000;
+						timings["iterations"] = Infinity;
+						
+						animation = element["animate"](
+							[//keyframes
+								{ transform: "rotate(0deg)"},
+								{ transform: "rotate(360deg)"}]
+							,
+								timings
+							);
+					} else
+						animation.play();
+					}
+				}
+				else
+				{
+					COMPILE::JS
+					{
+					animation.pause(); 
+					}
+				}
 			}
 		}
     }
