@@ -138,6 +138,10 @@
   background: #dc121a;
 }
 
+.jewel.loader.emphasized.segment {
+  border-top-color: #EC1C24;
+}
+
 .jewel.snackbar.emphasized .jewel.snackbar-content {
   background: #EC1C24;
   border: 0px solid;

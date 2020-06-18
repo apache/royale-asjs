@@ -865,6 +865,17 @@ j|FormItem {
   background: #cccccc !important;
 }
 
+.jewel.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+}
+.jewel.loader.segment {
+  border-top-color: silver;
+}
+.jewel.loader.primary.segment {
+  border-top-color: #3AB549;
+}
+
 .jewel.navigation {
   background-color: #ffffff;
 }

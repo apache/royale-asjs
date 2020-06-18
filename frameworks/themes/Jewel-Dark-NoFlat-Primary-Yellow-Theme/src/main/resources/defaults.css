@@ -866,6 +866,17 @@ j|FormItem {
   background: #191919 !important;
 }
 
+.jewel.loader {
+  border: 16px solid #737373;
+  border-radius: 50%;
+}
+.jewel.loader.segment {
+  border-top-color: #404040;
+}
+.jewel.loader.primary.segment {
+  border-top-color: #E2D70B;
+}
+
 .jewel.navigation {
   background-color: #ffffff;
 }
