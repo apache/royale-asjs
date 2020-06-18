@@ -297,7 +297,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				}
 
 				thead.addElement(headerRow);
-				table.addElement(thead);
+				table.addElementAt(thead,0);
 			}
         }
 
