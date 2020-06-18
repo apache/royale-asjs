@@ -16,28 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.combobox
+package org.apache.royale.html.beads
 {
   import org.apache.royale.core.IBead;
-  import org.apache.royale.jewel.ComboBox;
   import org.apache.royale.core.IStrand;
   import org.apache.royale.collections.CollectionUtils;
-  import org.apache.royale.collections.ArrayList;
   import org.apache.royale.events.Event;
+  import org.apache.royale.collections.ICollectionView;
+  import org.apache.royale.core.ISelectionModel;
+  import org.apache.royale.events.IEventDispatcher;
   
   /**
-	 *  The ComboBoxItemByField class is a specialty bead that can be used with
-	 *  any ComboBox control. This bead allows to select an item by field
+	 *  The CollectionSelectedItemByField class is a specialty bead that can be used with
+	 *  any control with ISelectionModel. This bead allows to select an item by field
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.8
 	 */
 
-  public class ComboBoxItemByField implements IBead{
+  public class CollectionSelectedItemByField implements IBead{
 
-      protected var comboBox:ComboBox;
+      protected var _model:ISelectionModel;
+	  protected var _strand:IStrand;
 
 	  
 		/**
@@ -46,9 +48,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.8
 		 */
-      public function ComboBoxItemByField()
+      public function CollectionSelectedItemByField()
 		{
 		}
 		
@@ -58,12 +60,13 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
         public function set strand(value:IStrand):void
 		{
-			comboBox = value as ComboBox;
-			comboBox.addEventListener("selectionChanged", selectionChangedHandler);
+			_strand = value;
+			_model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			(_strand as IEventDispatcher).addEventListener("selectionChanged", selectionChangedHandler);
 			updateHost();
 		}
 
@@ -74,7 +77,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.8
 		 */
         public function get valueField():String
         {
@@ -95,7 +98,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.8
 		 */
         public function get selectedValue():*{
             return _selectedValue;
@@ -107,29 +110,29 @@ package org.apache.royale.jewel.beads.controls.combobox
         }
 		
 		/**
-		 *  This bead allows update the selected item of the combobox through the entered field 
+		 *  This bead allows update the selected item of the component through the entered field 
 		 */
         protected function updateHost():void
 		{
-			if(comboBox && valueField != "" && selectedValue != null){
-			    var aux:* = CollectionUtils.getItemByField(comboBox.dataProvider as ArrayList,valueField,selectedValue);
+			if(_model && valueField != "" && selectedValue != null){
+			    var aux:* = CollectionUtils.getItemByField(_model.dataProvider as ICollectionView,valueField,selectedValue);
                 if(aux == null){
-                    comboBox.selectedItem = null;
-                    comboBox.selectedIndex = -1;
-                } else if (aux!==comboBox.selectedItem){
-                    comboBox.selectedItem = aux;
+                    _model.selectedItem = null;
+                    _model.selectedIndex = -1;
+                } else if (aux!==_model.selectedItem){
+                    _model.selectedItem = aux;
                 }
             }
 		}
 		
 		/**
-		 *  Select the right item for the combobox.
+		 *  Select the right item for the component.
 		 * 
 		 *  @param event 
 		 */
         protected function selectionChangedHandler(event:Event):void{
-            if(valueField != "" && comboBox){
-                var selectedItem:Object = comboBox.selectedItem;
+            if(valueField != "" && _model){
+                var selectedItem:Object = _model.selectedItem;
                 if(selectedItem != null && selectedValue !== selectedItem[valueField])
                     selectedValue = selectedItem[valueField];
             }
