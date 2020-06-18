@@ -1010,14 +1010,6 @@ j|ListItemRenderer {
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
-.jewel.loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-}
-.jewel.loader.segment {
-  border-top: 16px solid #3498db;
-}
-
 .jewel.label {
   -webkit-font-smoothing: antialiased;
   cursor: default;

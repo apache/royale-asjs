@@ -18,11 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Jewel Loader
-// Loader variables
-.jewel.loader
 
+// Loader variables
+$simple-loader-thickness: 16px
+$simple-loader-roundness: 50%
+
+.jewel.loader
+    border: $simple-loader-thickness solid lighten($default-color, 10%)
+    border-radius: $simple-loader-roundness
+    
     &.segment
-        
+        border-top-color: darken($default-color, 10%)
+
+    &.primary
+        &.segment
+            border-top-color: $primary-color
 
     //animation: spin 2s linear infinite
 

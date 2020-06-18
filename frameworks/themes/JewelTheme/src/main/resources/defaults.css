@@ -1905,6 +1905,10 @@ j|Wizard {
   background: #ed4812;
 }
 
+.jewel.loader.secondary.segment {
+  border-top-color: #EF5A2A;
+}
+
 .jewel.snackbar.secondary .jewel.snackbar-content {
   background: linear-gradient(#f16c42, #ed4812);
   border: 1px solid #be390e;
@@ -2180,6 +2184,10 @@ a:active {
 }
 .jewel.item.emphasized.selected, .jewel.item.emphasized.selectable:active {
   background: #7eb435;
+}
+
+.jewel.loader.emphasized.segment {
+  border-top-color: #8CC63C;
 }
 
 .jewel.snackbar.emphasized .jewel.snackbar-content {
