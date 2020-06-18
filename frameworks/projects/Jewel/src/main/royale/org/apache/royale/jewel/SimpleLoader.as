@@ -74,14 +74,14 @@ package org.apache.royale.jewel
 					{
 					if(!animation)
 					{
-						var timings:Object =  new Object();
-						timings["duration"] = 1000;
-						timings["iterations"] = Infinity;
-						
+						var timings:Object = {
+							"duration": 1000, 
+							"iterations": Infinity
+						}						
 						animation = element["animate"](
 							[//keyframes
-								{ transform: "rotate(0deg)"},
-								{ transform: "rotate(360deg)"}]
+								{ "transform": "rotate(0deg)"},
+								{ "transform": "rotate(360deg)"}]
 							,
 								timings
 							);
@@ -98,5 +98,5 @@ package org.apache.royale.jewel
 				}
 			}
 		}
-    }
+	}
 }
