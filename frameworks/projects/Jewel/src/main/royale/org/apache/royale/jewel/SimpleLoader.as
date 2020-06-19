@@ -93,7 +93,8 @@ package org.apache.royale.jewel
 				{
 					COMPILE::JS
 					{
-					animation.pause(); 
+					if(animation)
+						animation.pause(); 
 					}
 				}
 			}
