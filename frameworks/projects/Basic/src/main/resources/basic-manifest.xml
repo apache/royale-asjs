@@ -294,5 +294,7 @@
     <component id="BrowserRouter" class="org.apache.royale.routing.BrowserRouter"/>
 
     <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
+	
+	<component id="CollectionSelectedItemByField" class="org.apache.royale.html.beads.CollectionSelectedItemByField"/>
 
 </componentPackage>
