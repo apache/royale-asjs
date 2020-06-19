@@ -37,8 +37,8 @@ limitations under the License.
 				<![CDATA[<strong>Jewel Icons</strong> examples.]]>
 			</c:description>
 		</c:ExampleHeader>
-
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+        
+        <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
                 <j:CardHeader>
                     <html:H3 text="Material Icon Sizes" className="primary-normal"/>

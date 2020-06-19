@@ -343,6 +343,7 @@ limitations under the License.
         <local:PopUpPlayGround name="popup_panel"/>
         <local:AdvancedListPlayGround name="advanced_list_panel"/>
         <local:VirtualListsPlayGround name="virtual_lists_panel"/>
+        <local:ProgressLoaderPlayGround name="progressloader_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->
