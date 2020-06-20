@@ -57,10 +57,13 @@ j|SimpleTable
 // Table variables
 $tableitem-min-height: 34px
 .jewel.table
-    position: relative
-    white-space: nowrap
-    border-spacing: 0px
-    overflow: hidden
+    //position: relative
+    //white-space: nowrap
+    // overflow: hidden
+
+    table
+        width: 100%
+        border-spacing: 0px
 
     // th
     .jewel.tableheadercell
@@ -85,21 +88,12 @@ $tableitem-min-height: 34px
         //     padding: 12px
         
     &.fixedHeader
-        table-layout: fixed
+        overflow-y: auto
 
-        // .jewel.thead tr
-        //     display: block
-
-        .jewel.tbody
-            display: block
-            overflow: auto
-            // width must be table width
-            
-            .jewel.tablerow
-                display: block
-            
-        .jewel.tablecell
-            display: inline-block
+        .jewel.tableheadercell
+                position: sticky
+                top: 0
+                z-index: 1
 
 j|Table
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout")

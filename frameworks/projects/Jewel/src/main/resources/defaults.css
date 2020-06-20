@@ -3184,7 +3184,7 @@ j|Label {
 .layout.vertical.itemsRight {
   align-items: flex-end;
 }
-.layout.table {
+.layout.table table {
   display: table;
 }
 
@@ -3785,11 +3785,9 @@ j|SimpleTable {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
-.jewel.table {
-  position: relative;
-  white-space: nowrap;
+.jewel.table table {
+  width: 100%;
   border-spacing: 0px;
-  overflow: hidden;
 }
 .jewel.table .jewel.tableheadercell {
   position: relative;
@@ -3808,17 +3806,12 @@ j|SimpleTable {
   position: relative;
 }
 .jewel.table.fixedHeader {
-  table-layout: fixed;
+  overflow-y: auto;
 }
-.jewel.table.fixedHeader .jewel.tbody {
-  display: block;
-  overflow: auto;
-}
-.jewel.table.fixedHeader .jewel.tbody .jewel.tablerow {
-  display: block;
-}
-.jewel.table.fixedHeader .jewel.tablecell {
-  display: inline-block;
+.jewel.table.fixedHeader .jewel.tableheadercell {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 j|Table {

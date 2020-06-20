@@ -195,7 +195,6 @@ package org.apache.royale.jewel.beads.layouts
 
             COMPILE::JS
             {
-				
                 return true;
             }
 		}

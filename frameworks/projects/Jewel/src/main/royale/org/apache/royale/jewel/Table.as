@@ -106,7 +106,7 @@ package org.apache.royale.jewel
 		private var _fixedHeader:Boolean;
 		/**
 		 *  Makes the header of the table fixed so the data rows will scroll
-		 *  behind it.
+		 *  behind it. In this case height must be defined.
 		 *  
 		 *  The default value is false.
 		 *  
@@ -121,9 +121,14 @@ package org.apache.royale.jewel
 		}
 		public function set fixedHeader(value:Boolean):void
 		{
-			_fixedHeader = value;
+			if(_fixedHeader !== value)
+			{
+				_fixedHeader = value;
 
-			toggleClass("fixedHeader", _fixedHeader);
+				
+
+				toggleClass("fixedHeader", _fixedHeader);
+			}
 		}
 
 		// private var _tableDataHeight:Boolean;
@@ -235,14 +240,44 @@ package org.apache.royale.jewel
 		{
 			TableModel(model).selectedItemProperty = value;
 		}
+		
+		COMPILE::JS
+		private var table:HTMLTableElement;
 
 		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  @royaleignorecoercion HTMLTableElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            return addElementToWrapper(this, 'table');
+			table = addElementToWrapper(this, 'table') as HTMLTableElement;
+			positioner = document.createElement('div') as WrappedHTMLElement;
+			return element;
         }
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+        /**
+         *  @copy org.apache.royale.core.IUIBase#positioner
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.10.0
+         */
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(table);
+		}
     }
 }
