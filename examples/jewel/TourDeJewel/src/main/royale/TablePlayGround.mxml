@@ -190,11 +190,57 @@ limitations under the License.
 
 			<j:Card>
 				<j:CardHeader>
+					<html:H3 text="Jewel Table (Fixed Header)" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This <b>Jewel Table</b> has fixed header and the content scrolls. You must set <strong>height</strong> to make it work.</p>]]></j:html>
+					</j:Label>
+
+					<j:Table localId="fixedheadertable" fixedHeader="true" height="200" change="onChange(event, selected_fixed)" dataProvider="{tablesModel.guitarrists}" width="100%">
+						<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
+						<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
+						<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
+						<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
+						<j:beads>
+							<js:OverridableSelectableItemRendererClassFactory/>
+							<j:AddTableRowForArrayListData/>
+							<j:RemoveTableRowForArrayListData/>
+							<j:UpdateTableRowForArrayListData/>
+							<j:RemoveAllItemRendererForArrayListData/>
+						</j:beads>
+					</j:Table>
+					
+					<j:Label localId="selected_fixed"/>
+
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="Select table cell by index: "/>
+						<j:NumericStepper valueChange="fixedheadertable.selectedIndex = event.target.value" minimum="0"/>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:IconButton click="changeTableData()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Change Data"/>
+						</j:beads>
+						<j:icon>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.RECYCLE}"/>
+						</j:icon>
+					</j:IconButton>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+
+			<j:Card>
+				<j:CardHeader>
 					<html:H3 text="Jewel Table" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					
-					<j:Table localId="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}" width="100%">
+					<j:Table localId="table" change="onChange(event, selected)" dataProvider="{tablesModel.guitarrists}" width="100%">
 						<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
 						<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
 						<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
@@ -212,13 +258,13 @@ limitations under the License.
 					<j:Label localId="selected"/>
 
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
-							<j:Label text="Select table cell by index: "/>
-							<j:NumericStepper valueChange="table.selectedIndex = event.target.value" minimum="0"/>
-						</j:HGroup>
-						<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
-							<j:Label text="Select table by item: "/>
-							<j:NumericStepper valueChange="table.selectedItemProperty = table.dataProvider.getItemAt(event.target.value)" minimum="0"/>
-						</j:HGroup> -->
+						<j:Label text="Select table cell by index: "/>
+						<j:NumericStepper valueChange="table.selectedIndex = event.target.value" minimum="0"/>
+					</j:HGroup>
+					<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="Select table by item: "/>
+						<j:NumericStepper valueChange="table.selectedItemProperty = table.dataProvider.getItemAt(event.target.value)" minimum="0"/>
+					</j:HGroup> -->
 				</j:CardPrimaryContent>
 				<j:CardActions>
 					<j:IconButton click="changeTableData()" outlined="true">
@@ -274,8 +320,8 @@ limitations under the License.
 
 			import vos.GuitarristVO;
 
-			private function onChange(event:Event):void {
-                selected.text = "Selected: " + table.selectedItemProperty;
+			private function onChange(event:Event, label:Label):void {
+                label.text = "Selected: " + event.target.selectedItemProperty;
             }
 
 			private function changeTableData():void
