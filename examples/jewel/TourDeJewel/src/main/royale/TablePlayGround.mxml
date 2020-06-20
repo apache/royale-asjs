@@ -219,7 +219,7 @@ limitations under the License.
 						<j:NumericStepper valueChange="fixedheadertable.selectedIndex = event.target.value" minimum="0"/>
 					</j:HGroup>
 				</j:CardPrimaryContent>
-				<j:CardActions>
+				<!-- <j:CardActions>
 					<j:IconButton click="changeTableData()" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Change Data"/>
@@ -228,7 +228,7 @@ limitations under the License.
 							<js:FontAwesomeIcon text="{FontAwesome5IconType.RECYCLE}"/>
 						</j:icon>
 					</j:IconButton>
-				</j:CardActions>
+				</j:CardActions> -->
 			</j:Card>
 		</j:GridCell>
 
