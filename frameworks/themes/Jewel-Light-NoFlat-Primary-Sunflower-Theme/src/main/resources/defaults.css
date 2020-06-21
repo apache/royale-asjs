@@ -1208,9 +1208,6 @@ j|FormItem {
   box-shadow: inset 0 1px 0 white;
   border-radius: 0.25rem;
 }
-.jewel.simpletable .jewel.thead tr {
-  border-bottom: 1px solid #d9d9d9;
-}
 .jewel.simpletable .jewel.tableheadercell:first-of-type {
   border-left: 0px;
 }
@@ -1242,9 +1239,6 @@ j|FormItem {
   box-shadow: inset 0 1px 0 white;
   border-radius: 0.25rem;
 }
-.jewel.table .jewel.thead tr {
-  border-bottom: 1px solid #d9d9d9;
-}
 .jewel.table .jewel.tableheadercell:first-of-type {
   border-left: 0px;
 }
@@ -1256,6 +1250,10 @@ j|FormItem {
   font-size: 1em;
   color: #808080;
   border-left: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
+}
+.jewel.table .jewel.tablerow:first-child .jewel.tablecell {
+  border-top: 1px solid transparent;
 }
 .jewel.table .jewel.tablecell:first-of-type {
   border-left: 0px;
