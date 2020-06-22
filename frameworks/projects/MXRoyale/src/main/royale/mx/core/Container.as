@@ -35,6 +35,7 @@ package mx.core
     import org.apache.royale.core.IMXMLDocument;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStatesImpl;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.events.Event;
@@ -98,8 +99,8 @@ import mx.styles.ISimpleStyleClient;
 import mx.styles.IStyleClient;
 import mx.styles.StyleProtoChain;
 
-use namespace mx_internal;
 */
+use namespace mx_internal;
 
 //--------------------------------------
 //  Events
@@ -877,6 +878,28 @@ public class Container extends UIComponent
 		dispatchEvent( new Event("layoutNeeded") );
 	}
 	
+    /**
+     *  @private
+     */
+    override mx_internal function childAdded(child:IUIBase):void
+    {
+		super.addingChild(child);
+		if (parent)
+		{
+			var oldMeasuredWidth:Number = measuredWidth;
+			var oldMeasuredHeight:Number = measuredHeight;
+			invalidateSize();
+			if (oldMeasuredWidth != measuredWidth ||
+				oldMeasuredHeight != measuredHeight)
+			{
+				if (parent is UIComponent)
+				{
+					(parent as UIComponent).invalidateSize();
+				}
+			}
+		}
+	}
+
 	
 	//----------------------------------
 	//  data

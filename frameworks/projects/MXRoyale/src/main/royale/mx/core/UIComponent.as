@@ -3893,7 +3893,7 @@ COMPILE::JS
 		_measuredWidth = NaN;
 		_measuredHeight = NaN;
         if (parent)
-            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded")); // might cause too many layouts
+            dispatchEvent(new Event("layoutNeeded")); // might cause too many layouts
     }
 
     /**
@@ -5040,6 +5040,8 @@ COMPILE::JS
      */
     public function setActualSize(w:Number, h:Number):void
     {
+    
+    //    trace("setActualSize not implemented");
 		this.setWidthAndHeight(w, h);
     }
 
