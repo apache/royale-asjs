@@ -41,7 +41,8 @@ package org.apache.royale.net
 
 	/**
 	 *  The URLBinaryLoader class is a relatively low-level class designed to get
-	 *  binary data over HTTP the intent is to create similar classes for text and URL vars.  
+	 *  binary data over HTTP the intent is to create similar classes for text and URL vars.
+     *  If you need to use Binary requests (including POST), use URLBinaryLoader.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
