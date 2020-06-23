@@ -535,14 +535,14 @@ package
 		public static const SNAPCHAT_SQUARE:String = "snapchat-square";
 		public static const SNAPCHAT:String = "snapchat";
 		public static const SNOWFLAKE:String = "snowflake";
-		public static const SORT_ALPHA_ASC:String = "sort-alpha-asc";
-		public static const SORT_ALPHA_DESC:String = "sort-alpha-desc";
-		public static const SORT_AMOUNT_ASC:String = "sort-amount-asc";
-		public static const SORT_AMOUNT_DESC:String = "sort-amount-desc";
-		public static const SORT_ASC:String = "sort-asc";
-		public static const SORT_DESC:String = "sort-desc";
-		public static const SORT_NUMERIC_ASC:String = "sort-numeric-asc";
-		public static const SORT_NUMERIC_DESC:String = "sort-numeric-desc";
+		public static const SORT_ALPHA_UP:String = "sort-alpha-up";
+		public static const SORT_ALPHA_DOWN:String = "sort-alpha-down";
+		public static const SORT_AMOUNT_UP:String = "sort-amount-up";
+		public static const SORT_AMOUNT_DOWN:String = "sort-amount-down";
+		public static const SORT_UP:String = "sort-up";
+		public static const SORT_DOWN:String = "sort-down";
+		public static const SORT_NUMERIC_UP:String = "sort-numeric-up";
+		public static const SORT_NUMERIC_DOWN:String = "sort-numeric-down";
 		public static const SORT:String = "sort";
 		public static const SOUNDCLOUD:String = "soundcloud";
 		public static const SPACE_SHUTTLE:String = "space-shuttle";
@@ -719,6 +719,20 @@ package
         public static const SKULL:String = "skull";
         public static const SPIDER:String = "spider";
 
+		public static const USER_ASTRONAUT:String = "user-astronaut";
+		public static const USER_ALT:String = "user-alt";
+		public static const USER_LOCK:String = "user-lock";
+		public static const USERS_CROWN:String = "users-crown";
+		public static const USER_HARD_HAT:String = "user-hard-hat";
+		public static const USER_TIE:String = "user-tie";
+		public static const USER_SHIELD:String = "user-shield";
+		public static const HOME_LG_ALT:String = "home-lg-alt";
+		public static const LOCK_ALT:String = "lock-alt";
+		public static const FOLDERS:String = "folders";
+		public static const COMMENT_ALT_DOTS:String = "comment-alt-dots";
+		public static const SHIELD_CHECK:String = "shield-check";
+		public static const BOOK_READER:String = "book-reader";
+		public static const CHART_LINE:String = "chart-line";
 
     }
 }
