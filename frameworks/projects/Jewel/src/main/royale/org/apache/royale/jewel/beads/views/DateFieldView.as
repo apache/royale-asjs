@@ -155,6 +155,7 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		public static const DEFAULT_BUTTON_WIDTH:Number = 38;
+		public static const DEFAULT_WIDTH:Number = 162;
 
 		/**
 		 * Size the component at start up
@@ -169,7 +170,7 @@ package org.apache.royale.jewel.beads.views
 
 			// if no width (neither px or %), set default width
 			if(df.isWidthSizedToContent())
-				df.width = 200;
+				df.width = DEFAULT_WIDTH;
 			
 			_textInput.percentWidth = 100;
 		}
