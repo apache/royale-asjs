@@ -1019,6 +1019,10 @@ j|ListItemRenderer {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.jewel.label.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 j|Label {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
