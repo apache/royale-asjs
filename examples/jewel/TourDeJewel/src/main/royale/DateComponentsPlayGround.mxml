@@ -161,7 +161,7 @@ limitations under the License.
 				<j:Label multiline="true" html="&lt;strong>DateChooser selected date:&lt;/strong> {dateChooserSelectedDate.selectedDate}" width="275"/>
 			</j:Card>
 		</j:GridCell>
-		
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DateField Disabled"/>
@@ -178,6 +178,87 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 				</j:DateChooser>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Sizing" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is not set, so it defaults to 200px.</p>]]></j:html>
+					</j:Label>
+					<j:DateField>
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+					
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is set to 140 pixels.</p>]]></j:html>
+					</j:Label>
+					<j:DateField width="140">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+					
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is set to 100%.</p>]]></j:html>
+					</j:Label>
+					<j:DateField width="100%">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is set to 50%.</p>]]></j:html>
+					</j:Label>
+					<j:DateField width="50%">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Resizing" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> width size is managed by a slider.</p>]]></j:html>
+					</j:Label>
+
+					<j:DateField localId="df3">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsCenter">
+					<j:beads>
+						<j:VerticalLayout gap="3"/>
+					</j:beads>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="width: {df3.width}px"/>
+						<j:HSlider width="250" value="200" minimum="100" maximum="400" valueChange="df3.width = event.target.value;"/>
+					</j:HGroup>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 
