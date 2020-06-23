@@ -61,6 +61,12 @@ limitations under the License.
 						<j:ToolTip toolTip="This Label is clickable!"/>
 					</j:beads>
 				</j:Label>
+				
+				<j:Label localId="label2" text="This is a Label with text trucncated text and with more text and setting the width" width="300">
+					<j:beads>
+						<j:TruncateText/>
+					</j:beads>
+				</j:Label>
 
 				<j:Label text="This is a multiline label with more text that wraps if container has set a width" multiline="true"/>
 
