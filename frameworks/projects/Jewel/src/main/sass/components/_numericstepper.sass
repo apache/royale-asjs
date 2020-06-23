@@ -21,16 +21,47 @@
 
 // NumericStepper variables
 
-.jewel.numericstepper    
+.jewel.numericstepper
+    display: flex
+    flex-flow: column wrap
+    height: 38px
+    
+    .jewel.spinner
+        display: none
+        order: -1
     .jewel.textinput
+        width: calc(100% - 38px)
         display: inline-flex
+        order: 0
+        z-index: 1
+    .jewel.button
+        width: 38px
+        &::after
+            content: ' '
+            position: absolute
+        &.up
+            order: 1
+        &.down
+            order: 2
+        &.up, &.down
+            height: 16.5px
+            padding: 8.5px 16px
 
 @media (max-width: $desktop)
     .jewel.numericstepper
+        flex-flow: row nowrap
+
         .jewel.textinput
-            z-index: 1
-            position: relative
-            
+            order: 1
+        .jewel.button
+            &.up
+                order: 2
+                height: 100%
+            &.down
+                order: 0
+                height: 100%
+            &.up, &.down
+                
 
 j|NumericStepper
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")
@@ -43,34 +74,25 @@ j|NumericStepper
         // padding: 0px
         // border-style: none
 
-
 // Jewel Spinner
 
 // Spinner variables
 .jewel.spinner
-    display: inline-flex
-    flex-direction: column
-    vertical-align: top
-    .jewel.button
-        display: flex
+//     display: inline-flex
+//     flex-direction: column
+//     vertical-align: top
 
-        &.up, &.down
-            &::after
-                content: ' '
-                position: absolute
+//     .jewel.button
+//         display: flex
 
-@media (max-width: $desktop)
-    .jewel.spinner
-        position: relative
-        flex-direction: row
-        
-        .jewel.button
-        
-            &.up
-                // position: absolute
-                 
-            &.down
-                // position: absolute
+//         &.up
+            
+//         &.down
+
+//         &.up, &.down
+//             &::after
+//                 content: ' '
+//                 position: absolute
             
 j|Spinner
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")

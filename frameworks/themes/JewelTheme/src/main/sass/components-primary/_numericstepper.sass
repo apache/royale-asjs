@@ -30,30 +30,12 @@ $numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
 .jewel.numericstepper
     .jewel.textinput
         input
-            width: $numericstepper-input-width
+            // width: $numericstepper-input-width
             border-radius: $numericstepper-border-radius 0px 0px $numericstepper-border-radius
 
-@media (max-width: $desktop)
-    .jewel.numericstepper
-        width: 190px
-        height: 39px
-
-        .jewel.textinput
-            left: 38px
-
-            input
-                border-radius: 0
-
-
-// Jewel Spinner
-
-// Spinner variables
-.jewel.spinner
-    width: 34px
-    
     .jewel.button
-        padding: 0px
-        height: 19px
+        // padding: 0px
+        // height: 19px
 
         border-radius: 0 $numericstepper-border-radius $numericstepper-border-radius 0
         border-left: 0px
@@ -70,8 +52,8 @@ $numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
                 width: $numericstepper-button-width
                 height: $numericstepper-button-height
 
-                left: $numericstepper-button-xoffset
-                top: $numericstepper-button-yoffset
+                // left: $numericstepper-button-xoffset
+                // top: $numericstepper-button-yoffset
         &.down
             border-top-right-radius: 0px
             border-top-style: groove
@@ -82,26 +64,32 @@ $numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
                 width: $numericstepper-button-width
                 height: $numericstepper-button-height
 
-                left: $numericstepper-button-xoffset
-                top: $numericstepper-button-yoffset
+                // left: $numericstepper-button-xoffset
+                // top: $numericstepper-button-yoffset
 
 @media (max-width: $desktop)
-    .jewel.spinner
-        left: -112px
-        width: auto
+    .jewel.numericstepper
+        
+        .jewel.textinput
+            input
+                border-radius: 0
 
+        .jewel.spinner
+            
         .jewel.button
-            width: 39px
-            height: 38px
             
             &.up
-                left: 149px
-
                 border: 1px solid darken($default-color, 15%)
                 border-radius: 0 $numericstepper-border-radius $numericstepper-border-radius 0
+                margin-left: -1px
             &.down
-                left: -39px
-
                 border: 1px solid darken($default-color, 15%)
                 border-radius: $numericstepper-border-radius 0 0 $numericstepper-border-radius
-                border-top-style: solid 
+                border-top-style: solid
+                margin-right: -1px
+
+// Jewel Spinner
+
+// Spinner variables
+.jewel.spinner
+    //width: 34px
