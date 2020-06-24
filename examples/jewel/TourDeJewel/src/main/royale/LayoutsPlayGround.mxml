@@ -198,7 +198,7 @@ limitations under the License.
 
 					<j:Group className="wrapper" width="100%">
 						<j:beads>
-							<j:TileHorizontalLayout localId="thl" waitForSize="true"/>
+							<j:TileHorizontalLayout localId="thl"/>
 							<js:BrowserResizeListener/>
 						</j:beads>
 						<j:Button text="1" emphasis="primary" width="60" height="60"/>
