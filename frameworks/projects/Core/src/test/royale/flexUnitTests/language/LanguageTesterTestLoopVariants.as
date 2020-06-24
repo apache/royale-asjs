@@ -81,6 +81,17 @@ package flexUnitTests.language
 
         }
 
+        [Test]
+        public function testForLoopWithoutBody():void
+        {
+            var test:int=-1;
+            var limit:int=100;
+            //for loop with missing body
+            for (test=-1;test<limit;test++);
+
+            assertEquals(test, limit, 'unexpected result');
+
+        }
         
     }
 }
