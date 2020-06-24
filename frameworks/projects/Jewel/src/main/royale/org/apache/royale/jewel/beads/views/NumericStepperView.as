@@ -94,7 +94,6 @@ package org.apache.royale.jewel.beads.views
 			// on phones and tablets, we want to reorder elements (again flexbox) and position :
 			// button down + text input + button up
 			var spinnerview:SpinnerView = spinner.getBeadByType(IBeadView) as SpinnerView;
-			trace(spinnerview);
 			(value as IParent).addElement(spinnerview.increment as IChild);
 			(value as IParent).addElement(spinnerview.decrement as IChild);
 			
