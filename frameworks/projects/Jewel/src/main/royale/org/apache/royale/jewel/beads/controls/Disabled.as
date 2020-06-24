@@ -113,29 +113,28 @@ package org.apache.royale.jewel.beads.controls
 			
 			if(_disabled) {
 				setDisableAndTabIndex(elem);
-				setDisableAndTabIndex(pos);
+				setDisableAndTabIndex(pos, true);
 			} else {
 				removeDisableAndTabIndex(elem);
-				removeDisableAndTabIndex(pos);
+				removeDisableAndTabIndex(pos, true);
 			}
 			}
 		}
 
 		COMPILE::JS
-		protected function setDisableAndTabIndex(o:HTMLElement):void
+		protected function setDisableAndTabIndex(o:HTMLElement, positioner:Boolean = false):void
 		{
 			o.setAttribute("disabled", "");
-			o.tabIndex = -1;
+			if(!positioner)
+				o.tabIndex = -1;
 		}
 
 		COMPILE::JS
-		protected function removeDisableAndTabIndex(o:*):void
+		protected function removeDisableAndTabIndex(o:*, positioner:Boolean = false):void
 		{
 			o.removeAttribute("disabled");
-				
-			lastTabVal ?
-				o.tabIndex = lastTabVal :
-				o.tabIndex = null;
+			if(!positioner)
+				o.tabIndex = lastTabVal ? lastTabVal : null;
 		}
 	}
 }
