@@ -334,7 +334,7 @@ package org.apache.royale.core
                 _width = newWidth;
                 COMPILE::JS
                 {
-                    this.positioner.style.width = isNaN(newWidth) ? null : newWidth.toString() + 'px';        
+                this.positioner.style.width = isNaN(newWidth) ? null : newWidth.toString() + 'px';        
                 }
                 if (!noEvent && !heightChanged) 
                     sendEvent(this, "widthChanged");
@@ -344,7 +344,7 @@ package org.apache.royale.core
                 _height = newHeight;
                 COMPILE::JS
                 {
-                    this.positioner.style.height = isNaN(newHeight) ? null : newHeight.toString() + 'px';        
+                this.positioner.style.height = isNaN(newHeight) ? null : newHeight.toString() + 'px';        
                 }
                 if (!noEvent && !widthChanged)
                     sendEvent(this, "heightChanged");

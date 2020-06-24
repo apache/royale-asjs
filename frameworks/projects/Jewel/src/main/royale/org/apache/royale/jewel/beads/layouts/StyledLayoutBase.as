@@ -261,24 +261,17 @@ package org.apache.royale.jewel.beads.layouts
 		public var waitForSize:Boolean = false;
 
 		/**
-		 * If waitForSize is true, sizeInitialized will be true when host get size.
-		 */
-		COMPILE::JS
-		protected var sizeInitialized:Boolean = false;
-		
-		/**
 		 * We call requestAnimationFrame until we get width and height
 		 */
 		COMPILE::JS
 		protected function checkHostSize():void {
-			if(sizeInitialized) return;
 			if((host.width == 0 && !isNaN(host.percentWidth)) || 
 				(host.height == 0 && !isNaN(host.percentHeight)))
 			{
 				requestAnimationFrame(checkHostSize);
 			} else
 			{
-				sizeInitialized = true;
+				waitForSize = false;
 				executeLayout();
 			}
 		}
