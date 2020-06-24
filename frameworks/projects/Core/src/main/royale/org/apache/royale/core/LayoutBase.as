@@ -86,10 +86,9 @@ package org.apache.royale.core
 		{
 			_strand = value;
 			host = value as ILayoutChild;
-			var sizeChange:Function = handleSizeChange;
-			listenOnStrand("widthChanged", sizeChange);
-			listenOnStrand("heightChanged", sizeChange);
-			listenOnStrand("sizeChanged", sizeChange);
+			listenOnStrand("widthChanged", handleSizeChange);
+			listenOnStrand("heightChanged", handleSizeChange);
+			listenOnStrand("sizeChanged", handleSizeChange);
 
 			listenOnStrand("childrenAdded", handleChildrenAdded);
 			listenOnStrand("initComplete", handleInitComplete);

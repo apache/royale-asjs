@@ -63,7 +63,7 @@ package org.apache.royale.core
             }
             COMPILE::JS
             {
-                window.addEventListener('resize', this.resizeHandler, false);
+            window.addEventListener('resize', resizeHandler, false);
             }
         }
         
