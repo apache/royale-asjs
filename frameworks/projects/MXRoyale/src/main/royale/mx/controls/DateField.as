@@ -2960,6 +2960,15 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
 		if (child == (view as DateFieldView).popUp) return true;
 		return super.owns(child);
 	}
+	
+	//----------------------------------
+	//  value
+        //----------------------------------
+	
+        override public function get value():Object
+	{
+               return selectedDate;	
+	}
 }
 
 }
