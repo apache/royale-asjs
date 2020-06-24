@@ -24,18 +24,15 @@
 .jewel.numericstepper
     display: flex
     flex-flow: column wrap
-    height: 38px
     
     .jewel.spinner
         display: none
         order: -1
     .jewel.textinput
-        width: calc(100% - 38px)
         display: inline-flex
         order: 0
         z-index: 1
     .jewel.button
-        width: 38px
         &::after
             content: ' '
             position: absolute
@@ -43,9 +40,6 @@
             order: 1
         &.down
             order: 2
-        &.up, &.down
-            height: 16.5px
-            padding: 8.5px 16px
 
 @media (max-width: $desktop)
     .jewel.numericstepper

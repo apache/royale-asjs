@@ -3307,20 +3307,15 @@ j|CollapsibleNavigationSectionRenderer {
 .jewel.numericstepper {
   display: flex;
   flex-flow: column wrap;
-  height: 38px;
 }
 .jewel.numericstepper .jewel.spinner {
   display: none;
   order: -1;
 }
 .jewel.numericstepper .jewel.textinput {
-  width: calc(100% - 38px);
   display: inline-flex;
   order: 0;
   z-index: 1;
-}
-.jewel.numericstepper .jewel.button {
-  width: 38px;
 }
 .jewel.numericstepper .jewel.button::after {
   content: " ";
@@ -3331,10 +3326,6 @@ j|CollapsibleNavigationSectionRenderer {
 }
 .jewel.numericstepper .jewel.button.down {
   order: 2;
-}
-.jewel.numericstepper .jewel.button.up, .jewel.numericstepper .jewel.button.down {
-  height: 16.5px;
-  padding: 8.5px 16px;
 }
 
 @media (max-width: 992px) {
