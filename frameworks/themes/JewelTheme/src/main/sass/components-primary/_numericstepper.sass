@@ -20,29 +20,31 @@
 // Jewel NumericStepper
 
 // NumericStepper variables
-$numericstepper-input-width: 8em
 $numericstepper-border-radius: $border-radius
+$numericstepper-default-button-width: 33px
 $numericstepper-button-width: 12px
 $numericstepper-button-height: 7px
-$numericstepper-button-xoffset: calc(50% - #{$numericstepper-button-width/2})
-$numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
 
 .jewel.numericstepper
+    height: 38px
+
     .jewel.textinput
+        width: calc(100% - #{$numericstepper-default-button-width})
+
         input
-            // width: $numericstepper-input-width
             border-radius: $numericstepper-border-radius 0px 0px $numericstepper-border-radius
 
     .jewel.button
-        // padding: 0px
-        // height: 19px
-
         border-radius: 0 $numericstepper-border-radius $numericstepper-border-radius 0
         border-left: 0px
+        width: 12%
+        width: $numericstepper-default-button-width
         
         &, &:hover, &:hover:focus, &:active, &:active:focus
             color: transparent
-
+        &.up, &.down
+            height: 16.5px
+            padding: 8.5px 16px
         &.up
             border-bottom-right-radius: 0px
 
@@ -51,9 +53,6 @@ $numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
                 background: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center
                 width: $numericstepper-button-width
                 height: $numericstepper-button-height
-
-                // left: $numericstepper-button-xoffset
-                // top: $numericstepper-button-yoffset
         &.down
             border-top-right-radius: 0px
             border-top-style: groove
@@ -63,9 +62,6 @@ $numericstepper-button-yoffset: calc(50% - #{$numericstepper-button-height/2})
                 background: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center
                 width: $numericstepper-button-width
                 height: $numericstepper-button-height
-
-                // left: $numericstepper-button-xoffset
-                // top: $numericstepper-button-yoffset
 
 @media (max-width: $desktop)
     .jewel.numericstepper
