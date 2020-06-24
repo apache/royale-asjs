@@ -51,7 +51,9 @@ package org.apache.royale.jewel.beads.controls
 		}
 
 		COMPILE::JS
-		protected var lastTabVal:String;
+		protected var lastElementTabVal:String = null;
+
+		protected var initialized:Boolean = false;
 
 		private var _disabled:Boolean = true;
         /**
@@ -71,17 +73,15 @@ package org.apache.royale.jewel.beads.controls
         {
 			if(value != _disabled)
 			{
+				_disabled = value;
 				COMPILE::JS
 				{
-				if(value && _strand)
-					lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
-				}
-				_disabled = value;
 				if(_strand)
 				{
 					updateHost();
 					sendStrandEvent(_strand, new ValueEvent("disabledChange", disabled));
-				}	
+				}
+				}
 			}
         }
 
@@ -97,10 +97,6 @@ package org.apache.royale.jewel.beads.controls
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			COMPILE::JS
-            {
-            lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
-            }
 			updateHost();
 		}
 
@@ -111,12 +107,17 @@ package org.apache.royale.jewel.beads.controls
 			var elem:HTMLElement = (_strand as HTMLElementWrapper).element;
 			var pos:HTMLElement = (_strand as IUIBase).positioner;
 			
+			if(!initialized){
+				initialized = true;
+            	lastElementTabVal = elem.getAttribute("tabindex");
+			}
+			
 			if(_disabled) {
-				setDisableAndTabIndex(elem);
 				setDisableAndTabIndex(pos, true);
+				setDisableAndTabIndex(elem);
 			} else {
-				removeDisableAndTabIndex(elem);
 				removeDisableAndTabIndex(pos, true);
+				removeDisableAndTabIndex(elem, false, lastElementTabVal);
 			}
 			}
 		}
@@ -130,11 +131,11 @@ package org.apache.royale.jewel.beads.controls
 		}
 
 		COMPILE::JS
-		protected function removeDisableAndTabIndex(o:*, positioner:Boolean = false):void
+		protected function removeDisableAndTabIndex(o:*, positioner:Boolean = false, lastTabVal:String = null):void
 		{
 			o.removeAttribute("disabled");
 			if(!positioner)
-				o.tabIndex = lastTabVal ? lastTabVal : null;
+				o.tabIndex = (lastTabVal == null) ? null : lastTabVal;
 		}
 	}
 }
