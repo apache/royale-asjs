@@ -75,7 +75,7 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>Following <b>NumericStepper</b> size is not set, so it defaults to 200px.</p>]]></j:html>
+						<j:html><![CDATA[<p>Following <b>NumericStepper</b> size is not set, so it defaults to 142px.</p>]]></j:html>
 					</j:Label>
 
 					<j:NumericStepper/>
@@ -83,7 +83,7 @@ limitations under the License.
 					<html:Hr width="100%"/>
 
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>Following <b>NumericStepper</b> size is set to 120 pixels.</p>]]></j:html>
+						<j:html><![CDATA[<p>Following <b>NumericStepper</b> size is set to 100 pixels.</p>]]></j:html>
 					</j:Label>
 					<j:NumericStepper width="100"/>
 					

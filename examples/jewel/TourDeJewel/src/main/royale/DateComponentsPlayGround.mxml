@@ -188,7 +188,7 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>Following <b>DateField</b> size is not set, so it defaults to 200px.</p>]]></j:html>
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is not set, so it defaults to 162px.</p>]]></j:html>
 					</j:Label>
 					<j:DateField>
 						<j:beads>
