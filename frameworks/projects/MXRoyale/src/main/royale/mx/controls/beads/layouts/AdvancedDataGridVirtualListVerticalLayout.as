@@ -122,7 +122,7 @@ package mx.controls.beads.layouts
                         return true;
                     }
                     var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
-                    var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
+                    var widthSizedToContent:Boolean = host.isWidthSizedToContent();
                     var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
                     var hostWidth:Number = host.width;
                     var hostHeight:Number = host.height;
@@ -235,6 +235,7 @@ package mx.controls.beads.layouts
                 }
                 COMPILE::JS
                 {
+                    var hostWidth:Number = host.width;
                     // the strategy for virtualization in JS is to leverage the built-in scrollbars
                     // by creating a topSpacer and bottomSpacer that take up the area that is offscreen
                     // so the scrollbars have the right metrics, then create enough renderers to
@@ -338,12 +339,14 @@ package mx.controls.beads.layouts
                             // same list/datagroup, but for ADG, the padding is outside of the lists
                             ir  = factory.getItemRendererForIndex(i, i - startIndex);
                             ir.element.style.display = "block";
+							(ir as IUIBase).width = hostWidth;
                             visibleIndexes.push(i);
                         }
                         else if (i > lastIndex)
                         {
                             ir  = factory.getItemRendererForIndex(i, i - startIndex);
                             ir.element.style.display = "block";
+							(ir as IUIBase).width = hostWidth;
                             visibleIndexes.push(i);
                         }
                     }
