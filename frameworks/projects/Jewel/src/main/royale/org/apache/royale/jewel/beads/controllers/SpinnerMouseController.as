@@ -121,15 +121,14 @@ package org.apache.royale.jewel.beads.controllers
 				if (timer.delay > 150)
 				{
 					var newdelay:Number = timer.delay/2;
-					timer.stop();
-					timer = null;
+					removeTimer(incOrDecFunc);
 					createTimer(incOrDecFunc, newdelay)
 				}
 			}
 		}
 
 		/**
-		 * This create the timer each time is needed depending on function to listen and delay
+		 * Create the timer each time needed depending on function to listen and delay
 		 * @private
 		 */
 		private function createTimer(incOrDecFunc:Function, delay:Number):void
@@ -137,6 +136,17 @@ package org.apache.royale.jewel.beads.controllers
 			timer = new Timer(delay, 0);
 			timer.addEventListener("timer", incOrDecFunc);
 			timer.start();
+		}
+		
+		/**
+		 * Remove the timer each time needed depending on function to listen
+		 * @private
+		 */
+		private function removeTimer(incOrDecFunc:Function):void
+		{
+			timer.removeEventListener("timer", incOrDecFunc);
+			timer.stop();
+			timer = null;
 		}
 
 		/**
@@ -153,8 +163,7 @@ package org.apache.royale.jewel.beads.controllers
 		private function incrementMouseUpHandlermouseUpHandler(event:MouseEvent):void
 		{
 			mouseDown = false;
-			timer.stop();
-			timer = null;
+			removeTimer(incrementClickHandler);
 		}
 		/**
 		 * Increment mouse click handler
@@ -183,8 +192,7 @@ package org.apache.royale.jewel.beads.controllers
 		private function decrementMouseUpHandlermouseUpHandler(event:MouseEvent):void
 		{
 			mouseDown = false;
-			timer.stop();
-			timer = null;
+			removeTimer(decrementClickHandler);
 		}
 		/**
 		 * Decrement mouse click handler
@@ -192,7 +200,7 @@ package org.apache.royale.jewel.beads.controllers
 		private function decrementClickHandler(event:Event):void
 		{
 			increaseCadence(decrementClickHandler);
-			
+
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
