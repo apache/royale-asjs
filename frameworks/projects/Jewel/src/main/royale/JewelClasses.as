@@ -56,6 +56,7 @@ package
         import org.apache.royale.jewel.beads.controllers.VirtualListKeyDownController; VirtualListKeyDownController;
         import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController; TableCellSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.ComboBoxController; ComboBoxController;
+        import org.apache.royale.jewel.beads.controllers.NumericStepperController; NumericStepperController;
 		import org.apache.royale.jewel.beads.controllers.SnackbarController; SnackbarController;
 		import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
         import org.apache.royale.jewel.beads.controllers.WizardController; WizardController;
