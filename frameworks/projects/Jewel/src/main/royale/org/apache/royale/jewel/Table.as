@@ -252,6 +252,9 @@ package org.apache.royale.jewel
         override protected function createElement():WrappedHTMLElement
         {
 			table = addElementToWrapper(this, 'table') as HTMLTableElement;
+			table.setAttribute('border', 0);
+			table.setAttribute('cellpadding', 0);
+			table.setAttribute('cellspacing', 0);
 			positioner = document.createElement('div') as WrappedHTMLElement;
 			return element;
         }
