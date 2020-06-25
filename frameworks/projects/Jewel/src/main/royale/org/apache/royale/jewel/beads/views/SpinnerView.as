@@ -20,19 +20,18 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF {
 	import flash.display.DisplayObject;
+
+	import org.apache.royale.core.IBeadModel;
+	import org.apache.royale.core.ILayoutChild;
 	}
 	COMPILE::JS {
 	import org.apache.royale.jewel.beads.controllers.SpinnerMouseController;
 	}
     import org.apache.royale.core.BeadViewBase;
-    import org.apache.royale.core.IBeadModel;
-    import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.IRangeModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.jewel.Button;
     import org.apache.royale.jewel.beads.controls.spinner.ISpinnerView;
 
@@ -45,7 +44,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class SpinnerView extends BeadViewBase implements ISpinnerView, IBeadView
+	public class SpinnerView extends BeadViewBase implements ISpinnerView
 	{
 		/**
 		 *  constructor.
@@ -110,8 +109,8 @@ package org.apache.royale.jewel.beads.views
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 			}
 			
-            IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
+			listenOnStrand("widthChanged",sizeChangeHandler);
+			listenOnStrand("heightChanged",sizeChangeHandler);
 			
             COMPILE::JS {
 				var host:UIBase = value as UIBase;

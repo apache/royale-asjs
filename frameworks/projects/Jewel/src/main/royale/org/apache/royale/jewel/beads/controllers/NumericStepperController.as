@@ -94,14 +94,14 @@ package org.apache.royale.jewel.beads.controllers
 			
 			// listen for change events on the spinner so the value can be updated as
 			// as resizing the component
-			spinner.addEventListener("valueChange",spinnerValueChanged);
+			spinner.addEventListener("valueChange", spinnerValueChanged);
 			
 			// listen for changes and update the UI accordingly
-			listenOnStrand("valueChange",modelChangeHandler);
-			listenOnStrand("minimumChange",modelChangeHandler);
-			listenOnStrand("maximumChange",modelChangeHandler);
-			listenOnStrand("stepSizeChange",modelChangeHandler);
-			listenOnStrand("snapIntervalChange",modelChangeHandler);
+			listenOnStrand("valueChange", modelChangeHandler);
+			listenOnStrand("minimumChange", modelChangeHandler);
+			listenOnStrand("maximumChange", modelChangeHandler);
+			listenOnStrand("stepSizeChange", modelChangeHandler);
+			listenOnStrand("snapIntervalChange", modelChangeHandler);
 		}
 
 		/**
