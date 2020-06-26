@@ -862,6 +862,8 @@ package mx.rpc.http
 				if (parameters is String && xmlEncode == null)
 				{
 					paramsToSend = parameters as String;
+				} else if(parameters is Array && parameters.length == 0) {
+					paramsToSend = parameters as String;
 				} else { 
 					paramsToSend = parameters.toXMLString();	
 				}
