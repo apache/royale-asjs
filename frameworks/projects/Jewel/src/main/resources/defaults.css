@@ -3347,6 +3347,7 @@ j|CollapsibleNavigationSectionRenderer {
 j|NumericStepper {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.NumericStepperView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.NumericStepperController");
 }
 
 j|Spinner {
