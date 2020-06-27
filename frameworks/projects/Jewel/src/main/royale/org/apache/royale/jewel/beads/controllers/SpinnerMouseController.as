@@ -154,6 +154,11 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		private function incrementMouseDownHandler(event:MouseEvent):void
 		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
 			mouseDown = true;
 			createTimer(incrementClickHandler, timerdelay);
 		}
@@ -162,6 +167,11 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		private function incrementMouseUpHandlermouseUpHandler(event:MouseEvent):void
 		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
 			mouseDown = false;
 			removeTimer(incrementClickHandler);
 		}
@@ -183,6 +193,11 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		private function decrementMouseDownHandler(event:MouseEvent):void
 		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
 			mouseDown = true;
 			createTimer(decrementClickHandler, timerdelay);
 		}
@@ -191,6 +206,11 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		private function decrementMouseUpHandlermouseUpHandler(event:MouseEvent):void
 		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
 			mouseDown = false;
 			removeTimer(decrementClickHandler);
 		}
