@@ -3337,11 +3337,9 @@ j|CollapsibleNavigationSectionRenderer {
   }
   .jewel.numericstepper .jewel.button.up {
     order: 2;
-    height: 100%;
   }
   .jewel.numericstepper .jewel.button.down {
     order: 0;
-    height: 100%;
   }
 }
 j|NumericStepper {

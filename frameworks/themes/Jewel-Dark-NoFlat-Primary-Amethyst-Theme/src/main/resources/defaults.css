@@ -924,13 +924,10 @@ j|FormItem {
   border-left: 0px;
   width: 12%;
   width: 33px;
+  height: 50%;
 }
 .jewel.numericstepper .jewel.button, .jewel.numericstepper .jewel.button:hover, .jewel.numericstepper .jewel.button:hover:focus, .jewel.numericstepper .jewel.button:active, .jewel.numericstepper .jewel.button:active:focus {
   color: transparent;
-}
-.jewel.numericstepper .jewel.button.up, .jewel.numericstepper .jewel.button.down {
-  height: 16.5px;
-  padding: 8.5px 16px;
 }
 .jewel.numericstepper .jewel.button.up {
   border-bottom-right-radius: 0px;
@@ -949,6 +946,9 @@ j|FormItem {
   width: 12px;
   height: 7px;
 }
+.jewel.numericstepper .jewel.button.up, .jewel.numericstepper .jewel.button.down {
+  padding: 8.5px 16px;
+}
 
 @media (max-width: 992px) {
   .jewel.numericstepper .jewel.textinput input {
@@ -958,12 +958,14 @@ j|FormItem {
     border: 1px solid #333333;
     border-radius: 0 0.25rem 0.25rem 0;
     margin-left: -1px;
+    height: 100%;
   }
   .jewel.numericstepper .jewel.button.down {
     border: 1px solid #333333;
     border-radius: 0.25rem 0 0 0.25rem;
     border-top-style: solid;
     margin-right: -1px;
+    height: 100%;
   }
 }
 .popup-content::before {

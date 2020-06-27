@@ -45,17 +45,15 @@
     .jewel.numericstepper
         flex-flow: row nowrap
 
+        .jewel.spinner
+
         .jewel.textinput
             order: 1
         .jewel.button
             &.up
                 order: 2
-                height: 100%
             &.down
-                order: 0
-                height: 100%
-            &.up, &.down
-                
+                order: 0                
 
 j|NumericStepper
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")
@@ -93,9 +91,7 @@ j|Spinner
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.RangeModel")
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.SpinnerView")
     IBeadController:  ClassReference("org.apache.royale.jewel.beads.controllers.SpinnerMouseController")
-    // width: 16px
-    // height: 32px
-
+    
 @media -royale-swf
     j|Spinner
         // IBeadController: ClassReference("org.apache.royale.html.beads.controllers.SpinnerMouseController")

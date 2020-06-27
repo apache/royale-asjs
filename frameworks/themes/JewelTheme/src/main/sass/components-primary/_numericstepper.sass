@@ -28,6 +28,8 @@ $numericstepper-button-height: 7px
 .jewel.numericstepper
     height: 38px
 
+    .jewel.spinner
+
     .jewel.textinput
         width: calc(100% - #{$numericstepper-default-button-width})
 
@@ -39,12 +41,12 @@ $numericstepper-button-height: 7px
         border-left: 0px
         width: 12%
         width: $numericstepper-default-button-width
+        height: 50%
         
+        &::after
+
         &, &:hover, &:hover:focus, &:active, &:active:focus
             color: transparent
-        &.up, &.down
-            height: 16.5px
-            padding: 8.5px 16px
         &.up
             border-bottom-right-radius: 0px
 
@@ -62,6 +64,8 @@ $numericstepper-button-height: 7px
                 background: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center
                 width: $numericstepper-button-width
                 height: $numericstepper-button-height
+        &.up, &.down
+            padding: 8.5px 16px
 
 @media (max-width: $desktop)
     .jewel.numericstepper
@@ -78,11 +82,13 @@ $numericstepper-button-height: 7px
                 border: 1px solid darken($default-color, 15%)
                 border-radius: 0 $numericstepper-border-radius $numericstepper-border-radius 0
                 margin-left: -1px
+                height: 100%
             &.down
                 border: 1px solid darken($default-color, 15%)
                 border-radius: $numericstepper-border-radius 0 0 $numericstepper-border-radius
                 border-top-style: solid
                 margin-right: -1px
+                height: 100%
 
 // Jewel Spinner
 
