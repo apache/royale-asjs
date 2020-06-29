@@ -82,6 +82,7 @@
 	<component id="ControlBar" class="mx.containers.ControlBar"/>
 	<component id="Panel" class="mx.containers.Panel"/>
 	<component id="ToolTip" class="mx.controls.ToolTip" />
+    <component id="TinyEditor" class="mx.controls.TinyEditor" />
 	<component id="SortField" class="mx.collections.SortField"/>
 	<component id="Sort" class="mx.collections.Sort"/>
 	<component id="Stroke" class="mx.graphics.Stroke"/>
