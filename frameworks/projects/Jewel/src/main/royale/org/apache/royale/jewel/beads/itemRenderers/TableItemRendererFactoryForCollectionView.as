@@ -173,6 +173,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
             // THEAD - remove header items
 			removeElements(view.thead);
+
+			if(!model.columns)
+				return;
+			
             // -- add the header
             createHeader();
 			
