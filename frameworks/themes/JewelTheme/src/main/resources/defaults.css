@@ -1254,6 +1254,9 @@ j|FormItem {
   box-shadow: inset 0 1px 0 white;
 }
 
+.jewel.tableitem {
+  height: 100%;
+}
 .jewel.tableitem.hovered {
   color: #FFFFFF;
   background: #3CADF1;

@@ -211,6 +211,7 @@ package org.apache.royale.jewel.beads.itemRenderers
                     (ir as StyledDataItemRenderer).dataField = labelField;
 					(ir as StyledDataItemRenderer).rowIndex = i;
 					(ir as StyledDataItemRenderer).columnIndex = j;
+					(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, item, index);
                     fillRenderer(index++, item, (ir as IIndexedItemRenderer), presentationModel);
 			        
                     if(column.align != "")
@@ -245,7 +246,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 										itemRenderer:IIndexedItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
-			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(itemRenderer, item, index);
 			tbody.addItemRendererAt(itemRenderer, index);
 			(itemRenderer as ILabelFieldItemRenderer).labelField = labelField;
 			
