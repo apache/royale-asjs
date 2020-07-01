@@ -23,10 +23,12 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IParent;
     import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
+    import org.apache.royale.core.IItemRendererClassFactory;
+    import org.apache.royale.core.IItemRendererInitializer;
     import org.apache.royale.core.ILabelFieldItemRenderer;
+    import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
@@ -180,7 +182,6 @@ package org.apache.royale.jewel.beads.itemRenderers
             // -- add the header
             createHeader();
 			
-			
 			// -- 2) CREATION PHASE
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			labelField = model.labelField;
@@ -244,6 +245,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 										itemRenderer:IIndexedItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
+			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(itemRenderer, item, index);
 			tbody.addItemRendererAt(itemRenderer, index);
 			(itemRenderer as ILabelFieldItemRenderer).labelField = labelField;
 			
@@ -253,6 +255,34 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			setData(itemRenderer, item, index);
 		}
+
+		private var _itemRendererInitializer:IItemRendererInitializer;
+        
+        /**
+         *  The org.apache.royale.core.IItemRendererInitializer used 
+         *  to initialize instances of item renderers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererInitializer
+         */
+        public function get itemRendererInitializer():IItemRendererInitializer
+        {
+            if(!_itemRendererInitializer)
+                _itemRendererInitializer = loadBeadFromValuesManager(IItemRendererInitializer, "iItemRendererInitializer", _strand) as IItemRendererInitializer;
+            
+            return _itemRendererInitializer;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set itemRendererInitializer(value:IItemRendererInitializer):void
+        {
+            _itemRendererInitializer = value;
+        }
 
 		/**
 		 * @private
