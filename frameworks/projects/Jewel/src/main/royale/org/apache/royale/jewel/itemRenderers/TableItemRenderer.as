@@ -49,11 +49,6 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel tableitem";
-			
-			if(MXMLDescriptor != null)
-			{
-            	typeNames += " with-childs";
-			}
 
 			textAlign = new TextAlign();
 			addBead(textAlign);            

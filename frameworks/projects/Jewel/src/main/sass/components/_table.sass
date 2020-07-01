@@ -32,7 +32,6 @@
         vertical-align: bottom
         text-overflow: ellipsis
         letter-spacing: 0
-        padding: 12px
         text-align: left
         
     .jewel.tbody 
@@ -45,8 +44,6 @@
     //td
     .jewel.tablecell
         position: relative
-        > *
-            padding: 12px
 
 j|SimpleTable
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
@@ -57,10 +54,7 @@ j|SimpleTable
 // Table variables
 $tableitem-min-height: 34px
 .jewel.table
-    //position: relative
-    //white-space: nowrap
-    // overflow: hidden
-
+    
     table
         width: 100%
         border-spacing: 0px
@@ -71,7 +65,6 @@ $tableitem-min-height: 34px
         vertical-align: bottom
         text-overflow: ellipsis
         letter-spacing: 0
-        padding: 12px
         text-align: left
     
     .jewel.tbody 
@@ -84,8 +77,7 @@ $tableitem-min-height: 34px
     // td
     .jewel.tablecell
         position: relative
-        // > *
-        //     padding: 12px
+        height: 100%
         
     &.fixedHeader
         overflow-y: auto
@@ -111,7 +103,7 @@ j|Table
 
 
 .jewel.tableitem
-    padding: 10px
+    // padding: 10px
     cursor: pointer
     text-decoration: none
     // align-items: center
@@ -125,13 +117,11 @@ j|Table
         cursor: pointer
         // pointer-events: auto
 
-    &.with-childs
-        padding: 6px
     &.calendar
-        border-radius: 4px
+        // border-radius: 4px
         
         &.selected
-            font-weight: bold
+            // font-weight: bold
     
 .empty-cell
     pointer-events: none

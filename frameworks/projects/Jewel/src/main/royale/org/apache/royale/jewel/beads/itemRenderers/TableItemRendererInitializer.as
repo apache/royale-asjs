@@ -82,6 +82,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 
             if (tir && ownerView)
                 tir.itemRendererOwnerView = ownerView;
+
+			setPaddings(tir);
 		}
+
+		// public static const DEFAULT_PADDING:Number = 8;
 	}
 }
