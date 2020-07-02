@@ -112,6 +112,9 @@ package org.apache.royale.html.beads {
         }
 
         private var _emptyIsError:Boolean = false;
+		/**
+		 *  Indicates whether the "empty or null" values will be treated as errors and replaced by the indicated src
+		 */
         public function get emptyIsError():Boolean {
             return _emptyIsError;
         }
@@ -130,18 +133,15 @@ package org.apache.royale.html.beads {
 		
         private function srcChangedHandler(event:Event):void
         {
-            if(hostModel && !hostModel.url){
-                
-                COMPILE::JS {
-                    // Op1: Updating the model (It causes a double assignment that we must control)
-                    if(hostModel.hasEventListener("urlChanged")){
-                        hostModel.removeEventListener("urlChanged",srcChangedHandler);
-                        hostModel.url = src;
-                        hostModel.addEventListener("urlChanged",srcChangedHandler);                    
-                    }
-                    // Op2: Direct assignment to element
-                    //(hostElement as Object).src = src;
-                }                    
+            if(hostModel && !hostModel.url){                
+                // Op1: Updating the model (It causes a double assignment that we must control)
+                if(hostModel.hasEventListener("urlChanged")){
+                    hostModel.removeEventListener("urlChanged",srcChangedHandler);
+                    hostModel.url = src;
+                    hostModel.addEventListener("urlChanged",srcChangedHandler);                    
+                }
+                // Op2: Direct assignment to element
+                //(hostElement as Object).src = src;
             }
             
         }
