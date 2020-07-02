@@ -25,6 +25,7 @@ package org.apache.royale.html.beads {
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.core.IRenderedObject;
     import org.apache.royale.core.IImageModel;
+    import org.apache.royale.core.IImageButton;
   
   /**
 	 *  The ErrorImage class is a bead that can be used to 
@@ -44,13 +45,27 @@ package org.apache.royale.html.beads {
 
         protected var _strand:IStrand;
 
+        /**
+         *  constructor.
+         *
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+        */
         public function ErrorImageButton() {            
         }
 
         private var _src:String;
 		/**
 		 *  The source of the image
-		 */
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+        */
         public function get src():String {
             return _src;
         }
@@ -59,13 +74,13 @@ package org.apache.royale.html.beads {
             _src = value;
         }
         
-		COMPILE::JS{
+		//COMPILE::JS{
         private var _hostElement:Element;
 		protected function get hostElement():Element
 		{
 			return _hostElement;
 		}
-        }
+        //}
         protected function get hostModel():IImageModel
         {             
             return _strand.getBeadByType(IImageModel) as IImageModel;
@@ -83,7 +98,7 @@ package org.apache.royale.html.beads {
         {
             _strand = value;
 
-	        COMPILE::JS {
+	        //COMPILE::JS {
 
                 if(_strand is IRenderedObject)
                 {
@@ -105,7 +120,7 @@ package org.apache.royale.html.beads {
                         }
                     }   
                 }
-            }
+            //}
         }
 
 		COMPILE::JS
@@ -121,7 +136,12 @@ package org.apache.royale.html.beads {
         private var _emptyIsError:Boolean = false;
 		/**
 		 *  Indicates whether the "empty or null" values will be treated as errors and replaced by the indicated src
-		 */
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+        */
         public function get emptyIsError():Boolean {
             return _emptyIsError;
         }
@@ -129,7 +149,6 @@ package org.apache.royale.html.beads {
             _emptyIsError = value;
         }
 
-		COMPILE::JS
         private function errorHandler(event:Event):void {
         
             var imgEle:Object = hostElement as Object;
