@@ -65,6 +65,30 @@ limitations under the License.
 				<j:ImageButton localId="imageButton" src="assets/royale_spheres.png" click="imageButtonClick(event)"/>
 				<j:Label localId="imageButtonResult" text="Image is an input type='image' tag in html"/>
 			</j:Card>
+        </j:GridCell>
+
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel ImageButton with bead error image alternative"/>
+
+				<j:ImageButton localId="imageButtonWithErrorBead" src="assets/royale.png">
+					<j:beads>
+                        <js:ErrorImageButton src="assets/royale_spheres.png" emptyIsError="true"/>
+					</j:beads>
+				</j:ImageButton>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H4 text="Basic ImageButton with bead error image alternative"/>
+
+				<js:ImageButton localId="imageButtonBasicErrorBead" src="assets/royale.png">
+					<js:beads>
+                        <js:ErrorImageButton src="assets/royale_spheres.png" emptyIsError="true"/>
+					</js:beads>
+				</js:ImageButton>
+			</j:Card>
 		</j:GridCell>
 	</j:Grid>
 

@@ -102,7 +102,12 @@ package org.apache.royale.html
 			dispatchEvent(new Event("srcChanged"));
         }
 
-        COMPILE::JS
+        COMPILE::JS {
         private var _imageElement:HTMLImageElement;
+        public function get imageElement():HTMLImageElement
+        {
+            return _imageElement;
+        }
+        }
 	}
 }

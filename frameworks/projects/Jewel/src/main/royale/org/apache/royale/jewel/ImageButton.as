@@ -93,13 +93,26 @@ package org.apache.royale.jewel
 
             COMPILE::JS
             {
-                if (url)
+                if(!_imageElement)
                 {
                     (element as HTMLInputElement).src = url;
+                    _imageElement = (element as HTMLInputElement);
+                }
+                if (_imageElement && url)
+                {
+                    _imageElement.src = url;
                 }
             }
 
 			dispatchEvent(new Event("srcChanged"));
+        }
+
+        COMPILE::JS {
+        private var _imageElement:HTMLInputElement;
+        public function get imageElement():HTMLInputElement
+        {
+            return _imageElement as HTMLInputElement;
+        }
         }
 	}
 }
