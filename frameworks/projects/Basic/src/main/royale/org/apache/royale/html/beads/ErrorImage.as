@@ -44,13 +44,27 @@ package org.apache.royale.html.beads {
 
         protected var _strand:IStrand;
 
+        /**
+         *  constructor.
+         *
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+        */
         public function ErrorImage() {            
         }
 
         private var _src:String;
 		/**
 		 *  The source of the image
-		 */
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+        */
         public function get src():String {
             return _src;
         }
@@ -114,7 +128,12 @@ package org.apache.royale.html.beads {
         private var _emptyIsError:Boolean = false;
 		/**
 		 *  Indicates whether the "empty or null" values will be treated as errors and replaced by the indicated src
-		 */
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+        */
         public function get emptyIsError():Boolean {
             return _emptyIsError;
         }
