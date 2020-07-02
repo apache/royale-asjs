@@ -65,7 +65,7 @@ package org.apache.royale.binding
         override protected function processBindingData(bindingData:Array, first:int):void{
             var fieldWatcher:Object;
             var sb:SimpleBinding;
-            var cb:ConstantBinding;
+
             var binding:Object = null;
             var n:int = bindingData[first];
             var bindings:Array = [];
@@ -118,8 +118,9 @@ package org.apache.royale.binding
                     {
                         fieldWatcher = compWatcher.children.watcherMap[binding.source[1]];
                     }
-
-                    if (compWatcher && fieldWatcher &&
+                    //for ItemRendererSimpleBinding we only want single level bindings via 'dataChange'
+                    //because it only listens to top level 'dataChange', so fieldWatcher should be null here:
+                    if (compWatcher && !fieldWatcher &&
                             (binding.source[0] == "data" ||
                                     (compWatcher.eventNames is String &&
                                             compWatcher.eventNames == "dataChange")))
@@ -131,12 +132,15 @@ package org.apache.royale.binding
                         irsb.setDocument(_strand);
                         _strand.addBead(irsb);
                     }
-                    else if (fieldWatcher != null && fieldWatcher.eventNames is String)
+                    else if (fieldWatcher != null
+                            && fieldWatcher.eventNames is String
+                            && compWatcher.eventNames is String)
                     {
                         sb = new SimpleBinding();
                         sb.destinationPropertyName = binding.destination[1];
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourceID = binding.source[0];
+                        sb.setSourceEventName(compWatcher.eventNames as String);
                         sb.sourcePropertyName = binding.source[1];
                         sb.setDocument(_strand);
 
@@ -145,6 +149,8 @@ package org.apache.royale.binding
                     else if (fieldWatcher == null || fieldWatcher.eventNames == null)
                     {
                         makeConstantBinding(binding);
+                    } else {
+                        makeGenericBinding(binding, i, watchers);
                     }
                 }
                 else
