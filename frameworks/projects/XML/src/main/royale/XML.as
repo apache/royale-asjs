@@ -584,11 +584,12 @@ package
 					_value = '';
 				}
 			}
+			initializeClass();
 			if(!_class_initialized)
 			{
 				Object.defineProperty(XML.prototype,"0",
 						{
-							"get": function():XML{return this as XML},
+							"get": function():*{return this},
 							"set": function():void{},
 							enumerable: true,
 							configurable: true
@@ -596,6 +597,10 @@ package
 				);
 				_class_initialized = true;
 			}
+		}
+		private static function initializeClass():void
+		{
+			
 		}
 
 		private static var _class_initialized:Boolean = false;
@@ -2047,7 +2052,7 @@ package
 		 * @param name
 		 * @return
 		 *
-		 * royaleignorecoercion XML
+		 * @royaleignorecoercion XML
 		 */
 		public function processingInstructions(name:String = "*"):XMLList
 		{
