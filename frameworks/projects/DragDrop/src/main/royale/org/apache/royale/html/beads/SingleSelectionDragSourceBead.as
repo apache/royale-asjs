@@ -175,6 +175,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
@@ -225,6 +227,9 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion Array
+		 *  @royaleignorecoercion org.apache.royale.collections.ArrayList
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		public function acceptingDrop(dropTarget:Object, type:String):void
 		{

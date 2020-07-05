@@ -72,6 +72,9 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IDrawingLayerBead
 		 */
 		override public function layout():Boolean
 		{
@@ -81,15 +84,15 @@ package org.apache.royale.html.beads
 
 			// Run the actual layout
 			var result:Boolean = super.layout();
-
 			// Put the drawing layer back, sizing it to fit over the listArea.
 			if (result && layerBead != null && layerBead.layer != null) {
+			var host:UIBase = _strand as UIBase;
 				
-				var view:IDataGridView = UIBase(_strand).view as IDataGridView;
+				var view:IDataGridView = host.view as IDataGridView;
 				var listArea:UIBase = view.listArea as UIBase;
 				
-				UIBase(_strand).removeElement(layerBead.layer);
-				UIBase(_strand).addElement(layerBead.layer); // always keep it on top
+				host.removeElement(layerBead.layer);
+				host.addElement(layerBead.layer); // always keep it on top
 
 				var layerX:Number = listArea.x;
 				var layerY:Number = listArea.y;

@@ -174,6 +174,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
@@ -204,6 +206,11 @@ package org.apache.royale.html.beads
 			}
 		}
 
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 * 
+		 */
 		protected function get model():IMultiSelectionModel
 		{
 			return (_strand as IStrandWithModel).model as IMultiSelectionModel;
@@ -234,6 +241,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion Array
+		 *  @royaleignorecoercion org.apache.royale.collections.ArrayList
 		 */
 		public function acceptingDrop(dropTarget:Object, type:String):void
 		{

@@ -375,8 +375,8 @@ package org.apache.royale.html.beads.controllers
             DragEvent.dragInitiator = null;
             dragImage = null;
 
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            (_strand as IUIBase).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
+            (_strand as IUIBase).topMostEventDispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
 
             COMPILE::SWF
             {

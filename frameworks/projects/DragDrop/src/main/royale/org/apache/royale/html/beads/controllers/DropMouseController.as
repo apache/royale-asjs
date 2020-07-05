@@ -149,16 +149,17 @@ package org.apache.royale.html.beads.controllers
         {
 //            trace("DROP-MOUSE: dragMove" + event.target.toString());
             var dragEvent:DragEvent;
+            var host:IUIBase = _strand as IUIBase;
             if (!inside)
             {
                 dragEvent = DragEvent.createDragEvent("dragEnter", event as MouseEvent);
 				dragEvent.relatedObject = event.relatedObject;
 				dispatchEvent(dragEvent);
                 inside = true;
-                IUIBase(_strand).addEventListener(DragEvent.DRAG_END, dragEndHandler);
-                IUIBase(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+                host.addEventListener(DragEvent.DRAG_END, dragEndHandler);
+                host.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 
-				Cursors.setCursor(_strand as IUIBase, Cursors.MOVE);
+				Cursors.setCursor(host, Cursors.MOVE);
             }
             else
             {
@@ -174,17 +175,17 @@ package org.apache.royale.html.beads.controllers
         private function rollOutHandler(event:MouseEvent):void
         {
             var dragEvent:DragEvent;
-
+            var host:IUIBase = _strand as IUIBase;
             if (inside)
             {
                 dragEvent = DragEvent.createDragEvent("dragExit", event);
 				dispatchEvent(dragEvent);
                 inside = false;
 
-				Cursors.setCursor(_strand as IUIBase, Cursors.AUTO);
+				Cursors.setCursor(host, Cursors.AUTO);
             }
-            IUIBase(_strand).removeEventListener(DragEvent.DRAG_END, dragEndHandler);
-            IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+            host.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
+            host.removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
         }
 
 		/**
@@ -209,12 +210,12 @@ package org.apache.royale.html.beads.controllers
 			}
 
 			dispatchEvent(dragEvent);
-
+            var host:IUIBase = _strand as IUIBase;
             inside = false;
-            IUIBase(_strand).removeEventListener(DragEvent.DRAG_END, dragEndHandler);
-            IUIBase(_strand).removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+            host.removeEventListener(DragEvent.DRAG_END, dragEndHandler);
+            host.removeEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 
-			Cursors.setCursor(_strand as IUIBase, Cursors.AUTO);
+			Cursors.setCursor(host, Cursors.AUTO);
         }
 
 	}
