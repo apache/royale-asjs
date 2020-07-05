@@ -23,6 +23,8 @@ package org.apache.royale.utils.event
   import org.apache.royale.utils.OSUtils;
   /**
    * @royalesuppressexport
+	 * @royaleignorecoercion org.apache.royale.events.MouseEvent
+	 * @royaleignorecoercion org.apache.royale.events.KeyboardEvent
    */
   COMPILE::JS
   public function hasPlatformModifier(event:*):Boolean{

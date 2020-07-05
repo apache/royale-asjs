@@ -40,6 +40,11 @@ package org.apache.royale.html.beads.controllers
 		
 		protected var viewBead:IComboBoxView;
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.IComboBoxView
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * 
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -48,24 +53,31 @@ package org.apache.royale.html.beads.controllers
 			if (viewBead) {
 				finishSetup(null);
 			} else {
-				IEventDispatcher(_strand).addEventListener("viewChanged", finishSetup);
+				(_strand as IEventDispatcher).addEventListener("viewChanged", finishSetup);
 			}
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.html.beads.IComboBoxView
+		 */
 		protected function finishSetup(event:Event):void
 		{
 			if (viewBead == null) {
 				viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
 			}
 			
-			IEventDispatcher(viewBead.popupButton).addEventListener("click", handleButtonClick);
-            IEventDispatcher(viewBead.textInputField).addEventListener("click", handleButtonClick);
+			(viewBead.popupButton as IEventDispatcher).addEventListener("click", handleButtonClick);
+			(viewBead.textInputField as IEventDispatcher).addEventListener("click", handleButtonClick);
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleButtonClick(event:MouseEvent):void
 		{			
 			viewBead.popUpVisible = !viewBead.popUpVisible;
-			IEventDispatcher(viewBead.popUp).addEventListener("change", handleListChange);
+			(viewBead.popUp as IEventDispatcher).addEventListener("change", handleListChange);
 		}
 		
 		private function handleListChange(event:Event):void
