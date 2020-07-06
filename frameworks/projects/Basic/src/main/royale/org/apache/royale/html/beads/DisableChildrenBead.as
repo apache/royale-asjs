@@ -137,10 +137,10 @@ package org.apache.royale.html.beads
 		{
 			elem.style["pointerEvents"] = _disabled ? "none" : "";
 			_disabled ? elem.setAttribute("tabindex", "-1") : elem.removeAttribute("tabindex");
-			elem = elem.firstChild as HTMLElement;
+			elem = elem.firstElementChild as HTMLElement;
 			while (elem) {
 				setDecendants(elem);
-				elem = elem.nextSibling as HTMLElement;
+				elem = elem.nextElementSibling as HTMLElement;
 			}
 		}
 		/**
