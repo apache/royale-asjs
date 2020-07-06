@@ -45,7 +45,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
-		private var ir:IClassSelectorListSupport;
+		protected var ir:IClassSelectorListSupport;
 		
 		override public function set strand(value:IStrand):void
 		{

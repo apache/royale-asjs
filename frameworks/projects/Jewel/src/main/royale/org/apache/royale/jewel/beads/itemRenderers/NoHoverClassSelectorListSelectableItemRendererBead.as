@@ -18,10 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-    import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
-
 	/**
-	 *  NoClassSelectorListRuntimeSelectableItemRendererBead bead disables selection visuals
+	 *  NoHoverClassSelectorListSelectableItemRendererBead bead disables hover visuals
 	 *
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -29,7 +27,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class NoClassSelectorListSelectableItemRendererBead extends SelectableItemRendererBeadBase
+	public class NoHoverClassSelectorListSelectableItemRendererBead extends ClassSelectorListSelectableItemRendererBead
 	{
 		/**
 		 *  constructor.
@@ -39,19 +37,20 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function NoClassSelectorListSelectableItemRendererBead()
+		public function NoHoverClassSelectorListSelectableItemRendererBead()
 		{
 		}
-		
-		override public function set down(value:Boolean):void
-		{
-			// don't allow down state
-		}
-		
+
 		override public function set hovered(value:Boolean):void
 		{
 			// don't allow down hovered
 		}
-		
+		/**
+		 * @private
+		 */
+		override public function updateRenderer():void
+		{
+			ir.toggleClass("selected", selected);
+		}
 	}
 }
