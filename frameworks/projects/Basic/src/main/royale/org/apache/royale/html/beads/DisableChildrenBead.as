@@ -101,7 +101,9 @@ package org.apache.royale.html.beads
 		{
 			updateHost();
 		}
-		
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		private function get host():IUIBase
 		{
 			return _strand as IUIBase;
@@ -127,7 +129,9 @@ package org.apache.royale.html.beads
 			}
 				
 		}
-
+		/**
+		 * 	@royaleignorecoercion HTMLElement
+		 */
 		COMPILE::JS
 		private function setDecendants(elem:HTMLElement):void
 		{

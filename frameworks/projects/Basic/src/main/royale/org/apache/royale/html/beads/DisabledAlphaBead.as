@@ -125,6 +125,9 @@ package org.apache.royale.html.beads
 		{
 			return _strand as IUIBase;
 		}
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.html.beads.DisableBead
+		 */
 		private function updateHost(value:Object):void
 		{
 			if(!_strand)//bail out

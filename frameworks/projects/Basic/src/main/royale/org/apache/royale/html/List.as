@@ -131,12 +131,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+     *  @royaleignorecoercion org.apache.royale.html.IListPresentationModel
 		 */
 		public function get rowHeight():Number
 		{
 			return (presentationModel as IListPresentationModel).rowHeight;
 		}
+		/**
+     *  @royaleignorecoercion org.apache.royale.html.IListPresentationModel
+		 */
 		public function set rowHeight(value:Number):void
 		{
 			(presentationModel as IListPresentationModel).rowHeight = value;

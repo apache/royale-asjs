@@ -207,10 +207,11 @@ package org.apache.royale.html.accessories
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function removeTip():void
 		{
-			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			(_strand as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 
 			var comp:IUIBase = _strand as IUIBase;
 			if (tt) {
@@ -222,10 +223,10 @@ package org.apache.royale.html.accessories
 		/**
 		 * @private
 		 */
-        public function rollOutHandler(event:MouseEvent):void
-            {
-                    removeTip();
-            }
+		public function rollOutHandler(event:MouseEvent):void
+		{
+			removeTip();
+		}
 	}
 }
 
