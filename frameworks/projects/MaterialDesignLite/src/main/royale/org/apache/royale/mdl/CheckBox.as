@@ -165,6 +165,7 @@ package org.apache.royale.mdl
 
         /**
          *  @private
+         * @royaleignorecoercion Text
          */
         override public function set text(value:String):void
 		{
