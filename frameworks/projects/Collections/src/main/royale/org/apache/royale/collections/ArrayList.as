@@ -416,30 +416,31 @@ package org.apache.royale.collections
 		 */
 		public function itemUpdatedAt(index:int):void
 		{
-            var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
-            collectionEvent.item = getItemAt(index);
+			var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
+			collectionEvent.item = getItemAt(index);
 			collectionEvent.index = index;
-            dispatchEvent(collectionEvent);
+			dispatchEvent(collectionEvent);
 		}
 
-        /**
-         *  The number of items.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
+		/**
+		 *  The number of items.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
 		[Bindable("lengthChanged")]
-        public function get length():int
-        {
-            return _source ? _source.length : 0;
-        }
+		public function get length():int
+		{
+			return _source ? _source.length : 0;
+		}
 		
 		
 		/**
 		 *  @private
 		 *  Ensures that only the source property is serialized.
+		 *  @royaleignorecoercion Array
 		 */
 		public function readExternal(input:IDataInput):void
 		{

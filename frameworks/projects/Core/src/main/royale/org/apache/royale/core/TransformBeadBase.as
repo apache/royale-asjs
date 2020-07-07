@@ -52,7 +52,9 @@ package org.apache.royale.core
 				transform();
 			}
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.ITransformModel
+		 */
 		public function get transformModel():ITransformModel
 		{
 			return host.getBeadByType(ITransformModel) as ITransformModel;
@@ -91,6 +93,7 @@ package org.apache.royale.core
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.ITransformHost
 		 */
 		public function get host():ITransformHost
 		{
