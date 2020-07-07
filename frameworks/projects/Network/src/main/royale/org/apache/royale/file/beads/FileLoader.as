@@ -99,7 +99,10 @@ package org.apache.royale.file.beads
 		{
 			_strand = value;
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
+		 *  @royaleignorecoercion org.apache.royale.file.FileProxy
+		 */
 		protected function get fileModel():IFileModel
 		{
 			return (_strand as FileProxy).model as IFileModel;

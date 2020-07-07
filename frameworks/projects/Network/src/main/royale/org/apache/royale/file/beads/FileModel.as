@@ -151,6 +151,7 @@ package org.apache.royale.file.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
+		 *  @royaleignorecoercion File
 		 */
 		COMPILE::JS
 		public function get fileReference():File
