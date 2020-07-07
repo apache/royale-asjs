@@ -32,7 +32,9 @@ package org.apache.royale.svg
 		public function SuperimposeFilter()
 		{
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.svg.IChainableFilter
+		 */
 		COMPILE::JS
 		override protected function filter():void
 		{

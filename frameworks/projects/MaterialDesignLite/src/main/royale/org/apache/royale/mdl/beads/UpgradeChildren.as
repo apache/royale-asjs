@@ -71,7 +71,7 @@ package org.apache.royale.mdl.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.royale.core.UIBase;
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
          */
         public function set strand(value:IStrand):void
         {
@@ -98,7 +98,9 @@ package org.apache.royale.mdl.beads
             
             upgradeChildren();
         }
-
+        /**
+		 *  @royaleignorecoercion HTMLElement
+         */
         COMPILE::JS
         private function upgradeChildren():void
         {
@@ -111,7 +113,7 @@ package org.apache.royale.mdl.beads
             {
                 for (var i:int = 0; i < elementChildren.length; i++)
                 {
-                    var child:Object = elementChildren[i];
+                    var child:Element = elementChildren[i];
                     var isUpgraded:Object = child.getAttribute("data-upgraded");
 
                     if (child.classList.contains(className) && isUpgraded == null)

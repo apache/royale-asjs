@@ -84,7 +84,9 @@ package org.apache.royale.svg
 		{
 			return _image;
 		}
-		
+		/**
+		 *  @royaleignorecoercion SVGImageElement
+		 */
 		COMPILE::JS
 		override public function applyImageData(binaryDataAsString:String):void
 		{

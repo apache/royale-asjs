@@ -170,6 +170,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion HTMLIFrameElement
+		 *  @royaleignorecoercion org.apache.royale.html.beads.models.WebBrowserModel
 		 */
 		public function set strand(value:IStrand):void
 		{

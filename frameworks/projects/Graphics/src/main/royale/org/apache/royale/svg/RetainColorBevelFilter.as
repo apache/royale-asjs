@@ -36,7 +36,9 @@ package org.apache.royale.svg
 		public function RetainColorBevelFilter()
 		{
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.svg.FilterElement
+		 */
 		override public function build():void
 		{
 			super.build();

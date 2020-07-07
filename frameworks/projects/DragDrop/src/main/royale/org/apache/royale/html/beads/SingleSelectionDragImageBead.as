@@ -87,12 +87,13 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
+			(_strand as IEventDispatcher).addEventListener(DragEvent.DRAG_START, handleDragStart);
 		}
 
 		/**

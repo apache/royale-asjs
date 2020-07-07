@@ -130,7 +130,9 @@ package org.apache.royale.file
 		{
 			return (model as IFileModel).fileReference;
 		}
-
+		/**
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
+		 */
 		COMPILE::JS
 		public function get fileReference():File
 		{
@@ -143,6 +145,9 @@ package org.apache.royale.file
 			(model as IFileModel).fileReference = value;
 		}
 
+		/**
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
+		 */
 		COMPILE::JS
 		public function set fileReference(value:File):void
 		{

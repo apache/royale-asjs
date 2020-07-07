@@ -230,6 +230,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.collections.ArrayList
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function acceptingDrop(dropTarget:Object, type:String):void
 		{

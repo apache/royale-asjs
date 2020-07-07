@@ -98,7 +98,7 @@ package org.apache.royale.svg
 		}
 		/**
 		 * @royaleignorecoercion Element
-		 * @royaleignorecoercion Object
+		 * @royaleignorecoercion org.apache.royale.svg.FilterElement
 		 */
 		COMPILE::JS
 		protected function filter():void
@@ -118,7 +118,9 @@ package org.apache.royale.svg
 				filterElement.build();
 			}
 		}
-		
+		/**
+		 * @royaleignorecoercion Element
+		 */
 		COMPILE::JS
 		private function getChildNode(node:Node, tagName:String):Node
 		{
@@ -138,7 +140,9 @@ package org.apache.royale.svg
 			return addSvgElementToElement(node as Element, tagName);
 		}
 		
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		protected function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;

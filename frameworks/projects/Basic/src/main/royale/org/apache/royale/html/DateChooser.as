@@ -62,11 +62,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.IDateChooserModel
 		 */
 		public function get selectedDate():Date
 		{
 			return IDateChooserModel(model).selectedDate;
 		}
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IDateChooserModel
+		 */
 		public function set selectedDate(value:Date):void
 		{
 			IDateChooserModel(model).selectedDate = value;

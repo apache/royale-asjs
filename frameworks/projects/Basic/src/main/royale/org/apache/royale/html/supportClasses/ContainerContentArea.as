@@ -57,12 +57,16 @@ package org.apache.royale.html.supportClasses
         {
             return _host;
         }
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
 		public function set strand(value:IStrand):void
 		{
 			_host = value as IUIBase;
 		}
-
+        /**
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
         private function forwardEventHandler(event:Event):void
         {
             if (parent is IEventDispatcher)

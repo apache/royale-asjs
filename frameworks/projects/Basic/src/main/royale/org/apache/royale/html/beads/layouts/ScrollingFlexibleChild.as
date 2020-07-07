@@ -39,31 +39,33 @@ package org.apache.royale.html.beads.layouts
 
 	public class ScrollingFlexibleChild implements IBead, IDocument
 	{
-        /**
-         *  Constructor.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 9.4
-         */
+		/**
+		 *  Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 9.4
+		 */
 
-        /**
-         *  @private
-         *  The document.
-         */
-        private var document:Object;
+		/**
+		 *  @private
+		 *  The document.
+		 */
+		private var document:Object;
 
 		public function ScrollingFlexibleChild()
 		{
 			super();
 		}
 
-        public function setDocument(document:Object, id:String = null):void
-        {
-            this.document = document;
-        }
-
+		public function setDocument(document:Object, id:String = null):void
+		{
+				this.document = document;
+		}
+		/**
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		public function set strand(value:IStrand):void
 		{
 			COMPILE::JS
@@ -71,7 +73,11 @@ package org.apache.royale.html.beads.layouts
 				(value as IEventDispatcher).addEventListener("layoutComplete", layoutCompleteHandler);
 			}
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IStrand
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IOneFlexibleChildLayout
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		COMPILE::JS
 		protected function layoutCompleteHandler(event:Event):void
 		{

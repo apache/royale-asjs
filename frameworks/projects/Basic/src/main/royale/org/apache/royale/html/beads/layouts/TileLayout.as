@@ -20,7 +20,7 @@ package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.html.beads.layouts.ITileLayout;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.ILayoutParent;
@@ -28,9 +28,9 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IChild;
-    import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
@@ -121,10 +121,11 @@ package org.apache.royale.html.beads.layouts
 			_rowHeight = value;
 		}
 
-        /**
-         * @copy org.apache.royale.core.IBeadLayout#layout
-         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
-         */
+		/**
+		 * @copy org.apache.royale.core.IBeadLayout#layout
+		 * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 * @royaleignorecoercion org.apache.royale.core.IParentIUIBase
+		 */
 		override public function layout():Boolean
 		{
 			// var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);

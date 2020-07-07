@@ -57,6 +57,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 9.3
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -68,7 +69,7 @@ package org.apache.royale.html.beads
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 */	
 		COMPILE::JS
 		protected function get hostElement():WrappedHTMLElement
@@ -99,14 +100,14 @@ package org.apache.royale.html.beads
 			}			
 		}
 		
-        /**
-         *  The name of the style that is to be inherited.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 9.3
-         */
+		/**
+		 *  The name of the style that is to be inherited.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 9.3
+		 */
 		public function get styleName():String
 		{
 			return _styleName;

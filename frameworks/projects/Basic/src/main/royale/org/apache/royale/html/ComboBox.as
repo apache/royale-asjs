@@ -66,17 +66,21 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 */
 		public function get dataProvider():Object
 		{
 			return IComboBoxModel(model).dataProvider;
 		}
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IComboBoxModel
+		 */
 		public function set dataProvider(value:Object):void
 		{
 			IComboBoxModel(model).dataProvider = value;
 		}
 		
-        [Bindable("change")]
+		[Bindable("change")]
 		/**
 		 *  The index of the currently selected item. Changing this item changes
 		 *  the selectedItem value.
@@ -85,11 +89,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 */
 		public function get selectedIndex():int
 		{
 			return IComboBoxModel(model).selectedIndex;
 		}
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IComboBoxModel
+		 */
 		public function set selectedIndex(value:int):void
 		{
 			IComboBoxModel(model).selectedIndex = value;
@@ -104,11 +112,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 */
 		public function get selectedItem():Object
 		{
 			return IComboBoxModel(model).selectedItem;
 		}
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IComboBoxModel
+		 */
 		public function set selectedItem(value:Object):void
 		{
 			IComboBoxModel(model).selectedItem = value;
