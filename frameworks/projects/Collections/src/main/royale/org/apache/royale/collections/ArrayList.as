@@ -278,6 +278,8 @@ package org.apache.royale.collections
 			collectionEvent.item = item;
 			collectionEvent.index = index;
 			dispatchEvent(collectionEvent);
+
+			dispatchEvent(new Event("lengthChanged"));
 		}
 
 		/**
@@ -363,6 +365,8 @@ package org.apache.royale.collections
             collectionEvent.item = removed;
 			collectionEvent.index = index;
             dispatchEvent(collectionEvent);
+
+			dispatchEvent(new Event("lengthChanged"));
 
 			return removed;
 		}
