@@ -67,7 +67,7 @@ package org.apache.royale.html.beads
 			
 			
 			
-			private var _strand:IStrand;
+			protected var _strand:IStrand;
 			
 			/**
 			 *  @copy org.apache.royale.core.IBead#strand
@@ -107,7 +107,7 @@ package org.apache.royale.html.beads
 			 * @private
 			 */
 			COMPILE::SWF
-			private function keyDownHandler( event:KeyboardEvent ) : void
+			protected function keyDownHandler( event:KeyboardEvent ) : void
 			{
 				// this will otherwise bubble an event of flash.events.Event
 				event.stopImmediatePropagation();
@@ -121,7 +121,7 @@ package org.apache.royale.html.beads
 			 * @private
 			 */
 			COMPILE::JS
-			private function keydownHandler( event:KeyboardEvent ) : void
+			protected function keydownHandler( event:KeyboardEvent ) : void
 			{
 				if (event.key == WhitespaceKeys.ENTER) //enter
 				{
