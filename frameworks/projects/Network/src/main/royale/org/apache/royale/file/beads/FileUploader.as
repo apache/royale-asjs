@@ -71,6 +71,7 @@ package org.apache.royale.file.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */
 		public function upload(url:String):void
 		{
@@ -89,7 +90,9 @@ package org.apache.royale.file.beads
 			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
 			binaryUploader.load(req);
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function completeHandler(event:Event):void
 		{
 			(event.target as IEventDispatcher).removeEventListener(Event.COMPLETE, completeHandler);
@@ -111,6 +114,7 @@ package org.apache.royale.file.beads
 		
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.file.FileProxy
 		 */
 		protected function get host():FileProxy
 		{

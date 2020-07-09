@@ -70,7 +70,7 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value; 
-			IEventDispatcher(value).addEventListener("initComplete", finishSetup);
+			(value as IEventDispatcher).addEventListener("initComplete", finishSetup);
 		}
 		
 		/**
@@ -78,10 +78,11 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
 		 * @royaleignorecoercion org.apache.royale.html.beads.DataFieldProviderBead
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function finishSetup(event:Event):void
 		{			
-			IEventDispatcher(_strand).removeEventListener("initComplete", finishSetup);
+			(_strand as IEventDispatcher).removeEventListener("initComplete", finishSetup);
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 

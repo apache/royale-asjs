@@ -35,6 +35,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.beads.controllers.DropMouseController;
 	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.sendStrandEvent;
 
 
 	/**
@@ -148,7 +149,7 @@ package org.apache.royale.html.beads
 			_dropController.addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
 			_dropController.addEventListener(DragEvent.DRAG_OVER, handleDragOver);
 			_dropController.addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
+			(_strand as IEventDispatcher).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
 		}
 
 		private var _dropDirection: String = "horizontal";
@@ -174,6 +175,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IDrawingLayerBead
 		 */
 		protected function get indicatorParent():UIBase
 		{
@@ -187,6 +189,7 @@ package org.apache.royale.html.beads
 		}
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
 		 */
 		private function get itemRendererOwnerView():IItemRendererOwnerView
 		{
@@ -197,6 +200,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.html.beads.SingleSelectionDropIndicatorBead
 		 */
 		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
 		{
@@ -210,6 +214,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		private function handleDragEnter(event:DragEvent):void
 		{
@@ -225,6 +230,9 @@ package org.apache.royale.html.beads
 			_dropController.acceptDragDrop(event.relatedObject as IUIBase, DropType.COPY);
 		}
 		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		private function checkForNextItemRenderer(e:DragEvent):void
 		{
 			var changeMade:Boolean = true;
@@ -301,6 +309,10 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion Array
+		 *  @royaleignorecoercion org.apache.royale.collections.ArrayList
+		 *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		private function handleDragDrop(event:DragEvent):void
 		{
@@ -361,7 +373,7 @@ package org.apache.royale.html.beads
 			}
 
 			// is this event necessary? isn't "complete" enough?
-			IEventDispatcher(_strand).dispatchEvent(new Event("dragDropAccepted"));
+			sendStrandEvent(_strand,"dragDropAccepted");
 
 			dispatchEvent(new Event("complete"));
 		}

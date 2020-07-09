@@ -25,7 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.ItemRendererOwnerViewBead;
+	import org.apache.royale.core.ItemRendererOwnerViewBead;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ISelectionModel;
@@ -42,6 +42,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.sendEvent;
 
 
 	/**
@@ -178,6 +181,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDrawingLayerBead
 		 */
 		protected function get indicatorParent():UIBase
 		{
@@ -191,6 +195,7 @@ package org.apache.royale.html.beads
 		}
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
 		 */
 		private function get itemRendererOwnerView():IItemRendererOwnerView
 		{
@@ -201,6 +206,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.html.beads.SingleSelectionDropIndicatorBead
 		 */
 		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
 		{
@@ -214,6 +220,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 */
 		private function handleDragEnter(event:DragEvent):void
 		{
@@ -274,6 +282,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		private function handleDragOver(event:DragEvent):void
 		{
@@ -295,13 +304,17 @@ package org.apache.royale.html.beads
 
 			}
 			else if (lastItemVisited && _dropIndicator != null && indicatorParent) {
-				var lastItem:UIBase = lastItemVisited as UIBase;
 				displayDropIndicator(lastItemVisited as IUIBase);
 			}
 		}
 
 		/**
 		 * @private
+		 * @royaleignorecoercion Array
+		 * @royaleignorecoercion org.apache.royale.collections.ArrayList
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		private function handleDragDrop(event:DragEvent):void
 		{
@@ -316,20 +329,16 @@ package org.apache.royale.html.beads
 			}
 
 			var targetIndex:int = -1; // indicates drop beyond length of items
-			var contentViewAsParent:IParent;
+			// var contentViewAsParent:IParent;
 
 			var startHere:Object = event.relatedObject;
-			while( !(startHere is IItemRenderer) && startHere != null) {
+			while( !(startHere is IIndexedItemRenderer) && startHere != null) {
 				startHere = startHere.parent;
 			}
 
-			if (startHere is IItemRenderer) {
-				var ir:IItemRenderer = startHere as IItemRenderer;
-				//trace("-- dropping onto an existing object: "+ir.data.toString());
-
-                var ownerViewBead:ItemRendererOwnerViewBead = ir.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead;
-				contentViewAsParent = (ownerViewBead.ownerView as ILayoutHost).contentView as IParent;
-				targetIndex = contentViewAsParent.getElementIndex(ir);
+			if (startHere) {
+				var ir:IIndexedItemRenderer = startHere as IIndexedItemRenderer;
+				targetIndex = ir.index;
 			}
 
 			var downPoint:Point = new Point(event.clientX, event.clientY);
@@ -384,9 +393,8 @@ package org.apache.royale.html.beads
 			}
 
 			// is this event necessary? isn't "complete" enough?
-			IEventDispatcher(_strand).dispatchEvent(new Event("dragDropAccepted"));
-
-			dispatchEvent(new Event("complete"));
+			sendStrandEvent(_strand,"dragDropAccepted");
+			sendEvent(this,"complete");
 		}
 
 		COMPILE::SWF

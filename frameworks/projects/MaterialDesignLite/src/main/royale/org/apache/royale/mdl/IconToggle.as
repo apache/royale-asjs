@@ -122,6 +122,7 @@ package org.apache.royale.mdl
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.IToggleButtonModel
          */
         public function get selected():Boolean
         {
@@ -130,6 +131,7 @@ package org.apache.royale.mdl
 
         /**
          *  @private
+		 *  @royaleignorecoercion org.apache.royale.core.IToggleButtonModel
          */
         public function set selected(value:Boolean):void
         {
@@ -211,6 +213,9 @@ package org.apache.royale.mdl
         {
             return _materialIcon;
         }
+        /**
+		 *  @royaleignorecoercion org.apache.royale.mdl.supportClasses.MaterialIconBase
+         */
         public function set materialIcon(value:IMaterialIcon):void
         {
             _materialIcon = value;

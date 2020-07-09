@@ -142,6 +142,7 @@ package
         import org.apache.royale.jewel.beads.itemRenderers.DataGridColumnListItemRendererInitializer; DataGridColumnListItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer; ButtonBarItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer; TabBarItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.TableItemRendererInitializer; TableItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.NavigationItemRendererInitializer; NavigationItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererInitializer; DropDownListItemRendererInitializer;
     }

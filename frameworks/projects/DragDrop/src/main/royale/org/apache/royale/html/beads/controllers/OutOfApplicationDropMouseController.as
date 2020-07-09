@@ -31,6 +31,7 @@ package org.apache.royale.html.beads.controllers
 
 	COMPILE::JS {
 		import org.apache.royale.events.BrowserEvent;
+		import org.apache.royale.utils.sendStrandEvent;
 	}
 
     /**
@@ -128,6 +129,7 @@ package org.apache.royale.html.beads.controllers
 
 		/**
 		 *  @private
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 */ 
 		private function dragMoveHandler(event:DragEvent):void
 		{
@@ -152,6 +154,9 @@ package org.apache.royale.html.beads.controllers
 
 		}
 
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		COMPILE::JS
 		private function mouseLeaveHandler(event:BrowserEvent):void
 		{
@@ -162,6 +167,9 @@ package org.apache.royale.html.beads.controllers
 			draggingOutOfApp = true;
 		}
 
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		COMPILE::JS
 		private function dragEndHandler(event:BrowserEvent):void
 		{
@@ -173,7 +181,7 @@ package org.apache.royale.html.beads.controllers
 			Cursors.setCursor(_strand as IRenderedObject, Cursors.AUTO);
 			// clean up drag image, etc.
 			var mouseEvent:MouseEvent = new MouseEvent(MouseEvent.MOUSE_UP);
-			(_strand as IEventDispatcher).dispatchEvent(mouseEvent);
+			sendStrandEvent(_strand,mouseEvent);
 		}
 
 	}

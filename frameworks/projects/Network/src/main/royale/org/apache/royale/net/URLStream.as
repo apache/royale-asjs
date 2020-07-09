@@ -93,7 +93,7 @@ package org.apache.royale.net
 		{
 			COMPILE::JS
 			{
-					return new BinaryData(xhr.response as ArrayBuffer);
+					return new BinaryData(xhr.response);
 			}
 			COMPILE::SWF
 			{
@@ -109,6 +109,7 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
+		 *  @royaleignorecoercion org.apache.royale.utils.BinaryData
 		 */
 		public function load(urlRequest:org.apache.royale.net.URLRequest):void
 		{

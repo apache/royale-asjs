@@ -3780,7 +3780,6 @@ j|TabBarContent {
   vertical-align: bottom;
   text-overflow: ellipsis;
   letter-spacing: 0;
-  padding: 12px;
   text-align: left;
 }
 .jewel.simpletable .jewel.tbody .jewel.tablerow {
@@ -3790,9 +3789,6 @@ j|TabBarContent {
 }
 .jewel.simpletable .jewel.tablecell {
   position: relative;
-}
-.jewel.simpletable .jewel.tablecell > * {
-  padding: 12px;
 }
 
 j|SimpleTable {
@@ -3808,7 +3804,6 @@ j|SimpleTable {
   vertical-align: bottom;
   text-overflow: ellipsis;
   letter-spacing: 0;
-  padding: 12px;
   text-align: left;
 }
 .jewel.table .jewel.tbody .jewel.tablerow {
@@ -3818,6 +3813,7 @@ j|SimpleTable {
 }
 .jewel.table .jewel.tablecell {
   position: relative;
+  height: 100%;
 }
 .jewel.table.fixedHeader {
   overflow-y: auto;
@@ -3835,6 +3831,7 @@ j|Table {
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController");
+  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererInitializer");
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
@@ -3843,7 +3840,6 @@ j|Table {
 }
 
 .jewel.tableitem {
-  padding: 10px;
   cursor: pointer;
   text-decoration: none;
   letter-spacing: 0;
@@ -3853,15 +3849,6 @@ j|Table {
 }
 .jewel.tableitem.selectable {
   cursor: pointer;
-}
-.jewel.tableitem.with-childs {
-  padding: 6px;
-}
-.jewel.tableitem.calendar {
-  border-radius: 4px;
-}
-.jewel.tableitem.calendar.selected {
-  font-weight: bold;
 }
 
 .empty-cell {

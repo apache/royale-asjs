@@ -193,7 +193,9 @@ package org.apache.royale.file.beads
 		}
 		
 		private var frameCount:int = 0;
-		
+		/**
+		 *  @royaleignorecoercion HTMLInputElement
+		 */
 		COMPILE::JS
 		private function maybeCancel():void
 		{
@@ -221,6 +223,7 @@ package org.apache.royale.file.beads
 		
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.file.FileProxy
 		 */
 		private function get host():FileProxy
 		{
@@ -230,6 +233,7 @@ package org.apache.royale.file.beads
 		/**
 		 *  @private
 		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */		
 		COMPILE::JS
 		private function fileChangeHandler(e:org.apache.royale.events.Event):void

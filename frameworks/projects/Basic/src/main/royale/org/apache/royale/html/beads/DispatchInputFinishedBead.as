@@ -76,6 +76,7 @@ package org.apache.royale.html.beads
 			 *  @playerversion Flash 10.2
 			 *  @playerversion AIR 2.6
 			 *  @productversion Royale 0.0
+       *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 			 */
 			public function set strand(value:IStrand):void
 			{
@@ -119,6 +120,7 @@ package org.apache.royale.html.beads
 			
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
 			COMPILE::JS
 			protected function keydownHandler( event:KeyboardEvent ) : void
@@ -132,6 +134,7 @@ package org.apache.royale.html.beads
 			
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
 			COMPILE::JS
 			private function focusoutHandler( event:Object ) : void

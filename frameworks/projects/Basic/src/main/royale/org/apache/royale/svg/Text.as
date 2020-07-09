@@ -107,7 +107,6 @@ package org.apache.royale.svg
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
          *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         *  @royaleignorecoercion Text
          *  @royaleignorecoercion Node
          *  @royaleignorecoercion SVGLocatable
 		 */
@@ -144,7 +143,7 @@ package org.apache.royale.svg
                 _textElem.setAttribute('style', style);
                 _textElem.setAttribute('x', xt);
                 _textElem.setAttribute('y', yt);
-				var textNode:Text = document.createTextNode(value) as Text;
+				var textNode:Node = document.createTextNode(value) as Node;
 				_textElem.appendChild(textNode as Node);
 
                 // resize(x, y, getBBox(_textElem));

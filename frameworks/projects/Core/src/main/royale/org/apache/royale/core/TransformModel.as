@@ -44,7 +44,9 @@ package org.apache.royale.core
 		{
 			sendStrandEvent(_strand,CHANGE);
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.ITransformHost
+		 */
 		private function get host():ITransformHost
 		{
 			return _strand as ITransformHost;

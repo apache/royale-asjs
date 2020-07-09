@@ -142,6 +142,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		private function dataProviderChangeHandler(event:Event):void
 		{

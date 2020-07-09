@@ -16,26 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads
+package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IIndexedItemRendererInitializer;
-	import org.apache.royale.html.IListPresentationModel;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStrandWithPresentationModel;
-	import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
 
 	/**
-	 *  The ListItemRendererInitializer class initializes item renderers
-	 *  in list classes.
+	 *  The TableItemRendererInitializer class initializes item renderers
+     *  in Table component.
+	 *  
+	 *  By Default this works the same as ListItemRendererInitializer, but create a placeholder
+	 *  for it.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.10.0
 	 */
-	public class ListItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
+	public class TableItemRendererInitializer extends IndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -43,14 +44,14 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.10.0
 		 */
-		public function ListItemRendererInitializer() 
+		public function TableItemRendererInitializer()
 		{
 		}
-		
-		protected var presentationModel:IListPresentationModel;
-		
+
+		protected var ownerView:IItemRendererOwnerView;
+        
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -59,25 +60,32 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithPresentationModel
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
 		override public function set strand(value:IStrand):void
 		{	
 			super.strand = value;
-			presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;			
+            ownerView = (value as IStrandWithModelView).view as IItemRendererOwnerView;
 		}
+		
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.10.0
 		 */
-		override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
-		{
-			var style:SimpleCSSStyles = new SimpleCSSStyles();
-			style.marginBottom = presentationModel.separatorThickness;
-			(ir as UIBase).style = style;
-			(ir as UIBase).height = presentationModel.rowHeight;
-			(ir as UIBase).percentWidth = 100;
+        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        {
+			var tir:TableItemRenderer = ir as TableItemRenderer;
+
+            if (tir && ownerView)
+                tir.itemRendererOwnerView = ownerView;
+
+			setPaddings(tir);
 		}
 
+		// public static const DEFAULT_PADDING:Number = 8;
 	}
 }

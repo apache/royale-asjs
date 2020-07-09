@@ -65,6 +65,7 @@ package org.apache.royale.binding
          * This method will be dead-code-eliminated in js-release builds if not used in an application's code
          *
          * @royalesuppressexport
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         public function initializeNow():void{
             if (!_initialized) {
@@ -90,6 +91,9 @@ package org.apache.royale.binding
         }
 
         private var _ancestry:Array;
+        /**
+		 *  @royaleignorecoercion Array
+         */
         protected function processBindings(event:Event):void{
             if (!("_bindings" in _strand) ||  _initialized)
                 return;
@@ -112,6 +116,7 @@ package org.apache.royale.binding
          *
          * @royaleignorecoercion org.apache.royale.binding.DataBindingBase
          * @royaleignorecoercion Class
+         * @royaleignorecoercion Array
          */
         private function processAncestors(array:Array, strongRefs:Array):void{
             var first:int = 0;
@@ -412,6 +417,7 @@ package org.apache.royale.binding
 
 
         /**
+         * @royaleemitcoercion org.apache.royale.core.IStrand
          */
         private function deferredBindingsHandler(event:Event):void
         {

@@ -22,7 +22,7 @@ package org.apache.royale.html.beads.layouts
 	
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
@@ -30,7 +30,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.ValuesManager;
 	COMPILE::JS
 	{
@@ -205,6 +205,7 @@ package org.apache.royale.html.beads.layouts
 		 *  @productversion Royale 0.0
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		override public function layout():Boolean
 		{
@@ -227,10 +228,10 @@ package org.apache.royale.html.beads.layouts
 				var canAdjust:Boolean = false;
 
 				var paddingMetrics:EdgeData = new EdgeData();
-                paddingMetrics.left = _paddingLeft;
-                paddingMetrics.top  = _paddingTop;
-                paddingMetrics.right = _paddingRight;
-                paddingMetrics.bottom = _paddingBottom;
+				paddingMetrics.left = _paddingLeft;
+				paddingMetrics.top  = _paddingTop;
+				paddingMetrics.right = _paddingRight;
+				paddingMetrics.bottom = _paddingBottom;
 				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the

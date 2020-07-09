@@ -21,7 +21,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.html.beads.ListView;
+	import org.apache.royale.core.IUIBase;
 
 
 	/**
@@ -44,7 +46,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.IParent
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -59,7 +61,7 @@ package org.apache.royale.html.beads
 
 			//var chost:IContainer = host as IContainer;
 			//chost.strandChildren.addElement(_layer);
-			UIBase(_strand).addElement(_layer);
+			(_strand as IParent).addElement(_layer);
 
 		}
 
@@ -106,7 +108,6 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		override public function afterLayout():void
 		{
@@ -114,8 +115,8 @@ package org.apache.royale.html.beads
 
 			_layer.x = 0;
 			_layer.y = 0;
-			_layer.width = UIBase(_strand).width;
-			_layer.height = UIBase(_strand).height;
+			_layer.width = (_strand as IUIBase).width;
+			_layer.height = (_strand as IUIBase).height;
 		}
 	}
 }

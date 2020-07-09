@@ -94,22 +94,22 @@ package org.apache.royale.html.beads
 
 			_dragController = new DragMouseController();
 			_strand.addBead(_dragController);
+			var host:IEventDispatcher = _strand as IEventDispatcher;
+			host.removeEventListener(DragEvent.DRAG_START, handleDragStart);
+			host.removeEventListener(DragEvent.DRAG_MOVE, handleDragMove);
+			host.removeEventListener(DragEvent.DRAG_END, handleDragEnd);
 
-			IEventDispatcher(_strand).removeEventListener(DragEvent.DRAG_START, handleDragStart);
-			IEventDispatcher(_strand).removeEventListener(DragEvent.DRAG_MOVE, handleDragMove);
-			IEventDispatcher(_strand).removeEventListener(DragEvent.DRAG_END, handleDragEnd);
-
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_END, handleDragEnd);
+			host.addEventListener(DragEvent.DRAG_START, handleDragStart);
+			host.addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
+			host.addEventListener(DragEvent.DRAG_END, handleDragEnd);
 
 			_dropController = new DropMouseController();
 			_strand.addBead(_dropController);
 
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_OVER, handleDragOver);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
+			_dropController.addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
+			_dropController.addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
+			_dropController.addEventListener(DragEvent.DRAG_OVER, handleDragOver);
+			_dropController.addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
 		}
 
 		/**
@@ -127,6 +127,10 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
@@ -134,7 +138,7 @@ package org.apache.royale.html.beads
 
 			DragMouseController.dragImageOffsetX = 0;
 			DragMouseController.dragImageOffsetY = -30;
-
+			//TODO The itemRenderers should be IIndexedItemRenderers, so there shouldn't be a need for itemRendererOwnerView
 			var startHere:Object = event.relatedObject;
 			while (!(startHere is IItemRenderer) && startHere != null) {
 				startHere = startHere.itemRendererOwnerView;
@@ -162,6 +166,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		private function handleDragEnter(event:DragEvent):void
 		{
@@ -195,6 +201,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		private function handleDragOver(event:DragEvent):void
 		{
@@ -236,6 +244,13 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion Array
+		 *  @royaleignorecoercion org.apache.royale.collections.ArrayList
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 *  @royaleignorecoercion org.apache.royale.core.ItemRendererOwnerViewBead
 		 */
 		private function handleDragDrop(event:DragEvent):void
 		{
@@ -255,8 +270,8 @@ package org.apache.royale.html.beads
 			if (startHere is IItemRenderer) {
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				trace("-- dropping onto an existing object: "+ir.data.toString());
-
-                var ownerViewBead:ItemRendererOwnerViewBead = ir.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead;
+				
+				var ownerViewBead:ItemRendererOwnerViewBead = ir.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead;
 				itemRendererOwnerView = (ownerViewBead.ownerView as ILayoutHost).contentView as IParent;
 				targetIndex = itemRendererOwnerView.getElementIndex(ir);
 			}
@@ -308,7 +323,9 @@ package org.apache.royale.html.beads
 		}
 
 		protected var _indicatorParent:UIBase;
-
+		/**
+		 *  @royaleignorecoercion org.apache.royale.htmls.beads.IDrawingLayerBead
+		 */
 		protected function get indicatorParent():UIBase
 		{
 			if (_indicatorParent == null) {
@@ -322,6 +339,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.htmls.beads.SingleSelectionDropIndicatorBead
 		 */
 		protected function getDropIndicator(ir:Object, width:Number, height:Number):UIBase
 		{

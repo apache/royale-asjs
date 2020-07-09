@@ -62,14 +62,17 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IBeadModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
 			if (_strand[destinationPropertyName] == null) {
-				var model:IBeadModel = UIBase(_strand).model as IBeadModel;
-				IEventDispatcher(model).addEventListener(changeEventName, destinationChangedHandler);
+				var model:IBeadModel = (_strand as UIBase).model as IBeadModel;
+				(model as IEventDispatcher).addEventListener(changeEventName, destinationChangedHandler);
 			}
 			else {
 				destinationChangedHandler(null);

@@ -64,6 +64,9 @@ package org.apache.royale.html.beads
 			super();
 		}
 		
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.html.beads.models.DateChooserModel
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -129,6 +132,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function createChildren():void
 		{
@@ -214,7 +218,7 @@ package org.apache.royale.html.beads
 			getHost().addElement(daysContainer, false);
 			
 			
-			IEventDispatcher(daysContainer).dispatchEvent( new Event("itemsCreated") );
+			(daysContainer as IEventDispatcher).dispatchEvent( new Event("itemsCreated") );
 			model.addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
 		

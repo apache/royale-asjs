@@ -87,12 +87,13 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 
-			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_START, handleDragStart);
+			(_strand as IEventDispatcher).addEventListener(DragEvent.DRAG_START, handleDragStart);
 		}
 
 		/**
@@ -106,6 +107,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		protected function createDragImage(ir:IItemRenderer):UIBase
 		{
@@ -123,7 +125,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
-		 *
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{

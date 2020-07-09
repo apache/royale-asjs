@@ -56,7 +56,7 @@ package org.apache.royale.svg
 				for (var i:int = 0; i < results.length; i++)
 				{
 					var mergeNode:Element = addSvgElementToElement(filterElement, "feMergeNode") as Element;
-					mergeNode.setAttribute("in", results[i] as String);
+					mergeNode.setAttribute("in", "" + results[i]);
 				}
 			}
 		}

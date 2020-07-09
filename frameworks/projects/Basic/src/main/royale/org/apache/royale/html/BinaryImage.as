@@ -54,11 +54,11 @@ package org.apache.royale.html
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.IBinaryImageLoader
+		 * @royaleignorecoercion org.apache.royale.core.IBinaryImageLoader
 		 */
 		override public function addedToParent():void
 		{
-			var c:Class = ValuesManager.valuesImpl.getValue(this, "iBinaryImageLoader") as Class;
+			var c:Class = ValuesManager.valuesImpl.getValue(this, "iBinaryImageLoader");
 			if (c)
 			{
 				var loader:IBinaryImageLoader = (new c()) as IBinaryImageLoader;

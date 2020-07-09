@@ -215,7 +215,6 @@
 
 /* ItemRenderer */
 .jewel.item {
-	padding: 0px;
 	min-height: 60px;
 }
 
@@ -231,7 +230,6 @@
 
 .todo-list li.editing {
 	border-bottom: none;
-	padding: 0;
 }
 
 /* CheckBox */

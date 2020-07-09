@@ -61,11 +61,12 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete", initComplete);
+			(value as IEventDispatcher).addEventListener("initComplete", initComplete);
 		}
 		
 		/**
