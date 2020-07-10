@@ -73,7 +73,7 @@ limitations under the License.
 
 				<j:Image localId="imageWithErrorBead" src="assets/royale.png">
 					<j:beads>
-                        <js:ErrorImage src="assets/royale_spheres.png" emptyIsError="true"/>
+                        <js:ErrorImage src="assets/jewel-no-image.svg" emptyIsError="true"/>
 					</j:beads>
 				</j:Image>
 			</j:Card>
@@ -84,7 +84,7 @@ limitations under the License.
 
 				<js:Image localId="imageBasicErrorBead" src="assets/royale.png">
 					<js:beads>
-                        <js:ErrorImage src="assets/royale_spheres.png" emptyIsError="true"/>
+                        <js:ErrorImage src="assets/jewel-no-image.svg" emptyIsError="true"/>
 					</js:beads>
 				</js:Image>
 			</j:Card>
