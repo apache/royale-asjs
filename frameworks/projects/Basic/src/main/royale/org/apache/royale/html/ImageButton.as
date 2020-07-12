@@ -92,18 +92,13 @@ package org.apache.royale.html
 
             COMPILE::JS
             {
-                if(!_imageElement)
-                {
-                    _imageElement = document.createElement("img") as HTMLImageElement;
-                    element.appendChild(_imageElement);
-                }                
-                (_imageElement as HTMLImageElement).src = url;
+                (imageElement as HTMLImageElement).src = url;
             }
 
 			dispatchEvent(new Event("srcChanged"));
         }
 
-		COMPILE::JS{
+		COMPILE::JS
         private var _imageElement:Element;
 		/**
 		 *  Element image. HTMLImageElement.
@@ -114,11 +109,22 @@ package org.apache.royale.html
          *  @productversion Royale 0.9.8
          *  @royaleignorecoercion org.apache.royale.core.IImageButton#imageElement
          *  @royaleignorecoercion Element
+         * @royaleignorecoercion HTMLImageElement
          */
+        COMPILE::JS
 		public function get imageElement():Element
 		{
+            if(!_imageElement)
+            {
+                if(!_imageElement)
+                {
+                    _imageElement = document.createElement("img") as HTMLImageElement;
+                    element.appendChild(_imageElement);
+                }                
+
+            }
 			return _imageElement;
 		}
-        }
+        
 	}
 }
