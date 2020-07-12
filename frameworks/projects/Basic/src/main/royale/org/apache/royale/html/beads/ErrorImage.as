@@ -143,11 +143,17 @@ package org.apache.royale.html.beads {
         public function set emptyIsError(value:Boolean):void {
             _emptyIsError = value;
         }
-
+        /**
+         * Keep track of the last applied src to prevent an endless loop if the error src is missing
+         */
+        private var lastAppliedSrc:String;
 		COMPILE::JS
         private function errorHandler(event:Event):void {
-            if (_hostElement.src != _src)
+            if (lastAppliedSrc != _src && _hostElement.src != _src)
+            {
                 _hostElement.src = _src;
+                lastAppliedSrc = _src;
+            }
         }
 		
         private function srcChangedHandler(event:Event):void
