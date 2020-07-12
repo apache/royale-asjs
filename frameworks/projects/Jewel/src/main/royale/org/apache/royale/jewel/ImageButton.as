@@ -63,8 +63,9 @@ package org.apache.royale.jewel
 		COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this, 'input');
-            element.setAttribute('type', 'image');
+			addElementToWrapper(this,'button');
+            element.setAttribute('type', 'button');
+
             return element;
         }
 
@@ -87,22 +88,14 @@ package org.apache.royale.jewel
             ImageModel(model).url = url;
             COMPILE::SWF
             {
-                if (!style)
-                    style = new SimpleCSSStyles();
-                style.backgroundImage = url;
+            if (!style)
+                style = new SimpleCSSStyles();
+            style.backgroundImage = url;
             }
 
             COMPILE::JS
             {
-                if(!_imageElement)
-                {
-                    (element as HTMLInputElement).src = url;
-                    _imageElement = (element as HTMLInputElement);
-                }
-                if (_imageElement && url)
-                {
-                    (_imageElement as HTMLInputElement).src = url;
-                }
+            (imageElement as HTMLImageElement).src = url;
             }
 
 			dispatchEvent(new Event("srcChanged"));
@@ -119,11 +112,17 @@ package org.apache.royale.jewel
          *  @productversion Royale 0.9.8
          *  @royaleignorecoercion org.apache.royale.core.IImageButton#imageElement
          *  @royaleignorecoercion Element
+         *  @royaleignorecoercion HTMLImageElement
          */
         COMPILE::JS
 		public function get imageElement():Element
 		{
-			return _imageElement;
+			if(!_imageElement)
+            {
+                _imageElement = document.createElement("img") as HTMLImageElement;
+                element.appendChild(_imageElement);
+            }                
+            return _imageElement;
 		}
 	}
 }
