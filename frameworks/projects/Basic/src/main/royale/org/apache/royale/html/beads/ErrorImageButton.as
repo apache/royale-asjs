@@ -16,18 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads {
-
+package org.apache.royale.html.beads
+{
     import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IImageModel;
+    import org.apache.royale.core.IRenderedObject;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
-
     import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.core.IRenderedObject;
-    import org.apache.royale.core.IImageModel;
-    import org.apache.royale.core.IImageButton;
   
-  /**
+    /**
 	 *  The ErrorImage class is a bead that can be used to 
      *  display an alternate image, in the event that the specified image 
      *  cannot be loaded.
@@ -40,11 +38,8 @@ package org.apache.royale.html.beads {
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-
-    public class ErrorImageButton implements IBead {
-
-        protected var _strand:IStrand;
-
+    public class ErrorImageButton implements IBead
+    {
         /**
          *  constructor.
          *
@@ -57,7 +52,7 @@ package org.apache.royale.html.beads {
         public function ErrorImageButton() {            
         }
 
-        private var _src:String;
+        private var _src:String = "assets/no-image.svg";
 		/**
 		 *  The source of the image
          * 
@@ -88,6 +83,7 @@ package org.apache.royale.html.beads {
             return _strand.getBeadByType(IImageModel) as IImageModel;
         }
 
+        protected var _strand:IStrand;
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *
@@ -143,7 +139,7 @@ package org.apache.royale.html.beads {
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
-        */
+         */
         public function get emptyIsError():Boolean {
             return _emptyIsError;
         }

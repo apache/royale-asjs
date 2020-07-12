@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads {
 
-    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.Bead;
     import org.apache.royale.core.IHasImage;
     import org.apache.royale.core.IImageModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
   
-  /**
+    /**
 	 *  The ErrorImage class is a bead that can be used to 
      *  display an alternate image, in the event that the specified image 
      *  cannot be loaded.
@@ -38,11 +37,8 @@ package org.apache.royale.html.beads {
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-
-    public class ErrorImage implements IBead {
-
-        protected var _strand:IStrand;
-
+    public class ErrorImage extends Bead
+    {
         /**
          *  constructor.
          *
@@ -55,29 +51,48 @@ package org.apache.royale.html.beads {
         public function ErrorImage() {            
         }
 
-        private var _src:String;
+        private var _src:String = "assets/no-image.svg";
 		/**
 		 *  The source of the image
+         *  Defaults to "assets/no-image.svg"
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
-        */
+         */
         public function get src():String {
             return _src;
         }
-
         public function set src(value:String):void {
             _src = value;
         }
         
+        /**
+		 *  The image element
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
 		COMPILE::JS
         private var _hostElement:HTMLImageElement;
         
+        private var _hostModel:IImageModel;
+        /**
+		 *  The image model
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
         protected function get hostModel():IImageModel
-        {             
-            return _strand.getBeadByType(IImageModel) as IImageModel;
+        {    
+            if(!_hostModel)
+                _hostModel = _strand.getBeadByType(IImageModel) as IImageModel;
+            return _hostModel;
         }
 
         /**
@@ -88,37 +103,28 @@ package org.apache.royale.html.beads {
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
          *  @royaleignorecoercion org.apache.royale.core.IHasImage
-         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          *  @royaleignorecoercion HTMLImageElement
          */
-        public function set strand(value:IStrand):void 
+        override public function set strand(value:IStrand):void 
         {
-            _strand = value;
+            super.strand = value;
 
-	        COMPILE::JS {
-
-                _hostElement = (_strand as IHasImage).imageElement as HTMLImageElement;
-                if(_hostElement){
-                    
-                    _hostElement.addEventListener('error', errorHandler);
-
-                    if(_emptyIsError)
-                    {
-                        (_strand as IEventDispatcher).addEventListener("beadsAdded", beadsAddedHandler);
-                    }
-                }
+            COMPILE::JS {
+            _hostElement = (_strand as IHasImage).imageElement as HTMLImageElement;
+            if(_hostElement)
+            {    
+                _hostElement.addEventListener('error', errorHandler);
+                if(_emptyIsError)
+                    listenOnStrand("beadsAdded", beadsAddedHandler);
+            }   
             }
         }
-        /**
-         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+
 		COMPILE::JS
         private function beadsAddedHandler(event:Event):void
         {
-            (_strand as IEventDispatcher).removeEventListener("beadsAdded", beadsAddedHandler);
-
             if(hostModel)
-                hostModel.addEventListener("urlChanged",srcChangedHandler);
+                hostModel.addEventListener("urlChanged", srcChangedHandler);
             srcChangedHandler(null);
         }
 
@@ -130,7 +136,7 @@ package org.apache.royale.html.beads {
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
-        */
+         */
         public function get emptyIsError():Boolean {
             return _emptyIsError;
         }
@@ -140,11 +146,8 @@ package org.apache.royale.html.beads {
 
 		COMPILE::JS
         private function errorHandler(event:Event):void {
-        
             if (_hostElement.src != _src)
-            {
                 _hostElement.src = _src;
-            }
         }
 		
         private function srcChangedHandler(event:Event):void
@@ -152,16 +155,13 @@ package org.apache.royale.html.beads {
             if(hostModel && !hostModel.url){                
                 // Op1: Updating the model (It causes a double assignment that we must control)
                 if(hostModel.hasEventListener("urlChanged")){
-                    hostModel.removeEventListener("urlChanged",srcChangedHandler);
+                    hostModel.removeEventListener("urlChanged", srcChangedHandler);
                     hostModel.url = src;
-                    hostModel.addEventListener("urlChanged",srcChangedHandler);                    
+                    hostModel.addEventListener("urlChanged", srcChangedHandler);                    
                 }
                 // Op2: Direct assignment to element
                 //(hostElement as Object).src = src;
             }
-            
         }
-
     }
 }
-
