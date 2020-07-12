@@ -116,13 +116,10 @@ package org.apache.royale.html
 		{
             if(!_imageElement)
             {
-                if(!_imageElement)
-                {
-                    _imageElement = document.createElement("img") as HTMLImageElement;
-                    element.appendChild(_imageElement);
-                }                
-
+                _imageElement = document.createElement("img") as HTMLImageElement;
+                element.appendChild(_imageElement);
             }
+
 			return _imageElement;
 		}
         
