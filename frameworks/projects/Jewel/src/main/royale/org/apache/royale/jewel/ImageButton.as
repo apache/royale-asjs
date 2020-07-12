@@ -27,9 +27,9 @@ package org.apache.royale.jewel
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IImageButton;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.ImageModel;
-    import org.apache.royale.core.IImageButton;
 
     /**
      *  The ImageButton class presents an image as a button.
@@ -108,7 +108,7 @@ package org.apache.royale.jewel
 			dispatchEvent(new Event("srcChanged"));
         }
 
-		COMPILE::JS{
+		COMPILE::JS
         private var _imageElement:Element;
 		/**
 		 *  Element image. HTMLInputElement.
@@ -120,10 +120,10 @@ package org.apache.royale.jewel
          *  @royaleignorecoercion org.apache.royale.core.IImageButton#imageElement
          *  @royaleignorecoercion Element
          */
+        COMPILE::JS
 		public function get imageElement():Element
 		{
 			return _imageElement;
 		}
-        }
 	}
 }
