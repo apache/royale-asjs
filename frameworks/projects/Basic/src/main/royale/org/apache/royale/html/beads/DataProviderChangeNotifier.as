@@ -47,6 +47,10 @@ package org.apache.royale.html.beads
 		{
 		}
 		
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.collections.ArrayList
+		 * 
+		 */
 		override protected function destinationChangedHandler(event:Event):void
 		{
 			var object:Object = document[sourceID];
@@ -59,11 +63,13 @@ package org.apache.royale.html.beads
 			dataProvider = object[propertyName] as ArrayList;
 			attachEventListeners();
 		}
-
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
 		private function handleDataProviderChanges(event:Event):void
 		{
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            selectionModel.dispatchEvent(new Event("dataProviderChanged"));
+			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			selectionModel.dispatchEvent(new Event("dataProviderChanged"));
 		}
 		
 		protected function attachEventListeners():void

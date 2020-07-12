@@ -238,6 +238,7 @@ package org.apache.royale.html.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          * 	@royaleignorecoercion org.apache.royale.core.IItemRenderer
+         * 	@royaleignorecoercion org.apache.royale.core.IParent
          */
         public function getItemRendererForIndex(index:int):IItemRenderer
         {

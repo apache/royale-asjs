@@ -71,17 +71,22 @@ package org.apache.royale.html.beads
 
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
             override protected function handleInitComplete(event:Event):void
 			{
 				super.handleInitComplete(event);
 
 				 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-				IEventDispatcher(sharedModel).addEventListener("headerModelChanged", handleHeaderModelChanged);
+				(sharedModel as IEventDispatcher).addEventListener("headerModelChanged", handleHeaderModelChanged);
 			}
 
 			/**
 			 * @private
+		   * @royaleignorecoercion org.apache.royale.html.DataGrid
+		   * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
 			private function handleHeaderModelChanged(event:Event):void
 			{
@@ -92,7 +97,7 @@ package org.apache.royale.html.beads
 				 host.removeElement(header);
 				 host.removeElement(listArea);
 
-				 IEventDispatcher(sharedModel).removeEventListener("headerModelChanged", handleHeaderModelChanged);
+				 (sharedModel as IEventDispatcher).removeEventListener("headerModelChanged", handleHeaderModelChanged);
 				 refreshContent();
 			}
 		}

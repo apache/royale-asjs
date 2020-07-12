@@ -25,6 +25,7 @@ package org.apache.royale.svg
 	COMPILE::JS 
 	{
 		import org.apache.royale.graphics.utils.addSvgElementToElement;
+		import org.apache.royale.core.WrappedHTMLElement;
 	}
 
 	/**
@@ -51,7 +52,7 @@ package org.apache.royale.svg
 			{
 				super.build();
 				filterElement.setAttribute("in", "SourceAlpha");
-				var funcA:Element = addSvgElementToElement(filterElement, "feFuncA") as Element;
+				var funcA:WrappedHTMLElement = addSvgElementToElement(filterElement, "feFuncA");
 				funcA.setAttribute("type", "table");
 				funcA.setAttribute("tableValues", "1 0");
 			}

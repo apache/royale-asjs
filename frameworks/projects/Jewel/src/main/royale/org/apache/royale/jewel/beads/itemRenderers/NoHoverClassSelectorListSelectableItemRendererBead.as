@@ -18,12 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
-    import org.apache.royale.utils.IClassSelectorListSupport;
-
 	/**
-	 *  UnselectableElement bead prevents from text selection of html element
+	 *  NoHoverClassSelectorListSelectableItemRendererBead bead disables hover visuals
 	 *
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -31,7 +27,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class ClassSelectorListSelectableItemRendererBead extends SelectableItemRendererBeadBase
+	public class NoHoverClassSelectorListSelectableItemRendererBead extends ClassSelectorListSelectableItemRendererBead
 	{
 		/**
 		 *  constructor.
@@ -41,30 +37,20 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function ClassSelectorListSelectableItemRendererBead()
+		public function NoHoverClassSelectorListSelectableItemRendererBead()
 		{
 		}
 
-		protected var ir:IClassSelectorListSupport;
-		
-		override public function set strand(value:IStrand):void
+		override public function set hovered(value:Boolean):void
 		{
-			super.strand = value;
-			ir = value as IClassSelectorListSupport;
-			ir.addClass("selectable");
+			// don't allow down hovered
 		}
-		
-        /**
-         * @private
-         */
-        override public function updateRenderer():void
-        {
-			if (!selected)
-			{
-				ir.toggleClass("hovered", hovered);
-			}
-
+		/**
+		 * @private
+		 */
+		override public function updateRenderer():void
+		{
 			ir.toggleClass("selected", selected);
-        }
+		}
 	}
 }

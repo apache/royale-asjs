@@ -49,20 +49,18 @@ package org.apache.royale.svg
 		{
 		}
 		
-		/*
+		/**
 		* @royaleignorecoercion Element
 		*/
+		COMPILE::JS
 		override public function build():void
 		{
-			COMPILE::JS 
-			{
-				super.build();
-				filterElement.setAttribute("lightingColor", CSSUtils.attributeFromColor(lightingColor));
-				filterElement.setAttribute("surfaceScale", surfaceScale);
-				var distantLight:Element = addSvgElementToElement(filterElement, "feDistantLight") as Element;
-				distantLight.setAttribute("azimuth", "" + azimuth);
-				distantLight.setAttribute("elevation", "" + elevation);
-			}
+			super.build();
+			filterElement.setAttribute("lightingColor", CSSUtils.attributeFromColor(lightingColor));
+			filterElement.setAttribute("surfaceScale", surfaceScale);
+			var distantLight:Element = addSvgElementToElement(filterElement, "feDistantLight");
+			distantLight.setAttribute("azimuth", "" + azimuth);
+			distantLight.setAttribute("elevation", "" + elevation);
 		}
 			
 		COMPILE::JS

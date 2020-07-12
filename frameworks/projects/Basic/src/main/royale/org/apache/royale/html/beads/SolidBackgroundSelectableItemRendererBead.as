@@ -52,6 +52,7 @@ package org.apache.royale.html.beads
 
         /**
          * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         override public function updateRenderer():void
         {

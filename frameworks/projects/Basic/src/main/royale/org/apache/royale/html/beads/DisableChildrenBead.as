@@ -101,7 +101,9 @@ package org.apache.royale.html.beads
 		{
 			updateHost();
 		}
-		
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		private function get host():IUIBase
 		{
 			return _strand as IUIBase;
@@ -127,16 +129,18 @@ package org.apache.royale.html.beads
 			}
 				
 		}
-
+		/**
+		 * 	@royaleignorecoercion HTMLElement
+		 */
 		COMPILE::JS
 		private function setDecendants(elem:HTMLElement):void
 		{
 			elem.style["pointerEvents"] = _disabled ? "none" : "";
 			_disabled ? elem.setAttribute("tabindex", "-1") : elem.removeAttribute("tabindex");
-			elem = elem.firstChild as HTMLElement;
+			elem = elem.firstElementChild as HTMLElement;
 			while (elem) {
 				setDecendants(elem);
-				elem = elem.nextSibling as HTMLElement;
+				elem = elem.nextElementSibling as HTMLElement;
 			}
 		}
 		/**

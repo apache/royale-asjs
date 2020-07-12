@@ -954,6 +954,9 @@ package
 		{
 			return _targetProperty;
 		}
+		/**
+		 * @royaleignorecoercion QName
+		 */
 		private function xmlFromProperty(r:XML):XML
 		{
 			if (_targetProperty == null || _targetProperty == '*' ||  (_targetProperty is QName && QName(_targetProperty).localName == '*')) {
@@ -963,7 +966,7 @@ package
 			var str:String = _targetProperty as String;
 			ret = new XML();
 			ret.setParent(r);
-			if (str && str.charAt(0)=='@' ||  (_targetProperty is QName && QName(_targetProperty).isAttribute)) {
+			if (str && str.charAt(0)=='@' ||  (_targetProperty is QName && (_targetProperty as QName).isAttribute)) {
 				if (r.child(_targetProperty).length()) return null; //2.c.iv,2
 				ret.setName(_targetProperty);
 				// not needed, derived from the QName ret.setNodeKind('attribute');
@@ -1049,9 +1052,10 @@ package
 		}
 
 		/**
-		 *
-		 * @royaleignorecoercion XMLList
 		 * [[Put]] from the e4X spec
+		 *
+		 * @royaleignorecoercion XML
+		 * @royaleignorecoercion XMLList
 		 */
 		public function setChild(elementName:*, elements:Object):Object
 		{

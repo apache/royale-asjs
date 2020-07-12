@@ -985,6 +985,7 @@ package org.apache.royale.core
         /**
          *  @private
          *  @royaleignorecoercion String
+		 *  @royaleemitcoercion org.apache.royale.core.IStyleObject
          */
         public function set style(value:Object):void
         {

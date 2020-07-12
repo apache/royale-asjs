@@ -105,7 +105,7 @@ package org.apache.royale.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 *  @royaleignorecoercion HTMLElement
-		 *  @royaleignorecoercion ITransformHost
+		 *  @royaleignorecoercion org.apache.royale.core.ITransformHost
 		 */
 		public static function getTransormMatrix(obj:IUIBase):org.apache.royale.geom.Matrix
 		{
@@ -117,7 +117,7 @@ package org.apache.royale.utils
 			COMPILE::JS
 			{
 				// currently only works for SVG elements
-				var svgElement:Object = (obj as ITransformHost).transformElement as Object;
+				var svgElement:Object = (obj as ITransformHost).transformElement;
 				var sm:SVGMatrix = svgElement.getScreenCTM();
 				return new org.apache.royale.geom.Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
 			}

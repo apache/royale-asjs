@@ -122,6 +122,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		private function handleDragEnter(event:DragEvent):void
 		{

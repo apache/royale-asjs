@@ -45,7 +45,9 @@ package org.apache.royale.file.beads
          *  @royalesuppresspublicvarwarning
          */
 		public var responseData:Object;
-
+		/**
+		 *  @royaleignorecoercion org.apache.royale.net.URLBinaryLoader
+		 */
 		override protected function completeHandler(event:Event):void
 		{
 			responseData = (event.target as URLBinaryLoader).data;

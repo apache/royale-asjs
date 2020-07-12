@@ -19,39 +19,27 @@
 package org.apache.royale.html.beads
 {
 
-	import org.apache.royale.core.IMultiSelectionModel;
-	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.core.IStrandWithModel;
-	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IMultiSelectionModel;
-	import org.apache.royale.core.IDocument;
-	import org.apache.royale.core.IDragInitiator;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IMultiSelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.Lookalike;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.events.DragEvent;
-	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.geom.Rectangle;
-	import org.apache.royale.html.Button;
 	import org.apache.royale.html.Container;
-	import org.apache.royale.html.Label;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.controllers.DragMouseController;
-	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.utils.getParentOrSelfByType;
-	import org.apache.royale.html.beads.layouts.VerticalLayout;
 	import org.apache.royale.html.beads.layouts.HorizontalLayout;
+	import org.apache.royale.html.beads.layouts.VerticalLayout;
+	import org.apache.royale.utils.getParentOrSelfByType;
 
 	COMPILE::JS
 	{
@@ -105,11 +93,14 @@ package org.apache.royale.html.beads
 		 *
 		 * @return UIBase The "dragImage" to use.
 		 *
-		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		protected function createDragImage():UIBase
 		{
@@ -128,8 +119,8 @@ package org.apache.royale.html.beads
 			{
 				var ir:IItemRenderer = itemRendererOwnerView.getItemRendererForIndex(selectedIndices[i]);
 				var lookalike:UIBase = new Lookalike(ir);
-				lookalike.width = IUIBase(ir).width;
-				lookalike.height = IUIBase(ir).height;
+				lookalike.width = (ir as IUIBase).width;
+				lookalike.height = (ir as IUIBase).height;
 				dragImage.addElement(lookalike);
 			}
 
@@ -144,7 +135,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
-		 *
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
@@ -160,6 +152,10 @@ package org.apache.royale.html.beads
 			}
 		}
 
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		private function get model():IMultiSelectionModel
 		{
 			return (_strand as IStrandWithModel).model as IMultiSelectionModel;

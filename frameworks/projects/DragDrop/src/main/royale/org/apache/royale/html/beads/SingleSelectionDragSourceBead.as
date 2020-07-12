@@ -23,10 +23,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IDragInitiator;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.ItemRendererOwnerViewBead;
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.DragEvent;
@@ -177,6 +175,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
@@ -187,13 +187,11 @@ package org.apache.royale.html.beads
 			DragMouseController.dragImageOffsetY = -30;
 
 			var relatedObject:Object = event.relatedObject;
-			var itemRenderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
+			var itemRenderer:IIndexedItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IIndexedItemRenderer;
 
 			if (itemRenderer) {
-                var ownerViewBead:ItemRendererOwnerViewBead = itemRenderer.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead;
-				var p:IParent = (ownerViewBead.ownerView as ILayoutHost).contentView as IParent;
-				_dragSourceIndex = p.getElementIndex(itemRenderer as IChild);
-				DragEvent.dragSource = (itemRenderer as IItemRenderer).data;
+				_dragSourceIndex = itemRenderer.index;
+				DragEvent.dragSource = itemRenderer.data;
 			}
 
 			var newEvent:Event = new Event("start", false, true);
@@ -229,6 +227,10 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion Array
+		 *  @royaleignorecoercion org.apache.royale.collections.ArrayList
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function acceptingDrop(dropTarget:Object, type:String):void
 		{

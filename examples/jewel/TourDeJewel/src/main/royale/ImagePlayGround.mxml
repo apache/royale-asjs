@@ -90,6 +90,29 @@ limitations under the License.
 				</js:ImageButton>
 			</j:Card>
 		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel Image with bead error image alternative"/>
+
+				<j:Image localId="imageWithErrorBead" src="assets/royale.png">
+					<j:beads>
+                        <js:ErrorImage src="assets/jewel-no-image.svg" emptyIsError="true"/>
+					</j:beads>
+				</j:Image>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H4 text="Basic Image with bead error image alternative"/>
+
+				<js:Image localId="imageBasicErrorBead" src="assets/royale.png">
+					<js:beads>
+                        <js:ErrorImage src="assets/jewel-no-image.svg" emptyIsError="true"/>
+					</js:beads>
+				</js:Image>
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>

@@ -89,26 +89,31 @@ package org.apache.royale.mdl.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          *  @royaleignorecoercion HTMLInputElement
-         *  @royaleignorecoercion org.apache.royale.core.UIBase;
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(value).addEventListener("initComplete", initCompleteHandler);
-            IEventDispatcher(value).addEventListener("beadsAdded", initCompleteHandler);
+            (value as IEventDispatcher).addEventListener("initComplete", initCompleteHandler);
+            (value as IEventDispatcher).addEventListener("beadsAdded", initCompleteHandler);
         }
-
+        /**
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
         private function initCompleteHandler(event:Event):void
         {
-            IEventDispatcher(_strand).removeEventListener("initComplete", initCompleteHandler);
-            IEventDispatcher(_strand).removeEventListener("beadsAdded", initCompleteHandler);
+            (_strand as IEventDispatcher).removeEventListener("initComplete", initCompleteHandler);
+            (_strand as IEventDispatcher).removeEventListener("beadsAdded", initCompleteHandler);
             
             COMPILE::JS
             {
                 upgradeElement();
             }
         }
-
+        /**
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
+         */
         COMPILE::JS
         private function upgradeElement():void
         {

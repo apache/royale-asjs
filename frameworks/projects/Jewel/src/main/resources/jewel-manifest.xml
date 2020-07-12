@@ -237,7 +237,8 @@
     <component id="DropDownListItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView"/>
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
     <component id="NoClassSelectorListSelectableItemRendererBead" class="org.apache.royale.jewel.beads.itemRenderers.NoClassSelectorListSelectableItemRendererBead"/>
-    
+    <component id="NoHoverClassSelectorListSelectableItemRendererBead" class="org.apache.royale.jewel.beads.itemRenderers.NoHoverClassSelectorListSelectableItemRendererBead"/>
+
     <component id="RemoveAllDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllDataGridItemRendererForArrayListData" />
 
     <component id="AddTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableRowForArrayListData" />

@@ -1198,6 +1198,7 @@ j|FormItem {
   border-left: 0px;
 }
 .jewel.simpletable .jewel.tableheadercell {
+  padding: 12px;
   background: linear-gradient(#7f7f7f, #737373);
   box-shadow: inset 0 1px 0 #8c8c8c;
   font-weight: 700;
@@ -1212,6 +1213,9 @@ j|FormItem {
 .jewel.simpletable .jewel.tablecell {
   border-top: 1px solid #595959;
   border-left: 1px solid #595959;
+}
+.jewel.simpletable .jewel.tablecell > * {
+  padding: 12px;
 }
 .jewel.simpletable .jewel.tfoot .jewel.tablecell {
   border-left: 0px;
@@ -1229,6 +1233,7 @@ j|FormItem {
   border-left: 0px;
 }
 .jewel.table .jewel.tableheadercell {
+  padding: 12px;
   background: linear-gradient(#7f7f7f, #737373);
   box-shadow: inset 0 1px 0 #8c8c8c;
   font-weight: 700;
@@ -1254,6 +1259,9 @@ j|FormItem {
   box-shadow: inset 0 1px 0 #a6a6a6;
 }
 
+.jewel.tableitem {
+  height: 100%;
+}
 .jewel.tableitem.hovered {
   color: #FFFFFF;
   background: #F8B13F;
@@ -1261,6 +1269,12 @@ j|FormItem {
 .jewel.tableitem.selected, .jewel.tableitem.selectable:active {
   color: #FFFFFF;
   background: #f7a726;
+}
+.jewel.tableitem.calendar {
+  border-radius: 4px;
+}
+.jewel.tableitem.calendar.selected {
+  font-weight: bold;
 }
 
 a:link {
