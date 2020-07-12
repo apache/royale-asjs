@@ -30,6 +30,7 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  The TextPromptBead class is a specialty bead that can be used with
@@ -41,7 +42,7 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TextPromptBead implements IBead
+	public class TextPromptBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -74,8 +75,6 @@ package org.apache.royale.html.accessories
 			_prompt = value;
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -86,7 +85,7 @@ package org.apache.royale.html.accessories
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -142,10 +141,10 @@ package org.apache.royale.html.accessories
 				if (!promptAdded) UIBase(_strand).$sprite_addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
-                promptField.x = 2;
-                promptField.y = 2;
-                promptField.width = UIBase(_strand).width-5;
-                promptField.height = UIBase(_strand).height-4;
+				promptField.x = 2;
+				promptField.y = 2;
+				promptField.width = UIBase(_strand).width-5;
+				promptField.height = UIBase(_strand).height-4;
 
 			}
 		}

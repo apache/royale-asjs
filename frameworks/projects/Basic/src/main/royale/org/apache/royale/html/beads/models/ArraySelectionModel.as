@@ -22,7 +22,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 			
     /**
      *  The ArraySelectionModel class is a selection model for
@@ -36,7 +36,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ArraySelectionModel extends EventDispatcher implements ISelectionModel, IRollOverModel
+	public class ArraySelectionModel extends DispatcherBead implements ISelectionModel, IRollOverModel
 	{
         /**
          *  Constructor.
@@ -50,21 +50,6 @@ package org.apache.royale.html.beads.models
 		{
 		}
 
-		private var _strand:IStrand;
-		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		
 		private var _dataProvider:Object;
         
         /**

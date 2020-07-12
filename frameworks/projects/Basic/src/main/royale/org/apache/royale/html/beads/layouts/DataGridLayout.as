@@ -36,6 +36,7 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.html.supportClasses.IDataGridColumn;
+    import org.apache.royale.core.Bead;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
@@ -47,7 +48,7 @@ package org.apache.royale.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DataGridLayout implements IBeadLayout
+	public class DataGridLayout extends Bead implements IBeadLayout
 	{
 		/**
 		 *  constructor
@@ -61,25 +62,14 @@ package org.apache.royale.html.beads.layouts
 		{
 		}
 		
-		protected var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-			(_strand as IEventDispatcher).addEventListener("widthChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("heightChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("sizeChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
+			listenOnStrand("widthChanged", handleSizeChanges);
+			listenOnStrand("heightChanged", handleSizeChanges);
+			listenOnStrand("sizeChanged", handleSizeChanges);
+			listenOnStrand("layoutNeeded", handleLayoutNeeded);
 		}
 		
 		/**
@@ -89,7 +79,9 @@ package org.apache.royale.html.beads.layouts
 		{
 			return _strand as UIBase;
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 */
 		private function handleSizeChanges(event:Event):void
 		{
 			var viewBead:ILayoutHost = uiHost.view as ILayoutHost;
@@ -103,33 +95,41 @@ package org.apache.royale.html.beads.layouts
 			if (viewBead.beforeLayout())
 				layout();
 		}
-		
-        protected function getColumnsForLayout():Array
-        {
-            var header:IUIBase = (uiHost.view as IDataGridView).header;
-            // fancier DG's will filter invisible columns and only put visible columns
-            // in the bbmodel, so do all layout based on the bbmodel, not the set
-            // of columns that may contain invisible columns
-            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
-            return bbmodel.dataProvider as Array;
-        }
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion Array
+		 */
+		protected function getColumnsForLayout():Array
+		{
+			var header:IUIBase = (uiHost.view as IDataGridView).header;
+			// fancier DG's will filter invisible columns and only put visible columns
+			// in the bbmodel, so do all layout based on the bbmodel, not the set
+			// of columns that may contain invisible columns
+			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			return bbmodel.dataProvider as Array;
+		}
 
-        protected function setHeaderWidths(columnWidths:Array):void
-        {
-            var header:IUIBase = (uiHost.view as IDataGridView).header;
-            // fancier DG's will filter invisible columns and only put visible columns
-            // in the bbmodel, so do all layout based on the bbmodel, not the set
-            // of columns that may contain invisible columns
-            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
-            bbmodel.buttonWidths = columnWidths;
-        }
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 */
+		protected function setHeaderWidths(columnWidths:Array):void
+		{
+			var header:IUIBase = (uiHost.view as IDataGridView).header;
+			// fancier DG's will filter invisible columns and only put visible columns
+			// in the bbmodel, so do all layout based on the bbmodel, not the set
+			// of columns that may contain invisible columns
+			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			bbmodel.buttonWidths = columnWidths;
+		}
         
 		/**
 		 * @copy org.apache.royale.core.IBeadLayout#layout
-         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
-         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-         * @royaleignorecoercion org.apache.royale.core.ILayoutHost
-         * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutHost
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
 		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel

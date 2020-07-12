@@ -21,9 +21,8 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.collections.ICollectionView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 
     /**
      *  The SingleSelectionCollectionViewModel class is a selection model for
@@ -35,7 +34,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-	public class SingleSelectionCollectionViewModel extends EventDispatcher implements ISelectionModel, IRollOverModel
+	public class SingleSelectionCollectionViewModel extends DispatcherBead implements ISelectionModel, IRollOverModel
 	{
         /**
          *  Constructor.
@@ -47,21 +46,6 @@ package org.apache.royale.html.beads.models
          */
 		public function SingleSelectionCollectionViewModel()
 		{
-		}
-
-		private var _strand:IStrand;
-
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
 		}
 
 		private var _dataProvider:ICollectionView;
@@ -86,9 +70,9 @@ package org.apache.royale.html.beads.models
          */
 		public function set dataProvider(value:Object):void
 		{
-            if (value == _dataProvider) return;
+			if (value == _dataProvider) return;
 
-            _dataProvider = value as ICollectionView;
+			_dataProvider = value as ICollectionView;
 			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
 				_selectedIndex = -1;
             

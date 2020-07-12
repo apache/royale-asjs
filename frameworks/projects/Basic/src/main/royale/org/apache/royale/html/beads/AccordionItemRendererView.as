@@ -56,7 +56,7 @@ package org.apache.royale.html.beads
 		{
 			// don't do anything here.  No need to complete setup
 			// until after data is set.
-			(_strand as IEventDispatcher).addEventListener("dataChange", dataChangeHandler);
+			listenOnStrand("dataChange", dataChangeHandler);
 		}
 		
 		private function dataChangeHandler(event:Event):void

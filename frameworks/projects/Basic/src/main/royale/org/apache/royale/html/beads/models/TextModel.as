@@ -18,12 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ITextModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 		
     /**
      *  The TextModel class is most basic data model for a
@@ -37,7 +34,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class TextModel extends EventDispatcher implements IBead, ITextModel
+	public class TextModel extends DispatcherBead implements ITextModel
 	{
         /**
          *  Constructor.
@@ -51,21 +48,6 @@ package org.apache.royale.html.beads.models
 		{
 		}
 		
-		private var _strand:IStrand;
-		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-
 		private var _text:String;
 
         [Bindable("textChange")]

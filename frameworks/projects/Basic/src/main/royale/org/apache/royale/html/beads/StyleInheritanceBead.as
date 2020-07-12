@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IRenderedObject;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IBead;
 	COMPILE::JS {
 		import org.apache.royale.events.IEventDispatcher;
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
+	import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  The StyleInheritanceBead class forces descendadants of an IStylableObject to inherit a style
@@ -34,7 +34,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 9.3
 	 */
-	public class StyleInheritanceBead implements IBead
+	public class StyleInheritanceBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -49,7 +49,6 @@ package org.apache.royale.html.beads
 		}
 		
 		private var _styleName:String;
-		private var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -57,14 +56,13 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 9.3
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			COMPILE::JS 
 			{
-				(value as IEventDispatcher).addEventListener('initComplete', initCompleteHandler);
+				listenOnStrand('initComplete', initCompleteHandler);
 			}
 		}
 

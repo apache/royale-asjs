@@ -28,7 +28,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CloseEvent;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.Bead;
 
 	/**
 	 *  The AlertControler class bead handles the close event on the org.apache.royale.html.Alert 
@@ -39,7 +39,7 @@ package org.apache.royale.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-    public class AlertController implements IBeadController
+    public class AlertController extends Bead implements IBeadController
 	{
 		/**
 		 *  constructor.
@@ -53,8 +53,6 @@ package org.apache.royale.html.beads.controllers
 		{
 		}
 		
-        private var _strand:IStrand;
-        
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -76,11 +74,11 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-        public function set strand(value:IStrand):void
-        {
-            _strand = value;
-            IEventDispatcher(value).addEventListener("close", alertCloseHandler);
-        }
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			listenOnStrand("close", alertCloseHandler);
+		}
         
 		/**
 		 * @private

@@ -27,6 +27,8 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IRenderedObject;
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.ITextFieldView;
@@ -42,7 +44,7 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class PasswordInputBead implements IBead
+	public class PasswordInputBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -55,20 +57,11 @@ package org.apache.royale.html.accessories
 		public function PasswordInputBead()
 		{
 		}
-		
-		protected var _strand:IStrand;
-		
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 *  @royaleignorecoercion HTMLInputElement
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -78,7 +71,7 @@ package org.apache.royale.html.accessories
 			}
 			COMPILE::JS
 			{
-				var host:UIBase = value as UIBase;
+				var host:IRenderedObject = value as IRenderedObject;
 				var e:HTMLInputElement = host.element as HTMLInputElement;
 				e.type = 'password';
 			}

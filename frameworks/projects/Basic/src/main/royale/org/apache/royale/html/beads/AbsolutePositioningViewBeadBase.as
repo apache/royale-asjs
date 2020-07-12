@@ -23,6 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ElementWrapper;
+	import org.apache.royale.core.BeadViewBase;
 
 	COMPILE::JS
 	{
@@ -46,7 +47,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class AbsolutePositioningViewBeadBase implements IBeadView
+	public class AbsolutePositioningViewBeadBase extends BeadViewBase
 	{		
 		/**
 		 * Constructor.
@@ -60,22 +61,7 @@ package org.apache.royale.html.beads
 		{
 			super();
 		}
-		
-		protected var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBeaViewd#host
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get host():IUIBase
-		{
-			return IUIBase(_strand);
-		}
-		
+				
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -85,7 +71,7 @@ package org.apache.royale.html.beads
 		 *  @productversion Royale 0.8
      * @royaleignorecoercion org.apache.royale.core.ElementWrapper
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -106,6 +92,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
      * @royaleignorecoercion org.apache.royale.core.ElementWrapper
+     * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function setAbsolutePosition(child:IChild, x:Number, y:Number):void
 		{

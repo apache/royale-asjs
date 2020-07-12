@@ -25,6 +25,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.events.utils.KeyboardEventConverter;
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.Bead;
 	
 	COMPILE::JS
 	{
@@ -36,6 +38,7 @@ package org.apache.royale.html.beads
 	{
 		import flash.events.KeyboardEvent;
 		import org.apache.royale.html.beads.ITextFieldView;
+		import org.apache.royale.core.IRenderedObject;
 	}
 	
 	/**
@@ -46,7 +49,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DispatchKeyboardEventBead implements IBead
+	public class DispatchKeyboardEventBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -60,7 +63,6 @@ package org.apache.royale.html.beads
 		{
 		}			
 		
-		private var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -69,8 +71,9 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -83,8 +86,8 @@ package org.apache.royale.html.beads
 			}
 			COMPILE::JS
 			{
-				(_strand as Object).element.addEventListener('keydown', keyEventHandler);
-				(_strand as Object).element.addEventListener('keyup', keyEventHandler);
+				(_strand as IRenderedObject).element.addEventListener('keydown', keyEventHandler);
+				(_strand as IRenderedObject).element.addEventListener('keyup', keyEventHandler);
 			}
 		}
 		
@@ -136,7 +139,7 @@ package org.apache.royale.html.beads
 		{
 			event.stopImmediatePropagation();
 			var newEvent:org.apache.royale.events.KeyboardEvent = KeyboardEventConverter.convert(event);
-			(_strand as IEventDispatcher).dispatchEvent(newEvent);
+			sendStrandEvent(_strand,newEvent);
 			if(newEvent.defaultPrevented)
 			{
 				event.preventDefault();

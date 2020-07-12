@@ -28,6 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.DispatcherBead;
 
     /**
      *  The DataItemRendererFactoryBase class is a base class
@@ -38,7 +39,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	public class ItemRendererFactoryBase extends EventDispatcher implements IBead
+	public class ItemRendererFactoryBase extends DispatcherBead
 	{
         /**
          *  Constructor.
@@ -56,8 +57,6 @@ package org.apache.royale.html.beads
 		protected var dataProviderModel:IDataProviderModel;
 		//protected var dataFieldProvider:DataFieldProviderBead;
 		
-		protected var _strand:IStrand;
-		
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *  
@@ -67,10 +66,10 @@ package org.apache.royale.html.beads
          *  @productversion Royale 0.8
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value; 
-			(value as IEventDispatcher).addEventListener("initComplete", finishSetup);
+			listenOnStrand("initComplete", finishSetup);
 		}
 		
 		/**
@@ -158,16 +157,6 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-		 *  @royaleignorecoercion Array
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase
-		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
-		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */		
 		protected function dataProviderChangeHandler(event:Event):void
 		{

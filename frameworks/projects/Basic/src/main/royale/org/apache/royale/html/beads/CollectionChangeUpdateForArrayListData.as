@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.sendBeadEvent;
+	import org.apache.royale.core.Bead;
 
 
     /**
@@ -36,7 +36,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class CollectionChangeUpdateForArrayListData implements IBead
+	public class CollectionChangeUpdateForArrayListData extends Bead
 	{
 		/**
 		 *  Constructor
@@ -50,9 +50,7 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		protected var _strand:IStrand;
-
-        protected var labelField:String;
+		protected var labelField:String;
 
 		/**
 		 *  @copy org.apache.royale.core.IStrand
@@ -63,10 +61,10 @@ package org.apache.royale.html.beads
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete", initComplete);
+			listenOnStrand("initComplete", initComplete);
 		}
 
 		/**

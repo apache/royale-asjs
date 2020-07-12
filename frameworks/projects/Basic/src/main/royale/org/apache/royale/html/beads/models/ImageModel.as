@@ -19,9 +19,8 @@
 package org.apache.royale.html.beads.models
 {
 	import org.apache.royale.core.IImageModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 	
 	/**
 	 *  The ImageModel class bead defines the data associated with an org.apache.royale.html.Image
@@ -32,7 +31,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ImageModel extends EventDispatcher implements IImageModel
+	public class ImageModel extends DispatcherBead implements IImageModel
 	{
 		/**
 		 *  constructor.
@@ -45,21 +44,6 @@ package org.apache.royale.html.beads.models
 		public function ImageModel()
 		{
 			super();
-		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
 		}
 		
 		protected var _url:String;

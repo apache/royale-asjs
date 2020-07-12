@@ -31,6 +31,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.Bead;
 	/**
 	 *  The DataGridColumnChangePropagator picks up the dataProviderChanged event
 	 *  and lets the data grid columns know about it.
@@ -41,22 +42,17 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DataGridColumnChangePropagator implements IChangePropagator
+	public class DataGridColumnChangePropagator extends Bead implements IChangePropagator
 	{
-		
-		private var _strand:IStrand;
 		
 		public function DataGridColumnChangePropagator()
 		{
 		}
 		
-		/**
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
+			listenOnStrand("beadsAdded", finishSetup);
 		}
 		
 		/**

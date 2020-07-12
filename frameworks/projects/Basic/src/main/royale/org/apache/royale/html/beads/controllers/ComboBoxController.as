@@ -29,23 +29,21 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IComboBoxView;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.Bead;
 	
-	public class ComboBoxController implements IBeadController
+	public class ComboBoxController extends Bead implements IBeadController
 	{
 		public function ComboBoxController()
 		{
 		}
 		
-		private var _strand:IStrand;
-		
 		protected var viewBead:IComboBoxView;
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.html.beads.IComboBoxView
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 * 
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -53,7 +51,7 @@ package org.apache.royale.html.beads.controllers
 			if (viewBead) {
 				finishSetup(null);
 			} else {
-				(_strand as IEventDispatcher).addEventListener("viewChanged", finishSetup);
+				listenOnStrand("viewChanged", finishSetup);
 			}
 		}
 		

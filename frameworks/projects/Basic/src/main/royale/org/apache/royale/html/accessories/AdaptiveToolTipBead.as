@@ -72,8 +72,7 @@ package org.apache.royale.html.accessories
 		{
 			if (!toolTip || tt)
 				return;
-
-			(_strand as IEventDispatcher).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			listenOnStrand(MouseEvent.MOUSE_OUT, rollOutHandler);
 
 			var comp:IUIBase = _strand as IUIBase
 			host = UIUtils.findPopUpHost(comp);

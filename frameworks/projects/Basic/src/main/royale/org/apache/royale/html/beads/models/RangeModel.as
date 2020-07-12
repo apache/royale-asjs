@@ -24,6 +24,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.core.DispatcherBead;
 			
 	/**
 	 *  The RangeModel class bead defines a set of for a numeric range of values
@@ -34,7 +35,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class RangeModel extends EventDispatcher implements IBead, IRangeModel
+	public class RangeModel extends DispatcherBead implements IRangeModel
 	{
 		/**
 		 *  constructor.
@@ -48,21 +49,6 @@ package org.apache.royale.html.beads.models
 		{
 		}
 		
-		protected var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-
 		private var _maximum:Number = 100;
 		
 		/**

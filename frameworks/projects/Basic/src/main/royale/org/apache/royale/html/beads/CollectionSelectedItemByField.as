@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-  import org.apache.royale.core.IBead;
   import org.apache.royale.core.IStrand;
   import org.apache.royale.collections.CollectionUtils;
   import org.apache.royale.events.Event;
   import org.apache.royale.collections.ICollectionView;
   import org.apache.royale.core.ISelectionModel;
   import org.apache.royale.events.IEventDispatcher;
+  import org.apache.royale.core.Bead;
   
   /**
 	 *  The CollectionSelectedItemByField class is a specialty bead that can be used with
@@ -36,10 +36,9 @@ package org.apache.royale.html.beads
 	 *  @productversion Royale 0.9.8
 	 */
 
-  public class CollectionSelectedItemByField implements IBead{
+  public class CollectionSelectedItemByField extends Bead{
 
       protected var _model:ISelectionModel;
-	  protected var _strand:IStrand;
 
 	  
 		/**
@@ -61,12 +60,13 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-        public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			_model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			(_strand as IEventDispatcher).addEventListener("selectionChanged", selectionChangedHandler);
+			listenOnStrand("selectionChanged", selectionChangedHandler);
 			updateHost();
 		}
 
@@ -79,17 +79,17 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
-        public function get valueField():String
-        {
-            return _valueField;
-        }
-        public function set valueField(value:String):void
-        {
-            _valueField = value;
+		public function get valueField():String
+		{
+			return _valueField;
+		}
+		public function set valueField(value:String):void
+		{
+				_valueField = value;
 			updateHost();
-        }
+		}
 
-        private var _selectedValue:*;
+		private var _selectedValue:*;
 		
 		/**
 		 *  Any kind of object to perform the comparison or select
@@ -100,29 +100,29 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
-        public function get selectedValue():*{
-            return _selectedValue;
-        }
+		public function get selectedValue():*{
+			return _selectedValue;
+		}
 
-        public function set selectedValue(value:*):void{
-            _selectedValue = value;
-            updateHost();
-        }
+		public function set selectedValue(value:*):void{
+			_selectedValue = value;
+			updateHost();
+		}
 		
 		/**
 		 *  This bead allows update the selected item of the component through the entered field 
 		 */
-        protected function updateHost():void
+		protected function updateHost():void
 		{
 			if(_model && valueField != "" && selectedValue != null){
-			    var aux:* = CollectionUtils.getItemByField(_model.dataProvider as ICollectionView,valueField,selectedValue);
-                if(aux == null){
-                    _model.selectedItem = null;
-                    _model.selectedIndex = -1;
-                } else if (aux!==_model.selectedItem){
-                    _model.selectedItem = aux;
-                }
-            }
+				var aux:* = CollectionUtils.getItemByField(_model.dataProvider as ICollectionView,valueField,selectedValue);
+					if(aux == null){
+						_model.selectedItem = null;
+						_model.selectedIndex = -1;
+					} else if (aux!==_model.selectedItem){
+						_model.selectedItem = aux;
+					}
+			}
 		}
 		
 		/**
@@ -130,13 +130,13 @@ package org.apache.royale.html.beads
 		 * 
 		 *  @param event 
 		 */
-        protected function selectionChangedHandler(event:Event):void{
-            if(valueField != "" && _model){
-                var selectedItem:Object = _model.selectedItem;
-                if(selectedItem != null && selectedValue !== selectedItem[valueField])
-                    selectedValue = selectedItem[valueField];
-            }
-        }
+		protected function selectionChangedHandler(event:Event):void{
+			if(valueField != "" && _model){
+				var selectedItem:Object = _model.selectedItem;
+				if(selectedItem != null && selectedValue !== selectedItem[valueField])
+					selectedValue = selectedItem[valueField];
+			}
+		}
 
   }   
 }

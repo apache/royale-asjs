@@ -19,9 +19,8 @@
 package org.apache.royale.html.beads.models
 {	
 	import org.apache.royale.core.IDateChooserModelWithChangeCheck;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 	
 	/**
 	 *  The DateChooserModel is a bead class that manages the data for a DataChooser. 
@@ -33,7 +32,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateChooserModel extends EventDispatcher implements IDateChooserModelWithChangeCheck
+	public class DateChooserModel extends DispatcherBead implements IDateChooserModelWithChangeCheck
 	{
 		public function DateChooserModel()
 		{
@@ -41,21 +40,6 @@ package org.apache.royale.html.beads.models
 //			var today:Date = new Date();
 //			displayedYear = today.getFullYear();
 //			displayedMonth = today.getMonth();
-		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
 		}
 		
 		private var _dayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];

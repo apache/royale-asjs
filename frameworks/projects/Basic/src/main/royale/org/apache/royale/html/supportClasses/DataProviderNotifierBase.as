@@ -28,6 +28,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  Base class for all data provider notifiers.
@@ -37,7 +38,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataProviderNotifierBase implements IBead, IDocument, IDataProviderNotifier
+	public class DataProviderNotifierBase extends Bead implements IDocument, IDataProviderNotifier
 	{
 		/**
 		 *  constructor.
@@ -53,8 +54,6 @@ package org.apache.royale.html.supportClasses
 		
 		protected var dataProvider:ArrayList;
 		
-		protected var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -66,7 +65,7 @@ package org.apache.royale.html.supportClasses
 		 *  @royaleignorecoercion org.apache.royale.core.IBeadModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			

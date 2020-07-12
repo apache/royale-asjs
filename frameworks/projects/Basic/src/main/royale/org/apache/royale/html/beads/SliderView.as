@@ -38,6 +38,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.Button;
     import org.apache.royale.html.TextButton;
+    import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.royale.html.Slider 
@@ -49,7 +50,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class SliderView extends BeadViewBase implements ISliderView, IBeadView
+	public class SliderView extends BeadViewBase implements ISliderView
 	{
 		/**
 		 *  constructor.
@@ -72,9 +73,10 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         * 
-         *  @royaleignorecoercion org.apache.royale.core.IParent
-         * 
+		 * 
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
+		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -111,7 +113,7 @@ package org.apache.royale.html.beads
 				_thumb.className = "SliderThumb";
 				_thumb.style = {"position" : "absolute", "padding" : 0};
 				_thumb.text = '\u29BF';
-                (host as IParent).addElement(_thumb);
+				(host as IParent).addElement(_thumb);
 			}
 			
 			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
@@ -124,8 +126,7 @@ package org.apache.royale.html.beads
 			rm.addEventListener("maximumChange",modelChangeHandler);
 			rm.addEventListener("stepSizeChange",modelChangeHandler);
 			rm.addEventListener("snapIntervalChange",modelChangeHandler);
-			
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		private var _track:Button;
@@ -163,7 +164,7 @@ package org.apache.royale.html.beads
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 	}
 }

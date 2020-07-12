@@ -24,6 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.utils.WhitespaceKeys;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	COMPILE::JS
 		{
@@ -37,7 +38,6 @@ package org.apache.royale.html.beads
 			import flash.events.FocusEvent;
 			import flash.events.KeyboardEvent;
 			import org.apache.royale.html.beads.ITextFieldView;
-			import org.apache.royale.events.utils.WhitespaceKeys;
 		}
 		
 		/**
@@ -127,7 +127,7 @@ package org.apache.royale.html.beads
 			{
 				if (event.key == WhitespaceKeys.ENTER) //enter
 				{
-					(_strand as IEventDispatcher).dispatchEvent(new Event(INPUT_FINISHED));
+					sendStrandEvent(_strand,INPUT_FINISHED);
 				}
 			}
 
@@ -139,7 +139,7 @@ package org.apache.royale.html.beads
 			COMPILE::JS
 			private function focusoutHandler( event:Object ) : void
 			{
-				(_strand as IEventDispatcher).dispatchEvent(new Event(INPUT_FINISHED));
+					sendStrandEvent(_strand,INPUT_FINISHED);
 			}
 			
 		}

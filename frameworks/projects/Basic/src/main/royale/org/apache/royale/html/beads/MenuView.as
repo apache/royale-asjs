@@ -44,15 +44,5 @@ package org.apache.royale.html.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 * @private
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
 	}
 }

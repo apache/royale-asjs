@@ -22,6 +22,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.html.TitleBar;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  The TitleBarMeasurementBead class measures the overall size of a 
@@ -32,7 +33,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TitleBarMeasurementBead implements IMeasurementBead
+	public class TitleBarMeasurementBead extends Bead implements IMeasurementBead
 	{
 		/**
 		 *  constructor.
@@ -96,19 +97,5 @@ package org.apache.royale.html.beads
 			return mheight;
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
 	}
 }

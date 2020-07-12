@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.array.rangeCheck;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.debugging.assert;
+	import org.apache.royale.core.DispatcherBead;
 
 	/**
 	 * The change event is dispatched whenever the selection changes.
@@ -52,7 +53,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class SingleSelectionContainerBead extends EventDispatcher implements IBead
+	public class SingleSelectionContainerBead extends DispatcherBead
 	{
 		/**
 		 * Constructor.
@@ -67,8 +68,9 @@ package org.apache.royale.html.beads
 			super();
 		}
 		
-		protected var _strand:IStrand;
-		
+		/**
+     * @royaleignorecoercion org.apache.royale.core.IParentIUIBase
+		 */
 		private function get host():IParentIUIBase
 		{
 			return _strand as IParentIUIBase;
@@ -83,15 +85,20 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			_elements = [];
-			host.addEventListener("childrenAdded",handleItemAdded);
-			host.addEventListener("childrenRemoved",handleItemRemoved);
+			listenOnStrand("childrenAdded",handleItemAdded);
+			listenOnStrand("childrenRemoved",handleItemRemoved);
 			addListenersToChildren();
 		}
-
+		/**
+     * @royaleemitcoercion org.apache.royale.core.ISelectable
+		 * 
+     * @royaleignorecoercion org.apache.royale.core.IParent
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		private function addListenersToChildren():void
 		{
 			var parent:IParent = _strand as IParent;

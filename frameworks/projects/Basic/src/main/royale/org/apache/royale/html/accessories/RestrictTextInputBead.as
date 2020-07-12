@@ -25,7 +25,7 @@ package org.apache.royale.html.accessories
 	COMPILE::SWF
 	{
 		import flash.events.TextEvent;
-		
+		import org.apache.royale.html.beads.ITextFieldView;			
 		import org.apache.royale.core.CSSTextField;			
 	}
 	import org.apache.royale.core.IBead;
@@ -33,10 +33,8 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	COMPILE::SWF
-	{
-		import org.apache.royale.html.beads.ITextFieldView;			
-	}
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IRenderedObject;
 	
 	/**
 	 *  The RestrictTextInputBead class is a specialty bead that can be used with
@@ -49,7 +47,7 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class RestrictTextInputBead implements IBead
+	public class RestrictTextInputBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -63,8 +61,6 @@ package org.apache.royale.html.accessories
 		{
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -72,9 +68,9 @@ package org.apache.royale.html.accessories
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -84,9 +80,9 @@ package org.apache.royale.html.accessories
 			}
 			COMPILE::JS
 			{
-                var host:UIBase = _strand as UIBase;
-                host.element.addEventListener("keypress", validateKeypress, false);
-                host.element.addEventListener("input", validateInput, false);
+				var host:IRenderedObject = _strand as IRenderedObject;
+				host.element.addEventListener("keypress", validateKeypress, false);
+				host.element.addEventListener("input", validateInput, false);
 			}
 		}
 		
@@ -107,7 +103,7 @@ package org.apache.royale.html.accessories
 		public function set restrict(value:String):void
 		{
 			if (_restrict != value) {
-                _restrict = value;
+				_restrict = value;
 			}
 		}
 		
@@ -136,48 +132,49 @@ package org.apache.royale.html.accessories
 			
 			var key:String = String.fromCharCode(code);
 			
-            if (restrict)
-            {
-    			var regex:RegExp = new RegExp("[" + restrict + "]");
-    			if (!regex.test(key)) {
-    				event["returnValue"] = false;
-    				if (event.preventDefault) event.preventDefault();
-    				return;
-    			}
-            }
+			if (restrict)
+			{
+				var regex:RegExp = new RegExp("[" + restrict + "]");
+				if (!regex.test(key)) {
+					event["returnValue"] = false;
+					if (event.preventDefault) event.preventDefault();
+					return;
+				}
+			}
 		}
         
-        /**
-         *  @royaleignorecoercion HTMLInputElement 
-         */
-        COMPILE::JS
-        private function validateInput(event:BrowserEvent):void
-        {            
-            var host:UIBase = _strand as UIBase;
-            var data:String = (host.element as HTMLInputElement).value;
-            
-            if (restrict && data != null && data.length > 0)
-            {
-                var regex:RegExp = new RegExp("[" + restrict + "]");
-                var out:String = "";
-                var n:int = data.length;
-                var blocked:Boolean = false;
-                for (var i:int = 0; i < n; i++)
-                {
-                    var key:String = data.charAt(i);
-                    if (regex.test(key)) {
-                        out += key;
-                    }
-                    else
-                        blocked = true;
-                }
-                if (blocked) 
-                {
-                    event["returnValue"] = false;
-                    if (event.preventDefault) event.preventDefault();
-                    (host.element as HTMLInputElement).value = out;                    
-                }
-            }
-        }
+		/**
+		 *  @royaleignorecoercion HTMLInputElement 
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
+		COMPILE::JS
+		private function validateInput(event:BrowserEvent):void
+		{            
+			var host:IRenderedObject = _strand as IRenderedObject;
+			var data:String = (host.element as HTMLInputElement).value;
+			
+			if (restrict && data != null && data.length > 0)
+			{
+				var regex:RegExp = new RegExp("[" + restrict + "]");
+				var out:String = "";
+				var n:int = data.length;
+				var blocked:Boolean = false;
+				for (var i:int = 0; i < n; i++)
+				{
+					var key:String = data.charAt(i);
+					if (regex.test(key)) {
+						out += key;
+					}
+					else
+						blocked = true;
+				}
+				if (blocked) 
+				{
+					event["returnValue"] = false;
+					if (event.preventDefault) event.preventDefault();
+					(host.element as HTMLInputElement).value = out;                    
+				}
+			}
+		}
 	}
 }

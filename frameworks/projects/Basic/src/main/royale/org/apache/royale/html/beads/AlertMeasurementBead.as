@@ -19,7 +19,7 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IMeasurementBead;
-	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  The AlertMeasureBead class provides boundary measurements for an 
@@ -30,7 +30,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class AlertMeasurementBead implements IMeasurementBead
+	public class AlertMeasurementBead extends Bead implements IMeasurementBead
 	{
 		/**
 		 *  constructor.
@@ -70,19 +70,5 @@ package org.apache.royale.html.beads
 			return 0;
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
 	}
 }
