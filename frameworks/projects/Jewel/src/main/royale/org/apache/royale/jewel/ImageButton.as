@@ -29,6 +29,7 @@ package org.apache.royale.jewel
     }
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.ImageModel;
+    import org.apache.royale.core.IImageButton;
 
     /**
      *  The ImageButton class presents an image as a button.
@@ -40,7 +41,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ImageButton extends Button
+	public class ImageButton extends Button implements IImageButton
 	{
         /**
          *  Constructor.
@@ -93,13 +94,36 @@ package org.apache.royale.jewel
 
             COMPILE::JS
             {
-                if (url)
+                if(!_imageElement)
                 {
                     (element as HTMLInputElement).src = url;
+                    _imageElement = (element as HTMLInputElement);
+                }
+                if (_imageElement && url)
+                {
+                    (_imageElement as HTMLInputElement).src = url;
                 }
             }
 
 			dispatchEvent(new Event("srcChanged"));
+        }
+
+		COMPILE::JS{
+        private var _imageElement:Element;
+		/**
+		 *  Element image. HTMLInputElement.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         *  @royaleignorecoercion org.apache.royale.core.IImageButton#imageElement
+         *  @royaleignorecoercion Element
+         */
+		public function get imageElement():Element
+		{
+			return _imageElement;
+		}
         }
 	}
 }

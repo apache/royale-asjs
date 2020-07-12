@@ -290,6 +290,7 @@ internal class CoreClasses
 	import org.apache.royale.core.TransformMoveYModel; TransformMoveYModel;
 	import org.apache.royale.core.TransformScaleModel; TransformScaleModel;
 	import org.apache.royale.utils.CSSUtils; CSSUtils;
+	import org.apache.royale.core.IImageButton; IImageButton;
 
 	import org.apache.royale.utils.Proxy; Proxy;
 	import org.apache.royale.core.UIHTMLElementWrapper; UIHTMLElementWrapper;
@@ -363,6 +364,7 @@ internal class CoreClasses
 	
 	//explicit support for RoyaleArrayLike for each iteration (BinaryData)
 	import org.apache.royale.language.iterator.arrayLike;arrayLike;
+
 }
 
 }
