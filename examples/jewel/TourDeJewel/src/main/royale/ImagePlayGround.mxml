@@ -74,7 +74,7 @@ limitations under the License.
 
 				<j:ImageButton localId="imageButtonWithErrorBead" src="assets/royale.png">
 					<j:beads>
-                        <js:ErrorImageButton emptyIsError="true"/>
+                        <js:ErrorImage emptyIsError="true"/>
 					</j:beads>
 				</j:ImageButton>
 			</j:Card>
@@ -85,7 +85,7 @@ limitations under the License.
 
 				<js:ImageButton localId="imageButtonBasicErrorBead" src="assets/royale.png">
 					<js:beads>
-                        <js:ErrorImageButton  emptyIsError="true"/>
+                        <js:ErrorImage emptyIsError="true"/>
 					</js:beads>
 				</js:ImageButton>
 			</j:Card>
