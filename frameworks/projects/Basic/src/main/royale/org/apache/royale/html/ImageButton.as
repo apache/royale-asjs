@@ -60,8 +60,8 @@ package org.apache.royale.html
 		COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'input');
-            element.setAttribute('type', 'image');
+			addElementToWrapper(this,'button');
+            element.setAttribute('type', 'button');
             return element;
         }
 
@@ -94,19 +94,16 @@ package org.apache.royale.html
             {
                 if(!_imageElement)
                 {
-                    (element as HTMLInputElement).src = url;
-                    _imageElement = (element as HTMLInputElement);
-                }
-                if (_imageElement && url)
-                {
-                    (_imageElement as HTMLInputElement).src = url;
-                }
+                    _imageElement = document.createElement("img") as HTMLImageElement;
+                    element.appendChild(_imageElement);
+                }                
+                (_imageElement as HTMLImageElement).src = url;
             }
 
 			dispatchEvent(new Event("srcChanged"));
         }
 
-		COMPILE::JS
+		COMPILE::JS{
         private var _imageElement:Element;
 		/**
 		 *  Element image. HTMLImageElement.
@@ -118,10 +115,10 @@ package org.apache.royale.html
          *  @royaleignorecoercion org.apache.royale.core.IImageButton#imageElement
          *  @royaleignorecoercion Element
          */
-        COMPILE::JS
 		public function get imageElement():Element
 		{
 			return _imageElement;
 		}
+        }
 	}
 }
