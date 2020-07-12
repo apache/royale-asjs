@@ -28,10 +28,8 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.8
     */
-	public interface IImageButton
+	public interface IImageButton extends IHasImage
 	{		
-		COMPILE::JS
-		function get imageElement():Element;
 
 	}
 }

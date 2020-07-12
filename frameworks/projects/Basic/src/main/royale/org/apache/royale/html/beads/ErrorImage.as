@@ -19,11 +19,11 @@
 package org.apache.royale.html.beads {
 
     import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IImage;
+    import org.apache.royale.core.IHasImage;
     import org.apache.royale.core.IImageModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
   
   /**
 	 *  The ErrorImage class is a bead that can be used to 
@@ -72,13 +72,9 @@ package org.apache.royale.html.beads {
             _src = value;
         }
         
-		COMPILE::JS{
+		COMPILE::JS
         private var _hostElement:HTMLImageElement;
-		protected function get hostElement():HTMLImageElement
-		{
-			return _hostElement;
-		}
-        }
+        
         protected function get hostModel():IImageModel
         {             
             return _strand.getBeadByType(IImageModel) as IImageModel;
@@ -91,6 +87,9 @@ package org.apache.royale.html.beads {
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
+         *  @royaleignorecoercion org.apache.royale.core.IHasImage
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         *  @royaleignorecoercion HTMLImageElement
          */
         public function set strand(value:IStrand):void 
         {
@@ -98,26 +97,25 @@ package org.apache.royale.html.beads {
 
 	        COMPILE::JS {
 
-                if(_strand is IImage)
-                {
-                    _hostElement = (_strand as IImage).imageElement as HTMLImageElement;
-                    if(_hostElement){
-                        
-                        _hostElement.addEventListener('error', errorHandler);
+                _hostElement = (_strand as IHasImage).imageElement as HTMLImageElement;
+                if(_hostElement){
+                    
+                    _hostElement.addEventListener('error', errorHandler);
 
-                        if(_emptyIsError)
-                        {
-                            (_strand as EventDispatcher).addEventListener("beadsAdded", beadsAddedHandler);
-                        }
-                    }   
+                    if(_emptyIsError)
+                    {
+                        (_strand as IEventDispatcher).addEventListener("beadsAdded", beadsAddedHandler);
+                    }
                 }
             }
         }
-
+        /**
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
 		COMPILE::JS
         private function beadsAddedHandler(event:Event):void
         {
-            (_strand as EventDispatcher).removeEventListener("beadsAdded", beadsAddedHandler);
+            (_strand as IEventDispatcher).removeEventListener("beadsAdded", beadsAddedHandler);
 
             if(hostModel)
                 hostModel.addEventListener("urlChanged",srcChangedHandler);
@@ -143,9 +141,9 @@ package org.apache.royale.html.beads {
 		COMPILE::JS
         private function errorHandler(event:Event):void {
         
-            if (hostElement.src != _src)
+            if (_hostElement.src != _src)
             {
-                hostElement.src = _src;
+                _hostElement.src = _src;
             }
         }
 		

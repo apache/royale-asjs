@@ -20,18 +20,18 @@ package org.apache.royale.core
 {
 
     /**
-     *  The IBinaryImage interface describes the minimum set of properties
-     *  available to an Image control.
+     *  The IHasImage interface describes the minimum set of properties
+     *  available to a component with an image.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.8
      */
-	public interface IImage extends IHasImage
+	public interface IHasImage
 	{		
 		COMPILE::JS
-		function applyImageData(binaryDataAsString:String):void;
+		function get imageElement():Element;
 
 	}
 }
