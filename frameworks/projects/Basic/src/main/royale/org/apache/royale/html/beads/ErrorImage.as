@@ -19,12 +19,11 @@
 package org.apache.royale.html.beads {
 
     import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IImage;
+    import org.apache.royale.core.IImageModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
-
     import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.core.IImage;
-    import org.apache.royale.core.IImageModel;
   
   /**
 	 *  The ErrorImage class is a bead that can be used to 

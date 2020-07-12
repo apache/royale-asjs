@@ -74,13 +74,15 @@ package org.apache.royale.html.beads {
             _src = value;
         }
         
-		//COMPILE::JS{
+		COMPILE::JS
         private var _hostElement:Element;
+
+        COMPILE::JS
 		protected function get hostElement():Element
 		{
 			return _hostElement;
 		}
-        //}
+        
         protected function get hostModel():IImageModel
         {             
             return _strand.getBeadByType(IImageModel) as IImageModel;
@@ -98,7 +100,7 @@ package org.apache.royale.html.beads {
         {
             _strand = value;
 
-	        //COMPILE::JS {
+	        COMPILE::JS {
 
                 if(_strand is IRenderedObject)
                 {
@@ -120,7 +122,7 @@ package org.apache.royale.html.beads {
                         }
                     }   
                 }
-            //}
+            }
         }
 
 		COMPILE::JS
@@ -150,11 +152,13 @@ package org.apache.royale.html.beads {
         }
 
         private function errorHandler(event:Event):void {
-        
+            COMPILE::JS
+            {
             var imgEle:Object = hostElement as Object;
             if (imgEle.src != _src)
             {
                 imgEle.src = _src;
+            }
             }
         }
 		
@@ -167,7 +171,10 @@ package org.apache.royale.html.beads {
                     hostModel.url = src;
                     hostModel.addEventListener("urlChanged",srcChangedHandler);                    
                 }
+                COMPILE::JS
+                {
                 (hostElement as Object).src = src;
+                }
             }
             
         }
