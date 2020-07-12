@@ -52,67 +52,97 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel Image"/>
+				<j:CardHeader>
+					<html:H3 text="Default Image" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+				
+					<j:Image src="assets/royale_spheres.png" click="imageClick(event)"/>
 
-				<j:Image localId="image" src="assets/royale_spheres.png" click="imageClick(event)"/>
-				<j:Label localId="imageResult" text="Image is an img tag in html"/>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Label localId="imageResult" text="Image is an img tag in html"/>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H4 text="Jewel ImageButton"/>
+				<j:CardHeader>
+					<html:H3 text="Default ImageButton" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+				
+					<j:ImageButton src="assets/royale_spheres.png" click="imageButtonClick(event)"/>				
 
-				<j:ImageButton localId="imageButton" src="assets/royale_spheres.png" click="imageButtonClick(event)"/>
-				<j:Label localId="imageButtonResult" text="Image is an input type='image' tag in html"/>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Label localId="imageButtonResult" text="Image is an input type='image' tag in html"/>
+				</j:CardActions>
+			</j:Card>
+        </j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Image With ErrorImage" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:Image localId="imageWithErrorBead" src="assets/royale.png">
+						<j:beads>
+							<js:ErrorImage emptyIsError="true"/>
+						</j:beads>
+					</j:Image>
+
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Label text="This image doesn't exits so ErrorImage loads a default image to show instead."/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="ImageButton with ErrorImage" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+				
+					<j:ImageButton localId="imageButtonWithErrorBead" src="assets/royale.png">
+						<j:beads>
+							<js:ErrorImage emptyIsError="true"/>
+						</j:beads>
+					</j:ImageButton>
+
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Label text="This image doesn't exits so ErrorImage loads a default image to show instead."/>
+				</j:CardActions>
 			</j:Card>
         </j:GridCell>
 
-
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
-				<html:H3 text="Jewel ImageButton with bead error image alternative"/>
-
-				<j:ImageButton localId="imageButtonWithErrorBead" src="assets/royale.png">
-					<j:beads>
-                        <js:ErrorImage emptyIsError="true"/>
-					</j:beads>
-				</j:ImageButton>
-			</j:Card>
-		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
-				<html:H4 text="Basic ImageButton with bead error image alternative"/>
-
-				<js:ImageButton localId="imageButtonBasicErrorBead" src="assets/royale.png">
-					<js:beads>
-                        <js:ErrorImage emptyIsError="true"/>
-					</js:beads>
-				</js:ImageButton>
-			</j:Card>
-		</j:GridCell>
-
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
-				<html:H3 text="Jewel Image with bead error image alternative"/>
-
-				<j:Image localId="imageWithErrorBead" src="assets/royale.png">
-					<j:beads>
-                        <js:ErrorImage emptyIsError="true"/>
-					</j:beads>
-				</j:Image>
-			</j:Card>
-		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Basic Image with bead error image alternative"/>
 
-				<js:Image localId="imageBasicErrorBead" src="assets/royale.png">
+				<js:Image src="assets/royale.png">
 					<js:beads>
                         <js:ErrorImage emptyIsError="true"/>
 					</js:beads>
 				</js:Image>
 			</j:Card>
 		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H4 text="Basic ImageButton with bead error image alternative"/>
+
+				<js:ImageButton src="assets/royale.png">
+					<js:beads>
+                        <js:ErrorImage emptyIsError="true"/>
+					</js:beads>
+				</js:ImageButton>
+			</j:Card>
+		</j:GridCell> -->
+
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
