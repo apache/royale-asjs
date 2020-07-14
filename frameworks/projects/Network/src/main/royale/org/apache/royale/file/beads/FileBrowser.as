@@ -146,6 +146,8 @@ package org.apache.royale.file.beads
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanupWindow();
 		}
+
+		public static const CANCEL_TIMEOUT:Number = 150;
 		
 		COMPILE::JS
 		private function focusHandler(e:Object):void
@@ -153,7 +155,7 @@ package org.apache.royale.file.beads
 			//trace("focus: " + e);
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanup();
-			setTimeout(maybeCancel, 100);
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
 		}
 		
 		COMPILE::JS
@@ -162,7 +164,7 @@ package org.apache.royale.file.beads
 			//trace("key: " + e);
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanup();
-			setTimeout(maybeCancel, 100);
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
 		}
 		
 		COMPILE::JS
@@ -171,7 +173,7 @@ package org.apache.royale.file.beads
 			//trace("mouse: " + e);
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanup();
-			setTimeout(maybeCancel, 100);
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
 		}
 				
 		COMPILE::JS
