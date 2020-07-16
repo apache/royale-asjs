@@ -522,8 +522,13 @@ public class ArrayListView extends EventDispatcher implements IArrayListView, IA
      *  @productversion Royale 0.0
      */
     public function refresh():Boolean {
+        var lengthChanged:Boolean = internalRefresh(true);
 
-        return internalRefresh(true);
+        if (lengthChanged) {
+            dispatchEvent(new Event('lengthChanged'));
+        }
+
+        return lengthChanged;
     }
 
     //--------------------------------------------------------------------------
