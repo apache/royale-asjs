@@ -190,7 +190,7 @@ limitations under the License.
 
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel Table (Fixed Header)" className="primary-normal"/>
+					<html:H3 text="Fixed Header and Scroll" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					
@@ -236,7 +236,7 @@ limitations under the License.
 
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel Table" className="primary-normal"/>
+					<html:H3 text="No Scroll and Alternate Row Color" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					
@@ -252,6 +252,7 @@ limitations under the License.
 							<j:RemoveTableRowForArrayListData/>
 							<j:UpdateTableRowForArrayListData/>
 							<j:RemoveAllItemRendererForArrayListData/>
+							<j:TableAlternateRowColor/>
 						</j:beads>
 					</j:Table>
 					

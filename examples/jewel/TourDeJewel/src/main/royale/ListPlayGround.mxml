@@ -330,7 +330,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Horizontal Scroll" className="primary-normal"/>
+					<html:H3 text="Horizontal Scroll and Alternate Row Colors" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 
@@ -339,6 +339,7 @@ limitations under the License.
 							dataProvider="{listModel.iconListData}">
 						<j:beads>
 							<j:HorizontalListScroll/>
+							<j:ListAlternateRowColor/>
 						</j:beads>
 					</j:List>
 
