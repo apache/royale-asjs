@@ -110,6 +110,9 @@
 
     <component id="AssignTabContent" class="org.apache.royale.jewel.beads.controls.tabbar.AssignTabContent"/>
     
+    <component id="ListAlternateRowColor" class="org.apache.royale.jewel.beads.controls.list.ListAlternateRowColor"/>
+    <component id="TableAlternateRowColor" class="org.apache.royale.jewel.beads.controls.table.TableAlternateRowColor"/>
+
     <component id="HorizontalListScroll" class="org.apache.royale.jewel.beads.controls.list.HorizontalListScroll"/>
     <component id="VirtualListView" class="org.apache.royale.jewel.beads.views.VirtualListView"/>
 
