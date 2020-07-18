@@ -1954,7 +1954,7 @@ j|Label {
     width: 100%;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1600px) {
   .layout.grid .widescreen-col-1-1 {
     width: 100%;
   }
@@ -2901,7 +2901,7 @@ j|Label {
     width: calc(100% - 10px);
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1600px) {
   .layout.grid.gap .widescreen-col-1-1 {
     width: calc(100% - 10px);
   }
@@ -3210,7 +3210,7 @@ j|Label {
     display: none !important;
   }
 }
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 992px) and (max-width: 1599px) {
   .visible-desktop {
     display: block !important;
   }
@@ -3219,7 +3219,7 @@ j|Label {
     display: none !important;
   }
 }
-@media (min-width: 1200px) {
+@media (min-width: 1600px) {
   .visible-widescreen {
     display: block !important;
   }
