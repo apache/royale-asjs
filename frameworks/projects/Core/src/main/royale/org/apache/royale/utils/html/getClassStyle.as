@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.html
 {
+	import org.apache.royale.debugging.throwError;
+
 	/**
 	 * Get an Object with all styles in a CSS className.
 	 * classname must match exactly the selector used in the CSS
@@ -30,28 +32,34 @@ package org.apache.royale.utils.html
 	COMPILE::JS
 	public function getClassStyle(className:String):Object
 	{
-		var cssText:String = "";
-		var classes:Array = document.styleSheets[0].rules || document.styleSheets[0].cssRules;
-		for (var x:int = 0; x < classes.length; x++) {        
-			if (classes[x].selectorText == className) {
-				cssText += classes[x].cssText || classes[x].style.cssText;
-			}         
-		}
-		
-		// remove all text in css and left just the content between "{" "}"
-		var array:Array = cssText.match(/\{ (.*?)\}/);
-		// then split all styles
-		array = array[1].split("; ");
-		//remove latest since is empty
-		array.pop();
-		
-		//create the return object and split each style in property and value and insert in object
 		var o:Object = {};
-        for (x = 0; x < array.length; x++) {
-            var prop:Array = array[x].split(": ");
-            o[prop[0]] = prop[1];
-        }
-		
+		try
+		{
+			var cssText:String = "";
+			var classes:Array = document.styleSheets[0].rules || document.styleSheets[0].cssRules;
+			for (var x:int = 0; x < classes.length; x++) {        
+				if (classes[x].selectorText == className) {
+					cssText += classes[x].cssText || classes[x].style.cssText;
+				}         
+			}
+			
+			// remove all text in css and left just the content between "{" "}"
+			var array:Array = cssText.match(/\{ (.*?)\}/);
+			// then split all styles
+			array = array[1].split("; ");
+			//remove latest since is empty
+			array.pop();
+			
+			//create the return object and split each style in property and value and insert in object
+			for (x = 0; x < array.length; x++) {
+				var prop:Array = array[x].split(": ");
+				o[prop[0]] = prop[1];
+			}
+		}
+		catch (error:Error)
+		{
+			trace("Due to CORS restrictions im Chrome when working offline you need to use: chrome --allow-file-access-from-files, or use other browser");
+		}
 		return o;
 	}
 }
