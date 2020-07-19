@@ -1358,6 +1358,81 @@ div {
   font-size: 14px;
 }
 
+@media (min-width: 992px) and (max-width: 1200px) {
+  .jewel {
+    font-size: 100%;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.25em;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .jewel {
+    font-size: 99%;
+  }
+
+  h1 {
+    font-size: 1.9em;
+  }
+
+  h2 {
+    font-size: 1.9em;
+  }
+
+  h3 {
+    font-size: 1.4em;
+  }
+
+  h4 {
+    font-size: 1.1em;
+  }
+
+  h5 {
+    font-size: 0.98em;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jewel {
+    font-size: 97%;
+  }
+
+  h1 {
+    font-size: 1.7em;
+  }
+
+  h2 {
+    font-size: 1.7em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.97em;
+  }
+}
 .jewel.textinput {
   font-weight: 400;
   color: #FFFFFF;
