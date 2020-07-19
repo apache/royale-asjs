@@ -63,8 +63,10 @@ package org.apache.royale.routing
 	 *  @productversion Royale 0.9.7
    *  @deprecated
 	 */
+	[Deprecated(message="Use BrowserRouter or HashRouter instead")]
   public class Router extends Strand implements IRouter, IBead, IMXMLDocument
   {
+		[Deprecated(message="Use BrowserRouter or HashRouter instead")]
 		public function Router()
 		{
 
