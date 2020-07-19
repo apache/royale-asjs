@@ -136,8 +136,8 @@ package org.apache.royale.jewel.beads.controls
         }
 
         private var control:StyledUIBase;
-        private var originalWidth:Number;
-        private var originalHeight:Number;
+        private var originalWidth:Number = NaN;
+        private var originalHeight:Number = NaN;
         
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -151,8 +151,12 @@ package org.apache.royale.jewel.beads.controls
 		public function set strand(value:IStrand):void
 		{
             control = value as StyledUIBase;
-            originalWidth = control.width;
-            originalHeight = control.height;
+            if(control.width != 0)
+                originalWidth = control.width;
+            if(control.height != 0)
+                originalHeight = control.height;
+            // trace("originalWidth",originalWidth)
+            // trace("originalHeight",originalHeight)
 
             COMPILE::JS
             {
@@ -182,48 +186,48 @@ package org.apache.royale.jewel.beads.controls
 
                 if(outerWidth < ResponsiveSizes.FULL_BREAKPOINT && outerWidth > ResponsiveSizes.WIDESCREEN_BREAKPOINT)
                 {
-                    if(!isNaN(widescreenWidth))
+                    if(!isNaN(widescreenWidth) || !isNaN(widescreenHeight))
                     {
                         // trace("WIDESCREEN");
-                        if(widescreenWidth != control.width)
+                        if(widescreenWidth != originalWidth)
                             control.width = widescreenWidth;
-                        if(widescreenHeight != control.height)
+                        if(widescreenHeight != originalHeight)
                             control.height = widescreenHeight;
                         responsiveFlag = true;
                     }
                 } 
                 else if(outerWidth < ResponsiveSizes.WIDESCREEN_BREAKPOINT && outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
                 {
-                    if(!isNaN(desktopWidth))
+                    if(!isNaN(desktopWidth) || !isNaN(desktopHeight))
                     {
                         // trace("DESKTOP");
-                        if(desktopWidth != control.width)
+                        if(desktopWidth != originalWidth)
                             control.width = desktopWidth;
-                        if(desktopHeight != control.height)
+                        if(desktopHeight != originalHeight)
                             control.height = desktopHeight;
                         responsiveFlag = true;
                     }
                 }
                 else if(outerWidth < ResponsiveSizes.DESKTOP_BREAKPOINT && outerWidth > ResponsiveSizes.TABLET_BREAKPOINT)
                 {
-                    if(!isNaN(tabletWidth))
+                    if(!isNaN(tabletWidth) || !isNaN(tabletHeight))
                     {
                         // trace("TABLET");
-                        if(tabletWidth != control.width)
+                        if(tabletWidth != originalWidth)
                             control.width = tabletWidth;
-                        if(tabletHeight != control.height)
+                        if(tabletHeight != originalHeight)
                             control.height = tabletHeight;
                         responsiveFlag = true;
                     }
                 }
                 else if(outerWidth < ResponsiveSizes.TABLET_BREAKPOINT && outerWidth > ResponsiveSizes.PHONE_BREAKPOINT)
                 {
-                    if(!isNaN(phoneWidth))
+                    if(!isNaN(phoneWidth) || !isNaN(phoneHeight))
                     {
                         // trace("PHONE");
-                        if(phoneWidth != control.width)
+                        if(phoneWidth != originalWidth)
                             control.width = phoneWidth;
-                        if(phoneHeight != control.height)
+                        if(phoneHeight != originalHeight)
                             control.height = phoneHeight;
                         responsiveFlag = true;
                     }
@@ -231,9 +235,10 @@ package org.apache.royale.jewel.beads.controls
 
                 if(!responsiveFlag)
                 {
-                    // trace("use FULL size");
+                    // trace("use FULL size", originalWidth, originalHeight);
                     if(control.width != originalWidth)
                         control.width = originalWidth;
+                    
                     if(control.height != originalHeight)
                         control.height = originalHeight;
                 }
