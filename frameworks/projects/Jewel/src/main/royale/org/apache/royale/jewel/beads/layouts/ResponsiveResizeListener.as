@@ -63,6 +63,11 @@ package org.apache.royale.jewel.beads.layouts
             {
             window.addEventListener('resize', resizeHandler, false);
             }
+            listenOnStrand("beadsAdded", beadsAddedHandler);
+        }
+
+        public function beadsAddedHandler(event:Event):void
+        {
             resizeHandler();
         }
 
