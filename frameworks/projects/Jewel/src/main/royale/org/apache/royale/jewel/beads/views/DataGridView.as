@@ -178,7 +178,7 @@ package org.apache.royale.jewel.beads.views
                 (list as StyledUIBase).tabIndex = -1;
 
                 (_listArea as IParent).addElement(list as IChild);
-                _lists.push(list);
+                    columnLists.push(list);
             }
         }
 
@@ -245,9 +245,9 @@ package org.apache.royale.jewel.beads.views
 				dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleItemAddedAndRemoved);
             }
 
-            for (var i:int=0; i < _lists.length; i++)
+            for (var i:int=0; i < columnLists.length; i++)
             {
-                var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
+                var list:IDataGridColumnList = columnLists[i] as IDataGridColumnList;
                 list.dataProvider = dp;
             }
 
@@ -283,9 +283,9 @@ package org.apache.royale.jewel.beads.views
         {
             var newIndex:int = _sharedModel.selectedIndex;
 
-            for (var i:int=0; i < _lists.length; i++)
+            for (var i:int=0; i < columnLists.length; i++)
             {
-                var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
+                var list:IDataGridColumnList = columnLists[i] as IDataGridColumnList;
                 list.selectedIndex = newIndex;
             }
             host.dispatchEvent(new Event('selectionChanged'));
@@ -325,9 +325,9 @@ package org.apache.royale.jewel.beads.views
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
             _sharedModel.rollOverIndex = list.rollOverIndex;
 
-            for(var i:int=0; i < _lists.length; i++) {
-                if (list != _lists[i]) {
-                    var otherList:IDataGridColumnList = _lists[i] as IDataGridColumnList;
+            for(var i:int=0; i < columnLists.length; i++) {
+                if (list != columnLists[i]) {
+                    var otherList:IDataGridColumnList = columnLists[i] as IDataGridColumnList;
                     otherList.rollOverIndex = list.rollOverIndex;
                 }
             }
