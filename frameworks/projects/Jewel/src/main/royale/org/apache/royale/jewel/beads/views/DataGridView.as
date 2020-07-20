@@ -298,7 +298,7 @@ package org.apache.royale.jewel.beads.views
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
          * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
          */
-        private function handleColumnListSelectionChange(event:Event):void
+        protected function handleColumnListSelectionChange(event:Event):void
         {
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
             _sharedModel.selectedIndex = list.selectedIndex;
@@ -320,7 +320,7 @@ package org.apache.royale.jewel.beads.views
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
          * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
          */
-        private function handleColumnListRollOverChange(event:Event):void
+        protected function handleColumnListRollOverChange(event:Event):void
         {
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
             _sharedModel.rollOverIndex = list.rollOverIndex;
