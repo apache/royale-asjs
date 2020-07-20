@@ -733,6 +733,7 @@ package
 		public static const SHIELD_CHECK:String = "shield-check";
 		public static const BOOK_READER:String = "book-reader";
 		public static const CHART_LINE:String = "chart-line";
+		public static const CHART_NETWORK:String = "chart-network";
 
     }
 }
