@@ -96,6 +96,8 @@ package org.apache.royale.jewel.beads.views
             IEventDispatcher(_sharedModel).addEventListener("dataProviderChanged", handleDataProviderChanged);
             IEventDispatcher(_sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
+            listenOnStrand("initComplete", initCompleteHandler);
+
             createChildren();
 		}
 
@@ -104,10 +106,8 @@ package org.apache.royale.jewel.beads.views
         /**
 		 * @private
 		 */
-		private function createChildren():void
+		protected function createChildren():void
 		{
-            listenOnStrand("initComplete", initCompleteHandler);
-
             // header
             var headerClass:Class = ValuesManager.valuesImpl.getValue(host, "headerClass") as Class;
             _header = new headerClass() as DataGridButtonBar;
