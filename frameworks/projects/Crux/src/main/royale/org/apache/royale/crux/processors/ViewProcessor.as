@@ -128,7 +128,7 @@ package org.apache.royale.crux.processors
 				COMPILE::SWF{
 					arr = views[ viewType ] as Array;
 				}
-				COMPILE::SWF{
+				COMPILE::JS{
 					arr = views.get(viewType) as Array;
 				}
 				
