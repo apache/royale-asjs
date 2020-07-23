@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-    import org.apache.royale.collections.ICollectionView;
-    import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IIndexedItemRenderer;
@@ -69,17 +67,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function finishSetup(event:Event):void
 		{
-			IEventDispatcher(_strand).removeEventListener("initComplete", finishSetup);
-
 			view = _strand.getBeadByType(IListView) as TableView;
 			tbody = view.dataGroup as TBodyContentArea;
-
-            model = _strand.getBeadByType(IBeadModel) as TableModel;
-			model.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-
             table = _strand as Table;
+			super.finishSetup(event);
 			
-			dataProviderChangeHandler(null);
+			// IEventDispatcher(_strand).removeEventListener("initComplete", finishSetup);
+
+            // model = _strand.getBeadByType(IBeadModel) as TableModel;
+			// model.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			
+			// dataProviderChangeHandler(null);
 		}
 		
 		protected var labelField:String;
@@ -99,11 +97,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
+			model = dataProviderModel as TableModel;
 			// -- 1) CLEANING PHASE
             if (!model)
 				return;
-			var dp:ICollectionView = model.dataProvider as ICollectionView;
-			if (!dp)
+			if (!model.dataProvider)
 			{
 				model.selectedIndex = -1;
 				model.selectedItem = null;
@@ -139,7 +137,7 @@ package org.apache.royale.jewel.beads.itemRenderers
             var column:TableColumn;
             var ir:TableItemRenderer;
 
-			var n:int = dp.length;
+			var n:int = model.dataProvider.length;
 			var index:int = 0;
 			for (var i:int = 0; i < n; i++)
 			{
@@ -156,7 +154,7 @@ package org.apache.royale.jewel.beads.itemRenderers
                     }
 
 					labelField =  column.dataField;
-                    var item:Object = dp.getItemAt(i);
+                    var item:Object = model.dataProvider.getItemAt(i);
 
                     (ir as StyledDataItemRenderer).dataField = labelField;
 					(ir as StyledDataItemRenderer).rowIndex = i;
