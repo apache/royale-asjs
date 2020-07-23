@@ -19,21 +19,17 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
     import org.apache.royale.collections.ICollectionView;
-    import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IIndexedItemRendererInitializer;
-    import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IItemRendererInitializer;
     import org.apache.royale.core.ILabelFieldItemRenderer;
     import org.apache.royale.core.IParent;
-    import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.beads.DataItemRendererFactoryBase;
     import org.apache.royale.html.beads.IListView;
     import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.jewel.Label;
@@ -48,35 +44,17 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
     import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
      * and generates the appropiate table structure with thead, tbody and table rows and cells
      * to hold the columns and data in cells.
 	 */
-	public class TableItemRendererFactoryForCollectionView extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
+	public class TableItemRendererFactoryForCollectionView extends DataItemRendererFactoryBase implements IDataProviderItemRendererMapper
 	{
 		public function TableItemRendererFactoryForCollectionView(target:Object = null)
 		{
 			super(target);
-		}
-
-		protected var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
 
 		/**
@@ -89,9 +67,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		protected function initComplete(event:Event):void
+		override protected function finishSetup(event:Event):void
 		{
-			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
+			IEventDispatcher(_strand).removeEventListener("initComplete", finishSetup);
 
 			view = _strand.getBeadByType(IListView) as TableView;
 			tbody = view.dataGroup as TBodyContentArea;
@@ -105,34 +83,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 		
 		protected var labelField:String;
-		
-		private var _itemRendererFactory:IItemRendererClassFactory;
-		
-		/**
-		 *  The org.apache.royale.core.IItemRendererClassFactory used
-		 *  to generate instances of item renderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
-		 */
-		public function get itemRendererFactory():IItemRendererClassFactory
-		{
-			if(!_itemRendererFactory)
-				_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
-			
-			return _itemRendererFactory;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set itemRendererFactory(value:IItemRendererClassFactory):void
-		{
-			_itemRendererFactory = value;
-		}
 
         protected var view:TableView;
         protected var model:TableModel;
@@ -147,7 +97,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			// -- 1) CLEANING PHASE
             if (!model)
@@ -255,34 +205,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			setData(itemRenderer, item, index);
 		}
-
-		private var _itemRendererInitializer:IItemRendererInitializer;
-        
-        /**
-         *  The org.apache.royale.core.IItemRendererInitializer used 
-         *  to initialize instances of item renderers.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.royale.core.IItemRendererInitializer
-         */
-        public function get itemRendererInitializer():IItemRendererInitializer
-        {
-            if(!_itemRendererInitializer)
-                _itemRendererInitializer = loadBeadFromValuesManager(IItemRendererInitializer, "iItemRendererInitializer", _strand) as IItemRendererInitializer;
-            
-            return _itemRendererInitializer;
-        }
-        
-        /**
-         *  @private
-         */
-        public function set itemRendererInitializer(value:IItemRendererInitializer):void
-        {
-            _itemRendererInitializer = value;
-        }
 
 		/**
 		 * @private
