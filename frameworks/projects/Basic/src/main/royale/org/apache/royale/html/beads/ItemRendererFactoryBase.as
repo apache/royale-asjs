@@ -18,17 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.core.DispatcherBead;
 
     /**
      *  The DataItemRendererFactoryBase class is a base class
@@ -162,6 +160,11 @@ package org.apache.royale.html.beads
 		{
 		}
         
+        /**
+         *  Remove all itemrenderers
+         * 
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
+         */
         protected function removeAllItemRenderers(dataGroup:IItemRendererOwnerView):void
         {
             dataGroup.removeAllItemRenderers();            

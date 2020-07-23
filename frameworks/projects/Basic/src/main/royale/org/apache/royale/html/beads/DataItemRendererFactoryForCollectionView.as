@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.collections.ICollectionView;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
@@ -58,7 +57,7 @@ package org.apache.royale.html.beads
 			
 			super.dataProviderChangeHandler(event);
 			
-			if (!dp)
+			if (!dataProviderModel.dataProvider)
 				return;
 			
 			if(dped)
@@ -68,12 +67,24 @@ package org.apache.royale.html.beads
 				dped.removeEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			}
 			// listen for individual items being added in the future.
-			dped = dp as IEventDispatcher;
+			dped = dataProviderModel.dataProvider as IEventDispatcher;
 			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 		}
 		
+		/**
+		 * check if model and dataprovider exists. This check is done through all methods
+		 * @private
+		 */
+		private function get dataProviderExist():Boolean
+		{
+			if (!dataProviderModel || !dataProviderModel.dataProvider)
+				return false;
+			
+			return true;
+		}
+
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
@@ -82,12 +93,8 @@ package org.apache.royale.html.beads
 		 */
 		protected function itemAddedHandler(event:CollectionEvent):void
 		{
-			if (!dataProviderModel)
+			if(!dataProviderExist)
 				return;
-			dp = dataProviderModel.dataProvider as ICollectionView;
-			if (!dp)
-				return;
-			
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
@@ -123,10 +130,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function itemRemovedHandler(event:CollectionEvent):void
 		{
-			if (!dataProviderModel)
-				return;
-			dp = dataProviderModel.dataProvider as ICollectionView;
-			if (!dp)
+			if(!dataProviderExist)
 				return;
 			
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
@@ -160,10 +164,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function itemUpdatedHandler(event:CollectionEvent):void
 		{
-			if (!dataProviderModel)
-				return;
-			dp = dataProviderModel.dataProvider as ICollectionView;
-			if (!dp)
+			if(dataProviderExist)
 				return;
 
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
@@ -180,13 +181,12 @@ package org.apache.royale.html.beads
 
 		override protected function get dataProviderLength():int
 		{
-			return dp.length;
+			return dataProviderModel.dataProvider.length;
 		}
 		
 		override protected function getItemAt(i:int):Object
 		{
-			return dp.getItemAt(i);
+			return dataProviderModel.dataProvider.getItemAt(i);
 		}
-		
 	}
 }

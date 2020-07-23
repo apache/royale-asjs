@@ -52,11 +52,6 @@ package org.apache.royale.html.beads
 		}
 
 		/**
-		 * the dataProvider
-		 */
-		protected var dp:Object;
-						
-		/**
 		 *  This Factory deletes all renderers, and generates a renderer
 		 *  for every data provider item.
 		 *  
@@ -67,8 +62,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
 		 */		
 		override protected function dataProviderChangeHandler(event:Event):void
 		{			
@@ -77,10 +71,22 @@ package org.apache.royale.html.beads
 			
 			removeAllItemRenderers(dataGroup);
 			
-			dp = dataProviderModel.dataProvider;
-			if (!dp)
+			if (!dataProviderModel.dataProvider)
 				return;
 			
+			createAllItemRenderers(dataGroup);
+			
+			dispatchItemCreatedEvent();
+		}
+
+		/**
+		 *  create all item renderers
+		 *  
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
+		 */
+		protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
+		{
 			var n:int = dataProviderLength; 
 			for (var i:int = 0; i < n; i++)
 			{				
@@ -91,14 +97,11 @@ package org.apache.royale.html.beads
 				(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, i);
 				ir.data = data;				
 			}
-			
-			dispatchItemCreatedEvent();
 		}
 
 		protected function dispatchItemCreatedEvent():void
 		{
 			sendStrandEvent(_strand,"itemsCreated");
 		}
-
 	}
 }
