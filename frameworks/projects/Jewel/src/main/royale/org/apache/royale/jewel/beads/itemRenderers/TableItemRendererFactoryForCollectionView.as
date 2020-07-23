@@ -20,13 +20,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IIndexedItemRendererInitializer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.DataItemRendererFactoryBase;
     import org.apache.royale.html.beads.IListView;
     import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
@@ -110,6 +108,20 @@ package org.apache.royale.jewel.beads.itemRenderers
             createHeader();
 			
 			// -- 2) CREATION PHASE
+			createAllItemRenderers(tbody);
+			
+			dispatchItemCreatedEvent();
+            // table.dispatchEvent(new Event("layoutNeeded"));
+        }
+
+		/**
+		 *  create all item renderers
+		 *  
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
+		 */
+		override protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
+		{
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			labelField = model.labelField;
 			
@@ -141,7 +153,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					
 					(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
                     
-					tbody.addItemRendererAt(ir, index);
+					dataGroup.addItemRendererAt(ir, index);
 					ir.labelField = labelField;
 					
 					if (presentationModel) {
@@ -159,10 +171,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					index++;
                 }
 			}
-			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-            table.dispatchEvent(new Event("layoutNeeded"));
-        }
+		}
 
 		public function removeElements(container: IParent):void
 		{
