@@ -54,31 +54,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			super(target);
 		}
-
-		/**
-		 *  finish setup
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 */
-		override protected function finishSetup(event:Event):void
-		{
-			view = _strand.getBeadByType(IListView) as TableView;
-			tbody = view.dataGroup as TBodyContentArea;
-            table = _strand as Table;
-			super.finishSetup(event);
-			
-			// IEventDispatcher(_strand).removeEventListener("initComplete", finishSetup);
-
-            // model = _strand.getBeadByType(IBeadModel) as TableModel;
-			// model.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
-			// dataProviderChangeHandler(null);
-		}
 		
 		protected var labelField:String;
 
@@ -97,7 +72,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
+			view = _strand.getBeadByType(IListView) as TableView;
+			tbody = view.dataGroup as TBodyContentArea;
+            table = _strand as Table;
 			model = dataProviderModel as TableModel;
+			
 			// -- 1) CLEANING PHASE
             if (!model)
 				return;
@@ -108,7 +87,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				model.selectedItemProperty = null;
 
 				// TBodyContentArea - remove data items
-				tbody.removeAllItemRenderers();
+				removeAllItemRenderers(tbody);
 				return;
 			}
 			// remove this and better add beads when needed
@@ -119,7 +98,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
             // TBodyContentArea - remove data items
-			tbody.removeAllItemRenderers();
+			removeAllItemRenderers(tbody);
 			
             // THEAD - remove header items
 			removeElements(view.thead);
@@ -154,18 +133,30 @@ package org.apache.royale.jewel.beads.itemRenderers
                     }
 
 					labelField =  column.dataField;
-                    var item:Object = model.dataProvider.getItemAt(i);
+                    var data:Object = model.dataProvider.getItemAt(i);
 
                     (ir as StyledDataItemRenderer).dataField = labelField;
 					(ir as StyledDataItemRenderer).rowIndex = i;
 					(ir as StyledDataItemRenderer).columnIndex = j;
-					(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, item, index);
-                    fillRenderer(index++, item, (ir as IIndexedItemRenderer), presentationModel);
-			        
+					
+					(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
+                    
+					tbody.addItemRendererAt(ir, index);
+					ir.labelField = labelField;
+					
+					if (presentationModel) {
+						UIBase(ir).height = presentationModel.rowHeight;
+					}
+
+					ir.index = index;
+					ir.data = data;
+
                     if(column.align != "")
                     {
                         ir.align = column.align;
                     }
+
+					index++;
                 }
 			}
 			
@@ -182,35 +173,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 					container.removeElement(child);
 				}
 			}
-		}
-
-        /**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 * @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
-		 */
-		protected function fillRenderer(index:int,
-										item:Object,
-										itemRenderer:IIndexedItemRenderer,
-										presentationModel:IListPresentationModel):void
-		{
-			tbody.addItemRendererAt(itemRenderer, index);
-			(itemRenderer as ILabelFieldItemRenderer).labelField = labelField;
-			
-			if (presentationModel) {
-				UIBase(itemRenderer).height = presentationModel.rowHeight;
-			}
-			
-			setData(itemRenderer, item, index);
-		}
-
-		/**
-		 * @private
-		 */
-		protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
-		{
-			itemRenderer.index = index;
-			itemRenderer.data = data;
 		}
 
         private function createHeader():void
