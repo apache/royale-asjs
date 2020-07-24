@@ -71,47 +71,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 			return dataProviderModel as TableModel;
 		}
 
-        /**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		override protected function dataProviderChangeHandler(event:Event):void
-		{
-			// -- 1) CLEANING PHASE
-            if (!model)
-				return;
-			if (!model.dataProvider)
-			{
-				model.selectedIndex = -1;
-				model.selectedItem = null;
-				model.selectedItemProperty = null;
+		/**
+         *  Remove all itemrenderers
+         * 
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
+         */
+        override protected function removeAllItemRenderers(dataGroup:IItemRendererOwnerView):void
+        {
+			// TBodyContentArea - remove data items
+            super.removeAllItemRenderers(dataGroup);
 
-				// TBodyContentArea - remove data items
-				removeAllItemRenderers(dataGroup);
-				return;
-			}
-			// remove this and better add beads when needed
-			// listen for individual items being added in the future.
-			// var dped:IEventDispatcher = dp as IEventDispatcher;
-			// dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-			// dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-			
-            // TBodyContentArea - remove data items
-			removeAllItemRenderers(dataGroup);
-			
-            // THEAD - remove header items
+			// THEAD - remove header items
 			removeElements(view.thead);
-
-			if(!model.columns)
-				return;
-            
-			createAllItemRenderers(dataGroup);
-			
-			dispatchItemCreatedEvent();
         }
 
 		/**
@@ -122,6 +93,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
 		{
+			if(!model.columns)
+				return;
+
 			// -- add the header
             createHeader();
 			
@@ -175,7 +149,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 		}
 
-		public function removeElements(container: IParent):void
+		/**
+		 *  remove all elements in a container.
+		 *  Needed to remove THEAD contents as part of cleaning
+		 */
+		protected function removeElements(container: IParent):void
 		{
 			if(container != null)
 			{
@@ -186,7 +164,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 		}
 
-        private function createHeader():void
+		/**
+		 * Create the THEAD in the creation phase with the columns info
+		 */
+        protected function createHeader():void
 		{
             var createHeaderRow:Boolean = false;
             var test:TableColumn;
