@@ -67,7 +67,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{	
 			super.strand = value;
             ownerView = (value as IStrandWithModelView).view as IItemRendererOwnerView;
-            presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
+			if(_strand as IStrandWithPresentationModel)
+            	presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
 		}
         
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void

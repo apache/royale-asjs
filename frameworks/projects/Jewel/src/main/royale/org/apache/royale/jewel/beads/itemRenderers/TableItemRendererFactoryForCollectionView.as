@@ -24,17 +24,14 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrandWithModelView;
-    import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.DataItemRendererFactoryBase;
-    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.models.TableModel;
     import org.apache.royale.jewel.beads.views.TableView;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
-    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
     import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
@@ -100,8 +97,6 @@ package org.apache.royale.jewel.beads.itemRenderers
             createHeader();
 			
 			// -- 2) CREATION PHASE
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			
             var column:TableColumn;
             var ir:TableItemRenderer;
 
@@ -121,28 +116,21 @@ package org.apache.royale.jewel.beads.itemRenderers
                         ir = itemRendererFactory.createItemRenderer() as TableItemRenderer;
                     }
 
+					ir.dataField = column.dataField;
+					ir.rowIndex = i;
+					ir.columnIndex = j;
+					if(column.align != "")
+						ir.align = column.align;
+					
 					var data:Object = model.dataProvider.getItemAt(i);
-
-                    (ir as StyledDataItemRenderer).dataField = column.dataField;
-					(ir as StyledDataItemRenderer).rowIndex = i;
-					(ir as StyledDataItemRenderer).columnIndex = j;
 					
 					(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
                     
 					dataGroup.addItemRendererAt(ir, index);
-					ir.labelField = column.dataField;
-					
-					if (presentationModel) {
-						UIBase(ir).height = presentationModel.rowHeight;
-					}
 
+					ir.labelField = column.dataField;
 					ir.index = index;
 					ir.data = data;
-
-                    if(column.align != "")
-                    {
-                        ir.align = column.align;
-                    }
 
 					index++;
                 }
