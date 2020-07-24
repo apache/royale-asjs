@@ -52,20 +52,19 @@ package org.apache.royale.html.beads
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			if (!dataProviderModel)
-				return;
-			
 			super.dataProviderChangeHandler(event);
-			
-			if (!dataProviderModel.dataProvider)
-				return;
 			
 			if(dped)
 			{
 				dped.removeEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
 				dped.removeEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 				dped.removeEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+				dped = null;
 			}
+			
+			if (!dataProviderModel.dataProvider)
+				return;
+			
 			// listen for individual items being added in the future.
 			dped = dataProviderModel.dataProvider as IEventDispatcher;
 			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
@@ -73,18 +72,6 @@ package org.apache.royale.html.beads
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 		}
 		
-		/**
-		 * check if model and dataprovider exists. This check is done through all methods
-		 * @private
-		 */
-		private function get dataProviderExist():Boolean
-		{
-			if (!dataProviderModel || !dataProviderModel.dataProvider)
-				return false;
-			
-			return true;
-		}
-
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView

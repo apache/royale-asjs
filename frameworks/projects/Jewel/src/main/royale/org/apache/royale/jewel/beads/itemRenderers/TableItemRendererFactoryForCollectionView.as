@@ -23,10 +23,10 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IIndexedItemRendererInitializer;
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IStrandWithModelView;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.DataItemRendererFactoryBase;
-    import org.apache.royale.html.beads.IListView;
     import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
@@ -35,7 +35,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.jewel.beads.views.TableView;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
     import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
-    import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
     import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
@@ -53,13 +52,24 @@ package org.apache.royale.jewel.beads.itemRenderers
 			super(target);
 		}
 		
-		protected var labelField:String;
+		private var table:Table;
+		private var view:TableView;
 
-        protected var view:TableView;
-        protected var model:TableModel;
-        protected var table:Table;
+		override protected function finishSetup(event:Event):void
+		{
+			super.finishSetup(event);
+			table = _strand as Table;
+		}
 
-		private var tbody:TBodyContentArea;
+		override protected function get dataGroup():IItemRendererOwnerView {
+			if(!view)
+				view = (_strand as IStrandWithModelView).view as TableView;
+			return view.dataGroup;
+		}
+		
+		protected function get model():TableModel {
+			return dataProviderModel as TableModel;
+		}
 
         /**
 		 * @private
@@ -70,11 +80,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			view = _strand.getBeadByType(IListView) as TableView;
-			tbody = view.dataGroup as TBodyContentArea;
-            table = _strand as Table;
-			model = dataProviderModel as TableModel;
-			
 			// -- 1) CLEANING PHASE
             if (!model)
 				return;
@@ -85,7 +90,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				model.selectedItemProperty = null;
 
 				// TBodyContentArea - remove data items
-				removeAllItemRenderers(tbody);
+				removeAllItemRenderers(dataGroup);
 				return;
 			}
 			// remove this and better add beads when needed
@@ -96,22 +101,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
             // TBodyContentArea - remove data items
-			removeAllItemRenderers(tbody);
+			removeAllItemRenderers(dataGroup);
 			
             // THEAD - remove header items
 			removeElements(view.thead);
 
 			if(!model.columns)
 				return;
-			
-            // -- add the header
-            createHeader();
-			
-			// -- 2) CREATION PHASE
-			createAllItemRenderers(tbody);
+            
+			createAllItemRenderers(dataGroup);
 			
 			dispatchItemCreatedEvent();
-            // table.dispatchEvent(new Event("layoutNeeded"));
         }
 
 		/**
@@ -122,8 +122,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		override protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
 		{
+			// -- add the header
+            createHeader();
+			
+			// -- 2) CREATION PHASE
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			labelField = model.labelField;
 			
             var column:TableColumn;
             var ir:TableItemRenderer;
@@ -144,17 +147,16 @@ package org.apache.royale.jewel.beads.itemRenderers
                         ir = itemRendererFactory.createItemRenderer() as TableItemRenderer;
                     }
 
-					labelField =  column.dataField;
-                    var data:Object = model.dataProvider.getItemAt(i);
+					var data:Object = model.dataProvider.getItemAt(i);
 
-                    (ir as StyledDataItemRenderer).dataField = labelField;
+                    (ir as StyledDataItemRenderer).dataField = column.dataField;
 					(ir as StyledDataItemRenderer).rowIndex = i;
 					(ir as StyledDataItemRenderer).columnIndex = j;
 					
 					(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
                     
 					dataGroup.addItemRendererAt(ir, index);
-					ir.labelField = labelField;
+					ir.labelField = column.dataField;
 					
 					if (presentationModel) {
 						UIBase(ir).height = presentationModel.rowHeight;

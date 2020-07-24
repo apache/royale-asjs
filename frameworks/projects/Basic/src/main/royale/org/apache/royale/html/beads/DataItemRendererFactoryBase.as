@@ -51,6 +51,12 @@ package org.apache.royale.html.beads
 			super(target);
 		}
 
+		protected function get dataGroup():IItemRendererOwnerView
+		{
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			return view.dataGroup;
+		}
+
 		/**
 		 *  This Factory deletes all renderers, and generates a renderer
 		 *  for every data provider item.
@@ -65,18 +71,27 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
 		 */		
 		override protected function dataProviderChangeHandler(event:Event):void
-		{			
-			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererOwnerView = view.dataGroup;
-			
+		{
 			removeAllItemRenderers(dataGroup);
 			
-			if (!dataProviderModel.dataProvider)
+			if(!dataProviderExist)
 				return;
 			
 			createAllItemRenderers(dataGroup);
 			
 			dispatchItemCreatedEvent();
+		}
+
+		/**
+		 * check if model and dataprovider exists. This check is done through all methods
+		 * @private
+		 */
+		protected function get dataProviderExist():Boolean
+		{
+			if (!dataProviderModel || !dataProviderModel.dataProvider)
+				return false;
+			
+			return true;
 		}
 
 		/**
