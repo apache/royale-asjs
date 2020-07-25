@@ -247,6 +247,7 @@
 
     <component id="RemoveAllDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllDataGridItemRendererForArrayListData" />
 
+    <!-- deprecated -->
     <component id="AddTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableRowForArrayListData" />
     <component id="RemoveTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveTableRowForArrayListData" />
     <component id="UpdateTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateTableRowForArrayListData" />

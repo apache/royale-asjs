@@ -41,6 +41,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
+	[Deprecated(message="Use CRUDTableItemRendererFactoryForCollectionView instead RemoveTableRowForArrayListData")]
 	public class RemoveTableRowForArrayListData implements IBead
 	{
 		/**
