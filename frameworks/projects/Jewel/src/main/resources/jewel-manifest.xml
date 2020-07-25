@@ -241,6 +241,7 @@
     <component id="VirtualDataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView"/>
     <component id="DropDownListItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView"/>
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
+    <component id="CRUDTableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.CRUDTableItemRendererFactoryForCollectionView"/>
     <component id="NoClassSelectorListSelectableItemRendererBead" class="org.apache.royale.jewel.beads.itemRenderers.NoClassSelectorListSelectableItemRendererBead"/>
     <component id="NoHoverClassSelectorListSelectableItemRendererBead" class="org.apache.royale.jewel.beads.itemRenderers.NoHoverClassSelectorListSelectableItemRendererBead"/>
 
