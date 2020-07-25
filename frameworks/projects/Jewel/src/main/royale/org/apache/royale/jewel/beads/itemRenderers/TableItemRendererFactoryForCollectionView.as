@@ -196,36 +196,5 @@ package org.apache.royale.jewel.beads.itemRenderers
 				table.addElementAt(thead,0);
 			}
         }
-
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		// protected function itemAddedHandler(event:CollectionEvent):void
-		// {
-		// }
-
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		// protected function itemRemovedHandler(event:CollectionEvent):void
-		// {
-		// }
-
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 */
-		// protected function itemUpdatedHandler(event:CollectionEvent):void
-		// {
-		// }
     }
 }
