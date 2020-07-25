@@ -205,9 +205,7 @@ limitations under the License.
 						<j:TableColumn dataField="year" label="Release Year" align="right" columnLabelAlign="right"/>
 						<j:beads>
 							<js:OverridableSelectableItemRendererClassFactory/>
-							<j:AddTableRowForArrayListData/>
-							<j:RemoveTableRowForArrayListData/>
-							<j:UpdateTableRowForArrayListData/>
+							<j:CRUDTableItemRendererFactoryForCollectionView/>
 							<j:RemoveAllItemRendererForArrayListData/>
 						</j:beads>
 					</j:Table>
@@ -248,9 +246,7 @@ limitations under the License.
 						<j:beads>
 							<!--TableCellCloseIconItemRenderer uses its own ISelectableItemRenderer -->
 							<js:OverridableSelectableItemRendererClassFactory/>
-							<j:AddTableRowForArrayListData/>
-							<j:RemoveTableRowForArrayListData/>
-							<j:UpdateTableRowForArrayListData/>
+							<j:CRUDTableItemRendererFactoryForCollectionView/>
 							<j:RemoveAllItemRendererForArrayListData/>
 							<j:TableAlternateRowColor/>
 						</j:beads>
