@@ -51,5 +51,15 @@ package org.apache.royale.core
 		 */
 		function get selectedItemProperty():Object
 		function set selectedItemProperty(value:Object):void
+
+        /**
+		 *  Get the index for the selected item property
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.10.0
+		 */
+        function getIndexForSelectedItemProperty():Number
 	}
 }
