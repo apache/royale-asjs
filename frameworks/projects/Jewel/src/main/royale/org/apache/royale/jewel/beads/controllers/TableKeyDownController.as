@@ -20,12 +20,15 @@ package org.apache.royale.jewel.beads.controllers
 {
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadKeyController;
+	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IRemovableBead;
+	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITableModel;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.events.utils.WhitespaceKeys;
-	import org.apache.royale.jewel.Table;
+	import org.apache.royale.html.beads.ITableView;
 
     /**
      *  The Jewel TableKeyDownController class is a key controller for
@@ -60,7 +63,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.10.0
 		 */
-		// protected var tableModel:TableModel;
+		protected var tableModel:ITableModel;
 
 		/**
 		 *  The view.
@@ -70,7 +73,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.10.0
 		 */
-		// protected var tableView:TableView;
+		protected var tableView:ITableView;
 
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -87,8 +90,8 @@ package org.apache.royale.jewel.beads.controllers
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			// tableModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			// tableView = value.getBeadByType(IListView) as TableView;
+			tableModel = value.getBeadByType(ISelectionModel) as ITableModel;
+			tableView = value.getBeadByType(IBeadView) as ITableView;
 
             listenOnStrand(KeyboardEvent.KEY_DOWN, keyDownEventHandler);
 		}

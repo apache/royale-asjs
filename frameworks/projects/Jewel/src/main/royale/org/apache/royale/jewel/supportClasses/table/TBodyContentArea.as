@@ -29,7 +29,7 @@ package org.apache.royale.jewel.supportClasses.table
     import org.apache.royale.events.ItemAddedEvent;
     import org.apache.royale.events.ItemRemovedEvent;
     import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
-    import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
+    import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
     import org.apache.royale.jewel.supportClasses.container.StyledContainerContentArea;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
 
@@ -91,7 +91,7 @@ package org.apache.royale.jewel.supportClasses.table
 		public function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void
 		{
 			// this method is not used for now, so it needs to be tested to see if it's correctly implemented
-			var r:ListItemRenderer = renderer as ListItemRenderer;
+			var r:TableItemRenderer = renderer as TableItemRenderer;
 			r.itemRendererOwnerView = this; // easy access from renderer to table
 			var tableCell:TableCell = new TableCell();
 			tableCell.addElement(r);
@@ -124,7 +124,7 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
-			var r:ListItemRenderer = renderer as ListItemRenderer;
+			var r:TableItemRenderer = renderer as TableItemRenderer;
 			r.itemRendererOwnerView = this; // easy access from renderer to table
 			var tableCell:TableCell = new TableCell();
 			tableCell.addElement(r);

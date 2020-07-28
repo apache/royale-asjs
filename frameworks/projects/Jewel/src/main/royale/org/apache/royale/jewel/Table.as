@@ -26,7 +26,7 @@ package org.apache.royale.jewel
     }
 	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.core.ITableModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
@@ -98,11 +98,11 @@ package org.apache.royale.jewel
 		 */
         public function get columns():Array
 		{
-			return TableModel(model).columns;
+			return ITableModel(model).columns;
 		}
 		public function set columns(value:Array):void
 		{
-			TableModel(model).columns = value;
+			ITableModel(model).columns = value;
 		}
 
 		private var _fixedHeader:Boolean;
@@ -126,33 +126,9 @@ package org.apache.royale.jewel
 			if(_fixedHeader !== value)
 			{
 				_fixedHeader = value;
-
-				
-
 				toggleClass("fixedHeader", _fixedHeader);
 			}
 		}
-
-		// private var _tableDataHeight:Boolean;
-		/**
-		 *  Makes the header of the table fixed so the data rows will scroll
-		 *  behind it.
-		 *  
-		 *  The default value is false.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		// public function get tableDataHeight():Boolean
-		// {
-		// 	return _tableDataHeight;
-		// }
-		// public function set tableDataHeight(value:Boolean):void
-		// {
-		// 	_tableDataHeight = value;
-		// }
 		
 		/**
 		 *  A list of data items that correspond to the rows in the table.
@@ -167,11 +143,11 @@ package org.apache.royale.jewel
 		 */
 		public function get dataProvider():Object
 		{
-			return TableModel(model).dataProvider;
+			return ITableModel(model).dataProvider;
 		}
 		public function set dataProvider(value:Object):void
 		{
-			TableModel(model).dataProvider = value;
+			ITableModel(model).dataProvider = value;
 		}
 
 		/**
@@ -233,17 +209,18 @@ package org.apache.royale.jewel
 		[Bindable("change")]
 		public function get selectedItemProperty():Object
 		{
-			return TableModel(model).selectedItemProperty;
+			return ITableModel(model).selectedItemProperty;
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		public function set selectedItemProperty(value:Object):void
 		{
-			TableModel(model).selectedItemProperty = value;
+			ITableModel(model).selectedItemProperty = value;
 		}
 		
 		/**
+		 * We use this opportunity to add the table key controller
 		 * @private
 		 */
 		override public function addedToParent():void
@@ -257,7 +234,7 @@ package org.apache.royale.jewel
 		private var table:HTMLTableElement;
 
 		/**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *  @royaleignorecoercion HTMLTableElement
          */
         COMPILE::JS
@@ -286,7 +263,6 @@ package org.apache.royale.jewel
 		{
 			return _positioner;
 		}
-
 		COMPILE::JS
 		override public function set positioner(value:WrappedHTMLElement):void
 		{

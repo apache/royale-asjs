@@ -24,13 +24,13 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrandWithModelView;
+    import org.apache.royale.core.ITableModel;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.DataItemRendererFactoryBase;
+    import org.apache.royale.html.beads.ITableView;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.controls.TextAlign;
-    import org.apache.royale.jewel.beads.models.TableModel;
-    import org.apache.royale.jewel.beads.views.TableView;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
@@ -50,7 +50,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 		
 		private var table:Table;
-		private var view:TableView;
+		private var view:ITableView;
 
 		override protected function finishSetup(event:Event):void
 		{
@@ -60,12 +60,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 		override protected function get dataGroup():IItemRendererOwnerView {
 			if(!view)
-				view = (_strand as IStrandWithModelView).view as TableView;
+				view = (_strand as IStrandWithModelView).view as ITableView;
 			return view.dataGroup;
 		}
 		
-		protected function get model():TableModel {
-			return dataProviderModel as TableModel;
+		protected function get model():ITableModel {
+			return dataProviderModel as ITableModel;
 		}
 
 		/**
@@ -79,7 +79,7 @@ package org.apache.royale.jewel.beads.itemRenderers
             super.removeAllItemRenderers(dataGroup);
 
 			// THEAD - remove header items
-			removeElements(view.thead);
+			removeElements(view.header);
         }
 
 		/**
@@ -172,9 +172,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 
             if (createHeaderRow) 
             {
-				if(view.thead == null)
-                	view.thead = new THead();
-				var thead:THead = view.thead;
+				if(view.header == null)
+                	view.header = new THead();
 				var headerRow:TableRow = new TableRow();
 				
 				for(c=0; c < model.columns.length; c++)
@@ -192,8 +191,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 					headerRow.addElement(tableHeader);
 				}
 
-				thead.addElement(headerRow);
-				table.addElementAt(thead,0);
+				view.header.addElement(headerRow);
+				table.addElementAt(view.header as THead, 0);
 			}
         }
     }

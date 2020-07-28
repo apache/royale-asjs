@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
+	import org.apache.royale.core.ITableModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.models.TableArrayListSelectionModel;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 	
-	public class TableModel extends TableArrayListSelectionModel
+	public class TableModel extends TableArrayListSelectionModel implements ITableModel
 	{
 		public function TableModel()
 		{
@@ -30,6 +31,14 @@ package org.apache.royale.jewel.beads.models
 		}
 		
 		private var _columns:Array;
+		/**
+         *  The set of Table Columns.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
 		public function get columns():Array
 		{
 			return _columns;
@@ -43,13 +52,13 @@ package org.apache.royale.jewel.beads.models
 		private var _selectedItemProperty:Object;
 
         /**
-         *  @copy org.apache.royale.core.ISelectionModel#selectedItem
+		 * The selected item property
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
-         */
+		 */
 		public function get selectedItemProperty():Object
 		{
 			return _selectedItemProperty;
@@ -83,6 +92,7 @@ package org.apache.royale.jewel.beads.models
 
 		/**
          * @private
+		 * @royaleignorecoercion rg.apache.royale.jewel.supportClasses.table.TableColumn
          */
         public function getIndexForSelectedItemProperty():Number
         {
