@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.core.ITableModel;
 	import org.apache.royale.events.Event;
@@ -29,7 +26,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.views.ListView;
 	import org.apache.royale.jewel.supportClasses.table.TFoot;
 	import org.apache.royale.jewel.supportClasses.table.THead;
-	import org.apache.royale.utils.getSelectionRenderBead;
 	
 	/**
 	 *  The TableView class creates the visual elements of the org.apache.royale.jewel.Table component.
@@ -56,19 +52,6 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-		}
-
 		protected var model:ITableModel;
 
 		/**
@@ -77,13 +60,10 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
-			model = _strand.getBeadByType(ITableModel) as ITableModel;
-			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
-			model.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-			model.addEventListener("columnsChanged", columnsChangedHandler);
-			listenOnStrand("itemsCreated", itemsCreatedHandler);
-
 			super.handleInitComplete(event);
+			model = listModel as ITableModel;
+			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			model.addEventListener("columnsChanged", columnsChangedHandler);
 		}
 
 		/**
