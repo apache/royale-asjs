@@ -24,9 +24,11 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	[DefaultProperty("columns")]
 
@@ -239,6 +241,16 @@ package org.apache.royale.jewel
 		public function set selectedItemProperty(value:Object):void
 		{
 			TableModel(model).selectedItemProperty = value;
+		}
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+
+			loadBeadFromValuesManager(IBeadKeyController, "iBeadKeyController", this);
 		}
 		
 		COMPILE::JS
