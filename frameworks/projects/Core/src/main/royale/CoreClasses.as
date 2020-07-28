@@ -40,6 +40,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IIconSupport; IIconSupport;
 	import org.apache.royale.core.ITextInput; ITextInput;
 	import org.apache.royale.html.beads.IListView; IListView;
+	import org.apache.royale.html.beads.ITableView; ITableView;
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.html.beads.IDropDownListView; IDropDownListView;
