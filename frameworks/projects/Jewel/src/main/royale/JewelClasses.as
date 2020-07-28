@@ -33,6 +33,7 @@ package
         import org.apache.royale.jewel.beads.models.TitleBarModel; TitleBarModel;
         import org.apache.royale.jewel.beads.models.TextModel; TextModel;
         import org.apache.royale.jewel.beads.models.RangeModel; RangeModel;
+        import org.apache.royale.jewel.beads.models.TableModel; TableModel;
         import org.apache.royale.jewel.beads.models.DateChooserModel; DateChooserModel;
         import org.apache.royale.jewel.beads.models.DataProviderModel; DataProviderModel;
         import org.apache.royale.jewel.beads.models.ComboBoxModel; ComboBoxModel;
