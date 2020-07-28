@@ -151,6 +151,7 @@ internal class CoreClasses
 	import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectable; ISelectable;
 	import org.apache.royale.core.ISelectionModel; ISelectionModel;
+	import org.apache.royale.core.ITableModel; ITableModel;
 	import org.apache.royale.core.IMultiSelectionModel; IMultiSelectionModel;
 	import org.apache.royale.core.IStrand; IStrand;
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost; IContainerBaseStrandChildrenHost;
