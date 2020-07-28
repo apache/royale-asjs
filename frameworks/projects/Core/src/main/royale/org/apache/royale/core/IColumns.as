@@ -19,36 +19,26 @@
 package org.apache.royale.core
 {
     /**
-     *  The IDataGridModel interface describes the minimum set of properties
-     *  available to an DataGrid control.  More sophisticated DataGrid controls
-     *  could have models that extend IDataGridModel.
+     *  The IColumns interface describes the minimum set of properties
+     *  available for a component that uses columns. Examples of components
+     *  are DataGrids and Tables.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.10.0
      */
-	public interface ITableModel extends IColumns, ISelectionModel, IRollOverModel
+	public interface IColumns
 	{
         /**
-		 * The selected item property
+         *  The set of Table Columns.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.10.0
-		 */
-		function get selectedItemProperty():Object
-		function set selectedItemProperty(value:Object):void
-
-        /**
-		 *  Get the index for the selected item property
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.10.0
-		 */
-        function getIndexForSelectedItemProperty():Number
+         */
+		function get columns():Array;
+		function set columns(value:Array):void;
 	}
 }

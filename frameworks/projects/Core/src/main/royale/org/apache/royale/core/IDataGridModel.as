@@ -28,20 +28,9 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IDataGridModel extends ISelectionModel, IRollOverModel
+	public interface IDataGridModel extends IColumns, ISelectionModel, IRollOverModel
 	{
         /**
-         *  The set of DataGridColumns.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		function get columns():Array;
-		function set columns(value:Array):void;
-
-		/**
 		 * The model to use for the DataGrid's header.
          *
          *  @langversion 3.0
