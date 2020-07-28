@@ -53,6 +53,7 @@ package org.apache.royale.html.beads
 		 *  @productversion Royale 0.10.0
 		 */
 		function get header():IParent;
+		function set header(value:IParent):void;
 		
 		/**
 		 *  The component which parents the footer elements
@@ -63,5 +64,6 @@ package org.apache.royale.html.beads
 		 *  @productversion Royale 0.10.0
 		 */
 		function get footer():IParent;
+		function set footer(value:IParent):void;
 	}
 }
