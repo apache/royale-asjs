@@ -62,7 +62,6 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.handleInitComplete(event);
 			model = listModel as ITableModel;
-			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			model.addEventListener("columnsChanged", columnsChangedHandler);
 		}
 

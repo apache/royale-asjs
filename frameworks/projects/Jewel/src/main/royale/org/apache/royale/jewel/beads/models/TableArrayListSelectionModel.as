@@ -214,7 +214,7 @@ package org.apache.royale.jewel.beads.models
 
 			_selectedIndex = value;
 			_selectedItem = (value == -1 || _dataProvider == null) ? null : (value < _dataProvider.length) ? _dataProvider.getItemAt(value) : null;
-			dispatchChange("selectedIndexChanged");
+			dispatchChange("selectionChanged");
 		}
 
         /**
@@ -273,8 +273,7 @@ package org.apache.royale.jewel.beads.models
 					break;
 				}
 			}
-			dispatchChange("selectedItemChanged");
-			dispatchChange("selectedIndexChanged");
+			dispatchChange("selectionChanged");
 		}
 
 		private var _selectedString:String;
@@ -308,8 +307,7 @@ package org.apache.royale.jewel.beads.models
 					break;
 				}
 			}
-			dispatchChange("selectedItemChanged");
-			dispatchChange("selectedIndexChanged");
+			dispatchChange("selectionChanged");
 		}
 	}
 }
