@@ -18,12 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
+	COMPILE::SWF{
+	import flash.events.Event;
+	}
 	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
      *  The ArrayListSelectionModel class is a selection model for
@@ -35,7 +38,7 @@ package org.apache.royale.jewel.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class TableArrayListSelectionModel extends EventDispatcher implements ISelectionModel, IRollOverModel
+	public class TableArrayListSelectionModel implements IJewelSelectionModel, IRollOverModel
 	{
         /**
          *  Constructor.
@@ -48,6 +51,71 @@ package org.apache.royale.jewel.beads.models
 		public function TableArrayListSelectionModel()
 		{
 		}
+
+		//IJewelSelectionModel
+		private var _dispatcher:IEventDispatcher;
+        public function get dispatcher():IEventDispatcher {
+			if (!_dispatcher) {
+				_dispatcher = new EventDispatcher(this) as IEventDispatcher;
+            }
+			return _dispatcher;
+		}
+        public function set dispatcher(value:IEventDispatcher):void{
+			_dispatcher = value;
+		}
+
+		public function get hasDispatcher():Boolean{
+			return !!_dispatcher;
+		}
+
+		//IEventDispatcher JS
+		COMPILE::JS
+		public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void{
+            dispatcher.addEventListener(type, handler, opt_capture, opt_handlerScope);
+		}
+		COMPILE::JS
+		public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void{
+            dispatcher.removeEventListener(type, handler, opt_capture, opt_handlerScope);
+		}
+
+		COMPILE::JS
+		public function dispatchEvent(event:Object):Boolean{
+			return dispatcher.dispatchEvent(event);
+		}
+
+
+
+        //IEventDispatcher SWF
+		COMPILE::SWF
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
+            dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		}
+		COMPILE::SWF
+		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void{
+            dispatcher.removeEventListener(type, listener, useCapture);
+		}
+
+		COMPILE::SWF
+		public function dispatchEvent(event:flash.events.Event):Boolean{
+			return dispatcher.dispatchEvent(event);
+		}
+
+        COMPILE::SWF
+        public function willTrigger(type:String):Boolean{
+            return dispatcher.willTrigger(type);
+        }
+
+		//IEventDispatcher (shared)
+        public function hasEventListener(type:String):Boolean{
+            return dispatcher.hasEventListener(type);
+        }
+
+        /**
+         *  @private
+         */
+		protected function dispatchChange(eventName:String):void{
+			dispatchEvent(new org.apache.royale.events.Event(eventName));
+        }
 
 		private var _strand:IStrand;
 
@@ -93,7 +161,7 @@ package org.apache.royale.jewel.beads.models
             
 			_selectedItem = _selectedIndex == -1 ? null : _dataProvider.getItemAt(_selectedIndex);
 			
-			dispatchEvent(new Event("dataProviderChanged"));
+			dispatchChange("dataProviderChanged");
 		}
 
 		private var _selectedIndex:int = -1;
@@ -120,7 +188,7 @@ package org.apache.royale.jewel.beads.models
 		{
 			if (value != _labelField) {
 				_labelField = value;
-				dispatchEvent(new Event("labelFieldChanged"));
+				dispatchChange("labelFieldChanged");
 			}
 		}
 
@@ -146,7 +214,7 @@ package org.apache.royale.jewel.beads.models
 
 			_selectedIndex = value;
 			_selectedItem = (value == -1 || _dataProvider == null) ? null : (value < _dataProvider.length) ? _dataProvider.getItemAt(value) : null;
-			dispatchEvent(new Event("selectedIndexChanged"));
+			dispatchChange("selectedIndexChanged");
 		}
 
         /**
@@ -169,7 +237,7 @@ package org.apache.royale.jewel.beads.models
 		{
 			if (value != _rollOverIndex) {
 				_rollOverIndex = value;
-				dispatchEvent(new Event("rollOverIndexChanged"));
+				dispatchChange("rollOverIndexChanged");
 			}
 		}
 
@@ -205,8 +273,8 @@ package org.apache.royale.jewel.beads.models
 					break;
 				}
 			}
-			dispatchEvent(new Event("selectedItemChanged"));
-			dispatchEvent(new Event("selectedIndexChanged"));
+			dispatchChange("selectedItemChanged");
+			dispatchChange("selectedIndexChanged");
 		}
 
 		private var _selectedString:String;
@@ -240,8 +308,8 @@ package org.apache.royale.jewel.beads.models
 					break;
 				}
 			}
-			dispatchEvent(new Event("selectedItemChanged"));
-			dispatchEvent(new Event("selectedIndexChanged"));
+			dispatchChange("selectedItemChanged");
+			dispatchChange("selectedIndexChanged");
 		}
 	}
 }

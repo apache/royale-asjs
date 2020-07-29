@@ -32,6 +32,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.beads.ITableView;
 	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 
     /**
      *  The TableCellSelectionMouseController class is a controller for
@@ -108,11 +109,30 @@ package org.apache.royale.jewel.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+
 			model = value.getBeadByType(ITableModel) as ITableModel;
 			view = value.getBeadByType(IBeadView) as ITableView;
 			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
+
+            //if the list is composed as part of another component, with a shared model (e.g. ComboBox) then it should not be the primary dispatcher
+			if (model is IJewelSelectionModel && !(IJewelSelectionModel(model).hasDispatcher)) {
+                 IJewelSelectionModel(model).dispatcher = IEventDispatcher(value);
+			}
+            else {
+				IEventDispatcher(model).addEventListener('rollOverIndexChanged', modelChangeHandler);
+				IEventDispatcher(model).addEventListener('selectionChanged', modelChangeHandler);
+                IEventDispatcher(model).addEventListener('dataProviderChanged', modelChangeHandler);
+            }
 		}
+
+        /**
+         * 
+         * @param event 
+         */
+        protected function modelChangeHandler(event:Event):void{
+            IEventDispatcher(_strand).dispatchEvent(new Event(event.type));
+        }
 		
         /**
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
