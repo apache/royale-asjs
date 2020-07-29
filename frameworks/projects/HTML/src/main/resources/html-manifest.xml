@@ -42,6 +42,7 @@
     <component id="H6" class="org.apache.royale.html.elements.H6" />
     <component id="Hr" class="org.apache.royale.html.elements.Hr" />
     <component id="I" class="org.apache.royale.html.elements.I" />
+    <component id="Iframe" class="org.apache.royale.html.elements.Iframe" />
     <component id="Img" class="org.apache.royale.html.elements.Img" />
     <component id="Input" class="org.apache.royale.html.elements.Input" />
     <component id="Label" class="org.apache.royale.html.elements.Label" />
