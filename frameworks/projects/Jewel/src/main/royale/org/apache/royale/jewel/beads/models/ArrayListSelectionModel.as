@@ -135,7 +135,7 @@ package org.apache.royale.jewel.beads.models
 		}
 
 
-		private var _dataProvider:IArrayList;
+		protected var _dataProvider:IArrayList;
 
         /**
          *  @copy org.apache.royale.core.ISelectionModel#dataProvider
@@ -191,7 +191,7 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
-		private var _selectedIndex:int = -1;
+		protected var _selectedIndex:int = -1;
 		private var _rollOverIndex:int = -1;
 		private var _labelField:String = null;
 
@@ -277,7 +277,7 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
-		private var _selectedItem:Object;
+		protected var _selectedItem:Object;
 
         /**
          *  @copy org.apache.royale.core.ISelectionModel#selectedItem
