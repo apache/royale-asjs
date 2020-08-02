@@ -718,7 +718,6 @@ package
         public static const MASK:String = "mask";
         public static const SKULL:String = "skull";
         public static const SPIDER:String = "spider";
-
 		public static const USER_ASTRONAUT:String = "user-astronaut";
 		public static const USER_ALT:String = "user-alt";
 		public static const USER_LOCK:String = "user-lock";
@@ -734,6 +733,14 @@ package
 		public static const BOOK_READER:String = "book-reader";
 		public static const CHART_LINE:String = "chart-line";
 		public static const CHART_NETWORK:String = "chart-network";
+		public static const HAND_RECEIVING:String = "hand-receiving";
+		public static const BADGE_CHECK:String = "badge-check";
+		public static const BADGE:String = "badge";
+		public static const STAR_OF_LIFE:String = "star-of-life";
+		public static const PARKING:String = "parking";
+		public static const PARKING_DASH:String = "parking-dash";
+		public static const PARKING_CIRCLE:String = "parking-circle";
+		public static const PARKING_CIRCLE_DASH:String = "parking-circle-dash";
 
     }
 }
