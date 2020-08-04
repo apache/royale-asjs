@@ -234,6 +234,7 @@
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
     <component id="DropDownListItemRenderer" class="org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer"/>
 
+    <component id="Viewport" class="org.apache.royale.jewel.supportClasses.Viewport"/>
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
     <component id="NoViewport" class="org.apache.royale.jewel.supportClasses.NoViewport"/>
 
