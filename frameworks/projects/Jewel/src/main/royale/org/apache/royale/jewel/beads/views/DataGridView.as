@@ -149,6 +149,7 @@ package org.apache.royale.jewel.beads.views
             for (var i:int=0; i < sharedModel.columns.length; i++)
             {
                 var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
+                IEventDispatcher(dataGridColumn).addEventListener("labelChanged", labelChangedHandler);
 
                 var list:IDataGridColumnList = new columnClass();
                 
@@ -334,6 +335,25 @@ package org.apache.royale.jewel.beads.views
             }
 
             host.dispatchEvent(new Event('rollOverIndex'));
+        }
+
+        /**
+         * manages column label changes, included binding
+         */
+        private function labelChangedHandler(event:Event):void
+        {
+            var _sharedModel:IDataGridModel = _dg.model as IDataGridModel;
+            var dp:Array = _sharedModel.columns as Array;
+            var len:int = dp.length;
+            for (var index:int = 0; index < len; index++)
+            {
+                var column:IDataGridColumn = dp[index] as IDataGridColumn;
+                if(column == event.target) {
+                    column.label = event.target.label;
+                    break;
+                }
+            }
+            _header.dataProvider = new ArrayList(_sharedModel.columns);
         }
     }
 }

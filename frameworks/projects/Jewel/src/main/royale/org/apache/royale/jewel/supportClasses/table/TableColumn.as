@@ -19,6 +19,8 @@
 package org.apache.royale.jewel.supportClasses.table
 {
 	import org.apache.royale.core.IFactory;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
 	 *  TableColumn define a column for a Jewel Table component
@@ -29,7 +31,7 @@ package org.apache.royale.jewel.supportClasses.table
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TableColumn implements ITableColumn
+	public class TableColumn extends EventDispatcher implements ITableColumn
 	{
 		/**
 		 *  constructor.
@@ -207,13 +209,18 @@ package org.apache.royale.jewel.supportClasses.table
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable("labelChanged")]
 		public function get label():String
 		{
 			return _label;
 		}
 		public function set label(value:String):void
 		{
-			_label = value;
+			if (value !== _label)
+            {
+                _label = value;
+                dispatchEvent(new Event('labelChanged'));
+            }
 		}
 		
 		private var _dataField:String;
