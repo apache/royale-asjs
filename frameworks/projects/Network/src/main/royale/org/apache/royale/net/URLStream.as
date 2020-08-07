@@ -115,7 +115,8 @@ package org.apache.royale.net
 		{
 			COMPILE::JS {
 				requestStatus = 0;
-				xhr = new XMLHttpRequest();
+				createXmlHttpRequest();
+
 				xhr.open(urlRequest.method, urlRequest.url);
 				xhr.responseType = "arraybuffer";
 				xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
@@ -174,6 +175,12 @@ package org.apache.royale.net
 				flashUrlStream.load(req);
 			}
 		}
+
+		protected function createXmlHttpRequest():void
+		{
+			xhr = new XMLHttpRequest();
+		}
+
 		/**
 		 * send is a protected function in js so a subclass can attach an upload listener
 		 * without rewriting the whole load() function
