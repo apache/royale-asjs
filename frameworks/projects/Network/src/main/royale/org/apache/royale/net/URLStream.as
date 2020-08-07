@@ -176,6 +176,7 @@ package org.apache.royale.net
 			}
 		}
 
+		COMPILE::JS
 		protected function createXmlHttpRequest():void
 		{
 			xhr = new XMLHttpRequest();
