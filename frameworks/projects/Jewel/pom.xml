@@ -88,8 +88,38 @@
               <goals>
                   <goal>update-stylesheets</goal>
               </goals>
+            <phase>generate-resources</phase>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.google.code.maven-replacer-plugin</groupId>
+        <artifactId>replacer</artifactId>
+        <version>1.5.3</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>replace</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <includes>
+            <include>${basedir}/src/main/resources/**/*.css</include>
+          </includes>
+          <regex>false</regex>
+          <replacements>
+            <replacement>
+              <token>@@ZERO_WIDTH_SPACE</token>
+              <value>\200b</value>
+            </replacement>
+            <replacement>
+              <token>@@NON_BREAKING_SPACE</token>
+              <value>\0a</value>
+            </replacement>
+          </replacements>
+        </configuration>
       </plugin>
     </plugins>
   </build>
