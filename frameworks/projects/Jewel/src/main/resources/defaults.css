@@ -561,13 +561,29 @@ j|VirtualComboBoxPopUp {
 }
 .jewel.datagrid .jewel.buttonbar.header {
   width: 100%;
+  flex: 0 0 auto;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button {
+  padding-left: 2px;
+  padding-right: 2px;
+  justify-content: flex-start;
+  width: 100%;
 }
 .jewel.datagrid .listarea {
   width: 100%;
-  flex: 1 1 0%;
+  flex: 1 1 auto;
+}
+.jewel.datagrid .jewel.list.column {
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  min-height: 100%;
 }
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid {
   width: 100%;
+}
+.jewel.datagrid span:empty:before {
+  content: "\200b";
 }
 
 j|DataGrid {
@@ -576,7 +592,7 @@ j|DataGrid {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout");
   headerClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar");
-  headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
+  headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridColumnLayout");
   listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea");
   columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList");
 }
@@ -594,6 +610,10 @@ j|DataGridColumnList {
   IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataGridColumnListItemRendererInitializer");
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+}
+
+j|DataGridButtonBar {
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer");
 }
 
 .jewel.datechooser .jewel.table {
@@ -1141,7 +1161,7 @@ j|Label {
 .layout.horizontal.pixelWidths > * {
   flex: none;
 }
-.layout.horizontal.proportinalWidths > * {
+.layout.horizontal.proportionalWidths > * {
   flex: 1 0;
 }
 .layout.horizontal.percentWidths > * {

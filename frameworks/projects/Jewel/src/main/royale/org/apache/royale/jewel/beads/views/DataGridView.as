@@ -39,7 +39,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
-	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
@@ -48,6 +49,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.observeElementSize;
     
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -117,8 +119,8 @@ package org.apache.royale.jewel.beads.views
             _header.labelField = "label";
             
             var headerLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "headerLayoutClass") as Class;
-            var bblayout:ButtonBarLayout = new headerLayoutClass() as ButtonBarLayout;
-            _header.addBead(bblayout as IBead);
+            var bblayout:IBead = new headerLayoutClass() as IBeadLayout;
+            _header.addBead(bblayout /*as IBead*/);
             _header.addBead(new Viewport() as IBead);
             sharedModel.headerModel = _header.model as IBeadModel;
             _dg.strandChildren.addElement(_header as IChild);
@@ -131,8 +133,27 @@ package org.apache.royale.jewel.beads.views
 
             if (sharedModel.columns)
                 createLists();
+
+            COMPILE::JS{
+                observeElementSize(_listArea.element, onInternalSizeChange);
+                _listArea.element.addEventListener('scroll', synchHScroll)
+            }
         }
 
+
+        COMPILE::JS
+        protected function onInternalSizeChange():void{
+            //check for vertical scrollbar presence
+            _header.dispatchEvent(new Event("headerLayout"));
+        }
+
+        COMPILE::JS
+        protected function synchHScroll(event:Event):void{
+            _header.element.scrollLeft = _listArea.element.scrollLeft;
+            if (!event) {
+                _header.dispatchEvent(new Event("headerLayoutReset"));
+            }
+        }
         /**
          * @private
          * @royaleignorecoercion Class
@@ -148,6 +169,7 @@ package org.apache.royale.jewel.beads.views
             
             for (var i:int=0; i < sharedModel.columns.length; i++)
             {
+
                 var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
                 IEventDispatcher(dataGridColumn).addEventListener("labelChanged", labelChangedHandler);
 
@@ -258,6 +280,10 @@ package org.apache.royale.jewel.beads.views
 			    layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand) as IBeadLayout;
             }
             host.dispatchEvent(new Event("layoutNeeded"));
+
+            COMPILE::JS{
+                synchHScroll(null);
+            }
         }
 
         private var layout:IBeadLayout;
@@ -326,7 +352,7 @@ package org.apache.royale.jewel.beads.views
         {
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
             sharedModel.rollOverIndex = list.rollOverIndex;
-
+            var columnLists:Array = this.columnLists;
             for(var i:int=0; i < columnLists.length; i++) {
                 if (list != columnLists[i]) {
                     var otherList:IDataGridColumnList = columnLists[i] as IDataGridColumnList;

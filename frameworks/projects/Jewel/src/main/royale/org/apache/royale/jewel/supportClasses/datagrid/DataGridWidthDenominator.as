@@ -16,39 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.datagrid
-{
-    import org.apache.royale.jewel.ButtonBar;
-
-    COMPILE::JS
-    {
-    import org.apache.royale.core.WrappedHTMLElement;            
-    }
+package org.apache.royale.jewel.supportClasses.datagrid {
 
 	/**
-	 *  The DataGridButtonBar class extends ButtonBar and provides a class for styling
-	 *  the header region of the DataGrid.
-	 *  
+	 * internal use only
+	 *
 	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @royalesuppressexport
 	 */
-	public class DataGridButtonBar extends ButtonBar
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function DataGridButtonBar()
-		{
-			super();
-			typeNames = "jewel buttonbar header";
-		}
-
+	public class DataGridWidthDenominator {
+		public var value:int = -1;
 	}
+
 }

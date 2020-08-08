@@ -18,12 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
+	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 
 	/**
 	 *  The Jewel ButtonBarLayout class bead sizes and positions the button
@@ -37,9 +43,14 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
+	 *
+	 *  @royalesuppressexport
 	 */
-	public class ButtonBarLayout extends HorizontalLayout
+	public class DataGridColumnLayout extends HorizontalLayout  implements IBeadLayout
 	{
+
+
+
 		/**
 		 *  constructor.
 		 *
@@ -48,7 +59,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function ButtonBarLayout()
+		public function DataGridColumnLayout()
 		{
 			super();
 		}
@@ -74,68 +85,56 @@ package org.apache.royale.jewel.beads.layouts
 			super.beadsAddedHandler();
 
 			model = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
-			if (model) {
-				widthType = model.buttonWidths != null ? model.widthType : NaN;
-			}
+			hostComponent.addEventListener("headerLayout", onHeaderLayoutCheck);
+			hostComponent.addEventListener("headerLayoutReset", onHeaderLayoutCheck);
 		}
 
 		/**
-		 *  Switch between four different types of width
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		public function get widthType():Number
-        {
-            return model.widthType;
-        }
-		public function set widthType(value:Number):void
-        {
-			if (model.widthType != value)
-            {
-				model.widthType = value;
-                COMPILE::JS
-                {
-				if(hostComponent)
-				{
-					if (hostComponent.containsClass("pixelWidths"))
-						hostComponent.removeClass("pixelWidths");
-					if (hostComponent.containsClass("proportionalWidths"))
-						hostComponent.removeClass("proportionalWidths");
-					if (hostComponent.containsClass("percentWidths"))
-						hostComponent.removeClass("percentWidths");
-					if (hostComponent.containsClass("naturalWidths"))
-						hostComponent.removeClass("naturalWidths");
-					if (hostComponent.containsClass("sameWidths"))
-						hostComponent.removeClass("sameWidths");
-					if(isNaN(model.widthType))
-					{
-						hostComponent.addClass("sameWidths");
-					}
-					else
-					{
-						switch(model.widthType)
-						{
-							case ButtonBarModel.PIXEL_WIDTHS:
-								hostComponent.addClass("pixelWidths");
-								break;
-							case ButtonBarModel.PROPORTIONAL_WIDTHS:
-								hostComponent.addClass("proportionalWidths");
-								break;
-							case ButtonBarModel.PERCENT_WIDTHS:
-								hostComponent.addClass("percentWidths");
-								break;
-							case ButtonBarModel.NATURAL_WIDTHS:
-								hostComponent.addClass("naturalWidths");
-								break;
-						}
-					}
-				}
+		protected function get datagrid():UIBase
+		{
+			return (_strand as UIBase).parent as UIBase;
+		}
+
+		COMPILE::JS
+		private var _vScrollerHOffset:Number = 0;
+
+		COMPILE::JS
+		private var _vScrollChange:Boolean;
+
+
+		/**
+		 *
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 */
+		private function onHeaderLayoutCheck(event:Event):void{
+			var view:IDataGridView = datagrid.view as IDataGridView;
+			var listArea:IUIBase = view.listArea;
+			COMPILE::JS {
+				var LA_Element:HTMLElement = listArea.element;
+				var latestHOffset:Number = LA_Element.offsetWidth - LA_Element.clientWidth;
+
+				if (latestHOffset != _vScrollerHOffset || event.type == 'headerLayoutReset') {
+					_vScrollerHOffset = latestHOffset;
+					_vScrollChange = true;
+					layout();
 				}
 			}
+
 		}
+
+
+		private var _defaultWidth:DataGridColumnWidth;
+
+		public function get defaultWidth():DataGridColumnWidth{
+			return _defaultWidth;
+		}
+
+		public function set defaultWidth(value:DataGridColumnWidth):void{
+			_defaultWidth = value;
+		}
+
 
 		/**
 		 * @copy org.apache.royale.core.IBeadLayout#layout
@@ -148,34 +147,32 @@ package org.apache.royale.jewel.beads.layouts
 			var contentView:ILayoutView = layoutView;
 			var n:int = contentView.numElements;
 			if (n <= 0) return false;
-
+			var last:ILayoutChild;
+			var lastWidthConfig:DataGridColumnWidth;
 			for (var i:int=0; i < n; i++)
 			{	
 				var ilc:ILayoutChild = contentView.getElementAt(i) as ILayoutChild;
 				if (ilc == null || !ilc.visible) continue;
 				if (!(ilc is IStyleableObject)) continue;
-				
+				last = ilc;
 				COMPILE::JS
 				{
-				// otherwise let the flexbox layout handle matters on its own.
-				if (model.buttonWidths) {
-					var widthValue:* = model.buttonWidths[i];
-					
-					if (model.widthType == ButtonBarModel.PIXEL_WIDTHS) {
-						if (widthValue != null) ilc.width = Number(widthValue);
+					// otherwise let the flexbox layout handle matters on its own.
+					if (model.buttonWidths) {
+						lastWidthConfig = model.buttonWidths[i];
+						lastWidthConfig.configureWidth(ilc);
 					} else {
-						ilc.width = NaN;
+						if (_defaultWidth) {
+							_defaultWidth.configureWidth(ilc);
+							lastWidthConfig = _defaultWidth;
+						}
 					}
-					// else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
-					// 	if (widthValue != null) ilc.element.style["flex-grow"] = String(widthValue);
-					// }
-					// else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
-					// 	if (widthValue != null) ilc.percentWidth = Number(widthValue);
-					// }
-				} 
-				// else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
-				// 	ilc.element.style["flex-grow"] = "1";
-				// }
+				}
+			}
+			COMPILE::JS{
+				if (last && _vScrollChange) {
+					lastWidthConfig.applyRightOffset(last, _vScrollerHOffset);
+					_vScrollChange = false;
 				}
 			}
 

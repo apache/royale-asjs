@@ -224,7 +224,11 @@ limitations under the License.
 						<html:H3 text="Percentage Width and Height" className="primary-normal"/>
 					</j:BarSection>
 					<j:BarSection itemsHorizontalAlign="itemsRight">
-						<j:HSlider minimum="200" maximum="600" value="400" valueChange="card2.height = event.target.value"/>
+						<j:HSlider minimum="200" maximum="600"
+								   width="170"
+								   value="400"
+								   change="card2.height = event.target.value"
+								   valueChange="card2.height = event.target.value"/>
 					</j:BarSection>
 				</j:CardHeader>
 				<j:CardPrimaryContent>

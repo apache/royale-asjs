@@ -109,5 +109,12 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		function get columnLabelAlign():String;
 		function set columnLabelAlign(value:String):void;
+
+
+		function get percentColumnWidth():Number
+
+
+		function get explicitColumnWidth():Number
+
 	}
 }

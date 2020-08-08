@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+import org.apache.royale.utils.observeElementSize;
 
-    /**
+/**
      *  @private
      *  This class is used to link additional classes into jewel.swc
      *  beyond those that are found by dependecy analysis starting
@@ -131,10 +132,13 @@ package
 
         COMPILE::JS
         {
-        import dialogPolyfill; dialogPolyfill;
-        import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
+            import dialogPolyfill; dialogPolyfill;
+            import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
+            import org.apache.royale.utils.observeElementSize; observeElementSize;
         }
-        
+
+        import org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer; DatagridHeaderRenderer;
+
         import org.apache.royale.jewel.beads.itemRenderers.IndexedItemRendererInitializer; IndexedItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead; ClassSelectorListSelectableItemRendererBead;
         import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead; ClassSelectorListHoverOnlySelectableItemRendererBead;
