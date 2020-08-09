@@ -22,8 +22,7 @@
 // SectionContent variables
 
 .jewel.section
-    display: flex
-    visibility: hidden
+    display: none
     flex-flow: column nowrap
     height: 100%
 
@@ -31,7 +30,7 @@
         flex: 0 0 auto
     
     &.is-selected
-        visibility: visible
+        display: flex
 
 j|SectionContent
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
