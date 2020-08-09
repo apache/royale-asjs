@@ -50,6 +50,9 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "jewel section";
+
+            // we need to add this for propoer sizing of content inside this container
+            addClass("is-selected");
 		}
 
         /**
@@ -58,7 +61,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'section');
+			return addElementToWrapper(this, 'section');
         }
 
 		private var _isSelected:Boolean;
