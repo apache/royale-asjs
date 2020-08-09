@@ -3504,7 +3504,8 @@ j|PopUp {
   }
 }
 .jewel.section {
-  display: none;
+  display: flex;
+  visibility: hidden;
   flex-flow: column nowrap;
   height: 100%;
 }
@@ -3512,7 +3513,7 @@ j|PopUp {
   flex: 0 0 auto;
 }
 .jewel.section.is-selected {
-  display: flex;
+  visibility: visible;
 }
 
 j|SectionContent {
