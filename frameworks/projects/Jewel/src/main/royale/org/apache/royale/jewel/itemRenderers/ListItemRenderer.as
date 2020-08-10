@@ -136,14 +136,15 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        override public function set data(value:Object):void
-        {
+		override public function set data(value:Object):void
+		{
 			if(labelFunctionBead && labelFunctionBead.labelFunction)
 				text = labelFunctionBead.labelFunction(value);
 			else
-            	text = getLabelFromData(this, value);
-            _data = value;
-        }
+				text = getLabelFromData(this, value);
+
+			super.data = value;
+		}
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
