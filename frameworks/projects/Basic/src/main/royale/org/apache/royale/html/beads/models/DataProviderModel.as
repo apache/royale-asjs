@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.core.DispatcherBead;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.events.Event;
 			
     /**
      *  The DataProviderModel class is a model for

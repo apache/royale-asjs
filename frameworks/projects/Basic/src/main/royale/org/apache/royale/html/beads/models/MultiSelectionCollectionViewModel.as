@@ -19,12 +19,10 @@
 package org.apache.royale.html.beads.models
 {
 	import org.apache.royale.collections.ICollectionView;
-	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.IMultiSelectionModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.core.DispatcherBead;
+	import org.apache.royale.core.IMultiSelectionModel;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.events.Event;
 
     /**
      *  The MultiSelectionCollectionViewModel class is a selection model for
