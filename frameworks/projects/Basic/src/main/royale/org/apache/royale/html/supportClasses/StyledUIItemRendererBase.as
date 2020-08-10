@@ -100,7 +100,7 @@ package org.apache.royale.html.supportClasses
 			mxmlProperties = data;
 		}
 				
-		private var _data:Object;
+		protected var _data:Object;
 		
 		[Bindable("__NoChangeEvent__")]
 		/**
