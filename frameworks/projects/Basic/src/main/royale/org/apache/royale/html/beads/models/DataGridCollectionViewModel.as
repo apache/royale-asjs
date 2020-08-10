@@ -61,12 +61,32 @@ package org.apache.royale.html.beads.models
 		 */
 		public function get columns():Array
 		{
-			return _columns;
+			return _columns ? _columns.slice() : []; //return a copy. Internal state is not externally mutable
 		}
 		public function set columns(value:Array):void
 		{
-			if (_columns != value) {
-				_columns = value;
+			var change:Boolean;
+			var oldCols:Array = _columns;
+			if (oldCols) {
+				var l:uint = oldCols.length;
+				if (value) {
+					change = value.length != l; //different columns lengths
+					if (!change) {
+						for (var i:uint = 0; i < l; i++) {
+							if (oldCols[i] != value[i]) {
+								change = true; //at least one non-matching column
+								break;
+							}
+						}
+					}
+				} else {
+					change = l > 0; //reset to empty
+				}
+			} else {
+				change = value && value.length; //set to something after previously empty
+			}
+			if (change) {
+				_columns = value ? value.slice() : [];
 				dispatchEvent( new Event("columnsChanged"));
 			}
 		}
