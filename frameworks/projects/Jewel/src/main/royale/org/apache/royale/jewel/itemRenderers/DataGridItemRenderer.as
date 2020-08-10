@@ -18,6 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.ILabelFunction;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.util.getLabelFromData;
+    import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList;
+
     /**
 	 *  The DataGridItemRenderer defines the basic Item Renderer for a Jewel DataGrid Component.
      *  For now is just a ListItemRenderer that populates some values from Jewel DataGridColumn.
@@ -34,6 +40,37 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel item datagrid";
+        }
+
+		/**
+		 * Proxy the ILabelFunction bead if provided in the DataGrid to the DataGridListColumn
+		 */
+		override public function get labelFunctionBead():ILabelFunction {
+			if(!_labelFunctionBead) {
+				//itemRendererOwnerView.host is DataGridColumnList -> parent is DataGridListArea -> parent is DataGrid
+				_labelFunctionBead = ((itemRendererOwnerView.host.parent as IChild).parent as IStrand).getBeadByType(ILabelFunction) as ILabelFunction;
+			}
+			return _labelFunctionBead;
+		}
+
+		/**
+		 *  Sets the data value and uses the String version of the data for display.
+		 *  If the user provided a LabelFunction bead and set a custom labelFunction, then use it instead
+		 * 
+		 *  @param Object data The object being displayed by the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+        override public function set data(value:Object):void
+        {
+			if(labelFunctionBead && labelFunctionBead.labelFunction)
+				text = labelFunctionBead.labelFunction(value, itemRendererOwnerView.host);
+			else
+            	text = getLabelFromData(this, value);
+            _data = value;
         }
     }
 }

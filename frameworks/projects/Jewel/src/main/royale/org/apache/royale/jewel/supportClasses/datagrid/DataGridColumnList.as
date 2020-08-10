@@ -20,8 +20,8 @@ package org.apache.royale.jewel.supportClasses.datagrid
 {
     import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.jewel.List;
-    import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     import org.apache.royale.jewel.beads.models.ListPresentationModel;
+    import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     
     //--------------------------------------
     //  Events

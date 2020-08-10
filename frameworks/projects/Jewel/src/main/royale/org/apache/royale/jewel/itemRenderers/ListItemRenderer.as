@@ -138,12 +138,11 @@ package org.apache.royale.jewel.itemRenderers
 		 */
         override public function set data(value:Object):void
         {
-			if(labelFunctionBead && labelFunctionBead.labelFunction) {
+			if(labelFunctionBead && labelFunctionBead.labelFunction)
 				text = labelFunctionBead.labelFunction(value);
-			}
 			else
             	text = getLabelFromData(this, value);
-            super.data = value;
+            _data = value;
         }
 
         /**
