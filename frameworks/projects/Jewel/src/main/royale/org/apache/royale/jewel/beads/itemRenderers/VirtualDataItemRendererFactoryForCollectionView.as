@@ -30,7 +30,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
 	/**
-	 *  The DataItemRendererFactoryForArrayData class reads an
+	 *  The VirtualDataItemRendererFactoryForCollectionView class reads an
 	 *  array of data and creates an item renderer for every
 	 *  item in the array.  Other implementations of
 	 *  IDataProviderItemRendererMapper map different data 
