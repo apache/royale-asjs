@@ -27,9 +27,7 @@ package org.apache.royale.html.supportClasses
 	[DefaultProperty("mxmlContent")]
 
 	/**
-	 *  The UIItemRendererBase class is the base class for all itemRenderers. An itemRenderer is used to
-	 *  display a single datum within a collection of data. Components such as a List use itemRenderers to 
-	 *  show their dataProviders.
+	 *  The StyledUIItemRendererBase is an UIItemRendererBase that support the StyledUIBase base class
 	 *
  	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
