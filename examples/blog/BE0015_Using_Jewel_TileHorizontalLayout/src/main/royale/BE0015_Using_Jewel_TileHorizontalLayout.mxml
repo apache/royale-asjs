@@ -129,15 +129,15 @@
                         </j:beads>
                         <j:VGroup>
 							<j:Label text="columnWidth"/>
-							<j:HSlider width="200" value="85" minimum="50" maximum="150" valueChange="thl.columnWidth = event.target.value"/>
+							<j:HSlider width="200" value="85" minimum="50" maximum="150" valueChange="thl.columnWidth = thll.columnWidth = event.target.value;"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="horizontalGap"/>
-							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.horizontalGap = event.target.value"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.horizontalGap = thll.horizontalGap = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="requestedColumnCount"/>
-							<j:HSlider width="200" value="4" minimum="1" maximum="8" valueChange="thl.requestedColumnCount = event.target.value"/>
+							<j:HSlider width="200" value="4" minimum="1" maximum="8" valueChange="thl.requestedColumnCount = thll.requestedColumnCount = event.target.value"/>
 						</j:VGroup>
                     </j:BarSection>
                     <j:BarSection width="50%" itemsHorizontalAlign="itemsRight">
@@ -146,11 +146,11 @@
                         </j:beads>
                         <j:VGroup>
 							<j:Label text="rowHeight"/>
-							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="thl.rowHeight = event.target.value"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" valueChange="thl.rowHeight = thll.rowHeight = event.target.value"/>
 						</j:VGroup>
 						<j:VGroup>
 							<j:Label text="verticalGap"/>
-							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.verticalGap = event.target.value"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" valueChange="thl.verticalGap = thll.verticalGap = event.target.value"/>
 						</j:VGroup>
                     </j:BarSection>
                 </j:CardActions>
