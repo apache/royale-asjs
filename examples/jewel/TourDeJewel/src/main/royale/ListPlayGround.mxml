@@ -127,6 +127,9 @@ limitations under the License.
 			// 		trace(iconVO.label);				
 			// 	}
 			// }
+			private function formatLabel(item:Object):String {
+				return " - " + item.label;
+			}
 		]]>
 	</fx:Script>
 
@@ -340,6 +343,7 @@ limitations under the License.
 						<j:beads>
 							<j:HorizontalListScroll/>
 							<j:ListAlternateRowColor/>
+							<js:LabelFunction labelFunction="formatLabel"/>
 						</j:beads>
 					</j:List>
 
