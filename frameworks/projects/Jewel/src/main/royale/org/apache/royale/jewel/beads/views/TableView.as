@@ -20,7 +20,6 @@ package org.apache.royale.jewel.beads.views
 {
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrandWithModel;
-	import org.apache.royale.core.ITableModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.ITableView;
 	import org.apache.royale.jewel.beads.views.ListView;
@@ -52,8 +51,6 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 
-		protected var model:ITableModel;
-
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
@@ -61,8 +58,7 @@ package org.apache.royale.jewel.beads.views
 		override protected function handleInitComplete(event:Event):void
 		{
 			super.handleInitComplete(event);
-			model = listModel as ITableModel;
-			model.addEventListener("columnsChanged", columnsChangedHandler);
+			listModel.addEventListener("columnsChanged", columnsChangedHandler);
 		}
 
 		/**
