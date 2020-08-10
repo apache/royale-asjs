@@ -31,6 +31,8 @@ limitations under the License.
         import models.ProductModel;
 
         import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.html.util.getLabelFromData;
+        import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
         import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 
         import vos.IconListVO;
@@ -160,6 +162,12 @@ limitations under the License.
 				this.dgFixedWidth.dataProvider = listModel.iconDetailListData;
 			}
 		}
+
+		private function formatLabel(item:Product, column:IDataGridColumnList):String {
+			if (column.labelField == "sales")
+				return item.sales + " €";
+			return getLabelFromData(column, item);
+		}
 		]]>
 	</fx:Script>
 
@@ -196,6 +204,9 @@ limitations under the License.
 					<j:DataGrid localId="dg1" 
 						change="lb1.html = describeItem(event.target.selectedItem)"
 						initComplete="loadDataProvider(dg1)">
+						<j:beads>
+							<js:LabelFunction labelFunction="formatLabel"/>
+						</j:beads>
 						<j:columns>
 							<j:DataGridColumn label="Title" dataField="title"/>
 							<j:DataGridColumn label="Sales" dataField="sales"/>
