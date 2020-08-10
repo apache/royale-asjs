@@ -114,7 +114,7 @@ package org.apache.royale.jewel.itemRenderers
 			textAlign.align = value;
 		}
 
-		private var _labelFunctionBead:ILabelFunction;
+		protected var _labelFunctionBead:ILabelFunction;
 		/**
 		 * Get the ILabelFunction bead if provided
 		 */
