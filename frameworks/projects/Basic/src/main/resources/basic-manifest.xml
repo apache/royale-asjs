@@ -296,6 +296,9 @@
     <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
 	
 	<component id="CollectionSelectedItemByField" class="org.apache.royale.html.beads.CollectionSelectedItemByField"/>	
-    <component id="ErrorImage" class="org.apache.royale.html.beads.ErrorImage"/>	
+    <component id="ErrorImage" class="org.apache.royale.html.beads.ErrorImage"/>
+
+    <component id="LabelFunction" class="org.apache.royale.html.beads.LabelFunction"/>
+
 	
 </componentPackage>
