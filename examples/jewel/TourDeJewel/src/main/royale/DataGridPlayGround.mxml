@@ -148,6 +148,18 @@ limitations under the License.
 		// {
 		// 	this.dgFixedWidth.width = 500;
 		// }
+
+		private function changeExplicitWidth(event:Event):void{
+			this.dgFixedWidth.width = this.dgFixedWidth.width == 500 ? 240 : 500;
+		}
+
+		private function changeDataprovider(event:Event):void{
+			if (this.dgFixedWidth.dataProvider && this.dgFixedWidth.dataProvider.length){
+				this.dgFixedWidth.dataProvider = null;
+			} else {
+				this.dgFixedWidth.dataProvider = listModel.iconDetailListData;
+			}
+		}
 		]]>
 	</fx:Script>
 
@@ -406,7 +418,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Width 100% adn no columnWidth" className="primary-normal"/>
+					<html:H3 text="Width 100% and no columnWidth" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 				
@@ -489,51 +501,61 @@ limitations under the License.
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataGrid"/>
-				
-				<j:Label text="width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment, last column has columnWidth=40. Clicking on row icon, remove the entire row."
-					multiline="true"/>
+				<j:CardHeader>
+					<html:H3 text="Mixed column width variations #1" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment, last column has columnWidth=75. Clicking on row icon, remove the entire row."
+						multiline="true"/>
 
-				<j:DataGrid width="100%" height="240" emphasis="secondary" rowHeight="42">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="listModel"
-							sourcePropertyName="iconDetailListData"
-							destinationPropertyName="dataProvider"/>
-					</j:beads>
-					<j:columns>
-						<j:DataGridColumn label="Icon" 
-										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
-						<j:DataGridColumn label="Label" dataField="label" align="center"/>
-						<j:DataGridColumn label="Is Jewel?" columnWidth="40"
-										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
-					</j:columns>
-				</j:DataGrid>
+					<j:DataGrid width="100%" height="240" emphasis="secondary" rowHeight="42">
+						<j:beads>
+							<js:ConstantBinding
+								sourceID="listModel"
+								sourcePropertyName="iconDetailListData"
+								destinationPropertyName="dataProvider"/>
+						</j:beads>
+						<j:columns>
+							<j:DataGridColumn label="Icon"
+											itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+							<j:DataGridColumn label="Label" dataField="label" align="center"/>
+							<j:DataGridColumn label="Is Jewel?" columnWidth="75"
+											itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
+						</j:columns>
+					</j:DataGrid>
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataGrid"/>
-				
-				<j:Label text="Setup fixed size of DataGrid to 500px after initComplete. Last column has columnWidth=40."
-					multiline="true"/>
+				<j:CardHeader>
+					<html:H3 text="Mixed column width variations #2" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Toggle fixed size of DataGrid between 240px and 500px via button. Last column has columnWidth=75. Toggle dataprovider between null and test data set via button"
+							 multiline="true"/>
 
-				<j:DataGrid localId="dgFixedWidth" height="240" emphasis="secondary" rowHeight="42">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="listModel"
-							sourcePropertyName="iconDetailListData"
-							destinationPropertyName="dataProvider"/>
-						
-					</j:beads>
-					<j:columns>
-						<j:DataGridColumn label="Icon" 
-										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
-						<j:DataGridColumn label="Label" dataField="label" align="center"/>
-						<j:DataGridColumn label="Is Jewel?" columnWidth="40"
-										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
-					</j:columns>
-				</j:DataGrid>
+					<j:DataGrid localId="dgFixedWidth" height="240" emphasis="secondary" rowHeight="42">
+						<j:beads>
+							<js:ConstantBinding
+									sourceID="listModel"
+									sourcePropertyName="iconDetailListData"
+									destinationPropertyName="dataProvider"/>
+
+						</j:beads>
+						<j:columns>
+							<j:DataGridColumn label="Icon"
+											  itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+							<j:DataGridColumn label="Label" dataField="label" align="center"/>
+							<j:DataGridColumn label="Is Jewel?" columnWidth="75"
+											  itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
+						</j:columns>
+					</j:DataGrid>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Button text="Change Explicit Width" click="changeExplicitWidth(event)" emphasis="primary"/>
+					<j:Button text="Cycle Dataprovider" click="changeDataprovider(event)" emphasis="primary"/>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 

@@ -104,10 +104,17 @@ package org.apache.royale.jewel.supportClasses.datagrid {
 				targetElement.style['maxWidth'] =  _value +'px';
 				content.width = _value;
 			} else if (isDefault()) {
-				targetElement.style['flex'] = '';
-				targetElement.style['minWidth'] = '';
-				targetElement.style['maxWidth'] = '';
 				content.width = NaN;
+				if (_value) {
+					targetElement.style['flex'] = '0 1 ' + _value +'px';
+					targetElement.style['minWidth'] = '';
+					targetElement.style['maxWidth'] = '';
+				} else {
+					targetElement.style['flex'] = '';
+					targetElement.style['minWidth'] = '';
+					targetElement.style['maxWidth'] = '';
+				}
+
 			}
 		}
 

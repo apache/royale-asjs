@@ -152,6 +152,7 @@ import org.apache.royale.jewel.beads.models.ListPresentationModel;
             _header.element.scrollLeft = _listArea.element.scrollLeft;
             if (!event) {
                 _header.dispatchEvent(new Event("headerLayoutReset"));
+                _header.dispatchEvent(new Event("layoutNeeded"));
             }
         }
         /**

@@ -114,11 +114,11 @@ package org.apache.royale.jewel.beads.layouts
 			COMPILE::JS {
 				var LA_Element:HTMLElement = listArea.element;
 				var latestHOffset:Number = LA_Element.offsetWidth - LA_Element.clientWidth;
-
-				if (latestHOffset != _vScrollerHOffset || event.type == 'headerLayoutReset') {
+				var reset:Boolean = event.type == 'headerLayoutReset';
+				if (latestHOffset != _vScrollerHOffset || reset) {
 					_vScrollerHOffset = latestHOffset;
 					_vScrollChange = true;
-					layout();
+					if (!reset) layout();
 				}
 			}
 
@@ -170,7 +170,7 @@ package org.apache.royale.jewel.beads.layouts
 				}
 			}
 			COMPILE::JS{
-				if (last && _vScrollChange) {
+				if (last && (_vScrollChange || _vScrollerHOffset)) {
 					lastWidthConfig.applyRightOffset(last, _vScrollerHOffset);
 					_vScrollChange = false;
 				}

@@ -74,6 +74,7 @@ package org.apache.royale.jewel.beads.layouts
 			_strand = value;
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 			(_strand as IEventDispatcher).addEventListener("sizeChanged", sizeChangedNeeded);
+			(_strand as IEventDispatcher).addEventListener("widthChanged", sizeChangedNeeded);
 		}
 		
 		/**
@@ -87,10 +88,20 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 *  sizeChangedNeeded
 		 * 
-		 *  @param event 
+		 *  @param event
+		 *
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
 		 */
 		private function sizeChangedNeeded(event:Event):void
 		{
+
+			var view:IDataGridView = datagrid.view as IDataGridView
+			var header:IUIBase = view.header;
+			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			bbmodel.buttonWidths = null;
+			header.dispatchEvent(new Event('headerLayoutReset'));
 			layout();
 		}
 
@@ -185,7 +196,7 @@ package org.apache.royale.jewel.beads.layouts
 						if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PERCENT;
 					} else if (datagrid.explicitWidth){
 						defaultColumnWidth.value = ((100 - explicitPercents)/100 * datagrid.width - explicitWidths) / denominatorInst.value;
-						if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PIXELS;
+						if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.DEFAULT;
 					}
 					// special case when no width is set at all, defaultColumnWidth will be 0
 					if (defaultColumnWidth.value == 0 && isDGWidthSizedToContent) {

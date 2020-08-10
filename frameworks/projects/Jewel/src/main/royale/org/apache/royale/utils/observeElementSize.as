@@ -41,12 +41,12 @@ package org.apache.royale.utils{
         } else {
             isNative = false;
             var callbacks:Array ;
-            if (timerFunc == null) {
+            if (observeElementSize['t'] == null) {
                 if (stop) return false;
                 callbacks = [];
                 referenceMap.set(observeElementSize, callbacks);
 
-                checkFunc = function(el:HTMLElement ,callback:Function):void{
+                observeElementSize['c'] = function(el:HTMLElement ,callback:Function):void{
                     var checks:Object;
                     var change:Boolean;
                     if (referenceMap.has(el)) {
@@ -80,7 +80,7 @@ package org.apache.royale.utils{
                         } catch(e:Error){}
                     }
                 }
-                timerFunc = function():void{
+                observeElementSize['t'] = function():void{
                     var l:uint = callbacks.length;
                     for (var i:uint = 0; i<l;i++) {
                         var cb:Function = callbacks[i]
@@ -88,12 +88,12 @@ package org.apache.royale.utils{
                         if (els) {
                             var l2:uint = els.length;
                             for (var ii:uint = 0; ii<l2;ii++) {
-                                checkFunc(els[ii], cb);
+                                observeElementSize['c'](els[ii], cb);
                             }
                         }
                     }
                 }
-                timerFunc['interval'] = setInterval(timerFunc, 50);
+                observeElementSize['t']['interval'] = setInterval(observeElementSize['t'], 50);
             } else {
                 callbacks = referenceMap.get(observeElementSize);
             }
@@ -107,11 +107,11 @@ package org.apache.royale.utils{
                     }
                     if (callbacks.length == 0) {
                         referenceMap = new WeakMap();
-                        if (timerFunc) {
-                            clearInterval(timerFunc['interval']);
-                            timerFunc = null;
+                        if (observeElementSize['t']) {
+                            clearInterval(observeElementSize['t']['interval']);
+                            observeElementSize['t'] = null;
                         }
-                        checkFunc = null;
+                        observeElementSize['c'] = null;
                     }
                 }
 
@@ -134,9 +134,3 @@ package org.apache.royale.utils{
 
 COMPILE::JS
 var referenceMap:WeakMap = new WeakMap();
-
-COMPILE::JS
-var timerFunc:Function;
-
-COMPILE::JS
-var checkFunc:Function;
