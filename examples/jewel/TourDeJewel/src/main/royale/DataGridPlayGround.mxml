@@ -204,12 +204,12 @@ limitations under the License.
 					<j:DataGrid localId="dg1" 
 						change="lb1.html = describeItem(event.target.selectedItem)"
 						initComplete="loadDataProvider(dg1)">
-						<j:beads>
+						<!-- <j:beads>
 							<js:LabelFunction labelFunction="formatLabel"/>
-						</j:beads>
+						</j:beads> -->
 						<j:columns>
 							<j:DataGridColumn label="Title" dataField="title"/>
-							<j:DataGridColumn label="Sales" dataField="sales"/>
+							<j:DataGridColumn label="Sales" dataField="sales" labelFunction="formatLabel"/>
 						</j:columns>
 					</j:DataGrid>
 
