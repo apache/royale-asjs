@@ -131,12 +131,16 @@ package
 		public static const BULLSEYE:String = "bullseye";
 		public static const BUS:String = "bus";
 		public static const BUYSELLADS:String = "buysellads";
-		public static const CALCULATOR:String = "calculator";
+		public static const CALCULATOR:String = "calculator";		
 		public static const CALENDAR_CHECK:String = "calendar-check";
 		public static const CALENDAR_MINUS:String = "calendar-minus";
 		public static const CALENDAR_PLUS:String = "calendar-plus";
 		public static const CALENDAR_TIMES:String = "calendar-times";
 		public static const CALENDAR:String = "calendar";
+		public static const CALENDAR_STAR:String = "calendar-star";
+		public static const CALENDAR_ALT:String = "calendar-alt";
+		public static const CALENDAR_WEEK:String = "calendar-week";
+		public static const CALENDAR_DAY:String = "calendar-day";
 		public static const CAMERA_RETRO:String = "camera-retro";
 		public static const CAMERA:String = "camera";
 		public static const CAR:String = "car";
@@ -349,6 +353,7 @@ package
 		public static const I_CURSOR:String = "i-cursor";
 		public static const ID_BADGE:String = "id-badge";
 		public static const ID_CARD:String = "id-card";
+		public static const ID_CARD_ALT:String = "id-card-alt";
 		public static const ILS:String = "ils";
 		public static const IMDB:String = "imdb";
 		public static const INBOX:String = "inbox";
@@ -637,6 +642,8 @@ package
 		public static const USER_PLUS:String = "user-plus";
 		public static const USER_SECRET:String = "user-secret";
 		public static const USER_TIMES:String = "user-times";
+		public static const USER_UNLOCK:String = "user-unlock";
+		public static const USER_HEADSET:String = "user-headset";
 		public static const USER:String = "user";
 		public static const USERS:String = "users";
 		public static const VENUS_DOUBLE:String = "venus-double";
@@ -735,12 +742,14 @@ package
 		public static const CHART_NETWORK:String = "chart-network";
 		public static const HAND_RECEIVING:String = "hand-receiving";
 		public static const BADGE_CHECK:String = "badge-check";
+		public static const BADGE_SHERIFF:String = "badge-sheriff";
 		public static const BADGE:String = "badge";
 		public static const STAR_OF_LIFE:String = "star-of-life";
 		public static const PARKING:String = "parking";
 		public static const PARKING_DASH:String = "parking-dash";
 		public static const PARKING_CIRCLE:String = "parking-circle";
 		public static const PARKING_CIRCLE_DASH:String = "parking-circle-dash";
-
+		public static const NOTES_MEDICAL:String = "notes-medical";
+		public static const CAR_BUS:String = "car-bus";
     }
 }
