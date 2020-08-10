@@ -238,7 +238,6 @@
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
     <component id="NoViewport" class="org.apache.royale.jewel.supportClasses.NoViewport"/>
 
-    <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>
     <component id="VirtualDataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView"/>
     <component id="DropDownListItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView"/>
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
