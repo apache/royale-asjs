@@ -22,7 +22,6 @@ package org.apache.royale.jewel.itemRenderers
     import org.apache.royale.core.ILabelFunction;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.html.util.getLabelFromData;
-    import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList;
 
     /**
 	 *  The DataGridItemRenderer defines the basic Item Renderer for a Jewel DataGrid Component.
@@ -48,7 +47,13 @@ package org.apache.royale.jewel.itemRenderers
 		override public function get labelFunctionBead():ILabelFunction {
 			if(!_labelFunctionBead) {
 				//itemRendererOwnerView.host is DataGridColumnList -> parent is DataGridListArea -> parent is DataGrid
-				_labelFunctionBead = ((itemRendererOwnerView.host.parent as IChild).parent as IStrand).getBeadByType(ILabelFunction) as ILabelFunction;
+				
+				// first try to retrieve from the DataGridColumnList
+				_labelFunctionBead = itemRendererOwnerView.host.getBeadByType(ILabelFunction) as ILabelFunction;
+
+				// if not exists try to retrieve from the DataGrid root
+				if(!_labelFunctionBead)
+					_labelFunctionBead = ((itemRendererOwnerView.host.parent as IChild).parent as IStrand).getBeadByType(ILabelFunction) as ILabelFunction;
 			}
 			return _labelFunctionBead;
 		}

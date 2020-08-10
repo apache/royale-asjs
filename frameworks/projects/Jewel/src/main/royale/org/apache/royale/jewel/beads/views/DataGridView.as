@@ -37,10 +37,9 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.html.beads.LabelFunction;
 	import org.apache.royale.jewel.DataGrid;
-	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
-import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
@@ -49,7 +48,7 @@ import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.utils.observeElementSize;
+	import org.apache.royale.utils.observeElementSize;
     
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -198,6 +197,12 @@ import org.apache.royale.jewel.beads.models.ListPresentationModel;
                 (list as ILayoutChild).percentWidth = 100 / sharedModel.columns.length;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
+                if(dataGridColumn.labelFunction)
+                {
+                    var lf:LabelFunction = new LabelFunction();
+                    lf.labelFunction = dataGridColumn.labelFunction;
+                    list.addBead(lf);
+                }
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
                 list.addEventListener('selectionChanged', handleColumnListSelectionChange);
                 (list as StyledUIBase).tabIndex = -1;

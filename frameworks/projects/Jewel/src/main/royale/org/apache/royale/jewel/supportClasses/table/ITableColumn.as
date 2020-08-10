@@ -75,6 +75,42 @@ package org.apache.royale.jewel.supportClasses.table
 		 */
 		function get dataField():String;
 		function set dataField(value:String):void;
+
+		/**
+         *  A user-supplied function to run on each item to determine its label.  
+         *  By default, the list looks for a property named <code>label</code> 
+         *  on each data provider item and displays it.
+         *  However, some data sets do not have a <code>label</code> property
+         *  nor do they have another property that can be used for displaying.
+         *  An example is a data set that has lastName and firstName fields
+         *  but you want to display full names.
+         *
+         *  <p>You can supply a <code>labelFunction</code> that finds the 
+         *  appropriate fields and returns a displayable string. The 
+         *  <code>labelFunction</code> is also good for handling formatting and 
+         *  localization. </p>
+         *
+         *  <p>For most components, the label function takes a single argument
+         *  which is the item in the data provider and returns a String.</p>
+         *  <pre>
+         *  myLabelFunction(item:Object):String</pre>
+         *
+         *  <p>The method signature for the data grid classes is:</p>
+         *  <pre>
+         *  myLabelFunction(item:Object, column:DataGridColumn):String</pre>
+         * 
+         *  <p>where <code>item</code> contains the DataGrid item object, and
+         *  <code>column</code> specifies the DataGrid column.</p>
+         *
+         *  @default null
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Royale 0.10.0
+         */
+		function get labelFunction():Function;
+		function set labelFunction(value:Function):void;
 		
 		/**
 		 *  The name of the style class to use for this column.
