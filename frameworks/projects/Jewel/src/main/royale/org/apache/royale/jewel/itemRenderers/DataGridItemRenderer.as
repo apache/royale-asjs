@@ -21,6 +21,7 @@ package org.apache.royale.jewel.itemRenderers
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.ILabelFunction;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
     import org.apache.royale.html.util.getLabelFromData;
 
     /**
@@ -75,7 +76,12 @@ package org.apache.royale.jewel.itemRenderers
 				text = labelFunctionBead.labelFunction(value, itemRendererOwnerView.host);
 			else
             	text = getLabelFromData(this, value);
-            _data = value;
+            
+			if (value != data)
+            {
+                _data = value;
+                dispatchEvent(new Event("dataChange"));
+            }
         }
     }
 }

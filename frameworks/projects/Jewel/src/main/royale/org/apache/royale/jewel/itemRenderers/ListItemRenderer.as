@@ -142,7 +142,12 @@ package org.apache.royale.jewel.itemRenderers
 				text = labelFunctionBead.labelFunction(value);
 			else
             	text = getLabelFromData(this, value);
-            _data = value;
+			
+			if (value != data)
+            {
+                _data = value;
+                dispatchEvent(new Event("dataChange"));
+            }
         }
 
         /**
