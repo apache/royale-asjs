@@ -52,6 +52,7 @@ package org.apache.royale.jewel
 	 */
     [Event(name="change", type="org.apache.royale.events.Event")]
 
+	[DefaultProperty("dataProvider")]
 	/**
 	 *  The List class is a component that displays multiple data items. The List uses
 	 *  the following bead types:
