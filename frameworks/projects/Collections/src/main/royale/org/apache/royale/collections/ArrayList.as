@@ -89,8 +89,9 @@ package org.apache.royale.collections
 	 *  @productversion Royale 0.0
 	 */
 	[Event(name="itemUpdated", type="org.apache.royale.events.CollectionEvent")]
-	
 
+
+	[DefaultProperty("source")]
     /**
      *  The ArrayList class provides an event-driven wrapper for the
 	 *  standard Array. Events are dispatched when items are added, removed,
