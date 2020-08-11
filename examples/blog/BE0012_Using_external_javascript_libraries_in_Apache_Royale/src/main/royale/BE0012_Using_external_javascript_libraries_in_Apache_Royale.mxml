@@ -49,7 +49,7 @@
                 <j:VerticalCenteredLayout/>
             </j:beads>
 
-            <j:Card percentWidth="90">
+            <j:Card width="90%">
                 <j:CardHeader>
                     <html:H3 text="Using external Javascript Libraries" className="primary-normal"/>
                 </j:CardHeader>
@@ -57,7 +57,7 @@
 
                     <j:Label html="This example uses hljs library to highligh a piece of code"/>
 
-                    <html:Pre height="300" percentWidth="100" style="background-color: white">
+                    <html:Pre height="300" width="100%" style="background-color: white">
                         <html:beads>
                             <j:ScrollingViewport/>
                         </html:beads>
