@@ -95,7 +95,7 @@ package org.apache.royale.jewel.supportClasses.datagrid {
 			if (isPercent() && denominator && denominator.value > 0){
 				var assigned:Number = uint(_value);//value/100 * denominator.value;
 				targetElement.style['flex'] = assigned + ' ' + assigned + ' 0px';
-				targetElement.style['minWidth'] = '';
+				targetElement.style['minWidth'] = '0';
 				targetElement.style['maxWidth'] = '';
 				content.width = NaN;
 			} else if (isPixel()) {
@@ -107,7 +107,7 @@ package org.apache.royale.jewel.supportClasses.datagrid {
 				content.width = NaN;
 				if (_value) {
 					targetElement.style['flex'] = '0 1 ' + _value +'px';
-					targetElement.style['minWidth'] = '';
+					targetElement.style['minWidth'] = '0';
 					targetElement.style['maxWidth'] = '';
 				} else {
 					targetElement.style['flex'] = '';
@@ -140,11 +140,7 @@ package org.apache.royale.jewel.supportClasses.datagrid {
 				_value = orig;
 			}
 			targetElement.style['paddingRight'] = offset + 'px'
-
-			/*} else {
-				console.log('todo...investigate rightmost');
-			}*/
-
+			
 		}
 
 

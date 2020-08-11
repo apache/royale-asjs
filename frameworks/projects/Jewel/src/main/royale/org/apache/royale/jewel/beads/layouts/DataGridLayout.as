@@ -199,9 +199,14 @@ package org.apache.royale.jewel.beads.layouts
 						if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.DEFAULT;
 					}
 					// special case when no width is set at all, defaultColumnWidth will be 0
-					if (defaultColumnWidth.value == 0 && isDGWidthSizedToContent) {
-						defaultColumnWidth.value = 80 ;
-						defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PIXELS;
+					if (defaultColumnWidth.value == 0){
+						if (isDGWidthSizedToContent || (100 - explicitPercents <= 0)) {
+							defaultColumnWidth.value = 80;
+							defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PIXELS;
+						} else {
+							defaultColumnWidth.value = (100 - explicitPercents) / denominatorInst.value;
+							defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PERCENT;
+						}
 					}
 				}
 			}
