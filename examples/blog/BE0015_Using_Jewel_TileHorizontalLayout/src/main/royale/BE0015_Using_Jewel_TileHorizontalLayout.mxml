@@ -28,12 +28,6 @@
             import vos.TabBarButtonVO;
             import vos.IconListVO;
             import org.apache.royale.collections.ArrayList;
-
-            [Bindable]
-            public var tabBarData:ArrayList = new ArrayList([
-					new TabBarButtonVO("Tile Container", "sec1", FontAwesome5IconType.TH_LARGE),
-					new TabBarButtonVO("Tile List", "sec2", FontAwesome5IconType.TH_LIST)
-				]);
             
             [Bindable]
             public var listData:ArrayList = new ArrayList([
@@ -81,7 +75,14 @@
                 <j:CardExpandedContent>
                     <j:TabBar localId="tabbar" width="100%" selectedIndex="0"
                         itemRenderer="itemRenderers.TabBarVerticalIconItemRenderer"
-                        dataProvider="{tabBarData}" sameWidths="true"/>
+                        sameWidths="true">
+                        <js:ArrayList>
+                            <fx:Array>
+                                <vos:TabBarButtonVO label="Tile Container" hash="sec1" icon="{FontAwesome5IconType.TH_LARGE}"/>
+                                <vos:TabBarButtonVO label="Tile List" hash="sec2" icon="{FontAwesome5IconType.TH_LIST}"/>
+                            </fx:Array>
+                        </js:ArrayList>
+                    </j:TabBar>
                 </j:CardExpandedContent>
 
                 <j:CardPrimaryContent>
