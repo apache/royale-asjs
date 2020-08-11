@@ -21,7 +21,6 @@ package org.apache.royale.jewel.itemRenderers
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.ILabelFunction;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.events.Event;
     import org.apache.royale.html.util.getLabelFromData;
 
     /**
