@@ -21,7 +21,9 @@ DESCRIPTION
 
 Using Jewel TileHorizontalLayout
 
-This example shows some supported ways to work with vector graphics in Apache Royale.
-SVG graphics and the powerful ActionScript 3 drawing API:
+This example shows how to use the Jewel TileHorizontalLayout in Jewel component containers 
+and data containers to arrange items as tiles.
 
-https://royale.apache.org/working-with-vector-graphics/
+The layout allows customization of tile's size, gaps between tiles, and requested columns and/or rows.
+
+https://royale.apache.org/using-jewel-tilehorizontallayout/
