@@ -35,6 +35,8 @@ package org.apache.royale.jewel
 	 */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
+	[DefaultProperty("dataProvider")]
+	
 	/**
 	 *  The DataContainer class is a component that displays multiple data items. The DataContainer uses
 	 *  the following bead types:
