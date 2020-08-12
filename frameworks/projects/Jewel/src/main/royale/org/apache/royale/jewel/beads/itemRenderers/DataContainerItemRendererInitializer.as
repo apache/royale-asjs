@@ -22,8 +22,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
-	import org.apache.royale.jewel.itemRenderers.StringItemRenderer;
 
 	/**
 	 *  The DataContainerItemRendererInitializer class initializes item renderers
@@ -68,8 +68,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
-            if (ir is StringItemRenderer && ownerView)
-                (ir as StringItemRenderer).itemRendererOwnerView = ownerView;
+            if(ir is StyledMXMLItemRenderer && ownerView)
+                (ir as StyledMXMLItemRenderer).itemRendererOwnerView = ownerView;
 		}
 	}
 }
