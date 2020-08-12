@@ -54,7 +54,7 @@
                         <js:ArrayList>
                             <fx:Array>
                                 <vos:TabBarButtonVO label="Tile Container" hash="sec1" icon="{FontAwesome5IconType.TH_LARGE}"/>
-                                <vos:TabBarButtonVO label="Tile List" hash="sec2" icon="{FontAwesome5IconType.TH_LIST}"/>
+                                <vos:TabBarButtonVO label="Tile DataContainer" hash="sec2" icon="{FontAwesome5IconType.TH_LIST}"/>
                             </fx:Array>
                         </js:ArrayList>
                     </j:TabBar>
@@ -65,9 +65,8 @@
                         <j:SectionContent name="sec1">
                             <j:Container width="100%">
                                 <j:beads>
-                                    <j:ScrollingViewport/>
-                                    <j:TileHorizontalLayout localId="thl"
-                                        horizontalGap="6" verticalGap="6" requestedColumnCount="3"/>
+                                    <j:TileHorizontalLayout localId="thl" verticalGap="6"
+                                        horizontalGap="6" requestedColumnCount="3"/>
                                 </j:beads>
                                 
                                 <html:Div className="box" text="1"/>
@@ -87,11 +86,12 @@
                         </j:SectionContent>
                             
 						<j:SectionContent name="sec2">
-                            <j:List width="100%" height="250"
+                            <j:DataContainer width="100%" height="250"
                                 itemRenderer="itemRenderers.VerticalIconListItemRenderer">
                                 <j:beads>
-                                    <j:TileHorizontalLayout localId="thll"
-                                            horizontalGap="6" verticalGap="6" columnWidth="130" rowHeight="70"/>
+                                    <j:ScrollingViewport/>
+                                    <j:TileHorizontalLayout localId="thll" verticalGap="6"
+                                            horizontalGap="6" columnWidth="130" rowHeight="70"/>
                                 </j:beads>
 
                                 <js:ArrayList>
@@ -111,7 +111,7 @@
                                     </fx:Array>
                                 </js:ArrayList>
                                 
-                            </j:List>
+                            </j:DataContainer>
                         </j:SectionContent>
 
                     </j:TabBarContent>
