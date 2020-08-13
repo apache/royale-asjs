@@ -34,10 +34,14 @@ package org.apache.royale.jewel
      *  The Jewel Group class provides a light-weight container for visual elements.
 	 * 
 	 *  By default Group have a Basiclayout, allowing its children to be positioned using absolute
-	 *  values (Notice Basic version doesn't provide any layout at all).
+	 *  values (Notice Basic version doesn't provide any layout at all). You can swap the layout 
+	 *  for any other one available making children arrange in different ways (i.e: horizontal, vertical,...)
 	 *  
 	 *  Group doesn't clip content so elements inside the group aren't hidden far beyond group boundaries.
-	 *  Also, no scrolling support is built in Group.
+	 *  Also, no scrolling support is built in Group. Group doesn't have any chrome or visuals just 
+	 *  position inner childs.
+	 *  
+	 *  Other Group feature are "View States" to provide state management to show diferent parts to the user
 	 * 
 	 *  For scrolling and clipping you can use Jewel Container
      *

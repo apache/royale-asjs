@@ -31,36 +31,36 @@ package org.apache.royale.jewel
 	[DefaultProperty("mxmlContent")]
 	
     /**
-     *  The Container class implements a basic container for
-     *  other controls and containers.  The position and size
-     *  of the children are determined by a layout while the size of
-     *  a Container can either be determined by its children or by
-     *  specifying an exact size in pixels or as a percentage of the
-     *  parent element.
+     *  The Jewel Container class is a container that adds up to the features
+	 *  already provided by Jewel Group.
+	 *  
+	 *  The position and size of the children are determined by BasicLayout 
+	 *  while the size of a Container can either be determined by its children or by
+     *  specifying an exact size in pixels or as a percentage of the parent element.
+	 *  You can swap the layout for any other one available making children arrange
+	 *  in different ways (i.e: horizontal, vertical,...)
      *
-     *  This Container does not have a built-in scroll bar or clipping of
-     *  its content should the content exceed the Container's boundaries. To
-     *  have scroll bars and clipping, add the ScrollingView bead.  
-     * 
+     *  Container clip content by default thanks to its Viewport bead. This bead can 
+	 *  also manage clipping trough `clipContent` property. To add scrolling functionality
+	 *  Viewport bead can be changed by ScrollingViewport.
+	 *  
+	 *  Other Group feature are "View States" to provide state management to show diferent
+	 *  parts to the user.
+	 *  
+	 *  Finally Container can add elements directly to the strand (throught `strandChildren` 
+	 *  property) instead to its view content unlike the `addElement()` APIs which place
+	 *  children into the contentView.
+	 *   
      *  While the container is relatively lightweight, it should
      *  generally not be used as the base class for other controls,
      *  even if those controls are composed of children.  That's
      *  because the fundamental API of Container is to support
      *  an arbitrary set of children, and most controls only
      *  support a specific set of children.
-     * 
-     *  And that's one of the advantages of beads: that functionality
-     *  used in a Container can also be used in a Control as long
-     *  as that bead doesn't assume that its strand is a Container.
-     * 
-     *  For example, even though you can use a Panel to create the
-     *  equivalent of an Alert control, the Alert is a 
-     *  control and not a Container because the Alert does not
-     *  support an arbitrary set of children.
      *  
-     *  @toplevel
+     * @toplevel
      *  @see org.apache.royale.jewel.beads.layout
-     *  @see org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport
+     *  @see org.apache.royale.jewel.supportClasses.Viewport
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
