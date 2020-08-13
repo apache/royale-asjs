@@ -31,9 +31,15 @@ package org.apache.royale.jewel
 	[DefaultProperty("mxmlContent")]
 
     /**
-     *  The Jewel Group class provides a light-weight container for visual elements. By default
-	 *  the Group have a Basiclayout, allowing its children to be sized and positioned using absolute
-	 *  values.
+     *  The Jewel Group class provides a light-weight container for visual elements.
+	 * 
+	 *  By default Group have a Basiclayout, allowing its children to be positioned using absolute
+	 *  values (Notice Basic version doesn't provide any layout at all).
+	 *  
+	 *  Group doesn't clip content so elements inside the group aren't hidden far beyond group boundaries.
+	 *  Also, no scrolling support is built in Group.
+	 * 
+	 *  For scrolling and clipping you can use Jewel Container
      *
      *  @toplevel
      *  @see org.apache.royale.jewel.beads.layout
