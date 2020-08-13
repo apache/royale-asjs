@@ -44,7 +44,7 @@ package org.apache.royale.core
         function addElement(c:IChild, dispatchEvent:Boolean = true):void;
 
         /**
-         *  Add a component to the parent.
+         *  Add a component to the parent at the specified index.
          * 
          *  @param c The subcomponent to add.
          *  @param c The index where the subcomponent should be added.
