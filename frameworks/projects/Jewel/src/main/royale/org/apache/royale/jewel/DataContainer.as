@@ -26,15 +26,9 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
-	 *  Indicates that the initialization of the list is complete.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
 	 */
-	[Event(name="initComplete", type="org.apache.royale.events.Event")]
-
 	[DefaultProperty("dataProvider")]
 
 	/**
