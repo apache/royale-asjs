@@ -28,41 +28,7 @@ package org.apache.royale.jewel.supportClasses.container
 	import org.apache.royale.core.ContainerBaseStrandChildren;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IChild;
-
-    /**
-     *  Indicates that the state change has completed.  All properties
-     *  that need to change have been changed, and all transitinos
-     *  that need to run have completed.  However, any deferred work
-     *  may not be completed, and the screen may not be updated until
-     *  code stops executing.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    [Event(name="stateChangeComplete", type="org.apache.royale.events.Event")]
-    
-    /**
-     *  Indicates that the initialization of the container is complete.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    [Event(name="initComplete", type="org.apache.royale.events.Event")]
-    
-    /**
-     *  Indicates that the children of the container is have been added.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    [Event(name="childrenAdded", type="org.apache.royale.events.Event")]
-    
+	
     /**
      *  The ContainerBase class is the base class for most containers
      *  in Royale.  It is usable as the root tag of MXML
@@ -91,6 +57,8 @@ package org.apache.royale.jewel.supportClasses.container
 		private var _strandChildren:ContainerBaseStrandChildren;
 		
 		/**
+		 * Returns a object to access the immediate children of the strand.
+		 * 
 		 * @private
 		 */
 		override public function get strandChildren():IParent

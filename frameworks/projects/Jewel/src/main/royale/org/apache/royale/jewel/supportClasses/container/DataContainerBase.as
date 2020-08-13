@@ -23,16 +23,6 @@ package org.apache.royale.jewel.supportClasses.container
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	
-	/**
-	 *  Indicates that the initialization of the list is complete.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
-	 */
-	[Event(name="initComplete", type="org.apache.royale.events.Event")]
-    
     /**
      *  The DataContainerBase class is the base class for components that
 	 *  that have generated content, like lists.
