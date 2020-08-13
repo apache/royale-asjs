@@ -87,7 +87,6 @@ j|Grid {
 
 j|ScrollableGrid {
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 j|GridCell {
@@ -98,7 +97,6 @@ j|Container {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 j|HContainer {
@@ -135,7 +133,6 @@ j|DataContainer {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer");
   IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataContainerItemRendererInitializer");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 j|Validator {
@@ -345,31 +342,6 @@ j|ToggleButtonBar {
   outline: none;
   color: inherit;
   text-decoration: none;
-}
-
-j|Card {
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-}
-
-j|CardHeader {
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-}
-
-j|CardExpandedContent {
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-}
-
-j|CardPrimaryContent {
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-}
-
-j|CardActions {
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.checkbox {
@@ -601,7 +573,6 @@ j|DataGridListArea {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 j|DataGridColumnList {
@@ -3285,7 +3256,6 @@ j|List {
   IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ListItemRendererInitializer");
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
 }
@@ -3311,7 +3281,6 @@ j|Navigation {
   IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.NavigationItemRendererInitializer");
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
 }
@@ -3522,7 +3491,6 @@ j|SectionContent {
 j|ScrollableSectionContent {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.slider {
@@ -3736,7 +3704,6 @@ j|TabBar {
   IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer");
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView");
 }
@@ -3786,7 +3753,6 @@ j|TabBarContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.simpletable {
@@ -3856,7 +3822,6 @@ j|Table {
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
   IContentView: ClassReference("org.apache.royale.jewel.supportClasses.table.TBodyContentArea");
 }
 
@@ -4259,7 +4224,6 @@ j|ApplicationMainContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 /*# sourceMappingURL=defaults.css.map */
