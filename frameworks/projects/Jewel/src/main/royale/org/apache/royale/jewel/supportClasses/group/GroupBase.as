@@ -79,6 +79,9 @@ package org.apache.royale.jewel.supportClasses.group
      *  in Royale. It is usable as the root tag of MXML
      *  documents and UI controls and containers are added to it.
      *  
+     *  Unlike Basic version that inherits from UIBase, this class inherits from
+     *  StyledUIBase that's the main class for Jewel components and containers
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -108,6 +111,9 @@ package org.apache.royale.jewel.supportClasses.group
 			return addElementToWrapper(this,'div');
 		}
 		
+        /**
+         * @private
+         */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -177,7 +183,6 @@ package org.apache.royale.jewel.supportClasses.group
 		}
 		
         private var _states:Array;
-        
         /**
          *  The array of view states. These should
          *  be instances of org.apache.royale.states.State.
@@ -191,7 +196,6 @@ package org.apache.royale.jewel.supportClasses.group
         {
             return _states;
         }
-
         /**
          *  @private
          *  @royaleignorecoercion Class
@@ -213,7 +217,6 @@ package org.apache.royale.jewel.supportClasses.group
                     trace(e.message);                        
                 }
 			}
-            
         }
         
         /**
@@ -239,8 +242,6 @@ package org.apache.royale.jewel.supportClasses.group
         }
         
         private var _currentState:String;
-        
-        [Bindable("currentStateChange")]
         /**
          *  The name of the current state.
          * 
@@ -249,11 +250,11 @@ package org.apache.royale.jewel.supportClasses.group
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
+        [Bindable("currentStateChange")]
         public function get currentState():String
         {
             return _currentState;   
         }
-
         /**
          *  @private
          */
@@ -266,7 +267,6 @@ package org.apache.royale.jewel.supportClasses.group
         }
         
         private var _transitions:Array;
-        
         /**
          *  The array of transitions.
          *  
@@ -279,7 +279,6 @@ package org.apache.royale.jewel.supportClasses.group
         {
             return _transitions;   
         }
-        
         /**
          *  @private
          */
@@ -287,6 +286,10 @@ package org.apache.royale.jewel.supportClasses.group
         {
             _transitions = value;   
         }
+
+        /*
+		 * IParent
+		 */
 
 		/**
 		 * @private
