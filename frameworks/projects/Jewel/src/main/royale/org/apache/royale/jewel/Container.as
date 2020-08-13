@@ -106,8 +106,6 @@ package org.apache.royale.jewel
 				dispatchEvent(new Event("initBindings"));
 				dispatchEvent(new Event("initComplete"));
 				_initialized = true;
-				
-				//?? why is this here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will have already called it
 			}
 		}
 		
@@ -147,6 +145,8 @@ package org.apache.royale.jewel
 		}
 		
 		/**
+		 *  The array of childs for this group. Is the `DefaultProperty`.
+		 *  
 		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
 		 *  
 		 *  @langversion 3.0
