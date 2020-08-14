@@ -107,19 +107,20 @@ package org.apache.royale.jewel
     [Event(name="applicationComplete", type="org.apache.royale.events.Event")]
     
     /**
-     *  Jewel Application holds specific Jewel need in a Royale Application.
-	 *
-	 *  This class extends the standard Application and sets up the
-	 *  AllCSSValuesImpl (implementation) for convenience.
-	 * 
-	 *  The Application class is the main class and entry point for a Royale
-     *  application.  This Application class is different than the
-     *  Flex SDK's mx:Application or spark:Application in that it does not contain
-     *  user interface elements.  Those UI elements go in the views (ViewBase).  This
-     *  Application class expects there to be a main model, a controller, and
-     *  an initial view.
+     *  The Application class is the main class and entry point for a Royale 
+     *  application and does not contain user interface elements. Those UI 
+     *  elements go in the view (Jewel ViewBase).
+     *  
+     *  This Application class expects there to be a main model, a controller, 
+     *  and an initial view.
+     * 
+     *  Jewel Application holds specific Jewel needs in a Royale Application.
+     *  This class extends the standard ApplicationBase and sets up the 
+     *  AllCSSValuesImpl implementation for convenience.
      *
-     *  @see ViewBase
+     *  @see org.apache.royale.jewel.supportClasses.view.ViewBase
+     *  @see org.apache.royale.core.ApplicationBase
+     *  @see org.apache.royale.core.AllCSSValuesImpl
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
