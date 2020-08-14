@@ -66,7 +66,6 @@ package org.apache.royale.jewel
             input.setAttribute('spellcheck', 'false');
             
             //attach input handler to dispatch royale change event when user write in textinput
-            //goog.events.listen(element, 'change', killChangeHandler);
             input.addEventListener("input", textChangeHandler)
             input.addEventListener("keypress", enterEventHandler, true);
             
