@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	
 	/**
@@ -48,6 +49,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 		}
 
+		protected var t:TextInputBase;
+		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -58,7 +61,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 */
 		public function set strand(value:IStrand):void
 		{
-			var t:TextInputBase = value as TextInputBase;
+			t = value as TextInputBase;
 			t.addEventListener(Event.CHANGE, changeToUpperCase);
 			t.text = t.text.toUpperCase();
 		}
@@ -66,19 +69,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 		/**
 		 * @private
 		 */
-		private function changeToUpperCase(event:Event):void
+		private function changeToUpperCase(event:KeyboardEvent):void
 		{
 			COMPILE::JS
 			{
-			// get cursor position
-			var t:TextInputBase = event as TextInputBase;
 			var start:Number = t.input.selectionStart;
 			var end:Number = t.input.selectionEnd;
-			
-			// chage text
-			t.text = t.text.toUpperCase();
-
-			// restore cursor position
+			t.input.value = t.input.value.toUpperCase();
 			t.input.setSelectionRange(start, end);;
 			}
 		}
