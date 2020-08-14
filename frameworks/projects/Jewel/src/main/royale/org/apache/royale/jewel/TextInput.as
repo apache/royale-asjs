@@ -19,8 +19,6 @@ package org.apache.royale.jewel
 {
     COMPILE::JS
     {
-    import goog.events;
-
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
@@ -69,8 +67,8 @@ package org.apache.royale.jewel
             
             //attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
-            goog.events.listen(input, 'input', textChangeHandler);
-            goog.events.listen(input, 'keypress', enterEventHandler, true);
+            input.addEventListener("input", textChangeHandler)
+            input.addEventListener("keypress", enterEventHandler, true);
             
             positioner = document.createElement('div') as WrappedHTMLElement;
             
