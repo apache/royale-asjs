@@ -246,15 +246,13 @@ limitations under the License.
         </j:DrawerContent>
 
         <j:DrawerFooter>
-            <j:BarRow>
-                <j:BarSection>
-                    <j:IconButton>
-                        <j:icon>
-                            <js:MaterialIcon text="{MaterialIconType.FEEDBACK}" />
-                        </j:icon>
-                    </j:IconButton>
-                </j:BarSection>
-            </j:BarRow>
+            <j:BarSection>
+                <j:IconButton>
+                    <j:icon>
+                        <js:MaterialIcon text="{MaterialIconType.FEEDBACK}" />
+                    </j:icon>
+                </j:IconButton>
+            </j:BarSection>
         </j:DrawerFooter>
 
     </j:Drawer>
