@@ -21,7 +21,7 @@ package org.apache.royale.jewel.supportClasses.drawer
 	import org.apache.royale.jewel.supportClasses.bar.BarRow;
 
 	/**
-	 *  The DrawerFooter class is a Bar component to use as the last content in a Drawer.
+	 *  The DrawerFooter class is a BarRow component to use as the last content in a Drawer.
 	 *  
 	 *  The styling of this component is similar to the FooterBar.
 	 *

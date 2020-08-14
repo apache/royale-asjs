@@ -29,16 +29,17 @@ package org.apache.royale.jewel
 
 	/**
 	 *  The Drawer class is a container component used for navigation
-	 *  can be opened with the menu icon.
+	 *  that can be opened with the menu icon, or be always visible. It use
+	 *  to be positioned at the left (or right) side of the application screen.
 	 * 
 	 *  It can be used in float or fixed modes. 
 	 *  
-	 *  float make the drawer appear over the screen without make anything change size
-	 *  and click outside the drawer will hide it. Usually clicking in some navigation option
-	 *  will hide it as well.
+	 *  float make the drawer appear over the screen without make any other application
+	 *  elements change size. Clicking outside the drawer will hide it. Usually clicking
+	 *  in some navigation option will hide it as well.
 	 * 
-	 *  fixed will need some place and make the other content shrink. click on navigation option 
-	 *  in the drawer usually doesn't hide it.
+	 *  fixed will need some place and make the other application content shrink. Clicking
+	 *  on any navigation option in the drawer usually doesn't hide it.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

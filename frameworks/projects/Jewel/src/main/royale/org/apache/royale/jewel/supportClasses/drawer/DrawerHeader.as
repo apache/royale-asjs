@@ -26,8 +26,8 @@ package org.apache.royale.jewel.supportClasses.drawer
 	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The DrawerHeader class is a Container component to hold Drawer Header
-	 *  content, for example a title or an Image icon logo
+	 *  The DrawerHeader class is a container component to hold drawer header
+	 *  content, like a title or an image icon logo
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
