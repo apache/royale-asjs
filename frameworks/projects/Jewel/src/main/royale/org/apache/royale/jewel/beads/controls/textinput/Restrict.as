@@ -18,19 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.textinput
 {
-	COMPILE::JS
-	{
-		import goog.events.BrowserEvent;
-	}
-	COMPILE::SWF
-	{
-		import flash.events.TextEvent;
-
-		import org.apache.royale.core.CSSTextField;
-		import org.apache.royale.html.beads.ITextFieldView;			
-	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	
 	/**
@@ -63,7 +53,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 		
 		private var _pattern:String;
-		
 		/**
 		 *  The string to use as numeric pattern.
 		 *
@@ -79,21 +68,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 		public function set pattern(value:String):void
 		{
 			_pattern = value;
-			// updateRestriction();
+			updateTextToRestriction();
 		}
 
 		private var host:TextInputBase;
-		
-		// private function updateRestriction():void
-		// {
-		// 	COMPILE::JS
-		// 	{
-		// 	if (host)
-		// 	{
-		// 		host.input.setAttribute('pattern', pattern);
-		// 	}
-		// 	}
-		// }
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -107,22 +85,46 @@ package org.apache.royale.jewel.beads.controls.textinput
 		public function set strand(value:IStrand):void
 		{
 			host = value as TextInputBase;
-			COMPILE::JS
-			{
-				host.input.addEventListener('input', keyEventHandler);
-			}
-			// updateRestriction();
+			host.addEventListener(Event.CHANGE, restrictTetToPattern);
+			updateTextToRestriction();
 		}
 
 		/**
+		 * Restrict the text to the reg exp pattern as user types
 		 * @private
 		 */
-		COMPILE::JS
-		protected function keyEventHandler(event:KeyboardEvent):void
+		protected function restrictTetToPattern(event:Event):void
 		{
-			//event.stopImmediatePropagation();
-			var re:RegExp = new RegExp(pattern, 'g');
+			COMPILE::JS
+			{
+			var start:Number = host.input.selectionStart;
+			var end:Number = host.input.selectionEnd;
+			var textChanged:Boolean = updateTextToRestriction();
+			if(textChanged)
+				host.input.setSelectionRange(start, end);
+			else
+				host.input.setSelectionRange(start - 1, end - 1);
+			}
+		}
+
+		/**
+		 * update the text in the input to the restriction pattern
+		 * 
+		 * @return true if text changed, false otherwise
+		 */
+		protected function updateTextToRestriction():Boolean
+		{
+			var textChanged:Boolean = false;
+			if(!host) 
+				return textChanged;
+			const re:RegExp = new RegExp(pattern, 'g');
+			COMPILE::JS
+			{
+			const oldText:String = host.input.value;
 			host.input.value = host.input.value.replace(re, '');
+			textChanged = oldText == host.input.value;
+			}
+			return textChanged;
 		}
 	}
 }
