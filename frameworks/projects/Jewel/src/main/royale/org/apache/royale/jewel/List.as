@@ -18,16 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadKeyController;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.jewel.beads.layouts.IVariableRowHeight;
-	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
-	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -70,7 +65,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class List extends DataContainerBase implements IStrandWithPresentationModel, IVariableRowHeight
+	public class List extends DataContainer implements IVariableRowHeight
 	{
 		/**
 		 *  constructor.
@@ -90,52 +85,7 @@ package org.apache.royale.jewel
 			tabIndex = 0;
 		}
 
-        [Bindable("labelFieldChanged")]
-		/**
-		 *  The name of field within the data used for display. Each item of the
-		 *  data should have a property with this name.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function get labelField():String
-		{
-			return IDataProviderModel(model).labelField;
-		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function set labelField(value:String):void
-		{
-            IDataProviderModel(model).labelField = value;
-		}
-
-        [Bindable("dataProviderChanged")]
-		/**
-		 *  The data being display by the List.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-        public function get dataProvider():Object
-        {
-            return IDataProviderModel(model).dataProvider;
-        }
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-        public function set dataProvider(value:Object):void
-        {
-            IDataProviderModel(model).dataProvider = value;
-        }
-
-		/**
+        /**
 		 *  The index of the currently selected item. Changing this value
 		 *  also changes the selectedItem property.
 		 *
@@ -245,25 +195,6 @@ package org.apache.royale.jewel
         {
 			(presentationModel as IListPresentationModel).variableRowHeight = value;
         }
-
-		/**
-		 *  The presentation model for the list.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 */
-		public function get presentationModel():IBead
-		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
-			if (presModel == null) {
-				presModel = new ListPresentationModel();
-				addBead(presModel);
-			}
-			return presModel;
-		}
 
 		/**
 		 *  Ensures that the data provider item at the given index is visible.

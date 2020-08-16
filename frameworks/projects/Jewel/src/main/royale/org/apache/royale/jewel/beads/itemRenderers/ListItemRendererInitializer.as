@@ -22,10 +22,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+	import org.apache.royale.core.IListWithPresentationModel;
 
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
@@ -67,8 +67,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{	
 			super.strand = value;
             ownerView = (value as IStrandWithModelView).view as IItemRendererOwnerView;
-			if(_strand as IStrandWithPresentationModel)
-            	presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
+			if(_strand as IListWithPresentationModel)
+            	presentationModel = (_strand as IListWithPresentationModel).presentationModel as IListPresentationModel;            
 		}
         
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
