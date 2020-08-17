@@ -132,9 +132,9 @@ import org.apache.royale.utils.observeElementSize;
 
         COMPILE::JS
         {
-            import dialogPolyfill; dialogPolyfill;
             import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
             import org.apache.royale.utils.observeElementSize; observeElementSize;
+            import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
         }
 
         import org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer; DatagridHeaderRenderer;

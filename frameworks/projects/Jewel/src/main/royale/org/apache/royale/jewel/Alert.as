@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,17 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    COMPILE::JS
-    {
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
-    }
-    import org.apache.royale.core.IAlertModel;
-    import org.apache.royale.core.IPopUp;
-    import org.apache.royale.events.CloseEvent;
-    import org.apache.royale.jewel.Group;
+	COMPILE::JS
+	{
+		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
+		import org.apache.royale.html.util.DialogPolyfill;
+	}
+	import org.apache.royale.core.IAlertModel;
+	import org.apache.royale.core.IPopUp;
+	import org.apache.royale.events.CloseEvent;
+	import org.apache.royale.jewel.Group;
 
-    [Event(name="close", type="org.apache.royale.events.CloseEvent")]
+	[Event(name="close", type="org.apache.royale.events.CloseEvent")]
 	/**
 	 *  The Alert class is a component that displays a message and one or more buttons
 	 *  in a view that pops up over all other controls and views. The Alert component
@@ -62,7 +63,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public static const YES:uint    = 0x000001;
+		public static const YES:uint	= 0x000001;
 		
 		/**
 		 *  The bitmask button flag to show the NO button.
@@ -72,7 +73,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public static const NO:uint     = 0x000002;
+		public static const NO:uint	 = 0x000002;
 		
 		/**
 		 *  The bitmask button flag to show the OK button.
@@ -82,7 +83,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public static const OK:uint     = 0x000004;
+		public static const OK:uint	 = 0x000004;
 		
 		/**
 		 *  The bitmask button flag to show the Cancel button.
@@ -148,9 +149,9 @@ package org.apache.royale.jewel
 		 *  The buttons to display on the Alert as bit-mask values.
 		 *
 		 *  Alert.YES
-         *  Alert.NO
-         *  Alert.OK
-         *  Alert.CANCEL
+		 *  Alert.NO
+		 *  Alert.OK
+		 *  Alert.CANCEL
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -166,29 +167,29 @@ package org.apache.royale.jewel
 			IAlertModel(model).flags = value;
 		}
 
-        /**
+		/**
 		 * The html dialog component that parents the alert content
 		 */
 		COMPILE::JS
 		private var dialog:HTMLDialogElement;
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLDialogElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-            dialog = addElementToWrapper(this,'dialog') as HTMLDialogElement;
-            return element;
-        }
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			dialog = addElementToWrapper(this,'dialog') as HTMLDialogElement;
+			return element;
+		}
 
-        /**
+		/**
 		 * flag to ensure only one dialog is created
 		 */
 		private var lockDialogCreation:Boolean = false;
-        
-        /**
+		
+		/**
 		 *  This function make the dialog be added only once to document.body if parent is not
 		 *  provided (null) or to parent if indicated.
 		 *
@@ -199,7 +200,7 @@ package org.apache.royale.jewel
 		 */
 		private function prepareAlert(parent:Object = null):void
 		{
-            COMPILE::JS
+			COMPILE::JS
 			{
 				if(!lockDialogCreation)
 				{
@@ -217,7 +218,7 @@ package org.apache.royale.jewel
 					
 					if (!("showModal" in dialog))
 					{
-						dialogPolyfill.registerDialog(dialog);
+						DialogPolyfill.registerDialog(dialog);
 					}
 
 					//avoid scroll in html
@@ -226,31 +227,31 @@ package org.apache.royale.jewel
 			}
 		}
 
-        /**
-          *  This static method is a convenience function to quickly create and display an Alert. The
-          *  text and parent paramters are required, the others will default.
-          *
-          *  @param String message The message content of the Alert.
-          *  @param String title An optional title for the Alert.
-          *  @param uint flags Identifies which buttons to display in the alert.
-          *  @param Object parent The object that hosts the pop-up.
-          *
-          *  @langversion 3.0
-          *  @playerversion Flash 10.2
-          *  @playerversion AIR 2.6
-          *  @productversion Royale 0.9.4
-          */
-        static public function show(message:String, title:String="", flags:uint=Alert.OK, parent:Object = null, modal:Boolean = true) : Alert
+		/**
+		  *  This static method is a convenience function to quickly create and display an Alert. The
+		  *  text and parent paramters are required, the others will default.
+		  *
+		  *  @param String message The message content of the Alert.
+		  *  @param String title An optional title for the Alert.
+		  *  @param uint flags Identifies which buttons to display in the alert.
+		  *  @param Object parent The object that hosts the pop-up.
+		  *
+		  *  @langversion 3.0
+		  *  @playerversion Flash 10.2
+		  *  @playerversion AIR 2.6
+		  *  @productversion Royale 0.9.4
+		  */
+		static public function show(message:String, title:String="", flags:uint=Alert.OK, parent:Object = null, modal:Boolean = true) : Alert
 		{
-            var alert:Alert = new Alert();
-            alert.message = message;
-            alert.title  = title;
-            alert.flags = flags;
-            
+			var alert:Alert = new Alert();
+			alert.message = message;
+			alert.title  = title;
+			alert.flags = flags;
+			
 			if(modal)
 				alert.showModal(parent);
 			else
-            	alert.show(parent);
+				alert.show(parent);
 
 			return alert;
 		}
@@ -294,20 +295,20 @@ package org.apache.royale.jewel
 		 */
 		public function show(parent:Object = null) : void
 		{
-            prepareAlert(parent);
+			prepareAlert(parent);
 
-            COMPILE::SWF
+			COMPILE::SWF
 			{
 				parent.addElement(this);
 			}
 
-            COMPILE::JS
+			COMPILE::JS
 			{
 				dialog.show();
 			}
 		}
 
-        /**
+		/**
 		 *  Closes the dialog element.
 		 *
 		 *  @langversion 3.0

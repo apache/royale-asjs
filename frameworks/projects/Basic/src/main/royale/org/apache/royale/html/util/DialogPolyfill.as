@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -16,28 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.royale.html.util
 {
-	/**
-	 * @externs
-	 */
 	COMPILE::JS
-	public class dialogPolyfill
+	public class DialogPolyfill
 	{
 		/** 
-         * <inject_script>
-         * var script = document.createElement("script");
-         * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js");
-         * document.head.appendChild(script)
-         *  var link = document.createElement("link");
-         *  link.setAttribute("rel", "stylesheet");
-         *  link.setAttribute("type", "text/css");
-         *  link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css");
-         *  document.head.appendChild(link);
-         * </inject_script>
+		 * <inject_script>
+		 * var script = document.createElement("script");
+		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js");
+		 * document.head.appendChild(script)
+		 *  var link = document.createElement("link");
+		 *  link.setAttribute("rel", "stylesheet");
+		 *  link.setAttribute("type", "text/css");
+		 *  link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css");
+		 *  document.head.appendChild(link);
+		 * </inject_script>
 		 */
-		public function dialogPolyfill(){}
+		public function DialogPolyfill(){}
 		 
-		public static function registerDialog(dialog:Element):void {}
+		public static function registerDialog(dialog:Element):void
+		{
+				window["dialogPolyfill"]["registerDialog"](dialog);
+    }
 	}
 }
