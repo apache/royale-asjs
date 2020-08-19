@@ -20,8 +20,9 @@ package org.apache.royale.core
 {
     /**
      *  The IBeadKeyController interface is a "marker" interface for beads that 
-     *  are controllers.  A marker interface has no addtional APIs.
-     *  It is used to find the controller on the strand via calls to getBeadByType.
+     *  are key controllers. Key controllers add keyboard support to the strand.
+     *  A marker interface has no addtional APIs. It is used to find the controller 
+     *  on the strand via calls to getBeadByType.
      * 
      *  @see org.apache.royale.core.IStrand#getBeadByType
      *  
