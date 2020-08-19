@@ -25,7 +25,6 @@ package org.apache.royale.jewel.beads.controls.list
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyledUIBase;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.utils.IClassSelectorListSupport;
 	import org.apache.royale.utils.css.addDynamicSelector;
 	

@@ -38,7 +38,7 @@ package org.apache.royale.jewel
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
 	/**
-	 *  The change event is dispatched whenever the list's selection changes.
+	 *  The change event is dispatched whenever the list's selection changes by user.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -58,6 +58,11 @@ package org.apache.royale.jewel
 	 *  org.apache.royale.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
 	 *  org.apache.royale.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
 	 *  org.apache.royale.core.IItemRenderer: the class or factory used to display an item in the list.
+	 *  org.apache.royale.core.IItemRendererClassFactory: the factory for the itemrenders.
+	 *  org.apache.royale.core.ISelectableItemRenderer: handles selection and hover states for item renderers.
+	 *  org.apache.royale.core.IItemRendererInitializer: the class that initialize the renderer and provide additional configuration.
+	 *  org.apache.royale.core.IViewport: the class that defines the area that display content
+	 *  org.apache.royale.core.IBeadKeyController: add keyboard support to the list.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
