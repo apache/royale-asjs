@@ -19,7 +19,6 @@ limitations under the License.
 -->
 <c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
 	xmlns:j="library://ns.apache.org/royale/jewel" 
-	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" sourceCodeUrl="LayoutsPlayGround.mxml">
 
