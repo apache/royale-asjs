@@ -19,9 +19,11 @@
 package org.apache.royale.jewel
 {
 	/**
-	 *  The Card class is a container that surronds other components.
+	 *  The Card class is a container for content like text or images that support
+	 *  optional parts like title and actions (usually buttons).
+	 *  
 	 *  Card has a default "panel" style and can compose other containers like
-	 *  CardHeader, CardPrimaryContent and CardActions
+	 *  CardHeader, CardPrimaryContent, CardExpandedContent and CardActions
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

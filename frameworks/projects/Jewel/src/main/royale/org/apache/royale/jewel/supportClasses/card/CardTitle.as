@@ -21,8 +21,10 @@ package org.apache.royale.jewel.supportClasses.card
 	import org.apache.royale.jewel.Label;
 	
 	/**
-	 *  The CardTitle class is a header for Cards where Title and actions (i.e: buttons, icons)
-	 *  can be located.
+	 *  The CardTitle class is a header title for Cards that can be used inside CardHeader
+	 *  or direclty inside Card.
+	 *  
+	 *  It adds some styling to labels used as titles for Cards.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

@@ -24,9 +24,11 @@ package org.apache.royale.jewel.supportClasses.card
 	 *  The CardExpandedContent class is a container that expand inner content
 	 *  removing paddings. This could be convinient for content that needs to
 	 *  avoid gaps with the surronding container.
-	 *  
+	 * 
 	 *  For example a Jewel TabBar or Navigation that needs to fill 
 	 *  all the available space.
+	 *  
+	 * 	Content are placed vertically by default.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

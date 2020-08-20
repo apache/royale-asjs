@@ -23,6 +23,9 @@ package org.apache.royale.jewel.supportClasses.card
 	/**
 	 *  The CardActions class is a footer for Cards where actions (i.e: buttons, icons)
 	 *  use to be located.
+	 * 
+	 *  Actions are placed horizontally by default, and can be separated using 
+	 *  BarSection for left, middle and right sections.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
