@@ -2,20 +2,73 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch Chrome against debug.html, with sourcemaps",
             "type": "chrome",
             "request": "launch",
-            "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
-            "sourceMaps": true,
-            "preLaunchTask": "mvn"
+            "name": "Brave - Debug version",
+            "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+            "runtimeArgs": ["--allow-file-access-from-files", "--auto-ssl-client-auth"],
+            "userDataDir": true,
+            // "url": "http://localhost:8080",
+            // "webRoot": "${workspaceFolder}"
+            // "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            //"preLaunchTask": "mvn",
+            "url": "file:///${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-debug",
+            "sourceMaps": true
         },
         {
-            "name": "Launch Firefox against debug.html, with sourcemaps",
+            "type": "chrome",
+            "request": "launch",
+            "name": "Brave - Release version",
+            "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+            "runtimeArgs": ["--allow-file-access-from-files", "--auto-ssl-client-auth"],
+            "userDataDir": true,
+            // "url": "http://localhost:8080",
+            // "webRoot": "${workspaceFolder}"
+            "url": "file:///${workspaceRoot}/target/javascript/bin/js-release/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-release",
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
+        }
+        ,
+        {
+            "name": "Launch Chrome (Debug version)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "file:///${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            "runtimeArgs": ["--allow-file-access-from-files", "--auto-ssl-client-auth"],
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-debug",
+            
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Chrome (Release version)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "file:///${workspaceRoot}/target/javascript/bin/js-release/index.html",
+            "runtimeArgs": ["--allow-file-access-from-files", "--auto-ssl-client-auth"],
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-release",
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Firefox (Debug version)",
             "type": "firefox",
             "request": "launch",
-            "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
-            "sourceMaps": true,
-            "preLaunchTask": "mvn"
+            "url": "file:///${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-debug",
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
+        },
+        {
+            "name": "Launch Firefox (Release version)",
+            "type": "firefox",
+            "request": "launch",
+            "url": "file:///${workspaceRoot}/target/javascript/bin/js-release/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-release",
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
         }
     ]
 }
