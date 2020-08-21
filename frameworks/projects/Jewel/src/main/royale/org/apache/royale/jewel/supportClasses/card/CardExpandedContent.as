@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.card
 {
+	import org.apache.royale.jewel.Card;
 	import org.apache.royale.jewel.VContainer;
 
 	/**
@@ -50,6 +51,27 @@ package org.apache.royale.jewel.supportClasses.card
 			super();
 
 			typeNames = "card-expanded-content";
+		}
+		
+		/**
+		 *  This container means Card structure is complex, so we remove Card's simple style
+		 *  that is set by default on the Card
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			if(parent is Card)
+			{
+				var parentCard:Card = parent as Card;
+				parentCard.gap = 0;
+				parentCard.removeClass("simple");
+			}
 		}
 	}
 }
