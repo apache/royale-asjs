@@ -21,8 +21,14 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.View;
 
 	/**
-	 *  The ResponsiveView class is the main Container component capable of parenting other
-	 *  components in an Application
+	 *  The ResponsiveView class is the main Container component capable of 
+	 *  parenting other components in a responsive Jewel Application.
+	 *  
+	 *  ResponsiveView doesn't need to specify `width` and `height` since are 
+	 *  sized 100% in both directions by default. In this way we can use the
+	 *  width of the application container to apply responsive rules on any 
+	 *  part of the application.
+	 *  
 	 *  It normaly can host a TopAppBar, a Drawer and a Container with other organized content for
 	 *  navigation
 	 *
@@ -46,6 +52,8 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "responsive-view";
+
+			percentWidth = percentHeight = 100
 		}
 	}
 }
