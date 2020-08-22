@@ -21,8 +21,8 @@ package org.apache.royale.jewel
     import org.apache.royale.core.IMXMLDocument;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
-    import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.jewel.supportClasses.view.ViewBase;
+    import org.apache.royale.utils.MXMLDataInterpreter;
 	
 	/**
 	 * The default property uses when additional MXML content appears within an element's
@@ -30,10 +30,14 @@ package org.apache.royale.jewel
 	 */
 	[DefaultProperty("mxmlContent")]
 	
-    /**
-     *  The View class is the class for most views in a Royale
-     *  application.  It is generally used as the root tag of MXML
+	/**
+     *  The View class is the class used as the initialView in a Royale Jewel
+     *  Application.  It is generally used as the root tag of MXML
      *  documents and UI controls and containers are added to it.
+	 * 
+	 *  For responsive applications you can use ApplicationResponsiveView instead.
+	 * 
+	 *  @see org.apache.royale.jewel.ApplicationResponsiveView
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -45,6 +49,8 @@ package org.apache.royale.jewel
 		public function View()
 		{
 			super();
+
+			typeNames = "jewel view";
 		}
 		
 		private var _mxmlDescriptor:Array;
@@ -71,8 +77,6 @@ package org.apache.royale.jewel
 				dispatchEvent(new Event("initBindings"));
 				dispatchEvent(new Event("initComplete"));
 				_initialized = true;
-				
-				// - why was this added here? childrenAdded(); //?? Is this necessary since MXMLDataInterpreter will already have called it
 			}
 		}
 		
@@ -112,6 +116,8 @@ package org.apache.royale.jewel
 		}
 		
 		/**
+		 *  The array of childs for this view. Is the `DefaultProperty`.
+		 * 
 		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
 		 *  
 		 *  @langversion 3.0

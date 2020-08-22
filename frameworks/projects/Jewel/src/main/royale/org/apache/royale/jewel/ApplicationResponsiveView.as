@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IApplicationView;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.core.IPopUpHostParent;
-	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.View;
 
 	/**
 	 *  The ApplicationResponsiveView class is the main Container component capable of parenting other
@@ -34,7 +31,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ApplicationResponsiveView extends Group implements IPopUpHost, IPopUpHostParent, IApplicationView
+	public class ApplicationResponsiveView extends View
 	{
 		/**
 		 *  constructor.
@@ -50,53 +47,5 @@ package org.apache.royale.jewel
 
             typeNames = "applicationResponsiveView";
 		}
-        
-		private var _applicationModel:Object;
-
-		[Bindable("modelChanged")]
-        /**
-         *  A reference to the Application's model.  Usually,
-         *  a view is displaying the main model for an
-         *  application.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get applicationModel():Object
-		{
-			return _applicationModel;
-		}
-
-        /**
-         *  @private
-         */
-        public function set applicationModel(value:Object):void
-        {
-            _applicationModel = value;
-            dispatchEvent(new Event("modelChanged"));
-        }
-
-		/**
-         *  ViewBase can host popups but they will be in the layout, if any
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function get popUpParent():IPopUpHostParent
-        {
-            return this;
-        }
-
-		/**
-         */
-        public function get popUpHost():IPopUpHost
-        {
-            return this;
-        }
-
 	}
 }

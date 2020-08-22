@@ -37,20 +37,18 @@ package org.apache.royale.jewel.supportClasses.view
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.7
      */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
-	[DefaultProperty("mxmlContent")]
-
     /**
-     *  The ViewBase class is the base class for most views in a Royale
-     *  application.
+     *  The Jewel ViewBase class is the base class for most views in a Royale
+     *  Jewel application.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.7
      */
 	public class ViewBase extends GroupBase implements IPopUpHost, IPopUpHostParent, IApplicationView
 	{
@@ -60,19 +58,14 @@ package org.apache.royale.jewel.supportClasses.view
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.7
          */
 		public function ViewBase()
 		{
 			super();
-
-			typeNames = "royale";
 		}
 
 		private var _applicationModel:Object;
-
-		[Bindable("modelChanged")]
-
         /**
          *  A reference to the Application's model.  Usually,
          *  a view is displaying the main model for an
@@ -81,13 +74,13 @@ package org.apache.royale.jewel.supportClasses.view
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.7
          */
+		[Bindable("modelChanged")]
 		public function get applicationModel():Object
 		{
 			return _applicationModel;
 		}
-
         /**
          *  @private
          */
@@ -98,12 +91,12 @@ package org.apache.royale.jewel.supportClasses.view
         }
 
         /**
-         *  ViewBase can host popups but they will be in the layout, if any
+         *  A view can be the parent of a popup that will be part of the layout.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.7
          */
         public function get popUpParent():IPopUpHostParent
         {
@@ -111,11 +104,11 @@ package org.apache.royale.jewel.supportClasses.view
         }
         
         /**
+         * A view can host popups that will be part of the layout.
          */
         public function get popUpHost():IPopUpHost
         {
             return this;
         }
-
     }
 }
