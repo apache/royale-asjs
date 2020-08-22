@@ -129,7 +129,7 @@
 
     <component id="DateChooserModel" class="org.apache.royale.jewel.beads.models.DateChooserModel"/>
 
-    <component id="ApplicationResponsiveView" class="org.apache.royale.jewel.ApplicationResponsiveView"/>
+    <component id="ResponsiveView" class="org.apache.royale.jewel.ResponsiveView"/>
 
     <component id="Bar" class="org.apache.royale.jewel.Bar"/>
     <component id="TopAppBar" class="org.apache.royale.jewel.TopAppBar"/>

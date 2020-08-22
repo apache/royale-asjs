@@ -35,9 +35,9 @@ package org.apache.royale.jewel
      *  Application.  It is generally used as the root tag of MXML
      *  documents and UI controls and containers are added to it.
 	 * 
-	 *  For responsive applications you can use ApplicationResponsiveView instead.
+	 *  For responsive applications you can use ResponsiveView instead.
 	 * 
-	 *  @see org.apache.royale.jewel.ApplicationResponsiveView
+	 *  @see org.apache.royale.jewel.ResponsiveView
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

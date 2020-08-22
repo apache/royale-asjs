@@ -21,7 +21,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.View;
 
 	/**
-	 *  The ApplicationResponsiveView class is the main Container component capable of parenting other
+	 *  The ResponsiveView class is the main Container component capable of parenting other
 	 *  components in an Application
 	 *  It normaly can host a TopAppBar, a Drawer and a Container with other organized content for
 	 *  navigation
@@ -31,7 +31,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ApplicationResponsiveView extends View
+	public class ResponsiveView extends View
 	{
 		/**
 		 *  constructor.
@@ -41,11 +41,11 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function ApplicationResponsiveView()
+		public function ResponsiveView()
 		{
 			super();
 
-            typeNames = "applicationResponsiveView";
+            typeNames = "responsive-view";
 		}
 	}
 }
