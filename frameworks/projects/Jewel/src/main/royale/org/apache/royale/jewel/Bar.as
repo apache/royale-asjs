@@ -18,12 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	COMPILE::SWF
-    {
-	import flash.display.DisplayObject;
-
-	import org.apache.royale.core.IRenderedObject;
-    }
     COMPILE::JS
     {
 	import org.apache.royale.core.WrappedHTMLElement;
