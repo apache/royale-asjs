@@ -31,6 +31,9 @@ package org.apache.royale.jewel.supportClasses.list
 	 *  The DataGroup class is the IItemRendererOwnerView used internally
      *  by org.apache.royale.jewel.List class.
 	 *  
+	 *  Unlike Flex, this component is only used by List in the SWF platform.
+	 *  In JS you should use a Jewel DataContainer
+	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

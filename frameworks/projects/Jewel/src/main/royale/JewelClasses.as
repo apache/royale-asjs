@@ -100,6 +100,7 @@ import org.apache.royale.utils.observeElementSize;
 
             // import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
             import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
+            import org.apache.royale.jewel.supportClasses.list.DataGroup; DataGroup;
         }
 
         import org.apache.royale.jewel.supportClasses.ResponsiveSizes; ResponsiveSizes;
@@ -114,7 +115,6 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;
-        import org.apache.royale.jewel.supportClasses.list.DataGroup; DataGroup;
         import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy; FormItemLayoutProxy;
         import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy; WizardLayoutProxy;
         import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase; SelectableButtonBase;

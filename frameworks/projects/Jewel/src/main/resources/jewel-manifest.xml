@@ -88,7 +88,6 @@
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
     <component id="DataContainer" class="org.apache.royale.jewel.DataContainer" />
-    <component id="DataGroup" class="org.apache.royale.jewel.supportClasses.list.DataGroup" />
     <component id="ToolTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel" />
 
     <component id="Form" class="org.apache.royale.jewel.Form"/>
