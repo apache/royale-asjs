@@ -75,7 +75,6 @@
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>
     <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
-    <component id="ControlBar" class="org.apache.royale.jewel.ControlBar"/>
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
     <component id="List" class="org.apache.royale.jewel.List"/>
     <component id="VirtualList" class="org.apache.royale.jewel.VirtualList"/>

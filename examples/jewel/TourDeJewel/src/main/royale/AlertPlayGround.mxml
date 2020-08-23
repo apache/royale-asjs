@@ -45,9 +45,9 @@ limitations under the License.
             
             private var alert:Alert;
             private var check:CheckBox;
-            // changing ControlBar's Buttons Layout
+            // changing controlBar's Buttons Layout
             private function clickHandler2(event:MouseEvent):void {
-                alert = Alert.show("This example shows access to AlertView and ControlBar to expand Buttons layout and change defaults. The height of the alert is set up to 300px too.", "Save Changes", 3);
+                alert = Alert.show("This example shows access to AlertView and controlBar to expand Buttons layout and change defaults. The height of the alert is set up to 300px too.", "Save Changes", 3);
 				alert.height = 300;
 
                 check = new CheckBox();

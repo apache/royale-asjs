@@ -385,22 +385,6 @@ j|ToggleButtonBar {
   width: inherit;
 }
 
-.jewel.controlbar {
-  background-color: transparent;
-  padding: 0px;
-  min-height: 34px;
-}
-
-j|ControlBar {
-  IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
-}
-
-@media -royale-swf {
-  j|ControlBar {
-    IMeasurementBead: ClassReference("org.apache.royale.html.beads.ControlBarMeasurementBead");
-  }
-}
 .jewel.combobox {
   display: inline-flex;
 }
