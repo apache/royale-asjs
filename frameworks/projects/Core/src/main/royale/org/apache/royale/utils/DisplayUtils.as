@@ -18,19 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils
 {
-	
+
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.geom.Matrix;
 	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.core.IRenderedObject;
 
 	COMPILE::SWF
 	{
 		import flash.geom.Matrix;
+		import flash.display.DisplayObjectContainer;
+		import flash.display.DisplayObject;
 	}
 	
 	COMPILE::JS 
 	{
-		import org.apache.royale.geom.Point;
 		import org.apache.royale.geom.Point;
 		import org.apache.royale.core.ITransformHost;
 	}
@@ -218,6 +221,28 @@ package org.apache.royale.utils
 
 		    elements.reverse();
 		    return elements;
+		}
+
+		/**
+		 *  Determines if the potentialChild has the container somewhere in its parent hierarchy.
+		 *
+		 *  @param container The container to check
+		 *  @param potentialChild The target to verify as part of the child tree below the container
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 *
+		 */
+		public static function containerContains(container:IParent, potentialChild:IUIBase):Boolean{
+			COMPILE::SWF{
+				return container is DisplayObjectContainer && potentialChild is DisplayObject && DisplayObjectContainer(container).contains(DisplayObject(potentialChild));
+			}
+			COMPILE::JS{
+				return container is IRenderedObject && IRenderedObject(container).element.contains(potentialChild.element);
+			}
 		}
 
 	}
