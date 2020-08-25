@@ -26,6 +26,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
+    import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
@@ -140,8 +141,37 @@ package org.apache.royale.jewel.beads.views
         }
 
 
+
+        /**
+         * @private
+         */
+        protected function handleColumnsChanged(event:Event):void
+        {
+            if (this.columnLists.length) {
+                destroyLists();
+
+                createLists();
+
+                //@todo the following sequence all needs to be refactored somehow.
+                this.sharedModel.headerModel['buttonWidths'] = null;
+
+                var arrayList:ArrayList = new ArrayList();
+                //a) set an empty ArrayList to empty the buttonBar
+                (sharedModel.headerModel as IDataProviderModel).dataProvider = arrayList;
+                //b) set the source to match the columns (but don't do layout yet)
+                arrayList.source = sharedModel.columns;
+                //c) trigger dataProviderChange from the DataGrid
+                handleDataProviderChanged(event);
+                //d) now refresh the buttonbar view
+                (sharedModel.headerModel as IDataProviderModel).dataProvider = new ArrayList(sharedModel.columns);
+            }
+
+        }
+
+        private var ignoreSizeChange:Boolean;
         COMPILE::JS
         protected function onInternalSizeChange():void{
+            if (ignoreSizeChange) return;
             //check for vertical scrollbar presence
             _header.dispatchEvent(new Event("headerLayout"));
         }
@@ -166,10 +196,11 @@ package org.apache.royale.jewel.beads.views
         {
             // get the name of the class to use for the columns
             var columnClass:Class = ValuesManager.valuesImpl.getValue(host, "columnClass") as Class;
-            
-            for (var i:int=0; i < sharedModel.columns.length; i++)
+            var len:uint = sharedModel.columns.length;
+            for (var i:int=0; i < len; i++)
             {
 
+                ignoreSizeChange = i != len-1;
                 var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
                 IEventDispatcher(dataGridColumn).addEventListener("labelChanged", labelChangedHandler);
 
@@ -186,7 +217,7 @@ package org.apache.royale.jewel.beads.views
                 if (i == 0) {
                     list.className = "first";
                 }
-                else if (i == sharedModel.columns.length-1) {
+                else if (i == len-1) {
                     list.className = "last";
                 }
                 else {
@@ -194,7 +225,7 @@ package org.apache.royale.jewel.beads.views
                 }
                 
                 // by default make columns get the 1/n of the maximun space available
-                (list as ILayoutChild).percentWidth = 100 / sharedModel.columns.length;
+        //        (list as ILayoutChild).percentWidth = 100 / len;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
                 if(dataGridColumn.labelFunction)
@@ -208,8 +239,29 @@ package org.apache.royale.jewel.beads.views
                 (list as StyledUIBase).tabIndex = -1;
 
                 (_listArea as IParent).addElement(list as IChild);
-                    columnLists.push(list);
+                columnLists.push(list);
             }
+        }
+
+        /**
+         * @private
+         */
+        protected function destroyLists():void
+        {
+            var listAreaParent:IParent = listArea as IParent;
+            var l:uint = listAreaParent.numElements;
+            while (l)
+            {
+                l--;
+                ignoreSizeChange = l > 0;
+                var list:IDataGridColumnList = listAreaParent.getElementAt(l) as IDataGridColumnList;
+                listAreaParent.removeElement(list as IChild);
+                list.removeEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
+                list.removeEventListener('selectionChanged', handleColumnListSelectionChange);
+                list.dataProvider = null;
+
+            }
+            columnLists.length = 0;
         }
 
         /**
@@ -226,6 +278,7 @@ package org.apache.royale.jewel.beads.views
 		{
             IEventDispatcher(_strand).removeEventListener("initComplete", initCompleteHandler);
             handleDataProviderChanged(null);
+            IEventDispatcher(sharedModel).addEventListener("columnsChanged", handleColumnsChanged);
         }
 
         /**

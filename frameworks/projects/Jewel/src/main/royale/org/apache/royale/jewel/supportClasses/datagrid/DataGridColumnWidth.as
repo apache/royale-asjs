@@ -33,50 +33,50 @@ package org.apache.royale.jewel.supportClasses.datagrid {
 	 *  @royalesuppressexport
 	 */
 	public class DataGridColumnWidth {
-		public static const DEFAULT:String = null;
-		public static const EXPLICIT_PERCENT:String = '%';
-		public static const EXPLICIT_PIXELS:String = '#';
+		public static const PERCENT:String = '%';
+		public static const PIXELS:String = '#';
+
+		private static const DEFAULT_WIDTH:uint = 80;
 
 
 		public static function createFromColumn(size:Number, type:String, denominator:DataGridWidthDenominator):DataGridColumnWidth{
 			var ret:DataGridColumnWidth = new DataGridColumnWidth();
-			ret._value = size;
+			ret.value = size;
 			ret.widthType = type;
 			ret.denominator = denominator;
 			return ret;
 		}
 
 
-		//public var value:Number = 0;
-		private var _value:Number = 0;
+		public var value:Number = 0;
 
 		public var widthType:String;
+		private var _default:Boolean;
 		public var denominator:DataGridWidthDenominator;
 
 		public var column:IDataGridColumn;
 
 		public function isPixel():Boolean {
-			return widthType == EXPLICIT_PIXELS;
+			return widthType == PIXELS;
 		}
 
 		public function isPercent():Boolean {
-			return widthType == EXPLICIT_PERCENT;
+			return widthType == PERCENT;
 		}
 
 		public function isDefault():Boolean {
-			return widthType == DEFAULT;
+			return _default;
 		}
 
-		public function getValue():Number {
-			if (isPercent() && denominator && denominator.value > 0) {
-				return _value * 0.01 * denominator.value;
-			}
-			return _value;
+		public function setDefault():void {
+			_default = true;
 		}
+
 
 		public function setFrom(other:DataGridColumnWidth):void{
 			if (other) {
-				_value = other._value;
+				value = other.value;
+				_default = other._default;
 				widthType = other.widthType;
 				denominator = other.denominator;
 			}
@@ -85,36 +85,46 @@ package org.apache.royale.jewel.supportClasses.datagrid {
 
 		COMPILE::JS
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper;
-		 * @royaleignorecoercion HTMLElement;
+		 * @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 		 */
-		public function configureWidth(content:ILayoutChild/*, header:Boolean*/):void{
+		public function configureWidth(content:ILayoutChild):void{
 			//this is necessary to
 			var targetElement:HTMLElement = (content as HTMLElementWrapper).element;
-
-			if (isPercent() && denominator && denominator.value > 0){
-				var assigned:Number = uint(_value);//value/100 * denominator.value;
-				targetElement.style['flex'] = assigned + ' ' + assigned + ' 0px';
-				targetElement.style['minWidth'] = '0';
-				targetElement.style['maxWidth'] = '';
+			var assigned:Number;
+			if (_default) {
 				content.width = NaN;
-			} else if (isPixel()) {
-				targetElement.style['flex'] =  '0 0 '  + _value +'px';
-				targetElement.style['minWidth'] =  _value +'px';
-				targetElement.style['maxWidth'] =  _value +'px';
-				content.width = _value;
-			} else if (isDefault()) {
-				content.width = NaN;
-				if (_value) {
-					targetElement.style['flex'] = '0 1 ' + _value +'px';
+				if (value) {
+					if (isPercent() && denominator && denominator.value > 0){
+						assigned = uint(value);
+						targetElement.style['flex'] = assigned + ' ' + assigned + ' 0px';
+						targetElement.style['minWidth'] = '0';
+						targetElement.style['maxWidth'] = '';
+						content.width = NaN;
+					} else  {
+						targetElement.style['flex'] =  '0 0 '  + value +'px';
+						targetElement.style['minWidth'] =  value +'px';
+						targetElement.style['maxWidth'] =  value +'px';
+						content.width = value;
+					}
+				} else {
+					targetElement.style['flex'] =  '0 0 '  + DEFAULT_WIDTH +'px';
+					targetElement.style['minWidth'] =  DEFAULT_WIDTH +'px';
+					targetElement.style['maxWidth'] =  DEFAULT_WIDTH +'px';
+					content.width = value;
+				}
+			} else {
+				if (isPercent() /*&& denominator && denominator.value > 0*/){
+					assigned = uint(value);
+					targetElement.style['flex'] = assigned + ' ' + assigned + ' 0px';
 					targetElement.style['minWidth'] = '0';
 					targetElement.style['maxWidth'] = '';
+					content.width = NaN;
 				} else {
-					targetElement.style['flex'] = '';
-					targetElement.style['minWidth'] = '';
-					targetElement.style['maxWidth'] = '';
+					targetElement.style['flex'] =  '0 0 '  + value +'px';
+					targetElement.style['minWidth'] =  value +'px';
+					targetElement.style['maxWidth'] =  value +'px';
+					content.width = value;
 				}
-
 			}
 		}
 
@@ -133,24 +143,15 @@ package org.apache.royale.jewel.supportClasses.datagrid {
 				targetElement.style['paddingRight'] = '';
 				return;
 			}
-			var orig:Number = _value;
-			if (isPixel() || isDefault()) {
-				_value = _value + offset;
+			var orig:Number = value;
+			if (isPixel()/* || isDefault()*/) {
+				value = value + offset;
 				configureWidth(content);
-				_value = orig;
+				value = orig;
 			}
-			targetElement.style['paddingRight'] = offset + 'px'
-			
+			targetElement.style['paddingRight'] = offset + 'px';
 		}
 
-
-		public function get value():Number {
-			return _value;
-		}
-
-		public function set value(value:Number):void {
-			_value = value;
-		}
 	}
 
 }

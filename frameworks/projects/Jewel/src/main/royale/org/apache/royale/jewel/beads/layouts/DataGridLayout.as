@@ -188,24 +188,26 @@ package org.apache.royale.jewel.beads.layouts
 			{
 				if (denominatorInst.value) {
 					defaultColumnWidth = new DataGridColumnWidth();
+					defaultColumnWidth.setDefault();
+					defaultColumnWidth.widthType = DataGridColumnWidth.PERCENT;
 					defaultColumnWidth.denominator = denominatorInst;
 					bblayout.defaultWidth = defaultColumnWidth;
 					//not sure about the logic behind these default assessments:
 					if (datagrid.percentWidth) {
 						defaultColumnWidth.value = ((100 - explicitPercents) * .01 * datagrid.percentWidth) / denominatorInst.value ;
-						if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PERCENT;
+						//if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.PERCENT;
 					} else if (datagrid.explicitWidth){
 						defaultColumnWidth.value = ((100 - explicitPercents)/100 * datagrid.width - explicitWidths) / denominatorInst.value;
-						if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.DEFAULT;
+						//if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.DEFAULT;
 					}
 					// special case when no width is set at all, defaultColumnWidth will be 0
 					if (defaultColumnWidth.value == 0){
 						if (isDGWidthSizedToContent || (100 - explicitPercents <= 0)) {
 							defaultColumnWidth.value = 80;
-							defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PIXELS;
+							defaultColumnWidth.widthType = DataGridColumnWidth.PIXELS;
 						} else {
 							defaultColumnWidth.value = (100 - explicitPercents) / denominatorInst.value;
-							defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PERCENT;
+							//defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PERCENT;
 						}
 					}
 				}
@@ -223,12 +225,12 @@ package org.apache.royale.jewel.beads.layouts
 				columnWidth.denominator = denominatorInst;
 
 				if (!isNaN(columnDef.explicitColumnWidth)) {
-					columnWidth.widthType = DataGridColumnWidth.EXPLICIT_PIXELS;
+					columnWidth.widthType = DataGridColumnWidth.PIXELS;
 					columnWidth.value = columnDef.columnWidth;
 					columnWidth.column = columnDef;
 				} else {
 					if (!isNaN(columnDef.percentColumnWidth)) {
-						columnWidth.widthType = DataGridColumnWidth.EXPLICIT_PERCENT;
+						columnWidth.widthType = DataGridColumnWidth.PERCENT;
 						columnWidth.value = columnDef.percentColumnWidth;
 						columnWidth.column = columnDef;
 					} else {
