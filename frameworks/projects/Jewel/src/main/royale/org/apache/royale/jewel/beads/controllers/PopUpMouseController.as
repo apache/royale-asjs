@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.PopUp;
@@ -69,30 +70,40 @@ package org.apache.royale.jewel.beads.controllers
 			viewBead = _strand.getBeadByType(PopUpView) as PopUpView;			
 			IEventDispatcher(_strand).addEventListener("openPopUp", openPopUpHandler);
 			IEventDispatcher(_strand).addEventListener("closePopUp", closePopUpHandler);
+			IEventDispatcher(_strand).addEventListener("showingPopUp", addContentListeners);
 		}
 		
 		/**
 		 * @private
 		 */
-		private function openPopUpHandler(event:MouseEvent):void
+		private function openPopUpHandler(event:Event):void
 		{
 			PopUp(_strand).open = true;
             viewBead.popUpVisible = true;
 			
 			if(!PopUp(_strand).modal)
 			{
-				IEventDispatcher(viewBead.content).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, closePopUpHandler);
 			}
-			viewBead.content.addEventListener("closePopUp", closePopUpHandler);
         }
+		/**
+		 * @private
+		 */
+		public function addContentListeners(event:Event):void
+		{
+			if(!PopUp(_strand).modal)
+			{
+				IEventDispatcher(viewBead.content).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			}
+			viewBead.content.addEventListener("closePopUp", closePopUpHandler);
+		}
 		
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{
 			event.stopImmediatePropagation();
 		}
         
-		protected function closePopUpHandler(event:MouseEvent = null):void
+		protected function closePopUpHandler(event:Event = null):void
 		{
 			viewBead.content.removeEventListener("closePopUp", closePopUpHandler);
 			if(!PopUp(_strand).modal)
