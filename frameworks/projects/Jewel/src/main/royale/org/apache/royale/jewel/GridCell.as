@@ -19,9 +19,8 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.jewel.beads.layouts.GridCellLayout;
-	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
-	import org.apache.royale.utils.StringUtil;
 	import org.apache.royale.jewel.supportClasses.container.AlignmentItemsContainer;
+	import org.apache.royale.utils.StringUtil;
 
 	/**
 	 *  The GridCell class is the inmediate container in a Grid Layout
