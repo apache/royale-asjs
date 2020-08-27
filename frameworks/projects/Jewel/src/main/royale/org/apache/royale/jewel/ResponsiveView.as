@@ -52,8 +52,6 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "responsive-view";
-
-			percentWidth = percentHeight = 100
 		}
 	}
 }
