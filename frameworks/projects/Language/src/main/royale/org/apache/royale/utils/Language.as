@@ -353,6 +353,8 @@ package org.apache.royale.utils
         
         private static function compareAsNumber(a:Object, b:Object):int
         {
+            a = Number(a)
+            b = Number(b)
             if (a > b)
             {
                 return muler;
