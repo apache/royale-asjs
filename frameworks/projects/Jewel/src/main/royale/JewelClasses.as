@@ -115,12 +115,12 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;
-        import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy; FormItemLayoutProxy;
-        import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy; WizardLayoutProxy;
         import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase; SelectableButtonBase;
         
         import org.apache.royale.jewel.beads.views.DataGridView; DataGridView;
         import org.apache.royale.jewel.beads.layouts.DataGridLayout; DataGridLayout;
+        
+        import org.apache.royale.jewel.supportClasses.LayoutProxy; LayoutProxy;
 
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 

@@ -16,21 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.formitem
+package org.apache.royale.jewel.supportClasses
 {
-	import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.IChild;
-    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
-    import org.apache.royale.core.ILayoutView;
-    import org.apache.royale.core.IParent;
-	import org.apache.royale.events.IEventDispatcher;
-
 	COMPILE::JS {
-		import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.core.WrappedHTMLElement;
 	}
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.StyledUIBase;
 
     /**
-     *  The FormItemLayoutProxy class is used by Wizard in order for layouts to operate
+     *  The LayoutProxy class is used by components in order for layouts to operate
 	 *  on the Wizard itself. If Wizard were being used, its numElements, getElementAt, etc.
 	 *  functions would actually redirect to its Container content. In order for a layout
 	 *  to work on the Wizard directly (its PreviousButton, NextButton and Container),
@@ -42,7 +40,7 @@ package org.apache.royale.jewel.supportClasses.formitem
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class FormItemLayoutProxy implements ILayoutView, IParent
+	public class LayoutProxy implements ILayoutView, IParent
 	{
         /**
          *  Constructor.
@@ -52,7 +50,7 @@ package org.apache.royale.jewel.supportClasses.formitem
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function FormItemLayoutProxy(host:Object)
+		public function LayoutProxy(host:Object)
 		{
 			super();
 			_host = host;
@@ -75,7 +73,7 @@ package org.apache.royale.jewel.supportClasses.formitem
 		 *  @productversion Royale 0.9.4
 		 */
 		public function get width():Number {
-			return (host as UIBase).width;
+			return (host as StyledUIBase).width;
 		}
 
 		/**
@@ -88,7 +86,7 @@ package org.apache.royale.jewel.supportClasses.formitem
 		 *  @productversion Royale 0.9.4
 		 */
 		public function get height():Number {
-			return (host as UIBase).height;
+			return (host as StyledUIBase).height;
 		}
 
 		/**
@@ -190,15 +188,6 @@ package org.apache.royale.jewel.supportClasses.formitem
         {
             return (host as IContainerBaseStrandChildrenHost).$removeElement(c);
         }
-        
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 */
-		COMPILE::JS
-		public function get somethingelse():WrappedHTMLElement
-		{
-			return (host as UIBase).element;
-		}
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
@@ -206,7 +195,7 @@ package org.apache.royale.jewel.supportClasses.formitem
 		COMPILE::JS
 		public function get element():WrappedHTMLElement
 		{
-			return (host as UIBase).element;
+			return (host as StyledUIBase).element;
 		}
 
 		/**
@@ -222,7 +211,7 @@ package org.apache.royale.jewel.supportClasses.formitem
 		COMPILE::JS
 		public function setDisplayStyleForLayout(value:String):void
 		{
-			(host as UIBase).setDisplayStyleForLayout(value);
+			(host as StyledUIBase).setDisplayStyleForLayout(value);
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
@@ -230,7 +219,7 @@ package org.apache.royale.jewel.supportClasses.formitem
 		COMPILE::JS
 		public function get displayStyleForLayout():String
 		{
-			return (host as UIBase).displayStyleForLayout;
+			return (host as StyledUIBase).displayStyleForLayout;
 		}
 
 	}
