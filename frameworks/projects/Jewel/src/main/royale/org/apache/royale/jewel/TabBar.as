@@ -59,6 +59,9 @@ package org.apache.royale.jewel
 			// rowHeight is not set by default, so set it to NaN
 			rowHeight = NaN;
 
+			// by default the row height (if set) rules
+			variableRowHeight = false;
+
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 
