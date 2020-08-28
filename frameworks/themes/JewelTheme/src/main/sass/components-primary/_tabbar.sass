@@ -25,9 +25,9 @@
 .jewel
     &.tabbar
         &.sameWidths
-            .content
-                > *
-                    flex: 1 0 0%
+            // .content
+            > *
+                flex: 1 0 0% !important
 
 // Jewel TabBarButtonItemRenderer
 
@@ -76,3 +76,6 @@
             // color: $font-theme-color
             color: darken($primary-color, 15%)
             background: rgba($primary-color, .4)
+
+j|TabBar
+    itemsExpand: true

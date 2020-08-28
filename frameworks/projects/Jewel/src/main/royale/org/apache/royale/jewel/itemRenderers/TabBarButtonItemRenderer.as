@@ -55,24 +55,6 @@ package org.apache.royale.jewel.itemRenderers
 			typeNames = "jewel tabbarbutton";
 		}
 
-		// private var _href:String = "#";
-        /**
-         *  the navigation link url
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		// public function get href():String
-		// {
-        //     return _href;   
-		// }
-		// public function set href(value:String):void
-		// {
-        //     _href = value;
-		// }
-
 		private var _text:String = "";
 
 		[Bindable(event="textChange")]
@@ -118,20 +100,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			text = getLabelFromData(this, value);
             super.data = value;
-			
-            // if(value.href !== undefined)
-			// {
-            //     href = String(value.href);
-			// }
-
-			// COMPILE::JS
-			// {
-			// if(textNode != null)
-			// {
-			// 	textNode.nodeValue = text;
-			// 	(element as HTMLElement).setAttribute('href', href);
-			// }	
-			// }
 		}
 
 		COMPILE::JS
@@ -161,14 +129,6 @@ package org.apache.royale.jewel.itemRenderers
 			indicator_content = document.createElement('span') as HTMLSpanElement;
 			indicator_content.className = "indicatorContent";
 			indicator.appendChild(indicator_content);
-            
-			//a.setAttribute('href', href);
-
-			// if(MXMLDescriptor == null)
-			// {
-			// 	textNode = document.createTextNode('') as Text;
-			// 	a.appendChild(textNode);
-			// }
 
             return element;
         }

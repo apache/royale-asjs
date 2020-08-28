@@ -24,9 +24,9 @@
 .jewel
     &.tabbar
         // width: 100%
-        display: flex
-        overflow-y: hidden
-        overflow-x: scroll
+        //display: flex
+        // overflow-y: hidden
+        // overflow-x: scroll
         -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
         -ms-overflow-style: -ms-autohiding-scrollbar !important // IE 10+
         scrollbar-width: none  // Firefox
@@ -38,19 +38,19 @@
         &::-webkit-scrollbar-thumb
             display: none !important
 
-        > .content
-            display: flex
+        // > .content
+            //display: flex
             
-            position: relative
-            flex: 1 0 auto 
-            transform: none
-            will-change: transform
+            // position: relative
+            // flex: 1 0 auto 
+        transform: none
+        will-change: transform
 
 
 j|TabBar
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TabBarView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer")
     IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer")
@@ -75,7 +75,7 @@ $tabbarbutton-padding: 0 24px !default
         
         position: relative
         display: flex
-        flex: 1 0 auto
+        flex: 1 0 auto !important
         white-space: nowrap
         justify-content: center
         z-index: 1
@@ -111,6 +111,7 @@ $tabbarbutton-padding: 0 24px !default
 
 j|TabBarButtonItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
+    // IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 
 
 j|TabBarContent

@@ -18,11 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    COMPILE::JS
-    {
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
-    }
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.core.ISelectionModel;
 
@@ -74,35 +69,6 @@ package org.apache.royale.jewel
 			}
 		}
 
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 */
-		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-			addElementToWrapper(this,'div');
-			element.className = "content";
-			positioner = document.createElement('div') as WrappedHTMLElement;
-			return element;
-		}
-
-		COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
-            _positioner.royale_wrapper = this;
-			_positioner.appendChild(element);
-		}
-
 		private var _sameWidths:Boolean = false;
 		/**
 		 *  Assigns variable gap to grid from 1 to 20
@@ -129,5 +95,14 @@ package org.apache.royale.jewel
 				toggleClass("sameWidths", _sameWidths);
 			}
 		}
+
+		/**
+		 * Load the layout bead if it hasn't already been loaded.
+         * 
+         * @private
+         */
+        // override protected function addLayoutBead():void {
+		// 	// we need to proxy the layout bead to the content in TabBarView
+		// }
 	}
 }
