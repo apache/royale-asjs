@@ -29,11 +29,10 @@ package org.apache.royale.jewel.supportClasses
 
     /**
      *  The LayoutProxy class is used by components in order for layouts to operate
-	 *  on the Wizard itself. If Wizard were being used, its numElements, getElementAt, etc.
+	 *  on the strand itself. If the strand were being used, its numElements, getElementAt, etc.
 	 *  functions would actually redirect to its Container content. In order for a layout
-	 *  to work on the Wizard directly (its PreviousButton, NextButton and Container),
-	 *  this proxy is used which will invoke the Wizard's $numElements, $getElementAt, etc
-	 *  functions.
+	 *  to work on the strand directly this proxy is used which will invoke the strands's $numElements,
+	 *  $getElementAt, etc functions.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
