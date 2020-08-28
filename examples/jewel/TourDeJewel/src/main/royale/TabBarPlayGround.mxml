@@ -90,6 +90,12 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
+	<fx:Style>
+		.side-tab-content {
+			background-color: #f6f6f6;
+		}
+	</fx:Style>
+
 	<c:beads>
 		<js:ContainerDataBinding/>
 	</c:beads>
@@ -108,7 +114,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel TabBar"/>
+					<html:H3 text="AssignTabContent bead and Vertical Renderer"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
@@ -148,7 +154,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel TabBar"/>
+					<html:H3 text="Horizontal Renderer"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
@@ -159,7 +165,7 @@ limitations under the License.
 							<js:ConstantBinding sourcePropertyName="tabBarData" destinationPropertyName="dataProvider"/>
 						</j:beads>
 					</j:TabBar>
-					<j:TabBarContent localId="tabcontent2" selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).hash}">
+					<j:TabBarContent selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).hash}">
 						<j:SectionContent name="tab1">
 							<j:Label text="Tab 1"/>
 						</j:SectionContent>
@@ -214,14 +220,54 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel TabBar with horizontal scroll"/>
+					<html:H3 text="Vertical Layout with content aside."/>
+				</j:CardHeader>
+				<j:CardPrimaryContent width="100%" height="100%">
+					<j:Label multiline="true">
+						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side.]]></j:html>
+					</j:Label>
+					<j:HGroup gap="3" width="100%" height="100%">
+						<j:TabBar className="tabBarHorizontalIconItemRenderer" dataProvider="{tabBarData}"
+							localId="vtabbar" selectedIndex="2" minWidth="128">
+							<j:beads>
+								<j:VerticalLayout/>
+							</j:beads>
+						</j:TabBar>
+						<j:TabBarContent selectedContent="{(vtabbar.selectedItem as TabBarButtonVO).hash}"
+							className="side-tab-content" width="100%" height="100%">
+							<j:beads>
+								<j:Paddings padding="15"/>
+							</j:beads>
+							<j:SectionContent name="tab1" width="100%" height="200">
+								<j:Label text="Tab Content 1"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab2" width="100%" height="200">
+								<j:Label text="Tab Content 2"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab3" width="100%" height="200">
+								<j:Label text="Tab Content 3"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab4" width="100%" height="200">
+								<j:Label text="Tab Content 4"/>
+							</j:SectionContent>
+						</j:TabBarContent>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Horizontal Scroll"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> has twelve tabs. Notice that "width" needs to be configured to 100% to make scroll work.]]></j:html>
+						<j:html><![CDATA[Use ScrollingViewport bead to add scrolling. This <b>TabBar</b> has twelve tabs. Notice that "width" needs to be configured to 100% to make scroll work.]]></j:html>
 					</j:Label>
 					<j:TabBar width="100%" localId="tabbar3" dataProvider="{scrolltabBarData}">
 						<j:beads>
+							<j:ScrollingViewport/>
 							<j:AssignTabContent selectedContentProperty="hash">
 								<j:content>
 									<j:TabBarContent selectedContent="{(tabbar3.selectedItem as TabBarButtonVO).hash}">
