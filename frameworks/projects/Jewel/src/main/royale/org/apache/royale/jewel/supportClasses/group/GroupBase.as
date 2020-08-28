@@ -118,7 +118,15 @@ package org.apache.royale.jewel.supportClasses.group
 		{
 			super.addedToParent();
 			
-			// Load the layout bead if it hasn't already been loaded.
+            addLayoutBead();
+		}
+
+        /**
+		 * Load the layout bead if it hasn't already been loaded.
+         * 
+         * @private
+         */
+        protected function addLayoutBead():void {
 			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
 		}
 		
