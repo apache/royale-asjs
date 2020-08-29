@@ -1169,8 +1169,8 @@ j|FormItem {
     border-radius: 0px;
   }
 }
-.jewel.tabbar.sameWidths .content > * {
-  flex: 1 0 0%;
+.jewel.tabbar.sameWidths > * {
+  flex: 1 0 0% !important;
 }
 
 .jewel.tabbarbutton {
@@ -1200,6 +1200,10 @@ j|FormItem {
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
   color: #be390e;
   background: rgba(239, 90, 42, 0.4);
+}
+
+j|TabBar {
+  itemsExpand: true;
 }
 
 .jewel.simpletable {
