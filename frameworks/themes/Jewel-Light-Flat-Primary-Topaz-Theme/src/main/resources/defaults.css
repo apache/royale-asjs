@@ -1186,10 +1186,6 @@ j|FormItem {
   font-weight: 600;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.jewel.tabbarbutton > .content {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
 .jewel.tabbarbutton .indicator > .indicatorContent {
   height: 2px;
   background-color: #EF5A2A;
