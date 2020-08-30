@@ -3674,7 +3674,6 @@ j|TabBar {
 
 .jewel.tabbarbutton {
   margin: 0;
-  padding: 0 24px;
   position: relative;
   display: flex;
   flex: 1 0 auto !important;

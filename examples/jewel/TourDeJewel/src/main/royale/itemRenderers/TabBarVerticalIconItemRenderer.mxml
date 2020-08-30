@@ -37,7 +37,7 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding/>
-        <j:Paddings paddingTop="12" paddingBottom="12"/>
+        <j:Paddings paddingLeft="24" paddingRight="24" paddingTop="12" paddingBottom="12"/>
     </j:beads>
 
     <j:VGroup itemsHorizontalAlign="itemsCenter">

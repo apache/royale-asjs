@@ -67,15 +67,22 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 			trace(_strand, tir.height, paddings, presentationModel.rowHeight, ListPresentationModel.DEFAULT_ROW_HEIGHT )
 			
-			if(!paddings && !(tir.height > ListPresentationModel.DEFAULT_ROW_HEIGHT))
+			if(!paddings)
 			{
 				paddings = new Paddings();
-				paddings.paddingTop = DEFAULT_PADDING;
-				paddings.paddingBottom = DEFAULT_PADDING;
+				// always set at least L & R paddings
+				paddings.paddingLeft = DEFAULT_PADDING_LR;
+				paddings.paddingRight = DEFAULT_PADDING_LR;
+				if(!(tir.height > ListPresentationModel.DEFAULT_ROW_HEIGHT)) 
+				{
+					paddings.paddingTop = DEFAULT_PADDING_TB;
+					paddings.paddingBottom = DEFAULT_PADDING_TB;
+				}
 				ir.addBead(paddings)
 			}
 		}
 
-		public static const DEFAULT_PADDING:Number = 12;
+		public static const DEFAULT_PADDING_LR:Number = 24;
+		public static const DEFAULT_PADDING_TB:Number = 12;
 	}
 }
