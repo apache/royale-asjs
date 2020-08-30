@@ -103,13 +103,13 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
-		protected var span:HTMLSpanElement;
+		public var span:HTMLSpanElement;
 		
 		COMPILE::JS
-		protected var indicator:HTMLSpanElement;
+		public var indicator:HTMLSpanElement;
 		
 		COMPILE::JS
-		protected var indicator_content:HTMLSpanElement;
+		public var indicator_content:HTMLSpanElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
