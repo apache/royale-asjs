@@ -21,8 +21,9 @@ package org.apache.royale.jewel.supportClasses.bar
 	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The BarRow class is a container component used with Bar or TopAppBar
-	 *  It represent a row. Bar and TopAppBar supports more than one row
+	 *  The BarRow class is a container to organize content in a row. 
+	 *  Is used with Bar, TopAppBar or CardHeader and CardActions.
+	 *  It represent a row. More than one row can be suported.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
