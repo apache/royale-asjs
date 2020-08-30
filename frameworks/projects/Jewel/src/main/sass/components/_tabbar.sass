@@ -70,7 +70,7 @@ $tabbarbutton-padding: 0 24px !default
     &.tabbarbutton
         // height: $tabbarbutton-margin-height
         // min-height: $tabbarbutton-margin-height
-        margin: $tabbarbutton-margin
+        margin: $tabbarbutton-margin //to avoid margin in safari
         padding: $tabbarbutton-padding
         
         position: relative
@@ -88,6 +88,12 @@ $tabbarbutton-padding: 0 24px !default
             justify-content: center
 
             height: inherit
+        
+        > .tab-internal-span
+            position: absolute
+            bottom: 0
+            > .tab-internal-text
+                visibility: hidden
 
         .indicator
             display: flex

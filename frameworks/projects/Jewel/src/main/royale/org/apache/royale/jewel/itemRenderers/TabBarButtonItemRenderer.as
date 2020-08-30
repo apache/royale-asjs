@@ -118,8 +118,11 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
+			//element (span.content)
             span = addElementToWrapper(this, 'span') as HTMLSpanElement;
 			span.className = "content";
+			
+			//postioner (button)
 			positioner = document.createElement('button') as WrappedHTMLElement;
 
 			indicator = document.createElement('span') as HTMLSpanElement;
@@ -134,9 +137,10 @@ package org.apache.royale.jewel.itemRenderers
         }
 
 		/**
-		 * adding indicator to positioner makes the indicator fill all available space
-		 * adding to "span" HTMLElement restrict indicator to content.
-		 * Override this function in TabBarButtonItemRenderer subclasses
+		 * Adding indicator to positioner makes the indicator fill all available space
+		 * Override this function in TabBarButtonItemRenderer subclasses.
+		 * Check TabBarButtonInidicatorRestrictedToContentItemRenderer for a "restricted to content" indicator
+		 * @see org.apache.royale.jewel.itemRenderers. TabBarButtonInidicatorRestrictedToContentItemRenderer
 		 */
 		COMPILE::JS
 		protected function addIndicator():void

@@ -18,7 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {	
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.layout.IPaddings;
+	import org.apache.royale.jewel.beads.layouts.Paddings;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;
 
 	/**
 	 *  The TabBarItemRendererInitializer class initializes item renderers
@@ -46,8 +51,31 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
         
-        // remove paddings, since tabbarbutton doesn't use it
+		override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        {
+			super.setupVisualsForItemRenderer(ir);
+		}
+		
+		/**
+		 * padding in tabbar buttons always must to be applied to content (span)
+		 * not to the button itself, since we have an indicator that can be
+		 * restricted to content or take all available button space.
+		 */
 		override public function setPaddings(ir:IStrand):void {
-		}	
+			var tir:TabBarButtonItemRenderer = ir as TabBarButtonItemRenderer;
+			var paddings:Paddings = tir.getBeadByType(IPaddings) as Paddings;
+
+			trace(_strand, tir.height, paddings, presentationModel.rowHeight, ListPresentationModel.DEFAULT_ROW_HEIGHT )
+			
+			if(!paddings && !(tir.height > ListPresentationModel.DEFAULT_ROW_HEIGHT))
+			{
+				paddings = new Paddings();
+				paddings.paddingTop = DEFAULT_PADDING;
+				paddings.paddingBottom = DEFAULT_PADDING;
+				ir.addBead(paddings)
+			}
+		}
+
+		public static const DEFAULT_PADDING:Number = 12;
 	}
 }

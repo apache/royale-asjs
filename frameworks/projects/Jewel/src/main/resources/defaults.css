@@ -3690,6 +3690,13 @@ j|TabBar {
   justify-content: center;
   height: inherit;
 }
+.jewel.tabbarbutton > .tab-internal-span {
+  position: absolute;
+  bottom: 0;
+}
+.jewel.tabbarbutton > .tab-internal-span > .tab-internal-text {
+  visibility: hidden;
+}
 .jewel.tabbarbutton .indicator {
   display: flex;
   position: absolute;

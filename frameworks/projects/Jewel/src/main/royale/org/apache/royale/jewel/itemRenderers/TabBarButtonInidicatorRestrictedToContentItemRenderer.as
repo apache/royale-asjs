@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
-{    
+{
 	/**
 	 *  The TabBarButtonInidicatorRestrictedToContentItemRenderer
      *  is a TabBarButtonItemRenderer that restrict indicator to content
@@ -42,15 +42,40 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 		}
 
+		override public function set text(value:String):void
+		{
+			super.text = value;
+			COMPILE::JS
+			{
+			internal_text.innerHTML = value;
+			}
+		}
+
+		COMPILE::JS
+		private var __internal__:HTMLSpanElement;
+		COMPILE::JS
+		private var internal_text:HTMLSpanElement;
+
 		/**
-		 * adding indicator to positioner makes the indicator fill all available space
-		 * adding to "span" HTMLElement restrict indicator to content.
-		 * Override this function in TabBarButtonItemRenderer subclasses
+		 * We create an internal element with the text and make it invisible.
+		 * So we position absolutely to the bottom and add the indicator
+		 * to this internal element.
+		 * In this way we can manage paddings and other things
+		 * in extended renderers.
 		 */
 		COMPILE::JS
 		override protected function addIndicator():void
 		{
-			span.appendChild(indicator);
+			// this is to position the indicator when restricted
+			__internal__ = document.createElement('span') as HTMLSpanElement;
+			__internal__.className = "tab-internal-span";
+			positioner.appendChild(__internal__);
+
+			internal_text = document.createElement('span') as HTMLSpanElement;
+			internal_text.className = "tab-internal-text";
+			__internal__.appendChild(internal_text);
+
+			__internal__.appendChild(indicator);
 		}
 	}
 }

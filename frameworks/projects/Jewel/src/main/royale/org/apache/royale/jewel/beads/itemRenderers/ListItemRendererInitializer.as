@@ -20,12 +20,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
-	import org.apache.royale.core.IListWithPresentationModel;
 
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
@@ -73,8 +73,6 @@ package org.apache.royale.jewel.beads.itemRenderers
         
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
-			super.setupVisualsForItemRenderer(ir);
-
             if (presentationModel) {
 				if(!presentationModel.variableRowHeight)
                 	StyledUIBase(ir).height = presentationModel.rowHeight;
@@ -92,6 +90,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 					(ir as StyledMXMLItemRenderer).emphasis = StyledUIBase(_strand).emphasis;
 				}
 			}
+
+			super.setupVisualsForItemRenderer(ir);
 		}
 	}
 }
