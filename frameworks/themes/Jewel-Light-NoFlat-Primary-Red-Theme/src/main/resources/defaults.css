@@ -1177,6 +1177,10 @@ j|FormItem {
   flex: 1 0 0% !important;
 }
 
+j|TabBar {
+  itemsExpand: true;
+}
+
 .jewel.tabbarbutton {
   font-size: 1em;
   font-weight: 500;
@@ -1202,8 +1206,8 @@ j|FormItem {
   background: rgba(236, 28, 36, 0.4);
 }
 
-j|TabBar {
-  itemsExpand: true;
+j|TabBarButtonItemRenderer {
+  itemsHorizontalAlign: itemsCenter;
 }
 
 .jewel.simpletable {
