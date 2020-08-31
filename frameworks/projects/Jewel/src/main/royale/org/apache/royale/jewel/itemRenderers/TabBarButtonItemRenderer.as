@@ -26,7 +26,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
     
 	/**
 	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 
@@ -38,7 +37,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TabBarButtonItemRenderer extends StyledMXMLItemRenderer implements INavigationRenderer
+	public class TabBarButtonItemRenderer extends ListItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -55,52 +54,10 @@ package org.apache.royale.jewel.itemRenderers
 			typeNames = "jewel tabbarbutton";
 		}
 
-		private var _text:String = "";
+		// override public function set align(value:String):void
+		// {
 
-		[Bindable(event="textChange")]
-        /**
-         *  The text of the navigation link
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-
-		public function set text(value:String):void
-		{
-            if(value != _text) {
-				_text = value;
-				COMPILE::JS
-				{
-				if(MXMLDescriptor == null)
-				{
-					element.innerHTML = _text;
-				}
-				}
-				dispatchEvent(new Event('textChange'));
-			}
-		}
-
-		/**
-		 *  Sets the data value and uses the String version of the data for display.
-		 * 
-		 *  @param Object data The object being displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		override public function set data(value:Object):void
-		{
-			text = getLabelFromData(this, value);
-            super.data = value;
-		}
+		// }
 
 		COMPILE::JS
 		public var span:HTMLSpanElement;

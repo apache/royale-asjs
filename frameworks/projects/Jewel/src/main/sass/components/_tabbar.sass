@@ -68,19 +68,17 @@ $tabbarbutton-margin: 0 !default
     &.tabbarbutton
         margin: $tabbarbutton-margin //to avoid margin in safari
         
-        position: relative
-        display: flex
         flex: 1 0 auto !important
+        position: relative
         white-space: nowrap
-        justify-content: center
         z-index: 1
         overflow: initial
 
         > .content
             display: flex
-            position: relative
             align-items: center
-            justify-content: center
+            // position: relative
+            // justify-content: center
 
             height: inherit
         
@@ -112,8 +110,7 @@ $tabbarbutton-margin: 0 !default
 
 j|TabBarButtonItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
-    // IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
-
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
 
 j|TabBarContent
     IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")

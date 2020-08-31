@@ -3674,19 +3674,15 @@ j|TabBar {
 
 .jewel.tabbarbutton {
   margin: 0;
-  position: relative;
-  display: flex;
   flex: 1 0 auto !important;
+  position: relative;
   white-space: nowrap;
-  justify-content: center;
   z-index: 1;
   overflow: initial;
 }
 .jewel.tabbarbutton > .content {
   display: flex;
-  position: relative;
   align-items: center;
-  justify-content: center;
   height: inherit;
 }
 .jewel.tabbarbutton > .tab-internal-span {
@@ -3717,6 +3713,7 @@ j|TabBar {
 
 j|TabBarButtonItemRenderer {
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
 }
 
 j|TabBarContent {
