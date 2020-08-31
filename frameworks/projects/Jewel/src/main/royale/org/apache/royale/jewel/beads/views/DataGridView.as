@@ -26,8 +26,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
-    import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -40,7 +39,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.LabelFunction;
 	import org.apache.royale.jewel.DataGrid;
-	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
@@ -206,11 +205,6 @@ package org.apache.royale.jewel.beads.views
 
                 var list:IDataGridColumnList = new columnClass();
                 
-                var pm:ListPresentationModel = list.getBeadByType(IListPresentationModel) as ListPresentationModel;
-                pm.rowHeight = _presentationModel.rowHeight;
-                pm.variableRowHeight = false;
-                pm.align = dataGridColumn.align;
-                
                 list.datagrid = _dg as DataGrid;
                 list.emphasis = (_dg as IEmphasis).emphasis;
                 
@@ -225,7 +219,7 @@ package org.apache.royale.jewel.beads.views
                 }
                 
                 // by default make columns get the 1/n of the maximun space available
-        //        (list as ILayoutChild).percentWidth = 100 / len;
+                // (list as ILayoutChild).percentWidth = 100 / len;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
                 if(dataGridColumn.labelFunction)
@@ -239,6 +233,12 @@ package org.apache.royale.jewel.beads.views
                 (list as StyledUIBase).tabIndex = -1;
 
                 (_listArea as IParent).addElement(list as IChild);
+
+                var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel;
+                pm.rowHeight = _presentationModel.rowHeight;
+                pm.variableRowHeight = false;
+                pm.align = dataGridColumn.align;
+                
                 columnLists.push(list);
             }
         }

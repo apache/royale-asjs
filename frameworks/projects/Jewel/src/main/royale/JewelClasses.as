@@ -44,8 +44,6 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.beads.models.WizardModel; WizardModel;
         import org.apache.royale.jewel.beads.models.WizardStep; WizardStep;
         import org.apache.royale.jewel.beads.models.PopUpModel; PopUpModel;
-        import org.apache.royale.jewel.beads.models.ListPresentationModel; ListPresentationModel;
-        import org.apache.royale.jewel.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 
         import org.apache.royale.jewel.beads.controllers.PopUpMouseController; PopUpMouseController;
         import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;

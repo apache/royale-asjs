@@ -235,6 +235,7 @@
     <component id="ListPresentationModel" class="org.apache.royale.jewel.beads.models.ListPresentationModel"/>
     <component id="TabBarPresentationModel" class="org.apache.royale.jewel.beads.models.TabBarPresentationModel"/>
     <component id="DataGridColumnListPresentationModel" class="org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel"/>
+    <component id="DataGridPresentationModel" class="org.apache.royale.jewel.beads.models.DataGridPresentationModel"/>
 
     <component id="Viewport" class="org.apache.royale.jewel.supportClasses.Viewport"/>
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
