@@ -42,6 +42,16 @@ package org.apache.royale.routing
 	[Event(name="stateChange", type="org.apache.royale.events.Event")]
 
 	/**
+	 *  Dispatched when the route is complete.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 */
+	[Event(name="routeComplete", type="org.apache.royale.events.Event")]
+
+	/**
 	 *  Dispatched when bindings are initialized
 	 *
 	 *  @langversion 3.0
@@ -138,6 +148,7 @@ package org.apache.royale.routing
 			else// if there's no hash we should still dispatch a stateChange event so the beads can set defaults
 			{
 			  dispatchEvent(new Event("stateChange"));
+				dispatchEvent(new Event("routeComplete"));
 			}
 		  }
 		}
@@ -146,6 +157,8 @@ package org.apache.royale.routing
 		{
 			parseHash();
 			dispatchEvent(new Event("stateChange"));
+			// after all the state handlers run, the route can be deemed complete
+			dispatchEvent(new Event("routeComplete"));
 		}
 
 		private function parseHash():void
@@ -213,6 +226,8 @@ package org.apache.royale.routing
 		{
 		  setState();
 		  dispatchEvent(new Event("stateChange"));
+			// after all the state handlers run, the route can be deemed complete
+			dispatchEvent(new Event("routeComplete"));
 		}
 
 		private var _mxmlDescriptor:Array;

@@ -42,6 +42,16 @@ package org.apache.royale.routing
 	[Event(name="stateChange", type="org.apache.royale.events.Event")]
 
 	/**
+	 *  Dispatched when the route is complete.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 */
+	[Event(name="routeComplete", type="org.apache.royale.events.Event")]
+
+	/**
 	 *  Dispatched when bindings are initialized
 	 *
 	 *  @langversion 3.0
@@ -142,6 +152,8 @@ package org.apache.royale.routing
 		{
 			parseLocation();
 			dispatchEvent(new Event("stateChange"));
+			// after all the state handlers run, the route can be deemed complete
+			dispatchEvent(new Event("routeComplete"));
 		}
 
 		private function parseLocation():void
@@ -205,6 +217,8 @@ package org.apache.royale.routing
 		{
 		  setState();
 		  dispatchEvent(new Event("stateChange"));
+			// after all the state handlers run, the route can be deemed complete
+			dispatchEvent(new Event("routeComplete"));
 		}
 
 		private var _mxmlDescriptor:Array;
