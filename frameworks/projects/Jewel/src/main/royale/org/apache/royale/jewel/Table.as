@@ -220,13 +220,18 @@ package org.apache.royale.jewel
 		}
 		
 		/**
-		 * We use this opportunity to add the table key controller
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
+         *  load necesary beads. This method can be override in subclasses to
+         *  add other custom beads needed, so all requested beads be loaded before
+         *  signal the "beadsAdded" event.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.10.0
+         */
+        override protected function loadBeads():void
+        {
+			super.loadBeads();
 			loadBeadFromValuesManager(IBeadKeyController, "iBeadKeyController", this);
 		}
 		
