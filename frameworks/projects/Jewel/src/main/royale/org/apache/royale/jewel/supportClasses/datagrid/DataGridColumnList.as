@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
+    import org.apache.royale.core.IBead;
     import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.jewel.List;
-    import org.apache.royale.jewel.beads.models.ListPresentationModel;
+    import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
+    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     
     //--------------------------------------
     //  Events
@@ -60,8 +62,6 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		{
 			super();
 			typeNames = "jewel list column";
-            // rowHeight need to be set to a default value to avoid potential different column heights
-			rowHeight = ListPresentationModel.DEFAULT_ROW_HEIGHT;
 		}
 		
         /**
@@ -93,5 +93,24 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		public function set datagrid(value:DataGrid):void {
             _datagrid = value;
         }
+
+        /**
+		 *  The presentation model for the list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 */
+		override public function get presentationModel():IBead
+		{
+			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			if (presModel == null) {
+				presModel = new DataGridColumnListPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
+		}
 	}
 }

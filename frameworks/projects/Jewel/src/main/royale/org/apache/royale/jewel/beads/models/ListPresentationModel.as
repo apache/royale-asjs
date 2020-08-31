@@ -50,9 +50,8 @@ package org.apache.royale.jewel.beads.models
 		{
 			super();
 		}
-
 		
-		private var _rowHeight:Number = DEFAULT_ROW_HEIGHT;
+		private var _rowHeight:Number = NaN;
 		/**
 		 *  The height of each row.
 		 *

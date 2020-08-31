@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.jewel.beads.models.TabBarPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 *  The TabBar class is a List used for navigate other organized content
@@ -45,18 +48,9 @@ package org.apache.royale.jewel
 		public function TabBar()
 		{
 			super();
-
             typeNames = "jewel tabbar";
-
 			//TabBar is always selected, so selectedIndex can't be -1, at least it will default to 0
 			ISelectionModel(model).selectedIndex = 0;
-
-			// rowHeight is not set by default, so set it to NaN
-			rowHeight = NaN;
-
-			// by default the row height (if set) rules
-			variableRowHeight = false;
-
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 
@@ -94,6 +88,26 @@ package org.apache.royale.jewel
 				_sameWidths = value;
 				toggleClass("sameWidths", _sameWidths);
 			}
+		}
+
+
+		/**
+		 *  The presentation model for the tabbar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.10.0
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 */
+		override public function get presentationModel():IBead
+		{
+			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			if (presModel == null) {
+				presModel = new TabBarPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
 		}
 
 		/**
