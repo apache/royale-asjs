@@ -59,15 +59,6 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 
-		// private var _layout:StyledLayoutBase;
-		// public function get layout():StyledLayoutBase
-		// {
-		// 	if(!_layout)
-		// 		_layout = _strand.getBeadByType(IBeadLayout) as StyledLayoutBase;
-
-		// 	return _layout;
-		// }
-
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.StyledMXMLItemRenderer
@@ -86,27 +77,26 @@ package org.apache.royale.jewel.beads.views
 					selectionBead.selected = false;
 					var lastRect:ClientRect = prev_ir.getBoundingBox;
 					var currentRect:ClientRect = ir.getBoundingBox;
-					var widthDiff:Number = lastRect.width / currentRect.width;
-
+					var sizeDiff:Number;
+					var posDiff:Number;
+					var axis:String;
 					if((_strand as IStyledUIBase).containsClass("horizontal"))
 					{
-						if(isNaN(widthDiff))
-							widthDiff = 1;
-						var positionXDiff:Number = lastRect.left - currentRect.left;
+						axis = "X";
+						sizeDiff = lastRect.width / currentRect.width;
+						if(isNaN(sizeDiff))
+							sizeDiff = 1;
+						posDiff = lastRect.left - currentRect.left;
 					} else {
-						var heightDiff:Number = lastRect.height / currentRect.height;
-						if(isNaN(heightDiff))
-							heightDiff = 1;
-						var positionYDiff:Number = lastRect.top - currentRect.top;
+						axis = "Y";
+						sizeDiff = lastRect.height / currentRect.height;
+						if(isNaN(sizeDiff))
+							sizeDiff = 1;
+						posDiff = lastRect.top - currentRect.top;
 					}
-					
 					selectionBead = getSelectionRenderBead(ir);
 					selectionBead.selected = true;
-					if((_strand as IStyledUIBase).containsClass("horizontal"))
-						ir.animateIndicator("X", positionXDiff, widthDiff, 300, 'ease-in-out');
-					else
-						ir.animateIndicator("Y", positionYDiff, heightDiff, 300, 'ease-in-out');
-
+					ir.animateIndicator(axis, posDiff, sizeDiff, 300, 'ease-in-out');
 				} else
 				{
 					selectionBead = getSelectionRenderBead(ir);

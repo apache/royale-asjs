@@ -3685,12 +3685,8 @@ j|TabBar {
   align-items: center;
   height: inherit;
 }
-.jewel.tabbarbutton > .tab-internal-span {
+.jewel.tabbarbutton ._internal_ {
   position: absolute;
-  bottom: 0;
-}
-.jewel.tabbarbutton > .tab-internal-span > .tab-internal-text {
-  visibility: hidden;
 }
 .jewel.tabbarbutton .indicator {
   display: flex;
@@ -3710,8 +3706,14 @@ j|TabBar {
   opacity: 1;
 }
 
+.jewel.tabbar.layout.horizontal ._internal_ {
+  bottom: 0;
+}
 .jewel.tabbar.layout.horizontal .indicator > .indicator-content {
   width: 100%;
+}
+.jewel.tabbar.layout.vertical ._internal_ {
+  right: 0;
 }
 .jewel.tabbar.layout.vertical .indicator > .indicator-content {
   height: 100%;

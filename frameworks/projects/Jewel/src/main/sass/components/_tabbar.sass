@@ -82,12 +82,9 @@ $tabbarbutton-margin: 0 !default
 
             height: inherit
         
-        > .tab-internal-span
+        ._internal_
             position: absolute
-            bottom: 0
-            > .tab-internal-text
-                visibility: hidden
-
+            
         .indicator
             display: flex
             position: absolute
@@ -112,10 +109,14 @@ $tabbarbutton-margin: 0 !default
     &.tabbar
         &.layout
             &.horizontal
+                ._internal_
+                    bottom: 0
                 .indicator
                     > .indicator-content
                         width: 100%
             &.vertical
+                ._internal_
+                    right: 0
                 .indicator
                     > .indicator-content
                         height: 100%

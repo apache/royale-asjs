@@ -47,14 +47,12 @@ package org.apache.royale.jewel.itemRenderers
 			super.text = value;
 			COMPILE::JS
 			{
-			internal_text.innerHTML = value;
+			setTimeout(updateInternalSize, 100);
 			}
 		}
 
 		COMPILE::JS
-		private var __internal__:HTMLSpanElement;
-		COMPILE::JS
-		private var internal_text:HTMLSpanElement;
+		private var _internal_:HTMLDivElement;
 
 		/**
 		 * We create an internal element with the text and make it invisible.
@@ -67,15 +65,17 @@ package org.apache.royale.jewel.itemRenderers
 		override protected function addIndicator():void
 		{
 			// this is to position the indicator when restricted
-			__internal__ = document.createElement('span') as HTMLSpanElement;
-			__internal__.className = "tab-internal-span";
-			positioner.appendChild(__internal__);
+			_internal_ = document.createElement('div') as HTMLDivElement;
+			_internal_.className = "_internal_";
+			positioner.appendChild(_internal_);
+			_internal_.appendChild(indicator);
+		}
 
-			internal_text = document.createElement('span') as HTMLSpanElement;
-			internal_text.className = "tab-internal-text";
-			__internal__.appendChild(internal_text);
-
-			__internal__.appendChild(indicator);
+		COMPILE::JS
+		private function updateInternalSize():void
+		{
+			_internal_.style.width = span.offsetWidth + "px";
+			_internal_.style.height = span.offsetHeight + "px";
 		}
 	}
 }
