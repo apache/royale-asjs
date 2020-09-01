@@ -23,9 +23,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.html.util.getLabelFromData;
     
 	/**
 	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 
@@ -54,10 +51,34 @@ package org.apache.royale.jewel.itemRenderers
 			typeNames = "jewel tabbarbutton";
 		}
 
-		// override public function set align(value:String):void
-		// {
+		/**
+		 *  How items align in the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		override public function get align():String
+		{
+			return layout.itemsHorizontalAlign;
+		}
 
-		// }
+		override public function set align(value:String):void
+		{
+			switch(value)
+			{
+				case "left":
+					layout.itemsHorizontalAlign = "itemsLeft";
+					break;
+				case "center":
+					layout.itemsHorizontalAlign = "itemsCenter";
+					break;
+				case "right":
+					layout.itemsHorizontalAlign = "itemsRight";
+					break;
+			}
+		}
 
 		COMPILE::JS
 		public var span:HTMLSpanElement;

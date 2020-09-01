@@ -47,6 +47,10 @@ package org.apache.royale.jewel.beads.models
 			// by default the row height (if set) rules
 			variableRowHeight = false;
 
+			// the most basic tabbar item is not just text, are text inside content.
+			// so this time layout takes control.
+			// also default is center alignment of content
+			align = "center";
 		}
 	}
 }

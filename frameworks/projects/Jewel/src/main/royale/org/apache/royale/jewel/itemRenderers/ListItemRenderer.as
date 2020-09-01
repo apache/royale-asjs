@@ -31,6 +31,7 @@ package org.apache.royale.jewel.itemRenderers
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+    import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
     import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
@@ -177,6 +178,7 @@ package org.apache.royale.jewel.itemRenderers
 			addLayoutBead();
 		}
 
+		protected var layout:StyledLayoutBase;
 		/**
 		 *  load the bead layout for this renderer
 		 *  
@@ -186,7 +188,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @productversion Royale 0.9.7
 		 */
 		public function addLayoutBead():void {
-			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+			layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this) as StyledLayoutBase;
 		}
 	}
 }
