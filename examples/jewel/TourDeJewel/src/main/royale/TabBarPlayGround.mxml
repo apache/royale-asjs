@@ -50,10 +50,22 @@ limitations under the License.
 			private function updateTabBarData():void
 			{
 				tabBarData = new ArrayList([
-					new TabBarButtonVO("Other 1", "tab1", MaterialIconType.MORE),
-					new TabBarButtonVO("Other 2", "tab2", MaterialIconType.PAGES),
-					new TabBarButtonVO("Other 3", "tab3", MaterialIconType.ZOMM_IN)
+					new TabBarButtonVO("Other Tab 1", "tab1", MaterialIconType.MORE),
+					new TabBarButtonVO("Other Tab 2", "tab2", MaterialIconType.PAGES),
+					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOMM_IN)
 				]);
+			}
+
+			private var _tabBarDataOptional:ArrayList = new ArrayList([
+					new TabBarButtonVO("Other Tab 1", "tab1", MaterialIconType.MORE),
+					new TabBarButtonVO("Other Tab 2", "tab2", MaterialIconType.PAGES),
+					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOMM_IN)
+				]);
+
+			[Bindable]
+			public function get tabBarDataOptional():ArrayList
+			{
+				return _tabBarDataOptional;
 			}
             
 			private var _scrolltabBarData:ArrayList = new ArrayList([
@@ -237,10 +249,10 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent width="100%" height="100%">
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side. Also use restricted indicator to content.]]></j:html>
 					</j:Label>
 					<j:HGroup gap="3" width="100%" height="100%">
-						<j:TabBar className="tabBarHorizontalIconItemRenderer" dataProvider="{tabBarData}"
+						<j:TabBar className="tabBarVerticalIconItemRenderer" dataProvider="{tabBarDataOptional}"
 							localId="vtabbar" selectedIndex="2">
 							<j:beads>
 								<j:VerticalLayout/>
@@ -361,6 +373,47 @@ limitations under the License.
 							</j:AssignTabContent>
 						</j:beads>
 					</j:TabBar>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Mobile Layout (Bottom position and indicator on top)"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent itemsHorizontalAlign="itemsCenter">
+					<j:Label multiline="true" width="100%">
+						<j:html><![CDATA[This <b>TabBar</b> is positioned below the content and the indicator is configured to be on top.]]></j:html>
+					</j:Label>
+
+					<j:VGroup width="400" height="600">
+						<j:TabBarContent selectedContent="{(bottomTabbar.selectedItem as TabBarButtonVO).hash}"
+							className="side-tab-content" width="100%" height="100%">
+							<j:beads>
+								<j:Paddings padding="15"/>
+							</j:beads>
+							<j:SectionContent name="tab1" width="100%" height="200">
+								<j:Label text="Tab Content 1"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab2" width="100%" height="200">
+								<j:Label text="Tab Content 2"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab3" width="100%" height="200">
+								<j:Label text="Tab Content 3"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab4" width="100%" height="200">
+								<j:Label text="Tab Content 4"/>
+							</j:SectionContent>
+						</j:TabBarContent>
+						<j:TabBar localId="bottomTabbar" selectedIndex="1" width="100%"
+							className="tabBarVerticalIconItemRenderer" dataProvider="{tabBarData}">
+							<j:beads>
+								<j:TabBarPresentationModel indicatorToOppositeSide="true"/>
+							</j:beads>
+						</j:TabBar>
+					</j:VGroup>
+
 				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
