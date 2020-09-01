@@ -241,7 +241,7 @@ limitations under the License.
 					</j:Label>
 					<j:HGroup gap="3" width="100%" height="100%">
 						<j:TabBar className="tabBarHorizontalIconItemRenderer" dataProvider="{tabBarData}"
-							localId="vtabbar" selectedIndex="2" minWidth="128">
+							localId="vtabbar" selectedIndex="2">
 							<j:beads>
 								<j:VerticalLayout/>
 							</j:beads>
@@ -279,10 +279,11 @@ limitations under the License.
 						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side.]]></j:html>
 					</j:Label>
 					<j:HGroup gap="3" width="100%" height="100%">
-						<j:TabBar dataProvider="{tabBarData2}"
+						<j:TabBar dataProvider="{tabBarData2}" width="145"
 							change="tbc.selectedContent = event.target.selectedItem.hash">
 							<j:beads>
 								<j:VerticalLayout/>
+								<j:TabBarPresentationModel align="right"/>
 							</j:beads>
 						</j:TabBar>
 						<j:TabBarContent localId="tbc" className="side-tab-content" width="100%" height="100%" selectedContent="tab1">
