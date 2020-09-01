@@ -1194,8 +1194,7 @@ j|TabBar {
   font-weight: 600;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.jewel.tabbarbutton .indicator > .indicatorContent {
-  height: 2px;
+.jewel.tabbarbutton .indicator > .indicator-content {
   background-color: #3CADF1;
 }
 .jewel.tabbarbutton.hovered {
@@ -1204,6 +1203,15 @@ j|TabBar {
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
   color: #0f88d1;
   background: rgba(60, 173, 241, 0.4);
+}
+
+.jewel.tabbar.layout.horizontal .indicator > .indicator-content {
+  height: 2px;
+}
+.jewel.tabbar.layout.vertical .indicator > .indicator-content {
+  width: 2px;
+  right: 0;
+  position: absolute;
 }
 
 .jewel.simpletable {
