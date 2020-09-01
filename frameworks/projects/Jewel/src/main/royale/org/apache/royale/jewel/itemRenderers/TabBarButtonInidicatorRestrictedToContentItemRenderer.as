@@ -47,7 +47,7 @@ package org.apache.royale.jewel.itemRenderers
 			super.text = value;
 			COMPILE::JS
 			{
-			setTimeout(updateInternalSize, 100);
+			setTimeout(updateInternalSize, 350);
 			}
 		}
 
