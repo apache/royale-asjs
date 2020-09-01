@@ -3702,6 +3702,9 @@ j|TabBar {
   opacity: 0;
   align-self: flex-end;
 }
+.jewel.tabbarbutton.indicator-opposite-side .indicator > .indicator-content {
+  align-self: flex-start;
+}
 .jewel.tabbarbutton.selected .indicator > .indicator-content {
   opacity: 1;
 }
@@ -3712,11 +3715,27 @@ j|TabBar {
 .jewel.tabbar.layout.horizontal .indicator > .indicator-content {
   width: 100%;
 }
+.jewel.tabbar.layout.horizontal .indicator-opposite-side ._internal_ {
+  bottom: initial;
+  top: 0;
+}
+.jewel.tabbar.layout.horizontal .indicator-opposite-side .indicator > .indicator-content {
+  bottom: initial;
+}
 .jewel.tabbar.layout.vertical ._internal_ {
   right: 0;
 }
 .jewel.tabbar.layout.vertical .indicator > .indicator-content {
+  position: absolute;
   height: 100%;
+  right: 0;
+}
+.jewel.tabbar.layout.vertical .indicator-opposite-side ._internal_ {
+  right: initial;
+  left: 0;
+}
+.jewel.tabbar.layout.vertical .indicator-opposite-side .indicator > .indicator-content {
+  right: initial;
 }
 
 j|TabBarButtonItemRenderer {

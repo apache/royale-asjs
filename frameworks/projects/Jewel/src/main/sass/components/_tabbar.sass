@@ -99,6 +99,11 @@ $tabbarbutton-margin: 0 !default
                 opacity: 0
                 align-self: flex-end
 
+        &.indicator-opposite-side
+            .indicator
+                > .indicator-content
+                    align-self: flex-start
+
         &.selected
             .indicator
                 > .indicator-content
@@ -114,12 +119,28 @@ $tabbarbutton-margin: 0 !default
                 .indicator
                     > .indicator-content
                         width: 100%
+                .indicator-opposite-side
+                    ._internal_
+                        bottom: initial
+                        top: 0
+                    .indicator
+                        > .indicator-content
+                            bottom: initial
             &.vertical
                 ._internal_
                     right: 0
                 .indicator
                     > .indicator-content
+                        position: absolute
                         height: 100%
+                        right: 0
+                .indicator-opposite-side
+                    ._internal_
+                        right: initial
+                        left: 0
+                    .indicator
+                        > .indicator-content
+                            right: initial
 
 
 j|TabBarButtonItemRenderer

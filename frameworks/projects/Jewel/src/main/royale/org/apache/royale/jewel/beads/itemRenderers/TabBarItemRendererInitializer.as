@@ -26,6 +26,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.layout.IPaddings;
 	import org.apache.royale.jewel.beads.layouts.Paddings;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.beads.models.TabBarPresentationModel;
 	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;
 
 	/**
@@ -65,6 +66,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if((_strand as IStyledUIBase).containsClass("vertical"))
 			{
 				TabBarButtonItemRenderer(ir).percentWidth = 100;
+			}
+
+			//indicatorToOppositeSide
+			if((presentationModel as TabBarPresentationModel).indicatorToOppositeSide)
+			{
+				TabBarButtonItemRenderer(ir).addClass("indicator-opposite-side");
 			}
 		}
 		

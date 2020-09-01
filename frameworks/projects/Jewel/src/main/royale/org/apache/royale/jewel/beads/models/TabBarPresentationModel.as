@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {	
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+
 	/**
 	 *  The TabBarPresentationModel holds values used by tabbar controls for presenting
 	 *  their user interfaces.
@@ -51,6 +54,30 @@ package org.apache.royale.jewel.beads.models
 			// so this time layout takes control.
 			// also default is center alignment of content
 			align = "center";
+		}
+
+		private var _indicatorToOppositeSide:Boolean = false;
+		/**
+		 *  Indicator is positioned by default at the bottom on horizontal tabbars, 
+		 *  and to right on vertical tabbars. Setting this to "true", make the indicator
+		 *  be positioned on top (horizontal tabbars), or left (vertical tabbars).
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.10.0
+		 */
+		public function get indicatorToOppositeSide():Boolean
+		{
+			return _indicatorToOppositeSide;
+		}
+		public function set indicatorToOppositeSide(value:Boolean):void
+		{
+			if (value != _indicatorToOppositeSide) {
+				_indicatorToOppositeSide = value;
+				if(_strand)
+					(_strand as IEventDispatcher).dispatchEvent(new Event("indicatorToOppositeSideChanged"));
+			}
 		}
 	}
 }
