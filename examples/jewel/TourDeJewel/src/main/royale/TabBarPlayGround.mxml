@@ -131,7 +131,7 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by an icon and a label. The <b>ItemRenderer</b> is asigned vía className <b>tabBarVerticalIconItemRenderer</b>.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> has a custom <b>ItemRenderer</b> composed by an icon and a label with vertical layout (check <b>TabBarVerticalIconItemRenderer.mxml</b>). Indicator is restricted to content. The <b>ItemRenderer</b> is asigned vía className <b>tabBarVerticalIconItemRenderer</b>. Since the layout is simple we can use <b>AssignTabContent</b> bead for the content. This way the bead wire change events to sync selection to content.]]></j:html>
 					</j:Label>
 
 					<j:TabBar width="100%" className="tabBarVerticalIconItemRenderer"
@@ -171,7 +171,7 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by just a label. This example doesn't use <b>AssignTabContent</b>.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> has a custom <b>ItemRenderer</b> composed by an icon and a label with horizontal layout (check <b>TabBarHorizontalIconItemRenderer.mxml</b>). Indicator is not restricted to content. This example doesn't use <b>AssignTabContent</b>. We use binding to TabBarContent's <b>selectedContent</b> to sync cotent.]]></j:html>
 					</j:Label>
 					<j:TabBar localId="tabbar2" selectedIndex="2" className="tabBarHorizontalIconItemRenderer">
 						<j:beads>
@@ -203,7 +203,7 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[By default <b>TabBar</b> doesn't set <i>rowHeight</i>. This one set it to 60, so all renders has that height.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by just a label (default <b>TabBarButtonItemRenderer</b>). By default <b>TabBar</b> doesn't set <i>rowHeight</i>. This one set it to 60, so all renders has that height.]]></j:html>
 					</j:Label>
 					<j:TabBar rowHeight="60">
 						<j:beads>
@@ -272,11 +272,11 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Vertical Layout with content aside."/>
+					<html:H3 text="Vertical Layout (right align) with content aside."/>
 				</j:CardHeader>
 				<j:CardPrimaryContent width="100%" height="100%">
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side. This time we sync selection and content through TabBar's <b>change</b> event. We need to set initial TabBarContent section through <b>selectedContent</b>. We use TabBarPresentationModel to <b>Align</b> the items content to the <b>right</b>.]]></j:html>
 					</j:Label>
 					<j:HGroup gap="3" width="100%" height="100%">
 						<j:TabBar dataProvider="{tabBarData2}" width="145"
@@ -312,7 +312,7 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[Use ScrollingViewport bead to add scrolling. This <b>TabBar</b> has twelve tabs. Notice that "width" needs to be configured to 100% to make scroll work.]]></j:html>
+						<j:html><![CDATA[Use <b>ScrollingViewport</b> bead to add scrolling. This <b>TabBar</b> has twelve tabs. Notice that "width" needs to be configured to 100% to make scroll work.]]></j:html>
 					</j:Label>
 					<j:TabBar width="100%" localId="tabbar3" dataProvider="{scrolltabBarData}">
 						<j:beads>
