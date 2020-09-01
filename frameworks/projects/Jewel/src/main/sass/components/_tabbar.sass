@@ -98,15 +98,28 @@ $tabbarbutton-margin: 0 !default
             pointer-events: none
             z-index: 1
 
-            > .indicatorContent
-                align-self: flex-end
-                width: 100%
+            > .indicator-content
                 opacity: 0
+                align-self: flex-end
 
         &.selected
             .indicator
-                > .indicatorContent
+                > .indicator-content
                     opacity: 1
+
+// indicator depends on TabBar horizontal or vertical layout to be bottom or at side
+.jewel
+    &.tabbar
+        &.layout
+            &.horizontal
+                .indicator
+                    > .indicator-content
+                        width: 100%
+            &.vertical
+                .indicator
+                    > .indicator-content
+                        height: 100%
+
 
 j|TabBarButtonItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")

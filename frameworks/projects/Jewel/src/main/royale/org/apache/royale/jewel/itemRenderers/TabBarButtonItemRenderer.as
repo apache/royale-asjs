@@ -108,7 +108,7 @@ package org.apache.royale.jewel.itemRenderers
 			addIndicator();
 			
 			indicator_content = document.createElement('span') as HTMLSpanElement;
-			indicator_content.className = "indicatorContent";
+			indicator_content.className = "indicator-content";
 			indicator.appendChild(indicator_content);
 
             return element;
@@ -133,12 +133,12 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
-		public function animateIndicator(positionDiff:Number, widthDiff:Number, duration:int, easingFunction:String):void
+		public function animateIndicator(axis:String, positionDiff:Number, widthDiff:Number, duration:int, easingFunction:String):void
 		{
 			indicator_content["animate"](
 				[
 					{
-						transform: "translateX(" + positionDiff + "px) scaleX(" + widthDiff + ")"
+						transform: "translate" + axis + "(" + positionDiff + "px) scale" + axis + "(" + widthDiff + ")"
 					},
 					{
 						transform: "none"

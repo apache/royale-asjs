@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;
 	}
+	import org.apache.royale.core.IStyledUIBase;
 	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
@@ -58,6 +59,15 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 
+		// private var _layout:StyledLayoutBase;
+		// public function get layout():StyledLayoutBase
+		// {
+		// 	if(!_layout)
+		// 		_layout = _strand.getBeadByType(IBeadLayout) as StyledLayoutBase;
+
+		// 	return _layout;
+		// }
+
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.StyledMXMLItemRenderer
@@ -77,13 +87,26 @@ package org.apache.royale.jewel.beads.views
 					var lastRect:ClientRect = prev_ir.getBoundingBox;
 					var currentRect:ClientRect = ir.getBoundingBox;
 					var widthDiff:Number = lastRect.width / currentRect.width;
-					if(isNaN(widthDiff))
-						widthDiff = 1;
-					var positionDiff:Number = lastRect.left - currentRect.left;
+
+					if((_strand as IStyledUIBase).containsClass("horizontal"))
+					{
+						if(isNaN(widthDiff))
+							widthDiff = 1;
+						var positionXDiff:Number = lastRect.left - currentRect.left;
+					} else {
+						var heightDiff:Number = lastRect.height / currentRect.height;
+						if(isNaN(heightDiff))
+							heightDiff = 1;
+						var positionYDiff:Number = lastRect.top - currentRect.top;
+					}
 					
 					selectionBead = getSelectionRenderBead(ir);
 					selectionBead.selected = true;
-					ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
+					if((_strand as IStyledUIBase).containsClass("horizontal"))
+						ir.animateIndicator("X", positionXDiff, widthDiff, 300, 'ease-in-out');
+					else
+						ir.animateIndicator("Y", positionYDiff, heightDiff, 300, 'ease-in-out');
+
 				} else
 				{
 					selectionBead = getSelectionRenderBead(ir);

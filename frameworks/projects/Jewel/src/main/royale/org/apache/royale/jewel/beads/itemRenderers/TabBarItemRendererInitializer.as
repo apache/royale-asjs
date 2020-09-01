@@ -22,9 +22,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStyledUIBase;
 	import org.apache.royale.core.layout.IPaddings;
 	import org.apache.royale.jewel.beads.layouts.Paddings;
-	import org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;
 
@@ -60,7 +60,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 			// if layout is vertical make button width = 100% so all buttons grow to fill all available space
 			var strandLayout:IBead = _strand.getBeadByType(IBeadLayout);
-			if(strandLayout is SimpleVerticalLayout)
+			
+			// if(strandLayout is SimpleVerticalLayout)
+			if((_strand as IStyledUIBase).containsClass("vertical"))
 			{
 				TabBarButtonItemRenderer(ir).percentWidth = 100;
 			}

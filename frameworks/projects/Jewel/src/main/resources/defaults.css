@@ -3702,13 +3702,19 @@ j|TabBar {
   pointer-events: none;
   z-index: 1;
 }
-.jewel.tabbarbutton .indicator > .indicatorContent {
-  align-self: flex-end;
-  width: 100%;
+.jewel.tabbarbutton .indicator > .indicator-content {
   opacity: 0;
+  align-self: flex-end;
 }
-.jewel.tabbarbutton.selected .indicator > .indicatorContent {
+.jewel.tabbarbutton.selected .indicator > .indicator-content {
   opacity: 1;
+}
+
+.jewel.tabbar.layout.horizontal .indicator > .indicator-content {
+  width: 100%;
+}
+.jewel.tabbar.layout.vertical .indicator > .indicator-content {
+  height: 100%;
 }
 
 j|TabBarButtonItemRenderer {

@@ -58,14 +58,8 @@ j|TabBar
             // padding-bottom: 12px
 
         .indicator
-            > .indicatorContent
-                height: 2px
+            > .indicator-content
                 background-color: $primary-color
-                // transform-origin: left
-                // transition: transform .25s ease-in-out //cubic-bezier(.4,0,.2,1)
-                // animation-duration: .3s
-                // animation-timing-function: ease-in-out
-                // animation-fill-mode: both
         &.hovered
             // color: $font-theme-color
             background: rgba($primary-color, .2)
@@ -74,6 +68,25 @@ j|TabBar
             // color: $font-theme-color
             color: darken($primary-color, 15%)
             background: rgba($primary-color, .4)
+
+.jewel
+    &.tabbar
+        &.layout
+            &.horizontal
+                .indicator
+                    > .indicator-content
+                        height: 2px
+                        // transform-origin: left
+                        // transition: transform .25s ease-in-out //cubic-bezier(.4,0,.2,1)
+                        // animation-duration: .3s
+                        // animation-timing-function: ease-in-out
+                        // animation-fill-mode: both
+            &.vertical
+                .indicator
+                    > .indicator-content
+                        width: 2px
+                        right: 0
+                        position: absolute
 
 // j|TabBarButtonItemRenderer
 //     itemsHorizontalAlign: itemsCenter
