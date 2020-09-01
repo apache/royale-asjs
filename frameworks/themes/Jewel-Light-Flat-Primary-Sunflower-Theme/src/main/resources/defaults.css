@@ -1206,8 +1206,6 @@ j|TabBar {
 }
 .jewel.tabbar.layout.vertical .indicator > .indicator-content {
   width: 2px;
-  right: 0;
-  position: absolute;
 }
 
 .jewel.simpletable {
