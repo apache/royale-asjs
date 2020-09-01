@@ -1206,10 +1206,6 @@ j|TabBar {
   background: rgba(226, 215, 11, 0.4);
 }
 
-j|TabBarButtonItemRenderer {
-  itemsHorizontalAlign: itemsCenter;
-}
-
 .jewel.simpletable {
   background: linear-gradient(white, #f3f3f3);
   border: 1px solid #b3b3b3;
