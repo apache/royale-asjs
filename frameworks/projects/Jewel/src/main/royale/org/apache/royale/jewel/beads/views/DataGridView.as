@@ -206,6 +206,7 @@ package org.apache.royale.jewel.beads.views
                 IEventDispatcher(dataGridColumn).addEventListener("labelChanged", labelChangedHandler);
 
                 var list:IDataGridColumnList = new columnClass();
+                list.columnInfo = dataGridColumn;
                 
                 list.datagrid = _dg as DataGrid;
                 list.emphasis = (_dg as IEmphasis).emphasis;
@@ -232,16 +233,11 @@ package org.apache.royale.jewel.beads.views
                 }
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
                 list.addEventListener('selectionChanged', handleColumnListSelectionChange);
+                list.addEventListener('beadsAdded', configureColumnListPresentationModel);
                 (list as StyledUIBase).tabIndex = -1;
 
                 (_listArea as IParent).addElement(list as IChild);
 
-                // var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel;
-                var pm:DataGridColumnListPresentationModel = list.presentationModel as DataGridColumnListPresentationModel;
-                pm.rowHeight = _presentationModel.rowHeight;
-                pm.variableRowHeight = false;
-                pm.align = dataGridColumn.align;
-                
                 columnLists.push(list);
             }
         }
@@ -249,6 +245,16 @@ package org.apache.royale.jewel.beads.views
         /**
          * @private
          */
+        protected function configureColumnListPresentationModel(event:Event):void
+        {
+            var list:IDataGridColumnList = event.target as IDataGridColumnList;
+            //var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel; --> this line doesn't work
+            var pm:DataGridColumnListPresentationModel = list.presentationModel as DataGridColumnListPresentationModel;
+            pm.rowHeight = _presentationModel.rowHeight;
+            pm.variableRowHeight = false;
+            pm.align = list.columnInfo.align;
+        }
+
         protected function destroyLists():void
         {
             var listAreaParent:IParent = listArea as IParent;
