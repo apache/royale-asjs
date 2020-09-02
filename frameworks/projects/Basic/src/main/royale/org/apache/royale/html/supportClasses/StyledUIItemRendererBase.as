@@ -27,6 +27,16 @@ package org.apache.royale.html.supportClasses
 	[DefaultProperty("mxmlContent")]
 
 	/**
+     *  Indicates that the initialization of the container is complete.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="initComplete", type="org.apache.royale.events.Event")]
+	
+	/**
 	 *  The StyledUIItemRendererBase is an UIItemRendererBase that support the StyledUIBase base class
 	 *
  	 *  @langversion 3.0

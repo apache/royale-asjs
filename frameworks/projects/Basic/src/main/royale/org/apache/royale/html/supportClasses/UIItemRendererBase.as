@@ -27,6 +27,16 @@ package org.apache.royale.html.supportClasses
 	[DefaultProperty("mxmlContent")]
 
 	/**
+     *  Indicates that the initialization of the container is complete.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="initComplete", type="org.apache.royale.events.Event")]
+	
+	/**
 	 *  The UIItemRendererBase class is the base class for all itemRenderers. An itemRenderer is used to
 	 *  display a single datum within a collection of data. Components such as a List use itemRenderers to 
 	 *  show their dataProviders.
