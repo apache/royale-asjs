@@ -28,11 +28,10 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.html.beads.models.ButtonBarModel;
+    import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
+    import org.apache.royale.jewel.supportClasses.datagrid.DataGridWidthDenominator;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
-
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridWidthDenominator;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
