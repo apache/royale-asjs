@@ -64,6 +64,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 			typeNames = "jewel list column";
 		}
 		
+        private var _columnInfo:IDataGridColumn;
         /**
          *  The DataGridColumn for this list
          *  
@@ -72,11 +73,19 @@ package org.apache.royale.jewel.supportClasses.datagrid
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
+         *  @productversion Royale 0.10.0
          * 
          *  @royalesuppresspublicvarwarning
          */
-		public var columnInfo: DataGridColumn;
+		public function get columnInfo():IDataGridColumn
+        {
+            return _columnInfo;
+        }
+		public function set columnInfo(value:IDataGridColumn):void
+        {
+            if(_columnInfo != value)
+                _columnInfo = value;
+        }
 
         private var _datagrid:DataGrid;
         /**
