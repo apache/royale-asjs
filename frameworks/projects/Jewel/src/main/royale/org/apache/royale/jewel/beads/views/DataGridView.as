@@ -45,7 +45,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
-	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.observeElementSize;
@@ -189,7 +188,10 @@ package org.apache.royale.jewel.beads.views
          * @royaleignorecoercion org.apache.royale.core.IBead
          * @royaleignorecoercion org.apache.royale.core.IChild
          * @royaleignorecoercion org.apache.royale.core.IParent
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
+         * @royaleignorecoercion org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel
          */
         protected function createLists():void
         {
@@ -234,7 +236,8 @@ package org.apache.royale.jewel.beads.views
 
                 (_listArea as IParent).addElement(list as IChild);
 
-                var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel;
+                // var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel;
+                var pm:DataGridColumnListPresentationModel = list.presentationModel as DataGridColumnListPresentationModel;
                 pm.rowHeight = _presentationModel.rowHeight;
                 pm.variableRowHeight = false;
                 pm.align = dataGridColumn.align;
