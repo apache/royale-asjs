@@ -35,6 +35,12 @@ package org.apache.royale.jewel
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
 	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("dataProvider")]
+	
+	/**
 	 *  The DataGrid class displays a collection of data using columns and rows. Each
 	 *  column represents a specific field in the data set; each row represents a specific
 	 *  datum. The DataGrid is a composite component built with a org.apache.royale.jewel.ButtonBar 
