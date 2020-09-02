@@ -172,9 +172,9 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		override public function addedToParent():void
+		override protected function loadBeads():void
 		{
-			super.addedToParent();
+			super.loadBeads();
 			addLayoutBead();
 		}
 
