@@ -21,7 +21,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
-	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.jewel.beads.models.DataGridPresentationModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
 	/**
@@ -182,11 +182,6 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 * @private
-		 */
-		private var _presentationModel:IDataGridPresentationModel;
-		
-		/**
 		 *  The DataGrid's presentation model
 		 *
 		 *  @langversion 3.0
@@ -198,22 +193,12 @@ package org.apache.royale.jewel
 		 */
 		public function get presentationModel():IBead
 		{
-			if (_presentationModel == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
-				if (c) {
-					_presentationModel = new c() as IDataGridPresentationModel;
-					addBead(_presentationModel);
-				}
+			var presModel:IDataGridPresentationModel = getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
+			if (presModel == null) {
+				presModel = new DataGridPresentationModel();
+				addBead(presModel);
 			}
-			
-			return _presentationModel;
-		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
-		 */
-		public function set presentationModel(value:IBead):void
-		{
-			_presentationModel = value as IDataGridPresentationModel;
+			return presModel;
 		}
 				
 		/**

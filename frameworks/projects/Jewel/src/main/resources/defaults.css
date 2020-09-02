@@ -532,7 +532,6 @@ j|VirtualComboBoxPopUp {
 }
 
 j|DataGrid {
-  IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout");
