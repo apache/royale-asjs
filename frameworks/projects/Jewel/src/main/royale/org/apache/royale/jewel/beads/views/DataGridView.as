@@ -223,7 +223,12 @@ package org.apache.royale.jewel.beads.views
                 
                 // by default make columns get the 1/n of the maximun space available
                 // (list as ILayoutChild).percentWidth = 100 / len;
-                list.itemRenderer = dataGridColumn.itemRenderer;
+                
+                // need to add itemRenderer interface to DataGrid
+                if((_dg as DataGrid).itemRenderer)
+                    list.itemRenderer = (_dg as DataGrid).itemRenderer;
+                else
+                    list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
                 if(dataGridColumn.labelFunction)
                 {
