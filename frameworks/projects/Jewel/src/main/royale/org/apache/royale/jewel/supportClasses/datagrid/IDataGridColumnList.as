@@ -31,7 +31,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public interface IDataGridColumnList extends org.apache.royale.html.supportClasses.IDataGridColumnList, IEmphasis, IListWithPresentationModel
+    public interface IDataGridColumnList extends org.apache.royale.html.supportClasses.IDataGridColumnList, IEmphasis//, IListWithPresentationModel
     {
         function get rollOverIndex():int;
         function set rollOverIndex(value:int):void;

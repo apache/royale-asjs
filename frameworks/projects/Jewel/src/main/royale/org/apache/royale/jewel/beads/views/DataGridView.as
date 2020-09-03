@@ -48,6 +48,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.utils.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.observeElementSize;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -233,26 +234,21 @@ package org.apache.royale.jewel.beads.views
                 }
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
                 list.addEventListener('selectionChanged', handleColumnListSelectionChange);
-                list.addEventListener('beadsAdded', configureColumnListPresentationModel);
                 (list as StyledUIBase).tabIndex = -1;
 
-                (_listArea as IParent).addElement(list as IChild);
+(_listArea as IParent).addElement(list as IChild);
 
-                columnLists.push(list);
+var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel;
+var zzz:Object = list.getBeadByType(IListPresentationModel);
+COMPILE::JS {
+    console.log(zzz, zzz as DataGridColumnListPresentationModel);
+}
+pm.rowHeight = _presentationModel.rowHeight;
+pm.variableRowHeight = false;
+pm.align = list.columnInfo.align;
+
+columnLists.push(list);
             }
-        }
-
-        /**
-         * @private
-         */
-        protected function configureColumnListPresentationModel(event:Event):void
-        {
-            var list:IDataGridColumnList = event.target as IDataGridColumnList;
-            //var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel; --> this line doesn't work
-            var pm:DataGridColumnListPresentationModel = list.presentationModel as DataGridColumnListPresentationModel;
-            pm.rowHeight = _presentationModel.rowHeight;
-            pm.variableRowHeight = false;
-            pm.align = list.columnInfo.align;
         }
 
         protected function destroyLists():void
