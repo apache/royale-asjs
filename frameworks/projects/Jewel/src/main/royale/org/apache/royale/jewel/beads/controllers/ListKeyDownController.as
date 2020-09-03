@@ -26,11 +26,12 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
+	import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
 	import org.apache.royale.utils.sendEvent;
-	import org.apache.royale.events.utils.WhitespaceKeys;
-	import org.apache.royale.events.utils.NavigationKeys;
 
     /**
      *  The Jewel ListSingleSelectionMouseController class is a controller for
@@ -123,6 +124,10 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function keyDownEventHandler(event:KeyboardEvent):void
 		{
+			// if the renderer has a input text we want to be able to type text on it
+			if(event.target is ITextInput)
+				return;
+						
 			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
 			if(event.key === WhitespaceKeys.TAB)
 				return;
