@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
+	import org.apache.royale.utils.observeElementSize;
+
 	/**
 	 *  The TabBarButtonInidicatorRestrictedToContentItemRenderer
      *  is a TabBarButtonItemRenderer that restrict indicator to content
@@ -40,15 +42,13 @@ package org.apache.royale.jewel.itemRenderers
 		public function TabBarButtonInidicatorRestrictedToContentItemRenderer()
 		{
 			super();
-		}
 
-		override public function set text(value:String):void
-		{
-			super.text = value;
 			COMPILE::JS
 			{
-			setTimeout(updateInternalSize, 350);
-			}
+			// since span content and _internal must by synced on size, 
+			// but are in different DOM branches
+            observeElementSize(content, contentSizeChanged);
+            }
 		}
 
 		COMPILE::JS
@@ -72,10 +72,19 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
-		private function updateInternalSize():void
+        private function contentSizeChanged():void
 		{
-			_internal_.style.width = span.offsetWidth + "px";
-			_internal_.style.height = span.offsetHeight + "px";
+			updateInternalSize();
+        }
+
+		/**
+		 * updated internal size according to real content size
+		 */
+		COMPILE::JS
+		protected function updateInternalSize():void
+		{
+			_internal_.style.width = content.offsetWidth + "px";
+			_internal_.style.height = content.offsetHeight + "px";
 		}
 	}
 }

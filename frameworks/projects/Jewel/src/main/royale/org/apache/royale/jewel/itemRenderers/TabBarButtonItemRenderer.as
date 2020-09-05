@@ -81,7 +81,7 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
-		public var span:HTMLSpanElement;
+		public var content:HTMLSpanElement;
 		
 		COMPILE::JS
 		public var indicator:HTMLSpanElement;
@@ -96,9 +96,9 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			//element (span.content)
-            span = addElementToWrapper(this, 'span') as HTMLSpanElement;
-			span.className = "content";
+			//element (span content)
+            content = addElementToWrapper(this, 'span') as HTMLSpanElement;
+			content.className = "content";
 			
 			//postioner (button)
 			positioner = document.createElement('button') as WrappedHTMLElement;
