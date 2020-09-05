@@ -18,7 +18,7 @@ limitations under the License.
 
 -->
 <js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-                   xmlns:js="library://ns.apache.org/royale/basic" >
+            	xmlns:js="library://ns.apache.org/royale/basic" >
     <js:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </js:valuesImpl>

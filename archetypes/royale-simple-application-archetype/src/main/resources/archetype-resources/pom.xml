@@ -41,7 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <targets>SWF,JSRoyale</targets>
+          <targets>JSRoyale,SWF</targets>
         </configuration>
         <dependencies>
           <dependency>
@@ -50,6 +50,11 @@
             <version>${royale.compiler.version}</version>
           </dependency>
         </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
       </plugin>
     </plugins>
   </build>
@@ -62,13 +67,11 @@
       <type>swc</type>
     </dependency>
 
-    <!-- Needed for Flash compilation -->
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
     </dependency>
 
     <!-- Needed for JavaScript compilation -->
@@ -93,6 +96,20 @@
       <properties>
         <compiler.debug>false</compiler.debug>
       </properties>
+    </profile>
+
+    <profile>
+      <id>option-with-swf</id>
+      <dependencies>
+        <!-- Needed for Flash compilation -->
+        <dependency>
+          <groupId>com.adobe.flash.framework</groupId>
+          <artifactId>playerglobal</artifactId>
+          <version>20.0</version>
+          <type>swc</type>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 
