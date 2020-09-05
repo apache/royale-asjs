@@ -42,6 +42,8 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <targets>JSRoyale,SWF</targets>
+          <debug>false</debug>
+          <!-- <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions> -->
         </configuration>
         <dependencies>
           <dependency>
