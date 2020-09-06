@@ -1,17 +1,10 @@
+#set($dollar = '$')
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "Build Debug with AS3 Extension",
-            "type": "actionscript",
-            "debug": true,
-            "problemMatcher": [
-                "$nextgenas_nomatch"
-            ],
-            "group": "build"
-        },
+        // MAVEN
         {
             "label": "Build with Maven",
             "type": "shell",
@@ -24,51 +17,57 @@
             ],
             "group": "build",
             "presentation": {
+                "echo": true,
                 "reveal": "always",
-                "panel": "new"
+                "focus": true,
+                "panel": "dedicated"
             },
             "problemMatcher": []
         },
+        // AS3&MXML (Debug)
         {
-            "label": "Build Release with AS3 Extension",
-            "type": "actionscript",
-            "debug": false,
-            "problemMatcher": [
-                "$nextgenas_nomatch"
-            ],
-            "group": "build"
-        },
-        {
+            "label": "Build with AS3&MXML (Debug)",
             "type": "actionscript",
             "debug": true,
-            "problemMatcher": [],
-            "group": "build"
-        },
-        {
-            "type": "actionscript",
-            "debug": false,
-            "problemMatcher": [],
-            "group": "build"
-        }
-        #[[,
-        {
-            "label": "build with asconfigc",
-            "type": "shell",
-            "command": "asconfigc",
-            "args": [
-                "--sdk=$${config:as3mxml.sdk.framework}"
-            ],
+            "group": "build",
             "presentation": {
                 "echo": true,
                 "reveal": "always",
                 "focus": true,
                 "panel": "dedicated"
             },
-            "problemMatcher": [
-                "$nextgenas_nomatch"
+            "problemMatcher": []
+        },
+        // AS3&MXML (Release)
+        {
+            "label": "Build with AS3&MXML (Release)",
+            "type": "actionscript",
+            "debug": false,
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
+        },
+        // ASCONFIGC
+        {
+            "label": "build with asconfigc",
+            "type": "shell",
+            "command": "asconfigc",
+            "args": [
+                "--sdk=${dollar}{config:as3mxml.sdk.framework}"
             ],
-            "group": "build"
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "dedicated"
+            },
+            "problemMatcher": []
         }
-        ]]#
     ]
 }
