@@ -23,6 +23,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>23</version>
+    <relativePath />
+  </parent>
+
   <groupId>\${groupId}</groupId>
   <artifactId>\${artifactId}</artifactId>
   <version>\${version}</version>
@@ -54,11 +61,6 @@
             <version>${royale.compiler.version}</version>
           </dependency>
         </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
       </plugin>
       <plugin>
         <groupId>nl.geodienstencentrum.maven</groupId>
@@ -95,6 +97,7 @@
       <artifactId>Core</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
 
     <dependency>
@@ -102,6 +105,7 @@
       <artifactId>Basic</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
     
     <dependency>
@@ -109,6 +113,7 @@
       <artifactId>Jewel</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
 
     <dependency>
@@ -125,6 +130,7 @@
       <artifactId>Icons</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
 
     <!-- Needed for JavaScript compilation -->
@@ -133,7 +139,9 @@
       <artifactId>HTML</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
+    
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
