@@ -195,7 +195,6 @@ todomvc|TodoListSection
 	font-family: inherit;
 	font-weight: 300;
 	line-height: 1.4em;
-	height: auto;
 	outline: 0;
 	color: inherit;
 	border: 1px solid #999;
@@ -213,12 +212,7 @@ todomvc|TodoListSection
 }
 
 /* ItemRenderer */
-.jewel.item {
-	min-height: 60px;
-}
-
 .todo-list li {
-	position: relative;
 	font-size: 24px;
 	border-bottom: 1px solid #ededed;
 }
@@ -291,11 +285,6 @@ todomvc|TodoListSection
 	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
 	            0 16px 0 -6px #f6f6f6,
 	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
-}
-
-/* BarRow */
-.jewel.barrow {
-	height: unset;
 }
 
 /* Clear Completed Button */
