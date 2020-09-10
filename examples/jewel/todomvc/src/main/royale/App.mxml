@@ -22,7 +22,7 @@
                xmlns:views="jewel.todomvc.views.*"
                initialize="setUp()">
 
-    <fx:Style source="../../main/resources/todomvc-styles.css"/>
+    <fx:Style source="../../main/resources/default.css"/>
 
     <j:valuesImpl>
         <js:SimpleCSSValuesImpl />
