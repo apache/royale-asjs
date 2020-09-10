@@ -22,6 +22,8 @@ package jewel.todomvc.models
 
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.collections.ArrayListView;
+	import org.apache.royale.collections.IArrayList;
+	import org.apache.royale.collections.IArrayListView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.EventDispatcher;
@@ -82,7 +84,7 @@ package jewel.todomvc.models
         /**
          * the list of items binded to the todo list component
          */
-        public var listItems:Object;
+        public var listItems:IArrayList;
         
         /**
          * the real list with all items
@@ -92,12 +94,12 @@ package jewel.todomvc.models
         /**
          * the filtered list with active items
          */
-        public var activeItems:ArrayListView;
+        public var activeItems:IArrayListView;
         
         /**
          * the filtered list with completed items
          */
-        public var completedItems:ArrayListView;
+        public var completedItems:IArrayListView;
 
         /**
          *  Set up the filtered collections for later use
