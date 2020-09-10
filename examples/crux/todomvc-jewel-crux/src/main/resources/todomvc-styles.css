@@ -196,21 +196,9 @@
 	border: 1px solid darkgrey;
 }
 
-/* List */
+/* Data Container */
 .todo-list {
 	IItemRenderer: ClassReference("jewel.todomvc.renderers.TodoItemRenderer");
-	/* disables selection visuals on renderers */
-    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-}
-
-.jewel.list {
-	border-radius: 0px;
-	border: none;
-	background: none;
-}
-
-.jewel.list:focus {
-	border: 0px solid transparent;
 }
 
 /* ItemRenderer */
