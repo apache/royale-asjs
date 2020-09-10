@@ -77,7 +77,7 @@ limitations under the License.
         </html:Header>
         
         <html:Section localId="main">
-            <j:List localId="todolist" width="100%"
+            <j:DataContainer localId="todolist" width="100%"
                 labelField="label" className="todo-list" 
                 dataProvider="{todoModel.listItems}"/>
         </html:Section>
