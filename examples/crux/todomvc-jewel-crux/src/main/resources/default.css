@@ -1,0 +1,266 @@
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+@namespace "http://www.w3.org/1999/xhtml";
+.jewel.application {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: #4d4d4d;
+  line-height: 1.4em;
+  background: #f5f5f5;
+  min-width: 230px;
+  max-width: 550px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.todoapp {
+  background: #fff;
+  margin: 130px 0 40px 0;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.todoapp h1 {
+  position: absolute;
+  top: -155px;
+  width: 100%;
+  font-size: 100px;
+  font-weight: 100;
+  color: rgba(175, 47, 47, 0.15);
+  text-align: center;
+  text-rendering: optimizeLegibility;
+  margin: 0.83em 0;
+}
+
+.jewel.button {
+  margin: 3px;
+  padding: 3px 7px;
+  background: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+  border-radius: 0.25rem;
+  color: #808080;
+  font-weight: normal;
+  text-shadow: none;
+  text-transform: initial;
+}
+.jewel.button:hover, .jewel.button:hover:focus {
+  background: none;
+  border: 1px solid transparent;
+}
+.jewel.button:active, .jewel.button:active:focus {
+  background: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.jewel.button:focus {
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+.jewel.button.clear-completed {
+  text-decoration: underline;
+}
+
+.jewel.togglebutton {
+  margin: 3px;
+  padding: 3px 7px;
+  background: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+  border-radius: 0.25rem;
+  color: #808080;
+  font-weight: normal;
+  text-shadow: none;
+  text-transform: initial;
+}
+.jewel.togglebutton:hover, .jewel.togglebutton:hover:focus {
+  background: none;
+  border: 1px solid rgba(175, 47, 47, 0.1);
+}
+.jewel.togglebutton:active, .jewel.togglebutton:active:focus {
+  background: none;
+  border: 1px solid rgba(175, 47, 47, 0.2);
+  box-shadow: none;
+}
+.jewel.togglebutton:focus {
+  border: 1px solid #b3b3b3;
+  box-shadow: none;
+}
+.jewel.togglebutton.selected {
+  background: none;
+  border: 1px solid rgba(175, 47, 47, 0.2);
+  box-shadow: none;
+}
+.jewel.togglebutton.toggleAll .fonticon {
+  font-size: 1.8em;
+}
+.jewel.togglebutton.toggleAll:hover, .jewel.togglebutton.toggleAll:hover:focus {
+  border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll:active, .jewel.togglebutton.toggleAll:active:focus {
+  border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll:focus {
+  border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll.selected {
+  border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll .fonticon {
+  color: #e6e6e6;
+}
+.jewel.togglebutton.toggleAll.selected .fonticon {
+  color: #737373;
+}
+
+.jewel.textinput input {
+  background: none;
+  border-radius: 0px;
+  padding: 12px;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: 300;
+  line-height: 1.4em;
+  color: inherit;
+  outline: 0;
+  border: 1px solid #999;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+}
+.jewel.textinput input:focus {
+  border: 1px solid darkgrey;
+}
+.jewel.textinput.new-todo input {
+  padding: 16px 16px 16px 60px !important;
+  border-radius: 0px;
+  border: none;
+  border: 0;
+  background: rgba(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
+  font-size: 24px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  font-variant-caps: normal;
+  line-height: 1.4em;
+  color: #4d4d4d;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.jewel.textinput.new-todo input:focus {
+  border: none;
+}
+.jewel.textinput.new-todo input::placeholder, .jewel.textinput.new-todo input:-ms-input-placeholder {
+  font-style: italic;
+}
+
+.todo-list {
+  IItemRenderer: ClassReference("jewel.todomvc.renderers.TodoItemRenderer");
+}
+
+.todo-list li {
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+}
+.todo-list li:last-child {
+  border-bottom: none;
+}
+.todo-list li.editing {
+  border-bottom: none;
+}
+
+.jewel.item .jewel.textinput {
+  margin-left: 46px;
+}
+
+.jewel.checkbox {
+  margin: 8px;
+}
+.jewel.checkbox input + span::before {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 -18 100 135' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
+  border: none;
+  border-radius: 50%;
+}
+.jewel.checkbox input + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 -18 100 135' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23bddad5' stroke-width='3'/%3E%3Cpath fill='%235dc2af' d='M72 25L42 71 27 56l-4 4 20 20 34-52z'/%3E%3C/svg%3E") no-repeat center center;
+  border: none;
+  transition: none;
+  transform: none;
+}
+.jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
+  transform: none;
+}
+.jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
+  background: none;
+  border: none;
+  border-radius: 50%;
+}
+.jewel.checkbox span {
+  padding-left: 3px;
+  font-size: 16px;
+}
+
+.completed {
+  color: #d9d9d9;
+  text-decoration: line-through;
+}
+
+.destroy {
+  color: #af5b5e !important;
+}
+
+.footer {
+  padding: 10px 15px;
+  color: #777;
+  text-align: center;
+  border-top: 1px solid #e6e6e6;
+}
+.footer:before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  overflow: hidden;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.info {
+  margin: 65px auto 0;
+  color: #bfbfbf;
+  font-size: 10px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+.info p {
+  line-height: 1;
+}
+.info a {
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
+}
+.info a:hover {
+  text-decoration: underline;
+}
+
+/*# sourceMappingURL=default.css.map */
