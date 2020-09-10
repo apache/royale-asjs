@@ -22,7 +22,7 @@ limitations under the License.
     xmlns:js="library://ns.apache.org/royale/basic"
     rollOver="rollOverHandler(event)"
     rollOut="rollOutHandler(event)"
-    width="100%">
+    width="100%" minHeight="60">
 
     <fx:Script>
         <![CDATA[
