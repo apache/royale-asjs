@@ -149,7 +149,7 @@ limitations under the License.
     <j:Label localId="description" width="84%" 
         text="{item ? item.label : ''}" multiline="true"
         visible.normal="true" visible.editing="false"
-        className="{item ? (item.done ? 'todolabel completed' : 'todolabel') : 'todolabel' }"
+        className="{item ? (item.done ? 'completed' : '') : '' }"
         doubleClick="goToEditMode(event)"/>
 
     <j:TextInput localId="editfield" width="100%"

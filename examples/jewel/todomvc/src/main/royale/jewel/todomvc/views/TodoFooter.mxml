@@ -77,7 +77,7 @@ limitations under the License.
     </j:BarSection>
 
     <j:BarSection width="15%" gap="3" itemsHorizontalAlign="itemsRight">
-        <j:Button localId="clearCompleted" text="Clear Completed" className="clearCompleted"
+        <j:Button localId="clearCompleted" text="Clear Completed" className="clear-completed"
             visible="{todoModel.clearCompletedVisibility}" click="removeCompleted()"/>
     </j:BarSection>
 
