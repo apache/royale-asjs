@@ -19,16 +19,29 @@
 
 package org.apache.royale.jewel.beads.controls.datagrid
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.jewel.beads.views.DataGridView;
-	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
+	import org.apache.royale.collections.IArrayListView;
 	import org.apache.royale.collections.Sort;
 	import org.apache.royale.collections.SortField;
-	import org.apache.royale.collections.IArrayListView;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.jewel.DataGrid;
+	import org.apache.royale.jewel.beads.views.DataGridView;
+	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
 
+	/**
+	 *  The DataGridSortBead bead class is a specialty bead that can be use with a Jewel DataGrid control
+	 *  when need to add sorting capabilities pushing the header's buttons.
+	 * 
+	 *  Note that dataProvider need to be IArrayListView to have sorting capabilities for this bead to work
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 */
 	public class DataGridSortBead implements IBead
 	{
 		public function DataGridSortBead()
@@ -46,7 +59,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -56,8 +69,13 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		
 		/**
 		 * @private
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
 		 */
-		private function mouseClickHandler(event:MouseEvent):void
+		protected function mouseClickHandler(event:MouseEvent):void
 		{
 			var dgView:DataGridView = dg.view as DataGridView;
             var buttonBar:DataGridButtonBar = (dgView.header as DataGridButtonBar);
@@ -77,10 +95,14 @@ package org.apache.royale.jewel.beads.controls.datagrid
 				sort.fields = [ sortField ];
 				collection.sort = sort;
 
-				(dgView.header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
-
 				// force redraw of column headers
 				collection.refresh();
+				
+				// This way we can't refresh the columns since the dataProvider is the same
+				// dg.model.dispatchEvent(new Event("dataProviderChanged"));
+				
+				buttonBar.model.dispatchEvent(new Event("dataProviderChanged"));
+
 				dg.dataProvider = null;
 				dg.dataProvider = collection;
 			}
