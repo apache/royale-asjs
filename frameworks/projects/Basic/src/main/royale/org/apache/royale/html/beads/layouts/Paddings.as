@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.layouts
+package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.layout.IPaddings;
+	import org.apache.royale.html.beads.IPaddings;
 
     /**
      *  The Paddings class is a bead that adds padding to its host

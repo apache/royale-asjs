@@ -247,6 +247,8 @@
     <component id="OneFlexibleChildVerticalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildVerticalLayoutForOverflow"/>
     <component id="OneFlexibleChildHorizontalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayoutForOverflow"/>
     <component id="ScrollingFlexibleChild" class="org.apache.royale.html.beads.layouts.ScrollingFlexibleChild"/>
+    
+    <component id="Paddings" class="org.apache.royale.html.beads.layouts.Paddings"/>
 
     <component id="SubAppLoader" class="org.apache.royale.html.SubAppLoader" />
 

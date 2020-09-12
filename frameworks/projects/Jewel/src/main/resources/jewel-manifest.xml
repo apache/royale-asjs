@@ -224,7 +224,6 @@
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     <component id="TableLayout" class="org.apache.royale.jewel.beads.layouts.TableLayout"/>
     <component id="ButtonBarLayout" class="org.apache.royale.jewel.beads.layouts.ButtonBarLayout"/>
-    <component id="Paddings" class="org.apache.royale.jewel.beads.layouts.Paddings"/>
 
     <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
@@ -261,5 +260,10 @@
     <component id="WizardEvent" class="org.apache.royale.jewel.events.WizardEvent"/>
 
     <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
+
+    <!-- Deprecated - - - to remove -->
+
+    <component id="Paddings" class="org.apache.royale.html.beads.layouts.Paddings" lookupOnly="true"/>
+
 
 </componentPackage>
