@@ -284,6 +284,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IMenuBarModel; IMenuBarModel;
 	
 	import org.apache.royale.core.IDataGridModel; IDataGridModel;
+	import org.apache.royale.core.IDataGridHeader; IDataGridHeader;
 	import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
 	import org.apache.royale.core.IDateChooserModelWithChangeCheck; IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.ParentDocumentBead; ParentDocumentBead;
