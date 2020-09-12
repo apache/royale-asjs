@@ -21,7 +21,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IBead;
 
     /**
-     *  The Paddings class is a bead that adds padding to its host
+     *  The IPaddings is a interface bead that adds padding to its host
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
