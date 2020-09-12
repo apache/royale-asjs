@@ -28,8 +28,8 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.views.DataGridView;
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
+	import org.apache.royale.core.IDataGridHeader;
 
 	/**
 	 *  The DataGridSort bead class is a specialty bead that can be use with a Jewel DataGrid control
@@ -50,6 +50,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		}
 		
         private var dg:DataGrid;
+        private var header:IDataGridHeader;
 
 		private var descending:Boolean;
         
@@ -64,7 +65,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		public function set strand(value:IStrand):void
 		{
             dg = value as DataGrid;
-			(dg.view as DataGridView).header.addEventListener(MouseEvent.CLICK, mouseClickHandler, false);
+			var dgView:DataGridView = dg.view as DataGridView;
+			header = dgView.header;
+			header.addEventListener(MouseEvent.CLICK, mouseClickHandler, false);
 		}
 		
 		/**
@@ -77,11 +80,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		 */
 		protected function mouseClickHandler(event:MouseEvent):void
 		{
-			var dgView:DataGridView = dg.view as DataGridView;
-            var buttonBar:DataGridButtonBar = (dgView.header as DataGridButtonBar);
             // probably down on one button and up on another button
             // so the ButtonBar won't change selection
-            if (event.target == buttonBar) return;
+            if (event.target == header) return;
 			var column:DataGridColumn = event.target.data as DataGridColumn;
 			var collection:IArrayListView = dg.dataProvider as IArrayListView;
 			if (collection && collection.length)
@@ -101,7 +102,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 				// This way we can't refresh the columns since the dataProvider is the same
 				// dg.model.dispatchEvent(new Event("dataProviderChanged"));
 				
-				buttonBar.model.dispatchEvent(new Event("dataProviderChanged"));
+				header.model.dispatchEvent(new Event("dataProviderChanged"));
 
 				dg.dataProvider = null;
 				dg.dataProvider = collection;
