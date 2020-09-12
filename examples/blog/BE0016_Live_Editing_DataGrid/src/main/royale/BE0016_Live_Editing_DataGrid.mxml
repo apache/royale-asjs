@@ -40,7 +40,7 @@
         <j:View>
             <j:beads>
                 <j:HorizontalCenteredLayout/>
-                <j:Paddings padding="50"/>
+                <js:Paddings padding="50"/>
             </j:beads>
 
             <j:Card width="500">
