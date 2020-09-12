@@ -45,7 +45,11 @@ limitations under the License.
 						<j:Button text="Origin" emphasis="primary"/>
 						<j:Button text="x:30,y:30" emphasis="secondary" x="30" y="30"/>
 						<j:Button text="x:60,y:60" emphasis="emphasized" x="60" y="60"/>
-						<j:Button text="bottom/right" style="bottom:0;right:0"/>
+						<j:Button text="bottom/right = 0">
+							<j:beads>
+								<js:Positioning right="0" bottom="0"/>
+							</j:beads>
+						</j:Button>
 					</j:Group>
 
 				</j:CardPrimaryContent>
