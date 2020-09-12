@@ -23,7 +23,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.html.beads.IPaddings;
 
     /**
-     *  The Paddings class is a bead that adds padding to its host
+     *  The Paddings class is an IPaddings bead that adds padding to its host
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -143,7 +143,7 @@ package org.apache.royale.html.beads.layouts
 		 */
 		private var _paddingBottom:Number;
 		/**
-		 *  The top padding value.
+		 *  The bottom padding value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
