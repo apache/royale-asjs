@@ -54,13 +54,14 @@ internal class CoreClasses
 	import org.apache.royale.html.beads.IBackgroundBead; IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead; IBorderBead;
 	import org.apache.royale.html.beads.SelectableItemRendererBeadBase; SelectableItemRendererBeadBase;
+	import org.apache.royale.html.beads.IPaddings; IPaddings;
+
 	import org.apache.royale.html.IListPresentationModel; org.apache.royale.html.IListPresentationModel;
 
 	import org.apache.royale.core.BeadViewBase; BeadViewBase;
 	import org.apache.royale.core.ImageViewBase; ImageViewBase;
 	import org.apache.royale.core.BrowserWindow; BrowserWindow;
 
-	import org.apache.royale.core.layout.IPaddings; IPaddings;
 	import org.apache.royale.core.layout.ILayoutStyleProperties; ILayoutStyleProperties;
 	import org.apache.royale.core.layout.ILayoutChildren; ILayoutChildren;
 

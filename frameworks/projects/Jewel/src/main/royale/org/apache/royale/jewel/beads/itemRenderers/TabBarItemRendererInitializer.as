@@ -23,8 +23,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyledUIBase;
-	import org.apache.royale.core.layout.IPaddings;
-	import org.apache.royale.jewel.beads.layouts.Paddings;
+	import org.apache.royale.html.beads.IPaddings;
+	import org.apache.royale.html.beads.layouts.Paddings;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.beads.models.TabBarPresentationModel;
 	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;

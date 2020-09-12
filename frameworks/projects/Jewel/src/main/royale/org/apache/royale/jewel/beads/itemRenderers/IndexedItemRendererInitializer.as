@@ -21,9 +21,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.core.layout.IPaddings;
+	import org.apache.royale.html.beads.IPaddings;
 	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
-	import org.apache.royale.jewel.beads.layouts.Paddings;
+	import org.apache.royale.html.beads.layouts.Paddings;
 
 	/**
 	 *  The IndexedItemRendererInitializer class initializes jewel item renderers
