@@ -39,7 +39,7 @@
     <j:initialView>
         <j:View>
             <j:beads>
-                <j:Paddings padding="30"/>
+                <js:Paddings padding="30"/>
                 <j:VerticalLayout gap="3"/>
             </j:beads>
             

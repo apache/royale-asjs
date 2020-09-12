@@ -80,7 +80,7 @@ limitations under the License.
     <j:beads>
         <js:SimpleStatesImpl/>
         <js:ItemRendererDataBinding/>
-        <j:Paddings padding="0"/><!-- remove all default paddings -->
+        <js:Paddings padding="0"/><!-- remove all default paddings -->
     </j:beads>
 
     <j:states>
@@ -96,7 +96,7 @@ limitations under the License.
         doubleClick="goToEditMode(event)"
         >
         <j:beads>
-            <j:Paddings padding="18"/>
+            <js:Paddings padding="18"/>
         </j:beads>
     </j:Label>
 
