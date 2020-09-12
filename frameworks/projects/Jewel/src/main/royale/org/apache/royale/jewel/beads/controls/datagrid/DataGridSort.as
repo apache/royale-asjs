@@ -32,7 +32,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
 
 	/**
-	 *  The DataGridSortBead bead class is a specialty bead that can be use with a Jewel DataGrid control
+	 *  The DataGridSort bead class is a specialty bead that can be use with a Jewel DataGrid control
 	 *  when need to add sorting capabilities pushing the header's buttons.
 	 * 
 	 *  Note that dataProvider need to be IArrayListView to have sorting capabilities for this bead to work
@@ -42,9 +42,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class DataGridSortBead implements IBead
+	public class DataGridSort implements IBead
 	{
-		public function DataGridSortBead()
+		public function DataGridSort()
 		{
 			super();
 		}
