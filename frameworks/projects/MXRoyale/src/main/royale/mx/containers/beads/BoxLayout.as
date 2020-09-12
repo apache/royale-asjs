@@ -84,7 +84,8 @@ package mx.containers.beads
 			super.strand = value;
 			// The main layout may not get put on the strand until
 			// after children are added so listen here as well
-			listenToChildren();			
+			if (target.parent)
+				listenToChildren();			
 		}
 		
 		private var _target:Container;
