@@ -18,6 +18,7 @@
 
 -->
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:j="library://ns.apache.org/royale/jewel"
                xmlns:html="library://ns.apache.org/royale/html">
     
