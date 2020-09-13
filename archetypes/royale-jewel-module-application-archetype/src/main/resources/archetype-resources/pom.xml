@@ -35,7 +35,7 @@
   <version>\${version}</version>
   <packaging>pom</packaging>
 
-  <name>\${artifactId}</name>
+  <name>Apache Royale Jewel Multi Module Application :: \${artifactId}</name>
 
   <modules>
     <module>${application}</module>

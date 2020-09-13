@@ -24,6 +24,15 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         name="${artifactId}">
 
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>.vscode</directory>
+      <includes>
+        <include>**/*.json</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+
   <requiredProperties>
     <requiredProperty key="application">
       <defaultValue>application</defaultValue>
