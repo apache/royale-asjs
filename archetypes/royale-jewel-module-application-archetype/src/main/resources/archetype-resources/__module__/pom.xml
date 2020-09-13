@@ -47,6 +47,18 @@
           <additionalCompilerOptions>-source-map=true;-js-compiler-option=--variable_map_input_file ../../../../../${application}/target/javascript/bin/js-release/gccvars.txt;-js-compiler-option+=--property_map_input_file ../../../../../${application}/target/javascript/bin/js-release/gccprops.txt</additionalCompilerOptions>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-css-using-sass</id>
+            <goals>
+                <goal>update-stylesheets</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
       <!-- copy module files from Module target folder to Application target folder-->
       <plugin>

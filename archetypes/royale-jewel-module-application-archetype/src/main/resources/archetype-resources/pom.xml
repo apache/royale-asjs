@@ -45,58 +45,59 @@
   <properties>
     <compiler.debug>true</compiler.debug>
   </properties>
-
-
+  
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.royale.compiler</groupId>
-        <artifactId>royale-maven-plugin</artifactId>
-        <version>${royale.compiler.version}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <mainClass>App.mxml</mainClass>
-          <targets>JSRoyale</targets>
-          <debug>false</debug>
-          <htmlTemplate>${dollar}{basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.royale.compiler</groupId>
-            <artifactId>compiler-jx</artifactId>
-            <version>${royale.compiler.version}</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin>
-        <groupId>nl.geodienstencentrum.maven</groupId>
-        <artifactId>sass-maven-plugin</artifactId>
-        <version>3.7.2</version>
-        <configuration>
-          <resources>
-            <resource>
-              <source>
-                <directory>${dollar}{basedir}/src/main/sass</directory>
-                <includes>
-                  <include>**/*.sass</include>
-                </includes>
-              </source>
-              <destination>${dollar}{basedir}/src/main/resources</destination>
-            </resource>
-          </resources>
-        </configuration>
-        <executions>
-          <execution>
-            <id>generate-css-using-sass</id>
-            <goals>
-                <goal>update-stylesheets</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.royale.compiler</groupId>
+          <artifactId>royale-maven-plugin</artifactId>
+          <version>${royale.compiler.version}</version>
+          <extensions>true</extensions>
+          <configuration>
+            <mainClass>App.mxml</mainClass>
+            <targets>JSRoyale</targets>
+            <debug>false</debug>
+            <htmlTemplate>${dollar}{basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
+            <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.apache.royale.compiler</groupId>
+              <artifactId>compiler-jx</artifactId>
+              <version>${royale.compiler.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <plugin>
+          <groupId>nl.geodienstencentrum.maven</groupId>
+          <artifactId>sass-maven-plugin</artifactId>
+          <version>3.7.2</version>
+          <configuration>
+            <resources>
+              <resource>
+                <source>
+                  <directory>${dollar}{basedir}/src/main/sass</directory>
+                  <includes>
+                    <include>**/*.sass</include>
+                  </includes>
+                </source>
+                <destination>${dollar}{basedir}/src/main/resources</destination>
+              </resource>
+            </resources>
+          </configuration>
+          <executions>
+            <execution>
+              <id>generate-css-using-sass</id>
+              <goals>
+                  <goal>update-stylesheets</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
   </build>
 
   <dependencies>
