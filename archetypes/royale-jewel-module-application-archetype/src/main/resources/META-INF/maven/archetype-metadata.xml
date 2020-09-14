@@ -40,6 +40,9 @@
     <requiredProperty key="module">
       <defaultValue>module</defaultValue>
     </requiredProperty>
+    <requiredProperty key="includeCrux"> 
+     	<defaultValue>false</defaultValue>
+    </requiredProperty>
   </requiredProperties>
 
   <modules>
@@ -80,6 +83,7 @@
           <directory>src/main/royale</directory>
           <includes>
             <include>**/*.mxml</include>
+            <include>**/*.as</include>
           </includes>
           <excludes>
             <exclude>__application__.mxml</exclude>
@@ -126,6 +130,7 @@
           <directory>src/main/royale</directory>
           <includes>
             <include>**/*.mxml</include>
+            <include>**/*.as</include>
           </includes>
           <excludes>
             <exclude>__module__.mxml</exclude>
