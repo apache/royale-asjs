@@ -16,7 +16,6 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 package org.apache.royale.jewel.beads.controls.datagrid
 {
 	import org.apache.royale.collections.IArrayListView;
