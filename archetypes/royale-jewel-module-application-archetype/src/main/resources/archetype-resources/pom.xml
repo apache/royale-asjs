@@ -60,7 +60,9 @@
             <targets>JSRoyale</targets>
             <debug>false</debug>
             <htmlTemplate>${dollar}{basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
-            <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>
+            <additionalCompilerOptions>
+              -source-map=true;
+            </additionalCompilerOptions>
           </configuration>
           <dependencies>
             <dependency>

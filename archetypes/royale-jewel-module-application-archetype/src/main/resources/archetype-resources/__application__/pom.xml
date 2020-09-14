@@ -45,7 +45,19 @@
           <targets>JSRoyale</targets>
           <debug>false</debug>
           <htmlTemplate>${dollar}{basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-source-map=true;-js-compiler-option=--variable_map_output_file gccvars.txt;-js-compiler-option+=--property_map_output_file gccprops.txt</additionalCompilerOptions>
+          <additionalCompilerOptions>
+            -source-map=true;
+            -js-compiler-option=--variable_map_output_file gccvars.txt;
+            -js-compiler-option+=--property_map_output_file gccprops.txt;
+#if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
+            -js-default-initializers=true;
+            -compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
+            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+            -keep-code-with-metadata=Inject;
+#end
+            <!-- to access JSON object graph subobjects --> 
+            <!-- -js-dynamic-access-unknown-members=true;  -->
+          </additionalCompilerOptions>
         </configuration>
       </plugin>
       <plugin>
