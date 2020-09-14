@@ -21,7 +21,7 @@
 // 
 //  It will delete a the associated Crux folders if the value for the "includeCrux" property
 //  is set to false.
- 
+
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.Path
@@ -29,7 +29,7 @@ import java.nio.file.Paths
 import org.apache.commons.io.FileUtils
  
 println "*******************************"
-println "  grooy post processing"
+println "  groovy post processing"
 println "*******************************"
 // println "artifactId: " + artifactId
 // println "request: " + request
