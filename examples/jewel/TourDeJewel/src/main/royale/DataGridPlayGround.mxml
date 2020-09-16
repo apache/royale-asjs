@@ -38,6 +38,7 @@ limitations under the License.
 
         import vos.IconListVO;
         import vos.Product;
+        import org.apache.royale.collections.ArrayListView;
 
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
@@ -292,10 +293,11 @@ limitations under the License.
 					</j:Label>
 					
 					<j:DataGrid localId="dg2" width="100%" height="100%" 
-								dataProvider="{productModel.productList}"
+								dataProvider="{new ArrayListView(productModel.productList)}"
 								change="lb2.html = describeItem(event.target.selectedItem)">
 						<j:beads>
 							<j:DataGridColumnLabelsChange/>
+							<j:DataGridSort/>
 						</j:beads>
 						<j:columns>
 							<j:DataGridColumn label="Title" dataField="title"/>
