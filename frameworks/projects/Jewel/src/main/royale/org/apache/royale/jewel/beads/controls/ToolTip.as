@@ -87,6 +87,26 @@ package org.apache.royale.jewel.beads.controls
             _toolTip = value;
 		}
 
+		private var _className:String;
+		/**
+		 *  An optional css class to add to specific tooltips for additional
+		 *  styling via css.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get className():String
+		{
+			return _className;
+		}
+		public function set className(value:String):void
+		{
+			_className = value;
+			if (tt) tt.className = value;
+		}
+
 		/**
 		 *  Sets the tooltip y relative position to one of
 		 *  LEFT, MIDDLE or RIGHT.
@@ -160,6 +180,7 @@ package org.apache.royale.jewel.beads.controls
 			if (tt) host.popUpParent.removeElement(tt);
 
             tt = new ToolTipLabel();
+			if (_className) tt.className = _className;
             tt.html = toolTip;
 
 			// add this before measuring or measurement is not accurate.
