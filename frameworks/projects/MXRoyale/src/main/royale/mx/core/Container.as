@@ -900,6 +900,27 @@ public class Container extends UIComponent
 		}
 	}
 
+    /**
+     *  @private
+     */
+    override mx_internal function childRemoved(child:IUIBase):void
+    {
+		super.removingChild(child);
+		if (parent)
+		{
+			var oldMeasuredWidth:Number = measuredWidth;
+			var oldMeasuredHeight:Number = measuredHeight;
+			invalidateSize();
+			if (oldMeasuredWidth != measuredWidth ||
+				oldMeasuredHeight != measuredHeight)
+			{
+				if (parent is UIComponent)
+				{
+					(parent as UIComponent).invalidateSize();
+				}
+			}
+		}
+	}
 	
 	//----------------------------------
 	//  data
