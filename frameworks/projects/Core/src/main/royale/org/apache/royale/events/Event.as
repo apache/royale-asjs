@@ -53,6 +53,10 @@ package org.apache.royale.events
 		public static const COMPLETE:String = "complete";
 		public static const SELECT:String = "select";
 		public static const OPEN:String = "open";
+		public static const DEACTIVATE:String = "deactivate";
+		public static const ADDED:String = "added";
+		public static const REMOVED:String = "removed";
+		
 		//--------------------------------------
 		//   Constructor
 		//--------------------------------------
@@ -160,6 +164,9 @@ package org.apache.royale.events
 		public static const COMPLETE:String = "complete";
 		public static const SELECT:String = "select";
 		public static const OPEN:String = "open";
+		public static const DEACTIVATE:String = "deactivate";
+		public static const ADDED:String = "added";
+		public static const REMOVED:String = "removed";
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);
