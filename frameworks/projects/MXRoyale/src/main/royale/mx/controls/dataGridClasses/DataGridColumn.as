@@ -19,7 +19,7 @@
 
 package mx.controls.dataGridClasses
 {
-
+import org.apache.royale.core.ValuesManager;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -855,6 +855,43 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
             }
         }
     }
+        private var o:Object;
+		public function getStyle(styleProp:String):*
+        {
+        var v:*;
+        
+        if (o == null)
+        {
+            if (defaultFactory != null)
+            {
+                defaultFactory.prototype = {};
+                o = new defaultFactory();
+            }
+        }
+        if (o != null)
+        {
+            v = o[styleProp];
+            if (v !== undefined)
+                return v;
+        }
+        var values:Object = ValuesManager.valuesImpl["values"]; // assume AllCSSValuesImpl
+        
+        return v;
+        }
+		
+		private var _defaultFactory:Function;
+		public function get defaultFactory():Function
+       {
+         return _defaultFactory;
+       }
+    
+    /**
+     *  @private
+     */ 
+        public function set defaultFactory(f:Function):void
+       {
+         _defaultFactory = f;
+       }
 }
 
 }

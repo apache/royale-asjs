@@ -39,6 +39,7 @@
   <modules>
     <module>royale-simple-application-archetype</module>
     <module>royale-jewel-application-archetype</module>
+    <module>royale-jewel-module-application-archetype</module>
     <module>royale-simple-application-pure-js-archetype</module>
     <module>royale-simple-application-pure-swf-archetype</module>
     <module>royale-simple-library-archetype</module>

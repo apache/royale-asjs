@@ -16,73 +16,62 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.layout
+package org.apache.royale.html.beads
 {
     import org.apache.royale.core.IBead;
 
     /**
-     *  The Paddings class is a bead that adds padding to its host
+     *  The IPositioning is a interface bead that adds padding to its host
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
+     *  @productversion Royale 0.9.8
      */
-	public interface IPaddings extends IBead
+	public interface IPositioning extends IBead
 	{
 		/**
-		 *  The padding value. Setting this value override the rest of values
+		 *  The top position constraint value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
-		function get padding():Number;
-		function set padding(value:Number):void;
-		
-		/**
-		 *  The top padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		function get paddingTop():Number;
-		function set paddingTop(value:Number):void;
+		function get top():Number;
+		function set top(value:Number):void;
 
 		/**
-		 *  The right padding value.
+		 *  The right position constraint value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
-		function get paddingRight():Number;
-		function set paddingRight(value:Number):void;
+		function get right():Number;
+		function set right(value:Number):void;
 
 		/**
-		 *  The bottom padding value.
+		 *  The bottom position constraint value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
-		function get paddingBottom():Number;
-		function set paddingBottom(value:Number):void;
+		function get bottom():Number;
+		function set bottom(value:Number):void;
 
 		/**
-		 *  The left padding value.
+		 *  The left position constraint value.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
-		function get paddingLeft():Number;
-		function set paddingLeft(value:Number):void;
+		function get left():Number;
+		function set left(value:Number):void;
 	}
 }

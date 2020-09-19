@@ -32,6 +32,6 @@
     "additionalOptions": "-js-dynamic-access-unknown-members=true",
     "files":
     [
-        "src/main/royale/App.mxml"
+        "src/main/royale/${artifactId}.mxml"
     ]
 }

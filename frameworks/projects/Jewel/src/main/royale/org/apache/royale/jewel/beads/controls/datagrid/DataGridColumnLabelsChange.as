@@ -20,12 +20,12 @@ package org.apache.royale.jewel.beads.controls.datagrid
 {
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IDataGridHeader;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.views.DataGridView;
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 
@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 			var _dg:DataGrid = _strand as DataGrid;
 			var _sharedModel:IDataGridModel = _dg.model as IDataGridModel;
 			var _presentationModel:IDataGridPresentationModel = _dg.presentationModel as IDataGridPresentationModel;
-            var _header:DataGridButtonBar = (_dg.view as DataGridView).header as DataGridButtonBar;
+            var _header:IDataGridHeader = (_dg.view as DataGridView).header;
 
             var dp:Array = _sharedModel.columns as Array;
             var len:int = dp.length;

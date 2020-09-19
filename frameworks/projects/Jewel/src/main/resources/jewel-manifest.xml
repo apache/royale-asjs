@@ -54,6 +54,7 @@
     <component id="DataGridButtonBar" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar"/>
 
     <component id="DataGridColumnLabelsChange" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridColumnLabelsChange"/>
+    <component id="DataGridSort" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridSort"/>
 
     <component id="ButtonBarItemRenderer" class="org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer"/>
     <component id="IconButtonBarItemRenderer" class="org.apache.royale.jewel.itemRenderers.IconButtonBarItemRenderer"/>
@@ -150,6 +151,7 @@
     <component id="Divider" class="org.apache.royale.jewel.Divider"/>
 
     <component id="Image" class="org.apache.royale.jewel.Image"/>
+    <component id="ImageIcon" class="org.apache.royale.jewel.ImageIcon"/>
 	<component id="BinaryImage" class="org.apache.royale.jewel.BinaryImage"/>
 	
     <component id="ClipImage" class="org.apache.royale.jewel.beads.controls.image.ClipImage"/>
@@ -223,7 +225,6 @@
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     <component id="TableLayout" class="org.apache.royale.jewel.beads.layouts.TableLayout"/>
     <component id="ButtonBarLayout" class="org.apache.royale.jewel.beads.layouts.ButtonBarLayout"/>
-    <component id="Paddings" class="org.apache.royale.jewel.beads.layouts.Paddings"/>
 
     <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
@@ -260,5 +261,10 @@
     <component id="WizardEvent" class="org.apache.royale.jewel.events.WizardEvent"/>
 
     <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
+
+    <!-- Deprecated - - - to remove -->
+
+    <component id="Paddings" class="org.apache.royale.html.beads.layouts.Paddings" lookupOnly="true"/>
+
 
 </componentPackage>

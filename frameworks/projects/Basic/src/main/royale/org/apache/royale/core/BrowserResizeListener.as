@@ -55,7 +55,7 @@ package org.apache.royale.core
          */
         override public function set strand(value:IStrand):void
         {
-            super.strand = value as UIBase;
+            super.strand = value;
 
             COMPILE::SWF
             {

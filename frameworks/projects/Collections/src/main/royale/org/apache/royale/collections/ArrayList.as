@@ -18,14 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.collections
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.CollectionEvent;
-	
-	import org.apache.royale.utils.net.IExternalizable;
 	COMPILE::JS{
 		import org.apache.royale.utils.net.IDataInput;
 		import org.apache.royale.utils.net.IDataOutput;
@@ -34,6 +26,12 @@ package org.apache.royale.collections
 		import flash.utils.IDataInput;
 		import flash.utils.IDataOutput;
 	}
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.CollectionEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.utils.net.IExternalizable;
 
     //--------------------------------------
     //  Events

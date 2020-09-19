@@ -21,7 +21,7 @@
   <output>
     <movie width="800"/>
     <movie disabled="False"/>
-    <movie path="bin-debug/App.swf"/>
+    <movie path="bin-debug/${module}.swf"/>
     <movie platform="Flash Player"/>
     <movie fps="60"/>
     <movie version="11"/>
@@ -48,7 +48,7 @@
     <option benchmark="False"/>
     <option showBindingWarnings="True"/>
     <option warnings="True"/>
-    <option customSDK="/Users/christofer.dutz/Downloads/MoonshineSDKs/Royale_SDK/apache-royale-0.9.6-bin-js/royale-asjs"/>
+    <option customSDK="/Users/christofer.dutz/Downloads/MoonshineSDKs/Royale_SDK/apache-royale-0.9.8-bin-js/royale-asjs"/>
     <option showActionScriptWarnings="True"/>
     <option antBuildPath="build/build.xml"/>
     <option verboseStackTraces="False"/>

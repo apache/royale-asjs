@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataGrid;
+	import org.apache.royale.core.IDataGridHeader;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IParent;
@@ -40,8 +41,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.LabelFunction;
 	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
-	import org.apache.royale.jewel.supportClasses.Viewport;
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
@@ -79,7 +78,7 @@ package org.apache.royale.jewel.beads.views
         }
 
         private var _dg:IDataGrid = _strand as IDataGrid;
-        private var _header:DataGridButtonBar;
+        private var _header:IDataGridHeader;
         private var _listArea:IUIBase;
         private var _lists:Array = [];
 
@@ -111,15 +110,14 @@ package org.apache.royale.jewel.beads.views
 		{
             // header
             var headerClass:Class = ValuesManager.valuesImpl.getValue(host, "headerClass") as Class;
-            _header = new headerClass() as DataGridButtonBar;
+            _header = new headerClass() as IDataGridHeader;
             _header.dataProvider = new ArrayList(sharedModel.columns);
-            _header.emphasis = (_dg as IEmphasis).emphasis;
+            (_header as IEmphasis).emphasis = (_dg as IEmphasis).emphasis;
             _header.labelField = "label";
             
             var headerLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "headerLayoutClass") as Class;
             var bblayout:IBead = new headerLayoutClass() as IBeadLayout;
             _header.addBead(bblayout /*as IBead*/);
-            _header.addBead(new Viewport() as IBead);
             sharedModel.headerModel = _header.model as IBeadModel;
             _dg.strandChildren.addElement(_header as IChild);
 
@@ -314,7 +312,7 @@ package org.apache.royale.jewel.beads.views
         /**
          * Returns the component used as the header for the DataGrid.
          */
-        public function get header():IUIBase
+        public function get header():IDataGridHeader
         {
             return _header;
         }

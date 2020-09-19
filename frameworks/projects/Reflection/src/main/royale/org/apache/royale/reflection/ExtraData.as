@@ -38,6 +38,9 @@ package org.apache.royale.reflection {
 		public static function get isRelevant():Boolean{
 			return false;
 		}
+
+		public static function reset():void{
+		}
 		
 		public static function hasData(key:*):Boolean{
 			return false
@@ -81,6 +84,13 @@ package org.apache.royale.reflection {
 		 */
 		public static function get isRelevant():Boolean{
 			return true;
+		}
+
+		/**
+		 * this is non-reflectable
+		 */
+		public static function reset():void{
+			reflectionData = null;
 		}
 		
 		/**
@@ -137,7 +147,8 @@ package org.apache.royale.reflection {
 				AS3Boolean(),
 				AS3int(),
 				AS3uint(),
-				AS3Vector()
+				AS3Vector(),
+				AS3Object()
 			];
 			while(items.length) addExternDefintion(items.pop());
 			

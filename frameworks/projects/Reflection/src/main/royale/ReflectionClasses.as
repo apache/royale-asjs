@@ -53,6 +53,8 @@ internal class ReflectionClasses
 	import org.apache.royale.reflection.utils.getMembersWithNameMatch; getMembersWithNameMatch;
 	import org.apache.royale.reflection.utils.getMembersWithQNameMatch; getMembersWithQNameMatch;
 	import org.apache.royale.reflection.utils.filterForMetaTags; filterForMetaTags;
+	import org.apache.royale.reflection.utils.isDerivedType; isDerivedType;
+	import org.apache.royale.reflection.utils.isSameType; isSameType;
 	
 	import org.apache.royale.reflection.ExtraData; ExtraData;
 	import org.apache.royale.reflection.AccessorDefinition; AccessorDefinition;

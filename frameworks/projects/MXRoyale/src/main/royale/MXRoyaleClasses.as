@@ -325,6 +325,7 @@ internal class MXRoyaleClasses
 	// RpcClassAliasInitializer ----------------------------------------
     
 	import mx.net.URLLoader; URLLoader;
+	import mx.events.FlexMouseEvent; FlexMouseEvent;
 }
 
 }
