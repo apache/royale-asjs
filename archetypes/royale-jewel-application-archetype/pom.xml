@@ -27,9 +27,19 @@
 
   <artifactId>royale-jewel-application-archetype</artifactId>
   <version>0.9.8-SNAPSHOT</version>
-  <packaging>jar</packaging>
+  <packaging>maven-archetype</packaging>
 
   <name>Apache Royale: Framework: Archetypes: Jewel Royale Application</name>
   <description>Maven archetype for creating Royale Maven project for building a Jewel Royale application for JavaScript output.</description>
 
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>3.1.1</version>
+      </extension>
+    </extensions>
+  </build>
+  
 </project>

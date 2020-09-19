@@ -48,11 +48,21 @@
         <version>${royale.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>App.mxml</mainClass>
+          <mainClass>\${artifactId}.mxml</mainClass>
           <targets>JSRoyale</targets>
           <debug>false</debug>
           <htmlTemplate>${dollar}{basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>
+          <additionalCompilerOptions>
+            -source-map=true;
+#if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
+            -js-default-initializers=true;
+            -compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
+            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+            -keep-code-with-metadata=Inject;
+#end
+            <!-- to access JSON object graph subobjects --> 
+            <!-- -js-dynamic-access-unknown-members=true;  -->
+          </additionalCompilerOptions>
         </configuration>
         <dependencies>
           <dependency>
@@ -132,6 +142,16 @@
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
+#if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
+    
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Crux</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+#end
 
     <!-- Needed for JavaScript compilation -->
     <dependency>

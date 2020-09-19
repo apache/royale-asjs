@@ -16,22 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+#set($finalpackage = "#if($package != '')$package.#{else}#end")
+package ${finalpackage}events
 {
-    "config": "royale",
-    "compilerOptions": {
-        "debug": false,
-        "targets": ["JSRoyale"],
-        "source-path": [
-            "src/main/resources"
-        ],
-        "source-map": true,
-        "html-template": "src/main/resources/jewel-example-index-template.html",
-        "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
-    },
-    "copySourcePathAssets": true,
-    "additionalOptions": "-js-dynamic-access-unknown-members=true",
-    "files":
-    [
-        "src/main/royale/${artifactId}.mxml"
-    ]
+	import org.apache.royale.events.Event;
+
+	/**
+	 * Some Event
+	 */
+	public class SomeEvent extends Event
+	{
+		/**
+		 * Actions
+		 */
+		public static const SOME_ACTION:String = "some_action";
+		
+		/**
+         * constructor
+		 * 
+		 * This is just a normal Royale event which will be dispatched from a view instance.
+		 * The only thing to note is that we set 'bubbles' to true, so that the event will bubble
+		 * up the 'display' list, allowing Crux to listen for your events.
+		 */ 
+		public function SomeEvent(type:String) {
+			super(type, true);
+		}
+	}
 }
