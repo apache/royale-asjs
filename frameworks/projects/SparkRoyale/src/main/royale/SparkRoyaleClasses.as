@@ -27,6 +27,14 @@ package
  */
 internal class SparkRoyaleClasses
 {
+	//import spark.components.HScrollBar; HScrollBar;
+	//import spark.components.VScrollBar; VScrollBar;
+	//import spark.core.SpriteVisualElement; SpriteVisualElement;
+	//import spark.events.RendererExistenceEvent; RendererExistenceEvent;
+	//import spark.events.TrackBaseEvent; TrackBaseEvent;
+	//import spark.primitives.Graphic; Graphic;
+	//import spark.skins.spark.ScrollBarDownButtonSkin; ScrollBarDownButtonSkin;
+	//import spark.skins.spark.ScrollBarUpButtonSkin; ScrollBarUpButtonSkin;
     import spark.events.IndexChangeEvent; IndexChangeEvent;
     import spark.events.TextOperationEvent; TextOperationEvent;
     import spark.components.supportClasses.DropDownListBase; DropDownListBase;
