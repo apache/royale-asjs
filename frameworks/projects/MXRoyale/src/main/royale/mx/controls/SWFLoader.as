@@ -26,14 +26,14 @@ import flash.display.DisplayObjectContainer;
 import flash.display.Loader;
 import flash.display.LoaderInfo;
 import flash.display.Sprite;
-import flash.events.Event;
-import flash.events.EventDispatcher;
-import flash.events.HTTPStatusEvent;
-import flash.events.IEventDispatcher;
-import flash.events.IOErrorEvent;
-import flash.events.MouseEvent;
-import flash.events.ProgressEvent;
-import flash.events.SecurityErrorEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.EventDispatcher;
+import mx.events.HTTPStatusEvent;
+import org.apache.royale.events.IEventDispatcher;
+import mx.events.IOErrorEvent;
+import org.apache.royale.events.MouseEvent;
+import mx.events.ProgressEvent;
+import mx.events.SecurityErrorEvent;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.net.URLRequest;
@@ -80,27 +80,27 @@ use namespace mx_internal;
  *  <p>This event is dispatched regardless of whether the load was triggered
  *  by an autoload or an explicit call to the <code>load()</code> method.</p>
  *
- *  @eventType flash.events.Event.COMPLETE
+ *  @eventType org.apache.royale.events.Event.COMPLETE
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="complete", type="flash.events.Event")]
+[Event(name="complete", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when a network request is made over HTTP 
  *  and Flash Player or AIR can detect the HTTP status code.
  * 
- *  @eventType flash.events.HTTPStatusEvent.HTTP_STATUS
+ *  @eventType mx.events.HTTPStatusEvent.HTTP_STATUS
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="httpStatus", type="flash.events.HTTPStatusEvent")]
+[Event(name="httpStatus", type="mx.events.HTTPStatusEvent")]
 
 /**
  *  Dispatched when the properties and methods of a loaded SWF file 
@@ -113,39 +113,39 @@ use namespace mx_internal;
  *    <li>The constructors for all child objects have completed.</li>
  *  </ul>
  * 
- *  @eventType flash.events.Event.INIT
+ *  @eventType org.apache.royale.events.Event.INIT
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="init", type="flash.events.Event")]
+[Event(name="init", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when an input/output error occurs.
- *  @see flash.events.IOErrorEvent
+ *  @see mx.events.IOErrorEvent
  *
- *  @eventType flash.events.IOErrorEvent.IO_ERROR
+ *  @eventType mx.events.IOErrorEvent.IO_ERROR
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="ioError", type="flash.events.IOErrorEvent")]
+[Event(name="ioError", type="mx.events.IOErrorEvent")]
 
 /**
  *  Dispatched when a network operation starts.
  * 
- *  @eventType flash.events.Event.OPEN
+ *  @eventType org.apache.royale.events.Event.OPEN
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="open", type="flash.events.Event")]
+[Event(name="open", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when content is loading.
@@ -159,41 +159,41 @@ use namespace mx_internal;
  *  <code>progress</code> events being dispatched.
  *  This can happen when the loaded content is a local file.</p>
  *
- *  @eventType flash.events.ProgressEvent.PROGRESS
+ *  @eventType mx.events.ProgressEvent.PROGRESS
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="progress", type="flash.events.ProgressEvent")]
+[Event(name="progress", type="mx.events.ProgressEvent")]
 
 /**
  *  Dispatched when a security error occurs while content is loading.
  *  For more information, see the SecurityErrorEvent class.
  *
- *  @eventType flash.events.SecurityErrorEvent.SECURITY_ERROR
+ *  @eventType mx.events.SecurityErrorEvent.SECURITY_ERROR
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="securityError", type="flash.events.SecurityErrorEvent")]
+[Event(name="securityError", type="mx.events.SecurityErrorEvent")]
 
 /**
  *  Dispatched when a loaded object is removed, 
  *  or when a second load is performed by the same SWFLoader control 
  *  and the original content is removed prior to the new load beginning.
  * 
- *  @eventType flash.events.Event.UNLOAD
+ *  @eventType org.apache.royale.events.Event.UNLOAD
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="unload", type="flash.events.Event")]
+[Event(name="unload", type="org.apache.royale.events.Event")]
 
 //--------------------------------------
 //  Styles

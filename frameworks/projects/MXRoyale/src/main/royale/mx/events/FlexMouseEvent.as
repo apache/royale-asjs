@@ -24,8 +24,8 @@ import flash.display.InteractiveObject;
 import mx.core.UIComponent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
-import flash.events.MouseEvent;
-import flash.events.Event
+import org.apache.royale.events.MouseEvent;
+import org.apache.royale.events.Event
 
 /**
  *  The FlexMouseEvent class represents the event object passed to
@@ -37,7 +37,7 @@ import flash.events.Event
  *  @productversion Flex 3
  */
 COMPILE::SWF {
-public class FlexMouseEvent extends flash.events.MouseEvent
+public class FlexMouseEvent extends org.apache.royale.events.MouseEvent
 {
     //include "../core/Version.as";
 
@@ -282,7 +282,7 @@ public class FlexMouseEvent extends flash.events.MouseEvent
 	/**
 	 *  @private
 	 */
-	override public function clone():flash.events.Event
+	override public function clone():org.apache.royale.events.Event
 	{
 		return new FlexMouseEvent(type, bubbles, cancelable);
 		// , localX, localY,

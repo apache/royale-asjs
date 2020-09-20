@@ -20,7 +20,7 @@
 package mx.events
 {
 
-import flash.events.Event;
+import org.apache.royale.events.Event;
 
 /**
  *  The StateChangeEvent class represents an event that is dispatched when the 

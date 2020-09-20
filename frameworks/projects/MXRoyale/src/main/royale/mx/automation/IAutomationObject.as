@@ -22,8 +22,8 @@ package mx.automation
 
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
-import flash.events.Event;
-import flash.events.MouseEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.MouseEvent;
 
 /**
  * The IAutomationObject interface defines the interface 
