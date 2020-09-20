@@ -30,7 +30,7 @@ internal class MXRoyaleClasses
 	//import mx.automation.IAutomationObject; IAutomationObject;
 	//import mx.controls.SWFLoader; SWFLoader;
 	import mx.core.DPIClassification; DPIClassification;
-	//import mx.core.DesignLayer; DesignLayer;
+	import mx.core.DesignLayer; DesignLayer;
 	//import mx.effects.AnimateProperty; AnimateProperty;
 	//import mx.effects.easing.Cubic; Cubic;
 	//import mx.effects.easing.Quintic; Quintic;

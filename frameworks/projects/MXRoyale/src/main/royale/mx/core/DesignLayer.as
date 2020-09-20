@@ -19,9 +19,9 @@
 
 package mx.core
 {
-    import flash.events.EventDispatcher;
     import mx.events.PropertyChangeEvent;
     import mx.events.PropertyChangeEventKind;
+    import org.apache.royale.events.EventDispatcher;
         
     /**
      *  Dispatched by the layer when either <code>effectiveVisibility</code> or 
