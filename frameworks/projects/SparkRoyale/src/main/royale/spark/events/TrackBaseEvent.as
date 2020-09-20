@@ -20,7 +20,7 @@
 package spark.events
 {
 
-import flash.events.Event;
+import org.apache.royale.events.Event;
 
 /**
  *  Represents events that are dispatched from a TrackBase component.

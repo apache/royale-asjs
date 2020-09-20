@@ -19,8 +19,8 @@
 
 package spark.components
 {
-import flash.events.Event;
-import flash.events.MouseEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.MouseEvent;
 import flash.geom.Point;
 
 import mx.core.IInvalidating;

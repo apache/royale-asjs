@@ -23,8 +23,8 @@ package spark.core
 import flash.display.BlendMode;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
-import flash.events.Event;
-import flash.events.IEventDispatcher;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import flash.geom.ColorTransform;
 import flash.geom.Matrix;
 import flash.geom.Matrix3D;

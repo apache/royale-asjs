@@ -20,7 +20,7 @@
 package spark.events
 {
 
-import flash.events.Event;
+import org.apache.royale.events.Event;
 
 import mx.core.IVisualElement;
 
