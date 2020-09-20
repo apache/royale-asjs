@@ -20,7 +20,6 @@
 package mx.events
 {
 
-import flash.display.InteractiveObject;
 import mx.core.UIComponent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
@@ -262,7 +261,7 @@ public class FlexMouseEvent extends org.apache.royale.events.MouseEvent
 	public function FlexMouseEvent(type:String, bubbles:Boolean = false,
 								   cancelable:Boolean = false,
 								   localX:Number = 0,  localY:Number = 0, 
-								   relatedObject:InteractiveObject = null, 
+								   relatedObject:UIComponent = null, 
 								   ctrlKey:Boolean = false, 
 								   altKey:Boolean = false, 
 								   shiftKey:Boolean = false, 

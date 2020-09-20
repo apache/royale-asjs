@@ -20,8 +20,8 @@
 package mx.automation
 {
 
-import flash.display.DisplayObject;
-import flash.display.DisplayObjectContainer;
+import mx.core.UIComponent;
+import mx.core.UIComponent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
 
@@ -163,7 +163,7 @@ public interface IAutomationObject
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    function get automationOwner():DisplayObjectContainer;
+    function get automationOwner():UIComponent;
     
     /**
      *  The parent of this component for automation purposes.
@@ -177,7 +177,7 @@ public interface IAutomationObject
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    function get automationParent():DisplayObjectContainer;
+    function get automationParent():UIComponent;
     
     /**
      *  True if this component is enabled for automation, false
@@ -199,7 +199,7 @@ public interface IAutomationObject
      *  True if this component is visible for automation, false
      *  otherwise.
      * 
-     *  @see flash.display.DisplayObject#visible
+     *  @see mx.core.UIComponent#visible
      * 
      *  @return <code>true</code> if this component is visible for automation,
      *          <code>false</code> otherwise.

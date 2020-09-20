@@ -21,8 +21,7 @@ package spark.core
 {
 
 import flash.display.BlendMode;
-import flash.display.DisplayObject;
-import flash.display.DisplayObjectContainer;
+import mx.core.UIComponent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import flash.geom.ColorTransform;

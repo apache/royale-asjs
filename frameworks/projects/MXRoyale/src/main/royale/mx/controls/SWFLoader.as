@@ -20,12 +20,10 @@
 package mx.controls
 {
 
-import flash.display.Bitmap;
-import flash.display.DisplayObject;
-import flash.display.DisplayObjectContainer;
+import mx.display.Bitmap;
+import mx.core.UIComponent;
 import flash.display.Loader;
 import flash.display.LoaderInfo;
-import flash.display.Sprite;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 import mx.events.HTTPStatusEvent;
@@ -487,7 +485,7 @@ public class SWFLoader extends UIComponent implements ISWFLoader
     /**
      *  @private
      */
-    private var mouseShield:Sprite;
+    private var mouseShield:UIComponent;
     
     /**
      *  @private
@@ -2595,7 +2593,7 @@ public class SWFLoader extends UIComponent implements ISWFLoader
         {
             if (!mouseShield)
             {
-                mouseShield = new Sprite();
+                mouseShield = new UIComponent();
                 mouseShield.graphics.beginFill(0, 0);
                 mouseShield.graphics.drawRect(0, 0, 100, 100);
                 mouseShield.graphics.endFill();

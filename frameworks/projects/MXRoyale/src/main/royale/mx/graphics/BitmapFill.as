@@ -20,10 +20,10 @@
 package mx.graphics
 {
 
-import flash.display.Bitmap;
-import flash.display.BitmapData;
-import flash.display.DisplayObject;
-import flash.display.Graphics;
+import mx.display.Bitmap;
+import org.apache.royale.BitmapData;
+import mx.core.UIComponent;
+import mx.display.Graphics;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 import mx.events.IOErrorEvent;
@@ -46,9 +46,9 @@ import mx.utils.MatrixUtil;
  *  with a bitmap or other DisplayObject.
  *  
  *  @see mx.graphics.IFill
- *  @see flash.display.Bitmap
- *  @see flash.display.BitmapData
- *  @see flash.display.DisplayObject
+ *  @see mx.display.Bitmap
+ *  @see org.apache.royale.BitmapData
+ *  @see mx.core.UIComponent
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
