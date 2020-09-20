@@ -217,4 +217,5 @@
     <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
 
     <component id="DownloadButton" class="mx.controls.DownloadButton"/>
+    <component id="HSlider" class="mx.controls.HSlider"/>
 </componentPackage>
