@@ -892,6 +892,28 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
        {
          _defaultFactory = f;
        }
+       
+       private var _headerRenderer:IFactory;
+		
+       /**
+	*  The itemRenderer class or factory to use to make instances of itemRenderers for
+	*  display of data.
+	*
+        *  @langversion 3.0
+	*  @playerversion Flash 10.2
+	*  @playerversion AIR 2.6
+	*  @productversion Royale 0.0
+	*/
+	
+	public function get headerRenderer():IFactory
+	{
+	   return _headerRenderer;
+	}
+	public function set headerRenderer(value:IFactory):void
+	{
+	  _headerRenderer = value;
+	  trace("DataGridColumn.headerRenderer is not implemented");
+	}
 }
 
 }
