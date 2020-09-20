@@ -32,7 +32,7 @@ import flash.geom.ColorTransform;
 import org.apache.royale.geom.Matrix;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-import flash.net.URLRequest;
+import org.apache.royale.net.URLRequest;
 import flash.system.LoaderContext;
 
 import mx.events.PropertyChangeEvent;

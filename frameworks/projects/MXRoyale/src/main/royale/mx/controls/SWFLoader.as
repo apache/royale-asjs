@@ -34,12 +34,12 @@ import mx.events.ProgressEvent;
 import mx.events.SecurityErrorEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-import flash.net.URLRequest;
-import flash.system.ApplicationDomain;
+import org.apache.royale.net.URLRequest;
+import mx.system.ApplicationDomain;
 import flash.system.Capabilities;
 import flash.system.LoaderContext;
 import flash.system.SecurityDomain;
-import flash.utils.ByteArray;
+import mx.utils.org.ByteArray;
 
 import mx.core.FlexGlobals;
 import mx.core.FlexLoader;
@@ -899,7 +899,7 @@ public class SWFLoader extends UIComponent implements ISWFLoader
      *
      *  @default null
      *  @see flash.system.LoaderContext
-     *  @see flash.system.ApplicationDomain
+     *  @see mx.system.ApplicationDomain
      *  @see flash.system.SecurityDomain
      *  
      *  @langversion 3.0
@@ -1265,7 +1265,7 @@ public class SWFLoader extends UIComponent implements ISWFLoader
      *
      *  @default false
      *  @see flash.system.SecurityDomain
-     *  @see flash.system.ApplicationDomain
+     *  @see mx.system.ApplicationDomain
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
