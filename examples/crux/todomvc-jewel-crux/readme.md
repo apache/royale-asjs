@@ -32,6 +32,7 @@ The example showcase the following features:
 - Event Handling
 - Theme customization
 - Strand & Beads
+- View States
 - Item Renderers
 - Data Binding
 - Routing
