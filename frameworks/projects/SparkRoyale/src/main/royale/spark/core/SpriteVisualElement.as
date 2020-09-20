@@ -25,11 +25,11 @@ import mx.core.UIComponent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import flash.geom.ColorTransform;
-import flash.geom.Matrix;
-import flash.geom.Matrix3D;
+import org.apache.royale.geom.Matrix;
+import org.apache.royale.geom.Matrix3D;
 import flash.geom.PerspectiveProjection;
-import flash.geom.Point;
-import flash.geom.Rectangle;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 import flash.geom.Vector3D;
 
 import mx.core.AdvancedLayoutFeatures;

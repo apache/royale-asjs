@@ -29,9 +29,9 @@ import org.apache.royale.events.EventDispatcher;
 import mx.events.IOErrorEvent;
 import mx.events.SecurityErrorEvent;
 import flash.geom.ColorTransform;
-import flash.geom.Matrix;
-import flash.geom.Point;
-import flash.geom.Rectangle;
+import org.apache.royale.geom.Matrix;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 import flash.net.URLRequest;
 import flash.system.LoaderContext;
 
