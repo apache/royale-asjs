@@ -326,6 +326,7 @@ internal class MXRoyaleClasses
     
 	import mx.net.URLLoader; URLLoader;
 	import mx.events.FlexMouseEvent; FlexMouseEvent;
+	import mx.controls.HSlider; HSlider;
 }
 
 }
