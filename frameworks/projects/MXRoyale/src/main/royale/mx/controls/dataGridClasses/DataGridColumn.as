@@ -914,6 +914,42 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 	  _headerRenderer = value;
 	  trace("DataGridColumn.headerRenderer is not implemented");
 	}
+	
+	        //----------------------------------
+		//  editable
+		//----------------------------------
+
+		private var _editable:Boolean = true;
+
+		[Inspectable(category="General")]
+
+		/**
+		 *  A flag that indicates whether the items in the column are editable.
+		 *  If <code>true</code>, and the DataGrid's <code>editable</code>
+		 *  property is also <code>true</code>, the items in a column are 
+		 *  editable and can be individually edited
+		 *  by clicking on an item or by navigating to the item by using the 
+		 *  Tab and Arrow keys.
+		 *
+		 *  @default true
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function get editable():Boolean
+		{
+			return _editable;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set editable(value:Boolean):void
+		{
+			_editable = value;
+		}
 }
 
 }
