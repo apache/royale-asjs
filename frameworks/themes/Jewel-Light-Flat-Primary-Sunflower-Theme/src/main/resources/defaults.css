@@ -467,7 +467,7 @@ j|CardActions {
 
 .jewel.datagrid {
   background: white;
-  border: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
   box-shadow: none;
 }
 .jewel.datagrid .jewel.buttonbar.header {
@@ -482,7 +482,7 @@ j|CardActions {
   border-bottom-right-radius: 0;
 }
 .jewel.datagrid .listarea {
-  border-top-width: 1px;
+  border-top-width: 0px;
   border-left-width: 0px;
   border-right-width: 0px;
   border-bottom-width: 0px;
@@ -515,6 +515,7 @@ j|CardActions {
   border-bottom: 1px solid #ededed;
   border-right: 0;
   border-radius: 0;
+  box-shadow: none;
 }
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.hovered {
   background: #fac97a;
