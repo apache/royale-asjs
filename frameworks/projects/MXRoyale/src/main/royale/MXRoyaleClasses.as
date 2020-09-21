@@ -328,6 +328,11 @@ internal class MXRoyaleClasses
 	import mx.controls.HSlider; HSlider;
 	import mx.controls.sliderClasses.Slider; Slider;
 	import mx.controls.sliderClasses.SliderDirection; SliderDirection;
+	import mx.controls.HorizontalList; HorizontalList;
+	import mx.effects.easing.Elastic; Elastic;
+	import mx.controls.listClasses.TileListItemRenderer; TileListItemRenderer;
+	import mx.controls.listClasses.TileBase; TileBase;
+	import mx.controls.listClasses.TileBaseDirection; TileBaseDirection;
 }
 
 }
