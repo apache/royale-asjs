@@ -521,7 +521,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
     //  editable
     //----------------------------------
 
-    [Inspectable(category="General")]
+    //[Inspectable(category="General")]
 
     /**
      *  A flag that indicates whether the items in the column are editable.
@@ -538,7 +538,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var editable:Boolean = true;
+    //public var editable:Boolean = true;
 
     //----------------------------------
     //  itemEditor
