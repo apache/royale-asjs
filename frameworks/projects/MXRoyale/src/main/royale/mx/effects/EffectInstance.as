@@ -73,6 +73,28 @@ public class EffectInstance extends EventDispatcher implements IEffectInstance
 {
 /*     include "../core/Version.as";
  */
+ 
+ /**
+     *  @private
+     *  Internal flag remembering whether the user
+     *  explicitly specified a duration or not.
+     */
+    mx_internal var durationExplicitlySet:Boolean = false;
+
+    /**
+     *  @private
+     *  If this is a "hide" effect, the EffectManager sets this flag
+     *  as a reminder to hide the object when the effect finishes.
+     */
+    mx_internal var hideOnEffectEnd:Boolean = false;
+    
+    /**
+     *  @private
+     *  Pointer back to the CompositeEffect that created this instance.
+     *  Value is null if we are not the child of a CompositeEffect
+     */
+    mx_internal var parentCompositeEffectInstance:EffectInstance;
+    
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -243,6 +265,71 @@ public class EffectInstance extends EventDispatcher implements IEffectInstance
         //}
         
         //EffectManager.effectFinished(this);
+    }
+    
+    //----------------------------------
+    //  triggerEvent
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the triggerEvent property. 
+     */
+    private var _triggerEvent:Event;
+
+    /**
+     *  @copy mx.effects.IEffectInstance#triggerEvent
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get triggerEvent():Event
+    {
+        return _triggerEvent;
+    }
+
+    /**
+     *  @private
+     */
+    public function set triggerEvent(value:Event):void
+    {
+        _triggerEvent = value;
+    }
+	
+	public function initEffect(event:Event):void
+    {
+        triggerEvent = event;
+        
+        switch (event.type)
+        {
+            case "resizeStart":
+            case "resizeEnd":
+            {
+                if (!durationExplicitlySet)
+                    duration = 250;
+                break;
+            }
+            
+            case FlexEvent.HIDE:
+            {
+                target.setVisible(true, true);
+                hideOnEffectEnd = true;     
+                // If somebody else shows us, then cancel the hide when the effect ends
+                target.addEventListener(FlexEvent.SHOW, eventHandler);      
+                break;
+            }
+        }
+    }
+	
+	mx_internal function eventHandler(event:Event):void
+    {
+        if (event.type == FlexEvent.SHOW && hideOnEffectEnd == true)
+        {
+            hideOnEffectEnd = false;
+            event.target.removeEventListener(FlexEvent.SHOW, eventHandler);
+        }
     }
 
 }
