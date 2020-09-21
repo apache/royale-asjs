@@ -158,9 +158,22 @@ package org.apache.royale.jewel.beads.models
 		{
             if (value == _dataProvider) return;
 
+            const oldIndex:int = _selectedIndex;
+            var itemChanged:Boolean = setDataProvider(value);
+
+            dispatchChange("dataProviderChanged");
+			if (itemChanged || oldIndex != _selectedIndex) {
+                dispatchChange("selectionChanged");
+			}
+        }
+
+        /**
+         *  @private
+         */
+		public function setDataProvider(value:Object):Boolean
+		{
             _dataProvider = value as IArrayList;
             var itemChanged:Boolean;
-            const oldIndex:int = _selectedIndex;
             if (_dataProvider) {
                 if (_selectedItem) {
                     _selectedIndex = _dataProvider.getItemIndex(_selectedItem);
@@ -185,11 +198,24 @@ package org.apache.royale.jewel.beads.models
                 _selectedIndex = -1;
             }
 
+            return itemChanged;
+		}
+
+        /**
+         *  @private
+         */
+        [Bindable("sortChanged")]
+		public function sortChangedHandler(value:Object):void
+		{
+            const oldIndex:int = _selectedIndex;
+            var itemChanged:Boolean = setDataProvider(value);
+
             dispatchChange("dataProviderChanged");
 			if (itemChanged || oldIndex != _selectedIndex) {
                 dispatchChange("selectionChanged");
 			}
-		}
+            dispatchChange("shortChanged");
+        }
 
 		protected var _selectedIndex:int = -1;
 		private var _rollOverIndex:int = -1;

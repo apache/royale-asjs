@@ -98,13 +98,8 @@ package org.apache.royale.jewel.beads.controls.datagrid
 				// force redraw of column headers
 				collection.refresh();
 				
-				// This way we can't refresh the columns since the dataProvider is the same
-				// dg.model.dispatchEvent(new Event("dataProviderChanged"));
-				
+				dg.model.dispatchEvent(new Event("sortChanged"));
 				header.model.dispatchEvent(new Event("dataProviderChanged"));
-
-				dg.dataProvider = null;
-				dg.dataProvider = collection;
 			}
 		}
 	}

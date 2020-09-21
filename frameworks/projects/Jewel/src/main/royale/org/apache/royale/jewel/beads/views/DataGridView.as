@@ -47,6 +47,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.utils.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.observeElementSize;
+	import org.apache.royale.core.IStrandWithModel;
     
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -94,6 +95,7 @@ package org.apache.royale.jewel.beads.views
             // see if there is a presentation model already in place. if not, add one.
             sharedModel = _dg.model as IDataGridModel;
             IEventDispatcher(sharedModel).addEventListener("dataProviderChanged", handleDataProviderChanged);
+            IEventDispatcher(sharedModel).addEventListener("sortChanged", handleSortChanged);
             IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
             listenOnStrand("initComplete", initCompleteHandler);
@@ -349,6 +351,25 @@ package org.apache.royale.jewel.beads.views
             if(!layout) {
                 // Load the layout bead if it hasn't already been loaded (init time)
 			    layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand) as IBeadLayout;
+            }
+            host.dispatchEvent(new Event("layoutNeeded"));
+
+            COMPILE::JS{
+                synchHScroll(null);
+            }
+        }
+
+        /**
+         * @private
+         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
+         */
+        protected function handleSortChanged(event:Event):void
+        {
+            for (var i:int=0; i < columnLists.length; i++)
+            {
+                var list:IDataGridColumnList = columnLists[i] as IDataGridColumnList;
+                IStrandWithModel(list).model.sortChangedHandler(dp);
             }
             host.dispatchEvent(new Event("layoutNeeded"));
 
