@@ -644,6 +644,12 @@ public class UIComponent extends UIBase
             addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
         }
     }
+    
+    public function executeBindings(recurse:Boolean = false):void
+    {
+	   recurse = false;
+	   trace("UIComponent.executeBindings is not implemented");
+    }
 
     //--------------------------------------------------------------------------
     //
