@@ -561,6 +561,45 @@ public class Image extends SkinnableComponent implements IImage
      */
     
     //----------------------------------
+    //  smooth
+    //----------------------------------
+    
+    [Inspectable(category="General", defaultValue="false")]
+    
+    /**
+     *  @copy spark.primitives.BitmapImage#smooth
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 2.5
+     *  @productversion Flex 4.5
+     **/
+    public function set smooth(value:Boolean):void
+    {
+        //if (imageDisplay)
+        //{
+            //imageDisplay.smooth = value;
+            //imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
+                //SMOOTH_PROPERTY_FLAG, true);
+        //}
+        //else
+            //imageDisplayProperties.smooth = value;
+    }
+    
+    /**
+     *  @private
+    public function get smooth():Boolean          
+    {
+        //if (imageDisplay)
+            //return imageDisplay.smooth;
+        //else
+            //return imageDisplayProperties.smooth;
+	return false;
+    }
+     */
+    //----------------------------------
     //  bytesLoaded
     //----------------------------------
     
@@ -899,44 +938,6 @@ public class Image extends SkinnableComponent implements IImage
     }
      */
        
-    //----------------------------------
-    //  smooth
-    //----------------------------------
-    
-    [Inspectable(category="General", defaultValue="false")]
-    
-    /**
-     *  @copy spark.primitives.BitmapImage#smooth
-     *
-     *  @default false
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 2.5
-     *  @productversion Flex 4.5
-    public function set smooth(value:Boolean):void
-    {
-        if (imageDisplay)
-        {
-            imageDisplay.smooth = value;
-            imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
-                SMOOTH_PROPERTY_FLAG, true);
-        }
-        else
-            imageDisplayProperties.smooth = value;
-    }
-     */
-    
-    /**
-     *  @private
-    public function get smooth():Boolean          
-    {
-        if (imageDisplay)
-            return imageDisplay.smooth;
-        else
-            return imageDisplayProperties.smooth;
-    }
-     */
     
     //----------------------------------
     //  source
