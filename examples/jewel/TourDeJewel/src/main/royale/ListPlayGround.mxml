@@ -223,10 +223,11 @@ limitations under the License.
 				<j:CardPrimaryContent>
 					<j:Label text="Notice variableRowHeight should be false to use rowHeight. Click on render's icon will remove that renderer" multiline="true"/>
 					
-					<j:List localId="list2" width="200" height="300" variableRowHeight="false"
+					<j:List localId="list2" width="200" height="300"
 						className="iconListItemRenderer" labelField="label"
-						emphasis="secondary" rowHeight="52">
+						emphasis="secondary">
 						<j:beads>
+							<j:ListPresentationModel rowHeight="52" variableRowHeight="false"/>
 							<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider"/>
 							<j:RemoveAllItemRendererForArrayListData/>
 						</j:beads>

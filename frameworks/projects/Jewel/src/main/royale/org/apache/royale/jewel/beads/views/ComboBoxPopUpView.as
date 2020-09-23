@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
     import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
+    import org.apache.royale.jewel.beads.models.ListPresentationModel;
     
     /**
 	 * The ComboBoxPopUpView class is a view bead for the ComboBoxPopUp.
@@ -75,8 +76,7 @@ package org.apache.royale.jewel.beads.views
 
             // set rowHeight
             var _presentationModel:IComboBoxPresentationModel = (_strand as ComboBoxPopUp).presentationModel as IComboBoxPresentationModel;
-            list.rowHeight = _presentationModel.rowHeight;
-
+            
             // set height based on rowCount
             var rowCount:int = _presentationModel.rowCount;
             var len:int;
@@ -90,7 +90,13 @@ package org.apache.royale.jewel.beads.views
                     rowCount = len;
             }
             
-            list.height = rowCount * list.rowHeight;
+            trace("_presentationModel.rowHeight: ", _presentationModel.rowHeight);
+            if(isNaN( _presentationModel.rowHeight))
+                _presentationModel.rowHeight = ListPresentationModel.DEFAULT_ROW_HEIGHT;
+            trace("rowCount: ", rowCount);
+            trace("list.height: ", list.height);
+            list.height = rowCount * _presentationModel.rowHeight;
+            trace(" list.height: ", list.height);
 
             IParent(_strand).addElement(list);
 		}

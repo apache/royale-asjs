@@ -21,9 +21,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.jewel.beads.layouts.IVariableRowHeight;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
-	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -69,7 +67,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class List extends DataContainer implements IVariableRowHeight
+	public class List extends DataContainer 
 	{
 		/**
 		 *  constructor.
@@ -132,24 +130,6 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 *  The default height of each cell in every column
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 */
-        public function get rowHeight():Number
-        {
-            return (presentationModel as IListPresentationModel).rowHeight;
-        }
-        public function set rowHeight(value:Number):void
-        {
-            (presentationModel as IListPresentationModel).rowHeight = value;
-        }
-
-		/**
 		 *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
 		 *
@@ -171,31 +151,6 @@ package org.apache.royale.jewel
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
-		
-		protected var _variableRowHeight:Boolean;
-		/**
-		 *  Specifies whether layout elements are allocated their preferred height.
-		 *  Setting this property to false specifies fixed height rows.
-		 *  
-		 *  If false, the actual height of each layout element is the value of rowHeight.
-		 *  The default value is true. 
-		 *  
-		 *  Note: From Flex but we should see what to do in Royale -> Setting this property to false causes the layout to ignore the layout elements' percentHeight property.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		[Bindable("variableRowHeightChanged")]
-        public function get variableRowHeight():Boolean
-        {
-			return (presentationModel as IListPresentationModel).variableRowHeight;
-        }
-        public function set variableRowHeight(value:Boolean):void
-        {
-			(presentationModel as IListPresentationModel).variableRowHeight = value;
-        }
 
 		/**
 		 *  Ensures that the data provider item at the given index is visible.

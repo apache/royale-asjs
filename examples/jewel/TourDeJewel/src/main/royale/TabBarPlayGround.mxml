@@ -217,8 +217,9 @@ limitations under the License.
 					<j:Label multiline="true">
 						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by just a label (default <b>TabBarButtonItemRenderer</b>). By default <b>TabBar</b> doesn't set <i>rowHeight</i>. This one set it to 60, so all renders has that height.]]></j:html>
 					</j:Label>
-					<j:TabBar rowHeight="60">
+					<j:TabBar>
 						<j:beads>
+							<j:TabBarPresentationModel rowHeight="60"/>
 							<js:ConstantBinding sourcePropertyName="tabBarDataSample"
 												destinationPropertyName="dataProvider"/>
 							<j:AssignTabContent selectedContentProperty="content">

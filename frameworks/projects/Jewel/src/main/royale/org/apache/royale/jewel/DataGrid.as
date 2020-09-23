@@ -227,27 +227,6 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
-				
-		/**
-		 *  The default height of each cell in every column
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
-		 */
-		public function get rowHeight():Number
-		{
-			return (presentationModel as IDataGridPresentationModel).rowHeight;
-		}
-        /**
-         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
-         */
-		public function set rowHeight(value:Number):void
-		{
-			(presentationModel as IDataGridPresentationModel).rowHeight = value;
-		}
 
 		/**
          *  load necesary beads. This method can be override in subclasses to

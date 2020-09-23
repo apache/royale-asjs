@@ -401,8 +401,7 @@ limitations under the License.
 					<j:Label text="Using specific column widths, rowHeight=54 and height=220, first column uses a custom renderer and last column has right alignment"
 						multiline="true"/>
 					
-					<j:DataGrid localId="dg4" height="205"
-						rowHeight="54" emphasis="primary" 
+					<j:DataGrid localId="dg4" height="205" emphasis="primary" 
 						change="dataGridChange(event.target as DataGrid, lb4)"
 						dataProvider="{productModel.productList}">
 						<j:columns>
@@ -412,6 +411,7 @@ limitations under the License.
 							<j:DataGridColumn label="Sales" dataField="sales" columnWidth="80" align="right"/>
 						</j:columns>
 						<j:beads>
+							<j:DataGridPresentationModel rowHeight="54"/>
 							<j:RemoveAllDataGridItemRendererForArrayListData/>
 						</j:beads>
 					</j:DataGrid>
@@ -467,9 +467,10 @@ limitations under the License.
 					<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment. Clicking on row icon, remove the entire row."
 						multiline="true"/>
 
-					<j:DataGrid localId="dg5" width="100%" height="240" emphasis="secondary" rowHeight="42"
+					<j:DataGrid localId="dg5" width="100%" height="240" emphasis="secondary"
 						change="dataGridChange(event.target as DataGrid, lb5)">
 						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
 							<js:ConstantBinding
 								sourceID="listModel"
 								sourcePropertyName="iconDetailListData"
@@ -500,8 +501,7 @@ limitations under the License.
 					<j:Label text="Using specific column widths, rowHeight=40 and emphasis='emphasized'"
 						multiline="true"/>
 
-					<j:DataGrid localId="dg6" height="246"
-						rowHeight="40" emphasis="emphasized" 
+					<j:DataGrid localId="dg6" height="246" emphasis="emphasized" 
 						change="dataGridChange(event.target as DataGrid, lb6)"
 						dataProvider="{listModel.iconListData}">
 						<j:columns>
@@ -509,6 +509,9 @@ limitations under the License.
 												itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
 							<j:DataGridColumn label="Label" dataField="label" columnWidth="200"/>
 						</j:columns>
+						<j:beads>
+							<j:DataGridPresentationModel rowHeight="40"/>
+						</j:beads>
 					</j:DataGrid>
 
 					<j:Label localId="lb6" text="DataGrid selection will be shown here"/>
@@ -550,8 +553,9 @@ limitations under the License.
 					<j:Label text="width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment, last column has columnWidth=75. Clicking on row icon, remove the entire row."
 						multiline="true"/>
 
-					<j:DataGrid width="100%" height="240" emphasis="secondary" rowHeight="42">
+					<j:DataGrid width="100%" height="240" emphasis="secondary">
 						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
 							<js:ConstantBinding
 								sourceID="listModel"
 								sourcePropertyName="iconDetailListData"
@@ -577,8 +581,9 @@ limitations under the License.
 					<j:Label text="Toggle fixed size of DataGrid between 240px and 500px via button. Last column has columnWidth=75. Toggle dataprovider between null and test data set via button"
 							 multiline="true"/>
 
-					<j:DataGrid localId="dgFixedWidth" height="240" emphasis="secondary" rowHeight="42">
+					<j:DataGrid localId="dgFixedWidth" height="240" emphasis="secondary">
 						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
 							<js:ConstantBinding
 									sourceID="listModel"
 									sourcePropertyName="iconDetailListData"
@@ -610,8 +615,9 @@ limitations under the License.
 					<j:Label text="Provides example of changing column order and also removing/adding a column. "
 							 multiline="true"/>
 
-					<j:DataGrid localId="columns1Grid" width="100%" height="240" emphasis="secondary" rowHeight="42">
+					<j:DataGrid localId="columns1Grid" width="100%" height="240" emphasis="secondary">
 						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
 							<js:ConstantBinding
 									sourceID="listModel"
 									sourcePropertyName="iconDetailListData"

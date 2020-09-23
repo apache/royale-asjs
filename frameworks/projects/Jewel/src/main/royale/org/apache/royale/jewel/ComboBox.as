@@ -182,45 +182,6 @@ package org.apache.royale.jewel
 			ISelectionModel(model).selectedItem = value;
 		}
 
-		[Bindable("rowHeightChanged")]
-		/**
-		 *  The default height of each cell in every column
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel
-		 */
-        public function get rowHeight():Number
-        {
-            return (presentationModel as IComboBoxPresentationModel).rowHeight;
-        }
-        public function set rowHeight(value:Number):void
-        {
-            (presentationModel as IComboBoxPresentationModel).rowHeight = value;
-        }
-
-		[Bindable("rowCountChanged")]
-		/**
-		 *  Maximum number of rows visible in the ComboBox popup list.
-		 *  If there are fewer items in the dataProvider, the ComboBox shows only as many items as there are in the dataProvider.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel
-		 */
-        public function get rowCount():int
-        {
-            return (presentationModel as IComboBoxPresentationModel).rowCount;
-        }
-        public function set rowCount(value:int):void
-        {
-            (presentationModel as IComboBoxPresentationModel).rowCount = value;
-        }
-
 		/**
 		 *  The presentation model for the combobox.
 		 *
@@ -228,6 +189,7 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel
 		 */
 		public function get presentationModel():IComboBoxPresentationModel

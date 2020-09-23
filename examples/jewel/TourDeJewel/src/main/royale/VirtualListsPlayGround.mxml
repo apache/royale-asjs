@@ -110,13 +110,12 @@ limitations under the License.
 					<j:VGroup gap="3">
 						<j:VirtualList localId="virtualIconList" width="200" height="300"
 										className="simpleiIconListItemRenderer" labelField="label"
-										emphasis="secondary" rowHeight="52"
-										dataProvider="{listModel.bigIconListVOData}"
-										selectedIndex="4"
-										>
-							<!-- <j:beads>
-								<j:RemoveAllItemRendererForArrayListData/>
-							</j:beads> -->
+										emphasis="secondary" selectedIndex="4"
+										dataProvider="{listModel.bigIconListVOData}">
+							<j:beads>
+								<j:ListPresentationModel rowHeight="52"/>
+								<!-- <j:RemoveAllItemRendererForArrayListData/> -->
+							</j:beads>
 						</j:VirtualList>
 								<!-- change="onChange(event)" -->
 						<!-- <j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/> -->
@@ -152,8 +151,9 @@ limitations under the License.
 				
 				<j:VirtualComboBox localId="virtualIconCmb"
 							className="cmbSimpleiIconListItemRenderer" labelField="label"
-							dataProvider="{listModel.bigIconListVOData}" rowCount="4" rowHeight="52">
+							dataProvider="{listModel.bigIconListVOData}">
 					<j:beads>
+						<j:ComboBoxPresentationModel rowCount="4" rowHeight="52"/>
 						<j:ComboBoxTextPrompt prompt="Some text here..."/>
 					</j:beads>
 				</j:VirtualComboBox>			

@@ -53,7 +53,7 @@ package org.apache.royale.jewel
             typeNames = "jewel navigation";
 
 			// rowHeight is not set by default, so set it to NaN
-			rowHeight = NaN;
+			//rowHeight = NaN;
 
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}

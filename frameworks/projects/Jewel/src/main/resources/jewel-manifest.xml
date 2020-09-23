@@ -234,6 +234,7 @@
     <component id="DropDownListItemRenderer" class="org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer"/>
 
     <component id="ListPresentationModel" class="org.apache.royale.jewel.beads.models.ListPresentationModel"/>
+    <component id="ComboBoxPresentationModel" class="org.apache.royale.jewel.beads.models.ComboBoxPresentationModel"/>
     <component id="TabBarPresentationModel" class="org.apache.royale.jewel.beads.models.TabBarPresentationModel"/>
     <component id="DataGridColumnListPresentationModel" class="org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel"/>
     <component id="DataGridPresentationModel" class="org.apache.royale.jewel.beads.models.DataGridPresentationModel"/>
