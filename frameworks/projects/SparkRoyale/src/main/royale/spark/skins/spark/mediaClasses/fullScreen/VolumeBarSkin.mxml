@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--> 
+
+<!--- The default skin class for the volume bar of a Spark VideoPlayer 
+      component while in one of the <code>fullScreen</code> skin states.  
+
+      @see spark.components.VideoPlayer
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" alpha.disabled=".5"> 
+
+    <!-- host component -->
+    <fx:Metadata>
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.mediaClasses.VolumeBar")]
+    </fx:Metadata> 
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="open" />
+        <s:State name="disabled" />
+    </s:states>
+    
+    <!--- The PopUpAnchor control that contains the drop-down slider control. -->
+    <s:PopUpAnchor id="popup"  displayPopUp.normal="false" displayPopUp.open="true" includeIn="open"
+        left="0" right="0" top="0" bottom="0" popUpPosition="above">
+        
+        <!--- @copy spark.components.mediaClasses.VolumeBar#dropDown -->
+        <s:Group id="dropDown" width="38" height="84" horizontalCenter="0">
+        
+            <!-- dropshadow for the dropdown -->
+            <s:Rect left="0" top="0" right="0" bottom="0">
+                <s:filters>
+                    <s:DropShadowFilter knockout="true" blurX="20" blurY="20" alpha="0.32" distance="11" angle="90" />   
+                </s:filters>    
+                <s:fill>    
+                    <s:SolidColor color="0x000000" />   
+                </s:fill>   
+            </s:Rect>
+        
+            <!-- background for the popup -->
+            <s:Rect left="0" right="0" top="0" bottom="0">
+                <s:fill>
+                    <s:SolidColor color="0x424242" />
+                </s:fill>
+                <s:stroke>
+                    <s:SolidColorStroke color="0x000000" alpha="0.55" />
+                </s:stroke>
+            </s:Rect>
+            
+            <!--- The skin pat that defines the drop-down slider track.  -->
+            <s:Button id="track" horizontalCenter="0" top="6" bottom="7"
+                      skinClass="spark.skins.spark.mediaClasses.fullScreen.VolumeBarTrackSkin" />
+            
+            <!--- The skin pat that defines the thumb in the drop-down slider track.  -->
+            <s:Button id="thumb" horizontalCenter="0" width="11" height="11" 
+                      skinClass="spark.skins.spark.mediaClasses.fullScreen.VolumeBarThumbSkin" />
+        </s:Group>
+    </s:PopUpAnchor>
+    
+    <!--- @copy spark.components.mediaClasses.VolumeBar#muteButton -->
+    <s:MuteButton id="muteButton" left="0" right="0" top="0" bottom="0" focusEnabled="false"
+              skinClass="spark.skins.spark.mediaClasses.fullScreen.MuteButtonSkin" />
+    
+</s:Skin>

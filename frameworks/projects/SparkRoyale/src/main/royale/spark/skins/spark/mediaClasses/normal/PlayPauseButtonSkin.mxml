@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<!--- The default skin class for the play/pause button of a Spark VideoPlayer component  
+      in the normal skin state. The normal skin state means the component is not in 
+      one of the <code>fullScreen</code> skin states.  
+
+      @see spark.components.VideoPlayer
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabledStates="0.5">
+
+    <!-- host component -->
+    <fx:Metadata>
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.ToggleButton")]
+    </fx:Metadata>
+    
+    <fx:Script fb:purpose="styling">
+        /* Define the skin elements that should not be colorized. */
+        static private const exclusions:Array = ["playSymbol", "pauseSymbol"];
+        
+        /**
+         * @private
+         */
+        override public function get colorizeExclusions():Array {return exclusions;}
+        
+        /* Define the symbol fill items that should be colored by the "symbolColor" style.*/
+        static private const symbols:Array = ["playSymbolFill", "pauseSymbolFill1_1", "pauseSymbolFill1_2", 
+                                              "pauseSymbolFill1_3", "pauseSymbolFill1_4", "pauseSymbolFill1_5", 
+                                              "pauseSymbolFill2_1", "pauseSymbolFill2_2", "pauseSymbolFill2_3", 
+                                              "pauseSymbolFill2_4", "pauseSymbolFill2_5"];
+        
+        /**
+         * @private
+         */
+        override public function get symbolItems():Array {return symbols};
+        
+        /**
+         * @private
+         */
+        override protected function initializationComplete():void
+        {
+            useChromeColor = true;
+            super.initializationComplete();
+        }
+    </fx:Script>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" stateGroups="overStates" />
+        <s:State name="down" stateGroups="downStates" />
+        <s:State name="disabled" stateGroups="disabledStates" />
+        <s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+        <s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+        <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+        <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+    </s:states>
+        
+    <!-- layer 1: fill -->
+    <s:Rect left="1" right="1" top="1" bottom="1">
+        <s:fill>
+            <s:LinearGradient rotation="90">
+                <s:GradientEntry color="0xFFFFFF"
+                                 color.overStates="0xCACACA"
+                                 color.downStates="0xA8A8A8" />
+                <s:GradientEntry color="0xDCDCDC"
+                                 color.overStates="0x8D8D8D" 
+                                 color.downStates="0x6B6B6B"/>
+            </s:LinearGradient>
+        </s:fill>
+    </s:Rect>
+    
+    <!-- layer 2: One pixel stroke inside border (exclude in downStates) -->
+    <s:Rect left="1" right="1" top="1" bottom="1" excludeFrom="downStates">
+        <s:stroke>
+            <s:LinearGradientStroke weight="1" rotation="90">
+                <s:GradientEntry color="0xFEFEFE" alpha.overStates="0.22" />
+                <s:GradientEntry color="0xEAEAEA" alpha.overStates="0.22" />
+            </s:LinearGradientStroke>
+        </s:stroke>
+    </s:Rect>
+    
+    <!-- layer 3: fill highlight  (exclude in downStates) -->
+    <s:Rect left="1" right="1" top="1" height="11" excludeFrom="downStates">
+        <s:fill>
+            <s:SolidColor color="0xFFFFFF" 
+                        alpha="0.3" 
+                        alpha.overStates="0.12" />
+        </s:fill>
+    </s:Rect>
+    
+    <!-- layer 4: downstate inset border  (include only in downStates) -->
+    <s:Rect left="1" top="1" right="1" height="1" includeIn="downStates">
+        <s:fill>
+            <s:SolidColor color="0x000000" alpha="0.4" />
+        </s:fill>
+    </s:Rect>
+    <s:Rect left="1" top="2" right="1" height="1" includeIn="downStates">
+        <s:fill>
+            <s:SolidColor color="0x000000" alpha="0.12" />
+        </s:fill>
+    </s:Rect>
+    <s:Rect left="1" top="1" bottom="1" width="1" includeIn="downStates">
+        <s:fill>
+            <s:SolidColor color="0x000000" alpha="0.12" />
+        </s:fill>
+    </s:Rect>
+    <s:Rect right="1" top="1" bottom="1" width="1" includeIn="downStates">
+        <s:fill>
+            <s:SolidColor color="0x000000" alpha="0.12" />
+        </s:fill>
+    </s:Rect>
+    
+    <!-- layer 5: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
+    <s:Rect left="0" right="0" top="0" bottom="0" width="38" height="24">
+        <s:stroke>
+            <s:SolidColorStroke color="0x131313" />
+        </s:stroke>
+    </s:Rect>
+    
+    <!--- Defines the play symbol. -->
+    <s:Group horizontalCenter="0" verticalCenter="0" excludeFrom="selectedStates" id="playSymbol">
+        
+        <!-- triangle -->
+        <s:Path winding="evenOdd" data="M 1 0 L 1 13 L 8 7 L 1 0 Z">
+            <s:fill>
+                <!--- @private -->
+                <s:SolidColor color="0x555555" alpha="0.75" id="playSymbolFill"/>
+            </s:fill>
+        </s:Path>
+        
+        <!-- triangle drop shadow on bottom/right -->
+        <s:Line xFrom="1" xTo="7" yFrom="0" yTo="7">
+            <s:stroke>
+                <s:SolidColorStroke color="0x000000" alpha="0.33" />
+            </s:stroke>
+        </s:Line>
+        
+        <!-- line on left of triangle -->
+        <s:Line x="0" yFrom="0" yTo="13">
+            <s:stroke>
+                <s:SolidColorStroke color="0x000000" alpha="0.5" />
+            </s:stroke>
+        </s:Line>
+    </s:Group>
+    
+    <!--- Defines the pause symbol. -->
+    <s:Group horizontalCenter="0" verticalCenter="0" includeIn="selectedStates" id="pauseSymbol">
+    
+        <!-- big line on left -->
+        <s:Rect left="0" top="0" height="11" width="3">
+            <s:fill>
+                <s:LinearGradient rotation="90">
+                    <!--- @private -->
+                    <s:GradientEntry color="0x252525" alpha="0.75" ratio="0.1" id="pauseSymbolFill1_1"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0x404040" alpha="0.75" ratio="0.2" id="pauseSymbolFill1_2"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0x4B4B4B" alpha="0.75" ratio="0.55" id="pauseSymbolFill1_3"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0x424242" alpha="0.75" ratio="0.9" id="pauseSymbolFill1_4"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0xC4C4C4" alpha="0.75" ratio="1.0" id="pauseSymbolFill1_5"/>
+                </s:LinearGradient>
+            </s:fill>
+        </s:Rect>
+        
+        <!-- big line on right -->
+        <s:Rect left="4" top="0" height="11" width="3">
+            <s:fill>
+                <s:LinearGradient rotation="90">
+                    <!--- @private -->
+                    <s:GradientEntry color="0x252525" alpha="0.75" ratio="0.1" id="pauseSymbolFill2_1"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0x404040" alpha="0.75" ratio="0.2" id="pauseSymbolFill2_2"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0x4B4B4B" alpha="0.75" ratio="0.55" id="pauseSymbolFill2_3"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0x424242" alpha="0.75" ratio="0.9" id="pauseSymbolFill2_4"/>
+                    <!--- @private -->
+                    <s:GradientEntry color="0xC4C4C4" alpha="0.75" ratio="1.0" id="pauseSymbolFill2_5"/>
+                </s:LinearGradient>
+            </s:fill>
+        </s:Rect>
+        
+    </s:Group>
+</s:SparkSkin>
