@@ -65,7 +65,7 @@ use namespace mx_internal;
  */
 [Event(name="rendererRemove", type="spark.events.RendererExistenceEvent")]
 
-include "../styles/metadata/BasicInheritingTextStyles.as"
+//include "../styles/metadata/BasicInheritingTextStyles.as"
 
 /**
  *  The alpha of the focus ring for this component.
@@ -105,7 +105,7 @@ include "../styles/metadata/BasicInheritingTextStyles.as"
 
 [DefaultProperty("dataProvider")]
 
-[IconFile("SkinnableDataContainer.png")]
+//[IconFile("SkinnableDataContainer.png")]
 
 /**
  *  The SkinnableDataContainer class is the base container class for

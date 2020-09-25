@@ -144,8 +144,8 @@ public class ButtonBarButton extends ToggleButton implements IItemRenderer
             return;
 
         _showsCaret = value;
-        drawFocusAnyway = true;
-        drawFocus(value);
+        //drawFocusAnyway = true;
+        //drawFocus(value);
     }
 
     //----------------------------------
@@ -182,7 +182,8 @@ public class ButtonBarButton extends ToggleButton implements IItemRenderer
      */
     public function get data():Object
     {
-         return content;
+         return null;
+         //return content;
     }
 
     /**
@@ -190,7 +191,7 @@ public class ButtonBarButton extends ToggleButton implements IItemRenderer
      */
     public function set data(value:Object):void
     {
-         content = value;
+         //content = value;
          dispatchEvent(new Event("dataChange"));
     }
     
@@ -258,8 +259,8 @@ public class ButtonBarButton extends ToggleButton implements IItemRenderer
         {
             _label = value;
 
-            if (labelDisplay)
-                labelDisplay.text = _label;
+            //if (labelDisplay)
+                //labelDisplay.text = _label;
         }
     }
     
@@ -272,13 +273,13 @@ public class ButtonBarButton extends ToggleButton implements IItemRenderer
     /**
      *  @private
      */ 
-    override protected function buttonReleased():void
-    {
-        if (selected && !allowDeselection)
-            return;
-        
-        super.buttonReleased();
-    }
+    //override protected function buttonReleased():void
+    //{
+        //if (selected && !allowDeselection)
+            //return;
+        //
+        //super.buttonReleased();
+    //}
 }
 
 }

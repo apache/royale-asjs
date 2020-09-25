@@ -98,6 +98,35 @@ internal class SparkRoyaleClasses
     import spark.components.beads.controllers.TabBarController; TabBarController;
     import spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
     import spark.events.DropDownEvent; DropDownEvent;
+
+	
+import spark.components.ButtonBarButton; ButtonBarButton;
+import spark.components.IItemRenderer; IItemRenderer;
+//import spark.components.SkinnableDataContainer; SkinnableDataContainer;
+//import spark.components.VideoDisplay; VideoDisplay;
+//import spark.components.mediaClasses.ScrubBar; ScrubBar;
+//import spark.components.mediaClasses.VolumeBar; VolumeBar;
+import spark.components.supportClasses.ButtonBarHorizontalLayout; ButtonBarHorizontalLayout;
+//import spark.effects.AnimateColor; AnimateColor; // needed
+import spark.effects.Fade; Fade;
+//import spark.effects.Resize; Resize; // needed
+//import spark.effects.SetAction; SetAction; // needed
+import spark.effects.easing.IEaser; IEaser;
+//import spark.effects.easing.Power; Power; // needed
+//import spark.events.TitleWindowBoundsEvent; TitleWindowBoundsEvent; // needed
+import spark.filters.ColorMatrixFilter; ColorMatrixFilter;
+import spark.filters.DropShadowFilter; DropShadowFilter;
+import spark.filters.GlowFilter; GlowFilter;
+import spark.primitives.Ellipse; Ellipse;
+//import spark.skins.SparkButtonSkin; SparkButtonSkin; // needed
+import spark.components.IItemRendererOwner; IItemRendererOwner;
+//import spark.skins.spark.mediaClasses.fullScreen.PlayPauseButtonSkin; PlayPauseButtonSkin;
+//import spark.skins.spark.mediaClasses.fullScreen.ScrubBarSkin; ScrubBarSkin;
+//import spark.skins.spark.mediaClasses.fullScreen.VolumeBarSkin; VolumeBarSkin;
+//import spark.skins.spark.mediaClasses.normal.PlayPauseButtonSkin; PlayPauseButtonSkin;
+//import spark.skins.spark.mediaClasses.normal.ScrubBarSkin; ScrubBarSkin;
+//import spark.skins.spark.mediaClasses.normal.VolumeBarSkin; VolumeBarSkin;
+//import spark.utils.LabelUtil; LabelUtil; // needed
 	
 }
 

@@ -151,7 +151,7 @@ public class ButtonBarHorizontalLayout extends LayoutBase
         var count:int = layoutTarget.numElements;
         for (var i:int = 0; i < count; i++)
         {
-            var layoutElement:ILayoutElement = layoutTarget.getElementAt(i);
+            var layoutElement:ILayoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
             if (!layoutElement || !layoutElement.includeInLayout)
                 continue;
 
@@ -192,7 +192,7 @@ public class ButtonBarHorizontalLayout extends LayoutBase
         var layoutElement:ILayoutElement;
         for (var i:int = 0; i < count; i++)
         {
-            layoutElement = layoutTarget.getElementAt(i);
+            layoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
             if (!layoutElement || !layoutElement.includeInLayout)
             {
                 elementCount--;
@@ -228,7 +228,7 @@ public class ButtonBarHorizontalLayout extends LayoutBase
             averageWidth = width / elementCount;
             for (i = 0; i < count; i++)
             {
-                layoutElement = layoutTarget.getElementAt(i);
+                layoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
                 if (!layoutElement || !layoutElement.includeInLayout)
                     continue;
 
@@ -250,7 +250,7 @@ public class ButtonBarHorizontalLayout extends LayoutBase
         var roundOff:Number = 0;
         for (i = 0; i < count; i++)
         {
-            layoutElement = layoutTarget.getElementAt(i);
+            layoutElement = layoutTarget.getElementAt(i) as ILayoutElement;
             if (!layoutElement || !layoutElement.includeInLayout)
                 continue;
 
