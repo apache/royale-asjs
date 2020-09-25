@@ -22,7 +22,6 @@ package mx.events
 
 //import flash.display.LoaderInfo;
 import org.apache.royale.events.Event;
-import org.apache.royale.events.ProgressEvent;
 import org.apache.royale.net.URLRequest;
 
 /**
@@ -352,7 +351,7 @@ public class RSLEvent extends ProgressEvent
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	public function clone():Event
 	{
 		return new RSLEvent(type, bubbles, cancelable,
 							bytesLoaded, bytesTotal, rslIndex,

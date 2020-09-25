@@ -282,6 +282,18 @@ internal class MXRoyaleClasses
     import mx.controls.beads.models.ComboBoxModel; ComboBoxModel;
     import mx.controls.beads.models.CascadingMenuModel; CascadingMenuModel;
     
+	import mx.collections.errors.ItemPendingError; ItemPendingError;
+	import mx.controls.scrollClasses.ScrollThumb; ScrollThumb;
+	import mx.effects.EffectTargetFilter; EffectTargetFilter;
+	import mx.effects.effectClasses.PropertyChanges; PropertyChanges;
+	import mx.effects.IEffect; IEffect;
+	import mx.effects.IEffectTargetHost; IEffectTargetHost;
+	import mx.events.RSLEvent; RSLEvent;
+	import mx.skins.halo.DataGridHeaderSeparator; DataGridHeaderSeparator;
+	import mx.filters.BaseDimensionFilter; BaseDimensionFilter;
+	import mx.filters.BaseFilter; BaseFilter;
+	import mx.filters.IBitmapFilter; IBitmapFilter;
+
     import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
 	import mx.controls.beads.models.DataGridColumnICollectionViewModel; DataGridColumnICollectionViewModel;
     import mx.controls.beads.models.DataGridICollectionViewModel; DataGridICollectionViewModel;

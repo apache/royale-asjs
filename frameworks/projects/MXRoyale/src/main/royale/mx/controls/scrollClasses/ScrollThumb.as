@@ -65,7 +65,7 @@ public class ScrollThumb extends Button
 				
 		explicitMinHeight = 10;
 
-		stickyHighlighting = true;
+		//stickyHighlighting = true;
 	}
 	
 	//--------------------------------------------------------------------------
@@ -109,12 +109,12 @@ public class ScrollThumb extends Button
 	/**
 	 *  @private
 	 */
-	override mx_internal function buttonReleased():void
-	{
-		super.buttonReleased();
-
-		stopDragThumb();
-	}
+	//override mx_internal function buttonReleased():void
+	//{
+		//super.buttonReleased();
+//
+		//stopDragThumb();
+	//}
 	
 	//--------------------------------------------------------------------------
 	//
@@ -143,18 +143,18 @@ public class ScrollThumb extends Button
 	 */
 	private function stopDragThumb():void
 	{
-		var scrollBar:ScrollBar = ScrollBar(parent);
-		
-		scrollBar.isScrolling = false;
-		
-		scrollBar.dispatchScrollEvent(scrollBar.oldPosition, 
-                                      ScrollEventDetail.THUMB_POSITION);
-        
-		scrollBar.oldPosition = NaN;
-		
-		systemManager.getSandboxRoot().removeEventListener(
-			MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
-
+		//var scrollBar:ScrollBar = ScrollBar(parent);
+		//
+		//scrollBar.isScrolling = false;
+		//
+		//scrollBar.dispatchScrollEvent(scrollBar.oldPosition, 
+                                      //ScrollEventDetail.THUMB_POSITION);
+        //
+		//scrollBar.oldPosition = NaN;
+		//
+		//systemManager.getSandboxRoot().removeEventListener(
+			//MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+//
 	}
 	
 	//--------------------------------------------------------------------------
@@ -167,19 +167,19 @@ public class ScrollThumb extends Button
 	 *  @private
 	 *  User pressed on the thumb, so start tracking in case they drag it.
 	 */
- 	override protected function mouseDownHandler(event:MouseEvent):void
-	{
-		super.mouseDownHandler(event);
-
-		var scrollBar:ScrollBar = ScrollBar(parent);
-        scrollBar.oldPosition = scrollBar.scrollPosition;
-		
-		lastY = event.localY;
-		
-		systemManager.getSandboxRoot().addEventListener(
-			MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
-
-	}
+ 	//override protected function mouseDownHandler(event:MouseEvent):void
+	//{
+		//super.mouseDownHandler(event);
+//
+		//var scrollBar:ScrollBar = ScrollBar(parent);
+        //scrollBar.oldPosition = scrollBar.scrollPosition;
+		//
+		//lastY = event.localY;
+		//
+		//systemManager.getSandboxRoot().addEventListener(
+			//MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+//
+	//}
 
 	//--------------------------------------------------------------------------
 	//
@@ -193,36 +193,36 @@ public class ScrollThumb extends Button
 	 */
 	private function mouseMoveHandler(event:MouseEvent):void
 	{
-		if (ymin == ymax)
-			return;
-
-		var pt:Point = new Point(event.stageX, event.stageY);
-		pt = globalToLocal(pt);
-		
-		var scrollMove:Number = pt.y - lastY;
-		scrollMove += y;
-		
-		if (scrollMove < ymin)
-			scrollMove = ymin;
-		else if (scrollMove > ymax)
-			scrollMove = ymax;
-
-		var scrollBar:ScrollBar = ScrollBar(parent);
-		
-		scrollBar.isScrolling = true;
-		
-		$y = scrollMove;
-
-		// In an ideal world, this would probably dispatch an event,
-		// however this object is rather hardwired into a scroll bar
-		// so we'll just have it tell the scroll bar to change its position.
-        var oldPosition:Number = scrollBar.scrollPosition;
-		var pos:Number = Math.round(
-			(datamax - datamin) * (y - ymin) / (ymax - ymin)) + datamin;
-		scrollBar.scrollPosition = pos;
-		scrollBar.dispatchScrollEvent(oldPosition,
-									  ScrollEventDetail.THUMB_TRACK);
-		event.updateAfterEvent();									  
+		//if (ymin == ymax)
+			//return;
+//
+		//var pt:Point = new Point(event.stageX, event.stageY);
+		//pt = globalToLocal(pt);
+		//
+		//var scrollMove:Number = pt.y - lastY;
+		//scrollMove += y;
+		//
+		//if (scrollMove < ymin)
+			//scrollMove = ymin;
+		//else if (scrollMove > ymax)
+			//scrollMove = ymax;
+//
+		//var scrollBar:ScrollBar = ScrollBar(parent);
+		//
+		//scrollBar.isScrolling = true;
+		//
+		//$y = scrollMove;
+//
+		//// In an ideal world, this would probably dispatch an event,
+		//// however this object is rather hardwired into a scroll bar
+		//// so we'll just have it tell the scroll bar to change its position.
+        //var oldPosition:Number = scrollBar.scrollPosition;
+		//var pos:Number = Math.round(
+			//(datamax - datamin) * (y - ymin) / (ymax - ymin)) + datamin;
+		//scrollBar.scrollPosition = pos;
+		//scrollBar.dispatchScrollEvent(oldPosition,
+									  //ScrollEventDetail.THUMB_TRACK);
+		//event.updateAfterEvent();									  
 	}
 
 }
