@@ -49,7 +49,7 @@ import spark.layouts.supportClasses.LayoutBase;
  */
 public class ButtonBarHorizontalLayout extends LayoutBase
 {
-    include "../../core/Version.as";
+    //include "../../core/Version.as";
 
     //--------------------------------------------------------------------------
     //

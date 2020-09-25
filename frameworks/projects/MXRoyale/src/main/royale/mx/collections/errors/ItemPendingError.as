@@ -45,7 +45,7 @@ import mx.rpc.IResponder;
  */
 public class ItemPendingError extends Error
 {
-    include "../../core/Version.as";
+    //include "../../core/Version.as";
 
 	//--------------------------------------------------------------------------
 	//

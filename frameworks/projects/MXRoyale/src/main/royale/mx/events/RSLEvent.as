@@ -39,7 +39,7 @@ import org.apache.royale.net.URLRequest;
  */
 public class RSLEvent extends ProgressEvent
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
 	//--------------------------------------------------------------------------
 	//

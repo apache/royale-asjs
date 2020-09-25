@@ -43,7 +43,7 @@ use namespace mx_internal;
  */
 public class ScrollThumb extends Button
 {
-	include "../../core/Version.as";
+	//include "../../core/Version.as";
 
 	//--------------------------------------------------------------------------
 	//

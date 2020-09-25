@@ -33,7 +33,7 @@ import  mx.core.FlexVersion;
  */
 public class LabelUtil
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
         
     //--------------------------------------------------------------------------
     //

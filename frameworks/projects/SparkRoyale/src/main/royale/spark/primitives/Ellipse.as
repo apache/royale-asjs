@@ -48,7 +48,7 @@ use namespace mx_internal;
  */
 public class Ellipse extends FilledElement
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //

@@ -37,7 +37,7 @@ import org.apache.royale.geom.Rectangle;
  */
 public class TitleWindowBoundsEvent extends Event
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
     
     //--------------------------------------------------------------------------
     //

@@ -68,7 +68,7 @@ use namespace mx_internal;
  */
 public class Resize extends Animate
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //

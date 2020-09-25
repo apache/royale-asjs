@@ -208,7 +208,7 @@ include "../styles/metadata/BasicInheritingTextStyles.as"
  */
 public class SkinnableDataContainer extends SkinnableContainerBase implements IItemRendererOwner
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
     
     //--------------------------------------------------------------------------
     //

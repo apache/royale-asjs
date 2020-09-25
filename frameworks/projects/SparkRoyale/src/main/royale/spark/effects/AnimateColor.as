@@ -55,7 +55,7 @@ import mx.styles.StyleManager;
  */
 public class AnimateColor extends Animate
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //

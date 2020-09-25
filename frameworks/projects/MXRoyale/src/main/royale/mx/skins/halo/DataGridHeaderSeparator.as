@@ -33,7 +33,7 @@ import mx.skins.ProgrammaticSkin;
  */
 public class DataGridHeaderSeparator extends ProgrammaticSkin
 {
-	include "../../core/Version.as";
+	//include "../../core/Version.as";
 
 	//--------------------------------------------------------------------------
 	//

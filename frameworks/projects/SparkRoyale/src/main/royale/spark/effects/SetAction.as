@@ -64,7 +64,7 @@ import mx.effects.IEffectInstance;
  */
 public class SetAction extends Effect
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
