@@ -20,10 +20,10 @@
 package spark.primitives
 {
 
-import flash.display.Graphics;
-import flash.geom.Matrix;
-import flash.geom.Point;
-import flash.geom.Rectangle;
+import mx.display.Graphics;
+import mx.geom.Matrix;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 
 import mx.core.mx_internal;
 import mx.utils.MatrixUtil;
@@ -37,7 +37,7 @@ use namespace mx_internal;
  *  To draw the ellipse, this class calls the <code>Graphics.drawEllipse()</code> 
  *  method.
  *  
- *  @see flash.display.Graphics
+ *  @see mx.display.Graphics
  *  
  *  @includeExample examples/EllipseExample.mxml
  *  

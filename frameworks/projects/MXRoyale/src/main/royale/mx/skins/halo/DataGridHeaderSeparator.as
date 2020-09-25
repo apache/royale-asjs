@@ -20,7 +20,7 @@
 package mx.skins.halo
 {
 
-import flash.display.Graphics;
+import mx.display.Graphics;
 import mx.skins.ProgrammaticSkin;
 
 /**

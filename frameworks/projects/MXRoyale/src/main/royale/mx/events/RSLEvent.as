@@ -21,8 +21,8 @@ package mx.events
 {
 
 import flash.display.LoaderInfo;
-import flash.events.Event;
-import flash.events.ProgressEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.ProgressEvent;
 import flash.net.URLRequest;
 
 /**

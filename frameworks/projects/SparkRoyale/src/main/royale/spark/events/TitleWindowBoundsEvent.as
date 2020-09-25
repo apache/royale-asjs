@@ -20,8 +20,8 @@
 package spark.events
 {
     
-import flash.events.Event;
-import flash.geom.Rectangle;
+import org.apache.royale.events.Event;
+import org.apache.royale.geom.Rectangle;
 
 /**
  *  The TitleWindowBoundsEvent class represents event objects 

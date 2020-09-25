@@ -20,9 +20,9 @@
 package spark.components
 {
 
-import flash.events.Event;
-import flash.geom.Point;
-import flash.geom.Rectangle;
+import org.apache.royale.events.Event;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
 import flash.media.Video;
 
 import mx.core.IUIComponent;

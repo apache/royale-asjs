@@ -20,7 +20,7 @@
 package spark.components
 {
 
-import flash.events.Event;
+import org.apache.royale.events.Event;
 
 import mx.collections.IList;
 import mx.core.IDataRenderer;

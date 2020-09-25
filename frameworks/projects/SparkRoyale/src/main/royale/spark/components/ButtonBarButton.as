@@ -19,8 +19,8 @@
 
 package spark.components
 {
-import flash.events.MouseEvent;
-import flash.events.Event;
+import org.apache.royale.events.MouseEvent;
+import org.apache.royale.events.Event;
 
 import spark.components.IItemRenderer;
 import mx.core.mx_internal;

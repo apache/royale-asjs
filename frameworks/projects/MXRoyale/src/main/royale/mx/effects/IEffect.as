@@ -20,8 +20,8 @@
 package mx.effects
 {
 
-import flash.events.Event;
-import flash.events.IEventDispatcher;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  The IEffect interface defines the base 

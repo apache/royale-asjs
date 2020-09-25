@@ -21,11 +21,11 @@ package spark.components.mediaClasses
 {
 
 import flash.display.DisplayObject;
-import flash.events.Event;
-import flash.events.FocusEvent;
-import flash.events.KeyboardEvent;
-import flash.events.MouseEvent;
-import flash.geom.Point;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.FocusEvent;
+import org.apache.royale.events.KeyboardEvent;
+import org.apache.royale.events.MouseEvent;
+import org.apache.royale.geom.Point;
 import flash.ui.Keyboard;
 import flash.ui.Mouse;
 

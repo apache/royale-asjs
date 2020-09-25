@@ -24,7 +24,7 @@ package spark.components.mediaClasses
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.InteractiveObject;
-import flash.events.Event;
+import org.apache.royale.events.Event;
 
 import mx.core.IVisualElement;
 
