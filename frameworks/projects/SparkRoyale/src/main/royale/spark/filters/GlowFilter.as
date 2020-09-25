@@ -19,8 +19,8 @@
 
 package spark.filters
 {
-import flash.filters.BitmapFilter;
-import flash.filters.GlowFilter;
+//import flash.filters.BitmapFilter;
+//import flash.filters.GlowFilter;
 import mx.filters.BaseDimensionFilter;
 import mx.filters.IBitmapFilter;
 
@@ -253,9 +253,10 @@ public class GlowFilter extends BaseDimensionFilter implements IBitmapFilter
      * @playerversion AIR 1.5
      * @productversion Flex 4
      */
-    public function clone():BitmapFilter
+    public function clone():Object
     {
-        return new flash.filters.GlowFilter(color, alpha, blurX, blurY, strength, quality, inner, knockout);
+        //return new flash.filters.GlowFilter(color, alpha, blurX, blurY, strength, quality, inner, knockout);
+        return null;
     }
 
 
