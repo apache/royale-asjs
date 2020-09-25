@@ -351,7 +351,7 @@ public class RSLEvent extends ProgressEvent
 	/**
 	 *  @private
 	 */
-	public function clone():Event
+	override public function cloneEvent():Event
 	{
 		return new RSLEvent(type, bubbles, cancelable,
 							bytesLoaded, bytesTotal, rslIndex,

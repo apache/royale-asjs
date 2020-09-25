@@ -33,15 +33,15 @@ import org.apache.royale.utils.ObjectMap;
 //import flash.utils.setInterval;
 
 import mx.collections.CursorBookmark;
-import mx.collections.ItemResponder;
-import mx.collections.ItemWrapper;
-import mx.collections.ModifiedCollectionView;
+//import mx.collections.ItemResponder;
+//import mx.collections.ItemWrapper;
+//import mx.collections.ModifiedCollectionView;
 import mx.collections.errors.ItemPendingError;
-import mx.controls.scrollClasses.ScrollBar;
+//import mx.controls.scrollClasses.ScrollBar;
 import mx.core.ClassFactory;
 import mx.core.EdgeMetrics;
-import mx.core.FlexShape;
-import mx.core.FlexSprite;
+//import mx.core.FlexShape;
+//import mx.core.FlexSprite;
 import mx.core.IFactory;
 import mx.core.IFlexDisplayObject;
 import mx.core.UIComponentGlobals;
@@ -52,9 +52,9 @@ import mx.events.DragEvent;
 import mx.events.FlexEvent;
 import mx.events.ListEvent;
 import mx.events.ScrollEvent;
-import mx.events.ScrollEventDetail;
-import mx.events.ScrollEventDirection;
-import mx.skins.halo.ListDropIndicator;
+//import mx.events.ScrollEventDetail;
+//import mx.events.ScrollEventDirection;
+//import mx.skins.halo.ListDropIndicator;
 
 use namespace mx_internal;
 

@@ -24,7 +24,7 @@ import org.apache.royale.events.MouseEvent;
 import org.apache.royale.geom.Point;
 import mx.controls.Button;
 import mx.core.mx_internal;
-import mx.events.ScrollEventDetail;
+//import mx.events.ScrollEventDetail;
 import mx.managers.ISystemManager;
 
 use namespace mx_internal;
