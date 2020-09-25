@@ -25,4 +25,5 @@
     <component id="AMFStorageBean" class="org.apache.royale.crux.storage.AMFStorageBean"/>
 
     <component id="JSStageEvents" class="org.apache.royale.crux.beads.JSStageEvents"/>
+    <component id="CruxHelper" class="org.apache.royale.crux.beads.CruxHelper"/>
 </componentPackage>
