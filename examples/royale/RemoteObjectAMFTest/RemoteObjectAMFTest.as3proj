@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 
-  Licensed to the Apache Software Foundation (ASF) under one or more
-  contributor license agreements.  See the NOTICE file distributed with
-  this work for additional information regarding copyright ownership.
-  The ASF licenses this file to You under the Apache License, Version 2.0
-  (the "License"); you may not use this file except in compliance with
-  the License.  You may obtain a copy of the License at
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
 
-      http://www.apache.org/licenses/LICENSE-2.0
+http://www.apache.org/licenses/LICENSE-2.0
 
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 -->
 <project>
   <output>
-    <movie disabled="False"/>
     <movie platform="Flash Player"/>
-    <movie version="11"/>
-    <movie width="800"/>
+    <movie disabled="False"/>
     <movie fps="60"/>
-    <movie height="600"/>
     <movie background="#FFFFFF"/>
+    <movie version="11"/>
     <movie path="bin-debug/App.swf"/>
+    <movie width="800"/>
+    <movie height="600"/>
     <movie input=""/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
@@ -39,32 +39,35 @@
   <moonshineResourcePaths></moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
+    <option antBuildPath="build/build.xml"/>
+    <option customSDK=""/>
+    <option useResourceBundleMetadata="True"/>
+    <option sourceMap="False"/>
     <option showDeprecationWarnings="True"/>
-    <option showUnusedTypeSelectorWarnings="True"/>
+    <option benchmark="False"/>
+    <option allowSourcePathOverlap="False"/>
+    <option compilerConstants=""/>
     <option locale=""/>
-    <option strict="True"/>
-    <option additional="-html-template=src/main/resources/jewel-example-index-template.html -theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
-    <option antBuildPath="build/build.xml"/>
-    <option useResourceBundleMetadata="True"/>
-    <option benchmark="False"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
+    <option additional="-html-template=src/main/resources/jewel-example-index-template.html -theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"/>
+    <option strict="True"/>
     <option warnings="True"/>
+    <option showBindingWarnings="True"/>
     <option es="False"/>
     <option verboseStackTraces="False"/>
-    <option customSDK=""/>
     <option loadConfig=""/>
     <option linkReport=""/>
     <option optimize="False"/>
     <option staticLinkRSL="False"/>
     <option showActionScriptWarnings="True"/>
-    <option compilerConstants=""/>
-    <option allowSourcePathOverlap="False"/>
-    <option showBindingWarnings="True"/>
   </build>
   <mavenBuild>
+    <option dominoNotesProgram=""/>
     <option mavenBuildPath=""/>
     <option settingsFilePath=""/>
+    <option dominoNotesPlatform=""/>
     <option commandLine=""/>
     <actions>
       <action actionName="Build" action="install"/>
@@ -79,6 +82,7 @@
   <rslPaths></rslPaths>
   <intrinsics></intrinsics>
   <library></library>
+  <modules/>
   <compileTargets>
     <compile path="src/main/royale/App.mxml"/>
   </compileTargets>
@@ -87,22 +91,25 @@
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
-    <option visualEditorExportPath=""/>
-    <option testMovie=""/>
     <option testMovieCommand=""/>
-    <option showHiddenPaths="False"/>
-    <option defaultBuildTargets=""/>
-    <option isExportedToExistingSource="False"/>
     <option isPrimeFacesVisualEditor="False"/>
+    <option defaultBuildTargets=""/>
+    <option showHiddenPaths="False"/>
+    <option isRoyale="True"/>
+    <option isExportedToExistingSource="False"/>
+    <option testMovie=""/>
+    <option visualEditorExportPath=""/>
   </options>
   <moonshineRunCustomization>
-    <option launchMethod="Simulator"/>
-    <option targetPlatform="2"/>
-    <option projectType="2"/>
-    <option urlToLaunch=""/>
     <option customUrlToLaunch=""/>
+    <option deviceConnectType="USB"/>
     <option deviceSimulator="null"/>
-    <deviceSimulator>null</deviceSimulator>
+    <option projectType="2"/>
+    <option launchMethod="Simulator"/>
+    <option webBrowser="Google Chrome"/>
+    <option targetPlatform="5"/>
+    <option urlToLaunch=""/>
+    <deviceSimulator>Apple iPad</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
     <certIosProvisioning>null</certIosProvisioning>
