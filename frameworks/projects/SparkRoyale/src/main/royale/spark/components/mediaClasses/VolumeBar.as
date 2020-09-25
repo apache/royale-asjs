@@ -20,29 +20,31 @@
 package spark.components.mediaClasses
 {
 
-import flash.display.DisplayObject;
-import org.apache.royale.events.Event;
-import org.apache.royale.events.FocusEvent;
-import org.apache.royale.events.KeyboardEvent;
-import org.apache.royale.events.MouseEvent;
-import org.apache.royale.geom.Point;
-import flash.ui.Keyboard;
-import flash.ui.Mouse;
 
-import mx.collections.IList;
-import mx.core.IUIComponent;
+import org.apache.royale.html.Slider;
+//import flash.display.DisplayObject;
+//import org.apache.royale.events.Event;
+//import org.apache.royale.events.FocusEvent;
+//import org.apache.royale.events.KeyboardEvent;
+//import org.apache.royale.events.MouseEvent;
+//import org.apache.royale.geom.Point;
+//import flash.ui.Keyboard;
+//import flash.ui.Mouse;
+//
+//import mx.collections.IList;
+//import mx.core.IUIComponent;
 import mx.core.UIComponent;
-import mx.core.mx_internal;
-import mx.events.CollectionEvent;
-import mx.events.FlexEvent;
-import mx.managers.LayoutManager;
-
-import spark.components.VSlider;
-import spark.components.supportClasses.ButtonBase;
-import spark.components.supportClasses.DropDownController;
-import spark.components.supportClasses.ListBase;
-import spark.events.DropDownEvent;
-import spark.utils.LabelUtil;
+//import mx.core.mx_internal;
+//import mx.events.CollectionEvent;
+//import mx.events.FlexEvent;
+//import mx.managers.LayoutManager;
+//
+//import spark.components.VSlider;
+//import spark.components.supportClasses.ButtonBase;
+//import spark.components.supportClasses.DropDownController;
+//import spark.components.supportClasses.ListBase;
+//import spark.events.DropDownEvent;
+//import spark.utils.LabelUtil;
 
 use namespace mx_internal;
 
@@ -140,7 +142,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class VolumeBar extends VSlider
+public class VolumeBar extends Slider
 {
 
     //--------------------------------------------------------------------------
@@ -161,12 +163,12 @@ public class VolumeBar extends VSlider
     {
         super();
         
-        dropDownController = new DropDownController();
+        //dropDownController = new DropDownController();
         
         // add change listener so we know when the user has interacted 
         // with the volume bar to change the value so we can automatically 
         // unmute the volume when the user does that.
-        addEventListener(Event.CHANGE, changeHandler);
+        //addEventListener(Event.CHANGE, changeHandler);
     }
     
     //--------------------------------------------------------------------------
@@ -184,7 +186,8 @@ public class VolumeBar extends VSlider
      *  @productversion Flex 4
      */
     [SkinPart(required="false")]
-    public var muteButton:MuteButton;
+    //public var muteButton:MuteButton;
+    public var muteButton:UIComponent;
     
     
     /**
@@ -211,7 +214,7 @@ public class VolumeBar extends VSlider
     //  dropDownController
     //----------------------------------
     
-    private var _dropDownController:DropDownController;    
+    //private var _dropDownController:DropDownController;    
     
     /**
      *  Instance of the DropDownController class that handles all of the mouse, keyboard 
@@ -222,31 +225,31 @@ public class VolumeBar extends VSlider
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    protected function get dropDownController():DropDownController
-    {
-        return _dropDownController;
-    }
+    //protected function get dropDownController():DropDownController
+    //{
+        //return _dropDownController;
+    //}
     
     /**
      *  @private
      */
-    protected function set dropDownController(value:DropDownController):void
-    {
-        if (_dropDownController == value)
-            return;
-            
-        _dropDownController = value;
-            
-        _dropDownController.addEventListener(DropDownEvent.OPEN, dropDownController_openHandler);
-        _dropDownController.addEventListener(DropDownEvent.CLOSE, dropDownController_closeHandler);
-            
-        _dropDownController.rollOverOpenDelay = getStyle("rollOverOpenDelay");
-            
-        if (muteButton)
-            _dropDownController.openButton = muteButton;
-        if (dropDown)
-            _dropDownController.dropDown = dropDown;    
-    }
+    //protected function set dropDownController(value:DropDownController):void
+    //{
+        //if (_dropDownController == value)
+            //return;
+            //
+        //_dropDownController = value;
+            //
+        //_dropDownController.addEventListener(DropDownEvent.OPEN, dropDownController_openHandler);
+        //_dropDownController.addEventListener(DropDownEvent.CLOSE, dropDownController_closeHandler);
+            //
+        //_dropDownController.rollOverOpenDelay = getStyle("rollOverOpenDelay");
+            //
+        //if (muteButton)
+            //_dropDownController.openButton = muteButton;
+        //if (dropDown)
+            //_dropDownController.dropDown = dropDown;    
+    //}
     
     //----------------------------------
     //  isDropDownOpen
@@ -262,10 +265,11 @@ public class VolumeBar extends VSlider
      */
     public function get isDropDownOpen():Boolean
     {
-        if (dropDownController)
-            return dropDownController.isOpen;
-        else
-            return false;
+        //if (dropDownController)
+            //return dropDownController.isOpen;
+        //else
+            //return false;
+	return false;
     }
     
     //----------------------------------
@@ -290,7 +294,8 @@ public class VolumeBar extends VSlider
      */
     public function get muted():Boolean
     {
-        return _muted;
+        //return _muted;
+	return false;
     }
     
     /**
@@ -298,19 +303,19 @@ public class VolumeBar extends VSlider
      */
     public function set muted(value:Boolean):void
     {
-        if (_muted == value)
-            return;
-        
-        _muted = value;
-        
-        // invalidateDisplayList() because we take in to account value and muted when 
-        // determining where to draw the thumb on the track.
-        invalidateDisplayList();
-        
-        if (muteButton)
-            muteButton.muted = value;
-        
-        dispatchEvent(new FlexEvent(FlexEvent.MUTED_CHANGE));
+        //if (_muted == value)
+            //return;
+        //
+        //_muted = value;
+        //
+        //// invalidateDisplayList() because we take in to account value and muted when 
+        //// determining where to draw the thumb on the track.
+        //invalidateDisplayList();
+        //
+        //if (muteButton)
+            //muteButton.muted = value;
+        //
+        //dispatchEvent(new FlexEvent(FlexEvent.MUTED_CHANGE));
     }
 
     //--------------------------------------------------------------------------
@@ -326,9 +331,11 @@ public class VolumeBar extends VSlider
     /**
      *  @private
      */
-    override public function get baselinePosition():Number
+    //override public function get baselinePosition():Number
+    public function get baselinePosition():Number
     {
-        return getBaselinePositionForPart(muteButton);
+        //return getBaselinePositionForPart(muteButton);
+        return NaN;
     }
     
     //--------------------------------------------------------------------------
@@ -342,131 +349,133 @@ public class VolumeBar extends VSlider
      *  Overridden to handle the muted case where the value's not actually changed, 
      *  but we want it to show up as 0.
      */
-    override protected function updateSkinDisplayList():void
-    {
-        if (!thumb || !track)
-            return;
-    
-        var thumbRange:Number = track.getLayoutBoundsHeight() - thumb.getLayoutBoundsHeight();
-        var range:Number = maximum - minimum;
-        
-        // calculate new thumb position.
-        var thumbPosTrackY:Number;
-        
-        // if muted, it's 0.  otherwise, calculate it normally
-        // TODO (rfrishbe): should probably use setValue(0) and listen for CHANGE on the VideoPlayer 
-        // instead of VALUE_COMMIT.
-        if (!muted)
-            thumbPosTrackY = (range > 0) ? thumbRange - (((pendingValue - minimum) / range) * thumbRange) : 0;
-        else
-            thumbPosTrackY = thumbRange;
-        
-        // convert to parent's coordinates.
-        var thumbPos:Point = track.localToGlobal(new Point(0, thumbPosTrackY));
-        var thumbPosParentY:Number = thumb.parent.globalToLocal(thumbPos).y;
-        
-        thumb.setLayoutBoundsPosition(thumb.getLayoutBoundsX(), Math.round(thumbPosParentY));
-    }
+    //override protected function updateSkinDisplayList():void
+    //{
+        //if (!thumb || !track)
+            //return;
+    //
+        //var thumbRange:Number = track.getLayoutBoundsHeight() - thumb.getLayoutBoundsHeight();
+        //var range:Number = maximum - minimum;
+        //
+        //// calculate new thumb position.
+        //var thumbPosTrackY:Number;
+        //
+        //// if muted, it's 0.  otherwise, calculate it normally
+        //// TODO (rfrishbe): should probably use setValue(0) and listen for CHANGE on the VideoPlayer 
+        //// instead of VALUE_COMMIT.
+        //if (!muted)
+            //thumbPosTrackY = (range > 0) ? thumbRange - (((pendingValue - minimum) / range) * thumbRange) : 0;
+        //else
+            //thumbPosTrackY = thumbRange;
+        //
+        //// convert to parent's coordinates.
+        //var thumbPos:Point = track.localToGlobal(new Point(0, thumbPosTrackY));
+        //var thumbPosParentY:Number = thumb.parent.globalToLocal(thumbPos).y;
+        //
+        //thumb.setLayoutBoundsPosition(thumb.getLayoutBoundsX(), Math.round(thumbPosParentY));
+    //}
     
     /**
      *  @private
      */
-    override public function styleChanged(styleProp:String):void
+    //override public function styleChanged(styleProp:String):void
+    public function styleChanged(styleProp:String):void
     {
-        super.styleChanged(styleProp);
-        var allStyles:Boolean = (styleProp == null || styleProp == "styleName");
-         
-        if (allStyles || styleProp == "rollOverOpenDelay")
-        {
-            if (dropDownController)
-                dropDownController.rollOverOpenDelay = getStyle("rollOverOpenDelay");
-        }
+        //super.styleChanged(styleProp);
+        //var allStyles:Boolean = (styleProp == null || styleProp == "styleName");
+         //
+        //if (allStyles || styleProp == "rollOverOpenDelay")
+        //{
+            //if (dropDownController)
+                //dropDownController.rollOverOpenDelay = getStyle("rollOverOpenDelay");
+        //}
     }
      
          
     /**
      *  @private
      */
-    override protected function setValue(value:Number):void
-    {
-        super.setValue(value);
-        
-        if (muteButton)
-            muteButton.volume = value;
-    }
+    //override protected function setValue(value:Number):void
+    //{
+        //super.setValue(value);
+        //
+        //if (muteButton)
+            //muteButton.volume = value;
+    //}
     
         /**
       *  @private
       */ 
-    override protected function getCurrentSkinState():String
-    {
-        return !enabled ? "disabled" : dropDownController.isOpen ? "open" : "normal";
-    }   
+    //override protected function getCurrentSkinState():String
+    //{
+        //return !enabled ? "disabled" : dropDownController.isOpen ? "open" : "normal";
+    //}   
        
     /**
      *  @private
      */ 
-    override protected function partAdded(partName:String, instance:Object):void
-    {
-        super.partAdded(partName, instance);
- 
-        if (instance == muteButton)
-        {
-            if (dropDownController)
-                dropDownController.openButton = muteButton;
-            
-            muteButton.addEventListener(FlexEvent.MUTED_CHANGE, muteButton_mutedChangeHandler);
-            muteButton.volume = value;
-            muteButton.muted = muted;
-        }
-        else if (instance == dropDown && dropDownController)
-        {
-            dropDownController.dropDown = dropDown;
-        }
-    }
+    //override protected function partAdded(partName:String, instance:Object):void
+    //{
+        //super.partAdded(partName, instance);
+ //
+        //if (instance == muteButton)
+        //{
+            //if (dropDownController)
+                //dropDownController.openButton = muteButton;
+            //
+            //muteButton.addEventListener(FlexEvent.MUTED_CHANGE, muteButton_mutedChangeHandler);
+            //muteButton.volume = value;
+            //muteButton.muted = muted;
+        //}
+        //else if (instance == dropDown && dropDownController)
+        //{
+            //dropDownController.dropDown = dropDown;
+        //}
+    //}
     
     /**
      *  @private
      */
-    override protected function partRemoved(partName:String, instance:Object):void
-    {
-        if (instance == muteButton)
-        {
-            muteButton.removeEventListener(FlexEvent.MUTED_CHANGE, muteButton_mutedChangeHandler);
-        }
-        else if (instance == dropDownController)
-        {
-            if (instance == muteButton)
-                dropDownController.openButton = null;
-        
-            if (instance == dropDown)
-                dropDownController.dropDown = null;
-        }
-         
-        super.partRemoved(partName, instance);
-    }
+    //override protected function partRemoved(partName:String, instance:Object):void
+    //{
+        //if (instance == muteButton)
+        //{
+            //muteButton.removeEventListener(FlexEvent.MUTED_CHANGE, muteButton_mutedChangeHandler);
+        //}
+        //else if (instance == dropDownController)
+        //{
+            //if (instance == muteButton)
+                //dropDownController.openButton = null;
+        //
+            //if (instance == dropDown)
+                //dropDownController.dropDown = null;
+        //}
+         //
+        //super.partRemoved(partName, instance);
+    //}
     
     /**
      *  @private
      *  On focus, pop open the drop down and validate everything so 
      *  we can draw focus on one of the drop-down parts (the thumb)
      */
+    //override public function setFocus():void
     override public function setFocus():void
     {
-        openDropDown();
-        LayoutManager.getInstance().validateNow();
-        super.setFocus();
+        //openDropDown();
+        //LayoutManager.getInstance().validateNow();
+        //super.setFocus();
     }
     
     /**
      *  @private
      */
-    override protected function focusOutHandler(event:FocusEvent):void
-    {
-        dropDownController.processFocusOut(event);
-
-        super.focusOutHandler(event);
-    }
+    //override protected function focusOutHandler(event:FocusEvent):void
+    //{
+        //dropDownController.processFocusOut(event);
+//
+        //super.focusOutHandler(event);
+    //}
     
     //--------------------------------------------------------------------------
     //
@@ -484,7 +493,7 @@ public class VolumeBar extends VSlider
      */ 
     public function openDropDown():void
     {
-        dropDownController.openDropDown();
+        //dropDownController.openDropDown();
     }
     
      /**
@@ -500,7 +509,7 @@ public class VolumeBar extends VSlider
      */
     public function closeDropDown(commit:Boolean):void
     {
-        dropDownController.closeDropDown(commit);
+        //dropDownController.closeDropDown(commit);
     }
     
     //--------------------------------------------------------------------------
@@ -535,39 +544,39 @@ public class VolumeBar extends VSlider
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    mx_internal function dropDownController_closeHandler(event:DropDownEvent):void
-    {
-        invalidateSkinState();
-        
-        // In this implementation, the volume is always changed immediately, 
-        // so no need to handle the case when 
-        // commit==false and event.preventDefault() is called on this DropDownEvent
-        
-        dispatchEvent(event);
-    }
+    //mx_internal function dropDownController_closeHandler(event:DropDownEvent):void
+    //{
+        //invalidateSkinState();
+        //
+        //// In this implementation, the volume is always changed immediately, 
+        //// so no need to handle the case when 
+        //// commit==false and event.preventDefault() is called on this DropDownEvent
+        //
+        //dispatchEvent(event);
+    //}
     
     /**
      *  @private
      *  When the value is changed via a user-interaction, we will 
      *  automatically unmute the volume
      */
-    private function changeHandler(event:Event):void
-    {
-        // when the value is set, this volume bar unmutes the 
-        // video player automatically
-        if (muted)
-            muted = false;
-    }
+    //private function changeHandler(event:Event):void
+    //{
+        //// when the value is set, this volume bar unmutes the 
+        //// video player automatically
+        //if (muted)
+            //muted = false;
+    //}
     
     /**
      *  @private
      *  When the mute button changes the muted value, we need to change 
      *  our own.
      */
-    private function muteButton_mutedChangeHandler(event:FlexEvent):void
-    {
-        muted = muteButton.muted;
-    }
+    //private function muteButton_mutedChangeHandler(event:FlexEvent):void
+    //{
+        //muted = muteButton.muted;
+    //}
 
 }
 }

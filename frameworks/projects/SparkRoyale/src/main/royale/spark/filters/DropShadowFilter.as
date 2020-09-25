@@ -19,8 +19,8 @@
 
 package spark.filters
 {
-import flash.filters.BitmapFilter;
-import flash.filters.DropShadowFilter;
+//import flash.filters.BitmapFilter;
+//import flash.filters.DropShadowFilter;
 import mx.filters.BaseDimensionFilter;
 import mx.filters.IBitmapFilter;
 
@@ -349,11 +349,12 @@ public class DropShadowFilter extends BaseDimensionFilter implements IBitmapFilt
      *  @productversion Flex 4 
      */
      
-    public function clone():BitmapFilter
+    public function clone():Object
     {
-        return new flash.filters.DropShadowFilter(distance, angle, color, alpha, blurX, 
-                                                  blurY, strength, quality, inner, 
-                                                  knockout, hideObject);
+	return null;
+        //return new flash.filters.DropShadowFilter(distance, angle, color, alpha, blurX, 
+                                                  //blurY, strength, quality, inner, 
+                                                  //knockout, hideObject);
     }
         
 }

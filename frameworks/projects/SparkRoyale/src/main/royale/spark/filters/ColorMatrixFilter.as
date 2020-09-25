@@ -20,7 +20,7 @@
 package spark.filters
 {
 import flash.filters.BitmapFilter;
-import flash.filters.ColorMatrixFilter;
+//import flash.filters.ColorMatrixFilter;
 import mx.filters.BaseFilter;
 import mx.filters.IBitmapFilter;
 /**
@@ -135,9 +135,10 @@ public class ColorMatrixFilter extends BaseFilter implements IBitmapFilter
      * @productversion Flex 4
      */
     
-    public function clone():BitmapFilter
+    public function clone():Object
     {
-        return new flash.filters.ColorMatrixFilter(_matrix);
+        //return new flash.filters.ColorMatrixFilter(_matrix);
+	return null;
     }
     
 }

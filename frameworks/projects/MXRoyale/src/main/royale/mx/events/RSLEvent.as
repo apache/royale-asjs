@@ -20,10 +20,10 @@
 package mx.events
 {
 
-import flash.display.LoaderInfo;
+//import flash.display.LoaderInfo;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ProgressEvent;
-import flash.net.URLRequest;
+import org.apache.royale.net.URLRequest;
 
 /**
  *  The RSLEvent class represents an event object used by the 
@@ -247,7 +247,7 @@ public class RSLEvent extends ProgressEvent
 							 rslIndex:int = -1, rslTotal:int = -1,
 							 url:URLRequest = null, errorText:String = null,
 							 isResourceModule:Boolean = false,
-                             loaderInfo:LoaderInfo = null)
+                             loaderInfo:Object = null)
 	{
 		super(type, bubbles, cancelable, bytesLoaded, bytesTotal);
 		
@@ -296,7 +296,8 @@ public class RSLEvent extends ProgressEvent
      *  The loaderInfo associated with this event. This is only set in the 
      *  RSLEvent.RSL_COMPLETE event. Otherwise loaderInfo will be null.
      */
-    public var loaderInfo:LoaderInfo;
+    //public var loaderInfo:LoaderInfo;
+    public var loaderInfo:Object;
 
     //----------------------------------
 	//  rslIndex
