@@ -107,7 +107,7 @@ import spark.components.IItemRenderer; IItemRenderer;
 //import spark.components.mediaClasses.ScrubBar; ScrubBar;
 //import spark.components.mediaClasses.VolumeBar; VolumeBar;
 import spark.components.supportClasses.ButtonBarHorizontalLayout; ButtonBarHorizontalLayout;
-//import spark.effects.AnimateColor; AnimateColor; // needed
+import spark.effects.AnimateColor; AnimateColor; // needed
 import spark.effects.Fade; Fade;
 //import spark.effects.Resize; Resize; // needed
 //import spark.effects.SetAction; SetAction; // needed

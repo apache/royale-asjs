@@ -19,7 +19,6 @@
 
 package spark.filters
 {
-import flash.filters.BitmapFilter;
 //import flash.filters.ColorMatrixFilter;
 import mx.filters.BaseFilter;
 import mx.filters.IBitmapFilter;
