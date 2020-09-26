@@ -109,7 +109,7 @@ import spark.components.IItemRenderer; IItemRenderer;
 import spark.components.supportClasses.ButtonBarHorizontalLayout; ButtonBarHorizontalLayout;
 import spark.effects.AnimateColor; AnimateColor; // needed
 import spark.effects.Fade; Fade;
-//import spark.effects.Resize; Resize; // needed
+import spark.effects.Resize; Resize; // needed
 //import spark.effects.SetAction; SetAction; // needed
 import spark.effects.easing.IEaser; IEaser;
 //import spark.effects.easing.Power; Power; // needed
