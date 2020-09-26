@@ -509,9 +509,6 @@ j|VirtualComboBoxPopUp {
   flex: 0 0 auto;
 }
 .jewel.datagrid .jewel.buttonbar.header .jewel.button {
-  padding-left: 2px;
-  padding-right: 2px;
-  justify-content: flex-start;
   width: 100%;
 }
 .jewel.datagrid .listarea {
