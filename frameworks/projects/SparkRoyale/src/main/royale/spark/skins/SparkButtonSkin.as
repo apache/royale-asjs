@@ -22,6 +22,7 @@ package spark.skins
     import mx.core.IVisualElement;
     import mx.styles.IStyleClient;
     
+    import org.apache.royale.core.IChild;
     import spark.components.Group;
     import spark.components.IconPlacement;
     import spark.components.supportClasses.ButtonBase;
@@ -461,30 +462,30 @@ package spark.skins
                     iconGroup.layout = new LabelAndIconLayout();
                 }
                 
-                iconGroup.addElement(iconDisplay);
+                iconGroup.addElement(iconDisplay as IChild);
                 
                 iconGroup.clipAndEnableScrolling = true;
                 addElement(iconGroup);
                 
                 if (labelDisplay && IVisualElement(labelDisplay).parent != iconGroup)
                 {
-                    iconGroup.addElement(IVisualElement(labelDisplay));
+                    iconGroup.addElement(IChild(labelDisplay));
                     if (labelDisplay is IStyleClient)
                         prevTextAlign = IStyleClient(labelDisplay).getStyle("textAlign");
                 }
             }
             else
             {
-                if (iconDisplay && iconDisplay.parent)
-                    iconGroup.removeElement(iconDisplay);
+                if (iconDisplay && (iconDisplay as IChild).parent)
+                    iconGroup.removeElement(iconDisplay as IChild);
                 
                 if (iconGroup && iconGroup.parent)
                 {
                     removeElement(iconGroup);
-                    addElement(IVisualElement(labelDisplay));
+                    addElement(IChild(labelDisplay));
                     
-                    if (labelDisplay is IStyleClient)
-                        IStyleClient(labelDisplay).setStyle("textAlign", prevTextAlign);
+                    //if (labelDisplay is IStyleClient)
+                        //IStyleClient(labelDisplay).setStyle("textAlign", prevTextAlign);
                 }
             }
         }
@@ -502,7 +503,7 @@ package spark.skins
                     iconPlacement == IconPlacement.LEFT ||
                     iconPlacement == IconPlacement.RIGHT ? "start" : "center"
                 
-                IStyleClient(labelDisplay).setStyle("textAlign", alignment);
+                //IStyleClient(labelDisplay).setStyle("textAlign", alignment);
             }
         }
         
