@@ -103,6 +103,7 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData; DataItemRendererFactoryForICollectionViewAdvancedDataGridData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
+	import mx.effects.effectClasses.ActionEffectInstance; ActionEffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
 	import mx.charts.HitData; HitData;
 
