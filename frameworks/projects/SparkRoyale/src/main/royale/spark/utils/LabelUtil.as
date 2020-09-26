@@ -111,8 +111,8 @@ public class LabelUtil
             return String(item);
 
         // special case for empty labelField
-        if (labelField == "" && FlexVersion.compatibilityVersion >= FlexVersion.VERSION_4_5)
-            return "";
+        //if (labelField == "" && FlexVersion.compatibilityVersion >= FlexVersion.VERSION_4_5)
+            //return "";
         
         try
         {
