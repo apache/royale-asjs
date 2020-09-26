@@ -30,6 +30,8 @@ package spark.skins
     import spark.core.IDisplayText;
     import spark.layouts.*;
     import spark.primitives.BitmapImage;
+
+    import org.apache.royale.events.Event;
     
     /**
      *  Base class for Spark button skins. Primarily used for

@@ -42,6 +42,8 @@ import spark.effects.easing.IEaser;
 import spark.effects.interpolation.IInterpolator;
 //import spark.primitives.supportClasses.GraphicElement;
 
+import org.apache.royale.events.Event;
+
 use namespace mx_internal;
 
 //--------------------------------------
@@ -101,7 +103,7 @@ public class AnimateInstance extends EffectInstance implements IAnimationTarget
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    private var isStyleMap:Object = new Object();
+    private var isStyleMap:Object = {};
     
     /**
      *  @private.

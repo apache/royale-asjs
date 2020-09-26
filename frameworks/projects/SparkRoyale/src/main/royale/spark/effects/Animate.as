@@ -467,20 +467,20 @@ public class Animate extends Effect
         
         var animateInstance:AnimateInstance = AnimateInstance(instance);
 
-        //animateInstance.addEventListener(EffectEvent.EFFECT_REPEAT, animationEventHandler);
+        animateInstance.addEventListener(EffectEvent.EFFECT_REPEAT, animationEventHandler);
         // Optimization: don't bother listening for update events if we don't have
         // any listeners for that event
-        //if (numUpdateListeners > 0)
-            //animateInstance.addEventListener(EffectEvent.EFFECT_UPDATE, animationEventHandler);
+        if (numUpdateListeners > 0)
+            animateInstance.addEventListener(EffectEvent.EFFECT_UPDATE, animationEventHandler);
 
         if (easer)
             animateInstance.easer = easer;
             
         if (interpolator)
             animateInstance.interpolator = interpolator;
-        
-        //if (isNaN(repeatCount))
-            //animateInstance.repeatCount = repeatCount;
+//@todo restore repeatCount (missing in ancestry)
+/*        if (isNaN(repeatCount))
+            animateInstance.repeatCount = repeatCount;*/
             
         animateInstance.repeatBehavior = repeatBehavior;
         animateInstance.disableLayout = disableLayout;
@@ -521,22 +521,45 @@ public class Animate extends Effect
      * @private
      * Track number of listeners to update event for optimization purposes
      */
+    COMPILE::JS
     override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
     {
         super.addEventListener(type, handler, opt_capture, opt_handlerScope);
-        //if (type == EffectEvent.EFFECT_UPDATE)
-            //++numUpdateListeners;
+        if (type == EffectEvent.EFFECT_UPDATE)
+            ++numUpdateListeners;
+    }
+
+    /**
+     * @private
+     * Track number of listeners to update event for optimization purposes
+     */
+    COMPILE::SWF
+    override public function addEventListener(type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false):void
+    {
+        super.addEventListener(type, listener, useCapture, priority,
+                useWeakReference);
+        if (type == EffectEvent.EFFECT_UPDATE)
+            ++numUpdateListeners;
     }
     
     /**
      * @private
      * Track number of listeners to update event for optimization purposes
      */
+    COMPILE::JS
     override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
     {
         super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
-        //if (type == EffectEvent.EFFECT_UPDATE)
-            //--numUpdateListeners;
+        if (type == EffectEvent.EFFECT_UPDATE)
+            --numUpdateListeners;
+    }
+
+    COMPILE::SWF
+    override public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false):void
+    {
+        super.removeEventListener(type, listener, useCapture);
+        if (type == EffectEvent.EFFECT_UPDATE)
+            --numUpdateListeners;
     }
     
     /**
