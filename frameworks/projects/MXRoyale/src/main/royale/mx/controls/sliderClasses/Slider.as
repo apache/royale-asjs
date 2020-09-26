@@ -36,7 +36,7 @@ import mx.core.mx_internal;
 import mx.effects.Tween;
 import mx.events.FlexEvent;
 import mx.events.SliderEvent;
-import mx.events.SliderEventClickTarget;
+//import mx.events.SliderEventClickTarget;
 import mx.formatters.NumberFormatter;
 import mx.styles.ISimpleStyleClient;
 import mx.styles.StyleProxy;

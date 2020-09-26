@@ -97,7 +97,7 @@
           <!-- for js-debug (copy all to js-debug but will need a next step later (check **))-->
           <execution>
             <id>copy-resources-debug</id>
-            <phase>install</phase>
+            <phase>compile</phase>
             <goals>
               <goal>copy-resources</goal>
             </goals>
@@ -121,7 +121,7 @@
         <executions>
           <execution>
             <id>debug-move-files</id>
-            <phase>install</phase>
+            <phase>compile</phase>
             <goals>
               <goal>rename</goal>
             </goals>

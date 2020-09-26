@@ -16,11 +16,12 @@
 package org.apache.royale.crux
 {
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IBead;
 
     /**
 	 * ICrux Interface
 	 */
-	public interface ICrux
+	public interface ICrux extends IBead
 	{
 		/**
 		 * whether or not to process views

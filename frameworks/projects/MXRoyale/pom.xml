@@ -83,9 +83,11 @@
               -compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;
               -compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml;
               -compiler.warn-instance-of-changes=false;
+              -compiler.warn-this-within-closure=false;
           </additionalCompilerOptions>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
   
