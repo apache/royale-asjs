@@ -274,7 +274,7 @@ public class TitleWindowBoundsEvent extends Event
     /**
      *  @private
      */
-    override public function clone():Event
+    override public function cloneEvent():Event
     {
         return new TitleWindowBoundsEvent(type, bubbles, cancelable, beforeBounds, afterBounds);
     }
