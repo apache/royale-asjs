@@ -112,7 +112,7 @@ import spark.effects.Fade; Fade;
 import spark.effects.Resize; Resize; // needed
 import spark.effects.SetAction; SetAction; // needed
 import spark.effects.easing.IEaser; IEaser;
-//import spark.effects.easing.Power; Power; // needed
+import spark.effects.easing.Power; Power; // needed
 //import spark.events.TitleWindowBoundsEvent; TitleWindowBoundsEvent; // needed
 import spark.filters.ColorMatrixFilter; ColorMatrixFilter;
 import spark.filters.DropShadowFilter; DropShadowFilter;
