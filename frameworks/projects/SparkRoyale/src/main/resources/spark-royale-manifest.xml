@@ -119,6 +119,18 @@
     <component id="MXAdvancedDataGridItemRenderer" class="spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
     <component id="SparkTextButtonItemRenderer" class="spark.components.supportClasses.SparkTextButtonItemRenderer"/>
     <component id="Skin" class="spark.components.supportClasses.Skin"/>
+    <component id="ButtonBarButton" class="spark.components.ButtonBarButton"/>
+    <component id="ButtonBarHorizontalLayout" class="spark.components.supportClasses.ButtonBarHorizontalLayout"/>
+    <component id="AnimateColor" class="spark.effects.AnimateColor"/>
+    <component id="Fade" class="spark.effects.Fade"/>
+    <component id="Resize" class="spark.effects.Resize"/>
+    <component id="SetAction" class="spark.effects.SetAction"/>
+    <component id="Power" class="spark.effects.easing.Power"/>
+    <component id="ColorMatrixFilter" class="spark.filters.ColorMatrixFilter"/>
+    <component id="DropShadowFilter" class="spark.filters.DropShadowFilter"/>
+    <component id="GlowFilter" class="spark.filters.GlowFilter"/>
+    <component id="Ellipse" class="spark.primitives.Ellipse"/>
+    <component id="SparkButtonSkin" class="spark.skins.SparkButtonSkin"/>
 
 	
 </componentPackage>
