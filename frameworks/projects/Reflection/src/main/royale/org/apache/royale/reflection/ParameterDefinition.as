@@ -30,10 +30,20 @@ package org.apache.royale.reflection
     public class ParameterDefinition extends DefinitionBase
 	{
 
-        public function ParameterDefinition( index:uint, rawData:Object)
+        public function ParameterDefinition( index:uint, rawData:Object, owner:MethodDefinition)
         {
             super("parameter "+index, rawData);
+			_owner = owner;
         }
+
+
+		private var _owner:MethodDefinition;
+		/**
+		 * reference to the MethodDefinition owner of this ParameterDefinition
+		 */
+		public function get owner():MethodDefinition{
+			return _owner;
+		}
 
 		/**
 		 * The type of this parameter

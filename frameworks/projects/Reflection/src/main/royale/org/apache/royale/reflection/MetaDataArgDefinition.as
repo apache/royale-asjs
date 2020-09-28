@@ -29,12 +29,21 @@ package org.apache.royale.reflection
      */
     public class MetaDataArgDefinition extends DefinitionBase
 	{
-        public function MetaDataArgDefinition(name:String, value:String)
+        public function MetaDataArgDefinition(name:String, value:String, owner:MetaDataDefinition)
         {
             super(name);
             _value = value;
+            _owner = owner;
         }
-        
+
+        private var _owner:MetaDataDefinition;
+        /**
+         * reference to the MetaDataDefinition owner of this MetaDataArgDefinition
+         */
+        public function get owner():MetaDataDefinition{
+            return _owner;
+        }
+
         private var _value:String;
         /**
          * the 'key' value of a metadata argument
