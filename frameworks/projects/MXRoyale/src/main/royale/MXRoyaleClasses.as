@@ -27,7 +27,7 @@ package
  */
 internal class MXRoyaleClasses
 {
-	//import mx.automation.IAutomationObject; IAutomationObject;
+	import mx.automation.IAutomationObject; IAutomationObject;
 	//import mx.controls.SWFLoader; SWFLoader;
 	import mx.core.DPIClassification; DPIClassification;
 	import mx.core.DesignLayer; DesignLayer;
