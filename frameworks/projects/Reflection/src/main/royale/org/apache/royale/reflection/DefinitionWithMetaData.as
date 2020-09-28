@@ -56,7 +56,7 @@ package org.apache.royale.reflection
                 {
                     var item:XML = data[i] as XML;
                     var metaName:String = item.@name;
-                    results[i] = new MetaDataDefinition(metaName, item);
+                    results[i] = new MetaDataDefinition(metaName, item, this);
                 }
             }
             COMPILE::JS
@@ -82,7 +82,7 @@ package org.apache.royale.reflection
                         var l:int = metadatas.length;
                         for (;i<l;i++) {
                             var mdDef:Object = metadatas[i];
-                            results[i] = new MetaDataDefinition(mdDef.name, mdDef);
+                            results[i] = new MetaDataDefinition(mdDef.name, mdDef, this);
                         }
                     }
                 }
