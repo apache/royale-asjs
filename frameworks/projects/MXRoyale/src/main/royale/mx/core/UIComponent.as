@@ -68,6 +68,7 @@ import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
+import mx.utils.NameUtil;
 import org.apache.royale.utils.MXMLDataInterpreter;
 use namespace mx_internal;
 
