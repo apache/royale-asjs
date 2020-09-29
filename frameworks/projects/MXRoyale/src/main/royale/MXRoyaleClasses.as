@@ -346,6 +346,8 @@ internal class MXRoyaleClasses
 	import mx.controls.listClasses.TileListItemRenderer; TileListItemRenderer;
 	import mx.controls.listClasses.TileBase; TileBase;
 	import mx.controls.listClasses.TileBaseDirection; TileBaseDirection;
+	
+	import mx.utils.NameUtil; NameUtil;
 }
 
 }
