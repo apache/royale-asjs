@@ -206,6 +206,38 @@ public class BitmapImage extends EventDispatcher
     //  Properties
     //
     //--------------------------------------------------------------------------
+
+	
+public function set left(value:Number):void
+{
+	// stub - this should be removed once BitmapImage extends the right class;
+}
+	
+public function set right(value:Number):void
+{
+	// stub - this should be removed once BitmapImage extends the right class;
+}
+	
+public function set top(value:Number):void
+{
+	// stub - this should be removed once BitmapImage extends the right class;
+}
+	
+public function set bottom(value:Number):void
+{
+	// stub - this should be removed once BitmapImage extends the right class;
+}
+	
+public function set minWidth(value:Number):void
+{
+	// stub - this should be removed once BitmapImage extends the right class;
+}
+	
+public function set minHeight(value:Number):void
+{
+	// stub - this should be removed once BitmapImage extends the right class;
+}
+
 /* 
     private var _scaleGridBottom:Number;
     private var _scaleGridLeft:Number;
