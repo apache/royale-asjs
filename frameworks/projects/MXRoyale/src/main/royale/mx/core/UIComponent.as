@@ -645,6 +645,28 @@ public class UIComponent extends UIBase
         }
     }
     
+    //----------------------------------
+    //  className
+    //----------------------------------
+
+    /**
+     *  The name of this instance's class, such as <code>"Button"</code>.
+     *
+     *  <p>This string does not include the package name.
+     *  If you need the package name as well, call the
+     *  <code>getQualifiedClassName()</code> method in the flash.utils package.
+     *  It returns a string such as <code>"mx.controls::Button"</code>.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get className():String
+    {
+        return NameUtil.getUnqualifiedClassName(this);
+    }
+    
     public function executeBindings(recurse:Boolean = false):void
     {
 	   recurse = false;
