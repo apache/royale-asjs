@@ -21,6 +21,8 @@ package spark.primitives
 {
 
 	import mx.core.UIComponent;
+	import mx.graphics.IFill;
+	import mx.graphics.IStroke;
 
 	/**
 	 *  The Ellipse class is a filled graphic element that draws an ellipse.
@@ -58,5 +60,9 @@ package spark.primitives
 	    {
 		super();
 	    }
+	
+	    public function set stroke(value:IStroke):void {}
+	    public function set fill(value:IFill):void {}
 	}    
+
 }
