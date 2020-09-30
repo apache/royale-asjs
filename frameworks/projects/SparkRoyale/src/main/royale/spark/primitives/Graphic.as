@@ -107,7 +107,7 @@ import spark.layouts.supportClasses.LayoutBase;
  */
 public class Graphic extends Group 
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
