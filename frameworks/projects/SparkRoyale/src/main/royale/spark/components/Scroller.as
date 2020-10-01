@@ -295,7 +295,6 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
      */ 
 //[Style(name="verticalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
 
-
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -622,6 +621,12 @@ public class Scroller extends SkinnableComponent
     {
         return _pullEnabled;    
     } */
+
+	public function verticalScrollPolicy(value:String):void
+	{
+		// not implemented
+	}
+
     
     /**
      *  @private

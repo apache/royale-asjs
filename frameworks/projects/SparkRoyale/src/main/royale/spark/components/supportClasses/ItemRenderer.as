@@ -159,7 +159,7 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private
      *  storage for the autoDrawBackground property 
      */ 
-   // private var _autoDrawBackground:Boolean = true;
+    private var _autoDrawBackground:Boolean = true;
     
     /**
      *  Specifies whether the item renderer draws the 
@@ -185,27 +185,27 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get autoDrawBackground():Boolean
+    public function get autoDrawBackground():Boolean
     {
         return _autoDrawBackground;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set autoDrawBackground(value:Boolean):void
+    public function set autoDrawBackground(value:Boolean):void
     {
-        if (_autoDrawBackground == value)
-            return;
-        
-        _autoDrawBackground = value;
-        
-        if (_autoDrawBackground)
-        {
-            redrawRequested = true;
-            super.$invalidateDisplayList();
-        }
-    } */
+        //if (_autoDrawBackground == value)
+            //return;
+        //
+        //_autoDrawBackground = value;
+        //
+        //if (_autoDrawBackground)
+        //{
+            //redrawRequested = true;
+            //super.$invalidateDisplayList();
+        //}
+    }
     
     //----------------------------------
     //  down

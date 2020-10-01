@@ -20,6 +20,7 @@
 package spark.components.supportClasses
 {   
 import mx.core.UIComponent;
+import mx.effects.IEffect;
 import spark.components.Group;
 
 /*    
@@ -87,6 +88,11 @@ public class Skin extends Group //implements IHighlightBitmapCaptureClient
     {
         super();
     }
+	
+    public function set addedEffect(value:IEffect):void {} // not implemented
+
+    public function set removedEffect(value:IEffect):void {} // not implemented
+
 
 }
 

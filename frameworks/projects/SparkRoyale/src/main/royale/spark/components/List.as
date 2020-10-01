@@ -72,7 +72,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes", theme="spark, mobile")]
-
 /**
  *  The alpha of the border for this component.
  *
@@ -96,7 +95,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark, mobile")]
-
 /**
  *  Controls the visibility of the border for this component.
  *
@@ -229,7 +227,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="rollOverColor", type="uint", format="Color", inherit="yes", theme="spark")]
-
 /**
  *  The color of the background of a renderer when the user selects it.
  *
@@ -243,7 +240,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="selectionColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
-
 /**
  *  @copy spark.components.supportClasses.GroupBase#style:symbolColor
  *   
@@ -546,6 +542,30 @@ public class List extends ListBase implements IFocusManagerComponent
     //
     //--------------------------------------------------------------------------
 
+	public function set selectionColor(value:uint):void
+	{
+		// not implemented
+	}
+
+	public function set rollOverColor(value:uint):void
+	{
+		// not implemented
+	}
+
+	public function set borderColor(value:uint):void
+	{
+		// not implemented
+	}
+
+	public function set alternatingItemColors(value:Array):void
+	{
+		// not implemented
+	}
+
+    public function set itemRendererFunction(value:Function):void
+    {
+	// not implemented
+    }
     //----------------------------------
     //  hasFocusableChildren
     //----------------------------------

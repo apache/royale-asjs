@@ -22,7 +22,10 @@ package spark.effects
 import mx.effects.Fade;
 
 
+// not implemented
+[Event(name="effectUpdate", type="mx.events.EffectEvent")]
 public class Fade extends mx.effects.Fade
 {
+	
 }
 }

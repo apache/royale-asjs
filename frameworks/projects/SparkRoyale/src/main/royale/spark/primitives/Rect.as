@@ -200,7 +200,7 @@ public class Rect extends UIComponent
     //  bottomRightRadiusY
     //----------------------------------
     
-    /* private var _bottomRightRadiusY:Number;
+    private var _bottomRightRadiusY:Number;
     
     [Inspectable(category="General", minValue="0.0")] */
     
@@ -214,7 +214,7 @@ public class Rect extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get bottomRightRadiusY():Number 
+    public function get bottomRightRadiusY():Number 
     {
         return _bottomRightRadiusY;
     }
@@ -225,11 +225,11 @@ public class Rect extends UIComponent
         {
             _bottomRightRadiusY = value;
             
-            invalidateSize();
-            invalidateDisplayList();
-            invalidateParentSizeAndDisplayList();
+            //invalidateSize();
+            //invalidateDisplayList();
+            //invalidateParentSizeAndDisplayList();
         }
-    } */
+    }
             
     //----------------------------------
     //  radiusX

@@ -768,20 +768,17 @@ public class Image extends SkinnableComponent implements IImage
     }
      */
     
-    /**
-     *  @private
     public function set fillMode(value:String):void
     {
-        if (imageDisplay)
-        {
-            imageDisplay.fillMode = value;
-            imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
-                FILL_MODE_PROPERTY_FLAG, true);
-        }
-        else
-            imageDisplayProperties.fillMode = value;
+        //if (imageDisplay)
+        //{
+            //imageDisplay.fillMode = value;
+            //imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
+                //FILL_MODE_PROPERTY_FLAG, true);
+        //}
+        //else
+            //imageDisplayProperties.fillMode = value;
     }
-     */
 
     //----------------------------------
     //  horizontalAlign

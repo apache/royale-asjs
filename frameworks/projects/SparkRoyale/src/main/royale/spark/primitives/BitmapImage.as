@@ -23,5 +23,6 @@ package spark.primitives
 
 	public class BitmapImage extends Image
 	{
+		public function fillMode(value:String):void {}
 	}
 }

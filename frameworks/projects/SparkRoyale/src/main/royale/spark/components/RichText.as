@@ -694,6 +694,10 @@ public class RichText extends TextBase implements IStyleClient
         invalidateDisplayList();
     }
          */
+    /**
+     *  @private
+    */
+    public function set verticalAlign(value:String):void {}
 
     //----------------------------------
     //  maskType

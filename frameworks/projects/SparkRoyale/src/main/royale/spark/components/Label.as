@@ -410,6 +410,12 @@ public class Label extends TextBase
     }
 	
 	
+    public function set baselineShift(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("baselineShift not implemented");
+    }
+	
 	
     public function get digitWidth():String
     {

@@ -80,6 +80,27 @@ public class Line extends UIBase
     //
     //--------------------------------------------------------------------------
     
+
+	public function set left(value:Object):void
+	{
+		// not implemented
+	}
+
+	public function set right(value:Object):void
+	{
+		// not implemented
+	}
+
+	public function set rotation(value:Number):void
+	{
+		// not implemented
+	}
+
+	public function set top(value:Object):void
+	{
+		// not implemented
+	}
+
     //----------------------------------
     //  xFrom
     //----------------------------------

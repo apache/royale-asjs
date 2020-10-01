@@ -25,6 +25,11 @@ import spark.effects.supportClasses.ResizeInstance;
 
 use namespace mx_internal;
 
+//not implemented
+[Event(name="effectEnd", type="mx.events.EffectEvent")]
+
+//not implemented
+[Event(name="effectUpdate", type="mx.events.EffectEvent")]
 /**
  *  The Resize effect changes the width, height, or both dimensions
  *  of a component over a specified time interval. 
