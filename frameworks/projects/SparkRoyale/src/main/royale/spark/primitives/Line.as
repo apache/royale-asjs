@@ -91,6 +91,7 @@ public class Line extends UIBase
 		// not implemented
 	}
 
+    COMPILE::JS
 	public function set rotation(value:Number):void
 	{
 		// not implemented

@@ -202,7 +202,7 @@ public class Rect extends UIComponent
     
     private var _bottomRightRadiusY:Number;
     
-    [Inspectable(category="General", minValue="0.0")] */
+    [Inspectable(category="General", minValue="0.0")]
     
     /**
      *  The y radius of the bottom right corner of the rectangle.
