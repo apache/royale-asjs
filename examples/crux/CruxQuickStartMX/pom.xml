@@ -44,7 +44,6 @@
           <additionalCompilerOptions>
             -js-default-initializers=true;
             -source-map=true;
-            -compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
             -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
             -keep-code-with-metadata=Inject;
           </additionalCompilerOptions>
