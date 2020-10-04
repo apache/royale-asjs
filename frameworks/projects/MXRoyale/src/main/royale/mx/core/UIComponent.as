@@ -262,6 +262,21 @@ import org.apache.royale.utils.ClassSelectorList;
 [Event(name="valueCommit", type="mx.events.FlexEvent")]
 
 
+/**
+ *  Dispatched after the <code>currentState</code> property changes,
+ *  but before the view state changes.
+ * 
+ *  <p>This event is only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.StateChangeEvent.CURRENT_STATE_CHANGING
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="currentStateChange", type="org.apache.royale.events.ValueChangeEvent")]
 
 [Event(name="focusOut", type="mx.events.FocusEvent")]
 

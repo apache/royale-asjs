@@ -622,7 +622,7 @@ public class Scroller extends SkinnableComponent
         return _pullEnabled;    
     } */
 
-	public function verticalScrollPolicy(value:String):void
+	public function set verticalScrollPolicy(value:String):void
 	{
 		// not implemented
 	}

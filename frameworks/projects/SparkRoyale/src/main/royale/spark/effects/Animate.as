@@ -70,6 +70,8 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 [Event(name="effectRepeat", type="mx.events.EffectEvent")]
+//not implemented
+[Event(name="effectEnd", type="mx.events.EffectEvent")]
 
 
 /**

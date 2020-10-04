@@ -89,9 +89,9 @@ public class Skin extends Group //implements IHighlightBitmapCaptureClient
         super();
     }
 	
-    public function set addedEffect(value:IEffect):void {} // not implemented
+    public function set addedEffect(value:Object):void {} // not implemented
 
-    public function set removedEffect(value:IEffect):void {} // not implemented
+    public function set removedEffect(value:Object):void {} // not implemented
 
 
 }

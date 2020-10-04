@@ -94,6 +94,11 @@ public class Effect extends org.apache.royale.effects.Effect
 	        super.duration = value;
 	  } 
 
+	// not implemented
+	public function set target(value:Object):void {}
+
+
+
   
     /**
      *  @copy mx.effects.IEffect#getAffectedProperties()
