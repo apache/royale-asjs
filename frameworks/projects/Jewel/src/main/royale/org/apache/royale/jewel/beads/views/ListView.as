@@ -201,7 +201,7 @@ package org.apache.royale.jewel.beads.views
 			{
 				var rowHeight:Number;
 				// all items renderers with same height
-				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : rowHeight;
+				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : pm.rowHeight;
 				totalHeight = listModel.dataProvider.length * rowHeight - scrollArea.clientHeight;
 				
 				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
