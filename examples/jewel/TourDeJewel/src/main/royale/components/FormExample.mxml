@@ -50,7 +50,7 @@ limitations under the License.
     </fx:Script>
 
     <j:beads>
-        <j:FormValidator localId="formValidator" trigger="{btn}" triggerEvent="click" requiredFieldError="There are invalid data, please check it."/>
+        <j:FormValidator localId="formValidator" trigger="{btn}" triggerEvent="click" requiredFieldError="There is invalid data, please check it."/>
         <js:ContainerDataBinding/>
     </j:beads>
 
@@ -69,7 +69,7 @@ limitations under the License.
         </j:TextInput>
     </j:FormItem>
 
-    <j:FormItem label="Your born date" required="true">
+    <j:FormItem label="Your birth date" required="true">
         <j:DateField>
             <j:beads>
                 <j:DateValidator requiredFieldError="The value is not a valid date"/>
@@ -107,6 +107,6 @@ limitations under the License.
                 <j:StringValidator validateFunction="{customValidate}"/>
             </j:beads>
         </j:TextInput>
-        <j:Button localId="btn" text="send" emphasis="primary"/>
+        <j:Button localId="btn" text="Submit" emphasis="primary"/>
     </j:FormItem>
 </j:Form>
