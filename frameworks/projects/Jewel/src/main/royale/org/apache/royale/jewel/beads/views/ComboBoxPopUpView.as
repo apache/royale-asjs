@@ -90,13 +90,13 @@ package org.apache.royale.jewel.beads.views
                     rowCount = len;
             }
             
-            trace("_presentationModel.rowHeight: ", _presentationModel.rowHeight);
+            // trace("_presentationModel.rowHeight: ", _presentationModel.rowHeight);
             if(isNaN( _presentationModel.rowHeight))
                 _presentationModel.rowHeight = ListPresentationModel.DEFAULT_ROW_HEIGHT;
-            trace("rowCount: ", rowCount);
-            trace("list.height: ", list.height);
+            // trace("rowCount: ", rowCount);
+            // trace("list.height: ", list.height);
             list.height = rowCount * _presentationModel.rowHeight;
-            trace(" list.height: ", list.height);
+            // trace(" list.height: ", list.height);
 
             IParent(_strand).addElement(list);
 		}
