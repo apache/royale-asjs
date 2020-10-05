@@ -217,7 +217,8 @@ package org.apache.royale.jewel.beads.views
 
 					window.addEventListener('resize', autoResizeHandler, false);
                     }
-                    setTimeout(prepareForPopUp,  300);
+                    
+					prepareForPopUp();
 
 					sendStrandEvent(_strand, "popUpOpened");
 
