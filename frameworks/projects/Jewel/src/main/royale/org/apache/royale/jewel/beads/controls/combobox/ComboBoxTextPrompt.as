@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-	COMPILE::SWF
-	{
-		import flash.utils.setTimeout;
-    }
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;

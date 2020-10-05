@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	COMPILE::SWF
-	{
-	import flash.utils.setTimeout;
-    }
 	COMPILE::JS
 	{
 	import org.apache.royale.geom.Point;
