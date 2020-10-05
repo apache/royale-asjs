@@ -75,11 +75,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 		public function set list(value:List):void
 		{
-			if(_list)
-			{
-				removeListListeners();
-			}
-
+			removeListListeners();
+			
 			_list = value;
 
 			if(_list)
@@ -97,11 +94,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 
 		protected function addListListeners():void {
-			list.addEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+			if(_list)
+				_list.addEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
 		}
 
 		protected function removeListListeners():void {
-			list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+			if(_list)
+				_list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
 		}
 
 		/**
@@ -263,6 +262,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function textInputKeyUpLogic(input:Object):void
 		{
+			if(!list) return;
+			
 			// first remove a previous selection
 			if(list.selectedIndex != -1)
 				list.selectedItem = null;
