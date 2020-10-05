@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.beads.controls.combobox
 {
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
 	import org.apache.royale.jewel.beads.views.ComboBoxView;
@@ -83,9 +82,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 		}
 
 		override protected function onBeadsAdded(event:Event):void{
-			IEventDispatcher(_strand).addEventListener('dismissPopUp', removeListListeners);
-			IEventDispatcher(_strand).addEventListener('popUpOpened', popUpOpenedHandler);
-			IEventDispatcher(_strand).addEventListener('popUpClosed', popUpClosedHandler);
+			listenOnStrand('dismissPopUp', removeListListeners);
+			listenOnStrand('popUpOpened', popUpOpenedHandler);
+			listenOnStrand('popUpClosed', popUpClosedHandler);
 
 			comboView = event.target.view as IComboBoxView;
             if (comboView)

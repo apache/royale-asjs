@@ -26,6 +26,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.List;
@@ -34,8 +36,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.utils.sendEvent;
-	import org.apache.royale.events.utils.WhitespaceKeys;
-	import org.apache.royale.events.utils.NavigationKeys;
 
 	/**
 	 *  The SearchFilterForList bead class is a specialty bead that can be used with
@@ -182,7 +182,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 			{
 				var rowHeight:Number;
 				// all items renderers with same height
-				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : rowHeight;
+				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : pm.rowHeight;
 				totalHeight = _visibleIndexes.length * rowHeight - scrollArea.clientHeight;
 				
 				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
