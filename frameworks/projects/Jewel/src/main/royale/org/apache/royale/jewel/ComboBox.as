@@ -62,6 +62,12 @@ package org.apache.royale.jewel
 	[Event(name="popUpClosed", type="org.apache.royale.events.Event")]
 
 	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("dataProvider")]
+
+	/**
 	 *  The ComboBox class is a component that displays an input field and
 	 *  pop-up List with selections. Selecting an item from the pop-up List
 	 *  places that item into the input field of the ComboBox. The ComboBox
