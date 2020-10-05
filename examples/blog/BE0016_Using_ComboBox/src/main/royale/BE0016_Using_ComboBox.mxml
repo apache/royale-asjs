@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:vos="vos.*">
+    
+    <fx:Script>
+		<![CDATA[
+            import org.apache.royale.collections.ArrayList;
+            import vos.IconListVO;
+
+            private var _avengers:ArrayList = new ArrayList([
+                new IconListVO("Iron Man", MaterialIconType.WEB_ASSET),
+                new IconListVO("Hulk", MaterialIconType.WEB_ASSET),
+                new IconListVO("Thor", MaterialIconType.WEB_ASSET),
+                new IconListVO("Captain America", MaterialIconType.WEB_ASSET),
+                new IconListVO("Black Widow", MaterialIconType.WEB_ASSET),
+                new IconListVO("Hawkeye", MaterialIconType.WEB_ASSET),
+                new IconListVO("Vision", MaterialIconType.WEB_ASSET),
+                new IconListVO("Scarlet Witch", MaterialIconType.WEB_ASSET),
+                new IconListVO("Spiderman", MaterialIconType.WEB_ASSET),
+                new IconListVO("All Avengers and Guardians of the Galaxy", MaterialIconType.WEB_ASSET)
+            ]);
+
+            [Bindable]  
+            public function get avengers():ArrayList
+            {
+                return _avengers;
+            }
+		
+		]]>
+	</fx:Script>
+
+    <j:beads>
+        <js:ApplicationDataBinding/>
+    </j:beads>
+
+    <j:initialView>
+        <j:View>
+            <j:beads>
+                <js:Paddings padding="30"/>
+                <j:VerticalLayout gap="3"/>
+            </j:beads>
+            
+            <html:H3 text="ComboBox Search"/>
+	
+            <j:Label multiline="true">
+                <j:html><![CDATA[<p>This <b>ComboBox</b> uses a <b>SearchFilter</b> bead to perform a local search in the <i>dataProvider</i>. The filter is decorated, and can be configured.</p>]]></j:html>
+            </j:Label>
+
+            <j:ComboBox localId="cmb4" labelField="label"
+                dataProvider="{avengers}"
+                >
+                <j:beads>
+                    <j:ComboBoxTextPrompt prompt="Type to search..."/>
+                    <j:SearchFilter/>
+                </j:beads>
+
+                <!-- <js:ArrayList>
+                    <fx:Array>
+                        <vos:IconListVO label="Ank" icon="{FontAwesome5IconType.ANKH}"/>
+                        <vos:IconListVO label="Atom" icon="{FontAwesome5IconType.ATOM}"/>
+                        <vos:IconListVO label="Burn" icon="{FontAwesome5IconType.BURN}"/>
+                        <vos:IconListVO label="Candy Cane" icon="{FontAwesome5IconType.CANDY_CANE}"/>
+                        <vos:IconListVO label="Fire" icon="{FontAwesome5IconType.FIRE_ALT}"/>
+                        <vos:IconListVO label="Duck" icon="{FontAwesome5IconType.DUCK}"/>
+                        <vos:IconListVO label="Cloud And Moon" icon="{FontAwesome5IconType.CLOUD_MOON}"/>
+                        <vos:IconListVO label="Europe" icon="{FontAwesome5IconType.GLOBE_EUROPE}"/>
+                        <vos:IconListVO label="Electric Guitar" icon="{FontAwesome5IconType.GUITAR_ELECTRIC}"/>
+                        <vos:IconListVO label="Mask" icon="{FontAwesome5IconType.MASK}"/>
+                        <vos:IconListVO label="Skull" icon="{FontAwesome5IconType.SKULL}"/>
+                        <vos:IconListVO label="Spider" icon="{FontAwesome5IconType.SPIDER}"/>
+                    </fx:Array>
+                </js:ArrayList> -->
+            </j:ComboBox>
+        </j:View>
+    </j:initialView>
+
+</j:Application>
