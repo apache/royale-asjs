@@ -73,6 +73,10 @@ public class SparkSkin extends Skin
         super();
     }
     
+	public function get contentItems():Array {return []} // not implemented
+
+	public function get symbolItems():Array {return []} // not implemented
+
 	// not implemented
 	public function get colorizeExclusions() : Array { return []}
     /**
