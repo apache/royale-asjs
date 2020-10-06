@@ -73,6 +73,8 @@ public class SparkSkin extends Skin
         super();
     }
     
+	// not implemented
+	public function get colorizeExclusions() : Array { return []}
     /**
      *  @private
      */

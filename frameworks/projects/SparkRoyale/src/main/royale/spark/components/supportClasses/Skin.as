@@ -93,6 +93,7 @@ public class Skin extends Group //implements IHighlightBitmapCaptureClient
 
     public function set removedEffect(value:Object):void {} // not implemented
 
+    public function get focusSkinExclusions() : Array {return []} // not implemented
 
 }
 
