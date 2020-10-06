@@ -47,6 +47,7 @@ import spark.primitives.BitmapImage;
 
 use namespace mx_internal;
 */
+import spark.components.Label;
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
@@ -427,7 +428,18 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
     {
         return ITextModel(model).text;
     }
-	
+
+    private var _labelDisplay:Label;
+    
+    // not implemeted
+    public function get labelDisplay():Label
+    {
+	if (!_labelDisplay)
+	{
+		_labelDisplay = new Label();
+	}
+	return _labelDisplay;
+    }	
 	
     /**
      * @royaleignorecoercion HTMLImageElement

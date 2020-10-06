@@ -33,6 +33,8 @@ import spark.utils.LabelUtil;
  */
  import spark.components.supportClasses.DropDownListBase;
  import spark.components.beads.DropDownListView;
+ import spark.components.beads.DropDownListView;
+ import spark.components.Label;
 
 
 //--------------------------------------
@@ -154,6 +156,17 @@ public class DropDownList extends DropDownListBase
 
    // [SkinPart(required="false")]
 
+    private var _labelDisplay:Label;
+    
+    // not implemeted
+    public function get labelDisplay():Label
+    {
+	if (!_labelDisplay)
+	{
+		_labelDisplay = new Label();
+	}
+	return _labelDisplay;
+    }	
     /**
      *  An optional skin part that holds the prompt or the text of the selected item. 
      *  

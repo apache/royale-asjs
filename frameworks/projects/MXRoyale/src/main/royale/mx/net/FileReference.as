@@ -111,6 +111,10 @@ package mx.net
 	  {
 		  _uploader.upload(request.url);
 	  }
+
+	// not implemented
+	  public function download(request:URLRequest, defaultFileName:String = null):void {}
+	 
 	  
 	  private function modelChangedHandler(event:Event):void
 	  {

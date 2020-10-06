@@ -608,6 +608,9 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
             invalidateRendererState();
         }
     } */
+    
+    // not implemented
+    public function set label(value:String):void {}
 
     //----------------------------------
     //  label
