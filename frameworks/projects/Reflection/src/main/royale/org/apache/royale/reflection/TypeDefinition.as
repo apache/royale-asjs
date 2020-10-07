@@ -47,6 +47,9 @@ COMPILE::SWF {
             COMPILE::JS
             internal static function registerClassAlias(aliasName:String, classObject:Class ) :void{
                 var info:* = classObject.prototype.ROYALE_CLASS_INFO;
+                if (!info && ExtraData.hasData(classObject)) {
+                    info = ExtraData.getData(classObject)['ROYALE_CLASS_INFO'];
+                }
                 if (info) {
                     //a class may have more than one alias point to it, but only the most recently registered
                     //alias is retained for reflection (applying same approach as swf)
@@ -61,7 +64,10 @@ COMPILE::SWF {
                     var altClass:Class = _aliasMappings[aliasName];
                     if (altClass) {
                         var altInfo:* = altClass.prototype.ROYALE_CLASS_INFO;
-                        delete altInfo.alias;
+                        if (!altInfo) altInfo = ExtraData.getData(altClass)['ROYALE_CLASS_INFO'];
+                        if (altInfo){
+                            delete altInfo.alias;
+                        }
                     }
                     _aliasMappings[aliasName] = classObject;
                     info.alias = aliasName;

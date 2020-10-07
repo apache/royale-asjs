@@ -34,7 +34,7 @@ package flexUnitTests
         }
         
         public var amfBinaryDataTesterTest:AMFBinaryDataTesterTest;
-        
+        public var amf0BinaryDataTesterTest:AMF0BinaryDataTesterTest;
         public var urlVariablesTesterTest:URLVariablesTesterTest;
         
     }
