@@ -47,6 +47,7 @@
     <component id="SkinnableContainer" class="spark.components.SkinnableContainer"/>
 	<component id="ToggleButton" class="spark.components.ToggleButton"/>
 	<component id="ToggleButtonBase" class="spark.components.supportClasses.ToggleButtonBase"/>
+	<component id="ButtonBase" class="spark.components.supportClasses.ButtonBase"/>
 	<component id="DataRenderer" class="spark.components.DataRenderer"/>
 	<component id="SkinnableTextBase" class="spark.components.supportClasses.SkinnableTextBase"/>
 	<component id="TextBase" class="spark.components.supportClasses.TextBase"/>
