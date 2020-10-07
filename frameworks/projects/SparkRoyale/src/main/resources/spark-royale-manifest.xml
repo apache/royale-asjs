@@ -60,6 +60,7 @@
     <component id="ListBase" class="spark.components.supportClasses.ListBase"/>
     <component id="ItemRenderer" class="spark.components.supportClasses.ItemRenderer"/>
  	<component id="GradientEntry" class="mx.graphics.GradientEntry" lookupOnly="true"/>
+ 	<component id="Transition" class="mx.states.Transition" lookupOnly="true"/>
  	<component id="LinearGradient" class="mx.graphics.LinearGradient" lookupOnly="true"/>
    	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke" lookupOnly="true"/>
    	<component id="State" class="mx.states.State" lookupOnly="true"/>
