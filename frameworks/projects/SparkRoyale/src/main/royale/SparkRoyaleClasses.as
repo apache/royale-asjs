@@ -72,6 +72,7 @@ internal class SparkRoyaleClasses
 	import spark.components.gridClasses.GridColumn; GridColumn;
 	import spark.components.gridClasses.GridSelection; GridSelection;
 	import spark.events.GridEvent; GridEvent;
+	import spark.events.RendererExistenceEvent; RendererExistenceEvent;
 	import spark.events.GridCaretEvent; GridCaretEvent;
 	import spark.events.GridSelectionEvent; GridSelectionEvent;
 	import spark.collections.SubListView; SubListView;

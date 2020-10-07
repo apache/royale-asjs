@@ -37,7 +37,7 @@ import mx.core.IVisualElement;
  */
 public class RendererExistenceEvent extends Event
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -211,7 +211,7 @@ public class RendererExistenceEvent extends Event
     /**
      *  @private
      */
-    override public function clone():Event
+    override public function cloneEvent():Event
     {
         return new RendererExistenceEvent(type, bubbles, cancelable,
                                          renderer, index, data);
