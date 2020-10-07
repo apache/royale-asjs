@@ -332,6 +332,12 @@ COMPILE::SWF {
                             break;
                         }
                     }
+                    if (!_constructorMethod) {
+                        //constructor with no params
+                        _constructorMethod =
+                                new MethodDefinition(_name, false, this, { type: '', declaredBy: qualifiedName});
+
+                    }
                 }
             }
 
