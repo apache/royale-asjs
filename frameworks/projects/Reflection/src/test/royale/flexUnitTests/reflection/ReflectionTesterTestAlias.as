@@ -35,11 +35,13 @@ package flexUnitTests.reflection
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
+            ExtraData.addAll()
         }
         
         [AfterClass]
         public static function tearDownAfterClass():void
         {
+            ExtraData.reset();
         }
         
         [Before]
@@ -73,7 +75,26 @@ package flexUnitTests.reflection
             //class is retrievable by alias
             assertEquals( TestClass3, getClassByAlias("fjsTest"), "unexpected Class value");
             
-            
+        }
+
+        [Test]
+        public function testNativeTypes():void
+        {
+            //no initial alias
+            assertNull(getAliasByClass(String));
+            registerClassAlias("myStringAlias", String);
+            //alias is registered
+            assertEquals( "myStringAlias", getAliasByClass(String), "unexpected Alias value");
+            //register same alias for another class
+            registerClassAlias("myStringAlias", TestClass3);
+            //original alias mapping is deregistered
+            assertNull(getAliasByClass(String));
+            //alias is registered for new class
+            assertEquals( "myStringAlias", getAliasByClass(TestClass3), "unexpected Alias value");
+
+            //class is retrievable by alias
+            assertEquals( TestClass3, getClassByAlias("myStringAlias"), "unexpected Class value");
+
         }
         
         
