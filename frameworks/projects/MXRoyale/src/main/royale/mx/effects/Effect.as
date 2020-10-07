@@ -95,6 +95,8 @@ public class Effect extends org.apache.royale.effects.Effect
 	  } 
 
 	// not implemented
+	public function set targets(value:Array):void {}
+	// not implemented
 	public function set target(value:Object):void {}
 
 

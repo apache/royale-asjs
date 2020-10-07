@@ -47,6 +47,7 @@
     <component id="SkinnableContainer" class="spark.components.SkinnableContainer"/>
 	<component id="ToggleButton" class="spark.components.ToggleButton"/>
 	<component id="ToggleButtonBase" class="spark.components.supportClasses.ToggleButtonBase"/>
+	<component id="ButtonBase" class="spark.components.supportClasses.ButtonBase"/>
 	<component id="DataRenderer" class="spark.components.DataRenderer"/>
 	<component id="SkinnableTextBase" class="spark.components.supportClasses.SkinnableTextBase"/>
 	<component id="TextBase" class="spark.components.supportClasses.TextBase"/>
@@ -61,6 +62,7 @@
     <component id="ItemRenderer" class="spark.components.supportClasses.ItemRenderer"/>
  	<component id="GradientEntry" class="mx.graphics.GradientEntry" lookupOnly="true"/>
  	<component id="Transition" class="mx.states.Transition" lookupOnly="true"/>
+ 	<component id="Sequence" class="mx.effects.Sequence" lookupOnly="true"/>
  	<component id="LinearGradient" class="mx.graphics.LinearGradient" lookupOnly="true"/>
    	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke" lookupOnly="true"/>
    	<component id="State" class="mx.states.State" lookupOnly="true"/>
