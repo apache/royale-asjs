@@ -40,7 +40,7 @@ COMPILE::SWF {
             {
                 var klazz:Class = TypeDefinition.getClassByAlias(aliasName);
             }
-            catch (e)
+            catch (e:Error)
             {
                 throw new ReferenceError("Class "+aliasName+" could not be found.");
             }
