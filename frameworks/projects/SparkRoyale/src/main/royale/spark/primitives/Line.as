@@ -97,6 +97,11 @@ public class Line extends UIBase
 		// not implemented
 	}
 
+	public function set bottom(value:Object):void
+	{
+		// not implemented
+	}
+
 	public function set top(value:Object):void
 	{
 		// not implemented

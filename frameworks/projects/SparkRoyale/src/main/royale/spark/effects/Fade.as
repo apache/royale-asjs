@@ -26,6 +26,6 @@ import mx.effects.Fade;
 [Event(name="effectUpdate", type="mx.events.EffectEvent")]
 public class Fade extends mx.effects.Fade
 {
-	
+	public function set targets(value:Array):void {} // not implemented
 }
 }
