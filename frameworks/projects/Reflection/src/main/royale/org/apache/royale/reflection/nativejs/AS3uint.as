@@ -27,6 +27,7 @@ package org.apache.royale.reflection.nativejs {
      */
     COMPILE::JS
     public function AS3uint():Object{
+        if (singleton) return singleton;
         var ret:Object= {};
         ret['classRef'] = uint;
         ret['name'] = 'uint';
@@ -43,8 +44,9 @@ package org.apache.royale.reflection.nativejs {
                 }
             };
         };
-    
+        singleton = ret;
         return ret;
     }
     
 }
+var singleton:Object = null; //the explicit assignment with null is necessary here

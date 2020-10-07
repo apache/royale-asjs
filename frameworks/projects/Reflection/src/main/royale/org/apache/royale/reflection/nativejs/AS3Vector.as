@@ -27,6 +27,11 @@ package org.apache.royale.reflection.nativejs {
      */
     COMPILE::JS
     public function AS3Vector(typeName:String='Vector.<*>'):Object{
+        if (singletons) {
+            if (singletons[typeName]) return singletons[typeName];
+        } else {
+            singletons = {}
+        }
         var ret:Object= {};
         ret['classRef'] = Language.synthVector(typeName.substring(8, typeName.length - 1));
         ret['name'] = typeName;
@@ -56,8 +61,10 @@ package org.apache.royale.reflection.nativejs {
                 return AS3Vector(subType);
             };
         }
-        
+        singletons[typeName] = ret;
         return ret;
     }
     
 }
+
+var singletons:Object = null; //the explicit assignment with null is necessary here
