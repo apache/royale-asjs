@@ -67,4 +67,4 @@ package org.apache.royale.reflection.nativejs {
     
 }
 
-var singletons:Object = null; //the explicit assignment with null is necessary here
+var singletons:* = null; //the explicit assignment with null is necessary here
