@@ -19,9 +19,11 @@
 package org.apache.royale.html.test.models
 {
 	import org.apache.royale.test.runners.notification.Failure;
+	import org.apache.royale.events.Event;
 
 	[ExcludeClass]
 	[Bindable]
+	[Event(name='ready')]
 	/**
 	 * @private
 	 */
@@ -41,8 +43,21 @@ package org.apache.royale.html.test.models
 		public var functionName:String;
 		public var testCaseName:String;
 
-		public var active:Boolean = true;
 		public var ignored:Boolean = false;
 		public var failure:Failure;
+
+
+		private var _active:Boolean = false;
+		public function get active():Boolean {
+			return _active;
+		}
+
+		public function set active(value:Boolean):void {
+			var finalized:Boolean = _active && !value;
+			_active = value;
+			if (finalized) {
+				this.dispatchEvent(new Event('ready'));
+			}
+		}
 	}
 }
