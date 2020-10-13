@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+-->
+<js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:js="library://ns.apache.org/royale/basic"
+	xmlns:models="org.apache.royale.html.test.models.*"
+	xmlns:testview="org.apache.royale.html.test.*"
+	implements="org.apache.royale.test.runners.notification.IRunListener"
+	percentWidth="100" percentHeight="100"
+	initComplete="resultTypesList.selectedIndex = 0;">
+	<js:beads>
+		<js:ViewDataBinding/>
+		<js:VerticalLayout/>
+	</js:beads>
+	<fx:Declarations>
+		<models:UITestRunnerModel localId="testsModel"/>
+	</fx:Declarations>
+
+
+
+    <js:Panel title="RoyaleUnit Test Results" percentWidth="100" percentHeight="50">
+		<js:beads>
+			<js:OneFlexibleChildVerticalLayout flexibleChild="resultsList"/>
+		</js:beads>
+		<js:HGroup percentWidth="100">
+			<js:Label text="Filter:"/>
+			<js:Spacer width="10"/>
+			<js:DropDownList localId="resultTypesList"
+				dataProvider="{testsModel.resultTypes}"
+				change="resultTypesList_changeHandler(event)"/>
+			<js:Spacer width="10"/>
+			<js:Label text="{resultTypesList.selectedItem} count:{testsModel.results.length}"/>
+		</js:HGroup>
+		<js:Spacer height="2"/>
+		<js:DynamicList localId="resultsList"
+			labelField="description" dataProvider="{testsModel.results}"
+			percentWidth="100"
+			itemRenderer="org.apache.royale.html.test.UITestItemRenderer"
+			change="resultsList_changeHandler(event)">
+			<js:beads>
+				<!-- needed for filterFunction -->
+				<js:CollectionChangeUpdateForArrayListData/>
+			</js:beads>
+		</js:DynamicList>
+	</js:Panel>
+
+	<js:Group percentWidth="100"
+			  percentHeight="50">
+		<js:beads>
+			<js:BasicLayout/>
+		</js:beads>
+
+		<testview:TestResultsDisplay title="Test Details"
+									 percentWidth="50" percentHeight="100"
+									 displayResult="{testsModel.selectedResult}"
+		/>
+
+		<js:Group localId="displayArea"
+				  percentWidth="50"
+				  percentHeight="100">
+			<js:beads>
+				<js:ScrollingViewport/>
+				<js:Positioning right="0"/>
+			</js:beads>
+		</js:Group>
+
+	</js:Group>
+
+
+	<fx:Script>
+		<![CDATA[
+
+		import org.apache.royale.core.UIBase;
+
+			override public function addedToParent():void{
+				super.addedToParent();
+				if (_displayContent && _displayContent.parent != displayArea) {
+					emptyDisplayArea();
+					if (_displayContent.parent) _displayContent.parent.removeElement(_displayContent);
+					displayArea.addElement(_displayContent);
+				}
+			}
+
+			private function emptyDisplayArea():void{
+				if (!displayArea) return;
+				var l:uint = displayArea.numElements;
+				while (l--) {
+					displayArea.removeElement(displayArea.getElementAt(l));
+				}
+			}
+
+			private var _displayContent:UIBase;
+			public function set displayContent(value:UIBase):void{
+				if (value == _displayContent) {
+					if (value ) {
+						if (value.parent == displayArea) return;
+						if (value.parent) value.parent.removeElement(value);
+					}
+					if (displayArea && value) {
+						emptyDisplayArea();
+						displayArea.addElement(value);
+					}
+					return;
+				}
+				emptyDisplayArea();
+				_displayContent = value;
+				if (displayArea) {
+					if (value) {
+						displayArea.addElement(value);
+					}
+				}
+			}
+
+			public function get displayContent():UIBase{
+				return _displayContent;
+			}
+
+
+			import org.apache.royale.collections.ArrayListView;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.test.runners.notification.Failure;
+			import org.apache.royale.test.runners.notification.Result;
+			import org.apache.royale.html.test.models.UITestVO;
+			import org.apache.royale.test.AssertionError;
+			
+			public function testRunStarted(description:String):void
+			{
+
+			}
+
+			public function testStarted(description:String):void
+			{
+				var testResults:ArrayListView = testsModel.results;
+				var item:UITestVO = new UITestVO(description);
+				item.active = true;
+				testResults.addItem(item);
+				trace('started-->', description)
+			}
+
+			public function testFinished(description:String):void
+			{
+				trace('finished-->', description)
+				var testResults:ArrayListView = testsModel.results;
+				var item:UITestVO = testResults.getItemAt(testResults.length - 1) as UITestVO;
+				item.active = false;
+				testResults.itemUpdated(item);
+			}
+
+			public function testFailure(failure:Failure):void
+			{
+				var testResults:ArrayListView = testsModel.results;
+				var item:UITestVO = testResults.getItemAt(testResults.length - 1) as UITestVO;
+				item.failure = failure;
+				trace('failed' , item.description)
+				//testResults.itemUpdated(item);
+			}
+
+			public function testIgnored(description:String):void
+			{
+				var testResults:ArrayListView = testsModel.results;
+				var item:UITestVO = new UITestVO(description);
+				item.active = false;
+				item.ignored = true;
+				testResults.addItem(item);
+			}
+
+			public function testRunFinished(result:Result):void
+			{
+			}
+
+			private function resultsList_changeHandler(event:Event):void
+			{
+				testsModel.selectedResultIndex = resultsList.selectedIndex;
+			}
+
+			private function resultTypesList_changeHandler(event:Event):void
+			{
+				var selectedResult:UITestVO = testsModel.selectedResult;
+
+				var testResults:ArrayListView = testsModel.results;
+				var resultType:String = resultTypesList.selectedItem as String;
+				testResults.filterFunction = function(test:UITestVO):Boolean
+				{
+					switch(resultType)
+					{
+						case UITestRunnerModel.RESULT_TYPE_FAILED:
+						{
+							return test.failure;
+						}
+						case UITestRunnerModel.RESULT_TYPE_PASSED:
+						{
+							return !test.failure && !test.ignored && !test.active;
+						}
+						case UITestRunnerModel.RESULT_TYPE_IGNORED:
+						{
+							return test.ignored;
+						}
+					}
+					return true;
+				};
+				testResults.refresh();
+
+				if(selectedResult)
+				{
+					var newIndex:int = testResults.getItemIndex(selectedResult);
+					if(newIndex == -1 && testResults.length > 0)
+					{
+						newIndex = 0;
+					}
+					resultsList.selectedIndex = newIndex;
+					testsModel.selectedResultIndex = newIndex;
+				}
+			}
+		]]>
+	</fx:Script>
+</js:View>

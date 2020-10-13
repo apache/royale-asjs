@@ -20,6 +20,6 @@
 
 
 <componentPackage>
-
     <component id="UITestRunner" class="org.apache.royale.html.test.UITestRunner"/>
+    <component id="UITestRunnerWithDisplayArea" class="org.apache.royale.html.test.UITestRunnerWithDisplayArea"/>
 </componentPackage>
