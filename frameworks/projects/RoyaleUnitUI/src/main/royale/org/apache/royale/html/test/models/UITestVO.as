@@ -20,6 +20,7 @@ package org.apache.royale.html.test.models
 {
 	import org.apache.royale.test.runners.notification.Failure;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
 
 	[ExcludeClass]
 	[Bindable]
@@ -27,7 +28,7 @@ package org.apache.royale.html.test.models
 	/**
 	 * @private
 	 */
-	public class UITestVO
+	public class UITestVO extends EventDispatcher
 	{
 		public function UITestVO(description:String)
 		{
