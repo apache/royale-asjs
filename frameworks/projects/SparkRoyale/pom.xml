@@ -64,7 +64,14 @@
               </define>
           </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <additionalCompilerOptions>${project.compiler.options};-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG</additionalCompilerOptions>
+          <includeLookupOnly>true</includeLookupOnly>
+          <additionalCompilerOptions>
+            ${project.compiler.options};
+            -keep-as3-metadata+=SkinPart;
+            -js-compiler-define=COMPILE::JS,true;
+            -js-compiler-define=COMPILE::SWF,false;
+            -js-compiler-define=GOOG::DEBUG,goog.DEBUG;
+          </additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

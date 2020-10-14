@@ -24,6 +24,8 @@ package org.apache.royale.html.test
 	import org.apache.royale.html.beads.layouts.HorizontalLayoutWithPaddingAndGap;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.test.models.UITestVO;
+	import org.apache.royale.events.Event;
+
 
 	[ExcludeClass]
 	/**
@@ -65,8 +67,13 @@ package org.apache.royale.html.test
 			container.addElement(label);
 		}
 
+		private var _awaitingResult:Boolean;
 		override public function set data(value:Object):void
 		{
+			if (_awaitingResult) {
+				UITestVO(data).removeEventListener('ready', onResult);
+				_awaitingResult = false;
+			}
 			super.data = value;
 
 			var item:UITestVO = UITestVO(value);
@@ -81,12 +88,19 @@ package org.apache.royale.html.test
 			else if(item.active)
 			{
 				icon.text = "🟡"
+				_awaitingResult = true;
+				item.addEventListener('ready', onResult);
 			}
 			else
 			{
 				icon.text = "🟢";
 			}
 			label.text = item.description;
+		}
+
+		private function onResult(event:Event):void{
+			var item:UITestVO = UITestVO(event.target);
+			this.data = item;
 		}
 	}
 }

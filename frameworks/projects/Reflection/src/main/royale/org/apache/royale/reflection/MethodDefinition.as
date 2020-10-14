@@ -43,12 +43,16 @@ package org.apache.royale.reflection
          */
         public function get declaredBy():TypeDefinition
         {
+            /* possible alternate here, @todo review:
+                return owner;
+            */
             COMPILE::SWF{
                 var declareBy:String = _rawData.@declaredBy;
             }
             COMPILE::JS{
                 var declareBy:String = _rawData.declaredBy;
             }
+
             return TypeDefinition.internalGetDefinition(declareBy);
         }
 

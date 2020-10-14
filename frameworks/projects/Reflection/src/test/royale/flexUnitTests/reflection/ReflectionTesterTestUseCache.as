@@ -40,6 +40,7 @@ package flexUnitTests.reflection
         [AfterClass]
         public static function tearDownAfterClass():void
         {
+            TypeDefinition.useCache = false;
         }
         
         [Before]

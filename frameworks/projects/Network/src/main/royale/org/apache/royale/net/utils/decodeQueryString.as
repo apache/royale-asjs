@@ -47,7 +47,9 @@ package org.apache.royale.net.utils
                 }
             }
             var field:String = decodeURIComponent(pair[0]);
-            var value:String = decodeURIComponent(pair[1]);
+            var value:String = pair[1];
+            //javascript does not decode '+' correctly
+            value = decodeURIComponent(value.replace(/\+/g, '%20'));
             dest[field] = value;
         }
     
