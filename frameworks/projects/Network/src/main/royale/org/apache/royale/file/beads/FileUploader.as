@@ -90,9 +90,13 @@ package org.apache.royale.file.beads
 			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
 			binaryUploader.load(req);
 		}
-		/**
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
+		
+		public function cancel():void
+		{
+			// TODO maybe save a reference to binaryUploader
+			//binaryUploader.close();
+		}
+
 		protected function completeHandler(event:Event):void
 		{
 			(event.target as IEventDispatcher).removeEventListener(Event.COMPLETE, completeHandler);

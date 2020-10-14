@@ -97,6 +97,11 @@ package mx.net
 		  _loader.load();
 	  }
 	
+	  public function cancel():void
+	   {
+		   _uploader.cancel();
+	   }
+
 	  public function loaderCompleteHandler(event:Event):void
 	  {
 		  dispatchEvent(new Event(Event.COMPLETE));
