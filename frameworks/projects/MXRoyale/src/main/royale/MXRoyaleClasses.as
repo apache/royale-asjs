@@ -162,6 +162,7 @@ internal class MXRoyaleClasses
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
 	import mx.rpc.soap.WebService; WebService;
 	import mx.collections.ISort; ISort;
+	import mx.collections.AsyncListView; AsyncListView;
 	import mx.utils.Base64Encoder; Base64Encoder;
 	import mx.utils.Base64Decoder; Base64Decoder;
 	import mx.utils.BitFlagUtil; BitFlagUtil;
