@@ -62,7 +62,7 @@ import mx.effects.effectClasses.AnimatePropertyInstance;
  */
 public class AnimateProperty extends TweenEffect
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
 	//--------------------------------------------------------------------------
 	//

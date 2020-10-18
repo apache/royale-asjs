@@ -31,7 +31,7 @@ internal class MXRoyaleClasses
 	//import mx.controls.SWFLoader; SWFLoader;
 	import mx.core.DPIClassification; DPIClassification;
 	import mx.core.DesignLayer; DesignLayer;
-	//import mx.effects.AnimateProperty; AnimateProperty;
+	import mx.effects.AnimateProperty; AnimateProperty;
 	//import mx.effects.easing.Cubic; Cubic;
 	//import mx.effects.easing.Quintic; Quintic;
 	//import mx.events.StateChangeEvent; StateChangeEvent;
@@ -135,6 +135,7 @@ internal class MXRoyaleClasses
 	import mx.effects.easing.Bounce; Bounce;
 	import mx.effects.easing.Exponential; Exponential;
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
+	import mx.effects.effectClasses.AnimatePropertyInstance; AnimatePropertyInstance;
 	import mx.effects.TweenEffect; TweenEffect; 
 	import mx.rpc.Fault; Fault;
 	import mx.rpc.events.InvokeEvent; InvokeEvent;
