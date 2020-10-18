@@ -325,7 +325,7 @@ package org.apache.royale.jewel.beads.models
 		{
             if (value == _selectedItem) {
 				if (_dataProvider) {
-					if (_selectedIndex != _dataProvider.getItemIndex(value)) {
+					if (_selectedIndex != (_selectedIndex = _dataProvider.getItemIndex(value))) {
                         dispatchChange("selectionChanged");
 					}
 				}
