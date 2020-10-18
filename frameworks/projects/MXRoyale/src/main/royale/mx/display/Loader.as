@@ -57,7 +57,7 @@ package mx.display
         private function loadCompleteHandler(event:Event):void
         {
             addElement(_content);
-            contentLoaderInfo.dispatchEvent(Event.COMPLETE);
+            contentLoaderInfo.dispatchEvent(new Event(Event.COMPLETE));
         }
     }
 }
