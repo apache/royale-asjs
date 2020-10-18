@@ -19,27 +19,40 @@
 -->
 <project>
   <output>
+    <movie platform="Flash Player"/>
+    <movie disabled="False"/>
+    <movie fps="60"/>
+    <movie background="#FFFFFF"/>
+    <movie version="11"/>
     <movie path="bin-debug/App.swf"/>
     <movie width="800"/>
-    <movie fps="60"/>
     <movie height="600"/>
-    <movie platform="Flash Player"/>
-    <movie version="11"/>
-    <movie disabled="False"/>
-    <movie background="#FFFFFF"/>
     <movie input=""/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
+  <jsOutput>
+    <option path=""/>
+  </jsOutput>
   <classpaths>
     <class path="src/main/royale"/>
   </classpaths>
   <moonshineResourcePaths></moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
+    <option optimize="False"/>
+    <option staticLinkRSL="False"/>
+    <option locale=""/>
+    <option antBuildPath="build/build.xml"/>
+    <option customSDK=""/>
+    <option showBindingWarnings="True"/>
+    <option sourceMap="False"/>
+    <option showDeprecationWarnings="True"/>
+    <option showActionScriptWarnings="True"/>
+    <option compilerConstants=""/>
+    <option loadConfig=""/>
     <option strict="True"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
-    <option locale=""/>
     <option showUnusedTypeSelectorWarnings="True"/>
     <option useResourceBundleMetadata="True"/>
     <option benchmark="False"/>
@@ -47,27 +60,20 @@
     <option es="False"/>
     <option verboseStackTraces="False"/>
     <option allowSourcePathOverlap="False"/>
-    <option loadConfig=""/>
-    <option linkReport=""/>
-    <option optimize="False"/>
-    <option staticLinkRSL="False"/>
-    <option antBuildPath="build/build.xml"/>
-    <option customSDK=""/>
-    <option showBindingWarnings="True"/>
     <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/jewel-example-index-template.html -js-dynamic-access-unknown-members=true"/>
-    <option showDeprecationWarnings="True"/>
-    <option showActionScriptWarnings="True"/>
-    <option compilerConstants=""/>
+    <option linkReport=""/>
   </build>
   <mavenBuild>
+    <option settingsFilePath=""/>
+    <option dominoNotesPlatform=""/>
+    <option dominoNotesProgram=""/>
     <option commandLine=""/>
     <option mavenBuildPath=""/>
-    <option settingsFilePath=""/>
     <actions>
-      <action action="install" actionName="Build"/>
-      <action action="clean" actionName="Clean"/>
-      <action action="clean install" actionName="Clean and Build"/>
-      <action action="war:exploded" actionName="Exploded"/>
+      <action actionName="Build" action="install"/>
+      <action actionName="Clean" action="clean"/>
+      <action actionName="Clean and Build" action="clean install"/>
+      <action actionName="Exploded" action="war:exploded"/>
     </actions>
   </mavenBuild>
   <includeLibraries></includeLibraries>
@@ -79,6 +85,7 @@
     <element path="Library\AS3\frameworks\Flex4"/>
   </intrinsics>
   <library></library>
+  <modules/>
   <compileTargets>
     <compile path="src/main/royale/App.mxml"/>
   </compileTargets>
@@ -87,22 +94,25 @@
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
-    <option visualEditorExportPath=""/>
-    <option testMovie=""/>
-    <option testMovieCommand=""/>
     <option isPrimeFacesVisualEditor="False"/>
     <option showHiddenPaths="False"/>
+    <option testMovieCommand=""/>
     <option defaultBuildTargets=""/>
+    <option testMovie=""/>
+    <option visualEditorExportPath=""/>
+    <option isRoyale="True"/>
     <option isExportedToExistingSource="False"/>
   </options>
   <moonshineRunCustomization>
-    <option targetPlatform="2"/>
+    <option webBrowser="Google Chrome"/>
+    <option targetPlatform="5"/>
     <option urlToLaunch=""/>
     <option projectType="2"/>
     <option customUrlToLaunch=""/>
+    <option deviceConnectType="USB"/>
     <option deviceSimulator="null"/>
     <option launchMethod="Simulator"/>
-    <deviceSimulator>null</deviceSimulator>
+    <deviceSimulator>Apple iPad</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
     <certIosProvisioning>null</certIosProvisioning>
