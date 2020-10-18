@@ -178,6 +178,7 @@ internal class MXRoyaleClasses
 	import mx.errors.EOFError; EOFError;
 	import mx.events.TextEvent; TextEvent;
 	import mx.display.Bitmap; Bitmap;
+	import mx.display.Loader; Loader;
 	import mx.external.ExternalInterface; ExternalInterface;
 	import mx.events.KeyboardEvent; KeyboardEvent;
 	import mx.geom.Matrix; Matrix;
