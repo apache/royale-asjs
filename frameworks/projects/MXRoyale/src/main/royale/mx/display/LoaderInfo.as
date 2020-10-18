@@ -35,5 +35,17 @@ package mx.display
         	return _loader;
         }
 
+        public function get width():int
+        {
+            // TODO this should be the nominal width, whatever that means
+            return _loader.content.width;
+        }
+
+        public function get height():int
+        {
+            // TODO this should be the nominal height, whatever that means
+            return _loader.content.height;
+        }
+
     }
 }

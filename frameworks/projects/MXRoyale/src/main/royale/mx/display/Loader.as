@@ -49,6 +49,7 @@ package mx.display
         
         public function load(request:URLRequest, context:Object=null):void
         {
+            // TODO do we need to add element before loading from source?
             (content as Image).source = request.url;
         }
 
