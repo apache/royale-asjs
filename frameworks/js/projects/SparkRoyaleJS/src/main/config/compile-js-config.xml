@@ -65,6 +65,7 @@
             <path-element>../../../../../libs/EffectsJS.swc</path-element>
             <path-element>../../../../../libs/ExpressJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../libs/DragDropJS.swc</path-element>
             <path-element>../../../../../libs/HTMLJS.swc</path-element>
             <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ChartsJS.swc</path-element>
