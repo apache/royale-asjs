@@ -721,15 +721,16 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-   /*  public function set labelFunction(value:Function):void
+    // not implemeneted
+    public function set labelFunction(value:Function):void
     {
-        if (value == _labelFunction)
-            return;
-            
-        _labelFunction = value;
-        labelFieldOrFunctionChanged = true;
-        invalidateProperties(); 
-    } */
+        //if (value == _labelFunction)
+            //return;
+            //
+        //_labelFunction = value;
+        //labelFieldOrFunctionChanged = true;
+        //invalidateProperties(); 
+    }
 
 
     //----------------------------------
