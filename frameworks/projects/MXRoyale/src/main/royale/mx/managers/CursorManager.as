@@ -387,10 +387,10 @@ public class CursorManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public static function removeAllCursors():void
+     public static function removeAllCursors():void
     {
         impl.removeAllCursors();
-    } */
+    }
 
     /**
      *  Displays the busy cursor.
