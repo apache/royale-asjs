@@ -63,7 +63,7 @@ import mx.managers.IFocusManagerComponent;
 import spark.components.supportClasses.ListBase;
 import mx.core.mx_internal;
 use namespace mx_internal;
-[Event(name="dragCompleteHandler", type="org.apache.royale.events.DragEvent")]
+[Event(name="dragComplete", type="mx.events.DragEvent")]
 //--------------------------------------
 //  Styles
 //--------------------------------------
