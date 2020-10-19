@@ -55,10 +55,15 @@ import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.DropLocation;
 
  */  //ListBase and List share selection properties that are mx_internal
+import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
+import org.apache.royale.html.beads.SingleSelectionDragImageBead;
+import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
+import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
 import mx.managers.IFocusManagerComponent;
 import spark.components.supportClasses.ListBase;
 import mx.core.mx_internal;
 use namespace mx_internal;
+[Event(name="dragCompleteHandler", type="org.apache.royale.events.DragEvent")]
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -560,6 +565,40 @@ public class List extends ListBase implements IFocusManagerComponent
 	public function set alternatingItemColors(value:Array):void
 	{
 		// not implemented
+	}
+
+	private var _dragEnabled:Boolean = false;
+	public function get dragEnabled():Boolean
+	{
+		return _dragEnabled;
+	}
+	public function set dragEnabled(value:Boolean):void
+	{
+		_dragEnabled = value;
+	}
+
+	private var _dropEnabled:Boolean = false;
+	public function get dropEnabled():Boolean
+	{
+		return _dropEnabled;
+	}
+	public function set dropEnabled(value:Boolean):void
+	{
+		_dropEnabled = value;
+	}
+
+	override public function addedToParent():void
+	{
+		super.addedToParent();
+
+		if (dragEnabled) {
+			addBead(new SingleSelectionDragSourceBead());
+			addBead(new SingleSelectionDragImageBead());
+		}
+		if (dropEnabled) {
+			addBead(new SingleSelectionDropTargetBead());
+			addBead(new SingleSelectionDropIndicatorBead());
+		}
 	}
 
     public function set itemRendererFunction(value:Function):void
