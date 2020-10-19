@@ -32,6 +32,7 @@ import flash.text.TextFormatAlign;
 import flash.text.TextLineMetrics;
  */
  import mx.controls.Label;
+ import mx.text.TextFormat;
  import mx.core.UIComponent;
  import mx.managers.ISystemManager;
  import mx.styles.ISimpleStyleClient;
@@ -3011,7 +3012,24 @@ public class UITextField  extends UIComponent implements IUITextField
      {
          return true;
      }
+
+     // not implemented
+     public function set multiline(value:Boolean):void
+     {
+     }
+
+     // not implemented
+     public function set autosize(value:String):void
+     {
+     }
+
+     // not implemented
      public function set wordWrap(value:Boolean):void
+     {
+     }
+
+     // not implemented
+     public function set defaultTextFormat(value:TextFormat):void
      {
      }
 }

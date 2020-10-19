@@ -19,6 +19,7 @@
 package mx.display
 {
     import mx.core.UIComponent;
+    import mx.utils.ByteArray;
     import mx.controls.Image;
     import org.apache.royale.net.URLRequest;
     import org.apache.royale.events.Event;
@@ -53,6 +54,10 @@ package mx.display
             (content as Image).source = request.url;
         }
 
+        public function loadBytes(bytes:ByteArray):void
+	    {
+		    // TODO not implemented
+	    }
 
         private function loadCompleteHandler(event:Event):void
         {

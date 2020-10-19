@@ -2531,19 +2531,20 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function ensureIndexIsVisible(index:int):void
+		// not implemented
+    public function ensureIndexIsVisible(index:int):void
     {
-        if (!layout)
-            return;
-
-        var spDelta:Point = dataGroup.layout.getScrollPositionDeltaToElement(index);
-         
-        if (spDelta)
-        {
-            dataGroup.horizontalScrollPosition += spDelta.x;
-            dataGroup.verticalScrollPosition += spDelta.y;
-        }
-    } */
+        //if (!layout)
+            //return;
+//
+        //var spDelta:Point = dataGroup.layout.getScrollPositionDeltaToElement(index);
+         //
+        //if (spDelta)
+        //{
+            //dataGroup.horizontalScrollPosition += spDelta.x;
+            //dataGroup.verticalScrollPosition += spDelta.y;
+        //}
+    }
     
     /**
      *  Adjusts the selected indices to account for items being added to or 

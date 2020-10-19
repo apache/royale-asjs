@@ -22,6 +22,7 @@ package mx.display
 	import mx.core.UIComponent;
 	import mx.geom.Matrix;
 	import mx.graphics.GradientEntry;
+	import org.apache.royale.display.BitmapData;
 
 	public class Graphics// extends org.apache.royale.svg.CompoundGraphic
 	{
@@ -495,6 +496,12 @@ package mx.display
                 svg.appendChild(path);
             }
         }
+
+	// not implemented
+	public function beginBitmapFill(bitmap:BitmapData, matrix:Matrix = null, repeat:Boolean = true, smooth:Boolean = false):void
+		{
+		}
+			
 
 	}
 	
