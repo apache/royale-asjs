@@ -344,7 +344,7 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private
      *  storage for the itemIndex property 
      */    
-    /* private var _itemIndex:int;
+    private var _itemIndex:int;
     
     [Bindable("itemIndexChanged")] */
     
@@ -358,29 +358,29 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */    
-    /* public function get itemIndex():int
+    public function get itemIndex():int
     {
         return _itemIndex;
-    } */
+    }
     
     /**
      *  @private
      */    
-    /* public function set itemIndex(value:int):void
+    public function set itemIndex(value:int):void
     {
         if (value == _itemIndex)
             return;
         
         _itemIndex = value;
         
-        if (autoDrawBackground)
-        {
-            redrawRequested = true;
-            super.$invalidateDisplayList();
-        }
-        
-        dispatchEvent(new Event("itemIndexChanged"));
-    } */
+        //if (autoDrawBackground)
+        //{
+            //redrawRequested = true;
+            //super.$invalidateDisplayList();
+        //}
+        //
+        //dispatchEvent(new Event("itemIndexChanged"));
+    }
     
     //----------------------------------
     //  index
@@ -609,6 +609,9 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
         }
     } */
     
+    // not implemented
+    public function get label():String {return "label"} 
+
     // not implemented
     public function set label(value:String):void {}
 
