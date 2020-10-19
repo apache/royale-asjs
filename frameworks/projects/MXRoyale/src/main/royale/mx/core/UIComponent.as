@@ -135,6 +135,8 @@ import org.apache.royale.utils.ClassSelectorList;
  *  @productversion Flex 3
  */
 [Event(name="show", type="mx.events.FlexEvent")]
+// not implemented
+[Event(name="hide", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when the component has finished its construction
