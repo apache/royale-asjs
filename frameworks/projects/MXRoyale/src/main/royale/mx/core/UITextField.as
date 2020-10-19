@@ -3019,7 +3019,7 @@ public class UITextField  extends UIComponent implements IUITextField
      }
 
      // not implemented
-     public function set autosize(value:String):void
+     public function set autoSize(value:String):void
      {
      }
 
