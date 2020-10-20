@@ -71,5 +71,13 @@ package org.apache.royale.core
       (_strand as IEventDispatcher).addEventListener(eventType, handler, capture);
     }
 
+    /**
+     * Helper function to remove event listener without the need for casting
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     */
+    protected function unlistenOnStrand(eventType:String,handler:Function,capture:Boolean=false):void
+    {
+      (_strand as IEventDispatcher).removeEventListener(eventType, handler, capture);
+    }
   }
 }
