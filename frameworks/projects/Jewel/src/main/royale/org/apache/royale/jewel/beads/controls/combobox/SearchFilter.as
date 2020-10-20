@@ -23,6 +23,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
 	import org.apache.royale.jewel.beads.views.ComboBoxView;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+    import org.apache.royale.jewel.List;
+    import org.apache.royale.events.MouseEvent;
 
 	/**
 	 *  The SearchFilter bead class is a specialty bead that can be used with
@@ -46,6 +48,22 @@ package org.apache.royale.jewel.beads.controls.combobox
 		public function SearchFilter()
 		{
 		}
+
+        public override function set list(value:List):void
+        {
+            super.list = value;
+            COMPILE::JS
+			{
+			if (list != null)
+	            list.addEventListener(MouseEvent.CLICK, onListClick);
+            }
+        }
+
+        private function onListClick(event:MouseEvent):void
+        {
+			list.removeEventListener(MouseEvent.CLICK, onListClick);
+            comboView.popUpVisible = false;
+        }
 
 		private var comboView:IComboBoxView;
 
