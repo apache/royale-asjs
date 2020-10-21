@@ -838,6 +838,48 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
         invalidateDisplayList();*/
     }
 
+    /**
+     *  @private
+     *  Storage for the showHeaders property.
+     */
+    private var _showHeaders:Boolean = true;
+
+    [Bindable("showHeadersChanged")]
+  //  [Inspectable(category="General", defaultValue="true")]
+
+    /**
+     *  A flag that indicates whether the control should show
+     *  column headers.
+     *  If <code>true</code>, the control shows column headers.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showHeaders():Boolean
+    {
+        return _showHeaders;
+    }
+
+    /**
+     *  @private
+     */
+    public function set showHeaders(value:Boolean):void
+    {
+        if (value == _showHeaders)
+            return;
+
+        _showHeaders = value;
+        /*itemsSizeChanged = true;
+
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("showHeadersChanged"));*/
+    }
+
     [Inspectable(environment="none")]
 
 
