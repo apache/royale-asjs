@@ -125,7 +125,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-//[Event(name="itemRollOver", type="mx.events.ListEvent")]
+// not implemented
+[Event(name="itemRollOver", type="mx.events.ListEvent")]
 
 /**
  *  Dispatched when the user rolls the mouse pointer out of an item in the control.

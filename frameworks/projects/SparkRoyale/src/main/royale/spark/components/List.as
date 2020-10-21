@@ -547,6 +547,16 @@ public class List extends ListBase implements IFocusManagerComponent
     //
     //--------------------------------------------------------------------------
 
+	public function set horizontalScrollPolicy(value:String):void
+	{
+		// not implemented
+	}
+
+	public function set allowMultipleSelection(value:Boolean):void
+	{
+		// not implemented
+	}
+
 	public function set selectionColor(value:uint):void
 	{
 		// not implemented

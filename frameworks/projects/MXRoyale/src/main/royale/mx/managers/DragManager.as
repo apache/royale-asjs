@@ -89,6 +89,8 @@ public class DragManager
      *  @productversion Royale 0.9.3
      */
     public static const LINK:String = "link";
+    // not implemented
+    public static const NONE:String = "none";
     
    
 

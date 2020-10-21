@@ -24,7 +24,7 @@ COMPILE::JS
     import goog.DEBUG;
 }
 //import mx.graphics.IFill;
-//import mx.graphics.IStroke;
+import mx.graphics.IStroke;
 
 import spark.components.SkinnableContainer;
 
@@ -368,15 +368,16 @@ public class BorderContainer extends SkinnableContainer
     /**
      *  @private
      */ 
-    /* public function set borderStroke(value:IStroke):void
+	// not implemented
+    public function set borderStroke(value:IStroke):void
     {
-        if (value == _borderStroke)
-           return;
-        
-        _borderStroke = value;
-        
-        if (skin)
-            skin.invalidateDisplayList();
-    } */
+        //if (value == _borderStroke)
+           //return;
+        //
+        //_borderStroke = value;
+        //
+        //if (skin)
+            //skin.invalidateDisplayList();
+    }
 }
 }

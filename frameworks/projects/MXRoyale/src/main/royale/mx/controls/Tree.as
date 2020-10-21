@@ -619,7 +619,8 @@ public class Tree extends List
      *  @private
      *  automation delegate access
      */
-    //mx_internal var _dropData:Object;
+    // not implemented
+    mx_internal var _dropData:Object;
 
     /**
      *  An object that specifies the icons for the items.

@@ -275,10 +275,16 @@ public class Group extends GroupBase /*implements IVisualElementContainer,
         super.width = value;
     }
    
+    public function removeAllElements():void
+    {
+	// not implemented
+    }
+
     public function set mouseEnabledWhereTransparent(value:Boolean):void
     {
 	// not implemented
     }
+
     /**
      *  @private
      */

@@ -137,6 +137,10 @@ import org.apache.royale.utils.ClassSelectorList;
 [Event(name="show", type="mx.events.FlexEvent")]
 // not implemented
 [Event(name="hide", type="mx.events.FlexEvent")]
+// not implemented
+[Event(name="mouseDownOutside", type="mx.events.FlexMouseEvent")]
+// not implemented
+[Event(name="remove", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when the component has finished its construction

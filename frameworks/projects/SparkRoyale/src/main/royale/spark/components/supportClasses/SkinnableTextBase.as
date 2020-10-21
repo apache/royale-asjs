@@ -188,7 +188,8 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Event(name="changing", type="spark.events.TextOperationEvent")]
+// not implemented
+[Event(name="changing", type="spark.events.TextOperationEvent")]
 
 /**
  *  Dispatched after a user editing operation is complete.
