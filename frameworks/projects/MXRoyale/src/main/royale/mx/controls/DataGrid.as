@@ -767,6 +767,39 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
      */
     public var resizableColumns:Boolean = true;
 
+    /**
+     *  A flag that indicates whether the user can sort the data provider items
+     *  by clicking on a column header cell.
+     *  If <code>true</code>, the user can sort the data provider items by
+     *  clicking on a column header cell.
+     *  The <code>DataGridColumn.dataField</code> property of the column
+     *  or the <code>DataGridColumn.sortCompareFunction</code> property
+     *  of the column is used as the sort field.
+     *  If a column is clicked more than once
+     *  the sort alternates between ascending and descending order.
+     *  If <code>true</code>, individual columns can be made to not respond
+     *  to a click on a header by setting the column's <code>sortable</code>
+     *  property to <code>false</code>.
+     *
+     *  <p>When a user releases the mouse button over a header cell, the DataGrid
+     *  control dispatches a <code>headerRelease</code> event if both
+     *  this property and the column's sortable property are <code>true</code>.
+     *  If no handler calls the <code>preventDefault()</code> method on the event, the
+     *  DataGrid sorts using that column's <code>DataGridColumn.dataField</code> or
+     *  <code>DataGridColumn.sortCompareFunction</code> properties.</p>
+     *
+     *  @default true
+     *
+     *  @see mx.controls.dataGridClasses.DataGridColumn#dataField
+     *  @see mx.controls.dataGridClasses.DataGridColumn#sortCompareFunction
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var sortableColumns:Boolean = true;
+
     [Inspectable(environment="none")]
 
 
