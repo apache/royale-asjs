@@ -436,10 +436,6 @@ public class AMF0NetConnection
     COMPILE::JS
     private function getNewBinaryData(bytes:Object):AMFBinaryData{
         var ret:AMFBinaryData = new AMFBinaryData(bytes);
-        /*if (AMFBinaryData.hasAMF0Support()) {
-            //default to AMFO
-            ret.objectEncoding = 0;
-        }*/
         return ret;
     }
 
@@ -588,9 +584,6 @@ public class AMF0NetConnection
         writer.position = len_pos;
         writer.writeUnsignedInt(len);
         writer.position += len;
-       /* trace('not sending header data:', header.data);
-        writer.writeByte(AMF0_BOOLEAN);
-        writer.writeBoolean(true);*/
     }
 
     COMPILE::JS
@@ -680,28 +673,6 @@ public class AMF0NetConnection
                 }
             }
         }
-        /*if (version == 0) {
-            //we should be able to handle anything, because we can assume AMF0 support is included
-            if (AMFBinaryData.hasAMF0Support()){
-
-            }
-            headerContent = reader.readObject();
-        } else {
-            //if the next byte is AMF0_AMF3 we should be able to read the subsequent AMF3
-            var type:uint = reader.readUnsignedByte();
-            if (type == AMF0_AMF3) {
-                //we have AMF3 support as default, and that is what is next
-                reader.objectEncoding = 3;
-                headerContent = reader.readObject();
-            } else if (type == 2) {
-                //we are still using AMF0
-                //support for AMF0 String value of header,without more general AMF0 support - common use case
-                headerContent = reader.readUTF();
-            }
-            else { //amf0 string
-                throw "Only string header values are supported for AMF0 headers.";
-            }
-        }*/
         header.data = headerContent;
         //trace('readHeader data:',header.data);
         return header;
