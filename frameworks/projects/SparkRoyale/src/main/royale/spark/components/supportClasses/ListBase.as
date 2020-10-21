@@ -1076,7 +1076,7 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-    //private var _useVirtualLayout:Boolean = false;
+    private var _useVirtualLayout:Boolean = false;
     
     /**
      *  Sets the value of the <code>useVirtualLayout</code> property
@@ -1092,10 +1092,10 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get useVirtualLayout():Boolean
+    public function get useVirtualLayout():Boolean
     {
         return (layout) ? layout.useVirtualLayout : _useVirtualLayout;
-    } */
+    }
 
     /**
      *  @private
@@ -1106,7 +1106,7 @@ public class ListBase  extends SkinnableContainer
      *  however in this case, always honoring the layout's useVirtalLayout property seems 
      *  less likely to cause confusion.
      */
-    /* public function set useVirtualLayout(value:Boolean):void
+     public function set useVirtualLayout(value:Boolean):void
     {
         if (value == useVirtualLayout)
             return;
@@ -1114,7 +1114,7 @@ public class ListBase  extends SkinnableContainer
         _useVirtualLayout = value;
         if (layout)
             layout.useVirtualLayout = value;
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
