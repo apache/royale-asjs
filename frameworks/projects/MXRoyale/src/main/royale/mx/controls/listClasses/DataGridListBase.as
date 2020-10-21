@@ -57,6 +57,7 @@ import mx.core.IFactory;
 import mx.core.Keyboard;
 import mx.core.ScrollControlBase;
 import mx.core.UIComponent;
+import mx.core.IUIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
@@ -2057,13 +2058,14 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function get dragImage():IUIComponent
+    protected function get dragImage():IUIComponent
     {
-        var image:ListItemDragProxy = new ListItemDragProxy();
-        image.owner = this;
-        image.moduleFactory = moduleFactory;
-        return image;
-    } */
+        //var image:ListItemDragProxy = new ListItemDragProxy();
+        //image.owner = this;
+        //image.moduleFactory = moduleFactory;
+        //return image;
+	return new UIComponent(); // not implemented
+    }
 
     //----------------------------------
     //  dragImageOffsets

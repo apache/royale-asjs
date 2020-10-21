@@ -908,7 +908,7 @@ public class Tree extends List
     //  firstVisibleItem
     //----------------------------------
 
-    //[Bindable("firstVisibleItemChanged")]
+    [Bindable("firstVisibleItemChanged")]
 
     /**
      *  The item that is currently displayed in the top row of the tree.
@@ -931,13 +931,14 @@ public class Tree extends List
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get firstVisibleItem():Object
+	    // not implemented
+    public function get firstVisibleItem():Object
     {
-        if (listItems.length > 0 && listItems[0].length > 0) 
-            return listItems[0][0].data;
-        else
+        //if (listItems.length > 0 && listItems[0].length > 0) 
+            //return listItems[0][0].data;
+        //else
             return null;
-    } */
+    }
     
     /**
      *  @private
@@ -1159,6 +1160,12 @@ public class Tree extends List
         if (Tree.createAccessibilityImplementation != null)
             Tree.createAccessibilityImplementation(this);
     } */
+
+    // not implemented
+    protected function get listItems():Array
+	{
+		return [];
+	}
 
     /**
      *  @private

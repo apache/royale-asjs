@@ -32,7 +32,6 @@ import flash.ui.Keyboard; */
 /* 
 import mx.collections.ArrayCollection;
 import mx.collections.IList;
-import mx.core.DragSource;
 import mx.core.EventPriority;
 import mx.core.IFactory;
 import mx.core.IFlexDisplayObject;
@@ -55,6 +54,7 @@ import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.DropLocation;
 
  */  //ListBase and List share selection properties that are mx_internal
+import mx.core.DragSource;
 import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
 import org.apache.royale.html.beads.SingleSelectionDragImageBead;
 import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
@@ -1040,20 +1040,21 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get selectedItems():Vector.<Object>
+     // not implemented
+    public function get selectedItems():Vector.<Object>
     {
         var result:Vector.<Object> = new Vector.<Object>();
-        
-        if (selectedIndices)
-        {
-            var count:int = selectedIndices.length;
-            
-            for (var i:int = 0; i < count; i++)
-                result[i] = dataProvider.getItemAt(selectedIndices[i]);  
-        }
-        
+        //
+        //if (selectedIndices)
+        //{
+            //var count:int = selectedIndices.length;
+            //
+            //for (var i:int = 0; i < count; i++)
+                //result[i] = dataProvider.getItemAt(selectedIndices[i]);  
+        //}
+        //
         return result;
-    } */
+    }
     
     /**
      *  @private
@@ -1842,22 +1843,23 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function addDragData(dragSource:DragSource):void
+    // not implemented
+    public function addDragData(dragSource:DragSource):void
     {
-        dragSource.addHandler(copySelectedItemsForDragDrop, "itemsByIndex");
-        
-        // Calculate the index of the focus item within the vector
-        // of ordered items returned for the "itemsByIndex" format.
-        var caretIndex:int = 0;
-        var draggedIndices:Vector.<int> = selectedIndices;
-        var count:int = draggedIndices.length;
-        for (var i:int = 0; i < count; i++)
-        {
-            if (mouseDownIndex > draggedIndices[i])
-                caretIndex++;
-        }
-        dragSource.addData(caretIndex, "caretIndex");
-    } */
+        //dragSource.addHandler(copySelectedItemsForDragDrop, "itemsByIndex");
+        //
+        //// Calculate the index of the focus item within the vector
+        //// of ordered items returned for the "itemsByIndex" format.
+        //var caretIndex:int = 0;
+        //var draggedIndices:Vector.<int> = selectedIndices;
+        //var count:int = draggedIndices.length;
+        //for (var i:int = 0; i < count; i++)
+        //{
+            //if (mouseDownIndex > draggedIndices[i])
+                //caretIndex++;
+        //}
+        //dragSource.addData(caretIndex, "caretIndex");
+    }
 
     /**
      *  @private

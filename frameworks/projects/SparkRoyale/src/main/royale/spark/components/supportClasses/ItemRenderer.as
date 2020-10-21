@@ -582,7 +582,7 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private
      *  Storage for the dragging property. 
      */
-    //private var _dragging:Boolean = false;
+    private var _dragging:Boolean = false;
 
     /**
      *  @inheritDoc  
@@ -592,22 +592,24 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get dragging():Boolean
+    // not implemented
+    public function get dragging():Boolean
     {
         return _dragging;
-    } */
+    }
 
     /**
      *  @private  
      */
-    /* public function set dragging(value:Boolean):void
+    // not implemented
+    public function set dragging(value:Boolean):void
     {
         if (value != _dragging)
         {
             _dragging = value;
-            invalidateRendererState();
+            //invalidateRendererState();
         }
-    } */
+    }
     
     // not implemented
     public function get label():String {return "label"} 
