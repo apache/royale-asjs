@@ -298,7 +298,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="verticalGridLines", type="Boolean", inherit="no")]
+[Style(name="verticalGridLines", type="Boolean", inherit="no")]
 
 /**
  *  A flag that indicates whether to show horizontal grid lines between
@@ -748,6 +748,25 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     //
     //--------------------------------------------------------------------------
 
+
+    /**
+     *  A flag that indicates whether the user can change the size of the
+     *  columns.
+     *  If <code>true</code>, the user can stretch or shrink the columns of
+     *  the DataGrid control by dragging the grid lines between the header cells.
+     *  If <code>true</code>, individual columns must also have their
+     *  <code>resizable</code> properties set to <code>false</code> to
+     *  prevent the user from resizing a particular column.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var resizableColumns:Boolean = true;
+
     [Inspectable(environment="none")]
 
 
@@ -809,7 +828,40 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
         value = value? value.slice() : value;
         IDataGridModel(model).columns = value;
     }
-	
+
+    /**
+     *  @private
+     *  Storage for the draggableColumns property.
+     */
+    private var _draggableColumns:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  A flag that indicates whether the user is allowed to reorder columns.
+     *  If <code>true</code>, the user can reorder the columns
+     *  of the DataGrid control by dragging the header cells.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get draggableColumns():Boolean
+    {
+        return _draggableColumns;
+    }
+
+    /**
+     *  @private
+     */
+    public function set draggableColumns(value:Boolean):void
+    {
+        _draggableColumns = value;
+    }
+
     /**
      * @private
      */
