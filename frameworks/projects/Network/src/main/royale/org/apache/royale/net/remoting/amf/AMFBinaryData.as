@@ -57,6 +57,13 @@ package org.apache.royale.net.remoting.amf {
 			_amfContextClass = clazz;
 		}
 		COMPILE::JS
+		internal static function hasAMF0Support():Boolean{
+			//this should always be a valid subclass of AMFContext (only AMF0 support)
+			return _amfContextClass && _amfContextClass != AMFContext;
+		}
+
+
+		COMPILE::JS
 		private static var _defaultEncoding:uint = 3;
 		public static function get defaultObjectEncoding() : uint{
 			COMPILE::JS{

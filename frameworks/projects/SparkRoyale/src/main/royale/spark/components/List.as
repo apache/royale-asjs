@@ -219,7 +219,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */ 
-//[Style(name="horizontalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
+[Style(name="horizontalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
 
 /**
  *  @copy spark.components.supportClasses.GroupBase#style:rollOverColor
@@ -306,7 +306,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */ 
-//[Style(name="verticalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
+[Style(name="verticalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
 
 //--------------------------------------
 //  Other metadata
@@ -676,10 +676,10 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* override public function get useVirtualLayout():Boolean
-    {
+     override public function get useVirtualLayout():Boolean
+     {
         return super.useVirtualLayout;
-    } */
+     }
 
     /**
      *  Overrides the inherited default property , it is true for this class.
@@ -697,10 +697,10 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* override public function set useVirtualLayout(value:Boolean):void
-    {
+     override public function set useVirtualLayout(value:Boolean):void
+     {
         super.useVirtualLayout = value;
-    } */
+     }
     
 
     //--------------------------------------------------------------------------

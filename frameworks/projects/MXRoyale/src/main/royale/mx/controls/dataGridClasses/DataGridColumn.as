@@ -81,7 +81,7 @@ import org.apache.royale.html.supportClasses.DataGridColumn;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="headerStyleName", type="String", inherit="no")]
+[Style(name="headerStyleName", type="String", inherit="no")]
 
 /**
  *  The number of pixels between the container's left border and its content 

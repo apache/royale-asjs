@@ -20,23 +20,8 @@
 package org.apache.royale.net.remoting.amf {
 
 
-import org.apache.royale.net.remoting.amf.AMFBinaryData;
-import org.apache.royale.net.remoting.amf.AMFContext;
-import org.apache.royale.utils.net.IDynamicPropertyOutput;
-import org.apache.royale.utils.net.IDynamicPropertyWriter;
-import org.apache.royale.reflection.getAliasByClass;
-import org.apache.royale.reflection.getClassByAlias;
-import org.apache.royale.reflection.getDynamicFields;
-import org.apache.royale.reflection.getDefinitionByName;
-import org.apache.royale.reflection.getQualifiedClassName;
-import org.apache.royale.reflection.isDynamicObject;
-import org.apache.royale.utils.net.IDataInput;
-import org.apache.royale.utils.net.IDataOutput;
-import org.apache.royale.utils.BinaryData;
-import org.apache.royale.utils.net.IExternalizable;
-import org.apache.royale.utils.net.IDataInput;
-import org.apache.royale.utils.net.IDataOutput;
-
+	import org.apache.royale.reflection.getDynamicFields;
+	import org.apache.royale.reflection.getClassByAlias;
 
 	COMPILE::JS
 	/**
@@ -83,10 +68,10 @@ import org.apache.royale.utils.net.IDataOutput;
 			return type == 3 || type == 0;
 		}
 
-		override public function writeObject(v:*):void {
+		/*override public function writeObject(v:*):void {
 			trace('to check here')
 			super.writeObject(v)
-		}
+		}*/
 
 		/**
 		 * @royaleignorecoercion Class
@@ -346,10 +331,10 @@ import org.apache.royale.utils.net.IDataOutput;
 
 
 
-		override public function readObject():* {
+		/*override public function readObject():* {
 			trace('@todo')
 			return super.readObject();
-		}
+		}*/
 
 		override public function readAmf0Object():* {
 			var amfType:uint = readUnsignedByte();

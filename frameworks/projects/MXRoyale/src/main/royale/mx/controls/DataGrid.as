@@ -298,7 +298,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="verticalGridLines", type="Boolean", inherit="no")]
+[Style(name="verticalGridLines", type="Boolean", inherit="no")]
 
 /**
  *  A flag that indicates whether to show horizontal grid lines between
@@ -748,6 +748,96 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     //
     //--------------------------------------------------------------------------
 
+
+    /**
+     *  A flag that indicates whether the user can change the size of the
+     *  columns.
+     *  If <code>true</code>, the user can stretch or shrink the columns of
+     *  the DataGrid control by dragging the grid lines between the header cells.
+     *  If <code>true</code>, individual columns must also have their
+     *  <code>resizable</code> properties set to <code>false</code> to
+     *  prevent the user from resizing a particular column.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var resizableColumns:Boolean = true;
+
+    /**
+     *  A flag that indicates whether the user can sort the data provider items
+     *  by clicking on a column header cell.
+     *  If <code>true</code>, the user can sort the data provider items by
+     *  clicking on a column header cell.
+     *  The <code>DataGridColumn.dataField</code> property of the column
+     *  or the <code>DataGridColumn.sortCompareFunction</code> property
+     *  of the column is used as the sort field.
+     *  If a column is clicked more than once
+     *  the sort alternates between ascending and descending order.
+     *  If <code>true</code>, individual columns can be made to not respond
+     *  to a click on a header by setting the column's <code>sortable</code>
+     *  property to <code>false</code>.
+     *
+     *  <p>When a user releases the mouse button over a header cell, the DataGrid
+     *  control dispatches a <code>headerRelease</code> event if both
+     *  this property and the column's sortable property are <code>true</code>.
+     *  If no handler calls the <code>preventDefault()</code> method on the event, the
+     *  DataGrid sorts using that column's <code>DataGridColumn.dataField</code> or
+     *  <code>DataGridColumn.sortCompareFunction</code> properties.</p>
+     *
+     *  @default true
+     *
+     *  @see mx.controls.dataGridClasses.DataGridColumn#dataField
+     *  @see mx.controls.dataGridClasses.DataGridColumn#sortCompareFunction
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var sortableColumns:Boolean = true;
+
+    /**
+     *  @private
+     *  Storage for the headerHeight property.
+     */
+   /* mx_internal*/ private var _headerHeight:Number = 22;
+
+    [Bindable("resize")]
+    //[Inspectable(category="General", defaultValue="22")]
+
+    /**
+     *  The height of the header cell of the column, in pixels.
+     *  If set explicitly, that height will be used for all of
+     *  the headers. If not set explicitly,
+     *  the height will based on style settings and the header
+     *  renderer.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get headerHeight():Number
+    {
+        return _headerHeight;
+    }
+
+    /**
+     *  @private
+     */
+    public function set headerHeight(value:Number):void
+    {
+        _headerHeight = value;
+       /* _explicitHeaderHeight = true;
+        itemsSizeChanged = true;
+
+        invalidateDisplayList();*/
+    }
+
     [Inspectable(environment="none")]
 
 
@@ -809,7 +899,40 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
         value = value? value.slice() : value;
         IDataGridModel(model).columns = value;
     }
-	
+
+    /**
+     *  @private
+     *  Storage for the draggableColumns property.
+     */
+    private var _draggableColumns:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  A flag that indicates whether the user is allowed to reorder columns.
+     *  If <code>true</code>, the user can reorder the columns
+     *  of the DataGrid control by dragging the header cells.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get draggableColumns():Boolean
+    {
+        return _draggableColumns;
+    }
+
+    /**
+     *  @private
+     */
+    public function set draggableColumns(value:Boolean):void
+    {
+        _draggableColumns = value;
+    }
+
     /**
      * @private
      */

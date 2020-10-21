@@ -51,6 +51,9 @@ package
         // registerClassAlias("DSK", AcknowledgeMessageExt);
         // registerClassAlias("DSA", AsyncMessageExt);
         // registerClassAlias("DSC", CommandMessageExt);
+
+        //TEMPORARY WIP - this should be migrated to AMFConnection at some point when fully completed:
+        import org.apache.royale.net.remoting.amf.AMF0NetConnection; AMF0NetConnection;
         
     }
 }
