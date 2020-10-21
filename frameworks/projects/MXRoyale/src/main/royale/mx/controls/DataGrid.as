@@ -800,6 +800,44 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
      */
     public var sortableColumns:Boolean = true;
 
+    /**
+     *  @private
+     *  Storage for the headerHeight property.
+     */
+   /* mx_internal*/ private var _headerHeight:Number = 22;
+
+    [Bindable("resize")]
+    //[Inspectable(category="General", defaultValue="22")]
+
+    /**
+     *  The height of the header cell of the column, in pixels.
+     *  If set explicitly, that height will be used for all of
+     *  the headers. If not set explicitly,
+     *  the height will based on style settings and the header
+     *  renderer.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get headerHeight():Number
+    {
+        return _headerHeight;
+    }
+
+    /**
+     *  @private
+     */
+    public function set headerHeight(value:Number):void
+    {
+        _headerHeight = value;
+       /* _explicitHeaderHeight = true;
+        itemsSizeChanged = true;
+
+        invalidateDisplayList();*/
+    }
+
     [Inspectable(environment="none")]
 
 
