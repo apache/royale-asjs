@@ -36,7 +36,7 @@ import org.apache.royale.events.Event;
  */
 public class StateChangeEvent extends Event
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
 	//--------------------------------------------------------------------------
 	//
@@ -195,7 +195,7 @@ public class StateChangeEvent extends Event
 	/**
 	 *  @private
 	 */
-	override public function clone():Event
+	override public function cloneEvent():Event
 	{
 		return new StateChangeEvent(type, bubbles, cancelable,
 									oldState, newState);
