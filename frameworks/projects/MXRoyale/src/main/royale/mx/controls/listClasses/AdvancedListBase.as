@@ -4544,20 +4544,6 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     }
 
     /**
-     *  Refresh all rows on next update.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-     public function invalidateList():void
-    {
-       // itemsSizeChanged = true;
-       // invalidateDisplayList();
-    } 
-
-    /**
      *  Refreshes all rows now.  Calling this method can require substantial
      *  processing, because can be expensive at it completely redraws all renderers
      *  in the list and won't return until complete.

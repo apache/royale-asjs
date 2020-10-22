@@ -41,7 +41,7 @@ import mx.collections.XMLListCollection;
 //import mx.collections.errors.ItemPendingError;
 import mx.controls.listClasses.BaseListData;
 //import mx.controls.listClasses.IDropInListItemRenderer;
-//import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
 //import mx.controls.listClasses.ListRowInfo;
 //import mx.controls.listClasses.ListBaseSelectionDataPending;
 import mx.controls.treeClasses.DefaultDataDescriptor;
@@ -850,6 +850,11 @@ public class Tree extends List
                _userMaxHorizontalScrollPosition :
                super.maxHorizontalScrollPosition;
     } */
+
+     protected function drawItem(item:IListItemRenderer, selected:Boolean = false, highlighted:Boolean = false, caret:Boolean = false, transition:Boolean = false):void
+     {
+             // not implemented
+     }
 
     /**
      *  @private

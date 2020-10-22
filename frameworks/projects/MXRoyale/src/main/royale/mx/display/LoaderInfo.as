@@ -19,6 +19,7 @@
 package mx.display
 {
     import org.apache.royale.events.EventDispatcher;
+    import mx.core.UIComponent;
 
     public class LoaderInfo extends EventDispatcher
     {
@@ -29,6 +30,11 @@ package mx.display
             super();
             _loader = loaderValue;
         }
+
+	public function get content():UIComponent
+	    {
+		    return _loader.content;
+	    }
 
         public function get loader():Loader
         {

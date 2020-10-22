@@ -815,7 +815,7 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @private
      *  Storage for the dragMoveEnabled property.
      */
-    /* private var _dragMoveEnabled:Boolean = false;
+    private var _dragMoveEnabled:Boolean = false;
     
     [Inspectable(defaultValue="false")] */
     
@@ -839,18 +839,18 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get dragMoveEnabled():Boolean
+    public function get dragMoveEnabled():Boolean
     {
-        return _dragMoveEnabled;
-    } */
+        return _dragMoveEnabled; // not implemented
+    }
     
     /**
      *  @private
      */
-    /* public function set dragMoveEnabled(value:Boolean):void
+    public function set dragMoveEnabled(value:Boolean):void
     {
-        _dragMoveEnabled = value;
-    } */
+        _dragMoveEnabled = value; // not implemented
+    }
 
     //----------------------------------
     //  dropEnabled
