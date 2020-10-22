@@ -21,7 +21,6 @@ package mx.core
 {
 
 import org.apache.royale.display.BitmapData;
-import flash.display.DisplayObjectContainer;
 import org.apache.royale.events.Event;
 import org.apache.royale.geom.Point;
 import mx.system.ApplicationDomain;
