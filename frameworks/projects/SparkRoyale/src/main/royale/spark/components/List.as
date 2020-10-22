@@ -40,7 +40,6 @@ import mx.core.IVisualElement;
 import mx.core.InteractionMode;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponentGlobals;
-import mx.events.DragEvent;
 import mx.events.FlexEvent;
 import mx.events.SandboxMouseEvent;
 import mx.events.TouchInteractionEvent;
@@ -54,6 +53,7 @@ import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.DropLocation;
 
  */  //ListBase and List share selection properties that are mx_internal
+import mx.events.DragEvent;
 import mx.core.DragSource;
 import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
 import org.apache.royale.html.beads.SingleSelectionDragImageBead;
