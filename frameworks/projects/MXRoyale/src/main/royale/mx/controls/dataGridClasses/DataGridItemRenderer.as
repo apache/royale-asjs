@@ -49,6 +49,7 @@ use namespace mx_internal;
 
 import org.apache.royale.html.supportClasses.StringItemRenderer;
 import org.apache.royale.events.MouseEvent;
+import org.apache.royale.events.Event;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
 import mx.collections.IHierarchicalData;
