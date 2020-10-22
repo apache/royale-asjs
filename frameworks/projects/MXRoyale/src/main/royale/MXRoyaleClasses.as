@@ -351,6 +351,7 @@ internal class MXRoyaleClasses
 	import mx.controls.listClasses.TileBaseDirection; TileBaseDirection;
 	
 	import mx.utils.NameUtil; NameUtil;
+	import mx.core.BitmapAsset; BitmapAsset;
 }
 
 }
