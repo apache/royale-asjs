@@ -19,7 +19,13 @@
 
 package mx.controls.dataGridClasses
 {
+    import org.apache.royale.core.IStatesObject;
+    import org.apache.royale.core.IStatesImpl;
+    import org.apache.royale.core.CallLaterBead;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
+    import mx.states.State;
     import mx.controls.dataGridClasses.*;
+    import org.apache.royale.events.ValueChangeEvent;
 
 
 
@@ -92,7 +98,7 @@ import org.apache.royale.utils.PointUtils;
  *  @productversion Royale 0.9.3
  */
 public class DataGridItemRenderer extends StringItemRenderer
-                                  implements IDataRenderer,IDropInListItemRenderer,IListDataItemRenderer,IListItemRenderer
+                                  implements IDataRenderer,IDropInListItemRenderer,IListDataItemRenderer,IListItemRenderer,IStatesObject
 {
  /* extends UITextField
                                   implements IDataRenderer,
@@ -121,6 +127,202 @@ public class DataGridItemRenderer extends StringItemRenderer
         typeNames += " DataGridItemRenderer";
         addEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler);
     }
+
+    private var callLaterBead:CallLaterBead;
+
+    /**
+     *  Queues a function to be called later.
+     *
+     *  <p>Before each update of the screen, Flash Player or AIR calls
+     *  the set of functions that are scheduled for the update.
+     *  Sometimes, a function should be called in the next update
+     *  to allow the rest of the code scheduled for the current
+     *  update to be executed.
+     *  Some features, like effects, can cause queued functions to be
+     *  delayed until the feature completes.</p>
+     *
+     *  @param method Reference to a method to be executed later.
+     *
+     *  @param args Array of Objects that represent the arguments to pass to the method.
+     *
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function callLater(method:Function,
+                              args:Array /* of Object */ = null):void
+    {
+        if (!callLaterBead)
+        {
+            callLaterBead = new CallLaterBead();
+            addBead(callLaterBead);
+        }
+        callLaterBead.callLater(method, args, this);
+    }
+    //----------------------------------
+    //  currentState
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the currentState property.
+     */
+    private var _currentState:String;
+
+    /**
+     *  @private
+     *  Pending current state name.
+     */
+    private var requestedCurrentState:String;
+
+    /**
+     *  @private
+     *  Flag to play state transition
+     */
+    private var playStateTransition:Boolean = true;
+
+    /**
+     *  @private
+     *  Flag that is set when the currentState has changed and needs to be
+     *  committed.
+     *  This property name needs the initial underscore to avoid collisions
+     *  with the "currentStateChange" event attribute.
+     */
+    private var _currentStateChanged:Boolean;
+
+    [Bindable("currentStateChange")]
+
+    /**
+     *  The current view state of the component.
+     *  Set to <code>""</code> or <code>null</code> to reset
+     *  the component back to its base state.
+     *
+     *  <p>When you use this property to set a component's state,
+     *  Flex applies any transition you have defined.
+     *  You can also use the <code>setCurrentState()</code> method to set the
+     *  current state; this method can optionally change states without
+     *  applying a transition.</p>
+     *
+     *  @see #setCurrentState()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get currentState():String
+    {
+        return _currentStateChanged ? requestedCurrentState : _currentState;
+    }
+
+    /**
+     *  @private
+     */
+    public function set currentState(value:String):void
+    {
+    	if (value == _currentState) return;
+        var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
+        _currentState = value;
+        addEventListener("stateChangeComplete", stateChangeCompleteHandler);
+        dispatchEvent(event);
+    }
+    
+    public function setCurrentState(stateName:String, playTransition:Boolean=true):void
+    {
+        currentState = stateName;
+    }
+    
+    private function stateChangeCompleteHandler(event:Event):void
+    {
+        callLater(dispatchUpdateComplete); 
+    }
+    
+    protected function dispatchUpdateComplete():void
+    {
+        dispatchEvent(new Event("updateComplete"));
+    }
+    //----------------------------------
+    //  states
+    //----------------------------------
+
+    private var _states:Array /* of State */ = [];
+
+    [Inspectable(arrayType="mx.states.State")]
+    [ArrayElementType("mx.states.State")]
+
+    /**
+     *  The view states that are defined for this component.
+     *  You can specify the <code>states</code> property only on the root
+     *  of the application or on the root tag of an MXML component.
+     *  The compiler generates an error if you specify it on any other control.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get states():Array
+    {
+        return _states;
+    }
+
+    /**
+     *  @private
+     */
+    public function set states(value:Array):void
+    {
+        _states = value;
+        _currentState = _states[0].name;
+        
+        try {
+            loadBeadFromValuesManager(IStatesImpl, "iStatesImpl", this);
+        }
+        //TODO:  Need to handle this case more gracefully
+        catch(e:Error)
+        {
+            COMPILE::SWF
+            {
+                trace(e.message);                        
+            }
+        }
+    }
+
+
+    //----------------------------------
+    //  transitions
+    //----------------------------------
+
+    private var _transitions:Array /* of Transition */ = [];
+
+    [Inspectable(arrayType="mx.states.Transition")]
+    [ArrayElementType("mx.states.Transition")]
+
+    /**
+     *  An Array of Transition objects, where each Transition object defines a
+     *  set of effects to play when a view state change occurs.
+     *
+     *  @see mx.states.Transition
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get transitions():Array
+    {
+        return _transitions;
+    }
+
+    /**
+     *  @private
+     */
+    public function set transitions(value:Array):void
+    {
+        _transitions = value;
+    }
+	
 
     private function doubleClickHandler(event:MouseEvent):void
     {
