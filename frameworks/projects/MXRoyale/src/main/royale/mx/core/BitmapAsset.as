@@ -20,7 +20,6 @@
 package mx.core
 {
 
-import org.apache.royale.display.BitmapData;
 import org.apache.royale.events.Event;
 import org.apache.royale.geom.Point;
 import mx.system.ApplicationDomain;
