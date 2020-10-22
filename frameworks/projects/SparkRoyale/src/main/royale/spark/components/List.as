@@ -1738,8 +1738,9 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    // protected function dragStartHandler(event:DragEvent):void
-    // {
+	// not implemented
+    protected function dragStartHandler(event:DragEvent):void
+    {
         // if (event.isDefaultPrevented())
             // return;
         
@@ -1753,7 +1754,7 @@ public class List extends ListBase implements IFocusManagerComponent
                            // 0 /*yOffset*/, 
                            // 0.5 /*imageAlpha*/, 
                            // dragMoveEnabled);
-    // } 
+    } 
     
     /**
      *  @private
@@ -1776,33 +1777,34 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* protected function dragCompleteHandler(event:DragEvent):void
+	// not implemented
+    protected function dragCompleteHandler(event:DragEvent):void
     {
-        if (event.isDefaultPrevented())
-            return;
-        
-        // Remove the dragged items only if they were drag moved to
-        // a different list. If the items were drag moved to this
-        // list, the reordering was already handles in the 
-        // DragEvent.DRAG_DROP listener.
-        if (!dragMoveEnabled ||
-            event.action != DragManager.MOVE || 
-            event.relatedObject == this)
-            return;
-        
-        // Clear the selection, but remember which items were moved
-        var movedIndices:Vector.<int> = selectedIndices;
-        setSelectedIndices(new Vector.<int>(), true);
-        validateProperties(); // To commit the selection
-        
-        // Remove the moved items
-        movedIndices.sort(compareValues);
-        var count:int = movedIndices.length;
-        for (var i:int = count - 1; i >= 0; i--)
-        {
-            dataProvider.removeItemAt(movedIndices[i]);
-        }
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+        //
+        //// Remove the dragged items only if they were drag moved to
+        //// a different list. If the items were drag moved to this
+        //// list, the reordering was already handles in the 
+        //// DragEvent.DRAG_DROP listener.
+        //if (!dragMoveEnabled ||
+            //event.action != DragManager.MOVE || 
+            //event.relatedObject == this)
+            //return;
+        //
+        //// Clear the selection, but remember which items were moved
+        //var movedIndices:Vector.<int> = selectedIndices;
+        //setSelectedIndices(new Vector.<int>(), true);
+        //validateProperties(); // To commit the selection
+        //
+        //// Remove the moved items
+        //movedIndices.sort(compareValues);
+        //var count:int = movedIndices.length;
+        //for (var i:int = count - 1; i >= 0; i--)
+        //{
+            //dataProvider.removeItemAt(movedIndices[i]);
+        //}
+    }
     
     /**
      *  Creates an instance of a class that is used to display the visuals

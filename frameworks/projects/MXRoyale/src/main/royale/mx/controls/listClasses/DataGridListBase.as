@@ -21,6 +21,7 @@
 package mx.controls.listClasses
 {
 import mx.controls.dataGridClasses.DataGridColumnList;
+import mx.events.DragEvent;
 
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -9222,18 +9223,19 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function dragStartHandler(event:DragEvent):void
+// not implemented
+    protected function dragStartHandler(event:DragEvent):void
     {
-        if (event.isDefaultPrevented())
-            return;
-
-        var dragSource:DragSource = new DragSource();
-
-        addDragData(dragSource);
-
-        DragManager.doDrag(this, dragSource, event, dragImage,
-                           0, 0, 0.5, dragMoveEnabled);
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+//
+        //var dragSource:DragSource = new DragSource();
+//
+        //addDragData(dragSource);
+//
+        //DragManager.doDrag(this, dragSource, event, dragImage,
+                           //0, 0, 0.5, dragMoveEnabled);
+    }
 
     /**
      *  Handles <code>DragEvent.DRAG_ENTER</code> events.  This method

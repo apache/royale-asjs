@@ -1283,35 +1283,36 @@ public class Tree extends List
      *  @private
      *  Position indicator bar that shows where an item will be placed in the list.
      */
-    /* override public function showDropFeedback(event:DragEvent):void
+	// not implemented
+    /*override */public function showDropFeedback(event:DragEvent):void
     {
-        super.showDropFeedback(event);
-        // Adjust for indent
-        var vm:EdgeMetrics = viewMetrics;
-        var offset:int = 0;
-        updateDropData(event);
-        var indent:int = 0;
-        var depth:int;
-        if (_dropData.parent)
-        {
-            offset = getItemIndex(iterator.current);
-            depth = getItemDepth(_dropData.parent, Math.abs(offset - getItemIndex(_dropData.parent)));
-            indent = (depth + 1) * getStyle("indentation");
-        }
-        else 
-        {
-            indent = getStyle("indentation");
-        }
-        if (indent < 0)
-            indent = 0;
-        //position drop indicator
-        dropIndicator.width = listContent.width - indent;
-        dropIndicator.x = indent + vm.left + 2;
-        if (_dropData.emptyFolder)
-        {
-            dropIndicator.y += _dropData.rowHeight / 2;
-        }
-    } */
+        //super.showDropFeedback(event);
+        //// Adjust for indent
+        //var vm:EdgeMetrics = viewMetrics;
+        //var offset:int = 0;
+        //updateDropData(event);
+        //var indent:int = 0;
+        //var depth:int;
+        //if (_dropData.parent)
+        //{
+            //offset = getItemIndex(iterator.current);
+            //depth = getItemDepth(_dropData.parent, Math.abs(offset - getItemIndex(_dropData.parent)));
+            //indent = (depth + 1) * getStyle("indentation");
+        //}
+        //else 
+        //{
+            //indent = getStyle("indentation");
+        //}
+        //if (indent < 0)
+            //indent = 0;
+        ////position drop indicator
+        //dropIndicator.width = listContent.width - indent;
+        //dropIndicator.x = indent + vm.left + 2;
+        //if (_dropData.emptyFolder)
+        //{
+            //dropIndicator.y += _dropData.rowHeight / 2;
+        //}
+    }
 
     /**
      *  @private
@@ -3383,100 +3384,101 @@ public class Tree extends List
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* override protected function dragDropHandler(event:DragEvent):void
+ 	// not implemented
+    /* override */protected function dragDropHandler(event:DragEvent):void
     {
-        if (event.isDefaultPrevented())
-            return;
-
-        hideDropFeedback(event);
-
-		if (event.dragSource.hasFormat("treeItems"))
-		{
-        	var items:Array = event.dragSource.dataForFormat("treeItems") as Array;
-        	var i:int;
-        	var n:int;
-            	
-			// if we're moving to ourselves, we need to treat it specially and check for "parent" 
-			// problems where we could recurse forever.
-			if (event.action == DragManager.MOVE && dragMoveEnabled)
-			{
-				if (event.dragInitiator == this)
-				{
-					// If we're dropping onto ourselves or a child of a descendant then dont actually drop
-					
-					calculateDropIndex(event);
-									
-					// If we did start this drag op then we need to remove first
-					var index:int;
-					var parent:*;
-					var parentItem:*;
-					var dropIndex:int = _dropData.index;
-                
-					//get ancestors of the drop target item
-					var dropParentStack:Array = getParentStack(_dropData.parent);
-					dropParentStack.unshift(_dropData.parent);
-                
-					n = items.length;
-					for (i = 0; i < n; i++) 
-					{ 
-						parent = getParentItem(items[i]);
-						index = getChildIndexInParent(parent, items[i]);
-						//check ancestors of the dropTarget if the item matches, we're invalid
-                    
-						for each (parentItem in dropParentStack)
-						{ 
-							//we dont want to drop into one of our own sets of children
-							if (items[i] === parentItem)
-								return;
-						}
-                    
-						//we remove before we add due to the behavior 
-						//of structures with parent pointers like e4x
-						removeChildItem(parent, items[i], index);
-                    
-						//is the removed item before the drop location?
-						// then we need to shift the dropIndex accordingly
-						if (parent == _dropData.parent && index < _dropData.index)
-                        	dropIndex--;
-                    
-						addChildItem(_dropData.parent, items[i], dropIndex);
-					}
-                
-					return;
-				}
-			}
-        
-			// If not dropping onto ourselves, then add the 
-			// items here if it's a copy operation.
-			// If it's a move operation (and not on ourselves), then they 
-			// are added in dragCompleteHandler and are removed from 
-			// the source's dragCompleteHandler.  We do both in dragCompleteHandler
-			// because in order to be re-parented, they must be removed from their
-			// original source FIRST.  This means our code isn't coupled fantastically 
-			// as dragCompleteHandler must get the destination tree and 
-			// cast it to a Tree.
-        
-			if (event.action == DragManager.COPY)
-			{
-				if (!dataProvider) {
-					// Create an empty collection to drop items into.
-					dataProvider = [];
-					validateNow();
-				}
-				
-				n = items.length;
-				for (i = 0; i < n; i++) 
-				{ 
-	            	var item:Object = copyItemWithUID(items[i]);
-	            	
-					addChildItem(_dropData.parent, 
-	                   			 item, 
-	                       		 _dropData.index);
-				}
-	    	}
-		}
-		lastDragEvent = null;
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+//
+        //hideDropFeedback(event);
+//
+		//if (event.dragSource.hasFormat("treeItems"))
+		//{
+        	//var items:Array = event.dragSource.dataForFormat("treeItems") as Array;
+        	//var i:int;
+        	//var n:int;
+            	//
+			//// if we're moving to ourselves, we need to treat it specially and check for "parent" 
+			//// problems where we could recurse forever.
+			//if (event.action == DragManager.MOVE && dragMoveEnabled)
+			//{
+				//if (event.dragInitiator == this)
+				//{
+					//// If we're dropping onto ourselves or a child of a descendant then dont actually drop
+					//
+					//calculateDropIndex(event);
+									//
+					//// If we did start this drag op then we need to remove first
+					//var index:int;
+					//var parent:*;
+					//var parentItem:*;
+					//var dropIndex:int = _dropData.index;
+                //
+					////get ancestors of the drop target item
+					//var dropParentStack:Array = getParentStack(_dropData.parent);
+					//dropParentStack.unshift(_dropData.parent);
+                //
+					//n = items.length;
+					//for (i = 0; i < n; i++) 
+					//{ 
+						//parent = getParentItem(items[i]);
+						//index = getChildIndexInParent(parent, items[i]);
+						////check ancestors of the dropTarget if the item matches, we're invalid
+                    //
+						//for each (parentItem in dropParentStack)
+						//{ 
+							////we dont want to drop into one of our own sets of children
+							//if (items[i] === parentItem)
+								//return;
+						//}
+                    //
+						////we remove before we add due to the behavior 
+						////of structures with parent pointers like e4x
+						//removeChildItem(parent, items[i], index);
+                    //
+						////is the removed item before the drop location?
+						//// then we need to shift the dropIndex accordingly
+						//if (parent == _dropData.parent && index < _dropData.index)
+                        	//dropIndex--;
+                    //
+						//addChildItem(_dropData.parent, items[i], dropIndex);
+					//}
+                //
+					//return;
+				//}
+			//}
+        //
+			//// If not dropping onto ourselves, then add the 
+			//// items here if it's a copy operation.
+			//// If it's a move operation (and not on ourselves), then they 
+			//// are added in dragCompleteHandler and are removed from 
+			//// the source's dragCompleteHandler.  We do both in dragCompleteHandler
+			//// because in order to be re-parented, they must be removed from their
+			//// original source FIRST.  This means our code isn't coupled fantastically 
+			//// as dragCompleteHandler must get the destination tree and 
+			//// cast it to a Tree.
+        //
+			//if (event.action == DragManager.COPY)
+			//{
+				//if (!dataProvider) {
+					//// Create an empty collection to drop items into.
+					//dataProvider = [];
+					//validateNow();
+				//}
+				//
+				//n = items.length;
+				//for (i = 0; i < n; i++) 
+				//{ 
+	            	//var item:Object = copyItemWithUID(items[i]);
+	            	//
+					//addChildItem(_dropData.parent, 
+	                   			 //item, 
+	                       		 //_dropData.index);
+				//}
+	    	//}
+		//}
+		//lastDragEvent = null;
+    }
 
     /**
      *  Handles <code>DragEvent.DRAG_COMPLETE</code> events.  This method
