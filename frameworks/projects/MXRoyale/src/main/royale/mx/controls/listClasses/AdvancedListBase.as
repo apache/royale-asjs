@@ -4523,25 +4523,25 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     /**
      *  @private
      */
-   /*  mx_internal function clearHighlight(item:IListItemRenderer):void
+    mx_internal function clearHighlight(item:IListItemRenderer):void
     {
-        var uid:String = itemToUID(item.data);
-        
-        drawItem(visibleData[uid], isItemSelected(item.data),
-                 false, uid == caretUID);
-
-        var pt:Point = itemRendererToIndices(item);
-        if (pt && lastHighlightItemIndices)
-        {
-            var listEvent:ListEvent =
-                new ListEvent(ListEvent.ITEM_ROLL_OUT);
-            listEvent.columnIndex = lastHighlightItemIndices.x;
-            listEvent.rowIndex = lastHighlightItemIndices.y;
-            listEvent.itemRenderer = lastHighlightItemRendererAtIndices;
-            dispatchEvent(listEvent);
-            lastHighlightItemIndices = null;
-        }
-    } */
+        //var uid:String = itemToUID(item.data);
+        //
+        //drawItem(visibleData[uid], isItemSelected(item.data),
+                 //false, uid == caretUID);
+//
+        //var pt:Point = itemRendererToIndices(item);
+        //if (pt && lastHighlightItemIndices)
+        //{
+            //var listEvent:ListEvent =
+                //new ListEvent(ListEvent.ITEM_ROLL_OUT);
+            //listEvent.columnIndex = lastHighlightItemIndices.x;
+            //listEvent.rowIndex = lastHighlightItemIndices.y;
+            //listEvent.itemRenderer = lastHighlightItemRendererAtIndices;
+            //dispatchEvent(listEvent);
+            //lastHighlightItemIndices = null;
+        //}
+    }
 
     /**
      *  Refresh all rows on next update.

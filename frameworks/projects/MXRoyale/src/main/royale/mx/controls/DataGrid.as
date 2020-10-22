@@ -92,6 +92,7 @@ import mx.utils.StringUtil;
 use namespace mx_internal;
 */
 
+import mx.core.UIComponent;
 import mx.controls.beads.DataGridSortBead;
 import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.ListBase;
@@ -800,6 +801,10 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
      */
     public var sortableColumns:Boolean = true;
 
+    protected function drawRowBackground(s:UIComponent, rowIndex:int, y:Number, height:Number, color:uint, dataIndex:int):void
+    {
+	// not implemented
+    }
     /**
      *  @private
      *  Storage for the headerHeight property.

@@ -67,7 +67,7 @@ import mx.core.mx_internal;
 import mx.effects.Tween;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
-//import mx.events.DragEvent;
+import mx.events.DragEvent;
 import mx.events.FlexEvent;
 import mx.events.ListEvent;
 //import mx.events.ListEventReason;
@@ -1311,13 +1311,11 @@ public class Tree extends List
     /**
      *  @private
      */
-    /* override public function calculateDropIndex(event:DragEvent = null):int
+    /*override*/ public function calculateDropIndex(event:DragEvent = null):int
     {
-        if (event)
-            updateDropData(event);
-
-        return _dropData.rowIndex;
-    } */
+	// not implemented
+	return -1;
+    }
 
     /**
      *  @private
@@ -3274,42 +3272,42 @@ public class Tree extends List
     /**
      *  @private
      */
-    /* override protected function dragOverHandler(event:DragEvent):void
+    /*override */protected function dragOverHandler(event:DragEvent):void
     {
-        if (event.isDefaultPrevented())
-            return;
-
-		lastDragEvent = event;
-
-		try
-		{
-			if (iteratorValid && event.dragSource.hasFormat("treeItems"))
-			{
-				if (collectionThrowsIPE)
-					checkItemIndices(event);
-
-				DragManager.showFeedback(event.ctrlKey ?
-										 DragManager.COPY :
-										 DragManager.MOVE);
-				showDropFeedback(event);
-				return;
-			}
-		}
-        catch(e:ItemPendingError)
-        {
-			if (!lastTreeSeekPending)
-			{
-				lastTreeSeekPending = new TreeSeekPending(event, dragOverHandler)
-				e.addResponder(new ItemResponder(seekPendingDuringDragResultHandler, seekPendingDuringDragFailureHandler,
-                                            lastTreeSeekPending));
-			}
-        }
-		catch(e1:Error)
-		{
-		}
-        hideDropFeedback(event);
-        DragManager.showFeedback(DragManager.NONE);
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+//
+		//lastDragEvent = event;
+//
+		//try
+		//{
+			//if (iteratorValid && event.dragSource.hasFormat("treeItems"))
+			//{
+				//if (collectionThrowsIPE)
+					//checkItemIndices(event);
+//
+				//DragManager.showFeedback(event.ctrlKey ?
+										 //DragManager.COPY :
+										 //DragManager.MOVE);
+				//showDropFeedback(event);
+				//return;
+			//}
+		//}
+        //catch(e:ItemPendingError)
+        //{
+			//if (!lastTreeSeekPending)
+			//{
+				//lastTreeSeekPending = new TreeSeekPending(event, dragOverHandler)
+				//e.addResponder(new ItemResponder(seekPendingDuringDragResultHandler, seekPendingDuringDragFailureHandler,
+                                            //lastTreeSeekPending));
+			//}
+        //}
+		//catch(e1:Error)
+		//{
+		//}
+        //hideDropFeedback(event);
+        //DragManager.showFeedback(DragManager.NONE);
+    }
 
     /**
 	 *  @private
