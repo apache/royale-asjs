@@ -352,6 +352,9 @@ internal class MXRoyaleClasses
 	
 	import mx.utils.NameUtil; NameUtil;
 	import mx.core.BitmapAsset; BitmapAsset;
+
+	import mx.events.TimerEvent; TimerEvent;
+	import mx.utils.Timer; Timer;
 }
 
 }
