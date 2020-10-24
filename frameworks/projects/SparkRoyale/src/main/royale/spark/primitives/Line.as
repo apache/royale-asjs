@@ -28,9 +28,12 @@ import flash.geom.Rectangle;
 
 import spark.primitives.supportClasses.StrokedElement; */
 import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.geom.Rectangle;
 import mx.core.mx_internal;
 import mx.graphics.IStroke;
 import mx.graphics.IFill;
+import mx.core.UIComponent;
+import mx.display.Graphics;
 import org.apache.royale.core.UIBase;
 
 use namespace mx_internal;
@@ -50,7 +53,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class Line extends UIBase
+public class Line extends UIComponent
 { //extends StrokedElement
   //  include "../core/Version.as";
 
@@ -80,33 +83,6 @@ public class Line extends UIBase
     //
     //--------------------------------------------------------------------------
     
-
-	public function set left(value:Object):void
-	{
-		// not implemented
-	}
-
-	public function set right(value:Object):void
-	{
-		// not implemented
-	}
-
-    COMPILE::JS
-	public function set rotation(value:Number):void
-	{
-		// not implemented
-	}
-
-	public function set bottom(value:Object):void
-	{
-		// not implemented
-	}
-
-	public function set top(value:Object):void
-	{
-		// not implemented
-	}
-
     //----------------------------------
     //  xFrom
     //----------------------------------
@@ -400,6 +376,32 @@ public class Line extends UIBase
         invalidateDisplayList();
         // Parent layout takes stroke into account
         invalidateParentSizeAndDisplayList(); */
+    }
+
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+    
+    override protected function updateDisplayList(unscaledWidth:Number,
+                                                  unscaledHeight:Number):void
+    {
+	    // TODO use lineTo instead of drawRect()
+        super.updateDisplayList(unscaledWidth,unscaledHeight);
+        var g:Graphics = graphics;
+        g.clear();
+        
+        if (stroke)
+            stroke.apply(g, new Rectangle(0, 0, unscaledWidth, 1), null);
+        
+        g.drawRect(0, 0, unscaledWidth, unscaledHeight);
     }
 
 	
