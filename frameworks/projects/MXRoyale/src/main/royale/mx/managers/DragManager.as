@@ -79,6 +79,35 @@ public class DragManager
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  Constant that specifies that the type of drag action is "none".
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const NONE:String = "none";
+
+    /**
+     *  Constant that specifies that the type of drag action is "copy".
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const COPY:String = "copy";
+
+    /**
+     *  Constant that specifies that the type of drag action is "move".
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const MOVE:String = "move";
 
     /**
      *  Constant that specifies that the type of drag action is "link".
@@ -86,11 +115,9 @@ public class DragManager
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public static const LINK:String = "link";
-    // not implemented
-    public static const NONE:String = "none";
     
    
 
