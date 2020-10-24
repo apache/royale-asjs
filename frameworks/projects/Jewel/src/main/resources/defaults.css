@@ -948,7 +948,6 @@ j|ImageButton {
 }
 
 .jewel.item, .jewel.navigationlink, .jewel.tabbarbutton {
-  min-height: 34px;
   text-decoration: none;
   letter-spacing: 0;
   line-height: normal !important;
