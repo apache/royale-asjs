@@ -43,7 +43,7 @@ package mx.effects.easing
  */  
 public class Cubic
 {
-    include "../../core/Version.as";
+    //include "../../core/Version.as";
 
     //--------------------------------------------------------------------------
     //

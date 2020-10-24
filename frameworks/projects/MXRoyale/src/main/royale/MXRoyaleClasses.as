@@ -32,7 +32,7 @@ internal class MXRoyaleClasses
 	import mx.core.DPIClassification; DPIClassification;
 	import mx.core.DesignLayer; DesignLayer;
 	import mx.effects.AnimateProperty; AnimateProperty;
-	//import mx.effects.easing.Cubic; Cubic;
+	import mx.effects.easing.Cubic; Cubic;
 	//import mx.effects.easing.Quintic; Quintic;
 	import mx.events.StateChangeEvent; StateChangeEvent;
 	//import mx.graphics.BitmapFill; BitmapFill;
