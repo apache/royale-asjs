@@ -98,6 +98,8 @@ public class Effect extends org.apache.royale.effects.Effect
 	public function set targets(value:Array):void {}
 	// not implemented
 	public function set target(value:Object):void {}
+	//not implemented
+	public function get isPlaying():Boolean { return false; }
 
 
 
