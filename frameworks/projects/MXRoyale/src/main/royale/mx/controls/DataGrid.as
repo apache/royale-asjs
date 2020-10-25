@@ -50,7 +50,6 @@ import mx.controls.dataGridClasses.DataGridHeader;
 import mx.controls.dataGridClasses.DataGridItemRenderer;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.listClasses.IListItemRenderer;
 import mx.controls.listClasses.ListBaseContentHolder;
 import mx.controls.listClasses.ListBaseSeekPending;
 import mx.controls.listClasses.ListRowInfo;
@@ -92,6 +91,7 @@ import mx.utils.StringUtil;
 use namespace mx_internal;
 */
 
+import mx.controls.listClasses.IListItemRenderer;
 import mx.core.UIComponent;
 import mx.controls.beads.DataGridSortBead;
 import mx.controls.dataGridClasses.DataGridColumn;
@@ -800,6 +800,153 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
      *  @productversion Flex 3
      */
     public var sortableColumns:Boolean = true;
+
+
+    /**
+     *  Returns the item renderer for a column cell or for a column header. 
+     *  This method returns the default item renderer if no custom render is assigned
+     *  to the column.
+     *
+     *  <p>This method is public so that is can be accessed by the DataGridHeader class, 
+     *  and is primarily used in subclasses of the DataGrid control.</p>
+     * 
+     *  @param c The DataGridColumn instance of the item renderer.
+     * 
+     *  @param forHeader <code>true</code> to return the header item renderer, 
+     *  and <code>false</code> to return the item render for the column cells.
+     * 
+     *  @param data If <code>forHeader</code> is <code>false</code>, 
+     *  the <code>data</code> Object for the item renderer. 
+     *  If <code>forHeader</code> is <code>true</code>, 
+     *  the DataGridColumn instance.  
+     * 
+     *  @return The item renderer.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function createColumnItemRenderer(c:DataGridColumn, forHeader:Boolean, data:Object):IListItemRenderer // not implemented
+    {
+        //var factory:IFactory;
+//
+        //// get the factory for the data
+        //factory = c.getItemRendererFactory(forHeader, data);
+        //if (!factory)
+        //{
+            //if (data == null)
+                //factory = nullItemRenderer;
+            //if (!factory)
+                //factory = itemRenderer;
+        //}
+//
+        //var renderer:IListItemRenderer;
+//
+        //// if it is the default column factory, see if
+        //// the freeItemRenderersTable has a free one
+        //if (factory == c.itemRenderer)
+        //{
+            //if (freeItemRenderersTable[c] && freeItemRenderersTable[c].length)
+            //{
+                //renderer = freeItemRenderersTable[c].pop();
+                //delete c.freeItemRenderersByFactory[factory][renderer];
+            //}
+        //}
+        //else if (c.freeItemRenderersByFactory)
+        //{
+            //// other re-usable renderers are in the FactoryMap
+            //var d:Dictionary = c.freeItemRenderersByFactory[factory];
+            //if (d)
+            //{
+                //for (var p:* in d)
+                //{
+                    //renderer = IListItemRenderer(p);
+                    //delete d[p];
+                    //break;
+                //}
+            //}
+        //}
+//
+        //if (!renderer )
+        //{
+            //renderer = factory.newInstance();
+            //if (renderer)
+            //{
+        //renderer.styleName = c;
+        //factoryMap[renderer] = factory;
+        //}
+        //}
+//
+//
+        //if (renderer)
+            //renderer.owner = this;
+        //return renderer;
+	    return null;
+    }
+
+
+    /**
+     *  This method closes an item editor currently open on an item renderer. 
+     *  You typically only call this method from within the event listener 
+     *  for the <code>itemEditEnd</code> event, after
+     *  you have already called the <code>preventDefault()</code> method to 
+     *  prevent the default event listener from executing.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function destroyItemEditor():void // not implemented
+    {
+        //// trace("destroyItemEditor");
+        //if (itemEditorInstance)
+        //{
+            //DisplayObject(itemEditorInstance).removeEventListener(KeyboardEvent.KEY_DOWN, editorKeyDownHandler);
+            //if (focusManager)
+                //focusManager.defaultButtonEnabled = true;
+            //systemManager.getSandboxRoot().
+                //removeEventListener(MouseEvent.MOUSE_DOWN, editorMouseDownHandler, true);
+            //systemManager.getSandboxRoot().
+                //removeEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, editorMouseDownHandler);
+            //systemManager.removeEventListener(Event.RESIZE, editorAncestorResizeHandler);
+            //removeEventListener(Event.RESIZE, editorAncestorResizeHandler);
+//
+            //var event:DataGridEvent =
+                //new DataGridEvent(DataGridEvent.ITEM_FOCUS_OUT);
+            //event.columnIndex = _editedItemPosition.columnIndex;
+            //event.rowIndex = _editedItemPosition.rowIndex;
+            //event.itemRenderer = itemEditorInstance;
+            //dispatchEvent(event);
+//
+            //if (! _columns[_editedItemPosition.columnIndex].rendererIsEditor)
+            //{
+                //// FocusManager.removeHandler() does not find
+                //// itemEditors in focusableObjects[] array
+                //// and hence does not remove the focusRectangle
+                //if (itemEditorInstance && itemEditorInstance is UIComponent)
+                    //UIComponent(itemEditorInstance).drawFocus(false);
+//
+                //// setfocus back to us so something on stage has focus
+				//// only if focus is null or is in this DG
+				//var focusComp:InteractiveObject = getFocus();
+				//if (focusComp == null || contains(focusComp))
+	                //deferFocus();
+                //
+                //// defer focus can cause focusOutHandler to destroy the editor
+                //// and make itemEditorInstance null
+                //if (itemEditorInstance)
+                //{
+                    //// must call removeChild() so FocusManager.lastFocus becomes null
+                    //actualContentHolder.removeChild(DisplayObject(itemEditorInstance));
+                    //editedItemRenderer.visible = true;
+                //}
+            //}
+            //itemEditorInstance = null;
+            //_editedItemPosition = null;
+        //}
+    }
 
     protected function drawRowBackground(s:UIComponent, rowIndex:int, y:Number, height:Number, color:uint, dataIndex:int):void
     {

@@ -726,44 +726,44 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* protected function getCurrentRendererState():String
+    protected function getCurrentRendererState():String // not implemented
     {
         // this code is pretty confusing without multi-dimensional states, but it's
         // defined in order of precedence.
         
-        if (dragging && hasState("dragging"))
-            return "dragging";
-        
-        if (selected && down && hasState("downAndSelected"))
-            return "downAndSelected";
-        
-        if (selected && showsCaret && hasState("selectedAndShowsCaret"))
-            return "selectedAndShowsCaret";
-        
-        if (hovered && showsCaret && hasState("hoveredAndShowsCaret"))
-            return "hoveredAndShowsCaret";
-        
-        if (showsCaret && hasState("normalAndShowsCaret"))
-            return "normalAndShowsCaret"; 
-          
-        if (down && hasState("down"))
-            return "down";
-        
-        if (selected && hasState("selected"))
-            return "selected";
-        
-        if (hovered && hasState("hovered"))
-            return "hovered";
-        
-        if (hasState("normal"))    
-            return "normal";
+        //if (dragging && hasState("dragging"))
+            //return "dragging";
+        //
+        //if (selected && down && hasState("downAndSelected"))
+            //return "downAndSelected";
+        //
+        //if (selected && showsCaret && hasState("selectedAndShowsCaret"))
+            //return "selectedAndShowsCaret";
+        //
+        //if (hovered && showsCaret && hasState("hoveredAndShowsCaret"))
+            //return "hoveredAndShowsCaret";
+        //
+        //if (showsCaret && hasState("normalAndShowsCaret"))
+            //return "normalAndShowsCaret"; 
+          //
+        //if (down && hasState("down"))
+            //return "down";
+        //
+        //if (selected && hasState("selected"))
+            //return "selected";
+        //
+        //if (hovered && hasState("hovered"))
+            //return "hovered";
+        //
+        //if (hasState("normal"))    
+            //return "normal";
         
         // If none of the above states are defined in the item renderer,
         // we return currentState, so we don't change the state just 
         // in case the developer put the item renderer into its 
         // own custom state.
         return currentState;
-    } */
+    }
     
     /**
      *  Marks the renderer's state as invalid so that the new state is set

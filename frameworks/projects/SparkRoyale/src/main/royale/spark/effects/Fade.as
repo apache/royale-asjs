@@ -27,5 +27,7 @@ import mx.effects.Fade;
 public class Fade extends mx.effects.Fade
 {
 	public function set targets(value:Array):void {} // not implemented
+	public function get isPlaying():Boolean {return false} // not implemented
+	public function get playheadTime():Number {return NaN} // not implemented
 }
 }

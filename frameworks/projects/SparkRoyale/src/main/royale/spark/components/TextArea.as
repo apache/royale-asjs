@@ -763,6 +763,10 @@ package spark.components
 			
 			// textDisplay.scrollToRange(anchorPosition, activePosition);
 		}        
+
+		public function set horizontalScrollPolicy(value:String):void {} // not implemented
+		public function set verticalScrollPolicy(value:String):void {} // not implemented
+			
 	}
 	
 }
