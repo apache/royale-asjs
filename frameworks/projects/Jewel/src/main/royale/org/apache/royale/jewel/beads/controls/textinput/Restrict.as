@@ -85,7 +85,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		public function set strand(value:IStrand):void
 		{
 			host = value as TextInputBase;
-			host.addEventListener(Event.CHANGE, restrictTetToPattern);
+			host.addEventListener(Event.CHANGE, restrictTextToPattern);
 			updateTextToRestriction();
 		}
 
@@ -93,7 +93,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 * Restrict the text to the reg exp pattern as user types
 		 * @private
 		 */
-		protected function restrictTetToPattern(event:Event):void
+		protected function restrictTextToPattern(event:Event):void
 		{
 			COMPILE::JS
 			{
@@ -120,9 +120,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 			const re:RegExp = new RegExp(pattern, 'g');
 			COMPILE::JS
 			{
-			const oldText:String = host.input.value;
-			host.input.value = host.input.value.replace(re, '');
-			textChanged = oldText == host.input.value;
+				const oldText:String = host.input.value;
+				const restrictedText:String = oldText.replace(re, '');
+				if (oldText != restrictedText) {
+					host.input.value = restrictedText;
+				} else {
+					textChanged = true;
+				}
 			}
 			return textChanged;
 		}

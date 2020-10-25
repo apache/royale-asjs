@@ -190,7 +190,15 @@ package org.apache.royale.core
 		{
             var e:IBrowserEvent;
             var nativeEvent:Object = eventObject.getBrowserEvent();
-            var converter:Function = converterMap[nativeEvent.constructor.name];
+            var nativeClassName:String = nativeEvent.constructor.name;
+            if (nativeClassName == null) {
+                //IE11 :
+                if (nativeEvent.constructor == window['MouseEvent'] || nativeEvent.constructor == window['PointerEvent']) {
+                    nativeEvent.constructor.name = 'MouseEvent';
+                    nativeClassName = 'MouseEvent';
+                }
+            }
+            var converter:Function = converterMap[nativeClassName];
             if (converter)
                 e = converter(nativeEvent,eventObject);
             else

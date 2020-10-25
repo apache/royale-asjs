@@ -126,6 +126,7 @@ package org.apache.royale.jewel.beads.controls
 		protected function setDisableAndTabIndex(o:HTMLElement, positioner:Boolean = false):void
 		{
 			o.setAttribute("disabled", "");
+			o.style.pointerEvents = 'none';
 			if(!positioner)
 				o.tabIndex = -1;
 		}
@@ -134,6 +135,7 @@ package org.apache.royale.jewel.beads.controls
 		protected function removeDisableAndTabIndex(o:*, positioner:Boolean = false, lastTabVal:String = null):void
 		{
 			o.removeAttribute("disabled");
+			o.style.pointerEvents = '';
 			if(!positioner)
 				o.tabIndex = (lastTabVal == null) ? null : lastTabVal;
 		}

@@ -38,6 +38,45 @@ package org.apache.royale.core
     
     public class Lookalike extends UIBase
     {
+
+        /**
+         *
+         * @royaleignorecoercion Element
+         * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion Node
+         */
+        COMPILE::JS
+        private function deepCloneWithStyles(node:Element):Element{
+            var localNode:Node = node as Node;
+            if (localNode.nodeType != 1) {
+                //some stuff here for IE11:
+                return localNode.nodeType == 3 ? document.createTextNode(localNode.nodeValue) as Element: localNode.cloneNode(true) as Element;
+            }
+            var clone:HTMLElement = localNode.cloneNode(false) as HTMLElement;
+            var style:CSSStyleDeclaration = getComputedStyle(node, null);
+            var cssText:String;
+            if (style.cssText) {
+                cssText = style.cssText;
+            } else {
+                //IE11 needs this fallback
+                cssText = '';
+                for (var i:uint = 0; i < style.length; i++) {
+                    var styleName:String = style[i];
+                    var propval:String = style.getPropertyValue(styleName);
+                    cssText += (styleName + ":" + propval + "; ");
+                }
+            }
+
+            clone.style.cssText = cssText;
+            var child:Node = localNode.firstChild;
+            while(child){
+                clone.appendChild(deepCloneWithStyles(child as Element));
+                child = child.nextSibling;
+            }
+
+            return clone;
+        }
+
         /**
          *  Constructor.
          *  
@@ -58,9 +97,10 @@ package org.apache.royale.core
             }
             COMPILE::JS
             {
-                element = original.element.cloneNode(true) as WrappedHTMLElement;
+                element = deepCloneWithStyles(original.element) as WrappedHTMLElement;
             }
             super();
+            this.typeNames = 'LookALike';
         }
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
