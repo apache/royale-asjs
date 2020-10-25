@@ -22,13 +22,14 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.collections.Sort;
 	import org.apache.royale.collections.SortField;
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDataGrid;
+	import org.apache.royale.core.IDataGridHeader;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.views.DataGridView;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
-	import org.apache.royale.core.IDataGridHeader;
+	import org.apache.royale.core.UIBase;
 
 	/**
 	 *  The DataGridSort bead class is a specialty bead that can be use with a Jewel DataGrid control
@@ -48,7 +49,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 			super();
 		}
 		
-        private var dg:DataGrid;
+        private var dg:IDataGrid;
         private var header:IDataGridHeader;
 
 		private var descending:Boolean;
@@ -63,8 +64,8 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		 */
 		public function set strand(value:IStrand):void
 		{
-            dg = value as DataGrid;
-			var dgView:DataGridView = dg.view as DataGridView;
+            dg = value as IDataGrid;
+			var dgView:DataGridView = (dg as UIBase).view as DataGridView;
 			header = dgView.header;
 			header.addEventListener(MouseEvent.CLICK, mouseClickHandler, false);
 		}
@@ -83,7 +84,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
             // so the ButtonBar won't change selection
             if (event.target == header) return;
 			var column:DataGridColumn = event.target.data as DataGridColumn;
-			var collection:IArrayListView = dg.dataProvider as IArrayListView;
+			var collection:IArrayListView = dg.model.dataProvider as IArrayListView;
 			if (collection && collection.length)
 			{
 				if (collection.sort && collection.sort.fields[0].name == column.dataField)
