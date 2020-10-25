@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.supportClasses.combobox
 {
     import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IFactory;
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.StyledUIBase;
@@ -128,41 +129,6 @@ package org.apache.royale.jewel.supportClasses.combobox
 		}
 
 		/**
-		 *  The default height of each cell in every column
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        public function get rowHeight():Number
-        {
-            return (presentationModel as IComboBoxPresentationModel).rowHeight;
-        }
-        public function set rowHeight(value:Number):void
-        {
-            (presentationModel as IComboBoxPresentationModel).rowHeight = value;
-        }
-
-		/**
-		 *  Maximum number of rows visible in the ComboBox popup list.
-		 *  If there are fewer items in the dataProvider, the ComboBox shows only as many items as there are in the dataProvider.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        public function get rowCount():int
-        {
-            return (presentationModel as IComboBoxPresentationModel).rowCount;
-        }
-        public function set rowCount(value:int):void
-        {
-            (presentationModel as IComboBoxPresentationModel).rowCount = value;
-        }
-
-		/**
 		 *  The presentation model for the list.
 		 *
 		 *  @langversion 3.0
@@ -192,5 +158,15 @@ package org.apache.royale.jewel.supportClasses.combobox
 		 *  @royalesuppresspublicvarwarning
 		 */
 		public var itemRendererClass:Class;
+
+		/**
+		 *  The class or factory used to display each item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public var itemRenderer:IFactory = null;
 	}
 }

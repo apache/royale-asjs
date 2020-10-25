@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.core.IComboBox;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.beads.models.ComboBoxPresentationModel;
@@ -83,7 +86,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ComboBox extends StyledUIBase
+	public class ComboBox extends StyledUIBase implements IComboBox, IItemRendererProvider
 	{
 		/**
 		 *  Constructor.
@@ -186,6 +189,29 @@ package org.apache.royale.jewel
 		public function set selectedItem(value:Object):void
 		{
 			ISelectionModel(model).selectedItem = value;
+		}
+
+		/*
+		* IItemRendererProvider
+		*/
+		
+		private var _itemRenderer:IFactory = null;
+		
+		/**
+		 *  The class or factory used to display each item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
 		}
 
 		/**
