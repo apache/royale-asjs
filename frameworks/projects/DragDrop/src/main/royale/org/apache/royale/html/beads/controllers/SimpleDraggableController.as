@@ -18,22 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
-	COMPILE::SWF {
-	import flash.display.InteractiveObject;
-	import flash.display.DisplayObjectContainer;
+//@todo refactor topMostDispatcher stuff similar to elsewhere
+
+    COMPILE::SWF {
+        import flash.display.InteractiveObject;
+        import flash.display.DisplayObjectContainer;
 	}
 
     COMPILE::JS
     {
         import org.apache.royale.events.utils.MouseEventConverter;
+        import org.apache.royale.core.WrappedHTMLElement;
     }
 
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDragInitiator;
-	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.DragEvent;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
@@ -41,7 +41,9 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.css2.Cursors;
+    import org.apache.royale.utils.DisplayUtils;
+    import org.apache.royale.geom.Rectangle;
+
 
     /**
      *  Indicates that a drag/drop operation is starting.
@@ -86,7 +88,7 @@ package org.apache.royale.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class DragMouseController extends EventDispatcher implements IBead
+	public class SimpleDraggableController extends EventDispatcher implements IBead
 	{
         /**
          *  Whether there is a drag operation
@@ -101,41 +103,7 @@ package org.apache.royale.html.beads.controllers
          */
         public static var dragging:Boolean = false;
 
-        /**
-         *  The drag image.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         * 
-         *  @royalesuppresspublicvarwarning
-         */
-        public static var dragImage:IUIBase;
 
-        /**
-         *  The offset of the drag image.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         * 
-         *  @royalesuppresspublicvarwarning
-         */
-        public static var dragImageOffsetX:Number = 0;
-
-        /**
-         *  The offset of the drag image.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         * 
-         *  @royalesuppresspublicvarwarning
-         */
-        public static var dragImageOffsetY:Number = 0;
 
         /**
          *  The default movement in x and or y that
@@ -158,7 +126,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function DragMouseController()
+		public function SimpleDraggableController()
 		{
             threshold = defaultThreshold;
 		}
@@ -182,6 +150,7 @@ package org.apache.royale.html.beads.controllers
         {
             _threshold = value;
         }
+
         
 		private var _strand:IStrand;
 
@@ -207,7 +176,7 @@ package org.apache.royale.html.beads.controllers
 
             IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, dragMouseDownHandler);
 
-            DragMouseController.instanceNumber += 100;
+            instanceNumber += 100;
 		}
 
 		public function get strand():IStrand
@@ -215,18 +184,17 @@ package org.apache.royale.html.beads.controllers
 			return _strand;
 		}
 
+        private var _parentDraggable:IUIBase;
+
         private var mouseDownX:Number;
         private var mouseDownY:Number;
-
-        private var host:IPopUpHost;
+        private var lastPositionX:Number;
+        private var lastPositionY:Number;
 
         private var _approveDragStart:Function;
         /**
          * Provides the ability to approve (or prevent) a mouseDown event being considered
-         * as the start of a drag sequence. This can be useful for renderers with some controls
-         * that must remain interactive, so that dragging is only supported by other parts of the renderer.
-         * The function should return true for the mouseDown event to be approved as the possible start
-         * of a drag sequence
+         * as the start of a drag sequence.
          *
          * @param value a function that takes a MouseEvent as a parameter, its boolean return value pre-approves a mouseDown event (or not)
          */
@@ -236,6 +204,7 @@ package org.apache.royale.html.beads.controllers
         public function get approveDragStart():Function{
             return _approveDragStart;
         }
+
 
         private var _topMostDispatcher:IEventDispatcher;
         /**
@@ -251,21 +220,29 @@ package org.apache.royale.html.beads.controllers
         }
 
         private var _listeningDispatcher:IEventDispatcher;
+
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         private function dragMouseDownHandler(event:MouseEvent):void
         {
-            if (_approveDragStart && !_approveDragStart(event)) return;
 //            trace("DRAG-MOUSE: dragMouseDown");
-            var dispatcher:IEventDispatcher = topMostDispatcher;
-            dispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            dispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            if (_approveDragStart && !_approveDragStart(event)) return;
+            topMostDispatcher = (_strand as IUIBase).topMostEventDispatcher;
+            if (!topMostDispatcher) {
+                trace('there was a problem finding the topmost EventDispatcher');
+                return;
+            }
+
+            topMostDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
+            topMostDispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+
             COMPILE::SWF
             {
-                dispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+                topMostDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             }
-            _listeningDispatcher = dispatcher;
+
             /**
              * In browser, we need to listen to window to get mouseup events outside the window
              */
@@ -273,8 +250,12 @@ package org.apache.royale.html.beads.controllers
             {
                 window.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             }
+
+
             mouseDownX = event.screenX;
             mouseDownY = event.screenY;
+            lastPositionX = event.clientX;
+            lastPositionY = event.clientY;
             event.preventDefault();
         }
 
@@ -284,61 +265,78 @@ package org.apache.royale.html.beads.controllers
          */
         private function dragMouseMoveHandler(event:MouseEvent):void
         {
-            var pt:Point;
             var dragEvent:DragEvent;
-//            trace("DRAG-MOUSE: dragMouseMove");
-
             event.preventDefault();
-
+            var draggable:IUIBase;
             if (!dragging)
             {
-//                trace("DRAG-MOUSE: not dragging anything else");
+
                 if (Math.abs(event.screenX - mouseDownX) > threshold ||
                     Math.abs(event.screenY - mouseDownY) > threshold)
                 {
                     dragEvent = DragEvent.createDragEvent("dragStart", event);
-					dragEvent.clientX = mouseDownX;
-					dragEvent.clientY = mouseDownY;
+					dragEvent.clientX = lastPositionX;
+					dragEvent.clientY = lastPositionY;
+
 //					trace("DRAG-MOUSE: sending dragStart via "+event.target.toString()+" == "+dragImageOffsetX);
 					COMPILE::SWF {
-						dragEvent.relatedObject = event.target as InteractiveObject;
+						dragEvent.relatedObject = _strand as InteractiveObject;
 					}
 					COMPILE::JS {
-						dragEvent.relatedObject = event.target;
+						dragEvent.relatedObject = _strand;
 					}
 					DragEvent.dispatchDragEvent(dragEvent, event.target);
 					dispatchEvent(dragEvent);
 
-                    if (DragEvent.dragSource != null)
+                    var avoid:Boolean;
+                    COMPILE::SWF {
+                        avoid = dragEvent.isDefaultPrevented();
+                    }
+                    COMPILE::JS {
+                        avoid = dragEvent.defaultPrevented;
+                    }
+
+                    if (!avoid)
                     {
                         dragging = true;
-                        host = UIUtils.findPopUpHost(_strand as IUIBase);
-                        if (host == null) return;
-                        host.popUpParent.addElement(dragImage);
-                        pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
-                        dragImage.x = pt.x + dragImageOffsetX;
-                        dragImage.y = pt.y + dragImageOffsetY;
-						(dragImage as UIBase).id = "drag_image";
+
+                        var deltaX:Number = event.clientX -lastPositionX;
+                        var deltaY:Number = event.clientY - lastPositionY;
+                        lastPositionX = event.clientX;
+                        lastPositionY = event.clientY;
+                        draggable = parentDraggable;
+
+                        draggable.x = draggable.x + deltaX ;
+                        draggable.y = draggable.y + deltaY ;
+
 						COMPILE::SWF {
-							(dragImage as InteractiveObject).mouseEnabled = false;
-							(dragImage as DisplayObjectContainer).mouseChildren = false;
+							(draggable as InteractiveObject).mouseEnabled = false;
+							(draggable as DisplayObjectContainer).mouseChildren = false;
 						}
 						COMPILE::JS {
-							dragImage.element.style['pointer-events'] = 'none';
-							dragImage.element.style['position'] = 'absolute';
+                            draggable.element.style['cursor'] = 'move';
+                            draggable.element.style['position'] = 'absolute';
 						}
                     }
                 }
             }
             else
             {
-            	host = UIUtils.findPopUpHost(_strand as IUIBase);
-                if (host == null) return;
 //                trace("DRAG-MOUSE: sending dragMove via " + event.target.toString()+" == "+dragImageOffsetX);
                 dragEvent = DragEvent.createDragEvent("dragMove", event);
-                pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
-                dragImage.x = pt.x + dragImageOffsetX;
-                dragImage.y = pt.y + dragImageOffsetY;
+                draggable = parentDraggable;
+
+                deltaX =  event.clientX - lastPositionX;
+                deltaY = event.clientY - lastPositionY;
+                lastPositionX = event.clientX;
+                lastPositionY = event.clientY;
+
+                //@todo support some constraint approach
+
+                draggable.x = draggable.x + deltaX;
+                draggable.y = draggable.y + deltaY;
+
+
 				COMPILE::SWF {
 					dragEvent.relatedObject = event.target as InteractiveObject;
 				}
@@ -358,11 +356,9 @@ package org.apache.royale.html.beads.controllers
             //trace("DRAG-MOUSE: dragMouseUp");
             var dragEvent:DragEvent;
 
-            host = UIUtils.findPopUpHost(_strand as IUIBase);
-            if (dragImage && host) {
-            	host.popUpParent.removeElement(dragImage);
-            }
+       //     host = UIUtils.findPopUpHost(_strand as IUIBase);
 
+            var draggable:IUIBase;
             if (dragging && event.target)
             {
                 //trace("DRAG-MOUSE: sending dragEnd via: "+event.target.toString());
@@ -406,23 +402,33 @@ package org.apache.royale.html.beads.controllers
             dragging = false;
             DragEvent.dragSource = null;
             DragEvent.dragInitiator = null;
-            dragImage = null;
-            var dispatcher:IEventDispatcher = _listeningDispatcher;
-            _listeningDispatcher = null;
-            dispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            dispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+
+            topMostDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
+            topMostDispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
 
             COMPILE::SWF
             {
-                dispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+                topMostDispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             }
             
             COMPILE::JS
             {
                 window.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+                parentDraggable.element.style['cursor'] = 'auto';
             }
 
         }
 
-	}
+        /**
+         * allows explicitly setting a parent that can be dragged by this bead being
+         * active on one of its children (e.g. use case: panel draggable from its header)
+         */
+        public function get parentDraggable():IUIBase {
+            return _parentDraggable || _strand as IUIBase;
+        }
+
+        public function set parentDraggable(value:IUIBase):void {
+            _parentDraggable = value;
+        }
+    }
 }

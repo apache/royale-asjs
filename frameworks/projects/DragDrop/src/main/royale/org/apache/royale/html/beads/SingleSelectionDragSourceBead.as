@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.DragEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.controllers.DragMouseController;
 	import org.apache.royale.utils.getParentOrSelfByType;
 
@@ -142,14 +143,57 @@ package org.apache.royale.html.beads
 			_dragType = value;
 		}
 
+		private var _approveDragStart:Function;
+		/**
+		 * Provides the ability to approve (or prevent) a mouseDown event being considered
+		 * as the start of a drag sequence. This can be useful for renderers with some controls
+		 * that must remain interactive, so that dragging is only supported by other parts of the renderer.
+		 * The function should return true for the mouseDown event to be approved as the possible start
+		 * of a drag sequence
+		 *
+		 * @param value a function that takes a MouseEvent as a parameter and returns a Boolean value that
+		 * pre-approves a mouseDown event (or not)
+		 */
+		public function set approveDragStart(value:Function):void{
+			if (_dragController) {
+				_dragController.approveDragStart=value
+			} else {
+				_approveDragStart = value;
+			}
+		}
+		public function get approveDragStart():Function{
+			return _dragController? _dragController.approveDragStart :_approveDragStart;
+		}
+
+		private var _explicitTopmostDispatcher:IEventDispatcher;
+		/**
+		 * Provides the ability to specify a non-default topMostEventDispatcher.
+		 * A Basic Royale application looks on the document.body tag for an associated Royale EventDispatcher instance,
+		 * and the default behaviour is to consider that to be valid.
+		 * Other Application types may not be associated with the body tag, so this provides a way to explicitly specify
+		 * the top level instance.
+		 *
+		 */
+		public function set explicitTopmostDispatcher(value:IEventDispatcher):void{
+			if (_dragController) {
+				_dragController.topMostDispatcher = value;
+				_explicitTopmostDispatcher = null;
+			}
+			else _explicitTopmostDispatcher = value;
+		}
+		public function get explicitTopmostDispatcher():IEventDispatcher{
+			return _dragController? _dragController.topMostDispatcher :_explicitTopmostDispatcher;
+		}
+
 		/**
 		 * @private
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
 			_dragController = new DragMouseController();
+			_dragController.topMostDispatcher = _explicitTopmostDispatcher;
+			_dragController.approveDragStart = _approveDragStart;
 			_strand.addBead(_dragController);
 
 			_dragController.addEventListener(DragEvent.DRAG_START, handleDragStart);
