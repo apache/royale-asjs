@@ -28,8 +28,10 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IDataGridHeader;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
@@ -39,7 +41,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.LabelFunction;
-	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
@@ -47,7 +48,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.utils.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.observeElementSize;
-	import org.apache.royale.core.IStrandWithModel;
     
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -208,7 +208,7 @@ package org.apache.royale.jewel.beads.views
                 var list:IDataGridColumnList = new columnClass();
                 list.columnInfo = dataGridColumn;
                 
-                list.datagrid = _dg as DataGrid;
+                list.datagrid = _dg;
                 list.emphasis = (_dg as IEmphasis).emphasis;
                 
                 if (i == 0) {
@@ -225,8 +225,8 @@ package org.apache.royale.jewel.beads.views
                 // (list as ILayoutChild).percentWidth = 100 / len;
                 
                 // need to add itemRenderer interface to DataGrid
-                if((_dg as DataGrid).itemRenderer)
-                    list.itemRenderer = (_dg as DataGrid).itemRenderer;
+                if((_dg as IItemRendererProvider).itemRenderer)
+                    list.itemRenderer = (_dg as IItemRendererProvider).itemRenderer;
                 else
                     list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;

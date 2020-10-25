@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-    import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.UIBase;
-
+    import org.apache.royale.core.IComboBox;
     import org.apache.royale.core.IComboBoxModel;
-    import org.apache.royale.html.beads.models.ComboBoxModel;
+    import org.apache.royale.core.UIBase;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
@@ -42,7 +40,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ComboBox extends UIBase
+	public class ComboBox extends UIBase implements IComboBox
 	{
 		/**
 		 *  Constructor.

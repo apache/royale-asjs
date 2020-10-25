@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
+    import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IListWithPresentationModel;
     import org.apache.royale.html.supportClasses.IDataGridColumnList;
-    import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.utils.IEmphasis;
 
     /**
@@ -44,8 +44,8 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		function get datagrid():DataGrid;
-		function set datagrid(value:DataGrid):void;
+		function get datagrid():IDataGrid;
+		function set datagrid(value:IDataGrid):void;
 
         /**
          *  The DataGridColumn for this list

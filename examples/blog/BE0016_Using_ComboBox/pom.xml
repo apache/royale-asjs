@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>BE0016_Using_ComboBox.mxml</mainClass>
-          <targets>${royale.targets}</targets>
+          <targets>JSRoyale</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>

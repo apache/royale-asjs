@@ -27,9 +27,9 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.ItemRendererClassFactory;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.List;
+    import org.apache.royale.jewel.beads.models.ListPresentationModel;
     import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
     import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
-    import org.apache.royale.jewel.beads.models.ListPresentationModel;
     
     /**
 	 * The ComboBoxPopUpView class is a view bead for the ComboBoxPopUp.
@@ -111,6 +111,11 @@ package org.apache.royale.jewel.beads.views
             if(!_list) {
                 _list = new List();
                 _list.addEventListener("beadsAdded", beadsAddedHandler);
+
+                if((_strand as ComboBoxPopUp).itemRenderer)
+                {
+                    _list.itemRenderer = (_strand as ComboBoxPopUp).itemRenderer;
+                }
             }
             return _list;
         }
@@ -124,14 +129,17 @@ package org.apache.royale.jewel.beads.views
         public function beadsAddedHandler(event:Event):void
 		{
             _list.removeEventListener("beadsAdded", beadsAddedHandler);
-            
-            // ComboBoxView pass the itemRendererClass to the ComboBoxPopUp
-            var itemRendererClass:Class = (_strand as ComboBoxPopUp).itemRendererClass;
 
-            if(itemRendererClass)
+            if(!(_strand as ComboBoxPopUp).itemRenderer)
             {
-                var factory:ItemRendererClassFactory = list.getBeadByType(IItemRendererClassFactory) as ItemRendererClassFactory;
-                factory.itemRendererFactory = new ClassFactory(itemRendererClass);
+                // ComboBoxView pass the itemRendererClass to the ComboBoxPopUp
+                var itemRendererClass:Class = (_strand as ComboBoxPopUp).itemRendererClass;
+
+                if(itemRendererClass)
+                {
+                    var factory:ItemRendererClassFactory = list.getBeadByType(IItemRendererClassFactory) as ItemRendererClassFactory;
+                    factory.itemRendererFactory = new ClassFactory(itemRendererClass);
+                }
             }
         }
     }

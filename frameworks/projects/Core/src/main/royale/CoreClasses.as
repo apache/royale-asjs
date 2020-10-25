@@ -108,6 +108,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IChild; IChild;
 	import org.apache.royale.core.IChrome; IChrome;
 	import org.apache.royale.core.IColorWithAlphaModel; IColorWithAlphaModel;
+	import org.apache.royale.core.IComboBox; IComboBox;
 	import org.apache.royale.core.IComboBoxModel; IComboBoxModel;
 	import org.apache.royale.core.IContainer; IContainer;
 	import org.apache.royale.core.IContainerView; IContainerView;
@@ -162,6 +163,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost; IContainerBaseStrandChildrenHost;
 	import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
 	import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithPresentationModel; IStrandWithPresentationModel;
 	import org.apache.royale.core.ITextModel; ITextModel;
 	import org.apache.royale.core.IMenuModel; IMenuModel;
 	import org.apache.royale.core.ICascadingMenuModel; ICascadingMenuModel;
@@ -283,6 +285,7 @@ internal class CoreClasses
 
 	import org.apache.royale.core.IMenuBarModel; IMenuBarModel;
 	
+	import org.apache.royale.core.IDataGrid; IDataGrid;
 	import org.apache.royale.core.IDataGridModel; IDataGridModel;
 	import org.apache.royale.core.IDataGridHeader; IDataGridHeader;
 	import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
