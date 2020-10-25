@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.supportClasses.datagrid
 {
     import org.apache.royale.core.IBead;
-    import org.apache.royale.jewel.DataGrid;
+    import org.apache.royale.core.IDataGrid;
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
@@ -87,19 +87,19 @@ package org.apache.royale.jewel.supportClasses.datagrid
                 _columnInfo = value;
         }
 
-        private var _datagrid:DataGrid;
+        private var _datagrid:IDataGrid;
         /**
-		 *  Pointer back to the DataGrid that owns this column List
+		 *  Pointer back to the IDataGrid that owns this column List
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get datagrid():DataGrid {
+		public function get datagrid():IDataGrid {
             return _datagrid;
         }
-		public function set datagrid(value:DataGrid):void {
+		public function set datagrid(value:IDataGrid):void {
             _datagrid = value;
         }
 
