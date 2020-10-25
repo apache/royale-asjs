@@ -239,6 +239,10 @@ public class DataGridItemRenderer extends StringItemRenderer
     {
         callLater(dispatchUpdateComplete); 
     }
+
+    public function set useHandCursor(value:Boolean):void {} // not implemented
+    public function set buttonMode(value:Boolean):void {} // not implemented
+    public function set focusEnabled(value:Boolean):void {} // not implemented
     
     protected function dispatchUpdateComplete():void
     {
