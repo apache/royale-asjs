@@ -482,9 +482,6 @@ j|ComboBox {
     top: auto;
     left: auto;
   }
-  .combobox-popup.open .jewel.list .jewel.item {
-    min-height: 34px;
-  }
 }
 j|ComboBoxPopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
