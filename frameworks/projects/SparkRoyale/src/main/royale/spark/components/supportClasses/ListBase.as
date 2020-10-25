@@ -136,6 +136,20 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  */
 //[Event(name="caretChange", type="spark.events.IndexChangeEvent")]
 
+
+/**
+ *  Dispatched when a renderer is added to the container.
+ *  The <code>event.renderer</code> property contains 
+ *  the renderer that was added.
+ *
+ *  @eventType spark.events.RendererExistenceEvent.RENDERER_ADD
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Event(name="rendererAdd", type="spark.events.RendererExistenceEvent")] // not implemeneted
 //--------------------------------------
 //  Other metadata
 //--------------------------------------

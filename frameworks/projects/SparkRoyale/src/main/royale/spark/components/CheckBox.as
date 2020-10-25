@@ -252,6 +252,8 @@ public class CheckBox extends ToggleButtonBase
     {
         setStyle("gap", value);
     } */
+    
+    public function set symbolColor(value:uint):void {} // not implemented
 
 
     //----------------------------------

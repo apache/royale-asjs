@@ -573,6 +573,11 @@ public class List extends ListBase implements IFocusManagerComponent
 		// not implemented
 	}
 
+	public function set contentBackgroundAlpha(value:Number):void
+	{
+		// not implemented
+	}
+
 	public function set alternatingItemColors(value:Array):void
 	{
 		// not implemented

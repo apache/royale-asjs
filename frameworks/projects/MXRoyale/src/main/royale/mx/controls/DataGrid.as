@@ -952,6 +952,13 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     {
 	// not implemented
     }
+    
+    public function set horizontalGridLines(value:Boolean):void {} // not implemented
+    public function set horizontalGridLineColor(value:uint):void {} // not implemented
+    public function set selectionColor(value:uint):void {} // not implemented
+    public function set headerSeparatorSkin(value:Class):void {} // not implemented
+    
+    public function set editable(value:Boolean):void {} // not implemented
     /**
      *  @private
      *  Storage for the headerHeight property.

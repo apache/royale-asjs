@@ -480,7 +480,7 @@ public class VGroup extends Group
     //  variableRowHeight
     //----------------------------------
 
-    //[Inspectable(category="General", defaultValue="true")]
+    [Inspectable(category="General", defaultValue="true")]
 
     /**
      *  @copy spark.layouts.VerticalLayout#variableRowHeight
@@ -492,18 +492,19 @@ public class VGroup extends Group
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get variableRowHeight():Boolean
+     public function get variableRowHeight():Boolean // not implemented
     {
-        return verticalLayout.variableRowHeight;
-    } */
+        //return verticalLayout.variableRowHeight;
+	     return false;
+    } 
 
     /**
      *  @private
      */
-   /*  public function set variableRowHeight(value:Boolean):void
+    public function set variableRowHeight(value:Boolean):void // not implemented
     {
-        verticalLayout.variableRowHeight = value;
-    } */
+        //verticalLayout.variableRowHeight = value;
+    }
     
     //----------------------------------
     //  firstIndexInView

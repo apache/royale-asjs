@@ -508,6 +508,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
    // private var _layoutProperties:Object = null;
    // private var layoutInvalidateSizeFlag:Boolean = false;
    // private var layoutInvalidateDisplayListFlag:Boolean = false;
+    public function set contentBackgroundColor(value:uint):void {} // not implemented
     
     [Inspectable(category="General")]
     
