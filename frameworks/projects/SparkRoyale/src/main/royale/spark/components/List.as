@@ -617,10 +617,6 @@ public class List extends ListBase implements IFocusManagerComponent
 		}
 	}
 
-    public function set itemRendererFunction(value:Function):void
-    {
-	// not implemented
-    }
     //----------------------------------
     //  hasFocusableChildren
     //----------------------------------

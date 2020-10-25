@@ -566,6 +566,43 @@ public class ListBase  extends SkinnableContainer
         factory.itemRendererFactory = value;
     }
     
+
+    //----------------------------------
+    //  itemRendererFunction
+    //----------------------------------
+    
+    [Inspectable(category="Data")]
+    
+    /**
+     *  @copy spark.components.DataGroup#itemRendererFunction
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get itemRendererFunction():Function // not implemeneted
+    {
+        //return (dataGroup) 
+            //? dataGroup.itemRendererFunction 
+            //: dataGroupProperties.itemRendererFunction;
+	    return null;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set itemRendererFunction(value:Function):void // not implemeneted
+    {
+        //if (dataGroup)
+        //{
+            //dataGroup.itemRendererFunction = value;
+            //dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
+                                                     //ITEM_RENDERER_FUNCTION_PROPERTY_FLAG, true);
+        //}
+        //else
+            //dataGroupProperties.itemRendererFunction = value;
+    }
     /**
      *  @private
      */
