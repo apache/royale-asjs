@@ -108,6 +108,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IChild; IChild;
 	import org.apache.royale.core.IChrome; IChrome;
 	import org.apache.royale.core.IColorWithAlphaModel; IColorWithAlphaModel;
+	import org.apache.royale.core.IComboBox; IComboBox;
 	import org.apache.royale.core.IComboBoxModel; IComboBoxModel;
 	import org.apache.royale.core.IContainer; IContainer;
 	import org.apache.royale.core.IContainerView; IContainerView;
