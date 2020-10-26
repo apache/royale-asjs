@@ -1054,8 +1054,8 @@ public class BitmapFill extends EventDispatcher implements IFill // not implemen
      *  @private
      *  Utility function that sets the underlying bitmapData property.
      */
-    private function setBitmapData(bitmapData:BitmapData, internallyCreated:Boolean = false):void
-    {         
+    //private function setBitmapData(bitmapData:Object, internallyCreated:Boolean = false):void
+    //{         
         //// Clear previous bitmapData
         //if (_bitmapData)
         //{
@@ -1069,7 +1069,7 @@ public class BitmapFill extends EventDispatcher implements IFill // not implemen
         //_bitmapData = bitmapData;
         //
         //dispatchFillChangedEvent("bitmapData", null, null);
-    }
+    //}
 }
 
 }
