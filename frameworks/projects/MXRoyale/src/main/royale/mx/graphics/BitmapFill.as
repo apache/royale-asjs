@@ -20,24 +20,23 @@
 package mx.graphics
 {
 
-import mx.display.Bitmap;
-import org.apache.royale.BitmapData;
-import mx.core.UIComponent;
+//import mx.display.Bitmap;
+import org.apache.royale.display.BitmapData;
+//import mx.core.UIComponent;
 import mx.display.Graphics;
-import org.apache.royale.events.Event;
+//import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
-import mx.events.IOErrorEvent;
-import mx.events.SecurityErrorEvent;
-import flash.geom.ColorTransform;
+//import mx.events.IOErrorEvent;
+//import mx.events.SecurityErrorEvent;
+//import flash.geom.ColorTransform;
 import org.apache.royale.geom.Matrix;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-import org.apache.royale.net.URLRequest;
-import flash.system.LoaderContext;
-
-import mx.events.PropertyChangeEvent;
-import mx.geom.CompoundTransform;
-import mx.utils.MatrixUtil;
+//import org.apache.royale.net.URLRequest;
+//
+//import mx.events.PropertyChangeEvent;
+//import mx.geom.CompoundTransform;
+//import mx.utils.MatrixUtil;
 
 
 
@@ -55,9 +54,9 @@ import mx.utils.MatrixUtil;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class BitmapFill extends EventDispatcher implements IFill
+public class BitmapFill extends EventDispatcher implements IFill // not implemented
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -136,18 +135,18 @@ public class BitmapFill extends EventDispatcher implements IFill
         
         _alpha = value;
              
-        applyAlphaMultiplier = true;
-        
-        if (_bitmapData && !_bitmapData.transparent && _alpha < 1 && oldValue == 1)
-        {
-            // If alpha is not opaque, then reapply the source because we might need 
-            // to clone it. 
-            var s:Object = _source;
-            _source = null;
-            source = s;
-        }
-        
-        dispatchFillChangedEvent("alpha", oldValue, value);
+        //applyAlphaMultiplier = true;
+        //
+        //if (_bitmapData && !_bitmapData.transparent && _alpha < 1 && oldValue == 1)
+        //{
+            //// If alpha is not opaque, then reapply the source because we might need 
+            //// to clone it. 
+            //var s:Object = _source;
+            //_source = null;
+            //source = s;
+        //}
+        //
+        //dispatchFillChangedEvent("alpha", oldValue, value);
     }
     
     //----------------------------------
@@ -163,7 +162,7 @@ public class BitmapFill extends EventDispatcher implements IFill
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    protected var compoundTransform:CompoundTransform;        
+    //protected var compoundTransform:CompoundTransform;        
     
     //----------------------------------
     //  matrix
@@ -181,7 +180,8 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get matrix():Matrix
     {
-        return compoundTransform ? compoundTransform.matrix : null;
+        //return compoundTransform ? compoundTransform.matrix : null;
+	    return null;
     }
     
     /**
@@ -189,31 +189,31 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function set matrix(value:Matrix):void
     {
-        var oldValue:Matrix = matrix;
-        
-        var oldX:Number = x;
-        var oldY:Number = y;
-        var oldRotation:Number = rotation;
-        var oldScaleX:Number = scaleX;
-        var oldScaleY:Number = scaleY;
-        
-        if (value == null)
-        {
-            compoundTransform = null;
-        }   
-        else
-        {
-            // Create the transform if none exists. 
-            if (compoundTransform == null)
-                compoundTransform = new CompoundTransform();
-            compoundTransform.matrix = value; // CompoundTransform will create a clone
-            
-            dispatchFillChangedEvent("x", oldX, compoundTransform.x);
-            dispatchFillChangedEvent("y", oldY, compoundTransform.y);
-            dispatchFillChangedEvent("scaleX", oldScaleX, compoundTransform.scaleX);
-            dispatchFillChangedEvent("scaleY", oldScaleY, compoundTransform.scaleY);
-            dispatchFillChangedEvent("rotation", oldRotation, compoundTransform.rotationZ);
-        }
+        //var oldValue:Matrix = matrix;
+        //
+        //var oldX:Number = x;
+        //var oldY:Number = y;
+        //var oldRotation:Number = rotation;
+        //var oldScaleX:Number = scaleX;
+        //var oldScaleY:Number = scaleY;
+        //
+        //if (value == null)
+        //{
+            //compoundTransform = null;
+        //}   
+        //else
+        //{
+            //// Create the transform if none exists. 
+            //if (compoundTransform == null)
+                //compoundTransform = new CompoundTransform();
+            //compoundTransform.matrix = value; // CompoundTransform will create a clone
+            //
+            //dispatchFillChangedEvent("x", oldX, compoundTransform.x);
+            //dispatchFillChangedEvent("y", oldY, compoundTransform.y);
+            //dispatchFillChangedEvent("scaleX", oldScaleX, compoundTransform.scaleX);
+            //dispatchFillChangedEvent("scaleY", oldScaleY, compoundTransform.scaleY);
+            //dispatchFillChangedEvent("rotation", oldRotation, compoundTransform.rotationZ);
+        //}
     }
     
     //----------------------------------
@@ -452,21 +452,22 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get rotation():Number
     {
-        return compoundTransform ? compoundTransform.rotationZ : _rotation;
+        //return compoundTransform ? compoundTransform.rotationZ : _rotation;
+	    return NaN;
     }
     
     public function set rotation(value:Number):void
     {      
-        if (value != rotation)
-        {
-            var oldValue:Number = rotation;
-            
-            if (compoundTransform)
-                compoundTransform.rotationZ = value;
-            else
-                _rotation = value;   
-            dispatchFillChangedEvent("rotation", oldValue, value);
-        }
+        //if (value != rotation)
+        //{
+            //var oldValue:Number = rotation;
+            //
+            //if (compoundTransform)
+                //compoundTransform.rotationZ = value;
+            //else
+                //_rotation = value;   
+            //dispatchFillChangedEvent("rotation", oldValue, value);
+        //}
     }
 
     //----------------------------------
@@ -490,7 +491,8 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get scaleX():Number
     {
-        return compoundTransform ? compoundTransform.scaleX : _scaleX;
+        //return compoundTransform ? compoundTransform.scaleX : _scaleX;
+	    return _scaleX;
     }
     
     /**
@@ -498,22 +500,22 @@ public class BitmapFill extends EventDispatcher implements IFill
      */  
     public function set scaleX(value:Number):void
     {
-        if (value != scaleX)
-        {
-            var oldValue:Number = scaleX;
-
-            if (compoundTransform)
-            {
-                // If we have a compoundTransform, only non-NaN values are allowed
-                if (!isNaN(value))
-                    compoundTransform.scaleX = value;
-            }
-            else
-            {
-                _scaleX = value;
-            }
-            dispatchFillChangedEvent("scaleX", oldValue, value);
-        }
+        //if (value != scaleX)
+        //{
+            //var oldValue:Number = scaleX;
+//
+            //if (compoundTransform)
+            //{
+                //// If we have a compoundTransform, only non-NaN values are allowed
+                //if (!isNaN(value))
+                    //compoundTransform.scaleX = value;
+            //}
+            //else
+            //{
+                //_scaleX = value;
+            //}
+            //dispatchFillChangedEvent("scaleX", oldValue, value);
+        //}
     }
 
     //----------------------------------
@@ -537,7 +539,8 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get scaleY():Number
     {
-        return compoundTransform ? compoundTransform.scaleY : _scaleY;
+        //return compoundTransform ? compoundTransform.scaleY : _scaleY;
+	    return NaN;
     }
     
     /**
@@ -545,22 +548,22 @@ public class BitmapFill extends EventDispatcher implements IFill
      */ 
     public function set scaleY(value:Number):void
     {
-        if (value != scaleY)
-        {
-            var oldValue:Number = scaleY;
-            
-            if (compoundTransform)
-            {
-                // If we have a compoundTransform, only non-NaN values are allowed
-                if (!isNaN(value))
-                    compoundTransform.scaleY = value;
-            }
-            else
-            {
-                _scaleY = value;
-            }
-            dispatchFillChangedEvent("scaleY", oldValue, value);
-        }
+        //if (value != scaleY)
+        //{
+            //var oldValue:Number = scaleY;
+            //
+            //if (compoundTransform)
+            //{
+                //// If we have a compoundTransform, only non-NaN values are allowed
+                //if (!isNaN(value))
+                    //compoundTransform.scaleY = value;
+            //}
+            //else
+            //{
+                //_scaleY = value;
+            //}
+            //dispatchFillChangedEvent("scaleY", oldValue, value);
+        //}
     }
 
     //----------------------------------
@@ -603,61 +606,61 @@ public class BitmapFill extends EventDispatcher implements IFill
     {
         if (value != _source)
         {
-            var tmpSprite:DisplayObject;
-            var oldValue:Object = _source;
-            _source = value;
-            
-            var bitmapData:BitmapData;    
-            var bitmapCreated:Boolean = false; 
-            
-            if (value is Class)
-            {
-                var cls:Class = Class(value);
-                value = new cls();
-                bitmapCreated = true;
-            } 
-            
-            if (value is BitmapData)
-            {
-                bitmapData = BitmapData(value);
-            }
-            else if (value is Bitmap)
-            {
-                bitmapData = value.bitmapData;
-            }
-            else if (value is DisplayObject)
-            {
-                tmpSprite = value as DisplayObject;
-            }
-            else if (value == null)
-            {
-                // This will set source to null
-            }
-            else
-            {
-                return;
-            }
-                
-            if (!bitmapData && tmpSprite)
-            {
-                bitmapData = new BitmapData(tmpSprite.width, tmpSprite.height, true, 0);
-                bitmapData.draw(tmpSprite, new Matrix());
-                bitmapCreated = true;
-            }
-            
-            // If the bitmapData isn't transparent (ex. JPEG) and alpha != 1, 
-            // then copy it into a transparent bitmapData
-            if (bitmapData && !bitmapData.transparent && alpha != 1)
-            {
-                var transparentBitmap:BitmapData = new BitmapData(bitmapData.width, bitmapData.height, true);
-                transparentBitmap.draw(bitmapData);
-                bitmapCreated = true;
-                bitmapData = transparentBitmap;
-            }
-            
-            setBitmapData(bitmapData, bitmapCreated);
-                        
-            dispatchFillChangedEvent("source", oldValue, value);
+            //var tmpSprite:DisplayObject;
+            //var oldValue:Object = _source;
+            //_source = value;
+            //
+            //var bitmapData:BitmapData;    
+            //var bitmapCreated:Boolean = false; 
+            //
+            //if (value is Class)
+            //{
+                //var cls:Class = Class(value);
+                //value = new cls();
+                //bitmapCreated = true;
+            //} 
+            //
+            //if (value is BitmapData)
+            //{
+                //bitmapData = BitmapData(value);
+            //}
+            //else if (value is Bitmap)
+            //{
+                //bitmapData = value.bitmapData;
+            //}
+            //else if (value is DisplayObject)
+            //{
+                //tmpSprite = value as DisplayObject;
+            //}
+            //else if (value == null)
+            //{
+                //// This will set source to null
+            //}
+            //else
+            //{
+                //return;
+            //}
+                //
+            //if (!bitmapData && tmpSprite)
+            //{
+                //bitmapData = new BitmapData(tmpSprite.width, tmpSprite.height, true, 0);
+                //bitmapData.draw(tmpSprite, new Matrix());
+                //bitmapCreated = true;
+            //}
+            //
+            //// If the bitmapData isn't transparent (ex. JPEG) and alpha != 1, 
+            //// then copy it into a transparent bitmapData
+            //if (bitmapData && !bitmapData.transparent && alpha != 1)
+            //{
+                //var transparentBitmap:BitmapData = new BitmapData(bitmapData.width, bitmapData.height, true);
+                //transparentBitmap.draw(bitmapData);
+                //bitmapCreated = true;
+                //bitmapData = transparentBitmap;
+            //}
+            //
+            //setBitmapData(bitmapData, bitmapCreated);
+                        //
+            //dispatchFillChangedEvent("source", oldValue, value);
         }
     }
 
@@ -688,12 +691,12 @@ public class BitmapFill extends EventDispatcher implements IFill
     
     public function set smooth(value:Boolean):void
     {
-        var oldValue:Boolean = _smooth;
-        if (value != oldValue)
-        {
-            _smooth = value;
-            dispatchFillChangedEvent("smooth", oldValue, value);
-        }
+        //var oldValue:Boolean = _smooth;
+        //if (value != oldValue)
+        //{
+            //_smooth = value;
+            //dispatchFillChangedEvent("smooth", oldValue, value);
+        //}
     }
     
     //----------------------------------
@@ -714,7 +717,8 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get transformX():Number
     {
-        return compoundTransform ? compoundTransform.transformX : _transformX;
+        //return compoundTransform ? compoundTransform.transformX : _transformX;
+	    return NaN;
     }
 
     /**
@@ -722,17 +726,17 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function set transformX(value:Number):void
     {
-        if (transformX == value)
-            return;
-                
-        var oldValue:Number = transformX;   
-        
-        if (compoundTransform)
-            compoundTransform.transformX = value;
-        else
-            _transformX = value;
-        
-        dispatchFillChangedEvent("transformX", oldValue, value);
+        //if (transformX == value)
+            //return;
+                //
+        //var oldValue:Number = transformX;   
+        //
+        //if (compoundTransform)
+            //compoundTransform.transformX = value;
+        //else
+            //_transformX = value;
+        //
+        //dispatchFillChangedEvent("transformX", oldValue, value);
     }
 
     //----------------------------------
@@ -753,7 +757,8 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get transformY():Number
     {
-        return compoundTransform ? compoundTransform.transformY : _transformY;
+        //return compoundTransform ? compoundTransform.transformY : _transformY;
+	    return NaN;
     }
 
     /**
@@ -761,17 +766,17 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function set transformY(value:Number):void
     {
-        if (transformY == value)
-            return;
-        
-        var oldValue:Number = transformY;    
-        
-        if (compoundTransform)
-            compoundTransform.transformY = value;
-        else
-            _transformY = value;
-        
-        dispatchFillChangedEvent("transformY", oldValue, value);
+        //if (transformY == value)
+            //return;
+        //
+        //var oldValue:Number = transformY;    
+        //
+        //if (compoundTransform)
+            //compoundTransform.transformY = value;
+        //else
+            //_transformY = value;
+        //
+        //dispatchFillChangedEvent("transformY", oldValue, value);
     }
 
     
@@ -794,7 +799,8 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get x():Number
     {
-        return compoundTransform ? compoundTransform.x : _x;
+        //return compoundTransform ? compoundTransform.x : _x;
+	    return NaN;
     }
     
     /**
@@ -802,21 +808,21 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function set x(value:Number):void
     {
-        var oldValue:Number = x;
-        if (value != oldValue)
-        {
-            if (compoundTransform)
-            {
-                // If we have a compoundTransform, only non-NaN values are allowed
-                if (!isNaN(value))
-                    compoundTransform.x = value; 
-            }
-            else
-            {
-                _x = value;
-            }
-            dispatchFillChangedEvent("x", oldValue, value);
-        }
+        //var oldValue:Number = x;
+        //if (value != oldValue)
+        //{
+            //if (compoundTransform)
+            //{
+                //// If we have a compoundTransform, only non-NaN values are allowed
+                //if (!isNaN(value))
+                    //compoundTransform.x = value; 
+            //}
+            //else
+            //{
+                //_x = value;
+            //}
+            //dispatchFillChangedEvent("x", oldValue, value);
+        //}
     }
     
     //----------------------------------
@@ -838,7 +844,8 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function get y():Number
     {
-        return compoundTransform ? compoundTransform.y : _y;
+        //return compoundTransform ? compoundTransform.y : _y;
+	    return NaN;
     }
     
     /**
@@ -846,22 +853,22 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function set y(value:Number):void
     {
-        var oldValue:Number = y;
-        if (value != oldValue)
-        {
-            if (compoundTransform)
-            {
-                // If we have a compoundTransform, only non-NaN values are allowed
-                if (!isNaN(value))
-                    compoundTransform.y = value;
-            }
-            else
-            {
-                _y = value;                
-            }
-            
-            dispatchFillChangedEvent("y", oldValue, value);
-        }
+        //var oldValue:Number = y;
+        //if (value != oldValue)
+        //{
+            //if (compoundTransform)
+            //{
+                //// If we have a compoundTransform, only non-NaN values are allowed
+                //if (!isNaN(value))
+                    //compoundTransform.y = value;
+            //}
+            //else
+            //{
+                //_y = value;                
+            //}
+            //
+            //dispatchFillChangedEvent("y", oldValue, value);
+        //}
     }
 
     //--------------------------------------------------------------------------
@@ -875,153 +882,153 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function begin(target:Graphics, targetBounds:Rectangle, targetOrigin:Point):void
     {       
-        var sourceAsBitmapData:BitmapData = _bitmapData;
-        
-        if (!sourceAsBitmapData)
-            return;        
-        
-        var repeatFill:Boolean = (fillMode == BitmapFillMode.REPEAT); 
-        
-        // If we need to apply the alpha, we need to make another clone. So dispose of the old one.
-        if (nonRepeatAlphaSource && applyAlphaMultiplier)
-        {
-            nonRepeatAlphaSource.dispose();
-            nonRepeatAlphaSource = null;
-        }
-
-        if (compoundTransform)
-        {
-            transformMatrix = compoundTransform.matrix;
-            transformMatrix.translate(targetOrigin.x, targetOrigin.y);
-        }
-        else
-        {
-            // Calculate default scaleX, scaleY
-            var defaultScaleX:Number = scaleX;
-            var defaultScaleY:Number = scaleY;
-
-            // If fillMode is scale then scale to fill the content area  
-            if (fillMode == BitmapFillMode.SCALE)
-            {
-                // calculate defaultScaleX only if explicit scaleX is not specified
-                if (isNaN(scaleX) && sourceAsBitmapData.width > 0)
-                    defaultScaleX = targetBounds.width / sourceAsBitmapData.width;
-                
-                // calculate defaultScaleY if it's not already specified
-                if (isNaN(scaleY) && sourceAsBitmapData.height > 0)
-                    defaultScaleY = targetBounds.height / sourceAsBitmapData.height;
-            }
-
-            if (isNaN(defaultScaleX))
-                defaultScaleX = 1;
-            if (isNaN(defaultScaleY))
-                defaultScaleY = 1;
-
-            // Calculate default x, y
-            var regX:Number =  !isNaN(x) ? x + targetOrigin.x : targetBounds.left;
-            var regY:Number =  !isNaN(y) ? y + targetOrigin.y : targetBounds.top;
-
-            transformMatrix.identity();
-            transformMatrix.translate(-transformX, -transformY);
-            transformMatrix.scale(defaultScaleX, defaultScaleY);
-            transformMatrix.rotate(rotation * RADIANS_PER_DEGREES);
-            transformMatrix.translate(regX + transformX, regY + transformY);
-        }
-
-        // If repeat is true, fillMode is repeat, or if the source bitmap size  
-        // equals or exceeds the targetBounds, just use the source bitmap
-        if (repeatFill || 
-            (MatrixUtil.isDeltaIdentity(transformMatrix) && 
-             transformMatrix.tx == targetBounds.left &&
-             transformMatrix.ty == targetBounds.top &&
-             targetBounds.width <= sourceAsBitmapData.width && 
-             targetBounds.height <= sourceAsBitmapData.height))
-        {
-            if (nonRepeatAlphaSource && nonRepeatSourceCreated)
-            {
-                nonRepeatAlphaSource.dispose();
-                nonRepeatAlphaSource = null;
-                applyAlphaMultiplier = alpha != 1;
-            }
-            
-            nonRepeatSourceCreated = false;
-        }
-        else if (fillMode == BitmapFillMode.CLIP)
-        {
-            // Regenerate the nonRepeatSource if it wasn't previously created or if the bounds 
-            // dimensions have changed.
-            if (regenerateNonRepeatSource || 
-                lastBoundsWidth != targetBounds.width || 
-                lastBoundsHeight != targetBounds.height)
-            {
-                // Release the old bitmap data
-                if (nonRepeatAlphaSource)
-                    nonRepeatAlphaSource.dispose();
-                
-                var bitmapTopLeft:Point = new Point();
-                // We want the top left corner of the bitmap to be at (0,0) when we copy it. 
-                // Save the translation and reapply it after the we have copied the bitmap
-                var tx:Number = transformMatrix.tx;
-                var ty:Number = transformMatrix.ty; 
-                
-                transformMatrix.tx = 0;
-                transformMatrix.ty = 0;
-                
-                // Get the bounds of the transformed bitmap (minus translation)
-                var bitmapSize:Point = MatrixUtil.transformBounds(
-                                        sourceAsBitmapData.width, sourceAsBitmapData.height, 
-                                        transformMatrix, 
-                                        bitmapTopLeft);
-                
-                // Get the size of the bitmap using the bounds              
-                // Pad the new bitmap size so that the borders are empty
-                var newW:Number = Math.ceil(bitmapSize.x) + 2;
-                var newY:Number = Math.ceil(bitmapSize.y) + 2;
-      
-                // Translate a rotated bitmap to ensure that the top left post-transformed corner is at (1,1)
-                transformMatrix.translate(1 - bitmapTopLeft.x, 1 - bitmapTopLeft.y);
-                
-                // Draw the transformed bitmapData into a new bitmapData that is the size of the bounds
-                // This will prevent the edge pixels getting repeated to fill the empty space
-                nonRepeatAlphaSource = new BitmapData(newW, newY, true, 0xFFFFFF);
-                nonRepeatAlphaSource.draw(sourceAsBitmapData, transformMatrix, null, null, null, smooth);
-                
-                // The transform matrix has already been applied to the source, so just use identity
-                // for the beginBitmapFill call
-                transformMatrix.identity();
-                // We need to restore both the matrix translation and the rotation translation
-                transformMatrix.translate(tx + bitmapTopLeft.x - 1, ty + bitmapTopLeft.y - 1);
-                // Save off the bounds so we can compare it the next time this function is called
-                lastBoundsWidth = targetBounds.width;
-                lastBoundsHeight = targetBounds.height;
-                
-                nonRepeatSourceCreated = true;
-                
-                // Reapply the alpha if alpha is not 1.
-                applyAlphaMultiplier = alpha != 1;
-            }   
-        }
-        
-        // Apply the alpha to a clone of the source. We don't want to modify the actual source because applying the alpha 
-        // will modify the source and we have no way to restore the source back its original alpha value. 
-        if (applyAlphaMultiplier)
-        {
-            // Clone the bitmapData if we didn't already make a copy for CLIP mode
-            if (!nonRepeatAlphaSource)
-                nonRepeatAlphaSource = sourceAsBitmapData.clone();
-            
-            var ct:ColorTransform = new ColorTransform();
-            ct.alphaMultiplier = alpha;
-            
-            nonRepeatAlphaSource.colorTransform(new Rectangle(0, 0, nonRepeatAlphaSource.width, nonRepeatAlphaSource.height), ct);
-            applyAlphaMultiplier = false;
-        }
-        
-        // If we have a nonRepeatAlphaSource, then use it. Otherwise, we just use the source. 
-        if (nonRepeatAlphaSource)
-            sourceAsBitmapData = nonRepeatAlphaSource;
-        
-        target.beginBitmapFill(sourceAsBitmapData, transformMatrix, repeatFill, smooth);
+        //var sourceAsBitmapData:BitmapData = _bitmapData;
+        //
+        //if (!sourceAsBitmapData)
+            //return;        
+        //
+        //var repeatFill:Boolean = (fillMode == BitmapFillMode.REPEAT); 
+        //
+        //// If we need to apply the alpha, we need to make another clone. So dispose of the old one.
+        //if (nonRepeatAlphaSource && applyAlphaMultiplier)
+        //{
+            //nonRepeatAlphaSource.dispose();
+            //nonRepeatAlphaSource = null;
+        //}
+//
+        //if (compoundTransform)
+        //{
+            //transformMatrix = compoundTransform.matrix;
+            //transformMatrix.translate(targetOrigin.x, targetOrigin.y);
+        //}
+        //else
+        //{
+            //// Calculate default scaleX, scaleY
+            //var defaultScaleX:Number = scaleX;
+            //var defaultScaleY:Number = scaleY;
+//
+            //// If fillMode is scale then scale to fill the content area  
+            //if (fillMode == BitmapFillMode.SCALE)
+            //{
+                //// calculate defaultScaleX only if explicit scaleX is not specified
+                //if (isNaN(scaleX) && sourceAsBitmapData.width > 0)
+                    //defaultScaleX = targetBounds.width / sourceAsBitmapData.width;
+                //
+                //// calculate defaultScaleY if it's not already specified
+                //if (isNaN(scaleY) && sourceAsBitmapData.height > 0)
+                    //defaultScaleY = targetBounds.height / sourceAsBitmapData.height;
+            //}
+//
+            //if (isNaN(defaultScaleX))
+                //defaultScaleX = 1;
+            //if (isNaN(defaultScaleY))
+                //defaultScaleY = 1;
+//
+            //// Calculate default x, y
+            //var regX:Number =  !isNaN(x) ? x + targetOrigin.x : targetBounds.left;
+            //var regY:Number =  !isNaN(y) ? y + targetOrigin.y : targetBounds.top;
+//
+            //transformMatrix.identity();
+            //transformMatrix.translate(-transformX, -transformY);
+            //transformMatrix.scale(defaultScaleX, defaultScaleY);
+            //transformMatrix.rotate(rotation * RADIANS_PER_DEGREES);
+            //transformMatrix.translate(regX + transformX, regY + transformY);
+        //}
+//
+        //// If repeat is true, fillMode is repeat, or if the source bitmap size  
+        //// equals or exceeds the targetBounds, just use the source bitmap
+        //if (repeatFill || 
+            //(MatrixUtil.isDeltaIdentity(transformMatrix) && 
+             //transformMatrix.tx == targetBounds.left &&
+             //transformMatrix.ty == targetBounds.top &&
+             //targetBounds.width <= sourceAsBitmapData.width && 
+             //targetBounds.height <= sourceAsBitmapData.height))
+        //{
+            //if (nonRepeatAlphaSource && nonRepeatSourceCreated)
+            //{
+                //nonRepeatAlphaSource.dispose();
+                //nonRepeatAlphaSource = null;
+                //applyAlphaMultiplier = alpha != 1;
+            //}
+            //
+            //nonRepeatSourceCreated = false;
+        //}
+        //else if (fillMode == BitmapFillMode.CLIP)
+        //{
+            //// Regenerate the nonRepeatSource if it wasn't previously created or if the bounds 
+            //// dimensions have changed.
+            //if (regenerateNonRepeatSource || 
+                //lastBoundsWidth != targetBounds.width || 
+                //lastBoundsHeight != targetBounds.height)
+            //{
+                //// Release the old bitmap data
+                //if (nonRepeatAlphaSource)
+                    //nonRepeatAlphaSource.dispose();
+                //
+                //var bitmapTopLeft:Point = new Point();
+                //// We want the top left corner of the bitmap to be at (0,0) when we copy it. 
+                //// Save the translation and reapply it after the we have copied the bitmap
+                //var tx:Number = transformMatrix.tx;
+                //var ty:Number = transformMatrix.ty; 
+                //
+                //transformMatrix.tx = 0;
+                //transformMatrix.ty = 0;
+                //
+                //// Get the bounds of the transformed bitmap (minus translation)
+                //var bitmapSize:Point = MatrixUtil.transformBounds(
+                                        //sourceAsBitmapData.width, sourceAsBitmapData.height, 
+                                        //transformMatrix, 
+                                        //bitmapTopLeft);
+                //
+                //// Get the size of the bitmap using the bounds              
+                //// Pad the new bitmap size so that the borders are empty
+                //var newW:Number = Math.ceil(bitmapSize.x) + 2;
+                //var newY:Number = Math.ceil(bitmapSize.y) + 2;
+      //
+                //// Translate a rotated bitmap to ensure that the top left post-transformed corner is at (1,1)
+                //transformMatrix.translate(1 - bitmapTopLeft.x, 1 - bitmapTopLeft.y);
+                //
+                //// Draw the transformed bitmapData into a new bitmapData that is the size of the bounds
+                //// This will prevent the edge pixels getting repeated to fill the empty space
+                //nonRepeatAlphaSource = new BitmapData(newW, newY, true, 0xFFFFFF);
+                //nonRepeatAlphaSource.draw(sourceAsBitmapData, transformMatrix, null, null, null, smooth);
+                //
+                //// The transform matrix has already been applied to the source, so just use identity
+                //// for the beginBitmapFill call
+                //transformMatrix.identity();
+                //// We need to restore both the matrix translation and the rotation translation
+                //transformMatrix.translate(tx + bitmapTopLeft.x - 1, ty + bitmapTopLeft.y - 1);
+                //// Save off the bounds so we can compare it the next time this function is called
+                //lastBoundsWidth = targetBounds.width;
+                //lastBoundsHeight = targetBounds.height;
+                //
+                //nonRepeatSourceCreated = true;
+                //
+                //// Reapply the alpha if alpha is not 1.
+                //applyAlphaMultiplier = alpha != 1;
+            //}   
+        //}
+        //
+        //// Apply the alpha to a clone of the source. We don't want to modify the actual source because applying the alpha 
+        //// will modify the source and we have no way to restore the source back its original alpha value. 
+        //if (applyAlphaMultiplier)
+        //{
+            //// Clone the bitmapData if we didn't already make a copy for CLIP mode
+            //if (!nonRepeatAlphaSource)
+                //nonRepeatAlphaSource = sourceAsBitmapData.clone();
+            //
+            //var ct:ColorTransform = new ColorTransform();
+            //ct.alphaMultiplier = alpha;
+            //
+            //nonRepeatAlphaSource.colorTransform(new Rectangle(0, 0, nonRepeatAlphaSource.width, nonRepeatAlphaSource.height), ct);
+            //applyAlphaMultiplier = false;
+        //}
+        //
+        //// If we have a nonRepeatAlphaSource, then use it. Otherwise, we just use the source. 
+        //if (nonRepeatAlphaSource)
+            //sourceAsBitmapData = nonRepeatAlphaSource;
+        //
+        //target.beginBitmapFill(sourceAsBitmapData, transformMatrix, repeatFill, smooth);
     }
     
     /**
@@ -1029,7 +1036,7 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     public function end(target:Graphics):void
     {
-        target.endFill();
+        //target.endFill();
     }
     
     /**
@@ -1038,9 +1045,9 @@ public class BitmapFill extends EventDispatcher implements IFill
     private function dispatchFillChangedEvent(prop:String, oldValue:*,
                                               value:*):void
     {
-        dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop,
-                                                            oldValue, value));
-        regenerateNonRepeatSource = true;
+        //dispatchEvent(PropertyChangeEvent.createUpdateEvent(this, prop,
+                                                            //oldValue, value));
+        //regenerateNonRepeatSource = true;
     }
     
     /**
@@ -1049,19 +1056,19 @@ public class BitmapFill extends EventDispatcher implements IFill
      */
     private function setBitmapData(bitmapData:BitmapData, internallyCreated:Boolean = false):void
     {         
-        // Clear previous bitmapData
-        if (_bitmapData)
-        {
-            if (bitmapDataCreated) // Dispose the bitmap if we created it
-                _bitmapData.dispose();
-            _bitmapData = null;
-        }
-        
-        bitmapDataCreated = internallyCreated;         
-        applyAlphaMultiplier = alpha != 1;
-        _bitmapData = bitmapData;
-        
-        dispatchFillChangedEvent("bitmapData", null, null);
+        //// Clear previous bitmapData
+        //if (_bitmapData)
+        //{
+            //if (bitmapDataCreated) // Dispose the bitmap if we created it
+                //_bitmapData.dispose();
+            //_bitmapData = null;
+        //}
+        //
+        //bitmapDataCreated = internallyCreated;         
+        //applyAlphaMultiplier = alpha != 1;
+        //_bitmapData = bitmapData;
+        //
+        //dispatchFillChangedEvent("bitmapData", null, null);
     }
 }
 
