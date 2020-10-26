@@ -323,7 +323,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 					//decorate text
 					if(useDecoration)
 					{
-						ir.text = "<span>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
+						ir.text = "<span style='display:contents;'>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
 					}
 				} else {
 					ir.visible = false;
