@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
@@ -74,8 +75,18 @@ package org.apache.royale.jewel.beads.itemRenderers
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
             if (presentationModel) {
-				if(!presentationModel.variableRowHeight)
-                	StyledUIBase(ir).height = presentationModel.rowHeight;
+				if(!isNaN(presentationModel.rowHeight) && !presentationModel.variableRowHeight)
+				{
+                	StyledUIBase(ir).height = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
+				}
+				else if(!isNaN(presentationModel.rowHeight) && presentationModel.variableRowHeight)
+				{
+                	StyledUIBase(ir).minHeight = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
+				}
+				else if(!presentationModel.variableRowHeight)
+				{
+                	StyledUIBase(ir).height = ListPresentationModel.DEFAULT_ROW_HEIGHT;
+				}
 				
                 if(ir is IAlignItemRenderer)
                 {
