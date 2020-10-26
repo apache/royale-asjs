@@ -244,8 +244,9 @@ public class DataGridItemRenderer extends StringItemRenderer
     public function set useHandCursor(value:Boolean):void {} // not implemented
     COMPILE::JS
     public function set buttonMode(value:Boolean):void {} // not implemented
+    COMPILE::JS
     public function set focusEnabled(value:Boolean):void {} // not implemented
-    
+
     protected function dispatchUpdateComplete():void
     {
         dispatchEvent(new Event("updateComplete"));

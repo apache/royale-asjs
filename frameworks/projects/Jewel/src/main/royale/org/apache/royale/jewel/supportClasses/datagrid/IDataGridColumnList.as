@@ -37,7 +37,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
         function set rollOverIndex(value:int):void;
 
         /**
-		 *  Pointer back to the DataGrid that owns this column List
+		 *  Pointer back to the IDataGrid that owns this column List
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

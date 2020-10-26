@@ -40,7 +40,7 @@ limitations under the License.
 			{
                 var view:ListView = this.itemRendererOwnerView as ListView;
                 var column:DataGridColumnList = view.host as DataGridColumnList;
-                (column.datagrid.dataProvider as ArrayList).removeItemAt(index);
+                (column.datagrid.model.dataProvider as ArrayList).removeItemAt(index);
             }
 		]]>
     </fx:Script>
