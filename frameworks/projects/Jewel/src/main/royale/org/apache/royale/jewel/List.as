@@ -46,6 +46,12 @@ package org.apache.royale.jewel
     [Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("dataProvider")]
+
+	/**
 	 *  The List class is a component that displays multiple data items. The List uses
 	 *  the following bead types:
 	 *
