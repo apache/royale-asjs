@@ -21,7 +21,7 @@ package mx.graphics
 {
 
 //import mx.display.Bitmap;
-import org.apache.royale.display.BitmapData;
+//import org.apache.royale.display.BitmapData;
 //import mx.core.UIComponent;
 import mx.display.Graphics;
 //import org.apache.royale.events.Event;
@@ -85,8 +85,8 @@ public class BitmapFill extends EventDispatcher implements IFill // not implemen
     
     private static const RADIANS_PER_DEGREES:Number = Math.PI / 180;
     private static var transformMatrix:Matrix = new Matrix();
-    private var nonRepeatAlphaSource:BitmapData;
-    private var _bitmapData:BitmapData;
+    //private var nonRepeatAlphaSource:BitmapData;
+    //private var _bitmapData:BitmapData;
     
     private var regenerateNonRepeatSource:Boolean = true;
     private var lastBoundsWidth:Number = 0;
