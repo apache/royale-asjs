@@ -52,7 +52,7 @@ package org.apache.royale.jewel
             typeNames = "jewel section";
 
             // we need to add this for propoer sizing of content inside this container
-            addClass("is-selected");
+            //addClass("is-selected");
 		}
 
         /**
