@@ -65,9 +65,9 @@ package org.apache.royale.jewel.beads.itemRenderers
             if (tir && ownerView)
                 tir.itemRendererOwnerView = ownerView;
 
-			if (presentationModel) {
-				StyledUIBase(ir).height = presentationModel.rowHeight;
-			}
+			// if (presentationModel) {
+			// 	StyledUIBase(ir).height = presentationModel.rowHeight;
+			// }
 		}
 		// public static const DEFAULT_PADDING:Number = 8;
 	}

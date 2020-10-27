@@ -77,15 +77,15 @@ package org.apache.royale.jewel.beads.itemRenderers
             if (presentationModel) {
 				if(!isNaN(presentationModel.rowHeight) && !presentationModel.variableRowHeight)
 				{
-                	StyledUIBase(ir).height = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
+                	StyledUIBase(ir).height = presentationModel.rowHeight;
 				}
 				else if(!isNaN(presentationModel.rowHeight) && presentationModel.variableRowHeight)
 				{
-                	StyledUIBase(ir).minHeight = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
+                	StyledUIBase(ir).minHeight = presentationModel.rowHeight;
 				}
 				else if(!presentationModel.variableRowHeight)
 				{
-                	StyledUIBase(ir).height = ListPresentationModel.DEFAULT_ROW_HEIGHT;
+                	StyledUIBase(ir).height = isNaN(presentationModel.rowHeight) ? NaN : ListPresentationModel.DEFAULT_ROW_HEIGHT;
 				}
 				
                 if(ir is IAlignItemRenderer)
