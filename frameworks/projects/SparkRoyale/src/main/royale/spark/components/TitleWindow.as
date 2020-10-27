@@ -38,6 +38,10 @@ import spark.events.TitleWindowBoundsEvent;
 use namespace mx_internal; */
     import mx.events.CloseEvent;
     import mx.events.MouseEvent;
+    COMPILE::JS
+    {
+        import org.apache.royale.events.Event;
+    }
 
 //--------------------------------------
 //  Events
