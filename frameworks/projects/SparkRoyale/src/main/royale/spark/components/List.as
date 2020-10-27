@@ -763,7 +763,9 @@ public class List extends ListBase implements IFocusManagerComponent
      */
    /*  private var _dragEnabled:Boolean = false;
     
-    [Inspectable(defaultValue="false")] */
+  //  [Inspectable(defaultValue="false")]
+
+    */
     
     /**
      *  A flag that indicates whether you can drag items out of
@@ -819,7 +821,7 @@ public class List extends ListBase implements IFocusManagerComponent
      */
     private var _dragMoveEnabled:Boolean = false;
     
-    [Inspectable(defaultValue="false")] */
+  /*  [Inspectable(defaultValue="false")] */
     
     /**
      *  A flag that indicates whether items can be moved instead

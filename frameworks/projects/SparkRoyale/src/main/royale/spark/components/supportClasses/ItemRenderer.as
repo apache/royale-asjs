@@ -346,7 +346,7 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      */    
     private var _itemIndex:int;
     
-    [Bindable("itemIndexChanged")] */
+  /*@todo review this:  [Bindable("itemIndexChanged")] */
     
     /**
      *  @inheritDoc 
@@ -372,7 +372,7 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
             return;
         
         _itemIndex = value;
-        
+   //@todo does this need to dispatch  "itemIndexChanged" to support Bindable ?
         //if (autoDrawBackground)
         //{
             //redrawRequested = true;
