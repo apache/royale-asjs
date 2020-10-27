@@ -43,6 +43,10 @@ use namespace mx_internal; */
         import org.apache.royale.events.Event;
     }
 
+    COMPILE::SWF
+    {
+        import flash.events.Event;
+    }
 //--------------------------------------
 //  Events
 //--------------------------------------
