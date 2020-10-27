@@ -512,13 +512,13 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get isDropDownOpen():Boolean
+    public function get isDropDownOpen():Boolean // not implemented
     {
-        if (dropDownController)
-            return dropDownController.isOpen;
-        else
+        //if (dropDownController)
+            //return dropDownController.isOpen;
+        //else
             return false;
-    } */
+    }
         
 	//----------------------------------
 	//  closeDropDownOnResize
