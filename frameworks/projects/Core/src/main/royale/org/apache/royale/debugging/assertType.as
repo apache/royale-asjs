@@ -36,7 +36,7 @@ package org.apache.royale.debugging
         COMPILE::JS
         {
             if(goog.DEBUG)
-                console.assert((obj is type),message); 
+                assert((obj is type),message); 
         }
     }
 }
