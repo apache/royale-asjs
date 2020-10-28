@@ -198,6 +198,11 @@ limitations under the License.
 
             [Bindable]
             public var orientation:String = "No Orientation";
+
+            private function switchFooterBar():void
+            {
+                drawerFooter.visible = footerbar.visible = main.hasFooterBar = !footerbar.visible;
+            }
         ]]>
     </fx:Script>
 
@@ -245,7 +250,7 @@ limitations under the License.
             </j:Navigation>
         </j:DrawerContent>
 
-        <j:DrawerFooter>
+        <j:DrawerFooter localId="drawerFooter">
             <j:BarSection>
                 <j:IconButton>
                     <j:icon>
@@ -327,7 +332,7 @@ limitations under the License.
                         <js:MaterialToggleIcon text="{MaterialIconType.SCREEN_LOCK_ROTATION}" selectedText="{MaterialIconType.SCREEN_ROTATION}" />
                     </j:icon>
                 </j:ToggleButton>
-                <j:ToggleButton click="footerbar.visible = !footerbar.visible">
+                <j:ToggleButton click="switchFooterBar()">
                     <j:beads>
                         <j:ToolTip toolTip="show/hide FooterBar"/>
                     </j:beads>
