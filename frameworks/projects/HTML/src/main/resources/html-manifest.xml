@@ -68,6 +68,7 @@
     <component id="Tr" class="org.apache.royale.html.elements.Tr" />
     <component id="U" class="org.apache.royale.html.elements.U" />
     <component id="Ul" class="org.apache.royale.html.elements.Ul" />
+    <component id="Video" class="org.apache.royale.html.elements.Video"/>
 
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
     <component id="TextNode" class="org.apache.royale.html.TextNode" />
@@ -115,5 +116,4 @@
     <component id="symbol" class="org.apache.royale.svg.elements.Symbol" />
     <component id="text" class="org.apache.royale.svg.elements.Text" />
     <component id="use" class="org.apache.royale.svg.elements.Use" />
-
 </componentPackage>
