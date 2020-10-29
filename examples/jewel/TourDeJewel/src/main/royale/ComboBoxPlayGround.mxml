@@ -376,6 +376,19 @@ limitations under the License.
 							<j:SearchFilter/>
 						</j:beads>
 					</j:ComboBox>
+					
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>This is configured in the instance using <pre style="font-size: 0.8em">itemRenderer="itemRenderers.SimpleIconListItemRenderer"</pre></p>]]></j:html>
+					</j:Label>
+					
+					<j:ComboBox itemRenderer="itemRenderers.SimpleIconListItemRenderer" labelField="label"
+								dataProvider="{listModel.avengers}">
+						<j:beads>
+							<j:ComboBoxPresentationModel rowCount="4" rowHeight="52"/>
+							<j:ComboBoxTextPrompt prompt="Icons and Text..."/>
+							<j:SearchFilter/>
+						</j:beads>
+					</j:ComboBox>
 
 				</j:CardPrimaryContent>
 			</j:Card>
