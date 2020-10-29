@@ -54,12 +54,12 @@ package org.apache.royale.html.elements
         private var _autoplay:Boolean;
 
         /**
-         *  Whether the input is autofocused
+         *  Whether the video is autoplay
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.8
          */
         public function get autoplay():Boolean
         {
@@ -73,6 +73,7 @@ package org.apache.royale.html.elements
                 return (element as HTMLVideoElement).autoplay;
             }
         }
+
         public function set autoplay(value:Boolean):void
         {
             COMPILE::SWF
@@ -82,6 +83,82 @@ package org.apache.royale.html.elements
             COMPILE::JS
             {
                 (element as HTMLVideoElement).autoplay = value;
+            }
+        }
+
+        COMPILE::SWF
+        private var _paused:Boolean;
+
+        /**
+         *  Whether the video is paused
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        public function get paused():Boolean
+        {
+            COMPILE::SWF
+            {
+                return _paused;
+            }
+
+            COMPILE::JS
+            {
+                return (element as HTMLVideoElement).paused;
+            }
+        }
+
+        COMPILE::JS
+        /**
+         *  Start video
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        public function play()
+        {
+            COMPILE::JS
+            {
+                (element as HTMLMediaElement).play();
+            }
+        }
+
+        COMPILE::JS
+        /**
+         *  Pause video
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        public function pause()
+        {
+            COMPILE::JS
+            {
+                (element as HTMLMediaElement).pause();
+            }
+        }
+
+        COMPILE::JS
+        /**
+         *  Resets the media element to its initial state and begins the process of selecting
+         *  a media source and loading the media in preparation for playback to begin at the beginning.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        public function load()
+        {
+            COMPILE::JS
+            {
+                (element as HTMLMediaElement).load();
             }
         }
 
