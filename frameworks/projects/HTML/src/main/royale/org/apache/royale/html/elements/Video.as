@@ -50,6 +50,42 @@ package org.apache.royale.html.elements
 			super();
 		}
 
+        COMPILE::SWF
+        private var _source:Object;
+
+        /**
+         *  Stream object for Video
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        public function get source():Object
+        {
+            COMPILE::SWF
+            {
+                return _source;
+            }
+
+            COMPILE::JS
+            {
+                return element["srcObject"];
+            }
+        }
+
+        public function set source(value:Object):void
+        {
+            COMPILE::SWF
+            {
+                _source = value;
+            }
+            COMPILE::JS
+            {
+                element["srcObject"] = value;
+            }
+        }
+
 		COMPILE::SWF
         private var _autoplay:Boolean;
 
@@ -119,7 +155,7 @@ package org.apache.royale.html.elements
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
          */
-        public function play()
+        public function play():void
         {
             COMPILE::JS
             {
@@ -136,7 +172,7 @@ package org.apache.royale.html.elements
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
          */
-        public function pause()
+        public function pause():void
         {
             COMPILE::JS
             {
@@ -154,7 +190,7 @@ package org.apache.royale.html.elements
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
          */
-        public function load()
+        public function load():void
         {
             COMPILE::JS
             {
