@@ -31,6 +31,8 @@ package
         import org.apache.royale.net.HTTPConstants; HTTPConstants;
         import org.apache.royale.net.URLBinaryUploader; URLBinaryUploader;
         import org.apache.royale.net.URLVariables; URLVariables;
+        import org.apache.royale.net.navigateToURL; navigateToURL;
+
         import org.apache.royale.net.events.ResultEvent; ResultEvent;
         import org.apache.royale.net.events.FaultEvent; FaultEvent;
         
