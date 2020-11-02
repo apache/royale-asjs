@@ -170,7 +170,7 @@ package org.apache.royale.net
                 for (var i:int; i < n; i++)
                 {
                     var hdr:flash.net.URLRequestHeader = 
-                            new flash.net.URLRequestHeader(req[i].name, req[i].value);
+                            new flash.net.URLRequestHeader(request.requestHeaders[i].name, request.requestHeaders[i].value);
                     req.requestHeaders.push(hdr);
                 }
                 urlLoader.load(req);
