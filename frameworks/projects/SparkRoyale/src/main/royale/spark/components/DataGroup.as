@@ -67,7 +67,7 @@ import org.apache.royale.html.beads.models.ListPresentationModel;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-//[Event(name="rendererAdd", type="spark.events.RendererExistenceEvent")]
+[Event(name="rendererAdd", type="spark.events.RendererExistenceEvent")] // not implemeneted
 
 /**
  *  Dispatched when a renderer is removed from this dataGroup.
@@ -551,26 +551,27 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get itemRendererFunction():Function
+    public function get itemRendererFunction():Function // not implemeneted
     {
-        return _itemRendererFunction;
-    } */
+        //return _itemRendererFunction;
+	return null;
+    }
     
     /**
      *  @private
      */
-    /* public function set itemRendererFunction(value:Function):void
+    public function set itemRendererFunction(value:Function):void // not implemeneted
     {
-        _itemRendererFunction = value;
-        
-        removeDataProviderListener();
-        removeAllItemRenderers();
-        invalidateProperties();
-        
-        itemRendererChanged = true;
-        typicalItemChanged = true;
+        //_itemRendererFunction = value;
+        //
+        //removeDataProviderListener();
+        //removeAllItemRenderers();
+        //invalidateProperties();
+        //
+        //itemRendererChanged = true;
+        //typicalItemChanged = true;
     }
-     */
+
     //----------------------------------
     //  rendererUpdateDelegate
     //----------------------------------
