@@ -344,9 +344,22 @@ public class TinyEditor extends UIComponent
         /**
          * </inject_script> */
 
+		callLater(removeTransformAttribute);
 		return element;
 	}
 	
+	COMPILE::JS
+	private function removeTransformAttribute():void
+	{
+		if (editorDiv.className == "__editor")
+		{
+			editorDiv.removeAttribute('data-tiny-editor');
+		}
+		else
+		{
+			callLater(removeTransformAttribute);
+		}
+	}
 
     //--------------------------------------------------------------------------
     //
