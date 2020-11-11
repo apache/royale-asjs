@@ -44,6 +44,18 @@ COMPILE::JS
  */
 [Event(name="change", type="mx.events.FlexEvent")]
 
+/**
+ *  Dispatched when the editor is completely initialized.
+ *  In JS, the editor may not initialize until after creationComplete
+ *  and even applicationComplete events.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="editorComplete", type="org.apache.royale.events.Event")]
+
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -287,6 +299,95 @@ public class TinyEditor extends UIComponent
 		this.dispatchEvent(new Event('textChange'));		
 	}
 
+    //----------------------------------
+    //  dropShadowVisible
+    //----------------------------------
+
+
+	public function get dropShadowVisible():Boolean
+	{
+		return false;
+	}
+
+	public function set dropShadowVisible(value:Boolean):void
+	{
+	}
+
+	COMPILE::JS
+	private var _linkTextInput:UIComponent;
+	
+	COMPILE::JS
+	public function get linkTextInput():UIComponent
+	{
+		return _linkTextInput;
+	}
+
+	COMPILE::JS
+	private var _textArea:TextAreaProxy;
+	
+	COMPILE::JS
+	public function get textArea():TextAreaProxy
+	{
+		if (!_textArea)
+			_textArea = new TextAreaProxy(this);
+		return _textArea;
+	}
+
+	COMPILE::JS
+	private var _toolbar:ToolbarProxy;
+	
+	COMPILE::JS
+	public function get toolbar():ToolbarProxy
+	{
+		if (!_toolbar)
+			_toolbar = new ToolbarProxy(this);
+		return _toolbar;
+	}
+
+	COMPILE::JS
+	private var _fontSizeCombo:SelectProxy;
+	
+	COMPILE::JS
+	public function get fontSizeCombo():SelectProxy
+	{
+		if (!_fontSizeCombo)
+			_fontSizeCombo = new SelectProxy(this, 'Styles');
+		return _fontSizeCombo;
+	}
+	
+	COMPILE::JS
+	private var _fontFamilyCombo:SelectProxy;
+	
+	COMPILE::JS
+	public function get fontFamilyCombo():SelectProxy
+	{
+		if (!_fontFamilyCombo)
+			_fontFamilyCombo = new SelectProxy(this, 'Font');
+		return _fontFamilyCombo;
+	}
+	
+    //----------------------------------
+    //  verticalScrollPolicy
+    //----------------------------------
+
+	private var _verticalScrollPolicy:String = "auto";
+
+	public function get verticalScrollPolicy():String
+	{
+		return _verticalScrollPolicy;
+	}
+
+	public function set verticalScrollPolicy(value:String):void
+	{
+		_verticalScrollPolicy = value;
+		var val:String = "scroll";
+		if (value == "on")
+			val = "visible";
+		if (value == "off")
+		    val = "hidden";
+		editorDiv.style.overflowY = val;
+	}
+	
     //--------------------------------------------------------------------------
     //
     //  Overridden methods: UIComponent
@@ -344,9 +445,23 @@ public class TinyEditor extends UIComponent
         /**
          * </inject_script> */
 
+		callLater(removeTransformAttribute);
 		return element;
 	}
 	
+	COMPILE::JS
+	private function removeTransformAttribute():void
+	{
+		if (editorDiv.className == "__editor")
+		{
+			editorDiv.removeAttribute('data-tiny-editor');
+			dispatchEvent(new Event('editorComplete'));
+		}
+		else
+		{
+			callLater(removeTransformAttribute);
+		}
+	}
 
     //--------------------------------------------------------------------------
     //
@@ -365,4 +480,113 @@ public class TinyEditor extends UIComponent
 
 }
 
+}
+
+import mx.controls.TextArea;
+import mx.controls.TinyEditor;
+import mx.controls.ComboBox;
+import mx.core.IUIComponent;
+import mx.core.UIComponent;
+
+COMPILE::JS
+class TextAreaProxy extends TextArea
+{
+	private var host:TinyEditor;
+	
+	public function TextAreaProxy(host:TinyEditor)
+	{
+		this.host = host;
+	}
+	
+	private var _maxChars:int = 0;
+	
+	override public function get maxChars():int
+	{
+		return _maxChars;
+	}
+	
+	override public function set maxChars(value:int):void
+	{
+		if (_maxChars != value)
+		{
+			_maxChars = value;
+			COMPILE::JS 
+			{
+			    host.element.addEventListener('keydown', keyHandler);
+			    host.element.addEventListener('keyup', keyHandler);
+			}
+		}
+	}
+	
+	private function keyHandler(e:KeyboardEvent):void
+	{
+		if (e.key && e.key.length == 1 && host.htmlText.length > maxChars)
+		{
+			e.preventDefault();
+		}
+	}
+}
+
+COMPILE::JS
+class SelectProxy extends ComboBox
+{
+	private var host:TinyEditor;
+	private var title:String;
+	private var toolBar:HTMLElement;
+	private var select:HTMLSelectElement;
+	
+	/**
+	 * @royaleignorecoercion HTMLSelectElement
+	 * @royaleignorecoercion Array
+	 */
+	public function SelectProxy(host:TinyEditor, title:String)
+	{
+		this.host = host;
+		this.title = title;
+		toolBar = host.element.getElementsByClassName('__toolbar')[0];
+		var controls:Array = toolBar.children as Array;
+		var n:int = controls.length;
+		for (var i:int = 0; i < n; i++)
+		{
+			var c:HTMLElement = controls[i];
+			if (c.title == title)
+			{
+				select = c as HTMLSelectElement;
+			}
+		}
+	}
+	
+	private var _editable:Boolean = true;
+	
+	override public function get editable():Boolean
+	{
+		return _editable;
+	}
+	
+	override public function set editable(value:Boolean):void
+	{
+		if (_editable != value)
+		{
+			_editable = value;
+			select.disabled = !value;
+		}
+	}	
+}
+
+COMPILE::JS
+class ToolbarProxy extends UIComponent
+{
+	private var host:TinyEditor;
+	private var toolBar:HTMLElement;
+	
+	public function ToolbarProxy(host:TinyEditor)
+	{
+		this.host = host;
+		toolBar = host.element.getElementsByClassName('__toolbar')[0];
+	}
+	
+	override public function removeChild(value:IUIComponent):IUIComponent
+	{
+		return value;
+	}	
 }
