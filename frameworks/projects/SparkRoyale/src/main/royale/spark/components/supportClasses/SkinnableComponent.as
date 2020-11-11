@@ -243,13 +243,13 @@ public class SkinnableComponent extends UIComponent
      */
     public function invalidateSkinState():void
     {
-        if (GOOG::DEBUG)
-            trace("invalidateSkinState not implemented");
+	    if (skin)
+	    {
+		    skin.currentState = getCurrentSkinState();
+	    }
     }
 	
-	
-	
-	//----------------------------------
+    //----------------------------------
     //  skin
     //----------------------------------
     
