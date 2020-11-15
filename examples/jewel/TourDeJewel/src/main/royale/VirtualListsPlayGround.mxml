@@ -23,7 +23,7 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" 
 	xmlns:models="models.*" sourceCodeUrl="VirtualListsPlayGround.mxml"
-	initComplete="listModel.createBigIconListVOData()">
+	initComplete="listModel.createBigIconListVOData(); productModel.createBigProductVOData()">
 	
 	<fx:Script>
 		<![CDATA[
@@ -169,8 +169,8 @@ limitations under the License.
             <j:Card>
 				<html:H3 text="Jewel VirtualDataGrid"/>
 				
-				<j:VirtualDataGrid localId="virtualDataGrid"
-							dataProvider="{productModel.productList}">
+				<j:VirtualDataGrid localId="virtualDataGrid" width="300" height="300"
+							dataProvider="{productModel.bigProductVOData}">
 					<j:columns>
 						<j:DataGridColumn label="Title" dataField="title"/>
 						<j:DataGridColumn label="Sales" dataField="sales"/>

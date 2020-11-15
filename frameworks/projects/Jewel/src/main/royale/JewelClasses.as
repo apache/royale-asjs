@@ -118,6 +118,8 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.beads.views.DataGridView; DataGridView;
         import org.apache.royale.jewel.beads.layouts.DataGridLayout; DataGridLayout;
         
+        import org.apache.royale.jewel.beads.views.VirtualDataGridView; VirtualDataGridView;
+        
         import org.apache.royale.jewel.supportClasses.LayoutProxy; LayoutProxy;
 
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;

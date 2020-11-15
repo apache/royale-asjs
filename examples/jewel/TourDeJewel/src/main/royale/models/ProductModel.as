@@ -54,5 +54,39 @@ package models
 		{
 			return _productList;
 		}
+
+
+		/**
+		 * Used in the Virtual List example example.
+		 */
+		public var _bigProductVOData:ArrayList;
+        
+        public function get bigProductVOData():ArrayList
+        {
+			return _bigProductVOData;
+		}
+        public function set bigProductVOData(value:ArrayList):void
+        {
+			_bigProductVOData = value;
+		}
+
+		public function createBigProductVOData():void
+        {
+			var item:Product;
+            var dp:Array = [];
+			
+			for (var i:int = 0; i < 2000; i++)
+			{
+				item = new Product(
+					"pr"+Math.floor(Math.random()*1000), 
+					"Product - " + i, Math.floor(Math.random()*1000), 
+					Math.floor(Math.random()*1000), 
+					"assets/smallbluerect.jpg"
+				);
+				dp.push(item);
+			}
+            
+            bigProductVOData = new ArrayList(dp);
+        }
 	}
 }

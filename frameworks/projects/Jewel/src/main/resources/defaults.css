@@ -554,6 +554,7 @@ j|DataGridButtonBar {
 }
 
 j|VirtualDataGrid {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualDataGridView");
   columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList");
 }
 
