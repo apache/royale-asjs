@@ -76,7 +76,7 @@ package org.apache.royale.jewel
 		
 		[Bindable("columnsChanged")]
 		/**
-		 *  The array of org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn used to 
+		 *  The array of IDataGridColumn components used to 
 		 *  describe each column.
 		 *
 		 *  @langversion 3.0

@@ -22,7 +22,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 	import org.apache.royale.jewel.supportClasses.table.ITableColumn;
 
 	/**
-	 *  Jewel IDataGridColumn is the interface used by Jewel DataGridColumn in the Jewel DataGrid.
+	 *  Jewel IDataGridColumn is the interface used by components that define a column for data grid type components.
 	 * 
 	 *  Define which renderer to use for each cell in the column, and other optional data like
 	 *  the width, the label (used in header), and the name of the field in the data containing the value to display 

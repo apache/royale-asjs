@@ -52,7 +52,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		
         private var _columnInfo:IDataGridColumn;
         /**
-         *  The DataGridColumn for this list
+         *  The IDataGridColumn for this list
          *  
          *
          *  @toplevel
