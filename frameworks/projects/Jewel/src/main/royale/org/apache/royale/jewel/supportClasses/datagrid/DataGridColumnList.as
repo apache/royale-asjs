@@ -25,20 +25,6 @@ package org.apache.royale.jewel.supportClasses.datagrid
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     
-    //--------------------------------------
-    //  Events
-    //--------------------------------------
-    
-    /**
-     *  @copy org.apache.royale.core.ISelectionModel#change
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    [Event(name="change", type="org.apache.royale.events.Event")]
-    
     /**
      *  The DataGridColumnList class is the List class used internally
      *  by DataGrid for each column.
