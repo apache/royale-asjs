@@ -85,8 +85,12 @@ j|DataGridButtonBar
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer")
 
 
-
 j|VirtualDataGrid
     columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList")   
 
 j|VirtualDataGridColumnList
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DataGridItemRenderer")
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataGridColumnListItemRendererInitializer")
+    ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")

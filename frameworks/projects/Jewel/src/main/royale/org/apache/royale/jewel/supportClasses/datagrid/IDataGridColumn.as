@@ -30,15 +30,6 @@ package org.apache.royale.jewel.supportClasses.datagrid
 	 */
 	public interface IDataGridColumn extends ITableColumn
 	{	
-		/**
-		 *  Returns a new instance of a UIBase component to be used as the actual
-		 *  column in the grid.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		function createColumn():IStyledUIBase;
+		
 	}
 }

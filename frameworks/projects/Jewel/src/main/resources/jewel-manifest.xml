@@ -55,8 +55,7 @@
     
     <component id="VirtualDataGrid" class="org.apache.royale.jewel.VirtualDataGrid"/>
     <component id="VirtualDataGridColumnList" class="org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList"/>
-    <component id="VirtualDataGridColumn" class="org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumn"/>
-
+    
     <component id="DataGridColumnLabelsChange" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridColumnLabelsChange"/>
     <component id="DataGridSort" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridSort"/>
 

@@ -47,19 +47,7 @@ public class DataGridColumn extends TableColumn implements IDataGridColumn
 	{
 	}
 
-	/**
-	 * Returns a new instance of a UIBase component to be used as the actual
-	 * column in the grid.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
-	 */
-	public function createColumn():IStyledUIBase
-	{
-		return new DataGridColumnList();
-	}
+	
 
 
 	private var _visible:Boolean = true;

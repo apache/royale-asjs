@@ -200,7 +200,6 @@ package org.apache.royale.jewel.beads.views
             var len:uint = sharedModel.columns.length;
             for (var i:int=0; i < len; i++)
             {
-
                 ignoreSizeChange = i != len-1;
                 var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
                 IEventDispatcher(dataGridColumn).addEventListener("labelChanged", labelChangedHandler);
