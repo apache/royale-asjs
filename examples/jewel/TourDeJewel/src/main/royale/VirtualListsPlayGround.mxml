@@ -172,8 +172,8 @@ limitations under the License.
 				<j:VirtualDataGrid localId="virtualDataGrid"
 							dataProvider="{productModel.productList}">
 					<j:columns>
-						<j:DataGridColumn label="Title" dataField="title"/>
-						<j:DataGridColumn label="Sales" dataField="sales"/>
+						<j:VirtualDataGridColumn label="Title" dataField="title"/>
+						<j:VirtualDataGridColumn label="Sales" dataField="sales"/>
 					</j:columns>
 				</j:VirtualDataGrid>			
 			</j:Card>
