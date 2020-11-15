@@ -553,6 +553,10 @@ j|DataGridButtonBar {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer");
 }
 
+j|VirtualDataGrid {
+  columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList");
+}
+
 .jewel.datechooser .jewel.table {
   min-width: 324px;
   min-height: 364px;
