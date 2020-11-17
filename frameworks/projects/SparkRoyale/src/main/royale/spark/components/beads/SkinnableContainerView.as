@@ -83,7 +83,7 @@ public class SkinnableContainerView extends SparkContainerView
     override public function beforeLayout():Boolean
     {
         var host:SkinnableContainer = _strand as SkinnableContainer;
-        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
+        if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
         {
             if (host.skin)
             {
@@ -102,7 +102,13 @@ public class SkinnableContainerView extends SparkContainerView
         {
             if (host.skin)
             {
-                host.skin.setLayoutBoundsSize(host.width, host.height);
+		    if (host.isWidthSizedToContent() || host.isHeightSizedToContent()) 
+		    {
+			    (host.skin as Skin).layout.measure();
+		    }
+		    var w:Number = host.isWidthSizedToContent() ? host.skin.measuredWidth : host.width;
+		    var h:Number = host.isHeightSizedToContent() ? host.skin.measuredHeight : host.height;
+		    host.skin.setLayoutBoundsSize(w, h);
             }
             else
             {
@@ -110,7 +116,7 @@ public class SkinnableContainerView extends SparkContainerView
             }
                 
         }
-		return true;
+	return true;
     }
     
     override protected function addViewport():void
