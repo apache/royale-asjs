@@ -29,7 +29,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 	 */
 	public interface ITableView extends IBeadView
 	{
@@ -40,7 +40,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		function get dataGroup():IItemRendererOwnerView;
 		
@@ -50,7 +50,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		function get header():IParent;
 		function set header(value:IParent):void;
@@ -61,7 +61,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		function get footer():IParent;
 		function set footer(value:IParent):void;

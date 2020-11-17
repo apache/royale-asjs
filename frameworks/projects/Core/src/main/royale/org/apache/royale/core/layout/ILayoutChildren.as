@@ -28,7 +28,7 @@ package org.apache.royale.core.layout
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.10.0
+     *  @productversion Royale 0.9.8
      */
 	public interface ILayoutChildren extends IBead
 	{
@@ -39,7 +39,7 @@ package org.apache.royale.core.layout
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
         function executeLayoutChildren():void;
 	}
