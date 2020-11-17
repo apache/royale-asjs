@@ -50,7 +50,7 @@ package org.apache.royale.jewel.beads.controls.image
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 	 */
 	public class ClipImage implements IBead
 	{
@@ -64,7 +64,7 @@ package org.apache.royale.jewel.beads.controls.image
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function ClipImage()
 		{
@@ -263,7 +263,7 @@ package org.apache.royale.jewel.beads.controls.image
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function set strand(value:IStrand):void
 		{

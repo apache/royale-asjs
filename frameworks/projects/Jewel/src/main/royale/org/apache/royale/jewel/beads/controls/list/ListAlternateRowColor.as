@@ -37,7 +37,7 @@ package org.apache.royale.jewel.beads.controls.list
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 	 */
 	public class ListAlternateRowColor implements IBead
 	{
@@ -47,7 +47,7 @@ package org.apache.royale.jewel.beads.controls.list
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function ListAlternateRowColor()
 		{
@@ -84,7 +84,7 @@ package org.apache.royale.jewel.beads.controls.list
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function set strand(value:IStrand):void
 		{

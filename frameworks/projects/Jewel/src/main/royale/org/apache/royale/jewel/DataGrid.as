@@ -236,7 +236,7 @@ package org.apache.royale.jewel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.10.0
+         *  @productversion Royale 0.9.8
          */
         override protected function loadBeads():void
         {

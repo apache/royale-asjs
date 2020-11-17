@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.10.0
+     *  @productversion Royale 0.9.8
      */
 	public class TableKeyDownController extends Bead implements IBeadKeyController, IRemovableBead
 	{
@@ -49,7 +49,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.10.0
+         *  @productversion Royale 0.9.8
          */
 		public function TableKeyDownController()
 		{
@@ -61,7 +61,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		protected var tableModel:ITableModel;
 
@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		protected var tableView:ITableView;
 
@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.10.0
+         *  @productversion Royale 0.9.8
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.IJewelSelectionModel
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
