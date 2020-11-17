@@ -1,3 +1,12 @@
+Apache Royale 0.9.8
+===================
+
+- Basic
+  - Move getParentEventTarget() from EventDispatcher to UIBase to reduce require dependencies. This allows EventDispatcher to be used in non-GUI contexts, such as Node.js.
+- RoyaleUnit
+  - Fixed issue where CIListener incorrectly escaped quotes in messages.
+  - Better error messages when [BeforeClass] or [AfterClass] is detected, but method is not found by reflection.
+
 Apache Royale 0.9.7
 ===================
 
