@@ -16,50 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.datagrid
-{
-import org.apache.royale.core.IStyledUIBase;
-import org.apache.royale.jewel.supportClasses.table.TableColumn;
-
-/**
- *  The DataGridColumn class is the collection of properties that describe
- *  a column of the org.apache.royale.jewel.DataGrid: which renderer
- *  to use for each cell in the column, the width of the column, the label for the
- *  column, and the name of the field in the data containing the value to display
- *  in the column.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.9.7
- */
-public class DataGridColumn extends TableColumn implements IDataGridColumn
+package org.apache.royale.jewel
 {
 	/**
-	 *  constructor.
+	 *  The VirtualDataGrid class is a DataGrid component used for large data providers that need to create and recicle just
+     *  the visible list renderers.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.9.8
 	 */
-	public function DataGridColumn()
+	public class VirtualDataGrid extends DataGrid
 	{
-	}
-
-	
-
-
-	private var _visible:Boolean = true;
-	public function set visible(value:Boolean):void{
-		if (value != _visible) {
-			_visible = value;
-			//somehow, invalidate layout
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		public function VirtualDataGrid()
+		{
+			super();
 		}
-	}
-
-	public function get visible():Boolean{
-		return _visible;
-	}
-}
+   	}
 }

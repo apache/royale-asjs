@@ -16,20 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.datagrid
-{
-	import org.apache.royale.core.IStyledUIBase;
-	import org.apache.royale.jewel.supportClasses.table.ITableColumn;
+package org.apache.royale.jewel.beads.views
+{    
+    import org.apache.royale.core.StyledUIBase;
 
-	/**
-	 *  Jewel IDataGridColumn is the interface used by components that define a column for data grid type components.
-	 * 
-	 *  Define which renderer to use for each cell in the column, and other optional data like
-	 *  the width, the label (used in header), and the name of the field in the data containing the value to display 
-	 *  in the column (for the simplest ItemRenderer).
-	 */
-	public interface IDataGridColumn extends ITableColumn
-	{	
-		
-	}
+    /**
+     *  The VirtualDataGridView class is the visual bead for Jewel VirtualDataGrid.
+     *  
+     *  @viewbead
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     */
+    public class VirtualDataGridView extends DataGridView
+    {
+        /**
+         *  constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        public function VirtualDataGridView()
+        {
+            super();
+        }
+
+        override protected function setColumnHeight(column:StyledUIBase):void {
+            column.height = _dg.height - header.height;
+        }
+    }
 }

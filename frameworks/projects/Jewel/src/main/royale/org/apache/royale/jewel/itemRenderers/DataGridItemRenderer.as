@@ -26,7 +26,7 @@ package org.apache.royale.jewel.itemRenderers
 
     /**
 	 *  The DataGridItemRenderer defines the basic Item Renderer for a Jewel DataGrid Component.
-     *  For now is just a ListItemRenderer that populates some values from Jewel DataGridColumn.
+     *  For now is just a ListItemRenderer that populates some values from Jewel IDataGridColumn.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

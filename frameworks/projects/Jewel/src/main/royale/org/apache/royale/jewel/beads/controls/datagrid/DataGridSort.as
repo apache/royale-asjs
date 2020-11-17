@@ -25,11 +25,11 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridHeader;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.beads.views.DataGridView;
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 
 	/**
 	 *  The DataGridSort bead class is a specialty bead that can be use with a Jewel DataGrid control
@@ -83,7 +83,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
             // probably down on one button and up on another button
             // so the ButtonBar won't change selection
             if (event.target == header) return;
-			var column:DataGridColumn = event.target.data as DataGridColumn;
+			var column:IDataGridColumn = event.target.data as IDataGridColumn;
 			var collection:IArrayListView = dg.model.dataProvider as IArrayListView;
 			if (collection && collection.length)
 			{

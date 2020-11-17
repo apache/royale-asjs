@@ -20,21 +20,21 @@ package org.apache.royale.jewel.supportClasses.datagrid
 {
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IDataGrid;
-    import org.apache.royale.jewel.List;
+    import org.apache.royale.jewel.VirtualList;
     import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     
     /**
-     *  The DataGridColumnList class is the List class used internally
-     *  by DataGrid for each column.
+     *  The VirtualDataGridColumnList class is the VirtualList class used internally
+     *  by VirtualDataGrid for each column.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
+     *  @productversion Royale 0.9.8
      */
-	public class DataGridColumnList extends List implements IDataGridColumnList
+	public class VirtualDataGridColumnList extends VirtualList implements IDataGridColumnList
 	{
         /**
          *  Constructor.
@@ -42,9 +42,9 @@ package org.apache.royale.jewel.supportClasses.datagrid
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
+         *  @productversion Royale 0.9.8
          */
-		public function DataGridColumnList()
+		public function VirtualDataGridColumnList()
 		{
 			super();
 			typeNames = "jewel list column";
@@ -80,7 +80,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
 		public function get datagrid():IDataGrid {
             return _datagrid;

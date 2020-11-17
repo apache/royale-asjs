@@ -23,14 +23,19 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" 
 	xmlns:models="models.*" sourceCodeUrl="VirtualListsPlayGround.mxml"
-	initComplete="listModel.createBigIconListVOData()">
+	initComplete="listModel.createBigIconListVOData(); productModel.createBigProductVOData()">
 	
 	<fx:Script>
 		<![CDATA[
+		import models.ProductModel;
+
 		import org.apache.royale.collections.ArrayList;
 		import org.apache.royale.core.StyledUIBase;
 
 		import vos.IconListVO;
+
+		[Bindable]
+		public var productModel:ProductModel = new ProductModel();
 
 		private function addItemToVirtual():void
 		{
@@ -157,6 +162,20 @@ limitations under the License.
 						<j:ComboBoxTextPrompt prompt="Some text here..."/>
 					</j:beads>
 				</j:VirtualComboBox>			
+			</j:Card>
+        </j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel VirtualDataGrid"/>
+				
+				<j:VirtualDataGrid localId="virtualDataGrid" width="300" height="300"
+							dataProvider="{productModel.bigProductVOData}">
+					<j:columns>
+						<j:DataGridColumn label="Title" dataField="title"/>
+						<j:DataGridColumn label="Sales" dataField="sales"/>
+					</j:columns>
+				</j:VirtualDataGrid>			
 			</j:Card>
         </j:GridCell>
 	</j:Grid>

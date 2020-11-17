@@ -553,6 +553,19 @@ j|DataGridButtonBar {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer");
 }
 
+j|VirtualDataGrid {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualDataGridView");
+  columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList");
+}
+
+j|VirtualDataGridColumnList {
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DataGridItemRenderer");
+  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataGridColumnListItemRendererInitializer");
+  ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+}
+
 .jewel.datechooser .jewel.table {
   min-width: 324px;
   min-height: 364px;

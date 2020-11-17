@@ -78,7 +78,7 @@ package org.apache.royale.jewel.beads.views
             super();
         }
 
-        private var _dg:IDataGrid = _strand as IDataGrid;
+        protected var _dg:IDataGrid = _strand as IDataGrid;
         private var _header:IDataGridHeader;
         private var _listArea:IUIBase;
         private var _lists:Array = [];
@@ -200,7 +200,6 @@ package org.apache.royale.jewel.beads.views
             var len:uint = sharedModel.columns.length;
             for (var i:int=0; i < len; i++)
             {
-
                 ignoreSizeChange = i != len-1;
                 var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
                 IEventDispatcher(dataGridColumn).addEventListener("labelChanged", labelChangedHandler);
@@ -240,11 +239,20 @@ package org.apache.royale.jewel.beads.views
                 list.addEventListener('selectionChanged', handleColumnListSelectionChange);
                 list.addEventListener('beadsAdded', configureColumnListPresentationModel);
                 (list as StyledUIBase).tabIndex = -1;
+                setColumnHeight(list as StyledUIBase);
+                
 
                 (_listArea as IParent).addElement(list as IChild);
 
                 columnLists.push(list);
             }
+        }
+
+        /**
+         * set the height of the column if necessary
+         */
+        protected function setColumnHeight(column:StyledUIBase):void {
+            // override in subclasses if necessary - VirtualDataGrid needs to use this since it can't left height unset
         }
 
         /**

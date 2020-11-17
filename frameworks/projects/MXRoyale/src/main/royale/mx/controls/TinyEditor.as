@@ -385,7 +385,7 @@ public class TinyEditor extends UIComponent
 			val = "visible";
 		if (value == "off")
 		    val = "hidden";
-		editorDiv.style.overflowY = val;
+		//editorDiv.style.overflowY = val;
 	}
 	
     //--------------------------------------------------------------------------

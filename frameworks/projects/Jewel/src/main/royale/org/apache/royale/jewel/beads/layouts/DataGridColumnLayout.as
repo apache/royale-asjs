@@ -22,14 +22,13 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
-	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 
 	/**
 	 *  The Jewel ButtonBarLayout class bead sizes and positions the button
@@ -48,9 +47,6 @@ package org.apache.royale.jewel.beads.layouts
 	 */
 	public class DataGridColumnLayout extends HorizontalLayout  implements IBeadLayout
 	{
-
-
-
 		/**
 		 *  constructor.
 		 *

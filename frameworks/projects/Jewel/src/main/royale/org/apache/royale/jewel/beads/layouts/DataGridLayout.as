@@ -95,7 +95,6 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		private function sizeChangedNeeded(event:Event):void
 		{
-
 			var view:IDataGridView = datagrid.view as IDataGridView
 			var header:IUIBase = view.header;
 			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
