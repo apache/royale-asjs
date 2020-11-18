@@ -2299,10 +2299,10 @@ COMPILE::JS
                 oldWidth = this.positioner.style.width;
                 oldLeft = this.positioner.style.left;
                 oldRight = this.positioner.style.right;
-                if (oldWidth.length)
-                    this.positioner.style.width = "";
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     return 0; // this.positioner.style.left = "";
+                if (oldWidth.length)
+                    this.positioner.style.width = "";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
