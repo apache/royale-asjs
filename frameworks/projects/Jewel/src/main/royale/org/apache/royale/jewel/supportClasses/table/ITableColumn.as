@@ -107,7 +107,7 @@ package org.apache.royale.jewel.supportClasses.table
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Royale 0.10.0
+         *  @productversion Royale 0.9.8
          */
 		function get labelFunction():Function;
 		function set labelFunction(value:Function):void;

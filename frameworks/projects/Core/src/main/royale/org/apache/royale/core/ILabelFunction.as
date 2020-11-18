@@ -25,7 +25,7 @@ package org.apache.royale.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.10.0
+     *  @productversion Royale 0.9.8
      */
 	public interface ILabelFunction extends IBead
 	{
@@ -60,7 +60,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
-         *  @productversion Royale 0.10.0
+         *  @productversion Royale 0.9.8
          */
 		function get labelFunction():Function;
 		function set labelFunction(value:Function):void;

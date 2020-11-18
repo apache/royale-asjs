@@ -24,7 +24,7 @@ package org.apache.royale.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.10.0
+     *  @productversion Royale 0.9.8
      */
     public interface ITextButton extends IUIBase
     {
@@ -34,7 +34,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.10.0
+         *  @productversion Royale 0.9.8
          */
 		function get text():String;
         function set text(value:String):void;
@@ -45,7 +45,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.10.0
+         *  @productversion Royale 0.9.8
          */
 		COMPILE::JS
         function get spanLabel():HTMLSpanElement;

@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.10.0
+	 *  @productversion Royale 0.9.8
 	 */
 	public class ResponsiveSize implements IBead
 	{
@@ -41,7 +41,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 */
 		public function ResponsiveSize()
 		{
@@ -145,7 +145,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.10.0
+		 *  @productversion Royale 0.9.8
 		 *  @royaleignorecoercion org.apache.royale.core.IStrand;
 		 */
 		public function set strand(value:IStrand):void
