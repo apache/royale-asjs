@@ -140,6 +140,8 @@ package org.apache.royale.net
          */        
         public function load(request:org.apache.royale.net.URLRequest):void
         {
+            bytesLoaded = 0;
+            bytesTotal = 0;
             // copied from HTTPService            
             COMPILE::SWF
             {
@@ -201,8 +203,15 @@ package org.apache.royale.net
             COMPILE::JS
             {
                 var element:XMLHttpRequest = this.element as XMLHttpRequest;
-                element.onreadystatechange = progressHandler;
-                element.onprogress = jsLoadProgressHandler;
+                if (!element.onreadystatechange){
+                    element.onreadystatechange = progressHandler;
+                    var commonHandler:Function = jsEventHandler;
+                    element.onprogress = commonHandler;
+                    element.onloadstart = commonHandler;
+                    element.onloadend = commonHandler;
+                    element.onload = commonHandler;
+                }
+
                 var url:String = request.url;
                 
                 /*                
@@ -340,13 +349,13 @@ package org.apache.royale.net
         }
 
         COMPILE::JS
-        protected function jsLoadProgressHandler(e:window.ProgressEvent):void{
-            if (e.lengthComputable) {
+        protected function jsEventHandler(e:window.ProgressEvent):void{
+            if (e.loaded) {
+                //there is some quantity of loaded bytes, but bytesTotal may be unknown (e.lengthComputable)
                 bytesLoaded = e.loaded;
-                bytesTotal = e.total;
-                trace('loadProgressHandler', bytesLoaded, bytesTotal);
+                bytesTotal = e.lengthComputable ? e.total : 0;
                 //avoid instantiation and dispatch unless we are being listened to
-                if (hasEventListener(org.apache.royale.events.ProgressEvent.PROGRESS))
+                if (e.type=='progress' && hasEventListener(org.apache.royale.events.ProgressEvent.PROGRESS))
                     dispatchEvent(new org.apache.royale.events.ProgressEvent(org.apache.royale.events.ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal ))
             } else {
                 bytesLoaded = 0;
