@@ -341,10 +341,11 @@ package org.apache.royale.net
                 {
                     dispatchEvent(HTTPConstants.IO_ERROR);
                 }
-                else
+                //otherwise wait for 'load' event to dispatch 'complete' so that bytesLoaded and bytesTotal are accurate
+                /*else
                 {
                     dispatchEvent(HTTPConstants.COMPLETE);
-                }
+                }*/
             }
         }
 
@@ -356,7 +357,13 @@ package org.apache.royale.net
                 bytesTotal = e.lengthComputable ? e.total : 0;
                 //avoid instantiation and dispatch unless we are being listened to
                 if (e.type=='progress' && hasEventListener(org.apache.royale.events.ProgressEvent.PROGRESS))
-                    dispatchEvent(new org.apache.royale.events.ProgressEvent(org.apache.royale.events.ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal ))
+                    dispatchEvent(new org.apache.royale.events.ProgressEvent(org.apache.royale.events.ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal ));
+                if (e.type == 'load') {
+                    if (!e.lengthComputable) {
+                        bytesTotal = bytesLoaded;
+                    }
+                    dispatchEvent(HTTPConstants.COMPLETE);
+                }
             } else {
                 bytesLoaded = 0;
                 bytesTotal = 0;
