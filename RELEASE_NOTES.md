@@ -3,9 +3,39 @@ Apache Royale 0.9.8
 
 - Basic
   - Move getParentEventTarget() from EventDispatcher to UIBase to reduce require dependencies. This allows EventDispatcher to be used in non-GUI contexts, such as Node.js.
+  - UIBase, added loadBeads hook method
+  - Added BrowserResizeListener bead that listen for browser resizing and resizes a component accordingly.
+  - StyledUIBase & ClassSelectorListSupport, added replaceClass method
+  - Added ILableFunction and LabelFunction bead
+  - Added interfaces for better extension in Basic and Jewel: IColumns, ITableModel, ITableView, ILayoutChildren, ITextButton
+
 - RoyaleUnit
   - Fixed issue where CIListener incorrectly escaped quotes in messages.
   - Better error messages when [BeforeClass] or [AfterClass] is detected, but method is not found by reflection.
+- Jewel
+  - Button, CheckBox, RadioButton: add "spanLabel" to separate the text from other decorations like icons and get more control over styling
+  - Image added "loadComplete" event
+    - New ClipImage bead for images to allo clipping
+  - Added SimpleLoader component that show a indeterminated spin circle
+  - List 
+    - Added label function through beads
+    - New ListAlternateRowColor bead
+  - TabBar: Multiple refactors to decouple functionality in beads and make renderers more flexible. Now we allow vertical layouts and indicator in renderer can be positiones in different places
+  - Table
+    - Added label function through beads
+    - New TableAlternateRowColor bead
+  - DataGrid
+    - Multiple fixes in column dimensions to allow more configurations
+    - Added sorting
+    - Added swap of columns
+    - Added label function through beads
+  - PresentationModels refactor for List and DataGrid based controls to allow more flexibility
+  - NumericStepper:
+  - New responsive beads like ResponsoveSize, ResponsiveResizeListener and ResponsiveLabelVisibility
+  - New TileHorizontalLayout and TileVerticalLayout beads
+  - New ViewLayout for View
+  - Start of VirtualDataGrid component
+
 
 Apache Royale 0.9.7
 ===================
