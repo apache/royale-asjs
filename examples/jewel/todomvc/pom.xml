@@ -44,6 +44,12 @@
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/todomvc-index-template.html</htmlTemplate>
           <additionalCompilerOptions>
             -source-map=true;
+
+            -export-public-symbols=false
+            -prevent-rename-protected-symbols=false
+            -prevent-rename-internal-symbols=false
+            -prevent-rename-public-static-methods=false
+            -prevent-rename-public-instance-methods=false
           </additionalCompilerOptions>
         </configuration>
       </plugin>
