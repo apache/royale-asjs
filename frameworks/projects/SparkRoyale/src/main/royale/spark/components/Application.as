@@ -74,6 +74,7 @@ COMPILE::JS {
 import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IFlexInfo;
+import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.IPopUpHost;
 import org.apache.royale.core.IPopUpHostParent;
@@ -2294,6 +2295,15 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
 		return _softKeyboardRect;
 	}*/
      
+    override public function setActualSize(w:Number, h:Number):void
+    {
+		super.setActualSize(w, h);
+		if (!skin) {
+			((view as ILayoutHost).contentView as Group).width = w;
+			((view as ILayoutHost).contentView as Group).height = h;
+		}
+    }
+
      //--------------------------------------------------------------------------
      //
      //  IPopUpHost
