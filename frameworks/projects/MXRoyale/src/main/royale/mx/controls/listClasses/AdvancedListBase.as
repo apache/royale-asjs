@@ -61,6 +61,7 @@ import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
 import mx.events.FlexEvent;
 import mx.events.ListEvent;
+import mx.managers.IFocusManagerComponent;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IDataProviderNotifier;
@@ -476,8 +477,8 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class AdvancedListBase extends ListBase /* extends UIComponent 
-                      implements IDataRenderer, IFocusManagerComponent,
+public class AdvancedListBase extends ListBase implements IFocusManagerComponent /* extends UIComponent 
+                      implements IDataRenderer,
                       IListItemRenderer, IDropInListItemRenderer,
                       IEffectTargetHost */
 {
