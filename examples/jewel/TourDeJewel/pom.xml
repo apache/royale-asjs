@@ -947,7 +947,17 @@
           <targets>JSRoyale</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-source-map=true;-js-dynamic-access-unknown-members=true</additionalCompilerOptions>
+          <additionalCompilerOptions>
+            -js-dynamic-access-unknown-members=true
+            
+            -export-public-symbols=false
+            -prevent-rename-protected-symbols=false
+            -prevent-rename-internal-symbols=false
+            -prevent-rename-public-static-methods=false
+            -prevent-rename-public-instance-methods=false
+            
+            -source-map=true;
+          </additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
