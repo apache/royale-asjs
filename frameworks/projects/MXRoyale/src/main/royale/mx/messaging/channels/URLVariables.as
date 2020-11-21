@@ -19,19 +19,24 @@
 
 package mx.messaging.channels
 {
-	public class URLVariables 
+	import org.apache.royale.net.URLVariables;
+
+
+	public class URLVariables extends org.apache.royale.net.URLVariables
 	{
 		public function URLVariables(source:String = null)
 		{
+			super(source);
 		}
 		
-		public function decode(source:String):void
+		override public function decode(source:String):void
 		{
+			super.decode(source);
 		}
 		
-		public function toString():String
+		override public function toString():String
 		{
-			return "";
+			return super.toString();
 		}	
 	}
 }
