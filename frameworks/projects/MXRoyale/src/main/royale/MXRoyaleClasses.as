@@ -251,7 +251,6 @@ internal class MXRoyaleClasses
 	import mx.rpc.CallResponder; CallResponder;
 	import mx.rpc.http.Operation; Operation;
 	import mx.events.TreeEvent; TreeEvent;
-	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
 	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
