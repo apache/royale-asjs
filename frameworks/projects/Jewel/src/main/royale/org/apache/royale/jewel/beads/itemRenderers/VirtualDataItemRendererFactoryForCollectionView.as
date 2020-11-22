@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			super(target);
 		}
 
-		private var dp:ArrayList;
+		private var dp:IArrayList;
 		
 		/**
 		 *  
@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			if (!dataProviderModel)
 				return;
-			dp = dataProviderModel.dataProvider as ArrayList;
+			dp = dataProviderModel.dataProvider as IArrayList;
 			if (!dp)
 				return;
 			
