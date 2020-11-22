@@ -144,6 +144,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 				sendEvent(list, 'change');
 			}
 		}
+
+		protected function get presentationModel():IListPresentationModel {
+			return list.presentationModel as IListPresentationModel;
+		}
 		
 		/**
 		 *  Ensures that the data provider item at the given index is visible.
@@ -166,9 +170,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 			var oldScroll:Number = scrollArea.scrollTop;
 
 			var totalHeight:Number = 0;
-			var pm:IListPresentationModel = list.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
-			if(pm.variableRowHeight)
+			if(presentationModel.variableRowHeight)
 			{
 				//each item render can have its own height
 				var n:int = _visibleIndexes.length;
@@ -182,7 +185,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 			{
 				var rowHeight:Number;
 				// all items renderers with same height
-				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : pm.rowHeight;
+				rowHeight = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
 				totalHeight = _visibleIndexes.length * rowHeight - scrollArea.clientHeight;
 				
 				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
