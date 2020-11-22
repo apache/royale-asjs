@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -37,7 +38,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
-	// import org.apache.royale.core.IFocusable;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -79,6 +79,10 @@ package org.apache.royale.jewel.beads.views
 		protected var listModel:ISelectionModel;
 
 		protected var lastSelectedIndex:int = -1;
+		
+		protected function get presentationModel():IListPresentationModel {
+			return (_strand as IListWithPresentationModel).presentationModel as IListPresentationModel;
+		}
 
 		/**
 		 * @private
@@ -181,9 +185,8 @@ package org.apache.royale.jewel.beads.views
 			var oldScroll:Number = scrollArea.scrollTop;
 
 			var totalHeight:Number = 0;
-			var pm:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
-			if(pm.variableRowHeight)
+			if(presentationModel.variableRowHeight)
 			{
 				//each item render can have its own height
 				var n:int = listModel.dataProvider.length;
@@ -196,12 +199,12 @@ package org.apache.royale.jewel.beads.views
 				}
 
 				scrollArea.scrollTop = Math.min(irHeights[index], totalHeight);
-
-			} else 
+			} 
+			else 
 			{
 				var rowHeight:Number;
 				// all items renderers with same height
-				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : pm.rowHeight;
+				rowHeight = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
 				totalHeight = listModel.dataProvider.length * rowHeight - scrollArea.clientHeight;
 				
 				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
