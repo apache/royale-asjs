@@ -27,7 +27,6 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.ITableModel;
-	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	[DefaultProperty("columns")]
@@ -68,7 +67,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Table extends DataContainerBase
+	public class Table extends DataContainer
 	{
 		/**
 		 *  constructor.
@@ -141,11 +140,11 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get dataProvider():Object
+		override public function get dataProvider():Object
 		{
 			return ITableModel(model).dataProvider;
 		}
-		public function set dataProvider(value:Object):void
+		override public function set dataProvider(value:Object):void
 		{
 			ITableModel(model).dataProvider = value;
 		}
