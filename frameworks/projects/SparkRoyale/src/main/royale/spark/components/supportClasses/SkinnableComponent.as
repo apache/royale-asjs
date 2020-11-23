@@ -231,6 +231,7 @@ public class SkinnableComponent extends UIComponent
 
     }
 
+	private var skinStateInvalidated:Boolean = false;
  
     /**
      *  Marks the component so that the new state of the skin is set
@@ -243,9 +244,12 @@ public class SkinnableComponent extends UIComponent
      */
     public function invalidateSkinState():void
     {
+		skinStateInvalidated = true;
+		
 	    if (skin)
 	    {
 		    skin.currentState = getCurrentSkinState();
+			skinStateInvalidated = false;
 	    }
     }
 	
@@ -288,6 +292,8 @@ public class SkinnableComponent extends UIComponent
         
         _skin = value;
         findSkinParts();
+		if (skinStateInvalidated)
+			invalidateSkinState();
         dispatchEvent(new Event("skinChanged"));
     }
     
