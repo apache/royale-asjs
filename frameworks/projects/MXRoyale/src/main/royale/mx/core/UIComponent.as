@@ -4847,12 +4847,11 @@ COMPILE::JS
      */
     public function get fontFamily():Object
     {
-        trace("fontFamily not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "fontFamily");
     }
     public function set fontFamily(value:Object):void
     {
-        trace("fontFamily not implemented");
+        setStyle("fontFamily", value);
     }
 	[Inspectable(category="General")]
 	
