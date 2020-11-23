@@ -102,20 +102,25 @@ public class SkinnableContainerView extends SparkContainerView
         {
             if (host.skin)
             {
-		    (host.skin as Skin).layout.measure();
-		    if (host.isWidthSizedToContent()) 
-		    {
-			    host.skin.setLayoutBoundsSize(NaN, host.height);
-			    host.measuredWidth = host.skin.measuredWidth;
-		    } else
-		    {
-			    host.skin.setLayoutBoundsSize(host.width, NaN);
-			    host.measuredHeight = host.skin.measuredHeight;
-		    }
+			    (host.skin as Skin).layout.measure();
+			    if (host.isWidthSizedToContent()) 
+			    {
+				    host.skin.setLayoutBoundsSize(NaN, host.height);
+				    host.measuredWidth = host.skin.measuredWidth;
+			    } else
+			    {
+				    host.skin.setLayoutBoundsSize(host.width, NaN);
+				    host.measuredHeight = host.skin.measuredHeight;
+			    }
             }
             else
             {
-                (viewport.contentView as ILayoutChild).setWidthAndHeight(host.width, host.height);
+                if (host.layout == null)
+                    host.layout = new BasicLayout();
+                host.layout.measure();
+				var h:Number = host.isHeightSizedToContent() ? host.measuredHeight : host.height;
+				var w:Number = host.isWidthSizedToContent() ? host.measuredWidth : host.width;
+                (viewport.contentView as ILayoutChild).setWidthAndHeight(w, h);
             }
                 
         }
