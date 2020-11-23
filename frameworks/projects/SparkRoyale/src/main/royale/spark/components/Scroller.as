@@ -3912,6 +3912,22 @@ public class Scroller extends SkinnableComponent
 		if (vp.isHeightSizedToContent())
         		vp.setHeight(height);
     }
+
+	override public function get measuredWidth():Number
+	{
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp)
+			return vp.measuredWidth;
+		return super.measuredWidth;
+	}
+	
+	override public function get measuredHeight():Number
+	{
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp)
+			return vp.measuredHeight;
+		return super.measuredHeight;
+	}	
 }
 
 }
