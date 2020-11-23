@@ -65,6 +65,19 @@ package org.apache.royale.core
         private var _strand:IStrand;
         
         private var sawInitComplete:Boolean;
+
+	    /**
+	     *  @private
+	     *  This is a table of pseudonyms.
+	     *  Whenever the property being overridden is found in this table,
+	     *  the pseudonym is saved/restored instead.
+	     */
+	    private static const PSEUDONYMS:Object =
+	    {
+	        width: "explicitWidth",
+	        height: "explicitHeight",
+	        currentState: "currentStateDeferred"
+	    };
         
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -262,10 +275,11 @@ package org.apache.royale.core
                 else if (o is SetProperty)
                 {
                     var sp:SetProperty = SetProperty(o);
+					var propName:String = PSEUDONYMS[sp.name] || sp.name;
                     if (sp.target != null)
-                        sp.document[sp.target][sp.name] = sp.previousValue;
+                        sp.document[sp.target][propName] = sp.previousValue;
                     else
-                        sp.document[sp.name] = sp.previousValue;
+                        sp.document[propName] = sp.previousValue;
                 }
                 else if (o is SetEventHandler)
                 {
@@ -359,15 +373,16 @@ package org.apache.royale.core
                 else if (o is SetProperty)
                 {
                     var sp:SetProperty = SetProperty(o);
+					var propName:String = PSEUDONYMS[sp.name] || sp.name;
                     if (sp.target != null)
                     {
-                        sp.previousValue = sp.document[sp.target][sp.name];
-                        sp.document[sp.target][sp.name] = sp.value;
+                        sp.previousValue = sp.document[sp.target][propName];
+                        sp.document[sp.target][propName] = sp.value;
                     }
                     else
                     {
-                        sp.previousValue = sp.document[sp.name];
-                        sp.document[sp.name] = sp.value;                        
+                        sp.previousValue = sp.document[propName];
+                        sp.document[propName] = sp.value;                        
                     }
                 }
                 else if (o is SetEventHandler)
