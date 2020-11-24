@@ -48,6 +48,7 @@ import flashx.textLayout.formats.TLFTypographicCase; */
 //import mx.core.IEmbeddedFontRegistry;
 //import mx.core.IFlexModuleFactory;
 import mx.core.IUIComponent;
+import org.apache.royale.html.beads.SelectableBead;
 //import mx.core.Singleton;
 import mx.core.mx_internal;
 
@@ -421,8 +422,15 @@ public class Label extends TextBase
         if (GOOG::DEBUG)
             trace("baselineShift not implemented");
     }
-	
-	
+
+    override public function addedToParent():void
+	{
+		super.addedToParent();
+		var selectableBead:SelectableBead = new SelectableBead();
+		selectableBead.selectable = false;
+		addBead(selectableBead);
+	}
+
     public function get digitWidth():String
     {
         return "";
