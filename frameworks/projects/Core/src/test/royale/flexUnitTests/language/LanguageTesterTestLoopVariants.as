@@ -22,7 +22,7 @@ package flexUnitTests.language
     import org.apache.royale.test.asserts.*;
     import flexUnitTests.language.support.*;
     
-    import testshim.RoyaleUnitTestRunner;
+
     
     /**
      * @royalesuppresspublicvarwarning
