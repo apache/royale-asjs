@@ -51,6 +51,7 @@ import mx.core.IUIComponent;
 import org.apache.royale.html.beads.SelectableBead;
 //import mx.core.Singleton;
 import mx.core.mx_internal;
+import org.apache.royale.core.ValuesManager;
 
 import spark.components.supportClasses.TextBase;
 //import spark.utils.TextUtil;
@@ -440,13 +441,15 @@ public class Label extends TextBase
         
     }
 	    
+    // TODO figure out if Flex values are identical
     public function get textDecoration():String
     {
-        return "";
+        return ValuesManager.valuesImpl.getValue(this, "textDecoration");
     }
+
     public function set textDecoration(value:String):void
     {
-        
+        setStyle("textDecoration", value);
     }
     
     //--------------------------------------------------------------------------
