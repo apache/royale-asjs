@@ -156,7 +156,30 @@ package flexUnitTests.xml
             assertEquals( xml3.foo.@boo,'boo', 'xml3.foo.@boo should be "boo"');
 
         }
-        
+
+        [Test]
+        public function testWhitespaceVariants():void{
+            XML.ignoreWhitespace = false;
+
+            var test:XML = new XML("    test   \n ");
+            assertEquals(test.toString().length,13, 'unexpected length')
+            XML.ignoreWhitespace = true;
+            test = new XML("    test   \n ");
+            assertEquals(test.toString().length,4, 'unexpected length')
+
+            XML.ignoreWhitespace = false;
+            var xml1:XML = new XML('<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+            XML.ignoreWhitespace = true;
+            xml1 = new XML('<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+            XML.ignoreWhitespace = false;
+            xml1 = new XML('    \r\n<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />\r\n');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+            XML.ignoreWhitespace = true;
+            xml1 = new XML('    \r\n<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />\r\n');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+        }
        
         
         [Test]

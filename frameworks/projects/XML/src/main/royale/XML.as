@@ -468,11 +468,7 @@ package
 			return false;
 		}
 		
-		static private function trimXMLWhitespace(value:String):String
-		{
-			return value.replace(/^\s+|\s+$/gm,'');
-		}
-		
+
 		/**
 		 * [static] Returns an object with the following properties set to the default values: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
 		 * @return
@@ -568,10 +564,11 @@ package
 			// _children = [];
 			if(xml != null)
 			{
-				var xmlStr:String = ignoreWhitespace ? trimXMLWhitespace("" + xml) : "" + xml;
+				var xmlStr:String = "" + xml;
 				if(xmlStr.indexOf("<") == -1)
 				{
 					// _nodeKind = TEXT;
+					if (ignoreWhitespace) xmlStr = xmlStr.trim();
 					_value = xmlStr;
 				}
 				else
@@ -634,7 +631,7 @@ package
 			
 			var decl:String = xmlDecl.exec(xml);
 			if (decl) xml = xml.replace(decl,'');
-			if (ignoreWhitespace) xml = trimXMLWhitespace( xml) ;
+			if (ignoreWhitespace) xml = xml.trim();
 			//various node types not supported directly
 			//when parsing, always wrap (e4x ref p34, 'Semantics' of e4x-Ecma-357.pdf)
 			//custom: support alternate default xml namespace when parsing:
@@ -917,7 +914,12 @@ package
 					child = xmlFromStringable(child);
 				}
 			}
-			
+			if (child is XML  && (child as XML).getNodeRef() == ATTRIBUTE){
+				//convert to text node
+				var xml:XML= new XML();
+				xml._value = child.toString();
+				child = xml;
+			}
 			appendChildInternal(child);
 			//normalize seems not correct here:
 			//normalize();
@@ -3067,7 +3069,7 @@ package
 			{
 				if(prettyPrinting)
 				{
-					var v:String = trimXMLWhitespace(_value);
+					var v:String = (_value+'').trim();
 					if (v.indexOf('<![CDATA[') == 0) {
 						return indent + v;
 					}
