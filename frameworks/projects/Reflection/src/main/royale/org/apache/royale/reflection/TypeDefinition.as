@@ -890,6 +890,7 @@ COMPILE::SWF {
             while (collections.length) {
                 var collectionType:String = collections.shift();
                 var collection:Array =collections.shift();
+                collection.sort(function (item1:Object, item2:Object):int{ return item1.name < item2.name ? -1 : 1 });
                 s += collectionType+" :";
                 if (!collection || !collection.length) {
                     s+= "\n\t{none}\n"
