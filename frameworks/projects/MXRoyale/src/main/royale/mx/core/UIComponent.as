@@ -1084,6 +1084,7 @@ public class UIComponent extends UIBase
       _accessibilityEnabled = value;
     }
     
+    private var _useHandCursor:Boolean;
     /**
      *  From flash.display.Sprite
      *
@@ -1096,15 +1097,33 @@ public class UIComponent extends UIBase
     { override }
     public function get useHandCursor():Boolean
     {
-        trace("useHandCursor not implemented");
-        return false;
+	    COMPILE::JS
+	    {
+		    return _useHandCursor;
+	    }
+	    COMPILE::SWF
+	    {
+		trace("useHandCursor not implemented");
+		return false;
+	    }
     }
     
     COMPILE::SWF
     { override }
     public function set useHandCursor(value:Boolean):void
     {
-        trace("useHandCursor not implemented");
+	    COMPILE::JS
+	    {
+		    if (value != _useHandCursor)
+		    {
+			    element.style.cursor = value ? "pointer" : "auto";
+			    _useHandCursor = value;
+		    }
+	    }
+	    COMPILE::SWF
+	    {
+		trace("useHandCursor not implemented");
+	    }
     }
 	
 	 /**

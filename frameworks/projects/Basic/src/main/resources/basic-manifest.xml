@@ -169,6 +169,7 @@
     <component id="ThrottleBead" class="org.apache.royale.html.beads.ThrottleBead"/>
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
+    <component id="SelectableBead" class="org.apache.royale.html.beads.SelectableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
     <component id="DisableLoaderBead" class="org.apache.royale.html.beads.DisableLoaderBead" />
     <component id="ShrinkableDisableLoaderBead" class="org.apache.royale.html.beads.ShrinkableDisableLoaderBead" />
