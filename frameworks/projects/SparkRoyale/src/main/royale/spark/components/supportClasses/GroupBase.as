@@ -759,7 +759,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     //  clipAndEnableScrolling
     //----------------------------------
 
-    private var _clipAndEnableScrolling:Boolean = false;
+    private var _clipAndEnableScrolling:Boolean = true;
     
     /**
      *  @copy spark.core.IViewport#clipAndEnableScrolling
