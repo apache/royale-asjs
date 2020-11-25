@@ -21,7 +21,10 @@ package spark.components.beads
 {
 
 import mx.core.mx_internal;
-use namespace mx_internal;
+
+    import spark.core.IViewport;
+
+    use namespace mx_internal;
 
 import spark.components.supportClasses.GroupBase;
 import spark.components.supportClasses.SkinnableComponent;
@@ -83,7 +86,18 @@ public class SparkSkinScrollingViewport extends SparkSkinViewport implements ISc
     COMPILE::JS
     protected function setScrollStyle():void
     {
-        contentArea.element.style.overflow = "auto";
+        var viewPortArea:IViewport = contentArea as IViewport;
+        if (viewPortArea && !viewPortArea.clipAndEnableScrolling)
+        {
+            if (contentArea.element.style.overflow != "unset")
+            {
+                contentArea.element.style.overflow = "unset";
+            }
+        }
+        else
+        {
+            contentArea.element.style.overflow = "auto";
+        }
     }
     
     COMPILE::SWF
