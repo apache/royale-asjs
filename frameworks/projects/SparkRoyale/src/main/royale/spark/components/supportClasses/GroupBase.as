@@ -790,7 +790,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     {
         COMPILE::JS
         {
-            element.style.overflow = value ? "auto" : "unset";
+            element.style.overflow = value ? "auto" : "visible";
         }
         COMPILE::SWF
         {

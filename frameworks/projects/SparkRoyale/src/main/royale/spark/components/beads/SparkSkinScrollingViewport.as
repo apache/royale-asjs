@@ -86,18 +86,7 @@ public class SparkSkinScrollingViewport extends SparkSkinViewport implements ISc
     COMPILE::JS
     protected function setScrollStyle():void
     {
-        var viewPortArea:IViewport = contentArea as IViewport;
-        if (viewPortArea && !viewPortArea.clipAndEnableScrolling)
-        {
-            if (contentArea.element.style.overflow != "unset")
-            {
-                contentArea.element.style.overflow = "unset";
-            }
-        }
-        else
-        {
-            contentArea.element.style.overflow = "auto";
-        }
+        contentArea.element.style.overflow = "auto";
     }
     
     COMPILE::SWF
