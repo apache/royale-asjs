@@ -19,6 +19,7 @@
 package spark.effects
 {
 import mx.core.mx_internal;
+import mx.events.EffectEvent;
 import mx.effects.IEffectInstance;
 
 import spark.effects.supportClasses.ResizeInstance;
@@ -295,5 +296,12 @@ public class Resize extends Animate
         return propertyChanges;
     }
                                                      
+    // not implemented
+    override public function play():void
+	{
+		// until this effect is implemented we don't want to get in the way of transitions
+		dispatchEvent(new EffectEvent("effectEnd"));
+	}
+
 }
 }
