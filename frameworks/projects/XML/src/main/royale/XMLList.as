@@ -1454,6 +1454,15 @@ package
 			throwError("Incompatible assignment of XMLList to XML");
 			return null;
 		}
+
+		public function localName():String
+		{
+			if (isSingle())
+				return _xmlArray[0].localName();
+			
+			throwError("Incompatible assignment of XMLList to XML");
+			return null;
+		}
 	}
 }
 
