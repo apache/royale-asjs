@@ -78,5 +78,17 @@ package spark.components.supportClasses
                 (w - 17) + ',12 L ' + (w - 21) + ',5"</path></svg>';    
             
         }
+
+	    //--------------------------------------------------------------------------
+	    //
+	    //  Overridden methods
+	    //
+	    //--------------------------------------------------------------------------
+	    
+	    override public function get measuredHeight():Number
+	    {
+	        return 21; // maybe measure font someday if fontSize is large
+	    }
+
 	}
 }
