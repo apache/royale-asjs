@@ -65,11 +65,7 @@ package spark.components.supportClasses
         private function updateSkin(w:Number, h:Number):void
         {
 			var clipid:String = "txtClip" + instanceId;
-			// temp fix for https://github.com/apache/royale-asjs/issues/952
-			//if (h < 4) return;
-			if (h < 15) 
-				return;
-			h = h - 10;
+			if (h < 4) return;
             element.innerHTML = '<svg width="' + w + 'px" height="' +
                 h + 'px" xmlns="http://www.w3.org/2000/svg"><clipPath id="' + clipid + '"><rect x="0" y="0" height="' + h + 
 				'px" width="' + (w - 29) + 'px"/></clipPath><text y="3px" clip-path="url(#' + clipid + ')">' +
