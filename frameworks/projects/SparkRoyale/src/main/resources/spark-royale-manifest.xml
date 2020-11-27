@@ -35,6 +35,7 @@
 	<component id="Panel" class="spark.components.Panel" />
 	<component id="TitleWindow" class="spark.components.TitleWindow" />
 	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
+	<component id="SparkSkinWithClipAndEnableScrollingViewport" class="spark.components.beads.SparkSkinWithClipAndEnableScrollingViewport"/>
 	<component id="Path" class="spark.primitives.Path"/>
 	<component id="Rect" class="spark.primitives.Rect"/>
 	<component id="Line" class="spark.primitives.Line"/>
