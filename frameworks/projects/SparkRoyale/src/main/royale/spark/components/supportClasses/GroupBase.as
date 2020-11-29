@@ -1442,9 +1442,8 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     /**
      *  @private 
      */ 
-    override public function globalToLocal(point:Point):Point
+    /* override public function globalToLocal(point:Point):Point
     {
-		/*
         if (resizeMode == ResizeMode.SCALE && _layoutFeatures != null)
         {
             // If resize mode is scale, then globalToLocal shouldn't account for 
@@ -1468,9 +1467,8 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         {
             return super.globalToLocal(point);    
         }
-		*/
 		return null;
-    }
+    } */
     
     /**
      *  @private 
