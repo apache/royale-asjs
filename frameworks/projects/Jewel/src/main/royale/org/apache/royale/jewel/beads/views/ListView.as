@@ -35,6 +35,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
@@ -131,6 +132,12 @@ package org.apache.royale.jewel.beads.views
 			}
 			
 			lastSelectedIndex = listModel.selectedIndex;
+
+			// if the selection was not from a user click selection, then scrol to index
+			if(!(listModel as IJewelSelectionModel).isItemClicked)
+			{
+				scrollToIndex(lastSelectedIndex);
+			}
 		}
 
 		protected var lastRollOverIndex:int = -1;
