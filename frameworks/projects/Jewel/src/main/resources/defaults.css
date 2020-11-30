@@ -573,7 +573,7 @@ j|VirtualDataGridColumnList {
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
 }
-  
+
 .jewel.datechooser .jewel.table {
   min-width: 324px;
   min-height: 364px;

@@ -63,8 +63,11 @@ package org.apache.royale.jewel.beads.layouts
 
             for (var i:int = 0; i < listArea.numElements; i++)
             {
+				COMPILE::JS
+				{
                 if (listArea.getElementAt(i) != host)
                     listArea.getElementAt(i).element.scrollTop = host.element.scrollTop;
+				}	
             }
         }
 	}
