@@ -93,6 +93,7 @@ internal class SparkRoyaleClasses
     import spark.components.beads.GroupView; GroupView;
     import spark.components.beads.SkinnableContainerView; SkinnableContainerView;
     import spark.components.beads.SparkSkinScrollingViewport; SparkSkinScrollingViewport;
+	import spark.components.beads.SparkSkinWithClipAndEnableScrollingViewport; SparkSkinWithClipAndEnableScrollingViewport;
     import spark.components.beads.DropDownListView; DropDownListView;
     import spark.components.beads.TitleWindowView; TitleWindowView;
     import spark.components.beads.controllers.DropDownListController; DropDownListController;

@@ -1018,7 +1018,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const REMOVE:String = "remove";
+    public static const REMOVE:String = "remove";
 
     /**
      *  The <code>FlexEvent.REPEAT</code> constant defines the value of the

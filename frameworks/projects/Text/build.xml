@@ -138,6 +138,11 @@
         type="file"
         property="ROYALE_COMPILER_HOME"
         value="${ROYALE_HOME}/js"/>
+
+        <available file="${env.ROYALE_COMPILER_HOME}/lib/jsc.jar"
+        type="file"
+        property="ROYALE_COMPILER_HOME"
+        value="${env.ROYALE_COMPILER_HOME}"/>
         
         <fail message="ROYALE_COMPILER_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder of a Royale SDK"
         unless="ROYALE_COMPILER_HOME"/>

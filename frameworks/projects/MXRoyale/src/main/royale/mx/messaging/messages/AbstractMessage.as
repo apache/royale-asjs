@@ -21,8 +21,16 @@ package mx.messaging.messages
 {
 
 import org.apache.royale.utils.BinaryData;
-import org.apache.royale.utils.net.IDataInput;
-import org.apache.royale.utils.net.IDataOutput;
+
+COMPILE::JS {
+	import org.apache.royale.utils.net.IDataInput;
+	import org.apache.royale.utils.net.IDataOutput;
+}
+COMPILE::SWF{
+	import flash.utils.IDataInput;
+	import flash.utils.IDataOutput;
+}
+
 import org.apache.royale.reflection.getQualifiedClassName;
 
 import mx.core.mx_internal;

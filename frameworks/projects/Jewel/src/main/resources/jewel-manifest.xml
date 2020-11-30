@@ -54,6 +54,8 @@
     <component id="DataGridButtonBar" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar"/>
     
     <component id="VirtualDataGrid" class="org.apache.royale.jewel.VirtualDataGrid"/>
+    <component id="VirtualDataGridListArea" class="org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridListArea"/>
+    <component id="VirtualDataGridListAreaLayout" class="org.apache.royale.jewel.beads.layouts.VirtualDataGridListAreaLayout"/>    
     <component id="VirtualDataGridColumnList" class="org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList"/>
     
     <component id="DataGridColumnLabelsChange" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridColumnLabelsChange"/>

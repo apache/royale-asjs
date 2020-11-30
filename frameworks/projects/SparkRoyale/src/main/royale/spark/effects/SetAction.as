@@ -21,6 +21,7 @@ package spark.effects
 {
 
 import spark.effects.supportClasses.SetActionInstance;
+import mx.events.EffectEvent;
 
 import mx.effects.Effect;
 import mx.effects.IEffectInstance;
@@ -174,6 +175,15 @@ public class SetAction extends Effect
         actionInstance.property = property;
         actionInstance.value = value;
     }
+
+
+    // not implemented
+    override public function play():void
+	{
+		// until this effect is implemented we don't want to get in the way of transitions
+		dispatchEvent(new EffectEvent("effectEnd"));
+	}
+
 }
 
 }

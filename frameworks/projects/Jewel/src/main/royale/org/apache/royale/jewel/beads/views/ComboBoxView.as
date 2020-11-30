@@ -214,8 +214,7 @@ package org.apache.royale.jewel.beads.views
 					
 					//popup width needs to be set before position inside bounding client to work ok
 					_list.width = host.width;
-					_list.scrollToIndex(_list.selectedIndex);
-                    
+					
                     COMPILE::JS
                     {
 					// Fix temporary: when soft keyboard opens in ios devices browser is not resized, so popup gets under the keyboard

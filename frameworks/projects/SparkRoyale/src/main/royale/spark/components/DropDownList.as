@@ -333,6 +333,12 @@ public class DropDownList extends DropDownListBase
         }
     } */
     
+    override protected function measure():void
+    {
+        measuredWidth = 112;
+        measuredHeight = 21;
+    }
+
     /**
      *  @private
      */

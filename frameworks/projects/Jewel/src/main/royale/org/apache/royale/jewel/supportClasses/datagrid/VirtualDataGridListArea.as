@@ -4,7 +4,7 @@
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
 //  The ASF licenses this file to You under the Apache License, Version 2.0
-//  (the "License"); you may not use this file except in compliance with
+//  (the "Licens"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -16,27 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.models
+package org.apache.royale.jewel.supportClasses.datagrid
 {
+    import org.apache.royale.jewel.Container;
 
-    import org.apache.royale.core.ISelectionModel;
-    import org.apache.royale.events.IEventDispatcher
-
-    /**
-     *  The IJewelSelectionModel interface is a simple extension to core ISelectionModel
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
-     */
-    public interface IJewelSelectionModel extends ISelectionModel
+    public class VirtualDataGridListArea extends DataGridListArea
     {
-        function get dispatcher():IEventDispatcher;
-        function set dispatcher(value:IEventDispatcher):void;
-        function get hasDispatcher():Boolean;
-        
-        function get isItemClicked():Boolean;
-        function set isItemClicked(value:Boolean):void;
+        public function VirtualDataGridListArea()
+        {
+            super();
+
+			typeNames = 'listarea';
+        }
     }
 }

@@ -135,11 +135,19 @@ package mx.net
 		{
 		  var a:HTMLAnchorElement = document.createElement("a") as HTMLAnchorElement;
 		  a.href = URL.createObjectURL(new Blob([data]));
-		  a.setAttribute("download", defaultFileName);
-		  a.text = defaultFileName;
-  		  document.body.appendChild(a);
-//  		  a.click();
-//  		  document.body.removeChild(a);
+		  if (defaultFileName == null)
+		  {
+		  		  a.setAttribute("download", "download.pdf");
+		  		  a.text = "download.pdf";
+		  }
+		  else
+          {
+		  		  a.setAttribute("download", defaultFileName);
+		  		  a.text = defaultFileName;
+          }
+          document.body.appendChild(a);
+ 		  a.click();
+  		  document.body.removeChild(a);
 		}
       }
 

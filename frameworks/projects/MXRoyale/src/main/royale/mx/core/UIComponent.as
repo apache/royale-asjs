@@ -3112,6 +3112,14 @@ COMPILE::JS
 
     /**
      *  @private
+     */
+    mx_internal function setIncludeInLayout(value:Boolean):void
+    {
+	_includeInLayout = value;
+    }
+    
+    /**
+     *  @private
      *  Storage for the includeInLayout property.
      */
     private var _includeInLayout:Boolean = true;

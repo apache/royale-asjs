@@ -181,7 +181,13 @@ package spark.components.beads
         {
             var list:DropDownList = host as DropDownList;
             var view:DropDownListView = list.view as DropDownListView;
-            view.label.setActualSize(list.width, list.height);
+			var w:Number = list.width;
+			if (list.isWidthSizedToContent())
+			    w = list.measuredWidth;
+			var h:Number = list.height;
+			if (list.isHeightSizedToContent())
+			    h = list.measuredHeight;
+            view.label.setActualSize(w, h);
 
             return false;
         }

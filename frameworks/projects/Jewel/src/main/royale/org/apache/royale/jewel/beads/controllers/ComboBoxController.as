@@ -174,7 +174,6 @@ package org.apache.royale.jewel.beads.controllers
 				var view:IListView = list.view as IListView;
 				var dataGroup:IItemRendererOwnerView = view.dataGroup;
 				var goToIndex:int = list.selectedIndex == -1 ? 0 : list.selectedIndex; 
-				list.scrollToIndex(goToIndex);
 				var ir:StyledDataItemRenderer = dataGroup.getItemRendererForIndex(goToIndex) as StyledDataItemRenderer;
 				COMPILE::JS
 				{

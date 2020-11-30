@@ -245,6 +245,18 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
+        private var _itemClicked:Boolean = false;
+        /**
+         * Identify when the selection is from a user click or when is programatically
+         */
+        public function get isItemClicked():Boolean {
+            return _itemClicked;
+        }
+        public function set isItemClicked(value:Boolean):void {
+            if(value !== _itemClicked)
+                _itemClicked = value;
+        }
+
         /**
          *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *
