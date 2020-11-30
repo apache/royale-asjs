@@ -148,9 +148,7 @@ package org.apache.royale.jewel.beads.controllers
 			// 	var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
 			// 	ir.setFocus();
 				
-            //     (listView as IScrollToIndexView).scrollToIndex(listModel.selectedIndex);
-				
-			// 	sendEvent(listView.host, 'change');
+            // 	sendEvent(listView.host, 'change');
 			// }
 		}
 	}

@@ -136,11 +136,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 				var ir:IFocusable = (list.view as IListView).dataGroup.getItemRendererForIndex(list.selectedIndex) as IFocusable;
 				ir.setFocus();
 				
-				COMPILE::JS
-				{
-                scrollToIndex(list.selectedIndex);
-				}
-				
 				sendEvent(list, 'change');
 			}
 		}

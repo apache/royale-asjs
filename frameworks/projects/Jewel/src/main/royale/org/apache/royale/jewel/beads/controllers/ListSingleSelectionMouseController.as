@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 
@@ -81,6 +82,14 @@ package org.apache.royale.jewel.beads.controllers
 				IEventDispatcher(listModel).addEventListener('selectionChanged', modelChangeHandler);
                 IEventDispatcher(listModel).addEventListener('dataProviderChanged', modelChangeHandler);
             }
+		}
+
+        // identify when the selection is from a user click or when is programatically
+        override protected function selectedHandler(event:ItemClickedEvent):void
+		{
+            (listModel as IJewelSelectionModel).isItemClicked = true;
+            super.selectedHandler(event);
+            (listModel as IJewelSelectionModel).isItemClicked = false;
 		}
 
         /**
