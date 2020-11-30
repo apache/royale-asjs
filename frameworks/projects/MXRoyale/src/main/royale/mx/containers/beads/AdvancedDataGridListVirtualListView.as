@@ -21,7 +21,6 @@ package mx.containers.beads
 {
 import mx.controls.AdvancedDataGrid;
 
-import org.apache.royale.html.beads.VirtualListView;
 COMPILE::SWF
 {
     import org.apache.royale.core.IStrand;

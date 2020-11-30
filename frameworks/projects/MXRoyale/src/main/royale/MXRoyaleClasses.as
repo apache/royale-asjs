@@ -316,6 +316,7 @@ internal class MXRoyaleClasses
 
     import mx.containers.beads.FormItemView; FormItemView;
     import mx.containers.beads.FormItemContainer; FormItemContainer;
+    import mx.containers.beads.VirtualListView; VirtualListView;
 
 
 	// --- RpcClassAliasInitializer
