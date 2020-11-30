@@ -54,25 +54,14 @@ package org.apache.royale.html.beads.layouts
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 * @copy org.apache.royale.core.IBeadLayout#layout
+     * @royaleignorecoercion org.apache.royale.core.UIBase
+     * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+     * @royaleignorecoercion org.apache.royale.html.ButtonBar
+     * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+     * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
 		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
-		
-        /**
-         * @copy org.apache.royale.core.IBeadLayout#layout
-         */
 		override public function layout():Boolean
 		{			
 			// call the super function to get the basics laid out even

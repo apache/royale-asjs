@@ -103,6 +103,9 @@ package mx.controls.beads
             if (contentView.height > n * rowHeight)
             {
                 var ww:Number = 0;
+		if(columns == null){
+		   return;
+		}
                 for (i=0; i < columns.length; i++) {
                     column = columns[i] as DataGridColumn;
                     if (column.visible)
@@ -127,6 +130,9 @@ package mx.controls.beads
             
             _overlay.fill = lineFill;            
             // draw the verticals
+	    if(columns == null){
+	       return;
+             }
             for (i=0; i < columns.length - 1; i++) {
                 column = columns[i] as DataGridColumn;
                 if (column.visible)

@@ -164,6 +164,9 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.html.DataGrid
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		protected function handleViewCreated(event:Event):void
 		{

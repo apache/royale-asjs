@@ -25,8 +25,8 @@
 	
 	<models:TodoModel id="todoModel"/>
 	<controller:TodoController id="todoController"/>
+	
 	<services:LocalStorageDelegate id="localStorageDelegate"/>
-
 	<crux:AMFStorageBean id="amfStorageBean" name="todomvc" localPath="crux"/>
 	
 </crux:BeanProvider>

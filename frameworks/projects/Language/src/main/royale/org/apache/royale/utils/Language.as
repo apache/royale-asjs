@@ -294,15 +294,21 @@ package org.apache.royale.utils
         }
         
         /**
+         * Note this might mean testing for results is not matching across implementations:
+         * "The array is modified to reflect the sort order; multiple elements that have identical sort fields
+         *  are placed consecutively in the sorted array in no particular order."
+         *
+         *
          * @param arr
          * @param names
          * @param opt
-         *
+
          * @royaleignorecoercion Function
          */
-        public static function sort(arr:Array, ...args):void
+        public static function sort(arr:Array, ...args):Object
         {
             var compareFunction:Function = null;
+            var ret:Object;
             var opt:int = 0;
             if (args.length == 1)
             {
@@ -317,6 +323,11 @@ package org.apache.royale.utils
             }
             
             muler = (Array.DESCENDING & opt) > 0 ? -1 : 1;
+            var originals:Array;
+            if (opt & Array.RETURNINDEXEDARRAY) {
+                originals = arr;
+                arr = arr.slice(); //don't change the original
+            }
             if (compareFunction)
                 arr.sort(compareFunction);
             else if (opt & Array.NUMERIC)
@@ -329,6 +340,13 @@ package org.apache.royale.utils
             {
                 arr.sort(compareAsString);
             }
+            if (!(opt & Array.RETURNINDEXEDARRAY)) {
+                ret = arr;
+            } else {
+                ret = getIndexedArray(originals, arr);
+            }
+
+            return ret;
         }
         
         private static function compareAsStringCaseinsensitive(a:Object, b:Object):int
@@ -353,6 +371,8 @@ package org.apache.royale.utils
         
         private static function compareAsNumber(a:Object, b:Object):int
         {
+            a = Number(a)
+            b = Number(b)
             if (a > b)
             {
                 return muler;
@@ -364,10 +384,15 @@ package org.apache.royale.utils
         }
         
         /**
+         * Note this might mean testing for results is not matching across implementations:
+         * "The array is modified to reflect the sort order; multiple elements that have identical sort fields
+         * are placed consecutively in the sorted array in no particular order."
+         *
          * @param arr
          * @param names
          * @param opt
          * @royaleignorecoercion Array
+         *
          */
         public static function sortOn(arr:Array, names:Object, opt:Object = 0):Array
         {
@@ -394,7 +419,8 @@ package org.apache.royale.utils
             var orig:Array;               
             if (opt2 & Array.RETURNINDEXEDARRAY)
             {
-                orig = arr.slice();                
+                orig = arr; //keep original unchanged
+                arr = arr.slice(); //work on a copy
             }
             if (opt2 & Array.NUMERIC)
             {
@@ -408,16 +434,26 @@ package org.apache.royale.utils
             }
             if (opt2 & Array.RETURNINDEXEDARRAY)
             {
-                var retArr:Array = [];
-                var n:int = arr.length;
-                for (var i:int = 0; i < n; i++)
-                {
-                    var item:Object = orig[i];
-                    retArr.push(arr.indexOf(item));
-                }
-                return retArr;
+                return getIndexedArray(orig, arr)
             }
             return arr;
+        }
+
+        /**
+         *
+         */
+        private static function getIndexedArray(originals:Array, sorted:Array):Array{
+            var indexedOriginals:Array = originals.slice();
+            const substituteForFoundItem:Function = getIndexedArray; //use this reference as an 'impossible' substitute item to avoid finding the same value index twice
+            var n:int = sorted.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                var item:Object = sorted[i];
+                var idx:int = indexedOriginals.indexOf(item);
+                indexedOriginals[idx] = substituteForFoundItem; //substitute so don't find it again next time in case of duplicates
+                sorted[i] = idx;
+            }
+            return sorted;
         }
         
         private static function compareStringCaseinsensitive(a:Object, b:Object):int

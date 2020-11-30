@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 			
     /**
      *  The DataProviderModel class is a model for
@@ -32,7 +31,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataProviderModel extends EventDispatcher implements IDataProviderModel
+	public class DataProviderModel extends DispatcherBead implements IDataProviderModel
 	{
         /**
          *  Constructor.
@@ -46,21 +45,6 @@ package org.apache.royale.html.beads.models
 		{
 		}
 
-		private var _strand:IStrand;
-		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		
 		private var _dataProvider:Object;
         
         /**

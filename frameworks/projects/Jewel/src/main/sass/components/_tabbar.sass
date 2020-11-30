@@ -24,9 +24,9 @@
 .jewel
     &.tabbar
         // width: 100%
-        display: flex
-        overflow-y: hidden
-        overflow-x: scroll
+        //display: flex
+        // overflow-y: hidden
+        // overflow-x: scroll
         -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
         -ms-overflow-style: -ms-autohiding-scrollbar !important // IE 10+
         scrollbar-width: none  // Firefox
@@ -38,57 +38,53 @@
         &::-webkit-scrollbar-thumb
             display: none !important
 
-        > .content
-            display: flex
+        // > .content
+            //display: flex
             
-            position: relative
-            flex: 1 0 auto 
-            transform: none
-            will-change: transform
+            // position: relative
+            // flex: 1 0 auto 
+        transform: none
+        will-change: transform
 
 
 j|TabBar
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TabBarView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer")
     IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer")
     ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
-    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView")
 
 // Jewel TabBarButtonItemRenderer
 $tabbarbutton-margin: 0 !default
-$tabbarbutton-padding: 0 24px !default
-// $tabbarbutton-margin-height: 48px
 
 // TabBarButtonItemRenderer variables
 .jewel
     &.tabbarbutton
-        // height: $tabbarbutton-margin-height
-        // min-height: $tabbarbutton-margin-height
-        margin: $tabbarbutton-margin
-        padding: $tabbarbutton-padding
+        margin: $tabbarbutton-margin //to avoid margin in safari
         
+        flex: 1 0 auto !important
         position: relative
-        display: flex
-        flex: 1 0 auto
         white-space: nowrap
-        justify-content: center
         z-index: 1
         overflow: initial
 
         > .content
             display: flex
-            position: relative
             align-items: center
-            justify-content: center
+            // position: relative
+            // justify-content: center
 
             height: inherit
-
+        
+        ._internal_
+            position: absolute
+            
         .indicator
             display: flex
             position: absolute
@@ -99,22 +95,60 @@ $tabbarbutton-padding: 0 24px !default
             pointer-events: none
             z-index: 1
 
-            > .indicatorContent
-                align-self: flex-end
-                width: 100%
+            > .indicator-content
                 opacity: 0
+                align-self: flex-end
+
+        &.indicator-opposite-side
+            .indicator
+                > .indicator-content
+                    align-self: flex-start
 
         &.selected
             .indicator
-                > .indicatorContent
+                > .indicator-content
                     opacity: 1
+
+// indicator depends on TabBar horizontal or vertical layout to be bottom or at side
+.jewel
+    &.tabbar
+        &.layout
+            &.horizontal
+                ._internal_
+                    bottom: 0
+                .indicator
+                    > .indicator-content
+                        width: 100%
+                .indicator-opposite-side
+                    ._internal_
+                        bottom: initial
+                        top: 0
+                    .indicator
+                        > .indicator-content
+                            bottom: initial
+            &.vertical
+                ._internal_
+                    right: 0
+                .indicator
+                    > .indicator-content
+                        position: absolute
+                        height: 100%
+                        right: 0
+                .indicator-opposite-side
+                    ._internal_
+                        right: initial
+                        left: 0
+                    .indicator
+                        > .indicator-content
+                            right: initial
+
 
 j|TabBarButtonItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
-
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
 
 j|TabBarContent
     IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
-    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")

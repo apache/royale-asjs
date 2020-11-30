@@ -36,9 +36,11 @@ internal class CoreClasses
 	import org.apache.royale.core.ApplicationBase; ApplicationBase;
 	import org.apache.royale.core.IList; IList;
 	import org.apache.royale.core.IIcon; IIcon;
+	import org.apache.royale.core.ITextButton; ITextButton;
 	import org.apache.royale.core.IIconSupport; IIconSupport;
 	import org.apache.royale.core.ITextInput; ITextInput;
 	import org.apache.royale.html.beads.IListView; IListView;
+	import org.apache.royale.html.beads.ITableView; ITableView;
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.html.beads.IDropDownListView; IDropDownListView;
@@ -52,14 +54,18 @@ internal class CoreClasses
 	import org.apache.royale.html.beads.IBackgroundBead; IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead; IBorderBead;
 	import org.apache.royale.html.beads.SelectableItemRendererBeadBase; SelectableItemRendererBeadBase;
+	
+	import org.apache.royale.html.beads.IPaddings; IPaddings;
+	import org.apache.royale.html.beads.IPositioning; IPositioning;
+
 	import org.apache.royale.html.IListPresentationModel; org.apache.royale.html.IListPresentationModel;
 
 	import org.apache.royale.core.BeadViewBase; BeadViewBase;
 	import org.apache.royale.core.ImageViewBase; ImageViewBase;
 	import org.apache.royale.core.BrowserWindow; BrowserWindow;
 
-	import org.apache.royale.core.layout.IPaddings; IPaddings;
 	import org.apache.royale.core.layout.ILayoutStyleProperties; ILayoutStyleProperties;
+	import org.apache.royale.core.layout.ILayoutChildren; ILayoutChildren;
 
 	COMPILE::SWF
 	{
@@ -102,6 +108,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IChild; IChild;
 	import org.apache.royale.core.IChrome; IChrome;
 	import org.apache.royale.core.IColorWithAlphaModel; IColorWithAlphaModel;
+	import org.apache.royale.core.IComboBox; IComboBox;
 	import org.apache.royale.core.IComboBoxModel; IComboBoxModel;
 	import org.apache.royale.core.IContainer; IContainer;
 	import org.apache.royale.core.IContainerView; IContainerView;
@@ -122,6 +129,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IIndexedItemRenderer; IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer; IIndexedItemRendererInitializer;
 	import org.apache.royale.core.ILabelFieldItemRenderer; ILabelFieldItemRenderer;
+	import org.apache.royale.core.ILabelFunction; ILabelFunction;
 	import org.apache.royale.core.IOwnerViewItemRenderer; IOwnerViewItemRenderer;
 	import org.apache.royale.core.ILayoutChild; ILayoutChild;
 	import org.apache.royale.core.ILayoutHost; ILayoutHost;
@@ -149,11 +157,13 @@ internal class CoreClasses
 	import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectable; ISelectable;
 	import org.apache.royale.core.ISelectionModel; ISelectionModel;
+	import org.apache.royale.core.ITableModel; ITableModel;
 	import org.apache.royale.core.IMultiSelectionModel; IMultiSelectionModel;
 	import org.apache.royale.core.IStrand; IStrand;
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost; IContainerBaseStrandChildrenHost;
 	import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
 	import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithPresentationModel; IStrandWithPresentationModel;
 	import org.apache.royale.core.ITextModel; ITextModel;
 	import org.apache.royale.core.IMenuModel; IMenuModel;
 	import org.apache.royale.core.ICascadingMenuModel; ICascadingMenuModel;
@@ -275,7 +285,9 @@ internal class CoreClasses
 
 	import org.apache.royale.core.IMenuBarModel; IMenuBarModel;
 	
+	import org.apache.royale.core.IDataGrid; IDataGrid;
 	import org.apache.royale.core.IDataGridModel; IDataGridModel;
+	import org.apache.royale.core.IDataGridHeader; IDataGridHeader;
 	import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
 	import org.apache.royale.core.IDateChooserModelWithChangeCheck; IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.ParentDocumentBead; ParentDocumentBead;
@@ -288,6 +300,7 @@ internal class CoreClasses
 	import org.apache.royale.core.TransformMoveYModel; TransformMoveYModel;
 	import org.apache.royale.core.TransformScaleModel; TransformScaleModel;
 	import org.apache.royale.utils.CSSUtils; CSSUtils;
+	import org.apache.royale.core.IImageButton; IImageButton;
 
 	import org.apache.royale.utils.Proxy; Proxy;
 	import org.apache.royale.core.UIHTMLElementWrapper; UIHTMLElementWrapper;
@@ -350,7 +363,9 @@ internal class CoreClasses
 	COMPILE::JS
 	{
 	import org.apache.royale.utils.css.transitionEventAvailable; transitionEventAvailable;
+	import org.apache.royale.utils.html.getClassStyle; getClassStyle;
 	import org.apache.royale.utils.html.getStyle; getStyle;
+	import org.apache.royale.utils.html.isFocused; isFocused;
 	}
 	
 	import org.apache.royale.utils.replaceBead; replaceBead;
@@ -360,6 +375,7 @@ internal class CoreClasses
 	
 	//explicit support for RoyaleArrayLike for each iteration (BinaryData)
 	import org.apache.royale.language.iterator.arrayLike;arrayLike;
+
 }
 
 }

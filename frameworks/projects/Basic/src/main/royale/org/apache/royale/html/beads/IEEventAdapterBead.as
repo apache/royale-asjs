@@ -57,6 +57,8 @@ package org.apache.royale.html.beads
 				{// IE does not have a prototype name property
 					defineSimpleGetter(window["KeyboardEvent"],"name","KeyboardEvent");
 					defineSimpleGetter(window["MouseEvent"],"name","MouseEvent");
+					//double click was observed to be a PointerEvent in IE11, fake it as a MouseEvent:
+					defineSimpleGetter(window["PointerEvent"],"name","MouseEvent");
 				}
 			}
 		}

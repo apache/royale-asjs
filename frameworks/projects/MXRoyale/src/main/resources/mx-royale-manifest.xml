@@ -82,6 +82,7 @@
 	<component id="ControlBar" class="mx.containers.ControlBar"/>
 	<component id="Panel" class="mx.containers.Panel"/>
 	<component id="ToolTip" class="mx.controls.ToolTip" />
+    <component id="TinyEditor" class="mx.controls.TinyEditor" />
 	<component id="SortField" class="mx.collections.SortField"/>
 	<component id="Sort" class="mx.collections.Sort"/>
 	<component id="Stroke" class="mx.graphics.Stroke"/>
@@ -133,6 +134,7 @@
 	<component id="GridRow" class="mx.containers.GridRow"/>
 	<component id="Parallel" class="mx.effects.Parallel"/>
 	<component id="Fade" class="mx.effects.Fade"/>
+	<component id="DataGridItemRenderer" class="mx.controls.dataGridClasses.DataGridItemRenderer" />
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
 	<component id="Tree" class="mx.controls.Tree"/>
 	<component id="LinkBar" class="mx.controls.LinkBar"/>
@@ -216,4 +218,7 @@
     <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
 
     <component id="DownloadButton" class="mx.controls.DownloadButton"/>
+    <component id="HSlider" class="mx.controls.HSlider"/>
+    <component id="Slider" class="mx.controls.sliderClasses.Slider"/>
+    <component id="HorizontalList" class="mx.controls.HorizontalList"/>
 </componentPackage>

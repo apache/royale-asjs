@@ -41,11 +41,13 @@ package org.apache.royale.jewel.supportClasses
 		public static const TABLET:String = "tablet";
 		public static const DESKTOP:String = "desktop";
 		public static const WIDESCREEN:String = "widescreen";
+		public static const FULL:String = "full";
         
         public static const PHONE_BREAKPOINT:Number = 0;
 		public static const TABLET_BREAKPOINT:Number = 768;
 		public static const DESKTOP_BREAKPOINT:Number = 992;
 		public static const WIDESCREEN_BREAKPOINT:Number = 1200;
+		public static const FULL_BREAKPOINT:Number = 1600;
 
 		/**
 		 *  constructor.

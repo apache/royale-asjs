@@ -44,8 +44,41 @@
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/todomvc-index-template.html</htmlTemplate>
           <additionalCompilerOptions>
             -source-map=true;
+
+            -export-public-symbols=false
+            -prevent-rename-protected-symbols=false
+            -prevent-rename-internal-symbols=false
+            -prevent-rename-public-static-methods=false
+            -prevent-rename-public-instance-methods=false
           </additionalCompilerOptions>
         </configuration>
+      </plugin>
+      <!-- SASS compilation -->
+      <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <version>3.7.2</version>
+        <configuration>
+          <resources>
+            <resource>
+              <source>
+                <directory>${basedir}/src/main/sass</directory>
+                <includes>
+                  <include>**/*.sass</include>
+                </includes>
+              </source>
+              <destination>${basedir}/src/main/resources</destination>
+            </resource>
+          </resources>
+        </configuration>
+        <executions>
+          <execution>
+            <id>generate-css-using-sass</id>
+            <goals>
+                <goal>update-stylesheets</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

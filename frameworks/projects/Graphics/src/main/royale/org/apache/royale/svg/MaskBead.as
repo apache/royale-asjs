@@ -65,6 +65,8 @@ package org.apache.royale.svg
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */		
 		public function set strand(value:IStrand):void
 		{
@@ -99,7 +101,9 @@ package org.apache.royale.svg
 			parent.appendChild(element);
 			return element;
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		public function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;

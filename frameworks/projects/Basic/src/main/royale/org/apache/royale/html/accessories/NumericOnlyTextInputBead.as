@@ -25,18 +25,16 @@ package org.apache.royale.html.accessories
 	COMPILE::SWF
 	{
 		import flash.events.TextEvent;
-		
 		import org.apache.royale.core.CSSTextField;			
+		import org.apache.royale.html.beads.ITextFieldView;			
 	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	COMPILE::SWF
-	{
-		import org.apache.royale.html.beads.ITextFieldView;			
-	}
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IRenderedObject;
 	
 	/**
 	 *  The NumericOnlyTextInputBead class is a specialty bead that can be used with
@@ -48,7 +46,7 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class NumericOnlyTextInputBead implements IBead
+	public class NumericOnlyTextInputBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -61,9 +59,7 @@ package org.apache.royale.html.accessories
 		public function NumericOnlyTextInputBead()
 		{
 		}
-		
-		private var _strand:IStrand;
-		
+				
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -71,9 +67,9 @@ package org.apache.royale.html.accessories
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -83,8 +79,7 @@ package org.apache.royale.html.accessories
 			}
 			COMPILE::JS
 			{
-                var host:UIBase = _strand as UIBase;
-                host.element.addEventListener("keypress", validateInput, false);
+				(_strand as IRenderedObject).element.addEventListener("keypress", validateInput, false);
 			}
 		}
 		
@@ -109,28 +104,28 @@ package org.apache.royale.html.accessories
 			}
 		}
 		
-        private var _maxChars:int = 0;
-        
-        /**
-         *  The character used to separate the integer and fraction parts of numbers.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         */
-        public function get maxChars():int
-        {
-            return _maxChars;
-        }
-        public function set maxChars(value:int):void
-        {
-            if (_maxChars != value) {
-                _maxChars = value;
-            }
-        }
+		private var _maxChars:int = 0;
+		
+		/**
+		 *  The character used to separate the integer and fraction parts of numbers.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get maxChars():int
+		{
+			return _maxChars;
+		}
+		public function set maxChars(value:int):void
+		{
+			if (_maxChars != value) {
+				_maxChars = value;
+			}
+		}
 
-        /**
+		/**
 		 * @private
 		 */
 		COMPILE::SWF

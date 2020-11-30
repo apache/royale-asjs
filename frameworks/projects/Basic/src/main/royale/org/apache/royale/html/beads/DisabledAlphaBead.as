@@ -19,10 +19,15 @@
 package org.apache.royale.html.beads
 {
 	COMPILE::SWF
-    {
-	    import flash.display.InteractiveObject;
+	{
+		import flash.display.InteractiveObject;
 	}
-	
+
+	COMPILE::JS
+	{
+		import org.apache.royale.core.WrappedHTMLElement;
+	}
+
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -31,11 +36,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.html.beads.DisableBead;
+	import org.apache.royale.core.Bead;
 
-	COMPILE::JS
-    {
-		import org.apache.royale.core.WrappedHTMLElement;
-	}
 	/**
 	 *  The DisabledAlphaBead class is a specialty bead that can be used with
 	 *  any UIBase control which has a DisableBead attached.
@@ -46,7 +48,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DisabledAlphaBead implements IBead
+	public class DisabledAlphaBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -60,43 +62,42 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
 
-        private var _enabledAlpha:Number = 1.0;
-        /**
-         *  The alpha of the element when enabled. Defaults to 1.0;
+		private var _enabledAlpha:Number = 1.0;
+		/**
+		 *  The alpha of the element when enabled. Defaults to 1.0;
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-         */
-        public function get enabledAlpha():Number
-        {
-            return _enabledAlpha;
-        }
-        public function set enabledAlpha(value:Number):void
-        {
-            _enabledAlpha = value;
-        }
+			*/
+		public function get enabledAlpha():Number
+		{
+			return _enabledAlpha;
+		}
+		public function set enabledAlpha(value:Number):void
+		{
+			_enabledAlpha = value;
+		}
 
-        private var _disabledAlpha:Number = 0.5;
-        
-        /**
-         *  The alpha of the element when disabled. Defaults to 0.5;
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-         */
-        public function get disabledAlpha():Number
-        {
-            return _disabledAlpha;
-        }
-        public function set disabledAlpha(value:Number):void
-        {
-            _disabledAlpha = value;
-        }
+		private var _disabledAlpha:Number = 0.5;
 		
+		/**
+		 *  The alpha of the element when disabled. Defaults to 0.5;
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+			*/
+		public function get disabledAlpha():Number
+		{
+			return _disabledAlpha;
+		}
+		public function set disabledAlpha(value:Number):void
+		{
+			_disabledAlpha = value;
+		}
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -105,10 +106,10 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-            host.addEventListener("disabledChange", disabledChangeHandler);
+			listenOnStrand("disabledChange", disabledChangeHandler);
 			updateHost(null);
 		}
 		
@@ -118,29 +119,32 @@ package org.apache.royale.html.beads
 			updateHost(e.value);
 		}
 		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		private function get host():IUIBase
 		{
 			return _strand as IUIBase;
 		}
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.html.beads.DisableBead
+		 */
 		private function updateHost(value:Object):void
 		{
 			if(!_strand)//bail out
 				return;
-            
-            var disabled:Boolean;
-            if(value == null)
-            {
-                var disableBead:DisableBead = _strand.getBeadByType(DisableBead) as DisableBead;
-                if(!disableBead)// The DisableBead was not added yet. We'll set this when the event is dispatched.
-                    return;
-                disabled = disableBead.disabled;
-            } else {
-                disabled = value;
-            }
-            host.alpha = disabled ? disabledAlpha : enabledAlpha;
+				
+				var disabled:Boolean;
+				if(value == null)
+				{
+					var disableBead:DisableBead = _strand.getBeadByType(DisableBead) as DisableBead;
+					if(!disableBead)// The DisableBead was not added yet. We'll set this when the event is dispatched.
+						return;
+					disabled = disableBead.disabled;
+				} else {
+					disabled = value;
+				}
+				host.alpha = disabled ? disabledAlpha : enabledAlpha;
 		}
 		
 	}

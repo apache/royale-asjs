@@ -73,14 +73,13 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
+			hostComponent.replaceClass("centered");
+			
+			applyStyleToLayout(hostComponent, "gap");
+			
 			COMPILE::JS
 			{
-				if(hostComponent.containsClass("centered"))
-					hostComponent.removeClass("centered");
-				hostComponent.addClass("centered");
-
-				applyStyleToLayout(hostComponent, "gap");
-				setGap(_gap);
+			setGap(_gap);
 			}
 		}
 

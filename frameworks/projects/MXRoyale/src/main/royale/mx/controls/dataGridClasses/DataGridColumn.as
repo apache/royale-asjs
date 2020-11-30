@@ -19,7 +19,7 @@
 
 package mx.controls.dataGridClasses
 {
-
+import org.apache.royale.core.ValuesManager;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -81,7 +81,7 @@ import org.apache.royale.html.supportClasses.DataGridColumn;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="headerStyleName", type="String", inherit="no")]
+[Style(name="headerStyleName", type="String", inherit="no")]
 
 /**
  *  The number of pixels between the container's left border and its content 
@@ -855,6 +855,101 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
             }
         }
     }
+        private var o:Object;
+		public function getStyle(styleProp:String):*
+        {
+        var v:*;
+        
+        if (o == null)
+        {
+            if (defaultFactory != null)
+            {
+                defaultFactory.prototype = {};
+                o = new defaultFactory();
+            }
+        }
+        if (o != null)
+        {
+            v = o[styleProp];
+            if (v !== undefined)
+                return v;
+        }
+        var values:Object = ValuesManager.valuesImpl["values"]; // assume AllCSSValuesImpl
+        
+        return v;
+        }
+		
+		private var _defaultFactory:Function;
+		public function get defaultFactory():Function
+       {
+         return _defaultFactory;
+       }
+    
+    /**
+     *  @private
+     */ 
+        public function set defaultFactory(f:Function):void
+       {
+         _defaultFactory = f;
+       }
+       
+       private var _headerRenderer:IFactory;
+		
+       /**
+	*  The itemRenderer class or factory to use to make instances of itemRenderers for
+	*  display of data.
+	*
+        *  @langversion 3.0
+	*  @playerversion Flash 10.2
+	*  @playerversion AIR 2.6
+	*  @productversion Royale 0.0
+	*/
+	
+	public function get headerRenderer():IFactory
+	{
+	   return _headerRenderer;
+	}
+	public function set headerRenderer(value:IFactory):void
+	{
+	  _headerRenderer = value;
+	  trace("DataGridColumn.headerRenderer is not implemented");
+	}
+	
+	        //----------------------------------
+		//  editable
+		//----------------------------------
+
+		private var _editable:Boolean = true;
+
+		[Inspectable(category="General")]
+
+		/**
+		 *  A flag that indicates whether the items in the column are editable.
+		 *  If <code>true</code>, and the DataGrid's <code>editable</code>
+		 *  property is also <code>true</code>, the items in a column are 
+		 *  editable and can be individually edited
+		 *  by clicking on an item or by navigating to the item by using the 
+		 *  Tab and Arrow keys.
+		 *
+		 *  @default true
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function get editable():Boolean
+		{
+			return _editable;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set editable(value:Boolean):void
+		{
+			_editable = value;
+		}
 }
 
 }

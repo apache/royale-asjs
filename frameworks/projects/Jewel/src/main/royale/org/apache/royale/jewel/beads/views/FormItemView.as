@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.layouts.VerticalLayout;
     import org.apache.royale.jewel.beads.models.FormItemModel;
-    import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy;
+    import org.apache.royale.jewel.supportClasses.LayoutProxy;
     import org.apache.royale.jewel.HGroup;
 
 
@@ -257,7 +257,7 @@ package org.apache.royale.jewel.beads.views
 			//_strand.addBead(layoutBead);
 		}
 
-        private var _formItemLayoutProxy:FormItemLayoutProxy;
+        private var _formItemLayoutProxy:LayoutProxy;
 
 		/**
 		 * The sub-element used as the parent of the container's elements. This does not
@@ -273,7 +273,7 @@ package org.apache.royale.jewel.beads.views
 			// we want to return a proxy for the formItem which will have numElements, getElementAt, etc.
 			// functions that will use the formItem.$numElements, formItem.$getElementAt, etc. functions
 			if (_formItemLayoutProxy == null) {
-				_formItemLayoutProxy = new FormItemLayoutProxy(_strand);
+				_formItemLayoutProxy = new LayoutProxy(_strand);
 			}
 			return _formItemLayoutProxy;
 		}

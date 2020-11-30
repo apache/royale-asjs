@@ -27,11 +27,6 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	}
-	COMPILE::JS
-	{
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.UIBase;
-	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 
@@ -82,15 +77,8 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
-			COMPILE::JS
-			{
-				if (hostComponent.containsClass("layout"))
-					hostComponent.removeClass("layout");
-				hostComponent.addClass("layout");
-				if(hostComponent.containsClass("vertical"))
-					hostComponent.removeClass("vertical");
-				hostComponent.addClass("vertical");
-			}
+			hostComponent.replaceClass("layout");
+			hostComponent.replaceClass("vertical");
 		}
 
 		/**
@@ -198,21 +186,6 @@ package org.apache.royale.jewel.beads.layouts
 				 *    flex: 0 1 auto
 				 *  }
 				 */
-
-				// We just need to make chids resize themselves (through `sizeChanged` event)
-				var contentView:ILayoutView = layoutView;
-				var n:int = contentView.numElements;
-				var child:UIBase;
-
-				if (n == 0) return false;
-				
-				for(var i:int=0; i < n; i++) {
-					child = contentView.getElementAt(i) as UIBase;
-					if (!child)
-						continue;
-					child.dispatchEvent('sizeChanged');
-				}
-
 				return true;
 			}
 		}

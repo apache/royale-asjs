@@ -24,6 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.utils.WhitespaceKeys;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	COMPILE::JS
 		{
@@ -37,7 +38,6 @@ package org.apache.royale.html.beads
 			import flash.events.FocusEvent;
 			import flash.events.KeyboardEvent;
 			import org.apache.royale.html.beads.ITextFieldView;
-			import org.apache.royale.events.utils.WhitespaceKeys;
 		}
 		
 		/**
@@ -67,7 +67,7 @@ package org.apache.royale.html.beads
 			
 			
 			
-			private var _strand:IStrand;
+			protected var _strand:IStrand;
 			
 			/**
 			 *  @copy org.apache.royale.core.IBead#strand
@@ -76,6 +76,7 @@ package org.apache.royale.html.beads
 			 *  @playerversion Flash 10.2
 			 *  @playerversion AIR 2.6
 			 *  @productversion Royale 0.0
+       *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 			 */
 			public function set strand(value:IStrand):void
 			{
@@ -107,7 +108,7 @@ package org.apache.royale.html.beads
 			 * @private
 			 */
 			COMPILE::SWF
-			private function keyDownHandler( event:KeyboardEvent ) : void
+			protected function keyDownHandler( event:KeyboardEvent ) : void
 			{
 				// this will otherwise bubble an event of flash.events.Event
 				event.stopImmediatePropagation();
@@ -119,24 +120,26 @@ package org.apache.royale.html.beads
 			
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
 			COMPILE::JS
-			private function keydownHandler( event:KeyboardEvent ) : void
+			protected function keydownHandler( event:KeyboardEvent ) : void
 			{
 				if (event.key == WhitespaceKeys.ENTER) //enter
 				{
-					(_strand as IEventDispatcher).dispatchEvent(new Event(INPUT_FINISHED));
+					sendStrandEvent(_strand,INPUT_FINISHED);
 				}
 			}
 
 			
 			/**
 			 * @private
+			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
 			COMPILE::JS
 			private function focusoutHandler( event:Object ) : void
 			{
-				(_strand as IEventDispatcher).dispatchEvent(new Event(INPUT_FINISHED));
+					sendStrandEvent(_strand,INPUT_FINISHED);
 			}
 			
 		}

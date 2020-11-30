@@ -99,8 +99,8 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  */
 //[Event(name="elementRemove", type="spark.events.ElementExistenceEvent")]
 
-/* include "../styles/metadata/BasicInheritingTextStyles.as"
-include "../styles/metadata/AdvancedInheritingTextStyles.as"
+ include "../styles/metadata/BasicInheritingTextStyles.as"
+/*include "../styles/metadata/AdvancedInheritingTextStyles.as"
 include "../styles/metadata/SelectionFormatTextStyles.as"
  */
 /**
@@ -1093,9 +1093,9 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-     /* override */ protected function partRemoved(partName:String, instance:Object):void
+     /* override protected function partRemoved(partName:String, instance:Object):void
     {
-         /* super.partRemoved(partName, instance);
+         super.partRemoved(partName, instance);
 
          if (instance == contentGroup)
         {
@@ -1132,8 +1132,8 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
             
             contentGroup.mxmlContent = null;
             contentGroup.layout = null;
-        } */
-    }
+        } 
+    }*/
      
     //--------------------------------------------------------------------------
     //

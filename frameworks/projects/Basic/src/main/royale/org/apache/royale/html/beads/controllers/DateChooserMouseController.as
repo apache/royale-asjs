@@ -21,7 +21,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.beads.DateChooserView;
 	import org.apache.royale.html.beads.models.DateChooserModel;
 	import org.apache.royale.html.supportClasses.DateChooserButton;
-    import org.apache.royale.html.supportClasses.DateChooserList;
+	import org.apache.royale.html.supportClasses.DateChooserList;
 	
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IBeadModel;
@@ -64,31 +64,39 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.html.beads.DateChooserView
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-            var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
+			var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
 			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
 			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
 			
-            IEventDispatcher(view.dayList).addEventListener("change", listHandler);
+			(view.dayList as IEventDispatcher).addEventListener("change", listHandler);
 		}
 		
-        private function listHandler(event:Event):void
-        {
-            var list:DateChooserList = event.target as DateChooserList;
-            var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
-            model.selectedDate = list.selectedItem as Date;
-        }
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DateChooserList
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.DateChooserModel
+		 * @royaleignorecoercion Date
+		 */
+		private function listHandler(event:Event):void
+		{
+			var list:DateChooserList = event.target as DateChooserList;
+			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
+			model.selectedDate = list.selectedItem as Date;
+		}
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.DateChooserModel
 		 */
 		private function prevMonthClickHandler(event:MouseEvent):void
 		{
-            event.preventDefault();
+			event.preventDefault();
             
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth - 1;
@@ -103,10 +111,11 @@ package org.apache.royale.html.beads.controllers
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.DateChooserModel
 		 */
 		private function nextMonthClickHandler(event:MouseEvent):void
 		{
-            event.preventDefault();
+			event.preventDefault();
             
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth + 1;

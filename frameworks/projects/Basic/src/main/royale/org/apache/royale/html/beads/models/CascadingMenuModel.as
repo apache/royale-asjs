@@ -28,14 +28,7 @@ package org.apache.royale.html.beads.models
 		{
 			super();
 		}
-		
-		private var _strand:IStrand;
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
-		
+				
 		private var _submenuField:String = "menu";
 		
 		/**

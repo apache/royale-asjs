@@ -73,14 +73,13 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
+			hostComponent.replaceClass("flow");
+			
+			applyStyleToLayout(hostComponent, "gap");
+			
 			COMPILE::JS
 			{
-				if(hostComponent.containsClass("flow"))
-					hostComponent.removeClass("flow");
-				hostComponent.addClass("flow");
-
-				applyStyleToLayout(hostComponent, "gap");
-				setGap(_gap);
+			setGap(_gap);
 			}
 		}
 

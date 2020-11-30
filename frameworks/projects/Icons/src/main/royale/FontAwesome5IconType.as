@@ -131,12 +131,16 @@ package
 		public static const BULLSEYE:String = "bullseye";
 		public static const BUS:String = "bus";
 		public static const BUYSELLADS:String = "buysellads";
-		public static const CALCULATOR:String = "calculator";
+		public static const CALCULATOR:String = "calculator";		
 		public static const CALENDAR_CHECK:String = "calendar-check";
 		public static const CALENDAR_MINUS:String = "calendar-minus";
 		public static const CALENDAR_PLUS:String = "calendar-plus";
 		public static const CALENDAR_TIMES:String = "calendar-times";
 		public static const CALENDAR:String = "calendar";
+		public static const CALENDAR_STAR:String = "calendar-star";
+		public static const CALENDAR_ALT:String = "calendar-alt";
+		public static const CALENDAR_WEEK:String = "calendar-week";
+		public static const CALENDAR_DAY:String = "calendar-day";
 		public static const CAMERA_RETRO:String = "camera-retro";
 		public static const CAMERA:String = "camera";
 		public static const CAR:String = "car";
@@ -349,6 +353,7 @@ package
 		public static const I_CURSOR:String = "i-cursor";
 		public static const ID_BADGE:String = "id-badge";
 		public static const ID_CARD:String = "id-card";
+		public static const ID_CARD_ALT:String = "id-card-alt";
 		public static const ILS:String = "ils";
 		public static const IMDB:String = "imdb";
 		public static const INBOX:String = "inbox";
@@ -535,14 +540,14 @@ package
 		public static const SNAPCHAT_SQUARE:String = "snapchat-square";
 		public static const SNAPCHAT:String = "snapchat";
 		public static const SNOWFLAKE:String = "snowflake";
-		public static const SORT_ALPHA_ASC:String = "sort-alpha-asc";
-		public static const SORT_ALPHA_DESC:String = "sort-alpha-desc";
-		public static const SORT_AMOUNT_ASC:String = "sort-amount-asc";
-		public static const SORT_AMOUNT_DESC:String = "sort-amount-desc";
-		public static const SORT_ASC:String = "sort-asc";
-		public static const SORT_DESC:String = "sort-desc";
-		public static const SORT_NUMERIC_ASC:String = "sort-numeric-asc";
-		public static const SORT_NUMERIC_DESC:String = "sort-numeric-desc";
+		public static const SORT_ALPHA_UP:String = "sort-alpha-up";
+		public static const SORT_ALPHA_DOWN:String = "sort-alpha-down";
+		public static const SORT_AMOUNT_UP:String = "sort-amount-up";
+		public static const SORT_AMOUNT_DOWN:String = "sort-amount-down";
+		public static const SORT_UP:String = "sort-up";
+		public static const SORT_DOWN:String = "sort-down";
+		public static const SORT_NUMERIC_UP:String = "sort-numeric-up";
+		public static const SORT_NUMERIC_DOWN:String = "sort-numeric-down";
 		public static const SORT:String = "sort";
 		public static const SOUNDCLOUD:String = "soundcloud";
 		public static const SPACE_SHUTTLE:String = "space-shuttle";
@@ -637,6 +642,8 @@ package
 		public static const USER_PLUS:String = "user-plus";
 		public static const USER_SECRET:String = "user-secret";
 		public static const USER_TIMES:String = "user-times";
+		public static const USER_UNLOCK:String = "user-unlock";
+		public static const USER_HEADSET:String = "user-headset";
 		public static const USER:String = "user";
 		public static const USERS:String = "users";
 		public static const VENUS_DOUBLE:String = "venus-double";
@@ -718,7 +725,31 @@ package
         public static const MASK:String = "mask";
         public static const SKULL:String = "skull";
         public static const SPIDER:String = "spider";
-
-
+		public static const USER_ASTRONAUT:String = "user-astronaut";
+		public static const USER_ALT:String = "user-alt";
+		public static const USER_LOCK:String = "user-lock";
+		public static const USERS_CROWN:String = "users-crown";
+		public static const USER_HARD_HAT:String = "user-hard-hat";
+		public static const USER_TIE:String = "user-tie";
+		public static const USER_SHIELD:String = "user-shield";
+		public static const HOME_LG_ALT:String = "home-lg-alt";
+		public static const LOCK_ALT:String = "lock-alt";
+		public static const FOLDERS:String = "folders";
+		public static const COMMENT_ALT_DOTS:String = "comment-alt-dots";
+		public static const SHIELD_CHECK:String = "shield-check";
+		public static const BOOK_READER:String = "book-reader";
+		public static const CHART_LINE:String = "chart-line";
+		public static const CHART_NETWORK:String = "chart-network";
+		public static const HAND_RECEIVING:String = "hand-receiving";
+		public static const BADGE_CHECK:String = "badge-check";
+		public static const BADGE_SHERIFF:String = "badge-sheriff";
+		public static const BADGE:String = "badge";
+		public static const STAR_OF_LIFE:String = "star-of-life";
+		public static const PARKING:String = "parking";
+		public static const PARKING_DASH:String = "parking-dash";
+		public static const PARKING_CIRCLE:String = "parking-circle";
+		public static const PARKING_CIRCLE_DASH:String = "parking-circle-dash";
+		public static const NOTES_MEDICAL:String = "notes-medical";
+		public static const CAR_BUS:String = "car-bus";
     }
 }

@@ -508,6 +508,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
    // private var _layoutProperties:Object = null;
    // private var layoutInvalidateSizeFlag:Boolean = false;
    // private var layoutInvalidateDisplayListFlag:Boolean = false;
+    public function set contentBackgroundColor(value:uint):void {} // not implemented
     
     [Inspectable(category="General")]
     
@@ -789,7 +790,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     {
         COMPILE::JS
         {
-            element.style.overflow = value ? "auto" : "none";
+            element.style.overflow = value ? "auto" : "visible";
         }
         COMPILE::SWF
         {
@@ -1441,9 +1442,8 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     /**
      *  @private 
      */ 
-    override public function globalToLocal(point:Point):Point
+    /* override public function globalToLocal(point:Point):Point
     {
-		/*
         if (resizeMode == ResizeMode.SCALE && _layoutFeatures != null)
         {
             // If resize mode is scale, then globalToLocal shouldn't account for 
@@ -1467,9 +1467,8 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         {
             return super.globalToLocal(point);    
         }
-		*/
 		return null;
-    }
+    } */
     
     /**
      *  @private 

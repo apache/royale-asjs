@@ -21,6 +21,7 @@
 package mx.controls.listClasses
 {
 import mx.controls.dataGridClasses.DataGridColumnList;
+import mx.events.DragEvent;
 
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -44,6 +45,7 @@ COMPILE::JS{
     import DisplayObject = org.apache.royale.core.UIBase;
 }
 
+import mx.controls.listClasses.IListItemRenderer;
 import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
 import mx.collections.IViewCursor;
@@ -57,6 +59,7 @@ import mx.core.IFactory;
 import mx.core.Keyboard;
 import mx.core.ScrollControlBase;
 import mx.core.UIComponent;
+import mx.core.IUIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
@@ -125,7 +128,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-//[Event(name="itemRollOver", type="mx.events.ListEvent")]
+// not implemented
+[Event(name="itemRollOver", type="mx.events.ListEvent")]
 
 /**
  *  Dispatched when the user rolls the mouse pointer out of an item in the control.
@@ -2056,13 +2060,14 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function get dragImage():IUIComponent
+    protected function get dragImage():IUIComponent
     {
-        var image:ListItemDragProxy = new ListItemDragProxy();
-        image.owner = this;
-        image.moduleFactory = moduleFactory;
-        return image;
-    } */
+        //var image:ListItemDragProxy = new ListItemDragProxy();
+        //image.owner = this;
+        //image.moduleFactory = moduleFactory;
+        //return image;
+	return new UIComponent(); // not implemented
+    }
 
     //----------------------------------
     //  dragImageOffsets
@@ -3827,27 +3832,6 @@ public class DataGridListBase extends ListBase /* extends UIComponent
         return UIDUtil.getUID(data);
     } */
 
-    /**
-     *  Returns the item renderer for a given item in the data provider,
-     *  if there is one.  Since item renderers only exist for items
-     *  that are within the set of viewable rows, this method
-     *  returns <code>null</code> if the item is not visible.
-     *  For a data grid, this returns the first column's renderer.
-     *
-     *  @param item The data provider item.
-     *
-     *  @return The item renderer or <code>null</code> if the item is not 
-     *  currently displayed.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-    /* public function itemToItemRenderer(item:Object):IListItemRenderer
-    {
-        return visibleData[itemToUID(item)];
-    } */
 
     /**
      *  Determines if an item is being displayed by a renderer.
@@ -4384,20 +4368,21 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function drawSelectionIndicator(
-                                indicator:Sprite, x:Number, y:Number,
+   // not implemented
+   protected function drawSelectionIndicator(
+                                indicator:UIComponent, x:Number, y:Number,
                                 width:Number, height:Number, color:uint,
                                 itemRenderer:IListItemRenderer):void
     {
-        var g:Graphics = Sprite(indicator).graphics;
-        g.clear();
-        g.beginFill(color);
-        g.drawRect(0, 0, width, height);
-        g.endFill();
-        
-        indicator.x = x;
-        indicator.y = y;
-    } */
+        //var g:Graphics = Sprite(indicator).graphics;
+        //g.clear();
+        //g.beginFill(color);
+        //g.drawRect(0, 0, width, height);
+        //g.endFill();
+        //
+        //indicator.x = x;
+        //indicator.y = y;
+    }
 
     
     /**
@@ -4541,19 +4526,6 @@ public class DataGridListBase extends ListBase /* extends UIComponent
         }
     } */
 
-    /**
-     *  Refresh all rows on next update.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-     public function invalidateList():void
-    {
-       // itemsSizeChanged = true;
-       // invalidateDisplayList();
-    } 
 
     /**
      *  Refreshes all rows now.  Calling this method can require substantial
@@ -9251,18 +9223,19 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function dragStartHandler(event:DragEvent):void
+// not implemented
+    protected function dragStartHandler(event:DragEvent):void
     {
-        if (event.isDefaultPrevented())
-            return;
-
-        var dragSource:DragSource = new DragSource();
-
-        addDragData(dragSource);
-
-        DragManager.doDrag(this, dragSource, event, dragImage,
-                           0, 0, 0.5, dragMoveEnabled);
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+//
+        //var dragSource:DragSource = new DragSource();
+//
+        //addDragData(dragSource);
+//
+        //DragManager.doDrag(this, dragSource, event, dragImage,
+                           //0, 0, 0.5, dragMoveEnabled);
+    }
 
     /**
      *  Handles <code>DragEvent.DRAG_ENTER</code> events.  This method

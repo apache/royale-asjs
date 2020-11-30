@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 * Handles the removal of an itemRenderer once the corresponding datum has been removed
@@ -75,16 +76,16 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
-		 *  @royaleignorecoercion org.apache.royale.core.IParent
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(event.index) as IIndexedItemRenderer;
-            dataGroup.removeItemRenderer(ir);
+			dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
 			var n:int = dataGroup.numItemRenderers;
@@ -93,8 +94,7 @@ package org.apache.royale.html.beads
 				ir = dataGroup.getItemRendererForIndex(i) as IIndexedItemRenderer;
 				ir.index = i;
 			}
-
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 	}
 }

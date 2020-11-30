@@ -561,6 +561,45 @@ public class Image extends SkinnableComponent implements IImage
      */
     
     //----------------------------------
+    //  smooth
+    //----------------------------------
+    
+    [Inspectable(category="General", defaultValue="false")]
+    
+    /**
+     *  @copy spark.primitives.BitmapImage#smooth
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 2.5
+     *  @productversion Flex 4.5
+     **/
+    public function set smooth(value:Boolean):void
+    {
+        //if (imageDisplay)
+        //{
+            //imageDisplay.smooth = value;
+            //imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
+                //SMOOTH_PROPERTY_FLAG, true);
+        //}
+        //else
+            //imageDisplayProperties.smooth = value;
+    }
+    
+    /**
+     *  @private
+    public function get smooth():Boolean          
+    {
+        //if (imageDisplay)
+            //return imageDisplay.smooth;
+        //else
+            //return imageDisplayProperties.smooth;
+	return false;
+    }
+     */
+    //----------------------------------
     //  bytesLoaded
     //----------------------------------
     
@@ -729,20 +768,17 @@ public class Image extends SkinnableComponent implements IImage
     }
      */
     
-    /**
-     *  @private
     public function set fillMode(value:String):void
     {
-        if (imageDisplay)
-        {
-            imageDisplay.fillMode = value;
-            imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
-                FILL_MODE_PROPERTY_FLAG, true);
-        }
-        else
-            imageDisplayProperties.fillMode = value;
+        //if (imageDisplay)
+        //{
+            //imageDisplay.fillMode = value;
+            //imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
+                //FILL_MODE_PROPERTY_FLAG, true);
+        //}
+        //else
+            //imageDisplayProperties.fillMode = value;
     }
-     */
 
     //----------------------------------
     //  horizontalAlign
@@ -758,29 +794,31 @@ public class Image extends SkinnableComponent implements IImage
      *  @playerversion Flash 10
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
-    public function get horizontalAlign():String
+     **/
+    public function get horizontalAlign():String // not implemented
     {
-        if (imageDisplay)
-            return imageDisplay.horizontalAlign;
-        else
-            return imageDisplayProperties.horizontalAlign;
+        //if (imageDisplay)
+            //return imageDisplay.horizontalAlign;
+        //else
+            //return imageDisplayProperties.horizontalAlign;
+	    return "center";
     }
-     */
     
     /**
      *  @private
-    public function set horizontalAlign(value:String):void
-    {
-        if (imageDisplay)
-        {
-            imageDisplay.horizontalAlign = value;
-            imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
-                HORIZONTAL_ALIGN_PROPERTY_FLAG, value != null);
-        }
-        else
-            imageDisplayProperties.horizontalAlign = value;
-    }
      */
+    public function set horizontalAlign(value:String):void // not implemented
+    {
+        //if (imageDisplay)
+        //{
+            //imageDisplay.horizontalAlign = value;
+            //imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
+                //HORIZONTAL_ALIGN_PROPERTY_FLAG, value != null);
+        //}
+        //else
+            //imageDisplayProperties.horizontalAlign = value;
+    }
+     
     
     //----------------------------------
     //  preliminaryHeight
@@ -899,44 +937,6 @@ public class Image extends SkinnableComponent implements IImage
     }
      */
        
-    //----------------------------------
-    //  smooth
-    //----------------------------------
-    
-    [Inspectable(category="General", defaultValue="false")]
-    
-    /**
-     *  @copy spark.primitives.BitmapImage#smooth
-     *
-     *  @default false
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 2.5
-     *  @productversion Flex 4.5
-    public function set smooth(value:Boolean):void
-    {
-        if (imageDisplay)
-        {
-            imageDisplay.smooth = value;
-            imageDisplayProperties = BitFlagUtil.update(imageDisplayProperties as uint, 
-                SMOOTH_PROPERTY_FLAG, true);
-        }
-        else
-            imageDisplayProperties.smooth = value;
-    }
-     */
-    
-    /**
-     *  @private
-    public function get smooth():Boolean          
-    {
-        if (imageDisplay)
-            return imageDisplay.smooth;
-        else
-            return imageDisplayProperties.smooth;
-    }
-     */
     
     //----------------------------------
     //  source

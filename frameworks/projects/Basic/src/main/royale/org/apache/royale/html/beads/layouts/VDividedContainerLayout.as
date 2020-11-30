@@ -61,17 +61,6 @@ package org.apache.royale.html.beads.layouts
 		{
 		}
 
-		private var _strand: IStrand;
-
-		/**
-		 * @copy org.apache.royale.core.IStrand#strand
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
-
 		/**
 		 * @private
          *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl

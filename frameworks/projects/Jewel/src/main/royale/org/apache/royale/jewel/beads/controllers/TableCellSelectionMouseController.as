@@ -19,20 +19,20 @@
 package org.apache.royale.jewel.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.ITableModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.jewel.beads.views.TableView;
-    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
-    import  org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.html.beads.ITableView;
+	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 
     /**
      *  The TableCellSelectionMouseController class is a controller for
@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.controllers
      *  watch for events from the interactive portions of a View and
      *  update the data model or dispatch a semantic event.
      *  This controller watches for events from the item renderers
-     *  and updates an ISelectionModel (which only supports single
+     *  and updates an ITableModel (which only supports single
      *  selection).  Other controller/model pairs would support
      *  various kinds of multiple selection.
      *  
@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		protected var model:ISelectionModel;
+		protected var model:ITableModel;
 
         /**
          *  The view.
@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        protected var view:TableView;
+        protected var view:ITableView;
 
         /**
          *  The parent of the item renderers.
@@ -109,11 +109,30 @@ package org.apache.royale.jewel.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			model = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			view = value.getBeadByType(IBeadView) as TableView;
+
+			model = value.getBeadByType(ITableModel) as ITableModel;
+			view = value.getBeadByType(IBeadView) as ITableView;
 			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
+
+            //if the list is composed as part of another component, with a shared model (e.g. ComboBox) then it should not be the primary dispatcher
+			if (model is IJewelSelectionModel && !(IJewelSelectionModel(model).hasDispatcher)) {
+                 IJewelSelectionModel(model).dispatcher = IEventDispatcher(value);
+			}
+            else {
+				IEventDispatcher(model).addEventListener('rollOverIndexChanged', modelChangeHandler);
+				IEventDispatcher(model).addEventListener('selectionChanged', modelChangeHandler);
+                IEventDispatcher(model).addEventListener('dataProviderChanged', modelChangeHandler);
+            }
 		}
+
+        /**
+         * 
+         * @param event 
+         */
+        protected function modelChangeHandler(event:Event):void{
+            IEventDispatcher(_strand).dispatchEvent(new Event(event.type));
+        }
 		
         /**
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -141,8 +160,8 @@ package org.apache.royale.jewel.beads.controllers
 			
             model.labelField = renderer.labelField;
 			model.selectedItem = event.data;
-            (model as TableModel).selectedItemProperty = model.selectedItem[model.labelField];
-            model.selectedIndex = (model as TableModel).getIndexForSelectedItemProperty();
+            model.selectedItemProperty = model.selectedItem[model.labelField];
+            model.selectedIndex = model.getIndexForSelectedItemProperty();
 
             view.host.dispatchEvent(new Event(Event.CHANGE));
         }

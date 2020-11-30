@@ -48,7 +48,6 @@ package org.apache.royale.html.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -62,7 +61,7 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 			_strand = value;
-			IEventDispatcher(value).addEventListener(StyleChangeEvent.STYLE_CHANGE, handleStyleChange);
+			listenOnStrand(StyleChangeEvent.STYLE_CHANGE, handleStyleChange);
 		}
 		
 		/**

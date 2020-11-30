@@ -22,6 +22,7 @@ package mx.effects
 	import org.apache.royale.effects.Sequence;
 	
 	
+	[Event(name="effectEnd", type="org.apache.royale.events.Event")]
 	/**
 	 *  The Sequence effect animates set of effects one after the other.
 	 * 

@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -34,18 +34,18 @@ internal class BasicClasses
 		import org.apache.royale.html.util.createSVG; createSVG;
 		import org.apache.royale.html.util.removeCSSStyleProperty; removeCSSStyleProperty;
 	}
-    import org.apache.royale.html.ToolTip; ToolTip;
+	import org.apache.royale.html.ToolTip; ToolTip;
 	import org.apache.royale.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
-    import org.apache.royale.html.accessories.RestrictTextInputBead; RestrictTextInputBead;
-    import org.apache.royale.html.accessories.PasswordInputBead; PasswordInputBead;
+	import org.apache.royale.html.accessories.RestrictTextInputBead; RestrictTextInputBead;
+	import org.apache.royale.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.royale.html.accessories.PasswordInputRemovableBead; PasswordInputRemovableBead;
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
-    import org.apache.royale.html.beads.AlertView; AlertView;
-    import org.apache.royale.html.beads.ColorSpectrumView; ColorSpectrumView;
-    import org.apache.royale.html.supportClasses.ColorPickerPopUp; ColorPickerPopUp;
-    import org.apache.royale.html.beads.controllers.AlertController; AlertController;
-    import org.apache.royale.html.beads.controllers.ColorSpectrumMouseController; ColorSpectrumMouseController;
+	import org.apache.royale.html.beads.AlertView; AlertView;
+	import org.apache.royale.html.beads.ColorSpectrumView; ColorSpectrumView;
+	import org.apache.royale.html.supportClasses.ColorPickerPopUp; ColorPickerPopUp;
+	import org.apache.royale.html.beads.controllers.AlertController; AlertController;
+	import org.apache.royale.html.beads.controllers.ColorSpectrumMouseController; ColorSpectrumMouseController;
 	
 	import org.apache.royale.html.beads.DividedContainerView; DividedContainerView;
 	import org.apache.royale.html.beads.models.DividedContainerModel; DividedContainerModel;
@@ -74,9 +74,9 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.CascadingMenuModel; CascadingMenuModel;
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
 	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
-    import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead; SolidBackgroundSelectableItemRendererBead;
-    import org.apache.royale.html.beads.SolidBackgroundRuntimeSelectableItemRendererBead; SolidBackgroundRuntimeSelectableItemRendererBead;
-    import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead; AlternatingBackgroundColorSelectableItemRendererBead;
+	import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead; SolidBackgroundSelectableItemRendererBead;
+	import org.apache.royale.html.beads.SolidBackgroundRuntimeSelectableItemRendererBead; SolidBackgroundRuntimeSelectableItemRendererBead;
+	import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead; AlternatingBackgroundColorSelectableItemRendererBead;
 	
 	COMPILE::SWF
 	{
@@ -89,25 +89,25 @@ internal class BasicClasses
 	{
 		import org.apache.royale.html.beads.CheckBoxView; CheckBoxView;
 	}
-    import org.apache.royale.html.beads.ComboBoxView; ComboBoxView;
-    import org.apache.royale.html.beads.ColorPickerView; ColorPickerView;
-    import org.apache.royale.html.MXMLBeadView; MXMLBeadView;
-    import org.apache.royale.html.beads.GroupView; GroupView;
+	import org.apache.royale.html.beads.ComboBoxView; ComboBoxView;
+	import org.apache.royale.html.beads.ColorPickerView; ColorPickerView;
+	import org.apache.royale.html.MXMLBeadView; MXMLBeadView;
+	import org.apache.royale.html.beads.GroupView; GroupView;
 	import org.apache.royale.html.beads.ContainerView; ContainerView;
 	import org.apache.royale.core.supportClasses.StyledImageBase; StyledImageBase;
-    import org.apache.royale.html.beads.plugin.ModalDisplay; ModalDisplay;
+	import org.apache.royale.html.beads.plugin.ModalDisplay; ModalDisplay;
 
 
 	COMPILE::SWF
 	{
-	    import org.apache.royale.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
-	    import org.apache.royale.html.beads.CSSButtonView; CSSButtonView;
-	    import org.apache.royale.html.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
+		import org.apache.royale.html.beads.ControlBarMeasurementBead; ControlBarMeasurementBead;
+		import org.apache.royale.html.beads.CSSButtonView; CSSButtonView;
+		import org.apache.royale.html.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
 		import org.apache.royale.html.beads.CSSTextButtonView; CSSTextButtonView;
-	    import org.apache.royale.html.beads.CSSTextToggleButtonView; CSSTextToggleButtonView;
+		import org.apache.royale.html.beads.CSSTextToggleButtonView; CSSTextToggleButtonView;
 		import org.apache.royale.html.beads.DropDownListView; DropDownListView;
 		import org.apache.royale.html.beads.CloseButtonView; CloseButtonView;
-    	import org.apache.royale.html.beads.ImageAndTextButtonView; ImageAndTextButtonView;
+		import org.apache.royale.html.beads.ImageAndTextButtonView; ImageAndTextButtonView;
 		import org.apache.royale.html.beads.ImageView; org.apache.royale.html.beads.ImageView;
 	}
 	import org.apache.royale.html.beads.ImageButtonView; ImageButtonView;
@@ -115,19 +115,19 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.BinaryImageModel; BinaryImageModel;
 
 	import org.apache.royale.html.beads.ListView; ListView;
-    import org.apache.royale.html.beads.ListOwnerViewItemRendererInitializer; ListOwnerViewItemRendererInitializer;
-    import org.apache.royale.html.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
-    import org.apache.royale.html.beads.HorizontalListItemRendererInitializer; HorizontalListItemRendererInitializer;
+	import org.apache.royale.html.beads.ListOwnerViewItemRendererInitializer; ListOwnerViewItemRendererInitializer;
+	import org.apache.royale.html.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
+	import org.apache.royale.html.beads.HorizontalListItemRendererInitializer; HorizontalListItemRendererInitializer;
 	
 	import org.apache.royale.html.beads.MultiSelectionListView; MultiSelectionListView;
 	import org.apache.royale.html.beads.NumericStepperView; NumericStepperView;
-    import org.apache.royale.html.beads.PanelView; PanelView;
+	import org.apache.royale.html.beads.PanelView; PanelView;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
-    import org.apache.royale.html.beads.SliderView; SliderView;
+	import org.apache.royale.html.beads.SliderView; SliderView;
 	import org.apache.royale.html.beads.layouts.HorizontalSliderLayout; HorizontalSliderLayout;
 	import org.apache.royale.html.beads.layouts.VerticalSliderLayout; VerticalSliderLayout;
-    import org.apache.royale.html.beads.PanelWithControlBarView; PanelWithControlBarView;
-    import org.apache.royale.html.beads.AccordionItemRendererView; AccordionItemRendererView;
+	import org.apache.royale.html.beads.PanelWithControlBarView; PanelWithControlBarView;
+	import org.apache.royale.html.beads.AccordionItemRendererView; AccordionItemRendererView;
 	import org.apache.royale.html.supportClasses.MXMLItemRenderer; MXMLItemRenderer;
 	import org.apache.royale.core.StyledMXMLItemRenderer; StyledMXMLItemRenderer;
 
@@ -136,11 +136,11 @@ internal class BasicClasses
 		import org.apache.royale.html.beads.RadioButtonView; RadioButtonView;
 		import org.apache.royale.html.beads.VScrollBarView; VScrollBarView;
 		import org.apache.royale.html.beads.HScrollBarView; HScrollBarView;
-    	import org.apache.royale.html.beads.ScrollBarView; ScrollBarView;
+		import org.apache.royale.html.beads.ScrollBarView; ScrollBarView;
 		import org.apache.royale.html.beads.SimpleAlertView; SimpleAlertView;
-    	import org.apache.royale.html.beads.SingleLineBorderBead; SingleLineBorderBead;
-        import org.apache.royale.html.beads.SliderThumbView; SliderThumbView;
-        import org.apache.royale.html.beads.SliderTrackView; SliderTrackView;
+		import org.apache.royale.html.beads.SingleLineBorderBead; SingleLineBorderBead;
+		import org.apache.royale.html.beads.SliderThumbView; SliderThumbView;
+		import org.apache.royale.html.beads.SliderTrackView; SliderTrackView;
 		import org.apache.royale.html.beads.SingleLineBorderWithChangeListenerBead; SingleLineBorderWithChangeListenerBead;
 	}
 
@@ -149,13 +149,13 @@ internal class BasicClasses
 	{
 		import org.apache.royale.html.beads.SolidBackgroundBead; SolidBackgroundBead;
 		import org.apache.royale.html.beads.SolidBackgroundWithChangeListenerBead; SolidBackgroundWithChangeListenerBead;
-    	import org.apache.royale.html.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
+		import org.apache.royale.html.beads.TextButtonMeasurementBead; TextButtonMeasurementBead;
 		import org.apache.royale.html.beads.TextFieldLabelMeasurementBead; TextFieldLabelMeasurementBead;
-    	import org.apache.royale.html.beads.TextAreaView; TextAreaView;
-    	import org.apache.royale.html.beads.TextButtonView; TextButtonView;
-    	import org.apache.royale.html.beads.TextFieldView; TextFieldView;
-    	import org.apache.royale.html.beads.TextInputView; TextInputView;
-	    import org.apache.royale.html.beads.TextInputWithBorderView; TextInputWithBorderView;
+		import org.apache.royale.html.beads.TextAreaView; TextAreaView;
+		import org.apache.royale.html.beads.TextButtonView; TextButtonView;
+		import org.apache.royale.html.beads.TextFieldView; TextFieldView;
+		import org.apache.royale.html.beads.TextInputView; TextInputView;
+		import org.apache.royale.html.beads.TextInputWithBorderView; TextInputWithBorderView;
 	}
 	import org.apache.royale.html.beads.models.AlertModel; AlertModel;
 	import org.apache.royale.html.beads.models.ArraySelectionModel; ArraySelectionModel;
@@ -165,27 +165,27 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.TreeModel; TreeModel;
 	import org.apache.royale.html.beads.models.MultiSelectionTreeModel; MultiSelectionTreeModel;
 	import org.apache.royale.html.beads.models.MenuModel; MenuModel;
-    import org.apache.royale.html.beads.models.RangeModel; RangeModel;
-    import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
+	import org.apache.royale.html.beads.models.RangeModel; RangeModel;
+	import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
 	import org.apache.royale.html.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.royale.html.beads.models.ViewportModel; ViewportModel;
 
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.models.ImageModel; ImageModel;
-	    import org.apache.royale.html.beads.models.ImageAndTextModel; ImageAndTextModel;
+		import org.apache.royale.html.beads.models.ImageAndTextModel; ImageAndTextModel;
 	}
 	import org.apache.royale.html.beads.models.PanelModel; PanelModel;
 	COMPILE::SWF
 	{
-	    import org.apache.royale.html.beads.models.SingleLineBorderModel; SingleLineBorderModel;
+		import org.apache.royale.html.beads.models.SingleLineBorderModel; SingleLineBorderModel;
 	}
 
 	import org.apache.royale.html.beads.models.ColorModel; ColorModel;
 	import org.apache.royale.html.beads.models.ColorSpectrumModel; ColorSpectrumModel;
 	import org.apache.royale.html.beads.models.TextModel; TextModel;
-    import org.apache.royale.html.beads.models.NonNullTextModel; NonNullTextModel;
-    import org.apache.royale.html.beads.models.TitleBarModel; TitleBarModel;
+	import org.apache.royale.html.beads.models.NonNullTextModel; NonNullTextModel;
+	import org.apache.royale.html.beads.models.TitleBarModel; TitleBarModel;
 	import org.apache.royale.html.beads.models.ToggleButtonModel; ToggleButtonModel;
 	COMPILE::SWF
 	{
@@ -194,35 +194,35 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.ViewportModel; ViewportModel;
 	COMPILE::SWF
 	{
-    	import org.apache.royale.html.beads.controllers.DropDownListController; DropDownListController;
+		import org.apache.royale.html.beads.controllers.DropDownListController; DropDownListController;
 		import org.apache.royale.html.beads.controllers.EditableTextKeyboardController; EditableTextKeyboardController;
 	}
-    import org.apache.royale.html.beads.controllers.ComboBoxController; ComboBoxController;
-    import org.apache.royale.html.beads.controllers.AccordionItemRendererMouseController; AccordionItemRendererMouseController;
-    import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
-    import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
-    import org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
-    import org.apache.royale.html.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
+	import org.apache.royale.html.beads.controllers.ComboBoxController; ComboBoxController;
+	import org.apache.royale.html.beads.controllers.AccordionItemRendererMouseController; AccordionItemRendererMouseController;
+	import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
+	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+	import org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
+	import org.apache.royale.html.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
 	import org.apache.royale.html.beads.controllers.TreeMultiSelectionMouseController; TreeMultiSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
-    import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;
+	import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;
 	import org.apache.royale.html.beads.controllers.VSliderMouseController; VSliderMouseController;
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.controllers.SpinnerMouseController; SpinnerMouseController;
-	    import org.apache.royale.html.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
+		import org.apache.royale.html.beads.controllers.VScrollBarMouseController; VScrollBarMouseController;
 		import org.apache.royale.html.beads.controllers.HScrollBarMouseController; HScrollBarMouseController;
 	}
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout; ButtonBarLayout;
-    import org.apache.royale.html.beads.layouts.VerticalLayout; VerticalLayout;
-    import org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap; VerticalLayoutWithPaddingAndGap;
+	import org.apache.royale.html.beads.layouts.VerticalLayout; VerticalLayout;
+	import org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap; VerticalLayoutWithPaddingAndGap;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout; VerticalFlexLayout;
 	import org.apache.royale.html.beads.layouts.HorizontalLayout; HorizontalLayout;
-    import org.apache.royale.html.beads.layouts.HorizontalLayoutWithPaddingAndGap; HorizontalLayoutWithPaddingAndGap;
+	import org.apache.royale.html.beads.layouts.HorizontalLayoutWithPaddingAndGap; HorizontalLayoutWithPaddingAndGap;
 	import org.apache.royale.html.beads.layouts.HorizontalFlexLayout; HorizontalFlexLayout;
-    import org.apache.royale.html.beads.layouts.BasicLayout; BasicLayout;
-    import org.apache.royale.html.beads.layouts.RemovableBasicLayout; RemovableBasicLayout;
+	import org.apache.royale.html.beads.layouts.BasicLayout; BasicLayout;
+	import org.apache.royale.html.beads.layouts.RemovableBasicLayout; RemovableBasicLayout;
 	import org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayout; OneFlexibleChildHorizontalLayout;
 	import org.apache.royale.html.beads.layouts.OneFlexibleChildVerticalLayout; OneFlexibleChildVerticalLayout;
 
@@ -231,13 +231,13 @@ internal class BasicClasses
 	COMPILE::SWF
 	{
 		import org.apache.royale.html.beads.layouts.HScrollBarLayout; HScrollBarLayout;
-    	import org.apache.royale.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
+		import org.apache.royale.html.beads.layouts.VScrollBarLayout; VScrollBarLayout;
 		import org.apache.royale.html.supportClasses.ContainerContentArea; ContainerContentArea;
 	}
 	import org.apache.royale.html.beads.layouts.TileLayout; TileLayout;
-    import org.apache.royale.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
+	import org.apache.royale.html.beads.TextItemRendererFactoryForArrayData; TextItemRendererFactoryForArrayData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayData; DataItemRendererFactoryForArrayData;
-    import org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData; DynamicItemsRendererFactoryForArrayListData;
+	import org.apache.royale.html.beads.DynamicItemsRendererFactoryForArrayListData; DynamicItemsRendererFactoryForArrayListData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView; DataItemRendererFactoryForCollectionView;
@@ -261,7 +261,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.DecrementButtonView; DecrementButtonView;
 	import org.apache.royale.html.beads.IncrementButtonView; IncrementButtonView;
 	import org.apache.royale.html.beads.RangeStepperView; RangeStepperView;
-    import org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
+	import org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout; FlexibleFirstChildHorizontalLayout;
 	import org.apache.royale.html.beads.models.DataGridModel; DataGridModel;
 	import org.apache.royale.html.beads.models.DataGridCollectionViewModel; DataGridCollectionViewModel;
 	import org.apache.royale.html.beads.models.DateChooserModel; DateChooserModel;
@@ -272,20 +272,20 @@ internal class BasicClasses
 	import org.apache.royale.html.supportClasses.DataGridColumn; DataGridColumn;
 	import org.apache.royale.html.supportClasses.DateChooserButton; DateChooserButton;
 	import org.apache.royale.html.supportClasses.DateHeaderButton; DateHeaderButton;
-    import org.apache.royale.html.supportClasses.DateChooserList; DateChooserList;
-    import org.apache.royale.html.supportClasses.DateItemRenderer; DateItemRenderer;
+	import org.apache.royale.html.supportClasses.DateChooserList; DateChooserList;
+	import org.apache.royale.html.supportClasses.DateItemRenderer; DateItemRenderer;
 	import org.apache.royale.html.supportClasses.GraphicsItemRenderer; GraphicsItemRenderer;
 	import org.apache.royale.html.supportClasses.NestedStringItemRenderer; NestedStringItemRenderer;
 
-    import org.apache.royale.html.beads.TitleBarView; TitleBarView;
-    import org.apache.royale.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
+	import org.apache.royale.html.beads.TitleBarView; TitleBarView;
+	import org.apache.royale.html.beads.TitleBarMeasurementBead; TitleBarMeasurementBead;
 
 	import org.apache.royale.html.beads.WebBrowserView; WebBrowserView;
 	import org.apache.royale.html.beads.models.WebBrowserModel; WebBrowserModel;
 
 	import org.apache.royale.core.Lookalike; Lookalike;
 	import org.apache.royale.core.FilledRectangle; FilledRectangle;
-    import org.apache.royale.core.UIBase; UIBase;
+	import org.apache.royale.core.UIBase; UIBase;
 	import org.apache.royale.core.StyledUIBase; StyledUIBase;
 	import org.apache.royale.core.GroupBase; GroupBase;
 	import org.apache.royale.core.ContainerBase; ContainerBase;
@@ -295,7 +295,7 @@ internal class BasicClasses
 	{
 		import org.apache.royale.core.UIElement; UIElement;
 	}
-    import org.apache.royale.core.SimpleApplication; SimpleApplication;
+	import org.apache.royale.core.SimpleApplication; SimpleApplication;
 	import org.apache.royale.svg.GraphicContainer; GraphicContainer;
 	import org.apache.royale.svg.DOMWrapper; DOMWrapper;
 
@@ -311,7 +311,7 @@ internal class BasicClasses
 	import org.apache.royale.svg.CompoundGraphic; CompoundGraphic;
 	import org.apache.royale.svg.TransformableCompoundGraphic; TransformableCompoundGraphic;
 
-    import org.apache.royale.html.beads.models.DataProviderModel; DataProviderModel;
+	import org.apache.royale.html.beads.models.DataProviderModel; DataProviderModel;
 	import org.apache.royale.html.beads.DataContainerView; DataContainerView;
 
 	COMPILE::SWF
@@ -332,13 +332,13 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.layouts.TableCellLayout; TableCellLayout;
 	import org.apache.royale.html.beads.layouts.TableHeaderLayout; TableHeaderLayout;
 
-    import org.apache.royale.css2.Cursors; Cursors;
-    COMPILE::SWF
-    {
-        import org.apache.royale.css2.Copy; Copy;
+	import org.apache.royale.css2.Cursors; Cursors;
+	COMPILE::SWF
+	{
+		import org.apache.royale.css2.Copy; Copy;
 		import org.apache.royale.css2.DragMove; DragMove;
 		import org.apache.royale.css2.DragReject; DragReject;
-    }
+	}
 	
 	import org.apache.royale.html.TreeGrid; TreeGrid;
 	import org.apache.royale.html.supportClasses.TreeGridColumn; TreeGridColumn;
@@ -346,11 +346,16 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.TreeGridModel; TreeGridModel;
 	import org.apache.royale.html.beads.layouts.TreeGridLayout; TreeGridLayout;
 	import org.apache.royale.html.beads.TreeGridView; TreeGridView;
-    
-    import org.apache.royale.utils.UIModuleUtils; UIModuleUtils;
+	
+	import org.apache.royale.utils.UIModuleUtils; UIModuleUtils;
 
 
 	import org.apache.royale.html.util.getLabelFromData; getLabelFromData;
+	
+	COMPILE::JS
+	{
+		import org.apache.royale.html.util.DialogPolyfill; DialogPolyfill;
+	}
 }
 
 }

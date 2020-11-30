@@ -114,7 +114,7 @@ public class IndexChangeEvent extends Event
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   //public static const CHANGING:String = "changing";
+   public static const CHANGING:String = "changing"; // not implemented
     
     /**
      *  The <code>IndexChangeEvent.CARET_CHANGE</code> constant defines the value of the 

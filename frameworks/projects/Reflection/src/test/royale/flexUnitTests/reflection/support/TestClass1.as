@@ -27,9 +27,9 @@ package flexUnitTests.reflection.support
      */
     public class TestClass1 implements ITestInterface
     {
-        public function TestClass1()
+        public function TestClass1(somethingElse:ITestInterface = null)
         {
-            //	var something:ITestInterface2;
+
         }
         
         [Bindable]

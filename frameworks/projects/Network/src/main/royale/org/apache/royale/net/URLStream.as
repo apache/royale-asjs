@@ -93,7 +93,7 @@ package org.apache.royale.net
 		{
 			COMPILE::JS
 			{
-					return new BinaryData(xhr.response as ArrayBuffer);
+					return new BinaryData(xhr.response);
 			}
 			COMPILE::SWF
 			{
@@ -109,12 +109,14 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
+		 *  @royaleignorecoercion org.apache.royale.utils.BinaryData
 		 */
 		public function load(urlRequest:org.apache.royale.net.URLRequest):void
 		{
 			COMPILE::JS {
 				requestStatus = 0;
-				xhr = new XMLHttpRequest();
+				createXmlHttpRequest();
+
 				xhr.open(urlRequest.method, urlRequest.url);
 				xhr.responseType = "arraybuffer";
 				xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
@@ -173,6 +175,13 @@ package org.apache.royale.net
 				flashUrlStream.load(req);
 			}
 		}
+
+		COMPILE::JS
+		protected function createXmlHttpRequest():void
+		{
+			xhr = new XMLHttpRequest();
+		}
+
 		/**
 		 * send is a protected function in js so a subclass can attach an upload listener
 		 * without rewriting the whole load() function

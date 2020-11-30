@@ -37,7 +37,7 @@
 	</js:initialView>
 	
 	<js:beads>
-		<js:BrowserResizeListener/>
+		<js:BrowserResizeApplicationListener/>
 		<js:HTTPService id="service" url="team.json">
 			<js:LazyCollection id="collection">
 				<js:inputParser>

@@ -21,6 +21,7 @@
 <js:View xmlns:fx="http://ns.adobe.com/mxml/2009"
 	xmlns:js="library://ns.apache.org/royale/basic"
 	xmlns:models="org.apache.royale.html.test.models.*"
+	xmlns:testview="org.apache.royale.html.test.*"
 	implements="org.apache.royale.test.runners.notification.IRunListener"
 	percentWidth="100" percentHeight="100"
 	initComplete="resultTypesList.selectedIndex = 0;">
@@ -58,41 +59,10 @@
 		</js:DynamicList>
 	</js:Panel>
 
-    <js:Panel title="Test Details" percentWidth="100" percentHeight="50"
-		visible="{!testsModel.selectedResult}">
-		<js:beads>
-			<js:VerticalLayout/>
-		</js:beads>
-		<js:Label text="No test selected"/>
-	</js:Panel>
-
-    <js:Panel title="Test Details" percentWidth="100" percentHeight="50"
-		visible="{testsModel.selectedResult}">
-		<js:beads>
-			<js:VerticalLayout/>
-		</js:beads>
-
-		<js:Label text="Function:"/>
-		<js:Label text="{testsModel.selectedResult.functionName}"/>
-
-		<js:Spacer height="10"/>
-		
-		<js:Label text="Test Case:"/>
-		<js:Label text="{testsModel.selectedResult.testCaseName}"/>
-
-		<js:Spacer height="10"/>
-		
-		<js:Label text="Result:"/>
-		<js:Label text="{getResultType(testsModel.selectedResult)}"/>
-
-		<js:Spacer height="10"/>
-		
-		<js:VGroup visible="{testsModel.selectedResult.failure}">
-			<js:Label text="Stack Trace:"/>
-			<js:MultilineLabel text="{testsModel.selectedResult.failure.stackTrace}"
-				percentWidth="100" style="white-space:pre;overflow-x:scroll"/>
-		</js:VGroup>
-	</js:Panel>
+	<testview:TestResultsDisplay title="Test Details"
+								 percentWidth="100" percentHeight="50"
+								 displayResult="{testsModel.selectedResult}"
+	/>
 
 	<fx:Script>
 		<![CDATA[
@@ -111,7 +81,9 @@
 			public function testStarted(description:String):void
 			{
 				var testResults:ArrayListView = testsModel.results;
-				testResults.addItem(new UITestVO(description));
+				var item:UITestVO = new UITestVO(description);
+				item.active = true;
+				testResults.addItem(item);
 			}
 
 			public function testFinished(description:String):void
@@ -127,7 +99,6 @@
 				var testResults:ArrayListView = testsModel.results;
 				var item:UITestVO = testResults.getItemAt(testResults.length - 1) as UITestVO;
 				item.failure = failure;
-				testResults.itemUpdated(item);
 			}
 
 			public function testIgnored(description:String):void
@@ -141,27 +112,6 @@
 
 			public function testRunFinished(result:Result):void
 			{
-			}
-
-			private function getResultType(item:UITestVO):String
-			{
-				if(item.active)
-				{
-					return "Active";
-				}
-				if(item.ignored)
-				{
-					return "Ignored";
-				}
-				if(item.failure)
-				{
-					if(item.failure.exception is AssertionError)
-					{
-						return "Assertion Failed";
-					}
-					return "Exception";
-				}
-				return "Passed";
 			}
 
 			private function resultsList_changeHandler(event:Event):void

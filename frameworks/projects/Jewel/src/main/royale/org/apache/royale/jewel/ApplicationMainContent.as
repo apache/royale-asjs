@@ -53,7 +53,6 @@ package org.apache.royale.jewel
 		}
 		
 		private var _hasTopAppBar:Boolean;
-
         /**
          *  a boolean flag to indicate if the container needs to make some room
 		 *  for a TopAppBar so content doesn't be hide
@@ -73,16 +72,11 @@ package org.apache.royale.jewel
             if (_hasTopAppBar != value)
             {
                 _hasTopAppBar = value;
-
-                COMPILE::JS
-                {
                 toggleClass("has-topappbar", _hasTopAppBar);
-                }
             }
 		}
 		
 		private var _hasFooterBar:Boolean;
-
         /**
          *  a boolean flag to indicate if the container needs to make some room
 		 *  for a FooterBar so content doesn't be hide
@@ -96,17 +90,12 @@ package org.apache.royale.jewel
 		{
             return _hasFooterBar;
 		}
-
 		public function set hasFooterBar(value:Boolean):void
 		{
             if (_hasFooterBar != value)
             {
                 _hasFooterBar = value;
-
-                COMPILE::JS
-                {
                 toggleClass("has-footerbar", _hasFooterBar);
-                }
             }
 		}
 

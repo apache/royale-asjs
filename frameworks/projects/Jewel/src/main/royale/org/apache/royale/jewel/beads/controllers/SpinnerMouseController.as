@@ -18,21 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
+    COMPILE::JS
+    {
+	import org.apache.royale.jewel.Button;
+    }
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IRangeModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.jewel.beads.controls.spinner.ISpinnerView;
-    COMPILE::JS
-    {
-        import org.apache.royale.jewel.Spinner;
-        import org.apache.royale.jewel.Button;
-        import goog.events;
-        import goog.events.EventType;
-    }
+	import org.apache.royale.utils.Timer;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  The SpinnerMouseController class bead handles mouse events on the
@@ -82,50 +81,150 @@ package org.apache.royale.jewel.beads.controllers
 
             COMPILE::SWF
             {
-                var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
-                spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
-                spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
-                spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
-                spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
+			var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
+			spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
+			spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
+			spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
+			spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
             }
 
             COMPILE::JS
             {
-            	var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
+			var view:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
 
-                var incrementButton:Button = spinnerBead.increment;
-                var decrementButton:Button = spinnerBead.decrement;
+			var incrementButton:Button = view.increment;
+			var decrementButton:Button = view.decrement;
 
-                goog.events.listen(incrementButton.element, goog.events.EventType.CLICK,
-                    incrementClickHandler);
-
-                goog.events.listen(decrementButton.element, goog.events.EventType.CLICK,
-                    decrementClickHandler);
+			incrementButton.addEventListener(MouseEvent.CLICK, incrementClickHandler);
+			incrementButton.addEventListener(MouseEvent.MOUSE_DOWN, incrementMouseDownHandler);
+			incrementButton.addEventListener(MouseEvent.MOUSE_UP, incrementMouseUpHandlermouseUpHandler);
+			decrementButton.addEventListener(MouseEvent.CLICK, decrementClickHandler);
+			decrementButton.addEventListener(MouseEvent.MOUSE_DOWN, decrementMouseDownHandler);
+			decrementButton.addEventListener(MouseEvent.MOUSE_UP, decrementMouseUpHandlermouseUpHandler);
             }
 		}
 
+		private var mouseDown:Boolean = false;
+
+		protected var timer:Timer;
+		protected var timerdelay:Number = 500;
+
 		/**
+		 * Make timer be faster as user maintain the button pressed
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		private function decrementClickHandler( event:org.apache.royale.events.MouseEvent ) : void
+		private function increaseCadence(incOrDecFunc:Function):void
 		{
-			var oldValue:Number = rangeModel.value;
-			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
-			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
-			IEventDispatcher(_strand).dispatchEvent(vce);
+			if(!mouseDown) return;
+			if(timer != null && timer.running)
+			{
+				if (timer.delay > 150)
+				{
+					var newdelay:Number = timer.delay/2;
+					removeTimer(incOrDecFunc);
+					createTimer(incOrDecFunc, newdelay)
+				}
+			}
 		}
 
 		/**
+		 * Create the timer each time needed depending on function to listen and delay
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		private function incrementClickHandler( event:org.apache.royale.events.MouseEvent ) : void
+		private function createTimer(incOrDecFunc:Function, delay:Number):void
 		{
+			timer = new Timer(delay, 0);
+			timer.addEventListener("timer", incOrDecFunc);
+			timer.start();
+		}
+		
+		/**
+		 * Remove the timer each time needed depending on function to listen
+		 * @private
+		 */
+		private function removeTimer(incOrDecFunc:Function):void
+		{
+			timer.removeEventListener("timer", incOrDecFunc);
+			timer.stop();
+			timer = null;
+		}
+
+		/**
+		 * Increment mouse down handler
+		 */
+		private function incrementMouseDownHandler(event:MouseEvent):void
+		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
+			mouseDown = true;
+			createTimer(incrementClickHandler, timerdelay);
+		}
+		/**
+		 * Increment mouse up handler
+		 */
+		private function incrementMouseUpHandlermouseUpHandler(event:MouseEvent):void
+		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
+			mouseDown = false;
+			removeTimer(incrementClickHandler);
+		}
+		/**
+		 * Increment mouse click handler
+		 */
+		private function incrementClickHandler(event:Event):void
+		{
+			increaseCadence(incrementClickHandler);
+			
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
-			IEventDispatcher(_strand).dispatchEvent(vce);
+			sendStrandEvent(_strand, vce);
+		}
+
+		/**
+		 * Decrement mouse down handler
+		 */
+		private function decrementMouseDownHandler(event:MouseEvent):void
+		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
+			mouseDown = true;
+			createTimer(decrementClickHandler, timerdelay);
+		}
+		/**
+		 * Decrement mouse up handler
+		 */
+		private function decrementMouseUpHandlermouseUpHandler(event:MouseEvent):void
+		{
+			COMPILE::JS
+			{
+			if (event.button !== 0)
+				return;
+			}
+			mouseDown = false;
+			removeTimer(decrementClickHandler);
+		}
+		/**
+		 * Decrement mouse click handler
+		 */
+		private function decrementClickHandler(event:Event):void
+		{
+			increaseCadence(decrementClickHandler);
+
+			var oldValue:Number = rangeModel.value;
+			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
+			sendStrandEvent(_strand, vce);
 		}
 	}
 }

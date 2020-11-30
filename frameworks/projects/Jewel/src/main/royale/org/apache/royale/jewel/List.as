@@ -18,17 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadKeyController;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrandWithPresentationModel;
-	import org.apache.royale.jewel.beads.layouts.IVariableRowHeight;
-	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
-	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
-	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -43,7 +36,7 @@ package org.apache.royale.jewel
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
 	/**
-	 *  The change event is dispatched whenever the list's selection changes.
+	 *  The change event is dispatched whenever the list's selection changes by user.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,6 +44,12 @@ package org.apache.royale.jewel
 	 *  @productversion Royale 0.9.4
 	 */
     [Event(name="change", type="org.apache.royale.events.Event")]
+
+	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("dataProvider")]
 
 	/**
 	 *  The List class is a component that displays multiple data items. The List uses
@@ -63,13 +62,18 @@ package org.apache.royale.jewel
 	 *  org.apache.royale.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
 	 *  org.apache.royale.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
 	 *  org.apache.royale.core.IItemRenderer: the class or factory used to display an item in the list.
+	 *  org.apache.royale.core.IItemRendererClassFactory: the factory for the itemrenders.
+	 *  org.apache.royale.core.ISelectableItemRenderer: handles selection and hover states for item renderers.
+	 *  org.apache.royale.core.IItemRendererInitializer: the class that initialize the renderer and provide additional configuration.
+	 *  org.apache.royale.core.IViewport: the class that defines the area that display content
+	 *  org.apache.royale.core.IBeadKeyController: add keyboard support to the list.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class List extends DataContainerBase implements IStrandWithPresentationModel, IVariableRowHeight
+	public class List extends DataContainer 
 	{
 		/**
 		 *  constructor.
@@ -83,58 +87,10 @@ package org.apache.royale.jewel
 		{
 			super();
             typeNames = "jewel list";
-			// rowHeight is not set by default, so set it to NaN
-			rowHeight = NaN;
-
 			tabIndex = 0;
 		}
 
-        [Bindable("labelFieldChanged")]
-		/**
-		 *  The name of field within the data used for display. Each item of the
-		 *  data should have a property with this name.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function get labelField():String
-		{
-			return IDataProviderModel(model).labelField;
-		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function set labelField(value:String):void
-		{
-            IDataProviderModel(model).labelField = value;
-		}
-
-        [Bindable("dataProviderChanged")]
-		/**
-		 *  The data being display by the List.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-        public function get dataProvider():Object
-        {
-            return IDataProviderModel(model).dataProvider;
-        }
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-        public function set dataProvider(value:Object):void
-        {
-            IDataProviderModel(model).dataProvider = value;
-        }
-
-		/**
+        /**
 		 *  The index of the currently selected item. Changing this value
 		 *  also changes the selectedItem property.
 		 *
@@ -180,24 +136,6 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 *  The default height of each cell in every column
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 */
-        public function get rowHeight():Number
-        {
-            return (presentationModel as IListPresentationModel).rowHeight;
-        }
-        public function set rowHeight(value:Number):void
-        {
-            (presentationModel as IListPresentationModel).rowHeight = value;
-        }
-
-		/**
 		 *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
 		 *
@@ -219,50 +157,6 @@ package org.apache.royale.jewel
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
-		
-		protected var _variableRowHeight:Boolean;
-		/**
-		 *  Specifies whether layout elements are allocated their preferred height.
-		 *  Setting this property to false specifies fixed height rows.
-		 *  
-		 *  If false, the actual height of each layout element is the value of rowHeight.
-		 *  The default value is true. 
-		 *  
-		 *  Note: From Flex but we should see what to do in Royale -> Setting this property to false causes the layout to ignore the layout elements' percentHeight property.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		[Bindable("variableRowHeightChanged")]
-        public function get variableRowHeight():Boolean
-        {
-			return (presentationModel as IListPresentationModel).variableRowHeight;
-        }
-        public function set variableRowHeight(value:Boolean):void
-        {
-			(presentationModel as IListPresentationModel).variableRowHeight = value;
-        }
-
-		/**
-		 *  The presentation model for the list.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 */
-		public function get presentationModel():IBead
-		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
-			if (presModel == null) {
-				presModel = new ListPresentationModel();
-				addBead(presModel);
-			}
-			return presModel;
-		}
 
 		/**
 		 *  Ensures that the data provider item at the given index is visible.
@@ -282,12 +176,18 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
+         *  load necesary beads. This method can be override in subclasses to
+         *  add other custom beads needed, so all requested beads be loaded before
+         *  signal the "beadsAdded" event.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        override protected function loadBeads():void
+        {
+			super.loadBeads();
 			loadBeadFromValuesManager(IBeadKeyController, "iBeadKeyController", this);
 		}
    	}

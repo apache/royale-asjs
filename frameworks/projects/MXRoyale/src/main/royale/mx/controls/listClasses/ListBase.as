@@ -799,6 +799,21 @@ use namespace mx_internal;
             return _strandChildren;
         }
         
+    /**
+     *  Refresh all rows on next update.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+     public function invalidateList():void
+    {
+	// not implemented
+       // itemsSizeChanged = true;
+       // invalidateDisplayList();
+    } 
+
         public function scrollToIndex(index:int):Boolean
         {
 
@@ -923,6 +938,29 @@ use namespace mx_internal;
                 this.dispatchEvent(new ValueEvent("childrenRemoved", c));
         }
         
+      /**
+       *  Returns the item renderer for a given item in the data provider,
+       *  if there is one.  Since item renderers only exist for items
+       *  that are within the set of viewable rows, this method
+       *  returns <code>null</code> if the item is not visible.
+       *  For a data grid, this returns the first column's renderer.
+       *
+       *  @param item The data provider item.
+       *
+       *  @return The item renderer or <code>null</code> if the item is not 
+       *  currently displayed.
+       *  
+       *  @langversion 3.0
+       *  @playerversion Flash 9
+       *  @playerversion AIR 1.1
+       *  @productversion Royale 0.9.4
+       */
+      public function itemToItemRenderer(item:Object):IListItemRenderer
+      {
+	      // not implemented
+          //return visibleData[itemToUID(item)];
+	      return null;
+      }
         /**
          * @private
          */

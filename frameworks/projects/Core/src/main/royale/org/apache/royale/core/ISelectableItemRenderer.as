@@ -18,11 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import org.apache.royale.events.IEventDispatcher;
-
-    /**
-     *  The IItemRenderer interface is the basic interface for item renderers.
-     *  More complex item renderers may implements extensions of this interface.
+	/**
+     *  The IItemRenderer interface is the basic interface for item renderers that require selection.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2

@@ -31,6 +31,7 @@ package org.apache.royale.jewel
     import org.apache.royale.html.util.addElementToWrapper;
     }
 
+    import org.apache.royale.core.ITextButton;
     import org.apache.royale.jewel.supportClasses.IInputButton;
     import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase;
     
@@ -49,7 +50,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class CheckBox extends SelectableButtonBase implements IInputButton
+    public class CheckBox extends SelectableButtonBase implements IInputButton, ITextButton
     {
         /**
          *  Constructor.
@@ -141,7 +142,7 @@ package org.apache.royale.jewel
             if(!textNode)
             {
                 textNode = document.createTextNode('') as Text;
-                checkbox.appendChild(textNode);
+                spanLabel.appendChild(textNode);
             }
             
             textNode.nodeValue = value;
@@ -202,11 +203,23 @@ package org.apache.royale.jewel
         }
 
         COMPILE::JS
-        /**
-         * a HTMLSpanElement decorator for this component
-         * added to the positioner.
+		private var _spanLabel:HTMLSpanElement;
+		/**
+         *  the span for the label text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
          */
-        protected var checkbox:HTMLSpanElement;
+		COMPILE::JS
+		public function get spanLabel():HTMLSpanElement {
+			return _spanLabel;
+		}
+		COMPILE::JS
+		public function set spanLabel(value:HTMLSpanElement):void {
+			_spanLabel = value;
+		}
         
         COMPILE::JS
         /**
@@ -225,7 +238,7 @@ package org.apache.royale.jewel
         {
             input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.type = 'checkbox';
-            checkbox = document.createElement('span') as HTMLSpanElement;
+            spanLabel = document.createElement('span') as HTMLSpanElement;
             positioner = document.createElement('label') as WrappedHTMLElement;   
             return element;
         }
@@ -251,7 +264,7 @@ package org.apache.royale.jewel
 			_positioner = value;
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(element);
-            _positioner.appendChild(checkbox);
+            _positioner.appendChild(spanLabel);
 		}
     }
 }

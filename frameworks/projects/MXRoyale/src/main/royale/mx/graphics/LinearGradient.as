@@ -68,6 +68,8 @@ public class LinearGradient implements IFill
         _entries = value;
     }
 
+    public function set interpolationMethod(value:String):void {}
+
 }
 
 }

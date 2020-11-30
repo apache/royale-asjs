@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 
     /**
      *  The Jewel ListSingleSelectionMouseController class is a controller for
@@ -122,7 +123,7 @@ package org.apache.royale.jewel.beads.controllers
 		protected function keyDownEventHandler(event:KeyboardEvent):void
 		{
 			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
+			if(event.key === WhitespaceKeys.TAB)
 				return;
 			
 			event.preventDefault();
@@ -147,9 +148,7 @@ package org.apache.royale.jewel.beads.controllers
 			// 	var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
 			// 	ir.setFocus();
 				
-            //     (listView as IScrollToIndexView).scrollToIndex(listModel.selectedIndex);
-				
-			// 	sendEvent(listView.host, 'change');
+            // 	sendEvent(listView.host, 'change');
 			// }
 		}
 	}

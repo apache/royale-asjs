@@ -45,7 +45,7 @@ package org.apache.royale.html.beads
 		 */
 		public function ShrinkableDisableLoaderBead()
 		{
-            super();
+			super();
 		}
 
 		/**
@@ -57,16 +57,18 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-        public function get resizeFactor():Number
-        {
-            return _resizeFactor;
-        }
+		public function get resizeFactor():Number
+		{
+			return _resizeFactor;
+		}
 
-        public function set resizeFactor(value:Number):void
-        {
-            _resizeFactor = value;
-        }
-		
+		public function set resizeFactor(value:Number):void
+		{
+			_resizeFactor = value;
+		}
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		override protected function addLoadIndicator():void
 		{
 			var point:Point = PointUtils.localToGlobal(new Point(0, 0), _strand);

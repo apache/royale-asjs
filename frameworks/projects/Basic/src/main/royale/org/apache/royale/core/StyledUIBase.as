@@ -150,6 +150,24 @@ package org.apache.royale.core
             }
         }
 
+        /**
+		 *  Replace a class for a new one
+		 *
+         *  @param oldClass Name of selector to remove.
+         *  @param newClass Name of selector to set.
+         * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        public function replaceClass(oldClass:String, newClass:String = null):void
+        {
+            if (containsClass(oldClass))
+                removeClass(oldClass);
+            addClass(newClass == null ? oldClass : newClass);
+        }
+
         private var _emphasis:String;
         /**
 		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
@@ -316,7 +334,7 @@ package org.apache.royale.core
                 _width = newWidth;
                 COMPILE::JS
                 {
-                    this.positioner.style.width = isNaN(newWidth) ? null : newWidth.toString() + 'px';        
+                this.positioner.style.width = isNaN(newWidth) ? null : newWidth.toString() + 'px';        
                 }
                 if (!noEvent && !heightChanged) 
                     sendEvent(this, "widthChanged");
@@ -326,7 +344,7 @@ package org.apache.royale.core
                 _height = newHeight;
                 COMPILE::JS
                 {
-                    this.positioner.style.height = isNaN(newHeight) ? null : newHeight.toString() + 'px';        
+                this.positioner.style.height = isNaN(newHeight) ? null : newHeight.toString() + 'px';        
                 }
                 if (!noEvent && !widthChanged)
                     sendEvent(this, "heightChanged");

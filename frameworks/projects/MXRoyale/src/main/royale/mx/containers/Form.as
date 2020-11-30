@@ -53,7 +53,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="indicatorGap", type="Number", format="Length", inherit="yes")]
+[Style(name="indicatorGap", type="Number", format="Length", inherit="yes")]
 
 /**
  *  Width of the form labels.

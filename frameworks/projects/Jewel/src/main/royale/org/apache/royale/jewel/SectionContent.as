@@ -26,8 +26,8 @@ package org.apache.royale.jewel
     import org.apache.royale.jewel.supportClasses.ISelectableContent;
     
 	/**
-	 *  The SectionContent class is a Container component capable of parenting other
-	 *  components. This class is used along with Tabs to separate content and
+	 *  The Jewel SectionContent class is a Container component capable of parenting other
+	 *  components. This class is used along with Tabs to separate content, 
 	 *  present and organize data for the user.
 	 *
 	 *  @langversion 3.0
@@ -50,6 +50,9 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "jewel section";
+
+            // we need to add this for propoer sizing of content inside this container
+            //addClass("is-selected");
 		}
 
         /**
@@ -58,7 +61,7 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'section');
+			return addElementToWrapper(this, 'section');
         }
 
 		private var _isSelected:Boolean;

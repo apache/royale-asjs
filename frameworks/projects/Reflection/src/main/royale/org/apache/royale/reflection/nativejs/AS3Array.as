@@ -23,6 +23,7 @@ package org.apache.royale.reflection.nativejs {
      */
     COMPILE::JS
     public function AS3Array():Object{
+        if (singleton) return singleton;
         var ret:Object= {};
         ret['classRef'] = Array;
         ret['name'] = 'Array';
@@ -44,8 +45,8 @@ package org.apache.royale.reflection.nativejs {
                 }
             };
         };
-        
+        singleton = ret;
         return ret;
     }
-    
 }
+var singleton:* = null; //the explicit assignment with null is necessary here

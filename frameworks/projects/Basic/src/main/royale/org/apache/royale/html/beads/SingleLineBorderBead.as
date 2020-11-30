@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.CSSBorderUtils;
 	import org.apache.royale.html.beads.IBorderBead;
+	import org.apache.royale.core.Bead;
 
     /**
      *  The SingleLineBorderBead class draws a single line solid border.
@@ -40,7 +41,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class SingleLineBorderBead implements IBead, IBorderBead, IGraphicsDrawing
+	public class SingleLineBorderBead extends Bead implements IBorderBead, IGraphicsDrawing
 	{
         /**
          *  Constructor.
@@ -54,8 +55,6 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-		
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *  
@@ -64,14 +63,14 @@ package org.apache.royale.html.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            IEventDispatcher(value).addEventListener("heightChanged", changeHandler);
-            IEventDispatcher(value).addEventListener("widthChanged", changeHandler);
-			IEventDispatcher(value).addEventListener("sizeChanged", changeHandler);
-			IEventDispatcher(value).addEventListener("initComplete", changeHandler);
-			IEventDispatcher(value).addEventListener("layoutComplete", changeHandler);
+			listenOnStrand("heightChanged", changeHandler);
+			listenOnStrand("widthChanged", changeHandler);
+			listenOnStrand("sizeChanged", changeHandler);
+			listenOnStrand("initComplete", changeHandler);
+			listenOnStrand("layoutComplete", changeHandler);
 			var ilc:ILayoutChild = value as ILayoutChild;
 			if (ilc)
 			{
@@ -84,18 +83,18 @@ package org.apache.royale.html.beads
 		        
 		protected function changeHandler(event:Event):void
 		{
-            var host:UIBase = UIBase(_strand);
-            var g:Graphics = host.graphics;
-            var w:Number = host.width;
-            var h:Number = host.height;
-            var state:String;
-            if (host is IStatesObject)
-                state = IStatesObject(host).currentState;
+			var host:UIBase = UIBase(_strand);
+			var g:Graphics = host.graphics;
+			var w:Number = host.width;
+			var h:Number = host.height;
+			var state:String;
+			if (host is IStatesObject)
+				state = IStatesObject(host).currentState;
 			
 			var gd:IGraphicsDrawing = _strand.getBeadByType(IGraphicsDrawing) as IGraphicsDrawing;
 			if( this == gd ) g.clear();
             
-            CSSBorderUtils.draw(g, w, h, host, state, false, false);
+			CSSBorderUtils.draw(g, w, h, host, state, false, false);
 		}
 	}
 }

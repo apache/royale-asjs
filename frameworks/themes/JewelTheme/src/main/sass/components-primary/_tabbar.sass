@@ -21,24 +21,21 @@
 
 // TabBar variables
 
-
 .jewel
     &.tabbar
         &.sameWidths
-            .content
-                > *
-                    flex: 1 0 0%
+            > *
+                flex: 1 0 0% !important
+
+j|TabBar
+    itemsExpand: true
+
 
 // Jewel TabBarButtonItemRenderer
 
 // TabBarButtonItemRenderer variables
-// Jewel NavigationLinkItemRenderer
-
-// NavigationLinkItemRenderer variables
 .jewel
     &.tabbarbutton
-        // margin: 0
-        // padding: 0
         font:
             // family: $font-stack
             size: $font-size
@@ -57,24 +54,37 @@
         transition: background-color .3s ease-in-out, color .3s ease-in-out
         
         > .content
-            padding-top: 12px
-            padding-bottom: 12px
-        
+            // padding-top: 12px
+            // padding-bottom: 12px
+
         .indicator
-            > .indicatorContent
-                height: 2px
+            > .indicator-content
                 background-color: $primary-color
-                // transform-origin: left
-                // transition: transform .25s ease-in-out //cubic-bezier(.4,0,.2,1)
-                // animation-duration: .3s
-                // animation-timing-function: ease-in-out
-                // animation-fill-mode: both
         &.hovered
             // color: $font-theme-color
             background: rgba($primary-color, .2)
-            
 
         &.selected, &.selectable:active
             // color: $font-theme-color
             color: darken($primary-color, 15%)
             background: rgba($primary-color, .4)
+
+.jewel
+    &.tabbar
+        &.layout
+            &.horizontal
+                .indicator
+                    > .indicator-content
+                        height: 2px
+                        // transform-origin: left
+                        // transition: transform .25s ease-in-out //cubic-bezier(.4,0,.2,1)
+                        // animation-duration: .3s
+                        // animation-timing-function: ease-in-out
+                        // animation-fill-mode: both
+            &.vertical
+                .indicator
+                    > .indicator-content
+                        width: 2px
+
+// j|TabBarButtonItemRenderer
+//     itemsHorizontalAlign: itemsCenter

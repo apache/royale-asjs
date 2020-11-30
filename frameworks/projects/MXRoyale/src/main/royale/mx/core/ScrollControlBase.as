@@ -430,7 +430,7 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the horizontalScrollPolicy property.
      */
-    private var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
+    public var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
 
     [Bindable("horizontalScrollPolicyChanged")]
     [Inspectable(enumeration="off,on,auto", defaultValue="off")]
@@ -783,7 +783,7 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the verticalScrollPolicy property.
      */
-    private var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
+    public var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
 
     [Bindable("verticalScrollPolicyChanged")]
     [Inspectable(enumeration="off,on,auto", defaultValue="auto")]

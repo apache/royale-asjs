@@ -24,11 +24,12 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 	
     /**
      * @copy org.apache.royale.core.IViewportModel
      */
-	public class ViewportModel extends EventDispatcher implements IViewportModel
+	public class ViewportModel extends DispatcherBead implements IViewportModel
 	{
 		public function ViewportModel()
 		{
@@ -37,8 +38,6 @@ package org.apache.royale.html.beads.models
 		
         private var _borderMetrics:EdgeData;
 		private var _chromeMetrics:EdgeData;
-		
-		private var _strand:IStrand;
 		
         /**
          * @copy org.apache.royale.core.IViewportModel
@@ -64,9 +63,5 @@ package org.apache.royale.html.beads.models
             _chromeMetrics = value;
         }
         
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
 	}
 }

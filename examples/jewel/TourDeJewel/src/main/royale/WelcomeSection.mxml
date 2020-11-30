@@ -65,10 +65,14 @@ limitations under the License.
     <j:Group>
         <j:beads>
             <j:VerticalCenteredLayout gap="9"/>
-            <j:Paddings padding="50"/>
+            <js:Paddings padding="50"/>
         </j:beads>
 
-        <j:Image src="assets/apache-royale-logo.svg" height="300"/>
+        <j:Image src="assets/apache-royale-logo.svg" height="300">
+            <j:beads>
+                <j:ResponsiveSize phoneHeight="200" tabletHeight="250"/>
+            </j:beads>
+        </j:Image>
 
         <html:H1 text="Welcome to Apache Royale Tour de Jewel Component Explorer v.0.9.7">
             <html:beads>

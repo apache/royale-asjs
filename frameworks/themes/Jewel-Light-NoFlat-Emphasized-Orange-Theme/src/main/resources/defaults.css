@@ -137,6 +137,10 @@
   background: #f28809;
 }
 
+.jewel.loader.emphasized.segment {
+  border-top-color: #F7941D;
+}
+
 .jewel.snackbar.emphasized .jewel.snackbar-content {
   background: linear-gradient(#f8a036, #f28809);
   border: 1px solid #c16c07;

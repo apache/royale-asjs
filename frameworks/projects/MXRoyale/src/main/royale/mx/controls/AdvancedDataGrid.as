@@ -10493,24 +10493,21 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         }
 
 		var xx:Number = 0;
-        if (visibleColumns.length != columns.length)
+        var n:int = visibleColumns.length;
+        for (var i:int = 0; i < n; i++)
         {
-            var n:int = visibleColumns.length;
-            for (var i:int = 0; i < n; i++)
+            if ((visibleColumns[i] as AdvancedDataGridColumn).colNum >= colIndex)
             {
-                if ((visibleColumns[i] as AdvancedDataGridColumn).colNum >= colIndex)
-                {
-                    colIndex = i;
-                    break;
-                }
-				xx += visibleColumns[i].width;
+                colIndex = i;
+                break;
             }
-            if (i == visibleColumns.length)
-			{
-                colIndex = 0;
-				xx = 0;
-			}
+			xx += visibleColumns[i].width;
         }
+        if (i == visibleColumns.length)
+		{
+		    colIndex = 0;
+			xx = 0;
+		}
 
         if (rowIndex > lockedRowCount)
             rowIndex -= verticalScrollPosition;

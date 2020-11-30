@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<!--- The default skin class for the scrub bar of a Spark VideoPlayer 
+      component while in one of the <code>fullScreen</code> skin states.  
+
+      @see spark.components.VideoPlayer
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+      minHeight="14" minWidth="60"
+      alpha.disabled="0.5">
+
+    <fx:Metadata>
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.mediaClasses.ScrubBar")]
+    </fx:Metadata>
+    
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+    <fx:Declarations>
+        <!--- Defines the appearance of the ScrubBar skin's data tip. To customize the data tip's appearance, create a custom ScrubBarSkin class. -->
+        <fx:Component id="dataTip" className="DataTipClass">     
+            <s:DataRenderer minHeight="24" minWidth="40" y="-34">
+                <s:RectangularDropShadow id="shadow" distance="3" 
+                    angle="90" color="#999999" left="0" top="0" right="0" bottom="0"/>
+                    
+                <s:Rect top="0" left="0" right="0" bottom="0">
+                    <s:fill>
+                        <s:SolidColor color="0x000000" alpha=".9"/>
+                    </s:fill>
+                </s:Rect>
+                
+                <s:Label id="labelDisplay" text="{data}"
+                         horizontalCenter="0" verticalCenter="1"
+                         left="5" right="5" top="5" bottom="5"
+                         textAlign="center" verticalAlign="middle"
+                         fontWeight="normal" color="white" fontSize="11">
+                </s:Label>
+            </s:DataRenderer>
+        </fx:Component>
+    </fx:Declarations>
+    
+    <!--- The skin pat that defines the video timeline. The timeline shows the current playhead location  
+          in the video, the amount of the video previously played, and the loaded in part of the video. -->
+    <s:Button id="track" left="0" right="0" top="0" height="11"
+              skinClass="spark.skins.spark.mediaClasses.fullScreen.ScrubBarTrackSkin" />
+    
+    <!--- @copy spark.components.mediaClasses.ScrubBar#loadedRangeArea -->
+    <s:Group id="loadedRangeArea" x="0" y="0" height="11" includeInLayout="false">
+    
+        <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
+        <s:Group left="7" right="6" top="0" bottom="0" minWidth="0">
+        
+            <!-- fill -->
+            <s:Rect left="0" right="0" top="0" bottom="0">
+                <s:fill>
+                    <s:LinearGradient rotation="90">
+                        <s:GradientEntry color="0xFFFFFF" alpha="0.33"/>
+                        <s:GradientEntry color="0xE1E1E1" alpha="0.33"/>
+                    </s:LinearGradient>
+                </s:fill>
+            </s:Rect>
+            
+            <!-- black line on top -->
+            <!-- set width to 100%, maxWidth=1, minWidth=0 b/c only want this line to show up 
+                 if there's room for it -->
+            <s:Rect right="0" left="0" top="0">
+                <s:fill>
+                    <s:SolidColor color="0x000000" alpha=".18"/>
+                </s:fill>
+            </s:Rect>
+            
+        </s:Group>    
+    </s:Group>
+    
+    <!--- @copy spark.components.mediaClasses.ScrubBar#playedArea -->
+    <s:Group id="playedArea" x="0" y="0" height="11" includeInLayout="false">
+    
+        <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
+        <s:Group left="7" right="6" top="0" bottom="0" minWidth="0">
+        
+            <!-- border -->
+            <s:Rect left="0" right="0" top="0" bottom="0" minWidth="0">
+                <s:fill>
+                    <s:SolidColor color="0x000000" alpha="0.85" />
+                </s:fill>
+            </s:Rect>
+        
+            <!-- fill -->
+            <s:Rect left="1" right="1" top="1" bottom="1">
+                <s:fill>
+                    <s:LinearGradient rotation="90">
+                        <s:GradientEntry color="0xEBECF2"/>
+                        <s:GradientEntry color="0xD2D3D8"/>
+                    </s:LinearGradient>
+                </s:fill>
+            </s:Rect>
+            
+        </s:Group>  
+    </s:Group>
+    
+    <!--- A skin part that defines a button that can be dragged along the track to increase or decrease 
+          the playhead location in the video.   -->
+    <s:Button id="thumb" x="0" y="0" width="14" height="19" includeInLayout="false"
+              skinClass="spark.skins.spark.mediaClasses.fullScreen.ScrubBarThumbSkin" />
+
+</s:Skin>

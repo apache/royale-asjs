@@ -153,6 +153,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function get host():IUIBase
 		{
@@ -166,6 +167,10 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion HTMLIFrameElement
+		 *  @royaleignorecoercion org.apache.royale.html.beads.models.WebBrowserModel
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -183,6 +188,9 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.WebBrowserModel
+		 * @royaleignorecoercion HTMLIFrameElement
 		 */
 		private function loadPage(event:Event):void
 		{
@@ -194,6 +202,9 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.WebBrowserModel
+		 * @royaleignorecoercion HTMLIFrameElement
 		 */
 		private function handlePageShow(event:Event):void
 		{

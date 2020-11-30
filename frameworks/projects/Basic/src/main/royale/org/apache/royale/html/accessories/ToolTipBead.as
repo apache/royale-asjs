@@ -29,6 +29,7 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.html.ToolTip;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.core.Bead;
 
 	/**
 	 *  The ToolTipBead class is a specialty bead that can be used with
@@ -40,7 +41,7 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class ToolTipBead implements IBead, IToolTipBead
+	public class ToolTipBead extends Bead implements IToolTipBead
 	{
 		/**
 		 *  constructor.
@@ -118,8 +119,6 @@ package org.apache.royale.html.accessories
 			return _yPos;
 		}
 
-		protected var _strand:IStrand;
-
 		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -127,13 +126,11 @@ package org.apache.royale.html.accessories
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
-			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+			listenOnStrand(MouseEvent.MOUSE_OVER, rollOverHandler);
 		}
 
 		/**
@@ -207,10 +204,11 @@ package org.apache.royale.html.accessories
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function removeTip():void
 		{
-			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			(_strand as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 
 			var comp:IUIBase = _strand as IUIBase;
 			if (tt) {
@@ -222,10 +220,10 @@ package org.apache.royale.html.accessories
 		/**
 		 * @private
 		 */
-        public function rollOutHandler(event:MouseEvent):void
-            {
-                    removeTip();
-            }
+		public function rollOutHandler(event:MouseEvent):void
+		{
+			removeTip();
+		}
 	}
 }
 

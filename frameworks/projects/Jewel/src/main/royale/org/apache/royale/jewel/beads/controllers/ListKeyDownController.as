@@ -26,8 +26,11 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
+	import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
 	import org.apache.royale.utils.sendEvent;
 
     /**
@@ -121,20 +124,24 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function keyDownEventHandler(event:KeyboardEvent):void
 		{
+			// if the renderer has a input text we want to be able to type text on it
+			if(event.target is ITextInput)
+				return;
+						
 			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
+			if(event.key === WhitespaceKeys.TAB)
 				return;
 			
 			event.preventDefault();
 
 			var index:int = listModel.selectedIndex;
 
-			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
+			if(event.key === NavigationKeys.UP || event.key === NavigationKeys.LEFT)
 			{
 				if(index > 0)
 					listModel.selectedIndex--;
 			} 
-			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
+			else if(event.key === NavigationKeys.DOWN || event.key === NavigationKeys.RIGHT)
 			{
 				listModel.selectedIndex++;
 			}
@@ -146,9 +153,7 @@ package org.apache.royale.jewel.beads.controllers
 				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
 				ir.setFocus();
 				
-                (listView as IScrollToIndexView).scrollToIndex(listModel.selectedIndex);
-				
-				sendEvent(listView.host, 'change');
+                sendEvent(listView.host, 'change');
 			}
 		}
 	}

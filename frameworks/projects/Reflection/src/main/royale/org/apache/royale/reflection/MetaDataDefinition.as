@@ -29,9 +29,18 @@ package org.apache.royale.reflection
      */
     public class MetaDataDefinition extends DefinitionBase
 	{
-        public function MetaDataDefinition(name:String, rawData:Object)
+        public function MetaDataDefinition(name:String, rawData:Object, owner:DefinitionWithMetaData)
         {
             super(name, rawData);
+            _owner = owner;
+        }
+
+        private var _owner:DefinitionWithMetaData;
+        /**
+         * reference to the owner of this MetaDataDefinition (either a class member MemberDefinitionBase, or a class TypeDefinition)
+         */
+        public function get owner():DefinitionWithMetaData{
+            return _owner;
         }
 
         private var _args:Array;
@@ -56,7 +65,7 @@ package org.apache.royale.reflection
                     var item:XML = data[i] as XML;
                     var key:String = item.@key;
                     var value:String = item.@value;
-                    results.push(new MetaDataArgDefinition(key, value));
+                    results.push(new MetaDataArgDefinition(key, value, this));
                 }
             }
             COMPILE::JS
@@ -70,7 +79,7 @@ package org.apache.royale.reflection
                         args = args.slice();
                         while(args.length) {
                             var argDef:Object = args.shift();
-                            results.push(new MetaDataArgDefinition(argDef.key, argDef.value));
+                            results.push(new MetaDataArgDefinition(argDef.key, argDef.value, this));
                         }
                     }
                 }

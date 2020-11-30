@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+#set($dollar = '$')
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>23</version>
+    <relativePath />
+  </parent>
+
+  <groupId>\${groupId}</groupId>
+  <artifactId>\${artifactId}</artifactId>
+  <version>\${version}</version>
+  <packaging>swf</packaging>
+
+  <properties>
+    <compiler.debug>true</compiler.debug>
+  </properties>
+
+  <build>
+    <sourceDirectory>src/main/royale</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>${royale.compiler.version}</version>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>\${artifactId}.mxml</mainClass>
+          <targets>JSRoyale</targets>
+          <debug>false</debug>
+          <htmlTemplate>${dollar}{basedir}/src/main/resources/jewel-example-index-template.html</htmlTemplate>
+          <additionalCompilerOptions>
+            -source-map=true;
+#if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
+            -js-default-initializers=true;
+            -compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
+            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+            -keep-code-with-metadata=Inject;
+#end
+            <!-- to access JSON object graph subobjects --> 
+            <!-- -js-dynamic-access-unknown-members=true;  -->
+          </additionalCompilerOptions>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.royale.compiler</groupId>
+            <artifactId>compiler-jx</artifactId>
+            <version>${royale.compiler.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <version>3.7.2</version>
+        <configuration>
+          <resources>
+            <resource>
+              <source>
+                <directory>${dollar}{basedir}/src/main/sass</directory>
+                <includes>
+                  <include>**/*.sass</include>
+                </includes>
+              </source>
+              <destination>${dollar}{basedir}/src/main/resources</destination>
+            </resource>
+          </resources>
+        </configuration>
+        <executions>
+          <execution>
+            <id>generate-css-using-sass</id>
+            <goals>
+                <goal>update-stylesheets</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>${royale.framework.version}</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>JewelTheme</artifactId>
+      <version>${royale.framework.version}</version>
+      <type>swc</type>
+      <scope>theme</scope>
+      <classifier>js</classifier>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Icons</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+#if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
+    
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Crux</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+#end
+
+    <!-- Needed for JavaScript compilation -->
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>${royale.framework.version}</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>${royale.framework.version}</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>apache-release</id>
+      <properties>
+        <compiler.debug>false</compiler.debug>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>option-with-swf</id>
+      <properties>
+        <!-- no point building the swf target  -->
+        <royale.targets>JSRoyale</royale.targets>
+      </properties>
+      <dependencies>
+        <!-- Needed for Flash compilation -->
+        <!-- <dependency>
+          <groupId>com.adobe.flash.framework</groupId>
+          <artifactId>playerglobal</artifactId>
+          <version>20.0</version>
+          <type>swc</type>
+          <scope>provided</scope>
+        </dependency> -->
+      </dependencies>
+    </profile>
+  </profiles>
+
+</project>

@@ -23,6 +23,8 @@ package org.apache.royale.html
         import org.apache.royale.core.WrappedHTMLElement;            
     }
 
+	import org.apache.royale.core.IDataGridHeader;
+
 	/**
 	 *  The DataGridButtonBar class extends ButtonBar and provides a class for styling
 	 *  the header region of the DataGrid.
@@ -32,7 +34,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridButtonBar extends ButtonBar
+	public class DataGridButtonBar extends ButtonBar implements IDataGridHeader
 	{
 		/**
 		 *  constructor.

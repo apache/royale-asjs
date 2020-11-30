@@ -27,10 +27,10 @@ import flash.events.TimerEvent;
 import flash.utils.Timer;
 import flash.utils.getQualifiedClassName;
 import flash.utils.getTimer; 
-import mx.effects.effectClasses.PropertyChanges;
 
 */
 
+import mx.effects.effectClasses.PropertyChanges;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.EffectEvent;
@@ -73,6 +73,28 @@ public class EffectInstance extends EventDispatcher implements IEffectInstance
 {
 /*     include "../core/Version.as";
  */
+ 
+ /**
+     *  @private
+     *  Internal flag remembering whether the user
+     *  explicitly specified a duration or not.
+     */
+    mx_internal var durationExplicitlySet:Boolean = false;
+
+    /**
+     *  @private
+     *  If this is a "hide" effect, the EffectManager sets this flag
+     *  as a reminder to hide the object when the effect finishes.
+     */
+    mx_internal var hideOnEffectEnd:Boolean = false;
+    
+    /**
+     *  @private
+     *  Pointer back to the CompositeEffect that created this instance.
+     *  Value is null if we are not the child of a CompositeEffect
+     */
+    mx_internal var parentCompositeEffectInstance:EffectInstance;
+    
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -146,6 +168,32 @@ public class EffectInstance extends EventDispatcher implements IEffectInstance
     }
 
    
+    /**
+     *  @private
+     *  Storage for the effect property.
+     */
+    private var _effect:IEffect;
+
+    /**
+     *  @copy mx.effects.IEffectInstance#effect
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get effect():IEffect
+    {
+        return _effect;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set effect(value:IEffect):void
+    {
+        _effect = value;
+    }
     
     //----------------------------------
     //  target
@@ -244,7 +292,361 @@ public class EffectInstance extends EventDispatcher implements IEffectInstance
         
         //EffectManager.effectFinished(this);
     }
+    
+    //----------------------------------
+    //  triggerEvent
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the triggerEvent property. 
+     */
+    private var _triggerEvent:Event;
 
+    /**
+     *  @copy mx.effects.IEffectInstance#triggerEvent
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get triggerEvent():Event
+    {
+        return _triggerEvent;
+    }
+
+    /**
+     *  @private
+     */
+    public function set triggerEvent(value:Event):void
+    {
+        _triggerEvent = value;
+    }
+	
+	public function initEffect(event:Event):void
+    {
+        triggerEvent = event;
+        
+        switch (event.type)
+        {
+            case "resizeStart":
+            case "resizeEnd":
+            {
+                if (!durationExplicitlySet)
+                    duration = 250;
+                break;
+            }
+            
+            case FlexEvent.HIDE:
+            {
+                target.setVisible(true, true);
+                hideOnEffectEnd = true;     
+                // If somebody else shows us, then cancel the hide when the effect ends
+                target.addEventListener(FlexEvent.SHOW, eventHandler);      
+                break;
+            }
+        }
+    }
+	
+	mx_internal function eventHandler(event:Event):void
+    {
+        if (event.type == FlexEvent.SHOW && hideOnEffectEnd == true)
+        {
+            hideOnEffectEnd = false;
+            event.target.removeEventListener(FlexEvent.SHOW, eventHandler);
+        }
+    }
+
+    /**
+     *  Current time position of the effect.
+     *  This property has a value between 0 and the total duration, 
+     *  which includes the Effect's <code>startDelay</code>, 
+     *  <code>repeatCount</code>, and <code>repeatDelay</code>.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get playheadTime():Number 
+    {
+        //return Math.max(playCount - 1, 0) * (duration + repeatDelay) +
+               //(playReversed ? 0 : startDelay);
+	return NaN;
+    }
+
+    /**
+     * @private
+     */
+    public function set playheadTime(value:Number):void
+    {
+        //if (delayTimer && delayTimer.running)
+        //{
+            //delayTimer.reset();
+            //if (value < startDelay)
+            //{
+                //delayTimer = new Timer(startDelay - value, 1);
+                //delayStartTime = getTimer();
+                //delayTimer.addEventListener(TimerEvent.TIMER, delayTimerHandler);
+                //delayTimer.start();
+            //}
+            //else
+            //{
+                //playCount = 0;
+                //play();
+            //}
+        //}
+    }
+
+    /**
+     *  @copy mx.effects.IEffectInstance#pause()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function pause():void
+    {   
+        //if (delayTimer && delayTimer.running && !isNaN(delayStartTime))
+        //{
+            //delayTimer.stop(); // Pause the timer
+            //delayElapsedTime = getTimer() - delayStartTime;
+        //}
+    }
+
+    /**
+     *  @copy mx.effects.IEffectInstance#stop()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function stop():void
+    {   
+        //if (delayTimer)
+            //delayTimer.reset();
+        //stopRepeat = true;
+        //// Dispatch STOP event in case listeners need to handle this situation
+        //// The Effect class may hinge setting final state values on whether
+        //// the effect was stopped or ended.
+        //dispatchEvent(new EffectEvent(EffectEvent.EFFECT_STOP,
+                                     //false, false, this));        
+        //if (target && (target is IEventDispatcher))
+            //target.dispatchEvent(new EffectEvent(EffectEvent.EFFECT_STOP,
+                                                 //false, false, this));
+        //finishEffect();
+    }
+
+    /**
+     *  @copy mx.effects.IEffectInstance#resume()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function resume():void
+    {
+        //if (delayTimer && !delayTimer.running && !isNaN(delayElapsedTime))
+        //{
+            //delayTimer.delay = !playReversed ? delayTimer.delay - delayElapsedTime : delayElapsedTime;
+            //delayStartTime = getTimer();
+            //delayTimer.start();
+        //}
+    }
+
+    /**
+     *  @copy mx.effects.IEffectInstance#reverse()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function reverse():void
+    {
+        //if (repeatCount > 0)
+            //playCount = repeatCount - playCount + 1;
+    }
+
+    /**
+     *  @copy mx.effects.IEffectInstance#startEffect()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function startEffect():void
+    {   
+        //EffectManager.effectStarted(this);
+//
+        //if (target is UIComponent)
+        //{
+            //UIComponent(target).effectStarted(this);
+        //}
+        //
+        //if (startDelay > 0 && !playReversed)
+        //{
+            //delayTimer = new Timer(startDelay, 1);
+            //delayStartTime = getTimer();
+            //delayTimer.addEventListener(TimerEvent.TIMER, delayTimerHandler);
+            //delayTimer.start();
+        //}
+        //else
+        //{
+            //play();
+        //}
+    }
+
+    //----------------------------------
+    //  playReversed
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the playReversed property. 
+     */
+    private var _playReversed:Boolean;
+    
+    /**
+     *  @private
+     *  Used internally to specify whether or not this effect
+     *  should be played in reverse.
+     *  Set this value before you play the effect. 
+     */
+    mx_internal function get playReversed():Boolean
+    {
+        return _playReversed;
+    }
+
+    //----------------------------------
+    //  propertyChanges
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the propertyChanges property. 
+     */
+    private var _propertyChanges:PropertyChanges;
+
+    /**
+     *  @copy mx.effects.IEffectInstance#propertyChanges
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get propertyChanges():PropertyChanges
+    {
+        return _propertyChanges;
+    }
+
+    /**
+     *  @private
+     */
+    public function set propertyChanges(value:PropertyChanges):void
+    {
+        _propertyChanges = value;
+    }
+
+    
+    //----------------------------------
+    //  repeatCount
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the repeatCount property. 
+     */
+    private var _repeatCount:int = 0;
+
+    /**
+     *  @copy mx.effects.IEffectInstance#repeatCount
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get repeatCount():int
+    {
+        return _repeatCount;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set repeatCount(value:int):void
+    {
+        _repeatCount = value;
+    }
+    
+    //----------------------------------
+    //  repeatDelay
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the repeatDelay property. 
+     */
+    private var _repeatDelay:int = 0;
+
+    /**
+     *  @copy mx.effects.IEffectInstance#repeatDelay
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get repeatDelay():int
+    {
+        return _repeatDelay;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set repeatDelay(value:int):void
+    {
+        _repeatDelay = value;
+    }
+    
+    //----------------------------------
+    //  startDelay
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the startDelay property. 
+     */
+    private var _startDelay:int = 0;
+
+    /**
+     *  @copy mx.effects.IEffectInstance#startDelay
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get startDelay():int
+    {
+        return _startDelay;
+    }
+
+    /**
+     *  @private
+     */
+    public function set startDelay(value:int):void
+    {
+        _startDelay = value;
+    }
 }
 
 }

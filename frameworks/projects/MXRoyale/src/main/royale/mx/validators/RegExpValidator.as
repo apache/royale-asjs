@@ -265,8 +265,8 @@ public class RegExpValidator extends Validator
 	 *  @private
 	 *  Storage for the noMatchError property.
 	 */
-	/* private var _noMatchError:String;
-	 */
+	 private var _noMatchError:String;
+	 
     /**
 	 *  @private
 	 */
@@ -283,23 +283,23 @@ public class RegExpValidator extends Validator
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	/* public function get noMatchError():String
+	public function get noMatchError():String // not implemented
 	{
 		return _noMatchError;
-	} */
+	}
 
 	/**
 	 *  @private
 	 */
-	/* public function set noMatchError(value:String):void
+	public function set noMatchError(value:String):void // not implemented
 	{
-		noMatchErrorOverride = value;
-
-		_noMatchError = value != null ?
-						value :
-						resourceManager.getString(
-							"validators", "noMatchError");
-	} */
+		//noMatchErrorOverride = value;
+//
+		//_noMatchError = value != null ?
+						//value :
+						//resourceManager.getString(
+							//"validators", "noMatchError");
+	}
     
     //--------------------------------------------------------------------------
     //

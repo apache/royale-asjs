@@ -69,7 +69,9 @@ package org.apache.royale.html.supportClasses
 		{
 			return this;
 		}
-
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IBeadLayout
+		 */
 		override public function adjustSize():void
 		{
 			var layout:IBeadLayout = getBeadByType(IBeadLayout) as IBeadLayout;

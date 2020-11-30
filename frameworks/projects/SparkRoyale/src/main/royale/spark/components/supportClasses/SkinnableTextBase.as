@@ -188,7 +188,8 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Event(name="changing", type="spark.events.TextOperationEvent")]
+// not implemented
+[Event(name="changing", type="spark.events.TextOperationEvent")]
 
 /**
  *  Dispatched after a user editing operation is complete.
@@ -908,10 +909,11 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-   /*  public function set prompt(value:String):void
+    public function set prompt(value:String):void
     {
-        setPrompt(value);
-    } */
+	    // not implemented
+        //setPrompt(value);
+    }
     
     //----------------------------------
     //  tabIndex
@@ -1413,10 +1415,10 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get selectionAnchorPosition():int
+    public function get selectionAnchorPosition():int
     {
         return textDisplay ? textDisplay.selectionAnchorPosition : -1;
-    } */
+    }
 
     //----------------------------------
     //  selectionHighlighting

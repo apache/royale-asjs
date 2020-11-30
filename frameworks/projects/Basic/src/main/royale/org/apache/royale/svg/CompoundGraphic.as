@@ -511,7 +511,6 @@ package org.apache.royale.svg
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         *  @royaleignorecoercion Text
          *  @royaleignorecoercion Node
          */
         public function drawText(value:String, x:Number, y:Number):Object
@@ -549,8 +548,8 @@ package org.apache.royale.svg
                 text.setAttribute('style', style);
                 text.setAttribute('x', x);
                 text.setAttribute('y', y + 15);
-                var textNode:Text = document.createTextNode(value) as Text;
-                text.appendChild(textNode as Node);
+                var textNode:Node = document.createTextNode(value) as Node;
+                text.appendChild(textNode);
                 addElementToSurface(text);
                 return text;
             }

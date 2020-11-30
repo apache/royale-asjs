@@ -47,6 +47,9 @@ COMPILE::SWF {
             COMPILE::JS
             internal static function registerClassAlias(aliasName:String, classObject:Class ) :void{
                 var info:* = classObject.prototype.ROYALE_CLASS_INFO;
+                if (!info && ExtraData.hasData(classObject)) {
+                    info = ExtraData.getData(classObject)['ROYALE_CLASS_INFO'];
+                }
                 if (info) {
                     //a class may have more than one alias point to it, but only the most recently registered
                     //alias is retained for reflection (applying same approach as swf)
@@ -61,7 +64,10 @@ COMPILE::SWF {
                     var altClass:Class = _aliasMappings[aliasName];
                     if (altClass) {
                         var altInfo:* = altClass.prototype.ROYALE_CLASS_INFO;
-                        delete altInfo.alias;
+                        if (!altInfo) altInfo = ExtraData.getData(altClass)['ROYALE_CLASS_INFO'];
+                        if (altInfo){
+                            delete altInfo.alias;
+                        }
                     }
                     _aliasMappings[aliasName] = classObject;
                     info.alias = aliasName;
@@ -325,6 +331,12 @@ COMPILE::SWF {
                             _constructorMethod = temp[i];
                             break;
                         }
+                    }
+                    if (!_constructorMethod) {
+                        //constructor with no params
+                        _constructorMethod =
+                                new MethodDefinition(_name, false, this, { type: '', declaredBy: qualifiedName});
+
                     }
                 }
             }
@@ -878,6 +890,7 @@ COMPILE::SWF {
             while (collections.length) {
                 var collectionType:String = collections.shift();
                 var collection:Array =collections.shift();
+                collection.sort(function (item1:Object, item2:Object):int{ return item1.name < item2.name ? -1 : 1 });
                 s += collectionType+" :";
                 if (!collection || !collection.length) {
                     s+= "\n\t{none}\n"

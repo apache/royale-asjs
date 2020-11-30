@@ -20,9 +20,11 @@ package org.apache.royale.jewel.beads.controls.datefield
 {
 	COMPILE::JS
 	{
+	import org.apache.royale.core.HTMLElementWrapper;
 	import org.apache.royale.jewel.DateField;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
 	}
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.jewel.beads.controls.Disabled;
 
 	/**
@@ -47,33 +49,41 @@ package org.apache.royale.jewel.beads.controls.datefield
 		public function DateFieldDisabled()
 		{
 		}
+		
+		COMPILE::JS
+		protected var lastTextInputElementTabVal:String = null;
+		COMPILE::JS
+		protected var lastButtonElementTabVal:String = null;
 
 		override protected function updateHost():void
 		{
-			super.updateHost();
-
 			COMPILE::JS
 			{
 			var view:DateFieldView = (_strand as DateField).view as DateFieldView;
-
+			
 			if (view) {
+				var pos:HTMLElement = (_strand as IUIBase).positioner;
+
+				if(!initialized)
+				{
+					initialized = true;
+					lastElementTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+					lastTextInputElementTabVal = view.textInput.element.getAttribute("tabindex");
+					lastButtonElementTabVal = view.menuButton.element.getAttribute("tabindex");
+				}
+
 				if (disabled) {
-					view.textInput.element.setAttribute('disabled', '');
-					view.menuButton.element.setAttribute('disabled', '');
-
-					view.textInput.element.setAttribute('tabindex', '-1');
-					view.menuButton.element.setAttribute('tabindex', '-1');
+					setDisableAndTabIndex(pos, true);
+					setDisableAndTabIndex(view.textInput.positioner, true);
+					setDisableAndTabIndex(view.textInput.element);
+					setDisableAndTabIndex(view.menuButton.positioner, true);
+					setDisableAndTabIndex(view.menuButton.element);
 				} else {
-					view.textInput.element.removeAttribute('disabled');
-					view.menuButton.element.removeAttribute('disabled');
-
-					if(lastTabVal) {
-						view.textInput.element.setAttribute('tabindex', lastTabVal);
-						view.menuButton.element.setAttribute('tabindex', lastTabVal);
-					} else {
-						view.textInput.element.removeAttribute('tabindex');
-						view.menuButton.element.removeAttribute('tabindex');
-					}
+					removeDisableAndTabIndex(pos, true);
+					removeDisableAndTabIndex(view.textInput.positioner, true);
+					removeDisableAndTabIndex(view.textInput.element, false, lastTextInputElementTabVal);
+					removeDisableAndTabIndex(view.menuButton.positioner, true);
+					removeDisableAndTabIndex(view.menuButton.element, false, lastButtonElementTabVal);
 				}
 			}
 			}

@@ -52,7 +52,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -60,7 +60,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -68,7 +68,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -76,7 +76,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -84,7 +84,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -92,7 +92,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -100,7 +100,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -108,7 +108,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -116,7 +116,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -124,7 +124,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -132,7 +132,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -140,7 +140,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Emphasized-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -148,7 +148,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -156,7 +156,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -164,7 +164,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -172,7 +172,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -180,7 +180,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -188,7 +188,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -196,7 +196,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -204,7 +204,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -212,7 +212,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -220,7 +220,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -228,7 +228,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -236,7 +236,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Primary-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -244,7 +244,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -252,7 +252,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -260,7 +260,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -268,7 +268,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -276,7 +276,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -284,7 +284,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -292,7 +292,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -300,7 +300,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -308,7 +308,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -316,7 +316,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -324,7 +324,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -332,7 +332,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Dark-NoFlat-Secondary-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -340,7 +340,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -348,7 +348,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -356,7 +356,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -364,7 +364,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -372,7 +372,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -380,7 +380,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -388,7 +388,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -396,7 +396,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -404,7 +404,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -412,7 +412,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -420,7 +420,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -428,7 +428,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Emphasized-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -436,7 +436,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -444,7 +444,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -452,7 +452,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -460,7 +460,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -468,7 +468,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -476,7 +476,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -484,7 +484,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -492,7 +492,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -500,7 +500,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -508,7 +508,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -516,7 +516,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -524,7 +524,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Primary-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -532,7 +532,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -540,7 +540,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -548,7 +548,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -556,7 +556,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -564,7 +564,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -572,7 +572,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -580,7 +580,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -588,7 +588,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -596,7 +596,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -604,7 +604,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -612,7 +612,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -620,7 +620,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-Flat-Secondary-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -628,7 +628,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -636,7 +636,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -644,7 +644,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -652,7 +652,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -660,7 +660,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -668,7 +668,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -676,7 +676,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -684,7 +684,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -692,7 +692,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -700,7 +700,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -708,7 +708,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -716,7 +716,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Emphasized-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -724,7 +724,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -732,7 +732,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -740,7 +740,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -748,7 +748,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -756,7 +756,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -764,7 +764,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -772,7 +772,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -780,7 +780,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -788,7 +788,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -796,7 +796,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -804,7 +804,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -812,7 +812,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Primary-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Yellow-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -820,7 +820,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Amethyst-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Amethyst-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -828,7 +828,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Blue-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Blue-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -836,7 +836,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Emerald-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Emerald-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -844,7 +844,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Green-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Green-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -852,7 +852,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Orange-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Orange-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -860,7 +860,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Red-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Red-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -868,7 +868,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Sapphire-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Sapphire-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -876,7 +876,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Sunflower-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Sunflower-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -884,7 +884,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -892,7 +892,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Turquoise-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Turquoise-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -900,7 +900,7 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Violet-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Violet-Theme</outputDirectory>
                 </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
@@ -908,10 +908,32 @@
                   <version>${project.version}</version>
                   <type>swc</type>
                   <classifier>js</classifier>
-                  <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes/Jewel-Light-NoFlat-Secondary-Yellow-Theme</outputDirectory>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Yellow-Theme</outputDirectory>
                 </artifactItem>
               </artifactItems>
               <includes>defaults.css</includes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Copy the theme resources from the js-debug into the js-release directory so they are available in both -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-themes-to-release</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${project.build.directory}/javascript/bin/js-debug/assets/themes</directory>
+                </resource>
+              </resources>
+              <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes</outputDirectory>
             </configuration>
           </execution>
         </executions>
@@ -925,7 +947,17 @@
           <targets>JSRoyale</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-source-map=true;-js-dynamic-access-unknown-members=true</additionalCompilerOptions>
+          <additionalCompilerOptions>
+            -js-dynamic-access-unknown-members=true
+            
+            -export-public-symbols=false
+            -prevent-rename-protected-symbols=false
+            -prevent-rename-internal-symbols=false
+            -prevent-rename-public-static-methods=false
+            -prevent-rename-public-instance-methods=false
+            
+            -source-map=true;
+          </additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

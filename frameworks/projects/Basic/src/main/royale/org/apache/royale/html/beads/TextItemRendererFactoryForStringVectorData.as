@@ -19,7 +19,6 @@
 package org.apache.royale.html.beads
 {
     
-    import org.apache.royale.core.IBead;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.ISelectionModel;
@@ -27,11 +26,11 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
     import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.DispatcherBead;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -48,7 +47,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class TextItemRendererFactoryForStringVectorData extends EventDispatcher implements IBead
+	public class TextItemRendererFactoryForStringVectorData extends DispatcherBead
 	{
         /**
          *  Constructor.
@@ -65,8 +64,6 @@ package org.apache.royale.html.beads
 		
 		private var selectionModel:ISelectionModel;
 		
-		private var _strand:IStrand;
-		
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *  
@@ -75,10 +72,10 @@ package org.apache.royale.html.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
+			listenOnStrand("initComplete",finishSetup);
 		}
 		
 		private function finishSetup(event:Event):void
@@ -135,6 +132,7 @@ package org.apache.royale.html.beads
         /**
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.core.IListView
+         *  @royaleignorecoercion org.apache.royale.html.beads.ITextItemRenderer
          */
 		private function dataProviderChangeHandler(event:Event):void
 		{

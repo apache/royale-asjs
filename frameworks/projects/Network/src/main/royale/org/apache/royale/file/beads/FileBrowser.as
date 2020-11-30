@@ -146,6 +146,8 @@ package org.apache.royale.file.beads
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanupWindow();
 		}
+
+		public static const CANCEL_TIMEOUT:Number = 150;
 		
 		COMPILE::JS
 		private function focusHandler(e:Object):void
@@ -153,7 +155,7 @@ package org.apache.royale.file.beads
 			//trace("focus: " + e);
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanup();
-			setTimeout(maybeCancel, 100);
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
 		}
 		
 		COMPILE::JS
@@ -162,7 +164,7 @@ package org.apache.royale.file.beads
 			//trace("key: " + e);
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanup();
-			setTimeout(maybeCancel, 100);
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
 		}
 		
 		COMPILE::JS
@@ -171,7 +173,7 @@ package org.apache.royale.file.beads
 			//trace("mouse: " + e);
 			//trace("files: " + (delegate as HTMLInputElement).files.length);
 			cleanup();
-			setTimeout(maybeCancel, 100);
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
 		}
 				
 		COMPILE::JS
@@ -193,7 +195,9 @@ package org.apache.royale.file.beads
 		}
 		
 		private var frameCount:int = 0;
-		
+		/**
+		 *  @royaleignorecoercion HTMLInputElement
+		 */
 		COMPILE::JS
 		private function maybeCancel():void
 		{
@@ -221,6 +225,7 @@ package org.apache.royale.file.beads
 		
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.file.FileProxy
 		 */
 		private function get host():FileProxy
 		{
@@ -230,6 +235,7 @@ package org.apache.royale.file.beads
 		/**
 		 *  @private
 		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */		
 		COMPILE::JS
 		private function fileChangeHandler(e:org.apache.royale.events.Event):void

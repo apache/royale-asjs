@@ -47,6 +47,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
+			super.setupVisualsForItemRenderer(ir);
+
             if (presentationModel) {
 				if(!presentationModel.variableRowHeight)
                 	StyledUIBase(ir).height = presentationModel.rowHeight;

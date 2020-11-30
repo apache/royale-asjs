@@ -2406,6 +2406,30 @@ public class FocusManager extends EventDispatcher implements IFocusManager
     		dispatchEvent(new Event("setFocus"));
         // trace("FM set focus");
     }
+
+
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function hideFocus():void // not implemented
+    {
+        // trace("FOcusManger " + this + " Hide Focus");
+        /*
+        if (showFocusIndicator)
+        {
+            showFocusIndicator = false;
+            if (_lastFocus)
+                _lastFocus.drawFocus(false);
+        }
+        */
+        // trace("END FOcusManger Hide Focus");
+    }
+    
 }
 
 }

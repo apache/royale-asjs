@@ -22,6 +22,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.apache</groupId>
+    <artifactId>apache</artifactId>
+    <version>23</version>
+    <relativePath />
+  </parent>
+
   <groupId>\${groupId}</groupId>
   <artifactId>\${artifactId}</artifactId>
   <version>\${version}</version>
@@ -41,7 +48,9 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <targets>SWF,JSRoyale</targets>
+          <targets>JSRoyale,SWF</targets>
+          <debug>false</debug>
+          <!-- <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions> -->
         </configuration>
         <dependencies>
           <dependency>
@@ -60,15 +69,15 @@
       <artifactId>Core</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
 
-    <!-- Needed for Flash compilation -->
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
-      <scope>provided</scope>
+      <classifier>js</classifier>
     </dependency>
 
     <!-- Needed for JavaScript compilation -->
@@ -77,7 +86,9 @@
       <artifactId>HTML</artifactId>
       <version>${royale.framework.version}</version>
       <type>swc</type>
+      <classifier>js</classifier>
     </dependency>
+
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
@@ -93,6 +104,36 @@
       <properties>
         <compiler.debug>false</compiler.debug>
       </properties>
+    </profile>
+
+    <profile>
+      <id>option-with-swf</id>
+      <dependencies>
+        <!-- Needed for Flash compilation -->
+        <dependency>
+          <groupId>com.adobe.flash.framework</groupId>
+          <artifactId>playerglobal</artifactId>
+          <version>20.0</version>
+          <type>swc</type>
+          <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Core</artifactId>
+          <version>${royale.framework.version}</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 

@@ -51,6 +51,8 @@ package org.apache.royale.jewel.beads.itemRenderers
         
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
+			// we're not using custom paddings here, since renderer is jewel button
+
 			if (presentationModel) {
                 if(!presentationModel.variableRowHeight)
                 	StyledUIBase(ir).height = presentationModel.rowHeight;

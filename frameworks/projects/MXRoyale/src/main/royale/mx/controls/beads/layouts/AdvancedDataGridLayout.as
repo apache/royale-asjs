@@ -71,7 +71,7 @@ package mx.controls.beads.layouts
             // in the bbmodel, so do all layout based on the bbmodel, not the set
             // of columns that may contain invisible columns
             var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
-            if (bbmodel.dataProvider.length != columnWidths.length)
+            if (bbmodel.dataProvider && (bbmodel.dataProvider.length != columnWidths.length))
             {
                 // probably some grouped columns so recompute widths;
                 var newColumnWidths:Array = [];

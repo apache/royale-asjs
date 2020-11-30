@@ -1,0 +1,74 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        //CHROME - DEBUG
+        {
+            "name": "Launch Chrome (Debug)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "file:///${workspaceRoot}/${application}/target/javascript/bin/js-debug/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-debug",
+            "sourceMaps": true,
+            "runtimeArgs": ["--auto-ssl-client-auth", "--profile-directory=debug-profile"],
+        },
+        //CHROME - RELEASE
+        {
+            "name": "Launch Chrome (Release)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "file:///${workspaceRoot}/${application}/target/javascript/bin/js-release/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-release",
+            "sourceMaps": true,
+            "runtimeArgs": ["--auto-ssl-client-auth", "--profile-directory=debug-profile"],
+        },
+        
+        //FIREFOX - DEBUG
+        {
+            "name": "Launch Firefox (Debug)",
+            "type": "firefox",
+            "request": "launch",
+            "url": "file:///${workspaceRoot}/${application}/target/javascript/bin/js-debug/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-debug"
+        },
+        //FIREFOX - RELEASE
+        {
+            "name": "Launch Firefox (Release)",
+            "type": "firefox",
+            "request": "launch",
+            "url": "file:///${workspaceRoot}/${application}/target/javascript/bin/js-release/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-release"
+        },
+        
+        //BRAVE - DEBUG
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Brave (Debug)",
+            "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+            "runtimeArgs": ["--auto-ssl-client-auth"],
+            "userDataDir": true,
+            // "url": "http://localhost:8080",
+            // "webRoot": "${workspaceFolder}"
+            // "file": "${workspaceRoot}/target/javascript/bin/js-debug/index.html",
+            //"preLaunchTask": "mvn",
+            "url": "file:///${workspaceRoot}/${application}/target/javascript/bin/js-debug/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-debug",
+            "sourceMaps": true
+        },
+        //BRAVE - RELEASE
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Launch Brave (Release)",
+            "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+            "runtimeArgs": ["--auto-ssl-client-auth", "--profile-directory=debug-profile"],
+            "userDataDir": true,
+            // "url": "http://localhost:8080",
+            // "webRoot": "${workspaceFolder}"
+            "url": "file:///${workspaceRoot}/${application}/target/javascript/bin/js-release/index.html",
+            "webRoot": "${workspaceRoot}/target/javascript/bin/js-release",
+            //"preLaunchTask": "mvn",
+            "sourceMaps": true
+        }
+    ]
+}

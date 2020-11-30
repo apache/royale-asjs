@@ -54,6 +54,38 @@
                   <name>defaults.css</name>
                   <path>../src/main/resources/defaults.css</path>
               </include-file>
+              <include-file>
+                  <name>assets/icon_align_center.png</name>
+                  <path>../src/main/resources/assets/icon_align_center.png</path>
+              </include-file>
+              <include-file>
+                  <name>assets/icon_align_justify.png</name>
+                  <path>../src/main/resources/assets/icon_align_justify.png</path>
+              </include-file>
+              <include-file>
+                  <name>assets/icon_align_left.png</name>
+                  <path>../src/main/resources/assets/icon_align_left.png</path>
+              </include-file>
+              <include-file>
+                  <name>assets/icon_align_right.png</name>
+                  <path>../src/main/resources/assets/icon_align_right.png</path>
+              </include-file>
+              <include-file>
+                  <name>assets/icon_bullet.png</name>
+                  <path>../src/main/resources/assets/icon_bullet.png</path>
+              </include-file>
+              <include-file>
+                  <name>assets/icon_style_bold.png</name>
+                  <path>../src/main/resources/assets/icon_style_bold.png</path>
+              </include-file>
+              <include-file>
+                  <name>assets/icon_style_italic.png</name>
+                  <path>../src/main/resources/assets/icon_style_italic.png</path>
+              </include-file>
+              <include-file>
+                  <name>assets/icon_style_underline.png</name>
+                  <path>../src/main/resources/assets/icon_style_underline.png</path>
+              </include-file>
           </includeFiles>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
@@ -72,6 +104,7 @@
               </define>
           </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
+          <includeLookupOnly>true</includeLookupOnly>
           <additionalCompilerOptions>
               ${project.compiler.options};
               -js-compiler-define=COMPILE::JS,true;
@@ -83,9 +116,11 @@
               -compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;
               -compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml;
               -compiler.warn-instance-of-changes=false;
+              -compiler.warn-this-within-closure=false;
           </additionalCompilerOptions>
         </configuration>
       </plugin>
+
     </plugins>
   </build>
   

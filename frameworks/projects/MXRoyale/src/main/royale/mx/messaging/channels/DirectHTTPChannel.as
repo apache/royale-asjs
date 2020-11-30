@@ -43,6 +43,7 @@ package mx.messaging.channels
 		import org.apache.royale.net.URLLoader;
 		import org.apache.royale.net.URLRequest;
 		import org.apache.royale.net.URLRequestHeader;
+		import org.apache.royale.net.URLVariables;
 		import mx.events.HTTPStatusEvent;	
 	}
 	

@@ -66,6 +66,8 @@ package org.apache.royale.html.beads
 		
 		/**
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  @royaleignorecoercion MutationRecord
+		 *  @royaleignorecoercion NodeList
 		 */
 		COMPILE::JS
 		private function mutationDetected(mutationsList:Array):void

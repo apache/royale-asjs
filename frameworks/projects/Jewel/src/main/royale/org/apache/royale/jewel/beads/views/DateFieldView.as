@@ -33,6 +33,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateFormatter;
 	import org.apache.royale.core.IFormatter;
+	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
@@ -128,7 +129,7 @@ package org.apache.royale.jewel.beads.views
 			getHost().addElement(_textInput);
 
 			_button = new Button();
-			_button.width = 38;
+			
 			COMPILE::JS {
                 _button.element.setAttribute('tabindex', -1);
 			}
@@ -148,7 +149,30 @@ package org.apache.royale.jewel.beads.views
 			// 	_textInput.element.setAttribute('readonly', 'true');
 			// }
 
+			initSize();
+
 			getHost().addEventListener("initComplete",handleInitComplete);
+		}
+
+		public static const DEFAULT_BUTTON_WIDTH:Number = 38;
+		public static const DEFAULT_WIDTH:Number = 162;
+
+		/**
+		 * Size the component at start up
+		 *
+		 * @private
+		 */
+		protected function initSize():void
+		{
+			_button.width = DEFAULT_BUTTON_WIDTH;
+
+			var df:ILayoutChild = host as ILayoutChild;
+
+			// if no width (neither px or %), set default width
+			if(df.isWidthSizedToContent())
+				df.width = DEFAULT_WIDTH;
+			
+			_textInput.percentWidth = 100;
 		}
 
 		private var model:IDateChooserModel;

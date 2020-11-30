@@ -61,6 +61,7 @@ import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
 import mx.events.FlexEvent;
 import mx.events.ListEvent;
+import mx.managers.IFocusManagerComponent;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IDataProviderNotifier;
@@ -476,8 +477,8 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class AdvancedListBase extends ListBase /* extends UIComponent 
-                      implements IDataRenderer, IFocusManagerComponent,
+public class AdvancedListBase extends ListBase implements IFocusManagerComponent /* extends UIComponent 
+                      implements IDataRenderer,
                       IListItemRenderer, IDropInListItemRenderer,
                       IEffectTargetHost */
 {
@@ -2614,7 +2615,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         if (collection)
             value = Math.min(collection.length - 1, value);
         clearSelected();
-        super.selectedIndex = value;
+		if (allowMultipleSelection)
+			commitSelectedIndices([value]);
+		else
+	        super.selectedIndex = value;
     }
     
     //----------------------------------
@@ -4520,39 +4524,25 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     /**
      *  @private
      */
-   /*  mx_internal function clearHighlight(item:IListItemRenderer):void
+    mx_internal function clearHighlight(item:IListItemRenderer):void
     {
-        var uid:String = itemToUID(item.data);
-        
-        drawItem(visibleData[uid], isItemSelected(item.data),
-                 false, uid == caretUID);
-
-        var pt:Point = itemRendererToIndices(item);
-        if (pt && lastHighlightItemIndices)
-        {
-            var listEvent:ListEvent =
-                new ListEvent(ListEvent.ITEM_ROLL_OUT);
-            listEvent.columnIndex = lastHighlightItemIndices.x;
-            listEvent.rowIndex = lastHighlightItemIndices.y;
-            listEvent.itemRenderer = lastHighlightItemRendererAtIndices;
-            dispatchEvent(listEvent);
-            lastHighlightItemIndices = null;
-        }
-    } */
-
-    /**
-     *  Refresh all rows on next update.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-     public function invalidateList():void
-    {
-       // itemsSizeChanged = true;
-       // invalidateDisplayList();
-    } 
+        //var uid:String = itemToUID(item.data);
+        //
+        //drawItem(visibleData[uid], isItemSelected(item.data),
+                 //false, uid == caretUID);
+//
+        //var pt:Point = itemRendererToIndices(item);
+        //if (pt && lastHighlightItemIndices)
+        //{
+            //var listEvent:ListEvent =
+                //new ListEvent(ListEvent.ITEM_ROLL_OUT);
+            //listEvent.columnIndex = lastHighlightItemIndices.x;
+            //listEvent.rowIndex = lastHighlightItemIndices.y;
+            //listEvent.itemRenderer = lastHighlightItemRendererAtIndices;
+            //dispatchEvent(listEvent);
+            //lastHighlightItemIndices = null;
+        //}
+    }
 
     /**
      *  Refreshes all rows now.  Calling this method can require substantial
@@ -4965,8 +4955,11 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
                 //Clear all other selections, this is a single click
                 clearSelected(transition);
-                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
-                drawItem(index, true, uid == highlightUID, true, transition);
+				if (allowMultipleSelection)
+				{
+	                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
+    	            drawItem(index, true, uid == highlightUID, true, transition);
+				}
                 (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
                 //_selectedItem = item.data;
                 iterator.seek(CursorBookmark.CURRENT, (model as ISelectionModel).selectedIndex /*_selectedIndex*/ - 
@@ -5545,6 +5538,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      */
     private function setSelectionIndicesLoop(index:int, indices:Array, firstTime:Boolean = false):void
     {
+		
         while (indices.length)
         {
             if (index != indices[0])
@@ -5565,6 +5559,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             indices.shift();
 
             var data:Object = collectionIterator.current;
+            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
+            // trace("uid = " + itemToUID(data));
             if (firstTime)
             {
                 (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
@@ -5575,8 +5571,6 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 				anchorBookmark = collectionIterator.bookmark;
                 firstTime = false;
             }
-            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
-            // trace("uid = " + itemToUID(data));
         }
 
         if (initialized)
@@ -9066,8 +9060,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         }
         else
         {*/
-            if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
-                mouseDownItem = item;
+        if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
+            mouseDownItem = item;
         /*}*/
     }
 

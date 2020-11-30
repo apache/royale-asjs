@@ -27,6 +27,17 @@ package
  */
 internal class MXRoyaleClasses
 {
+	import mx.automation.IAutomationObject; IAutomationObject;
+	//import mx.controls.SWFLoader; SWFLoader;
+	import mx.core.DPIClassification; DPIClassification;
+	import mx.core.DesignLayer; DesignLayer;
+	import mx.effects.AnimateProperty; AnimateProperty;
+	import mx.effects.easing.Cubic; Cubic;
+	//import mx.effects.easing.Quintic; Quintic;
+	import mx.events.StateChangeEvent; StateChangeEvent;
+	import mx.graphics.BitmapFill; BitmapFill;
+	import mx.graphics.BitmapFillMode; BitmapFillMode;
+	//import mx.managers.PopUpManagerChildList; PopUpManagerChildList;
 	import mx.core.mx_internal; mx_internal;
 	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
@@ -92,6 +103,7 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData; DataItemRendererFactoryForICollectionViewAdvancedDataGridData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
+	import mx.effects.effectClasses.ActionEffectInstance; ActionEffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
 	import mx.charts.HitData; HitData;
 
@@ -123,6 +135,7 @@ internal class MXRoyaleClasses
 	import mx.effects.easing.Bounce; Bounce;
 	import mx.effects.easing.Exponential; Exponential;
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
+	import mx.effects.effectClasses.AnimatePropertyInstance; AnimatePropertyInstance;
 	import mx.effects.TweenEffect; TweenEffect; 
 	import mx.rpc.Fault; Fault;
 	import mx.rpc.events.InvokeEvent; InvokeEvent;
@@ -149,6 +162,7 @@ internal class MXRoyaleClasses
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
 	import mx.rpc.soap.WebService; WebService;
 	import mx.collections.ISort; ISort;
+	import mx.collections.AsyncListView; AsyncListView;
 	import mx.utils.Base64Encoder; Base64Encoder;
 	import mx.utils.Base64Decoder; Base64Decoder;
 	import mx.utils.BitFlagUtil; BitFlagUtil;
@@ -164,6 +178,7 @@ internal class MXRoyaleClasses
 	import mx.errors.EOFError; EOFError;
 	import mx.events.TextEvent; TextEvent;
 	import mx.display.Bitmap; Bitmap;
+	import mx.display.Loader; Loader;
 	import mx.external.ExternalInterface; ExternalInterface;
 	import mx.events.KeyboardEvent; KeyboardEvent;
 	import mx.geom.Matrix; Matrix;
@@ -236,7 +251,6 @@ internal class MXRoyaleClasses
 	import mx.rpc.CallResponder; CallResponder;
 	import mx.rpc.http.Operation; Operation;
 	import mx.events.TreeEvent; TreeEvent;
-	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
 	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
@@ -271,6 +285,18 @@ internal class MXRoyaleClasses
     import mx.controls.beads.models.ComboBoxModel; ComboBoxModel;
     import mx.controls.beads.models.CascadingMenuModel; CascadingMenuModel;
     
+	import mx.collections.errors.ItemPendingError; ItemPendingError;
+	import mx.controls.scrollClasses.ScrollThumb; ScrollThumb;
+	import mx.effects.EffectTargetFilter; EffectTargetFilter;
+	import mx.effects.effectClasses.PropertyChanges; PropertyChanges;
+	import mx.effects.IEffect; IEffect;
+	import mx.effects.IEffectTargetHost; IEffectTargetHost;
+	import mx.events.RSLEvent; RSLEvent;
+	import mx.skins.halo.DataGridHeaderSeparator; DataGridHeaderSeparator;
+	import mx.filters.BaseDimensionFilter; BaseDimensionFilter;
+	import mx.filters.BaseFilter; BaseFilter;
+	import mx.filters.IBitmapFilter; IBitmapFilter;
+
     import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
 	import mx.controls.beads.models.DataGridColumnICollectionViewModel; DataGridColumnICollectionViewModel;
     import mx.controls.beads.models.DataGridICollectionViewModel; DataGridICollectionViewModel;
@@ -313,6 +339,21 @@ internal class MXRoyaleClasses
 	// RpcClassAliasInitializer ----------------------------------------
     
 	import mx.net.URLLoader; URLLoader;
+	import mx.events.FlexMouseEvent; FlexMouseEvent;
+	import mx.controls.HSlider; HSlider;
+	import mx.controls.sliderClasses.Slider; Slider;
+	import mx.controls.sliderClasses.SliderDirection; SliderDirection;
+	import mx.controls.HorizontalList; HorizontalList;
+	import mx.effects.easing.Elastic; Elastic;
+	import mx.controls.listClasses.TileListItemRenderer; TileListItemRenderer;
+	import mx.controls.listClasses.TileBase; TileBase;
+	import mx.controls.listClasses.TileBaseDirection; TileBaseDirection;
+	
+	import mx.utils.NameUtil; NameUtil;
+	import mx.core.BitmapAsset; BitmapAsset;
+
+	import mx.events.TimerEvent; TimerEvent;
+	import mx.utils.Timer; Timer;
 }
 
 }

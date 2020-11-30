@@ -27,6 +27,14 @@ package
  */
 internal class SparkRoyaleClasses
 {
+	//import spark.components.HScrollBar; HScrollBar;
+	//import spark.components.VScrollBar; VScrollBar;
+	//import spark.core.SpriteVisualElement; SpriteVisualElement;
+	//import spark.events.RendererExistenceEvent; RendererExistenceEvent;
+	//import spark.events.TrackBaseEvent; TrackBaseEvent;
+	//import spark.primitives.Graphic; Graphic;
+	//import spark.skins.spark.ScrollBarDownButtonSkin; ScrollBarDownButtonSkin;
+	//import spark.skins.spark.ScrollBarUpButtonSkin; ScrollBarUpButtonSkin;
     import spark.events.IndexChangeEvent; IndexChangeEvent;
     import spark.events.TextOperationEvent; TextOperationEvent;
     import spark.components.supportClasses.DropDownListBase; DropDownListBase;
@@ -64,6 +72,7 @@ internal class SparkRoyaleClasses
 	import spark.components.gridClasses.GridColumn; GridColumn;
 	import spark.components.gridClasses.GridSelection; GridSelection;
 	import spark.events.GridEvent; GridEvent;
+	import spark.events.RendererExistenceEvent; RendererExistenceEvent;
 	import spark.events.GridCaretEvent; GridCaretEvent;
 	import spark.events.GridSelectionEvent; GridSelectionEvent;
 	import spark.collections.SubListView; SubListView;
@@ -84,12 +93,30 @@ internal class SparkRoyaleClasses
     import spark.components.beads.GroupView; GroupView;
     import spark.components.beads.SkinnableContainerView; SkinnableContainerView;
     import spark.components.beads.SparkSkinScrollingViewport; SparkSkinScrollingViewport;
+	import spark.components.beads.SparkSkinWithClipAndEnableScrollingViewport; SparkSkinWithClipAndEnableScrollingViewport;
     import spark.components.beads.DropDownListView; DropDownListView;
     import spark.components.beads.TitleWindowView; TitleWindowView;
     import spark.components.beads.controllers.DropDownListController; DropDownListController;
     import spark.components.beads.controllers.TabBarController; TabBarController;
     import spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
     import spark.events.DropDownEvent; DropDownEvent;
+
+	
+import spark.components.IItemRenderer; IItemRenderer;
+//import spark.components.SkinnableDataContainer; SkinnableDataContainer;
+//import spark.components.VideoDisplay; VideoDisplay;
+//import spark.components.mediaClasses.ScrubBar; ScrubBar;
+//import spark.components.mediaClasses.VolumeBar; VolumeBar;
+import spark.effects.easing.IEaser; IEaser;
+import spark.events.TitleWindowBoundsEvent; TitleWindowBoundsEvent; // needed
+import spark.components.IItemRendererOwner; IItemRendererOwner;
+//import spark.skins.spark.mediaClasses.fullScreen.PlayPauseButtonSkin; PlayPauseButtonSkin;
+//import spark.skins.spark.mediaClasses.fullScreen.ScrubBarSkin; ScrubBarSkin;
+//import spark.skins.spark.mediaClasses.fullScreen.VolumeBarSkin; VolumeBarSkin;
+//import spark.skins.spark.mediaClasses.normal.PlayPauseButtonSkin; PlayPauseButtonSkin;
+//import spark.skins.spark.mediaClasses.normal.ScrubBarSkin; ScrubBarSkin;
+//import spark.skins.spark.mediaClasses.normal.VolumeBarSkin; VolumeBarSkin;
+import spark.utils.LabelUtil; LabelUtil; // needed
 	
 }
 

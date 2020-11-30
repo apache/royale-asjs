@@ -61,6 +61,9 @@ package org.apache.royale.mdl.materialIcons
 		{
             return _text;            
 		}
+        /**
+         *  @royaleignorecoercion Text
+         */
         public function set text(value:String):void
 		{
             _text = value;

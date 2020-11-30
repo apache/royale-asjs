@@ -102,8 +102,8 @@ package org.apache.royale.jewel.beads.layouts
 				{
 					if (hostComponent.containsClass("pixelWidths"))
 						hostComponent.removeClass("pixelWidths");
-					if (hostComponent.containsClass("proportinalWidths"))
-						hostComponent.removeClass("proportinalWidths");
+					if (hostComponent.containsClass("proportionalWidths"))
+						hostComponent.removeClass("proportionalWidths");
 					if (hostComponent.containsClass("percentWidths"))
 						hostComponent.removeClass("percentWidths");
 					if (hostComponent.containsClass("naturalWidths"))
@@ -122,7 +122,7 @@ package org.apache.royale.jewel.beads.layouts
 								hostComponent.addClass("pixelWidths");
 								break;
 							case ButtonBarModel.PROPORTIONAL_WIDTHS:
-								hostComponent.addClass("proportinalWidths");
+								hostComponent.addClass("proportionalWidths");
 								break;
 							case ButtonBarModel.PERCENT_WIDTHS:
 								hostComponent.addClass("percentWidths");
@@ -163,6 +163,8 @@ package org.apache.royale.jewel.beads.layouts
 					
 					if (model.widthType == ButtonBarModel.PIXEL_WIDTHS) {
 						if (widthValue != null) ilc.width = Number(widthValue);
+					} else {
+						ilc.width = NaN;
 					}
 					// else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
 					// 	if (widthValue != null) ilc.element.style["flex-grow"] = String(widthValue);

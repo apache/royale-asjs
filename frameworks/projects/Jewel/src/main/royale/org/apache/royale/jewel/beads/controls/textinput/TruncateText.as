@@ -24,7 +24,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	
 	/**
 	 *  The TruncateText class is a specialty bead that can be used with
-	 *  a Jewel TextInputBase control. The bead truncate the text when no space is available
+	 *  a Jewel TextInputBase or Label control. The bead truncate the text when no space is available
 	 *  using "..."
 	 *  
 	 *  @langversion 3.0

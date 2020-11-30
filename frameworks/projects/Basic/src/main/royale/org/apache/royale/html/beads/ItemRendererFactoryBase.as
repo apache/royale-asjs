@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -38,7 +37,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	public class ItemRendererFactoryBase extends EventDispatcher implements IBead
+	public class ItemRendererFactoryBase extends DispatcherBead
 	{
         /**
          *  Constructor.
@@ -56,8 +55,6 @@ package org.apache.royale.html.beads
 		protected var dataProviderModel:IDataProviderModel;
 		//protected var dataFieldProvider:DataFieldProviderBead;
 		
-		protected var _strand:IStrand;
-		
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *  
@@ -67,10 +64,10 @@ package org.apache.royale.html.beads
          *  @productversion Royale 0.8
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value; 
-			IEventDispatcher(value).addEventListener("initComplete", finishSetup);
+			listenOnStrand("initComplete", finishSetup);
 		}
 		
 		/**
@@ -78,10 +75,11 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
 		 * @royaleignorecoercion org.apache.royale.html.beads.DataFieldProviderBead
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function finishSetup(event:Event):void
 		{			
-			IEventDispatcher(_strand).removeEventListener("initComplete", finishSetup);
+			(_strand as IEventDispatcher).removeEventListener("initComplete", finishSetup);
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
@@ -157,21 +155,16 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-		 *  @royaleignorecoercion Array
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase
-		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
-		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */		
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 		}
         
+        /**
+         *  Remove all itemrenderers
+         * 
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
+         */
         protected function removeAllItemRenderers(dataGroup:IItemRendererOwnerView):void
         {
             dataGroup.removeAllItemRenderers();            

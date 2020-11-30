@@ -153,6 +153,11 @@ public class SimpleBinding implements IBead, IDocument, IBinding
         _sourceID = value;
     }
 
+	private var _sourceEventName:String = 'valueChange';
+	public function setSourceEventName(eventName:String):void{
+		_sourceEventName = eventName;
+	}
+
     /**
      *  @copy org.apache.royale.core.IBinding#destinationPropertyName
      *
@@ -189,6 +194,8 @@ public class SimpleBinding implements IBead, IDocument, IBinding
         _sourcePropertyName = value;
     }
 
+
+
 	/**
 	 *  @copy org.apache.royale.core.IBead#strand
 	 *
@@ -210,16 +217,16 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 			if (sourceID != null)
 			{
 				source = dispatcher = document[sourceID] as IEventDispatcher;
+				document.addEventListener(_sourceEventName, sourceChangeHandler);
 				if (source == null)
 				{
-					document.addEventListener("valueChange",
-							sourceChangeHandler);
 					return;
 				}
-			} else
-			source = dispatcher = document as IEventDispatcher;
-		}
+			} else {
+				source = dispatcher = document as IEventDispatcher;
+			}
 
+		}
 
 		dispatcher.addEventListener(eventName, changeHandler);
 		try
@@ -259,10 +266,11 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 
 	/**
 	 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+	 * @royaleignorecoercion org.apache.royale.events.ValueChangeEvent
 	 */
-	private function sourceChangeHandler(event:ValueChangeEvent):void
+	private function sourceChangeHandler(event:/*ValueChange*/Event):void
 	{
-		if (event.propertyName != sourceID)
+		if (event.type == ValueChangeEvent.VALUE_CHANGE && (event as ValueChangeEvent).propertyName != sourceID)
 			return;
 
 		if (dispatcher)

@@ -18,17 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.jewel.beads.models.TableModel;
+	import org.apache.royale.html.beads.ITableView;
 	import org.apache.royale.jewel.beads.views.ListView;
 	import org.apache.royale.jewel.supportClasses.table.TFoot;
 	import org.apache.royale.jewel.supportClasses.table.THead;
-	import org.apache.royale.utils.getSelectionRenderBead;
 	
 	/**
 	 *  The TableView class creates the visual elements of the org.apache.royale.jewel.Table component.
@@ -40,7 +36,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TableView extends ListView
+	public class TableView extends ListView implements ITableView
 	{
 		/**
 		 *  constructor.
@@ -56,84 +52,63 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-		}
-
-		protected var model:TableModel;
-
-		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
-			model = _strand.getBeadByType(TableModel) as TableModel;
-			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
-			model.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-			model.addEventListener("columnsChanged", columnsChangedHandler);
-			IEventDispatcher(_strand).addEventListener("itemsCreated", itemsCreatedHandler);
-
 			super.handleInitComplete(event);
+			listModel.addEventListener("columnsChanged", columnsChangedHandler);
 		}
 
+		/**
+		 * When columns change, trigger a data provider change to redo all table
+		 */
 		protected function columnsChangedHandler(event:Event):void
 		{
 			IStrandWithModel(_strand).model.dispatchEvent(new Event("dataProviderChanged"));
 		}
 
 		/**
-		 * @private
-		 * Ensure the list selects the selectedItem if someone is set by the user at creation time
+		 * @royalesuppresspublicvarwarning
 		 */
-		override protected function itemsCreatedHandler(event:Event):void
+		protected var thead:THead;
+		/**
+		 *  The component which parents the header elements
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		public function get header():IParent
 		{
-			super.itemsCreatedHandler(event);
-			if(listModel.selectedIndex != -1)
-				selectionChangeHandler(null);
+			return thead;
 		}
-
-		/**
-		 * @royalesuppresspublicvarwarning
-		 */
-		public var thead:THead;
-
-		/**
-		 * @royalesuppresspublicvarwarning
-		 */
-		public var tfoot:TFoot;
-
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
-		 */
-		override protected function selectionChangeHandler(event:Event):void
+		public function set header(value:IParent):void
 		{
-			var selectionBead:ISelectableItemRenderer;
-			var ir:IItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as IItemRenderer;
-			if (ir)
-			{
-				selectionBead = getSelectionRenderBead(ir);
-				if (selectionBead)
-					selectionBead.selected = false;
-			}
-			
-			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as IItemRenderer;
-			if (ir)
-			{
-				selectionBead = getSelectionRenderBead(ir);
-				if (selectionBead)
-					selectionBead.selected = true;
-			}
-			lastSelectedIndex = listModel.selectedIndex;
+			thead = value as THead;
+		}
+		
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		protected var tfoot:TFoot;
+		/**
+		 *  The component which parents the footer elements
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		public function get footer():IParent
+		{
+			return tfoot;
+		}
+		public function set footer(value:IParent):void
+		{
+			tfoot = value as TFoot;
 		}
 	}
 }

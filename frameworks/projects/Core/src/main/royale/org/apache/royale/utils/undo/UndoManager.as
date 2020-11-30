@@ -106,6 +106,7 @@ package org.apache.royale.utils.undo
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
 		*  @productversion Royale 0.0
+	  *  @royaleignorecoercion org.apache.royale.utils.undo.IOperation
 		*/
 		public function popUndo():IOperation
 		{
@@ -167,6 +168,7 @@ package org.apache.royale.utils.undo
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
 		*  @productversion Royale 0.0
+	  *  @royaleignorecoercion org.apache.royale.utils.undo.IOperation
 		*/
 		public function popRedo():IOperation
 		{

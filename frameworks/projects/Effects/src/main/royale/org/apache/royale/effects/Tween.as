@@ -561,7 +561,7 @@ public class Tween extends Effect
     /**
      *  @private
      */
-    protected function getCurrentValue(currentTime:Number):Object
+    /* protected */ public function getCurrentValue(currentTime:Number):Object
     {
         if (duration == 0)
         {

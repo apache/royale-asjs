@@ -29,9 +29,10 @@ $phone: 0px
 $tablet: 768px
 $desktop: 992px
 $widescreen: 1200px
+$full: 1600px
 
 $devices: (phone: $phone, tablet: $tablet) !default
-$computers: (desktop: $desktop, widescreen: $widescreen) !default
+$computers: (desktop: $desktop, widescreen: $full) !default
 $sizes: map-merge($devices, $computers)
 $size-names: map-keys($sizes)
 

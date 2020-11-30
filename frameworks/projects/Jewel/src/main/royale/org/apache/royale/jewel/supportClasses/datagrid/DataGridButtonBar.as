@@ -18,23 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
-    import org.apache.royale.jewel.ButtonBar;
-
-    COMPILE::JS
-    {
-    import org.apache.royale.core.WrappedHTMLElement;            
-    }
+	import org.apache.royale.core.IDataGridHeader;
+	import org.apache.royale.jewel.ButtonBar;
 
 	/**
-	 *  The DataGridButtonBar class extends ButtonBar and provides a class for styling
-	 *  the header region of the DataGrid.
+	 *  The DataGridButtonBar class is an IDataGridHeader that extends ButtonBar 
+	 *  and provides a class for styling the header region of the DataGrid.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DataGridButtonBar extends ButtonBar
+	public class DataGridButtonBar extends ButtonBar implements IDataGridHeader
 	{
 		/**
 		 *  constructor.
@@ -49,5 +45,6 @@ package org.apache.royale.jewel.supportClasses.datagrid
 			super();
 			typeNames = "jewel buttonbar header";
 		}
+
 	}
 }

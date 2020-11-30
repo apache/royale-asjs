@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;
 	}
+	import org.apache.royale.core.IStyledUIBase;
 	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
@@ -76,14 +77,26 @@ package org.apache.royale.jewel.beads.views
 					selectionBead.selected = false;
 					var lastRect:ClientRect = prev_ir.getBoundingBox;
 					var currentRect:ClientRect = ir.getBoundingBox;
-					var widthDiff:Number = lastRect.width / currentRect.width;
-					if(isNaN(widthDiff))
-						widthDiff = 1;
-					var positionDiff:Number = lastRect.left - currentRect.left;
-					
+					var sizeDiff:Number;
+					var posDiff:Number;
+					var axis:String;
+					if((_strand as IStyledUIBase).containsClass("horizontal"))
+					{
+						axis = "X";
+						sizeDiff = lastRect.width / currentRect.width;
+						if(isNaN(sizeDiff))
+							sizeDiff = 1;
+						posDiff = lastRect.left - currentRect.left;
+					} else {
+						axis = "Y";
+						sizeDiff = lastRect.height / currentRect.height;
+						if(isNaN(sizeDiff))
+							sizeDiff = 1;
+						posDiff = lastRect.top - currentRect.top;
+					}
 					selectionBead = getSelectionRenderBead(ir);
 					selectionBead.selected = true;
-					ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
+					ir.animateIndicator(axis, posDiff, sizeDiff, 300, 'ease-in-out');
 				} else
 				{
 					selectionBead = getSelectionRenderBead(ir);

@@ -136,6 +136,20 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  */
 //[Event(name="caretChange", type="spark.events.IndexChangeEvent")]
 
+
+/**
+ *  Dispatched when a renderer is added to the container.
+ *  The <code>event.renderer</code> property contains 
+ *  the renderer that was added.
+ *
+ *  @eventType spark.events.RendererExistenceEvent.RENDERER_ADD
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Event(name="rendererAdd", type="spark.events.RendererExistenceEvent")] // not implemeneted
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -552,6 +566,43 @@ public class ListBase  extends SkinnableContainer
         factory.itemRendererFactory = value;
     }
     
+
+    //----------------------------------
+    //  itemRendererFunction
+    //----------------------------------
+    
+    [Inspectable(category="Data")]
+    
+    /**
+     *  @copy spark.components.DataGroup#itemRendererFunction
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get itemRendererFunction():Function // not implemeneted
+    {
+        //return (dataGroup) 
+            //? dataGroup.itemRendererFunction 
+            //: dataGroupProperties.itemRendererFunction;
+	    return null;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set itemRendererFunction(value:Function):void // not implemeneted
+    {
+        //if (dataGroup)
+        //{
+            //dataGroup.itemRendererFunction = value;
+            //dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
+                                                     //ITEM_RENDERER_FUNCTION_PROPERTY_FLAG, true);
+        //}
+        //else
+            //dataGroupProperties.itemRendererFunction = value;
+    }
     /**
      *  @private
      */
@@ -721,15 +772,16 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-   /*  public function set labelFunction(value:Function):void
+    // not implemeneted
+    public function set labelFunction(value:Function):void
     {
-        if (value == _labelFunction)
-            return;
-            
-        _labelFunction = value;
-        labelFieldOrFunctionChanged = true;
-        invalidateProperties(); 
-    } */
+        //if (value == _labelFunction)
+            //return;
+            //
+        //_labelFunction = value;
+        //labelFieldOrFunctionChanged = true;
+        //invalidateProperties(); 
+    }
 
 
     //----------------------------------
@@ -1075,7 +1127,7 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-    //private var _useVirtualLayout:Boolean = false;
+    private var _useVirtualLayout:Boolean = false;
     
     /**
      *  Sets the value of the <code>useVirtualLayout</code> property
@@ -1091,10 +1143,10 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get useVirtualLayout():Boolean
+    public function get useVirtualLayout():Boolean
     {
         return (layout) ? layout.useVirtualLayout : _useVirtualLayout;
-    } */
+    }
 
     /**
      *  @private
@@ -1105,7 +1157,7 @@ public class ListBase  extends SkinnableContainer
      *  however in this case, always honoring the layout's useVirtalLayout property seems 
      *  less likely to cause confusion.
      */
-    /* public function set useVirtualLayout(value:Boolean):void
+     public function set useVirtualLayout(value:Boolean):void
     {
         if (value == useVirtualLayout)
             return;
@@ -1113,7 +1165,7 @@ public class ListBase  extends SkinnableContainer
         _useVirtualLayout = value;
         if (layout)
             layout.useVirtualLayout = value;
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //

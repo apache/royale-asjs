@@ -31,56 +31,25 @@ package org.apache.royale.html.beads.plugin
   import org.apache.royale.core.UIBase;
   import org.apache.royale.utils.CSSUtils;
   import org.apache.royale.events.MouseEvent;
+  import org.apache.royale.core.DispatcherBead;
 
   COMPILE::SWF
   {
     import flash.display.Shape;
   }
 
-  public class ModalOverlay extends EventDispatcher implements IBead
+  public class ModalOverlay extends DispatcherBead
   {
     public function ModalOverlay()
     {
       super();
     }
-    /**
-     *  The strand.  Do not modify except
-     *  via the strand setter.  For reading only.
-     * 
-     *  Because Object.defineProperties in JS
-     *  doesn't allow you to just override the setter
-     *  (you have to override the getter as well even
-     *  if it just calls the super getter) it is
-     *  more efficient to expose this variable than
-     *  have all of the layers of simple overrides.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
-     */
-    protected var _strand:IStrand;
     
-    /**
-     *  Get the strand for this bead
-     * 
-     *  Override this for whatever else you need to do when
-     *  being hooked to the Strand
-     * 
-     *  @copy org.apache.royale.core.IBead#strand
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
-     * 
-     *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-     */
-    public function set strand(value:IStrand):void
+    override public function set strand(value:IStrand):void
     {
         _strand = value;
-        (_strand as IEventDispatcher).addEventListener("modalShown", handleShown);
-        (_strand as IEventDispatcher).addEventListener("modalHidden", handleHidden);
+        listenOnStrand("modalShown", handleShown);
+        listenOnStrand("modalHidden", handleHidden);
     }
     
     /**

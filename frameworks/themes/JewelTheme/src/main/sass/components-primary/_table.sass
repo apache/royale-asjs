@@ -34,12 +34,13 @@ $simpletable-border-radius: $border-radius
     border-radius: $simpletable-border-radius
 
     .jewel.thead tr
-        border-bottom: 1px solid $default-color
+        // border-bottom: 1px solid $default-color
     
     // th
     .jewel.tableheadercell:first-of-type
         border-left: 0px
     .jewel.tableheadercell
+        padding: 12px
         @if $flat
             background: lighten($default-color, 10%)
             box-shadow: none
@@ -53,11 +54,17 @@ $simpletable-border-radius: $border-radius
         border-left: 1px solid $default-color
     
     // td
+    // .jewel.tablerow:first-child 
+    //     .jewel.tablecell
+    //         border-top: 1px solid transparent
     .jewel.tablecell:first-of-type
         border-left: 0px
     .jewel.tablecell
         border-top: 1px solid $default-color
         border-left: 1px solid $default-color
+
+        > *
+            padding: 12px
 
     .jewel.tfoot
         .jewel.tablecell
@@ -88,12 +95,13 @@ $table-border-radius: $border-radius
     border-radius: $table-border-radius
 
     .jewel.thead tr
-        border-bottom: 1px solid $default-color
+        //border-bottom: 1px solid $default-color
 
     // th
     .jewel.tableheadercell:first-of-type
         border-left: 0px
     .jewel.tableheadercell
+        padding: 12px
         @if $flat
             background: lighten($default-color, 10%)
             box-shadow: none
@@ -105,13 +113,19 @@ $table-border-radius: $border-radius
         font-size: $font-size
         color: $default-font-color
         border-left: 1px solid $default-color
+        border-bottom: 1px solid $default-color
     
     // td
+    .jewel.tablerow:first-child 
+        .jewel.tablecell
+            border-top: 0px solid transparent
     .jewel.tablecell:first-of-type
         border-left: 0px
     .jewel.tablecell
         border-top: 1px solid $default-color
         border-left: 1px solid $default-color
+        // > *
+        //     padding: 12px
 
     .jewel.tfoot
         .jewel.tablecell
@@ -123,10 +137,15 @@ $table-border-radius: $border-radius
                 background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 20%))
                 box-shadow: inset 0 1px 0 lighten($default-color, 30%)
 
+    &.fixedHeader
+        .jewel.tableheadercell
+            // border-bottom: 1px solid $default-color
+
 // .jewel.tableheadercell
 //     border: 1px solid black
 
 .jewel.tableitem
+    height: 100%
 
     &.hovered
         color: $font-theme-color
@@ -135,3 +154,9 @@ $table-border-radius: $border-radius
     &.selected, &.selectable:active
         color: $font-theme-color
         background: darken($primary-color, 5%)
+
+    &.calendar
+        border-radius: 4px
+
+        &.selected
+            font-weight: bold

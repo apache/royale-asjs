@@ -26,6 +26,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.List;
@@ -73,11 +75,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 		public function set list(value:List):void
 		{
-			if(_list)
-			{
-				removeListListeners();
-			}
-
+			removeListListeners();
+			
 			_list = value;
 
 			if(_list)
@@ -95,11 +94,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 
 		protected function addListListeners():void {
-			list.addEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+			if(_list)
+				_list.addEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
 		}
 
 		protected function removeListListeners():void {
-			list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+			if(_list)
+				_list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
 		}
 
 		/**
@@ -110,19 +111,19 @@ package org.apache.royale.jewel.beads.controls.textinput
 		protected function keyDownEventHandler(event:KeyboardEvent):void
 		{
 			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
+			if(event.key === WhitespaceKeys.TAB)
 				return;
 			
 			event.preventDefault();
 
 			var index:int = visibleIndexes.indexOf(list.selectedIndex);
 			
-			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
+			if(event.key === NavigationKeys.UP || event.key === NavigationKeys.LEFT)
 			{
 				if(index > 0)
 					list.selectedIndex = visibleIndexes[index - 1];
 			} 
-			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
+			else if(event.key === NavigationKeys.DOWN || event.key === NavigationKeys.RIGHT)
 			{
 				if(index < visibleIndexes.length - 1)
 					list.selectedIndex = visibleIndexes[index + 1];
@@ -135,13 +136,12 @@ package org.apache.royale.jewel.beads.controls.textinput
 				var ir:IFocusable = (list.view as IListView).dataGroup.getItemRendererForIndex(list.selectedIndex) as IFocusable;
 				ir.setFocus();
 				
-				COMPILE::JS
-				{
-                scrollToIndex(list.selectedIndex);
-				}
-				
 				sendEvent(list, 'change');
 			}
+		}
+
+		protected function get presentationModel():IListPresentationModel {
+			return list.presentationModel as IListPresentationModel;
 		}
 		
 		/**
@@ -165,9 +165,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 			var oldScroll:Number = scrollArea.scrollTop;
 
 			var totalHeight:Number = 0;
-			var pm:IListPresentationModel = list.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
-			if(pm.variableRowHeight)
+			if(presentationModel.variableRowHeight)
 			{
 				//each item render can have its own height
 				var n:int = _visibleIndexes.length;
@@ -181,7 +180,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 			{
 				var rowHeight:Number;
 				// all items renderers with same height
-				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : rowHeight;
+				rowHeight = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
 				totalHeight = _visibleIndexes.length * rowHeight - scrollArea.clientHeight;
 				
 				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
@@ -247,7 +246,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function textInputKeyUpHandler(event:KeyboardEvent):void
 		{
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
+			if(event.key === WhitespaceKeys.TAB)
 				return;
 				
 			const inputBase:TextInputBase = event.target as TextInputBase;
@@ -261,6 +260,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function textInputKeyUpLogic(input:Object):void
 		{
+			if(!list) return;
+			
 			// first remove a previous selection
 			if(list.selectedIndex != -1)
 				list.selectedItem = null;
@@ -320,7 +321,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 					//decorate text
 					if(useDecoration)
 					{
-						ir.text = "<span>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
+						ir.text = "<span style='display:contents;'>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
 					}
 				} else {
 					ir.visible = false;

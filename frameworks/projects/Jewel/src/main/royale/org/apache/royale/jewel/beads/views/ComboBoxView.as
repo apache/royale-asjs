@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	COMPILE::SWF
-	{
-	import flash.utils.setTimeout;
-    }
 	COMPILE::JS
 	{
 	import org.apache.royale.geom.Point;
@@ -30,7 +26,9 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.utils.PointUtils;
 	}
 	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IComboBox;
 	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
@@ -97,6 +95,7 @@ package org.apache.royale.jewel.beads.views
 			return _button;
 		}
 
+		private var combobox:IComboBox;
 		private var _comboPopUp:ComboBoxPopUp;
 		private var _list:List;
 
@@ -123,6 +122,7 @@ package org.apache.royale.jewel.beads.views
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			combobox = value as IComboBox;
 
 			_textinput = new TextInput();
             /*COMPILE::JS {
@@ -172,6 +172,9 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererProvider
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.views.ComboBoxPopUpView
 		 */
 		public function set popUpVisible(value:Boolean):void
 		{
@@ -187,9 +190,20 @@ package org.apache.royale.jewel.beads.views
 					_comboPopUp.model = model;
 					
 					// if  user defines item render for combo must be pased to popup list
-					var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(host, "iItemRenderer") as Class;
-					if(itemRendererClass != null)
-						_comboPopUp.itemRendererClass = itemRendererClass;
+
+					// priority goes to instance itemRenderer
+					if((combobox as IItemRendererProvider).itemRenderer)
+					{
+						if((combobox as IItemRendererProvider).itemRenderer) {
+							_comboPopUp.itemRenderer = (combobox as IItemRendererProvider).itemRenderer;
+						}
+					} else 
+					// second priority goes CSS defined itemRenderer
+					{
+						var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(host, "iItemRenderer") as Class;
+						if(itemRendererClass != null)
+							_comboPopUp.itemRendererClass = itemRendererClass;
+					}
 					
 					UIUtils.addPopUp(_comboPopUp, host);
                     // var popupHost:IPopUpHost = UIUtils.findPopUpHost(host);
@@ -200,8 +214,7 @@ package org.apache.royale.jewel.beads.views
 					
 					//popup width needs to be set before position inside bounding client to work ok
 					_list.width = host.width;
-					_list.scrollToIndex(_list.selectedIndex);
-                    
+					
                     COMPILE::JS
                     {
 					// Fix temporary: when soft keyboard opens in ios devices browser is not resized, so popup gets under the keyboard
@@ -217,7 +230,8 @@ package org.apache.royale.jewel.beads.views
 
 					window.addEventListener('resize', autoResizeHandler, false);
                     }
-                    setTimeout(prepareForPopUp,  300);
+                    
+					prepareForPopUp();
 
 					sendStrandEvent(_strand, "popUpOpened");
 
@@ -268,6 +282,7 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		public static const DEFAULT_BUTTON_WIDTH:Number = 38;
+		public static const DEFAULT_WIDTH:Number = 200;
 
 		/**
 		 * Size the component at start up
@@ -282,7 +297,7 @@ package org.apache.royale.jewel.beads.views
 
 			// if no width (neither px or %), set default width
 			if(cmb.isWidthSizedToContent())
-				cmb.width = 200;
+				cmb.width = DEFAULT_WIDTH;
 			
 			_textinput.percentWidth = 100;
 		}

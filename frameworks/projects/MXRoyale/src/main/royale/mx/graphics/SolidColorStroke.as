@@ -48,6 +48,8 @@ package mx.graphics
     {
         _weight = value;
     }
+	// not implemented
+	public function set pixelHinting(value:Boolean):void {}
 
 	private var _color:Number;
 

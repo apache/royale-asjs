@@ -33,6 +33,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.getSelectionRenderBead;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.core.Bead;
 
 	/**
 	 *  The ListMultiSelectionMouseController class is a controller for
@@ -48,7 +49,7 @@ package org.apache.royale.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ListMultiSelectionMouseController implements IBeadController
+	public class ListMultiSelectionMouseController extends Bead implements IBeadController
 	{
 		/**
 		 *  Constructor.
@@ -92,7 +93,6 @@ package org.apache.royale.html.beads.controllers
 		 */
 		protected var dataGroup:IItemRendererOwnerView;
 
-		private var _strand:IStrand;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -102,16 +102,15 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			listModel = value.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
 			listView = value.getBeadByType(IListView) as IListView;
-			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
-			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
+			listenOnStrand("itemAdded", handleItemAdded);
+			listenOnStrand("itemRemoved", handleItemRemoved);
 		}
 
 		/**

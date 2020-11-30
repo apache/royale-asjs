@@ -26,6 +26,8 @@ package spark.components.supportClasses
 	public class DropDownListButton extends Button
 	{
 		
+		private static var instanceCounter:int = 0;
+		
 		/**
 		 *  Constructor.
          * 
@@ -36,8 +38,12 @@ package spark.components.supportClasses
 		 */
 		public function DropDownListButton()
 		{
-			super();			
+			super();
+			instanceId = instanceCounter.toString();
+			instanceCounter++;
 		}
+		
+		private var instanceId:String;
 		
         override public function setActualSize(w:Number, h:Number):void
         {
@@ -58,10 +64,11 @@ package spark.components.supportClasses
         COMPILE::JS
         private function updateSkin(w:Number, h:Number):void
         {
+			var clipid:String = "txtClip" + instanceId;
 			if (h < 4) return;
             element.innerHTML = '<svg width="' + w + 'px" height="' +
-                h + 'px" xmlns="http://www.w3.org/2000/svg"><clipPath id="txtclip"><rect x="0" y="0" height="' + h + 
-				'px" width="' + (w - 29) + 'px"/></clipPath><text y="3px" clip-path="url(#txtclip)">' +
+                h + 'px" xmlns="http://www.w3.org/2000/svg"><clipPath id="' + clipid + '"><rect x="0" y="0" height="' + h + 
+				'px" width="' + (w - 29) + 'px"/></clipPath><text y="3px" clip-path="url(#' + clipid + ')">' +
                 label + '</text><style><![CDATA[' +
                 'text{ dominant-baseline: hanging;' +
                 /*    font: 12px Verdana, Helvetica, Arial, sans-serif;*/
@@ -71,5 +78,17 @@ package spark.components.supportClasses
                 (w - 17) + ',12 L ' + (w - 21) + ',5"</path></svg>';    
             
         }
+
+	    //--------------------------------------------------------------------------
+	    //
+	    //  Overridden methods
+	    //
+	    //--------------------------------------------------------------------------
+	    
+	    override public function get measuredHeight():Number
+	    {
+	        return 21; // maybe measure font someday if fontSize is large
+	    }
+
 	}
 }

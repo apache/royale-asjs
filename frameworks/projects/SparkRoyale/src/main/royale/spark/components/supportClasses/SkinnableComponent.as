@@ -231,6 +231,7 @@ public class SkinnableComponent extends UIComponent
 
     }
 
+	private var skinStateInvalidated:Boolean = false;
  
     /**
      *  Marks the component so that the new state of the skin is set
@@ -243,13 +244,16 @@ public class SkinnableComponent extends UIComponent
      */
     public function invalidateSkinState():void
     {
-        if (GOOG::DEBUG)
-            trace("invalidateSkinState not implemented");
+		skinStateInvalidated = true;
+		
+	    if (skin)
+	    {
+		    skin.currentState = getCurrentSkinState();
+			skinStateInvalidated = false;
+	    }
     }
 	
-	
-	
-	//----------------------------------
+    //----------------------------------
     //  skin
     //----------------------------------
     
@@ -288,6 +292,8 @@ public class SkinnableComponent extends UIComponent
         
         _skin = value;
         findSkinParts();
+		if (skinStateInvalidated)
+			invalidateSkinState();
         dispatchEvent(new Event("skinChanged"));
     }
     
@@ -401,6 +407,8 @@ public class SkinnableComponent extends UIComponent
         dispatchEvent(event);
         */
     }
+
+    protected function partRemoved(partName:String, instance:Object):void {} // not implemented
 
 	//dataGroup copied from SkinnableDataContainer
 	/**

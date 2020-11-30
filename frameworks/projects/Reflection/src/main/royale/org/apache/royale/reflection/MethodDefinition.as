@@ -43,12 +43,16 @@ package org.apache.royale.reflection
          */
         public function get declaredBy():TypeDefinition
         {
+            /* possible alternate here, @todo review:
+                return owner;
+            */
             COMPILE::SWF{
                 var declareBy:String = _rawData.@declaredBy;
             }
             COMPILE::JS{
                 var declareBy:String = _rawData.declaredBy;
             }
+
             return TypeDefinition.internalGetDefinition(declareBy);
         }
 
@@ -72,7 +76,7 @@ package org.apache.royale.reflection
                 for (var i:int = 0; i < n; i++)
                 {
                     var item:XML = data[i] as XML;
-                    results.push(new ParameterDefinition(uint(item.@index),item));
+                    results.push(new ParameterDefinition(uint(item.@index),item, this));
                 }
             }
             COMPILE::JS {
@@ -83,7 +87,7 @@ package org.apache.royale.reflection
                     {
                         var index:uint = (i*.5) + 1;
                         var item:Object = {type:data[i], optional:data[i+1], index:index};
-                        results.push(new ParameterDefinition(index,item));
+                        results.push(new ParameterDefinition(index,item, this));
                     }
                 }
             }

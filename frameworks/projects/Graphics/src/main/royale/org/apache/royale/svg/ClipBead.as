@@ -171,7 +171,9 @@ package org.apache.royale.svg
 			parent.appendChild(element);
 			return element;
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		public function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;

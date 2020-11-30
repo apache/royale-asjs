@@ -346,7 +346,7 @@ public class TweenEffectInstance extends EffectInstance
 		return newTween;
 	}
 	
-	/* mx_internal function applyTweenStartValues():void
+	mx_internal function applyTweenStartValues():void
 	{
 		if (duration > 0)
 		{
@@ -354,7 +354,7 @@ public class TweenEffectInstance extends EffectInstance
 		}
 	}
 	
-	private function tweenEventHandler(event:TweenEvent):void
+/*	private function tweenEventHandler(event:TweenEvent):void
 	{
 		dispatchEvent(event);
 	} */

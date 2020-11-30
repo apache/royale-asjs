@@ -183,7 +183,7 @@ limitations under the License.
 	</j:valuesImpl>
 
     <j:initialView>
-	    <j:ApplicationResponsiveView>
+	    <j:ResponsiveView>
 
     <!-- <mx:VBox width="400">
         <mx:HBox>
@@ -214,7 +214,7 @@ limitations under the License.
                 <j:Label id="result3_txt"/>
             </j:VGroup>
         </j:VGroup>
-        </j:ApplicationResponsiveView>
+        </j:ResponsiveView>
     </j:initialView>
     <!-- <mx:VBox width="400">
         <mx:Button label="Get Array Of Objects" click="service.getObjectArray1.send()"/>

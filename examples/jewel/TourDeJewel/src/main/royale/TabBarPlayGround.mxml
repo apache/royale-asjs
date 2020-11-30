@@ -28,6 +28,7 @@ limitations under the License.
 			import org.apache.royale.collections.ArrayList;
 
 			import vos.TabBarButtonVO;
+			import vos.TabBarButtonVO;
 
             private var _tabBarData:ArrayList = new ArrayList([
 				new TabBarButtonVO("Tab 1", "tab1", MaterialIconType.ACCESSIBILITY),
@@ -49,10 +50,22 @@ limitations under the License.
 			private function updateTabBarData():void
 			{
 				tabBarData = new ArrayList([
-					new TabBarButtonVO("Other 1", "tab1", MaterialIconType.MORE),
-					new TabBarButtonVO("Other 2", "tab2", MaterialIconType.PAGES),
-					new TabBarButtonVO("Other 3", "tab3", MaterialIconType.ZOMM_IN)
+					new TabBarButtonVO("Other Tab 1", "tab1", MaterialIconType.MORE),
+					new TabBarButtonVO("Other Tab 2", "tab2", MaterialIconType.PAGES),
+					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOMM_IN)
 				]);
+			}
+
+			private var _tabBarDataOptional:ArrayList = new ArrayList([
+					new TabBarButtonVO("Other Tab 1", "tab1", MaterialIconType.MORE),
+					new TabBarButtonVO("Other Tab 2", "tab2", MaterialIconType.PAGES),
+					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOMM_IN)
+				]);
+
+			[Bindable]
+			public function get tabBarDataOptional():ArrayList
+			{
+				return _tabBarDataOptional;
 			}
             
 			private var _scrolltabBarData:ArrayList = new ArrayList([
@@ -87,8 +100,26 @@ limitations under the License.
 			{
 				return _tabBarDataSample;
 			}
+			
+			private var _tabBarData2:ArrayList = new ArrayList([
+				new TabBarButtonVO("Home", "tab1", MaterialIconType.HOME),
+				new TabBarButtonVO("About Us", "tab2", MaterialIconType.CROP_SQUARE),
+				new TabBarButtonVO("Contact", "tab3", MaterialIconType.CONTACT_MAIL)
+			]);
+
+			[Bindable]
+			public function get tabBarData2():ArrayList
+			{
+				return _tabBarData2;
+			}
 		]]>
 	</fx:Script>
+
+	<fx:Style>
+		.side-tab-content {
+			background-color: #f6f6f6;
+		}
+	</fx:Style>
 
 	<c:beads>
 		<js:ContainerDataBinding/>
@@ -96,7 +127,7 @@ limitations under the License.
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
-			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel TabBar">
@@ -108,11 +139,11 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel TabBar"/>
+					<html:H3 text="AssignTabContent bead and Vertical Renderer"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by an icon and a label. The <b>ItemRenderer</b> is asigned vía className <b>tabBarVerticalIconItemRenderer</b>.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> has a custom <b>ItemRenderer</b> composed by an icon and a label with vertical layout (check <b>TabBarVerticalIconItemRenderer.mxml</b>). Indicator is restricted to content. The <b>ItemRenderer</b> is asigned vía className <b>tabBarVerticalIconItemRenderer</b>. Since the layout is simple we can use <b>AssignTabContent</b> bead for the content. This way the bead wire change events to sync selection to content.]]></j:html>
 					</j:Label>
 
 					<j:TabBar width="100%" className="tabBarVerticalIconItemRenderer"
@@ -148,18 +179,18 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel TabBar"/>
+					<html:H3 text="Horizontal Renderer"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by just a label. This example doesn't use <b>AssignTabContent</b>.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> has a custom <b>ItemRenderer</b> composed by an icon and a label with horizontal layout (check <b>TabBarHorizontalIconItemRenderer.mxml</b>). Indicator is not restricted to content. This example doesn't use <b>AssignTabContent</b>. We use binding to TabBarContent's <b>selectedContent</b> to sync cotent.]]></j:html>
 					</j:Label>
 					<j:TabBar localId="tabbar2" selectedIndex="2" className="tabBarHorizontalIconItemRenderer">
 						<j:beads>
 							<js:ConstantBinding sourcePropertyName="tabBarData" destinationPropertyName="dataProvider"/>
 						</j:beads>
 					</j:TabBar>
-					<j:TabBarContent localId="tabcontent2" selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).hash}">
+					<j:TabBarContent selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).hash}">
 						<j:SectionContent name="tab1">
 							<j:Label text="Tab 1"/>
 						</j:SectionContent>
@@ -184,10 +215,11 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[By default <b>TabBar</b> doesn't set <i>rowHeight</i>. This one set it to 60, so all renders has that height.]]></j:html>
+						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by just a label (default <b>TabBarButtonItemRenderer</b>). By default <b>TabBar</b> doesn't set <i>rowHeight</i>. This one set it to 60, so all renders has that height.]]></j:html>
 					</j:Label>
-					<j:TabBar rowHeight="60">
+					<j:TabBar>
 						<j:beads>
+							<j:TabBarPresentationModel rowHeight="60"/>
 							<js:ConstantBinding sourcePropertyName="tabBarDataSample"
 												destinationPropertyName="dataProvider"/>
 							<j:AssignTabContent selectedContentProperty="content">
@@ -214,14 +246,90 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel TabBar with horizontal scroll"/>
+					<html:H3 text="Vertical Layout with content aside."/>
+				</j:CardHeader>
+				<j:CardPrimaryContent width="100%" height="100%">
+					<j:Label multiline="true">
+						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side. Also use restricted indicator to content.]]></j:html>
+					</j:Label>
+					<j:HGroup gap="3" width="100%" height="100%">
+						<j:TabBar className="tabBarVerticalIconItemRenderer" dataProvider="{tabBarDataOptional}"
+							localId="vtabbar" selectedIndex="2">
+							<j:beads>
+								<j:VerticalLayout/>
+							</j:beads>
+						</j:TabBar>
+						<j:TabBarContent selectedContent="{(vtabbar.selectedItem as TabBarButtonVO).hash}"
+							className="side-tab-content" width="100%" height="100%">
+							<j:beads>
+								<js:Paddings padding="15"/>
+							</j:beads>
+							<j:SectionContent name="tab1" width="100%" height="200">
+								<j:Label text="Tab Content 1"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab2" width="100%" height="200">
+								<j:Label text="Tab Content 2"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab3" width="100%" height="200">
+								<j:Label text="Tab Content 3"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab4" width="100%" height="200">
+								<j:Label text="Tab Content 4"/>
+							</j:SectionContent>
+						</j:TabBarContent>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Vertical Layout (right align) with content aside."/>
+				</j:CardHeader>
+				<j:CardPrimaryContent width="100%" height="100%">
+					<j:Label multiline="true">
+						<j:html><![CDATA[This <b>TabBar</b> layout the buttons vertically. We add the tab content to the right side. This time we sync selection and content through TabBar's <b>change</b> event. We need to set initial TabBarContent section through <b>selectedContent</b>. We use TabBarPresentationModel to <b>Align</b> the items content to the <b>right</b>.]]></j:html>
+					</j:Label>
+					<j:HGroup gap="3" width="100%" height="100%">
+						<j:TabBar dataProvider="{tabBarData2}" width="145"
+							change="tbc.selectedContent = event.target.selectedItem.hash">
+							<j:beads>
+								<j:VerticalLayout/>
+								<j:TabBarPresentationModel align="right"/>
+							</j:beads>
+						</j:TabBar>
+						<j:TabBarContent localId="tbc" className="side-tab-content" width="100%" height="100%" selectedContent="tab1">
+							<j:beads>
+								<js:Paddings padding="15"/>
+							</j:beads>
+							<j:SectionContent name="tab1" width="100%" height="200">
+								<j:Label text="Tab Content 1"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab2" width="100%" height="200">
+								<j:Label text="Tab Content 2"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab3" width="100%" height="200">
+								<j:Label text="Tab Content 3"/>
+							</j:SectionContent>
+						</j:TabBarContent>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Horizontal Scroll"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[This <b>TabBar</b> has twelve tabs. Notice that "width" needs to be configured to 100% to make scroll work.]]></j:html>
+						<j:html><![CDATA[Use <b>ScrollingViewport</b> bead to add scrolling. This <b>TabBar</b> has twelve tabs. Notice that "width" needs to be configured to 100% to make scroll work.]]></j:html>
 					</j:Label>
 					<j:TabBar width="100%" localId="tabbar3" dataProvider="{scrolltabBarData}">
 						<j:beads>
+							<j:ScrollingViewport/>
 							<j:AssignTabContent selectedContentProperty="hash">
 								<j:content>
 									<j:TabBarContent selectedContent="{(tabbar3.selectedItem as TabBarButtonVO).hash}">
@@ -266,6 +374,47 @@ limitations under the License.
 							</j:AssignTabContent>
 						</j:beads>
 					</j:TabBar>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Mobile Layout (Bottom position and indicator on top)"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent itemsHorizontalAlign="itemsCenter">
+					<j:Label multiline="true" width="100%">
+						<j:html><![CDATA[This <b>TabBar</b> is positioned below the content and the indicator is configured to be on top.]]></j:html>
+					</j:Label>
+
+					<j:VGroup width="400" height="600">
+						<j:TabBarContent selectedContent="{(bottomTabbar.selectedItem as TabBarButtonVO).hash}"
+							className="side-tab-content" width="100%" height="100%">
+							<j:beads>
+								<js:Paddings padding="15"/>
+							</j:beads>
+							<j:SectionContent name="tab1" width="100%" height="200">
+								<j:Label text="Tab Content 1"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab2" width="100%" height="200">
+								<j:Label text="Tab Content 2"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab3" width="100%" height="200">
+								<j:Label text="Tab Content 3"/>
+							</j:SectionContent>
+							<j:SectionContent name="tab4" width="100%" height="200">
+								<j:Label text="Tab Content 4"/>
+							</j:SectionContent>
+						</j:TabBarContent>
+						<j:TabBar localId="bottomTabbar" selectedIndex="1" width="100%"
+							className="tabBarVerticalIconItemRenderer" dataProvider="{tabBarData}">
+							<j:beads>
+								<j:TabBarPresentationModel indicatorToOppositeSide="true"/>
+							</j:beads>
+						</j:TabBar>
+					</j:VGroup>
+
 				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>

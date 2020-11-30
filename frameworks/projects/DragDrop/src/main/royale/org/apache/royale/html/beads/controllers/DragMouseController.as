@@ -220,19 +220,52 @@ package org.apache.royale.html.beads.controllers
 
         private var host:IPopUpHost;
 
+        private var _approveDragStart:Function;
+        /**
+         * Provides the ability to approve (or prevent) a mouseDown event being considered
+         * as the start of a drag sequence. This can be useful for renderers with some controls
+         * that must remain interactive, so that dragging is only supported by other parts of the renderer.
+         * The function should return true for the mouseDown event to be approved as the possible start
+         * of a drag sequence
+         *
+         * @param value a function that takes a MouseEvent as a parameter, its boolean return value pre-approves a mouseDown event (or not)
+         */
+        public function set approveDragStart(value:Function):void{
+            _approveDragStart = value;
+        }
+        public function get approveDragStart():Function{
+            return _approveDragStart;
+        }
+
+        private var _topMostDispatcher:IEventDispatcher;
+        /**
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
+        public function get topMostDispatcher():IEventDispatcher{
+            if (_topMostDispatcher) return _topMostDispatcher;
+            if (_strand) _topMostDispatcher = (_strand as IUIBase).topMostEventDispatcher;
+            return _topMostDispatcher;
+        }
+        public function set topMostDispatcher(value:IEventDispatcher):void{
+            _topMostDispatcher = value;
+        }
+
+        private var _listeningDispatcher:IEventDispatcher;
         /**
          *  @private
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         private function dragMouseDownHandler(event:MouseEvent):void
         {
+            if (_approveDragStart && !_approveDragStart(event)) return;
 //            trace("DRAG-MOUSE: dragMouseDown");
-            (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            var dispatcher:IEventDispatcher = topMostDispatcher;
+            dispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
+            dispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
             COMPILE::SWF
             {
-                (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+                dispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             }
+            _listeningDispatcher = dispatcher;
             /**
              * In browser, we need to listen to window to get mouseup events outside the window
              */
@@ -374,13 +407,14 @@ package org.apache.royale.html.beads.controllers
             DragEvent.dragSource = null;
             DragEvent.dragInitiator = null;
             dragImage = null;
-
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            var dispatcher:IEventDispatcher = _listeningDispatcher;
+            _listeningDispatcher = null;
+            dispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
+            dispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
 
             COMPILE::SWF
             {
-                (_strand as IUIBase).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+                dispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             }
             
             COMPILE::JS

@@ -205,7 +205,7 @@ public class TweenEffect extends Effect
     /**
      *  @private
      */
-    /* override */ protected function initInstance(instance:IEffectInstance):void
+    override protected function initInstance(instance:IEffectInstance):void
     {
         //super.initInstance(instance);
         

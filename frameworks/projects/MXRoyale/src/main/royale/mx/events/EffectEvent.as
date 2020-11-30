@@ -184,8 +184,7 @@ public class EffectEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-/*     public static const EFFECT_REPEAT:String = "effectRepeat";
- */
+     public static const EFFECT_REPEAT:String = "effectRepeat";
     /**
      *  The <code>EffectEvent.EFFECT_UPDATE</code> constant defines the value of the 
      *  <code>type</code> property of the event object for an 
@@ -217,8 +216,7 @@ public class EffectEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
- /*    public static const EFFECT_UPDATE:String = "effectUpdate";
- */
+     public static const EFFECT_UPDATE:String = "effectUpdate";
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor

@@ -35,6 +35,7 @@ package mx.display
 	COMPILE::JS
 	{
 		import mx.core.UIComponent;
+		import org.apache.royale.display.BitmapData; 
 		//import org.apache.royale.textLayout.dummy.BitmapData;
 
 		
@@ -52,6 +53,11 @@ package mx.display
 			public function set smoothing(value:Boolean):void
 			{
 				_smoothing = value;
+			}
+			// not implemented
+			public function get bitmapData():BitmapData
+			{
+				return null;
 			}
 			
 		}

@@ -34,7 +34,8 @@ package flexUnitTests.network
     
     import org.apache.royale.net.remoting.amf.AMFBinaryData;
     import org.apache.royale.reflection.*;
-    
+    import org.apache.royale.reflection.utils.*;
+
     
     public class AMFBinaryDataTesterTest
     {
@@ -52,6 +53,7 @@ package flexUnitTests.network
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
+            ExtraData.addAll();
         }
         
         [AfterClass]
@@ -161,7 +163,21 @@ package flexUnitTests.network
             assertTrue( !isFinite(num), "post-write read of written Number was not correct");
             assertTrue( (num < 0), "post-write read of written Number was not correct");
         }
-        
+
+        [Test]
+        public function testNullAndUndefinedEncoding():void
+        {
+            var ba:AMFBinaryData = new AMFBinaryData();
+            ba.writeObject(null);
+            ba.writeObject(undefined);
+
+            ba.position = 0;
+            var val:* = ba.readObject();
+            assertStrictlyEquals(val, null, 'Should be null');
+            val = ba.readObject();
+            assertStrictlyEquals(val, undefined, 'Should be undefined');
+        }
+
         
         [Test]
         public function testArrayInstance():void
@@ -272,7 +288,60 @@ package flexUnitTests.network
             
             
         }
-        
+
+        [Test]
+        public function testVector():void{
+            var ba:AMFBinaryData = new AMFBinaryData();
+            var instance:Vector.<int> = new <int>[1,-1,0];
+            ba.writeObject(instance);
+
+
+            //RoyaleUnitTestRunner.consoleOut(getBytesOut(ba, true));
+
+            assertEquals( ba.length, 15, "post-write length was not correct");
+            assertEquals( ba.position, 15, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [0x0d, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00]), "post-write bytes did not match expected data");
+            ba.position = 0;
+            var obj:Object = ba.readObject();
+
+            assertTrue( obj is Vector.<int>, "post-write read did not match expected result");
+            assertTrue( obj.toString() == instance.toString(), "post-write read did not match expected result");
+
+            ba.length = 0;
+            var instBool:Vector.<Boolean> = new <Boolean>[true, false, true, false];
+            ba.writeObject(instBool);
+
+
+            assertTrue( bytesMatchExpectedData(ba, [0x10, 0x09, 0x00, 0x01, 0x03, 0x02, 0x03, 0x02]), "post-write bytes did not match expected data");
+            ba.position = 0;
+            obj = ba.readObject();
+            assertTrue( obj.toString() == instBool.toString(), "post-write read did not match expected result");
+
+
+            ba.length = 0;
+            registerClassAlias('Bool', Boolean);
+            ba.writeObject(instBool);
+           // RoyaleUnitTestRunner.consoleOut(getBytesOut(ba, true));
+
+            assertTrue( bytesMatchExpectedData(ba, [0x10, 0x09, 0x00, 0x09, 0x42, 0x6f, 0x6f, 0x6c, 0x03, 0x02, 0x03, 0x02]), "post-write bytes did not match expected data");
+
+            ba.position = 0;
+            obj = ba.readObject();
+            assertTrue( obj.toString() == instBool.toString(), "post-write read did not match expected result");
+
+
+
+            ba.length = 0;
+
+            var tc1:TestClass1 = new TestClass1();
+            var instObject:Vector.<TestClass1> = new <TestClass1>[new TestClass1(), new TestClass1(), tc1, tc1, null, tc1];
+
+            ba.writeObject(instObject);
+
+            assertTrue( bytesMatchExpectedData(ba, [0x10, 0x0d, 0x00, 0x01, 0x0a, 0x13, 0x01, 0x15, 0x74, 0x65, 0x73, 0x74, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x31, 0x06, 0x01, 0x0a, 0x01, 0x06, 0x01, 0x0a, 0x01, 0x06, 0x01, 0x0a, 0x06, 0x01, 0x0a, 0x06]), "post-write bytes did not match expected data");
+
+        }
+
         
         [Test]
         public function testAnonObject():void
@@ -632,12 +701,13 @@ package flexUnitTests.network
         }
 
 
-        private function getBytesOut(bytes:AMFBinaryData):String{
+        private function getBytesOut(bytes:AMFBinaryData, asTestData:Boolean=false):String{
             var out:Array = [];
             for each(var byte:uint in bytes) {
-                out.push(('0'+byte.toString(16)).substr(-2));
+                if (asTestData)  out.push('0x'+('0'+byte.toString(16)).substr(-2));
+                else out.push(('0'+byte.toString(16)).substr(-2));
             }
-            return out.join('');
+            return asTestData? '['+out.join(', ') +']':out.join('');
         }
         
     }

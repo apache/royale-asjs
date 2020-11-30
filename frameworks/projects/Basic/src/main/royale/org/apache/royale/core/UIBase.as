@@ -985,6 +985,7 @@ package org.apache.royale.core
         /**
          *  @private
          *  @royaleignorecoercion String
+		 *  @royaleemitcoercion org.apache.royale.core.IStyleObject
          */
         public function set style(value:Object):void
         {
@@ -1393,11 +1394,26 @@ package org.apache.royale.core
             
             for each (var bead:IBead in beads)
                 addBead(bead);
-                
+            
+            loadBeads();
+            sendEvent(this,"beadsAdded");
+        }
+
+        /**
+         *  load necesary beads. This method can be override in subclasses to
+         *  add other custom beads needed, so all requested beads be loaded before
+         *  signal the "beadsAdded" event.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        protected function loadBeads():void
+        {
 			loadBeadFromValuesManager(IBeadModel, "iBeadModel", this);
             loadBeadFromValuesManager(IBeadView, "iBeadView", this);
 			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
-            sendEvent(this,"beadsAdded");
         }
 
         private var _measurementBead:IMeasurementBead;

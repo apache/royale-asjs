@@ -18,10 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.core.ClassFactory;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
+	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.jewel.beads.models.DataGridPresentationModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
 	/**
@@ -33,6 +37,12 @@ package org.apache.royale.jewel
 	 *  @productversion Royale 0.9.7
 	 */
 	[Event(name="change", type="org.apache.royale.events.Event")]
+	
+	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("dataProvider")]
 	
 	/**
 	 *  The DataGrid class displays a collection of data using columns and rows. Each
@@ -48,7 +58,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DataGrid extends Group implements IDataGrid
+	public class DataGrid extends Group implements IDataGrid, IItemRendererProvider
 	{
 		/**
 		 *  constructor.
@@ -66,7 +76,7 @@ package org.apache.royale.jewel
 		
 		[Bindable("columnsChanged")]
 		/**
-		 *  The array of org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn used to 
+		 *  The array of IDataGridColumn components used to 
 		 *  describe each column.
 		 *
 		 *  @langversion 3.0
@@ -175,11 +185,29 @@ package org.apache.royale.jewel
 			IDataGridModel(model).selectedItem = value;
 		}
 
-		/**
-		 * @private
-		 */
-		private var _presentationModel:IDataGridPresentationModel;
+		/*
+		* IItemRendererProvider
+		*/
 		
+		private var _itemRenderer:IFactory = null;
+		
+		/**
+		 *  The class or factory used to display each item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
+		}
+
 		/**
 		 *  The DataGrid's presentation model
 		 *
@@ -192,43 +220,37 @@ package org.apache.royale.jewel
 		 */
 		public function get presentationModel():IBead
 		{
-			if (_presentationModel == null) {
-				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
-				if (c) {
-					_presentationModel = new c() as IDataGridPresentationModel;
-					addBead(_presentationModel);
+			var presModel:IDataGridPresentationModel = getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
+			if (presModel == null) {
+				presModel = new DataGridPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
+		}
+
+		/**
+         *  load necesary beads. This method can be override in subclasses to
+         *  add other custom beads needed, so all requested beads be loaded before
+         *  signal the "beadsAdded" event.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        override protected function loadBeads():void
+        {
+			// check for item renderer in css if it was not provided in code
+			// this must be done before load of view bead, since we'll use the renderer at that time
+			if(!itemRenderer) {
+				var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(this, "iItemRenderer") as Class;
+				if (itemRendererClass) {
+					itemRenderer = new ClassFactory(itemRendererClass);			
 				}
 			}
-			
-			return _presentationModel;
-		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
-		 */
-		public function set presentationModel(value:IBead):void
-		{
-			_presentationModel = value as IDataGridPresentationModel;
-		}
-				
-		/**
-		 *  The default height of each cell in every column
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
-		 */
-		public function get rowHeight():Number
-		{
-			return (presentationModel as IDataGridPresentationModel).rowHeight;
-		}
-        /**
-         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
-         */
-		public function set rowHeight(value:Number):void
-		{
-			(presentationModel as IDataGridPresentationModel).rowHeight = value;
+
+			// load view (and other) beads
+			super.loadBeads();
 		}
 	}
 }

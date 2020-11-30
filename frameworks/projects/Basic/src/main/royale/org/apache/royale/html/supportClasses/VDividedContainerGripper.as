@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.graphics.SolidColorStroke;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.svg.Path;
 
 	/**
@@ -35,7 +34,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class VDividedContainerGripper implements IBead, IDividedContainerGripper
+	public class VDividedContainerGripper extends Bead implements IDividedContainerGripper
 	{
 		/**
 		 * Constructor.
@@ -49,24 +48,22 @@ package org.apache.royale.html.supportClasses
 		{
 		}
 
-		private var _strand:IStrand;
 		private var path:Path;
 
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
 		 *
-		 * @royaleignorecoercion UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 
 			COMPILE::JS {
 				(_strand as UIBase).element.style.cursor = 'row-resize';
 			}
-
-			(_strand as IEventDispatcher).addEventListener("widthChanged", handleResize);
-			(_strand as IEventDispatcher).addEventListener("heightChanged", handleResize);
+			listenOnStrand("widthChanged", handleResize);
+			listenOnStrand("heightChanged", handleResize);
 
 			path = new Path();
 			path.stroke = new SolidColorStroke(0x555555,1);
@@ -76,6 +73,7 @@ package org.apache.royale.html.supportClasses
 
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		private function handleResize(event:Event):void
 		{

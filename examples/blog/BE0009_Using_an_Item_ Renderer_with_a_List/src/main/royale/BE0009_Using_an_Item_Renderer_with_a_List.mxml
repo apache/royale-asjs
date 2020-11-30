@@ -47,7 +47,7 @@
                 <j:VerticalCenteredLayout/>
             </j:beads>
 
-            <j:Card width="320">
+            <j:Card width="340">
                 <j:CardHeader>
                     <html:H3 text="Jewel List With ItemRenderer" className="primary-normal"/>
                 </j:CardHeader>

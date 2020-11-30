@@ -64,6 +64,15 @@ package mx.net
 			{
 				var fileFilter:FileFilter = typeFilter[i] as FileFilter;
 				var filters:Array = fileFilter.extension.split(";");
+				for (var j:int = 0; j < filters.length; j++)
+				{
+					var filter:String = filters[j];
+					if (filter.charAt(0) == '*')
+					{
+						filter = filter.substring(1);
+						filters[j] = filter;
+					}
+				}
 				allFilters = allFilters.concat(filters);
 			}
 			_browser.filter = allFilters.join(",");
@@ -88,6 +97,11 @@ package mx.net
 		  _loader.load();
 	  }
 	
+	  public function cancel():void
+	   {
+		   _uploader.cancel();
+	   }
+
 	  public function loaderCompleteHandler(event:Event):void
 	  {
 		  dispatchEvent(new Event(Event.COMPLETE));
@@ -102,6 +116,10 @@ package mx.net
 	  {
 		  _uploader.upload(request.url);
 	  }
+
+	// not implemented
+	  public function download(request:URLRequest, defaultFileName:String = null):void {}
+	 
 	  
 	  private function modelChangedHandler(event:Event):void
 	  {
@@ -117,11 +135,19 @@ package mx.net
 		{
 		  var a:HTMLAnchorElement = document.createElement("a") as HTMLAnchorElement;
 		  a.href = URL.createObjectURL(new Blob([data]));
-		  a.setAttribute("download", defaultFileName);
-		  a.text = defaultFileName;
-  		  document.body.appendChild(a);
-//  		  a.click();
-//  		  document.body.removeChild(a);
+		  if (defaultFileName == null)
+		  {
+		  		  a.setAttribute("download", "download.pdf");
+		  		  a.text = "download.pdf";
+		  }
+		  else
+          {
+		  		  a.setAttribute("download", defaultFileName);
+		  		  a.text = defaultFileName;
+          }
+          document.body.appendChild(a);
+ 		  a.click();
+  		  document.body.removeChild(a);
 		}
       }
 

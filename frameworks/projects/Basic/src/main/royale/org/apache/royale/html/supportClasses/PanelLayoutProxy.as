@@ -190,15 +190,6 @@ package org.apache.royale.html.supportClasses
         {
             return (host as IContainerBaseStrandChildrenHost).$removeElement(c);
         }
-        
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 */
-		COMPILE::JS
-		public function get somethingelse():WrappedHTMLElement
-		{
-			return (host as UIBase).element;
-		}
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase

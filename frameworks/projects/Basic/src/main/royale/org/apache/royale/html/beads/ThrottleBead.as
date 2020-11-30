@@ -24,6 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 	COMPILE::SWF {
 		import flash.utils.clearTimeout;	
 		import flash.utils.setTimeout;	
@@ -59,7 +60,7 @@ package org.apache.royale.html.beads
 	 *  @productversion Royale 0.9
 	 */
 
-	public class ThrottleBead extends EventDispatcher implements IBead
+	public class ThrottleBead extends DispatcherBead
 	{
 		/**
 		 *  constructor.
@@ -73,31 +74,29 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-        
-        private var _event:String;
-        public function get event():String
-        {
-            return _event;
-        }
-        public function set event(value:String):void
-        {
-            _event = value;
-        }
+		private var _event:String;
+		public function get event():String
+		{
+			return _event;
+		}
+		public function set event(value:String):void
+		{
+			_event = value;
+		}
 
-        private var _interval:Number = 500;
-        public function get interval():Number
-        {
-            return _interval;
-        }
+		private var _interval:Number = 500;
+		public function get interval():Number
+		{
+			return _interval;
+		}
 
-				[Inspectable(category="General", defaultValue="500")]
-        public function set interval(value:Number):void
-        {
-            _interval = value;
-        }
-        
-        
+		[Inspectable(category="General", defaultValue="500")]
+		public function set interval(value:Number):void
+		{
+			_interval = value;
+		}
+		
+		
 		private var timeoutId:Number = NaN;
 		
 		/**
@@ -108,7 +107,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
 			host.addEventListener(event, originalEventDispatched);
@@ -130,7 +129,7 @@ package org.apache.royale.html.beads
 		/**
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		private function get host():IEventDispatcher
+		protected function get host():IEventDispatcher
 		{
 			return _strand as IEventDispatcher;
 		}

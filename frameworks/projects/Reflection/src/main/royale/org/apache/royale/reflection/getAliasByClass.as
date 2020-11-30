@@ -39,6 +39,9 @@ COMPILE::SWF {
 
         COMPILE::JS {
             var info:* = classObject.prototype.ROYALE_CLASS_INFO;
+            if (!info && ExtraData.hasData(classObject)) {
+                info = ExtraData.getData(classObject)['ROYALE_CLASS_INFO'];
+            }
             if (info) {
                 ret = info.alias;
                 if (ret == '') ret = null;

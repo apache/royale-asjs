@@ -353,6 +353,10 @@
                 _lockedData = null;
             }
         }
+
+	// not implemented
+	public function draw(source:Object, matrix:Object = null, colorTransform:Object = null, blendMode:String = null, clipRect:Object = null, smoothing:Boolean = false):void
+	    {}
         
     }
 }

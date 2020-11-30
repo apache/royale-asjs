@@ -88,8 +88,38 @@
               <goals>
                   <goal>update-stylesheets</goal>
               </goals>
+            <phase>generate-resources</phase>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.google.code.maven-replacer-plugin</groupId>
+        <artifactId>replacer</artifactId>
+        <version>1.5.3</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>replace</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <includes>
+            <include>${basedir}/src/main/resources/**/*.css</include>
+          </includes>
+          <regex>false</regex>
+          <replacements>
+            <replacement>
+              <token>@@ZERO_WIDTH_SPACE</token>
+              <value>\200b</value>
+            </replacement>
+            <replacement>
+              <token>@@NON_BREAKING_SPACE</token>
+              <value>\0a</value>
+            </replacement>
+          </replacements>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -147,6 +177,42 @@
   </dependencies>
 
   <profiles>
+    <profile>
+      <id>platform-windows</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>nl.geodienstencentrum.maven</groupId>
+            <artifactId>sass-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-css-using-sass</id>
+                <goals>
+                  <goal>update-stylesheets</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <sassOptions>
+                    <!-- on windows it is typical to have autoCRLF=true,
+                    so we don't want to overwrite
+                    the CRLF newlines with unix newlines (which is true by default)
+                    locally, because that will change git status of the css file
+                    on windows
+                    -->
+                    <unix_newlines>false</unix_newlines>
+                  </sassOptions>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
     <profile>
       <id>option-with-swf</id>
       <dependencies>

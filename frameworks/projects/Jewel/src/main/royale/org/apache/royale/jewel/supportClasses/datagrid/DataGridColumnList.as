@@ -18,24 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
-    import org.apache.royale.jewel.DataGrid;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IDataGrid;
     import org.apache.royale.jewel.List;
+    import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
-    import org.apache.royale.jewel.beads.models.ListPresentationModel;
-    
-    //--------------------------------------
-    //  Events
-    //--------------------------------------
-    
-    /**
-     *  @copy org.apache.royale.core.ISelectionModel#change
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    [Event(name="change", type="org.apache.royale.events.Event")]
+    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     
     /**
      *  The DataGridColumnList class is the List class used internally
@@ -60,38 +48,64 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		{
 			super();
 			typeNames = "jewel list column";
-            // rowHeight need to be set to a default value to avoid potential different column heights
-			rowHeight = ListPresentationModel.DEFAULT_ROW_HEIGHT;
 		}
 		
+        private var _columnInfo:IDataGridColumn;
         /**
-         *  The DataGridColumn for this list
+         *  The IDataGridColumn for this list
          *  
          *
          *  @toplevel
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
+         *  @productversion Royale 0.9.8
          * 
          *  @royalesuppresspublicvarwarning
          */
-		public var columnInfo: DataGridColumn;
+		public function get columnInfo():IDataGridColumn
+        {
+            return _columnInfo;
+        }
+		public function set columnInfo(value:IDataGridColumn):void
+        {
+            if(_columnInfo != value)
+                _columnInfo = value;
+        }
 
-        private var _datagrid:DataGrid;
+        private var _datagrid:IDataGrid;
         /**
-		 *  Pointer back to the DataGrid that owns this column List
+		 *  Pointer back to the IDataGrid that owns this column List
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get datagrid():DataGrid {
+		public function get datagrid():IDataGrid {
             return _datagrid;
         }
-		public function set datagrid(value:DataGrid):void {
+		public function set datagrid(value:IDataGrid):void {
             _datagrid = value;
         }
+
+        /**
+		 *  The presentation model for the list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 */
+		override public function get presentationModel():IBead
+		{
+			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			if (presModel == null) {
+				presModel = new DataGridColumnListPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
+		}
 	}
 }

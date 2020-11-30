@@ -44,7 +44,7 @@ package org.apache.royale.core
         function addElement(c:IChild, dispatchEvent:Boolean = true):void;
 
         /**
-         *  Add a component to the parent.
+         *  Add a component to the parent at the specified index.
          * 
          *  @param c The subcomponent to add.
          *  @param c The index where the subcomponent should be added.
@@ -60,7 +60,7 @@ package org.apache.royale.core
         /**
          *  Gets the index of this subcomponent.
          * 
-         *  @param c The subcomponent to add.
+         *  @param c The subcomponent to retrieve the index.
          *  @return The index (zero-based).
          * 
          *  @langversion 3.0
@@ -94,7 +94,7 @@ package org.apache.royale.core
        function get numElements():int;
 
        /**
-        *  Get a component from the parent.
+        *  Get a component from the parent at specified index.
         * 
         *  @param c The index of the subcomponent.
         * 

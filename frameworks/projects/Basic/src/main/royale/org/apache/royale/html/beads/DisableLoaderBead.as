@@ -28,6 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.core.Bead;
 
 	COMPILE::JS
 	{
@@ -42,7 +43,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class DisableLoaderBead implements IBead
+	public class DisableLoaderBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -56,7 +57,6 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		protected var _strand:IStrand;
 		protected var _loader:IUIBase;
 
 		/**
@@ -67,12 +67,12 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{	
 			COMPILE::JS
 			{
 				_strand = value;
-				host.addEventListener("disabledChange", disabledChangeHandler);
+				listenOnStrand("disabledChange", disabledChangeHandler);
 				updateHost(null);
 			}
 		}

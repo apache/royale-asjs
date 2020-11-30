@@ -18,16 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import org.apache.royale.events.IEventDispatcher;
-
-    /**
+	/**
      *  The IIndexedItemRenderer interface is the basic interface for item renderers
      *  that have an index property that indicates its index in the list of renderers.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.7
      */
 	public interface ILabelFieldItemRenderer extends IIndexedItemRenderer
 	{
@@ -38,7 +36,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.7
          */
         function get labelField():String;
         function set labelField(value:String):void;        

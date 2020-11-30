@@ -35,6 +35,10 @@ package org.apache.royale.reflection.utils {
         public static const ACCESSORS:uint = 2;
         public static const METHODS:uint = 4;
         public static const STATIC_ONLY:uint = 8;
+
+        public static const ACCESS_READ_ONLY:uint=1;
+        public static const ACCESS_WRITE_ONLY:uint=2;
+        public static const ACCESS_READ_WRITE:uint=4;
     }
     
     

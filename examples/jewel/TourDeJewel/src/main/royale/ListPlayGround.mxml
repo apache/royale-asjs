@@ -127,6 +127,9 @@ limitations under the License.
 			// 		trace(iconVO.label);				
 			// 	}
 			// }
+			private function formatLabel(item:Object):String {
+				return " - " + item.label;
+			}
 		]]>
 	</fx:Script>
 
@@ -140,7 +143,7 @@ limitations under the License.
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
-			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel List">
@@ -220,10 +223,11 @@ limitations under the License.
 				<j:CardPrimaryContent>
 					<j:Label text="Notice variableRowHeight should be false to use rowHeight. Click on render's icon will remove that renderer" multiline="true"/>
 					
-					<j:List localId="list2" width="200" height="300" variableRowHeight="false"
+					<j:List localId="list2" width="200" height="300"
 						className="iconListItemRenderer" labelField="label"
-						emphasis="secondary" rowHeight="52">
+						emphasis="secondary">
 						<j:beads>
+							<j:ListPresentationModel rowHeight="52" variableRowHeight="false"/>
 							<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider"/>
 							<j:RemoveAllItemRendererForArrayListData/>
 						</j:beads>
@@ -330,7 +334,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Horizontal Scroll" className="primary-normal"/>
+					<html:H3 text="Horizontal Scroll and Alternate Row Colors" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 
@@ -339,6 +343,8 @@ limitations under the License.
 							dataProvider="{listModel.iconListData}">
 						<j:beads>
 							<j:HorizontalListScroll/>
+							<j:ListAlternateRowColor/>
+							<js:LabelFunction labelFunction="formatLabel"/>
 						</j:beads>
 					</j:List>
 

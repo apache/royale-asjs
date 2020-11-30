@@ -25,8 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.utils.sendEvent;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  The IndexedItemRendererInitializer class initializes item renderers
@@ -91,7 +90,7 @@ package org.apache.royale.html.beads
 		{
 			ir.index = index;
 			initializeItemRenderer(ir, data);
-			sendEvent(_strand as IEventDispatcher, "rendererInitizalized");
+			sendStrandEvent(_strand, "rendererInitizalized");
 		}
 		
 		protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void

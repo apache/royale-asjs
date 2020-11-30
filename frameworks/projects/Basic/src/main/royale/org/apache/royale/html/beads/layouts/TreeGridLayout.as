@@ -34,10 +34,8 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.html.beads.models.TreeGridModel;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
-	COMPILE::JS 
-	{
-		import org.apache.royale.core.IRenderedObject;
-	}
+	import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 * The TreeGridLayout class provides the sizing and positioning for the sub-components
@@ -48,7 +46,7 @@ package org.apache.royale.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class TreeGridLayout implements IBeadLayout
+	public class TreeGridLayout extends Bead implements IBeadLayout
 	{
 		/**
 		 * Constructor.
@@ -62,24 +60,14 @@ package org.apache.royale.html.beads.layouts
 		{
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 * @see org.apache.royale.core.IStrand
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-			(_strand as IEventDispatcher).addEventListener("widthChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("heightChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("sizeChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
+			listenOnStrand("widthChanged", handleSizeChanges);
+			listenOnStrand("heightChanged", handleSizeChanges);
+			listenOnStrand("sizeChanged", handleSizeChanges);
+			listenOnStrand("layoutNeeded", handleLayoutNeeded);
 		}
 		
 		private function get host():IUIBase
@@ -111,9 +99,13 @@ package org.apache.royale.html.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 *  @royaleignorecoercion org.apache.royale.html.beads.models.TreeGridModel
+		 *  @royaleignorecoercion org.apache.royale.html.beads.TreeGridView
+		 *  @royaleignorecoercion org.apache.royale.html.ButtonBar
 		 */
 		public function layout():Boolean
 		{

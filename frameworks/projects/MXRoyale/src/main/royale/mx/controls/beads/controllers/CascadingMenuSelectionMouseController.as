@@ -75,7 +75,8 @@ package mx.controls.beads.controllers
 			{
 				label = data[menu.labelField];
 			}
-			menuEvent.label = label
+			menuEvent.label = label;
+			menuEvent.index = event.index;
 			findMenuDispatcher().dispatchEvent(menuEvent);
 		}
 

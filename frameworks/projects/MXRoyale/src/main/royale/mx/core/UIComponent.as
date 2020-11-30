@@ -68,6 +68,7 @@ import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
+import mx.utils.NameUtil;
 import org.apache.royale.utils.MXMLDataInterpreter;
 use namespace mx_internal;
 
@@ -134,6 +135,12 @@ import org.apache.royale.utils.ClassSelectorList;
  *  @productversion Flex 3
  */
 [Event(name="show", type="mx.events.FlexEvent")]
+// not implemented
+[Event(name="hide", type="mx.events.FlexEvent")]
+// not implemented
+[Event(name="mouseDownOutside", type="mx.events.FlexMouseEvent")]
+// not implemented
+[Event(name="remove", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when the component has finished its construction
@@ -261,6 +268,21 @@ import org.apache.royale.utils.ClassSelectorList;
 [Event(name="valueCommit", type="mx.events.FlexEvent")]
 
 
+/**
+ *  Dispatched after the <code>currentState</code> property changes,
+ *  but before the view state changes.
+ * 
+ *  <p>This event is only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.StateChangeEvent.CURRENT_STATE_CHANGING
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="currentStateChange", type="org.apache.royale.events.ValueChangeEvent")]
 
 [Event(name="focusOut", type="mx.events.FocusEvent")]
 
@@ -643,6 +665,34 @@ public class UIComponent extends UIBase
             addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
             addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
         }
+    }
+    
+    //----------------------------------
+    //  className
+    //----------------------------------
+
+    /**
+     *  The name of this instance's class, such as <code>"Button"</code>.
+     *
+     *  <p>This string does not include the package name.
+     *  If you need the package name as well, call the
+     *  <code>getQualifiedClassName()</code> method in the flash.utils package.
+     *  It returns a string such as <code>"mx.controls::Button"</code>.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get className():String
+    {
+        return NameUtil.getUnqualifiedClassName(this);
+    }
+    
+    public function executeBindings(recurse:Boolean = false):void
+    {
+	   recurse = false;
+	   trace("UIComponent.executeBindings is not implemented");
     }
 
     //--------------------------------------------------------------------------
@@ -1034,6 +1084,7 @@ public class UIComponent extends UIBase
       _accessibilityEnabled = value;
     }
     
+    private var _useHandCursor:Boolean;
     /**
      *  From flash.display.Sprite
      *
@@ -1046,15 +1097,33 @@ public class UIComponent extends UIBase
     { override }
     public function get useHandCursor():Boolean
     {
-        trace("useHandCursor not implemented");
-        return false;
+	    COMPILE::JS
+	    {
+		    return _useHandCursor;
+	    }
+	    COMPILE::SWF
+	    {
+		trace("useHandCursor not implemented");
+		return false;
+	    }
     }
     
     COMPILE::SWF
     { override }
     public function set useHandCursor(value:Boolean):void
     {
-        trace("useHandCursor not implemented");
+	    COMPILE::JS
+	    {
+		    if (value != _useHandCursor)
+		    {
+			    element.style.cursor = value ? "pointer" : "auto";
+			    _useHandCursor = value;
+		    }
+	    }
+	    COMPILE::SWF
+	    {
+		trace("useHandCursor not implemented");
+	    }
     }
 	
 	 /**
@@ -2249,10 +2318,10 @@ COMPILE::JS
                 oldWidth = this.positioner.style.width;
                 oldLeft = this.positioner.style.left;
                 oldRight = this.positioner.style.right;
-                if (oldWidth.length)
-                    this.positioner.style.width = "";
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     return 0; // this.positioner.style.left = "";
+                if (oldWidth.length)
+                    this.positioner.style.width = "";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
@@ -3041,6 +3110,14 @@ COMPILE::JS
     //  includeInLayout
     //----------------------------------
 
+    /**
+     *  @private
+     */
+    mx_internal function setIncludeInLayout(value:Boolean):void
+    {
+	_includeInLayout = value;
+    }
+    
     /**
      *  @private
      *  Storage for the includeInLayout property.
@@ -4797,12 +4874,11 @@ COMPILE::JS
      */
     public function get fontFamily():Object
     {
-        trace("fontFamily not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "fontFamily");
     }
     public function set fontFamily(value:Object):void
     {
-        trace("fontFamily not implemented");
+        setStyle("fontFamily", value);
     }
 	[Inspectable(category="General")]
 	

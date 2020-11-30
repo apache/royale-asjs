@@ -21,7 +21,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.DataContainerBase;
 	
 	import org.apache.royale.core.ContainerBaseStrandChildren;
-    import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IContentViewHost;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
@@ -30,7 +30,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
-    import org.apache.royale.core.IStrandWithPresentationModel;
+	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.UIBase;
@@ -141,7 +141,7 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.html.IListPresentationModel
 		 */
 		public function get presentationModel():IBead
 		{

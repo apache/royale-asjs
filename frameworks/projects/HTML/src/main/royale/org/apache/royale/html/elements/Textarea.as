@@ -52,6 +52,9 @@ package org.apache.royale.html.elements
 			super();
 		}
 		
+		/**
+		 * @royaleignorecoercion HTMLTextAreaElement
+		 */
         COMPILE::JS
         private function get textarea():HTMLTextAreaElement
         {

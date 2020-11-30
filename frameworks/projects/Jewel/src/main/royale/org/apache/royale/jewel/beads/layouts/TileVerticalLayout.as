@@ -35,6 +35,11 @@ package org.apache.royale.jewel.beads.layouts
 	 *  The size of each element is determined either by setting TileVerticalLayout's columnWidth and rowHeight
 	 *  properties, or having the tile size determined by factoring the columnCount into the area assigned
 	 *  for the layout.
+	 * 
+	 *  Notice that Vertical layout based on Flexbox has the following problems (take from : https://stackoverflow.com/questions/34480760/is-it-possible-for-flex-items-to-align-tightly-to-the-items-above-them)
+	 *   - It expands the container horizontally, not vertically (like the Pinterest layout).
+     *   - It requires the container to have a fixed height, so the items know where to wrap.
+     *   - As of this writing, it has a deficiency in all major browsers where the container doesn't expand to accommodate additional columns.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -57,30 +62,6 @@ package org.apache.royale.jewel.beads.layouts
 		}
 
 		public static const LAYOUT_TYPE_NAMES:String = "layout vertical tile";
-
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
-		 */
-		// override public function set strand(value:IStrand):void
-		// {
-		// 	super.strand = value;
-		// 	listenOnStrand("sizeChanged", sizeChangedNeeded);
-		// }
-
-		/**
-		 *  sizeChangedNeeded
-		 * 
-		 *  @param event 
-		 */
-		// private function sizeChangedNeeded(event:Event):void
-		// {
-		// 	layout();
-		// }
 		
 		/**
 		 *  Add class selectors when the component is addedToParent
@@ -96,12 +77,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
-			COMPILE::JS
-			{
-			if(hostComponent.containsClass("tile"))
-				hostComponent.removeClass("tile");
-			hostComponent.addClass("tile");
-			}
+			hostComponent.replaceClass("tile");
 		}
 
 		private var _columnCount:int = -1;
@@ -497,7 +473,7 @@ package org.apache.royale.jewel.beads.layouts
 					// else
 					// 	child.positioner.style.marginRight = null;
 					
-					child.dispatchEvent('sizeChanged');
+					child.dispatchEvent(new Event('sizeChanged'));
 				}
 				return true;
 			}

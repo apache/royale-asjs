@@ -19,9 +19,9 @@
 package org.apache.royale.jewel
 {
 	/**
-	 *  The ScrollableSectionContent class is a scrollable container component capable of parenting other
-	 *  components. This class is used along with Tabs to separate content and
-	 *  present and organize data for the user.
+	 *  The ScrollableSectionContent class is a scrollable container component 
+	 *  capable of parenting other components. This class is used along with 
+	 *  Tabs to separate content and present and organize data for the user.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

@@ -18,12 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	COMPILE::SWF
-    {
-	import flash.display.DisplayObject;
-
-	import org.apache.royale.core.IRenderedObject;
-    }
 	import org.apache.royale.events.Event;
 
 	/**
@@ -52,7 +46,6 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "jewel topappbar";
-			setListenersForFixed();
 		}
 
 		override protected function get headerClassName():String
@@ -69,14 +62,13 @@ package org.apache.royale.jewel
         {
 			COMPILE::JS
 			{
+			element.classList.toggle("fixed", _fixed);
 			if(_fixed)
 			{
-				element.classList.add("fixed");
 				window.removeEventListener('scroll', scrollHandler, false);
 			}
 			else
 			{
-				element.classList.remove("fixed");
 				window.addEventListener('scroll', scrollHandler, false);
 			}
 			}
@@ -137,8 +129,6 @@ package org.apache.royale.jewel
             if (_fixed != value)
             {
                 _fixed = value;
-
-                //toggleClass("fixed", _fixed);
 				setListenersForFixed();
             }
         }
@@ -164,18 +154,10 @@ package org.apache.royale.jewel
             if (_hasDrawer != value)
             {
                 _hasDrawer = value;
-
-                COMPILE::JS
-                {
-				if(_hasDrawer)
+				COMPILE::JS
 				{
-					element.classList.add("has-drawer");
+				element.classList.toggle("has-drawer", _hasDrawer);
 				}
-				else
-				{
-					element.classList.remove("has-drawer");
-				}
-                }
             }
 		}
 	}

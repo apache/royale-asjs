@@ -36,7 +36,7 @@ limitations under the License.
 
 	<j:Grid gap="true">
 		<j:beads>
-			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel Grid">

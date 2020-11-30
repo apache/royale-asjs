@@ -19,11 +19,12 @@
 package org.apache.royale.jewel.beads.controls.combobox
 {
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
 	import org.apache.royale.jewel.beads.views.ComboBoxView;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	import org.apache.royale.jewel.List;
+    import org.apache.royale.events.MouseEvent;
 
 	/**
 	 *  The SearchFilter bead class is a specialty bead that can be used with
@@ -52,6 +53,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 		override protected function textInputKeyUpLogic(input:Object):void
 		{
+			if(!list) return;
+			
 			// first remove a previous selection
 			if(list.selectedIndex != -1)
 			{
@@ -81,9 +84,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 		}
 
 		override protected function onBeadsAdded(event:Event):void{
-			IEventDispatcher(_strand).addEventListener('dismissPopUp', removeListListeners);
-			IEventDispatcher(_strand).addEventListener('popUpOpened', popUpOpenedHandler);
-			IEventDispatcher(_strand).addEventListener('popUpClosed', popUpClosedHandler);
+			listenOnStrand('dismissPopUp', removeListListeners);
+			listenOnStrand('popUpOpened', popUpOpenedHandler);
+			listenOnStrand('popUpClosed', popUpClosedHandler);
 
 			comboView = event.target.view as IComboBoxView;
             if (comboView)
@@ -111,5 +114,21 @@ package org.apache.royale.jewel.beads.controls.combobox
 		protected function popUpClosedHandler():void {
 			list = null;
 		}
+
+		public override function set list(value:List):void
+        {
+            super.list = value;
+            COMPILE::JS
+			{
+			if (list != null)
+	            list.addEventListener(MouseEvent.CLICK, onListClick);
+            }
+        }
+
+        private function onListClick(event:MouseEvent):void
+        {
+			list.removeEventListener(MouseEvent.CLICK, onListClick);
+            comboView.popUpVisible = false;
+        }
 	}
 }

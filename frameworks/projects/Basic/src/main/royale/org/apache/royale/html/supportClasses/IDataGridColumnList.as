@@ -33,7 +33,19 @@ package org.apache.royale.html.supportClasses
     public interface IDataGridColumnList extends IList, IStrand, IEventDispatcher
     {
         function set className(value:String):void;
+        
+        /**
+         *  The property on the data item that the item renderer
+         *  should renderer.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		function get labelField():String;
         function set labelField(value:String):void;
+
         function set dataProvider(value:Object):void;
         function get selectedIndex():int;
         function set selectedIndex(value:int):void;

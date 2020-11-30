@@ -211,7 +211,7 @@ package org.apache.royale.jewel
 
             COMPILE::JS
 			{
-                textNode.nodeValue = _selected ? selectedText : text;
+                spanLabel.textContent = _selected ? selectedText : text;
 			}
         }
 
