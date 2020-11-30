@@ -354,6 +354,7 @@ internal class MXRoyaleClasses
 
 	import mx.events.TimerEvent; TimerEvent;
 	import mx.utils.Timer; Timer;
+	import mx.controls.menuClasses.IMenuItemRenderer; IMenuItemRenderer;
 }
 
 }
