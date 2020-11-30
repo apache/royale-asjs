@@ -504,6 +504,7 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+    [SWFOverride(returns="org.apache.royale.core.IFactory")]
     public function get itemRenderer():IFactory
     {
         return _itemRenderer;
@@ -512,6 +513,7 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
     /**
      *  @private
      */
+    [SWFOverride(params="org.apache.royale.core.IFactory", altparams="mx.core.IFactory")]
     public function set itemRenderer(value:IFactory):void
     {
         _itemRenderer = value;
