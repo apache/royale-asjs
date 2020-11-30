@@ -466,7 +466,7 @@ package org.apache.royale.display
 
                 var bitmapFill:GraphicsBitmapFill = BITMAP_FILL;
                 bitmapFill.bitmapData = bitmap;
-                bitmapFill.matrix = matrix ? matrix.clone()/* as Matrix*/: null;;
+                bitmapFill.matrix = matrix ? matrix.clone()/* as Matrix*/: null;
                 bitmapFill.repeat = repeat;
                 bitmapFill.smooth = smooth;
                 currentFill = bitmapFill;
