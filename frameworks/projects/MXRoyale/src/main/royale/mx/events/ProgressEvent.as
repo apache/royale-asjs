@@ -42,7 +42,7 @@ package mx.events
 		public function ProgressEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
 										 current:Number = NaN, total:Number = NaN)
 		{
-    		super(total, bubbles);
+    		super(type, bubbles, cancelable, current, total);
 		}
 		
       
