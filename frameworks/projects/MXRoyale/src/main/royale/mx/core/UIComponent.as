@@ -6264,6 +6264,57 @@ COMPILE::JS
             dispatchEvent(new Event('visibleChanged'));
         }
     }
+    
+    //In Flex smoothBitmapContent was in SWFLoader and Image extends SWFLoader extends UIComponent,In Royale Image extends UIComponent So i added smoothBitmapContent in UIComponent
+
+    //----------------------------------
+    //  smoothBitmapContent
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the smoothBitmapContent property.
+     */
+	private var smoothBitmapContentChanged:Boolean = false;
+    private var _smoothBitmapContent:Boolean = false;
+    
+    [Bindable("smoothBitmapContentChanged")]
+    [Inspectable(category="General", defaultValue="false")]
+    
+    /**
+     *  A flag that indicates whether to smooth the content when it
+     *  is scaled. Only Bitmap content can be smoothed.
+     *  If <code>true</code>, and the content is a Bitmap then smoothing property 
+     *  of the content is set to <code>true</code>. 
+     *  If <code>false</code>, the content isn't smoothed. 
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get smoothBitmapContent():Boolean
+    {
+        return _smoothBitmapContent;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set smoothBitmapContent(value:Boolean):void
+    {
+        if (_smoothBitmapContent != value)
+        {
+            _smoothBitmapContent = value;
+            
+            smoothBitmapContentChanged = true;
+            invalidateDisplayList();
+        }
+        
+        dispatchEvent(new Event("smoothBitmapContentChanged"));
+    }
 
 }
 
