@@ -356,6 +356,7 @@ internal class MXRoyaleClasses
 	import mx.utils.Timer; Timer;
 	import mx.controls.menuClasses.IMenuItemRenderer; IMenuItemRenderer;
 	import mx.controls.menuClasses.IMenuDataDescriptor; IMenuDataDescriptor;
+	import mx.controls.menuClasses.IMenuBarItemRenderer; IMenuBarItemRenderer;
 }
 
 }
