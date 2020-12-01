@@ -125,6 +125,7 @@ package mx.controls.listClasses
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
             dataGroup.removeAllItemRenderers();
+            rendererMap = {};
         }
         
 
