@@ -66,7 +66,7 @@ package mx.controls
 	import mx.controls.listClasses.IListItemRenderer;
     import mx.controls.listClasses.ListItemRenderer;
 	// import mx.controls.menuClasses.IMenuBarItemRenderer;
-	// import mx.controls.menuClasses.IMenuDataDescriptor;
+	import mx.controls.menuClasses.IMenuDataDescriptor;
 	// import mx.controls.menuClasses.IMenuItemRenderer;
 	// import mx.controls.menuClasses.MenuItemRenderer;
 	// import mx.controls.menuClasses.MenuListData;
@@ -877,7 +877,7 @@ package mx.controls
 		/**
 		 *  @private
 		 */
-		// mx_internal var _dataDescriptor:IMenuDataDescriptor = new DefaultDataDescriptor();
+		 mx_internal var _dataDescriptor:IMenuDataDescriptor = new DefaultDataDescriptor();
 		
 		/**
 		 *  The object that accesses and manipulates data in the data provider. 
@@ -894,18 +894,18 @@ package mx.controls
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		/*public function get dataDescriptor():IMenuDataDescriptor
+		public function get dataDescriptor():IMenuDataDescriptor
 		{
 			return IMenuDataDescriptor(_dataDescriptor);
-		}*/
+		}
 		
 		/**
 		 *  @private
 		 */
-		/*public function set dataDescriptor(value:IMenuDataDescriptor):void
+		public function set dataDescriptor(value:IMenuDataDescriptor):void
 		{
 			_dataDescriptor = value;
-		}*/
+		}
 		
 		//--------------------------------------------------------------------------
 		//  dataProvider
