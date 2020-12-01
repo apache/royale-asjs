@@ -71,11 +71,11 @@ package mx.controls.beads.layouts
         {
             super.strand = value;
             (IStrandWithPresentationModel(value).presentationModel as DataGridPresentationModel).virtualized = true;
-            dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
         }
         
-        private function dataProviderChangeHandler(event:Event):void
+        override protected function dataProviderChangeHandler(event:Event):void
         {
+            super.dataProviderChangeHandler(event);
             var factory:IDataProviderVirtualItemRendererMapper = host.getBeadByType(IDataProviderVirtualItemRendererMapper) as IDataProviderVirtualItemRendererMapper;
             while (visibleIndexes.length)
             {
