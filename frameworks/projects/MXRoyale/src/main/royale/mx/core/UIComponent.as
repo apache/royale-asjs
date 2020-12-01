@@ -48,6 +48,8 @@ COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
 }
 import mx.display.Graphics;
+import mx.geom.Matrix;
+import mx.utils.GraphicsUtil;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
 import mx.events.KeyboardEvent;
@@ -6314,6 +6316,115 @@ COMPILE::JS
         }
         
         dispatchEvent(new Event("smoothBitmapContentChanged"));
+    }
+    public function drawRoundRect(x:Number, y:Number, w:Number, h:Number,
+                                  r:Object = null, c:Object = null,
+                                  alpha:Object = null, rot:Object = null,
+                                  gradient:String = null, ratios:Array = null,
+                                  hole:Object = null):void
+    {
+        var g:mx.display.Graphics = graphics;
+
+        // Quick exit if w or h is zero. This happens when scaling a component
+        // to a very small value, which then gets rounded to 0.
+        if (!w || !h)
+            return;
+
+        // If color is an object then allow for complex fills.
+        if (c !== null)
+        {
+            if (c is Array)
+            {
+                var alphas:Array;
+
+                if (alpha is Array)
+                    alphas = alpha as Array;
+                else
+                    alphas = [ alpha, alpha ];
+
+                if (!ratios)
+                    ratios = [ 0, 0xFF ];
+
+                var matrix:mx.geom.Matrix = null;
+
+                if (rot)
+                {
+                    if (rot is Matrix)
+                    {
+                        matrix = Matrix(rot);
+                    }
+                    else
+                    {
+                        matrix = new Matrix();
+
+                        if (rot is Number)
+                        {
+                            matrix.createGradientBox(
+                                w, h, Number(rot) * Math.PI / 180, x, y);
+                        }
+                        else
+                        {
+                            matrix.createGradientBox(
+                                rot.w, rot.h, rot.r, rot.x, rot.y);
+                        }
+                    }
+                }
+                
+				COMPILE::SWF {
+					if (gradient == GradientType.RADIAL)
+					{
+						g.beginGradientFill(GradientType.RADIAL,
+											c as Array, alphas, ratios, matrix);
+					}
+					else
+					{
+						g.beginGradientFill(GradientType.LINEAR,
+											c as Array, alphas, ratios, matrix);
+					}
+				}
+            }
+            else
+            {
+                g.beginFill(Number(c), Number(alpha));
+            }
+        }
+
+        var ellipseSize:Number;
+
+        // Stroke the rectangle.
+        if (!r)
+        {
+            g.drawRect(x, y, w, h);
+        }
+        else if (r is Number)
+        {
+            ellipseSize = Number(r) * 2;
+            g.drawRoundRect(x, y, w, h, ellipseSize, ellipseSize);
+        }
+        else
+        {
+            GraphicsUtil.drawRoundRectComplex(g, x, y, w, h, r.tl, r.tr, r.bl, r.br);
+        }
+
+        // Carve a rectangular hole out of the middle of the rounded rect.
+        if (hole)
+        {
+            var holeR:Object = hole.r;
+            if (holeR is Number)
+            {
+                ellipseSize = Number(holeR) * 2;
+                g.drawRoundRect(hole.x, hole.y, hole.w, hole.h,
+                                ellipseSize, ellipseSize);
+            }
+            else
+            {
+                GraphicsUtil.drawRoundRectComplex(g, hole.x, hole.y, hole.w, hole.h,
+                                       holeR.tl, holeR.tr, holeR.bl, holeR.br);
+            }
+        }
+
+        if (c !== null)
+            g.endFill();
     }
 
 }
