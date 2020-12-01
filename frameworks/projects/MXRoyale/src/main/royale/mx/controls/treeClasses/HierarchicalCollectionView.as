@@ -842,12 +842,12 @@ public class HierarchicalCollectionView extends EventDispatcher
         var event:mx.events.CollectionEvent;
 		var list:XMLListAdapter;
         
-		trace("HierarchicalCollectionView.xmlNotification(" + currentTarget
-			+ ", " + type
-			+ ", " + target
-			+ ", " + value
-			+ ", " + detail
-			+ ")");
+		// trace("HierarchicalCollectionView.xmlNotification(" + currentTarget
+		// 	+ ", " + type
+		// 	+ ", " + target
+		// 	+ ", " + value
+		// 	+ ", " + detail
+		// 	+ ")");
 		// trace("currentTarget", currentTarget.toXMLString());
 		// trace("target", target.toXMLString());
 		// trace("value", value.toXMLString());
