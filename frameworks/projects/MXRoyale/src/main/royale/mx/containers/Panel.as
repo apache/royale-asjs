@@ -636,6 +636,19 @@ public class Panel extends Container
         dispatchEvent(new Event("statusChanged"));
     }
 
+    //----------------------------------
+    //  titleBar
+    //----------------------------------
+
+    /**
+     *  The TitleBar sub-control that displays the Panel container's title bar.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var titleBar:UIComponent;
 
     //----------------------------------
     //  title
