@@ -797,12 +797,12 @@ package
 			if(child.getNodeRef() == ATTRIBUTE)
 			{
 				getAttributes().push(child);
-				xml$_notify("attributeAdded", "", child.localName(), child.getValue());
+				xml$_notify("attributeAdded", "", child.name(), child.getValue());
 			}
 			else
 			{
 				getChildren().push(child);
-				xml$_notify("nodeAdded", this, "", null);
+				xml$_notify("nodeAdded", this, new XML(), null);
 			}
 		}
 		
@@ -990,7 +990,7 @@ package
 			if (isAttribute)
 				xml$_notify("attributeAdded", "", child, null);
 			else
-				xml$_notify("nodeAdded", this, "", null);
+				xml$_notify("nodeAdded", this, new XML(), null);
 		}
 		
 		/**
@@ -1706,7 +1706,7 @@ package
 			child.setParent(this);
 			
 			getChildren().splice(idx,0,child);
-			xml$_notify("nodeAdded", this, "", null);
+			xml$_notify("nodeAdded", this, new XML(), null);
 		}
 		/**
 		 * Inserts the given child2 parameter after the child1 parameter in this XML object and returns the resulting object.
