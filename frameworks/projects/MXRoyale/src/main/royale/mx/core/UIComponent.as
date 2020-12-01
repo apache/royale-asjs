@@ -43,6 +43,7 @@ COMPILE::SWF
 {
 import flash.display.DisplayObject;
 import flash.display.Graphics;
+import flash.display.GradientType;
 }
 COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
