@@ -262,6 +262,12 @@ package
 		 *
 		 */
 		static public var prettyPrinting:Boolean = true;
+
+		/**
+		 * [static] Determines whether recursive notify happens.
+		 *
+		 */
+		static public var recursiveNotify:Boolean = false;
 		
 		static private function escapeAttributeValue(value:String):String
 		{
@@ -481,12 +487,13 @@ package
 				ignoreProcessingInstructions : true,
 				ignoreWhitespace : true,
 				prettyIndent : 2,
-				prettyPrinting : true
+				prettyPrinting : true,
+				recursiveNotify : false
 			}
 		}
 		
 		/**
-		 * [static] Sets values for the following XML properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
+		 * [static] Sets values for the following XML properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, prettyPrinting, and recursiveNotify.
 		 * @param rest
 		 *
 		 */
@@ -500,10 +507,11 @@ package
 			ignoreWhitespace = value.ignoreWhitespace === undefined ? ignoreWhitespace : value.ignoreWhitespace;
 			prettyIndent = value.prettyIndent === undefined ? prettyIndent : value.prettyIndent;
 			prettyPrinting = value.prettyPrinting === undefined ? prettyPrinting : value.prettyPrinting;
+			recursiveNotify = value.recursiveNotify === undefined ? recursiveNotify : value.recursiveNotify;
 		}
 		
 		/**
-		 * [static] Retrieves the following properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
+		 * [static] Retrieves the following properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, prettyPrinting, and recursiveNotify.
 		 *
 		 * @return
 		 *
@@ -515,7 +523,8 @@ package
 				ignoreProcessingInstructions : ignoreProcessingInstructions,
 				ignoreWhitespace : ignoreWhitespace,
 				prettyIndent : prettyIndent,
-				prettyPrinting : prettyPrinting
+				prettyPrinting : prettyPrinting,
+				recursiveNotify : recursiveNotify
 			}
 		}
 		
@@ -786,8 +795,15 @@ package
 			assertType(child,XML,"Type must be XML");
 			child.setParent(this);
 			if(child.getNodeRef() == ATTRIBUTE)
+			{
 				getAttributes().push(child);
-			else getChildren().push(child);
+				xml$_notify("attributeAdded", "", child.localName(), child.getValue());
+			}
+			else
+			{
+				getChildren().push(child);
+				xml$_notify("nodeAdded", this, "", null);
+			}
 		}
 		
 		private function getChildren():Array
@@ -935,6 +951,7 @@ package
 			var kind:String;
 			var alreadyPresent:int
 			var children:Array = getChildren();
+			var isAttribute:Boolean = false;
 			if(child is XMLList)
 			{
 				var len:int = child.length();
@@ -947,6 +964,7 @@ package
 						var name:String = childItem.localName();
 						var content:String = '<'+name+'>'+childItem.toString()+'</'+name+'>';
 						childItem = new XML(content)
+						isAttribute = true;
 					} else {
 						alreadyPresent = children.indexOf(childItem);
 						if (alreadyPresent != -1) children.splice(alreadyPresent, 1);
@@ -961,6 +979,7 @@ package
 				kind = child.getNodeRef();
 				if (kind == ATTRIBUTE) {
 					child = new XML(child.toString());
+					isAttribute = true;
 				} else {
 					alreadyPresent = children.indexOf(child);
 					if (alreadyPresent != -1) children.splice(alreadyPresent, 1);
@@ -968,6 +987,10 @@ package
 				(child as XML).setParent(this);
 				children.push(child);
 			}
+			if (isAttribute)
+				xml$_notify("attributeAdded", "", child, null);
+			else
+				xml$_notify("nodeAdded", this, "", null);
 		}
 		
 		/**
@@ -1683,6 +1706,7 @@ package
 			child.setParent(this);
 			
 			getChildren().splice(idx,0,child);
+			xml$_notify("nodeAdded", this, "", null);
 		}
 		/**
 		 * Inserts the given child2 parameter after the child1 parameter in this XML object and returns the resulting object.
@@ -2129,6 +2153,7 @@ package
 						removed = _attributes[i];
 						removed._parent = null;
 						_attributes.splice(i,1);
+						xml$_notify("attributeRemoved", "", removed._name, removed._value);
 						return true;
 					}
 				}
@@ -2139,6 +2164,7 @@ package
 				return false;
 			removed = _children.splice(idx,1);
 			child._parent = null;
+			xml$_notify("nodeRemoved", "", removed, null);
 			return true;
 		}
 		
@@ -2165,6 +2191,7 @@ package
 						child._parent = null;
 						_attributes.splice(i,1);
 						removedItem = true;
+						xml$_notify("attributeRemoved", "", child._name, child._value);
 					}
 				}
 				return removedItem;
@@ -2184,6 +2211,7 @@ package
 					child._parent = null;
 					_children.splice(i,1);
 					removedItem = true;
+					xml$_notify("nodeRemoved", "", child, null);
 				}
 			}
 			normalize(); // <-- check this is correct
@@ -2213,6 +2241,7 @@ package
 					index =_children.indexOf(removed);
 					if (index != -1){
 						_children.splice(index,1);
+						xml$_notify("nodeRemoved", "", removed, null);
 					}
 				}
 				return true;
@@ -2448,7 +2477,9 @@ package
 					{
 						if(_attributes[i].name().equals(attr.name()))
 						{
+							var oldValue:String = _attributes[i].getValue();
 							_attributes[i].setValue(value);
+							xml$_notify("attributeChanged", "", attr.name(), oldValue);
 							return value;
 						}
 					}
@@ -2481,7 +2512,9 @@ package
 				{
 					if(_attributes[i].name().equals(attrXML.name()))
 					{
+						var oldValueX:String = _attributes[i].getValue();
 						_attributes[i].setValue(value);
+						xml$_notify("attributeChanged", "", attrXML.name(), oldValueX);
 						return value;
 					}
 				}
@@ -2713,8 +2746,10 @@ package
 			if(!_name)
 				_name = new QName();
 			
+			var oldName:QName = _name;
 			_name = getQName(name,_name.prefix,_name.uri,_name.isAttribute)
 			// _name.localName = name;
+			xml$_notify("nameSet", (getNodeRef() == ATTRIBUTE ? _value : this), _name, oldName);
 		}
 		
 		/**
@@ -2746,11 +2781,13 @@ package
 			else
 				nameRef = new QName(name);
 			var asAtttribute:Boolean = nameRef.isAttribute;
+			var oldName:QName = _name;
 			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,asAtttribute);
 			if (asAtttribute) {
 				//optimization, the name alone is sufficient to get the nodeKind() externally (see : getNodeRef())
 				delete this._nodeKind;
 			}
+			xml$_notify("nameSet", (ref == ATTRIBUTE ? _value : this), _name, oldName);
 		}
 		
 		/**
@@ -3358,6 +3395,53 @@ package
 		private function v():Number
 		{
 			return Number(s());
+		}
+
+		private var _notification:Function;
+
+		public function xml$_notify(type:String, target:Object, value:Object, detail:Object):void
+		{
+			if (_notification) _notification(_notification, this, type, target, value, detail);
+			if (recursiveNotify && _parent) _parent.xml$_notify(type, target, value, detail);
+		}
+
+		public function notification():Function
+		{
+			return _notification;
+		}
+
+		/**
+		 * Callback function for change notification:
+		 *
+		 *   function xmlNotificationEx(callee:Function,
+		 *     currentTarget:Object, 
+		 *     type:String, 
+		 *     target:Object, 
+		 *     value:Object, 
+		 *     detail:Object):void
+		 *
+		 * type
+		 *
+		 *   attributeAdded
+		 *   attributeChanged
+		 *   attributeRemoved
+		 *   nodeAdded
+		 *   nodeRemoved
+		 *   nameSet
+		 *
+		 *   NOT IMPLEMENTED YET:
+		 *
+		 *   nodeChanged
+		 *   namespaceAdded
+		 *   namespaceRemoved
+		 *   namespaceSet
+		 *   textSet
+		 *
+		 */
+
+		public function setNotification(callback:Function):void
+		{
+			_notification = callback;
 		}
 	}
 }
