@@ -97,9 +97,8 @@ package mx.controls.treeClasses
                 dp.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
             }
 
-            super.dataProviderChangeHandler(event);
-
             dp = dataProviderModel.dataProvider as ICollectionView;
+            super.dataProviderChangeHandler(event);
 
             if (dp)
             {
