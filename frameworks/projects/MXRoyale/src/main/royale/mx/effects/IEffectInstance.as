@@ -24,7 +24,7 @@ package mx.effects
  */
  import org.apache.royale.events.Event;
 
-//import mx.effects.effectClasses.PropertyChanges;
+ import mx.effects.effectClasses.PropertyChanges;
 
 /**
  *  The IEffectInstance interface represents an instance of an effect
@@ -221,13 +221,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* function get propertyChanges():PropertyChanges;
-     */
+     function get propertyChanges():PropertyChanges;
+     
     /**
      *  @private
      */
-   /*  function set propertyChanges(value:PropertyChanges):void;
-     */
+     function set propertyChanges(value:PropertyChanges):void;
+     
     //----------------------------------
     //  repeatCount
     //----------------------------------
@@ -293,13 +293,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* function get startDelay():int;
-     */
+     function get startDelay():int;
+     
     /**
      *  @private
      */
-    /* function set startDelay(value:int):void;
-     */
+     function set startDelay(value:int):void;
+     
     //----------------------------------
     //  suspendBackgroundProcessing
     //----------------------------------
@@ -393,8 +393,8 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* function initEffect(event:Event):void;
- */
+      function initEffect(event:Event):void;
+ 
     /**
      *  Plays the effect instance on the target after the
      *  <code>startDelay</code> period has elapsed.
