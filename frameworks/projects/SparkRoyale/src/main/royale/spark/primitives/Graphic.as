@@ -239,7 +239,9 @@ public class Graphic extends Group
     /**
      *  @private
      */
-    override public function set layout(value:LayoutBase):void
+     
+    //override public function set layout(value:LayoutBase):void  // Error: Accessor types must match
+    override public function set layout(value:Object):void
     {
         throw(new Error(resourceManager.getString("components", "layoutReadOnly")));
     }
