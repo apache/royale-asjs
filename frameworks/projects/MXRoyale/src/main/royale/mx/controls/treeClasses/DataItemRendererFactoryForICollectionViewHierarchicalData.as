@@ -21,6 +21,8 @@ package mx.controls.treeClasses
 	import mx.collections.ICollectionView;
     import mx.collections.IViewCursor;
     import mx.collections.ICollectionView;
+    import mx.events.CollectionEvent;
+    import mx.events.CollectionEventKind;
 	
 	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
@@ -45,6 +47,7 @@ package mx.controls.treeClasses
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
     import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
+    import org.apache.royale.utils.sendBeadEvent;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -75,8 +78,6 @@ package mx.controls.treeClasses
 			super();
 		}
 
-		private var dp:ICollectionView;
-		
         /**
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView
@@ -88,17 +89,30 @@ package mx.controls.treeClasses
         {
             if (!dataProviderModel)
                 return;
-            dp = dataProviderModel.dataProvider as ICollectionView;
-            if (!dp)
-                return;
-            
-            // listen for individual items being added in the future.
-            var dped:IEventDispatcher = dp as IEventDispatcher;
-            dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-            
+
+            if (dp)
+            {
+                dp.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+            }
+
             super.dataProviderChangeHandler(event);
+
+            var dped:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+            if (dped)
+            {
+                dped.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+            }
+        }
+
+        protected function collectionChangeHandler(event:mx.events.CollectionEvent):void
+        {
+            if (event is mx.events.CollectionEvent)
+            {
+                if (event.kind == mx.events.CollectionEventKind.RESET)
+                {
+                    sendBeadEvent(dataProviderModel, "dataProviderChanged");
+                }
+            }
         }
 
         private var cursor:IViewCursor;
@@ -107,6 +121,7 @@ package mx.controls.treeClasses
         // assumes will be called in a loop, not random access
         override protected function get dataProviderLength():int
         {
+            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
             cursor = dp.createCursor();
             return dp.length;
         }
