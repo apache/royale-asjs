@@ -39,7 +39,7 @@ use namespace mx_internal;
 //  Other metadata
 //--------------------------------------
 
-[ResourceBundle("sparkEffects")]
+//[ResourceBundle("sparkEffects")]
 
 /**
  *  The Animation class defines an animation that happens between 
