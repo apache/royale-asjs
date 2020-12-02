@@ -413,7 +413,7 @@ public class ChangeWatcher
      * 
      *  @royalesuppresspublicvarwarning
      */
-   // public var useWeakReference:Boolean;
+    public var useWeakReference:Boolean;
 
     //--------------------------------------------------------------------------
     //

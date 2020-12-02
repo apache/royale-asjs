@@ -61,6 +61,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
 //import spark.utils.MaskUtil;
 
 use namespace mx_internal;
+import spark.components.ResizeMode;
 
 //--------------------------------------
 //  Styles
@@ -954,9 +955,9 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     //  resizeMode
     //----------------------------------
     
-    /* private var _resizeMode:String = ResizeMode.NO_SCALE; 
+    private var _resizeMode:String = ResizeMode.NO_SCALE; 
     
-    [Inspectable(category="General", enumeration="noScale,scale", defaultValue="noScale")] */
+    [Inspectable(category="General", enumeration="noScale,scale", defaultValue="noScale")] 
 
     /**
      *  The ResizeMode for this container. If the resize mode
@@ -975,7 +976,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get resizeMode():String
+    public function get resizeMode():String
     {
         return _resizeMode; 
     }
@@ -987,7 +988,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
 
         // If old value was scale, reset it            
         if (_resizeMode == ResizeMode.SCALE)
-            setStretchXY(1, 1);
+            //setStretchXY(1, 1);
 
         _resizeMode = value;
         
@@ -998,7 +999,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         
         // Invalidate the display list so that our validateMatrix() gets called.
         invalidateDisplayList();
-    } */
+    }
 
     //----------------------------------
     //  mouseOpaque

@@ -938,6 +938,50 @@ public class ComboBox extends ComboBase
 
         return " ";
     }
+    
+    mx.controls.ComboBox
+	
+    //----------------------------------
+    //  prompt
+    //----------------------------------
+
+    private var promptChanged:Boolean = false;
+
+    /**
+     *  @private
+     *  Storage for the prompt property.
+     */
+    private var _prompt:String;
+
+    [Inspectable(category="General")]
+
+    /**
+     *  The prompt for the ComboBox control. A prompt is
+     *  a String that is displayed in the TextInput portion of the
+     *  ComboBox when <code>selectedIndex</code> = -1.  It is usually
+     *  a String like "Select one...".  If there is no
+     *  prompt, the ComboBox control sets <code>selectedIndex</code> to 0
+     *  and displays the first item in the <code>dataProvider</code>.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get prompt():String
+    {
+        return _prompt;
+    }
+
+    /**
+     *  @private
+     */
+    public function set prompt(value:String):void
+    {
+        _prompt = value;
+        promptChanged = true;
+        invalidateProperties();
+    }
 
 
 }
