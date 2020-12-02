@@ -50,7 +50,7 @@ use namespace mx_internal;
 //  Other metadata
 //--------------------------------------
 
-[ResourceBundle("sparkEffects")]
+//[ResourceBundle("sparkEffects")]
 
 /**
  *  The AnimateInstance class implements the instance class for the
