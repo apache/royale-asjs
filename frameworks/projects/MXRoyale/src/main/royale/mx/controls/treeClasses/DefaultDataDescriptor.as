@@ -684,7 +684,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
 	/**
 	 *  @private
 	 */
-	private var _dataDescriptor:IMenuDataDescriptor = new DefaultDataDescriptor;
+	private var _dataDescriptor:IMenuDataDescriptor;
 	
 	/**
 	 *  The object that accesses and manipulates data in the data provider. 
