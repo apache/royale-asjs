@@ -703,7 +703,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
 	 */
 	public function get dataDescriptor():IMenuDataDescriptor
 	{
-		return IMenuDataDescriptor(_dataDescriptor);
+		return _dataDescriptor || IMenuDataDescriptor(_dataDescriptor = new DefaultDataDescriptor());
 	}
 	
 	/**
