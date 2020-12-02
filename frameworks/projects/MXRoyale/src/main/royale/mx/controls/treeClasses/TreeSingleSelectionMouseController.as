@@ -74,16 +74,16 @@ package mx.controls.treeClasses
 		{
 			if (listModel)
 			{
-				listModel.removeEventListener("dataProviderChange", handleDataProviderChange);
+				listModel.removeEventListener("dataProviderChanged", handleDataProviderChanged);
 			}
 			super.strand = value;
-			listModel.addEventListener("dataProviderChange", handleDataProviderChange);
-			handleDataProviderChange(null);
+			listModel.addEventListener("dataProviderChanged", handleDataProviderChanged);
+			handleDataProviderChanged(null);
 		}
 
 		private var modelDP:IEventDispatcher;
 
-		protected function handleDataProviderChange(event:Event):void
+		protected function handleDataProviderChanged(event:Event):void
 		{
 			if (modelDP)
 			{
