@@ -78,6 +78,8 @@ package mx.controls.treeClasses
 			super();
 		}
 
+		private var dp:ICollectionView;
+		
         /**
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView
@@ -97,10 +99,11 @@ package mx.controls.treeClasses
 
             super.dataProviderChangeHandler(event);
 
-            var dped:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
-            if (dped)
+            dp = dataProviderModel.dataProvider as ICollectionView;
+
+            if (dp)
             {
-                dped.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+                dp.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
             }
         }
 
@@ -121,7 +124,6 @@ package mx.controls.treeClasses
         // assumes will be called in a loop, not random access
         override protected function get dataProviderLength():int
         {
-            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
             cursor = dp.createCursor();
             return dp.length;
         }
