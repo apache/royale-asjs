@@ -107,6 +107,7 @@ import mx.events.ValidationResultEvent;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import mx.managers.IFocusManagerComponent;
 import mx.events.FocusEvent;
+import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
 
@@ -6427,6 +6428,44 @@ COMPILE::JS
         if (c !== null)
             g.endFill();
     }
+    
+    //----------------------------------
+    //  styleDeclaration
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the styleDeclaration property.
+     */
+    private var _styleDeclaration:CSSStyleDeclaration;
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  Storage for the inline inheriting styles on this object.
+     *  This CSSStyleDeclaration is created the first time that
+     *  the <code>setStyle()</code> method
+     *  is called on this component to set an inheriting style.
+     *  Developers typically never need to access this property directly.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get styleDeclaration():CSSStyleDeclaration
+    {
+        return _styleDeclaration;
+    }
+
+    /**
+     *  @private
+     */
+    public function set styleDeclaration(value:CSSStyleDeclaration):void
+    {
+        _styleDeclaration = value;
+    }
+
 
 }
 

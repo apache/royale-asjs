@@ -26,7 +26,7 @@ import mx.resources.ResourceManager;
 //  Other metadata
 //--------------------------------------
 
-[ResourceBundle("sparkEffects")]
+//[ResourceBundle("sparkEffects")]
     
 /**
  *  The MultiValueInterpolator class interpolates each element of Arrays or

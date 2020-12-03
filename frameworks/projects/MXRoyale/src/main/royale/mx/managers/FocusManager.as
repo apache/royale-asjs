@@ -2430,6 +2430,56 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // trace("END FOcusManger Hide Focus");
     }
     
+    //----------------------------------
+    //  showFocusIndicator
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the showFocusIndicator property.
+     */
+    mx_internal var _showFocusIndicator:Boolean = false;
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showFocusIndicator():Boolean
+    {
+        return _showFocusIndicator;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set showFocusIndicator(value:Boolean):void
+    {
+        var changed:Boolean = _showFocusIndicator != value;
+        // trace("FM " + this + " showFocusIndicator = " + value);
+        _showFocusIndicator = value;
+
+        if (hasEventListener("showFocusIndicator"))
+            dispatchEvent(new Event("showFocusIndicator"));
+    }
+	public function showFocus():void
+    {
+        if (!showFocusIndicator)
+        {
+            showFocusIndicator = true;
+           /* if (_lastFocus)
+                _lastFocus.drawFocus(true); */
+        }
+    }
+	//Added drawFocus here,It was in IFocusManagerComponent
+	public function drawFocus(isFocused:Boolean):void
+	{
+	
+	}
+    
 }
 
 }

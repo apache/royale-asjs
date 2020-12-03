@@ -43,7 +43,6 @@ import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
 import mx.core.IFontContextComponent;
 import mx.core.IUIComponent;
-import mx.core.IUITextField;
 import mx.core.UIComponent;
 import mx.core.UIComponentCachePolicy;
 import mx.core.UITextField;
@@ -64,6 +63,7 @@ import mx.containers.beads.PanelView;
 import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
 import mx.core.UIComponent;
+import mx.core.IUITextField;
 
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
@@ -1039,6 +1039,28 @@ public class Panel extends Container
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         panelView.contentArea.dispatchEvent(new ValueEvent("childrenAdded"));
         super.childrenAdded();
+    }
+    
+    //----------------------------------
+    //  titleTextField
+    //----------------------------------
+
+    /**
+     *  The UITextField sub-control that displays the title.
+     *  The title field is a child of the <code>titleBar</code> sub-control.
+     * 
+     *  @see #titleBar
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var titleTextField:IUITextField;
+	
+	public function getTitleTextField():IUITextField
+    {
+        return titleTextField;
     }
     
 
