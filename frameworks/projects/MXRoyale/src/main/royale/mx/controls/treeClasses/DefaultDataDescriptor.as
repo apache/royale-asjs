@@ -676,6 +676,43 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
         }
         return "";
     }
+    
+    //--------------------------------------------------------------------------
+	//  dataDescriptor
+	//--------------------------------------------------------------------------
+	
+	/**
+	 *  @private
+	 */
+	private var _dataDescriptor:IMenuDataDescriptor;
+	
+	/**
+	 *  The object that accesses and manipulates data in the data provider. 
+	 *  The Menu control delegates to the data descriptor for information 
+	 *  about its data. This data is then used to parse and move about the 
+	 *  data source. The data descriptor defined for the root menu is used 
+	 *  for all submenus. 
+	 * 
+	 *  The default value is an internal instance of the
+	 *  DefaultDataDescriptor class.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get dataDescriptor():IMenuDataDescriptor
+	{
+		return _dataDescriptor || IMenuDataDescriptor(_dataDescriptor = new DefaultDataDescriptor());
+	}
+	
+	/**
+	 *  @private
+	 */
+	public function set dataDescriptor(value:IMenuDataDescriptor):void
+	{
+		_dataDescriptor = value;
+	}
 
     /**
      *  @inheritDoc

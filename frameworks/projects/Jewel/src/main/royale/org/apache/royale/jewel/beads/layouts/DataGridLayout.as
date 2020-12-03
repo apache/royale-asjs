@@ -27,7 +27,7 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IDataGridView;
-    import org.apache.royale.html.beads.models.ButtonBarModel;
+    import org.apache.royale.jewel.beads.models.ButtonBarModel;
     import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
     import org.apache.royale.jewel.supportClasses.datagrid.DataGridWidthDenominator;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
@@ -91,7 +91,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		private function sizeChangedNeeded(event:Event):void
 		{
@@ -125,7 +125,7 @@ package org.apache.royale.jewel.beads.layouts
          * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn
 		 */
 		public function layout():Boolean

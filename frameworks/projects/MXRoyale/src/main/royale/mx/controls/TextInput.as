@@ -321,6 +321,8 @@ public class TextInput extends UIComponent implements ITextInput
      *  @private
      */
     private var errorCaught:Boolean = false;
+    
+    protected var textField:mx.core.IUITextField;
 
     //--------------------------------------------------------------------------
     //

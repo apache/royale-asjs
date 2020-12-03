@@ -135,6 +135,8 @@
     <component id="GlowFilter" class="spark.filters.GlowFilter"/>
     <component id="Ellipse" class="spark.primitives.Ellipse"/>
     <component id="SparkButtonSkin" class="spark.skins.SparkButtonSkin"/>
+    <component id="Graphic" class="spark.primitives.Graphic"/>
+    <component id="Move" class="spark.effects.Move"/>
     <component id="CollectionChangeUpdateForArrayListData" class="spark.components.beads.CollectionChangeUpdateForArrayListData" />
 
 	

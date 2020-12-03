@@ -120,6 +120,8 @@
     <component id="HorizontalListScroll" class="org.apache.royale.jewel.beads.controls.list.HorizontalListScroll"/>
     <component id="VirtualListView" class="org.apache.royale.jewel.beads.views.VirtualListView"/>
 
+    <component id="ButtonBarModel" class="org.apache.royale.jewel.beads.models.ButtonBarModel"/>
+
     <component id="ButtonBar" class="org.apache.royale.jewel.ButtonBar"/>
     <component id="IconButtonBar" class="org.apache.royale.jewel.IconButtonBar"/>
     <component id="ToggleButtonBar" class="org.apache.royale.jewel.ToggleButtonBar"/>

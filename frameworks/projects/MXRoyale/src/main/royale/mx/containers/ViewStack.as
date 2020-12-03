@@ -1361,6 +1361,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
             var uiChild:IUIComponent = IUIComponent(child);
             // ViewStack creates all of its children initially invisible.
             // They are made as they become the selected child.
+	    uiChild.includeInLayout = false;
             uiChild.visible = false;
         }
         if (child is INavigatorContent)

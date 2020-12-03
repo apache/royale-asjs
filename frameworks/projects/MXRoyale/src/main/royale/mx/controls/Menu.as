@@ -64,9 +64,9 @@ package mx.controls
 	import mx.collections.XMLListCollection;
 	import mx.controls.listClasses.BaseListData;
 	import mx.controls.listClasses.IListItemRenderer;
-    import mx.controls.listClasses.ListItemRenderer;
-	// import mx.controls.menuClasses.IMenuBarItemRenderer;
-	// import mx.controls.menuClasses.IMenuDataDescriptor;
+    	import mx.controls.listClasses.ListItemRenderer;
+	import mx.controls.menuClasses.IMenuBarItemRenderer;
+	import mx.controls.menuClasses.IMenuDataDescriptor;
 	// import mx.controls.menuClasses.IMenuItemRenderer;
 	// import mx.controls.menuClasses.MenuItemRenderer;
 	// import mx.controls.menuClasses.MenuListData;
@@ -770,7 +770,7 @@ package mx.controls
 		 *  the IMenuBarItemRenderer instance in the menubar 
 		 *  that spawned this menu
 		 */
-		// mx_internal var sourceMenuBarItem:IMenuBarItemRenderer;   // optional
+		mx_internal var sourceMenuBarItem:IMenuBarItemRenderer;   // optional
 		
 		/**
 		 *  @private
@@ -877,7 +877,7 @@ package mx.controls
 		/**
 		 *  @private
 		 */
-		// mx_internal var _dataDescriptor:IMenuDataDescriptor = new DefaultDataDescriptor();
+		 mx_internal var _dataDescriptor:IMenuDataDescriptor = new DefaultDataDescriptor();
 		
 		/**
 		 *  The object that accesses and manipulates data in the data provider. 
@@ -894,18 +894,18 @@ package mx.controls
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		/*public function get dataDescriptor():IMenuDataDescriptor
+		public function get dataDescriptor():IMenuDataDescriptor
 		{
 			return IMenuDataDescriptor(_dataDescriptor);
-		}*/
+		}
 		
 		/**
 		 *  @private
 		 */
-		/*public function set dataDescriptor(value:IMenuDataDescriptor):void
+		public function set dataDescriptor(value:IMenuDataDescriptor):void
 		{
 			_dataDescriptor = value;
-		}*/
+		}
 		
 		//--------------------------------------------------------------------------
 		//  dataProvider
@@ -2976,6 +2976,149 @@ package mx.controls
 		{
 			(model as CascadingMenuModel).submenuField = value;
 		}
+		
+		//labelFunction,iconField,iconFunction was in mx.controls.listClasses.ListBase in Flex because menu was extending list and then listBase,but in Royale Menu is direct extending UIComponent so i added that functions in Menu Class
+
+		//----------------------------------
+		//  labelFunction
+		//----------------------------------
+
+		private var _labelFunction:Function;
+
+		/**
+		 *  The name of the field in the data provider items to display as the label. 
+		 *  By default the list looks for a property named <code>label</code> 
+		 *  on each item and displays it.
+		 *  However, if the data objects do not contain a <code>label</code> 
+		 *  property, you can set the <code>labelField</code> property to
+		 *  use a different property in the data object. An example would be 
+		 *  "FullName" when viewing a set of people names fetched from a database.
+		 *
+		 *  @default "label"
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function get labelFunction():Function
+		{
+		    return _labelFunction;
+		}
+
+		/**
+		 *  @private
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		public function set labelFunction(value:Function):void
+		{
+		    _labelFunction = value;
+		}
+		
+		//----------------------------------
+		//  iconField
+		//----------------------------------
+
+		     /**
+		     *  @private
+		     *  Storage for iconField property.
+		     */
+		    private var _iconField:String = "icon";
+			protected var itemsSizeChanged:Boolean = false;
+
+		    [Bindable("iconFieldChanged")]
+		    [Inspectable(category="Data", defaultValue="")]
+
+		    /**
+		     *  The name of the field in the data provider object that determines what to 
+		     *  display as the icon. By default, the list class does not try to display 
+		     *  icons with the text in the rows. However, by specifying an icon 
+		     *  field, you can specify a graphic that is created and displayed as an 
+		     *  icon in the row.  This property is ignored by DataGrid.
+		     *
+		     *  <p>The renderers will look in the data provider object for a property of 
+		     *  the name supplied as the iconField.  If the value of the property is a 
+		     *  Class, it will instantiate that class and expect it to be an instance 
+		     *  of an IFlexDisplayObject. If the value of the property is a String, 
+		     *  it will look to see if a Class exists with that name in the application, 
+		     *  and if it can't find one, it will also look for a property on the 
+		     *  document with that name and expect that property to map to a Class.</p>
+		     *
+		     *  @default null
+		     *  
+		     *  @langversion 3.0
+		     *  @playerversion Flash 9
+		     *  @playerversion AIR 1.1
+		     *  @productversion Flex 3
+		     */
+		    public function get iconField():String
+		    {
+			return _iconField;
+		    }
+
+		    /**
+		     *  @private
+		     */
+		    public function set iconField(value:String):void
+		    {
+			_iconField = value;
+
+			itemsSizeChanged = true;
+			invalidateDisplayList();
+
+			dispatchEvent(new Event("iconFieldChanged"));
+		    }
+
+		    //----------------------------------
+		    //  iconFunction
+		    //----------------------------------
+
+		    /**
+		     *  @private
+		     *  Storage for iconFunction property.
+		     */
+		    private var _iconFunction:Function;
+
+		    [Bindable("iconFunctionChanged")]
+		    [Inspectable(category="Data")]
+
+		    /**
+		     *  A user-supplied function to run on each item to determine its icon.  
+		     *  By default the list does not try to display icons with the text 
+		     *  in the rows.  However, by specifying an icon function, you can specify 
+		     *  a Class for a graphic that will be created and displayed as an icon 
+		     *  in the row.  This property is ignored by DataGrid.
+		     *
+		     *  <p>The iconFunction takes a single argument which is the item
+		     *  in the data provider and returns a Class, as the following example shows:</p>
+		     * 
+		     *  <pre>iconFunction(item:Object):Class</pre>
+		     * 
+		     *  @default null
+		     *  
+		     *  @langversion 3.0
+		     *  @playerversion Flash 9
+		     *  @playerversion AIR 1.1
+		     *  @productversion Flex 3
+		     */
+		    public function get iconFunction():Function
+		    {
+			return _iconFunction;
+		    }
+
+		    /**
+		     *  @private
+		     */
+		    public function set iconFunction(value:Function):void
+		    {
+			_iconFunction = value;
+
+			itemsSizeChanged = true;
+			invalidateDisplayList();
+
+			dispatchEvent(new Event("iconFunctionChanged"));
+		    }
 		        
 	}
 	

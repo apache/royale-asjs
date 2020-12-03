@@ -43,11 +43,14 @@ COMPILE::SWF
 {
 import flash.display.DisplayObject;
 import flash.display.Graphics;
+import flash.display.GradientType;
 }
 COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
 }
 import mx.display.Graphics;
+import mx.geom.Matrix;
+import mx.utils.GraphicsUtil;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
 import mx.events.KeyboardEvent;
@@ -104,6 +107,7 @@ import mx.events.ValidationResultEvent;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import mx.managers.IFocusManagerComponent;
 import mx.events.FocusEvent;
+import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
 
@@ -6264,6 +6268,204 @@ COMPILE::JS
             dispatchEvent(new Event('visibleChanged'));
         }
     }
+    
+    //In Flex smoothBitmapContent was in SWFLoader and Image extends SWFLoader extends UIComponent,In Royale Image extends UIComponent So i added smoothBitmapContent in UIComponent
+
+    //----------------------------------
+    //  smoothBitmapContent
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the smoothBitmapContent property.
+     */
+	private var smoothBitmapContentChanged:Boolean = false;
+    private var _smoothBitmapContent:Boolean = false;
+    
+    [Bindable("smoothBitmapContentChanged")]
+    [Inspectable(category="General", defaultValue="false")]
+    
+    /**
+     *  A flag that indicates whether to smooth the content when it
+     *  is scaled. Only Bitmap content can be smoothed.
+     *  If <code>true</code>, and the content is a Bitmap then smoothing property 
+     *  of the content is set to <code>true</code>. 
+     *  If <code>false</code>, the content isn't smoothed. 
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get smoothBitmapContent():Boolean
+    {
+        return _smoothBitmapContent;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set smoothBitmapContent(value:Boolean):void
+    {
+        if (_smoothBitmapContent != value)
+        {
+            _smoothBitmapContent = value;
+            
+            smoothBitmapContentChanged = true;
+            invalidateDisplayList();
+        }
+        
+        dispatchEvent(new Event("smoothBitmapContentChanged"));
+    }
+    public function drawRoundRect(x:Number, y:Number, w:Number, h:Number,
+                                  r:Object = null, c:Object = null,
+                                  alpha:Object = null, rot:Object = null,
+                                  gradient:String = null, ratios:Array = null,
+                                  hole:Object = null):void
+    {
+        var g:mx.display.Graphics = graphics;
+
+        // Quick exit if w or h is zero. This happens when scaling a component
+        // to a very small value, which then gets rounded to 0.
+        if (!w || !h)
+            return;
+
+        // If color is an object then allow for complex fills.
+        if (c !== null)
+        {
+            if (c is Array)
+            {
+                var alphas:Array;
+
+                if (alpha is Array)
+                    alphas = alpha as Array;
+                else
+                    alphas = [ alpha, alpha ];
+
+                if (!ratios)
+                    ratios = [ 0, 0xFF ];
+
+                var matrix:mx.geom.Matrix = null;
+
+                if (rot)
+                {
+                    if (rot is Matrix)
+                    {
+                        matrix = Matrix(rot);
+                    }
+                    else
+                    {
+                        matrix = new Matrix();
+
+                        if (rot is Number)
+                        {
+                            matrix.createGradientBox(
+                                w, h, Number(rot) * Math.PI / 180, x, y);
+                        }
+                        else
+                        {
+                            matrix.createGradientBox(
+                                rot.w, rot.h, rot.r, rot.x, rot.y);
+                        }
+                    }
+                }
+                
+				COMPILE::SWF {
+					if (gradient == GradientType.RADIAL)
+					{
+						g.beginGradientFill(GradientType.RADIAL,
+											c as Array, alphas, ratios, matrix);
+					}
+					else
+					{
+						g.beginGradientFill(GradientType.LINEAR,
+											c as Array, alphas, ratios, matrix);
+					}
+				}
+            }
+            else
+            {
+                g.beginFill(Number(c), Number(alpha));
+            }
+        }
+
+        var ellipseSize:Number;
+
+        // Stroke the rectangle.
+        if (!r)
+        {
+            g.drawRect(x, y, w, h);
+        }
+        else if (r is Number)
+        {
+            ellipseSize = Number(r) * 2;
+            g.drawRoundRect(x, y, w, h, ellipseSize, ellipseSize);
+        }
+        else
+        {
+            GraphicsUtil.drawRoundRectComplex(g, x, y, w, h, r.tl, r.tr, r.bl, r.br);
+        }
+
+        // Carve a rectangular hole out of the middle of the rounded rect.
+        if (hole)
+        {
+            var holeR:Object = hole.r;
+            if (holeR is Number)
+            {
+                ellipseSize = Number(holeR) * 2;
+                g.drawRoundRect(hole.x, hole.y, hole.w, hole.h,
+                                ellipseSize, ellipseSize);
+            }
+            else
+            {
+                GraphicsUtil.drawRoundRectComplex(g, hole.x, hole.y, hole.w, hole.h,
+                                       holeR.tl, holeR.tr, holeR.bl, holeR.br);
+            }
+        }
+
+        if (c !== null)
+            g.endFill();
+    }
+    
+    //----------------------------------
+    //  styleDeclaration
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the styleDeclaration property.
+     */
+    private var _styleDeclaration:CSSStyleDeclaration;
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  Storage for the inline inheriting styles on this object.
+     *  This CSSStyleDeclaration is created the first time that
+     *  the <code>setStyle()</code> method
+     *  is called on this component to set an inheriting style.
+     *  Developers typically never need to access this property directly.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get styleDeclaration():CSSStyleDeclaration
+    {
+        return _styleDeclaration;
+    }
+
+    /**
+     *  @private
+     */
+    public function set styleDeclaration(value:CSSStyleDeclaration):void
+    {
+        _styleDeclaration = value;
+    }
+
 
 }
 
