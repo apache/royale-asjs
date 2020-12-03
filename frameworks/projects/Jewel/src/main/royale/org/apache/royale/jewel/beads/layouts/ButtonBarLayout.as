@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.jewel.beads.models.ButtonBarModel;
 
 	/**
 	 *  The Jewel ButtonBarLayout class bead sizes and positions the button
@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.layouts
 		 * @copy org.apache.royale.core.IBeadLayout#layout
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 * @royaleignorecoercion org.apache.royale.core.IStrand
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		override public function layout():Boolean
 		{
