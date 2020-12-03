@@ -424,8 +424,9 @@ public class ChannelSet extends EventDispatcher
     {
         if (configured)
         {
-            var message:String = resourceManager.getString(
-                "messaging", "cannotAddWhenConfigured");
+            /* var message:String = resourceManager.getString(
+                "messaging", "cannotAddWhenConfigured"); */
+            var message:String = "Channels cannot be added to a ChannelSet that targets a configured destination.";
             throw new IllegalOperationError(message);
         }
 
@@ -663,8 +664,9 @@ public class ChannelSet extends EventDispatcher
                 {
                     if (ids[i] == null)
                     {
-                        var message:String = resourceManager.getString(
-                            "messaging", "cannotSetClusteredWithdNullChannelIds");
+                        /* var message:String = resourceManager.getString(
+                            "messaging", "cannotSetClusteredWithdNullChannelIds"); */
+                        var message:String = "Cannot change clustered property of ChannelSet to true when it contains channels with null ids.";
                         throw new IllegalOperationError(message);
                     }
                 }
@@ -852,15 +854,17 @@ public class ChannelSet extends EventDispatcher
 
         if (configured)
         {
-            message = resourceManager.getString(
-                "messaging", "cannotAddWhenConfigured");
+            /* message = resourceManager.getString(
+                "messaging", "cannotAddWhenConfigured"); */
+            message = "Channels cannot be added to a ChannelSet that targets a configured destination.";
             throw new IllegalOperationError(message);
         }
 
         if (clustered && channel.id == null)
         {
-            message = resourceManager.getString(
-                "messaging", "cannotAddNullIdChannelWhenClustered");
+            /* message = resourceManager.getString(
+                "messaging", "cannotAddNullIdChannelWhenClustered"); */
+            message = "Cannot add a channel with null id to ChannelSet when its clustered property is true.";
             throw new IllegalOperationError(message);
         }
 
@@ -892,8 +896,9 @@ public class ChannelSet extends EventDispatcher
     {
         if (configured)
         {
-            var message:String = resourceManager.getString(
-                "messaging", "cannotRemoveWhenConfigured");
+            /* var message:String = resourceManager.getString(
+                "messaging", "cannotRemoveWhenConfigured"); */
+            var message:String = "Channels cannot be removed from a ChannelSet that targets a configured destination.";
             throw new IllegalOperationError(message);
         }
 
@@ -1610,8 +1615,9 @@ public class ChannelSet extends EventDispatcher
             errorMsg.correlationId = pendingMsg.messageId;
             errorMsg.headers[ErrorMessage.RETRYABLE_HINT_HEADER] = true;
             errorMsg.faultCode = "Client.Error.MessageSend";
-            errorMsg.faultString = resourceManager.getString(
-                "messaging", "sendFailed");
+            /* errorMsg.faultString = resourceManager.getString(
+                "messaging", "sendFailed"); */
+            errorMsg.faultString = "Send failed";
             if (event is ChannelFaultEvent)
             {
                 var faultEvent:ChannelFaultEvent = event as ChannelFaultEvent;
@@ -1628,8 +1634,9 @@ public class ChannelSet extends EventDispatcher
             // being able to connect at all.
             else
             {
-                errorMsg.faultDetail = resourceManager.getString(
-                    "messaging", "cannotConnectToDestination");
+                /* errorMsg.faultDetail = resourceManager.getString(
+                    "messaging", "cannotConnectToDestination"); */
+                errorMsg.faultDetail = "No connection could be made to the message destination.";
             }
             errorMsg.rootCause = event;
             ps.agent.fault(errorMsg, pendingMsg);
@@ -1762,8 +1769,9 @@ public class ChannelSet extends EventDispatcher
     {
         if (_channels.length == 0)
         {
-            var message:String = resourceManager.getString(
-                "messaging", "noAvailableChannels");
+            /* var message:String = resourceManager.getString(
+                "messaging", "noAvailableChannels"); */
+            var message:String = "No Channels are available for use.";
             throw new NoChannelAvailableError(message);
         }
 
