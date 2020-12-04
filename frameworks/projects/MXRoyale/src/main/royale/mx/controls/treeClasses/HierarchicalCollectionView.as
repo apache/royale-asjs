@@ -24,6 +24,7 @@ import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
 import mx.collections.ISort;
 import mx.collections.IViewCursor;
+import mx.collections.ListCollectionView;
 import mx.collections.XMLListAdapter;
 import mx.collections.XMLListCollection;
 import mx.core.EventPriority;
@@ -338,9 +339,10 @@ public class HierarchicalCollectionView extends EventDispatcher
 					var numChildren:int = childNodes.length;
 					for (var i:int = 0; i < numChildren; i++)
 					{
+						var child:Object = iCollectionViewGetItemAt(childNodes, i);
 						if (node is XML)
-							startTrackUpdates(childNodes[i]);
-						length += calculateLength(childNodes[i], node) + 1;
+							startTrackUpdates(child);  // originally:  childNodes[i]
+						length += calculateLength(child, node) + 1;    // originally:  childNodes[i]
 					}
 				}
 			}
@@ -505,7 +507,7 @@ public class HierarchicalCollectionView extends EventDispatcher
 				var numChildren:int = childNodes.length;
 				for (var i:int = 0; i < numChildren; i++)
 				{
-					getVisibleNodes(childNodes[i], node, nodeArray);
+					getVisibleNodes(iCollectionViewGetItemAt(childNodes, i), node, nodeArray);    // originally:  childNodes[i]
 				}
 			}
 		}
@@ -1129,6 +1131,13 @@ public class HierarchicalCollectionView extends EventDispatcher
     {
         var uid:String = itemToUID(node);
         openNodes[uid] = 1;
+
+        // sent to update the length in the collection (updateLength() -> calculateLength() -> updates XML tracking)
+        var expandEvent:mx.events.CollectionEvent = new mx.events.CollectionEvent(
+            mx.events.CollectionEvent.COLLECTION_CHANGE, false, true, mx.events.CollectionEventKind.EXPAND);
+        expandEvent.items = [node];
+        dispatchEvent(expandEvent);
+
         var index:int = getItemIndex(node);
         dispatchAddEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_ADDED);
 		var collectionEvent:org.apache.royale.events.CollectionEvent;
@@ -1166,6 +1175,13 @@ public class HierarchicalCollectionView extends EventDispatcher
     {
         var uid:String = itemToUID(node);
         delete openNodes[uid];        
+
+        // sent to update the length in the collection (updateLength() -> calculateLength() -> updates XML tracking)
+        var expandEvent:mx.events.CollectionEvent = new mx.events.CollectionEvent(
+            mx.events.CollectionEvent.COLLECTION_CHANGE, false, true, mx.events.CollectionEventKind.EXPAND);
+        expandEvent.items = [node];
+        dispatchEvent(expandEvent);
+
         var index:int = getItemIndex(node);
         dispatchRemoveEvents(node, index + 1, org.apache.royale.events.CollectionEvent.ITEM_REMOVED);
 		var collectionEvent:org.apache.royale.events.CollectionEvent;
@@ -1213,6 +1229,16 @@ public class HierarchicalCollectionView extends EventDispatcher
         return index;
     }
     
+    public static function iCollectionViewGetItemAt(coll:ICollectionView, idx:uint):Object
+    {
+        if (coll is ListCollectionView)
+        {
+            return (coll as ListCollectionView).getItemAt(idx);
+        }
+        var it:IViewCursor = coll.createCursor();
+        it.seek(CursorBookmark.FIRST, idx);
+        return it.current;
+    }
 }
 
 }

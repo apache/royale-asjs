@@ -21,6 +21,7 @@ package mx.controls.treeClasses
 	import mx.collections.ICollectionView;
     import mx.collections.IViewCursor;
     import mx.collections.ICollectionView;
+    import mx.collections.ListCollectionView;
     import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
 	
@@ -112,7 +113,26 @@ package mx.controls.treeClasses
             {
                 if (event.kind == mx.events.CollectionEventKind.RESET)
                 {
+                    // RESET may be from XMLListCollection source = newxmlllist + refresh(), for example.
                     sendBeadEvent(dataProviderModel, "dataProviderChanged");
+                }
+                else if (event.kind == CollectionEventKind.ADD)
+                {
+                    // ADD may be from HierarchicalCollectionView.xmlNotification
+                    var addEvent:org.apache.royale.events.CollectionEvent 
+                        = new org.apache.royale.events.CollectionEvent(org.apache.royale.events.CollectionEvent.ITEM_ADDED);
+                    addEvent.item = event.items[0];
+                    addEvent.index = event.location;
+                    itemAddedHandler(addEvent);
+                }
+                else if (event.kind == CollectionEventKind.REMOVE)
+                {
+                    // REMOVE may be from HierarchicalCollectionView.xmlNotification
+                    var removeEvent:org.apache.royale.events.CollectionEvent 
+                        = new org.apache.royale.events.CollectionEvent(org.apache.royale.events.CollectionEvent.ITEM_REMOVED);
+                    removeEvent.item = event.items[0];
+                    removeEvent.index = event.location;
+                    itemRemovedHandler(removeEvent);
                 }
             }
         }
