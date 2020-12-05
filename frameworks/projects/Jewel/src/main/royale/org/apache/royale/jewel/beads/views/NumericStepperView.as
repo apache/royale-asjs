@@ -96,7 +96,6 @@ package org.apache.royale.jewel.beads.views
 			(value as IParent).addElement(spinnerview.decrement as IChild);
 			
 			var model:IRangeModel = _strand.getBeadByType(IRangeModel) as IRangeModel;
-			trace(model, model.value);
 			spinner.value = model.value;
 			input.text = String(model.value);
 

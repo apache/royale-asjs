@@ -90,7 +90,14 @@ package org.apache.royale.jewel.beads.controllers
 			// value. ideally, we should either set the input to accept only
 			// numeric values or, barring that, reject non-numeric entries. we
 			// cannot do that right now however.
-			input.addEventListener(Event.CHANGE, inputChangeHandler);
+
+			// we can't use CHANGE, since it will change 'value' on each key stroke
+			// moreover, let's say we have a minimun of 10, entering '5', will make the value jump to 10
+			input.addEventListener("enter", inputChangeHandler);
+			COMPILE::JS
+			{
+				input.element.addEventListener('blur', inputChangeHandler);
+			}
 			
 			// listen for change events on the spinner so the value can be updated as
 			// as resizing the component
