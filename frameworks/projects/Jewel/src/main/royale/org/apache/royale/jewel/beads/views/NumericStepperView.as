@@ -24,9 +24,11 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IParentIUIBase;
+    import org.apache.royale.core.IRangeModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Spinner;
     import org.apache.royale.jewel.TextInput;
@@ -75,7 +77,7 @@ package org.apache.royale.jewel.beads.views
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-            
+
 			// add an input field
 			input = new TextInput();
             (value as IParent).addElement(input);
@@ -93,7 +95,10 @@ package org.apache.royale.jewel.beads.views
 			(value as IParent).addElement(spinnerview.increment as IChild);
 			(value as IParent).addElement(spinnerview.decrement as IChild);
 			
-			input.text = String(spinner.value);
+			var model:IRangeModel = _strand.getBeadByType(IRangeModel) as IRangeModel;
+			trace(model, model.value);
+			spinner.value = model.value;
+			input.text = String(model.value);
 
 			initSize();
 

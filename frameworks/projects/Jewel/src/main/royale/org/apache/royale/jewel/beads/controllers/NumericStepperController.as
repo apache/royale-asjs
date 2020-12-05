@@ -96,12 +96,15 @@ package org.apache.royale.jewel.beads.controllers
 			// as resizing the component
 			spinner.addEventListener("valueChange", spinnerValueChanged);
 			
+			var model:IRangeModel = _strand.getBeadByType(IRangeModel) as IRangeModel;
+
 			// listen for changes and update the UI accordingly
-			listenOnStrand("valueChange", modelChangeHandler);
-			listenOnStrand("minimumChange", modelChangeHandler);
-			listenOnStrand("maximumChange", modelChangeHandler);
-			listenOnStrand("stepSizeChange", modelChangeHandler);
-			listenOnStrand("snapIntervalChange", modelChangeHandler);
+			model.addEventListener("valueChange", modelChangeHandler);
+			model.addEventListener("minimumChange", modelChangeHandler);
+			model.addEventListener("maximumChange", modelChangeHandler);
+			model.addEventListener("stepSizeChange", modelChangeHandler);
+			model.addEventListener("snapIntervalChange", modelChangeHandler);
+
 		}
 
 		/**
