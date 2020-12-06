@@ -53,7 +53,7 @@ package models
         {
             return _controlsDrawerNavigation;
         }
-        
+        // Note: for disable a node add a "true" as a final param on the obejct you want. This is "false" by default
         private var _containerDrawerNavigation:ArrayList = new ArrayList([
             new NavigationLinkVO("Card", "card_panel", MaterialIconType.WEB_ASSET),
             new NavigationLinkVO("Layouts", "layouts_panel", MaterialIconType.VIEW_QUILT),
