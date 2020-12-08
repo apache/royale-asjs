@@ -36,6 +36,7 @@ import org.apache.royale.core.LayoutBase;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -78,9 +79,14 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
 		sawSizeChanged = true;
 		super.handleSizeChange(event);
 	}
-
+	
+	private var ranLayout:Boolean;	
+	private var inUpdateDisplayList:Boolean;	
+		
     override public function layout():Boolean
     {
+		ranLayout = true;
+		
         var n:int = target.numChildren;
         if (n == 0)
             return false;
@@ -107,7 +113,9 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
             h = target.measuredHeight;
         if (target.layout.isWidthSizedToContent())
             w = target.measuredWidth;
+		inUpdateDisplayList = true;
         target.layout.updateDisplayList(w, h);
+		inUpdateDisplayList = false;
         
         // update the target's actual size if needed.
         if (target.layout.isWidthSizedToContent() && target.layout.isHeightSizedToContent()) {
@@ -136,7 +144,10 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
         var host:UIBase = value as UIBase;
         _target = (host.view as ILayoutHost).contentView as GroupBase;
         super.strand = value;
-        
+        	// The main layout may not get put on the strand until
+		// after children are added so listen here as well
+		if (target.parent)
+			listenToChildren();		
     }
     
     private var _target:GroupBase;
@@ -151,5 +162,33 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
         _target = value;
     }
 
+	override protected function handleChildrenAdded(event:Event):void
+	{
+		COMPILE::JS {
+			super.handleChildrenAdded(event);
+			listenToChildren();
+		}
+	}
+	
+	private function listenToChildren():void
+	{
+		var n:Number = layoutView.numElements;
+		for(var i:int=0; i < n; i++) {
+			var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
+			child.addEventListener("widthChanged", childResizeHandler);
+			child.addEventListener("heightChanged", childResizeHandler);
+			child.addEventListener("sizeChanged", childResizeHandler);
+		}
+	}
+	
+	override protected function childResizeHandler(event:Event):void
+	{
+		if (inUpdateDisplayList) return;
+		ranLayout = false;
+		super.childResizeHandler(event); // will set ranLayout if it did
+		if (!ranLayout)
+			performLayout();
+	}		
+		
 }
 }
