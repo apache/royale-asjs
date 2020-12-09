@@ -250,6 +250,11 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
                 var xml:XML = value as XML;
                 return xml[labelField];
             }
+            else if (value is XMLList)
+            {
+                var xml:XML = value.toXML();
+                return xml[labelField];
+            }
             return getLabelFromData(this,value);
         }
         
