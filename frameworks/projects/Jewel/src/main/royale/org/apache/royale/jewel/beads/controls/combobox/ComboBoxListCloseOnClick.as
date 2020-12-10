@@ -61,19 +61,11 @@ package org.apache.royale.jewel.beads.controls.combobox
             var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(comboView.host, "iItemRenderer") as Class;
             // Apart from checking that the bead is applied to a Jewel ComboBox,
             // it is checked that the combobox has a custom item renderer assigned and that it does not have the SearchFilter bead
-             if (comboView && (comboBox.itemRenderer || itemRendererClass != null) && beadsIsNotIncludedSearchFilter(comboBox.beads)){
+             if (comboView && (comboBox.itemRenderer || itemRendererClass != null)){
                 (value as IEventDispatcher).addEventListener('popUpOpened', popUpOpenedHandler, false);
                 (value as IEventDispatcher).addEventListener('popUpClosed', popUpClosedHandler, false);
              }
 		}
-
-        private function beadsIsNotIncludedSearchFilter(beads:Array):Boolean{
-            for(var i:int = 0; i<beads.length; i++){
-                if(beads[i] is SearchFilter)
-                    return false;
-            }
-            return true;
-        }
 
         protected function popUpOpenedHandler():void {
 			list = comboView.popup.view.list;
