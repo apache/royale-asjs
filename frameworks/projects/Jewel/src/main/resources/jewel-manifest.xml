@@ -210,6 +210,7 @@
     <component id="ComboLowerCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboLowerCase"/>
     <component id="ComboBoxDisabled" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"/>
     <component id="ComboBoxTruncateText" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText"/>
+    <component id="ComboBoxListCloseOnClick" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxListCloseOnClick" />
 
     <component id="LayoutChildren" class="org.apache.royale.jewel.beads.layouts.LayoutChildren"/>
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
