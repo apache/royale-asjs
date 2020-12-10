@@ -137,6 +137,6 @@
     <component id="SparkButtonSkin" class="spark.skins.SparkButtonSkin"/>
     <component id="Graphic" class="spark.primitives.Graphic"/>
     <component id="Move" class="spark.effects.Move"/>
-
+    <component id="TabBarSelectionUpdateFromSelectableDataProvider" class="spark.components.beads.TabBarSelectionUpdateFromSelectableDataProvider"/>
 	
 </componentPackage>
