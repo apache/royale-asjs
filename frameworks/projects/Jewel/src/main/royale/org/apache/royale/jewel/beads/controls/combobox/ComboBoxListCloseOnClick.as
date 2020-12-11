@@ -19,18 +19,21 @@
 package org.apache.royale.jewel.beads.controls.combobox
 {
     import org.apache.royale.core.IBead;
-    import org.apache.royale.jewel.beads.views.ComboBoxView;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.MouseEvent;
     import org.apache.royale.jewel.ComboBox;
     import org.apache.royale.jewel.List;
-    import org.apache.royale.events.MouseEvent;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.ValuesManager;
-
+    import org.apache.royale.jewel.beads.views.ComboBoxView;
 
     /**
 	 *  The ComboBoxListCloseOnClick bead class is a specialty bead that can be used with
-     *  a Jewel ComboBox to allow closing ComBox popup in combobox with custom item renderer
+     *  a Jewel ComboBox with a custom renderer to allow closing the popup list in when click renderer.
+     *  
+     *  The default combobox has just a label and the list is closed on click. A Custom renderer
+     *  doesn't close by default (we can have complex items with inputs and other controls that we want to clisk and operate),
+     *  os is up to the developer add this bead if wants to close the popup list on click
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -59,12 +62,11 @@ package org.apache.royale.jewel.beads.controls.combobox
             var comboBox:ComboBox = (value as ComboBox);
             comboView = (comboBox.view as ComboBoxView);
             var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(comboView.host, "iItemRenderer") as Class;
-            // Apart from checking that the bead is applied to a Jewel ComboBox,
-            // it is checked that the combobox has a custom item renderer assigned and that it does not have the SearchFilter bead
-             if (comboView && (comboBox.itemRenderer || itemRendererClass != null)){
+            // Checking that the bead is applied to a Jewel ComboBox and has a custom item renderer assigned
+            if (comboView && (comboBox.itemRenderer || itemRendererClass != null)){
                 (value as IEventDispatcher).addEventListener('popUpOpened', popUpOpenedHandler, false);
                 (value as IEventDispatcher).addEventListener('popUpClosed', popUpClosedHandler, false);
-             }
+            }
 		}
 
         protected function popUpOpenedHandler():void {
