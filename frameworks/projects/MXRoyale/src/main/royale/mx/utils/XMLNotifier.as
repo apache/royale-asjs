@@ -94,7 +94,7 @@ public class XMLNotifier
                                                      value:Object,
                                                      detail:Object):void
         {
-            var xmlWatchers:ObjectMap = (callee as Object).watched;
+            var xmlWatchers:ObjectMap = callee["watched"];
             if (xmlWatchers != null)
             {
                 xmlWatchers.forEach( function(truevalue:Object,notifiable:Object,map:Object):void {
@@ -116,7 +116,7 @@ public class XMLNotifier
                                                      detail:Object):void
         {
             var callee:Function = notificationFunction;
-            var xmlWatchers:ObjectMap = (callee as Object).watched;
+            var xmlWatchers:ObjectMap = callee["watched"];
             if (xmlWatchers != null)
             {
                 xmlWatchers.forEach( function(truevalue:Object,notifiable:Object,map:Object):void {
