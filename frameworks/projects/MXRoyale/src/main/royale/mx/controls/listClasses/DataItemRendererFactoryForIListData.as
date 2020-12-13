@@ -19,6 +19,7 @@
 package mx.controls.listClasses
 {
     import mx.collections.ArrayList;
+    import org.apache.royale.core.IFactory;
     import mx.collections.IList;
     
     import org.apache.royale.core.IBead;
@@ -119,14 +120,13 @@ package mx.controls.listClasses
 
 	override protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
 	{
-		var itemRendererFunction:Function;
 		var functionBead:ItemRendererFunctionBead = _strand.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
 		var rendererFunction:Function = functionBead ? functionBead.itemRendererFunction : null;
 		var n:int = dataProviderLength; 
 		for (var i:int = 0; i < n; i++)
 		{				
 			var data:Object = getItemAt(i);
-			var ir:IIndexedItemRenderer = rendererFunction ? rendererFunction(data) as IIndexedItemRenderer :
+			var ir:IIndexedItemRenderer = rendererFunction ? (rendererFunction(data) as IFactory).newInstance() as IIndexedItemRenderer :
 				itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 
 			dataGroup.addItemRenderer(ir, false);
