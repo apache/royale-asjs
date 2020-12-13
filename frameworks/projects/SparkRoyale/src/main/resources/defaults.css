@@ -70,7 +70,7 @@ DataGroup
 {
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
-	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView");			
+	IBeadView:  ClassReference("spark.components.beads.DataContainerView");			
 	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("spark.components.beads.SelfItemRenderer");

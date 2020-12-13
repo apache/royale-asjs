@@ -90,6 +90,7 @@ internal class SparkRoyaleClasses
 	import spark.components.SkinnablePopUpContainer; SkinnablePopUpContainer;
     
     import spark.components.beads.PanelView; PanelView;
+    import spark.components.beads.DataContainerView; DataContainerView;
     import spark.components.beads.GroupView; GroupView;
     import spark.components.beads.SkinnableContainerView; SkinnableContainerView;
     import spark.components.beads.SkinnableDataContainerView; SkinnableDataContainerView;
