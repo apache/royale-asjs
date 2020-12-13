@@ -16,29 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package vos
-{
-    import org.apache.royale.collections.IArrayList;
-    
-    [Bindable]
-    public class NavigationLinkVO
-    {
-        public var label:String;
-        public var hash:String;
-        public var icon:String;
-        public var disabled:Boolean;
-        
-        //for collapsible example
-        public var subMenu:IArrayList;
-        public var open:Boolean;
-        public var selectedChild:NavigationLinkVO;
 
-        public function NavigationLinkVO(label:String, hash:String, icon:String = null, disabled:Boolean = false)
-        {
-            this.label = label;
-            this.hash = hash;
-            this.icon = icon;
-            this.disabled = disabled;
-        }
+package spark.components
+{
+
+/**
+ *  The VirtualVDataGroup class is a DataGroup that defaults to
+ *  virtual vertical layout
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+public class VirtualVDataGroup extends DataGroup
+{
+    /**
+     *  Constructor.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function VirtualVDataGroup()
+    {
+        super();
+        typeNames = "VirtualVDataGroup";
+        
     }
+}
 }

@@ -16,29 +16,38 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package vos
-{
-    import org.apache.royale.collections.IArrayList;
-    
-    [Bindable]
-    public class NavigationLinkVO
-    {
-        public var label:String;
-        public var hash:String;
-        public var icon:String;
-        public var disabled:Boolean;
-        
-        //for collapsible example
-        public var subMenu:IArrayList;
-        public var open:Boolean;
-        public var selectedChild:NavigationLinkVO;
 
-        public function NavigationLinkVO(label:String, hash:String, icon:String = null, disabled:Boolean = false)
-        {
-            this.label = label;
-            this.hash = hash;
-            this.icon = icon;
-            this.disabled = disabled;
-        }
-    }
+package org.apache.royale.html.beads
+{
+
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+
+	/**
+	 *  Helper bead for storing the item renderer function
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 */
+	public class ItemRendererFunctionBead implements IBead
+	{
+		private var _itemRendererFunction:Function;
+
+		public function set strand(value:IStrand):void
+		{
+		}
+
+		public function get itemRendererFunction():Function
+		{
+			return _itemRendererFunction;
+		}
+
+		public function set itemRendererFunction(value:Function):void
+		{
+			_itemRendererFunction = value;
+		}
+
+	}
 }

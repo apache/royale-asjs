@@ -118,17 +118,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		public override function set list(value:List):void
         {
             super.list = value;
-            COMPILE::JS
-			{
-			if (list != null)
-	            list.addEventListener(MouseEvent.CLICK, onListClick);
-            }
         }
 
-        private function onListClick(event:MouseEvent):void
-        {
-			list.removeEventListener(MouseEvent.CLICK, onListClick);
-            comboView.popUpVisible = false;
-        }
 	}
 }

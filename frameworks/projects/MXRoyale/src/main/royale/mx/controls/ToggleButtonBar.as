@@ -353,11 +353,33 @@ public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayo
         //   bSelectionChanged = true;
         //   bSelectedIndexChanged = true;
         //  invalidateDisplayList();
-        return;
         // }
         //commitSelectedIndex(value);
     }
 
+    /**
+     *  The name of the field in the data provider items to display
+     *  as the label.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+     */
+    public function get labelField():String
+    {
+        return (model as ISelectionModel).labelField;
+    }
+
+    /**
+     *  @private
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+     */
+    public function set labelField(value:String):void
+    {
+        (model as ISelectionModel).labelField = value;
+    }
     //--------------------------------------------------------------------------
     //
     //  Overridden properties

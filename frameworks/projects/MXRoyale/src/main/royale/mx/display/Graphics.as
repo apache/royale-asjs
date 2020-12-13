@@ -26,6 +26,10 @@ package mx.display
 	{
 		import org.apache.royale.display.BitmapData;
 	}
+	COMPILE::SWF
+	{
+		import flash.display.BitmapData;
+	}
 
 	public class Graphics// extends org.apache.royale.svg.CompoundGraphic
 	{
@@ -501,7 +505,7 @@ package mx.display
         }
 
 	// not implemented
-	COMPILE::JS
+	//COMPILE::JS
 	public function beginBitmapFill(bitmap:BitmapData, matrix:Matrix = null, repeat:Boolean = true, smooth:Boolean = false):void
 		{
 		}

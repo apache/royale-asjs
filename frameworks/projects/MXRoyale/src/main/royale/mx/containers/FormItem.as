@@ -686,7 +686,7 @@ public class FormItem extends Container
         measuredWidth += extraWidth;
         
         // need to include label for height
-        var labelHeight:Number = labelObj.getExplicitOrMeasuredHeight();
+        var labelHeight:Number = labelObj ? labelObj.getExplicitOrMeasuredHeight() : 0;
         
         measuredMinHeight = Math.max(measuredMinHeight, labelHeight);
         measuredHeight = Math.max(measuredHeight, labelHeight);

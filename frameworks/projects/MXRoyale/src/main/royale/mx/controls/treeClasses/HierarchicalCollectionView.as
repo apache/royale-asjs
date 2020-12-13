@@ -31,6 +31,7 @@ import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
 import mx.events.PropertyChangeEvent;
+import mx.events.TreeEvent;
 import mx.utils.IXMLNotifiable;
 import mx.utils.XMLNotifier;
 
@@ -841,6 +842,12 @@ public class HierarchicalCollectionView extends EventDispatcher
         var event:mx.events.CollectionEvent;
 		var list:XMLListAdapter;
         
+		// trace("HierarchicalCollectionView.xmlNotification(" + currentTarget
+		// 	+ ", " + type
+		// 	+ ", " + target
+		// 	+ ", " + value
+		// 	+ ", " + detail
+		// 	+ ")");
 		// trace("currentTarget", currentTarget.toXMLString());
 		// trace("target", target.toXMLString());
 		// trace("value", value.toXMLString());
@@ -1136,6 +1143,11 @@ public class HierarchicalCollectionView extends EventDispatcher
         collectionEvent.item = node;
         collectionEvent.index = index;
 		dispatchEvent(collectionEvent);
+
+        var itemOpenEvent:TreeEvent;
+        itemOpenEvent = new TreeEvent(TreeEvent.ITEM_OPEN);
+        itemOpenEvent.item = node;
+        dispatchEvent(itemOpenEvent);
     }
     
     private function dispatchAddEvents(node:Object, index:int, type:String):int
@@ -1144,6 +1156,8 @@ public class HierarchicalCollectionView extends EventDispatcher
         var cursor:IViewCursor = children.createCursor();
 		var item:Object;
 		var collectionEvent:org.apache.royale.events.CollectionEvent;
+        if (cursor.afterLast)
+            return index;
         do
         {
             item = cursor.current;
@@ -1184,6 +1198,8 @@ public class HierarchicalCollectionView extends EventDispatcher
 		var topLevel:Boolean = (eventQueue == null);
 		if (!eventQueue) 
 			eventQueue = [];
+        if (cursor.afterLast)
+            return index;
         do
         {
             item = cursor.current;

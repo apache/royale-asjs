@@ -144,7 +144,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
-		private function dataProviderChangeHandler(event:Event):void
+		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)

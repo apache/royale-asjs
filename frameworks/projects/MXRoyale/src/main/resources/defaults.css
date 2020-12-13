@@ -489,6 +489,11 @@ TabNavigator
 	border: 1px solid #333333
 }
 
+ProgressBar
+{
+	IBeadView: ClassReference("mx.controls.beads.ProgressBarView");
+}
+
 TextInput
 {
 	border-color: #000000;
@@ -553,7 +558,7 @@ ToggleButtonBar
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ButtonBarView");			
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadController: ClassReference("mx.controls.listClasses.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");

@@ -894,6 +894,12 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
     {
         /* _contentModified = true;
         currentContentGroup.removeAllElements(); */
+
+        // Copied from mx.core.Container
+        while (numChildren > 0)
+        {
+            removeChildAt(0);
+        }
     } 
     
     /*

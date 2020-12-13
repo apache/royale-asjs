@@ -1,0 +1,143 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+package spark.components.beads
+{
+
+import spark.components.SkinnableDataContainer;
+import spark.components.supportClasses.GroupBase;
+import spark.components.supportClasses.SkinnableComponent;
+import spark.components.supportClasses.Skin;
+import spark.layouts.BasicLayout;
+
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IContainer;
+import org.apache.royale.core.ILayoutChild;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.UIBase;
+
+/**
+ *  @private
+ *  The SkinnableDataContainerView for emulation.
+ */
+public class SkinnableDataContainerView extends SparkDataContainerView
+{
+	//--------------------------------------------------------------------------
+	//
+	//  Constructor
+	//
+	//--------------------------------------------------------------------------
+
+	/**
+	 *  Constructor.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function SkinnableDataContainerView()
+	{
+		super();
+	}
+
+    override protected function prepareContentView():void
+    {
+        var host:SkinnableDataContainer = _strand as SkinnableDataContainer;
+        if (host.skin)
+        {
+            if (!host.isWidthSizedToContent())
+                host.skin.percentWidth = 100;
+            if (!host.isHeightSizedToContent())
+                host.skin.percentHeight = 100;            
+        }
+        else
+            super.prepareContentView();
+    }
+
+    /**
+     *  Adjusts the size of the host after the layout has been run if needed
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.UIBase
+     */
+    override public function beforeLayout():Boolean
+    {
+        var host:SkinnableDataContainer = _strand as SkinnableDataContainer;
+        if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+        {
+            if (host.skin)
+            {
+                (host.skin as Skin).layout.measure();
+                host.measuredHeight = host.skin.measuredHeight;
+                host.measuredWidth = host.skin.measuredWidth;
+            }
+            else 
+            {
+                if (host.layout == null)
+                    host.layout = new BasicLayout();
+                host.layout.measure();
+            }
+        }
+        else
+        {
+            if (host.skin)
+            {
+			    (host.skin as Skin).layout.measure();
+			    if (host.isWidthSizedToContent()) 
+			    {
+				    host.skin.setLayoutBoundsSize(NaN, host.height);
+				    host.measuredWidth = host.skin.measuredWidth;
+			    } else
+			    {
+				    host.skin.setLayoutBoundsSize(host.width, NaN);
+				    host.measuredHeight = host.skin.measuredHeight;
+			    }
+            }
+            else
+            {
+                if (host.layout == null)
+                    host.layout = new BasicLayout();
+                host.layout.measure();
+				var h:Number = host.isHeightSizedToContent() ? host.measuredHeight : host.height;
+				var w:Number = host.isWidthSizedToContent() ? host.measuredWidth : host.width;
+                (viewport.contentView as ILayoutChild).setWidthAndHeight(w, h);
+            }
+                
+        }
+	return true;
+    }
+    
+    override protected function addViewport():void
+    {
+        var chost:IContainer = host as IContainer;
+        var skinhost:SkinnableComponent = host as SkinnableComponent;
+        if (chost != null && chost != viewport.contentView && skinhost.skin) {
+            chost.addElement(skinhost.skin);
+        }
+        else
+            super.addViewport();
+    }
+
+}
+
+}

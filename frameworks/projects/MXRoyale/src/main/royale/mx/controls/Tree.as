@@ -107,7 +107,7 @@ import org.apache.royale.events.Event;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="itemOpen", type="mx.events.TreeEvent")]
+[Event(name="itemOpen", type="mx.events.TreeEvent")]
 
 /**
  *  Dispatched when a branch open or close is initiated.
