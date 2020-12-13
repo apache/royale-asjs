@@ -139,6 +139,9 @@
     <component id="SparkButtonSkin" class="spark.skins.SparkButtonSkin"/>
     <component id="Graphic" class="spark.primitives.Graphic"/>
     <component id="Move" class="spark.effects.Move"/>
+    <component id="Sort" class="spark.collections.Sort"/>
+    <component id="SortField" class="spark.collections.SortField"/>
+    <component id="CollectionChangeUpdateForArrayListData" class="spark.components.beads.CollectionChangeUpdateForArrayListData" />
     <component id="SelfItemRenderer" class="spark.components.beads.SelfItemRenderer"/>
     <component id="SelfItemRendererInitializer" class="spark.components.beads.SelfItemRendererInitializer"/>
 
