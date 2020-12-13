@@ -22,6 +22,8 @@ rem mxmlc.bat script to launch compiler-mxmlc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the mxmlc shell script instead.
 rem
 
+setlocal
+
 if "x%ROYALE_COMPILER_HOME%"=="x"  (set "ROYALE_COMPILER_HOME=%~dp0..\..") else echo Using Royale Compiler codebase: %ROYALE_COMPILER_HOME%
 
 if "x%ROYALE_HOME%"=="x" (set "ROYALE_HOME=%~dp0..\..") else echo Using Royale SDK: %ROYALE_HOME%

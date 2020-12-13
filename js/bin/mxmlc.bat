@@ -22,8 +22,10 @@ rem mxmlc.bat script to launch compiler-mxmlc.jar in Windows Command Prompt.
 rem On OSX, Unix, or Cygwin, use the mxmlc shell script instead.
 rem
 
-if "x%ROYALE_COMPILER_HOME%"=="x"  (set "ROYALE_COMPILER_HOME=%~dp0..\..") else echo Using Royale Compiler codebase: %ROYALE_COMPILER_HOME%
+setlocal
+
+if "x%ROYALE_COMPILER_HOME%"=="x"  (set "ROYALE_COMPILER_HOME=%~dp0..\..\js") else echo Using Royale Compiler codebase: %ROYALE_COMPILER_HOME%
 
 if "x%ROYALE_HOME%"=="x" (set "ROYALE_HOME=%~dp0..\..") else echo Using Royale SDK: %ROYALE_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Droyalecompiler="%ROYALE_COMPILER_HOME%" -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\js\lib\mxmlc.jar"  -sdk-js-lib="%ROYALE_HOME%\frameworks\js\Royale\generated-sources" %*
+@java -Dsun.io.useCanonCaches=false -Xms128m -Xmx1024m -Droyalecompiler="%ROYALE_COMPILER_HOME%" -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\lib\mxmlc.jar"  -sdk-js-lib="%ROYALE_HOME%\frameworks\js\Royale\generated-sources" %*
