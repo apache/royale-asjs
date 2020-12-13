@@ -45,6 +45,7 @@ import mx.core.IUITextField;
 */
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
+import mx.controls.beads.ProgressBarView;
 /*
 import mx.core.UITextField;
 import mx.styles.ISimpleStyleClient;
@@ -520,6 +521,11 @@ public class ProgressBar extends UIComponent //implements IFontContextComponent
 //                     "controls", "label");
 		_label = value;
 
+		COMPILE::JS 
+		{
+			(view as ProgressBarView).text = value;
+		}
+		
         invalidateDisplayList();
 
         dispatchEvent(new Event("labelChanged"));
@@ -936,6 +942,11 @@ public class ProgressBar extends UIComponent //implements IFontContextComponent
     {
         if (_mode == ProgressBarMode.MANUAL)
             _setProgress(value, total);
+
+		COMPILE::JS
+		{
+			(view as ProgressBarView).setProgress(value / total);
+		}
     }
 
     /**

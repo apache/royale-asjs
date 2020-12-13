@@ -560,6 +560,15 @@ public class TextBase extends UIComponent implements IDisplayText
                      _text = value;
                      textNode.nodeValue = value;
                      this.dispatchEvent('textChange');
+					 var contentWidth:Boolean = this.isWidthSizedToContent();
+					 var contentHeight:Boolean = this.isHeightSizedToContent();
+					 var eventType:String = null;
+					 if (contentWidth)
+						eventType = "widthChanged";
+					 if (contentHeight) 
+						eventType = contentWidth ? "sizeChanged" : "heightChanged";
+					 if (eventType)
+					    dispatchEvent(eventType);
                  }
              }
              

@@ -374,6 +374,7 @@ limitations under the License.
 							<j:ComboBoxPresentationModel rowCount="4" rowHeight="52"/>
 							<j:ComboBoxTextPrompt prompt="Icons and Text..."/>
 							<j:SearchFilter/>
+							<j:ComboBoxListCloseOnClick/>
 						</j:beads>
 					</j:ComboBox>
 					
@@ -387,6 +388,7 @@ limitations under the License.
 							<j:ComboBoxPresentationModel rowCount="4" rowHeight="52"/>
 							<j:ComboBoxTextPrompt prompt="Icons and Text..."/>
 							<j:SearchFilter/>
+							<j:ComboBoxListCloseOnClick/>
 						</j:beads>
 					</j:ComboBox>
 

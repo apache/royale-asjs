@@ -30,7 +30,7 @@ import mx.core.IVisualElement;
 import mx.core.mx_internal;
 import mx.events.PropertyChangeEvent;
 
-import spark.components.DataGroup;
+//import spark.components.DataGroup;
 import spark.components.supportClasses.GroupBase;
 import spark.core.NavigationUnit;
 import spark.layouts.supportClasses.DropLocation;

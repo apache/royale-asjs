@@ -617,12 +617,12 @@ public class Image extends UIComponent
 
 	override public function get measuredWidth():Number
 	{
-		return contentWidth;
+		return isNaN(contentWidth) ? 0 : contentWidth;
 	}
 
 	override public function get measuredHeight():Number
 	{
-		return contentHeight;
+		return isNaN(contentHeight) ? 0 : contentHeight;
 	}
 
 	override protected function updateDisplayList(unscaledWidth:Number,

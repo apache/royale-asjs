@@ -21,6 +21,9 @@ package mx.controls.treeClasses
 	import mx.collections.ICollectionView;
     import mx.collections.IViewCursor;
     import mx.collections.ICollectionView;
+    import mx.collections.ListCollectionView;
+    import mx.events.CollectionEvent;
+    import mx.events.CollectionEventKind;
 	
 	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
@@ -45,6 +48,7 @@ package mx.controls.treeClasses
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
     import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
+    import org.apache.royale.utils.sendBeadEvent;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -88,17 +92,49 @@ package mx.controls.treeClasses
         {
             if (!dataProviderModel)
                 return;
+
+            if (dp)
+            {
+                dp.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+            }
+
             dp = dataProviderModel.dataProvider as ICollectionView;
-            if (!dp)
-                return;
-            
-            // listen for individual items being added in the future.
-            var dped:IEventDispatcher = dp as IEventDispatcher;
-            dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-            
             super.dataProviderChangeHandler(event);
+
+            if (dp)
+            {
+                dp.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+            }
+        }
+
+        protected function collectionChangeHandler(event:mx.events.CollectionEvent):void
+        {
+            if (event is mx.events.CollectionEvent)
+            {
+                if (event.kind == mx.events.CollectionEventKind.RESET)
+                {
+                    // RESET may be from XMLListCollection source = newxmlllist + refresh(), for example.
+                    sendBeadEvent(dataProviderModel, "dataProviderChanged");
+                }
+                else if (event.kind == CollectionEventKind.ADD)
+                {
+                    // ADD may be from HierarchicalCollectionView.xmlNotification
+                    var addEvent:org.apache.royale.events.CollectionEvent 
+                        = new org.apache.royale.events.CollectionEvent(org.apache.royale.events.CollectionEvent.ITEM_ADDED);
+                    addEvent.item = event.items[0];
+                    addEvent.index = event.location;
+                    itemAddedHandler(addEvent);
+                }
+                else if (event.kind == CollectionEventKind.REMOVE)
+                {
+                    // REMOVE may be from HierarchicalCollectionView.xmlNotification
+                    var removeEvent:org.apache.royale.events.CollectionEvent 
+                        = new org.apache.royale.events.CollectionEvent(org.apache.royale.events.CollectionEvent.ITEM_REMOVED);
+                    removeEvent.item = event.items[0];
+                    removeEvent.index = event.location;
+                    itemRemovedHandler(removeEvent);
+                }
+            }
         }
 
         private var cursor:IViewCursor;

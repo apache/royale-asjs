@@ -185,7 +185,7 @@ package org.apache.royale.html.beads
             dispatchItemAdded(renderer);
         }
         
-        private function dispatchItemAdded(renderer:IItemRenderer):void
+        protected function dispatchItemAdded(renderer:IItemRenderer):void
         {
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
             newEvent.item = renderer;

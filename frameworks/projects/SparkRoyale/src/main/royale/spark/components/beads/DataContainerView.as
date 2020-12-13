@@ -16,29 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package vos
-{
-    import org.apache.royale.collections.IArrayList;
-    
-    [Bindable]
-    public class NavigationLinkVO
-    {
-        public var label:String;
-        public var hash:String;
-        public var icon:String;
-        public var disabled:Boolean;
-        
-        //for collapsible example
-        public var subMenu:IArrayList;
-        public var open:Boolean;
-        public var selectedChild:NavigationLinkVO;
+package spark.components.beads
+{	
+	import spark.events.RendererExistenceEvent;
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.core.IItemRenderer;
+	import mx.core.IVisualElement;
 
-        public function NavigationLinkVO(label:String, hash:String, icon:String = null, disabled:Boolean = false)
-        {
-            this.label = label;
-            this.hash = hash;
-            this.icon = icon;
-            this.disabled = disabled;
-        }
-    }
+
+	/**
+	 *  The DataContainerView provides the visual elements for the DataContainer.
+	 *  
+	 *  @viewbead
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 */
+	public class DataContainerView extends org.apache.royale.html.beads.DataContainerView
+	{
+		public function DataContainerView()
+		{
+			super();
+		}
+		
+		override protected function dispatchItemAdded(renderer:IItemRenderer):void
+		{
+			super.dispatchItemAdded(renderer);
+		    var newEvent:RendererExistenceEvent = new RendererExistenceEvent(RendererExistenceEvent.RENDERER_ADD, false, false, renderer as IVisualElement);
+		    sendStrandEvent(_strand,newEvent);
+		}
+
+	}
 }

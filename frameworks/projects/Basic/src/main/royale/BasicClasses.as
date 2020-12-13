@@ -42,6 +42,7 @@ internal class BasicClasses
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
 	import org.apache.royale.html.beads.AlertView; AlertView;
+	import org.apache.royale.html.beads.ItemRendererFunctionBead; ItemRendererFunctionBead;
 	import org.apache.royale.html.beads.ColorSpectrumView; ColorSpectrumView;
 	import org.apache.royale.html.supportClasses.ColorPickerPopUp; ColorPickerPopUp;
 	import org.apache.royale.html.beads.controllers.AlertController; AlertController;

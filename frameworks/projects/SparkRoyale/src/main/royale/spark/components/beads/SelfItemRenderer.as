@@ -16,29 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package vos
-{
-    import org.apache.royale.collections.IArrayList;
-    
-    [Bindable]
-    public class NavigationLinkVO
-    {
-        public var label:String;
-        public var hash:String;
-        public var icon:String;
-        public var disabled:Boolean;
-        
-        //for collapsible example
-        public var subMenu:IArrayList;
-        public var open:Boolean;
-        public var selectedChild:NavigationLinkVO;
 
-        public function NavigationLinkVO(label:String, hash:String, icon:String = null, disabled:Boolean = false)
-        {
-            this.label = label;
-            this.hash = hash;
-            this.icon = icon;
-            this.disabled = disabled;
-        }
-    }
+package spark.components.beads
+{
+	import spark.components.supportClasses.ItemRenderer;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.events.Event;
+
+	/**
+	 *  The SelfItemRenderer class defines the Spark item renderer class 
+	 *  these uses the item to render itself.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10
+	 *  @playerversion AIR 1.5
+	 *  @productversion Royale 0.9.8
+	 */
+	public class SelfItemRenderer extends ItemRenderer implements IIndexedItemRenderer
+	{    
+		/**
+		 *  Constructor.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10
+		 *  @playerversion AIR 1.5
+		 *  @productversion Royale 0.9.8
+		 */
+		public function SelfItemRenderer()
+		{
+			super();
+			typeNames = "SelfItemRenderer";
+		}
+	}
 }

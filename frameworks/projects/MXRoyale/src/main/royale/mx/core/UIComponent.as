@@ -2397,10 +2397,10 @@ COMPILE::JS
                 oldTop = this.positioner.style.top;
                 oldBottom = this.positioner.style.bottom;
                 oldHeight = this.positioner.style.height;
-                if (oldHeight.length)
-                    this.positioner.style.height = "";
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
                     return 0; //this.positioner.style.top = "";
+                if (oldHeight.length)
+                    this.positioner.style.height = "";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && numChildren > 0)
                 {

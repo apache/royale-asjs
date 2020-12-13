@@ -188,6 +188,8 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function scrollToIndex(index:int):Boolean
 		{
+			if (index == -1) return false;
+			
 			var scrollArea:HTMLElement = (_strand as IStyledUIBase).element;
 			var oldScroll:Number = scrollArea.scrollTop;
 

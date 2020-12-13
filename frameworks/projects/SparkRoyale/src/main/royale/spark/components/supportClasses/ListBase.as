@@ -565,7 +565,7 @@ public class ListBase  extends SkinnableContainer
         factory.createFunction = factory.createFromClass;
         factory.itemRendererFactory = value;
     }
-    
+
 
     //----------------------------------
     //  itemRendererFunction
@@ -603,6 +603,7 @@ public class ListBase  extends SkinnableContainer
         //else
             //dataGroupProperties.itemRendererFunction = value;
     }
+
     /**
      *  @private
      */
@@ -1157,7 +1158,7 @@ public class ListBase  extends SkinnableContainer
      *  however in this case, always honoring the layout's useVirtalLayout property seems 
      *  less likely to cause confusion.
      */
-     public function set useVirtualLayout(value:Boolean):void
+    public function set useVirtualLayout(value:Boolean):void
     {
         if (value == useVirtualLayout)
             return;
@@ -1348,6 +1349,19 @@ public class ListBase  extends SkinnableContainer
                 RendererExistenceEvent.RENDERER_REMOVE, dataGroup_rendererRemoveHandler);
         }
     } */
+
+	//dataGroup copied from SkinnableDataContainer
+	/**
+     *  An optional skin part that defines the DataGroup in the skin class 
+     *  where data items get pushed into, rendered, and laid out.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     *  @royalesuppresspublicvarwarning
+     */
+    public var dataGroup:DataGroup;
 
     /**
      *  @private
