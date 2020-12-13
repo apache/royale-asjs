@@ -1706,12 +1706,10 @@ public class Tree extends List
      */
     public function isItemOpen(item:Object):Boolean
     {
-        trace("Tree:isItemOpen not implemented");
-        /*
+        // dataProvider (HierarchicalCollectionView) is maintaining this, through a reference to openItems;
+        // if it wasn't, could still create a bead to maintain it, to avoid an O(n) search for the itemRenderer.listData
         var uid:String = itemToUID(item);
         return _openItems[uid] != null;
-        */
-        return false;
     }
 
     /**

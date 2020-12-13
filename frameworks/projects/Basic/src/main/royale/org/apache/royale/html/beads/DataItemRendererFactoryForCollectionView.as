@@ -151,7 +151,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function itemUpdatedHandler(event:CollectionEvent):void
 		{
-			if(dataProviderExist)
+			if(!dataProviderExist)
 				return;
 
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
