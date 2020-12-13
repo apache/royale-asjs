@@ -28,4 +28,4 @@ if "x%ROYALE_COMPILER_HOME%"=="x"  (set "ROYALE_COMPILER_HOME=%~dp0..\..") else 
 
 if "x%ROYALE_HOME%"=="x" (set "ROYALE_HOME=%~dp0..\..") else echo Using Royale SDK: %ROYALE_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m -Droyalecompiler="%ROYALE_COMPILER_HOME%" -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\js\lib\mxmlc.jar"  -sdk-js-lib="%ROYALE_HOME%\frameworks\js\Royale\generated-sources" %*
+@java -Dsun.io.useCanonCaches=false -Xms128m -Xmx1024m -Droyalecompiler="%ROYALE_COMPILER_HOME%" -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\js\lib\mxmlc.jar"  -sdk-js-lib="%ROYALE_HOME%\frameworks\js\Royale\generated-sources" %*
