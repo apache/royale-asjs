@@ -410,19 +410,6 @@ public class SkinnableComponent extends UIComponent
 
     protected function partRemoved(partName:String, instance:Object):void {} // not implemented
 
-	//dataGroup copied from SkinnableDataContainer
-	/**
-     *  An optional skin part that defines the DataGroup in the skin class 
-     *  where data items get pushed into, rendered, and laid out.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     *  @royalesuppresspublicvarwarning
-     */
-    public var dataGroup:DataGroup;
-
 	// getCurrentSkinState copied from SkinnableContainerBase
 	/* override */ protected function getCurrentSkinState():String
     {

@@ -46,6 +46,7 @@
 	<component id="Skin" class="spark.components.supportClasses.Skin"/>
 	<component id="SkinnableComponent" class="spark.components.supportClasses.SkinnableComponent"/>
     <component id="SkinnableContainer" class="spark.components.SkinnableContainer"/>
+    <component id="SkinnableDataContainer" class="spark.components.SkinnableDataContainer"/>
 	<component id="ToggleButton" class="spark.components.ToggleButton"/>
 	<component id="ToggleButtonBase" class="spark.components.supportClasses.ToggleButtonBase"/>
 	<component id="ButtonBase" class="spark.components.supportClasses.ButtonBase"/>
@@ -117,6 +118,7 @@
 	<component id="ButtonBar" class="spark.components.ButtonBar"/>
 	<component id="SkinnablePopUpContainer" class="spark.components.SkinnablePopUpContainer"/>
     
+    <component id="VirtualVDataGroup" class="spark.components.VirtualVDataGroup"/>
     <component id="NonVirtualHDataGroup" class="spark.components.NonVirtualHDataGroup"/>
     <component id="NonVirtualVDataGroup" class="spark.components.NonVirtualVDataGroup"/>
     <component id="TabBarView" class="spark.components.beads.TabBarView"/>
@@ -137,6 +139,8 @@
     <component id="SparkButtonSkin" class="spark.skins.SparkButtonSkin"/>
     <component id="Graphic" class="spark.primitives.Graphic"/>
     <component id="Move" class="spark.effects.Move"/>
+    <component id="SelfItemRenderer" class="spark.components.beads.SelfItemRenderer"/>
+    <component id="SelfItemRendererInitializer" class="spark.components.beads.SelfItemRendererInitializer"/>
 
 	
 </componentPackage>

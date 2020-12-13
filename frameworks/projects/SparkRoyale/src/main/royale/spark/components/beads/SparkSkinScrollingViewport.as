@@ -39,7 +39,6 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.geom.Size;
-import spark.components.SkinnableContainer;
 
 COMPILE::SWF
 {
