@@ -77,10 +77,17 @@ package org.apache.royale.html.beads.layouts
         {
             super.strand = value;
             dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+
             COMPILE::JS
             {
             host.element.addEventListener("scroll", scrollHandler);
             }
+        }
+
+        protected function dataProviderChangeHandler(event:Event):void
+        {
+            visibleIndexes = [];
         }
         
         COMPILE::JS
