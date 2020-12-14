@@ -359,6 +359,7 @@ internal class MXRoyaleClasses
 	import mx.controls.menuClasses.IMenuDataDescriptor; IMenuDataDescriptor;
 	import mx.controls.menuClasses.IMenuBarItemRenderer; IMenuBarItemRenderer;
 	import mx.utils.GraphicsUtil; GraphicsUtil;
+        import mx.dummy.ContextMenuItem; ContextMenuItem;
 }
 
 }
