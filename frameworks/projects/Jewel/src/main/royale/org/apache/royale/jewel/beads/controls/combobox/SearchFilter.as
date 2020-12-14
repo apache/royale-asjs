@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.jewel.List;
     import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 *  The SearchFilter bead class is a specialty bead that can be used with
@@ -103,7 +104,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 		override protected function onInputFocus(event:Event):void{
             if (!comboView.popUpVisible)
-                comboView.popUpVisible = true;
+                 IEventDispatcher((comboView as IComboBoxView).textinput).dispatchEvent(new Event(MouseEvent.CLICK));
+			
 		}
 
 		protected function popUpOpenedHandler():void {
