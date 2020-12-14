@@ -950,6 +950,54 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 		{
 			_editable = value;
 		}
+		
+		//----------------------------------
+		//  dataTipField
+		//----------------------------------
+
+		/**
+		 *  @private
+		 *  Storage for the dataTipField property.
+		 */
+		private var _dataTipField:String;
+
+		[Bindable("dataTipFieldChanged")]
+		[Inspectable(category="Advanced", defaultValue="label")]
+
+		/**
+		 *  The name of the field in the data provider to display as the datatip. 
+		 *  By default, the DataGrid control looks for a property named 
+		 *  <code>label</code> on each data provider item and displays it.
+		 *  However, if the data provider does not contain a <code>label</code>
+		 *  property, you can set the <code>dataTipField</code> property to
+		 *  specify a different property.  
+		 *  For example, you could set the value to "FullName" when a user views a
+		 *  set of people's names included from a database.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function get dataTipField():String
+		{
+			return _dataTipField;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set dataTipField(value:String):void
+		{
+			_dataTipField = value;
+
+			if (owner)
+			{
+				//owner.invalidateList();
+			}
+
+			dispatchEvent(new Event("dataTipChanged"));
+		}
 }
 
 }
