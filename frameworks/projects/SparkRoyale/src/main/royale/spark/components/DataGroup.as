@@ -556,8 +556,13 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
      */
     public function get itemRendererFunction():Function // not implemeneted
     {
-        //return _itemRendererFunction;
-	return null;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+	    if (itemRendererFunctionBead)
+        {
+            return itemRendererFunctionBead.itemRendererFunction;
+        }
+
+        return null;
     }
     
     /**
@@ -565,13 +570,13 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
      */
     public function set itemRendererFunction(value:Function):void
     {
-	var itemRendererFunctionBead:ItemRendererFunctionBead = getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
-	if (!itemRendererFunctionBead)
-	{
-		itemRendererFunctionBead = new ItemRendererFunctionBead();
-		addBead(itemRendererFunctionBead);
-	}
-	itemRendererFunctionBead.itemRendererFunction = value;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+        if (!itemRendererFunctionBead)
+        {
+            itemRendererFunctionBead = new ItemRendererFunctionBead();
+            addBead(itemRendererFunctionBead);
+        }
+        itemRendererFunctionBead.itemRendererFunction = value;
     }
 
     //----------------------------------
