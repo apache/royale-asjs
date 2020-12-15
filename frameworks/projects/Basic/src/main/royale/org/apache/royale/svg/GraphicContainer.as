@@ -42,7 +42,7 @@ package org.apache.royale.svg
 	[DefaultProperty("mxmlContent")]
 	public class GraphicContainer extends GroupBase implements ITransformHost, IMXMLDocument
 	{
-		private var graphicGroup:GroupBase;
+		protected var graphicGroup:GroupBase;
 		private var _mxmlDescriptor:Array;
 		private var _mxmlDocument:Object = this;
 		private var _initialized:Boolean;
