@@ -34,6 +34,7 @@ use namespace mx_internal;  */
 
 import org.apache.royale.core.IItemRenderer;
 import spark.components.DataRenderer;
+import org.apache.royale.events.Event;
 /**
  *  The ItemRenderer class is the base class for Spark item renderers.
  *
