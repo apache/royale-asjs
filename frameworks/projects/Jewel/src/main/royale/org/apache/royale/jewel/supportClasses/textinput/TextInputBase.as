@@ -198,7 +198,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             {
             if (event.key === WhitespaceKeys.ENTER) {
                 // Cancel the default action, if needed
-                event.preventDefault();
+                //event.preventDefault();
                 dispatchEvent(new Event("enter"));
             }
             }
