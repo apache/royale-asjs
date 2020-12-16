@@ -183,6 +183,45 @@ use namespace mx_internal;
             _dragMoveEnabled = value;
         }
         
+	
+	//----------------------------------
+        //  menuSelectionMode 
+        //----------------------------------
+        
+        /**
+         *  @public
+         *  Storage for the menuSelectionMode property.
+         */
+        public var _menuSelectionMode:Boolean = false;
+        
+        /**
+         *  A flag that indicates whether you can drag items out of
+         *  this control and drop them on other controls.
+         *  If <code>true</code>, dragging is enabled for the control.
+         *  If the <code>menuSelectionMode</code> property is also <code>true</code>,
+         *  you can drag items and drop them within this control
+         *  to reorder the items.
+         *
+         *  @default false
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function get menuSelectionMode():Boolean
+        {
+            return _menuSelectionMode;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set menuSelectionMode(value:Boolean):void
+        {
+            _menuSelectionMode = value;
+        }
+	
         //----------------------------------
         //  dataProvider
         //----------------------------------
