@@ -56,6 +56,7 @@ import org.apache.royale.events.Event;
  */
 [Event(name="scroll", type="mx.events.ScrollEvent")]
 
+[Style(name="borderStyle", type="String", inherit="no")]
 
 /**
  *  The ScrollControlBase class is the base class for controls
