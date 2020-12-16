@@ -30,7 +30,7 @@ use namespace mx_internal;
 
 [DefaultProperty("targetFactory")]
 
-[ResourceBundle("states")]
+//[ResourceBundle("states")]
     
 /**
  *  The AddChild class adds a child display object, such as a component, 
