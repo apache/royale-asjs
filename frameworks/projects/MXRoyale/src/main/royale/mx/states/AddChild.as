@@ -20,7 +20,6 @@
 package mx.states
 {
 import mx.core.ContainerCreationPolicy;
-import mx.core.IDeferredInstance;
 import mx.core.mx_internal;
 import mx.core.UIComponent;
 import mx.resources.IResourceManager;
