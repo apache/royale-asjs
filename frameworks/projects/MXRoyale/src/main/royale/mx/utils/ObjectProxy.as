@@ -266,16 +266,26 @@ public dynamic class ObjectProxy extends Proxy
 
     /**
      *  The object being proxied.
+     *
+     *  To enumerate keys:  for (key:String in objproxy.object)
+     *  To enumerate values:  for each (value in objproxy.object)
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    object_proxy function get object():Object
-//    {
-//        return _item;
-//    }
+    COMPILE::SWF
+    object_proxy function get object():Object
+    {
+        return _item;
+    }
+
+    COMPILE::JS
+    public function get object():Object
+    {
+        return _item;
+    }
 
     //----------------------------------
     //  type
