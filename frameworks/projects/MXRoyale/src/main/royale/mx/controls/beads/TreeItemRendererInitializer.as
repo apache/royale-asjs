@@ -77,6 +77,7 @@ package mx.controls.beads
             treeListData.depth = depth;
             treeListData.isOpen = isOpen;
             treeListData.hasChildren = hasChildren;
+	    treeListData.item = data;
             
             (ir as IListDataItemRenderer).listData = treeListData;
             
