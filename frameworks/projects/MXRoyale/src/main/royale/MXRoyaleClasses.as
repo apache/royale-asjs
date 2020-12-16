@@ -360,6 +360,7 @@ internal class MXRoyaleClasses
 	import mx.controls.menuClasses.IMenuBarItemRenderer; IMenuBarItemRenderer;
 	import mx.utils.GraphicsUtil; GraphicsUtil;
         import mx.dummy.ContextMenuItem; ContextMenuItem;
+	import mx.containers.ApplicationControlBar; ApplicationControlBar;
 }
 
 }
