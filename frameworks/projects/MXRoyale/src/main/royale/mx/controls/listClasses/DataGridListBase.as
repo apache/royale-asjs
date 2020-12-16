@@ -74,6 +74,7 @@ import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -580,6 +581,18 @@ public class DataGridListBase extends ListBase /* extends UIComponent
         clearSelectionData();
         (model as ISelectionModel).selectedIndex = -1;
         super.dataProvider = value;
+		if (isWidthSizedToContent() || isHeightSizedToContent()) 
+		{
+			invalidateSize();
+			if (parent) 
+			{
+				// if we're sized to content and parent doesn't have explicitWidth
+				// meaning it is sizedToContent or may be % but depending on
+				// minHeight measurement, then force a layout
+				if (isHeightSizedToContent() && isNaN((parent as UIComponent).explicitHeight))			
+					(parent as IEventDispatcher).dispatchEvent("layoutNeeded");
+			}
+		}
 
     }
 
@@ -1746,6 +1759,13 @@ public class DataGridListBase extends ListBase /* extends UIComponent
         // if needed, add a clip mask to the items in the last row of the list
         addClipMask((offscreenExtraRowsTop != oldoffscreenExtraRowsTop) || (offscreenExtraRowsBottom != oldoffscreenExtraRowsBottom));
     } */
+
+    override public function get measuredHeight():Number
+    {
+		if (dataProvider && dataProvider.length && !isNaN(rowHeight))
+		    return dataProvider.length * rowHeight;
+		return super.measuredHeight;
+    }
 
     //--------------------------------------------------------------------------
     //
