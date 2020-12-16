@@ -534,11 +534,7 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
     
-    //--------------------------------------------------------------------------
-    //
-    //  Class constants
-    //
-    //--------------------------------------------------------------------------
+    protected static const doTraceNI:Boolean = false;
     
     /**
      *  The default value for the <code>measuredWidth</code> property.
@@ -3660,7 +3656,7 @@ COMPILE::JS
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
-        trace("setChildIndex not implemented");
+        if (doTraceNI) trace("setChildIndex not implemented");
     }
 
     /**
@@ -3942,7 +3938,7 @@ COMPILE::JS
      */
     public function invalidateProperties():void
     {
-        trace("invalidateProperties not implemented");
+        if (doTraceNI) trace("invalidateProperties not implemented");
     }
 
     /**
@@ -3988,7 +3984,7 @@ COMPILE::JS
      */
     protected function invalidateParentSizeAndDisplayList():void
     {
-        trace("invalidateParentSizeAndDisplayList not implemented");
+        if (doTraceNI) trace("invalidateParentSizeAndDisplayList not implemented");
     }
 
     protected var invalidateDisplayListFlag:Boolean = false;
@@ -4017,7 +4013,7 @@ COMPILE::JS
      */
     public function invalidateDisplayList():void
     {
-        trace("invalidateDisplayList not implemented");
+        if (doTraceNI) trace("invalidateDisplayList not implemented");
         invalidateDisplayListFlag = true;
     }
 
@@ -4240,7 +4236,7 @@ COMPILE::JS
      */
     protected function commitProperties():void
     {
-        trace("commitProperties not implemented");
+        if (doTraceNI) trace("commitProperties not implemented");
     }
 
     //--------------------------------------------------------------------------
@@ -4532,7 +4528,7 @@ COMPILE::JS
     protected function updateDisplayList(unscaledWidth:Number,
                                         unscaledHeight:Number):void
     {
-        trace("updateDisplayList not implemented");  
+        if (doTraceNI) trace("updateDisplayList not implemented");  
         invalidateDisplayListFlag = false;
     }
 
