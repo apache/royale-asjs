@@ -590,7 +590,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
 				// meaning it is sizedToContent or may be % but depending on
 				// minHeight measurement, then force a layout
 				if (isHeightSizedToContent() && isNaN((parent as UIComponent).explicitHeight))			
-					(parent as IEventDispatcher).dispatchEvent("layoutNeeded");
+					(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 			}
 		}
 
