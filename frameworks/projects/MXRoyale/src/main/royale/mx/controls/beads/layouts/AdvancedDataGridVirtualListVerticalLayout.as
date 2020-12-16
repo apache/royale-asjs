@@ -261,7 +261,7 @@ package mx.controls.beads.layouts
                         var topValue:Number = parseFloat(top.substring(0, c));
                         if (topValue < 0)
                         {
-                            trace(host.element.style.top);
+                            //trace(host.element.style.top);
                             host.element.style.top = "1px";                            
                         }
                     }
