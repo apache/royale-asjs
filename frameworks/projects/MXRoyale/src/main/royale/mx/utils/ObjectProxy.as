@@ -657,6 +657,16 @@ public dynamic class ObjectProxy extends Proxy
         }
     }
 
+    /*
+     *  To enumerate keys:  for (key:String in objproxy)
+     *  To enumerate values:  for each (value in objproxy)
+     */
+    COMPILE::JS
+    override public function propertyNames():Object
+    {
+        return _item;
+    }
+
     //--------------------------------------------------------------------------
     //
     //  object_proxy methods
