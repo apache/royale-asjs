@@ -361,6 +361,8 @@ internal class MXRoyaleClasses
 	import mx.utils.GraphicsUtil; GraphicsUtil;
         import mx.dummy.ContextMenuItem; ContextMenuItem;
 	import mx.containers.ApplicationControlBar; ApplicationControlBar;
+	import mx.filters.BitmapFilterType; BitmapFilterType;
+	import mx.filters.BitmapFilterQuality; BitmapFilterQuality;
 }
 
 }
