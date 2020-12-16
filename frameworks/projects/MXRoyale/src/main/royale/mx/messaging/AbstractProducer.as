@@ -350,8 +350,9 @@ public class AbstractProducer extends MessageAgent
         {
             if (value < 0)
             {
-                var message:String = resourceManager.getString(
-                    "messaging", "reconnectIntervalNegative");
+                /* var message:String = resourceManager.getString(
+                    "messaging", "reconnectIntervalNegative"); */
+                var message:String = "reconnectInterval cannot take a negative value.";
                 throw new ArgumentError(message);
             }
             else if (value == 0)
@@ -556,10 +557,12 @@ public class AbstractProducer extends MessageAgent
             _shouldBeConnected = false;
             var errMsg2:ErrorMessage = new ErrorMessage();
             errMsg2.faultCode = "Client.Error.MessageSend";
-            errMsg2.faultString = resourceManager.getString(
+            /* errMsg2.faultString = resourceManager.getString(
                 "messaging", "producerSendError");
             errMsg2.faultDetail = resourceManager.getString(
-                "messaging", "producerSendErrorDetails");
+                "messaging", "producerSendErrorDetails"); */
+            errMsg2.faultString = "Send failed";
+            errMsg2.faultDetail = "The producer is not connected and the message cannot be sent.";
             errMsg2.correlationId = message.messageId;
             internalFault(errMsg2, message, false, true);
         }        
@@ -732,10 +735,12 @@ public class AbstractProducer extends MessageAgent
     {
         var errMsg:ErrorMessage = new ErrorMessage();
         errMsg.faultCode = "Client.Error.Connect";
-        errMsg.faultString = resourceManager.getString(
+        /* errMsg.faultString = resourceManager.getString(
             "messaging", "producerConnectError");
         errMsg.faultDetail = resourceManager.getString(
-            "messaging", "failedToConnect");
+            "messaging", "failedToConnect"); */
+        errMsg.faultString = "Producer connect error";
+        errMsg.faultDetail = "The producer was not able to connect to its target destination.";
         errMsg.correlationId = _connectMsg.messageId;
         return errMsg;
     }

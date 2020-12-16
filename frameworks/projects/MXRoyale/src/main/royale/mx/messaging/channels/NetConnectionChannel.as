@@ -586,11 +586,14 @@ class NetConnectionMessageResponder extends MessageResponder
             {
                 errorMsg = new ErrorMessage();
                 errorMsg.faultCode = "Server.Acknowledge.Failed";
-                errorMsg.faultString = resourceManager.getString(
+                /* errorMsg.faultString = resourceManager.getString(
                     "messaging", "ackFailed");
                 errorMsg.faultDetail = resourceManager.getString(
                     "messaging", "ackFailed.details",
-                    [ message.messageId, AsyncMessage(msg).correlationId ]);
+                    [ message.messageId, AsyncMessage(msg).correlationId ]); */
+                errorMsg.faultString = "Didn't receive an acknowledgement of message";
+                errorMsg.faultDetail = StringUtil.substitute("Was expecting message '{0}' but received '{1}'.",
+                    message.messageId, AsyncMessage(msg).correlationId);
                 errorMsg.correlationId = message.messageId;
                 agent.fault(errorMsg, message);
                 //@TODO: need to add constants here
@@ -600,11 +603,14 @@ class NetConnectionMessageResponder extends MessageResponder
         {
             errorMsg = new ErrorMessage();
             errorMsg.faultCode = "Server.Acknowledge.Failed";
-            errorMsg.faultString = resourceManager.getString(
+            /* errorMsg.faultString = resourceManager.getString(
                 "messaging", "noAckMessage");
             errorMsg.faultDetail = resourceManager.getString(
                 "messaging", "noAckMessage.details",
-                [ msg ? msg.toString() : "null" ]);
+                [ msg ? msg.toString() : "null" ]); */
+            errorMsg.faultString = "Didn't receive an acknowledge message";
+            errorMsg.faultDetail = StringUtil.substitute("Was expecting mx.messaging.messages.AcknowledgeMessage, but received {0}",
+                msg ? msg.toString() : "null");
             errorMsg.correlationId = message.messageId;
             agent.fault(errorMsg, message);
         }
@@ -649,11 +655,14 @@ class NetConnectionMessageResponder extends MessageResponder
             {
                 errorMsg = new ErrorMessage();
                 errorMsg.faultCode = "Server.Acknowledge.Failed";
-                errorMsg.faultString = resourceManager.getString(
+                /* errorMsg.faultString = resourceManager.getString(
                     "messaging", "noErrorForMessage");
                 errorMsg.faultDetail = resourceManager.getString(
                     "messaging", "noErrorForMessage.details",
-                    [ message.messageId, AsyncMessage(msg).correlationId ]);
+                    [ message.messageId, AsyncMessage(msg).correlationId ]); */
+                errorMsg.faultString = "Didn't receive an error for message";
+                errorMsg.faultDetail = StringUtil.substitute("Was expecting message '{0}' but received '{1}'.",
+                    message.messageId, AsyncMessage(msg).correlationId);
                 errorMsg.correlationId = message.messageId;
                 agent.fault(errorMsg, message);
             }
@@ -662,11 +671,14 @@ class NetConnectionMessageResponder extends MessageResponder
         {
             errorMsg = new ErrorMessage();
             errorMsg.faultCode = "Server.Acknowledge.Failed";
-            errorMsg.faultString = resourceManager.getString(
+            /* errorMsg.faultString = resourceManager.getString(
                 "messaging", "noAckMessage");
             errorMsg.faultDetail = resourceManager.getString(
                 "messaging", "noAckMessage.details",
-                [ msg ? msg.toString(): "null" ]);
+                [ msg ? msg.toString(): "null" ]); */
+            errorMsg.faultString = "Didn't receive an acknowledge message";
+            errorMsg.faultDetail = StringUtil.substitute("Was expecting mx.messaging.messages.AcknowledgeMessage, but received {0}",
+                msg ? msg.toString(): "null");
             errorMsg.correlationId = message.messageId;
             agent.fault(errorMsg, message);
         }
@@ -711,10 +723,12 @@ class NetConnectionMessageResponder extends MessageResponder
         disconnect();
         var errorMsg:ErrorMessage = new ErrorMessage();
         errorMsg.correlationId = message.messageId;
-        errorMsg.faultString = resourceManager.getString(
+        /* errorMsg.faultString = resourceManager.getString(
             "messaging", "deliveryInDoubt");
         errorMsg.faultDetail = resourceManager.getString
-            ("messaging", "deliveryInDoubt.details");
+            ("messaging", "deliveryInDoubt.details"); */
+        errorMsg.faultString = "Channel disconnected";
+        errorMsg.faultDetail = "Channel disconnected before an acknowledgement was received";
         errorMsg.faultCode = ErrorMessage.MESSAGE_DELIVERY_IN_DOUBT;
         errorMsg.rootCause = event;
         agent.fault(errorMsg, message);

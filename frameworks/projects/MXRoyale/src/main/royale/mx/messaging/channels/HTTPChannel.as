@@ -840,16 +840,18 @@ class HTTPWrapperResponder
         var msg:ErrorMessage = new ErrorMessage();
         msg.correlationId = _wrappedResponder.message.messageId;
         msg.faultCode = "Server.Error.Request";
-        msg.faultString = resourceManager.getString(
-            "messaging", "httpRequestError");
+        /* msg.faultString = resourceManager.getString(
+            "messaging", "httpRequestError"); */
+        msg.faultString = "HTTP request error";
         var details:String = event.toString();
         if (_wrappedResponder.message is HTTPRequestMessage)
         {
             details += ". URL: ";
             details += HTTPRequestMessage(_wrappedResponder.message).url;
         }
-        msg.faultDetail = resourceManager.getString(
-            "messaging", "httpRequestError.details", [ details ]);
+        /* msg.faultDetail = resourceManager.getString(
+            "messaging", "httpRequestError.details", [ details ]); */
+        msg.faultDetail = StringUtil.substitute("Error: {0}", details);
         msg.rootCause = event;
         _wrappedResponder.status(msg);
     }
@@ -949,11 +951,14 @@ class HTTPMessageResponder extends MessageResponder
             {
                 errorMsg = new ErrorMessage();
                 errorMsg.faultCode = "Server.Acknowledge.Failed";
-                errorMsg.faultString = resourceManager.getString(
+                /* errorMsg.faultString = resourceManager.getString(
                     "messaging", "ackFailed");
                 errorMsg.faultDetail = resourceManager.getString(
                     "messaging", "ackFailed.details",
-                    [ message.messageId, AsyncMessage(response).correlationId ]);
+                    [ message.messageId, AsyncMessage(response).correlationId ]); */
+                errorMsg.faultString = "Didn't receive an acknowledgement of message";
+                errorMsg.faultDetail = StringUtil.substitute("Was expecting message '{0}' but received '{1}'.",
+                    message.messageId, AsyncMessage(response).correlationId);
                 agent.fault(errorMsg, message);
             }
         }
@@ -961,11 +966,14 @@ class HTTPMessageResponder extends MessageResponder
         {
             errorMsg = new ErrorMessage();
             errorMsg.faultCode = "Server.Acknowledge.Failed";
-            errorMsg.faultString = resourceManager.getString(
+            /* errorMsg.faultString = resourceManager.getString(
                 "messaging", "noAckMessage");
             errorMsg.faultDetail = resourceManager.getString(
                 "messaging", "noAckMessage.details",
-                [ mx.utils.ObjectUtil.toString(response) ]);
+                [ mx.utils.ObjectUtil.toString(response) ]); */
+            errorMsg.faultString = "Didn't receive an acknowledge message";
+            errorMsg.faultDetail = StringUtil.substitute("Was expecting mx.messaging.messages.AcknowledgeMessage, but received {0}",
+                mx.utils.ObjectUtil.toString(response));
             agent.fault(errorMsg, message);
         }
     }
@@ -1027,16 +1035,18 @@ class HTTPMessageResponder extends MessageResponder
         var msg:ErrorMessage = new ErrorMessage();
         msg.correlationId = message.messageId;
         msg.faultCode = "Server.Error.Request";
-        msg.faultString = resourceManager.getString(
-            "messaging", "httpRequestError");
+        /* msg.faultString = resourceManager.getString(
+            "messaging", "httpRequestError"); */
+        msg.faultString = "HTTP request error";
         var details:String = event.toString();
         if (message is HTTPRequestMessage)
         {
             details += ". URL: ";
             details += HTTPRequestMessage(message).url;
         }
-        msg.faultDetail = resourceManager.getString(
-            "messaging", "httpRequestError.details", [ details ]);
+        /* msg.faultDetail = resourceManager.getString(
+            "messaging", "httpRequestError.details", [ details ]); */
+        msg.faultDetail = StringUtil.substitute("Error: {0}", details);
         msg.rootCause = event;
         agent.fault(msg, message);
     }
@@ -1056,16 +1066,18 @@ class HTTPMessageResponder extends MessageResponder
         var msg:ErrorMessage = new ErrorMessage();
         msg.correlationId = message.messageId;
         msg.faultCode = "Server.Error.Request";
-        msg.faultString = resourceManager.getString(
-            "messaging", "httpRequestError");
+        /* msg.faultString = resourceManager.getString(
+            "messaging", "httpRequestError"); */
+        msg.faultString = "HTTP request error";
         var details:String = event.toString();
         if (message is HTTPRequestMessage)
         {
             details += ". URL: ";
             details += HTTPRequestMessage(message).url;
         }
-        msg.faultDetail = resourceManager.getString(
-            "messaging", "httpRequestError.details", [ details ]);
+        /* msg.faultDetail = resourceManager.getString(
+            "messaging", "httpRequestError.details", [ details ]); */
+        msg.faultDetail = StringUtil.substitute("Error: {0}", details);
         msg.rootCause = event;
 
         (channel as HTTPChannel).connectionError(msg);
@@ -1090,10 +1102,12 @@ class HTTPMessageResponder extends MessageResponder
         var msg:ErrorMessage = new ErrorMessage();
         msg.correlationId = message.messageId;
         msg.faultCode = "Channel.Security.Error";
-        msg.faultString = resourceManager.getString(
+        /* msg.faultString = resourceManager.getString(
             "messaging", "securityError");
         msg.faultDetail = resourceManager.getString(
-            "messaging", "securityError.details", [ message.destination ]);
+            "messaging", "securityError.details", [ message.destination ]); */
+        msg.faultString = "Security error accessing url";
+        msg.faultDetail = StringUtil.substitute("Destination: {0}", message.destination);
         msg.rootCause = event;
         agent.fault(msg, message);
     }
