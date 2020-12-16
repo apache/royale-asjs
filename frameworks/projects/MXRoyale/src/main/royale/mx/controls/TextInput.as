@@ -127,6 +127,7 @@ use namespace mx_internal;
  */
 [Event(name="textInput", type="mx.events.TextEvent")]
 
+[Style(name="borderStyle", type="String", inherit="no")]
 
 //--------------------------------------
 //  Other metadata
