@@ -141,7 +141,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="itemEditBegin", type="mx.events.DataGridEvent")]
+[Event(name="itemEditBegin", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when the item editor has just been instantiated.
@@ -165,7 +165,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="itemEditEnd", type="mx.events.DataGridEvent")]
+[Event(name="itemEditEnd", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when an item renderer gets focus, which can occur if the user
