@@ -487,6 +487,27 @@ public interface IUIComponent extends IFlexDisplayObject, IChild, IUIBase, IChil
      *  @productversion Flex 3
      */
     function owns(displayObject:IUIBase):Boolean;
+    
+    //----------------------------------
+    //  document
+    //----------------------------------
+
+    /**
+     *  A reference to the document object associated with this component. 
+     *  A document object is an Object at the top of the hierarchy
+     *  of a Flex application, MXML component, or ActionScript component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function get document():Object
+
+    /**
+     *  @private
+     */
+    function set document(value:Object):void
 }
 
 }
