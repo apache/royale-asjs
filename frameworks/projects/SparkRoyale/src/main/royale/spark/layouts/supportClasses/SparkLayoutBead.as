@@ -183,7 +183,16 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
 	
 	override protected function childResizeHandler(event:Event):void
 	{
-		if (inUpdateDisplayList) return;
+		if (inUpdateDisplayList) 
+		{
+			// children are resizing during layout.
+			if (isNaN(target.explicitWidth) || isNaN(target.explicitHeight))
+			{
+				// that means our we need to be re-measured
+				target.invalidateSize();
+			}
+			return;
+		}
 		ranLayout = false;
 		super.childResizeHandler(event); // will set ranLayout if it did
 		if (!ranLayout)
