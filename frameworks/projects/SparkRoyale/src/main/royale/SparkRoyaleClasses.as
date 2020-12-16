@@ -119,7 +119,9 @@ import spark.components.IItemRendererOwner; IItemRendererOwner;
 //import spark.skins.spark.mediaClasses.normal.ScrubBarSkin; ScrubBarSkin;
 //import spark.skins.spark.mediaClasses.normal.VolumeBarSkin; VolumeBarSkin;
 import spark.utils.LabelUtil; LabelUtil; // needed
-import spark.components.ResizeMode; ResizeMode; 
+import spark.components.ResizeMode; ResizeMode;
+import spark.filters.BevelFilter; BevelFilter; 
+
 	
 }
 
