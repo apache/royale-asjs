@@ -2022,7 +2022,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-     public function get dataTipFunction():Function
+    override public function get dataTipFunction():Function
     {
         return _dataTipFunction;
     } 
@@ -2030,7 +2030,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
     /**
      *  @private
      */
-     public function set dataTipFunction(value:Function):void
+    override public function set dataTipFunction(value:Function):void
     {
         _dataTipFunction = value;
 
