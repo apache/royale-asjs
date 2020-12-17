@@ -180,7 +180,10 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="dropShadowEnabled", type="Boolean", inherit="no", theme="halo")]
+[Style(name="dropShadowEnabled", type="Boolean", inherit="no", theme="halo")]
+
+[Style(name="dropShadowEnabled", type="Panel", inherit="no", theme="halo")]
+
 
 /**
  *  Array of two colors used to draw the footer
