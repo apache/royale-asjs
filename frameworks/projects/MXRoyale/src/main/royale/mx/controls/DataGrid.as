@@ -179,7 +179,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="itemFocusIn", type="mx.events.DataGridEvent")]
+[Event(name="itemFocusIn", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when an item renderer loses focus, which can occur if the user
