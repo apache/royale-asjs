@@ -296,7 +296,72 @@ public class SkinnableComponent extends UIComponent
 			invalidateSkinState();
         dispatchEvent(new Event("skinChanged"));
     }
-    
+
+    /**
+     *  Create the skin for the component.
+     *  You do not call this method directly.
+     *  Flex calls it automatically when it calls <code>createChildren()</code> or
+     *  the <code>UIComponent.commitProperties()</code> method.
+     *  Typically, a subclass of SkinnableComponent does not override this method.
+     *
+     *  <p>This method instantiates the skin for the component,
+     *  adds the skin as a child of the component, and
+     *  resolves all part associations for the skin</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    protected function attachSkin():void
+    {
+        // Class
+        if (!skin)
+        {
+            var skinClass:Class = getStyle("skinClass") as Class;
+
+            if (skinClass)
+                setSkin( new skinClass() );
+        }
+
+        if (skin)
+        {
+           // skin.owner = this;
+
+            // As a convenience if someone has declared hostComponent
+            // we assign a reference to ourselves.  If the hostComponent
+            // property exists as a direct result of utilizing [HostComponent]
+            // metadata it will be strongly typed. We need to do more work
+            // here and only assign if the type exactly matches our component
+            // type.
+            if ("hostComponent" in skin)
+            {
+                try
+                {
+                    Object(skin).hostComponent = this;
+                }
+                catch (err:Error) {}
+            }
+
+            // the skin's styles should be the same as the components
+          //  skin.styleName = this;
+
+            // Note: The Spark PanelAccImpl adds a child Sprite at index 0.
+            // The skin should be in front of that.
+            super.addChild(skin);
+
+            //skin.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, skin_propertyChangeHandler);
+        }
+        else
+        {
+           // throw(new Error(resourceManager.getString("components", "skinNotFound", [this])));
+        }
+
+        findSkinParts();
+
+        invalidateSkinState();
+    }
+
     /**
      * @private 
      * 

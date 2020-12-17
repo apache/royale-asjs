@@ -96,7 +96,10 @@ public class SparkSkinViewport extends EventDispatcher implements IBead, IViewpo
         var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
         if (c)
         {
-            host.setSkin(new c());
+            if (!host.skin)
+            {
+                host.setSkin(new c());
+            }
             host.skin.addEventListener("initComplete", initCompleteHandler);
             contentArea = host.skin; // temporary assigment so that SkinnableXXContainer.addElement can add the skin
         }
