@@ -444,6 +444,79 @@ import org.apache.royale.utils.ClassSelectorList;
 [Event(name="keyUp", type="mx.events.KeyboardEvent")]
 [Event(name="keyDown", type="mx.events.KeyboardEvent")]
 
+
+/**
+ *  Dispatched when the object has moved.
+ *
+ *  <p>You can move the component by setting the <code>x</code>
+ *  or <code>y</code> properties, by calling the <code>move()</code>
+ *  method, by setting one
+ *  of the following properties either on the component or on other
+ *  components such that the LayoutManager needs to change the
+ *  <code>x</code> or <code>y</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>When you call the <code>move()</code> method, the <code>move</code>
+ *  event is dispatched before the method returns.
+ *  In all other situations, the <code>move</code> event is not dispatched
+ *  until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_COMPLETE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragComplete", type="mx.events.DragEvent")]
+
+/**
+ *  Dispatched when the object has moved.
+ *
+ *  <p>You can move the component by setting the <code>x</code>
+ *  or <code>y</code> properties, by calling the <code>move()</code>
+ *  method, by setting one
+ *  of the following properties either on the component or on other
+ *  components such that the LayoutManager needs to change the
+ *  <code>x</code> or <code>y</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>When you call the <code>move()</code> method, the <code>move</code>
+ *  event is dispatched before the method returns.
+ *  In all other situations, the <code>move</code> event is not dispatched
+ *  until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_OVER
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragOver", type="mx.events.DragEvent")]
+
 /**
  *  The main color for a component.
  *  
