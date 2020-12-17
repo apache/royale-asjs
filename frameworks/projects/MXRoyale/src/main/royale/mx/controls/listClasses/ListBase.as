@@ -1486,6 +1486,63 @@ use namespace mx_internal;
             
             return " ";
         }
+	
+	 //----------------------------------
+    //  dataTipFunction
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the dataTipFunction property.
+     */
+	protected var itemsSizeChanged:Boolean = false;
+    private var _dataTipFunction:Function;
+
+    [Bindable("dataTipFunctionChanged")]
+    [Inspectable(category="Data")]
+
+    /**
+     *  User-supplied function to run on each item to determine its dataTip.  
+     *  By default, the list looks for a property named <code>label</code> 
+     *  on each data provider item and displays it.
+     *  However, some items do not have a <code>label</code> property 
+     *  nor do they have another property that can be used for displaying 
+     *  in the rows. An example is a data set that has lastName and firstName 
+     *  fields, but you want to display full names. You can supply a 
+     *  <code>dataTipFunction</code> that finds the appropriate
+     *  fields and return a displayable string. The 
+     *  <code>dataTipFunction</code> is also good for handling formatting
+     *  and localization.
+     *
+     *  <p>The dataTipFunction takes a single argument which is the item
+     *  in the data provider and returns a String, as the following example shows:</p>
+     * 
+     *  <pre>myDataTipFunction(item:Object):String</pre>
+     * 
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get dataTipFunction():Function
+    {
+        return _dataTipFunction;
+    }
+
+    /**
+     *  @private
+     */
+    public function set dataTipFunction(value:Function):void
+    {
+        _dataTipFunction = value;
+
+        itemsSizeChanged = true;
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("dataTipFunctionChanged"));
+    }
 
     }
 }
