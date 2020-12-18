@@ -2505,10 +2505,10 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @private
      *  Storage for the lockedColumnCount property.
      */
-    /* mx_internal var _lockedColumnCount:int = 0;
+    mx_internal var _lockedColumnCount:int = 0;
 
     [Inspectable(defaultValue="0")]
- */
+ 
     /**
      *  The index of the first column in the control that scrolls,
      *  where the first column is at an index of 0.
@@ -2522,20 +2522,20 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get lockedColumnCount():int
+     public function get lockedColumnCount():int
     {
         return _lockedColumnCount;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set lockedColumnCount(value:int):void
+     public function set lockedColumnCount(value:int):void
     {
         _lockedColumnCount = value;
 
         invalidateDisplayList();
-    } */
+    } 
 
     //----------------------------------
     //  lockedRowCount
