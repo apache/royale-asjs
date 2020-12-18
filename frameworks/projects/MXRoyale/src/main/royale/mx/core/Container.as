@@ -211,6 +211,9 @@ use namespace mx_internal;
  */
 [Event(name="scroll", type="mx.events.ScrollEvent")]
 
+[Style(name="borderThickness", type="Number", format="Length", inherit="no")]
+
+
 /**
  * The default property uses when additional MXML content appears within an element's
  * definition in an MXML file.
