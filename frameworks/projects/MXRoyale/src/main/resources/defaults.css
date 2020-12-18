@@ -489,10 +489,10 @@ TabNavigator
 	border: 1px solid #333333
 }
 
-ProgressBar
+/* ProgressBar
 {
 	IBeadView: ClassReference("mx.controls.beads.ProgressBarView");
-}
+} */
 
 TextInput
 {
