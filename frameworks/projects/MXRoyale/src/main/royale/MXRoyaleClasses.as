@@ -28,7 +28,7 @@ package
 internal class MXRoyaleClasses
 {
 	import mx.automation.IAutomationObject; IAutomationObject;
-	//import mx.controls.SWFLoader; SWFLoader;
+	import mx.controls.SWFLoader; SWFLoader;
 	import mx.core.DPIClassification; DPIClassification;
 	import mx.core.DesignLayer; DesignLayer;
 	import mx.effects.AnimateProperty; AnimateProperty;
@@ -363,6 +363,7 @@ internal class MXRoyaleClasses
 	import mx.containers.ApplicationControlBar; ApplicationControlBar;
 	import mx.filters.BitmapFilterType; BitmapFilterType;
 	import mx.filters.BitmapFilterQuality; BitmapFilterQuality;
+	import mx.net.URLRequestMethod; URLRequestMethod;
 }
 
 }
