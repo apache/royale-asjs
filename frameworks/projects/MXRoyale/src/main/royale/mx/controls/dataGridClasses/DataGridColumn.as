@@ -30,7 +30,6 @@ import mx.controls.listClasses.IListItemRenderer;
 import mx.core.ClassFactory;
 import mx.core.ContextualClassFactory;
 import mx.core.IEmbeddedFontRegistry;
-import mx.core.IFactory;
 import mx.core.IFlexModuleFactory;
 import mx.core.IIMESupport;
 import mx.core.Singleton;
@@ -41,8 +40,8 @@ import mx.utils.StringUtil;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.controls.TextInput;
-import mx.core.IFactory;
 import mx.core.ClassFactory;
+import mx.core.IFactory;
 use namespace mx_internal;
 
 import org.apache.royale.events.Event;
@@ -895,11 +894,11 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
        
        private var _headerRenderer:IFactory;
 		
-       /**
+   /**
 	*  The itemRenderer class or factory to use to make instances of itemRenderers for
 	*  display of data.
 	*
-        *  @langversion 3.0
+    *  @langversion 3.0
 	*  @playerversion Flash 10.2
 	*  @playerversion AIR 2.6
 	*  @productversion Royale 0.0
@@ -909,15 +908,25 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 	{
 	   return _headerRenderer;
 	}
+
 	public function set headerRenderer(value:IFactory):void
 	{
 	  _headerRenderer = value;
 	  trace("DataGridColumn.headerRenderer is not implemented");
 	}
-	
-	        //----------------------------------
-		//  editable
-		//----------------------------------
+
+    public function set mxItemRenderer(value:IFactory):void
+    {
+        if (super.itemRenderer != value)
+        {
+            super.itemRenderer = value;
+
+            dispatchEvent(new Event("itemRendererChanged"));
+        }
+    }
+        //----------------------------------
+    //  editable
+    //----------------------------------
 
 		private var _editable:Boolean = true;
 
