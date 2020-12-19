@@ -51,6 +51,8 @@ package flexUnitTests
         public var xmllistInterationTests:XMLListTesterIterationlTest;
 
         public var xmlLiteralTest:XMLLiteralTest;
+
+       // public var xmlNotificationTest:XMLNotificationTest;
         
     }
 }
