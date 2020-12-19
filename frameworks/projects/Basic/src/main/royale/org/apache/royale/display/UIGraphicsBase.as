@@ -43,7 +43,7 @@ package org.apache.royale.display
 			/**
 			 * @royaleignorecoercion SVGSVGElement
 			 */
-			public function get graphicsRenderTarget():SVGSVGElement{
+			public function get graphicsRenderTarget():SVGElement{
 				if (!_svg) {
 					_svg = createGraphicsSVG('svg') as SVGSVGElement;
 					_svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
