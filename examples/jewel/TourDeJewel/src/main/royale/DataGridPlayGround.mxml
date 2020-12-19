@@ -31,14 +31,14 @@ limitations under the License.
         import models.ProductModel;
 
         import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.collections.ArrayListView;
         import org.apache.royale.html.util.getLabelFromData;
+        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
         import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
         import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
-		import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
 
         import vos.IconListVO;
         import vos.Product;
-        import org.apache.royale.collections.ArrayListView;
 
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
