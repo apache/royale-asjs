@@ -141,9 +141,9 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
-                var svg:SVGElement = graphicsTarget.graphicsRenderTarget;
-                while (svg.firstChild) {
-                    svg.removeChild(svg.firstChild);
+                var renderTarget:SVGElement = this.renderTarget;
+                while (renderTarget.firstChild) {
+                    renderTarget.removeChild(renderTarget.firstChild);
                 }
                 _defs = null;
                 defsIdx = 0;
@@ -169,7 +169,7 @@ package org.apache.royale.display
             private var _nonZeroFill:Boolean;
             private var _defs:SVGDefsElement;
             
-            private function get svg():SVGElement{
+            private function get renderTarget():SVGElement{
                 return graphicsTarget.graphicsRenderTarget;
             }
             
@@ -179,7 +179,7 @@ package org.apache.royale.display
             private function get defs():SVGDefsElement{
                 if (!_defs) {
                     _defs = createGraphicsSVG('defs', false) as SVGDefsElement;
-                    var svgNode:SVGElement = svg;
+                    var svgNode:SVGElement = renderTarget.ownerSVGElement ?  renderTarget.ownerSVGElement : renderTarget;
                     if (svgNode.childNodes.length) {
                         svgNode.insertBefore(_defs, svgNode.childNodes[0]);
                     } else svgNode.appendChild(_defs);
@@ -223,7 +223,7 @@ package org.apache.royale.display
                         }
                     }
                     else setNoFill(_currentPath);
-                    svg.appendChild(_currentPath);
+                    renderTarget.appendChild(_currentPath);
                     //apply the current stroke now, spawning stroke paths if necessary as determined by stroke implementation
                     currentStroke.apply(this, _currentPath);
                 }
@@ -273,7 +273,7 @@ package org.apache.royale.display
                         _currentStrokePath.setAttributeNS(null, 'fill', 'none');
                         currentStroke.apply(this,_currentStrokePath);
                         getCurrentPath().setAttributeNS(null, 'stroke', 'none');
-                        svg.appendChild(_currentStrokePath);
+                        renderTarget.appendChild(_currentStrokePath);
                         if (fromPaint) {
                             _strokePathData = _currentStrokePath.getAttributeNodeNS(null, 'd');
                             return _currentStrokePath;
@@ -287,7 +287,7 @@ package org.apache.royale.display
                 _currentStrokePath.setAttributeNS(null, 'd', 'M' + _lastPoint);
                 _currentStrokePath.setAttributeNS(null, 'fill', 'none');
                 _strokePathData = _currentStrokePath.getAttributeNodeNS(null, 'd');
-                svg.appendChild(_currentStrokePath);
+                renderTarget.appendChild(_currentStrokePath);
                 _lastPoint = null;
                 return _currentStrokePath;
             }
@@ -606,6 +606,8 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
+                if (isNaN(x)) x = 0;
+                if (isNaN(y)) y = 0;
                 var lp:String = x + ' ' + y;
                 /*if (!_lastStartPoint)*/ _lastStartPoint = lp;
                 _moveTo = 'M' + lp;
@@ -621,6 +623,8 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
+                if (isNaN(x)) x = 0;
+                if (isNaN(y)) y = 0;
                 var lp:String = x + ' ' + y;
                 if (!_lastStartPoint) _lastStartPoint = '0 0';
                 appendPathData('L' + lp, lp);
@@ -635,6 +639,10 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
+                if (isNaN(controlX)) controlX = 0;
+                if (isNaN(controlY)) controlY = 0;
+                if (isNaN(anchorX)) anchorX = 0;
+                if (isNaN(anchorY)) anchorY = 0;
                 var lp:String = anchorX + ' ' + anchorY;
                 if (!_lastStartPoint) _lastStartPoint = '0 0';
                 appendPathData('Q' + controlX + ' ' + controlY + ' ' + lp, lp);
