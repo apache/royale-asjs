@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
-	COMPILE::JS
+import org.apache.royale.language.NotificationXML;
+
+COMPILE::JS
 	/**
 	 * @royalesuppresspublicvarwarning
 	 */
@@ -929,8 +931,9 @@ package
 		/**
 		 *
 		 * @royaleignorecoercion XML
+		 * @royalesuppressexport
 		 */
-		private function appendChildInternal(child:*):void
+		protected function appendChildInternal(child:*):void
 		{
 			var kind:String;
 			var alreadyPresent:int
@@ -1227,8 +1230,9 @@ package
 		private function deleteChildAt(idx:int):void
 		{
 			var child:XML = _children[idx] as XML;
-			child._parent = null;
-			_children.splice(idx,1);
+			childRemoved(child, idx);
+			/*child._parent = null;
+			_children.splice(idx,1);*/
 		}
 		
 		/**
@@ -2137,8 +2141,9 @@ package
 			var idx:int = getIndexOf(child);
 			if(idx < 0)
 				return false;
-			removed = _children.splice(idx,1);
-			child._parent = null;
+			/*removed = *///_children.splice(idx,1);
+			//child._parent = null;
+			childRemoved(child, idx);
 			return true;
 		}
 		
@@ -2181,8 +2186,9 @@ package
 				if(name.matches(child.name()))
 				{
 					child = _children[i];
-					child._parent = null;
-					_children.splice(i,1);
+					//child._parent = null;
+					//_children.splice(i,1);
+					childRemoved(child, i);
 					removedItem = true;
 				}
 			}
@@ -2212,7 +2218,8 @@ package
 					removed.setParent(null);
 					index =_children.indexOf(removed);
 					if (index != -1){
-						_children.splice(index,1);
+						//_children.splice(index,1);
+						childRemoved(removed, index);
 					}
 				}
 				return true;
@@ -2220,7 +2227,16 @@ package
 
 			throw new TypeError("Cannot call delete on XML at index "+index);
 		}
-		
+
+		protected function childRemoved(child:XML, index:int):void{
+			child._parent = null;
+			_children.splice(index,1);
+		}
+
+		protected function attributeUpdated(attribute:XML, value:String):void{
+			attribute.setValue(value);
+		}
+
 		/**
 		 * Removes the given namespace for this object and all descendants.
 		 *
@@ -2328,10 +2344,36 @@ package
 				return this;
 			if((value is XML) || (value is XMLList))
 				value = value.copy();
-			else
+			else {
 				value = value.toString();
-			
-			return null;
+			}
+			if (uint(propertyName).toString() == propertyName) {
+				replaceChildAt(uint(propertyName), value);
+			} else {
+				var n:QName = toXMLName(propertyName);
+				var k:uint = childrenLength();
+				var all:Boolean = n.localName == '*';
+				var children:Array = _children;
+				var i:int = -1;
+				while (k) {
+					k--;
+					var xK:XML=children[k];
+					//If ((n.localName == "*") or ((x[k].[[Class]] == "element") and (x[k].[[Name]].localName==n.localName)))
+					//and ((n.uri == null) or ((x[k].[[Class]] == "element") and (n.uri == x[k].[[Name]].uri )))
+					if ((all || ((xK.getNodeRef() == ELEMENT) && xK.localName() == n.localName)) && ((n.uri == null) || ((xK.getNodeRef() == ELEMENT) && (xK.name().uri == n.uri )))) {
+						if (i != -1) {
+							removeChildAt(i);
+							//do not use 'childRemoved
+						}
+						i = k;
+					}
+				}
+				if (i != -1) {
+					replaceChildAt(i, value);
+				}
+			}
+
+			return this;
 		}
 		
 		/**
@@ -2403,7 +2445,10 @@ package
 						listIdx++;
 					}
 				} else {
-					_children.splice(idx,1);
+					//_children.splice(idx,1);
+					if (_children[idx]) {
+						childRemoved(_children[idx], idx)
+					}
 				}
 			}
 			else
@@ -2448,7 +2493,8 @@ package
 					{
 						if(_attributes[i].name().equals(attr.name()))
 						{
-							_attributes[i].setValue(value);
+							//_attributes[i].setValue(value);
+							attributeUpdated(_attributes[i], value);
 							return value;
 						}
 					}
@@ -2481,7 +2527,8 @@ package
 				{
 					if(_attributes[i].name().equals(attrXML.name()))
 					{
-						_attributes[i].setValue(value);
+						//_attributes[i].setValue(value);
+						attributeUpdated(_attributes[i], value);
 						return value;
 					}
 				}
@@ -3235,7 +3282,59 @@ package
 			}
 			return str;
 		}
-		
+
+		////////////////////////////////////////////////////////////////
+		///
+		///
+		/// METHODS to allow XML to provide notifications of internal changes - advanced use only
+		/// these methods are available for dead-code-elimination if never used.
+		///
+		///
+		////////////////////////////////////////////////////////////////
+
+		/**
+		 * this is protected only to support the runtime 'upgrade' of this instance in the setNotification method
+		 * @private
+		 * @royalesuppressexport
+		 */
+		protected var _notificationFunction:Function;
+
+		/**
+		 * This is an advanced method mainly for binding support that is not documented in the
+		 * public as3 api for XML.
+		 * available for dead-code elimination if never used
+		 *
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public function setNotification(val:Function):void{
+			if (val != null ) {
+				if (_notificationFunction == null) {
+					//upgrade this instance to support notifications
+					Object.setPrototypeOf(this, NotificationXML.getUpgradeTemplate());
+				}
+
+			} else {
+				if (_notificationFunction != null) {
+					//downgrade this instance to 'normal' XML
+					Object.setPrototypeOf(this, NotificationXML.getDowngradeTemplate());
+				}
+			}
+			_notificationFunction = val;
+		}
+
+		/**
+		 * This is an advanced method mainly for binding support that is not documented in the
+		 * public as3 api for XML.
+		 * available for dead-code elimination if never used
+		 *
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public function notification():Function{
+			return _notificationFunction;
+		}
+
 		////////////////////////////////////////////////////////////////
 		///
 		///
