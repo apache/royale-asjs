@@ -73,7 +73,7 @@ package spark.components.beads
          */
         public var label:Button;
 
-        private var selectionModel:ISelectionModel;
+        protected var selectionModel:ISelectionModel;
 
         /**
          */
@@ -101,7 +101,7 @@ package spark.components.beads
 
         }
 
-        private function selectionChangeHandler(event:Event):void
+        protected function selectionChangeHandler(event:Event):void
         {
             if (selectionModel.selectedItem == null)
             {
