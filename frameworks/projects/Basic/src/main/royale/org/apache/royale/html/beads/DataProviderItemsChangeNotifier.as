@@ -19,9 +19,8 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.events.CollectionEvent;
     import org.apache.royale.html.supportClasses.DataProviderNotifierBase;
 
@@ -48,6 +47,11 @@ package org.apache.royale.html.beads
 		{
 		}
 
+		/**
+		 * 	The change handler function that will be called when change event is thrown
+		 *  
+		 *  @royaleignorecoercion org.apache.royale.collections.IArrayList
+		 */
 		override protected function destinationChangedHandler(event:Event):void
 		{
 			var object:Object = document[sourceID];
@@ -59,7 +63,7 @@ package org.apache.royale.html.beads
 				dataProvider.removeEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 				dataProvider.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 			}
-			dataProvider = object[propertyName] as ArrayList;			
+			dataProvider = object[propertyName] as IArrayList;			
 			dataProvider.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
 			dataProvider.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
             dataProvider.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);

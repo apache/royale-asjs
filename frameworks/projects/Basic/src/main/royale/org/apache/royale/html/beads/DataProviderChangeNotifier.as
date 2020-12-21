@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.collections.ArrayList;
-    import org.apache.royale.html.supportClasses.DataProviderNotifierBase;
+	import org.apache.royale.html.supportClasses.DataProviderNotifierBase;
 
     /**
 	 *  The DataProviderChangeNotifier notifies listeners when a selection model's
@@ -48,8 +47,9 @@ package org.apache.royale.html.beads
 		}
 		
 		/**
-		 * 	@royaleignorecoercion org.apache.royale.collections.ArrayList
-		 * 
+		 * 	The change handler function that will be called when change event is thrown
+		 *  
+		 *  @royaleignorecoercion org.apache.royale.collections.IArrayList
 		 */
 		override protected function destinationChangedHandler(event:Event):void
 		{
@@ -60,9 +60,10 @@ package org.apache.royale.html.beads
 					return;
 				detachEventListeners();
 			}
-			dataProvider = object[propertyName] as ArrayList;
+			dataProvider = object[propertyName] as IArrayList;
 			attachEventListeners();
 		}
+		
 		/**
 		 * 	@royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
