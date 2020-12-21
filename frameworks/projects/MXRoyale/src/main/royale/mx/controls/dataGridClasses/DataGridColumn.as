@@ -1007,6 +1007,48 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 
 			dispatchEvent(new Event("dataTipChanged"));
 		}
+		
+		//----------------------------------
+		//  itemEditor
+		//----------------------------------
+
+	    	[Inspectable(category="General")]
+
+		/**
+		 *  A class factory for the instances of the item editor to use for the 
+		 *  column, when it is editable.
+		 *
+		 *  @default new ClassFactory(mx.controls.TextInput)
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public var itemEditor:IFactory = defaultItemEditorFactory;
+
+		//----------------------------------
+		//  editorDataField
+		//----------------------------------
+
+		[Inspectable(category="General")]
+
+		/**
+		 *  The name of the property of the item editor that contains the new
+		 *  data for the list item.
+		 *  For example, the default <code>itemEditor</code> is
+		 *  TextInput, so the default value of the <code>editorDataField</code> 
+		 *  property is <code>"text"</code>, which specifies the 
+		 *  <code>text</code> property of the TextInput control.
+		 *
+		 *  @default "text"
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public var editorDataField:String = "text";
 }
 
 }
