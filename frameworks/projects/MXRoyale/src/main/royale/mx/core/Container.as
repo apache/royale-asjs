@@ -213,6 +213,7 @@ use namespace mx_internal;
 
 [Style(name="borderThickness", type="Number", format="Length", inherit="no")]
 
+[Style(name="borderColor", type="unit", format="Color" inherit="no")]
 
 /**
  * The default property uses when additional MXML content appears within an element's
