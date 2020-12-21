@@ -63,11 +63,11 @@ package org.apache.royale.html.beads
 			dataProvider = object[propertyName] as IArrayList;
 			attachEventListeners();
 		}
-		
+
 		/**
 		 * 	@royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-		private function handleDataProviderChanges(event:Event):void
+		protected function handleDataProviderChanges(event:Event):void
 		{
 			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			selectionModel.dispatchEvent(new Event("dataProviderChanged"));
