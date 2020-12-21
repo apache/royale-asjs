@@ -129,6 +129,8 @@ use namespace mx_internal;
 
 [Style(name="borderStyle", type="String", inherit="no")]
 
+[Style(name="borderColor", type="unit", format="Color" inherit="no")]
+
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
