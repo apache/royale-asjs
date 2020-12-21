@@ -1942,11 +1942,11 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @private
      *  Storage for the dataTipField property.
      */
-    /* private var _dataTipField:String = "label";
+    private var _dataTipField:String = "label";
 
     [Bindable("dataTipFieldChanged")]
     [Inspectable(category="Data", defaultValue="label")]
- */
+
     /**
      *  Name of the field in the data provider items to display as the 
      *  data tip. By default, the list looks for a property named 
@@ -1964,15 +1964,15 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  public function get dataTipField():String
+    public function get dataTipField():String
     {
         return _dataTipField;
     }
-	*/
+    
     /**
      *  @private
      */
-   /* public function set dataTipField(value:String):void
+    public function set dataTipField(value:String):void
     {
         _dataTipField = value;
 
@@ -1980,7 +1980,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
         invalidateDisplayList();
 
         dispatchEvent(new Event("dataTipFieldChanged"));
-    } */
+    }
 
     //----------------------------------
     //  dataTipFunction
