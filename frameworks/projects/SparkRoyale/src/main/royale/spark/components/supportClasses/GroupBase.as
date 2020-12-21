@@ -506,7 +506,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     // layout is initialized in createChildren() if layout 
     // hasn't been set yet by someone else
     private var _layout:Object;//LayoutBase;
-   // private var _layoutProperties:Object = null;
+    private var _layoutProperties:Object = null;
    // private var layoutInvalidateSizeFlag:Boolean = false;
    // private var layoutInvalidateDisplayListFlag:Boolean = false;
     public function set contentBackgroundColor(value:uint):void {} // not implemented
@@ -688,7 +688,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     /**
      *  @private
      */
-    /* public function set horizontalScrollPosition(value:Number):void 
+    public function set horizontalScrollPosition(value:Number):void 
     {
         if (_layout)
         {
@@ -702,7 +702,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         {
             _layoutProperties = {horizontalScrollPosition: value};
         }
-    } */
+    }
     
     //----------------------------------
     //  verticalScrollPosition
@@ -740,7 +740,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     /**
      *  @private
      */
-    /* public function set verticalScrollPosition(value:Number):void 
+    public function set verticalScrollPosition(value:Number):void 
     {
         if (_layout)
         {
@@ -754,7 +754,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         {
             _layoutProperties = {verticalScrollPosition: value};
         }
-    } */
+    }
     
     //----------------------------------
     //  clipAndEnableScrolling
