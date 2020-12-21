@@ -21,13 +21,15 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.collections.IArrayListView;
 	import org.apache.royale.collections.Sort;
 	import org.apache.royale.collections.SortField;
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridHeader;
+	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.beads.EasyDataProviderChangeNotifier;
 	import org.apache.royale.jewel.beads.views.DataGridView;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 
@@ -42,7 +44,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class DataGridSort implements IBead
+	public class DataGridSort extends EasyDataProviderChangeNotifier
 	{
 		public function DataGridSort()
 		{
@@ -51,7 +53,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		
         private var dg:IDataGrid;
         private var header:IDataGridHeader;
-
+		private var dgView:DataGridView;
 		private var descending:Boolean;
         
 		/**                         	
@@ -62,10 +64,12 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
+			super.strand = value;
+
             dg = value as IDataGrid;
-			var dgView:DataGridView = (dg as UIBase).view as DataGridView;
+			dgView = (dg as UIBase).view as DataGridView;
 			header = dgView.header;
 			header.addEventListener(MouseEvent.CLICK, mouseClickHandler, false);
 		}
@@ -96,11 +100,23 @@ package org.apache.royale.jewel.beads.controls.datagrid
 				sort.fields = [ sortField ];
 				collection.sort = sort;
 
-				// force redraw of column headers
 				collection.refresh();
-				
-				dg.model.dispatchEvent(new Event("sortChanged"));
-				header.model.dispatchEvent(new Event("dataProviderChanged"));
+				// header.model.dispatchEvent(new Event("dataProviderChanged"));
+			}
+		}
+
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		override protected function handleDataProviderChanges(event:Event):void
+		{
+			if(event.type == CollectionEvent.COLLECTION_CHANGED)
+			{
+				var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+				selectionModel.dispatchEvent(event.cloneEvent() as Event);
+			} else
+			{
+				super.handleDataProviderChanges(event);
 			}
 		}
 	}
