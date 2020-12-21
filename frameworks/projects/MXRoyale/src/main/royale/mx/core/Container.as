@@ -215,6 +215,9 @@ use namespace mx_internal;
 
 [Style(name="borderColor", type="unit", format="Color" inherit="no")]
 
+[Style(name="backgroundAlpha", type="Number", inherit="no")]
+
+[Style(name="contentBackgroundAlpha", type="Number", inherit="yes")]
 /**
  * The default property uses when additional MXML content appears within an element's
  * definition in an MXML file.
