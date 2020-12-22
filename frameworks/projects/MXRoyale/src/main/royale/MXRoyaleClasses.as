@@ -364,6 +364,7 @@ internal class MXRoyaleClasses
 	import mx.filters.BitmapFilterType; BitmapFilterType;
 	import mx.filters.BitmapFilterQuality; BitmapFilterQuality;
 	import mx.net.URLRequestMethod; URLRequestMethod;
+	import mx.controls.ButtonLabelPlacement; ButtonLabelPlacement;
 }
 
 }
