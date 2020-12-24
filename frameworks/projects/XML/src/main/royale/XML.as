@@ -2812,7 +2812,8 @@ package
 				//optimization, the name alone is sufficient to get the nodeKind() externally (see : getNodeRef())
 				delete this._nodeKind;
 			}
-			xml$_notify("nameSet", (ref == ATTRIBUTE ? _value : this), _name.toString(), oldName.toString());
+			// oldName cannot be null, normally, but we're calling setName() from within parseXMLStr() for processing instructions
+			if (oldName) xml$_notify("nameSet", (ref == ATTRIBUTE ? _value : this), _name.toString(), oldName.toString());
 		}
 		
 		/**
