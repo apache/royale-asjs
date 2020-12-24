@@ -62,7 +62,7 @@ package org.apache.royale.jewel.beads.views
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-			listModel.addEventListener("itemsCreated", itemsCreatedHandler);
+			listModel.addEventListener("popUpCreated", itemsCreatedHandler);
 
 			super.handleInitComplete(event);
 		}

@@ -48,7 +48,7 @@ package org.apache.royale.jewel.beads.views
 
 		override public function set strand(value:IStrand):void{
 			super.strand = value;
-			(list.model as IJewelSelectionModel).dispatchEvent("itemsCreated");
+			(list.model as IJewelSelectionModel).dispatchEvent(new Event("popUpCreated"));
 		}
         
         override public function get list():List
