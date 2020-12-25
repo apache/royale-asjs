@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.VirtualList;
-    import org.apache.royale.core.IStrand;
-	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+    import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 
     /**
 	 *  The VirtualComboBoxPopUpView class is a view bead for the VirtualComboBoxPopUp.
