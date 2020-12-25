@@ -2106,6 +2106,7 @@ package
 		 * @param child
 		 * @return
 		 *
+		 * @royaleignorecoercion QName
 		 */
 		public function removeChild(child:XML):Boolean
 		{
@@ -2159,7 +2160,8 @@ package
 						removed = _attributes[i];
 						removed._parent = null;
 						_attributes.splice(i,1);
-						xml$_notify("attributeRemoved", this, removed._name.toString(), removed._value);
+						// "_name as QName" (and ignorecoercion) needed to avoid compiler from writing ".child()" due to "removed" being XML
+						xml$_notify("attributeRemoved", this, (removed._name as QName).localName, removed._value);
 						return true;
 					}
 				}
@@ -2177,6 +2179,7 @@ package
 		/**
 		 *
 		 * @royaleignorecoercion XML
+		 * @royaleignorecoercion QName
 		 */
 		private function removeChildByName(name:*):Boolean
 		{
@@ -2197,7 +2200,8 @@ package
 						child._parent = null;
 						_attributes.splice(i,1);
 						removedItem = true;
-						xml$_notify("attributeRemoved", this, child._name.toString(), child._value);
+						// "_name as QName" (and ignorecoercion) needed to avoid compiler from writing ".child()" due to "child" being XML
+						xml$_notify("attributeRemoved", this, (child._name as QName).localName, child._value);
 					}
 				}
 				return removedItem;
