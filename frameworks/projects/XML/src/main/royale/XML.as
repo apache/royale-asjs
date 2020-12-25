@@ -3429,7 +3429,7 @@ package
 		public function xml$_notify(type:String, target:Object, value:Object, detail:Object):void
 		{
 			if (_internalSuppressNotify) return;
-			if (_notification) _notification(_notification, this, type, target, value, detail);
+			if (_notification) _notification(this, type, target, value, detail, _notification);
 			if (recursiveNotify && _parent) _parent.xml$_notify(type, target, value, detail);
 		}
 
@@ -3441,12 +3441,13 @@ package
 		/**
 		 * Callback function for change notification:
 		 *
-		 *   function xmlNotificationEx(callee:Function,
+		 *   function xmlNotificationEx(
 		 *     currentTarget:Object, 
 		 *     type:String, 
 		 *     target:Object, 
 		 *     value:Object, 
-		 *     detail:Object):void
+		 *     detail:Object,
+		 *     callee:Function = null):void
 		 *
 		 * type
 		 *

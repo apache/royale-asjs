@@ -85,37 +85,19 @@ public class XMLNotifier
      *  Decorates an XML node with a notification function
      *  that can fan out to multiple targets.
      */
-    COMPILE::JS
-    mx_internal static function initializeXMLForNotification():Function
-    {
-        var notificationFunction:Function = function(callee:Function, currentTarget:Object,
-                                                     ty:String,
-                                                     tar:Object,
-                                                     value:Object,
-                                                     detail:Object):void
-        {
-            var xmlWatchers:ObjectMap = callee["watched"];
-            if (xmlWatchers != null)
-            {
-                xmlWatchers.forEach( function(truevalue:Object,notifiable:Object,map:Object):void {
-                    IXMLNotifiable(notifiable).xmlNotification(currentTarget, ty, tar, value, detail);
-                } );
-            }
-        }
-
-        return notificationFunction;
-    }
-
-    COMPILE::SWF
     mx_internal static function initializeXMLForNotification():Function
     {
         var notificationFunction:Function = function(currentTarget:Object,
                                                      ty:String,
                                                      tar:Object,
                                                      value:Object,
-                                                     detail:Object):void
+                                                     detail:Object,
+                                                     callee:Function = null):void
         {
-            var callee:Function = notificationFunction;
+            COMPILE::SWF
+            {
+                callee = notificationFunction;
+            }
             var xmlWatchers:ObjectMap = callee["watched"];
             if (xmlWatchers != null)
             {
