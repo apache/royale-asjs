@@ -2813,7 +2813,7 @@ package
 				delete this._nodeKind;
 			}
 			// oldName cannot be null, normally, but we're calling setName() from within parseXMLStr() for processing instructions
-			if (oldName) xml$_notify("nameSet", (ref == ATTRIBUTE ? _value : this), _name.toString(), oldName.toString());
+			if (oldName) xml$_notify("nameSet", (ref == ATTRIBUTE ? _value : this), (name is QName ? _name : _name.toString()), oldName.toString());
 		}
 		
 		/**
