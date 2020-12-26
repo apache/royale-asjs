@@ -995,6 +995,34 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
             dispatchEvent(new Event("layoutNeeded"));
     }
     
+    override public function get measuredWidth():Number
+    {
+        if (isNaN(_measuredWidth))
+            measure();
+        if (isNaN(_measuredWidth))
+             return width;
+        return _measuredWidth;
+    }
+
+    override public function get measuredHeight():Number
+    {
+        if (isNaN(_measuredHeight))
+            measure();
+        if (isNaN(_measuredHeight))
+            return height;
+        return _measuredHeight;
+    }
+
+
+    /**
+     *  @private
+     */
+    override protected function measure():void
+    {
+            _layout.measure();
+            
+    }
+
     override protected function createChildren():void
     {
         super.createChildren();
