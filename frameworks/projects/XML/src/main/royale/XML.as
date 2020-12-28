@@ -833,6 +833,13 @@ package
 		 */
 		public function addNamespace(ns:Namespace):XML
 		{
+			var ret:XML = addNamespaceInternal(ns);
+			xml$_notify("namespaceAdded", this, ns, null);
+			return ret;
+		}
+
+		public function addNamespaceInternal(ns:Namespace):XML
+		{
 			//TODO cached QNames will not work very well here.
 			/*
 				When the [[AddInScopeNamespace]] method of an XML object x is called with a namespace N, the following steps are taken:
@@ -913,6 +920,7 @@ package
 		
 			*/
 			var childType:String = typeof child;
+			var isTextSet:Boolean = false;
 			
 			if(childType != "object") {
 				const last:uint = childrenLength();
@@ -929,14 +937,16 @@ package
 				} else {
 					child = xmlFromStringable(child);
 				}
+				isTextSet = true;
 			}
 			if (child is XML  && (child as XML).getNodeRef() == ATTRIBUTE){
 				//convert to text node
 				var xml:XML= new XML();
 				xml._value = child.toString();
 				child = xml;
+				isTextSet = true;
 			}
-			appendChildInternal(child);
+			appendChildInternal(child, isTextSet);
 			//normalize seems not correct here:
 			//normalize();
 			return this;
@@ -946,7 +956,7 @@ package
 		 *
 		 * @royaleignorecoercion XML
 		 */
-		private function appendChildInternal(child:*):void
+		private function appendChildInternal(child:*, isTextSet:Boolean=false):void
 		{
 			var kind:String;
 			var alreadyPresent:int
@@ -993,7 +1003,21 @@ package
 				(child as XML).setParent(this);
 				children.push(child);
 				if (isAttribute)
-					xml$_notify("attributeAdded", this, child.name().toString(), childItem.getValue());
+				{
+					if (isTextSet)
+					{
+						xml$_notify("textSet", child, child._value, null);
+					}
+					xml$_notify("attributeAdded", this, child.name().toString(), child.getValue());
+				}
+				else if (isTextSet)
+				{
+					// the node with the _value may have a wrapper (with single child)
+					var childValueNode:XML = (child._children ? child._children[0] : child);
+					xml$_notify("textSet", childValueNode, childValueNode._value, null);
+					// if no wrapper, then childValueNode._parent == this and childValueNode == child
+					xml$_notify("nodeAdded", childValueNode._parent, childValueNode, null);
+				}
 				else
 					xml$_notify("nodeAdded", this, child, null);
 			}
@@ -2610,8 +2634,8 @@ package
 			15. Return
 			*/
 			var i:int;
-		/*	var len:int;
-			var chld:XML;
+			var len:int;
+		/*	var chld:XML;
 			var retVal:Object = elements;
 			var chldrn:XMLList;
 			var childIdx:int;*/
@@ -2654,10 +2678,8 @@ package
 				if (primitiveAssign) { //12.b
 					//skipping 12.b.i and 12.b.ii for now...@todo review
 					/*if (n.uri == null) {
-
-                    } else {
-
-                    }*/
+					} else {
+					}*/
 					_internal = true;
 					var y:XML = new XML();
 					_internal = false;
@@ -2672,14 +2694,28 @@ package
 			if (primitiveAssign) { //13 @todo review guess at conditional
 				//13.a. Delete all the properties of the XML object x[i]
 				y = _children[i];
+				// legacy behavior is to send "nodeRemoved" for all children, in order, before actual removals
+				len = y.childrenLength();
+				var firstChildStr:String = null;
+				for(k=0;k<len;++k) {
+					var removed:XML = y._children[k];
+					// legacy behavior is to send "textSet" after all removals, but with the first old node 
+					// with namespaces intact (from before removal), so we materialize it in string form
+					if (!k) firstChildStr = removed.toXMLString();
+					y.xml$_notify("nodeRemoved", y, removed, null);
+				}
 				k = y.childrenLength() - 1;
+				y._internalSuppressNotify = true;
 				while(k>-1) {
-					y.removeChildAt(k); //13.a
+					y.removeChildAt(0); //13.a
 					k--;
 				}
+				y._internalSuppressNotify = false;
 				elements = elements + ''; //13.b
 				if (elements) {
 					y.replaceChildAt(0, elements); //13.c
+					// @todo get XML version of firstChildStr without parsing (but xmlFromStringable is not right)
+					y.xml$_notify("textSet", y._children[0], elements, new XML(firstChildStr));
 				}
 			} else {
 				//elements = (elements as XML).copy(); //@todo check... might need attention here
@@ -2778,7 +2814,7 @@ package
 			var oldName:QName = _name;
 			_name = getQName(name,_name.prefix,_name.uri,_name.isAttribute)
 			// _name.localName = name;
-			xml$_notify("nameSet", (getNodeRef() == ATTRIBUTE ? _value : this), _name.toString(), oldName.toString());
+			xml$_notify("nameSet", (getNodeRef() == ATTRIBUTE ? xmlFromStringable(_value) : this), _name.toString(), oldName.toString());
 		}
 		
 		/**
@@ -2817,7 +2853,7 @@ package
 				delete this._nodeKind;
 			}
 			// oldName cannot be null, normally, but we're calling setName() from within parseXMLStr() for processing instructions
-			if (oldName) xml$_notify("nameSet", (ref == ATTRIBUTE ? _value : this), (name is QName ? _name : _name.toString()), oldName.toString());
+			if (oldName) xml$_notify("nameSet", (ref == ATTRIBUTE ? xmlFromStringable(_value) : this), (name is QName ? _name : _name.toString()), oldName.toString());
 		}
 		
 		/**
@@ -2839,13 +2875,17 @@ package
 				if(_parent == null)
 					return;
 				nameRef.setIsAttribute(true);
-				_parent.addNamespace(ns2);
+				_parent.addNamespaceInternal(ns2);
 			}
 			
 			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,nameRef.isAttribute);
 			
 			if(kind == ELEMENT)
-				addNamespace(ns2);
+			{
+				addNamespaceInternal(ns2);
+			}
+
+			xml$_notify("namespaceSet", this, ns, null);
 		}
 		
 		/**
@@ -3460,16 +3500,15 @@ package
 		 *   attributeRemoved
 		 *   nodeAdded
 		 *   nodeRemoved
+		 *   namespaceAdded
+		 *   namespaceSet
 		 *   nameSet
+		 *   textSet
 		 *
 		 *   NOT IMPLEMENTED YET:
 		 *
 		 *   nodeChanged
-		 *   namespaceAdded
 		 *   namespaceRemoved
-		 *   namespaceSet
-		 *   textSet
-		 *
 		 */
 
 		public function setNotification(callback:Function):void
