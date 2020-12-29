@@ -2734,8 +2734,11 @@ package
 				elements = elements + ''; //13.b
 				if (elements) {
 					y.replaceChildAt(0, elements); //13.c
-					// @todo get XML version of firstChildStr without parsing (but xmlFromStringable is not right)
-					y.xml$_notify("textSet", y._children[0], elements, new XML(firstChildStr));
+					if (_notification || (recursiveNotify && _parent))
+					{
+						// @todo get XML version of firstChildStr without parsing (but xmlFromStringable is not right)
+						y.xml$_notify("textSet", y._children[0], elements, new XML(firstChildStr));
+					}
 				}
 			} else {
 				//elements = (elements as XML).copy(); //@todo check... might need attention here
