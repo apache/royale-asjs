@@ -965,7 +965,9 @@ package
 			if(child is XMLList)
 			{
 				var len:int = child.length();
-				for(var i:int=0; i<len; i++)
+				var oldChildrenLength:int = childrenLength();
+				var i:int;
+				for(i=0; i<len; i++)
 				{
 					//reproduce swf behavior... leaves a phantom child in the source
 					var childItem:XML = child[i] as XML;
@@ -982,10 +984,24 @@ package
 					}
 					childItem.setParent(this, true);
 					children.push(childItem);
-					if (isAttribute)
-						xml$_notify("attributeAdded", this, childItem.name().toString(), childItem.getValue());
-					else
-						xml$_notify("nodeAdded", this, childItem, null);
+				}
+				if (_notification || (recursiveNotify && _parent))
+				{
+					// legacy behavior is to send "nodeAdded", in order, with post-all-added "this"
+					for(i=0; i<len; i++)
+					{
+						var originalChildItem:XML = child[i] as XML;
+						isAttribute = false;
+						kind = originalChildItem.getNodeRef();
+						if (kind == ATTRIBUTE) {
+							isAttribute = true;
+						}
+						var finalChildItem:XML = children[oldChildrenLength + i];
+						if (isAttribute)
+							xml$_notify("attributeAdded", this, finalChildItem.name().toString(), finalChildItem.getValue());
+						else
+							xml$_notify("nodeAdded", this, finalChildItem, null);
+					}
 				}
 			}
 			else
@@ -2695,15 +2711,18 @@ package
 			if (primitiveAssign) { //13 @todo review guess at conditional
 				//13.a. Delete all the properties of the XML object x[i]
 				y = _children[i];
-				// legacy behavior is to send "nodeRemoved" for all children, in order, before actual removals
-				len = y.childrenLength();
-				var firstChildStr:String = null;
-				for(k=0;k<len;++k) {
-					var removed:XML = y._children[k];
-					// legacy behavior is to send "textSet" after all removals, but with the first old node 
-					// with namespaces intact (from before removal), so we materialize it in string form
-					if (!k) firstChildStr = removed.toXMLString();
-					y.xml$_notify("nodeRemoved", y, removed, null);
+				if (_notification || (recursiveNotify && _parent))
+				{
+					// legacy behavior is to send "nodeRemoved" for all children, in order, before actual removals
+					len = y.childrenLength();
+					var firstChildStr:String = null;
+					for(k=0;k<len;++k) {
+						var removed:XML = y._children[k];
+						// legacy behavior is to send "textSet" after all removals, but with the first old node 
+						// with namespaces intact (from before removal), so we materialize it in string form
+						if (!k) firstChildStr = removed.toXMLString();
+						y.xml$_notify("nodeRemoved", y, removed, null);
+					}
 				}
 				k = y.childrenLength() - 1;
 				y._internalSuppressNotify = true;
@@ -2753,10 +2772,7 @@ package
 				if(chldrn.length())
 					childIdx = chldrn[0].childIndex();
 				
-				var lastChild:XML = null;
 				len = chldrn.length() -1;
-				// get last child before actual remove
-				if (len >= 0) lastChild = chldrn[len];
 				_internalSuppressNotify = true;
 				for (i= len; i >= 0;  i--)
 				{
@@ -2764,11 +2780,12 @@ package
 					// remove the nodes
 					// remove the children
 					// adjust the childIndexes
-					if (i == len)
+					if (i > 0)
 					{
-						// legacy behavior is to send last child only, but with post-single-remove "this"
+						// legacy behavior is to send "nodeRemoved" for all but first child, in reverse order,
+						// with post-remove-until-that-point "this"
 						_internalSuppressNotify = false;
-						xml$_notify("nodeRemoved", this, lastChild, null);
+						xml$_notify("nodeRemoved", this, chldrn[i], null);
 						_internalSuppressNotify = true;
 					}
 				}
