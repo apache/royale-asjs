@@ -2348,6 +2348,7 @@ package
 				if((_children[i] as XML).getNodeRef() == ELEMENT)
 					(_children[i] as XML).removeNamespace(ns);
 			}
+			xml$_notify("namespaceRemoved", this, ns, null);
 			return this;
 		}
 		
