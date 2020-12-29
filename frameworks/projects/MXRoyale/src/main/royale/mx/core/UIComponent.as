@@ -2315,13 +2315,17 @@ COMPILE::JS
                 var oldWidth:Object;
                 var oldLeft:String;
                 var oldRight:String;
+                var oldOverflow:String;
                 oldWidth = this.positioner.style.width;
                 oldLeft = this.positioner.style.left;
                 oldRight = this.positioner.style.right;
+                oldOverflow = this.positioner.style.overflow;
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     return 0; // this.positioner.style.left = "";
                 if (oldWidth.length)
                     this.positioner.style.width = "";
+                if (oldOverflow.length)
+                   this.positioner.style.overflow = "unset";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
@@ -2333,6 +2337,8 @@ COMPILE::JS
                             mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
                     }
                 }
+                if (oldOverflow.length)
+                    this.positioner.style.overflow = oldOverflow;       
                 if (oldWidth.length)
                     this.positioner.style.width = oldWidth;
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
@@ -2390,13 +2396,17 @@ COMPILE::JS
                 var oldHeight:Object;
                 var oldTop:String;
                 var oldBottom:String;
+                var oldOverflow:String;
                 oldTop = this.positioner.style.top;
                 oldBottom = this.positioner.style.bottom;
                 oldHeight = this.positioner.style.height;
-                if (oldHeight.length)
-                    this.positioner.style.height = "";
+                oldOverflow = this.positioner.style.overflow;
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
                     return 0; //this.positioner.style.top = "";
+                if (oldHeight.length)
+                    this.positioner.style.height = "";
+		if (oldOverflow.length)
+		    this.positioner.style.overflow = "unset";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && numChildren > 0)
                 {
@@ -2409,6 +2419,8 @@ COMPILE::JS
                 }
                 if (oldHeight.length)
                     this.positioner.style.height = oldHeight;
+		if (oldOverflow.length)
+		    this.positioner.style.overflow = oldOverflow;	
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates width
                     this.positioner.style.top = oldTop;
                 if (!isNaN(percentHeight))
