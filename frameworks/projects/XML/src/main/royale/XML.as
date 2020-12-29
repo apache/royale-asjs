@@ -3503,13 +3503,13 @@ package
 		 *   nodeRemoved
 		 *   namespaceAdded
 		 *   namespaceSet
+		 *   namespaceRemoved
 		 *   nameSet
 		 *   textSet
 		 *
 		 *   NOT IMPLEMENTED YET:
 		 *
 		 *   nodeChanged
-		 *   namespaceRemoved
 		 */
 
 		public function setNotification(callback:Function):void
