@@ -74,8 +74,6 @@ package org.apache.royale.core
 	     */
 	    private static const PSEUDONYMS:Object =
 	    {
-	        width: "explicitWidth",
-	        height: "explicitHeight",
 	        currentState: "currentStateDeferred"
 	    };
         
