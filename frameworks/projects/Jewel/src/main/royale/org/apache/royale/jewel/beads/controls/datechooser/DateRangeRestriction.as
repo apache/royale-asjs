@@ -169,15 +169,13 @@ package org.apache.royale.jewel.beads.controls.datechooser
 				(renderer as IStrand).addBead(disabled);
 			}
 
-			if ((itemTime > minTime) && (itemTime > maxTime))
+			if ((itemTime > minTime) && (maxTime > itemTime))
 			{
-                trace("disabling ", rendererDate.day, rendererDate.month, rendererDate.fullYear, " -- ", minDate.day, minDate.month, minDate.fullYear, " -- ", maxDate.day, maxDate.month, maxDate.fullYear);
-				disabled.disabled = true;
+                disabled.disabled = false;
 			}
 			else
 			{
-                trace(" - ENABLING ", rendererDate.day, rendererDate.month, rendererDate.fullYear, " -- ", minDate.day, minDate.month, minDate.fullYear, " -- ", maxDate.day, maxDate.month, maxDate.fullYear);
-				disabled.disabled = false;
+                disabled.disabled = true;
 			}
 		}
     }
