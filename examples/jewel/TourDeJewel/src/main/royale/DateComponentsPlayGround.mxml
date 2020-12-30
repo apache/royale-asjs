@@ -86,6 +86,12 @@ limitations under the License.
 
 			[Bindable]
 			public var promptText:String = "DD/MM/YYYY";
+
+			[Bindable]
+			public var minDate:Date = new Date(2020, 11, 13);
+			
+			[Bindable]
+			public var maxDate:Date = new Date();
 		]]>
 	</fx:Script>
 
@@ -259,6 +265,28 @@ limitations under the License.
 						<j:HSlider width="250" value="200" minimum="100" maximum="400" valueChange="df3.width = event.target.value;"/>
 					</j:HGroup>
 				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Restricted Date Range"/>
+				<j:DateChooser localId="dateChooserRes">
+					<j:beads>
+						<j:DateRangeRestriction minDate="{minDate}" maxDate="{maxDate}"/>
+					</j:beads>
+				</j:DateChooser>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Min Date"/>
+					<j:DateField change="minDate = event.target.selectedDate;" selectedDate="{minDate}"/>
+				</j:HGroup>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Max Date"/>
+					<j:DateField change="maxDate = event.target.selectedDate;" selectedDate="{maxDate}"/>
+				</j:HGroup>
+
 			</j:Card>
 		</j:GridCell>
 
