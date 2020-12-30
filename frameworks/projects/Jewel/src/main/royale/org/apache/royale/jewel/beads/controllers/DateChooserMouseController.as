@@ -23,7 +23,6 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
@@ -76,7 +75,7 @@ package org.apache.royale.jewel.beads.controllers
 			view.nextButton.addEventListener(MouseEvent.CLICK, nextButtonClickHandler);
 			view.viewSelector.addEventListener(MouseEvent.CLICK, viewSelectorClickHandler);
 			
-            IEventDispatcher(view.table).addEventListener(Event.CHANGE, tableHandler);
+            view.table.addEventListener(Event.CHANGE, tableHandler);
 		}
 
 		/**

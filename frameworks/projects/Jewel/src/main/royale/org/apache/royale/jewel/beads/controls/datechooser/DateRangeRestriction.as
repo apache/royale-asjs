@@ -22,9 +22,9 @@ package org.apache.royale.jewel.beads.controls.datechooser
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.MouseEvent;
     import org.apache.royale.jewel.beads.controls.Disabled;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-    import org.apache.royale.jewel.beads.models.DateChooserModel;
     import org.apache.royale.jewel.beads.views.DateChooserView;
     import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
@@ -114,10 +114,24 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			_strand = value;
 			(_strand as IEventDispatcher).addEventListener("initComplete", handlerDateChooserInitComplete);
 		}
-		
+
+		private var view:DateChooserView;
+		private var table:DateChooserTable;
+		private var tableContent:TBodyContentArea;
+
 		private function handlerDateChooserInitComplete(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", handlerDateChooserInitComplete);
+			
+			view = _strand.getBeadByType(DateChooserView) as DateChooserView;
+			view.previousButton.addEventListener(MouseEvent.CLICK, refreshDateRange);
+			view.nextButton.addEventListener(MouseEvent.CLICK, refreshDateRange);
+			view.viewSelector.addEventListener(MouseEvent.CLICK, refreshDateRange);
+            
+			table = view.table;
+			view.table.addEventListener(Event.CHANGE, refreshDateRange);
+
+            tableContent = table.getBeadByType(TBodyContentArea) as TBodyContentArea;
 			
 			refreshDateRange();
 		}
@@ -126,11 +140,6 @@ package org.apache.royale.jewel.beads.controls.datechooser
 		{
             if (!minDate || !maxDate) return;
 			
-			var model:DateChooserModel = _strand.getBeadByType(DateChooserModel) as DateChooserModel;
-            var dateChooserView:DateChooserView = _strand.getBeadByType(DateChooserView) as DateChooserView;
-            var table:DateChooserTable = dateChooserView.table;
-            var tableContent:TBodyContentArea = table.getBeadByType(TBodyContentArea) as TBodyContentArea;
-            
             var n:int = table.dataProvider.length;
 			for (var i:int = 0; i < tableContent.numElements; i++)
 			{
@@ -160,7 +169,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 				(renderer as IStrand).addBead(disabled);
 			}
 
-			if ((minTime < itemTime) && (itemTime > maxTime))
+			if ((itemTime > minTime) && (itemTime > maxTime))
 			{
                 trace("disabling ", rendererDate.day, rendererDate.month, rendererDate.fullYear, " -- ", minDate.day, minDate.month, minDate.fullYear, " -- ", maxDate.day, maxDate.month, maxDate.fullYear);
 				disabled.disabled = true;
