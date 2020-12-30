@@ -632,6 +632,10 @@ j|CardActions {
 .calendar.item.date {
   color: grey;
 }
+.calendar[disabled] {
+  color: #737373;
+  pointer-events: none;
+}
 
 .jewel.datefield .jewel.textinput input {
   border-radius: 0.25rem 0px 0px 0.25rem;
