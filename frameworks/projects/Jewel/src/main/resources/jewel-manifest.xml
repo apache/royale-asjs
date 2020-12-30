@@ -134,6 +134,7 @@
     <component id="CollapsibleNavigationSectionRenderer" class="org.apache.royale.jewel.itemRenderers.CollapsibleNavigationSectionRenderer"/>
 
     <component id="DateChooserModel" class="org.apache.royale.jewel.beads.models.DateChooserModel"/>
+    <component id="DateRangeRestriction" class="org.apache.royale.jewel.beads.controls.datechooser.DateRangeRestriction"/>
 
     <component id="ResponsiveView" class="org.apache.royale.jewel.ResponsiveView"/>
 
