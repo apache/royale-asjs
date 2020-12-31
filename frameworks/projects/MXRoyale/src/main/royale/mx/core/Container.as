@@ -1189,6 +1189,25 @@ public class Container extends UIComponent
         return contentView.getElementAt(index) as IUIComponent;
     }
 
+	/**
+	 * @private
+	 */
+	public function removeElementAt(index:int):IChild
+	{
+		return removeChildAt(index) as IChild;
+	}
+    
+	/**
+	 * @private
+	 */
+	public function removeAllElements():void
+	{
+		for (var i:int = numElements - 1; i >= 0; i--)
+		{
+			removeElementAt(i);
+		}
+	}
+
 	/*
 	* IContainerBaseStrandChildrenHost
 	*

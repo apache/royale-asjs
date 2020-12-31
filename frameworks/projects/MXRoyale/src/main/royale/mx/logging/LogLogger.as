@@ -137,7 +137,7 @@ public class LogLogger extends EventDispatcher implements ILogger
 			// replace all of the parameters in the msg string
 			for (var i:int = 0; i < rest.length; i++)
 			{
-				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
+				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), argToString(rest[i]));
 			}
 
 			dispatchEvent(new LogEvent(msg, level));
@@ -159,7 +159,7 @@ public class LogLogger extends EventDispatcher implements ILogger
 			// replace all of the parameters in the msg string
 			for (var i:int = 0; i < rest.length; i++)
 			{
-				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
+				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), argToString(rest[i]));
 			}
 
 			dispatchEvent(new LogEvent(msg, LogEventLevel.DEBUG));
@@ -181,7 +181,7 @@ public class LogLogger extends EventDispatcher implements ILogger
 			// replace all of the parameters in the msg string
 			for (var i:int = 0; i < rest.length; i++)
 			{
-				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
+				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), argToString(rest[i]));
 			}
 
 			dispatchEvent(new LogEvent(msg, LogEventLevel.ERROR));
@@ -203,7 +203,7 @@ public class LogLogger extends EventDispatcher implements ILogger
 			// replace all of the parameters in the msg string
 			for (var i:int = 0; i < rest.length; i++)
 			{
-				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
+				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), argToString(rest[i]));
 			}
 
 			dispatchEvent(new LogEvent(msg, LogEventLevel.FATAL));
@@ -225,7 +225,7 @@ public class LogLogger extends EventDispatcher implements ILogger
 			// replace all of the parameters in the msg string
 			for (var i:int = 0; i < rest.length; i++)
 			{
-				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
+				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), argToString(rest[i]));
 			}
 
 			dispatchEvent(new LogEvent(msg, LogEventLevel.INFO));
@@ -247,11 +247,22 @@ public class LogLogger extends EventDispatcher implements ILogger
 			// replace all of the parameters in the msg string
 			for (var i:int = 0; i < rest.length; i++)
 			{
-				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), rest[i]);
+				msg = msg.replace(new RegExp("\\{"+i+"\\}", "g"), argToString(rest[i]));
 			}
 
 			dispatchEvent(new LogEvent(msg, LogEventLevel.WARN));
 		}
+	}
+	
+	private function argToString(arg:Object):String
+	{
+		if (!arg) return null;
+
+		if (arg is XML || arg is XMLList)
+		{
+			return arg.toXMLString();
+		}
+		return arg.toString();
 	}
 }
 

@@ -1451,10 +1451,10 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
     /**
      *  @private
      */
-    /* override public function initialize():void
+    override public function initialize():void
     {
         // trace("FxApp initialize FxApp");
-
+    /*
         var sm:ISystemManager = systemManager;
 
         // add listener if one is already attached
@@ -1480,8 +1480,19 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
                 setStyle("osStatusBarHeight", 0);
             }
         }
+    */
         
-        _url = LoaderUtil.normalizeURL(sm.loaderInfo);
+        // Flex:  _url = LoaderUtil.normalizeURL(sm.loaderInfo);
+        COMPILE::SWF
+        {
+            _url = loaderInfo.url;
+        }
+        COMPILE::JS
+        {
+            _url = document.URL;
+        }
+     
+    /*
         _parameters = sm.loaderInfo.parameters;
 
         initManagers(sm);
@@ -1489,16 +1500,17 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         // Setup the default context menu here. This allows the application
         // developer to override it in the initialize event, if desired.
         initContextMenu();
-
+    */
         super.initialize();
-
+    /*
         // Stick a timer here so that we will execute script every 1.5s
         // no matter what.
         // This is strictly for the debugger to be able to halt.
         // Note: isDebugger is true only with a Debugger Player.
         if (sm.isTopLevel() && Capabilities.isDebugger == true)
             setInterval(debugTickler, 1500);
-    } */
+    */
+    }
     
     /**
      *  @private
