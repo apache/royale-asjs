@@ -289,6 +289,28 @@ limitations under the License.
 
 			</j:Card>
 		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="DateField Restricted Date Range"/>
+				<j:DateField localId="dateFieldRes">
+					<j:beads>
+						<j:DateFieldDateRangeRestriction minDate="{minDate}" maxDate="{maxDate}"/>
+					</j:beads>
+				</j:DateField>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Min Date"/>
+					<j:DateField change="minDate = event.target.selectedDate;" selectedDate="{minDate}"/>
+				</j:HGroup>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Max Date"/>
+					<j:DateField change="maxDate = event.target.selectedDate;" selectedDate="{maxDate}"/>
+				</j:HGroup>
+
+			</j:Card>
+		</j:GridCell>
 
 	</j:Grid>
 
