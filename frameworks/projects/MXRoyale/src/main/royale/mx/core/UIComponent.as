@@ -988,7 +988,6 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     COMPILE::JS
     public function get name():String
@@ -1425,7 +1424,6 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     public function get owner():IUIComponent
     {
@@ -2404,6 +2402,8 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         if (child) // child is null for TextNodes
                             mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
+                        else
+                            trace("Child class not IUIComponent: " + getElementAt(i)["ROYALE_CLASS_INFO"].names[0].qName);
                     }
                 }
                 if (oldWidth.length)
@@ -2478,6 +2478,8 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         if (child)
                             mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
+                        else
+                            trace("Child class not IUIComponent: " + getElementAt(i)["ROYALE_CLASS_INFO"].names[0].qName);
                     }
                 }
                 if (oldHeight.length)
@@ -3583,7 +3585,6 @@ COMPILE::JS
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
@@ -3603,7 +3604,6 @@ COMPILE::JS
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
@@ -3628,7 +3628,6 @@ COMPILE::JS
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
@@ -3652,7 +3651,6 @@ COMPILE::JS
 	}
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
@@ -3671,7 +3669,6 @@ COMPILE::JS
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
@@ -6280,8 +6277,6 @@ COMPILE::JS
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
-     *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-     *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
      */
     override public function get topMostEventDispatcher():IEventDispatcher
     {
