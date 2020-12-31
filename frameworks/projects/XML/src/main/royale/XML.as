@@ -34,20 +34,24 @@ package
 		 * The XML QName can be a significant percentage of an XML object size.
 		 * By retaining a lookup of QNames and reusing QName objects, we can save quite a bit of memory.
 		 */
-		static private var _nameMap:Object = {};
+		static private var _nameMap:Object = Object.create(null);
+		static private var _attrNameMap:Object = Object.create(null);
 		
 		static private function getQName(localName:String,prefix:*,uri:String,isAttribute:Boolean):QName{
 			localName = localName || "";
 			var prefixKey:String =  prefix == null ? '{$'+prefix+'$}' : prefix ; // handle nullish values differently to the potent 'null' or 'undefined' string values
 			uri = uri || ''; //internally there is no concept of 'any' namespace which is what a null uri is in a QName.
-			var key:String = localName + ":" + prefixKey + ":" + uri + ":" + isAttribute;
-			var qname:QName = _nameMap[key];
+			var key:String = (!prefix && !uri ? localName : localName + ":" + prefixKey + ":" + uri);
+			var qname:QName = (isAttribute ? _attrNameMap[key] : _nameMap[key]);
 			if(!qname){
 				qname = new QName(uri, localName);
 				if(prefix != null)
 					qname.setPrefix(prefix);
 				if (isAttribute) qname.setIsAttribute(true);
-				_nameMap[key] = qname;
+				if (isAttribute)
+					_attrNameMap[key] = qname;
+				else
+					_nameMap[key] = qname;
 			}
 			return qname;
 		}
@@ -213,7 +217,8 @@ package
 		 */
 		static public function clearQNameCache():void
 		{
-			_nameMap = {};
+			_nameMap = Object.create(null);
+			_attrNameMap = Object.create(null);
 		}
 		
 		/**
@@ -333,12 +338,34 @@ package
 			return xml;
 		}
 		
-		static private function iterateElement(node:Element,xml:XML):void
+		static private function polyFillNodeGetAttributeNames(node:Element):Array
 		{
+			var ret:Array = new Array();
 			var i:int;
-			// add attributes
 			var attrs:* = node.attributes;
 			var len:int = node.attributes.length;
+			for(i=0;i<len;i++)
+			{
+				ret.push(attrs[i].name);
+			}
+			return ret;
+		}
+
+		private static var hasNodeGetAttributeNames:Boolean = false;
+		private static var isInitStatic:Boolean = false;
+		
+		static private function iterateElement(node:Element,xml:XML):void
+		{
+			if (!isInitStatic)
+			{
+				hasNodeGetAttributeNames = (node["getAttributeNames"] ? true : false);
+				isInitStatic = true;
+			}
+
+			var i:int;
+			// add attributes
+			var attrNames:Array = (hasNodeGetAttributeNames ? node["getAttributeNames"]() : polyFillNodeGetAttributeNames(node));
+			var len:int = attrNames.length;
 			//set the name
 			var localName:String = node.nodeName;
 			var prefix:String = node.prefix;
@@ -351,7 +378,7 @@ package
 			var ns:Namespace;
 			for(i=0;i<len;i++)
 			{
-				var att:Attr = attrs[i];
+				var att:Attr = node.getAttributeNode(attrNames[i]);
 				if ((att.name == 'xmlns' || att.prefix == 'xmlns') && att.namespaceURI == 'http://www.w3.org/2000/xmlns/') {
 					//from e4x spec: NOTE Although namespaces are declared using attribute syntax in XML, they are not represented in the [[Attributes]] property.
 					if (att.prefix) {
@@ -365,11 +392,8 @@ package
 			}
 			// loop through childNodes which will be one of:
 			// text, cdata, processing instrution or comment and add them as children of the element
-			var childNodes:NodeList = node.childNodes;
-			len = childNodes.length;
-			for(i=0;i<len;i++)
+			for(var nativeNode:Node=node.firstChild; nativeNode; nativeNode=nativeNode.nextSibling)
 			{
-				var nativeNode:Node = childNodes[i];
 				const nodeType:Number = nativeNode.nodeType;
 				if ((nodeType == 7 && XML.ignoreProcessingInstructions) ||
 						(nodeType == 8 && XML.ignoreComments)) {
@@ -389,7 +413,7 @@ package
 		static private function fromNode(node:Node):XML
 		{
 			var xml:XML;
-			var data:* = node.nodeValue;
+			var data:String;
 			switch(node.nodeType)
 			{
 				case 1:
@@ -405,8 +429,11 @@ package
 				case 3:
 					//TEXT_NODE
 					if (XML.ignoreWhitespace) {
-						data = data.trim();
+						data = node.nodeValue.trim();
 						if (!data) return null;
+					}
+					else {
+						data = node.nodeValue;
 					}
 					xml = new XML();
 					xml.setValue(data);
@@ -414,13 +441,14 @@ package
 				case 4:
 					//CDATA_SECTION_NODE
 					xml = new XML();
-					data = "<![CDATA[" + data + "]]>";
+					data = "<![CDATA[" + node.nodeValue + "]]>";
 					xml.setValue(data);
 					break;
 					//case 5:break;//ENTITY_REFERENCE_NODE
 					//case 6:break;//ENTITY_NODE
 				case 7:
 					//PROCESSING_INSTRUCTION_NODE
+					data = node.nodeValue;
 					xml = new XML();
 					xml._nodeKind = PROCESSING_INSTRUCTION;
 					//e4x: The [[Name]] for each XML object representing a processing-instruction will have its uri property set to the empty string.
@@ -436,7 +464,7 @@ package
 					break;
 				case 8:
 					//COMMENT_NODE
-					
+					data = node.nodeValue;
 					xml = new XML();
 					xml._nodeKind = COMMENT;
 					//e4X: the name must be null (comment node rules)
@@ -581,7 +609,7 @@ package
 					_value = '';
 				}
 			}
-			initializeClass();
+
 			if(!_class_initialized)
 			{
 				Object.defineProperty(XML.prototype,"0",
@@ -594,10 +622,6 @@ package
 				);
 				_class_initialized = true;
 			}
-		}
-		private static function initializeClass():void
-		{
-			
 		}
 
 		private static var _class_initialized:Boolean = false;
