@@ -145,12 +145,13 @@ public dynamic class Proxy extends EventDispatcher
 		return delete valueMap[propName];
     }
 	
-	public function propertyNames():Array
+	public function propertyNames():Object
 	{
-		var names:Array = [];
-		for (var p:String in valueMap)
-			names.push(p);
-		return names;
+//		var names:Array = [];
+//		for (var p:String in valueMap)
+//			names.push(p);
+//		return names;
+		return valueMap;
 	}
 }
 
