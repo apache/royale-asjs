@@ -1030,8 +1030,18 @@ public class Panel extends Container
             contentView.percentHeight = 100;
         }
     }
-    
-
+	
+    private var _headerHeight:Number = 0;
+	
+	public function get headerHeight():Number
+	{
+		return _headerHeight;
+	}
+	
+	public function set headerHeight(value:Number):void
+	{
+		_headerHeight = value;
+	}
     /**
      * @private
      * @royaleignorecoercion mx.containers.beads.PanelView
