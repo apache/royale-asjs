@@ -49,6 +49,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -267,12 +268,15 @@ package org.apache.royale.jewel.beads.views
 					table = (popUp.view as DateChooserView).table;
 
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
-					setTimeout(prepareForPopUp,  300);
-
+					
 					COMPILE::JS
 					{
 					window.addEventListener('resize', autoResizeHandler, false);
 					}
+
+					prepareForPopUp();
+
+					sendStrandEvent(_strand, "popUpOpened");
 
 					autoResizeHandler();
 				}
@@ -286,6 +290,7 @@ package org.apache.royale.jewel.beads.views
 					}
 					_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
 					_popUp = null;
+					sendStrandEvent(_strand, "popUpClosed");
 				}
 			}
 			_showingPopup = false;
