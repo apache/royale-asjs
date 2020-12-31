@@ -33,13 +33,14 @@ package org.apache.royale.jewel.beads.controls.datechooser
 													
 	/**
 	 *  Disable dates which are outside restriction provided by minDate and maxDate properties
+	 *  in DateChooser component
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class DateRangeRestriction implements IBead
+	public class DateChooserDateRangeRestriction implements IBead
 	{
         /**
 		 *  constructor.
@@ -49,7 +50,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
-		public function DateRangeRestriction()
+		public function DateChooserDateRangeRestriction()
 		{
 		}
 		
@@ -112,16 +113,16 @@ package org.apache.royale.jewel.beads.controls.datechooser
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			(_strand as IEventDispatcher).addEventListener("initComplete", handlerDateChooserInitComplete);
+			(_strand as IEventDispatcher).addEventListener("initComplete", handleDateChooserInitComplete);
 		}
 
 		private var view:DateChooserView;
 		private var table:DateChooserTable;
 		private var tableContent:TBodyContentArea;
 
-		private function handlerDateChooserInitComplete(event:Event):void
+		private function handleDateChooserInitComplete(event:Event):void
 		{
-			(_strand as IEventDispatcher).removeEventListener("initComplete", handlerDateChooserInitComplete);
+			(_strand as IEventDispatcher).removeEventListener("initComplete", handleDateChooserInitComplete);
 			
 			view = _strand.getBeadByType(DateChooserView) as DateChooserView;
 			view.previousButton.addEventListener(MouseEvent.CLICK, refreshDateRange);
@@ -136,7 +137,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			refreshDateRange();
 		}
 		
-		protected function refreshDateRange():void
+		public function refreshDateRange():void
 		{
             if (!minDate || !maxDate) return;
 			

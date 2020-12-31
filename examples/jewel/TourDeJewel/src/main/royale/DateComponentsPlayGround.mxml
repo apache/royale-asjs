@@ -270,10 +270,10 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Restricted Date Range"/>
+				<html:H3 text="DateChooser Restricted Date Range"/>
 				<j:DateChooser localId="dateChooserRes">
 					<j:beads>
-						<j:DateRangeRestriction minDate="{minDate}" maxDate="{maxDate}"/>
+						<j:DateChooserDateRangeRestriction minDate="{minDate}" maxDate="{maxDate}"/>
 					</j:beads>
 				</j:DateChooser>
 
