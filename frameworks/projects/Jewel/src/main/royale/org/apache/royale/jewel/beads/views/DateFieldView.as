@@ -181,7 +181,7 @@ package org.apache.royale.jewel.beads.views
 		 * @royaleignorecoercion org.apache.royale.core.IDateFormatter
 		 * @royaleignorecoercion org.apache.royale.jewel.DateField
 		 */
-		private function handleInitComplete(event:Event):void
+		protected function handleInitComplete(event:Event):void
 		{
 			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
@@ -200,7 +200,7 @@ package org.apache.royale.jewel.beads.views
 			mask.formatter = formatter;
 		}
 		
-		private function handlePopUpInitComplete(event:Event):void
+		protected function handlePopUpInitComplete(event:Event):void
 		{
 			getHost().dispatchEvent(new Event("dateChooserInitComplete"));
 		}
