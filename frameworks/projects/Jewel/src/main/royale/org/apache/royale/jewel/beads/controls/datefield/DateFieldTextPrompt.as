@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 {
 	COMPILE::SWF
 	{
-		import flash.utils.setTimeout;
+	import flash.utils.setTimeout;
     }
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
