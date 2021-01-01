@@ -171,11 +171,17 @@ package org.apache.royale.binding
 						deferredBindings = {};
 						IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                     }
-                    deferredBindings[bindingObject.destination[0]] = binding;
+                    var propertyBindings:Array = deferredBindings[bindingObject.destination[0]];
+                    if (!propertyBindings)
+                    {
+                        propertyBindings = [];
+                        deferredBindings[bindingObject.destination[0]] = propertyBindings;
+                    }
+                    propertyBindings.push(binding);
                 }
             }
         }
-        
+
         private function watcherChildrenRelevantToIndex(children:Object, index:int):Boolean{
             var watchers:Array = children ? children.watchers : null;
 			var hasValidWatcherChild:Boolean = false;
@@ -276,7 +282,7 @@ package org.apache.royale.binding
                         {
                             pw.parentChanged(parentObj);
                         }
-    
+
                         if (parentWatcher)
                         {
                             parentWatcher.addChild(pw);
@@ -286,7 +292,7 @@ package org.apache.royale.binding
                             pw.addBinding(gb);
                         }
                     }
-                    
+
                     if (hasWatcherChildren)
                     {
                         setupWatchers(gb, index, watcher.children.watchers, watcher.watcher);
@@ -310,7 +316,7 @@ package org.apache.royale.binding
         }
 
 		private function watcherChildIsXML(watcher:Object):Boolean
-		{	
+		{
 			return (watcher.children.watchers.length == 1 && watcher.children.watchers[0].type == "xml");
 		}
 
@@ -425,18 +431,26 @@ package org.apache.royale.binding
             {
                 if (_strand[p] != null)
                 {
+                    var propertyBindings:Array = deferredBindings[p];
+
                     var destination:IStrand = _strand[p] as IStrand;
                     if (destination)
                     {
-                        destination.addBead(deferredBindings[p]);
+                        for each (var bindingBead:IBead in propertyBindings)
+                        {
+                            destination.addBead(bindingBead);
+                        }
                     }
                     else
                     {
                         var destObject:Object = _strand[p];
                         if (destObject)
                         {
-                            deferredBindings[p].destination = destObject;
-                            _strand.addBead(deferredBindings[p]);
+                            for each (var binding:IBinding in propertyBindings)
+                            {
+                                binding.destination = destObject;
+                                _strand.addBead(IBead(binding));
+                            }
                         }
                         else
                         {
