@@ -169,22 +169,35 @@ package mx.external
             {
                 // find a function with the name...
                 var fnc : Function;
+                var base:Object = window
                 if (functionName) {
-                    var base:Object = window;
-                    var dotIdx:int = functionName.indexOf('.');
-                    if (dotIdx != -1) {
-                        while(dotIdx != -1) {
-                            base = base[functionName.substr(0, dotIdx)];
-                            functionName = functionName.substr(dotIdx + 1);
-                            dotIdx = functionName.indexOf('.');
+                    if (functionName.indexOf('function(')==-1 ) {//might need a more robust check for eval-only scripts
+                        var dotIdx:int = functionName.indexOf('.');
+                        var err:Boolean;
+                        if (dotIdx != -1) {
+                            while(!err && dotIdx != -1) {
+                                base = base[functionName.substr(0, dotIdx)];
+                                functionName = functionName.substr(dotIdx + 1);
+                                dotIdx = functionName.indexOf('.');
+                                if (!base) {
+                                    err = true
+                                }
+                            }
+                        }
+                        fnc = !err ? base[functionName] as Function: null;
+                    }
+                    if (!fnc) {
+                        try {
+                            fnc = eval('(function(){ return ('+functionName+')})()');
+                        } catch(e:Error){
+
                         }
                     }
-                    fnc = base[functionName];
                 }
 
                 if (fnc)
                 {
-                    return fnc.apply(null, args);
+                    return fnc.apply(base, args);
                 }
                 return null;
             }
