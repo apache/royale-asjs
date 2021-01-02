@@ -19,7 +19,6 @@
 package org.apache.royale.jewel.beads.controls.datechooser
 {
     import org.apache.royale.core.IBead;
-    import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
@@ -31,11 +30,15 @@ package org.apache.royale.jewel.beads.controls.datechooser
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.TableCell;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
-    import org.apache.royale.utils.getSelectionRenderBead;
 													
 	/**
 	 *  Disable dates which are outside restriction provided by minDate and maxDate properties
-	 *  in DateChooser component
+	 *  in DateChooser component. User can set just one restriction (minDate or maxDate), or both
+	 *  for a complete Range.
+	 * 
+	 *  If a selectionDate is set this bead doesn't affect it and the component just represent the selected
+	 *  date as disabled. An extension could be done to remove selectedDate and not allow selections on
+	 *  ranges outside the restriction.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -193,12 +196,12 @@ package org.apache.royale.jewel.beads.controls.datechooser
 				disabled.disabled = itemTime > minTime ? false : true;
 
 			// ensure no selection remains in dates out of the range
-			if(disabled.disabled)
-			{
-				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
-				if(selectionBead && selectionBead.selected)
-					selectionBead.selected = false;
-			}
+			// if(disabled.disabled)
+			// {
+			// 	var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+			// 	if(selectionBead && selectionBead.selected)
+			// 		selectionBead.selected = false;
+			// }
 		}
     }
 }
