@@ -158,5 +158,13 @@ $table-border-radius: $border-radius
     &.calendar
         border-radius: 4px
 
+        &[disabled]
+            color: $disabled-font-color
+            pointer-events: none
+        
         &.selected
             font-weight: bold
+
+            &[disabled]
+                color: $font-theme-color
+                background: darken($disabled-color, 15%)
