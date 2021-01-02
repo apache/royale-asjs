@@ -133,17 +133,19 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			view.nextButton.addEventListener(MouseEvent.CLICK, refreshDateRange);
 			view.viewSelector.addEventListener(MouseEvent.CLICK, refreshDateRange);
             
-			table = view.table;
-			view.table.addEventListener(Event.CHANGE, refreshDateRange);
-
-            tableContent = table.getBeadByType(TBodyContentArea) as TBodyContentArea;
-			
 			refreshDateRange();
 		}
 		
 		public function refreshDateRange():void
 		{
-            if (!minDate || !maxDate) return;
+			if(!view) return;
+            if (!minDate && !maxDate) return;
+
+			if(view.table)
+				view.table.removeEventListener(Event.CHANGE, refreshDateRange);
+			table = view.table;
+			view.table.addEventListener(Event.CHANGE, refreshDateRange);
+            tableContent = table.getBeadByType(TBodyContentArea) as TBodyContentArea;
 			
             var n:int = table.dataProvider.length;
 			for (var i:int = 0; i < tableContent.numElements; i++)
@@ -163,8 +165,12 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			var rendererDate:Date = renderer.data[renderer.labelField];
             if (!rendererDate) return;
 			
-			var minTime:Number = minDate.getTime();
-			var maxTime:Number = maxDate.getTime();
+			var minTime:Number;
+			var maxTime:Number;
+			if(minDate) 
+				minTime = minDate.getTime();
+			if(maxDate) 
+				maxTime = maxDate.getTime();
 			var itemTime:Number = rendererDate.getTime();
 			
 			var disabled:Disabled = (renderer as IStrand).getBeadByType(Disabled) as Disabled;
@@ -174,14 +180,15 @@ package org.apache.royale.jewel.beads.controls.datechooser
 				(renderer as IStrand).addBead(disabled);
 			}
 
-			if ((itemTime > minTime) && (maxTime > itemTime))
-			{
-                disabled.disabled = false;
-			}
-			else
-			{
-                disabled.disabled = true;
-			}
+			if(minDate && maxDate)
+				// both minDate and maxDate
+				disabled.disabled = (itemTime > minTime) && (maxTime > itemTime) ? false : true;
+			else if(!minDate && maxDate)
+				// only maxDate
+				disabled.disabled = maxTime > itemTime ? false : true; 
+			else if(minDate && !maxDate)
+				// only minDate
+				disabled.disabled = itemTime > minTime ? false : true;
 		}
     }
 }
