@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.beads.controls.datechooser
 {
     import org.apache.royale.core.IBead;
+    import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
@@ -30,6 +31,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.TableCell;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
+    import org.apache.royale.utils.getSelectionRenderBead;
 													
 	/**
 	 *  Disable dates which are outside restriction provided by minDate and maxDate properties
@@ -189,6 +191,14 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			else if(minDate && !maxDate)
 				// only minDate
 				disabled.disabled = itemTime > minTime ? false : true;
+
+			// ensure no selection remains in dates out of the range
+			if(disabled.disabled)
+			{
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+				if(selectionBead && selectionBead.selected)
+					selectionBead.selected = false;
+			}
 		}
     }
 }
