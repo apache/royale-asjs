@@ -28,9 +28,9 @@ import flash.geom.Rectangle;
 
 import spark.primitives.supportClasses.StrokedElement; */
 import org.apache.royale.events.EventDispatcher;
-import org.apache.royale.geom.Rectangle;
 import mx.core.mx_internal;
 import mx.graphics.IStroke;
+import mx.graphics.SolidColorStroke;
 import mx.graphics.IFill;
 import mx.core.UIComponent;
 import mx.display.Graphics;
@@ -87,7 +87,7 @@ public class Line extends UIComponent
     //  xFrom
     //----------------------------------
 
-    private var _xFrom:Number = 0;
+    private var _xFrom:Number;
     
     [Inspectable(category="General")]
 
@@ -124,7 +124,7 @@ public class Line extends UIComponent
     //  xTo
     //----------------------------------
 
-    private var _xTo:Number = 0;
+    private var _xTo:Number;
     
     [Inspectable(category="General")]
 
@@ -161,7 +161,7 @@ public class Line extends UIComponent
     //  yFrom
     //----------------------------------
 
-    private var _yFrom:Number = 0;
+    private var _yFrom:Number;
     
     [Inspectable(category="General")]
 
@@ -198,7 +198,7 @@ public class Line extends UIComponent
     //  yTo
     //----------------------------------
 
-    private var _yTo:Number = 0;
+    private var _yTo:Number;
     
     [Inspectable(category="General")]
 
@@ -260,13 +260,21 @@ public class Line extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* override protected function measure():void
+    private var realXFrom:Number;
+    private var realXTo:Number;
+    private var realYFrom:Number;
+    private var realYTo:Number;
+    private var measuredWidth:Number;
+    private var measuredHeight:Number;
+    private var measuredX:Number;
+    private var measuredY:Number;
+    override protected function measure():void
     {
-        measuredWidth = Math.abs(xFrom - xTo);
-        measuredHeight = Math.abs(yFrom - yTo);
-        measuredX = Math.min(xFrom, xTo);
-        measuredY = Math.min(yFrom, yTo);
-    } */
+        measuredWidth = Math.abs(realXFrom - realXTo);
+        measuredHeight = Math.abs(realYFrom - realYTo);
+        measuredX = Math.min(realXFrom, realXTo);
+        measuredY = Math.min(realYFrom, realYTo);
+    }
 
     /**
      * @private 
@@ -297,16 +305,17 @@ public class Line extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  override protected function draw(g:Graphics):void
+    //  override protected function draw(g:Graphics):void
+    protected function draw(g:Graphics):void
     {
         // Our bounding box is (x1, y1, x2, y2)
-        var x1:Number = measuredX + drawX;
-        var y1:Number = measuredY + drawY;
-        var x2:Number = measuredX + drawX + width;
-        var y2:Number = measuredY + drawY + height;    
+        var x1:Number = measuredX;
+        var y1:Number = measuredY;
+        var x2:Number = measuredX + width;
+        var y2:Number = measuredY + height;    
         
         // Which way should we draw the line?
-        if ((xFrom <= xTo) == (yFrom <= yTo))
+        if ((realXFrom <= realXTo) == (realYFrom <= realYTo))
         { 
             // top-left to bottom-right
             g.moveTo(x1, y1);
@@ -318,7 +327,7 @@ public class Line extends UIComponent
             g.moveTo(x1, y2);
             g.lineTo(x2, y1);
         }
-    } */
+    }
 	
 	
 	
@@ -393,18 +402,51 @@ public class Line extends UIComponent
     override protected function updateDisplayList(unscaledWidth:Number,
                                                   unscaledHeight:Number):void
     {
-	    // TODO use lineTo instead of drawRect()
         super.updateDisplayList(unscaledWidth,unscaledHeight);
-        var g:Graphics = graphics;
-        g.clear();
-        
-        if (stroke)
-            stroke.apply(g, new Rectangle(0, 0, unscaledWidth, 1), null);
-        
-        g.drawRect(0, 0, unscaledWidth, unscaledHeight);
+        if (stroke is SolidColorStroke)
+	{
+		var solidColorStroke:SolidColorStroke = stroke as SolidColorStroke;
+		if (!isNaN(_xFrom) && !isNaN(_yFrom) && !isNaN(_xTo) && !isNaN(_yTo) )
+		{
+			realXFrom = _xFrom;
+			realYFrom = _yFrom;
+			realXTo = _xTo;
+			realYTo = _yTo;
+		} else
+		{
+			var hasWidth:Boolean =  !isNaN(unscaledWidth) && unscaledWidth > 0;
+			var hasHeight:Boolean =  !isNaN(unscaledHeight) && unscaledHeight > 0;
+			if (hasWidth || hasHeight)
+			{
+				var isDiagonal:Boolean = hasWidth && hasHeight;
+				if (isDiagonal)
+				{
+					realXFrom = isNaN(right) ? 0 : unscaledWidth;
+					realXTo = isNaN(right) ? unscaledWidth : 0;
+					realYFrom = 0;
+					realYTo = unscaledHeight;
+				} else
+				{
+					realXFrom = 0;
+					realYFrom = 0;
+					realXTo = hasWidth ? unscaledWidth : 0;
+					realYTo = hasHeight ? unscaledHeight : 0;
+				}
+			} else
+			{
+				return;
+			}
+		}
+		width = Math.max(width, solidColorStroke.weight);
+		height = Math.max(height, solidColorStroke.weight);
+		var g:Graphics = graphics;
+		g.lineStyle(solidColorStroke.weight, solidColorStroke.color, solidColorStroke.alpha);
+		g.clear();
+		measure();
+		draw(g);
+		g.endStroke();
+	}
     }
 
-	
 }
-
 }
