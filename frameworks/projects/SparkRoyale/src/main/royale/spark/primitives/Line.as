@@ -421,8 +421,9 @@ public class Line extends UIComponent
 				var isDiagonal:Boolean = hasWidth && hasHeight;
 				if (isDiagonal)
 				{
-					realXFrom = isNaN(right) ? 0 : unscaledWidth;
-					realXTo = isNaN(right) ? unscaledWidth : 0;
+					var isRightDefined:Boolean = (right is String) && (right as String).indexOf(":") > -1;
+					realXFrom = isRightDefined ? 0 : unscaledWidth;
+					realXTo = isRightDefined ? unscaledWidth : 0;
 					realYFrom = 0;
 					realYTo = unscaledHeight;
 				} else
