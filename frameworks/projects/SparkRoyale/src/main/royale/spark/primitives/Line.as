@@ -311,8 +311,8 @@ public class Line extends UIComponent
         // Our bounding box is (x1, y1, x2, y2)
         var x1:Number = measuredX;
         var y1:Number = measuredY;
-        var x2:Number = measuredX + width;
-        var y2:Number = measuredY + height;    
+        var x2:Number = measuredX + measuredWidth;
+        var y2:Number = measuredY + measuredHeight;    
         
         // Which way should we draw the line?
         if ((realXFrom <= realXTo) == (realYFrom <= realYTo))
@@ -414,8 +414,8 @@ public class Line extends UIComponent
 			realYTo = _yTo;
 		} else
 		{
-			var hasWidth:Boolean =  !isNaN(unscaledWidth) && unscaledWidth > 0;
-			var hasHeight:Boolean =  !isNaN(unscaledHeight) && unscaledHeight > 0;
+			var hasWidth:Boolean =  !isNaN(unscaledWidth) && unscaledWidth > solidColorStroke.weight;
+			var hasHeight:Boolean =  !isNaN(unscaledHeight) && unscaledHeight > solidColorStroke.weight;
 			if (hasWidth || hasHeight)
 			{
 				var isDiagonal:Boolean = hasWidth && hasHeight;
