@@ -403,12 +403,9 @@ public class Line extends UIComponent
                                                   unscaledHeight:Number):void
     {
         super.updateDisplayList(unscaledWidth,unscaledHeight);
-        var g:Graphics = graphics;
         if (stroke is SolidColorStroke)
 	{
 		var solidColorStroke:SolidColorStroke = stroke as SolidColorStroke;
-		g.lineStyle(solidColorStroke.weight, solidColorStroke.color, solidColorStroke.alpha);
-		g.clear();
 		if (!isNaN(_xFrom) && !isNaN(_yFrom) && !isNaN(_xTo) && !isNaN(_yTo) )
 		{
 			realXFrom = _xFrom;
@@ -440,10 +437,13 @@ public class Line extends UIComponent
 				return;
 			}
 		}
-		measure();
-		draw(g);
 		width = Math.max(width, solidColorStroke.weight);
 		height = Math.max(height, solidColorStroke.weight);
+		var g:Graphics = graphics;
+		g.lineStyle(solidColorStroke.weight, solidColorStroke.color, solidColorStroke.alpha);
+		g.clear();
+		measure();
+		draw(g);
 		g.endStroke();
 	}
     }
