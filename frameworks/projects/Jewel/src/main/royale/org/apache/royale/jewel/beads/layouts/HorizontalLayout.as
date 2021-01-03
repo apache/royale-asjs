@@ -206,7 +206,7 @@ package org.apache.royale.jewel.beads.layouts
 				if(value != 0)
 					hostComponent.addClass("gap-" + value + "x" + GapConstants.GAP_STEP + "px");
 			} else
-				throw new Error("Gap needs to be between 0 and " + GapConstants.GAPS);
+				throw new Error("Gap needs to be between 0 and " + GapConstants.GAPS + ", got " + value);
 		}
 
 		private var variableRowHeightInitialized:Boolean;
