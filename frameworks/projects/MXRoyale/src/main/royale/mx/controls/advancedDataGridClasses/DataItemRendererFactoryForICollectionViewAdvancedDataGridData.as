@@ -107,8 +107,9 @@ package mx.controls.advancedDataGridClasses
             //dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             //dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
             
-            //dataGroup.removeAllItemRenderers();
-                        
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
+            dataGroup.removeAllItemRenderers();                        
             rendererMap = {};
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
             IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
