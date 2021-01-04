@@ -167,6 +167,17 @@ public interface IViewCursor extends IEventDispatcher
     //--------------------------------------------------------------------------
 
     /**
+     *  Finalizes the cursor, to clean up resources.
+     *  Required because weak references are not available in JS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    function finalizeThis():void;
+
+    /**
      *  Finds an item with the specified properties within the collection
      *  and positions the cursor to that item.
      *  If the item cannot be found, the cursor location does not change.

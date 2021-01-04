@@ -93,6 +93,21 @@ public class HierarchicalCollectionViewCursor extends EventDispatcher
         //check to see if the model has more than one top level items
         more = model.length > 1;
     }
+
+    /**
+     *  Finalizes the cursor, to clean up resources.
+     *  Required because weak references are not available in JS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function finalizeThis():void
+    {
+        if (modelCursor) modelCursor.finalizeThis();
+        if (collection) collection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+    }
     
     //--------------------------------------------------------------------------
     //

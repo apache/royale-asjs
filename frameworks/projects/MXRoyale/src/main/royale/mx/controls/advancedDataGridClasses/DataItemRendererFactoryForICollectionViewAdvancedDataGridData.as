@@ -97,7 +97,8 @@ package mx.controls.advancedDataGridClasses
             var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
             if (!dp)
                 return;
-            
+
+            if (cursor) cursor.finalizeThis();
             cursor = dp.createCursor();
             currentIndex = (dp.length > 0) ? 0 : -1;
             
