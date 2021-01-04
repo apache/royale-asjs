@@ -97,6 +97,7 @@ import org.apache.royale.geom.Rectangle;
 import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
+import org.apache.royale.reflection.getQualifiedClassName;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -2404,7 +2405,7 @@ COMPILE::JS
                         if (child) // child is null for TextNodes
                             mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
                         else
-                            trace("Child class not IUIComponent: " + getElementAt(i)["ROYALE_CLASS_INFO"].names[0].qName);
+                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                     }
                 }
                 if (oldWidth.length)
@@ -2480,7 +2481,7 @@ COMPILE::JS
                         if (child)
                             mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
                         else
-                            trace("Child class not IUIComponent: " + getElementAt(i)["ROYALE_CLASS_INFO"].names[0].qName);
+                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                     }
                 }
                 if (oldHeight.length)
