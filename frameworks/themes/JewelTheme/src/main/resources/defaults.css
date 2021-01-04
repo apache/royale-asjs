@@ -436,16 +436,19 @@ j|CardActions {
 }
 
 .jewel.switch input:checked + .switch {
-  background-color: #3CADF1;
+  background: linear-gradient(#3cadf1, #6cc1f4);
+  box-shadow: 0px 0px 0px 1px #24a3ef;
 }
 .jewel.switch input:focus + .switch {
-  box-shadow: 0 0 1px #3CADF1;
+  box-shadow: 0px 0px 0px 1px #1198e9;
 }
 .jewel.switch input:checked + .switch::before {
+  background: white;
   transform: translateX(20px);
 }
 .jewel.switch input[disabled]:checked + .switch {
-  background-color: silver;
+  background: linear-gradient(silver, #d9d9d9);
+  box-shadow: 0px 0px 0px 1px #b3b3b3;
 }
 .jewel.switch input[disabled] + .switch {
   color: silver;
@@ -454,16 +457,13 @@ j|CardActions {
   background: #f3f3f3;
 }
 .jewel.switch .switch {
-  background-color: #d9d9d9;
-  transition: 0.4s;
+  background: linear-gradient(#d9d9d9, #f3f3f3);
+  box-shadow: 0px 0px 0px 1px #cccccc;
   border-radius: 20px;
+  transition: 0.4s;
 }
 .jewel.switch .switch::before {
-  height: 20px;
-  width: 20px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
+  background: #fafdff;
   transition: 0.4s;
   border-radius: 50%;
 }
