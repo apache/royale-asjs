@@ -97,6 +97,7 @@ import org.apache.royale.geom.Rectangle;
 import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
+import org.apache.royale.reflection.getQualifiedClassName;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -988,7 +989,6 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     COMPILE::JS
     public function get name():String
@@ -1425,7 +1425,7 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     *  @royaleignorecoercion mx.core.IUIComponent
+     *  @royaleemitcoercion mx.core.IUIComponent
      */
     public function get owner():IUIComponent
     {
@@ -2404,6 +2404,8 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         if (child) // child is null for TextNodes
                             mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
+                        else
+                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                     }
                 }
                 if (oldWidth.length)
@@ -2478,6 +2480,8 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         if (child)
                             mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
+                        else
+                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                     }
                 }
                 if (oldHeight.length)
@@ -3583,66 +3587,63 @@ COMPILE::JS
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
     public function addChild(child:IUIComponent):IUIComponent
     {
-        return addElement(child) as IUIComponent;
+        addElement(child);
+        return child;
     }
     
     
     public function $uibase_addChild(child:IUIComponent):IUIComponent
     {
         // this should avoid calls to addingChild/childAdded
-        var ret:IUIComponent = super.addElement(child) as IUIComponent;
-        return ret;
+        super.addElement(child);
+        return child;
     }
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
-    public function addChildAt(child:IUIComponent,
-                                        index:int):IUIComponent
+    public function addChildAt(child:IUIComponent, index:int):IUIComponent
     {
-        return addElementAt(child, index) as IUIComponent;
+        addElementAt(child, index);
+        return child;
     }
     
-    public function $uibase_addChildAt(child:IUIComponent,
-                               index:int):IUIComponent
+    public function $uibase_addChildAt(child:IUIComponent, index:int):IUIComponent
     {
-        var ret:IUIComponent;
         // this should avoid calls to addingChild/childAdded
         if (index >= super.numElements)
-            ret = super.addElement(child) as IUIComponent;
+            super.addElement(child);
         else
-            ret = super.addElementAt(child, index) as IUIComponent;
-        return ret;
+            super.addElementAt(child, index);
+        return child;
     }
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
     public function removeChild(child:IUIComponent):IUIComponent
     {
-        return removeElement(child) as IUIComponent;
+        removeElement(child)
+        return child;
     }
     
     public function $uibase_removeChild(child:IUIComponent):IUIComponent
     {
         // this should probably call the removingChild/childRemoved
-        var ret:IUIComponent = super.removeElement(child) as IUIComponent;
-        return ret;
+        super.removeElement(child);
+        return child;
     }
     
     COMPILE::JS
@@ -3650,28 +3651,35 @@ COMPILE::JS
 	{
 	
 	}
+
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
+     *  @royaleemitcoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
     public function removeChildAt(index:int):IUIComponent
     {
+        var child:IUIComponent = getElementAt(index) as IUIComponent;
         // this should probably call the removingChild/childRemoved
-        return removeElement(getElementAt(index)) as IUIComponent;
+        removeElement(child);
+        return child;
     }
     
+    /**
+     *  @royaleemitcoercion mx.core.IUIComponent
+     */
     public function $uibase_removeChildAt(index:int):IUIComponent
     {
-        var ret:IUIComponent = super.removeElement(getElementAt(index)) as IUIComponent;
-        return ret;
+        var child:IUIComponent = getElementAt(index) as IUIComponent;
+        super.removeElement(child);
+        return child;
     }
 
     /**
      *  @private
-     *  @royaleignorecoercion mx.core.IUIComponent
+     *  @royaleemitcoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
@@ -6280,8 +6288,6 @@ COMPILE::JS
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
-     *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-     *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
      */
     override public function get topMostEventDispatcher():IEventDispatcher
     {
