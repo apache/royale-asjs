@@ -75,6 +75,12 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
     
     public var textSelectedColor:String = "#000000";
     public var textRollOverColor:String = "#000000";
+
+    private var isInit:Boolean;
+    private var wasSelected:Boolean = false;
+    private var wasHovered:Boolean = false;
+    private var colorAttr:String;
+    private var bgColorsAttr:Array;
     
     /**
      * @private
@@ -84,17 +90,43 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
         var ir:IListDataItemRenderer = _strand as IListDataItemRenderer;
         var treeListData:AdvancedDataGridListData = ir.listData as AdvancedDataGridListData;
         var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
-        var bgColors:Array = owner.getStyle("alternatingItemColors");
-        textSelectedColor = owner.getStyle("textSelectedColor");
-        textRollOverColor = owner.getStyle("textRollOverColor");
-        backgroundColor = ((treeListData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
-        COMPILE::JS {
-            if (selected)
-                ir.element.style.backgroundColor = '#9C9C9C';
-            else
-                ir.element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
+
+        if (isInit && wasSelected == (selected == null ? false : selected) && wasHovered == (hovered == null ? false : hovered))
+            return;
+        isInit = true;
+        wasSelected = selected;
+        wasHovered = hovered;
+
+        // not really nice...
+        var styleCache:Object = owner["SelectableItemRendererBead"];
+        if (!styleCache)
+        {
+            // until getStyle() is cheaper, try to avoid getStyle() calls,
+            // at the expense of some flexiblity
+            //
+            styleCache = owner["SelectableItemRendererBead"] = new Object();
+            styleCache["alternatingItemColors"] = owner.getStyle("alternatingItemColors");
+            styleCache["textSelectedColor"] = owner.getStyle("textSelectedColor");
+            styleCache["textRollOverColor"] = owner.getStyle("textRollOverColor");
+            styleCache["color"] = (treeListData.owner as UIComponent).getStyle("color");
         }
-            
+        
+        if (!bgColorsAttr)
+        {
+            // cache work of converting colors to attr
+            colorAttr = CSSUtils.attributeFromColor(styleCache["color"]);
+            bgColorsAttr = new Array(2);
+            var bgArray:Array = styleCache["alternatingItemColors"];
+            bgColorsAttr[0] = CSSUtils.attributeFromColor(bgArray[0]);
+            bgColorsAttr[1] = CSSUtils.attributeFromColor(bgArray[1]);
+        }
+
+        var bgColors:Array = styleCache["alternatingItemColors"];
+        textSelectedColor = styleCache["textSelectedColor"];
+        textRollOverColor = styleCache["textRollOverColor"];
+        backgroundColor = ((treeListData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
+        var backgroundColorAttr:String = ((treeListData.rowIndex % 2) == 1) ? bgColorsAttr[1] : bgColorsAttr[0];
+        
         COMPILE::SWF
         {
             super.updateRenderer();
@@ -113,8 +145,8 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
             }
             else
             {
-                ir.element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
-                ir.element.style.color = CSSUtils.attributeFromColor((treeListData.owner as UIComponent).getStyle("color"));
+                ir.element.style.backgroundColor = backgroundColorAttr;
+                ir.element.style.color = colorAttr;
             }
         }
     }
