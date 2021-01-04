@@ -60,6 +60,9 @@ $checkbox-label-font-size: 16px
 
         &[disabled]
 
+            & + span
+                color: $disabled-font-color
+
             & + span::before
                 background: $disabled-color
                 @if $flat
@@ -68,9 +71,6 @@ $checkbox-label-font-size: 16px
                     border: 1px solid $disabled-border-color// .094em
                 border-radius: $checkbox-border-radius
 
-            & + span
-                color: $disabled-font-color
-
             & + span::after
                 background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{darken($disabled-color, 15%)}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
 
@@ -78,4 +78,58 @@ $checkbox-label-font-size: 16px
     span
         padding-left: $checkbox-label-separation
         //font-size: $checkbox-label-font-size
-        
+
+
+// Jewel CheckBoxSwitch
+
+// CheckBoxSwitch variables
+$switch-button-size: 24px
+$switch-button-offset: 2px
+$switch-inner-size: $switch-button-size - (2 * $switch-button-offset)
+$switch-button-border-radius: 50%
+$switch-transition-delay: .4s
+$switch-label-separation: 8px
+
+.jewel.switch
+
+    input
+        &:checked 
+            + .switch
+                background-color: $primary-color
+
+        &:focus
+            + .switch
+                box-shadow: 0 0 1px $primary-color
+
+        &:checked 
+            + .switch::before
+                transform: translateX($switch-inner-size)
+
+        &[disabled]
+            &:checked 
+                + .switch
+                    background-color: $disabled-font-color
+
+            & + .switch
+                color: $disabled-font-color
+
+            & + .switch::before
+                background: $disabled-color
+
+    .switch
+        background-color: $default-color
+        transition: $switch-transition-delay
+
+        border-radius: $switch-inner-size
+
+    .switch::before
+        height: $switch-inner-size
+        width: $switch-inner-size
+        left: $switch-button-offset
+        bottom: $switch-button-offset
+        background-color: lighten($primary-color, 50%)
+        transition: $switch-transition-delay
+        border-radius: $switch-button-border-radius
+	
+    .label
+        padding-left: $switch-label-separation

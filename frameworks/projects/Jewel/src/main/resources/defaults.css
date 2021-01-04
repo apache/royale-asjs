@@ -385,6 +385,51 @@ j|ToggleButtonBar {
   width: inherit;
 }
 
+.jewel.switch {
+  display: inline-flex;
+  position: relative;
+  height: auto;
+}
+.jewel.switch input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  opacity: 0;
+  width: 44px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+}
+.jewel.switch input[disabled] + span {
+  cursor: unset;
+}
+.jewel.switch .switch {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 44px;
+  height: 24px;
+}
+.jewel.switch .switch::before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+}
+.jewel.switch .label {
+  cursor: pointer;
+  margin: auto;
+  width: inherit;
+}
+
 .jewel.combobox {
   display: inline-flex;
 }
