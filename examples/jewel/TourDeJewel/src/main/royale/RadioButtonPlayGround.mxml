@@ -34,7 +34,7 @@ limitations under the License.
 			</c:description>
 		</c:ExampleHeader>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
 				<html:H3 text="Jewel RadioButton"/>
 
@@ -53,6 +53,28 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 				</j:RadioButton>
+			</j:Card>
+        </j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel SwitchRadioButton"/>
+
+				<j:SwitchRadioButton text="SwitchRadioButton 1" groupName="radios" value="Test 1"/>
+				<j:SwitchRadioButton text="SwitchRadioButton 2" groupName="radios" value="Test 2" selected="true"/>
+				<j:SwitchRadioButton text="SwitchRadioButton 3" groupName="radios" value="Test 3"/>
+
+				<j:SwitchRadioButton text="Disabled">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:SwitchRadioButton>
+
+				<j:SwitchRadioButton text="Set and Disabled" selected="true">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:SwitchRadioButton>
 			</j:Card>
         </j:GridCell>
 

@@ -34,11 +34,11 @@ limitations under the License.
 			</c:description>
 		</c:ExampleHeader>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
 				<html:H3 text="Jewel CheckBox"/>
 
-				<j:CheckBox text="Not Checkbox"/>
+				<j:CheckBox text="Not Checked"/>
 
 				<j:CheckBox text="Checked" selected="true"/>
 
@@ -56,11 +56,34 @@ limitations under the License.
 			</j:Card>
         </j:GridCell>
 		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel SwitchCheckBox"/>
+
+				<j:SwitchCheckBox text="Not Checked"/>
+
+				<j:SwitchCheckBox text="Checked" selected="true"/>
+
+				<j:SwitchCheckBox text="Disabled">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:SwitchCheckBox>
+				
+				<j:SwitchCheckBox text="Checked And Disabled" selected="true">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:SwitchCheckBox>
+			</j:Card>
+        </j:GridCell>
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
 				<html:H3 text="Jewel CheckBox Sizing"/>
 
 				<j:CheckBox text="No size"/>
+				
 				<j:CheckBox text="width and height to 60">
 					<j:beads>
 						<j:InputButtonSize width="60" height="60"/>
