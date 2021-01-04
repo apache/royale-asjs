@@ -97,6 +97,7 @@ internal class SparkRoyaleClasses
     import spark.components.beads.SparkSkinScrollingViewport; SparkSkinScrollingViewport;
 	import spark.components.beads.SparkSkinWithClipAndEnableScrollingViewport; SparkSkinWithClipAndEnableScrollingViewport;
     import spark.components.beads.CollectionChangeUpdateForArrayListData; CollectionChangeUpdateForArrayListData;
+	import spark.components.beads.TabBarSelectionUpdateFromSelectableDataProvider; TabBarSelectionUpdateFromSelectableDataProvider;
     import spark.components.beads.DropDownListView; DropDownListView;
     import spark.components.beads.TitleWindowView; TitleWindowView;
     import spark.components.beads.controllers.DropDownListController; DropDownListController;
