@@ -121,7 +121,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DateChooser (Spanish)"/>
-				<j:DateChooser localId="dateChooserES" change="dateChooserESChanged()" initComplete="configDateChooserToES()"/>
+				<j:DateChooser localId="dateChooserES" change="dateChooserESChanged()" beadsAdded="configDateChooserToES()"/>
 				<j:Label localId="dateChooserESSelectedDate" multiline="true" html="&lt;strong>DateChooser fecha seleccionada:&lt;/strong> " width="275"/>
 			</j:Card>
 		</j:GridCell>
@@ -137,8 +137,8 @@ limitations under the License.
 						</j:beads>
 					</j:DateField>
 					<j:Button text="Select today" click="dateFieldToToday()" emphasis="primary"/>
-					<j:Button text="Date to null" click="dateFieldToNull()" />
 				</j:HGroup>
+				<j:Button text="Date to null" click="dateFieldToNull()" />
 				<j:Label localId="dateFieldDefaultSelectedDate" multiline="true" html="&lt;strong>DateField selected date:&lt;/strong> "/>
 			</j:Card>
 		</j:GridCell>
