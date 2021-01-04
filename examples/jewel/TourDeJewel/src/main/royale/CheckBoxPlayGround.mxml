@@ -36,70 +36,97 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-				<html:H3 text="Jewel CheckBox"/>
+				<j:CardHeader>
+					<j:CardTitle text="States" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
 
-				<j:CheckBox text="Not Checked"/>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>A CheckBox can have the following four states.</p>]]></j:html>
+					</j:Label>
 
-				<j:CheckBox text="Checked" selected="true"/>
+					<j:CheckBox text="Not Checked"/>
 
-				<j:CheckBox text="Disabled">
-					<j:beads>
-						<j:Disabled/>
-					</j:beads>
-				</j:CheckBox>
+					<j:CheckBox text="Checked" selected="true"/>
 
-				<j:CheckBox text="Checked And Disabled" selected="true">
-					<j:beads>
-						<j:Disabled/>
-					</j:beads>
-				</j:CheckBox>
+					<j:CheckBox text="Disabled">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:CheckBox>
+
+					<j:CheckBox text="Checked And Disabled" selected="true">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:CheckBox>
+				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-				<html:H3 text="Jewel SwitchCheckBox"/>
+				<j:CardHeader>
+					<j:CardTitle text="Switch Version" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
 
-				<j:SwitchCheckBox text="Not Checked"/>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>SwitchCheckBox is s Switch representation of CheckBox with same capabilities.</p>]]></j:html>
+					</j:Label>
 
-				<j:SwitchCheckBox text="Checked" selected="true"/>
+					<j:SwitchCheckBox text="Not Checked"/>
 
-				<j:SwitchCheckBox text="Disabled">
-					<j:beads>
-						<j:Disabled/>
-					</j:beads>
-				</j:SwitchCheckBox>
-				
-				<j:SwitchCheckBox text="Checked And Disabled" selected="true">
-					<j:beads>
-						<j:Disabled/>
-					</j:beads>
-				</j:SwitchCheckBox>
+					<j:SwitchCheckBox text="Checked" selected="true"/>
+
+					<j:SwitchCheckBox text="Disabled">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:SwitchCheckBox>
+					
+					<j:SwitchCheckBox text="Checked And Disabled" selected="true">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:SwitchCheckBox>
+				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-				<html:H3 text="Jewel CheckBox Sizing"/>
+				<j:CardHeader>
+					<j:CardTitle text="InputButton Size" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
 
-				<j:CheckBox text="No size"/>
-				
-				<j:CheckBox text="width and height to 60">
-					<j:beads>
-						<j:InputButtonSize width="60" height="60"/>
-					</j:beads>
-				</j:CheckBox>
-				<j:CheckBox text="Only width to 45">
-					<j:beads>
-						<j:InputButtonSize width="45"/>
-					</j:beads>
-				</j:CheckBox>
-				<j:CheckBox text="Only height to 35 and disabled" selected="true">
-					<j:beads>
-						<j:Disabled localId="opt3disable" disabled="true"/>
-						<j:InputButtonSize height="35"/>
-					</j:beads>
-				</j:CheckBox>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>The InputButtonSize bead allow to change dimensions of the check.</p>]]></j:html>
+					</j:Label>
+
+					<j:CheckBox text="No size"/>
+					
+					<j:CheckBox text="width and height to 60">
+						<j:beads>
+							<j:InputButtonSize width="60" height="60"/>
+						</j:beads>
+					</j:CheckBox>
+
+					<j:CheckBox text="Only width to 45">
+						<j:beads>
+							<j:InputButtonSize width="45"/>
+						</j:beads>
+					</j:CheckBox>
+
+					<j:CheckBox text="Only height to 35 and disabled" selected="true">
+						<j:beads>
+							<j:Disabled localId="opt3disable" disabled="true"/>
+							<j:InputButtonSize height="35"/>
+						</j:beads>
+					</j:CheckBox>
+
+				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>
 	</j:Grid>
