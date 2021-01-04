@@ -148,26 +148,25 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
             if (ilc == null || !ilc.visible) continue;
             if (!(ilc is AdvancedDataGridHeaderRenderer)) continue;
             
-            COMPILE::SWF {
-                if (buttonWidths) {
-                    var widthValue:* = buttonWidths[i];
-                    
-                    if (widthValue != null) ilc.width = Number(widthValue);
-                    ilc.x = xx;
-                    xx += ilc.width;
-                }
-            }
-                
             COMPILE::JS {
                 if (!host.isHeightSizedToContent())
                     ilc.height = contentView.height;
-                if (buttonWidths) {
-                    var widthValue:* = buttonWidths[i];
-                    if (widthValue != null) ilc.width = Number(widthValue);
-                    ilc.x = xx;
-                    xx += ilc.width;
-                }                
             }
+
+            if (buttonWidths) {
+                var widthValue:* = buttonWidths[i];
+                if (widthValue != null) 
+                {
+                    ilc.width = Number(widthValue);
+
+                    // call updateDisplayList()
+                    var adghr:AdvancedDataGridHeaderRenderer = ilc as AdvancedDataGridHeaderRenderer;
+                    adghr.invalidateDisplayList();
+                    adghr.validateDisplayList();
+                }
+                ilc.x = xx;
+                xx += ilc.width;
+            }                
         }
         
         return true;

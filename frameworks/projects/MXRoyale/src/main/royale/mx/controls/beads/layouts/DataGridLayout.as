@@ -77,19 +77,24 @@ package mx.controls.beads.layouts
 
         COMPILE::JS
         private var _deferred:Boolean;
+
+        COMPILE::JS
+        private function layoutOnScroll():void
+        {
+            layout();
+            _deferred = false;
+        }
+        
+        COMPILE::JS
         protected function scrollHandler(e:Event):void
         {
-            COMPILE::JS{
-                (uiHost.view as DataGridView).header.element.scrollLeft = (uiHost.view as DataGridView).listArea.element.scrollLeft;
-                if (_deferred) return;
-                //this seems necessary for some browsers:
-                requestAnimationFrame(layout);
-                _deferred = true;
-            }
-            COMPILE::SWF{
-                layout();
-            }
-
+            (uiHost.view as DataGridView).header.element.scrollLeft = (uiHost.view as DataGridView).listArea.element.scrollLeft;
+            // not atomic test-and-set, but scroll events aren't super-fast
+            if (_deferred) return;
+            _deferred = true;
+            //this seems necessary for some browsers:
+            requestAnimationFrame(layoutOnScroll);
+            //trace("MX DataGridLayout scrollHandler");
         }
 
         override protected function getColumnsForLayout():Array
@@ -177,8 +182,6 @@ package mx.controls.beads.layouts
                     uiHost.addEventListener('verticalScrollPolicyChanged', scrollPolicyChangedHandler);
                     scrollListening = true;
                 }
-                _deferred = false;
-
             }
             var presentationModel:DataGridPresentationModel = (uiHost as IStrandWithPresentationModel).presentationModel as DataGridPresentationModel;
             var view:DataGridView = (uiHost.view as DataGridView);
@@ -351,10 +354,13 @@ package mx.controls.beads.layouts
                         if (!presentationModel.virtualized) topSpacerHeight = 0; //we don't need a vertical offset if all renderers are present
                         columnList.element.style.position = "absolute";
                         columnList.element.style.top = (topSpacerHeight + 1).toString() + 'px';
-                        // chrome has bug where moving things resets scrollTop
-                        listArea.element.scrollTop = scrollTop;
                         columnList.dispatchEvent(new Event("layoutNeeded"));
                     }
+                }
+                COMPILE::JS
+                {
+                    // chrome has bug where moving things resets scrollTop
+                    listArea.element.scrollTop = scrollTop;
                 }
             }
 
