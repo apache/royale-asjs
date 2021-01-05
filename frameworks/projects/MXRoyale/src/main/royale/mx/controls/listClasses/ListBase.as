@@ -84,6 +84,38 @@ use namespace mx_internal;
  */
 [Event(name="itemDoubleClick", type="mx.events.ListEvent")]
 	
+//--------------------------------------
+//  Styles
+//--------------------------------------
+
+
+/**
+ *  The colors to use for the backgrounds of the items in the list. 
+ *  The value is an array of one or more colors. 
+ *  The backgrounds of the list items alternate among the colors in the array. 
+ *
+ *  <p>For DataGrid controls, all items in a row have the same background color, 
+ *  and each row's background color is determined from the array of colors.</p>
+ *
+ *  <p>For the TileList control, which uses a single list to populate a 
+ *  two-dimensional display, the style can result in a checkerboard appearance,
+ *  stripes, or other patterns based on the number of columns and rows and
+ *  the number of colors specified.  TileList cycles through the colors, placing
+ *  the individual item background colors according to the 
+ *  layout direction. If you have an even number of colors and an even number of
+ *  columns for a TileList layed out horizontally, you will get striping.  If
+ *  the number of columns is an odd number, you will get a checkerboard pattern.
+ *  </p>
+ *
+ *  @default undefined
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.0
+ */
+[Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
+
     /**
      *  
      *  @langversion 3.0
@@ -603,7 +635,55 @@ use namespace mx_internal;
 
        // dispatchEvent(new Event("variableRowHeightChanged"));
     }
+	//----------------------------------
+    //  iconFunction
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for iconFunction property.
+     */
+    private var _iconFunction:Function;
+
+    [Bindable("iconFunctionChanged")]
+    [Inspectable(category="Data")]
+
+    /**
+     *  A user-supplied function to run on each item to determine its icon.  
+     *  By default the list does not try to display icons with the text 
+     *  in the rows.  However, by specifying an icon function, you can specify 
+     *  a Class for a graphic that will be created and displayed as an icon 
+     *  in the row.  This property is ignored by DataGrid.
+     *
+     *  <p>The iconFunction takes a single argument which is the item
+     *  in the data provider and returns a Class, as the following example shows:</p>
+     * 
+     *  <pre>iconFunction(item:Object):Class</pre>
+     * 
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function get iconFunction():Function
+    {
+        return _iconFunction;
+    }
+
+    /**
+     *  @private
+     */
+    public function set iconFunction(value:Function):void
+    {
+        _iconFunction = value;
+
+        itemsSizeChanged = true;
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("iconFunctionChanged"));
+    }
     //----------------------------------
     //  allowMultipleSelection
     //----------------------------------
@@ -1486,7 +1566,53 @@ use namespace mx_internal;
             
             return " ";
         }
-	
+	//----------------------------------
+    //  dataTipField
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the dataTipField property.
+     */
+    private var _dataTipField:String = "label";
+
+    [Bindable("dataTipFieldChanged")]
+    [Inspectable(category="Data", defaultValue="label")]
+
+    /**
+     *  Name of the field in the data provider items to display as the 
+     *  data tip. By default, the list looks for a property named 
+     *  <code>label</code> on each item and displays it.
+     *  However, if the data objects do not contain a <code>label</code> 
+     *  property, you can set the <code>dataTipField</code> property to
+     *  use a different property in the data object. An example would be 
+     *  "FullName" when viewing a
+     *  set of people's names retrieved from a database.
+     * 
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function get dataTipField():String
+    {
+        return _dataTipField;
+    }
+
+    /**
+     *  @private
+     */
+    public function set dataTipField(value:String):void
+    {
+        _dataTipField = value;
+
+        itemsSizeChanged = true;
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("dataTipFieldChanged"));
+    }
 	 //----------------------------------
     //  dataTipFunction
     //----------------------------------
