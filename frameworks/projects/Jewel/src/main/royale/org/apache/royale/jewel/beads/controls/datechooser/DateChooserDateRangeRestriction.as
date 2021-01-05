@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.datechooser
 {
-    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.DispatcherBead;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
@@ -45,7 +45,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class DateChooserDateRangeRestriction implements IBead
+	public class DateChooserDateRangeRestriction extends DispatcherBead
 	{
         /**
 		 *  constructor.
@@ -105,7 +105,6 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			}
 		}
 		
-		private var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -115,9 +114,9 @@ package org.apache.royale.jewel.beads.controls.datechooser
 		 *  @productversion Royale 0.9.8
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		public override function set strand(value:IStrand):void
 		{
-			_strand = value;
+            super.strand = value;
 			(_strand as IEventDispatcher).addEventListener("initComplete", handleDateChooserInitComplete);
 		}
 

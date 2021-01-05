@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.datefield
 {
-    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.DispatcherBead;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-    import org.apache.royale.jewel.beads.views.DateFieldView;
     import org.apache.royale.jewel.DateChooser;
     import org.apache.royale.jewel.beads.controls.datechooser.DateChooserDateRangeRestriction;
+    import org.apache.royale.jewel.beads.views.DateFieldView;
 													
 	/**
 	 *  Disable dates which are outside restriction provided by minDate and maxDate properties
@@ -36,7 +35,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class DateFieldDateRangeRestriction implements IBead
+	public class DateFieldDateRangeRestriction extends DispatcherBead
 	{
         /**
 		 *  constructor.
@@ -96,7 +95,6 @@ package org.apache.royale.jewel.beads.controls.datefield
 			}
 		}
 		
-		private var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -106,9 +104,9 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 *  @productversion Royale 0.9.8
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		public override function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			(_strand as IEventDispatcher).addEventListener("initComplete", handleDateFieldInitComplete);
 		}
 

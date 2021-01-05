@@ -96,7 +96,7 @@ package org.apache.royale.jewel.beads.controls
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			updateHost();
 		}
 
