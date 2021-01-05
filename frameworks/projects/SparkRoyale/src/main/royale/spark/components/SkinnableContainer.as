@@ -1019,8 +1019,13 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      */
     override protected function measure():void
     {
-            _layout.measure();
-            
+	    if (_layout)
+	    {
+		_layout.measure();
+	    } else
+	    {
+		super.measure();
+	    }
     }
 
     override protected function createChildren():void
