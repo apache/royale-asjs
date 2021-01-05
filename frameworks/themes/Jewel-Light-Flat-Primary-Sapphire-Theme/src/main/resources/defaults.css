@@ -422,18 +422,58 @@ j|CardActions {
   border: 1px solid #2C74BE;
   border-radius: 3px;
 }
+.jewel.checkbox input[disabled] + span {
+  color: silver;
+}
 .jewel.checkbox input[disabled] + span::before {
   background: #f3f3f3;
   border: 1px solid #d9d9d9;
   border-radius: 3px;
 }
-.jewel.checkbox input[disabled] + span {
-  color: silver;
-}
 .jewel.checkbox input[disabled] + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23cccccc' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.checkbox span {
+  padding-left: 8px;
+}
+
+.jewel.switch input:checked + .switch {
+  background: #2C74BE;
+  box-shadow: 0px 0px 0px 1px #2767a9;
+}
+.jewel.switch input:focus + .switch {
+  box-shadow: 0px 0px 0px 1px #225b95;
+}
+.jewel.switch input:checked + .switch::before {
+  background: #d9e8f6;
+  box-shadow: none;
+  transform: translateX(20px);
+}
+.jewel.switch input[disabled]:checked + .switch {
+  background: #d9d9d9;
+  box-shadow: 0px 0px 0px 1px #cccccc;
+}
+.jewel.switch input[disabled] + .switch {
+  background: #f3f3f3;
+  box-shadow: 0px 0px 0px 1px #e6e6e6;
+}
+.jewel.switch input[disabled] + .switch::before {
+  background: white;
+  box-shadow: none;
+}
+.jewel.switch .switch {
+  background: linear-gradient(#d9d9d9, #d9d9d9);
+  box-shadow: 0px 0px 0px 1px #cccccc;
+  border-radius: 20px;
+  transition: 0.4s;
+}
+.jewel.switch .switch::before {
+  background: white;
+  box-shadow: none;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.jewel.switch .label {
   padding-left: 8px;
 }
 

@@ -99,3 +99,53 @@ j|CheckBox
 		IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.CheckBoxView")
 		//font-size: 11px
 		//font-family: Arial
+
+// Jewel CheckBoxSwitch
+
+// CheckBoxSwitch variables
+$switch-button-size: 24px
+$switch-button-offset: 2px
+$switch-inner-size: $switch-button-size - (2 * $switch-button-offset)
+
+.jewel.switch
+	display: inline-flex
+	position: relative
+	// width: 0
+	height: auto
+
+	input
+		+appear(none)
+		display: inline-flex
+		opacity: 0
+		width: ($switch-button-size * 2) - ($switch-button-offset * 2)
+		height: $switch-button-size
+		margin: 0
+		padding: 0
+	
+		&[disabled]
+			& + span
+				cursor: unset
+	
+	.switch
+		position: absolute
+		cursor: pointer
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		width: ($switch-button-size * 2) - ($switch-button-offset * 2)
+		height: $switch-button-size
+		
+		&::before
+			position: absolute
+			content: ""
+			height: $switch-inner-size
+			width: $switch-inner-size
+			left: $switch-button-offset
+			bottom: $switch-button-offset
+
+	.label
+		cursor: pointer
+
+		margin: auto
+		width: inherit		

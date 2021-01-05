@@ -84,6 +84,20 @@ public class LeafNodeCursor extends EventDispatcher
 			
     }
 
+    /**
+     *  Finalizes the cursor, to clean up resources.
+     *  Required because weak references are not available in JS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function finalizeThis():void
+    {
+        if (modelCursor) modelCursor.finalizeThis();
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Variables

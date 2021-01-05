@@ -42,7 +42,8 @@ package org.apache.royale.jewel
      *  
      *  A RadioButton consists of a circle and, typically, text that clearly communicates a
      *  condition that will be set when the user clicks or touches it. Radio buttons
-     *  always appear in groups of two or more with the same <code>groupName</code> propert. 
+     *  always appear in groups of two or more with the same <code>groupName</code> property.
+     *   
      *  While they can be individually selected, can only be deselected by selecting 
      *  a different RadioButton in the same group (which deselects the rest of RadioButton).
      *  

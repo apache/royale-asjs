@@ -109,9 +109,16 @@ package spark.components.beads
             }
             else
             {
-
+                var ddl:DropDownList = (this.host as DropDownList);
+                if (ddl["labelFunction"] != null)
+                {
+                    label.label = ddl["labelFunction"](selectionModel.selectedItem);
+                }
+                else
+                {
+                    label.label = getLabelFromData(selectionModel, selectionModel.selectedItem);
+                }
             }
-            label.label = getLabelFromData(selectionModel,selectionModel.selectedItem);
         }
 
         /**

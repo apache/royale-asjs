@@ -331,6 +331,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
                 col.dataField, 
                 col.colNum, "", col.owner);
         listData = ld;
+        isLabelTextChanged = true;
         
         invalidateProperties();
         commitProperties();
@@ -474,6 +475,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
      */
     override protected function commitProperties():void
     {
+        //trace("AdvancedDataGridHeaderRenderer.commitProperties() called");
         super.commitProperties();
 
         if (!initialized)
@@ -588,8 +590,9 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
     /**
      *  @private
      */
-    override protected function measure():void
+    /* override protected function measure():void
     {
+        trace("AdvancedDataGridHeaderRenderer.measure() called");
         super.measure();
 
         // Cache padding values
@@ -653,7 +656,16 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         // Set required width and height
         measuredMinWidth  = measuredWidth  = w;
         measuredMinHeight = measuredHeight = h;
-    } 
+    } */
+    
+    override public function validateDisplayList():void
+    {
+        if (invalidateDisplayListFlag) updateDisplayList(width, height);
+    }
+
+    private var styleCache:Object;
+    private var isLabelTextChanged:Boolean = true;
+    private var lineMetricsWidth:Number;
     
     /**
      *  @private
@@ -665,12 +677,28 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
 
         if (unscaledWidth == 0)
             return;
+            
+        if (!styleCache)
+        {
+            // until AdvancedDataGridHeaderRenderer is refactored to be more Royalely,
+            // and/or until getStyle() is cheaper, try to avoid getStyle() calls,
+            // at the expense of some flexiblity
+            //
+            styleCache = new Object();
+            styleCache["paddingLeft"] = getStyle("paddingLeft");
+            styleCache["paddingRight"] = getStyle("paddingRight");
+            styleCache["paddingTop"] = getStyle("paddingTop");
+            styleCache["paddingBottom"] = getStyle("paddingBottom");
+            styleCache["horizontalGap"] = getStyle("horizontalGap");
+            styleCache["horizontalAlign"] = getStyle("horizontalAlign");
+            styleCache["verticalAlign"] = getStyle("verticalAlign");
+        }
 
         // Cache padding values
-        var paddingLeft:int   = getStyle("paddingLeft");
-        var paddingRight:int  = getStyle("paddingRight");
-        var paddingTop:int    = getStyle("paddingTop");
-        var paddingBottom:int = getStyle("paddingBottom");
+        var paddingLeft:int   = styleCache["paddingLeft"];
+        var paddingRight:int  = styleCache["paddingRight"];
+        var paddingTop:int    = styleCache["paddingTop"];
+        var paddingBottom:int = styleCache["paddingBottom"];
 
         // Size of sortItemRenderer
         var sortItemRendererWidth:Number  = sortItemRendererInstance ?
@@ -686,13 +714,18 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
             sortItemRendererHeight = 0;
         }
 
-        var horizontalGap:Number = getStyle("horizontalGap");
+        var horizontalGap:Number = styleCache["horizontalGap"];
         if (sortItemRendererWidth == 0)
             horizontalGap = 0;
 
         // Adjust to given width
-        var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText: label.text);
-        var labelWidth:Number  = lineMetrics.width + UITextField.TEXT_WIDTH_PADDING;
+        if (isLabelTextChanged)
+        {
+            var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText: label.text);
+            lineMetricsWidth = lineMetrics.width;
+            isLabelTextChanged = false;
+        }
+        var labelWidth:Number  = lineMetricsWidth + UITextField.TEXT_WIDTH_PADDING;
         var maxLabelWidth:int = unscaledWidth - sortItemRendererWidth
                                 - horizontalGap - paddingLeft - paddingRight;
         if (maxLabelWidth < 0)
@@ -725,7 +758,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
 
         // Calculate position of label, by default center it
         var labelX:Number;
-        var horizontalAlign:String = getStyle("horizontalAlign");
+        var horizontalAlign:String = styleCache["horizontalAlign"];
         if (horizontalAlign == "left")
         {
             labelX = paddingLeft;
@@ -748,7 +781,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
             labelAreaHeight /= 2;
         
         var labelY:Number;
-        var verticalAlign:String = getStyle("verticalAlign");
+        var verticalAlign:String = styleCache["verticalAlign"];
         if (verticalAlign == "top")
         {
             labelY = paddingTop;
@@ -785,7 +818,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         }
 
         // Draw the separator
-        graphics.clear();
+//        graphics.clear();
         if (sortItemRendererInstance && !grid.sortExpertMode
                 &&  !(_data is AdvancedDataGridColumnGroup))
         {
@@ -805,31 +838,31 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         }
 
         // Set text color
-        var labelColor:Number;
-
-        if (data && parent)
-        {
-            if (!enabled)
-                labelColor = getStyle("disabledColor");
-            // else if (grid.isItemHighlighted(listData.uid))
-            //     labelColor = getStyle("textRollOverColor");
-            //else if (grid.isItemSelected(listData.uid))
-            //    labelColor = getStyle("textSelectedColor");
-            else
-                labelColor = getStyle("color");
-
-           label.setColor(labelColor);
-        }
+//        var labelColor:Number;
+//
+//        if (data && parent)
+//        {
+//            if (!enabled)
+//                labelColor = getStyle("disabledColor");
+//            // else if (grid.isItemHighlighted(listData.uid))
+//            //     labelColor = getStyle("textRollOverColor");
+//            //else if (grid.isItemSelected(listData.uid))
+//            //    labelColor = getStyle("textSelectedColor");
+//            else
+//                labelColor = getStyle("color");
+//
+//           label.setColor(labelColor);
+//        }
 
         // Set background size, position, color
-        if (background)
-        {
-            background.graphics.clear();
-            background.graphics.beginFill(0xFFFFFF, 0.0); // transparent
-            background.graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
-            background.graphics.endFill();
-            setChildIndex( IUIComponent(background), 0 );
-        }
+//        if (background)
+//        {
+//            background.graphics.clear();
+//            background.graphics.beginFill(0xFFFFFF, 0.0); // transparent
+//            background.graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
+//            background.graphics.endFill();
+//            setChildIndex( IUIComponent(background), 0 );
+//        }
         if (childHeaders)
         {
             var adgcg:AdvancedDataGridColumnGroup = data as AdvancedDataGridColumnGroup;
@@ -952,11 +985,11 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         return label;
     } 
 
-    override public function setWidth(value:Number, noEvent:Boolean = false):void
-    {
-        super.setWidth(value, noEvent);
-        updateDisplayList(width, height);
-    }
+//    override public function setWidth(value:Number, noEvent:Boolean = false):void
+//    {
+//        super.setWidth(value, noEvent);
+//        updateDisplayList(width, height);
+//    }
 
     override public function get systemManager():ISystemManager
     {

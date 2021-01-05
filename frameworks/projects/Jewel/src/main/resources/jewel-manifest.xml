@@ -79,7 +79,9 @@
     <component id="HSlider" class="org.apache.royale.jewel.HSlider"/>
     <component id="VSlider" class="org.apache.royale.jewel.VSlider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>
+    <component id="SwitchRadioButton" class="org.apache.royale.jewel.SwitchRadioButton"/>
     <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
+    <component id="SwitchCheckBox" class="org.apache.royale.jewel.SwitchCheckBox"/>
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
     <component id="List" class="org.apache.royale.jewel.List"/>

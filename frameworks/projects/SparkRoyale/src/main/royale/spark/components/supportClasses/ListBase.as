@@ -739,9 +739,9 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-    /* private var _labelFunction:Function; 
+     private var _labelFunction:Function;
     
-    [Inspectable(category="Data")] */
+    /*[Inspectable(category="Data")] */
     
     /**
      *  A user-supplied function to run on each item to determine its label.  
@@ -765,10 +765,10 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get labelFunction():Function
+    public function get labelFunction():Function
     {
         return _labelFunction;
-    } */
+    }
     
     /**
      *  @private
@@ -776,10 +776,10 @@ public class ListBase  extends SkinnableContainer
     // not implemeneted
     public function set labelFunction(value:Function):void
     {
-        //if (value == _labelFunction)
-            //return;
-            //
-        //_labelFunction = value;
+        if (value == _labelFunction)
+            return;
+
+        _labelFunction = value;
         //labelFieldOrFunctionChanged = true;
         //invalidateProperties(); 
     }

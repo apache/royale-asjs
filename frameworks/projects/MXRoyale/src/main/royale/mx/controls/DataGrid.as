@@ -1039,6 +1039,51 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
         dispatchEvent(new Event("showHeadersChanged"));*/
     }
 
+	//----------------------------------
+    //  minColumnWidth
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    private var _minColumnWidth:Number;
+
+    /**
+     *  @private
+     */
+    private var minColumnWidthInvalid:Boolean = false;
+
+    [Inspectable(defaultValue="NaN")]
+
+    /**
+     *  The minimum width of the columns, in pixels.  If not NaN,
+     *  the DataGrid control applies this value as the minimum width for
+     *  all columns.  Otherwise, individual columns can have
+     *  their own minimum widths.
+     *  
+     *  @default NaN
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get minColumnWidth():Number
+    {
+        return _minColumnWidth;
+    }
+
+    /**
+     *  @private
+     */
+    public function set minColumnWidth(value:Number):void
+    {
+        _minColumnWidth = value;
+        minColumnWidthInvalid = true;
+        //itemsSizeChanged = true;
+       // columnsInvalid = true;
+       // invalidateDisplayList();
+    }
     [Inspectable(environment="none")]
 
 

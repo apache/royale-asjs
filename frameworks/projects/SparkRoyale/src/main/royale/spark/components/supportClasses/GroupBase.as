@@ -49,6 +49,7 @@ import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
+import org.apache.royale.core.ILayoutView;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
@@ -333,7 +334,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class GroupBase extends UIComponent implements ILayoutParent, IContainer, IViewport
+public class GroupBase extends UIComponent implements ILayoutParent, ILayoutView, IContainer, IViewport
 {
 
     //--------------------------------------------------------------------------

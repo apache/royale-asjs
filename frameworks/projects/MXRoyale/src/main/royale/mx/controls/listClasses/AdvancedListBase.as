@@ -1964,7 +1964,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public function get dataTipField():String
+    override public function get dataTipField():String
     {
         return _dataTipField;
     }
@@ -1972,7 +1972,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
     /**
      *  @private
      */
-    public function set dataTipField(value:String):void
+    override public function set dataTipField(value:String):void
     {
         _dataTipField = value;
 
