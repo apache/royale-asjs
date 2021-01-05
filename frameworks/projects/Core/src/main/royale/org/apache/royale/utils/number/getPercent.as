@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.number
 {
-    public function getPercent(numerator:Number,denominator:Number):Number{
-        return pinValue((numerator / denominator) * 100,0,100);
-    }
+	/**
+	 * Takes a numerator and denominator and returns the fraction described as a percent.
+	 */
+	public function getPercent(numerator:Number,denominator:Number):Number{
+		return pinValue((numerator / denominator) * 100,0,100);
+	}
 }
