@@ -149,8 +149,8 @@ $switch-label-separation: 8px
         @else
             background: linear-gradient(lighten($default-color, 0%), lighten($default-color, 10%))
         box-shadow: 0px 0px 0px 1px darken($default-color, 5%)
-        border-radius: $switch-inner-size
         transition: $switch-transition-delay
+        border-radius: $checkbox-border-radius
 
         &::before
             @if $flat
@@ -160,7 +160,14 @@ $switch-label-separation: 8px
                 background: lighten($primary-color, 45%)
                 box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, .1)
             transition: $switch-transition-delay
-            border-radius: $switch-button-border-radius
+            border-radius: $checkbox-border-radius 
 
     .label
         padding-left: $switch-label-separation
+
+    &.radio
+        .switch
+            border-radius: $switch-inner-size
+
+            &::before
+                border-radius: $switch-button-border-radius

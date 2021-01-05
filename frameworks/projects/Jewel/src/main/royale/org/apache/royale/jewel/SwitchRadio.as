@@ -23,24 +23,23 @@ package org.apache.royale.jewel
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
-
+    
     /**
-     *  The Jewel SwitchCheckBox consists of a lever that can be moved back and forth indicating a binary condition
-     *  that will be set or unset when the user clicks or touches it. It can contain an optional label.
+     *  The Jewel SwitchRadio control lets the user make a single choice within a set of mutually exclusive choices.
      *  
-     *  When a user clicks or touches this control or its associated text, the SwitchCheckBox changes 
-     *  its state from `active` to `inactive` or from `inactive` to `active`, communicating
-     *  clearly the binary condition.
-     *  
-     *  SwitchCheckBox can appear in groups (but not necesarily), and can be
-     *  selected and deselected individually.
+     *  A SwitchRadio of a lever that can be moved back and forth indicating a binary condition
+     *  that will be set or unset when the user clicks or touches it. SwitchRadios
+     *  always appear in groups of two or more with the same <code>groupName</code> property.
+     *   
+     *  While they can be individually selected, can only be deselected by selecting 
+     *  a different SwitchRadio in the same group (which deselects the rest of SwitchRadio).
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.8
      */
-    public class SwitchCheckBox extends CheckBox
+    public class SwitchRadio extends RadioButton
 	{
         /**
          *  Constructor.
@@ -50,10 +49,10 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
          */
-		public function SwitchCheckBox()
+		public function SwitchRadio()
 		{
 			super();
-            typeNames = "jewel switch";
+            typeNames = "jewel switch radio";
 		}
 
         COMPILE::JS
@@ -79,17 +78,26 @@ package org.apache.royale.jewel
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          * @royaleignorecoercion HTMLInputElement
          * @royaleignorecoercion HTMLSpanElement
+         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            input = addElementToWrapper(this,'input') as HTMLInputElement;
-            input.type = 'checkbox';
+            icon = addElementToWrapper(this, 'input') as HTMLInputElement;
+            icon.type = 'radio';
+            icon.id = '_radio_' + Math.random();
+            icon.value = String(value);
+            
             spanSwitch = document.createElement('span') as HTMLSpanElement;
             spanSwitch.className = 'switch';
+
+            textNode = document.createTextNode('') as Text;
             spanLabel = document.createElement('span') as HTMLSpanElement;
             spanLabel.className = 'label';
-            positioner = document.createElement('label') as WrappedHTMLElement;   
+            spanLabel.appendChild(textNode);
+            
+            positioner = document.createElement('label') as WrappedHTMLElement;
+            
             return element;
         }
 
