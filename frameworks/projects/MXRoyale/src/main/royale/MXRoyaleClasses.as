@@ -90,6 +90,7 @@ internal class MXRoyaleClasses
 	import mx.core.Container;Container;
 
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.system.System; System;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
 	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
