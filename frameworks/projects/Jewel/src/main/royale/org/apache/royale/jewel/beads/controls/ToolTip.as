@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls
 {
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IPopUpHost;
@@ -43,7 +44,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ToolTip implements IBead, IToolTipBead
+	public class ToolTip extends DispatcherBead implements IBead, IToolTipBead
 	{
 		/**
 		 *  constructor.
@@ -135,8 +136,6 @@ package org.apache.royale.jewel.beads.controls
 			_yPos = pos;
 		}
 
-		private var _strand:IStrand;
-
 		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -146,9 +145,9 @@ package org.apache.royale.jewel.beads.controls
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 
 			//ToolTip in iOS produces a bad behaviour, used in a button and user has to do a second touch to trigger click event
 			if(OSUtils.getOS() != OSUtils.IOS_OS)

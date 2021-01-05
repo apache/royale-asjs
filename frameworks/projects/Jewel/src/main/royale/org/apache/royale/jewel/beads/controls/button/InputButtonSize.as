@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.button
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
@@ -35,7 +35,7 @@ package org.apache.royale.jewel.beads.controls.button
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public class InputButtonSize implements IBead
+	public class InputButtonSize extends DispatcherBead
 	{
 		public static const INPUTBUTTON_DEFAULT_SIZE:Number = 24;
 
@@ -114,8 +114,9 @@ package org.apache.royale.jewel.beads.controls.button
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
+			super.strand = value
 			host = value as IInputButton;
 
 			COMPILE::JS
