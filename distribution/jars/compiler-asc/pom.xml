@@ -28,7 +28,8 @@
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-asc</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>${royale.compiler.version}</version>
+
 
   <build>
     <plugins>
