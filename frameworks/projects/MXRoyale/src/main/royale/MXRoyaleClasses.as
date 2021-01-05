@@ -365,6 +365,17 @@ internal class MXRoyaleClasses
 	import mx.filters.BitmapFilterQuality; BitmapFilterQuality;
 	import mx.net.URLRequestMethod; URLRequestMethod;
 	import mx.controls.ButtonLabelPlacement; ButtonLabelPlacement;
+
+	import mx.globalization.supportClasses.GlobalizationBase; GlobalizationBase;
+	import mx.globalization.CurrencyParseResult; CurrencyParseResult;
+	import mx.globalization.DateTimeFormatter; DateTimeFormatter;
+	import mx.globalization.DateTimeNameStyle; DateTimeNameStyle;
+	import mx.globalization.DateTimeStyle; DateTimeStyle;
+	import mx.globalization.LastOperationStatus; LastOperationStatus;
+	import mx.globalization.LocaleID; LocaleID;
+	import mx.globalization.NationalDigitsType; NationalDigitsType;
+	import mx.globalization.NumberFormatter; NumberFormatter;
+	import mx.globalization.NumberParseResult; NumberParseResult;
 }
 
 }
