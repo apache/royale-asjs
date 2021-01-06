@@ -287,11 +287,7 @@ public class AMFNetConnection
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3
      */
-    /* JimP: params should match what is sent into NetConnection.call, which is currently an IMessage.
-       If a 'rest' variable is used then only the first member of a passed array arrives. Fixed by
-       changing to an Object.
-    */
-    public function call(command:String, responder:Responder, params:Object):void
+    public function call(command:String, responder:Responder, ... params):void
     {
         COMPILE::SWF
         {
@@ -305,8 +301,6 @@ public class AMFNetConnection
             requestQueue.push(
                     {
                         url: url,
-                        /* JimP: this is the AMF URI */
-                        target: command,
                         responder: responder,
                         args: params
                     }
@@ -334,8 +328,6 @@ public class AMFNetConnection
             var actionMessage:ActionMessage = new ActionMessage();
             var messageBody:MessageBody = new MessageBody();
             sequence++;
-            /* insert the AMF URI into the body, otherwise it's always 'null' */
-            messageBody.targetURI = call.item.target;
             messageBody.responseURI = "/" + sequence.toString();
             messageBody.data = args;
             actionMessage.bodies = [ messageBody ];
