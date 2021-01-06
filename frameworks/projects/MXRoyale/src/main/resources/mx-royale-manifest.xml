@@ -45,6 +45,7 @@
 	<component id="Box" class="mx.containers.Box" />
 	<component id="Canvas" class="mx.containers.Canvas" />
 	<component id="Container" class="mx.core.Container" />
+	<component id="Repeater" class="mx.core.Repeater" />
 	<component id="HBox" class="mx.containers.HBox" />
 	<component id="HDividedBox" class="mx.containers.HDividedBox" />
     <component id="Panel" class="mx.containers.Panel" />
