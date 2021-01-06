@@ -46,6 +46,7 @@ import mx.core.IFactory;
 import mx.core.mx_internal;
 
 import spark.components.DataGroup;
+import spark.layouts.supportClasses.LayoutBase;
 import spark.components.SkinnableContainer;
 import spark.components.beads.SparkContainerView;
 import spark.layouts.VerticalLayout;
@@ -267,7 +268,15 @@ public class ListBase  extends SkinnableContainer
     public function ListBase()
     {
         super();
-		layout = new VerticalLayout();
+	layout = createDefaultLayout();
+    }
+
+    /**
+     *  @private
+     */
+    protected function createDefaultLayout():LayoutBase
+    {
+	    return new VerticalLayout();
     }
     
     //--------------------------------------------------------------------------

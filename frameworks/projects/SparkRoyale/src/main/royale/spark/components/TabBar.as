@@ -41,6 +41,7 @@ package spark.components
     import mx.managers.IFocusManagerComponent;
     import spark.components.supportClasses.ListBase;
     import spark.layouts.supportClasses.LayoutBase;
+    import spark.layouts.HorizontalLayout;
     import org.apache.royale.core.ILayoutHost;
     import org.apache.royale.core.IStrand;
     import mx.core.IUIComponent;
@@ -190,6 +191,11 @@ package spark.components
                 TabBar.createAccessibilityImplementation(this);
         } */
 
+        override protected function createDefaultLayout():LayoutBase
+        {
+               return new HorizontalLayout();
+        }
+     
         override public function get measuredWidth():Number
         {
             var contentView:IUIComponent = (this.view as ILayoutHost).contentView as IUIComponent;
