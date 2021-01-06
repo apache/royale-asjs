@@ -21,7 +21,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.core.ContainerBase;
 	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
@@ -50,47 +50,34 @@ package org.apache.royale.html.beads
 	 * placement of the elements in the contentView. When a Container does not have an
 	 * explicit size (including a percent size), the content dictates the size of the
 	 * Container.
-     *
+	 *
 	 *  @viewbead
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.8
 	 */
-	COMPILE::SWF
 	public class ContainerView extends GroupView
 	{
+		private var _viewport:IViewport;
+
 		/**
-     	 *  The ContainerView class is the default view for
-         *  the org.apache.royale.core.ContainerBase classes.
-         *  It lets you use some CSS styles to manage the border, background
-         *  and padding around the content area.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         */
+		 *  The ContainerView class is the default view for
+		 *  the org.apache.royale.core.ContainerBase classes.
+		 *  It lets you use some CSS styles to manage the border, background
+		 *  and padding around the content area.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
 		public function ContainerView()
 		{
 			super();
 		}
 
 		/**
-		 * The sub-element used as the parent of the container's elements. This does not
-		 * include the chrome elements.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		override public function get contentView():ILayoutView
-		{
-			return viewport.contentView as ILayoutView;
-		}
-
-		/**
 		 * The viewport used to present the content and may display
 		 * scroll bars (depending on the actual type of viewport).
 		 *
@@ -104,239 +91,6 @@ package org.apache.royale.html.beads
 			return _viewport;
 		}
 
-		/**
-		 * The data model used by the viewport to determine how it should
-		 * present the content area.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get viewportModel():IViewportModel
-		{
-			return _viewportModel;
-		}
-
-		private var _viewportModel:IViewportModel;
-		private var _viewport:IViewport;
-		private var layoutRunning:Boolean;
-
-		/**
-		 * Strand setter.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-
-            createViewport();
-
-            addViewport();
-
-			super.strand = value;
-		}
-
-        protected function addViewport():void
-        {
-            var chost:IContainer = host as IContainer;
-            chost.strandChildren.addElement(viewport.contentView);            
-        }
-        
-		/**
-		 * Called when the host is ready to complete its setup (usually after its size has been
-		 * determined).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		override protected function completeSetup():void
-		{
-			super.completeSetup();
-
-			// when the first layout is complete, set up listeners for changes
-			// to the childrens' sizes.
-//			host.addEventListener("layoutComplete", childrenChangedHandler);
-		}
-
-		/**
-		 * Creates the Viewport (or ScrollableViewport) through which the content
-		 * area is presented.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		protected function createViewport():void
-		{
-			if(!_viewportModel)
-				_viewportModel = loadBeadFromValuesManager(IViewportModel, "iViewportModel", _strand) as IViewportModel;
-				
-			if(!_viewport)
-				_viewport = loadBeadFromValuesManager(IViewport, "iViewport", _strand) as IViewport;
-
-		}
-
-		/**
-		 * Calculate the space taken up by non-content children like a TitleBar in a Panel.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
-		 */
-		protected function getChromeMetrics():EdgeData
-		{
-			var paddingMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(host);
-			return paddingMetrics;
-		}
-		
-		/**
-		 *  Positions the viewport, then sets any known sizes of the Viewport prior
-         *  to laying out its content.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
-		 */
-		override public function beforeLayout():Boolean
-		{
-            var host:ILayoutChild = this.host as ILayoutChild;
-            var vm:IViewportModel = viewportModel;
-            COMPILE::SWF
-            {
-                // if earlier layouts set the size of the host
-                // then it won't reflect changes in content size
-                if (host is UIBase)
-                {
-                    var uiBase:UIBase = host as UIBase;
-                    if (host.isWidthSizedToContent())
-                    {
-                        if (uiBase.width != uiBase.$width)
-                        {
-                            host.setWidth(uiBase.$width, true);
-                        }
-                    }
-                    if (host.isHeightSizedToContent())
-                    {
-                        if (uiBase.height != uiBase.$height)
-                        {
-                            host.setHeight(uiBase.$height, true);
-                        }
-                    }                    
-                }
-            }
-			var hostWidth:Number = host.width;
-			var hostHeight:Number = host.height;
-
-            vm.borderMetrics = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
-
-            viewport.setPosition(vm.borderMetrics.left, vm.borderMetrics.top);
-
-			viewport.layoutViewportBeforeContentLayout(
-				hostWidth - vm.borderMetrics.left - vm.borderMetrics.right,
-				hostHeight - vm.borderMetrics.top - vm.borderMetrics.bottom);
-				
-			return true;
-		}
-
-		/**
-		 * @private
-		 */
-		private var adjusting:Boolean = false;
-
-		/**
-		 * Adjusts the size of the host, or adds scrollbars to the viewport, after
-		 * the layout has been run.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		override public function afterLayout():void
-		{
-			if (adjusting) return;
-
-			adjusting = true;
-
-			super.afterLayout();
-
-			var contentSize:Size = calculateContentSize();
-			viewport.layoutViewportAfterContentLayout(contentSize);
-
-			adjusting = false;
-		}
-
-		/**
-		 * Handles dynamic changes to the host's size by running the layout once
-		 * the viewport has been adjusted.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-//		override protected function resizeHandler(event:Event):void
-//		{
-//			if (!adjusting) {
-//				performLayout(event);
-//			}
-//		}
-
-		/**
-		 * Whenever children are added, listeners are added to detect changes
-		 * in their size.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-//		protected function childrenChangedHandler(event:Event):void
-//		{
-//			var host:UIBase = _strand as UIBase;
-//			host.removeEventListener(event.type, childrenChangedHandler);
-//
-//			var n:Number = contentView.numElements;
-//			for (var i:int=0; i < n; i++) {
-//				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-//				child.addEventListener("widthChanged", childResizeHandler);
-//				child.addEventListener("heightChanged", childResizeHandler);
-//				child.addEventListener("sizeChanged", childResizeHandler);
-//			}
-//		}
-	}
-
-	COMPILE::JS
-	public class ContainerView extends GroupView //??implements IParent
-	{
-		private var _viewport:IViewport;
-
-		/**
-		 * The viewport used to present the content and may display
-		 * scroll bars (depending on the actual type of viewport).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		protected function get viewport():IViewport
-		{
-			return _viewport;
-		}
-		
 		/**
 		 * The sub-element used as the parent of the container's elements. This does not
 		 * include the chrome elements.
@@ -357,6 +111,24 @@ package org.apache.royale.html.beads
 		}
 
 		/**
+		 * The data model used by the viewport to determine how it should
+		 * present the content area.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		COMPILE::SWF
+		public function get viewportModel():IViewportModel
+		{
+			return _viewportModel;
+		}
+
+		COMPILE::SWF
+		private var _viewportModel:IViewportModel;
+
+		/**
 		 * Strand setter.
 		 *
 		 *  @langversion 3.0
@@ -364,21 +136,26 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 *  @royaleignorecoercion org.apache.royale.core.IViewport
-		 *  @royaleignorecoercion org.apache.royale.core.IContainer
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			super.strand = value;
 
+			COMPILE::SWF
+			{
+			if(!_viewportModel)
+				_viewportModel = loadBeadFromValuesManager(IViewportModel, "iViewportModel", _strand) as IViewportModel;
+			}
+
 			if(!_viewport)
 				_viewport = loadBeadFromValuesManager(IViewport, "iViewport", _strand) as IViewport;
-			
+
 			if (_viewport) {
 				addViewport();
 			}
 		}
-    
+
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IContainer
 		 */
@@ -391,6 +168,88 @@ package org.apache.royale.html.beads
 			if (chost != null && chost != _viewport.contentView) {
 				chost.addElement(_viewport.contentView);
 			}
+		}
+        
+		/**
+		 *  Positions the viewport, then sets any known sizes of the Viewport prior
+		 *  to laying out its content.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 */
+		COMPILE::SWF
+		override public function beforeLayout():Boolean
+		{
+			var host:ILayoutChild = this.host as ILayoutChild;
+			var vm:IViewportModel = viewportModel;
+//			COMPILE::SWF
+//			{
+			// if earlier layouts set the size of the host
+			// then it won't reflect changes in content size
+			if (host is UIBase)
+			{
+				var uiBase:UIBase = host as UIBase;
+				if (host.isWidthSizedToContent())
+				{
+					if (uiBase.width != uiBase.$width)
+					{
+						host.setWidth(uiBase.$width, true);
+					}
+				}
+				if (host.isHeightSizedToContent())
+				{
+					if (uiBase.height != uiBase.$height)
+					{
+						host.setHeight(uiBase.$height, true);
+					}
+				}                    
+			}
+//			}
+			var hostWidth:Number = host.width;
+			var hostHeight:Number = host.height;
+
+			vm.borderMetrics = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+
+			viewport.setPosition(vm.borderMetrics.left, vm.borderMetrics.top);
+
+			viewport.layoutViewportBeforeContentLayout(
+				hostWidth - vm.borderMetrics.left - vm.borderMetrics.right,
+				hostHeight - vm.borderMetrics.top - vm.borderMetrics.bottom);
+				
+			return true;
+		}
+
+		/**
+		 * @private
+		 */
+		COMPILE::SWF
+		private var adjusting:Boolean = false;
+
+		/**
+		 * Adjusts the size of the host, or adds scrollbars to the viewport, after
+		 * the layout has been run.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		COMPILE::SWF
+		override public function afterLayout():void
+		{
+			if (adjusting) return;
+
+			adjusting = true;
+
+			super.afterLayout();
+
+			var contentSize:Size = calculateContentSize();
+			viewport.layoutViewportAfterContentLayout(contentSize);
+
+			adjusting = false;
 		}
 	}
 }
