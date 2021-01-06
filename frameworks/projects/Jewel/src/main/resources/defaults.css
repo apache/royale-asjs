@@ -28,7 +28,7 @@ html, body {
   border: 0;
 }
 
-input:focus, textarea:focus, select:focus, div:focus, label:focus, nav:focus, li:focus {
+input:focus, textarea:focus, select:focus, div:focus, label:focus, nav:focus, li:focus, a:focus {
   outline: none;
 }
 
