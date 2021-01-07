@@ -111,7 +111,6 @@ import mx.events.FocusEvent;
 import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
-import mx.display.NativeMenu;
 
 /**
  *  Set a different class for click events so that
@@ -6315,6 +6314,22 @@ COMPILE::JS
         super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
     }
 
+    private var _render:Object
+
+    public function get render():Object
+    {
+        //To Do
+        trace("render is not implemented");
+        return _render;
+    }
+
+    public function set render(value:Object):void
+    {
+        _render = value;
+        //To Do
+        trace("render is not implemented");
+    }
+
     [Bindable("visibleChanged")]
     COMPILE::JS
     override public function get visible():Boolean
@@ -6541,17 +6556,6 @@ COMPILE::JS
     {
         _styleDeclaration = value;
     }
-    
-    Bindable] public var _contextMenu:NativeMenu
-	
-	COMPILE::JS {
-		public function get contextMenu():NativeMenu {
-			return _contextMenu;
-		}
-		public function set contextMenu(value:NativeMenu):void {
-		   _contextMenu = value
-		}
-	}
 
 }
 
