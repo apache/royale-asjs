@@ -507,7 +507,7 @@ public class TextBase extends UIComponent implements IDisplayText
         // without later recomposing the text,
         // so we handle that by also setting toolTip here.
         //To Do
-        trace("render is not implemented");
+        trace("showTruncationTip is not implemented");
         
         //toolTip = _isTruncated && _showTruncationTip ? text : null;
     } 
