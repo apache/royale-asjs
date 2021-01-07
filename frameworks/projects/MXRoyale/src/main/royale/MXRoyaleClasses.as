@@ -366,6 +366,7 @@ internal class MXRoyaleClasses
 	import mx.filters.BitmapFilterQuality; BitmapFilterQuality;
 	import mx.net.URLRequestMethod; URLRequestMethod;
 	import mx.controls.ButtonLabelPlacement; ButtonLabelPlacement;
+	import mx.display.NativeMenu; NativeMenu;
 }
 
 }
