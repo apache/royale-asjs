@@ -111,6 +111,7 @@ import mx.events.FocusEvent;
 import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
+import mx.display.NativeMenu;
 
 /**
  *  Set a different class for click events so that
@@ -6540,6 +6541,17 @@ COMPILE::JS
     {
         _styleDeclaration = value;
     }
+    
+    Bindable] public var _contextMenu:NativeMenu
+	
+	COMPILE::JS {
+		public function get contextMenu():NativeMenu {
+			return _contextMenu;
+		}
+		public function set contextMenu(value:NativeMenu):void {
+		   _contextMenu = value
+		}
+	}
 
 }
 
