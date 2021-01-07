@@ -497,7 +497,7 @@ public class TextBase extends UIComponent implements IDisplayText
     /**
      *  @private
      */
-     public function set controlBarLayout(value:Boolean):void
+     public function set showTruncationTip(value:Boolean):void
     {
         _showTruncationTip = value;
 
@@ -507,7 +507,7 @@ public class TextBase extends UIComponent implements IDisplayText
         // without later recomposing the text,
         // so we handle that by also setting toolTip here.
         //To Do
-        trace("controlBarLayout is not implemented");
+        trace("showTruncationTip is not implemented");
         
         //toolTip = _isTruncated && _showTruncationTip ? text : null;
     } 
