@@ -2278,6 +2278,39 @@ COMPILE::JS
         }
     }
 
+    //----------------------------------
+    //  parentDocument
+    //----------------------------------
+
+    [Bindable("initialize")]
+
+    /**
+     *  A reference to the parent document object for this UIComponent.
+     *  A document object is a UIComponent at the top of the hierarchy
+     *  of a Flex application, MXML component, or AS component.
+     *
+     *  <p>For the Application object, the <code>parentDocument</code>
+     *  property is null.
+     *  This property  is useful in MXML scripts to go up a level
+     *  in the chain of document objects.
+     *  It can be used to walk this chain using
+     *  <code>parentDocument.parentDocument</code>, and so on.</p>
+     *
+     *  <p>It is typed as Object so that authors can access properties
+     *  and methods on ancestor document objects without casting.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get parentDocument():Object
+    {
+        //To Do
+        trace("parentDocument is not implemented");
+        return null;
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Properties: Measurement

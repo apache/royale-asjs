@@ -1080,6 +1080,41 @@ use namespace mx_internal;
           //return visibleData[itemToUID(item)];
 	      return null;
       }
+            
+       /**
+        *  Hides the drop indicator under the mouse pointer that indicates that a
+        *  drag and drop operation is allowed.
+        *
+        *  @param event A DragEvent object that contains information about the
+        *  mouse location.
+        *  
+        *  @langversion 3.0
+        *  @playerversion Flash 9
+        *  @playerversion AIR 1.1
+        *  @productversion Flex 3
+        */
+       public function hideDropFeedback(event:Object):void
+       {
+           //To Do
+           trace("hideDropFeedback is not implemented");
+       }
+
+      /**
+       *  Determines if an item is being displayed by a renderer.
+       *
+       *  @param item A data provider item.
+       *  @return <code>true</code> if the item is being displayed.
+       *  
+       *  @langversion 3.0
+       *  @playerversion Flash 9
+       *  @playerversion AIR 1.1
+       *  @productversion Flex 3
+       */
+        public function isItemVisible(item:Object):Boolean
+        {
+            return itemToItemRenderer(item) != null;
+        }
+
         /**
          * @private
          */
