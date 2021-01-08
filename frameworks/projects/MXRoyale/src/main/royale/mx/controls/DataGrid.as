@@ -235,7 +235,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="headerRelease", type="mx.events.DataGridEvent")]
+[Event(name="headerRelease", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when the user releases the mouse button on a column header after 
