@@ -353,6 +353,24 @@ import mx.display.NativeMenu;
  *  @productversion Flex 3
  */
 [Event(name="dragEnter", type="mx.events.DragEvent")]
+
+/**
+ *  Dispatched by the component when the user drags outside the component,
+ *  but does not drop the data onto the target.
+ *
+ *  <p>You use this event to restore the drop target to its normal appearance
+ *  if you modified its appearance as part of handling the
+ *  <code>dragEnter</code> or <code>dragOver</code> event.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_EXIT
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.8
+ */
+[Event(name="dragExit", type="mx.events.DragEvent")]
+
 /**
  *  Dispatched by the drop target when the user releases the mouse over it.
  *
@@ -370,6 +388,7 @@ import mx.display.NativeMenu;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
+
 [Event(name="dragDrop", type="mx.events.DragEvent")]
 
 /**
