@@ -31,6 +31,7 @@ import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
+import mx.events.DragEvent;
 import mx.utils.UIDUtil;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
@@ -1108,7 +1109,7 @@ use namespace mx_internal;
         *  @playerversion AIR 1.1
         *  @productversion Flex 3
         */
-       public function hideDropFeedback(event:Object):void
+       public function hideDropFeedback(event:DragEvent):void
        {
            //To Do
            trace("hideDropFeedback is not implemented");
