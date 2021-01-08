@@ -116,6 +116,21 @@ use namespace mx_internal;
  */
 [Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
 
+/**
+ *  A flag that controls whether items are highlighted as the mouse rolls 
+ *  over them.
+ *  If <code>true</code>, rows are highlighted as the mouse rolls over them.
+ *  If <code>false</code>, rows are highlighted only when selected.
+ *
+ *  @default true
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.8
+ */
+[Style(name="useRollOver", type="Boolean", inherit="no")]
+
     /**
      *  
      *  @langversion 3.0
