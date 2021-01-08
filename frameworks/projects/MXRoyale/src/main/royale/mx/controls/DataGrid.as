@@ -1214,7 +1214,25 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     {
         _presentationModel = value as IDataGridPresentationModel;
     }
-
+    
+    /**
+     *  Displays a drop indicator under the mouse pointer to indicate that a
+     *  drag and drop operation is allowed and where the items will
+     *  be dropped.
+     *
+     *  @param event A DragEvent object that contains information as to where
+     *  the mouse is.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function showDropFeedback(event:DragEvent):void
+    {
+        //To Do
+        trace("showDropFeedback is not implemented");
+    }
 
     override public function addedToParent():void
     {
