@@ -100,7 +100,7 @@ import mx.controls.listClasses.AdvancedListBase;
 import mx.controls.listClasses.DataGridListBase;
 import mx.controls.beads.DataGridColumnResizeBead;
 import mx.controls.beads.DataGridLinesBeadForICollectionView;
-
+import mx.events.DragEvent;
 
 import mx.core.mx_internal;
 use namespace mx_internal;
