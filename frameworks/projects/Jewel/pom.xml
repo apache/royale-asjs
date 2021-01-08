@@ -65,7 +65,6 @@
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
           <additionalCompilerOptions>
-            <!-- +royalelib=/Users/carlosrovira/Dev/Royale/Sdks/apache-royale-maven -->
             -source-map=true;
             -source-map-source-root=/frameworks/projects/Jewel/
           </additionalCompilerOptions>
