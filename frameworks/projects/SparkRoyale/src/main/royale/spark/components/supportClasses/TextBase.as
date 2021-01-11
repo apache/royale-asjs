@@ -474,9 +474,9 @@ public class TextBase extends UIComponent implements IDisplayText
      *  @private
 	 *  Storage for the showTruncationTip property.
      */
-    /* private var _showTruncationTip:Boolean = false;
+     private var _showTruncationTip:Boolean = false;
         
-    [Inspectable(category="General", defaultValue="false")] */
+    [Inspectable(category="General", defaultValue="false")] 
 
     /**
 	 *  A property that controls whether the component
@@ -489,15 +489,15 @@ public class TextBase extends UIComponent implements IDisplayText
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-	/* public function get showTruncationTip():Boolean
+	 public function get showTruncationTip():Boolean
     {
 		return _showTruncationTip;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set showTruncationTip(value:Boolean):void
+     public function set showTruncationTip(value:Boolean):void
     {
         _showTruncationTip = value;
 
@@ -506,8 +506,11 @@ public class TextBase extends UIComponent implements IDisplayText
         // But showToolTip can change at runtime
         // without later recomposing the text,
         // so we handle that by also setting toolTip here.
-        toolTip = _isTruncated && _showTruncationTip ? text : null;
-    } */
+        //To Do
+        trace("showTruncationTip is not implemented");
+        
+        //toolTip = _isTruncated && _showTruncationTip ? text : null;
+    } 
 
     //----------------------------------
     //  text

@@ -348,47 +348,47 @@
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>mxmlc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-asc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-compc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-mxmlc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-compjsc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-mxmljsc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-optimizer</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-swfdump</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.compiler.version}</version>
     </dependency>
     
     <!-- google closure compiler and library will be needed unpacked in js/lib/google -->

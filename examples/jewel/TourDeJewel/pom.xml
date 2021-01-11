@@ -956,7 +956,7 @@
             -prevent-rename-public-static-methods=false
             -prevent-rename-public-instance-methods=false
             
-            +royalelib=/Users/carlosrovira/Dev/Royale/Sdks/apache-royale-maven
+            <!-- +royalelib=/Users/carlosrovira/Dev/Royale/Sdks/apache-royale-maven/frameworks -->
             -source-map=true;
           </additionalCompilerOptions>
         </configuration>

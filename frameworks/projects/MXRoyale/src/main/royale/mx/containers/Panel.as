@@ -91,6 +91,17 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  */
 //[Style(name="borderAlpha", type="Number", inherit="no", theme="halo, spark")]
 
+    /**
+     *  The color of the border for this component.
+     *
+     *  @default 0
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */
+    [Style(name="borderColor", type="uint", format="Color", inherit="yes")]
 /**
  *  Thickness of the bottom border of the Panel control.
  *  If this style is not set and the Panel control contains a ControlBar

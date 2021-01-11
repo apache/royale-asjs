@@ -64,7 +64,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark")]
+[Style(name="borderColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  Controls the visibility of the border for this component.
@@ -100,7 +100,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="dropShadowVisible", type="Boolean", inherit="no", theme="spark")]
+[Style(name="dropShadowVisible", type="Boolean", inherit="no")]
 
 //--------------------------------------
 //  Skin states

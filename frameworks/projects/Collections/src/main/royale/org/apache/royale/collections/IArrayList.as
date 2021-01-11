@@ -48,7 +48,7 @@ package org.apache.royale.collections
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IArrayList extends IEventDispatcher
+	public interface IArrayList extends IEventDispatcher, ICollection
 	{
         /**
          *  The array of raw data needing conversion.
@@ -70,16 +70,6 @@ package org.apache.royale.collections
          *  @productversion Royale 0.0
 		 */
 		function toArray():Array;
-
-        /**
-         *  Fetches an item from the collection
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        function getItemAt(index:int):Object;
 
 		/**
 		 *  Fetches an item from the collection given an index.
