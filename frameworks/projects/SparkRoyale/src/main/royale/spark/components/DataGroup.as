@@ -202,7 +202,7 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
         var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
         if (presModel == null) {
             presModel = new ListPresentationModel();
-            presModel.rowHeight = 18;
+            presModel.rowHeight = 20;
             addBead(presModel);
         }
         return presModel;
