@@ -126,8 +126,28 @@ public class DragManager
     //  Class properties
     //
     //--------------------------------------------------------------------------
-    
-   
+
+    //----------------------------------
+    //  isDragging
+    //----------------------------------
+
+    /**
+     *  Read-only property that returns <code>true</code>
+     *  if a drag is in progress.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static function get isDragging():Boolean
+    {
+        /*return impl.isDragging;*/
+        //TODO
+        trace("isDragging is not implemented");
+        return false;
+    }
+       
     //--------------------------------------------------------------------------
     //
     //  Class methods
