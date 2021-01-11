@@ -77,6 +77,7 @@ internal class MXRoyaleClasses
 	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
 	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
 	import mx.events.CloseEvent; CloseEvent;
+	import mx.events.DataEvent; DataEvent;
 	import mx.controls.HRule; HRule;
 	import mx.events.ListEvent; ListEvent;
 	import mx.events.SliderEvent; SliderEvent;
