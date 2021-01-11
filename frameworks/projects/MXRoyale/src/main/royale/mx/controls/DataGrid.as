@@ -100,7 +100,7 @@ import mx.controls.listClasses.AdvancedListBase;
 import mx.controls.listClasses.DataGridListBase;
 import mx.controls.beads.DataGridColumnResizeBead;
 import mx.controls.beads.DataGridLinesBeadForICollectionView;
-
+import mx.events.DragEvent;
 
 import mx.core.mx_internal;
 use namespace mx_internal;
@@ -235,7 +235,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="headerRelease", type="mx.events.DataGridEvent")]
+[Event(name="headerRelease", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when the user releases the mouse button on a column header after 

@@ -31,6 +31,7 @@ import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
+import mx.events.DragEvent;
 import mx.utils.UIDUtil;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
@@ -115,6 +116,21 @@ use namespace mx_internal;
  *  @productversion Royale 0.0
  */
 [Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
+
+/**
+ *  A flag that controls whether items are highlighted as the mouse rolls 
+ *  over them.
+ *  If <code>true</code>, rows are highlighted as the mouse rolls over them.
+ *  If <code>false</code>, rows are highlighted only when selected.
+ *
+ *  @default true
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.8
+ */
+[Style(name="useRollOver", type="Boolean", inherit="no")]
 
     /**
      *  
@@ -1093,7 +1109,7 @@ use namespace mx_internal;
         *  @playerversion AIR 1.1
         *  @productversion Flex 3
         */
-       public function hideDropFeedback(event:Object):void
+       public function hideDropFeedback(event:DragEvent):void
        {
            //To Do
            trace("hideDropFeedback is not implemented");
