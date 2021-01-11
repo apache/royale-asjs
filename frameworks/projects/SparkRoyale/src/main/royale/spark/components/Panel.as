@@ -472,23 +472,23 @@ public class Panel extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get controlBarVisible():Boolean
+    public function get controlBarVisible():Boolean
     {
         return (controlBarGroup) 
         ? controlBarGroup.visible 
             : controlBarGroupProperties.visible;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set controlBarVisible(value:Boolean):void
+    public function set controlBarVisible(value:Boolean):void
     {
         if (controlBarGroup)
         {
             controlBarGroup.visible = value;
-            controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
-                VISIBLE_PROPERTY_FLAG, value);
+            /*controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
+                VISIBLE_PROPERTY_FLAG, value);*/
         }
         else
             controlBarGroupProperties.visible = value;
@@ -496,7 +496,7 @@ public class Panel extends SkinnableContainer
         invalidateSkinState();
         if (skin)
             skin.invalidateSize();
-    } */
+    }
     
     //----------------------------------
     //  title
