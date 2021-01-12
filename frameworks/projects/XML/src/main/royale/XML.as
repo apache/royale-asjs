@@ -2345,16 +2345,19 @@ package
 			if(ref == TEXT || ref == COMMENT || ref == PROCESSING_INSTRUCTION || ref ==  ATTRIBUTE)
 			{
 				// Changing this to pretend we're a string
-				return s().replace(propertyName,value);
+				return s().replace(propertyName,value); //@todo check this in flash/add tests, it seems inconsistent with the above, but may be a flash quirk?
 				//return this;
 			}
-			if(value === null || value === undefined)
-				return this;
 			if((value is XML) || (value is XMLList))
-				value = value.copy();
+				value = value.copy(); //step 3 above
 			else
-				value = value.toString();
-			
+				value = value + ''; //step 2 above (null and undefined 'value' is converted to string representation)
+			var idx:uint = parseInt(propertyName,10);
+			if (idx.toString() == propertyName+'') {
+				replaceChildAt(idx, value);
+				return this; //to step 4 above
+			}
+			//@todo step 5+ above...
 			return null;
 		}
 		
