@@ -38,7 +38,7 @@ package org.apache.royale.net.remoting.amf {
 		}
 
 		private static const AMF0_AMF3:int = 0x11;
-		private var switchedToAMF3 = false;
+		private var switchedToAMF3:Boolean = false;
 
 		private static const AMF0_NUMBER:uint = 0x0;
 		private static const AMF0_BOOLEAN:uint =0x1;
