@@ -452,9 +452,10 @@ public class AMFNetConnection
 
     COMPILE::JS
     private function readMessage(reader:AMFBinaryData):ActionMessage
-    {
+    {   
         var message:ActionMessage = new ActionMessage();
         message.version = reader.readUnsignedShort();
+        reader.objectEncoding = message.version;
         var headerCount:uint = reader.readUnsignedShort();
         for (var i:uint = 0; i < headerCount; i++) {
             message.headers.push(this.readHeader(reader));
