@@ -30,6 +30,7 @@ import mx.utils.BitFlagUtil;
 import spark.events.ElementExistenceEvent;
 */
 import mx.core.IUIComponent;
+import spark.components.supportClasses.Skin;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
 
@@ -1022,9 +1023,12 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
 	    if (_layout)
 	    {
 		_layout.measure();
+	    } else if (skin)
+	    {
+		(skin as Skin).layout.measure();
 	    } else
 	    {
-		super.measure();
+		    super.measure();
 	    }
     }
 
