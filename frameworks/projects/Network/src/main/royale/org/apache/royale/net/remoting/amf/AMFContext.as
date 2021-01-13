@@ -126,7 +126,7 @@ internal class AMFContext extends BinaryData implements IDataInput, IDataOutput,
 		super();
 	}
 
-	public function reset():void {
+	override public function reset():void {
 		writeBuffer = [];
 		objects = [];
 		traits = {};

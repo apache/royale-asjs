@@ -37,8 +37,8 @@ package org.apache.royale.net.remoting.amf {
 			AMFBinaryData.installAlternateContext(AMF0AMF3Context);
 		}
 
-		//@todo :
 		private static const AMF0_AMF3:int = 0x11;
+		private var switchedToAMF3 = false;
 
 		private static const AMF0_NUMBER:uint = 0x0;
 		private static const AMF0_BOOLEAN:uint =0x1;
@@ -66,6 +66,11 @@ package org.apache.royale.net.remoting.amf {
 
 		override public function supportsAMFEncoding(type:uint):Boolean{
 			return type == 3 || type == 0;
+		}
+
+		override public function reset():void {
+			super.reset();
+			switchedToAMF3 = false;
 		}
 
 		/*override public function writeObject(v:*):void {
@@ -337,8 +342,17 @@ package org.apache.royale.net.remoting.amf {
 		}*/
 
 		override public function readAmf0Object():* {
-			var amfType:uint = readUnsignedByte();
-			return readAmf0ObjectValue(amfType);
+			if (switchedToAMF3) {
+				return readAmf3Object();
+			} else {
+				var amfType:uint = readUnsignedByte();
+				if (amfType == AMF0_AMF3) {
+					switchedToAMF3 = true;
+					return readAmf3Object();
+				} else {
+					return readAmf0ObjectValue(amfType);
+				}
+			}
 		}
 
 		private function readAmf0ObjectValue(amfType:uint):Object {
