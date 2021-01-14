@@ -559,6 +559,29 @@ public class SkinnableTextBase extends SkinnableComponent
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  @copy spark.core.IEditableText#selectAll()
+     * 
+     *  @see spark.components.RichEditableText#selectAll()
+     *  @see spark.components.supportClasses.StyleableStageText#selectAll()
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function selectAll():void
+    {
+        /*if (!textDisplay)
+            return;
+
+        textDisplay.selectAll();
+
+        // This changes the selection so generate an UPDATE_COMPLETE event.
+        invalidateProperties();*/
+        trace("selectAll is not implemented");
+    }
+
     //----------------------------------
     //  promptDisplay
     //----------------------------------
@@ -2015,7 +2038,29 @@ public class SkinnableTextBase extends SkinnableComponent
     //  Methods
     //
     //--------------------------------------------------------------------------
-    
+        
+    /**
+     *  @copy spark.core.IEditableText#insertText()
+     *   
+     *  @see spark.components.RichEditableText#insertText()
+     *  @see spark.components.supportClasses.StyleableStageText#insertText()
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function insertText(text:String):void
+    {
+        if (!textDisplay)
+            return;
+
+        textDisplay.insertText(text);
+        
+        // This changes text so generate an UPDATE_COMPLETE event.
+        invalidateProperties();
+    }
+
     /**
      *  @copy spark.core.IEditableText#insertText()
      *   
