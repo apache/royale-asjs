@@ -449,6 +449,32 @@ package flexUnitTests.xml
                     '</root>', 'testAppendNonXMLChild 4 result is bad');
             
         }
+
+        [Test]
+        public function testReplace():void{
+            //WIP
+            var xml:XML =<test><a href="something">test link content</a></test>;
+
+            var child:XML = xml.children()[0];
+            xml.replace(0, child.toString());
+            assertEquals(
+                    xml.toXMLString(),
+                    '<test>test link content</test>', 'testReplace 1 result is bad');
+            xml =<test><a href="something">test link content</a></test>;
+            xml.replace(0, null);
+
+            assertEquals(
+                    xml.toXMLString(),
+                    '<test>null</test>', 'testReplace 2 result is bad');
+
+            xml =<test><a href="something">test link content</a></test>;
+            xml.replace(0, undefined);
+
+            assertEquals(
+                    xml.toXMLString(),
+                    '<test>undefined</test>', 'testReplace 3 result is bad');
+
+        }
         
         
         [Test]
