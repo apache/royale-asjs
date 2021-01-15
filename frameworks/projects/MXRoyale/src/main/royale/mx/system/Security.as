@@ -16,23 +16,48 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.textLayout.dummy {
-	public class Mouse {
-		public static var cursor : String;
 
-		public static function registerCursor(name : String, cursor : MouseCursorData) : void {
-			
-		}
-		
-		public static function show() : void {
-			trace("Mouse::show not implemented");
-		}
-		
-		public static function hide() : void {
-			trace("Mouse::hide not implemented");
-
-		}
-
+package mx.system
+{
+	COMPILE::SWF
+	{
+		import flash.system.Security;
 	}
 
+	/**
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.0
+	 *  @productversion Royale 0.9.8
+	 */
+
+	public class Security
+	{
+		/**
+		 *  Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.0
+		 *  @productversion Royale 0.9.8
+		 */
+
+		public function Security()
+		{
+		}
+		
+		/**
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.0
+		 *  @productversion Royale 0.9.8
+		 */
+
+		public static function allowDomain(domains:String):void
+		{
+			trace("Security::allowDomain is not implemented");
+		}
+	}
 }
