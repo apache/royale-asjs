@@ -722,6 +722,36 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
     
+    //----------------------------------
+    //  showInAutomationHierarchy
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the <code>showInAutomationHierarchy</code> property.
+     */
+    private var _showInAutomationHierarchy:Boolean = true;
+
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showInAutomationHierarchy():Boolean
+    {
+        return _showInAutomationHierarchy;
+    }
+
+    /**
+     *  @private
+     */
+    public function set showInAutomationHierarchy(value:Boolean):void
+    {
+        _showInAutomationHierarchy = value;
+    }
 	
     //--------------------------------------------------------------------------
     //
