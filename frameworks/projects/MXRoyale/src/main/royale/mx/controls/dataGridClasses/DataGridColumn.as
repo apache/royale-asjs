@@ -546,12 +546,35 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 
     public function get textAlign():Object
     {
-        trace("textAlign not implemented");
+        trace("DataGridColumn::textAlign not implemented");
         return 0;
     }
     public function set textAlign(value:Object):void
     {
-        trace("textAlign not implemented");
+        trace("DataGridColumn::textAlign not implemented");
+    }
+
+    /**
+     *  Sets a style property on this DataGridColumn.
+     *
+     *  @param styleProp The name of the style property.
+     *
+     *  @param newValue The value of the style property.
+     *  The value may be of any type.
+     *  The values <code>null</code>, <code>""</code>, <code>false</code>,
+     *  <code>NaN</code>, and <code>0</code> are all valid style values,
+     *  but the value <code>undefined</code> is not.
+     *  Setting a style property to the value <code>undefined</code>
+     *  is the same as calling the <code>clearStyle()</code> method.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function setStyle(styleProp:String, newValue:*):void
+    {
+        trace("DataGridColumn::setStyle is not implemented");
     }
 
     //----------------------------------
