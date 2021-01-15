@@ -85,6 +85,13 @@
         <library-path/>
         
         <warn-no-constructor>false</warn-no-constructor>
+
+        <namespaces>
+            <namespace>
+                <uri>http://ns.adobe.com/mxml/2009</uri>
+                <manifest>../../../../../mxml-2009-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
     </compiler>
     
     <target-player>${playerglobal.version}</target-player>
