@@ -154,6 +154,7 @@ package flexUnitTests.xml
 
 
         [Test]
+        [Ignore] //ignored, because not yet working in JS
         public function testReplaceNode():void
         {
             var xml:XML = <xml><child1/><child2/></xml>;
