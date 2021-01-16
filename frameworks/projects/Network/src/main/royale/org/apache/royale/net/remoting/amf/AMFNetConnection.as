@@ -301,6 +301,7 @@ public class AMFNetConnection
             requestQueue.push(
                     {
                         url: url,
+                        targetURI: command,
                         responder: responder,
                         args: params
                     }
@@ -328,6 +329,7 @@ public class AMFNetConnection
             var actionMessage:ActionMessage = new ActionMessage();
             var messageBody:MessageBody = new MessageBody();
             sequence++;
+            messageBody.targetURI = call.item.targetURI;
             messageBody.responseURI = "/" + sequence.toString();
             messageBody.data = args;
             actionMessage.bodies = [ messageBody ];
