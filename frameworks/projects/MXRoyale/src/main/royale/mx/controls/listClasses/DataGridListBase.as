@@ -168,6 +168,22 @@ use namespace mx_internal;
  */
 [Event(name="itemDoubleClick", type="mx.events.ListEvent")]
 
+/**
+ *  Dispatched by the drag initiator when starting a drag operation.
+ *  This event is used internally by the list-based controls;
+ *  you do not handle it when implementing drag and drop.
+ *  If you want to control the start of a drag-and-drop operation,
+ *  use the <code>mouseDown</code> or <code>mouseMove</code> event.
+ *
+ *  @eventType mx.events.DragEvent.DRAG_START
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragStart", type="mx.events.DragEvent")]
+
 //--------------------------------------
 //  Styles
 //--------------------------------------

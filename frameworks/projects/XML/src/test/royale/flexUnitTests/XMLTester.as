@@ -52,7 +52,7 @@ package flexUnitTests
 
         public var xmlLiteralTest:XMLLiteralTest;
 
-       // public var xmlNotificationTest:XMLNotificationTest;
+        public var xmlNotificationTest:XMLNotificationTest;
         
     }
 }
