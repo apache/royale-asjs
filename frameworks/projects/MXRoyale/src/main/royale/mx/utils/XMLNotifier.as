@@ -20,10 +20,7 @@
 package mx.utils
 {
 
-COMPILE::SWF
-{
-import flash.utils.Dictionary;
-}
+import org.apache.royale.utils.ObjectMap;
 import mx.core.mx_internal;
 import mx.utils.IXMLNotifiable;
 
@@ -94,18 +91,19 @@ public class XMLNotifier
                                                      ty:String,
                                                      tar:Object,
                                                      value:Object,
-                                                     detail:Object):void
+                                                     detail:Object,
+                                                     callee:Function = null):void
         {
             COMPILE::SWF
             {
-            var xmlWatchers:Dictionary = arguments.callee.watched;
+                callee = notificationFunction;
+            }
+            var xmlWatchers:ObjectMap = callee["watched"];
             if (xmlWatchers != null)
             {
-                for (var notifiable:Object in xmlWatchers)
-                {
+                xmlWatchers.forEach( function(truevalue:Object,notifiable:Object,map:Object):void {
                     IXMLNotifiable(notifiable).xmlNotification(currentTarget, ty, tar, value, detail);
-                }
-            }
+                } );
             }
         }
 
@@ -171,8 +169,6 @@ public class XMLNotifier
             // access the notification() function.
             var xmlItem:XML = XML(xml);
 
-            COMPILE::SWF
-            {
             // First make sure the xml node has a notification function.
             var watcherFunction:Object = xmlItem.notification();
 
@@ -185,14 +181,13 @@ public class XMLNotifier
             }
 
             // Watch lists are maintained on the notification function.
-            var xmlWatchers:Dictionary;
+            var xmlWatchers:ObjectMap;
             if (watcherFunction["watched"] == undefined)
-                watcherFunction["watched"] = xmlWatchers = new Dictionary(true);
+                watcherFunction["watched"] = xmlWatchers = new ObjectMap(true,true);
             else
                 xmlWatchers = watcherFunction["watched"];
-            
-            xmlWatchers[notifiable] = true;
-            }
+
+            xmlWatchers.set(notifiable, true);
         }
     }
 
@@ -223,21 +218,18 @@ public class XMLNotifier
             // access the notification() function.
             var xmlItem:XML = XML(xml);
 
-            COMPILE::SWF
-            {
             var watcherFunction:Object = xmlItem.notification();
 
             if (!(watcherFunction is Function))
                 return;
 
-            var xmlWatchers:Dictionary;
+            var xmlWatchers:ObjectMap;
 
             if (watcherFunction["watched"] != undefined)
             {
                 xmlWatchers = watcherFunction["watched"];
-                delete xmlWatchers[notifiable];
+                xmlWatchers.delete(notifiable);
             }           
-            }
         }
     }
 }
