@@ -92,6 +92,7 @@ internal class MXRoyaleClasses
 
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.system.System; System;
+	import mx.system.Security; Security;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
 	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
