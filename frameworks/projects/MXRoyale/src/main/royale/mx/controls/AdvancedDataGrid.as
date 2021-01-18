@@ -1264,7 +1264,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *  Storage variable for changes to displayItemsExpanded.
      */
-    // private var displayItemsExpandedChanged:Boolean = false;
+     private var displayItemsExpandedChanged:Boolean = false;
     
     //--------------------------------------------------------------------------
     //
@@ -2103,9 +2103,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *  Indicates that items will be shown expanded or not.
      */
-    /* private var _displayItemsExpanded:Boolean = false;
+    private var _displayItemsExpanded:Boolean = false;
 
-    [Inspectable(category="General", enumeration="true,false", defaultValue="false")] */
+    [Inspectable(category="General", enumeration="true,false", defaultValue="false")]
     /**
      *  If <code>true</code>, expand the navigation tree to show all items.
      *  If a new branch is added, it will be shown expanded.
@@ -2117,12 +2117,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get displayItemsExpanded():Boolean
+    public function get displayItemsExpanded():Boolean
     {
         return _displayItemsExpanded;
-    } */
+    }
 
-   /*  public function set displayItemsExpanded(value:Boolean):void
+    public function set displayItemsExpanded(value:Boolean):void
     {
         if (value != _displayItemsExpanded)
         {
@@ -2134,7 +2134,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 invalidateProperties();
             }
         }
-    } */
+    }
     
     //----------------------------------
     //  treeColumn
