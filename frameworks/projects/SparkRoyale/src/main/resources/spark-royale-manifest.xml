@@ -33,6 +33,7 @@
 	<component id="TextArea" class="spark.components.TextArea" />
 	<component id="TextInput" class="spark.components.TextInput" />
 	<component id="Panel" class="spark.components.Panel" />
+
 	<component id="TitleWindow" class="spark.components.TitleWindow" />
 	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
 	<component id="SparkSkinWithClipAndEnableScrollingViewport" class="spark.components.beads.SparkSkinWithClipAndEnableScrollingViewport"/>
@@ -148,4 +149,7 @@
     <!-- MXItemRenderer -->
 	<component id="MXItemRenderer" class="spark.controls.listClasses.MXItemRenderer"/>
     <component id="MXDataGridItemRenderer" class="spark.controls.dataGridClasses.MXDataGridItemRenderer"/>
+	
+	<component id="MXTreeItemRenderer" class="spark.controls.treeClasses.MXTreeItemRenderer"/>
+
 </componentPackage>
