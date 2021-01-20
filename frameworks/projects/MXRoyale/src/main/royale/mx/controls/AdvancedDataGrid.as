@@ -4706,14 +4706,15 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function expandItem(item:Object, open:Boolean,
+     public function expandItem(item:Object, open:Boolean,
                                animate:Boolean = false,
                                dispatchEvent:Boolean = false,    
                                cause:Event = null):void
     {
+        trace("AdvancedDataGrid::expandItem is not implemented");
         //if the iterator is null, that indicates we have not been 
         //validated yet, so we will not continue. 
-        if (iterator == null)
+        /*if (iterator == null)
             return;
 
         if (cause) 
@@ -5154,8 +5155,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         }
         //restore ItemSizeChangeNotification flag
         listContent.allowItemSizeChangeNotification = variableRowHeight;
-        listSubContent.allowItemSizeChangeNotification = variableRowHeight;
-    } */
+        listSubContent.allowItemSizeChangeNotification = variableRowHeight;*/
+    }
 
     /**
      *  @private
@@ -6094,9 +6095,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function expandAll():void
+     public function expandAll():void
     {
-        if (dataProvider is IHierarchicalCollectionView && iterator)
+        trace("AdvancedDataGrid::expandAll is not implemented");
+        /*if (dataProvider is IHierarchicalCollectionView && iterator)
         {
             // move to the first item
             iterator.seek(CursorBookmark.FIRST);
@@ -6121,8 +6123,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             invalidateDisplayList();
             // seek to the correct position
             iterator.seek(CursorBookmark.FIRST, verticalScrollPosition);
-        }
-    } */
+        }*/
+    } 
 
     /**
      *  Collapses all the nodes of the navigation tree.
@@ -6132,9 +6134,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function collapseAll():void
+     public function collapseAll():void
     {
-        if (dataProvider is IHierarchicalCollectionView && iterator)
+        trace("AdvancedDataGrid::collapseAll is not implemented");
+        /*if (dataProvider is IHierarchicalCollectionView && iterator)
         {
             // clear the selected items
             clearSelected();
@@ -6157,8 +6160,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                     oldValue >= collection.length ? collection.length - 1 : oldValue;
                     
             iterator.seek(CursorBookmark.FIRST, verticalScrollPosition);
-        }
-    } */
+        }*/
+    } 
     
     /**
      *  @private

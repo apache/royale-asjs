@@ -60,6 +60,8 @@ import org.apache.royale.events.Event;
 
 [Style(name="borderColor", type="String", inherit="yes")]
 
+[Style(name="borderSkin", type="String", inherit="yes")]
+
 /**
  *  The ScrollControlBase class is the base class for controls
  *  with scroll bars.

@@ -42,6 +42,7 @@ package mx.core
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.states.State;
     import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.geom.Point;
 
 COMPILE::JS
 {
@@ -517,6 +518,198 @@ public class Container extends UIComponent
         }
     }
     
+    //----------------------------------
+    //  verticalScrollPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the verticalScrollPosition property.
+     */
+    private var _verticalScrollPosition:Number = 0;
+
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The current position of the vertical scroll bar.
+     *  This is equal to the distance in pixels between the top edge
+     *  of the scrollable surface and the topmost piece of the surface
+     *  that is currently visible.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalScrollPosition():Number
+    {
+        trace("Container::verticalScrollPosition is not implemented");
+        /*if (!isNaN(verticalScrollPositionPending))
+            return verticalScrollPositionPending;*/
+
+        return _verticalScrollPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set verticalScrollPosition(value:Number):void
+    {
+        trace("Container::verticalScrollPosition is not implemented");
+        if (_verticalScrollPosition == value)
+            return;
+
+        // Note: We can't use maxVerticalScrollPosition to clamp the value here.
+        // The verticalScrollBar may not exist yet,
+        // or its maxPos might change during layout.
+        // (For example, you could set the verticalScrollPosition of a childless container,
+        // then add a child which causes it to have a scrollbar.)
+        // The verticalScrollPosition gets clamped to the range 0 through maxVerticalScrollPosition
+        // late, in the updateDisplayList() method, just before the scrollPosition
+        // of the verticalScrollBar is set.
+
+        _verticalScrollPosition = value;
+        /*scrollPositionChanged = true;
+        if (!initialized)
+            verticalScrollPositionPending = value;
+
+        invalidateDisplayList();*/
+
+        dispatchEvent(new Event("viewChanged"));
+    }
+
+    //----------------------------------
+    //  horizontalScrollPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the horizontalScrollPosition property.
+     */
+    private var _horizontalScrollPosition:Number = 0;
+
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The current position of the horizontal scroll bar.
+     *  This is equal to the distance in pixels between the left edge
+     *  of the scrollable surface and the leftmost piece of the surface
+     *  that is currently visible.
+     *  
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalScrollPosition():Number
+    {
+        trace("Container::horizontalScrollPosition is not implemented");
+        /*if (!isNaN(horizontalScrollPositionPending))
+            return horizontalScrollPositionPending;*/
+        return _horizontalScrollPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set horizontalScrollPosition(value:Number):void
+    {
+        trace("Container::horizontalScrollPosition is not implemented");
+        if (_horizontalScrollPosition == value)
+            return;
+
+        // Note: We can't use maxHorizontalScrollPosition to clamp the value here.
+        // The horizontalScrollBar may not exist yet,
+        // or its maxPos might change during layout.
+        // (For example, you could set the horizontalScrollPosition of a childless container,
+        // then add a child which causes it to have a scrollbar.)
+        // The horizontalScrollPosition gets clamped to the range 0 through maxHorizontalScrollPosition
+        // late, in the updateDisplayList() method, just before the scrollPosition
+        // of the horizontalScrollBar is set.
+
+        _horizontalScrollPosition = value;
+        /*scrollPositionChanged = true;
+        if (!initialized)
+            horizontalScrollPositionPending = value;
+
+        invalidateDisplayList();*/
+
+        dispatchEvent(new Event("viewChanged"));
+    }
+
+    //----------------------------------
+    //  maxHorizontalScrollPosition
+    //----------------------------------
+
+    /**
+     *  The largest possible value for the
+     *  <code>horizontalScrollPosition</code> property.
+     *  Defaults to 0 if the horizontal scrollbar is not present.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get maxHorizontalScrollPosition():Number
+    {
+        trace("Container::maxHorizontalScrollPosition is not implemented");        
+        return 0;
+        /*return horizontalScrollBar ?
+               horizontalScrollBar.maxScrollPosition :
+               Math.max(scrollableWidth - viewableWidth, 0);*/
+    }
+
+    //----------------------------------
+    //  maxVerticalScrollPosition
+    //----------------------------------
+
+    /**
+     *  The largest possible value for the
+     *  <code>verticalScrollPosition</code> property.
+     *  Defaults to 0 if the vertical scrollbar is not present.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get maxVerticalScrollPosition():Number
+    {
+        trace("Container::maxVerticalScrollPosition is not implemented");
+        return 0;
+        /*return verticalScrollBar ?
+               verticalScrollBar.maxScrollPosition :
+               Math.max(scrollableHeight - viewableHeight, 0);*/
+    }
+    
+    /**
+     *  @copy mx.core.UIComponent#globalToContent()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+     public function globalToContent(point:Point):Point
+    {
+        trace("Container::globalToContent is not implemented");
+        return null;
+        
+        /*if (contentPane)
+            return contentPane.globalToLocal(point);
+        
+        return globalToLocal(point);*/
+    }
+
     //----------------------------------
     //  verticalScrollPolicy
     //----------------------------------
