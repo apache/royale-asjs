@@ -133,6 +133,7 @@
     <component id="Resize" class="spark.effects.Resize"/>
     <component id="SetAction" class="spark.effects.SetAction"/>
     <component id="Power" class="spark.effects.easing.Power"/>
+	<component id="Wipe" class="spark.effects.Wipe"/>
     <component id="ColorMatrixFilter" class="spark.filters.ColorMatrixFilter"/>
     <component id="DropShadowFilter" class="spark.filters.DropShadowFilter"/>
     <component id="GlowFilter" class="spark.filters.GlowFilter"/>
