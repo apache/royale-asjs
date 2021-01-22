@@ -659,12 +659,7 @@ public class TextInput extends UIComponent implements ITextInput
         _editable = value;
 	COMPILE::JS
 	{
-		if(value == false) {
-			(element as HTMLInputElement).readOnly = true;
-		}
-		else {
-			 (element as HTMLInputElement).readOnly = value;
-		}
+		(element as HTMLInputElement).readOnly = !value;
 	}
 	
      /*   if (value == _editable)
