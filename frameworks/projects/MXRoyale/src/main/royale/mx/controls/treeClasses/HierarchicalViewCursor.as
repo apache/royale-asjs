@@ -1009,6 +1009,10 @@ public class HierarchicalViewCursor extends EventDispatcher
         COMPILE::JS
         {
             var output:Array = [];
+	    if (collection.length == 0)
+	    {
+		    return output;
+	    }
             var cursor:IViewCursor = collection.createCursor();
             do {
                 output.push(cursor.current);
