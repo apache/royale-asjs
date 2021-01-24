@@ -258,11 +258,11 @@ public class PopUpManager
 		{
 	        var popUpHost:IUIBase = (popUp.parent as IPopUpHostParent).popUpHost as IUIBase;
 			UIUtils.removePopUp(popUp as IChild);
-	        if (modalWindows.length > 0 && modalWindows[modalWindows.length - 1] == popUp)
-	        {
-	            PopUpManagerModal.remove(popUpHost);
-	            modalWindows.pop();
-	        }
+            var modalIndex:int = modalWindows.indexOf(popUp);
+            if (modalIndex != -1) {
+                PopUpManagerModal.remove(popUpHost);
+                modalWindows.splice(modalIndex,1);
+            }
 		}
     }
 } // class
