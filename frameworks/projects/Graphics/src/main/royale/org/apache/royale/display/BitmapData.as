@@ -393,12 +393,41 @@
 
         // not yet implemented
         public function copyPixels(sourceBitmapData:BitmapData, sourceRect:Rectangle, destPoint:Point, alphaBitmapData:BitmapData = null, alphaPoint:Point = null, mergeAlpha:Boolean = false):void{
-            trace('BitmapData copyPixels not yet implemented')
+            if (sourceBitmapData._ctx) {
+                if (alphaBitmapData == null) {
+                    _ctx.putImageData(sourceBitmapData._ctx.getImageData(0,0,sourceBitmapData.width, sourceBitmapData.height), destPoint.x, destPoint.y, sourceRect.x, sourceRect.y, sourceRect.width, sourceRect.height);
+                } else {
+                    trace('@todo BitmapData copyPixels with alphaBitmapData not yet implemented');
+                }
+            }
+
         }
 
-        public function draw(source:Object, matrix:Object = null, colorTransform:Object = null, blendMode:String = null, clipRect:Object = null, smoothing:Boolean = false):void
+        public function draw(source:Object, matrix:Matrix = null, colorTransform:Object = null, blendMode:String = null, clipRect:Rectangle = null, smoothing:Boolean = false):void
         {
-            trace('BitmapData draw not yet implemented')
+            var sourceData:BitmapData = source as BitmapData
+            if (sourceData){
+
+                //@todo colorTransform/blendMode/clipRect
+                //note this seems to be not included in latest typedefs:
+                var oldSmoothing:Boolean = _ctx['imageSmoothingEnabled'];
+                _ctx['imageSmoothingEnabled'] = smoothing;
+                //note @todo: for blendMode check globalCompositeOperation docs - it might be quite close
+                if (matrix) {
+                    _ctx.setTransform(matrix.a, matrix.b, matrix.c, matrix.d,matrix.tx,matrix.ty);
+                }
+                _ctx.drawImage(sourceData._canvas, 0, 0);
+
+                if (matrix){
+                    _ctx.setTransform(1, 0, 0, 1, 0, 0);
+                }
+
+                _ctx['imageSmoothingEnabled'] = oldSmoothing;
+            } else {
+                trace('BitmapData draw not yet implemented')
+            }
+
+
         }
 
         
