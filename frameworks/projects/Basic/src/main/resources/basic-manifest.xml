@@ -188,6 +188,7 @@
      <component id="ImageAndTextButtonView" class="org.apache.royale.html.beads.ImageAndTextButtonView" />
      -->
     <component id="Viewport" class="org.apache.royale.html.supportClasses.Viewport" />
+    <component id="NoViewport" class="org.apache.royale.html.supportClasses.NoViewport" />
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport" />
     <component id="HScrollViewport" class="org.apache.royale.html.supportClasses.HScrollViewport" />
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
