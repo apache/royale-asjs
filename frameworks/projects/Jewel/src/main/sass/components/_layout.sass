@@ -88,6 +88,15 @@ $gap-size: 10px !default
 					margin-left: 0px
 				> *
 					margin-left: $gap + $i * $gap-step
+
+		&.itemsReverse
+			@for $i from 1 through $gaps
+				&.gap-#{$i}x#{$gap-step}px
+					> *:last-child
+						margin-left: 0px
+					> *
+						margin-left: $gap + $i * $gap-step
+
 		&.sameWidths
 			> *
 				flex: 1 0 0
@@ -148,6 +157,15 @@ $gap-size: 10px !default
 					margin-top: 0px
 				> *
 					margin-top: $gap + $i * $gap-step
+
+		&.itemsReverse
+			@for $i from 1 through $gaps
+				&.gap-#{$i}x#{$gap-step}px
+					> *:-child
+						margin-top: 0px
+					> *
+						margin-top: $gap + $i * $gap-step
+
 	
 	// this not compile******
 	// &.gap
