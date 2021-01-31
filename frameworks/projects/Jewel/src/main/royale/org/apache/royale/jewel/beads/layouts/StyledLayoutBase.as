@@ -97,6 +97,9 @@ package org.apache.royale.jewel.beads.layouts
 			{
 			applyStyleToLayout(hostComponent, "itemsExpand");
 			setHostComponentClass("itemsExpand", _itemsExpand ? "itemsExpand":"");
+			
+			applyStyleToLayout(hostComponent, "itemsReverse");
+			setHostComponentClass("itemsReverse", _itemsReverse ? "itemsReverse":"");
 
 			applyStyleToLayout(hostComponent, "itemsHorizontalAlign");
 			setHostComponentClass(_itemsHorizontalAlign, _itemsHorizontalAlign);
@@ -127,6 +130,10 @@ package org.apache.royale.jewel.beads.layouts
 					case "itemsExpand":
 						if(!itemsExpandInitialized)
 							itemsExpand = "true" == cssValue;
+						break;
+					case "itemsReverse":
+						if(!itemsReverseInitialized)
+							itemsReverse = "true" == cssValue;
 						break;
 					case "itemsHorizontalAlign":
 						if (!itemsHorizontalAlign)
@@ -232,12 +239,40 @@ package org.apache.royale.jewel.beads.layouts
         {
             if (_itemsExpand != value)
             {
-                
 				COMPILE::JS
                 {
 				setHostComponentClass("itemsExpand", value ? "itemsExpand" : "");
 				_itemsExpand = value;
 				itemsExpandInitialized = true;
+				}
+            }
+        }
+		
+		private var itemsReverseInitialized:Boolean;
+		private var _itemsReverse:Boolean = false;
+        /**
+		 *  A boolean flag to activate "itemsReverse" effect selector.
+		 *  Make items to invert its order
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        public function get itemsReverse():Boolean
+        {
+            return _itemsReverse;
+        }
+
+        public function set itemsReverse(value:Boolean):void
+        {
+            if (_itemsReverse != value)
+            {
+				COMPILE::JS
+                {
+				setHostComponentClass("itemsReverse", value ? "itemsReverse" : "");
+				_itemsReverse = value;
+				itemsReverseInitialized = true;
 				}
             }
         }
