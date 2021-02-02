@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.controls
 		/**
 		 * the internal instance of the badge
 		 */
-		private var badge:Label;
+		protected var badge:Label;
 
 		/**
 		 * used to create the badge ui element
