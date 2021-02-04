@@ -155,9 +155,9 @@ limitations under the License.
 					emphasis="primary" width="100%" 
 					dataProvider="{listModel.iconButtonDataFW}"/>
 				
-				<html:H4 text="No Width and icons to the right, selectedIndex is 0"/>
+				<html:H4 text="allowMultipleSelection is true, no Width and icons to the right, selectedIndex is 0"/>
 
-				<j:ToggleButtonBar localId="tbb2" 
+				<j:ToggleButtonBar localId="tbb2" allowMultipleSelection="true"
 					change="tbbChangeHandler(event)"
 					selectedIndex="0"
 					emphasis="emphasized" rightPosition="true"  iconField="icon"
