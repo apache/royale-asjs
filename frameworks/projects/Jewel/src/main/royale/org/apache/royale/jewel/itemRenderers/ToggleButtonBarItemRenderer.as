@@ -52,7 +52,6 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		private var _data:Object;
-
 		/**
 		 *  The data to be displayed as the text value. Use this in conjunction with
 		 *  the labelField property to select an item from the dataProvider record to use
@@ -115,7 +114,6 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		private var _labelField:String = null;
-
 		/**
 		 * The name of the field within the data to use as a label. Some itemRenderers use this field to
 		 * identify the value they should show while other itemRenderers ignore this if they are showing
@@ -137,8 +135,6 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		private var _listData:Object;
-
-		[Bindable("__NoChangeEvent__")]
 		/**
 		 *  Additional data about the list structure the itemRenderer may
 		 *  find useful.
@@ -148,6 +144,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
+		[Bindable("__NoChangeEvent__")]
 		public function get listData():Object
 		{
 			return _listData;
@@ -192,7 +189,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			return _selectable;
 		}
-
 		public function set selectable(value:Boolean):void
 		{
 			_selectable = value;	
@@ -215,14 +211,12 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			return _hoverable;
 		}
-
 		public function set hoverable(value:Boolean):void
 		{
 			_hoverable = value;	
 		}
 		
 		private var _hovered:Boolean;
-
 		/**
 		 *  Whether or not the itemRenderer is in a hovered state.
 		 *

@@ -18,18 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.jewel.ButtonBar;
-	
+	COMPILE::JS
+	{
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.ToggleButtonBar;
+	import org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer;
+	}
+
 	/**
-	 *  The ButtonBarView class creates the visual elements of the org.apache.royale.jewel.ButtonBar 
-	 *  component. A ButtonBar is a type of List and ButtonBarView extends the ListView bead.
-	 *  
+	 *  The ToggleButtonBarView class creates the visual elements of the org.apache.royale.jewel.TabBar
+	 *  component.
+	 *
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.9.8
 	 */
-	public class ButtonBarView extends ListView
+	public class ToggleButtonBarView extends ButtonBarView
 	{
 		/**
 		 *  constructor.
@@ -37,29 +43,36 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
-		public function ButtonBarView()
+		public function ToggleButtonBarView()
 		{
 			super();
 		}
-		
-		private var _buttonBar:ButtonBar;
+
 		/**
-		 *  the ButtonBar associated to this view
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.StyledMXMLItemRenderer
 		 */
-		public function get buttonBar():ButtonBar
+		COMPILE::JS
+		override protected function selectionChangeHandler(event:Event):void
 		{
-			return _strand as ButtonBar;
-		}
-		public function set buttonBar(value:ButtonBar):void
-		{
-			_strand = value as ButtonBar;
+			var prev_ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ToggleButtonBarItemRenderer;
+			var ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as ToggleButtonBarItemRenderer;
+			var toggleButtonBar:ToggleButtonBar = buttonBar as ToggleButtonBar;
+			
+			if(listModel.selectedIndex != -1) 
+			{
+				if(!toggleButtonBar.allowMultipleSelection && prev_ir) {
+					prev_ir.selected = false;
+					ir.selected = true;
+				} else
+				{
+					ir.selected = true;
+				}
+			}
+			
+			lastSelectedIndex = listModel.selectedIndex;
 		}
 	}
 }

@@ -72,6 +72,7 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.beads.views.AlertTitleBarView; AlertTitleBarView;
         import org.apache.royale.jewel.beads.views.ListView; ListView;
         import org.apache.royale.jewel.beads.views.TabBarView; TabBarView;
+        import org.apache.royale.jewel.beads.views.ToggleButtonBarView; ToggleButtonBarView;
         import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
         import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;
         import org.apache.royale.jewel.beads.views.DateChooserView; DateChooserView;

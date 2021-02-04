@@ -53,5 +53,18 @@ package org.apache.royale.jewel
 		{
 			super();
 		}
+
+		private var _allowMultipleSelection:Boolean = false;
+		/**
+		 * if true, allow more than one button selected. If false, just one button can be selected at a time
+		 */
+		public function get allowMultipleSelection():Boolean
+		{
+			return _allowMultipleSelection;
+		}
+		public function set allowMultipleSelection(value:Boolean):void
+		{
+			_allowMultipleSelection = value;
+		}
 	}
 }

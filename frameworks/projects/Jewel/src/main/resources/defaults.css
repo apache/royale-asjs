@@ -295,6 +295,7 @@ j|IconButtonBar {
 
 j|ToggleButtonBar {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ToggleButtonBarView");
 }
 
 .jewel.card {
