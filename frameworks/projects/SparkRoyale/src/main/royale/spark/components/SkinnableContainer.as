@@ -30,6 +30,7 @@ import mx.utils.BitFlagUtil;
 import spark.events.ElementExistenceEvent;
 */
 import mx.core.IUIComponent;
+import spark.components.supportClasses.Skin;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
 
@@ -988,35 +989,47 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             dispatchEvent(new Event("layoutNeeded"));
     }
+
+
+     override public function get measuredWidth():Number
+     {
+         if (isNaN(_measuredWidth))
+             measure();
+         if (isNaN(_measuredWidth))
+              return width;
+         return _measuredWidth;
+     }
+ 
+     override public function get measuredHeight():Number
+     {
+         if (isNaN(_measuredHeight))
+             measure();
+         if (isNaN(_measuredHeight))
+             return height;
+         return _measuredHeight;
+     }
+ 
+ 
+     /**
+      *  @private
+      */
+     override protected function measure():void
+     {
+	     if (_layout)
+	     {
+		_layout.measure();
+	     } else if (skin)
+	     {
+		     (skin as Skin).layout.measure();
+		     measuredWidth = (skin as Skin).measuredWidth;
+		     measuredHeight = (skin as Skin).measuredHeight;
+	     } else
+	     {
+		     super.measure();
+	     }
+     }
+ 
     
-    override public function get measuredWidth():Number
-    {
-        if (isNaN(_measuredWidth))
-            measure();
-        if (isNaN(_measuredWidth))
-             return width;
-        return _measuredWidth;
-    }
-
-    override public function get measuredHeight():Number
-    {
-        if (isNaN(_measuredHeight))
-            measure();
-        if (isNaN(_measuredHeight))
-            return height;
-        return _measuredHeight;
-    }
-
-
-    /**
-     *  @private
-     */
-    override protected function measure():void
-    {
-            _layout.measure();
-            
-    }
-
     override protected function createChildren():void
     {
         super.createChildren();
