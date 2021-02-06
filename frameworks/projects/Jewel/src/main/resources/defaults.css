@@ -3653,7 +3653,7 @@ j|ScrollableSectionContent {
 .jewel.slider {
   position: relative;
   height: 27px;
-  display: flex !important;
+  display: flex;
   flex-direction: row;
   background: none;
 }
