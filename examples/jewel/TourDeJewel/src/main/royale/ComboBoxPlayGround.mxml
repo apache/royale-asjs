@@ -59,6 +59,13 @@ limitations under the License.
 
 			[Bindable]
 			public var promptText:String = "The text here is truncated";
+
+			public function emptySelected():void
+			{
+				cbPills.selectedItem = null;
+				cbPills.selectedIndex = -1;
+			}
+
 		]]>
 	</fx:Script>
 
@@ -417,6 +424,24 @@ limitations under the License.
 				<j:CardActions itemsHorizontalAlign="itemsRight">
 					<j:Button text="change prompt" click="promptText = 'Other text'" emphasis="primary"/>
 				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="ComboBox with active Badges (Simulation)" className="secondary-normal"/>
+				</j:CardHeader>
+
+				<j:CardPrimaryContent>
+					<j:Group width="200" className="pillComboStyle" >
+						<j:beads>
+							<j:BadgeWithMouseClick text="↶" click="emptySelected()"/>
+						</j:beads>
+						<j:ComboBox localId="cbPills" percentWidth="100" dataProvider="{listModel.avengers}"/>
+					</j:Group>
+				</j:CardPrimaryContent>
+
 			</j:Card>
 		</j:GridCell>
 		

@@ -21,11 +21,13 @@ limitations under the License.
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
-	xmlns:c="components.*" sourceCodeUrl="ButtonPlayGround.mxml">
+	xmlns:c="components.*" sourceCodeUrl="ButtonPlayGround.mxml"
+	initComplete="initCompletetHandler()">
 	
 	<fx:Script>
 		<![CDATA[      
             import org.apache.royale.core.StyledUIBase;
+            import org.apache.royale.collections.ArrayList;
 
             private function clickHandler(event:MouseEvent):void {
                 event.target.emphasis = event.target.emphasis == StyledUIBase.PRIMARY ? "" : StyledUIBase.PRIMARY;
@@ -38,6 +40,24 @@ limitations under the License.
 				// trace("onValueChange"); // if target IE11 you must use this event handler
 				reizableButton.width = slider_w.value;
 				reizableButton.height = slider_h.value;
+			}
+
+			[Bindable]
+			private var sourcePills:ArrayList;
+			private function initCompletetHandler():void
+			{
+				var ar:Array = new Array();
+				for(var index:int = 0; index < 14; index++)
+				{
+					ar.push('Pill-'+index.toString());
+				}
+				sourcePills = new ArrayList(ar);
+				lstPills.addEventListener("removePill",removePillHandler);
+			}
+
+			public function removePillHandler(event:Event):void
+			{
+				sourcePills.removeItemAt(event.target.index);
 			}
 		]]>
 	</fx:Script>
@@ -442,9 +462,34 @@ limitations under the License.
 							<j:Badge text="bl" emphasis="emphasized" subindex="true" preindex="true" overlap="true"/>
 						</j:beads>
 					</j:Button>
+
 				</j:CardPrimaryContent>
+
 			</j:Card>
 		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Buttons with active Badges" className="primary-normal"/>
+				</j:CardHeader>
+
+				<j:CardExpandedContent>
+					<j:beads>
+						<js:Paddings padding="15"/>
+					</j:beads>
+					<j:List localId="lstPills" percentWidth="100" minHeight="45" className="pillListStyle" style="flex-wrap: wrap;"
+						dataProvider="{sourcePills}">
+						<j:beads>
+							<j:ListPresentationModel variableRowHeight="false" rowHeight="45"/>
+							<j:HorizontalLayout gap="0" />
+						</j:beads>
+					</j:List>
+				</j:CardExpandedContent>
+
+			</j:Card>
+		</j:GridCell>
+		
 	</j:Grid>
 	
 </c:ExampleAndSourceCodeTabbedSectionContent>

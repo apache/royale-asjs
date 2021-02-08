@@ -132,3 +132,59 @@ j|IconButtonBar
     IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
 }
 
+
+/* List Pills CSS */
+.pillListStyle{
+    IItemRenderer: ClassReference("itemRenderers.PillsListItemRenderer");
+    background: transparent !important;
+    border: none !important;
+}
+.pillListStyle>.jewel.item.hovered {
+    background: transparent;
+}
+.pillListStyle>.jewel.item.selected{
+background: transparent;
+}
+.pillListStyle>.jewel.item.primary {
+    background: transparent;
+    cursor: default !important;
+}
+.pillListStyle>.jewel.item.selectable:active {
+    background: transparent;
+}
+.pillListStyle .jewel.badge {
+    background: linear-gradient(#e6e6e6, #cccccc);
+    border-radius: 25px;
+    border: 1px solid #b3b3b3;
+    box-shadow: inset 0 1px 0 white;
+    color: #808080;
+    cursor: pointer;
+    font-size: .70em !important;
+    font-weight: bold;
+    text-align: center;
+}
+.pillComboStyle .jewel.badge {
+    background: linear-gradient(#e6e6e6, #cccccc);
+    border-radius: 25px;
+    border: 1px solid #b3b3b3;
+    box-shadow: inset 0 1px 0 white;
+    color: #3cadf1;
+    cursor: pointer;
+    font-size: 1.2em !important;
+    font-weight: bold;
+    right: calc(50% - .6em);
+    text-align: center;
+}
+.pillButtonStyle {
+    background-color: rgb(158, 158, 158) !important;
+    border-radius: 12px !important;
+    border: none !important;
+    color: white !important;
+    cursor: default !important;
+    font-weight: normal !important;
+    justify-content: left !important;
+    margin: 8px 8px 0px 0px !important;
+    padding: 5px 10px !important;
+    text-overflow: ellipsis;
+    text-transform: none !important;
+}
