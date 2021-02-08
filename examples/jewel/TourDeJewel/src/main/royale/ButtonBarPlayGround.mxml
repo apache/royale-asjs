@@ -147,7 +147,7 @@ limitations under the License.
 
 				<j:Label html="Is a IconButtonBar with ToggleButtons as item renderers"/>
 
-				<html:H4 text="Width 100% and emphasized color, selectedIndex is 2"/>
+				<html:H4 text="Width 100% and emphasized color, selectedIndex is {tbb.selectedIndex}"/>
 
 				<j:ToggleButtonBar localId="tbb" className="iconButtonBarFontAwesomeIcon"
 					change="tbbChangeHandler(event)"
@@ -155,11 +155,10 @@ limitations under the License.
 					emphasis="primary" width="100%" 
 					dataProvider="{listModel.iconButtonDataFW}"/>
 				
-				<html:H4 text="allowMultipleSelection is true, no Width and icons to the right, selectedIndex is 0"/>
-
-				<j:ToggleButtonBar localId="tbb2" allowMultipleSelection="true"
+				<html:H4 text="toggleOnClick is true, no Width and icons to the right, selectedIndex is {tbb2.selectedIndex}"/>
+				
+				<j:ToggleButtonBar localId="tbb2" toggleOnClick="true"
 					change="tbbChangeHandler(event)"
-					selectedIndex="0"
 					emphasis="emphasized" rightPosition="true"  iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				

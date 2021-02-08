@@ -55,7 +55,14 @@ j|IconButtonBar
     // this requires in App to define in CSS -> iconClass: ClassReference("org.apache.royale.icons.MaterialIcon")
 
 // ToggleButtonBar
+
+.jewel.buttonbar
+    &.toggle-on-click
+        .jewel.togglebutton
+            &.selected
+                pointer-events: none
+
 j|ToggleButtonBar
-    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer")
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ToggleButtonBarView")
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer")
     // this requires in App to define in CSS -> iconClass: ClassReference("org.apache.royale.icons.MaterialIcon")
