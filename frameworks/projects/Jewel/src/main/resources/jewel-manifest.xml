@@ -177,6 +177,7 @@
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList"/>
 
     <component id="Badge" class="org.apache.royale.jewel.beads.controls.Badge"/>
+    <component id="BadgeWithMouseClick" class="org.apache.royale.jewel.beads.controls.BadgeWithMouseClick"/>
     <component id="ToolTip" class="org.apache.royale.jewel.beads.controls.ToolTip"/>
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
     <component id="SizeControl" class="org.apache.royale.jewel.beads.controls.SizeControl"/>
