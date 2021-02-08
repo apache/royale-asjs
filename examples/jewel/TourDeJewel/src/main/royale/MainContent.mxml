@@ -30,6 +30,7 @@ limitations under the License.
         <![CDATA[
             import org.apache.royale.events.Event;
             import org.apache.royale.icons.MaterialIcon;
+            import org.apache.royale.jewel.Alert;
             import org.apache.royale.jewel.supportClasses.ISelectableContent;
             import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
             import org.apache.royale.routing.RouteState;
@@ -291,7 +292,7 @@ limitations under the License.
             <j:BarSection itemsHorizontalAlign="itemsRight">
                 <j:IconButton>
                     <j:beads>
-                        <j:Badge text="27" emphasis="primary" preindex="true" overlap="true"/>
+                        <j:BadgeWithMouseClick text="✖" emphasis="primary" preindex="true" overlap="true" click="Alert.show('This example shows use of BadgeWithMouseClick', 'Badge With Mouse Click');"/>
                     </j:beads>
                     <j:icon>
                         <js:MaterialIcon text="{MaterialIconType.ADD_ALARM}" />
