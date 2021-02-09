@@ -124,9 +124,12 @@ package org.apache.royale.display
             COMPILE::JS
             {
                 //increment the Graphics instance index
-                _instIdx ++;
+                _inst_idx = _instIdx ++;
             }
         }
+
+        COMPILE::JS
+        private var _inst_idx:uint;
         
         private var graphicsTarget:IGraphicsTarget;
         
@@ -324,7 +327,7 @@ package org.apache.royale.display
                 patternElement.appendChild(imageUse);
 
                 defs.appendChild(patternElement);
-                patternElement.setAttribute('id', 'royale-bitmapfill-' + _instIdx + '-' + defsIdx);
+                patternElement.setAttribute('id', 'royale-bitmapfill-' + _inst_idx + '-' + defsIdx);
                 defsIdx++;
                 return patternElement;
             }
@@ -338,7 +341,7 @@ package org.apache.royale.display
                 var gradientElement:SVGGradientElement = createGraphicsSVG(elementType, false) as SVGGradientElement;
                 gradientElement.setAttributeNS(null, 'gradientUnits', 'userSpaceOnUse');
                 defs.appendChild(gradientElement);
-                gradientElement.setAttribute('id', 'royale-gradient-' + _instIdx + '-' + defsIdx);
+                gradientElement.setAttribute('id', 'royale-gradient-' + _inst_idx + '-' + defsIdx);
                 defsIdx++;
                 return gradientElement;
             }
