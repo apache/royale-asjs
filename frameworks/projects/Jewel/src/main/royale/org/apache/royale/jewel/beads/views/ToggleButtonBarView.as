@@ -57,18 +57,21 @@ package org.apache.royale.jewel.beads.views
 		COMPILE::JS
 		override protected function selectionChangeHandler(event:Event):void
 		{
+			// var toggleButtonBar:ToggleButtonBar = buttonBar as ToggleButtonBar;
+			
 			var prev_ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ToggleButtonBarItemRenderer;
 			var ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as ToggleButtonBarItemRenderer;
-			var toggleButtonBar:ToggleButtonBar = buttonBar as ToggleButtonBar;
-			
-			if(listModel.selectedIndex != -1) 
+
+			if(prev_ir != ir)
 			{
-				if(!toggleButtonBar.allowMultipleSelection && prev_ir) {
+				if(prev_ir)
 					prev_ir.selected = false;
-					ir.selected = true;
-				} else
+				ir.selected = true;
+			} else {
+				if(listModel.selectedIndex == ir.index && ir.selected)
 				{
-					ir.selected = true;
+					ir.selected = false;
+					listModel.selectedIndex = -1;
 				}
 			}
 			

@@ -293,9 +293,13 @@ j|IconButtonBar {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.IconButtonBarItemRenderer");
 }
 
+.jewel.buttonbar.toggle-on-click .jewel.togglebutton.selected {
+  pointer-events: none;
+}
+
 j|ToggleButtonBar {
-  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ToggleButtonBarView");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
 }
 
 .jewel.card {

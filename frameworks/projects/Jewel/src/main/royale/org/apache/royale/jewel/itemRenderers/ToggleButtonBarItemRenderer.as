@@ -23,8 +23,8 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ItemClickedEvent;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.ToggleButton;
@@ -47,8 +47,14 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			style = new SimpleCSSStylesWithFlex();
+		}
 
-			addEventListener('click', handleClickEvent);
+		private var _toggleButtonBar:ToggleButtonBar;
+		private function get toggleButtonBar():ToggleButtonBar
+		{
+			if(!_toggleButtonBar)
+				_toggleButtonBar = (itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar;
+			return _toggleButtonBar;
 		}
 
 		private var _data:Object;
@@ -70,21 +76,27 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_data = value;
 			text = getLabelFromData(this, value);
-			rightPosition = ((itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar).rightPosition;
+			rightPosition = toggleButtonBar.rightPosition;
 			if(value.icon)
 			{
-				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererOwnerView as ButtonBarView).buttonBar, "iconClass") as Class;
+				var iconClass:Class = ValuesManager.valuesImpl.getValue(toggleButtonBar, "iconClass") as Class;
 				var fontIcon:IIcon = new iconClass(); 
-				// fontIcon.material = ((itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar).material;
-				fontIcon.text = value[((itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar).iconField];
+				fontIcon.text = value[toggleButtonBar.iconField];
 				icon = fontIcon;
 			}
 		}
 
-		/**
-		 * @private
-		 */
-		protected function handleClickEvent(event:MouseEvent):void
+		COMPILE::JS
+        override protected function clickHandler(event:Event):void
+        {
+			if( (!toggleButtonBar.toggleOnClick && !selected) || (toggleButtonBar.toggleOnClick) )
+			{
+				selected = !selected;
+				dispatchItemClickedEvent();
+			}
+		}
+
+		public function dispatchItemClickedEvent():void
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 			newEvent.index = index;
