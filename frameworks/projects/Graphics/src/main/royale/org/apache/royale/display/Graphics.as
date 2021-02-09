@@ -124,7 +124,7 @@ package org.apache.royale.display
             COMPILE::JS
             {
                 //increment the Graphics instance index
-                _inst_idx = _instIdx ++;
+                _inst_idx = _instIdx++;
             }
         }
 
