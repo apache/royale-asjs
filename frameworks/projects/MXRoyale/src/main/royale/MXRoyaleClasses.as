@@ -258,6 +258,7 @@ internal class MXRoyaleClasses
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
 	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
 	import mx.events.DynamicEvent; DynamicEvent;
+	import mx.events.ChildExistenceChangedEvent; ChildExistenceChangedEvent;
 	
 	import mx.controls.PopUpButton; PopUpButton;
 	import mx.controls.PopUpMenuButton; PopUpMenuButton;
