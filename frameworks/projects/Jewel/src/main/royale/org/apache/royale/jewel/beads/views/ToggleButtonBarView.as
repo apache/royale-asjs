@@ -62,16 +62,19 @@ package org.apache.royale.jewel.beads.views
 			var prev_ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ToggleButtonBarItemRenderer;
 			var ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as ToggleButtonBarItemRenderer;
 
-			if(prev_ir != ir)
+			if(listModel.selectedIndex != -1)
 			{
-				if(prev_ir)
-					prev_ir.selected = false;
-				ir.selected = true;
-			} else {
-				if(listModel.selectedIndex == ir.index && ir.selected)
+				if(prev_ir != ir)
 				{
-					ir.selected = false;
-					listModel.selectedIndex = -1;
+					if(prev_ir)
+						prev_ir.selected = false;
+					ir.selected = true;
+				} else {
+					if(listModel.selectedIndex == ir.index && ir.selected)
+					{
+						ir.selected = false;
+						listModel.selectedIndex = -1;
+					}
 				}
 			}
 			
