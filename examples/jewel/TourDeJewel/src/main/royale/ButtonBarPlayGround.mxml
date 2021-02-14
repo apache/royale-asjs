@@ -21,8 +21,9 @@ limitations under the License.
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic"
-	xmlns:models="models.*" 
-	xmlns:c="components.*" sourceCodeUrl="ButtonBarPlayGround.mxml">
+	xmlns:models="models.*" xmlns:c="components.*" 
+	sourceCodeUrl="ButtonBarPlayGround.mxml"
+	initComplete="setDataProvider(event)">
 
 	<c:beads>
 		<js:ContainerDataBinding/>
@@ -159,10 +160,14 @@ limitations under the License.
 				
 				<j:ToggleButtonBar localId="tbb2" toggleOnClick="true"
 					change="tbbChangeHandler(event)"
-					emphasis="emphasized" rightPosition="true"  iconField="icon"
+					emphasis="emphasized" rightPosition="true" iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				
+				<j:ToggleButtonBar localId="tbb3"
+					emphasis="secondary" iconField="icon"/>
+				
 				<j:Label localId="tbb_label"/> 
+				
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
@@ -182,6 +187,12 @@ limitations under the License.
 					tbb_label.text = "Nothing is selected";
 				}
 			}
+
+			private var tbb3AL:ArrayList = new ArrayList(["SALE", "RENTAL"]);
+
+            protected function setDataProvider(event:Event):void {
+                tbb3.dataProvider = tbb3AL;
+            }
 		]]>
 	</fx:Script>
 
