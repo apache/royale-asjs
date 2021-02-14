@@ -86,6 +86,9 @@ package org.apache.royale.jewel.itemRenderers
 			}
 		}
 
+		/**
+		 * Only change select if `toggleOnClick` is active or otherwise the button is not selected
+		 */
 		COMPILE::JS
         override protected function clickHandler(event:Event):void
         {

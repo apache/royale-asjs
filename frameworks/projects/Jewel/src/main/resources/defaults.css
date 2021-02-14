@@ -299,6 +299,7 @@ j|IconButtonBar {
 
 j|ToggleButtonBar {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ToggleButtonBarView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ToggleButtonBarSelectionMouseController");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
 }
 

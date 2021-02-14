@@ -52,6 +52,7 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.beads.controllers.DateFieldMouseController; DateFieldMouseController;
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+        import org.apache.royale.jewel.beads.controllers.ToggleButtonBarSelectionMouseController; ToggleButtonBarSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.ListKeyDownController; ListKeyDownController;
         import org.apache.royale.jewel.beads.controllers.TableKeyDownController; TableKeyDownController;
         import org.apache.royale.jewel.beads.controllers.VirtualListKeyDownController; VirtualListKeyDownController;

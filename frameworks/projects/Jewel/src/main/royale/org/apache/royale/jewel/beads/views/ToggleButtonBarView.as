@@ -21,7 +21,6 @@ package org.apache.royale.jewel.beads.views
 	COMPILE::JS
 	{
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.ToggleButtonBar;
 	import org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer;
 	}
 
@@ -57,11 +56,9 @@ package org.apache.royale.jewel.beads.views
 		COMPILE::JS
 		override protected function selectionChangeHandler(event:Event):void
 		{
-			// var toggleButtonBar:ToggleButtonBar = buttonBar as ToggleButtonBar;
-			
 			var prev_ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ToggleButtonBarItemRenderer;
 			var ir:ToggleButtonBarItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as ToggleButtonBarItemRenderer;
-
+			
 			if(listModel.selectedIndex != -1)
 			{
 				if(prev_ir != ir)
@@ -69,13 +66,7 @@ package org.apache.royale.jewel.beads.views
 					if(prev_ir)
 						prev_ir.selected = false;
 					ir.selected = true;
-				} else {
-					if(listModel.selectedIndex == ir.index && ir.selected)
-					{
-						ir.selected = false;
-						listModel.selectedIndex = -1;
-					}
-				}
+				} 
 			}
 			
 			lastSelectedIndex = listModel.selectedIndex;
