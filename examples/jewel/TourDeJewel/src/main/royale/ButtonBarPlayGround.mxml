@@ -178,6 +178,8 @@ limitations under the License.
 				if(event.target.selectedIndex != -1) {
 					var selected:Boolean = (event.target.getElementAt(event.target.selectedIndex) as ISelectable).selected;
 					tbb_label.text = event.target.selectedItem.label + ' (icon: ' + event.target.selectedItem.icon + '). isSelected? ' + selected;
+				} else {
+					tbb_label.text = "Nothing is selected";
 				}
 			}
 		]]>
