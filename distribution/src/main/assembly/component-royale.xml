@@ -41,6 +41,7 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>lib/external</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>*:jar</include>
       </includes>
@@ -55,15 +56,16 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>externs</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.royale.typedefs:*</include>
       </includes>
-      <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}-${artifact.classifier}.${artifact.extension}</outputFileNameMapping>
     </dependencySet>
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/js/libs</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.royale.framework:*:swc:js</include>
       </includes>
@@ -73,6 +75,7 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>js/lib</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <!-- <include>org.apache.royale.compiler:compiler-jx:jar</include> -->
         <include>*:args4j:jar</include>
@@ -89,13 +92,14 @@ under the License.
       <includes>
         <include>org.apache.royale.typedefs:*:swc</include>
       </includes>
-      <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}-${artifact.classifier}.${artifact.extension}</outputFileNameMapping>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
     </dependencySet>
 
     <!-- Put the framework swcs into the frameworks/libs directory (needed for IDEs) -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/libs</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.royale.framework:*:swc</include>
       </includes>
@@ -117,6 +121,7 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/fonts</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <unpack>true</unpack>
       <includes>
         <include>org.apache.royale.framework:Fonts:war</include>
