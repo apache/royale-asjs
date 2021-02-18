@@ -65,7 +65,7 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/js/libs</outputDirectory>
-      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+      <outputFileNameMapping>${artifact.artifactId}JS.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.royale.framework:*:swc:js</include>
       </includes>
