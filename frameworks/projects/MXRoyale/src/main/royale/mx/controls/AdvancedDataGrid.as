@@ -1340,6 +1340,49 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         commitProperties();
     }
     
+	//----------------------------------
+    //  sortItemRenderer
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the sortItemRenderer property.
+     */
+    private var _sortItemRenderer:IFactory;
+
+    [Inspectable]
+    [Bindable("sortItemRendererChanged")]
+
+    /**
+     *  The sort item renderer to be used to display the sort icon in the
+     *  column header.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get sortItemRenderer():IFactory
+    {
+        return _sortItemRenderer;
+    }
+
+    /**
+     *  @private
+     */
+    public function set sortItemRenderer(value:IFactory):void
+    {
+        _sortItemRenderer = value;
+
+        itemsSizeChanged = true;
+        //rendererChanged = true;
+
+        invalidateSize();
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("sortItemRendererChanged"));
+    }
+	
     //----------------------------------
     //  lockedRowCount
     //----------------------------------
