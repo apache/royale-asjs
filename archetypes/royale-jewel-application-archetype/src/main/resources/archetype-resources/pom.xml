@@ -56,7 +56,7 @@
             -source-map=true;
 #if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
             -js-default-initializers=true;
-            -compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
+            -compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css;
             -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
             -keep-code-with-metadata=Inject;
 #end

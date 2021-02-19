@@ -22,7 +22,7 @@ under the License.
   <id>bin</id>
   <formats>
     <format>zip</format>
-    <format>tar.gz</format>
+    <!--format>tar.gz</format-->
   </formats>
   <componentDescriptors>
     <componentDescriptor>src/main/assembly/component-royale.xml</componentDescriptor>
