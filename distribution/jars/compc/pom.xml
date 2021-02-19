@@ -16,7 +16,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -38,10 +39,14 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
+              <classpathPrefix>external/</classpathPrefix>
               <classpathLayoutType>custom</classpathLayoutType>
               <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
               <mainClass>flex2.tools.Compc</mainClass>
             </manifest>
+            <manifestEntries>
+              <Class-Path>compiler.jar compiler-asc.jar compiler-common.jar compiler-compc.jar compiler-compjsc.jar compiler-externc.jar compiler-jburg-types.jar compiler-mxmlc.jar compiler-mxmljsc.jar compiler-optimizer.jar compiler-swfdump.jar debugger.jar flex-compiler-oem.jar mxmlc.jar royale-ant-tasks.jar swfutils.jar</Class-Path>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>
