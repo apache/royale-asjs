@@ -398,7 +398,7 @@
       <version>${royale.compiler.version}</version>
     </dependency>
     
-    <!-- google closure compiler and library will be needed unpacked in js/lib/google -->
+    <!-- google closure compiler and library will be needed packed in js/lib/google -->
     <dependency>
       <groupId>com.google.javascript</groupId>
       <artifactId>closure-compiler</artifactId>
@@ -449,9 +449,9 @@
           </execution>
           <execution>
             <id>unpack-closure-compiler</id>
-            <phase>process-resources</phase>
+            <phase>package</phase>
             <goals>
-              <goal>unpack</goal>
+              <goal>copy</goal>
             </goals>
             <configuration>
               <artifactItems>
@@ -460,8 +460,7 @@
                   <artifactId>closure-compiler</artifactId>
                   <version>v20181210</version>
                   <type>jar</type>
-                  <outputDirectory>${project.build.directory}/closure-compiler-temp</outputDirectory>
-                  <includes>**</includes>
+                  <destFileName>closure-compiler.jar</destFileName>
                 </artifactItem>
               </artifactItems>
             </configuration>

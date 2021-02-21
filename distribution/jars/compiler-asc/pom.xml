@@ -45,7 +45,7 @@
               <mainClass>org.apache.royale.compiler.clients.ASC</mainClass>
             </manifest>
             <manifestEntries>
-              <Class-Path>compc.jar compiler.jar compiler-common.jar compiler-compc.jar compiler-compjsc.jar compiler-externc.jar compiler-jburg-types.jar compiler-mxmlc.jar compiler-mxmljsc.jar compiler-optimizer.jar compiler-swfdump.jar debugger.jar flex-compiler-oem.jar mxmlc.jar royale-ant-tasks.jar swfutils.jar</Class-Path>
+              <Class-Path>compiler-common.jar compiler.jar</Class-Path>
             </manifestEntries>
           </archive>
         </configuration>
