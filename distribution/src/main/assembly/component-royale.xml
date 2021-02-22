@@ -96,7 +96,7 @@ under the License.
     </dependencySet>
 
     <!-- Put the framework swcs into the frameworks/libs directory (needed for IDEs) -->
-    <!--dependencySet>
+    <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/libs</outputDirectory>
       <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
@@ -106,7 +106,7 @@ under the License.
       <excludes>
         <exclude>org.apache.royale.framework:*:swc:typedefs</exclude>
       </excludes>
-    </dependencySet-->
+    </dependencySet>
 
     <!-- Copy the fonts -->
     <!-- Disabled as currently font swf compilation is deactivated -->
