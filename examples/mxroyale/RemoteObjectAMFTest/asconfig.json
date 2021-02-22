@@ -2,7 +2,7 @@
     "config": "royale",
     "compilerOptions": {
         "debug": true,
-        "targets": ["SWF","JSRoyale"],
+        "targets": ["SWF"],
         // "theme": "${royalelib}/themes/JewelTheme/src/main/resources/styles.css",
         "source-map": true,
         "library-path": [
