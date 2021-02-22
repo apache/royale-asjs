@@ -218,6 +218,7 @@
 
     <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
     <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
+    <component id="HierarchicalData" class="mx.collections.HierarchicalData"/>
 
     <component id="DownloadButton" class="mx.controls.DownloadButton"/>
     <component id="HSlider" class="mx.controls.HSlider"/>
