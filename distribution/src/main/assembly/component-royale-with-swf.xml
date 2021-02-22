@@ -33,6 +33,7 @@ under the License.
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/libs</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.royale.framework:*:swc</include>
       </includes>

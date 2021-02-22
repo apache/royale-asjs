@@ -41,17 +41,18 @@ under the License.
       </includes>
       <unpack>true</unpack>
     </dependencySet>
-    <dependencySet>
+    <!--dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputFileNameMapping>frameworks</outputFileNameMapping>
       <includes>
         <include></include>
       </includes>
-    </dependencySet>
+    </dependencySet-->
     <!-- Put the air swcs into the frameworks/libs/air directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>frameworks/libs/air</outputDirectory>
+      <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>com.adobe.air.framework:*:swc</include>
       </includes>
