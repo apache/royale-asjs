@@ -255,9 +255,9 @@ under the License.
 
     <!-- Copy the manifests -->
     <file>
-      <source>../frameworks/projects/Binding/src/main/resources/basic-manifest.xml</source>
+      <source>../frameworks/projects/Basic/src/main/resources/basic-as-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>basic-manifest-binding.xml</destName>
+      <destName>basic-as-manifest-basic.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/Basic/src/main/resources/basic-manifest.xml</source>
@@ -265,14 +265,14 @@ under the License.
       <destName>basic-manifest-basic.xml</destName>
     </file>
     <file>
-      <source>../frameworks/projects/Basic/src/main/resources/basic-as-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>basic-as-manifest-basic.xml</destName>
-    </file>
-    <file>
       <source>../frameworks/projects/Basic/src/main/resources/svg-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>svg-manifest-basic.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Binding/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-binding.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/Charts/src/main/resources/basic-manifest.xml</source>
@@ -295,6 +295,11 @@ under the License.
       <destName>createjs-manifest.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Crux/src/main/resources/crux-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>crux-manifest.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/DragDrop/src/main/resources/basic-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>basic-manifest-dragdrop.xml</destName>
@@ -305,6 +310,16 @@ under the License.
       <destName>basic-manifest-effects.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Express/src/main/resources/express-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>express-as-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Express/src/main/resources/express-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>express-manifest.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/Flat/src/main/resources/flat-as-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>flat-as-manifest.xml</destName>
@@ -313,6 +328,16 @@ under the License.
       <source>../frameworks/projects/Flat/src/main/resources/flat-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>flat-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/FontAwesome/src/main/resources/fa-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>fa-as-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/FontAwesome/src/main/resources/fa-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>fa-manifest.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/Formatters/src/main/resources/basic-manifest.xml</source>
@@ -350,9 +375,39 @@ under the License.
       <destName>html5-manifest.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Icons/src/main/resources/icons-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>icons-as-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Icons/src/main/resources/icons-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>icons-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Jewel/src/main/resources/jewel-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>jewel-as-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Jewel/src/main/resources/jewel-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>jewel-manifest.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/JQuery/src/main/resources/jquery-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>jquery-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/MaterialDesignLite/src/main/resources/mdl-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>mdl-as-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>mdl-manifest.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/Mobile/src/main/resources/basic-manifest.xml</source>
@@ -365,54 +420,9 @@ under the License.
       <destName>cordova-manifest.xml</destName>
     </file>
     <file>
-      <source>../frameworks/projects/Network/src/main/resources/basic-manifest.xml</source>
+      <source>../frameworks/projects/MXRoyale/src/main/resources/mx-royale-as-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>basic-manifest-network.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/Icons/src/main/resources/icons-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>basic-manifest-icons.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/Storage/src/main/resources/basic-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>basic-manifest-storage.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/XML/src/main/resources/basic-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>basic-manifest-xml.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/Express/src/main/resources/express-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>express-manifest.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/FontAwesome/src/main/resources/fa-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>fa-manifest.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>mdl-manifest.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/Jewel/src/main/resources/jewel-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>jewel-manifest.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/Crux/src/main/resources/crux-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>crux-manifest.xml</destName>
-    </file>
-    <file>
-      <source>../frameworks/projects/Icons/src/main/resources/icons-manifest.xml</source>
-      <outputDirectory>frameworks/manifests</outputDirectory>
-      <destName>icons-manifest.xml</destName>
+      <destName>mx-royale-as-manifest.xml</destName>
     </file>
     <file>
       <source>../frameworks/projects/MXRoyale/src/main/resources/mx-royale-manifest.xml</source>
@@ -420,9 +430,59 @@ under the License.
       <destName>mx-royale-manifest.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Network/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-network.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Reflection/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-reflection.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/RoyaleSite/src/main/resources/royalesite-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>royalesite-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/RoyaleUnitUI/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-royaleunitui.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/SparkRoyale/src/main/resources/spark-royale-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>spark-royale-manifest.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Storage/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-storage.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Text/src/main/resources/basic-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-as-manifest-text.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/Text/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-text.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/TLF/src/main/resources/basic-as-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-as-manifest-tlf.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/TLF/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-tlf.xml</destName>
+    </file>
+    <file>
+      <source>../frameworks/projects/XML/src/main/resources/basic-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>basic-manifest-xml.xml</destName>
     </file>
   </files>
 </component>
