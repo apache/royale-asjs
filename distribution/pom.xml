@@ -87,13 +87,13 @@
     </dependency>
 
     <!-- Add the framework js-swc modules -->
-    <dependency>
+    <!--dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Ace</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
-    </dependency>
+    </dependency-->
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>

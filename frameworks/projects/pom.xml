@@ -44,7 +44,7 @@
   <name>Apache Royale: Framework: Libs</name>
 
   <modules>
-    <module>Ace</module>
+    <!--module>Ace</module-->
     <module>Basic</module>
     <module>Binding</module>
     <module>Charts</module>
