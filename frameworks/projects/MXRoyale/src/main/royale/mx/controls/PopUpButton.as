@@ -55,6 +55,19 @@ import org.apache.royale.utils.PointUtils;
 use namespace mx_internal;
 
 
+/**
+ *  Default stateful skin class for the control.
+ *
+ *  The default value for the Halo theme is <code>mx.skins.halo.PopUpButtonSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.PopUpButtonSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="skin", type="Class", inherit="no", states="up, over, down, disabled, popUpOver, popUpDown")]
+
 /** 
  *  The PopUpButton control adds a flexible pop-up control
  *  interface  to a Button control.
@@ -156,7 +169,12 @@ public class PopUpButton extends Button
         addEventListener(MouseEvent.CLICK, clickHandler);
 
     }
-    
+     /**
+     *  @private
+     *  Greater of the arrowButtonWidth style and the icon's width.
+     */
+    private var arrowButtonsWidth:Number = 0;
+	
     /**
      *  @private
      *  Is the popUp list currently shown?
@@ -254,6 +272,46 @@ public class PopUpButton extends Button
     }
 
 
+	//----------------------------------
+    //  openAlways
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the openAlways property.
+     */
+    private var _openAlways:Boolean = false;
+    
+    [Inspectable(category="General", defaultValue="false")]
+    
+    /**
+     *  If <code>true</code>, specifies to pop up the 
+     *  <code>popUp</code> when you click the main button. 
+     *  The <code>popUp</code> always appears when you press the Spacebar, 
+     *  or when you click the pop-up button, regardless of the setting of 
+     *  the <code>openAlways</code> property.
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */     
+    public function get openAlways():Boolean
+    {
+        // We are not exposing this property for now, until the need arises.
+        return _openAlways;
+    }
+    
+    /**
+     *  @private
+     */  
+    public function set openAlways(value:Boolean):void
+    {
+        _openAlways = value;
+    }
+    
     //----------------------------------
     //  popUp
     //----------------------------------
