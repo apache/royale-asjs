@@ -227,10 +227,45 @@ package org.apache.royale.html.elements
             super.name = value;
         }
 
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
+		COMPILE::SWF
+		private var _value:String = "";
+
+		/**
+		 *  The current value of the textarea
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function get value():String
+		{
+			COMPILE::SWF
+			{
+				return _value;
+			}
+			COMPILE::JS
+			{
+				return textarea.value;
+			}
+		}
+
+		public function set value(value:String):void
+		{
+			COMPILE::SWF
+			{
+				_value = value;
+			}
+			COMPILE::JS
+			{
+				textarea.value = value;
+			}
+		}
+
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
 			return addElementToWrapper(this,'textarea');
-        }
-    }
+		}
+	}
 }
