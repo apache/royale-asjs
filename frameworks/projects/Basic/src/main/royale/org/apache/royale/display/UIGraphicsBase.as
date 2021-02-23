@@ -45,7 +45,7 @@ package org.apache.royale.display
 			 */
 			public function get graphicsRenderTarget():SVGElement{
 				if (!_svg) {
-					_svg = createGraphicsSVG('svg') as SVGSVGElement;
+					_svg = createGraphicsSVG('svg', true) as SVGSVGElement;
 					_svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 					_svg.style.overflow = 'visible'; //it is hidden by default
 					if (element.childNodes.length) {

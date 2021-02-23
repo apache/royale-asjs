@@ -49,8 +49,15 @@ package org.apache.royale.display
         
         COMPILE::SWF
         private static var instanceMap:Dictionary;
-        
-        
+
+        COMPILE::JS
+        private var suppressPathPointerEvents = true;
+
+        COMPILE::JS
+        public function setSuppressPathPointerEvents(value:Boolean):void{
+            suppressPathPointerEvents = value;
+        }
+
         public static function getInstanceFor(target:IGraphicsTarget):Graphics{
             if (!target) return null;
             var graphicsInst:Graphics;
@@ -210,7 +217,7 @@ package org.apache.royale.display
              */
             private function getCurrentPath():SVGPathElement{
                 if (!_currentPath) {
-                    _currentPath = createGraphicsSVG('path') as SVGPathElement;
+                    _currentPath = createGraphicsSVG('path', suppressPathPointerEvents) as SVGPathElement;
                     _currentStrokePath = _currentPath;
                     _currentPath.setAttributeNS(null, 'd','');
                     _pathData = _currentPath.getAttributeNodeNS(null,'d');
@@ -271,7 +278,7 @@ package org.apache.royale.display
                     //if we had no stroke, then no need to create the original, just continue after
                     if (getCurrentPath().getAttributeNS(null, 'stroke') !== 'none') {
                         //otherwise set current path stroke to none, transfer previous stroke attributes to new sub path
-                        _currentStrokePath = createGraphicsSVG('path') as SVGPathElement;
+                        _currentStrokePath = createGraphicsSVG('path', suppressPathPointerEvents) as SVGPathElement;
                         _currentStrokePath.setAttributeNS(null, 'd', getPathData().value);
                         _currentStrokePath.setAttributeNS(null, 'fill', 'none');
                         currentStroke.apply(this,_currentStrokePath);
@@ -284,7 +291,7 @@ package org.apache.royale.display
                     }
                 }
                 
-                _currentStrokePath = createGraphicsSVG('path') as SVGPathElement;
+                _currentStrokePath = createGraphicsSVG('path',suppressPathPointerEvents) as SVGPathElement;
                 //then create the new stroke target
                 _strokeMove = true;
                 _currentStrokePath.setAttributeNS(null, 'd', 'M' + _lastPoint);
