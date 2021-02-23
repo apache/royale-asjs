@@ -175,6 +175,7 @@ public class PopUpButton extends Button
      */
     private var arrowButtonsWidth:Number = 0;
 	
+
     /**
      *  @private
      *  Is the popUp list currently shown?
