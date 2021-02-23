@@ -295,6 +295,33 @@ import mx.display.NativeMenu;
 [Event(name="change", type="org.apache.royale.events.Event")]
 
 //--------------------------------------
+//  Tooltip events
+//--------------------------------------
+
+/**
+ *  Dispatched by the component when it is time to create a ToolTip.
+ *
+ *  <p>If you create your own IToolTip object and place a reference
+ *  to it in the <code>toolTip</code> property of the event object
+ *  that is passed to your <code>toolTipCreate</code> handler,
+ *  the ToolTipManager displays your custom ToolTip.
+ *  Otherwise, the ToolTipManager creates an instance of
+ *  <code>ToolTipManager.toolTipClass</code> to display.</p>
+ *
+ *  <p>The sequence of ToolTip events is <code>toolTipStart</code>,
+ *  <code>toolTipCreate</code>, <code>toolTipShow</code>,
+ *  <code>toolTipShown</code>, <code>toolTipHide</code>,
+ *  and <code>toolTipEnd</code>.</p>
+ *
+ *  @eventType mx.events.ToolTipEvent.TOOL_TIP_CREATE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="toolTipCreate", type="mx.events.ToolTipEvent")]
+//--------------------------------------
 //  Drag-and-drop events
 //--------------------------------------
 

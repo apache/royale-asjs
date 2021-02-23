@@ -275,7 +275,7 @@ use namespace mx_internal;
 *  @playerversion AIR 1.1
 *  @productversion Royale 0.9.4
 */
-//[Style(name="defaultLeafIcon", type="Class", format="EmbeddedFile", inherit="no")]
+[Style(name="defaultLeafIcon", type="Class", format="EmbeddedFile", inherit="no")]
 
 /**
 *  The icon that is displayed next to an open branch node of the navigation tree.
@@ -311,7 +311,7 @@ use namespace mx_internal;
 *  @playerversion AIR 1.1
 *  @productversion Royale 0.9.4
 */
-//[Style(name="folderOpenIcon", type="Class", format="EmbeddedFile", inherit="no")]
+[Style(name="folderOpenIcon", type="Class", format="EmbeddedFile", inherit="no")]
 
 /**
 *  Specifies the folder closed icon for a branch node of the navigation tree.
@@ -323,7 +323,7 @@ use namespace mx_internal;
 *  @playerversion AIR 1.1
 *  @productversion Royale 0.9.4
 */
-//[Style(name="folderClosedIcon", type="Class", format="EmbeddedFile", inherit="no")]
+[Style(name="folderClosedIcon", type="Class", format="EmbeddedFile", inherit="no")]
 
 /**
 *  The indentation for each node of the navigation tree, in pixels.
