@@ -1617,6 +1617,65 @@ use namespace mx_internal;
             
             return " ";
         }
+		
+	//----------------------------------
+    //  columnCount
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the columnCount property.
+     */
+    private var _columnCount:int = -1;
+    
+    /**
+     *  @private
+     */
+    private var columnCountChanged:Boolean = true;
+
+    /**
+     *  The number of columns to be displayed in a TileList control or items 
+     *  in a HorizontalList control.
+     *  For the DataGrid it is the number of visible columns.
+     *  <b>Note</b>: Setting this property has no effect on a DataGrid control,
+     *  which bases the number of columns on the control width and the
+     *  individual column widths.
+     * 
+     *  @default 4
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get columnCount():int
+    {
+        return _columnCount;
+    }
+
+    /**
+     *  @private
+     */
+    public function set columnCount(value:int):void
+    {
+        explicitColumnCount = value;
+
+        if (_columnCount != value)
+        {
+            _columnCount = value;
+            columnCountChanged = true;
+            invalidateProperties();
+
+            invalidateSize();
+            itemsSizeChanged = true;
+            invalidateDisplayList();
+
+            dispatchEvent(new Event("columnCountChanged"));
+        }
+    }
+
+    
+
 	//----------------------------------
     //  dataTipField
     //----------------------------------
