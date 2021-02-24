@@ -355,6 +355,22 @@ public class Accordion extends Container //implements IHistoryManagerClient, IFo
     //
     //--------------------------------------------------------------------------
 
+		//----------------------------------
+		//  historyManagementEnabled
+		//----------------------------------    
+		private var _historyManagementEnabled:Boolean;
+		
+		public function get historyManagementEnabled():Boolean
+		{
+			return _historyManagementEnabled;
+		}
+		/**
+		 *  @private
+		 */
+		public function set historyManagementEnabled(value:Boolean):void
+		{
+			_historyManagementEnabled = value;
+		}
    
 }
 
