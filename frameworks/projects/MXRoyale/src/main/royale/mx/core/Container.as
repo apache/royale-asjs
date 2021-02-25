@@ -818,6 +818,69 @@ public class Container extends UIComponent
 //        }
     }
 
+
+    //----------------------------------
+    //  autoLayout
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the autoLayout property.
+     */
+    private var _autoLayout:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  If <code>true</code>, measurement and layout are done
+     *  when the position or size of a child is changed.
+     *  If <code>false</code>, measurement and layout are done only once,
+     *  when children are added to or removed from the container.
+     *
+     *  <p>When using the Move effect, the layout around the component that
+     *  is moving does not readjust to fit that the Move effect animates.
+     *  Setting a container's <code>autoLayout</code> property to
+     *  <code>true</code> has no effect on this behavior.</p>
+     *
+     *  <p>The Zoom effect does not work when the <code>autoLayout</code> 
+     *  property is <code>false</code>.</p>
+     *
+     *  <p>The <code>autoLayout</code> property does not apply to
+     *  Accordion or ViewStack containers.</p>
+     * 
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get autoLayout():Boolean
+    {
+        return _autoLayout;
+    }
+
+    /**
+     *  @private
+     */
+    public function set autoLayout(value:Boolean):void
+    {
+        _autoLayout = value;
+
+        // If layout is being turned back on, trigger a layout to occur now.
+        if (value)
+        {
+            invalidateSize();
+            invalidateDisplayList();
+
+            var p:IInvalidating = parent as IInvalidating;
+            if (p)
+            {
+                p.invalidateSize();
+                p.invalidateDisplayList();
+            }
+        }
+    }
     /**
      *  Number of pixels between the container's bottom border
      *  and the bottom of its content area.
