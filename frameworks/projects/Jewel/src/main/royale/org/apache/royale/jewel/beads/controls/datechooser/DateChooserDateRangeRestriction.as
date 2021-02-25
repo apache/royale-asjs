@@ -223,7 +223,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			if (model.viewState == 0) // Day view
 			{
 				if (minDate && maxDate)
-					disabled.disabled = isLessThanDay(rendererDate, minDate) && isLessThanDay(maxDate, rendererDate);
+					disabled.disabled = isLessThanDay(rendererDate, minDate) || isLessThanDay(maxDate, rendererDate);
 				else if (minDate)
 					disabled.disabled = isLessThanDay(rendererDate, minDate);
 				else if (maxDate)
@@ -232,7 +232,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			else if (model.viewState == 1) // Year view
 			{
 				if (minDate && maxDate)
-					disabled.disabled = isLessThanYear(rendererDate, minDate) && isLessThanYear(maxDate, rendererDate);
+					disabled.disabled = isLessThanYear(rendererDate, minDate) || isLessThanYear(maxDate, rendererDate);
 				else if (minDate)
 					disabled.disabled = isLessThanYear(rendererDate, minDate);
 				else if (maxDate)
@@ -241,7 +241,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 			else if (model.viewState == 2) // Month view
 			{
 				if (minDate && maxDate)
-					disabled.disabled = isLessThanMonth(rendererDate, minDate) && isLessThanMonth(maxDate, rendererDate);
+					disabled.disabled = isLessThanMonth(rendererDate, minDate) || isLessThanMonth(maxDate, rendererDate);
 				else if (minDate)
 					disabled.disabled = isLessThanMonth(rendererDate, minDate);
 				else if (maxDate)
