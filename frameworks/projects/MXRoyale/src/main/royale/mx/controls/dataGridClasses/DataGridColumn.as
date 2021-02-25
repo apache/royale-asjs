@@ -1041,6 +1041,58 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
             dispatchEvent(new Event("labelFunctionChanged"));
         }
 		
+	/**
+     *  Returns a String that the item renderer displays as the datatip for the given data object,
+     *  based on the <code>dataTipField</code> and <code>dataTipFunction</code> properties.
+     *  If the method cannot convert the parameter to a String, it returns a
+     *  single space.
+     * 
+     *  <p>This method is for use by developers who are creating subclasses 
+     *  of the DataGridColumn class.
+     *  It is not for use by application developers.</p>
+     *
+     *  @param data Object to be rendered.
+     *
+     *  @return Displayable String based on the data.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function itemToDataTip(data:Object):String
+    {
+        if (dataTipFunction != null)
+            return dataTipFunction(data);
+
+        
+
+        if (typeof(data) == "object" || typeof(data) == "xml")
+        {
+            var field:String = dataTipField;
+            
+
+            if (field in data && data[field] != null)
+                data = data[field];
+            else if (dataField in data && data[dataField] != null)
+                data = data[dataField];
+			else
+				data = null;
+        }
+
+        if (data is String)
+            return String(data);
+
+        try
+        {
+            return data.toString();
+        }
+        catch(e:Error)
+        {
+        }
+
+        return " ";
+    }
 		//----------------------------------
 		//  dataTipField
 		//----------------------------------
