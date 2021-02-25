@@ -26,6 +26,7 @@ import mx.events.FocusEvent;
 import mx.events.KeyboardEvent;
 import mx.events.MouseEvent;
 import mx.core.Container;
+import mx.controls.Button;
 
 [RequiresDataBinding(true)]
 
@@ -348,7 +349,75 @@ public class Accordion extends Container //implements IHistoryManagerClient, IFo
 
       
     }
+	
+	//--------------------------------------------------------------------------
+    //
+    //  Public methods
+    //
+    //--------------------------------------------------------------------------
 
+    /**
+     *  Returns a reference to the navigator button for a child container.
+     *
+     *  @param index Zero-based index of the child.
+     *
+     *  @return Button object representing the navigator button.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function getHeaderAt(index:int):Button
+    {
+        return new Button();
+    }
+	
+	//----------------------------------
+    //  selectedIndex
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the selectedIndex and selectedChild properties.
+     */
+    private var _selectedIndex:int = -1;
+
+/**
+     *  The zero-based index of the currently visible child container.
+     *  Child indexes are in the range 0, 1, 2, ..., n - 1, where n is the number
+     *  of children.
+     *  The default value is 0, corresponding to the first child.
+     *  If there are no children, this property is <code>-1</code>.
+     *
+     *  @default 0
+     *
+     *  @tiptext Specifies the index of the child view that is currently displayed
+     *  @helpid 3402
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectedIndex():int
+    {
+       
+        return _selectedIndex;
+    }
+
+    /**
+     *  @private
+     */
+    public function set selectedIndex(value:int):void
+    {
+        // Bail if new index isn't a number.
+        if (value == -1)
+            return;
+		
+		_selectedIndex = value;
+      
+    }
     //--------------------------------------------------------------------------
     //
     //  Variables
