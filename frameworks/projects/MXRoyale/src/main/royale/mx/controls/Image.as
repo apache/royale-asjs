@@ -496,6 +496,25 @@ public class Image extends UIComponent
 	}
 
 	//----------------------------------
+	//  autoLoad copied from SWFLoader
+	//----------------------------------
+
+	/**
+	 *  @private
+	 *  Storage for the autoLoad property.
+	 */
+	private var _autoLoad:Boolean = true;
+
+
+	public function get autoLoad():Boolean
+	{
+		return _autoLoad;
+	}
+    public function set autoLoad(value:Boolean):void
+	{
+		_autoLoad = value;
+	}
+	//----------------------------------
 	//  scaleContent copied from SWFLoader
 	//----------------------------------
 
