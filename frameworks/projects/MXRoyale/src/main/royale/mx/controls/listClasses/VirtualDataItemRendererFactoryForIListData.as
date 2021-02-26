@@ -143,21 +143,22 @@ package mx.controls.listClasses
             var ir:IIndexedItemRenderer = rendererMap[index];
             if (ir) return ir;
             
-	    var functionBead:ItemRendererFunctionBead = _strand.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
-	    var rendererFunction:Function = functionBead ? functionBead.itemRendererFunction : null;
+            var functionBead:ItemRendererFunctionBead = _strand.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+            var rendererFunction:Function = functionBead ? functionBead.itemRendererFunction : null;
             var dp:IList = dataProviderModel.dataProvider as IList;
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             var data:Object = dp.getItemAt(index);
-	    var ir:IIndexedItemRenderer = rendererFunction ? (rendererFunction(data) as IFactory).newInstance() as IIndexedItemRenderer :
-		    itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+            ir = rendererFunction ?
+                 (rendererFunction(data) as IFactory).newInstance() as IIndexedItemRenderer :
+                 itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
             
             dataGroup.addItemRendererAt(ir, elementIndex);
             
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
             rendererMap[index] = ir;
-	    ir.data = data;
+            ir.data = data;
                         
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
             newEvent.itemRenderer = ir;
