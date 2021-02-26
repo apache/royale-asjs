@@ -73,6 +73,7 @@ package org.apache.royale.jewel.beads.layouts
 			super.beadsAddedHandler();
 
 			hostComponent.replaceClass("tile");
+			hostComponent.dispatchEvent(new Event("layoutNeeded"));
 		}
 
 		private var _columnCount:int = -1;
