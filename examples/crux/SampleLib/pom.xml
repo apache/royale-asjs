@@ -23,13 +23,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache</groupId>
-    <artifactId>apache</artifactId>
-    <version>23</version>
-    <relativePath />
+    <groupId>org.apache.royale.examples</groupId>
+    <artifactId>examples-crux</artifactId>
+    <version>0.9.8-SNAPSHOT</version>
   </parent>
-
-  <groupId>org.apache.royale.examples</groupId>
+  
   <artifactId>SampleLib</artifactId>
   <version>0.9.8-SNAPSHOT</version>
   <packaging>swc</packaging>
@@ -221,6 +219,14 @@
     </dependency>
 
     <!-- Add dependencies you might be needing here -->
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Crux</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
