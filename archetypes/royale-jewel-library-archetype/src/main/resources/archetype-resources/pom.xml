@@ -100,12 +100,12 @@
           <targets>JSRoyale</targets>
           <namespaces>
             <namespace>
-              <uri>library://ns.apache.org/royale/jewel</uri>
+              <uri>library://ns.apache.org/royale/${artifactIdLowerCase}</uri>
               <manifest>${dollar}{project.basedir}/src/main/resources/${artifactIdLowerCase}-manifest.xml</manifest>
             </namespace>
             <!-- <namespace>
               <type>as</type>
-              <uri>library://ns.apache.org/royale/jewel</uri>
+              <uri>library://ns.apache.org/royale/${artifactIdLowerCase}</uri>
               <manifest>${dollar}{basedir}/src/main/resources/${artifactIdLowerCase}-as-manifest.xml</manifest>
             </namespace> -->
           </namespaces>
