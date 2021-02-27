@@ -35,7 +35,7 @@ COMPILE::JS
      *  The BrowserOrientation class listens for browser
      *  resizing (only in devices) and dispatchh orientation change events.
      *   - if orientation is portratit it dispatches: 'orientationPortrait'
-     *   - if orientation is ladspace it dispatches: 'orientationLandscape'
+     *   - if orientation is landspace it dispatches: 'orientationLandscape'
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
