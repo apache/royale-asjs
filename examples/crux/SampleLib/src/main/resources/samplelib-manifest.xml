@@ -21,6 +21,7 @@
 
 <componentPackage>
 
+  <!-- <component id="Beans" class="org.apache.royale.examples.Beans"/> -->
   <component id="SampleClass" class="org.apache.royale.examples.SampleClass"/>
 
 </componentPackage>

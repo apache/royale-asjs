@@ -23,13 +23,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.apache</groupId>
-    <artifactId>apache</artifactId>
-    <version>23</version>
-    <relativePath />
+    <groupId>org.apache.royale.examples</groupId>
+    <artifactId>examples-crux</artifactId>
+    <version>0.9.8-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.apache.royale.examples</groupId>
   <artifactId>AppWithLib</artifactId>
   <version>0.9.8-SNAPSHOT</version>
   <packaging>swf</packaging>
