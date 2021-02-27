@@ -100,6 +100,14 @@
 
   <dependencies>
     <dependency>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>SampleLib</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    
+    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
       <version>0.9.8-SNAPSHOT</version>

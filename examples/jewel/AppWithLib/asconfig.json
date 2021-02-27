@@ -22,7 +22,14 @@
         "debug": false,
         "targets": ["JSRoyale"],
         "source-path": [
-            "src/main/resources"
+            "src/main/resources",
+            "../SampleLib/src/main/royale/"
+        ],
+        "namespace": [
+            {
+                "uri": "library://ns.apache.org/royale/samplelib",
+                "manifest": "../SampleLib/src/main/resources/samplelib-manifest.xml"
+            }
         ],
         "source-map": true,
         "html-template": "src/main/resources/jewel-example-index-template.html",

@@ -19,8 +19,21 @@ limitations under the License.
 -->
 <j:View xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
-    xmlns:js="library://ns.apache.org/royale/basic">
+    xmlns:js="library://ns.apache.org/royale/basic"
+    initComplete="initView()">
     
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.examples.SampleClass;
+
+            public function initView():void
+            {
+                var s:SampleClass = new SampleClass;
+                s.doSomething();
+            }
+        ]]>
+    </fx:Script>
+
     <j:VGroup>
         <j:Label text="Hello Jewel + Crux!"/>
     </j:VGroup>
