@@ -2,11 +2,11 @@
     "config": "royale",
     "compilerOptions": {
         "debug": true,
-        "targets": ["JSRoyale"],
+        "targets": ["JSRoyale","JSRoyale"],
         // "theme": "${royalelib}/themes/JewelTheme/src/main/resources/styles.css",
         "source-map": true,
         "library-path": [
-            "${royalelib}/js/libs/MXRoyaleJS.swc"
+            "${royalelib}/libs/MXRoyale.swc"
         ],
         "js-library-path": [
             "${royalelib}/js/libs/MXRoyaleJS.swc"

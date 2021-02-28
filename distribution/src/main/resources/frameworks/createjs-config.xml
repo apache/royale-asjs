@@ -22,10 +22,10 @@
 
 <royale-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
-   <target-player>${flash.version}</target-player>
+   <target-player>11.7</target-player>
 
     <!-- Specifies the version of the compiled SWF -->
-   <swf-version>${swf.version}</swf-version>
+   <swf-version>20</swf-version>
 
    <compiler>
 
@@ -77,7 +77,7 @@
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
-          <path-element>libs/Language-${version}.swc</path-element>
+          <path-element>js/libs/LanguageJS.swc</path-element>
       </library-path>
 
       <allow-subclass-overrides>true</allow-subclass-overrides>

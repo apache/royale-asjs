@@ -53,14 +53,14 @@ under the License.
       </excludes>
     </dependencySet>
     <!-- Put the externs swcs into the externs directory -->
-    <dependencySet>
+    <!--dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>externs</outputDirectory>
       <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
       <includes>
         <include>org.apache.royale.typedefs:*</include>
       </includes>
-    </dependencySet>
+    </dependencySet-->
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
