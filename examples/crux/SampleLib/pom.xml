@@ -27,14 +27,14 @@
     <artifactId>examples-crux</artifactId>
     <version>0.9.8-SNAPSHOT</version>
   </parent>
-  
+
   <artifactId>SampleLib</artifactId>
   <version>0.9.8-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <properties>
-    <compiler.debug>true</compiler.debug>
-    <royale.framework.version>0.9.8-SNAPSHOT</royale.framework.version>
+    <!-- <compiler.debug>true</compiler.debug>
+    <royale.framework.version>0.9.8-SNAPSHOT</royale.framework.version> -->
     <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
     <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
   </properties>
@@ -95,6 +95,7 @@
         <extensions>true</extensions>
         <configuration>
           <targets>JSRoyale</targets>
+          <debug>false</debug>
           <namespaces>
             <namespace>
               <uri>library://ns.apache.org/royale/samplelib</uri>
@@ -124,10 +125,12 @@
               <path>../src/main/resources/js/*</path>
             </include-file> -->
           </includeFiles>
-          <!-- <includeLookupOnly>true</includeLookupOnly>
-          <allowSubclassOverrides>true</allowSubclassOverrides>
+          <skipAS>true</skipAS>
           <skipExtern>true</skipExtern>
-          <skipAS>true</skipAS> -->
+          <!-- 
+          <includeLookupOnly>true</includeLookupOnly>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+          -->
           <!-- <additionalCompilerOptions>
             -source-map=true;
             -source-map-source-root=/frameworks/projects/Jewel/src/main/royale/
