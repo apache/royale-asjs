@@ -21,10 +21,10 @@
 
 <royale-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
-   <target-player>${air.version}</target-player>
+   <target-player>11.7</target-player>
 
     <!-- Specifies the version of the compiled SWF -->
-   <swf-version>${swf.version}</swf-version>
+   <swf-version>20</swf-version>
     
    <compiler>
        
@@ -52,9 +52,9 @@
          <path-element>string</path-element>
       </source-path>
       -->
-      
-      <!-- Allow the source-path to have path-elements which contain other path-elements -->
-      <allow-source-path-overlap>false</allow-source-path-overlap>
+	  
+	  <!-- Allow the source-path to have path-elements which contain other path-elements -->
+	  <allow-source-path-overlap>false</allow-source-path-overlap>
       
       <!-- Run the AS3 compiler in a mode that detects legal but potentially incorrect -->
       <!-- code.                                                                       -->
@@ -68,9 +68,9 @@
 
       <!-- List of SWC files or directories to compile against but to omit from -->
       <!-- linking.                                                             -->
-      <swf-external-library-path>
+      <external-library-path>
           <path-element>{airHome}/frameworks/libs/air/airglobal.swc</path-element>
-      </swf-external-library-path>
+      </external-library-path>
       
       <!-- List of SWC files or directories to compile against but to omit from -->
       <!-- linking.                                                             -->
@@ -92,10 +92,10 @@
       -->
       
       <!-- List of SWC files or directories that contain SWC files. -->
-      <swf-library-path>
+      <library-path>
          <path-element>libs</path-element>
          <path-element>{airHome}/frameworks/libs/air</path-element>
-      </swf-library-path>
+      </library-path>
       
       <!-- List of SWC files or directories that contain SWC files. -->
       <js-library-path>
@@ -125,7 +125,7 @@
      <component-factory-class>org.apache.royale.core.ClassFactory</component-factory-class>
      <component-factory-interface>org.apache.royale.core.IFactory</component-factory-interface>
 
-      <namespaces>
+     <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->
       <!-- elements.                                                                -->
       <namespace>
@@ -148,94 +148,62 @@
           <uri>library://ns.apache.org/royale/basic</uri>
           <manifest>manifests/basic-manifest-collections.xml</manifest>
       </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
+         <namespace>
+            <uri>library://ns.apache.org/royale/basic</uri>
           <manifest>manifests/basic-manifest-core.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
+        </namespace>                                                 
+         <namespace>
+             <uri>library://ns.apache.org/royale/basic</uri>
           <manifest>manifests/basic-manifest-dragdrop.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/basic</uri>
           <manifest>manifests/basic-manifest-effects.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/basic</uri>
           <manifest>manifests/basic-manifest-formatters.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
-          <manifest>manifests/basic-manifest-graphics.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/svg</uri>
-          <manifest>manifests/svg-manifest-graphics.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
-          <manifest>manifests/basic-manifest-html.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/html</uri>
-          <manifest>manifests/html-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/basic</uri>
+             <manifest>manifests/basic-manifest-graphics.xml</manifest>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/basic</uri>
+             <manifest>manifests/basic-manifest-html.xml</manifest>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/basic</uri>
           <manifest>manifests/basic-manifest-mobile.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/basic</uri>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/basic</uri>
           <manifest>manifests/basic-manifest-network.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/html5</uri>
+         </namespace>
+         <namespace>
+            <uri>library://ns.apache.org/royale/html5</uri>
           <manifest>manifests/html5-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/flat</uri>
+        </namespace>   
+         <namespace>
+             <uri>library://ns.apache.org/royale/flat</uri>
           <manifest>manifests/flat-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/jquery</uri>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/jquery</uri>
           <manifest>manifests/jquery-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/google</uri>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/google</uri>
           <manifest>manifests/google-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/cordova</uri>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/cordova</uri>
           <manifest>manifests/cordova-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/createjs</uri>
-          <manifest>manifests/createjs-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/mdl</uri>
-          <manifest>manifests/mdl-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/express</uri>
-          <manifest>manifests/express-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/fa</uri>
-          <manifest>manifests/fa-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/jewel</uri>
-          <manifest>manifests/jewel-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/crux</uri>
-          <manifest>manifests/crux-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/icons</uri>
-          <manifest>manifests/icons-manifest.xml</manifest>
-      </namespace>
+         </namespace>
+         <namespace>
+             <uri>library://ns.apache.org/royale/createjs</uri>
+             <manifest>manifests/createjs-manifest.xml</manifest>
+         </namespace>
       </namespaces>
       
       <!-- Enable post-link SWF optimization. -->
@@ -284,6 +252,7 @@
       <!-- List of CSS or SWC files to apply as a theme. -->
       <!-- not set -->
       <theme>
+          <filename>themes/Basic/src/basic.css</filename>
       </theme>
       
       <!-- Turns on the display of stack traces for uncaught runtime errors. -->

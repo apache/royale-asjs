@@ -20,7 +20,7 @@
 -->
 
 
-<royale-config>
+<flex-config>
     <!-- Specifies the minimum player version that will run the compiled SWF. -->
    <target-player>@playerversion@</target-player>
 
@@ -69,8 +69,8 @@
 
       <!-- List of SWC files or directories to compile against but to omit from -->
       <!-- linking.                                                             -->
-      <swf-external-library-path>
-      </swf-external-library-path>
+      <external-library-path>
+      </external-library-path>
 
       <!-- List of SWC files or directories to compile against but to omit from -->
       <!-- linking.                                                             -->
@@ -92,9 +92,9 @@
       -->
 
       <!-- List of SWC files or directories that contain SWC files. -->
-      <swf-library-path>
+      <library-path>
          <path-element>libs</path-element>
-      </swf-library-path>
+      </library-path>
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <js-library-path>
@@ -105,7 +105,10 @@
       <mxml>
           <children-as-data>true</children-as-data>
           <imports>
-              <implicit-import>org.apache.royale.events.*</implicit-import>
+              <implicit-import>org.apache.royale.events.Event</implicit-import>
+              <implicit-import>org.apache.royale.events.EventDispatcher</implicit-import>
+              <implicit-import>org.apache.royale.events.IEventDispatcher</implicit-import>
+              <implicit-import>mx.events.MouseEvent</implicit-import>
               <implicit-import>org.apache.royale.geom.*</implicit-import>
               <implicit-import>org.apache.royale.core.ClassFactory</implicit-import>
               <implicit-import>org.apache.royale.core.IFactory</implicit-import>
@@ -123,8 +126,8 @@
       <states-event-override-class>org.apache.royale.states.SetEventHandler</states-event-override-class>
       <component-factory-class>org.apache.royale.core.ClassFactory</component-factory-class>
       <component-factory-interface>org.apache.royale.core.IFactory</component-factory-interface>
+      <fxg-base-class>flash.display.Sprite</fxg-base-class>
 
-      
       <namespaces>
       <!-- Specify a URI to associate with a manifest of components for use as MXML -->
       <!-- elements.                                                                -->
@@ -228,18 +231,6 @@
           <uri>library://ns.apache.org/royale/mx</uri>
           <manifest>manifests/mx-royale-manifest.xml</manifest>
       </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/jewel</uri>
-          <manifest>manifests/jewel-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/crux</uri>
-          <manifest>manifests/crux-manifest.xml</manifest>
-      </namespace>
-      <namespace>
-          <uri>library://ns.apache.org/royale/icons</uri>
-          <manifest>manifests/icons-manifest.xml</manifest>
-      </namespace>
       </namespaces>
 
       <!-- Enable post-link SWF optimization. -->
@@ -290,6 +281,7 @@
 
       <!-- List of CSS or SWC files to apply as a theme. -->
       <theme>
+          <filename>themes/Basic/src/basic.css</filename>
       </theme>
 
       <!-- Turns on the display of stack traces for uncaught runtime errors. -->
@@ -494,4 +486,4 @@
       <language>EN</language>
    </metadata>
    
-</royale-config>
+</flex-config>
