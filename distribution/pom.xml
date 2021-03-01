@@ -16,7 +16,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -41,6 +42,7 @@
     <targetPlayerMajorVersion>20</targetPlayerMajorVersion>
     <targetPlayerMinorVersion>0</targetPlayerMinorVersion>
 
+    <strip-swf>true</strip-swf>
     <assembly.bin>bin.xml</assembly.bin>
     <assembly.dir>dir.xml</assembly.dir>
     <assembly.sdk-description>royale-sdk-description.xml</assembly.sdk-description>
@@ -58,12 +60,182 @@
     <module>jars/mxmlc</module>
   </modules>
 
+  <build>
+    <finalName>${distributionFileName}</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-remote-resources-plugin</artifactId>
+          <version>1.5</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.10</version>
+        <executions>
+          <execution>
+            <id>copy-compiler-jx</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.royale.compiler</groupId>
+                  <artifactId>compiler-jx</artifactId>
+                  <version>${royale.compiler.version}</version>
+                  <type>jar</type>
+                  <destFileName>jsc.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/jsc</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-compiler-scripts</id>
+            <phase>package</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.royale.compiler</groupId>
+                  <artifactId>compiler</artifactId>
+                  <version>${royale.compiler.version}</version>
+                  <type>jar</type>
+                  <classifier>scripts</classifier>
+                  <outputDirectory>${project.build.directory}/dependency/compiler</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-compiler</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.google.javascript</groupId>
+                  <artifactId>closure-compiler</artifactId>
+                  <version>v20181210</version>
+                  <type>jar</type>
+                  <destFileName>closure-compiler.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-library</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.clojure</groupId>
+                  <artifactId>google-closure-library</artifactId>
+                  <version>0.0-20170809-b9c14c6b</version>
+                  <type>jar</type>
+                  <outputDirectory>${project.build.directory}/closure-library-temp</outputDirectory>
+                  <includes>**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <version>1.0.2</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <transformationSets>
+            <transformationSet>
+              <dir>${project.basedir}/../frameworks</dir>
+              <includes>*.xml</includes>
+              <stylesheet>src/main/xslt/process-configs.xsl</stylesheet>
+              <includes>*-template.xml</includes>
+              <parameters>
+                <parameter>
+                  <name>SwfVersion</name>
+                  <value>${swf.version}</value>
+                </parameter>
+                <parameter>
+                  <name>PlayerVersion</name>
+                  <value>${flash.version}</value>
+                </parameter>
+                <parameter>
+                  <name>Locale</name>
+                  <value>en_US</value>
+                </parameter>
+                <parameter>
+                  <name>StripSwf</name>
+                  <value>${strip-swf}</value>
+                </parameter>
+              </parameters>
+              <outputDir>${project.build.directory}/processed-configs</outputDir>
+            </transformationSet>
+          </transformationSets>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>net.sourceforge.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>9.1.0.8</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>create-distro-packages</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/assembly/${assembly.bin}</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
     <!-- Add the compiler module -->
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler</artifactId>
       <version>${royale.compiler.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.compiler</groupId>
+      <artifactId>compiler</artifactId>
+      <version>${royale.compiler.version}</version>
+      <classifier>scripts</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
@@ -481,102 +653,6 @@
     </dependency>
   </dependencies>
 
-  <build>
-    <finalName>${distributionFileName}</finalName>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-remote-resources-plugin</artifactId>
-          <version>1.5</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.10</version>
-        <executions>
-          <execution>
-            <id>copy-compiler-jx</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.royale.compiler</groupId>
-                  <artifactId>compiler-jx</artifactId>
-                  <version>${royale.compiler.version}</version>
-                  <type>jar</type>
-                  <destFileName>jsc.jar</destFileName>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.directory}/jsc</outputDirectory>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-closure-compiler</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.google.javascript</groupId>
-                  <artifactId>closure-compiler</artifactId>
-                  <version>v20181210</version>
-                  <type>jar</type>
-                  <destFileName>closure-compiler.jar</destFileName>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-closure-library</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.clojure</groupId>
-                  <artifactId>google-closure-library</artifactId>
-                  <version>0.0-20170809-b9c14c6b</version>
-                  <type>jar</type>
-                  <outputDirectory>${project.build.directory}/closure-library-temp</outputDirectory>
-                  <includes>**</includes>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create-distro-packages</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <descriptors>
-                <descriptor>src/main/assembly/${assembly.bin}</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
   <profiles>
     <profile>
       <id>apache-release</id>
@@ -607,6 +683,7 @@
     <profile>
       <id>option-with-swf</id>
       <properties>
+        <strip-swf>false</strip-swf>
         <assembly.bin>bin-with-swf.xml</assembly.bin>
         <assembly.dir>dir-with-swf.xml</assembly.dir>
         <assembly.sdk-description>royale-sdk-description-with-swf.xml</assembly.sdk-description>
@@ -937,6 +1014,7 @@
         </dependency>
       </dependencies>
     </profile>
+
     <profile>
       <id>_create-distribution-in-folder</id>
       <activation>
