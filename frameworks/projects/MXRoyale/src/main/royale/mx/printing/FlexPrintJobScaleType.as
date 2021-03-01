@@ -51,7 +51,7 @@ public final class FlexPrintJobScaleType
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
 	 */
-	//public static const FILL_PAGE:String = "fillPage";
+	public static const FILL_PAGE:String = "fillPage";
 	
 	/**
 	 *  Scales the object to fill the available page height. 
@@ -63,7 +63,7 @@ public final class FlexPrintJobScaleType
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
 	 */
-	//public static const MATCH_HEIGHT:String = "matchHeight";
+	public static const MATCH_HEIGHT:String = "matchHeight";
 
 	/**
 	 *  Scales the object to fill the available page width. 
@@ -75,7 +75,7 @@ public final class FlexPrintJobScaleType
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
 	 */
-	//public static const MATCH_WIDTH:String = "matchWidth";
+	public static const MATCH_WIDTH:String = "matchWidth";
 	
 	/**
 	 *  Does not scale the output. 
@@ -88,7 +88,7 @@ public final class FlexPrintJobScaleType
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
 	 */
-	//public static const NONE:String = "none";
+	public static const NONE:String = "none";
 
 	/**
 	 *  Scales the object to fit on a single page, filling one dimension; 
@@ -101,7 +101,6 @@ public final class FlexPrintJobScaleType
 	 *  @productversion Royale 0.9.3
 	 */
 	public static const SHOW_ALL:String = "showAll";
-	public static const MATCH_WIDTH:String = "matchWidth";
 }
 
 }

@@ -173,9 +173,17 @@ public class PopUpButton extends Button
      *  @private
      *  Greater of the arrowButtonWidth style and the icon's width.
      */
-    private var arrowButtonsWidth:Number = 0;
+    private var _arrowButtonWidth:Number = 0;
 	
-
+	public function get arrowButtonWidth():Number
+	{
+			return _arrowButtonWidth;
+	}
+	
+	public function set arrowButtonWidth(value:Number):void
+	{
+			_arrowButtonWidth = value;
+	}
     /**
      *  @private
      *  Is the popUp list currently shown?

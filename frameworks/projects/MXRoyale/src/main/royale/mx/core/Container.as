@@ -219,6 +219,18 @@ use namespace mx_internal;
 [Style(name="backgroundAlpha", type="Number", inherit="no")]
 
 [Style(name="contentBackgroundAlpha", type="Number", inherit="yes")]
+
+/**
+ *  The alpha value for the overlay that is placed on top of the
+ *  container when it is disabled.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="disabledOverlayAlpha", type="Number", inherit="no")]
+
 /**
  * The default property uses when additional MXML content appears within an element's
  * definition in an MXML file.
