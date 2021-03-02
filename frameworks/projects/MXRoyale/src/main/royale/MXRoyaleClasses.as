@@ -89,6 +89,7 @@ internal class MXRoyaleClasses
 	import mx.effects.Tween; Tween;
 	import mx.effects.Fade; Fade;
 	import mx.core.Container;Container;
+	import mx.core.ContainerGlobals; ContainerGlobals;
 	import mx.graphics.ImageSnapshot; ImageSnapshot;
 
 	import mx.system.ApplicationDomain; ApplicationDomain;
