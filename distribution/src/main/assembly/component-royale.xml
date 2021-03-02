@@ -171,11 +171,9 @@ under the License.
             <outputDirectory>frameworks/projects</outputDirectory>
             <directory>../frameworks/projects</directory>
             <includes>
-                <include>**</include>
+                <!-- Include only the source directories -->
+                <include>*/src/**</include>
             </includes>
-            <excludes>
-                <exclude>**/target/**</exclude>
-            </excludes>
         </fileSet>
 
         <!-- Copy the js-projects -->
