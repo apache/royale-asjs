@@ -66,24 +66,33 @@
     </xsl:template>
 
     <!-- The names of the Maven typedefs differ from the Ant ones, so we have to do some cleaning up here -->
-    <xsl:template match="js-external-library-path">
-        <xsl:copy>
-            <xsl:for-each select="text() | path-element">
-                <xsl:choose>
-                    <xsl:when test="name() = 'path-element'">
-                        <xsl:variable name="cleaned-typedef-element">
-                            <xsl:call-template name="cleanTypedefPathElement">
-                                <xsl:with-param name="input" select="text()"/>
-                            </xsl:call-template>
-                        </xsl:variable>
-                        <xsl:copy>../js/libs/royale-typedefs-<xsl:value-of select="$cleaned-typedef-element"/>.swc</xsl:copy>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:apply-templates select="."/>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-        </xsl:copy>
+    <xsl:template match="path-element">
+        <xsl:choose>
+            <!-- For some reason the name of the Ant lib differs from the naming pattern of the rest -->
+            <xsl:when test="text() = 'libs/jQuery.swc'">
+                <xsl:copy>libs/JQuery.swc</xsl:copy>
+            </xsl:when>
+            <!-- For some reason the name of the Ant lib differs from the naming pattern of the rest -->
+            <xsl:when test="text() = 'js/libs/jQueryJS.swc'">
+                <xsl:copy>js/libs/JQueryJS.swc</xsl:copy>
+            </xsl:when>
+            <!-- For some reason the ace typedef entry has a version number -->
+            <xsl:when test="text() = '../js/libs/ace-1.2.3.swc'">
+                <xsl:copy>../js/libs/royale-typedefs-ace.swc</xsl:copy>
+            </xsl:when>
+            <!-- The Maven artifacts of the typedefs have significantly different names -->
+            <xsl:when test="starts-with(text(), '../js/libs/')">
+                <xsl:variable name="cleaned-typedef-element">
+                    <xsl:call-template name="cleanTypedefPathElement">
+                        <xsl:with-param name="input" select="text()"/>
+                    </xsl:call-template>
+                </xsl:variable>
+                <xsl:copy>../js/libs/royale-typedefs-<xsl:value-of select="$cleaned-typedef-element"/>.swc</xsl:copy>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:copy-of select="."/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template match="@*|node()" priority="-1">
