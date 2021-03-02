@@ -51,7 +51,7 @@
             -js-compiler-option+=--property_map_output_file gccprops.txt;
 #if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
             -js-default-initializers=true;
-            -compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css;
+            -compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
             -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
             -keep-code-with-metadata=Inject;
 #end
