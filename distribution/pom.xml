@@ -931,6 +931,15 @@
           <type>swc</type>
         </dependency>
 
+        <!-- Theme (Needed for FlashBuilder) -->
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>BasicTheme</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>js</classifier>
+        </dependency>
+
         <!-- SWFObject -->
         <dependency>
           <groupId>org.webjars</groupId>
