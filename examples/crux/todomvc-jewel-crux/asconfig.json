@@ -21,9 +21,19 @@
     "compilerOptions": {
         "debug": false,
         "targets": ["JSRoyale"],
-        "source-map": true
+        "source-map": true,
+        "library-path": [
+            "${royalelib}/libs/MXRoyale.swc"
+        ],
+        "js-library-path": [
+            "${royalelib}/js/libs/MXRoyaleJS.swc"
+        ],
+        "keep-as3-metadata": [
+            "Inject", "Dispatcher", "EventHandler", "PostConstruct", "PreDestroy", "ViewAdded", "ViewRemoved", "Bindable", "Transient"
+        ],
+        "js-default-initializers": true
     },
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
+    "additionalOptions": "-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css",
     "files":
     [
         "src/main/royale/App.mxml"
