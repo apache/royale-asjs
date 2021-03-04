@@ -376,6 +376,9 @@ internal class MXRoyaleClasses
 	import mx.net.URLRequestMethod; URLRequestMethod;
 	import mx.controls.ButtonLabelPlacement; ButtonLabelPlacement;
 	import mx.display.NativeMenu; NativeMenu;
+	
+	import mx.printing.PrintJobOptions; PrintJobOptions;
+
 }
 
 }
