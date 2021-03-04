@@ -79,7 +79,7 @@
         <executions>
           <execution>
             <id>copy-compiler-jx</id>
-            <phase>package</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>copy</goal>
             </goals>
@@ -98,7 +98,7 @@
           </execution>
           <execution>
             <id>unpack-compiler-scripts</id>
-            <phase>package</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>unpack</goal>
             </goals>
@@ -117,7 +117,7 @@
           </execution>
           <execution>
             <id>unpack-closure-compiler</id>
-            <phase>package</phase>
+            <phase>process-resources</phase>
             <goals>
               <goal>copy</goal>
             </goals>
