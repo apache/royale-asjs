@@ -193,6 +193,8 @@ internal class MXRoyaleClasses
 	import mx.events.HTTPStatusEvent; HTTPStatusEvent;
 	import mx.net.FileReference; FileReference;
 	import mx.net.FileFilter; FileFilter;
+	import mx.net.URLLoaderDataFormat; URLLoaderDataFormat;
+	
 	import mx.events.ProgressEvent; ProgressEvent;
 	import mx.events.ColorPickerEvent; ColorPickerEvent;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
