@@ -378,6 +378,7 @@ internal class MXRoyaleClasses
 	import mx.display.NativeMenu; NativeMenu;
 	
 	import mx.printing.PrintJobOptions; PrintJobOptions;
+	import mx.text.TextFieldAutoSize; TextFieldAutoSize;
 
 }
 
