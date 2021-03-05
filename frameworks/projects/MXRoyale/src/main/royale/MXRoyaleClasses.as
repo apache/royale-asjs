@@ -111,7 +111,8 @@ internal class MXRoyaleClasses
 	import mx.effects.effectClasses.ActionEffectInstance; ActionEffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
 	import mx.charts.HitData; HitData;
-
+	import mx.effects.effectClasses.RotateInstance; RotateInstance;
+	
 	import mx.events.FlexEvent; FlexEvent;
 	import mx.managers.PopUpManager; PopUpManager; 
 	import mx.core.IVisualElementContainer; IVisualElementContainer;
