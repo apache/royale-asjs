@@ -26,6 +26,7 @@ import mx.controls.Tree;
 import mx.core.mx_internal;
 import mx.events.TreeEvent;
 import spark.components.Group;
+import mx.controls.treeClasses.TreeListData;
 
 use namespace mx_internal; 
 
@@ -80,7 +81,29 @@ public class MXTreeItemRenderer extends MXItemRenderer
         super();
     }
     
-   
+    //----------------------------------
+    //  treeListData
+    //----------------------------------
+
+    [Bindable("dataChange")]
+    
+    /**
+     *  The implementation of the <code>listData</code> property
+     *  as defined by the IDropInListItemRenderer interface.
+     *  Use this property to access information about the 
+     *  data item displayed by the item renderer.     
+     *
+     *  @see mx.controls.listClasses.IDropInListItemRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get treeListData():TreeListData
+    {
+        return listData as TreeListData;
+    }
 
 }
 }
