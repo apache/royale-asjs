@@ -226,4 +226,5 @@
     <component id="Slider" class="mx.controls.sliderClasses.Slider"/>
     <component id="HorizontalList" class="mx.controls.HorizontalList"/>
     <component id="AddChild" class="mx.states.AddChild"/>
+	<component id="TextField" class="mx.text.TextField"/>
 </componentPackage>
