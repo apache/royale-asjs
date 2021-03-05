@@ -1173,6 +1173,29 @@ public class UIComponent extends UIBase
         return 2 + lineMetrics.ascent;*/
         return 0;
     }
+	
+	/**
+     *  @private
+     *  This method is called at the beginning of each getter
+     *  for the baselinePosition property.
+     *  If it returns false, the getter should return NaN
+     *  because the baselinePosition can't be computed.
+     *  If it returns true, the getter can do computations
+     *  like textField.y + textField.baselinePosition
+     *  because these properties will be valid.
+     */
+    mx_internal function validateBaselinePosition():Boolean
+    {
+        trace("UIComponent::validateBaselinePosition not implemented");
+
+        return true;
+    }
+	
+	public function notifyStyleChangeInChildren(
+                        styleProp:String, recursive:Boolean):void
+    {
+			trace("UIComponent::notifyStyleChangeInChildren not implemented");
+	}
 
     //--------------------------------------------------------------------------
     //
