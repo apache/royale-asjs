@@ -24,6 +24,7 @@
     <xsl:param name="PlayerVersion"/>
     <xsl:param name="Locale"/>
     <xsl:param name="StripSwf"/>
+    <xsl:param name="FlashBuilderSupport"/>
 
     <xsl:variable name="lowercase" select="'abcdefghijklmnopqrstuvwxyz'" />
     <xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZ'" />
@@ -57,11 +58,16 @@
     <!-- Filter out the references to the playerglobal, if StripSwf is not set to 'false' -->
     <xsl:template match="library-path">
         <xsl:copy>
-            <xsl:for-each select="text() | path-element">
-                <xsl:if test="$StripSwf = 'false' or text() != '{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}'">
-                    <xsl:apply-templates select="."/>
-                </xsl:if>
-            </xsl:for-each>
+            <xsl:choose>
+                <xsl:when test="$StripSwf = 'true'">
+                    <xsl:if test="$FlashBuilderSupport = 'true'">
+                        <path-element>libs/KeepsFBFromHanging.swc</path-element>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:apply-templates select="* | text()"/>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:copy>
     </xsl:template>
 

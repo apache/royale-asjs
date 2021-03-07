@@ -190,6 +190,10 @@
                   <name>StripSwf</name>
                   <value>${strip-swf}</value>
                 </parameter>
+                <parameter>
+                  <name>FlashBuilderSupport</name>
+                  <value>true</value>
+                </parameter>
               </parameters>
               <outputDir>${project.build.directory}/processed-configs</outputDir>
             </transformationSet>
