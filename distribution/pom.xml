@@ -43,8 +43,8 @@
     <targetPlayerMinorVersion>0</targetPlayerMinorVersion>
 
     <strip-swf>true</strip-swf>
-    <assembly.bin>bin.xml</assembly.bin>
-    <assembly.dir>dir.xml</assembly.dir>
+    <assembly.bin>bin-without-swf.xml</assembly.bin>
+    <assembly.dir>dir-without-swf.xml</assembly.dir>
     <assembly.sdk-description>royale-sdk-description.xml</assembly.sdk-description>
   </properties>
 
