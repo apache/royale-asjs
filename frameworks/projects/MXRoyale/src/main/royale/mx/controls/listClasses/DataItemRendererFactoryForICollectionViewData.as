@@ -39,7 +39,6 @@ package mx.controls.listClasses
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.events.CollectionEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
@@ -103,10 +102,10 @@ package mx.controls.listClasses
             
             // listen for individual items being added in the future.
             var dped:IEventDispatcher = dp as IEventDispatcher;
-            dped.addEventListener(org.apache.royale.events.CollectionEvent.ITEM_ADDED, itemAddedHandler);
-            dped.addEventListener(org.apache.royale.events.CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-            dped.addEventListener(org.apache.royale.events.CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-            dped.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			//First remove if it's already added
+			dped.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+
+			dped.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
             
             super.dataProviderChangeHandler(event);            
         }
@@ -136,7 +135,7 @@ package mx.controls.listClasses
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function itemAddedHandler(event:org.apache.royale.events.CollectionEvent):void
+		protected function itemAddedHandler(event:CollectionEvent):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -148,15 +147,15 @@ package mx.controls.listClasses
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
 			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-			dataGroup.addItemRendererAt(ir, event.index);
+			dataGroup.addItemRendererAt(ir, event.location);
 
-            var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
+            var data:Object = event.items.pop();
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.location);
             ir.data = data;				
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = dataGroup.numItemRenderers;
-			for (var i:int = event.index; i < n; i++)
+			for (var i:int = event.location; i < n; i++)
 			{
 				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
@@ -172,7 +171,7 @@ package mx.controls.listClasses
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 		
-		protected function itemRemovedHandler(event:org.apache.royale.events.CollectionEvent):void
+		protected function itemRemovedHandler(event:CollectionEvent):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -183,13 +182,13 @@ package mx.controls.listClasses
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
-			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.location) as IIndexedItemRenderer;
 			if (!ir) return; // may have already been cleaned up, possibly when a tree node closes
 			dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
 			var n:int = dataGroup.numItemRenderers;
-			for (var i:int = event.index; i < n; i++)
+			for (var i:int = event.location; i < n; i++)
 			{
 				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
@@ -209,7 +208,7 @@ package mx.controls.listClasses
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
-		protected function itemUpdatedHandler(event:org.apache.royale.events.CollectionEvent):void
+		protected function itemUpdatedHandler(event:CollectionEvent):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -222,10 +221,10 @@ package mx.controls.listClasses
             
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
-			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.location) as IIndexedItemRenderer;
 
-            var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
+            var data:Object = event.items.pop();
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.location);
             ir.data = data;				
 		}
 		
@@ -236,7 +235,7 @@ package mx.controls.listClasses
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function collectionChangeHandler(event:mx.events.CollectionEvent):void
+		protected function collectionChangeHandler(event:CollectionEvent):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -248,9 +247,18 @@ package mx.controls.listClasses
 			{
 	            super.dataProviderChangeHandler(event);            
 			}
+			else if (event.kind == CollectionEventKind.REMOVE)
+			{
+				this.itemRemovedHandler(event);
+			}
+			else if (event.kind == CollectionEventKind.ADD)
+			{
+				this.itemAddedHandler(event);
+			}
+			else if (event.kind == CollectionEventKind.UPDATE)
+			{
+				this.itemUpdatedHandler(event);
+			}
 		}
-		
-		
-		
 	}
 }
