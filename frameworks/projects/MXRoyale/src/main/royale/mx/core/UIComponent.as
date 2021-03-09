@@ -3687,63 +3687,66 @@ COMPILE::JS
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
     public function addChild(child:IUIComponent):IUIComponent
     {
-        addElement(child);
-        return child;
+        return addElement(child) as IUIComponent;
     }
     
     
     public function $uibase_addChild(child:IUIComponent):IUIComponent
     {
         // this should avoid calls to addingChild/childAdded
-        super.addElement(child);
-        return child;
+        var ret:IUIComponent = super.addElement(child) as IUIComponent;
+        return ret;
     }
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
-    public function addChildAt(child:IUIComponent, index:int):IUIComponent
+    public function addChildAt(child:IUIComponent,
+                                        index:int):IUIComponent
     {
-        addElementAt(child, index);
-        return child;
+        return addElementAt(child, index) as IUIComponent;
     }
     
-    public function $uibase_addChildAt(child:IUIComponent, index:int):IUIComponent
+    public function $uibase_addChildAt(child:IUIComponent,
+                               index:int):IUIComponent
     {
+        var ret:IUIComponent;
         // this should avoid calls to addingChild/childAdded
         if (index >= super.numElements)
-            super.addElement(child);
+            ret = super.addElement(child) as IUIComponent;
         else
-            super.addElementAt(child, index);
-        return child;
+            ret = super.addElementAt(child, index) as IUIComponent;
+        return ret;
     }
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
     public function removeChild(child:IUIComponent):IUIComponent
     {
-        removeElement(child)
-        return child;
+        return removeElement(child) as IUIComponent;
     }
     
     public function $uibase_removeChild(child:IUIComponent):IUIComponent
     {
         // this should probably call the removingChild/childRemoved
-        super.removeElement(child);
-        return child;
+        var ret:IUIComponent = super.removeElement(child) as IUIComponent;
+        return ret;
     }
     
     COMPILE::JS
@@ -3751,35 +3754,28 @@ COMPILE::JS
 	{
 	
 	}
-
     /**
      *  @private
-     *  @royaleemitcoercion mx.core.IUIComponent
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
     { override }
     public function removeChildAt(index:int):IUIComponent
     {
-        var child:IUIComponent = getElementAt(index) as IUIComponent;
         // this should probably call the removingChild/childRemoved
-        removeElement(child);
-        return child;
+        return removeElement(getElementAt(index)) as IUIComponent;
     }
     
-    /**
-     *  @royaleemitcoercion mx.core.IUIComponent
-     */
     public function $uibase_removeChildAt(index:int):IUIComponent
     {
-        var child:IUIComponent = getElementAt(index) as IUIComponent;
-        super.removeElement(child);
-        return child;
+        var ret:IUIComponent = super.removeElement(getElementAt(index)) as IUIComponent;
+        return ret;
     }
 
     /**
      *  @private
-     *  @royaleemitcoercion mx.core.IUIComponent
+     *  @royaleignorecoercion mx.core.IUIComponent
      */
     [SWFOverride(returns="flash.display.DisplayObject"))]
     COMPILE::SWF 
