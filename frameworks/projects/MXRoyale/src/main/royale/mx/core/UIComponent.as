@@ -1257,6 +1257,18 @@ public class UIComponent extends UIBase
       _accessibilityEnabled = value;
     }
     
+    private var _blocker:Object;
+	
+	public function get blocker():Object
+    {
+        return _blocker;
+    }
+    
+    public function set blocker(value:Object):void
+    {
+      _blocker = value;
+    }
+	
     private var _useHandCursor:Boolean;
     /**
      *  From flash.display.Sprite

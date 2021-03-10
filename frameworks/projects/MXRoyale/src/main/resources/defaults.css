@@ -393,6 +393,17 @@ Menu {
 	border-color: #222222;
 	box-shadow: 2px 2px 5px gray;
 }
+
+NavBar
+{
+   paddingBottom: 1;
+	paddingLeft: 1;
+	paddingRight: 0;
+	paddingTop: 1;
+		horizontalGap: 6;
+}
+
+
 /*
 MenuItemRenderer {
 	margin-top: 4px;

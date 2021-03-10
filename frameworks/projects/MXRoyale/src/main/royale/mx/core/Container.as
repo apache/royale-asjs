@@ -338,9 +338,9 @@ public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
 					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer,
-                       IListItemRenderer,
+                       IListItemRenderer,INavigatorContent
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
-                       INavigatorContent
+                       
 
 {
 
