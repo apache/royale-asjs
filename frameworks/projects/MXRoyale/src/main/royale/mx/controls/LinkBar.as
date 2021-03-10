@@ -33,6 +33,7 @@ import mx.events.ItemClickEvent;
 import mx.styles.ISimpleStyleClient;
 import mx.styles.StyleProxy;
 import mx.containers.Box;
+import mx.controls.NavBar;
 
 use namespace mx_internal;
 
@@ -302,7 +303,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class LinkBar extends Box
+public class LinkBar extends NavBar
 {
    // include "../core/Version.as";
 
@@ -343,24 +344,7 @@ public class LinkBar extends Box
     }
 
 	
-    //----------------------------------
-	//
-    //  Copied From NavBar
-	//
-    //----------------------------------
-	
-	//----------------------------------
-    //       DataProvider
-    //----------------------------------
-	
-	public function get dataProvider():Object
-	 {
-	    return null;
-	 }
-    public function set dataProvider(value:Object):void
-	 {
-	
-	 }
+    
 	 
 	 
     //--------------------------------------------------------------------------
