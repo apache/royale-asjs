@@ -412,8 +412,8 @@ public class NavBar extends Box
         // If value is a ViewStack name, document[value] may not be defined yet.
         // In this case, fall through to the code below
         // which will setup a pending target view stack.
-        if ((value is String) && (document && document[value]))
-            value = document[value];
+        if ((value is String) && (mxmlDocument && mxmlDocument[value]))
+            value = mxmlDocument[value];
 
         if ((value is String) || (value is ViewStack))
         {
