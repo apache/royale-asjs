@@ -54,10 +54,18 @@ package mx.display
 			{
 				_smoothing = value;
 			}
+			
+			private var	_bitmapData : BitmapData =  null;
+
 			// not implemented
 			public function get bitmapData():BitmapData
 			{
-				return null;
+				return _bitmapData;
+			}
+			
+			public function set bitmapData(value:BitmapData):void
+			{
+				_bitmapData = value;
 			}
 			
 		}
