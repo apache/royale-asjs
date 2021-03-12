@@ -381,6 +381,11 @@ internal class MXRoyaleClasses
 	import mx.printing.PrintJobOptions; PrintJobOptions;
 	import mx.text.TextFieldAutoSize; TextFieldAutoSize;
 	import mx.errors.ScriptTimeoutError; ScriptTimeoutError;
+	import mx.controls.beads.models.ArrayMultiSelectionModel; ArrayMultiSelectionModel;
+    import mx.controls.beads.MultiSelectionListView; MultiSelectionListView; 
+    import mx.controls.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
+    import mx.controls.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
+
 
 }
 
