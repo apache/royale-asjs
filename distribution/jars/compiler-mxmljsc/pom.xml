@@ -38,13 +38,11 @@
         <configuration>
           <archive>
             <manifest>
-              <!-- <addClasspath>true</addClasspath>
-              <classpathLayoutType>custom</classpathLayoutType>
-              <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout> -->
+              <addClasspath>false</addClasspath>
               <mainClass>org.apache.royale.compiler.clients.MXMLJSC</mainClass>
             </manifest>
             <manifestEntries>
-              <Class-Path>compc.jar compiler.jar compiler-asc.jar compiler-common.jar compiler-compc.jar compiler-compjsc.jar compiler-externc.jar compiler-jburg-types.jar compiler-mxmlc.jar compiler-optimizer.jar compiler-swfdump.jar debugger.jar flex-compiler-oem.jar mxmlc.jar royale-ant-tasks.jar swfutils.jar args4j.jar org.json.jar jsc.jar</Class-Path>
+              <Class-Path>args4j.jar jsc.jar</Class-Path>
             </manifestEntries>
           </archive>
         </configuration>

@@ -30,13 +30,27 @@
             <!-- FlashBuilder doesn't like us appending the version to the jar name -->
             <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
             <includes>
-                <include>org.apache.royale.compiler:*:jar</include>
-                <include>org.apache.royale.framework.distribution:*:jar</include>
+                <include>org.apache.royale.framework.distribution:compc:jar</include>
+                <include>org.apache.royale.compiler:compiler:jar</include>
+                <include>org.apache.royale.framework.distribution:compiler-asc:jar</include>
+                <include>org.apache.royale.compiler:compiler-common:jar</include>
+                <include>org.apache.royale.framework.distribution:compiler-compc:jar</include>
+                <include>org.apache.royale.framework.distribution:compiler-mxmlc:jar</include>
+                <include>org.apache.royale.framework.distribution:compiler-optimizer:jar</include>
+                <include>org.apache.royale.framework.distribution:compiler-swfdump:jar</include>
+                <include>org.apache.royale.compiler:flex-compiler-oem:jar</include>
+                <include>org.apache.royale.framework.distribution:mxmlc:jar</include>
+                <include>org.apache.royale.compiler:swfutils:jar</include>
             </includes>
-            <excludes>
-                <exclude>org.apache.royale.compiler:compiler:jar:scripts</exclude>
-                <exclude>org.apache.royale.compiler:compiler-jx:jar</exclude>
-            </excludes>
+        </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory>
+            <!-- The debugger is named fdb in the Ant distribution -->
+            <outputFileNameMapping>fdb.jar</outputFileNameMapping>
+            <includes>
+                <include>org.apache.royale.compiler:debugger:jar</include>
+            </includes>
         </dependencySet>
         <!-- Everything else should go to the lib/ext directory -->
         <dependencySet>
@@ -70,12 +84,65 @@
             <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
             <includes>
                 <include>*:args4j:jar</include>
+                <include>*:asdoc:*</include><!-- missing -->
                 <include>*:commons-io:*</include>
+                <include>org.apache.royale.compiler:compiler-playerglobalc:jar</include>
+                <include>*:dom4j:*</include>
                 <include>*:flex-tool-api:*</include>
                 <include>*:guava:*</include>
-                <include>*:org.json:jar</include>
+                <include>*:jsc:*</include>
+                <include>*:slf4j-api:*</include>
             </includes>
         </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>js/lib</outputDirectory>
+            <outputFileNameMapping>compc.jar</outputFileNameMapping>
+            <includes>
+                <include>org.apache.royale.framework.distribution:compiler-compjsc:jar</include>
+            </includes>
+        </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>js/lib</outputDirectory>
+            <outputFileNameMapping>externc.jar</outputFileNameMapping>
+            <includes>
+                <include>org.apache.royale.compiler:compiler-externc:jar</include>
+            </includes>
+        </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>js/lib</outputDirectory>
+            <outputFileNameMapping>java-websocket.jar</outputFileNameMapping>
+            <includes>
+                <include>org.java-websocket:Java-WebSocket:jar</include>
+            </includes>
+        </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>js/lib</outputDirectory>
+            <outputFileNameMapping>mxmlc.jar</outputFileNameMapping>
+            <includes>
+                <include>org.apache.royale.framework.distribution:compiler-mxmljsc:jar</include>
+            </includes>
+        </dependencySet>
+        <dependencySet><!-- missing -->
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>js/lib</outputDirectory>
+            <outputFileNameMapping>royaleUnitTasks.jar</outputFileNameMapping>
+            <includes>
+                <include>org.apache.royale.compiler:royaleunit-ant-tasks:jar</include>
+            </includes>
+        </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>js/lib</outputDirectory>
+            <outputFileNameMapping>compiler-royaleTasks.jar</outputFileNameMapping>
+            <includes>
+                <include>org.apache.royale.compiler:royale-ant-tasks:jar</include>
+            </includes>
+        </dependencySet>
+
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
             <outputDirectory>js/libs</outputDirectory>
