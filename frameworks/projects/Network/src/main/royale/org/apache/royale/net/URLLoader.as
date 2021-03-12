@@ -70,6 +70,8 @@ package org.apache.royale.net
 	 */
     public class URLLoader extends URLLoaderBase
     {
+        public var dataFormat:String = "text"
+	
         COMPILE::JS
         private static var _corsCredentialsChecker:Function;
         COMPILE::JS
