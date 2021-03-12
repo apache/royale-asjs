@@ -38,14 +38,11 @@
         <configuration>
           <archive>
             <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>external/</classpathPrefix>
-              <classpathLayoutType>custom</classpathLayoutType>
-              <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
+              <addClasspath>false</addClasspath>
               <mainClass>flex2.tools.Compc</mainClass>
             </manifest>
             <manifestEntries>
-              <Class-Path>compiler.jar compiler-asc.jar compiler-common.jar compiler-compc.jar compiler-compjsc.jar compiler-externc.jar compiler-jburg-types.jar compiler-mxmlc.jar compiler-mxmljsc.jar compiler-optimizer.jar compiler-swfdump.jar debugger.jar flex-compiler-oem.jar mxmlc.jar royale-ant-tasks.jar swfutils.jar</Class-Path>
+              <Class-Path>compiler.jar compiler-common.jar</Class-Path>
             </manifestEntries>
           </archive>
         </configuration>

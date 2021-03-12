@@ -38,10 +38,7 @@
         <configuration>
           <archive>
             <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathPrefix>external/</classpathPrefix>
-              <classpathLayoutType>custom</classpathLayoutType>
-              <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
+              <addClasspath>false</addClasspath>
               <mainClass>org.apache.royale.compiler.clients.COMPC</mainClass>
             </manifest>
             <manifestEntries>

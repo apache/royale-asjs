@@ -261,6 +261,16 @@
       <artifactId>compiler-jx</artifactId>
       <version>${royale.compiler.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.apache.royale.compiler</groupId>
+      <artifactId>compiler-externc</artifactId>
+      <version>${royale.compiler.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.compiler</groupId>
+      <artifactId>royaleunit-ant-tasks</artifactId>
+      <version>${royale.compiler.version}</version>
+    </dependency>
 
     <!-- Add the framework js-swc modules -->
     <dependency>
