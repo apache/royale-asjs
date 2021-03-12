@@ -229,5 +229,6 @@
 	<component id="TextField" class="mx.text.TextField"/>
 	<component id="Rotate" class="mx.effects.Rotate"/>
 	<component id="NavBar" class="mx.controls.NavBar" />
+	<component id="ApplicationControlBar" class="mx.containers.ApplicationControlBar" />
 
 </componentPackage>
