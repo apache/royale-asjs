@@ -27,6 +27,8 @@ import mx.events.FlexEvent;
 
 import org.apache.royale.html.beads.IComboBoxView;
 import org.apache.royale.core.ISelectionModel;
+import mx.controls.listClasses.ListBase;
+import org.apache.royale.events.Event;
 
 COMPILE::SWF
 {
@@ -981,6 +983,59 @@ public class ComboBox extends ComboBase
         _prompt = value;
         promptChanged = true;
         invalidateProperties();
+    }
+    
+    //----------------------------------
+    //  itemRenderer
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for itemRenderer property.
+     */
+    private var _itemRenderer:IFactory;
+    private var _dropdown:ListBase;
+
+    [Inspectable(category="Data")]
+
+    /**
+     *  IFactory that generates the instances that displays the data for the
+     *  drop-down list of the control.  You can use this property to specify 
+     *  a custom item renderer for the drop-down list.
+     *
+     *  <p>The control uses a List control internally to create the drop-down
+     *  list.
+     *  The default item renderer for the List control is the ListItemRenderer
+     *  class, which draws the text associated with each item in the list, 
+     *  and an optional icon. </p>
+     *
+     *  @see mx.controls.List
+     *  @see mx.controls.listClasses.ListItemRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get itemRenderer():IFactory
+    {
+        return _itemRenderer;
+    }
+
+    /**
+     *  @private
+     */
+    public function set itemRenderer(value:IFactory):void
+    {
+        _itemRenderer = value;
+
+        if (_dropdown)
+            _dropdown.itemRenderer = value;
+
+        invalidateSize();
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("itemRendererChanged"));
     }
 
 
