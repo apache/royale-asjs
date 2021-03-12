@@ -950,6 +950,34 @@ public class Image extends UIComponent
 		}
 
 	}
+	
+	private var brokenImage:Boolean = false;
+	private var useUnloadAndStop:Boolean;
+	private var _source:Object;
+	private var contentChanged:Boolean = false;
+	
+	public function load(url:Object = null):void
+    {
+        if (url)
+            _source = url;
+        
+        //unloadContent();
+        
+        isContentLoaded = false;
+        brokenImage = false;
+        useUnloadAndStop = false;
+        
+        // Prevent double loading an app when properties are set and
+        // then load() is called directly from application code instead
+        // of from commitProperties().
+        contentChanged = false;
+        
+        if (!_source || _source == "")
+            return;
+        
+       // loadContent(_source);
+    }
+	
 
 }
 
