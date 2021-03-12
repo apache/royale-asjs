@@ -380,6 +380,7 @@ internal class MXRoyaleClasses
 	
 	import mx.printing.PrintJobOptions; PrintJobOptions;
 	import mx.text.TextFieldAutoSize; TextFieldAutoSize;
+	import mx.errors.ScriptTimeoutError; ScriptTimeoutError;
 
 }
 
