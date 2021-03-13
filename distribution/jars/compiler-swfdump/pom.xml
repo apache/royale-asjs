@@ -44,6 +44,7 @@
             <manifestEntries>
               <!-- The Ant build refers to "commons-io.jar" but with a path, that doesn't exist, so it must also work without -->
               <!--Class-Path>compiler-common.jar compiler.jar external/commons-io.jar</Class-Path-->
+              <!-- These paths are all defined the way the layout will be in the distribution -->
               <Class-Path>compiler-common.jar compiler.jar</Class-Path>
             </manifestEntries>
           </archive>
