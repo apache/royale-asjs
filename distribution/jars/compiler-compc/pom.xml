@@ -42,6 +42,7 @@
               <mainClass>org.apache.royale.compiler.clients.COMPC</mainClass>
             </manifest>
             <manifestEntries>
+              <!-- These paths are all defined the way the layout will be in the distribution -->
               <Class-Path>compiler-common.jar compiler.jar</Class-Path>
             </manifestEntries>
           </archive>

@@ -42,6 +42,7 @@
               <mainClass>org.apache.royale.compiler.clients.MXMLJSC</mainClass>
             </manifest>
             <manifestEntries>
+              <!-- These paths are all defined the way the layout will be in the distribution -->
               <Class-Path>args4j.jar jsc.jar</Class-Path>
             </manifestEntries>
           </archive>
