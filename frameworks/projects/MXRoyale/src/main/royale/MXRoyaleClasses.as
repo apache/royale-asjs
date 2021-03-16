@@ -385,9 +385,7 @@ internal class MXRoyaleClasses
     import mx.controls.beads.MultiSelectionListView; MultiSelectionListView; 
     import mx.controls.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
     import mx.controls.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
-	import mx.utils.Dictionary; Dictionary;
 	import mx.utils.DescribeTypeCache; DescribeTypeCache;
-	import mx.xml.XMLNode; XMLNode;
 
 }
 
