@@ -43,7 +43,11 @@ package mx.utils
 		{ 
 			super(); 
 		} 
-
+		public static function describeType(o:*):Object
+		{
+			var obj:Object;
+			return obj;
+		}
 
 	} 
 
