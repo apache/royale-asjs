@@ -57,7 +57,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.8
  */
-//[Event(name="repeat", type="mx.events.FlexEvent")]
+[Event(name="repeat", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched after all the subcomponents of a repeater are created.
@@ -71,7 +71,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.8
  */
-//[Event(name="repeatEnd", type="mx.events.FlexEvent")]
+[Event(name="repeatEnd", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when Flex begins processing the <code>dataProvider</code>
@@ -86,7 +86,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.8
  */
-//[Event(name="repeatStart", type="mx.events.FlexEvent")]
+[Event(name="repeatStart", type="mx.events.FlexEvent")]
 
 //--------------------------------------
 //  Other metadata
@@ -94,7 +94,7 @@ use namespace mx_internal;
 
 //[IconFile("Repeater.png")]
 
-[ResourceBundle("core")]
+//[ResourceBundle("core")]
 
 /**
  *  The Repeater class is the runtime object that corresponds
