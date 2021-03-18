@@ -154,6 +154,38 @@ import org.apache.royale.html.DataContainer;
 			IMultiSelectionModel(model).selectedItems = value;
 		}
 		
-	
+		//----------------------------------
+		//  includeInLayout
+		//----------------------------------
+
+		/**
+		 *  @private
+		 *  Storage for the includeInLayout property.
+		 */
+		private var _includeInLayout:Boolean = true;
+
+		/**
+		 *  @copy mx.core.UIComponent#includeInLayout
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function get includeInLayout():Boolean
+		{
+			return _includeInLayout;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set includeInLayout(value:Boolean):void
+		{
+			if (_includeInLayout != value)
+			{
+				_includeInLayout = value;
+			}
+		}
    	}
 }
