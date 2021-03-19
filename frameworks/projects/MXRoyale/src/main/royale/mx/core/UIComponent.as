@@ -591,6 +591,45 @@ import mx.display.NativeMenu;
  *  @productversion Flex 4
  */
 [Style(name="chromeColor", type="uint", format="Color", inherit="yes")]
+/**
+ *  Specifies the desired layout direction of a component. The allowed values
+ *  are <code>"ltr"</code> for left-to-right layout, used for 
+ *  components using Latin-style scripts, and <code>"rtl"</code> for
+ *  right-to-left layout, used for components using scripts such
+ *  as Arabic and Hebrew.
+ * 
+ *  <p>In ActionScript you can set the layoutDirection using the values 
+ *  <code>mx.core.LayoutDirection.LTR</code>, 
+ *  <code>mx.core.LayoutDirection.RTL</code> or 
+ *  <code>undefined</code>, to inherit the layoutDirection from the parent.</p>
+ * 
+ *  <p>The layoutDirection should typically be set on the 
+ *  <code>Application</code> rather than on individual components. If the 
+ *  layoutDirection is <code>"rtl"</code>, most visual elements, except text 
+ *  and images, will be mirrored.  The directionality of text is determined 
+ *  by the <code>direction</code> style.</p>
+ * 
+ *  <p>Components which handle Keyboard.LEFT and Keyboard.RIGHT events
+ *  typically swap the key’s meaning when layoutDirection is 
+ *  <code>“rtl”</code>.  In other words, left always means move left and
+ *  right always means move right, regardless of the 
+ *  <code>layoutDirection</code></p>
+ * 
+ *  <p>Note: This style applies to all Spark components and MX components that
+ *  specify UIFTETextField as their textFieldClass.</p> 
+ * 
+ *  @default "ltr"
+ * 
+ *  @see MXFTEText.css
+ *  @see mx.core.ILayoutDirectionElement
+ *  @see mx.core.LayoutDirection
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4.1
+ */
+[Style(name="layoutDirection", type="String", enumeration="ltr,rtl", inherit="yes")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
@@ -924,6 +963,22 @@ public class UIComponent extends UIBase
 	
        }
 	
+	
+    public function get layoutDirection():String
+    {
+        return "";
+    }
+    
+   
+    public function set layoutDirection(value:String):void
+    {
+        // Set the value to null to inherit the layoutDirection.
+        if (value == null)
+            setStyle("layoutDirection", undefined);
+        else
+            setStyle("layoutDirection", value);
+    }
+    
 	
     //----------------------------------
     //  initialized
