@@ -56,6 +56,7 @@ package org.apache.royale.events
 		public static const DEACTIVATE:String = "deactivate";
 		public static const ADDED:String = "added";
 		public static const REMOVED:String = "removed";
+		public static const CLOSE:String = "close";
 		
 		//--------------------------------------
 		//   Constructor
@@ -167,6 +168,7 @@ package org.apache.royale.events
 		public static const DEACTIVATE:String = "deactivate";
 		public static const ADDED:String = "added";
 		public static const REMOVED:String = "removed";
+		public static const CLOSE:String = "close";
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);
