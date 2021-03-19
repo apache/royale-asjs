@@ -44,6 +44,552 @@ import mx.utils.GraphicsUtil;
 use namespace mx_internal;
 
 //--------------------------------------
+//  Styles
+//--------------------------------------
+
+/**
+ *  Alpha level of the color defined by the <code>backgroundColor</code>
+ *  property.
+ *  Valid values range from 0.0 to 1.0.
+ *  @default 1.0
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="backgroundAlpha", type="Number", inherit="no")]
+
+/**
+ *  Background color of the DateChooser control.
+ *  
+ *  @default 0xFFFFF
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="backgroundColor", type="uint", format="Color", inherit="no")]
+
+/**
+ *  Alpha of the border.
+ *  @default 1
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Style(name="borderAlpha", type="Number", inherit="no")]
+
+/**
+ *  Color of the border.
+ *  The following controls support this style: Button, CheckBox,
+ *  ComboBox, MenuBar,
+ *  NumericStepper, ProgressBar, RadioButton, ScrollBar, Slider, and any
+ *  components that support the <code>borderStyle</code> style.
+ *  The default value depends on the component class;
+ *  if not overridden for the class, the default value is <code>0xB7BABC</code>
+ *  for the Halo theme and <code>0x696969</code> for the Spark theme.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="borderColor", type="uint", format="Color", inherit="no")]
+
+/**
+ *  Bounding box thickness.
+ *  Only used when <code>borderStyle</code> is set to <code>"solid"</code>.
+ *  @default 1
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="borderThickness", type="Number", format="Length", inherit="no")]
+
+/**
+ *  Visibility of the border.
+ *
+ *  @default 1
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Style(name="borderVisible", type="Boolean", inherit="no")]
+
+/**
+ *  The alpha of the content background for this component.
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Style(name="contentBackgroundAlpha", type="Number", inherit="yes")]
+
+/**
+ *  Color of the content area of the component.
+ *   
+ *  @default 0xFFFFFF
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */ 
+[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes")]
+
+/**
+ *  Radius of corners of the component.
+ *
+ *  The default value for the Halo theme is <code>4</code>.
+ *  The default value for the Spark theme is <code>0</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="cornerRadius", type="Number", format="Length", inherit="no")]
+
+/**
+ *  Color of focus ring when the component is in focus
+ *   
+ *  @default 0x70B2EE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */ 
+[Style(name="focusColor", type="uint", format="Color", inherit="yes")]
+
+/**
+ *  Colors of the band at the top of the DateChooser control.
+ *  The default value is <code>[ 0xE1E5EB, 0xF4F5F7 ]</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="headerColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
+
+/**
+ *  Name of the style sheet definition to configure the text (month name and year)
+ *  and appearance of the header area of the control.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="headerStyleName", type="String", inherit="no")]
+
+/**
+ *  Alpha transparencies used for the highlight fill of controls.
+ *  The first value specifies the transparency of the top of the highlight and the second value specifies the transparency 
+ *  of the bottom of the highlight. The highlight covers the top half of the skin.
+ *  
+ *  @default [ 0.3, 0.0 ]
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="highlightAlphas", type="Array", arrayType="Number", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next month arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextMonthSkin", type="Class", inherit="no", states="up, over, down, disabled")]
+
+/**
+ *  Name of the class to use as the skin for the next month arrow
+ *  when the arrow is disabled.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextMonthDisabledSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next month arrow
+ *  when the user presses the mouse button down on the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextMonthDownSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next month arrow
+ *  when the user moves the mouse pointer over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextMonthOverSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next month arrow
+ *  when the mouse pointer is not over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextMonthUpSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next year arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextYearSkin", type="Class", inherit="no", states="up, over, down, disabled")]
+
+/**
+ *  Name of the class to use as the skin for the next year arrow
+ *  when the arrow is disabled. 
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextYearDisabledSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next Year arrow
+ *  when the user presses the mouse button down on the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextYearDownSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next Year arrow
+ *  when the user moves the mouse pointer over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextYearOverSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the next Year arrow
+ *  when the mouse pointer is not over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserNextYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="nextYearUpSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous month arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevMonthSkin", type="Class", inherit="no", states="up, over, down, disabled")]
+
+/**
+ *  Name of the class to use as the skin for the previous month arrow
+ *  when the arrow is disabled.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevMonthDisabledSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous month arrow
+ *  when the user presses the mouse button down over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevMonthDownSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous month arrow
+ *  when the user holds the mouse pointer over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevMonthOverSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous month arrow
+ *  when the mouse pointer is not over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserMonthArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevMonthSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevMonthUpSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous year arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevYearSkin", type="Class", inherit="no", states="up, over, down, disabled")]
+
+/**
+ *  Name of the class to use as the skin for the previous Year arrow
+ *  when the arrow is disabled.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevYearDisabledSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous Year arrow
+ *  when the user presses the mouse button down over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevYearDownSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous Year arrow
+ *  when the user holds the mouse pointer over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevYearOverSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the class to use as the skin for the previous Year arrow
+ *  when the mouse button not over the arrow.
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserYearArrowSkin</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserPrevYearSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="prevYearUpSkin", type="Class", inherit="no")]
+
+/**
+ *  Color of the highlight area of the date when the user holds the
+ *  mouse pointer over a date in the DateChooser control.
+ *  
+ *  The default value for the Halo theme is <code>0xB2E1FF</code>.
+ *  The default value for the Spark theme is <code>0xCEDBEF</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="rollOverColor", type="uint", format="Color", inherit="yes")]
+
+/**
+ *  Name of the class to use as the skin for the 
+ *  highlight area of the date when the user holds the
+ *  mouse pointer over a date in the DateChooser control.
+ *
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserIndicator</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserRollOverIndicatorSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="rollOverIndicatorSkin", type="Class", inherit="no")]
+
+/**
+ *  Color of the highlight area of the currently selected date
+ *  in the DateChooser control.
+ * 
+ *  The default value for the Halo theme is <code>0x7FCEFF</code>.
+ *  The default value for the Spark theme is <code>0xA8C6EE</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="selectionColor", type="uint", format="Color", inherit="yes")]
+
+/**
+ *  Name of the class to use as the skin for the 
+ *  highlight area of the currently selected date
+ *  in the DateChooser control.
+ *
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserIndicator</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserSelectionIndicatorSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="selectionIndicatorSkin", type="Class", inherit="no")]
+
+/**
+ *  Color of any symbol of a component. Examples include the check mark of a CheckBox or
+ *  the arrow of a ScrollBar button.
+ *   
+ *  @default 0x000000
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */ 
+[Style(name="symbolColor", type="uint", format="Color", inherit="yes",)]
+
+/**
+ *  Color of the background of today's date.
+ * 
+ *  The default value for the Halo theme is <code>0x818181</code>
+ *  The default value for the Spark theme is <code>0xC6D0DB</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="todayColor", type="uint", format="Color", inherit="yes")]
+
+/**
+ *  Name of the class to use as the skin for the 
+ *  highlight area of today's date
+ *  in the DateChooser control.
+ *
+ *  The default value for the Halo theme is <code>mx.skins.halo.DateChooserIndicator</code>.
+ *  The default value for the Spark theme is <code>mx.skins.spark.DateChooserTodayIndicatorSkin</code>.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="todayIndicatorSkin", type="Class", inherit="no")]
+
+/**
+ *  Name of the style sheet definition to configure the appearance of the current day's
+ *  numeric text, which is highlighted
+ *  in the control when the <code>showToday</code> property is <code>true</code>.
+ *  Specify a "color" style to change the font color.
+ *  If omitted, the current day text inherits
+ *  the text styles of the control.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="todayStyleName", type="String", inherit="no")]
+
+/**
+ *  Name of the style sheet definition to configure the weekday names of
+ *  the control. If omitted, the weekday names inherit the text
+ *  styles of the control.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="weekDayStyleName", type="String", inherit="no")]
+
+//--------------------------------------
 //  Events
 //--------------------------------------
 
