@@ -292,7 +292,7 @@ import org.apache.royale.events.Event;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="textInputStyleName", type="String", inherit="no")]
+[Style(name="textInputStyleName", type="String", inherit="no")]
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
