@@ -81,6 +81,9 @@ Apache Royale 0.9.8
 - Collections
   - ArrayList.length now is bindable
 
+- Maven Distribtuon:
+  The distributions built by Maven should now be equivalent to those of the Ant build.
+  
 - Maven Archetypes:
   - updated royale-simple-application-archetype
   - new new royale-jewel-application-archetype
