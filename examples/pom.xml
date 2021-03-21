@@ -144,7 +144,7 @@
     </profile>
 
     <profile>
-      <id>with-cordova</id>
+      <id>option-with-cordova</id>
       <build>
         <pluginManagement>
           <plugins>
