@@ -39,8 +39,8 @@ import spark.components.supportClasses.RegExPatterns;
 import spark.events.IndexChangeEvent;
 import spark.events.ListEvent;
 import spark.events.RendererExistenceEvent;
-import spark.layouts.supportClasses.LayoutBase;
-import spark.utils.LabelUtil;*/
+import spark.layouts.supportClasses.LayoutBase;*/
+import spark.utils.LabelUtil;
 import mx.collections.IList;
 import mx.core.IFactory;
 import mx.core.mx_internal;
@@ -1447,11 +1447,11 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* override public function itemToLabel(item:Object):String
+    public function itemToLabel(item:Object):String
     {
         return LabelUtil.itemToLabel(item, labelField, labelFunction);
     }
-     */
+     
     //--------------------------------------------------------------------------
     //
     //  Methods
