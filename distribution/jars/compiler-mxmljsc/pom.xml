@@ -43,7 +43,7 @@
             </manifest>
             <manifestEntries>
               <!-- These paths are all defined the way the layout will be in the distribution -->
-              <Class-Path>args4j.jar jsc.jar</Class-Path>
+              <Class-Path>args4j.jar jsc.jar closure-compiler.jar</Class-Path>
             </manifestEntries>
           </archive>
         </configuration>

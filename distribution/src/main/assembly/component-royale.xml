@@ -88,6 +88,8 @@
             <includes>
                 <include>*:args4j:jar</include>
                 <include>*:asdoc:*</include><!-- missing -->
+                <include>*:closure-compiler:jar</include>
+                <include>*:closure-compiler-externs:jar</include>
                 <include>*:commons-io:*</include>
                 <include>org.apache.royale.compiler:compiler-playerglobalc:jar</include>
                 <include>*:dom4j:*</include>
