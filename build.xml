@@ -488,6 +488,8 @@ limitations under the License.
         <copy todir="${basedir}/js/libs" flatten="true">
             <fileset dir="${ROYALE_TYPEDEFS_HOME}">
                 <include name="**/*.swc"/>
+                <exclude name="airglobal/**/*.swc"/>
+                <exclude name="playerglobal/**/*.swc"/>
             </fileset>
         </copy>
         <antcall target="rename_jquery" />
