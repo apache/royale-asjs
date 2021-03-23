@@ -154,6 +154,10 @@
             <includes>
                 <include>org.apache.royale.typedefs:*:swc</include>
             </includes>
+            <excludes>
+                <exclude>org.apache.royale.typedefs:royale-typedefs-playerglobal:swc</exclude>
+                <exclude>org.apache.royale.typedefs:royale-typedefs-airglobal:swc</exclude>
+            </excludes>
             <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
         </dependencySet>
 
