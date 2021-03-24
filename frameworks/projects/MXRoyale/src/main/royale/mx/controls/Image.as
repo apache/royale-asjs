@@ -42,6 +42,8 @@ import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
+import mx.events.HTTPStatusEvent;
+
 /*
 
 use namespace mx_internal;
@@ -68,6 +70,18 @@ use namespace mx_internal;
  */
 [Event(name="dataChange", type="mx.events.FlexEvent")]
 
+/**
+ *  Dispatched when a network request is made over HTTP 
+ *  and Flash Player or AIR can detect the HTTP status code.
+ * 
+ *  @eventType mx.events.HTTPStatusEvent.HTTP_STATUS
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="httpStatus", type="mx.events.HTTPStatusEvent")]
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
