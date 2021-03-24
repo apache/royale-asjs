@@ -400,11 +400,12 @@
       </properties>
       <dependencies>
         <dependency>
-          <groupId>com.adobe.air.framework</groupId>
-          <artifactId>airglobal</artifactId>
-          <version>${air.version}</version>
+          <groupId>org.apache.royale.typedefs</groupId>
+          <artifactId>royale-typedefs-airglobal</artifactId>
+          <version>${royale.typedefs.version}</version>
           <type>swc</type>
           <scope>runtime</scope>
+          <classifier>swf</classifier>
         </dependency>
       </dependencies>
     </profile>
