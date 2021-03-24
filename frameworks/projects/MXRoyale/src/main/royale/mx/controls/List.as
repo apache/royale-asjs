@@ -350,6 +350,47 @@ public class List extends ListBase // implements IIMESupport
         super.dataProvider = value;
     }
      */
+     
+    //----------------------------------
+    //  editorDataField
+    //----------------------------------
+
+    [Inspectable(category="Data")]
+
+    /**
+     *  The name of the property of the item editor that contains the new
+     *  data for the list item.
+     *  For example, the default <code>itemEditor</code> is
+     *  TextInput, so the default value of the <code>editorDataField</code> property is
+     *  <code>"text"</code>, which specifies the <code>text</code> property of the
+     *  the TextInput control.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var editorDataField:String = "text";
+	
+	//----------------------------------
+    //  rendererIsEditor
+    //----------------------------------
+
+    [Inspectable(category="Data", defaultValue="false")]
+    
+    /**
+     *  Specifies whether the item renderer is also an item 
+     *  editor. If this property is <code>true</code>, Flex
+     *  ignores the <code>itemEditor</code> property.
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var rendererIsEditor:Boolean = false;
 
 }
 
