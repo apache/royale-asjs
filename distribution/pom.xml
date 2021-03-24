@@ -960,7 +960,64 @@
           <artifactId>swfobject</artifactId>
           <version>2.2</version>
         </dependency>
+      </dependencies>
+    </profile>
 
+    <profile>
+      <id>_create-distribution-in-folder</id>
+      <activation>
+        <property>
+          <name>distributionTargetFolder</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Not clean since this removes unpacked closure-library from temp folder and prevents the copy to js/lib/google folder -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>clean-distribution-target-folder</id>
+                <phase>clean</phase>
+                <goals>
+                  <goal>clean</goal>
+                </goals>
+                <configuration>
+                  <filesets>
+                    <fileset>
+                      <directory>${distributionTargetFolder}</directory>
+                    </fileset>
+                  </filesets>
+                  <failOnError>false</failOnError>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>create-distribution-folder</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <finalName>./</finalName>
+                  <appendAssemblyId>false</appendAssemblyId>
+                  <attach>false</attach>
+                  <outputDirectory>${distributionTargetFolder}</outputDirectory>
+                  <descriptors>
+                    <descriptor>src/main/assembly/${assembly.dir}</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
         <dependency>
           <groupId>com.adobe.flash</groupId>
           <artifactId>framework</artifactId>
@@ -1036,62 +1093,6 @@
           <type>zip</type>
         </dependency>
       </dependencies>
-    </profile>
-
-    <profile>
-      <id>_create-distribution-in-folder</id>
-      <activation>
-        <property>
-          <name>distributionTargetFolder</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <!-- Not clean since this removes unpacked closure-library from temp folder and prevents the copy to js/lib/google folder -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-clean-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>clean-distribution-target-folder</id>
-                <phase>clean</phase>
-                <goals>
-                  <goal>clean</goal>
-                </goals>
-                <configuration>
-                  <filesets>
-                    <fileset>
-                      <directory>${distributionTargetFolder}</directory>
-                    </fileset>
-                  </filesets>
-                  <failOnError>false</failOnError>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>create-distribution-folder</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                  <finalName>./</finalName>
-                  <appendAssemblyId>false</appendAssemblyId>
-                  <attach>false</attach>
-                  <outputDirectory>${distributionTargetFolder}</outputDirectory>
-                  <descriptors>
-                    <descriptor>src/main/assembly/${assembly.dir}</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <!-- <profile>
       <id>_os-windows</id>
