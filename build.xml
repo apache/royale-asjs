@@ -203,7 +203,7 @@
         <property name="no.thirdparty-downloads" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,copy-externs,copy-compiler,create-config"
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,copy-externs,copy-playerglobal,copy-airglobal,copy-compiler,create-config"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-compiler-home" unless="airsdk.found"
@@ -495,6 +495,24 @@ limitations under the License.
         <antcall target="rename_jquery" />
     </target>
     
+    <target name="copy-playerglobal" depends="check-typedefs-home" unless="env.PLAYERGLOBAL_HOME">
+        <copy todir="${basedir}/frameworks/libs/player/${playerglobal.version}" flatten="true" overwrite="true" failonerror="true">
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}/playerglobal/target">
+                <include name="playerglobal.swc"/>
+            </fileset>
+        </copy>
+        <property name="env.PLAYERGLOBAL_HOME" value="${basedir}/frameworks/libs/player"/>
+    </target>
+    
+    <target name="copy-airglobal" depends="check-typedefs-home" unless="env.AIR_HOME">
+        <copy todir="${basedir}/frameworks/libs/air" flatten="true" overwrite="true" failonerror="true">
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}/airglobal/target">
+                <include name="airglobal.swc"/>
+            </fileset>
+        </copy>
+        <property name="env.AIR_HOME" value="${basedir}"/>
+    </target>
+    
     <target name="copy-compiler" depends="check-compiler-home" description="Copy compiler jars to where they are supposed to go">
         <mkdir dir="${basedir}/lib" />
         <echo>Copying Compiler from ${ROYALE_COMPILER_REPO}</echo>
@@ -668,6 +686,8 @@ limitations under the License.
     <target name="frameworks" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
         <ant dir="${basedir}/frameworks">
             <property name="locale" value="${locale}"/>
+            <property name="env.PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}"/>
+            <property name="env.AIR_HOME" value="${env.AIR_HOME}"/>
         </ant>
         <antcall target="tweak-for-jsonly"/>
     </target>
