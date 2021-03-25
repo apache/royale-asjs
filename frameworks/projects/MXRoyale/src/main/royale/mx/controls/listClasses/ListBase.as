@@ -57,6 +57,8 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
+import mx.controls.dataGridClasses.DataGridListData;
+import mx.events.FlexEvent;
 
 use namespace mx_internal;
 
@@ -1779,6 +1781,119 @@ use namespace mx_internal;
 
         dispatchEvent(new Event("dataTipFunctionChanged"));
     }
+    
+    //----------------------------------
+    //  listData
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the listData property.
+     */
+    private var _listData:BaseListData;
+
+    [Bindable("dataChange")]
+    [Inspectable(environment="none")]
+
+    /**
+     *  
+     *  When a component is used as a drop-in item renderer or drop-in
+     *  item editor, Flex initializes the <code>listData</code> property
+     *  of the component with the additional data from the list control.
+     *  The component can then use the <code>listData</code> property
+     *  and the <code>data</code> property to display the appropriate
+     *  information as a drop-in item renderer or drop-in item editor.
+     *
+     *  <p>You do not set this property in MXML or ActionScript;
+     *  Flex sets it when the component is used as a drop-in item renderer
+     *  or drop-in item editor.</p>
+     *
+     *  @see mx.controls.listClasses.IDropInListItemRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get listData():BaseListData
+    {
+        return _listData;
+    }
+
+    /**
+     *  @private
+     */
+    public function set listData(value:BaseListData):void
+    {
+        _listData = value;
+    }
+	
+    //----------------------------------
+    //  data
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the data property.
+     */
+    private var _data:Object = null;
+
+    [Bindable("dataChange")]
+    [Inspectable(environment="none")]
+
+    /**
+     *  The item in the data provider this component should render when
+     *  this component is used as an item renderer or item editor.
+     *  The list class sets this property on each renderer or editor
+     *  and the component displays the data.  ListBase-derived classes
+     *  support this property for complex situations like having a
+     *  List of DataGrids or a DataGrid where one column is a List.
+     *
+     *  <p>The list classes use the <code>listData</code> property
+     *  in addition to the <code>data</code> property to determine what
+     *  to display.
+     *  If the list class is in a DataGrid it expects the <code>dataField</code>
+     *  property of the column to map to a property in the data
+     *  and sets <code>selectedItem</code> value to that property.
+     *  If it is in a List or TileList control, it expects the 
+     *  <code>labelField</code> property of the list to map to a property 
+     *  in the data, and sets <code>selectedItem</code> value to that property.
+     *  Otherwise it sets the <code>selectedItem</code> to the data itself.</p>
+     * 
+     *  <p>This property uses the data provider but does not set it. 
+     *  In all cases, you must set the data provider in some other way.</p>
+     *
+     *  <p>You do not set this property in MXML.</p>
+     *
+     *  @see mx.core.IDataRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get data():Object
+    {
+        return _data;
+    }
+
+    /**
+     *  @private
+     */
+    public function set data(value:Object):void
+    {
+        _data = value;
+
+        if (_listData && _listData is DataGridListData)
+            selectedItem = _data[DataGridListData(_listData).dataField];
+        else if (_listData is ListData && ListData(_listData).labelField in _data)
+            selectedItem = _data[ListData(_listData).labelField];
+        else
+            selectedItem = _data;
+
+        dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+    }
+    
 
     }
 }
