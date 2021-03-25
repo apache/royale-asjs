@@ -1161,7 +1161,7 @@ public class Container extends UIComponent
 	 *  @private
 	 *  Storage for the data property;
 	 */
-	private var _data:Object;
+	private var _data:Object = null;
 	
 	[Bindable("dataChange")]
 	[Inspectable(environment="none")]
