@@ -41,6 +41,14 @@
     <condition property="swf.distribution">
         <isset property="env.AIR_HOME" />
     </condition>
+    <condition property="AIR_HOME" value="${env.AIR_HOME}">
+        <isset property="env.AIR_HOME" />
+    </condition>
+    <property name="AIR_HOME" value="${ROYALE_HOME}"/>
+    <condition property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}">
+        <isset property="env.PLAYERGLOBAL_HOME" />
+    </condition>
+    <property name="PLAYERGLOBAL_HOME" value="${ROYALE_HOME}/frameworks/libs/player"/>
 
     <property name="debug" value="true"/>
     <property name="strict" value="true"/>
@@ -504,7 +512,6 @@ limitations under the License.
                 <include name="playerglobal.swc"/>
             </fileset>
         </copy>
-        <property name="env.PLAYERGLOBAL_HOME" value="${basedir}/frameworks/libs/player"/>
     </target>
     
     <target name="copy-airglobal" depends="check-typedefs-home" unless="env.AIR_HOME">
@@ -513,7 +520,6 @@ limitations under the License.
                 <include name="airglobal.swc"/>
             </fileset>
         </copy>
-        <property name="env.AIR_HOME" value="${basedir}"/>
     </target>
     
     <target name="copy-compiler" depends="check-compiler-home" description="Copy compiler jars to where they are supposed to go">
@@ -689,8 +695,6 @@ limitations under the License.
     <target name="frameworks" description="Full build of all Actionscript framework SWCs, including resource bundles and themes" unless="airsdk.found">
         <ant dir="${basedir}/frameworks">
             <property name="locale" value="${locale}"/>
-            <property name="env.PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}"/>
-            <property name="env.AIR_HOME" value="${env.AIR_HOME}"/>
         </ant>
         <antcall target="tweak-for-jsonly"/>
     </target>

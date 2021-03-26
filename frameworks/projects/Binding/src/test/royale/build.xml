@@ -86,7 +86,7 @@
             <arg value="-debug=true" />
             <arg value="-compiler.targets=SWF" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${PLAYERGLOBAL_HOME}" />
         </mxmlc>
     </target>
 
