@@ -17,21 +17,17 @@
  */
 package org.apache.royale.svg
 {
-    import org.apache.royale.core.GroupBase;
-    import org.apache.royale.core.IChild;
+	import org.apache.royale.core.GroupBase;
+	import org.apache.royale.core.IChild;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.core.IMXMLDocument;
-    import org.apache.royale.core.IRoyaleElement;
-    import org.apache.royale.core.ITransformHost;
-    import org.apache.royale.events.ValueEvent;
-    import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.core.ITransformHost;
+	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.core.ValuesManager;
 
 	COMPILE::JS
 	{
-		import org.apache.royale.core.IContainer;
-		import org.apache.royale.core.UIBase;
-		import org.apache.royale.events.Event;
 		import org.apache.royale.html.util.addSvgElementToWrapper;
 	}
 
@@ -173,21 +169,39 @@ package org.apache.royale.svg
 			return graphicGroup.numElements;
 		}
 
+		/**
+		 *  @copy org.apache.royale.core.ILayoutChild#setX
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion HTMLElement
+		 */
 		COMPILE::JS
-        override public function set x(value:Number):void
-        {
-			super.x = value;
+		override public function setX(value:Number):void
+		{
+			positioner.style.left = value.toString() + 'px';
 			// Needed for SVG inside SVG
 			element.setAttribute("x", value);
-        }
-
+		}
+		
+		/**
+		 *  @copy org.apache.royale.core.ILayoutChild#setY
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion HTMLElement
+		 */
 		COMPILE::JS
-        override public function set y(value:Number):void
-        {
-			super.y = value;
+		override public function setY(value:Number):void
+		{
+			positioner.style.top = value.toString() + 'px';
 			// Needed for SVG inside SVG
 			element.setAttribute("y", value);
-        }
+		}
 
 		/**
 		 *  @copy org.apache.royale.core.Application#MXMLDescriptor
