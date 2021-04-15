@@ -29,7 +29,7 @@
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-asc</artifactId>
-  <version>${project.royale.compiler.version}</version>
+  <version>0.9.8-SNAPSHOT</version>
 
   <build>
     <plugins>
