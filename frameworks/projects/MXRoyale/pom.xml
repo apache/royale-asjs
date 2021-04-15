@@ -37,7 +37,7 @@
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
-        <version>${royale.compiler.version}</version>
+        <version>${project.royale.compiler.version}</version>
         <extensions>true</extensions>
         <configuration combine.children="append">
           <namespaces>

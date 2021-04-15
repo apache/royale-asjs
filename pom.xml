@@ -55,7 +55,7 @@
     <maven.version>3.5.4</maven.version>
 
     <royale.build-tools.version>1.2.1</royale.build-tools.version>
-    <royale.compiler.version>0.9.8-SNAPSHOT</royale.compiler.version>
+    <project.royale.compiler.version>0.9.8-SNAPSHOT</project.royale.compiler.version>
     <royale.typedefs.version>0.9.8-SNAPSHOT</royale.typedefs.version>
 
     <royale.targets>JSRoyale</royale.targets>
@@ -154,7 +154,7 @@
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
           <artifactId>royale-maven-plugin</artifactId>
-          <version>${royale.compiler.version}</version>
+          <version>${project.royale.compiler.version}</version>
           <extensions>true</extensions>
           <configuration>
             <targetPlayer>${flash.version}</targetPlayer>
@@ -172,7 +172,7 @@
             <dependency>
               <groupId>org.apache.royale.compiler</groupId>
               <artifactId>compiler-jx</artifactId>
-              <version>${royale.compiler.version}</version>
+              <version>${project.royale.compiler.version}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -426,7 +426,7 @@
           <plugin>
             <groupId>org.apache.royale.compiler</groupId>
             <artifactId>royale-maven-plugin</artifactId>
-            <version>${royale.compiler.version}</version>
+            <version>${project.royale.compiler.version}</version>
             <extensions>true</extensions>
             <configuration>
               <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>
