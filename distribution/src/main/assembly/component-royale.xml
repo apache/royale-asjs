@@ -313,12 +313,12 @@
 
         <!-- Rename main js dummy jar artifacts to "mxmlc.jar" and "compc.jar" that is what an IDE expects to find -->
         <file>
-            <source>jars/compiler-mxmljsc/target/compiler-mxmljsc-${royale.compiler.version}.jar</source>
+            <source>jars/compiler-mxmljsc/target/compiler-mxmljsc-${project.royale.compiler.version}.jar</source>
             <outputDirectory>js/lib</outputDirectory>
             <destName>mxmlc.jar</destName>
         </file>
         <file>
-            <source>jars/compiler-compjsc/target/compiler-compjsc-${royale.compiler.version}.jar</source>
+            <source>jars/compiler-compjsc/target/compiler-compjsc-${project.royale.compiler.version}.jar</source>
             <outputDirectory>js/lib</outputDirectory>
             <destName>compc.jar</destName>
         </file>
