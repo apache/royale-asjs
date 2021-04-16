@@ -29,7 +29,7 @@
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-compc</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>${project.royale.compiler.version}</version>
 
   <build>
     <plugins>
