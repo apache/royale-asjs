@@ -85,11 +85,11 @@ package org.apache.royale.html.beads.models
 				{
 					if (_selectedIndices[i] < length)
 					{
-						indices.push(value.getItemAt(_selectedIndices[i]));
+						indices.push(_selectedIndices[i]);
 					}
-					_selectedIndices = indices;
-					syncItemsAndIndices();
 				}
+				_selectedIndices = indices;
+				syncItemsAndIndices();
 			}
 			dispatchEvent(new Event("dataProviderChanged"));
 		}
