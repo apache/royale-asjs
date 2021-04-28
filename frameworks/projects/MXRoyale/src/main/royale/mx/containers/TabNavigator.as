@@ -25,6 +25,7 @@ import mx.controls.Button;
 import mx.core.Container;
 import mx.core.EdgeMetrics;
 import mx.managers.IFocusManagerComponent;
+import mx.controls.TabBar;
 
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
@@ -413,11 +414,13 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+    protected var tabBar:TabBar;
     public function getTabAt(index:int):Button
     {
         // TODO
-        trace("cacheAsBitmap not implemented");
-        return null;
+        //trace("cacheAsBitmap not implemented");
+        //return null;
+		return Button(tabBar.getChildAt(index));
     }
 
     
