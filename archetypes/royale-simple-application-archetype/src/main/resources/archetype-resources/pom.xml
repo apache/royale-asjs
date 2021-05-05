@@ -75,7 +75,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${royale.framework.version}</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -129,7 +129,7 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>${royale.framework.version}</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
