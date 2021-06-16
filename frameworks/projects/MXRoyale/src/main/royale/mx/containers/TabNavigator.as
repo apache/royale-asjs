@@ -23,6 +23,7 @@ package mx.containers
 import mx.containers.beads.TabNavigatorView;
 import mx.controls.Button;
 import mx.core.Container;
+import mx.core.UIComponent;
 import mx.core.EdgeMetrics;
 import mx.managers.IFocusManagerComponent;
 import mx.controls.TabBar;
@@ -415,12 +416,15 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
      *  @productversion Flex 3
      */
     protected var tabBar:TabBar;
+
+    /**
+     * @royaleignorecoercion mx.controls.Button
+     */
     public function getTabAt(index:int):Button
     {
-        // TODO
-        //trace("cacheAsBitmap not implemented");
-        //return null;
-		return Button(tabBar.getChildAt(index));
+        // TODO make sure a real mx.controls.Button is returned instead of Basic's TextButtonItemRenderer
+
+		return ((view as TabNavigatorView).tabBar as UIComponent).getChildAt(index) as Button;
     }
 
     
