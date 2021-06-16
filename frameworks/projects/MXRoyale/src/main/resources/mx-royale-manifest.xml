@@ -57,6 +57,7 @@
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BasicLayout" class="mx.containers.beads.layouts.BasicLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
+	<component id="ButtonBarLayout" class="mx.containers.beads.ButtonBarLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
     <component id="PopUpButton" class="mx.controls.PopUpButton"/>
@@ -78,6 +79,7 @@
 	<component id="State" class="mx.states.State" />
     <component id="Transition" class="mx.states.Transition" />
 	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
+	<component id="ButtonItemRenderer" class="mx.supportClasses.ButtonItemRenderer" />
 	<component id="ArrayList" class="mx.collections.ArrayList"/>
 	<component id="UIComponent" class="mx.core.UIComponent"/>
 	<component id="Container" class="mx.core.Container"/>
