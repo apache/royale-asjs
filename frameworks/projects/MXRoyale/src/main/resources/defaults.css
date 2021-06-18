@@ -298,6 +298,7 @@ FormItem
 {
 	IBeadView: ClassReference("mx.containers.beads.FormItemView");
 	IContentView: ClassReference("mx.containers.beads.FormItemContainer");
+	indicatorSkin: ClassReference("mx.supportClasses.FormItemRequired");
 	indicatorGap: 14px;
 }
 

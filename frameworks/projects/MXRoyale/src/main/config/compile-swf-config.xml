@@ -137,6 +137,14 @@
         <name>assets/icon_style_underline.png</name>
         <path>../resources/assets/icon_style_underline.png</path>
     </include-file>
+    <include-file>
+        <name>assets/icon_required_indicator.png</name>
+        <path>../resources/assets/icon_required_indicator.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_error_indicator.png</name>
+        <path>../resources/assets/icon_error_indicator.png</path>
+    </include-file>
 
     <include-lookup-only>true</include-lookup-only>
 

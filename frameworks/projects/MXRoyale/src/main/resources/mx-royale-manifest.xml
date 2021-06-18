@@ -80,6 +80,7 @@
     <component id="Transition" class="mx.states.Transition" />
 	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
 	<component id="ButtonItemRenderer" class="mx.supportClasses.ButtonItemRenderer" />
+	<component id="FormItemRequired" class="mx.supportClasses.FormItemRequired" />
 	<component id="ArrayList" class="mx.collections.ArrayList"/>
 	<component id="UIComponent" class="mx.core.UIComponent"/>
 	<component id="Container" class="mx.core.Container"/>
