@@ -1893,6 +1893,16 @@ use namespace mx_internal;
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
     }
+	
+	public function measureHeightOfItems(index:int = -1, count:int = 0):Number
+    {
+        return NaN;
+    }
+	
+	public function measureWidthOfItems(index:int = -1, count:int = 0):Number
+    {
+        return NaN;
+    }
     
 
     }

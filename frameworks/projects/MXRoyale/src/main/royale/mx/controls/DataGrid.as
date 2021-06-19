@@ -958,7 +958,136 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     public function set selectionColor(value:uint):void {} // not implemented
     public function set headerSeparatorSkin(value:Class):void {} // not implemented
     
-    public function set editable(value:Boolean):void {} // not implemented
+    //public function set editable(value:Boolean):void {} // not implemented
+	
+	//----------------------------------
+    //  editable
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the draggableColumns property.
+     */
+    private var _editable:Boolean = false;
+    
+    [Inspectable(category="General")]
+
+    /**
+     *  A flag that indicates whether or not the user can edit
+     *  items in the data provider.
+     *  If <code>true</code>, the item renderers in the control are editable.
+     *  The user can click on an item renderer to open an editor.
+     *
+     *  <p>You can turn off editing for individual columns of the
+     *  DataGrid control using the <code>DataGridColumn.editable</code> property,
+     *  or by handling the <code>itemEditBeginning</code> and
+     *  <code>itemEditBegin</code> events</p>
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get editable():Boolean
+    {
+        return _editable;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set editable(value:Boolean):void
+    {
+        _editable = value;
+    }
+	
+	//----------------------------------
+    //  editedItemPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    private var bEditedItemPositionChanged:Boolean = false;
+
+    /**
+     *  @private
+     *  undefined means we've processed it
+     *  null means don't put up an editor
+     *  {} is the coordinates for the editor
+     */
+    private var _proposedEditedItemPosition:*;
+
+    /**
+     *  @private
+     *  the last editedItemPosition and the last
+     *  position where editing was attempted if editing
+     *  was cancelled.  We restore editing
+     *  to this point if we get focus from the TAB key
+     */
+    private var lastEditedItemPosition:*;
+
+    /**
+     *  @private
+     */
+    private var _editedItemPosition:Object;
+
+    /**
+     *  @private
+     */
+    private var itemEditorPositionChanged:Boolean = false;
+
+
+    [Bindable("itemFocusIn")]
+
+    /**
+     *  The column and row index of the item renderer for the
+     *  data provider item being edited, if any.
+     *
+     *  <p>This Object has two fields, <code>columnIndex</code> and 
+     *  <code>rowIndex</code>,
+     *  the zero-based column and row indexes of the item.
+     *  For example: {columnIndex:2, rowIndex:3}</p>
+     *
+     *  <p>Setting this property scrolls the item into view and
+     *  dispatches the <code>itemEditBegin</code> event to
+     *  open an item editor on the specified item renderer.</p>
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get editedItemPosition():Object
+    {
+        if (_editedItemPosition)
+            return {rowIndex: _editedItemPosition.rowIndex,
+                columnIndex: _editedItemPosition.columnIndex};
+        else
+            return _editedItemPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set editedItemPosition(value:Object):void
+    {
+        if (!value)
+        {
+            //setEditedItemPosition(null);
+            return;
+        }
+ 
+        var newValue:Object = {rowIndex: value.rowIndex,
+            columnIndex: value.columnIndex};
+
+        //setEditedItemPosition(newValue);
+    }
+
     /**
      *  @private
      *  Storage for the headerHeight property.

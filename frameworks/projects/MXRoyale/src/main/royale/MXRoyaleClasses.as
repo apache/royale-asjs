@@ -387,6 +387,8 @@ internal class MXRoyaleClasses
     import mx.controls.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
 	import mx.utils.DescribeTypeCache; DescribeTypeCache;
 	import mx.events.FocusRequestDirection; FocusRequestDirection;
+	import mx.core.IBorder; IBorder;
+	import mx.core.IRectangularBorder; IRectangularBorder;
 
 }
 

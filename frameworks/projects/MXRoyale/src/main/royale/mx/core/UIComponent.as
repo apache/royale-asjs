@@ -6747,6 +6747,92 @@ COMPILE::JS
 		   _contextMenu = value
 		}
 	}
+	
+	
+	public function drawFocus(isFocused:Boolean):void
+    {
+        // Gets called by removeChild() after un-parented.
+    /*    if (!parent)
+            return;
+
+        var focusObj:DisplayObject = getFocusObject();
+        var focusPane:Sprite = focusManager ? focusManager.focusPane : null;
+
+        if (isFocused && !preventDrawFocus) //&& !isEffectStarted
+        {
+            var focusOwner:DisplayObjectContainer = focusPane.parent;
+
+            if (focusOwner != parent)
+            {
+                if (focusOwner)
+                {
+                    if (focusOwner is ISystemManager)
+                        ISystemManager(focusOwner).focusPane = null;
+                    else
+                        IUIComponent(focusOwner).focusPane = null;
+                }
+                if (parent is ISystemManager)
+                    ISystemManager(parent).focusPane = focusPane;
+                else
+                    IUIComponent(parent).focusPane = focusPane;
+            }
+
+            var focusClass:Class = getStyle("focusSkin");
+
+            if (!focusClass)
+                return;
+
+            if (focusObj && !(focusObj is focusClass))
+            {
+                focusPane.removeChild(focusObj);
+                focusObj = null;
+            }
+
+            if (!focusObj)
+            {
+                focusObj = new focusClass();
+                
+                focusObj.name = "focus";
+
+                focusPane.addChild(focusObj);
+            }
+
+            if (focusObj is ILayoutManagerClient )
+                ILayoutManagerClient (focusObj).nestLevel = nestLevel;
+
+            if (focusObj is ISimpleStyleClient)
+                ISimpleStyleClient(focusObj).styleName = this;
+
+            addEventListener(MoveEvent.MOVE, focusObj_moveHandler, true);
+            addEventListener(MoveEvent.MOVE, focusObj_moveHandler);
+            addEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler, true);
+            addEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler);
+            addEventListener(Event.REMOVED, focusObj_removedHandler, true);
+
+            focusObj.visible = true;
+            hasFocusRect = true;
+
+            adjustFocusRect();
+        }
+        else if (hasFocusRect)
+        {
+            hasFocusRect = false;
+
+            if (focusObj)
+            {
+                focusObj.visible = false;
+                
+                if (focusObj is ISimpleStyleClient)
+                  ISimpleStyleClient(focusObj).styleName = null;
+            }
+
+            removeEventListener(MoveEvent.MOVE, focusObj_moveHandler);
+            removeEventListener(MoveEvent.MOVE, focusObj_moveHandler, true);
+            removeEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler, true);
+            removeEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler);
+            removeEventListener(Event.REMOVED, focusObj_removedHandler, true);
+        }  */
+    }
 
 }
 

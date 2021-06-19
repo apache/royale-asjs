@@ -354,6 +354,8 @@ public class ScrollControlBase extends UIComponent
     //----------------------------------
     //  borderMetrics
     //----------------------------------
+	
+	protected var border:IFlexDisplayObject;
 
     /**
      *  Returns an EdgeMetrics object that has four properties:
@@ -370,11 +372,11 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get borderMetrics():EdgeMetrics
-//    {
-//        return (border && border is IRectangularBorder) ?
-//                IRectangularBorder(border).borderMetrics : EdgeMetrics.EMPTY;
-//    }
+    public function get borderMetrics():EdgeMetrics
+    {
+        return (border && border is IRectangularBorder) ?
+                IRectangularBorder(border).borderMetrics : EdgeMetrics.EMPTY;
+    }
 
     //----------------------------------
     //  horizontalScrollPosition

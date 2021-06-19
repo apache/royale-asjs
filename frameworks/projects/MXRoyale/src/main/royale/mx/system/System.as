@@ -79,5 +79,9 @@ package mx.system
 				document.body.removeChild( span );
 			}
 		}
+		
+		public static function get totalMemory():uint {
+			return 0;
+		}
 	}
 }
