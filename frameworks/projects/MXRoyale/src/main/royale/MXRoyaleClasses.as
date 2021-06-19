@@ -386,6 +386,7 @@ internal class MXRoyaleClasses
     import mx.controls.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
     import mx.controls.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
 	import mx.utils.DescribeTypeCache; DescribeTypeCache;
+	import mx.events.FocusRequestDirection; FocusRequestDirection;
 
 }
 
