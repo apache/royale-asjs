@@ -2479,6 +2479,11 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 	{
 	
 	}
+	
+	public function activate():void
+    {
+		trace("IFocusManager.activate in FocusManager is not implemented");
+    }
     
 }
 
