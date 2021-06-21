@@ -389,6 +389,7 @@ internal class MXRoyaleClasses
 	import mx.events.FocusRequestDirection; FocusRequestDirection;
 	import mx.core.IBorder; IBorder;
 	import mx.core.IRectangularBorder; IRectangularBorder;
+	import mx.events.EventPhase; EventPhase;
 
 }
 
