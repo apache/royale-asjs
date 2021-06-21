@@ -372,7 +372,7 @@ package org.apache.royale.jewel.beads.validators
 
 				_host = UIUtils.findPopUpHost(hostComponent);
 				_host.popUpParent.addElement(_errorTip, false);
-				IEventDispatcher(_host.popUpParent).addEventListener("cleanValidationErrors", destroyErrorTip);
+				IEventDispatcher(_host.popUpParent).addEventListener("cleanValidationErrors", cleanValidationErrorsHandler);
 			}
 			COMPILE::JS
 			{
@@ -410,7 +410,7 @@ package org.apache.royale.jewel.beads.validators
 			window.removeEventListener('scroll', repositionHandler, true);
 			}
 			if(_errorTip){
-				IEventDispatcher(_errorTip.parent).removeEventListener("cleanValidationErrors", destroyErrorTip);
+				IEventDispatcher(_errorTip.parent).removeEventListener("cleanValidationErrors", cleanValidationErrorsHandler);
 				_errorTip.parent.removeElement(_errorTip);
 				_errorTip = null;
 			}
@@ -479,6 +479,11 @@ package org.apache.royale.jewel.beads.validators
 			pt = PointUtils.localToGlobal(pt, hostComponent);
 
 			return pt;
+		}
+
+		protected function cleanValidationErrorsHandler(event:Event):void
+		{
+			destroyErrorTip();
 		}
 
         /**
