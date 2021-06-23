@@ -112,6 +112,7 @@ import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
 import mx.display.NativeMenu;
+import mx.binding.BindingManager;
 
 /**
  *  Set a different class for click events so that
@@ -898,8 +899,55 @@ public class UIComponent extends UIBase
     
     public function executeBindings(recurse:Boolean = false):void
     {
-	   recurse = false;
-	   trace("UIComponent.executeBindings is not implemented");
+	   var bindingsHost:Object = descriptor && descriptor.document ? descriptor.document : parentMxmlDocument;
+       BindingManager.executeBindings(bindingsHost, id, this);
+	   //recurse = false;
+	   //trace("UIComponent.executeBindings is not implemented");
+	   
+    }
+
+
+	//----------------------------------
+	//  descriptor
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the descriptor property.
+     *  This variable is initialized in the construct() method
+     *  using the _descriptor in the initObj, which is set in
+     *  createComponentFromDescriptor().
+     *  If this UIComponent was not created by createComponentFromDescriptor(),
+     *  its 'descriptor' property is null.
+     */
+    mx_internal var _descriptor:UIComponentDescriptor;
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  Reference to the UIComponentDescriptor, if any, that was used
+     *  by the <code>createComponentFromDescriptor()</code> method to create this
+     *  UIComponent instance. If this UIComponent instance
+     *  was not created from a descriptor, this property is null.
+     *
+     *  @see mx.core.UIComponentDescriptor
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get descriptor():UIComponentDescriptor
+    {
+        return _descriptor;
+    }
+
+    /**
+     *  @private
+     */
+    public function set descriptor(value:UIComponentDescriptor):void
+    {
+        _descriptor = value;
     }
 
     //--------------------------------------------------------------------------
