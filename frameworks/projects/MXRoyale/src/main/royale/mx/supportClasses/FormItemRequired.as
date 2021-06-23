@@ -35,6 +35,7 @@ package mx.supportClasses
 			super();
 			width = 23;
 			height = 23;
+			id = "RedSymbolID";
 			source = "assets/icon_required_indicator.png";
 		}
 	}
