@@ -692,9 +692,17 @@ public class SortField extends EventDispatcher implements ISortField
                 if (result == null)
                 {
                     if (_name.charAt(0) == '@')
-                        result = obj["attribute"](_name);
+                    {
+                        var fa:* = obj["attribute"];
+                        if (fa && typeof(fa) === "function")
+                            result = fa(_name);
+                    }
                     else
-                        result = obj["child"](_name).toString();
+                    {
+                        var fc:* = obj["child"];
+                        if (fc && typeof(fc) === "function")
+                            result = fc(_name).toString();
+                    }
                 }
             }
         }

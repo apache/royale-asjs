@@ -520,9 +520,17 @@ package org.apache.royale.utils
                 if (value == null)
                 {
                     if (n.charAt(0) == '@')
-                        value = obj["attribute"](n);
+                    {
+                        var fa:* = obj["attribute"];
+                        if (fa && typeof(fa) === "function")
+                            value = fa(n);
+                    }
                     else
-                        value = obj["child"](n).toString();
+                    {
+                        var fc:* = obj["child"];
+                        if (fc && typeof(fc) === "function")
+                            value = fc(n).toString();
+                    }
                 }
             }
             return value;
