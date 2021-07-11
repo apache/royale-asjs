@@ -38,8 +38,11 @@ COMPILE::JS{
 	{
         COMPILE::SWF
         {
+            var s:String = flash.utils.getQualifiedClassName(value);
+            if (s === "builtin.as$0::MethodClosure")
+                return s;  // don't replace ::
             //normalize for Vector:
-            return flash.utils.getQualifiedClassName(value).replace('__AS3__.vec::','').replace('::','.');
+            return s.replace('__AS3__.vec::','').replace('::','.');
         }
         COMPILE::JS
         {
@@ -87,6 +90,8 @@ COMPILE::JS{
                     }
                 }
                 if (!classInfo) {
+                    if (defName === "function") return "builtin.as$0::MethodClosure";
+
                     //fallback
                     return "Object";
                 }

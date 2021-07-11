@@ -244,6 +244,30 @@ package flexUnitTests.reflection
             assertEquals( def.name, "Vector.<uint>", "Unexpected type name");
         
         }
+
+
+        [Test]
+        public function testFunctionClass():void
+        {
+//            assertEquals( getQualifiedClassName(Function), "Function", "Unexpected type name");
+//            assertEquals( getDefinitionByName("Function"), Function, "Unexpected type");
+            
+//            var def:TypeDefinition = describeType(Function);
+//            assertEquals( def.name, "Function", "Unexpected type name");
+        
+        }
+    
+    
+        [Test]
+        public function testFunctionInstance():void
+        {
+            var inst:Function = testFunctionClass;
+            assertEquals( getQualifiedClassName(inst), "builtin.as$0::MethodClosure", "Unexpected type name");
+    
+//            var def:TypeDefinition = describeType(inst);
+//            assertEquals( def.name, "builtin.as$0::MethodClosure", "Unexpected type name");
+        
+        }
         
     }
 }
