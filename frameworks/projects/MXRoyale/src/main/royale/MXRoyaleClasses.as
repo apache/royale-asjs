@@ -398,6 +398,9 @@ internal class MXRoyaleClasses
 	import mx.data.EncryptedLocalStore; EncryptedLocalStore;
 	import mx.filesystem.File; File;
 	import mx.system.Capabilities; Capabilities;
+	import mx.filesystem.FileMode; FileMode;
+	import mx.filesystem.FileStream; FileStream;
+
 
 }
 
