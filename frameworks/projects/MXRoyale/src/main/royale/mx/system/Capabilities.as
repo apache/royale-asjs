@@ -16,23 +16,48 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.dummy
+
+package mx.system
 {
-    import org.apache.royale.events.EventDispatcher;
+	
+	public class Capabilities
+	{
+		/**
+		 *  Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.0
+		 *  @productversion Royale 0.9.8
+		 */
 
-    public class ContextMenuItem extends EventDispatcher
-    {
-	   public function ContextMenuItem(caption:String, separatorBefore:Boolean = false, enabled:Boolean = true, visible:Boolean = true) {
-			//super(caption, separatorBefore, enabled,visible);
-	   }
-	   
-		public var _caption:String = "";
-	    public function get caption():String {
-			return _caption;
+		public function Capabilities()
+		{
+			super();
 		}
-		public function set caption(value:String):void {
-			_caption = value;
-		}
+		
+		//----------------------------------
+		//  os
+		//----------------------------------
 
-    }
+		/**
+		 *  @private
+		 *  Storage for the <code>os</code> property.
+		 */
+		private var _os:String = "OS";
+
+		/**
+		 *  @inheritDoc
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public static function get os():String
+		{
+			return "OS";
+		}
+		
+	}
 }

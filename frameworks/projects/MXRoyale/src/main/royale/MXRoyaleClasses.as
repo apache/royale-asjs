@@ -395,6 +395,9 @@ internal class MXRoyaleClasses
 	import mx.binding.Binding; Binding;
 	import mx.binding.IBindingClient; IBindingClient;
 	import mx.binding.BindingManager; BindingManager;
+	import mx.data.EncryptedLocalStore; EncryptedLocalStore;
+	import mx.filesystem.File; File;
+	import mx.system.Capabilities; Capabilities;
 
 }
 
