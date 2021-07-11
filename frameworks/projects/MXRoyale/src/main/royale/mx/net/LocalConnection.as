@@ -17,52 +17,23 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package mx.system
+
+package mx.net
 {
-	
-	public class Capabilities
-	{
-		/**
-		 *  Constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.0
-		 *  @productversion Royale 0.9.8
-		 */
 
-		public function Capabilities()
-		{
-			super();
-		}
-		
-		//----------------------------------
-		//  os
-		//----------------------------------
 
-		/**
-		 *  @private
-		 *  Storage for the <code>os</code> property.
-		 */
-		private var _os:String = "OS";
+import org.apache.royale.events.EventDispatcher;
 
-		/**
-		 *  @inheritDoc
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public static function get os():String
-		{
-			trace("os in Capabilities is not implemented");
-			return "OS";
-		}
-		
-		public static function get serverString():String {
-			trace("serverString in Capabilities is not implemented");
-			return "";
-		}
+    public class LocalConnection extends EventDispatcher
+    {
+		   public function LocalConnection()
+		   {
+				super();
+		   }
+		   
+		   public function connect(connectionName:String):void {
+				trace("connect in LocalConnection is not implemented");
+		   }
 	}
+	
 }

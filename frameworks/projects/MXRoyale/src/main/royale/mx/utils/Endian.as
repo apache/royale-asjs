@@ -17,52 +17,25 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package mx.system
+package mx.utils
 {
-	
-	public class Capabilities
-	{
-		/**
-		 *  Constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.0
-		 *  @productversion Royale 0.9.8
-		 */
 
-		public function Capabilities()
-		{
-			super();
-		}
-		
-		//----------------------------------
-		//  os
-		//----------------------------------
 
-		/**
-		 *  @private
-		 *  Storage for the <code>os</code> property.
-		 */
-		private var _os:String = "OS";
-
-		/**
-		 *  @inheritDoc
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Flex 3
-		 */
-		public static function get os():String
-		{
-			trace("os in Capabilities is not implemented");
-			return "OS";
-		}
-		
-		public static function get serverString():String {
-			trace("serverString in Capabilities is not implemented");
-			return "";
-		}
-	}
+/**
+ *  The XMLUtil class is an all-static class
+ *  with methods for working with XML within Flex.
+ *  You do not create instances of XMLUtil;
+ *  instead you simply call static methods such as
+ *  the <code>XMLUtil.qnamesEqual()</code> method.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+public class Endian
+{
+	public static const BIG_ENDIAN:String = "bigEndian";
+	public static const LITTLE_ENDIAN:String = "littleEndian";
+}
 }

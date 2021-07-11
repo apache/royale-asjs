@@ -401,6 +401,9 @@ internal class MXRoyaleClasses
 	import mx.filesystem.FileMode; FileMode;
 	import mx.filesystem.FileStream; FileStream;
 	import mx.net.Socket; Socket;
+	import mx.utils.Endian; Endian;
+	import mx.text.Font; Font;
+	import mx.net.LocalConnection; LocalConnection;
 
 
 }
