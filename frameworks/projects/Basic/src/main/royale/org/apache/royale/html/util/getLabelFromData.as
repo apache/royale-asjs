@@ -32,13 +32,49 @@ package org.apache.royale.html.util
         if (data is String) return "" + data;
         if(!data) return "";
 
-        if (obj["labelField"]) return "" + data[obj["labelField"]];
-        if (obj["dataField"]) return "" + data[obj["dataField"]];
-        var label:String = data["label"];
-        if(label != null){
-            return label;
-        }
-        return "" + data;
+        var labelField:String;
+        var value:String;
 
+        if (obj["labelField"]) 
+        {
+            labelField = obj["labelField"];
+            value = "" + data[labelField];
+            COMPILE::JS
+            {
+                // support XML data in JS (in libraries without access to XML class)
+                if (value == "undefined")
+                {
+                    if (labelField.charAt(0) == '@')
+                        value = data["attribute"](labelField);
+                    else
+                        value = data["child"](labelField).toString();
+                }
+            }
+            return value;
+        }
+
+        if (obj["dataField"]) 
+        {
+            labelField = obj["dataField"];
+            value = "" + data[labelField];
+            COMPILE::JS
+            {
+                // support XML data in JS (in libraries without access to XML class)
+                if (value == "undefined")
+                {
+                    if (labelField.charAt(0) == '@')
+                        value = data["attribute"](labelField);
+                    else
+                        value = data["child"](labelField).toString();
+                }
+            }
+            return value;
+        }
+
+        value = data["label"];
+        if (value != null)
+            return value;
+
+        return "" + data;
     }
 }

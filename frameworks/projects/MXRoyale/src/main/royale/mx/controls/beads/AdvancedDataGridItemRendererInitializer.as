@@ -86,7 +86,10 @@ import mx.controls.AdvancedDataGrid;
 			var dataField:String = adg.columns[adgColumnListModel.columnIndex].dataField;
 			var text:String = "";
 			try {
-				text = data[dataField];
+				if (data is XML)
+					text = (data as XML)[dataField];
+				else
+					text = data[dataField];
 			} catch (e:Error)
 			{
 			}

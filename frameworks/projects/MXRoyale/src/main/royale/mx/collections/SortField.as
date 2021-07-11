@@ -686,6 +686,17 @@ public class SortField extends EventDispatcher implements ISortField
         try
         {
             result = obj[_name];
+            COMPILE::JS
+            {
+                // support XML data in JS (in libraries without access to XML class)
+                if (result == null)
+                {
+                    if (_name.charAt(0) == '@')
+                        result = obj["attribute"](_name);
+                    else
+                        result = obj["child"](_name).toString();
+                }
+            }
         }
         catch(error:Error)
         {
