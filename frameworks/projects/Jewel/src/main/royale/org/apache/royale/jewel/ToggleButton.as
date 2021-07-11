@@ -167,7 +167,7 @@ package org.apache.royale.jewel
         }
 
         COMPILE::JS
-        private function clickHandler(event:Event):void
+        protected function clickHandler(event:Event):void
         {
             selected = !selected;
         }

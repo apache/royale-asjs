@@ -16,7 +16,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -28,7 +29,7 @@
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-compjsc</artifactId>
-  <version>${royale.compiler.version}</version>
+  <version>0.9.8-SNAPSHOT</version>
 
   <build>
     <plugins>
@@ -37,13 +38,12 @@
         <configuration>
           <archive>
             <manifest>
-              <!-- <addClasspath>true</addClasspath>
-              <classpathLayoutType>custom</classpathLayoutType>
-              <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout> -->
+              <addClasspath>false</addClasspath>
               <mainClass>org.apache.royale.compiler.clients.COMPJSC</mainClass>
             </manifest>
             <manifestEntries>
-              <Class-Path>jsc.jar</Class-Path>
+              <!-- These paths are all defined the way the layout will be in the distribution -->
+              <Class-Path>jsc.jar closure-compiler.jar</Class-Path>
             </manifestEntries>
           </archive>
         </configuration>
@@ -55,7 +55,7 @@
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
   </dependencies>
 

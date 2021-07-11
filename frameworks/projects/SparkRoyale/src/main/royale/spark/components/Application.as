@@ -696,16 +696,19 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get controlBarVisible():Boolean
+     public function get controlBarVisible():Boolean
     {
-        return (controlBarGroup)
+        /*return (controlBarGroup)
             ? controlBarGroup.visible
-            : controlBarGroupProperties.visible;
+            : controlBarGroupProperties.visible;*/
+		trace("Application::controlBarVisible not implemented")
+		
+		return true;
     } 
 
     public function set controlBarVisible(value:Boolean):void
     {
-        if (controlBarGroup)
+       /* if (controlBarGroup)
         {
             controlBarGroup.visible = value;
             controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint,
@@ -716,8 +719,10 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
 
         invalidateSkinState();
         if (skin)
-            skin.invalidateSize();
-    }*/
+            skin.invalidateSize(); */
+		trace("Application::controlBarVisible not implemented")
+
+    }
 
     //--------------------------------------------------------------------------
     //

@@ -24,9 +24,12 @@ import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.listClasses.BaseListData;
 //import mx.controls.listClasses.ListData;
 import mx.events.FlexEvent;
+import mx.core.IFactory;
 
 import org.apache.royale.html.beads.IComboBoxView;
 import org.apache.royale.core.ISelectionModel;
+import mx.controls.listClasses.ListBase;
+import org.apache.royale.events.Event;
 
 COMPILE::SWF
 {
@@ -234,7 +237,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
+[Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
 
 /**
  *  Width of the arrow button in pixels.
@@ -247,7 +250,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="arrowButtonWidth", type="Number", format="Length", inherit="no")]
+[Style(name="arrowButtonWidth", type="Number", format="Length", inherit="no")]
 
 /**
  *  The thickness of the border of the drop-down list, in pixels. 
@@ -262,7 +265,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="borderThickness", type="Number", format="Length", inherit="no")]
+[Style(name="borderThickness", type="Number", format="Length", inherit="no")]
 
 /**
  *  The length of the transition when the drop-down list closes, in milliseconds.
@@ -276,7 +279,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="closeDuration", type="Number", format="Time", inherit="no")]
+[Style(name="closeDuration", type="Number", format="Time", inherit="no")]
 
 /**
  *  An easing function to control the close transition.  Easing functions can
@@ -289,7 +292,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="closeEasingFunction", type="Function", inherit="no")]
+[Style(name="closeEasingFunction", type="Function", inherit="no")]
 
 /**
  *  The color of the border of the ComboBox.  If <code>undefined</code>
@@ -303,7 +306,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="dropdownBorderColor", type="uint", format="Color", inherit="yes", theme="halo")]
+[Style(name="dropdownBorderColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  The name of a CSSStyleDeclaration to be used by the drop-down list.  This
@@ -319,7 +322,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="dropDownStyleName", type="String", inherit="no", deprecatedReplacement="dropdownStyleName")]
+[Style(name="dropDownStyleName", type="String", inherit="no", deprecatedReplacement="dropdownStyleName")]
 
 /**
  *  The name of a CSSStyleDeclaration to be used by the drop-down list.  This
@@ -333,7 +336,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="dropdownStyleName", type="String", inherit="no")]
+[Style(name="dropdownStyleName", type="String", inherit="no")]
 
 /**
  *  Length of the transition when the drop-down list opens, in milliseconds.
@@ -347,7 +350,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="openDuration", type="Number", format="Time", inherit="no")]
+[Style(name="openDuration", type="Number", format="Time", inherit="no")]
 
 /**
  *  An easing function to control the open transition.  Easing functions can
@@ -360,7 +363,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="openEasingFunction", type="Function", inherit="no")]
+[Style(name="openEasingFunction", type="Function", inherit="no")]
 
 /**
  *  Number of pixels between the control's bottom border
@@ -377,7 +380,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="paddingBottom", type="Number", format="Length", inherit="no")]
+[Style(name="paddingBottom", type="Number", format="Length", inherit="no")]
 
 /**
  *  Number of pixels between the control's top border
@@ -394,7 +397,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
+[Style(name="paddingTop", type="Number", format="Length", inherit="no")]
 
 /**
  *  The rollOverColor of the drop-down list.
@@ -409,7 +412,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="rollOverColor", type="uint", format="Color", inherit="yes")]
+[Style(name="rollOverColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  The selectionColor of the drop-down list.
@@ -424,7 +427,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="selectionColor", type="uint", format="Color", inherit="yes")]
+[Style(name="selectionColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  The selectionDuration of the drop-down list.
@@ -438,7 +441,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="selectionDuration", type="uint", format="Time", inherit="no")]
+[Style(name="selectionDuration", type="uint", format="Time", inherit="no")]
 
 /**
  *  The selectionEasingFunction of the drop-down list.
@@ -452,7 +455,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="selectionEasingFunction", type="Function", inherit="no")]
+[Style(name="selectionEasingFunction", type="Function", inherit="no")]
 
 /**
  *  The textRollOverColor of the drop-down list.
@@ -467,7 +470,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="textRollOverColor", type="uint", format="Color", inherit="yes")]
+[Style(name="textRollOverColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  The textSelectedColor of the drop-down list.
@@ -482,7 +485,9 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="textSelectedColor", type="uint", format="Color", inherit="yes")]
+[Style(name="textSelectedColor", type="uint", format="Color", inherit="yes")]
+
+[Style(name="fillAlphas", type="Array",  inherit="no")]
 
 //--------------------------------------
 //  Other metadata
@@ -981,6 +986,59 @@ public class ComboBox extends ComboBase
         _prompt = value;
         promptChanged = true;
         invalidateProperties();
+    }
+    
+    //----------------------------------
+    //  itemRenderer
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for itemRenderer property.
+     */
+    private var _itemRenderer:IFactory;
+    private var _dropdown:ListBase;
+
+    [Inspectable(category="Data")]
+
+    /**
+     *  IFactory that generates the instances that displays the data for the
+     *  drop-down list of the control.  You can use this property to specify 
+     *  a custom item renderer for the drop-down list.
+     *
+     *  <p>The control uses a List control internally to create the drop-down
+     *  list.
+     *  The default item renderer for the List control is the ListItemRenderer
+     *  class, which draws the text associated with each item in the list, 
+     *  and an optional icon. </p>
+     *
+     *  @see mx.controls.List
+     *  @see mx.controls.listClasses.ListItemRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get itemRenderer():IFactory
+    {
+        return _itemRenderer;
+    }
+
+    /**
+     *  @private
+     */
+    public function set itemRenderer(value:IFactory):void
+    {
+        _itemRenderer = value;
+
+        if (_dropdown)
+            _dropdown.itemRenderer = value;
+
+        invalidateSize();
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("itemRendererChanged"));
     }
 
 

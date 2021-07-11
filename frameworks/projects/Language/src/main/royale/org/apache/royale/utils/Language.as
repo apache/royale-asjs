@@ -541,10 +541,10 @@ package org.apache.royale.utils
         {
             for each(var n:String in sortNames)
             {
-                if (a[n] > b[n])
+                if (Number(a[n]) > Number(b[n]))
                 {
                     return muler;
-                } else if (a[n] < b[n])
+                } else if (Number(a[n]) < Number(b[n]))
                 {
                     return -muler;
                 }

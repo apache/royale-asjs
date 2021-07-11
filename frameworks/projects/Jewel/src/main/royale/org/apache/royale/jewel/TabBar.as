@@ -51,18 +51,8 @@ package org.apache.royale.jewel
             typeNames = "jewel tabbar";
 			//TabBar is always selected, so selectedIndex can't be -1, at least it will default to 0
 			ISelectionModel(model).selectedIndex = 0;
-			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
-
-		private function internalMouseHandler(event:MouseEvent):void
-		{
-			COMPILE::JS
-			{
-				// avoid a link tries to open a new page 
-				event.preventDefault();
-			}
-		}
-
+		
 		private var _sameWidths:Boolean = false;
 		/**
 		 *  Assigns variable gap to grid from 1 to 20

@@ -46,9 +46,7 @@
             <html:H3 text="Avengers Character List"/>
 	
             <j:List id="list" width="200" height="300" change="changeHandler(event)">
-                <j:dataProvider>
-                    <js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
-                </j:dataProvider>
+                <js:ArrayList id="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
             </j:List>
 
             <j:Label id="selected"/>

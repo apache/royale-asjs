@@ -29,6 +29,7 @@ package mx.controls.treeClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -61,9 +62,12 @@ package mx.controls.treeClasses
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
-			super.selectedHandler(event);	    
+			listModel.selectedIndex = event.index;
+			listModel.selectedItem = event.data;
+			sendEvent(listView.host,"change");
+
 		    var newEvent:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK);
-            newEvent.index = event.index;
+            	newEvent.index = event.index;
             IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}	    
 

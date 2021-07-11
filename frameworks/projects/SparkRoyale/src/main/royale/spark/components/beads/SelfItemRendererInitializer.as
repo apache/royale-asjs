@@ -70,11 +70,11 @@ package spark.components.beads
 				sir.explicitHeight = NaN;
 				sir.percentHeight = NaN;
 				if (!plc.isHeightSizedToContent() && !clc.isHeightSizedToContent()) sir.percentHeight = 100;
-				sir.invalidateSize();
 			}
 			
 			sir.removeAllElements();
 			sir.addElement(child);
+			sir.invalidateSize();
 		}
 
 		/**

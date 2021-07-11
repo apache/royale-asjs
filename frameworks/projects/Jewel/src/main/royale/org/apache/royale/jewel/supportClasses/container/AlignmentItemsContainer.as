@@ -81,8 +81,8 @@ package org.apache.royale.jewel.supportClasses.container
 
 			COMPILE::JS
             {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
+			if (parent)
+				setClassName(computeFinalClassNames()); 
 			}
         }
 
@@ -114,8 +114,8 @@ package org.apache.royale.jewel.supportClasses.container
 
 			COMPILE::JS
             {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
+			if (parent)
+				setClassName(computeFinalClassNames()); 
 			}
         }
 
@@ -144,8 +144,38 @@ package org.apache.royale.jewel.supportClasses.container
 
             COMPILE::JS
             {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
+			if (parent)
+				setClassName(computeFinalClassNames()); 
+			}
+        }
+
+        /**
+		 *  A boolean flag to activate "itemsReverse" effect selector.
+		 *  Make items to invert its order.
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        public function get itemsReverse():Boolean
+        {
+            return _layout.itemsReverse;
+        }
+
+        public function set itemsReverse(value:Boolean):void
+        {
+            typeNames = StringUtil.removeWord(typeNames, " itemsReverse");
+            _layout.itemsReverse = value;
+            if(_layout.itemsReverse)
+            {
+                typeNames += " itemsReverse";
+            }
+
+            COMPILE::JS
+            {
+			if (parent)
+				setClassName(computeFinalClassNames()); 
 			}
         }
     }

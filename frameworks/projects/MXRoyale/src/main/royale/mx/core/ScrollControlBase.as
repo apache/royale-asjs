@@ -58,6 +58,10 @@ import org.apache.royale.events.Event;
 
 [Style(name="borderStyle", type="String", inherit="no")]
 
+[Style(name="borderColor", type="String", inherit="yes")]
+
+[Style(name="borderSkin", type="String", inherit="yes")]
+
 /**
  *  The ScrollControlBase class is the base class for controls
  *  with scroll bars.
@@ -350,6 +354,8 @@ public class ScrollControlBase extends UIComponent
     //----------------------------------
     //  borderMetrics
     //----------------------------------
+	
+	protected var border:IFlexDisplayObject;
 
     /**
      *  Returns an EdgeMetrics object that has four properties:
@@ -366,11 +372,11 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get borderMetrics():EdgeMetrics
-//    {
-//        return (border && border is IRectangularBorder) ?
-//                IRectangularBorder(border).borderMetrics : EdgeMetrics.EMPTY;
-//    }
+    public function get borderMetrics():EdgeMetrics
+    {
+        return (border && border is IRectangularBorder) ?
+                IRectangularBorder(border).borderMetrics : EdgeMetrics.EMPTY;
+    }
 
     //----------------------------------
     //  horizontalScrollPosition

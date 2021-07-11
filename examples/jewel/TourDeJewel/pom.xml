@@ -958,6 +958,7 @@
             
             -source-map=true;
           </additionalCompilerOptions>
+          <!-- At command line use -Droyalelib=/Users/carlosrovira/Dev/Royale/Sdks/apache-royale-maven/frameworks -->
         </configuration>
       </plugin>
     </plugins>

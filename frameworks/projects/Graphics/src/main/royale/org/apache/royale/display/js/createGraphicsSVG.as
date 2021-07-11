@@ -23,7 +23,7 @@ package org.apache.royale.display.js
 	/**
 	 * @royaleignorecoercion SVGElement
 	 */
-	public function createGraphicsSVG(elementName:String, noPointerEvents:Boolean = true):SVGElement
+	public function createGraphicsSVG(elementName:String, noPointerEvents:Boolean):SVGElement
 	{
 		var svgElement:SVGElement = document.createElementNS('http://www.w3.org/2000/svg', elementName) as SVGElement;
 		//Graphics (emulation) has no inherent pointer-events because it is supposed to be visual only,

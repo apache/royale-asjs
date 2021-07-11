@@ -70,6 +70,7 @@ package org.apache.royale.events
         public static const CLICK:String = "click";
         public static const DOUBLE_CLICK:String = "doubleClick";
         public static const WHEEL:String = "mouseWheel";
+        public static const CONTEXT_MENU:String = "contextMenu"
         
         /**
          *  Constructor.
@@ -282,6 +283,7 @@ package org.apache.royale.events
         public static const CLICK:String = "click";
         public static const DOUBLE_CLICK:String = "dblclick";
         public static const WHEEL:String = "wheel";
+        public static const CONTEXT_MENU:String = "contextMenu"
         
         /**
          *  Constructor.
@@ -390,15 +392,19 @@ package org.apache.royale.events
         }
 
         private var _buttons:int = -1;
-        
         public function get buttonDown():Boolean
         {
-            return button > -1 && button < 3;
+            if(_buttons > -1)
+                return _buttons == 1;
+            var ev:* = wrappedEvent.getBrowserEvent();
+            //Safari does not yet support buttons
+            if ('buttons' in ev)
+                return ev["buttons"] == 1;
+            return ev["which"] == 1;
         }
-        
         public function set buttonDown(value:Boolean):void
         {
-            _button = value ? 0 : 9;// any value over 2 will be interpreted as no button down
+            _buttons = value ? 1 : 0;
         }
         
         private var _button:int = -1;

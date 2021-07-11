@@ -136,15 +136,6 @@ COMPILE::JS{
 
         protected function itemRendererChangedHandler(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-            if (sharedModel.columns != null)
-            {
-                for (var i:int = 0; i < sharedModel.columns.length; i++)
-                {
-                    var col:DataGridColumn = (sharedModel.columns[i] as DataGridColumn);
-                        col.removeEventListener("itemRendererChanged", itemRendererChangedHandler);
-                }
-            }
             columnsChanged(event);
         }
 

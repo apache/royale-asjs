@@ -43,6 +43,11 @@ package mx.net
         private static const map:Object = {};
         private static var unlocked:Boolean;
         
+        public var _size:uint = 0;
+		public function get size():uint {
+		   return _size;
+		}
+        
         public static function getLocal(name:String, localPath:String = null, secure:Boolean = false):mx.net.SharedObject
         {
             var pathKey:String = localPath == null ? '$null$' : localPath;

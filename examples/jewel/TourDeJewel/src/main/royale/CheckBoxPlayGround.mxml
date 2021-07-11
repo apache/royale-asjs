@@ -72,24 +72,24 @@ limitations under the License.
 				<j:CardPrimaryContent>
 
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>SwitchCheckBox is s Switch representation of CheckBox with same capabilities.</p>]]></j:html>
+						<j:html><![CDATA[<p>Switch is s switch representation of CheckBox with same capabilities.</p>]]></j:html>
 					</j:Label>
 
-					<j:SwitchCheckBox text="Not Checked"/>
+					<j:Switch text="Not Checked"/>
 
-					<j:SwitchCheckBox text="Checked" selected="true"/>
+					<j:Switch text="Checked" selected="true"/>
 
-					<j:SwitchCheckBox text="Disabled">
+					<j:Switch text="Disabled">
 						<j:beads>
 							<j:Disabled/>
 						</j:beads>
-					</j:SwitchCheckBox>
+					</j:Switch>
 					
-					<j:SwitchCheckBox text="Checked And Disabled" selected="true">
+					<j:Switch text="Checked And Disabled" selected="true">
 						<j:beads>
 							<j:Disabled/>
 						</j:beads>
-					</j:SwitchCheckBox>
+					</j:Switch>
 				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>

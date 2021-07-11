@@ -23,8 +23,8 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ItemClickedEvent;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.ToggleButton;
@@ -47,12 +47,17 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			style = new SimpleCSSStylesWithFlex();
+		}
 
-			addEventListener('click', handleClickEvent);
+		private var _toggleButtonBar:ToggleButtonBar;
+		private function get toggleButtonBar():ToggleButtonBar
+		{
+			if(!_toggleButtonBar)
+				_toggleButtonBar = (itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar;
+			return _toggleButtonBar;
 		}
 
 		private var _data:Object;
-
 		/**
 		 *  The data to be displayed as the text value. Use this in conjunction with
 		 *  the labelField property to select an item from the dataProvider record to use
@@ -71,21 +76,30 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_data = value;
 			text = getLabelFromData(this, value);
-			rightPosition = ((itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar).rightPosition;
+			rightPosition = toggleButtonBar.rightPosition;
 			if(value.icon)
 			{
-				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererOwnerView as ButtonBarView).buttonBar, "iconClass") as Class;
+				var iconClass:Class = ValuesManager.valuesImpl.getValue(toggleButtonBar, "iconClass") as Class;
 				var fontIcon:IIcon = new iconClass(); 
-				// fontIcon.material = ((itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar).material;
-				fontIcon.text = value[((itemRendererOwnerView as ButtonBarView).buttonBar as ToggleButtonBar).iconField];
+				fontIcon.text = value[toggleButtonBar.iconField];
 				icon = fontIcon;
 			}
 		}
 
 		/**
-		 * @private
+		 * Only change select if `toggleOnClick` is active or otherwise the button is not selected
 		 */
-		protected function handleClickEvent(event:MouseEvent):void
+		COMPILE::JS
+        override protected function clickHandler(event:Event):void
+        {
+			if( (!toggleButtonBar.toggleOnClick && !selected) || (toggleButtonBar.toggleOnClick) )
+			{
+				selected = !selected;
+				dispatchItemClickedEvent();
+			}
+		}
+
+		public function dispatchItemClickedEvent():void
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 			newEvent.index = index;
@@ -115,7 +129,6 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		private var _labelField:String = null;
-
 		/**
 		 * The name of the field within the data to use as a label. Some itemRenderers use this field to
 		 * identify the value they should show while other itemRenderers ignore this if they are showing
@@ -137,8 +150,6 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		private var _listData:Object;
-
-		[Bindable("__NoChangeEvent__")]
 		/**
 		 *  Additional data about the list structure the itemRenderer may
 		 *  find useful.
@@ -148,6 +159,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
+		[Bindable("__NoChangeEvent__")]
 		public function get listData():Object
 		{
 			return _listData;
@@ -192,7 +204,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			return _selectable;
 		}
-
 		public function set selectable(value:Boolean):void
 		{
 			_selectable = value;	
@@ -215,14 +226,12 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			return _hoverable;
 		}
-
 		public function set hoverable(value:Boolean):void
 		{
 			_hoverable = value;	
 		}
 		
 		private var _hovered:Boolean;
-
 		/**
 		 *  Whether or not the itemRenderer is in a hovered state.
 		 *

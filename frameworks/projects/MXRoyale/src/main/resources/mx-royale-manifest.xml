@@ -45,6 +45,7 @@
 	<component id="Box" class="mx.containers.Box" />
 	<component id="Canvas" class="mx.containers.Canvas" />
 	<component id="Container" class="mx.core.Container" />
+	<component id="Repeater" class="mx.core.Repeater" />
 	<component id="HBox" class="mx.containers.HBox" />
 	<component id="HDividedBox" class="mx.containers.HDividedBox" />
     <component id="Panel" class="mx.containers.Panel" />
@@ -56,9 +57,11 @@
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BasicLayout" class="mx.containers.beads.layouts.BasicLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
+	<component id="ButtonBarLayout" class="mx.containers.beads.ButtonBarLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
     <component id="PopUpButton" class="mx.controls.PopUpButton"/>
+    <component id="TileList" class="mx.controls.TileList"/>
     <component id="PopUpMenuButton" class="mx.controls.PopUpMenuButton"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
 	<component id="CompressedRemoteObject" class="mx.rpc.remoting.mxml.CompressedRemoteObject" />
@@ -76,6 +79,8 @@
 	<component id="State" class="mx.states.State" />
     <component id="Transition" class="mx.states.Transition" />
 	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
+	<component id="ButtonItemRenderer" class="mx.supportClasses.ButtonItemRenderer" />
+	<component id="FormItemRequired" class="mx.supportClasses.FormItemRequired" />
 	<component id="ArrayList" class="mx.collections.ArrayList"/>
 	<component id="UIComponent" class="mx.core.UIComponent"/>
 	<component id="Container" class="mx.core.Container"/>
@@ -150,6 +155,7 @@
         <component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
 	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
         <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
+        <component id="Accordion" class="mx.containers.Accordion" />
 	<component id="PhoneFormatter" class="mx.formatters.PhoneFormatter"/>
 
 
@@ -216,10 +222,17 @@
 
     <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
     <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
+    <component id="HierarchicalData" class="mx.collections.HierarchicalData"/>
 
     <component id="DownloadButton" class="mx.controls.DownloadButton"/>
     <component id="HSlider" class="mx.controls.HSlider"/>
     <component id="Slider" class="mx.controls.sliderClasses.Slider"/>
     <component id="HorizontalList" class="mx.controls.HorizontalList"/>
     <component id="AddChild" class="mx.states.AddChild"/>
+	<component id="TextField" class="mx.text.TextField"/>
+	<component id="Rotate" class="mx.effects.Rotate"/>
+	<component id="NavBar" class="mx.controls.NavBar" />
+	<component id="ApplicationControlBar" class="mx.containers.ApplicationControlBar" />
+   <component id="MultiSelectionList" class="mx.controls.MultiSelectionList"/>
+
 </componentPackage>

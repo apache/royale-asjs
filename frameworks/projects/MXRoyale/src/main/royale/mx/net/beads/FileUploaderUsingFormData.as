@@ -22,6 +22,7 @@ package mx.net.beads
 import org.apache.royale.events.DetailEvent;
 import org.apache.royale.file.beads.FileUploader;
 import org.apache.royale.file.IFileModel;
+import mx.events.DataEvent;
 
 /**
  *  This class does uploads using FormData in JS
@@ -124,7 +125,9 @@ public class FileUploaderUsingFormData extends FileUploader
 		}
 		else if(xhr.status < 300)
 		{
-			host.dispatchEvent(new org.apache.royale.events.Event("complete"));
+			var dataEvent:DataEvent = new DataEvent("complete");
+			dataEvent.text = xhr.responseText as String;
+			host.dispatchEvent(dataEvent);
 		}
 		else
 		{

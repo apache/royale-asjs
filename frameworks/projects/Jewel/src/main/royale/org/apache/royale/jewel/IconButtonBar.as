@@ -99,26 +99,5 @@ package org.apache.royale.jewel
 				_iconField = value;
 			}
 		}
-
-		private var _material:Boolean;
-        /**
-         *  Use the Material Icons
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-        public function get material():Boolean
-        {
-            return _material;
-        }
-        public function set material(value:Boolean):void
-        {
-            if (_material != value)
-            {
-                _material = value;
-            }
-        }
 	}
 }

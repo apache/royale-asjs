@@ -42,6 +42,7 @@ package mx.core
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.states.State;
     import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.geom.Point;
 
 COMPILE::JS
 {
@@ -218,6 +219,18 @@ use namespace mx_internal;
 [Style(name="backgroundAlpha", type="Number", inherit="no")]
 
 [Style(name="contentBackgroundAlpha", type="Number", inherit="yes")]
+
+/**
+ *  The alpha value for the overlay that is placed on top of the
+ *  container when it is disabled.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="disabledOverlayAlpha", type="Number", inherit="no")]
+
 /**
  * The default property uses when additional MXML content appears within an element's
  * definition in an MXML file.
@@ -325,9 +338,9 @@ public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
 					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer,
-                       IListItemRenderer,
+                       IListItemRenderer,INavigatorContent
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
-                       INavigatorContent
+                       
 
 {
 
@@ -518,6 +531,198 @@ public class Container extends UIComponent
     }
     
     //----------------------------------
+    //  verticalScrollPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the verticalScrollPosition property.
+     */
+    private var _verticalScrollPosition:Number = 0;
+
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The current position of the vertical scroll bar.
+     *  This is equal to the distance in pixels between the top edge
+     *  of the scrollable surface and the topmost piece of the surface
+     *  that is currently visible.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalScrollPosition():Number
+    {
+        trace("Container::verticalScrollPosition is not implemented");
+        /*if (!isNaN(verticalScrollPositionPending))
+            return verticalScrollPositionPending;*/
+
+        return _verticalScrollPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set verticalScrollPosition(value:Number):void
+    {
+        trace("Container::verticalScrollPosition is not implemented");
+        if (_verticalScrollPosition == value)
+            return;
+
+        // Note: We can't use maxVerticalScrollPosition to clamp the value here.
+        // The verticalScrollBar may not exist yet,
+        // or its maxPos might change during layout.
+        // (For example, you could set the verticalScrollPosition of a childless container,
+        // then add a child which causes it to have a scrollbar.)
+        // The verticalScrollPosition gets clamped to the range 0 through maxVerticalScrollPosition
+        // late, in the updateDisplayList() method, just before the scrollPosition
+        // of the verticalScrollBar is set.
+
+        _verticalScrollPosition = value;
+        /*scrollPositionChanged = true;
+        if (!initialized)
+            verticalScrollPositionPending = value;
+
+        invalidateDisplayList();*/
+
+        dispatchEvent(new Event("viewChanged"));
+    }
+
+    //----------------------------------
+    //  horizontalScrollPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the horizontalScrollPosition property.
+     */
+    private var _horizontalScrollPosition:Number = 0;
+
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The current position of the horizontal scroll bar.
+     *  This is equal to the distance in pixels between the left edge
+     *  of the scrollable surface and the leftmost piece of the surface
+     *  that is currently visible.
+     *  
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalScrollPosition():Number
+    {
+        trace("Container::horizontalScrollPosition is not implemented");
+        /*if (!isNaN(horizontalScrollPositionPending))
+            return horizontalScrollPositionPending;*/
+        return _horizontalScrollPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set horizontalScrollPosition(value:Number):void
+    {
+        trace("Container::horizontalScrollPosition is not implemented");
+        if (_horizontalScrollPosition == value)
+            return;
+
+        // Note: We can't use maxHorizontalScrollPosition to clamp the value here.
+        // The horizontalScrollBar may not exist yet,
+        // or its maxPos might change during layout.
+        // (For example, you could set the horizontalScrollPosition of a childless container,
+        // then add a child which causes it to have a scrollbar.)
+        // The horizontalScrollPosition gets clamped to the range 0 through maxHorizontalScrollPosition
+        // late, in the updateDisplayList() method, just before the scrollPosition
+        // of the horizontalScrollBar is set.
+
+        _horizontalScrollPosition = value;
+        /*scrollPositionChanged = true;
+        if (!initialized)
+            horizontalScrollPositionPending = value;
+
+        invalidateDisplayList();*/
+
+        dispatchEvent(new Event("viewChanged"));
+    }
+
+    //----------------------------------
+    //  maxHorizontalScrollPosition
+    //----------------------------------
+
+    /**
+     *  The largest possible value for the
+     *  <code>horizontalScrollPosition</code> property.
+     *  Defaults to 0 if the horizontal scrollbar is not present.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get maxHorizontalScrollPosition():Number
+    {
+        trace("Container::maxHorizontalScrollPosition is not implemented");        
+        return 0;
+        /*return horizontalScrollBar ?
+               horizontalScrollBar.maxScrollPosition :
+               Math.max(scrollableWidth - viewableWidth, 0);*/
+    }
+
+    //----------------------------------
+    //  maxVerticalScrollPosition
+    //----------------------------------
+
+    /**
+     *  The largest possible value for the
+     *  <code>verticalScrollPosition</code> property.
+     *  Defaults to 0 if the vertical scrollbar is not present.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get maxVerticalScrollPosition():Number
+    {
+        trace("Container::maxVerticalScrollPosition is not implemented");
+        return 0;
+        /*return verticalScrollBar ?
+               verticalScrollBar.maxScrollPosition :
+               Math.max(scrollableHeight - viewableHeight, 0);*/
+    }
+    
+    /**
+     *  @copy mx.core.UIComponent#globalToContent()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+     public function globalToContent(point:Point):Point
+    {
+        trace("Container::globalToContent is not implemented");
+        return null;
+        
+        /*if (contentPane)
+            return contentPane.globalToLocal(point);
+        
+        return globalToLocal(point);*/
+    }
+
+    //----------------------------------
     //  verticalScrollPolicy
     //----------------------------------
     
@@ -625,6 +830,69 @@ public class Container extends UIComponent
 //        }
     }
 
+
+    //----------------------------------
+    //  autoLayout
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the autoLayout property.
+     */
+    private var _autoLayout:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  If <code>true</code>, measurement and layout are done
+     *  when the position or size of a child is changed.
+     *  If <code>false</code>, measurement and layout are done only once,
+     *  when children are added to or removed from the container.
+     *
+     *  <p>When using the Move effect, the layout around the component that
+     *  is moving does not readjust to fit that the Move effect animates.
+     *  Setting a container's <code>autoLayout</code> property to
+     *  <code>true</code> has no effect on this behavior.</p>
+     *
+     *  <p>The Zoom effect does not work when the <code>autoLayout</code> 
+     *  property is <code>false</code>.</p>
+     *
+     *  <p>The <code>autoLayout</code> property does not apply to
+     *  Accordion or ViewStack containers.</p>
+     * 
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get autoLayout():Boolean
+    {
+        return _autoLayout;
+    }
+
+    /**
+     *  @private
+     */
+    public function set autoLayout(value:Boolean):void
+    {
+        _autoLayout = value;
+
+        // If layout is being turned back on, trigger a layout to occur now.
+        if (value)
+        {
+            invalidateSize();
+            invalidateDisplayList();
+
+            var p:IInvalidating = parent as IInvalidating;
+            if (p)
+            {
+                p.invalidateSize();
+                p.invalidateDisplayList();
+            }
+        }
+    }
     /**
      *  Number of pixels between the container's bottom border
      *  and the bottom of its content area.
@@ -893,7 +1161,7 @@ public class Container extends UIComponent
 	 *  @private
 	 *  Storage for the data property;
 	 */
-	private var _data:Object;
+	private var _data:Object = null;
 	
 	[Bindable("dataChange")]
 	[Inspectable(environment="none")]

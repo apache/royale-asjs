@@ -77,6 +77,7 @@ internal class MXRoyaleClasses
 	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
 	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
 	import mx.events.CloseEvent; CloseEvent;
+	import mx.events.DataEvent; DataEvent;
 	import mx.controls.HRule; HRule;
 	import mx.events.ListEvent; ListEvent;
 	import mx.events.SliderEvent; SliderEvent;
@@ -88,8 +89,12 @@ internal class MXRoyaleClasses
 	import mx.effects.Tween; Tween;
 	import mx.effects.Fade; Fade;
 	import mx.core.Container;Container;
+	import mx.core.ContainerGlobals; ContainerGlobals;
+	import mx.graphics.ImageSnapshot; ImageSnapshot;
 
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.system.System; System;
+	import mx.system.Security; Security;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
 	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
@@ -106,7 +111,8 @@ internal class MXRoyaleClasses
 	import mx.effects.effectClasses.ActionEffectInstance; ActionEffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
 	import mx.charts.HitData; HitData;
-
+	import mx.effects.effectClasses.RotateInstance; RotateInstance;
+	
 	import mx.events.FlexEvent; FlexEvent;
 	import mx.managers.PopUpManager; PopUpManager; 
 	import mx.core.IVisualElementContainer; IVisualElementContainer;
@@ -188,6 +194,8 @@ internal class MXRoyaleClasses
 	import mx.events.HTTPStatusEvent; HTTPStatusEvent;
 	import mx.net.FileReference; FileReference;
 	import mx.net.FileFilter; FileFilter;
+	import mx.net.URLLoaderDataFormat; URLLoaderDataFormat;
+	
 	import mx.events.ProgressEvent; ProgressEvent;
 	import mx.events.ColorPickerEvent; ColorPickerEvent;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
@@ -226,6 +234,8 @@ internal class MXRoyaleClasses
 	import mx.core.LayoutDirection; LayoutDirection;
 	import mx.styles.IAdvancedStyleClient; IAdvancedStyleClient;
 	import mx.collections.IComplexSortField; IComplexSortField;
+	import mx.collections.HierarchicalData; HierarchicalData
+
 	import mx.core.IIMESupport; IIMESupport;
 	import mx.core.InteractionMode; InteractionMode;
 	import mx.collections.ComplexFieldChangeWatcher; ComplexFieldChangeWatcher;
@@ -255,6 +265,7 @@ internal class MXRoyaleClasses
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
 	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
 	import mx.events.DynamicEvent; DynamicEvent;
+	import mx.events.ChildExistenceChangedEvent; ChildExistenceChangedEvent;
 	
 	import mx.controls.PopUpButton; PopUpButton;
 	import mx.controls.PopUpMenuButton; PopUpMenuButton;
@@ -365,6 +376,25 @@ internal class MXRoyaleClasses
 	import mx.filters.BitmapFilterQuality; BitmapFilterQuality;
 	import mx.net.URLRequestMethod; URLRequestMethod;
 	import mx.controls.ButtonLabelPlacement; ButtonLabelPlacement;
+	import mx.display.NativeMenu; NativeMenu;
+	
+	import mx.printing.PrintJobOptions; PrintJobOptions;
+	import mx.text.TextFieldAutoSize; TextFieldAutoSize;
+	import mx.errors.ScriptTimeoutError; ScriptTimeoutError;
+	import mx.controls.beads.models.ArrayMultiSelectionModel; ArrayMultiSelectionModel;
+    import mx.controls.beads.MultiSelectionListView; MultiSelectionListView; 
+    import mx.controls.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
+    import mx.controls.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
+	import mx.utils.DescribeTypeCache; DescribeTypeCache;
+	import mx.events.FocusRequestDirection; FocusRequestDirection;
+	import mx.core.IBorder; IBorder;
+	import mx.core.IRectangularBorder; IRectangularBorder;
+	import mx.events.EventPhase; EventPhase;
+	import mx.core.ComponentDescriptor; ComponentDescriptor;
+	import mx.core.UIComponentDescriptor; UIComponentDescriptor;
+	import mx.binding.Binding; Binding;
+	import mx.binding.IBindingClient; IBindingClient;
+	import mx.binding.BindingManager; BindingManager;
 
 	import mx.globalization.supportClasses.GlobalizationBase; GlobalizationBase;
 	import mx.globalization.CurrencyParseResult; CurrencyParseResult;

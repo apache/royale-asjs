@@ -82,7 +82,17 @@ public class Line extends UIComponent
     //  Properties
     //
     //--------------------------------------------------------------------------
-    
+    COMPILE::JS{
+	private var _blendMode:String = "auto";
+	public function get blendMode():String
+	{
+		return _blendMode;
+	}
+    public function set blendMode(value:String):void
+	{
+		_blendMode = value;
+	}
+	}
     //----------------------------------
     //  xFrom
     //----------------------------------

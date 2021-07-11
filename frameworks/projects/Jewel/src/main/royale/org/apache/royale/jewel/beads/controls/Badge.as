@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.Label;
@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class Badge implements IBead, IEmphasis
+	public class Badge extends DispatcherBead implements IEmphasis
 	{
 		/**
 		 *  constructor.
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.controls
 		/**
 		 * the internal instance of the badge
 		 */
-		private var badge:Label;
+		protected var badge:Label;
 
 		/**
 		 * used to create the badge ui element
@@ -77,13 +77,15 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function set strand(value:IStrand):void
+		public override function set strand(value:IStrand):void
 		{
+			super.strand = value;
+			
 			host = value as UIBase;
 			COMPILE::JS
 			{
-				host.element.classList.add("visible");
-				host.element.classList.add("viewport");
+			host.element.classList.add("visible");
+			host.element.classList.add("viewport");
 			}
 			badge.toggleClass("preindex", _preindex);
 			badge.toggleClass("subindex", _subindex);
