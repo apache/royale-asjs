@@ -400,6 +400,7 @@ internal class MXRoyaleClasses
 	import mx.system.Capabilities; Capabilities;
 	import mx.filesystem.FileMode; FileMode;
 	import mx.filesystem.FileStream; FileStream;
+	import mx.net.Socket; Socket;
 
 
 }

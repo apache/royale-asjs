@@ -38,7 +38,7 @@ package mx.filesystem
 		 *  @private
 		 *  Storage for the <code>modificationDate</code> property.
 		 */
-		private var _modificationDate:Date = "";
+		private var _modificationDate:Date = null;
 
 		/**
 		 *  @inheritDoc

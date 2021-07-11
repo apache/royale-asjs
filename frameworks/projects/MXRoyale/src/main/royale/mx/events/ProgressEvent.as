@@ -48,8 +48,11 @@ package mx.events
       
 
         
-		 public static const PROGRESS:String = "progress";
-		 
+		public static const PROGRESS:String = "progress";
+		public static const SOCKET_DATA:String = "socketData";
+		public static const STANDARD_ERROR_DATA:String = "standardErrorData";
+		public static const STANDARD_INPUT_PROGRESS:String = "standardInputProgress";
+		public static const STANDARD_OUTPUT_DATA:String = "standardOutputData";
 		 
 		 public function get bytesTotal():Number{
 		    return null;
