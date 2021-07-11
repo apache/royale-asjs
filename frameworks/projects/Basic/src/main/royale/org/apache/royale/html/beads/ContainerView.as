@@ -99,7 +99,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 *  @royaleignorecoercion org.apache.royale.core.ILayoutView
+		 *  @royaleemitcoercion org.apache.royale.core.ILayoutView
 		 */
 		override public function get contentView():ILayoutView
 		{
@@ -178,7 +178,6 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		override public function beforeLayout():Boolean
