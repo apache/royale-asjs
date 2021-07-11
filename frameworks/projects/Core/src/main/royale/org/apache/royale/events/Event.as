@@ -57,7 +57,10 @@ package org.apache.royale.events
 		public static const ADDED:String = "added";
 		public static const REMOVED:String = "removed";
 		public static const CLOSE:String = "close";
-		public static const CANCEL:String = "cancel"
+		public static const CANCEL:String = "cancel";
+		public static const CONNECT:String = "connect";
+		public static const REMOVED_FROM_STAGE:String = "removedFromStage";
+		public static const ADDED_TO_STAGE:String = "addedToStage";
 		
 		//--------------------------------------
 		//   Constructor
@@ -170,7 +173,10 @@ package org.apache.royale.events
 		public static const ADDED:String = "added";
 		public static const REMOVED:String = "removed";
 		public static const CLOSE:String = "close";
-		public static const CANCEL:String = "cancel"
+		public static const CANCEL:String = "cancel";
+		public static const CONNECT:String = "connect";
+		public static const REMOVED_FROM_STAGE:String = "removedFromStage";
+		public static const ADDED_TO_STAGE:String = "addedToStage";
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);
