@@ -50,6 +50,7 @@ package mx.filesystem
 		 */
 		public function get modificationDate():Date
 		{
+			trace("modificationDate in File is not implemented");
 			return _modificationDate;
 		}
 		
@@ -73,6 +74,7 @@ package mx.filesystem
 		 */
 		public function get exists():Boolean
 		{
+			trace("exists in File is not implemented");
 			return _exists;
 		}
 		
@@ -93,6 +95,7 @@ package mx.filesystem
 		 *  @productversion Flex 3
 		 */
 		public static function getRootDirectories():Array {
+			trace("getRootDirectories in File is not implemented");
 			return [];
 		}
 		
@@ -115,10 +118,77 @@ package mx.filesystem
 		 *  @productversion Flex 3
 		 */
 		public function resolvePath(path:String):File {
+			trace("resolvePath in File is not implemented");
 			path = _resolvePath;
 			return path as File;
 		}
+		
+		
+		//----------------------------------
+		//  getDirectoryListing
+		//----------------------------------
+		
+		public function getDirectoryListing():Array {
+			trace("getDirectoryListing in File is not implemented");
+			return [];
+		}
+		
+		
+		//----------------------------------
+		//  url
+		//----------------------------------
 
+		/**
+		 *  @private
+		 *  Storage for the <code>resolvePath</code> property.
+		 */
+		 
+		private var _url:String = "";
+		/**
+		 *  @inheritDoc
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function get url():String {
+			trace("get url in File is not implemented");
+			return _url;
+		}
+		public function set url(value:String):void {
+			trace("set url in File is not implemented");
+			_url = value;
+		}
+		
+		
+		//----------------------------------
+		//  lineEnding
+		//----------------------------------
+		
+		public static function get lineEnding():String {
+			trace("get lineEnding in File is not implemented");
+			return "0x0D";
+		}
+		
+		
+		//----------------------------------
+		//  applicationStorageDirectory
+		//----------------------------------
+		
+		public static function get applicationStorageDirectory():File {
+			trace("applicationStorageDirectory in File is not implemented");
+			return null;
+		}
+		
+		
+		//----------------------------------
+		//  deleteDirectory
+		//----------------------------------
+		
+		public function deleteDirectory(deleteDirectoryContents:Boolean = false):void {
+			trace("deleteDirectory in File is not implemented");
+		}
 
 	}
 	

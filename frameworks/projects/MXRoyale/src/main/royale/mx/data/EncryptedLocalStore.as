@@ -23,11 +23,13 @@ package mx.data
 	public class EncryptedLocalStore
 	{
 		public static function getItem(name:String):ByteArray	{
+			trace("getItem in EncryptedLocalStore is not implemented");
 			var _data:ByteArray = name as ByteArray;
 			return _data;
 		}
 		
 		public static function setItem(name:String, data:ByteArray, stronglyBound:Boolean = false):void {
+			trace("setItem in EncryptedLocalStore is not implemented");
 			if (data) {
 				
 			}

@@ -30,6 +30,19 @@ import org.apache.royale.html.beads.IComboBoxView;
 import org.apache.royale.core.ISelectionModel;
 import mx.controls.listClasses.ListBase;
 import org.apache.royale.events.Event;
+import mx.core.mx_internal;
+import mx.effects.Tween;
+import org.apache.royale.geom.Rectangle;
+import org.apache.royale.geom.Point;
+import mx.managers.ISystemManager;
+import mx.events.FlexMouseEvent;
+import mx.core.UIComponentGlobals;
+import mx.managers.PopUpManager;
+import mx.core.LayoutDirection;
+import mx.events.SandboxMouseEvent;
+import mx.events.MouseEvent;
+
+use namespace mx_internal;
 
 COMPILE::SWF
 {
@@ -1040,6 +1053,415 @@ public class ComboBox extends ComboBase
 
         dispatchEvent(new Event("itemRendererChanged"));
     }
+	
+	
+	//----------------------------------
+    //  rowCount
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the rowCount property.
+     */
+    private var _rowCount:int = 5;
+
+    [Bindable("resize")]
+    [Inspectable(category="General", defaultValue="5")]
+
+    /**
+     *  Maximum number of rows visible in the ComboBox control list.
+     *  If there are fewer items in the
+     *  dataProvider, the ComboBox shows only as many items as
+     *  there are in the dataProvider.
+     *  
+     *  @default 5
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get rowCount():int
+    {
+        return Math.max(1, Math.min(collection.length, _rowCount));
+    }
+
+    /**
+     *  @private
+     */
+    public function set rowCount(value:int):void
+    {
+        _rowCount = value;
+
+        if (_dropdown)
+            _dropdown.rowCount = value;
+    }
+	
+	
+	//----------------------------------
+    //  open
+    //----------------------------------
+	
+	public function open():void
+    {
+        displayDropdown(true);
+    }
+
+    /**
+     *  Hides the drop-down list.
+     *
+     *  @param trigger The event to dispatch when the 
+     *  drop-down list closes.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+	 
+	//----------------------------------
+    //  close
+    //----------------------------------
+	
+	 /**
+     *  @private
+     */
+    private var _selectedIndexOnDropdown:int = -1;
+	
+    public function close(trigger:Event = null):void
+    {
+        if (_showingDropdown)
+        {
+            if (_dropdown && selectedIndex != _dropdown.selectedIndex)
+                selectedIndex = _dropdown.selectedIndex;
+
+            displayDropdown(false, trigger);
+
+        /*    dispatchChangeEvent(new Event("dummy"),
+                    _selectedIndexOnDropdown,
+                    selectedIndex); */
+        }
+    }
+	
+	
+	 /**
+     *  @private
+     *  The tween used for showing and hiding the drop-down list.
+     */
+    private var tween:Tween = null;
+    
+    /**
+     *  @private
+     *  A flag to track whether the dropDown tweened up or down. 
+     */
+    private var tweenUp:Boolean = false;
+	
+	/**
+     *  @private
+     */
+    private var inTween:Boolean = false;
+	
+	
+	private function displayDropdown(show:Boolean, trigger:Event = null, playEffect:Boolean = true):void
+    {
+        if (!initialized || show == _showingDropdown)
+            return;
+
+        if (inTween && tween)
+            tween.endTween();
+
+        // Subclasses may extend to do pre-processing
+        // before the dropdown is displayed
+        // or override to implement special display behavior
+
+        // Show or hide the dropdown
+        var initY:Number;
+        var endY:Number;
+        var duration:Number;
+        var easingFunction:Function;
+
+        var point:Point = new Point(0, unscaledHeight);
+        point = localToGlobal(point);
+        
+        //var sm:ISystemManager = systemManager.topLevelSystemManager;
+        //var screen:Rectangle = sm.getVisibleApplicationRect(null, true);
+
+        //opening the dropdown 
+        if (show)
+        {
+            // Store the selectedIndex temporarily so we can tell
+            // if the value changed when the dropdown is closed
+            _selectedIndexOnDropdown = selectedIndex;
+
+            getDropdown();
+
+            _dropdown.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, dropdown_mouseOutsideHandler);
+            _dropdown.addEventListener(FlexMouseEvent.MOUSE_WHEEL_OUTSIDE, dropdown_mouseOutsideHandler);
+            _dropdown.addEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, dropdown_mouseOutsideHandler);
+            _dropdown.addEventListener(SandboxMouseEvent.MOUSE_WHEEL_SOMEWHERE, dropdown_mouseOutsideHandler);
+            
+            if (_dropdown.parent == null)  // was popped up then closed
+                PopUpManager.addPopUp(_dropdown, this);
+            else {
+               // PopUpManager.bringToFront(_dropdown);
+			}
+
+            // if we donot have enough space in the bottom display the dropdown
+            // at the top. But if the space there is also less than required
+            // display it below.
+            if (point.y + _dropdown.height > screen.bottom &&
+                point.y > screen.top + _dropdown.height)
+            {
+                // Dropdown will go below the bottom of the stage
+                // and be clipped. Instead, have it grow up.
+                point.y -= (unscaledHeight + _dropdown.height);
+                initY = -_dropdown.height;
+                tweenUp = true;
+            }
+            else
+            {
+                initY = _dropdown.height;
+                tweenUp = false;
+            }
+        
+            //point = _dropdown.parent.globalToLocal(point);
+            
+            // If the combobox's layout is mirrored then the the dropdown's 
+            // will be too.  That also means that (stage coordinate) point.x is 
+            // currently the right edge of the dropdown.  Fix that:
+            if (layoutDirection == LayoutDirection.RTL)
+                point.x -= _dropdown.width;
+
+            var sel:int = _dropdown.selectedIndex;
+            if (sel == -1)
+                sel = 0;
+            var pos:Number = _dropdown.verticalScrollPosition;
+
+            // try to set the verticalScrollPosition one above the selected index so
+            // it looks better when the dropdown is displayed
+            pos = sel - 1;
+            pos = Math.min(Math.max(pos, 0), _dropdown.maxVerticalScrollPosition);
+            _dropdown.verticalScrollPosition = pos;
+
+            if (_dropdown.x != point.x || _dropdown.y != point.y)
+                _dropdown.move(point.x, point.y);
+
+         /*   _dropdown.scrollRect = new Rectangle(0, initY,
+                    _dropdown.width, _dropdown.height); */
+
+            if (!_dropdown.visible)
+                _dropdown.visible = true;
+
+            // Make sure we don't remove the dropdown at the end of the tween
+            //bRemoveDropdown = false;
+            
+            // Set up the tween and relevant variables. 
+            _showingDropdown = show;
+            duration = getStyle("openDuration");
+            endY = 0;
+            easingFunction = getStyle("openEasingFunction") as Function;
+        }
+        
+        // closing the dropdown 
+        else if (_dropdown)
+        {
+            // Set up the tween and relevant variables. 
+            endY = (point.y + _dropdown.height > screen.bottom || tweenUp
+                               ? -_dropdown.height
+                               : _dropdown.height);
+            _showingDropdown = show;
+            initY = 0;
+            duration = getStyle("closeDuration");
+            easingFunction = getStyle("closeEasingFunction") as Function;
+            
+           // _dropdown.resetDragScrolling();
+        }
+        
+        inTween = true;
+        // only force validation if we're about to show
+        // or closing with effect.  Otherwise, if the iterator
+        // is out of sync in the dropdown, we'll get an RTE
+        // when closing
+        if (playEffect || show) {
+				//UIComponentGlobals.layoutManager.validateNow();
+			}
+        
+        // Block all layout, responses from web service, and other background
+        // processing until the tween finishes executing.
+        //UIComponent.suspendBackgroundProcessing();
+        
+        // Disable the dropdown during the tween.
+        if (_dropdown)
+            _dropdown.enabled = false;
+        
+        duration = Math.max(1, duration);
+        if (!playEffect) 
+            duration = 1;
+        tween = new Tween(this, initY, endY, duration);
+        
+        if (easingFunction != null && tween)
+            tween.easingFunction = easingFunction;
+            
+        //triggerEvent = trigger;
+    }
+	
+	
+	//----------------------------------
+    //  selectedIndex
+    //----------------------------------
+
+    [Bindable("change")]
+    [Bindable("collectionChange")]
+    [Bindable("valueCommit")]
+    [Inspectable(category="General", defaultValue="0")]
+
+    /**
+     *  Index of the selected item in the drop-down list.
+     *  Setting this property sets the current index and displays
+     *  the associated label in the TextInput portion.
+     *  <p>The default value is -1, but it set to 0
+     *  when a <code>dataProvider</code> is assigned, unless there is a prompt.
+     *  If the control is editable, and the user types in the TextInput portion,
+     *  the value of the <code>selectedIndex</code> property becomes 
+     *  -1. If the value of the <code>selectedIndex</code> 
+     *  property is out of range, the <code>selectedIndex</code> property is set to the last
+     *  item in the <code>dataProvider</code>.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function set selectedIndex(value:int):void
+    {
+        super.selectedIndex = value;
+
+        if (value >= 0) {
+           // selectionChanged = true;
+		}
+            
+        //implicitSelectedIndex = false;
+        invalidateDisplayList();
+
+        // value committed event needs the text to be set
+        //if (textInput && !textChanged && value >= 0)
+        if (textInput && value >= 0)
+            textInput.text = selectedLabel;
+        else if (textInput && prompt)
+            textInput.text = prompt;
+
+        // [Matt] setting the text of the textInput should take care of this now
+        // Send a valueCommit event, which is used by the data model
+        //dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+    }
+	
+	private var _showingDropdown:Boolean = false;
+	
+	/**
+     *  @private
+     */
+    mx_internal function get isShowingDropdown():Boolean
+    {
+        return _showingDropdown;
+    }
+	
+	
+	private function getDropdown():ListBase
+    {
+       /* if (!initialized)
+            return null;
+
+        if (!hasDropdown())
+        {
+            var dropDownStyleName:String = getStyle("dropDownStyleName");
+            if (dropDownStyleName == null ) 
+                dropDownStyleName = getStyle("dropdownStyleName");
+            
+
+            _dropdown = dropdownFactory.newInstance();
+            _dropdown.visible = false;
+            _dropdown.focusEnabled = false;
+            _dropdown.owner = this;
+
+            if (itemRenderer)
+                _dropdown.itemRenderer = itemRenderer;
+
+            if (dropDownStyleName)
+                _dropdown.styleName = dropDownStyleName;
+
+            PopUpManager.addPopUp(_dropdown, this);
+
+            // Don't display a tween when the selection changes.
+            // The dropdown menu is about to appear anyway,
+            // and other processing can make the tween look choppy.
+            _dropdown.setStyle("selectionDuration", 0);
+
+            // Set up a data provider in case one doesn't yet exist,
+            // so we can share it with the dropdown listbox.
+            if (!dataProvider)
+                dataProvider = new ArrayCollection();
+
+            _dropdown.dataProvider = dataProvider;
+            _dropdown.rowCount = rowCount;
+            _dropdown.width = _dropdownWidth;
+            _dropdown.selectedIndex = selectedIndex;
+            _oldIndex = selectedIndex;
+            _dropdown.verticalScrollPolicy = ScrollPolicy.AUTO;
+            _dropdown.labelField = _labelField;
+            _dropdown.labelFunction = itemToLabel;
+            _dropdown.allowDragSelection = true;
+
+            _dropdown.addEventListener("change", dropdown_changeHandler);
+            _dropdown.addEventListener(ScrollEvent.SCROLL, dropdown_scrollHandler);
+            _dropdown.addEventListener(ListEvent.ITEM_ROLL_OVER, dropdown_itemRollOverHandler);
+            _dropdown.addEventListener(ListEvent.ITEM_ROLL_OUT, dropdown_itemRollOutHandler);
+            
+            // the drop down should close if the user clicks on any item.
+            // add a handler to detect a click in the list
+            _dropdown.addEventListener(ListEvent.ITEM_CLICK, dropdown_itemClickHandler);
+
+            UIComponentGlobals.layoutManager.validateClient(_dropdown, true);
+            _dropdown.setActualSize(_dropdownWidth, _dropdown.getExplicitOrMeasuredHeight());
+            _dropdown.validateDisplayList();
+
+            _dropdown.cacheAsBitmap = true;
+
+            // weak reference to stage
+            systemManager.addEventListener(Event.RESIZE, stage_resizeHandler, false, 0, true);
+        }
+        
+        
+        var m:Matrix = MatrixUtil.getConcatenatedMatrix(this, systemManager.getSandboxRoot());
+        _dropdown.scaleX = m.a;
+        _dropdown.scaleY = m.d; */
+        
+        return _dropdown;
+    }
+	
+	private function dropdown_mouseOutsideHandler(event:Event):void
+    {
+        // trace("dropdown_mouseOutsideHandler: " + event);
+        
+        if (event is MouseEvent)
+        {
+            var mouseEvent:MouseEvent = MouseEvent(event);
+            if (mouseEvent.target != _dropdown)
+                // the dropdown's items can dispatch a mouseDownOutside
+                // event which then bubbles up to us
+                return;
+    
+         /*   if (!hitTestPoint(mouseEvent.stageX, mouseEvent.stageY, true))
+            {
+                close(event);
+            } */
+        }
+        else if (event is SandboxMouseEvent) 
+        {
+            close(event);
+        }
+    }
+
+
 
 
 }

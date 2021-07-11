@@ -56,6 +56,7 @@ package mx.system
 		 */
 		public static function get os():String
 		{
+			trace("os in Capabilities is not implemented");
 			return "OS";
 		}
 		

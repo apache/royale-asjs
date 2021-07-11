@@ -28,9 +28,11 @@ package mx.dummy
 	   
 		public var _caption:String = "";
 	    public function get caption():String {
+			trace("get caption in ContextMenuItem is not implemented");
 			return _caption;
 		}
 		public function set caption(value:String):void {
+			trace("set caption in ContextMenuItem is not implemented");
 			_caption = value;
 		}
 
