@@ -45,9 +45,17 @@ package org.apache.royale.html.util
                 if (value == "undefined")
                 {
                     if (labelField.charAt(0) == '@')
-                        value = data["attribute"](labelField);
+                    {
+                        var fal:* = data["attribute"];
+                        if (fal && typeof(fal) === "function")
+                            value = fal(labelField);
+                    }
                     else
-                        value = data["child"](labelField).toString();
+                    {
+                        var fcl:* = data["child"];
+                        if (fcl && typeof(fcl) === "function")
+                            value = fcl(labelField).toString();
+                    }
                 }
             }
             return value;
@@ -63,9 +71,17 @@ package org.apache.royale.html.util
                 if (value == "undefined")
                 {
                     if (labelField.charAt(0) == '@')
-                        value = data["attribute"](labelField);
+                    {
+                        var fad:* = data["attribute"];
+                        if (fad && typeof(fad) === "function")
+                            value = fad(labelField);
+                    }
                     else
-                        value = data["child"](labelField).toString();
+                    {
+                        var fcd:* = data["child"];
+                        if (fcd && typeof(fcd) === "function")
+                            value = fcd(labelField).toString();
+                    }
                 }
             }
             return value;
