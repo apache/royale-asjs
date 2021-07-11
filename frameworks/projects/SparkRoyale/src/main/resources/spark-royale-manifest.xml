@@ -146,7 +146,6 @@
     <component id="SortField" class="spark.collections.SortField"/>
     <component id="CollectionChangeUpdateForArrayListData" class="spark.components.beads.CollectionChangeUpdateForArrayListData" />
     <component id="SelfItemRenderer" class="spark.components.beads.SelfItemRenderer"/>
-    <component id="SelfItemRendererInitializer" class="spark.components.beads.SelfItemRendererInitializer"/>
     <component id="SimpleMotionPath" class="spark.effects.animation.SimpleMotionPath"/>
 
     <!-- MXItemRenderer -->
