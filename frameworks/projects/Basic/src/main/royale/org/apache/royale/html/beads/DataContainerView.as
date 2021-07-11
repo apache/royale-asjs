@@ -102,7 +102,8 @@ package org.apache.royale.html.beads
 		{
 			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
-			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			// may be called before IDataProviderModel bead is added
+			if (dataModel) dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 		}
         
 		
