@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.DispatcherBead;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.IEventDispatcher;
@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-    public class ComboBoxListCloseOnClick implements IBead{
+    public class ComboBoxListCloseOnClick extends DispatcherBead {
 
         /**
 		 *  constructor.
@@ -55,10 +55,11 @@ package org.apache.royale.jewel.beads.controls.combobox
 
         private var _list:List;
         private var comboView:ComboBoxView;
+        
+        public override function set strand(value:IStrand):void
+		{
+            super.strand = value;
 
-
-        public function set strand(value:IStrand):void
-		{   
             var comboBox:ComboBox = (value as ComboBox);
             comboView = (comboBox.view as ComboBoxView);
             var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(comboView.host, "iItemRenderer") as Class;

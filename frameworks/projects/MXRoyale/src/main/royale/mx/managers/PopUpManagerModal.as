@@ -18,21 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.managers
 {
-  import org.apache.royale.events.EventDispatcher;
-  import org.apache.royale.core.IBead;
-  import org.apache.royale.core.IStrand;
   import org.apache.royale.core.IUIBase;
-  import org.apache.royale.core.IPopUpHost;
-  import org.apache.royale.events.Event;
-  import org.apache.royale.utils.UIUtils;
-  import org.apache.royale.events.IEventDispatcher;
   import org.apache.royale.core.IParent;
-  import org.apache.royale.core.IParentIUIBase;
-  import org.apache.royale.core.UIBase;
-  import org.apache.royale.utils.CSSUtils;
   import org.apache.royale.events.MouseEvent;
-
+  import mx.core.IFlexDisplayObject;
   import mx.core.UIComponent;
+
+  COMPILE::SWF{
+    import flash.utils.Dictionary
+  }
 
   public class PopUpManagerModal extends UIComponent
   {
@@ -41,15 +35,19 @@ package mx.managers
       super();
       typeNames = "PopUpManagerModal";
     }
-    
+
+    COMPILE::SWF
+    private static var overlaysByPopUp:Dictionary = new Dictionary();
+
+    COMPILE::JS
+    private static var overlaysByPopUp:Map = new Map();
 
     // Application and View are both possible parents,
     // but there's no single interface for both that will work.
-    private static var overlays:Array = [];
     /**
      *  @royaleignorecoercion Object
      */
-    public static function show(host:IUIBase):void
+    public static function show(host:IUIBase, forPopup:IFlexDisplayObject):void
     {
       var hostParent:IParent = host.parent;
       var overlay:PopUpManagerModal = new PopUpManagerModal();
@@ -78,7 +76,12 @@ package mx.managers
       */
       hostParent.addElement(overlay);
       overlay.addEventListener(MouseEvent.CLICK,handleClick);
-      overlays.push(overlay)
+      COMPILE::SWF{
+        overlaysByPopUp[forPopup] = overlay;
+      }
+      COMPILE::JS{
+        overlaysByPopUp.set(forPopup, overlay);
+      }
     }
 
     private static function handleClick(ev:MouseEvent):void
@@ -87,10 +90,21 @@ package mx.managers
       ev.stopImmediatePropagation();
     }
 
-    public static function remove(host:IUIBase):void
+    public static function remove(host:IUIBase, forPopup:IFlexDisplayObject):void
     {
         var hostParent:IParent = host.parent;
-        hostParent.removeElement(overlays.pop());
+      var overlay:PopUpManagerModal ;
+      COMPILE::SWF{
+        overlay = overlaysByPopUp[forPopup];
+        delete overlaysByPopUp[forPopup];
+      }
+      COMPILE::JS{
+        overlay = overlaysByPopUp.get(forPopup);
+        overlaysByPopUp.delete(forPopup);
+      }
+      if (overlay){
+        hostParent.removeElement(overlay);
+      }
     }
 
 

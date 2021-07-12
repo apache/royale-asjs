@@ -168,6 +168,22 @@ use namespace mx_internal;
  */
 [Event(name="itemDoubleClick", type="mx.events.ListEvent")]
 
+/**
+ *  Dispatched by the drag initiator when starting a drag operation.
+ *  This event is used internally by the list-based controls;
+ *  you do not handle it when implementing drag and drop.
+ *  If you want to control the start of a drag-and-drop operation,
+ *  use the <code>mouseDown</code> or <code>mouseMove</code> event.
+ *
+ *  @eventType mx.events.DragEvent.DRAG_START
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragStart", type="mx.events.DragEvent")]
+
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -1824,71 +1840,6 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      }
 	 
 	 
-    //----------------------------------
-    //  columnCount
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the columnCount property.
-     */
-    private var _columnCount:int = -1;
-
-    /**
-     *  The number of columns to be displayed in a TileList control or items 
-     *  in a HorizontalList control. 
-     *  For the data grids, specifies the number of visible columns.
-     *
-     *  <p><b>Note</b>: Setting this property has no effect on a DataGrid control,
-     *  which bases the number of columns on the control width and the
-     *  individual column widths.</p>
-     * 
-     *  @default 4
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-     public function get columnCount():int
-    {
-        return _columnCount;
-    } 
-
-    /**
-     *  @private
-     */
-     public function set columnCount(value:int):void
-    {
-       /* explicitColumnCount = value;
-
-        if (_columnCount != value)
-        {
-            setColumnCount(value);
-            columnCountChanged = true;
-            invalidateProperties();
-
-            invalidateSize();
-            itemsSizeChanged = true;
-            invalidateDisplayList();
-
-            dispatchEvent(new Event("columnCountChanged"));
-        } */
-    } 
-
-    /**
-     *  Internal version for setting columnCount
-     *  without invalidation or notification.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-   /*  mx_internal function setColumnCount(value:int):void
-    {
-        _columnCount = value;
-    } */
 
 
     //----------------------------------

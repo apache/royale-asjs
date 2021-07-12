@@ -150,8 +150,7 @@ public class NetConnection extends EventDispatcher
         var ncResponder:org.apache.royale.net.Responder = 
                         new org.apache.royale.net.Responder(responder.resultFunction,
                                                               responder.faultFunction);
-        // Jim P: pass the AMF target URI in here 
-        nc.call(thisObject as String, ncResponder, message);
+        nc.call(null, ncResponder, message);
     }
 }
 

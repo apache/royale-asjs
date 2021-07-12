@@ -18,27 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.datefield
 {
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-    import org.apache.royale.jewel.beads.views.DateFieldView;
-    import org.apache.royale.jewel.DateChooser;
-    import org.apache.royale.jewel.beads.controls.datechooser.DateChooserDateRangeRestriction;
-													
+	import org.apache.royale.core.DispatcherBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.DateChooser;
+	import org.apache.royale.jewel.beads.controls.datechooser.DateChooserDateRangeRestriction;
+	import org.apache.royale.jewel.beads.views.DateFieldView;
+
 	/**
 	 *  Disable dates which are outside restriction provided by minDate and maxDate properties
 	 *  in DateField component
-     * 
+	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class DateFieldDateRangeRestriction implements IBead
+	public class DateFieldDateRangeRestriction extends DispatcherBead
 	{
-        /**
+		/**
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
@@ -49,16 +48,16 @@ package org.apache.royale.jewel.beads.controls.datefield
 		public function DateFieldDateRangeRestriction()
 		{
 		}
-		
+
 		private var _minDate:Date;
-        /**
-         *  The minimun date
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.8
-         */
+		/**
+		 *  The minimun date
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
 		[Bindable]
 		public function get minDate():Date
 		{
@@ -72,16 +71,16 @@ package org.apache.royale.jewel.beads.controls.datefield
 				setUpDateRangeRestriction();
 			}
 		}
-		
+
 		private var _maxDate:Date;
-        /**
-         *  The maximun date
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.8
-         */
+		/**
+		 *  The maximun date
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
 		[Bindable]
 		public function get maxDate():Date
 		{
@@ -95,8 +94,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 				setUpDateRangeRestriction();
 			}
 		}
-		
-		private var _strand:IStrand;
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -106,19 +104,19 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 *  @productversion Royale 0.9.8
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		public override function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			(_strand as IEventDispatcher).addEventListener("initComplete", handleDateFieldInitComplete);
 		}
 
 		private var view:DateFieldView;
 		private var dataRangeRestriction:DateChooserDateRangeRestriction;
-		
+
 		private function handleDateFieldInitComplete(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", handleDateFieldInitComplete);
-            (_strand as IEventDispatcher).addEventListener('popUpOpened', popUpOpenedHandler, false);
+			(_strand as IEventDispatcher).addEventListener('popUpOpened', popUpOpenedHandler, false);
 			
 			view = _strand.getBeadByType(DateFieldView) as DateFieldView;
 		}
@@ -131,17 +129,15 @@ package org.apache.royale.jewel.beads.controls.datefield
 			dataRangeRestriction.minDate = minDate;
 			dataRangeRestriction.maxDate = maxDate;
 		}
-		
+
 		protected function popUpOpenedHandler():void
 		{
-            if (!minDate || !maxDate) return;
-			
-            setUpDateRangeRestriction();
+			setUpDateRangeRestriction();
 
 			var dateChooser:DateChooser = view.popUp as DateChooser;
 			dateChooser.addBead(dataRangeRestriction);
 
 			dataRangeRestriction.setUpBead();
 		}
-    }
+	}
 }

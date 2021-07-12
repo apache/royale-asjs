@@ -57,7 +57,7 @@
           <filterProperties>
             <flash.version>${flash.version}</flash.version>
             <air.version>${air.version}</air.version>
-            <royale.compiler.version>${royale.compiler.version}</royale.compiler.version>
+            <project.royale.compiler.version>${project.royale.compiler.version}</project.royale.compiler.version>
             <royale.typedefs.version>${royale.typedefs.version}</royale.typedefs.version>
             <royale.framework.version>${project.version}</royale.framework.version>
             <royale.build-tools.version>${royale.build-tools.version}</royale.build-tools.version>

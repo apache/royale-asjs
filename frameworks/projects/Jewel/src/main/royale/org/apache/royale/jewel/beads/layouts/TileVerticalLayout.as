@@ -28,7 +28,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
-	import org.apache.royale.events.Event
+	import org.apache.royale.events.Event;
 
 	/**
 	 *  The TileVerticalLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -78,6 +78,7 @@ package org.apache.royale.jewel.beads.layouts
 			super.beadsAddedHandler();
 
 			hostComponent.replaceClass("tile");
+			hostComponent.dispatchEvent(new Event("layoutNeeded"));
 		}
 
 		private var _columnCount:int = -1;

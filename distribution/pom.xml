@@ -16,7 +16,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -41,8 +42,9 @@
     <targetPlayerMajorVersion>20</targetPlayerMajorVersion>
     <targetPlayerMinorVersion>0</targetPlayerMinorVersion>
 
-    <assembly.bin>bin.xml</assembly.bin>
-    <assembly.dir>dir.xml</assembly.dir>
+    <strip-swf>true</strip-swf>
+    <assembly.bin>bin-without-swf.xml</assembly.bin>
+    <assembly.dir>dir-without-swf.xml</assembly.dir>
     <assembly.sdk-description>royale-sdk-description.xml</assembly.sdk-description>
   </properties>
 
@@ -58,35 +60,233 @@
     <module>jars/mxmlc</module>
   </modules>
 
+  <build>
+    <finalName>${distributionFileName}</finalName>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-remote-resources-plugin</artifactId>
+          <version>1.5</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>2.10</version>
+        <executions>
+          <execution>
+            <id>copy-compiler-jx</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.royale.compiler</groupId>
+                  <artifactId>compiler-jx</artifactId>
+                  <version>${project.royale.compiler.version}</version>
+                  <type>jar</type>
+                  <destFileName>jsc.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/jsc</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-compiler-scripts</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.royale.compiler</groupId>
+                  <artifactId>compiler</artifactId>
+                  <version>${project.royale.compiler.version}</version>
+                  <type>jar</type>
+                  <classifier>scripts</classifier>
+                  <outputDirectory>${project.build.directory}/dependency/compiler</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-compiler</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.google.javascript</groupId>
+                  <artifactId>closure-compiler</artifactId>
+                  <version>v20181210</version>
+                  <type>jar</type>
+                  <destFileName>closure-compiler.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-library</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.clojure</groupId>
+                  <artifactId>google-closure-library</artifactId>
+                  <version>0.0-20170809-b9c14c6b</version>
+                  <type>jar</type>
+                  <outputDirectory>${project.build.directory}/closure-library-temp</outputDirectory>
+                  <includes>**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>xml-maven-plugin</artifactId>
+        <version>1.0.2</version>
+        <executions>
+          <execution>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>transform</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <transformationSets>
+            <transformationSet>
+              <dir>${project.basedir}/../frameworks</dir>
+              <includes>*.xml</includes>
+              <stylesheet>src/main/xslt/process-configs.xsl</stylesheet>
+              <includes>*-template.xml</includes>
+              <parameters>
+                <parameter>
+                  <name>SwfVersion</name>
+                  <value>${swf.version}</value>
+                </parameter>
+                <parameter>
+                  <name>PlayerVersion</name>
+                  <value>${flash.version}</value>
+                </parameter>
+                <parameter>
+                  <name>Locale</name>
+                  <value>en_US</value>
+                </parameter>
+                <parameter>
+                  <name>StripSwf</name>
+                  <value>${strip-swf}</value>
+                </parameter>
+                <parameter>
+                  <name>FlashBuilderSupport</name>
+                  <value>true</value>
+                </parameter>
+              </parameters>
+              <outputDir>${project.build.directory}/processed-configs</outputDir>
+            </transformationSet>
+          </transformationSets>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>net.sourceforge.saxon</groupId>
+            <artifactId>saxon</artifactId>
+            <version>9.1.0.8</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>create-distro-packages</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/assembly/${assembly.bin}</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
   <dependencies>
     <!-- Add the compiler module -->
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.compiler</groupId>
+      <artifactId>compiler</artifactId>
+      <version>${project.royale.compiler.version}</version>
+      <classifier>scripts</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>flex-compiler-oem</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>royale-ant-tasks</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>debugger</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler-jx</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.compiler</groupId>
+      <artifactId>compiler-externc</artifactId>
+      <version>${project.royale.compiler.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.compiler</groupId>
+      <artifactId>royaleunit-ant-tasks</artifactId>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
 
     <!-- Add the framework js-swc modules -->
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Ace</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
@@ -118,6 +318,13 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>CreateJS</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Crux</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
@@ -194,6 +401,27 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Icons</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>JewelTheme</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>JQuery</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
@@ -222,14 +450,14 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Network</artifactId>
+      <artifactId>MXRoyale</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Icons</artifactId>
+      <artifactId>Network</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
@@ -243,7 +471,49 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
+      <artifactId>RoyaleSite</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>RoyaleUnit</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>RoyaleUnitUI</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>SparkRoyale</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Storage</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Text</artifactId>
+      <version>0.9.8-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>TLF</artifactId>
       <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
@@ -255,22 +525,15 @@
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Jewel</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Crux</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
 
     <!-- Add dependencies to the externs from the compiler module -->
+    <dependency>
+      <groupId>org.apache.royale.typedefs</groupId>
+      <artifactId>royale-typedefs-ace</artifactId>
+      <version>${royale.typedefs.version}</version>
+      <type>swc</type>
+      <classifier>typedefs</classifier>
+    </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-cordova</artifactId>
@@ -348,50 +611,50 @@
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>mxmlc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-asc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-compc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-mxmlc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-compjsc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-mxmljsc</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-optimizer</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-swfdump</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
     
-    <!-- google closure compiler and library will be needed unpacked in js/lib/google -->
+    <!-- google closure compiler and library will be needed packed in js/lib/google -->
     <dependency>
       <groupId>com.google.javascript</groupId>
       <artifactId>closure-compiler</artifactId>
@@ -403,103 +666,6 @@
       <version>0.0-20170809-b9c14c6b</version>
     </dependency>
   </dependencies>
-
-  <build>
-    <finalName>${distributionFileName}</finalName>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-remote-resources-plugin</artifactId>
-          <version>1.5</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <version>2.10</version>
-        <executions>
-          <execution>
-            <id>copy-compiler-jx</id>
-            <phase>package</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.apache.royale.compiler</groupId>
-                  <artifactId>compiler-jx</artifactId>
-                  <version>${royale.compiler.version}</version>
-                  <type>jar</type>
-                  <destFileName>jsc.jar</destFileName>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.directory}/jsc</outputDirectory>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-closure-compiler</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>com.google.javascript</groupId>
-                  <artifactId>closure-compiler</artifactId>
-                  <version>v20181210</version>
-                  <type>jar</type>
-                  <outputDirectory>${project.build.directory}/closure-compiler-temp</outputDirectory>
-                  <includes>**</includes>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
-            <id>unpack-closure-library</id>
-            <phase>process-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.clojure</groupId>
-                  <artifactId>google-closure-library</artifactId>
-                  <version>0.0-20170809-b9c14c6b</version>
-                  <type>jar</type>
-                  <outputDirectory>${project.build.directory}/closure-library-temp</outputDirectory>
-                  <includes>**</includes>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>create-distro-packages</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-            <configuration>
-              <descriptors>
-                <descriptor>src/main/assembly/${assembly.bin}</descriptor>
-              </descriptors>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
 
   <profiles>
     <profile>
@@ -531,6 +697,7 @@
     <profile>
       <id>option-with-swf</id>
       <properties>
+        <strip-swf>false</strip-swf>
         <assembly.bin>bin-with-swf.xml</assembly.bin>
         <assembly.dir>dir-with-swf.xml</assembly.dir>
         <assembly.sdk-description>royale-sdk-description-with-swf.xml</assembly.sdk-description>
@@ -569,6 +736,12 @@
         <!-- Add the framework swc modules -->
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
           <artifactId>Binding</artifactId>
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
@@ -594,6 +767,12 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>CreateJS</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Crux</artifactId>
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
         </dependency>
@@ -659,6 +838,24 @@
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Icons</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Jewel</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>JewelTheme</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
           <artifactId>JQuery</artifactId>
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
@@ -683,13 +880,13 @@
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Network</artifactId>
+          <artifactId>MXRoyale</artifactId>
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Icons</artifactId>
+          <artifactId>Network</artifactId>
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
         </dependency>
@@ -701,7 +898,43 @@
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
+          <artifactId>RoyaleSite</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>RoyaleUnit</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>RoyaleUnitUI</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>SparkRoyale</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
           <artifactId>Storage</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Text</artifactId>
+          <version>0.9.8-SNAPSHOT</version>
+          <type>swc</type>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>TLF</artifactId>
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
         </dependency>
@@ -711,17 +944,14 @@
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
         </dependency>
+
+        <!-- Theme (Needed for FlashBuilder) -->
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Jewel</artifactId>
+          <artifactId>BasicTheme</artifactId>
           <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Crux</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
-          <type>swc</type>
+          <classifier>js</classifier>
         </dependency>
 
         <!-- SWFObject -->
@@ -730,7 +960,64 @@
           <artifactId>swfobject</artifactId>
           <version>2.2</version>
         </dependency>
+      </dependencies>
+    </profile>
 
+    <profile>
+      <id>_create-distribution-in-folder</id>
+      <activation>
+        <property>
+          <name>distributionTargetFolder</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <!-- Not clean since this removes unpacked closure-library from temp folder and prevents the copy to js/lib/google folder -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>clean-distribution-target-folder</id>
+                <phase>clean</phase>
+                <goals>
+                  <goal>clean</goal>
+                </goals>
+                <configuration>
+                  <filesets>
+                    <fileset>
+                      <directory>${distributionTargetFolder}</directory>
+                    </fileset>
+                  </filesets>
+                  <failOnError>false</failOnError>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>create-distribution-folder</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <finalName>./</finalName>
+                  <appendAssemblyId>false</appendAssemblyId>
+                  <attach>false</attach>
+                  <outputDirectory>${distributionTargetFolder}</outputDirectory>
+                  <descriptors>
+                    <descriptor>src/main/assembly/${assembly.dir}</descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <dependencies>
         <dependency>
           <groupId>com.adobe.flash</groupId>
           <artifactId>framework</artifactId>
@@ -806,61 +1093,6 @@
           <type>zip</type>
         </dependency>
       </dependencies>
-    </profile>
-    <profile>
-      <id>_create-distribution-in-folder</id>
-      <activation>
-        <property>
-          <name>distributionTargetFolder</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <!-- Not clean since this removes unpacked closure-library from temp folder and prevents the copy to js/lib/google folder -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-clean-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>clean-distribution-target-folder</id>
-                <phase>clean</phase>
-                <goals>
-                  <goal>clean</goal>
-                </goals>
-                <configuration>
-                  <filesets>
-                    <fileset>
-                      <directory>${distributionTargetFolder}</directory>
-                    </fileset>
-                  </filesets>
-                  <failOnError>false</failOnError>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>create-distribution-folder</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                  <finalName>./</finalName>
-                  <appendAssemblyId>false</appendAssemblyId>
-                  <attach>false</attach>
-                  <outputDirectory>${distributionTargetFolder}</outputDirectory>
-                  <descriptors>
-                    <descriptor>src/main/assembly/${assembly.dir}</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <!-- <profile>
       <id>_os-windows</id>

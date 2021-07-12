@@ -21,6 +21,7 @@ package mx.controls.listClasses
 	import mx.collections.IList;
 	
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
@@ -42,6 +43,7 @@ package mx.controls.listClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
+	import org.apache.royale.html.beads.ItemRendererFunctionBead;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
@@ -141,18 +143,22 @@ package mx.controls.listClasses
             var ir:IIndexedItemRenderer = rendererMap[index];
             if (ir) return ir;
             
+            var functionBead:ItemRendererFunctionBead = _strand.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+            var rendererFunction:Function = functionBead ? functionBead.itemRendererFunction : null;
             var dp:IList = dataProviderModel.dataProvider as IList;
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+            var data:Object = dp.getItemAt(index);
+            ir = rendererFunction ?
+                 (rendererFunction(data) as IFactory).newInstance() as IIndexedItemRenderer :
+                 itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
             
             dataGroup.addItemRendererAt(ir, elementIndex);
             
-            var data:Object = dp.getItemAt(index);
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
             rendererMap[index] = ir;
-			ir.data = data;
+            ir.data = data;
                         
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
             newEvent.itemRenderer = ir;

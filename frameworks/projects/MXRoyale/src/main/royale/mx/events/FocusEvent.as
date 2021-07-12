@@ -51,6 +51,9 @@ public class FocusEvent extends flash.events.FocusEvent
 {
     public static const FOCUS_IN:String = "focusIn";
     public static const FOCUS_OUT:String = "focusOut";
+	public static const KEY_FOCUS_CHANGE:String = "keyFocusChange"
+	public static const MOUSE_FOCUS_CHANGE:String = "mouseFocusChange"
+	
 	public function FocusEvent(type:String/*, bubbles:Boolean = false,
                               cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none"*/)
     {
@@ -75,6 +78,8 @@ public class FocusEvent extends org.apache.royale.events.Event
    /*  include "../core/Version.as"; */
 	public static const FOCUS_IN:String = "focusIn";
     public static const FOCUS_OUT:String = "focusOut";
+	public static const KEY_FOCUS_CHANGE:String = "keyFocusChange"
+	public static const MOUSE_FOCUS_CHANGE:String = "mouseFocusChange"
 	
 	//--------------------------------------------------------------------------
 	//

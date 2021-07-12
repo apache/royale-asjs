@@ -39,18 +39,20 @@ import spark.components.supportClasses.RegExPatterns;
 import spark.events.IndexChangeEvent;
 import spark.events.ListEvent;
 import spark.events.RendererExistenceEvent;
-import spark.layouts.supportClasses.LayoutBase;
-import spark.utils.LabelUtil;*/
+import spark.layouts.supportClasses.LayoutBase;*/
+import spark.utils.LabelUtil;
 import mx.collections.IList;
 import mx.core.IFactory;
 import mx.core.mx_internal;
 
+import org.apache.royale.html.beads.ItemRendererFunctionBead;
 import spark.components.DataGroup;
 import spark.components.SkinnableContainer;
 import spark.components.beads.SparkContainerView;
 import spark.layouts.VerticalLayout;
 
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.events.Event;
@@ -581,27 +583,32 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function get itemRendererFunction():Function // not implemeneted
+    public function get itemRendererFunction():Function
     {
-        //return (dataGroup) 
-            //? dataGroup.itemRendererFunction 
-            //: dataGroupProperties.itemRendererFunction;
-	    return null;
+
+	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+	if (itemRendererFunctionBead)
+        {
+            return itemRendererFunctionBead.itemRendererFunction;
+        }
+
+        return null;
     }
     
     /**
      *  @private
      */
-    public function set itemRendererFunction(value:Function):void // not implemeneted
+    public function set itemRendererFunction(value:Function):void
     {
-        //if (dataGroup)
-        //{
-            //dataGroup.itemRendererFunction = value;
-            //dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
-                                                     //ITEM_RENDERER_FUNCTION_PROPERTY_FLAG, true);
-        //}
-        //else
-            //dataGroupProperties.itemRendererFunction = value;
+	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+        if (!itemRendererFunctionBead)
+        {
+            itemRendererFunctionBead = new ItemRendererFunctionBead();
+            contentView.addBead(itemRendererFunctionBead);
+        }
+        itemRendererFunctionBead.itemRendererFunction = value;
     }
 
     /**
@@ -1440,11 +1447,11 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* override public function itemToLabel(item:Object):String
+    public function itemToLabel(item:Object):String
     {
         return LabelUtil.itemToLabel(item, labelField, labelFunction);
     }
-     */
+     
     //--------------------------------------------------------------------------
     //
     //  Methods

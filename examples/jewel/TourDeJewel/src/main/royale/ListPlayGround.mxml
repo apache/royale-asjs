@@ -322,9 +322,7 @@ limitations under the License.
 						<j:beads>
 							<j:HorizontalLayout itemsExpand="true" />
 						</j:beads>
-						<j:dataProvider>
-							<js:ArrayList localId="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Hawkeye]" />
-						</j:dataProvider>
+						<js:ArrayList localId="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Hawkeye]" />
 					</j:List>
 				
 				</j:CardPrimaryContent>

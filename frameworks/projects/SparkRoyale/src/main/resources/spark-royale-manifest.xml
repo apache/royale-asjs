@@ -33,6 +33,7 @@
 	<component id="TextArea" class="spark.components.TextArea" />
 	<component id="TextInput" class="spark.components.TextInput" />
 	<component id="Panel" class="spark.components.Panel" />
+
 	<component id="TitleWindow" class="spark.components.TitleWindow" />
 	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
 	<component id="SparkSkinWithClipAndEnableScrollingViewport" class="spark.components.beads.SparkSkinWithClipAndEnableScrollingViewport"/>
@@ -128,10 +129,12 @@
     <component id="ButtonBarButton" class="spark.components.ButtonBarButton"/>
     <component id="ButtonBarHorizontalLayout" class="spark.components.supportClasses.ButtonBarHorizontalLayout"/>
     <component id="AnimateColor" class="spark.effects.AnimateColor"/>
+    <component id="Animate" class="spark.effects.Animate"/>
     <component id="Fade" class="spark.effects.Fade"/>
     <component id="Resize" class="spark.effects.Resize"/>
     <component id="SetAction" class="spark.effects.SetAction"/>
     <component id="Power" class="spark.effects.easing.Power"/>
+	<component id="Wipe" class="spark.effects.Wipe"/>
     <component id="ColorMatrixFilter" class="spark.filters.ColorMatrixFilter"/>
     <component id="DropShadowFilter" class="spark.filters.DropShadowFilter"/>
     <component id="GlowFilter" class="spark.filters.GlowFilter"/>
@@ -144,8 +147,14 @@
     <component id="CollectionChangeUpdateForArrayListData" class="spark.components.beads.CollectionChangeUpdateForArrayListData" />
     <component id="SelfItemRenderer" class="spark.components.beads.SelfItemRenderer"/>
     <component id="SelfItemRendererInitializer" class="spark.components.beads.SelfItemRendererInitializer"/>
+    <component id="SimpleMotionPath" class="spark.effects.animation.SimpleMotionPath"/>
     <component id="DateTimeFormatter" class="spark.formatters.DateTimeFormatter"/>
     <component id="NumberFormatter" class="spark.formatters.NumberFormatter"/>
 
+    <!-- MXItemRenderer -->
+	<component id="MXItemRenderer" class="spark.controls.listClasses.MXItemRenderer"/>
+    <component id="MXDataGridItemRenderer" class="spark.controls.dataGridClasses.MXDataGridItemRenderer"/>
 	
+	<component id="MXTreeItemRenderer" class="spark.controls.treeClasses.MXTreeItemRenderer"/>
+
 </componentPackage>

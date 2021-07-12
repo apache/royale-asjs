@@ -275,7 +275,7 @@ use namespace mx_internal;
 *  @playerversion AIR 1.1
 *  @productversion Royale 0.9.4
 */
-//[Style(name="defaultLeafIcon", type="Class", format="EmbeddedFile", inherit="no")]
+[Style(name="defaultLeafIcon", type="Class", format="EmbeddedFile", inherit="no")]
 
 /**
 *  The icon that is displayed next to an open branch node of the navigation tree.
@@ -311,7 +311,7 @@ use namespace mx_internal;
 *  @playerversion AIR 1.1
 *  @productversion Royale 0.9.4
 */
-//[Style(name="folderOpenIcon", type="Class", format="EmbeddedFile", inherit="no")]
+[Style(name="folderOpenIcon", type="Class", format="EmbeddedFile", inherit="no")]
 
 /**
 *  Specifies the folder closed icon for a branch node of the navigation tree.
@@ -323,7 +323,7 @@ use namespace mx_internal;
 *  @playerversion AIR 1.1
 *  @productversion Royale 0.9.4
 */
-//[Style(name="folderClosedIcon", type="Class", format="EmbeddedFile", inherit="no")]
+[Style(name="folderClosedIcon", type="Class", format="EmbeddedFile", inherit="no")]
 
 /**
 *  The indentation for each node of the navigation tree, in pixels.
@@ -1264,7 +1264,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *  Storage variable for changes to displayItemsExpanded.
      */
-    // private var displayItemsExpandedChanged:Boolean = false;
+     private var displayItemsExpandedChanged:Boolean = false;
     
     //--------------------------------------------------------------------------
     //
@@ -1340,6 +1340,49 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         commitProperties();
     }
     
+	//----------------------------------
+    //  sortItemRenderer
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the sortItemRenderer property.
+     */
+    private var _sortItemRenderer:IFactory;
+
+    [Inspectable]
+    [Bindable("sortItemRendererChanged")]
+
+    /**
+     *  The sort item renderer to be used to display the sort icon in the
+     *  column header.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get sortItemRenderer():IFactory
+    {
+        return _sortItemRenderer;
+    }
+
+    /**
+     *  @private
+     */
+    public function set sortItemRenderer(value:IFactory):void
+    {
+        _sortItemRenderer = value;
+
+        itemsSizeChanged = true;
+        //rendererChanged = true;
+
+        invalidateSize();
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("sortItemRendererChanged"));
+    }
+	
     //----------------------------------
     //  lockedRowCount
     //----------------------------------
@@ -2103,9 +2146,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *  Indicates that items will be shown expanded or not.
      */
-    /* private var _displayItemsExpanded:Boolean = false;
+    private var _displayItemsExpanded:Boolean = false;
 
-    [Inspectable(category="General", enumeration="true,false", defaultValue="false")] */
+    [Inspectable(category="General", enumeration="true,false", defaultValue="false")]
     /**
      *  If <code>true</code>, expand the navigation tree to show all items.
      *  If a new branch is added, it will be shown expanded.
@@ -2117,12 +2160,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get displayItemsExpanded():Boolean
+    public function get displayItemsExpanded():Boolean
     {
         return _displayItemsExpanded;
-    } */
+    }
 
-   /*  public function set displayItemsExpanded(value:Boolean):void
+    public function set displayItemsExpanded(value:Boolean):void
     {
         if (value != _displayItemsExpanded)
         {
@@ -2134,7 +2177,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 invalidateProperties();
             }
         }
-    } */
+    }
     
     //----------------------------------
     //  treeColumn
@@ -4706,14 +4749,15 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function expandItem(item:Object, open:Boolean,
+     public function expandItem(item:Object, open:Boolean,
                                animate:Boolean = false,
                                dispatchEvent:Boolean = false,    
                                cause:Event = null):void
     {
+        trace("AdvancedDataGrid::expandItem is not implemented");
         //if the iterator is null, that indicates we have not been 
         //validated yet, so we will not continue. 
-        if (iterator == null)
+        /*if (iterator == null)
             return;
 
         if (cause) 
@@ -5154,8 +5198,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         }
         //restore ItemSizeChangeNotification flag
         listContent.allowItemSizeChangeNotification = variableRowHeight;
-        listSubContent.allowItemSizeChangeNotification = variableRowHeight;
-    } */
+        listSubContent.allowItemSizeChangeNotification = variableRowHeight;*/
+    }
 
     /**
      *  @private
@@ -6094,9 +6138,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function expandAll():void
+     public function expandAll():void
     {
-        if (dataProvider is IHierarchicalCollectionView && iterator)
+        trace("AdvancedDataGrid::expandAll is not implemented");
+        /*if (dataProvider is IHierarchicalCollectionView && iterator)
         {
             // move to the first item
             iterator.seek(CursorBookmark.FIRST);
@@ -6121,8 +6166,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             invalidateDisplayList();
             // seek to the correct position
             iterator.seek(CursorBookmark.FIRST, verticalScrollPosition);
-        }
-    } */
+        }*/
+    } 
 
     /**
      *  Collapses all the nodes of the navigation tree.
@@ -6132,9 +6177,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function collapseAll():void
+     public function collapseAll():void
     {
-        if (dataProvider is IHierarchicalCollectionView && iterator)
+        trace("AdvancedDataGrid::collapseAll is not implemented");
+        /*if (dataProvider is IHierarchicalCollectionView && iterator)
         {
             // clear the selected items
             clearSelected();
@@ -6157,8 +6203,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                     oldValue >= collection.length ? collection.length - 1 : oldValue;
                     
             iterator.seek(CursorBookmark.FIRST, verticalScrollPosition);
-        }
-    } */
+        }*/
+    } 
     
     /**
      *  @private

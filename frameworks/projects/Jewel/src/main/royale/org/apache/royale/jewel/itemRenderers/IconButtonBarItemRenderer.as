@@ -76,7 +76,6 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererOwnerView as ButtonBarView).buttonBar, "iconClass") as Class;
 				var fontIcon:IIcon = new iconClass(); 
-				// fontIcon.material = ((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).material;
 				fontIcon.text = value[((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).iconField];
 				icon = fontIcon;
 			}

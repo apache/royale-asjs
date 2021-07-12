@@ -22,45 +22,54 @@ package mx.display
 	{
 		import flash.display.DisplayObject;
 		import flash.display.BitmapData;
-
-		
-		public class Bitmap extends flash.display.DisplayObject
-		{
-			public function Bitmap(bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
-			{
-				super();
-			}
-		}
 	}
 	COMPILE::JS
 	{
 		import mx.core.UIComponent;
 		import org.apache.royale.display.BitmapData; 
 		//import org.apache.royale.textLayout.dummy.BitmapData;
+	}
 
 		
-		public class Bitmap extends mx.core.UIComponent
+	COMPILE::SWF
+	public class Bitmap extends flash.display.DisplayObject
+	{
+		public function Bitmap(bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
 		{
-			public function Bitmap(bitmapData:Object = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
-			{
-				super();
-			}
-			private var	_smoothing : Boolean =  false;
-			public function get smoothing():Boolean
-			{
-				return _smoothing;
-			}
-			public function set smoothing(value:Boolean):void
-			{
-				_smoothing = value;
-			}
-			// not implemented
-			public function get bitmapData():BitmapData
-			{
-				return null;
-			}
-			
+			super();
 		}
 	}
+
 	
+	COMPILE::JS
+	public class Bitmap extends mx.core.UIComponent
+	{
+		public function Bitmap(bitmapData:Object = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
+		{
+			super();
+		}
+		private var	_smoothing : Boolean =  false;
+		public function get smoothing():Boolean
+		{
+			return _smoothing;
+		}
+		public function set smoothing(value:Boolean):void
+		{
+			_smoothing = value;
+		}
+		
+		private var	_bitmapData : BitmapData =  null;
+
+		// not implemented
+		public function get bitmapData():BitmapData
+		{
+			return _bitmapData;
+		}
+		
+		public function set bitmapData(value:BitmapData):void
+		{
+			_bitmapData = value;
+		}
+		
+	}
 }

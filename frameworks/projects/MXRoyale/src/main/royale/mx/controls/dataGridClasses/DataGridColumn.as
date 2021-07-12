@@ -546,12 +546,35 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 
     public function get textAlign():Object
     {
-        trace("textAlign not implemented");
+        trace("DataGridColumn::textAlign not implemented");
         return 0;
     }
     public function set textAlign(value:Object):void
     {
-        trace("textAlign not implemented");
+        trace("DataGridColumn::textAlign not implemented");
+    }
+
+    /**
+     *  Sets a style property on this DataGridColumn.
+     *
+     *  @param styleProp The name of the style property.
+     *
+     *  @param newValue The value of the style property.
+     *  The value may be of any type.
+     *  The values <code>null</code>, <code>""</code>, <code>false</code>,
+     *  <code>NaN</code>, and <code>0</code> are all valid style values,
+     *  but the value <code>undefined</code> is not.
+     *  Setting a style property to the value <code>undefined</code>
+     *  is the same as calling the <code>clearStyle()</code> method.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function setStyle(styleProp:String, newValue:*):void
+    {
+        trace("DataGridColumn::setStyle is not implemented");
     }
 
     //----------------------------------
@@ -960,6 +983,116 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 			_editable = value;
 		}
 		
+        //----------------------------------
+        //  dataTipFunction
+        //----------------------------------
+
+        /**
+         *  @private
+         *  Storage for the dataTipFunction property.
+         */
+        private var _dataTipFunction:Function;
+
+        [Bindable("dataTipFunctionChanged")]
+        [Inspectable(category="Advanced")]
+
+        /**
+         *  Specifies a callback function to run on each item of the data provider 
+         *  to determine its dataTip.
+         *  This property is used by the <code>itemToDataTip</code> method.
+         * 
+         *  <p>By default the control looks for a property named <code>label</code>
+         *  on each data provider item and displays it as its dataTip.
+         *  However, some data providers do not have a <code>label</code> property 
+         *  nor do they have another property that you can use for displaying data 
+         *  in the rows.
+         *  For example, you might have a data provider that contains a lastName 
+         *  and firstName fields, but you want to display full names as the dataTip.
+         *  You can specify a function to the <code>dataTipFunction</code> property 
+         *  that returns a single String containing the value of both fields. You 
+         *  can also use the <code>dataTipFunction</code> property for handling 
+         *  formatting and localization.</p>
+         * 
+         *  <p>The function must take a single Object parameter, containing the
+         *  data provider element, and return a String.</p>
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function get dataTipFunction():Function
+        {
+            return _dataTipFunction;
+        }
+
+        /**
+         *  @private
+         */
+        public function set dataTipFunction(value:Function):void
+        {
+            _dataTipFunction = value;
+
+            /*if (owner)
+            {
+                owner.invalidateList();
+            }*/
+
+            dispatchEvent(new Event("labelFunctionChanged"));
+        }
+		
+	/**
+     *  Returns a String that the item renderer displays as the datatip for the given data object,
+     *  based on the <code>dataTipField</code> and <code>dataTipFunction</code> properties.
+     *  If the method cannot convert the parameter to a String, it returns a
+     *  single space.
+     * 
+     *  <p>This method is for use by developers who are creating subclasses 
+     *  of the DataGridColumn class.
+     *  It is not for use by application developers.</p>
+     *
+     *  @param data Object to be rendered.
+     *
+     *  @return Displayable String based on the data.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function itemToDataTip(data:Object):String
+    {
+        if (dataTipFunction != null)
+            return dataTipFunction(data);
+
+        
+
+        if (typeof(data) == "object" || typeof(data) == "xml")
+        {
+            var field:String = dataTipField;
+            
+
+            if (field in data && data[field] != null)
+                data = data[field];
+            else if (dataField in data && data[dataField] != null)
+                data = data[dataField];
+			else
+				data = null;
+        }
+
+        if (data is String)
+            return String(data);
+
+        try
+        {
+            return data.toString();
+        }
+        catch(e:Error)
+        {
+        }
+
+        return " ";
+    }
 		//----------------------------------
 		//  dataTipField
 		//----------------------------------

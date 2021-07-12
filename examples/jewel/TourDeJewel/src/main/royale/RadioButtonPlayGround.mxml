@@ -72,24 +72,24 @@ limitations under the License.
 				<j:CardPrimaryContent>
 
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>SwitchRadioButton is s Switch representation of RadioButton with same capabilities.</p>]]></j:html>
+						<j:html><![CDATA[<p>SwitchRadio is s Switch representation of RadioButton with same capabilities.</p>]]></j:html>
 					</j:Label>
 
-					<j:SwitchRadioButton text="SwitchRadioButton 1" groupName="radios2" value="Test 1"/>
-					<j:SwitchRadioButton text="SwitchRadioButton 2" groupName="radios2" value="Test 2" selected="true"/>
-					<j:SwitchRadioButton text="SwitchRadioButton 3" groupName="radios2" value="Test 3"/>
+					<j:SwitchRadio text="SwitchRadio 1" groupName="radios2" value="Test 1"/>
+					<j:SwitchRadio text="SwitchRadio 2" groupName="radios2" value="Test 2" selected="true"/>
+					<j:SwitchRadio text="SwitchRadio 3" groupName="radios2" value="Test 3"/>
 
-					<j:SwitchRadioButton text="Disabled">
+					<j:SwitchRadio text="Disabled">
 						<j:beads>
 							<j:Disabled/>
 						</j:beads>
-					</j:SwitchRadioButton>
+					</j:SwitchRadio>
 
-					<j:SwitchRadioButton text="Set and Disabled" selected="true">
+					<j:SwitchRadio text="Set and Disabled" selected="true">
 						<j:beads>
 							<j:Disabled/>
 						</j:beads>
-					</j:SwitchRadioButton>
+					</j:SwitchRadio>
 				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.core.ISelectionModel;
+
 	/**
 	 *  The Jewel ToggleButtonBar class is a component that displays a set of ToggleButtons. The ToggleButtonBar
 	 *  is actually an IconButtonBar with an itemRenderer that produces Jewel ToggleButtons.
@@ -52,6 +54,51 @@ package org.apache.royale.jewel
 		public function ToggleButtonBar()
 		{
 			super();
+
+			//ToggleButtonBar is always selected, so selectedIndex can't be -1, at least it will default to 0
+			ISelectionModel(model).selectedIndex = 0;
+			toggleOnClick = false;
 		}
+
+		private var _toggleOnClick:Boolean;
+		/**
+		 * Specifies whether the currently selected button can be deselected by the user. 
+		 * By default, the currently selected button gets deselected automatically only when 
+		 * another button in the group is selected. 
+		 * 
+		 * Setting this property to true lets the user deselect it. 
+		 * When the currently selected button is deselected, the selectedIndex property is set to -1.
+		 */
+		public function get toggleOnClick():Boolean
+		{
+			return _toggleOnClick;
+		}
+		public function set toggleOnClick(value:Boolean):void
+		{
+			if (_toggleOnClick != value)
+            {
+                _toggleOnClick = value;
+				toggleClass("toggle-on-click", !_toggleOnClick);
+            }
+		}
+
+		// private var _allowMultipleSelection:Boolean = false;
+		/**
+		 * if true, allow more than one button selected. If false, just one button can be selected at a time
+		 * When true will make `toggleOnClick` true to allow deselect buttons in the bar.
+		 */
+		// public function get allowMultipleSelection():Boolean
+		// {
+		// 	return _allowMultipleSelection;
+		// }
+		// public function set allowMultipleSelection(value:Boolean):void
+		// {
+		// 	if (_allowMultipleSelection != value)
+        //     {
+		// 		_allowMultipleSelection = value;
+		// 		if(_allowMultipleSelection)
+		// 			toggleOnClick = _allowMultipleSelection;
+		// 	}
+		// }
 	}
 }

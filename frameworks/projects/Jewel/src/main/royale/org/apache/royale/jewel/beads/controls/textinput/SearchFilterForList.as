@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.textinput
 {
-	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.IFocusable;
 	import org.apache.royale.core.IItemRenderer;
@@ -50,7 +50,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class SearchFilterForList extends Bead
+	public class SearchFilterForList extends DispatcherBead
 	{
 		/**
 		 *  constructor.
@@ -225,7 +225,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			listenOnStrand(KeyboardEvent.KEY_UP, textInputKeyUpHandler);
             listenOnStrand('beadsAdded', onBeadsAdded);
 		}

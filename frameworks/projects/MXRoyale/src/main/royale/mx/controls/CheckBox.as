@@ -111,6 +111,9 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
+ 
+[Style(name="disabledIconColor", type="uint", format="Color", inherit="yes", theme="halo,mx")]
+
 COMPILE::SWF
 public class CheckBox extends Button implements IStrand, ISelectable
 {
@@ -178,6 +181,20 @@ public class CheckBox extends Button implements IStrand, ISelectable
 		selected = !selected;
 		dispatchEvent(new Event("change"));
 	}
+	
+	//----------------------------------
+	//  disabledIconColor
+	//----------------------------------
+	private var _disabledIconColor:uint = 0x999999;
+
+	public function get disabledIconColor():uint
+	{
+	  return _disabledIconColor;
+	}
+	public function set disabledIconColor(value:uint):void
+	{
+		_disabledIconColor = value;
+	}
 }
 
 COMPILE::JS
@@ -226,6 +243,20 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	override public function set selected(value:Boolean):void
 	{
 	   (_icon.element as HTMLInputElement).checked = value;
+	}
+	
+	//----------------------------------
+	//  disabledIconColor
+	//----------------------------------
+	private var _disabledIconColor:uint = 0x999999;
+
+	public function get disabledIconColor():uint
+	{
+	  return _disabledIconColor;
+	}
+	public function set disabledIconColor(value:uint):void
+	{
+		_disabledIconColor = value;
 	}
 }
 

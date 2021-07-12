@@ -169,9 +169,68 @@ public class SkinnableComponent extends UIComponent
     {
       
     }
-	
-	
-    
+
+    //----------------------------------
+    //  selectable
+    //----------------------------------
+
+    [Inspectable(category="General", defaultValue="true")]
+
+    /**
+     *  A flag indicating whether the content is selectable.  On a Desktop, a user can 
+     *  select content with the mouse or with the keyboard when the control has 
+     *  keyboard focus.  On a touch interaction device, a user can select text with 
+     *  their fingers once they've entered into selection mode for the text component.
+     * 
+     *  <p><b>For the Spark theme, see
+     *  spark.components.RichEditableText.selectable</b></p>
+     *
+     *  <p><b>For the Mobile theme, see
+     *  spark.components.supportClasses.StyleableStageText.selectable</b></p>
+     * 
+     *  @see spark.components.RichEditableText#selectable
+     *  @see spark.components.supportClasses.StyleableStageText#selectable
+     *  
+     *  @default true
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get selectable():Boolean
+    {
+        /*if (textDisplay)
+            return textDisplay.selectable;*/
+            
+        // want the default to be true
+        /*var v:* = textDisplayProperties.selectable;
+        return (v === undefined) ? true : v;*/
+
+        trace("selectable is not implemented");
+        return true;
+    }
+
+    /**
+     *  @private
+     */
+    public function set selectable(value:Boolean):void
+    {
+        /*if (textDisplay)
+        {
+            textDisplay.selectable = value;
+            textDisplayProperties = BitFlagUtil.update(
+                uint(textDisplayProperties), SELECTABLE_PROPERTY_FLAG, true);
+        }
+        else
+        {
+            textDisplayProperties.selectable = value;
+        }
+        
+        // Generate an UPDATE_COMPLETE event.
+        invalidateProperties(); */      
+        trace("selectable is not implemented");             
+    }
 
     //--------------------------------------------------------------------------
     //

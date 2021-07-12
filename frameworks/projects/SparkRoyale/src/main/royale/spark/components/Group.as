@@ -24,6 +24,7 @@ import mx.core.IUIComponent;
 import spark.components.supportClasses.GroupBase;
 import mx.core.mx_internal;
 import mx.core.IVisualElement;
+    import org.apache.royale.core.IChild;
 /*
 import flash.display.BlendMode;
 import flash.display.DisplayObject;
@@ -277,7 +278,12 @@ public class Group extends GroupBase /*implements IVisualElementContainer,
    
     public function removeAllElements():void
     {
-	// not implemented
+        for (var i:int = numElements - 1; i >= 0; i--)
+        {
+            var el:IChild = getElementAt(i);
+
+            removeElement(el);
+        }
     }
 
     public function set mouseEnabledWhereTransparent(value:Boolean):void

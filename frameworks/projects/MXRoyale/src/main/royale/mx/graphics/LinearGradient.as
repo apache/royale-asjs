@@ -26,14 +26,28 @@ import mx.core.mx_internal;
 import mx.display.Graphics;
 import mx.graphics.IFill;
 import mx.geom.Matrix;
-
+import org.apache.royale.graphics.GradientBase;
 
 use namespace mx_internal;
 
 [DefaultProperty("entries")]
 
-public class LinearGradient implements IFill
+public class LinearGradient extends org.apache.royale.graphics.GradientBase implements IFill
 {
+	//----------------------------------
+    //  scaleX
+    //----------------------------------
+    
+    private var _scaleX:Number;
+	public function get scaleX():Number
+	{
+		return _scaleX;
+	}
+    public function set scaleX(value:Number):void
+	{
+		_scaleX = value;
+	}
+	
     public function begin(g:Graphics,targetBounds:Rectangle,targetOrigin:Point):void
     {
         var m:Matrix = null;
@@ -46,27 +60,7 @@ public class LinearGradient implements IFill
     {
     }
 
-    private var _rotation:Number;
     
-    public function get rotation():Number
-    {
-        return _rotation;
-    }
-    public function set rotation(value:Number):void
-    {
-        _rotation = value;
-    }
-    
-    private var _entries:Array;
-    
-    public function get entries():Array
-    {
-        return _entries;
-    }
-    public function set entries(value:Array):void
-    {
-        _entries = value;
-    }
 
     public function set interpolationMethod(value:String):void {}
 

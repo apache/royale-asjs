@@ -62,7 +62,7 @@ package org.apache.royale.display.js
 			styles.padding = '0';
 			styles.border = 'none';
 			styles.userSelect = 'none';
-			var svg:SVGElement = createGraphicsSVG('svg');
+			var svg:SVGElement = createGraphicsSVG('svg', true);
 			svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 			svg.setAttribute('xmlns:html', 'http://www.w3.org/1999/xhtml');
 			svg.setAttribute('xmlns:xlink','http://www.w3.org/1999/xlink');

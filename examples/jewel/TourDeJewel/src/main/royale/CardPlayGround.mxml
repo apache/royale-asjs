@@ -65,6 +65,12 @@ limitations under the License.
 					<j:Button text="Apache"/>
 					<j:Button text="Royale!"/>
 				</j:HGroup>
+				
+				<j:HGroup itemsReverse="true" gap="3">
+					<j:Button text="Hello"/>
+					<j:Button text="Reverse"/>
+					<j:Button text="Order!"/>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
 

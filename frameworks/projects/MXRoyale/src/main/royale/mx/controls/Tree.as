@@ -231,7 +231,7 @@ import org.apache.royale.events.Event;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Style(name="indentation", type="Number", inherit="no")]
+[Style(name="indentation", type="Number", inherit="no")]
 
 /**
  *  Length of an open or close transition, in milliseconds.

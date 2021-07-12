@@ -38,6 +38,17 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/local.properties"/>
     <property file="${ROYALE_HOME}/build.properties"/>
+    <condition property="swf.distribution">
+        <isset property="env.AIR_HOME" />
+    </condition>
+    <condition property="AIR_HOME" value="${env.AIR_HOME}">
+        <isset property="env.AIR_HOME" />
+    </condition>
+    <property name="AIR_HOME" value="${ROYALE_HOME}"/>
+    <condition property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}">
+        <isset property="env.PLAYERGLOBAL_HOME" />
+    </condition>
+    <property name="PLAYERGLOBAL_HOME" value="${ROYALE_HOME}/frameworks/libs/player"/>
 
     <property name="debug" value="true"/>
     <property name="strict" value="true"/>
@@ -47,7 +58,7 @@
     <property name="source.kit" value="${kit.prefix}-src"/>
     <condition property="binary.kit" value="${kit.prefix}-bin-js">
         <not>
-            <isset property="env.AIR_HOME" />
+            <isset property="swf.distribution" />
         </not>
     </condition>
     <property name="binary.kit" value="${kit.prefix}-bin-js-swf"/>
@@ -68,15 +79,15 @@
             </not>
         </and>
     </condition>
-    <!-- turn off SWF portion of checkintest if no AIR_HOME -->
+    <!-- turn off SWF portion of checkintest if no swf.distribution -->
     <condition property="runtime.setup">
         <not>
-            <isset property="env.AIR_HOME" />
+            <isset property="swf.distribution" />
         </not>
     </condition>
     <condition property="mxmlc.jar.exists">
         <not>
-            <isset property="env.AIR_HOME" />
+            <isset property="swf.distribution" />
         </not>
     </condition>
     
@@ -203,7 +214,7 @@
         <property name="no.thirdparty-downloads" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,copy-externs,copy-compiler,create-config"
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,copy-externs,copy-playerglobal,copy-airglobal,copy-compiler,create-config"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-compiler-home" unless="airsdk.found"
@@ -488,9 +499,27 @@ limitations under the License.
         <copy todir="${basedir}/js/libs" flatten="true">
             <fileset dir="${ROYALE_TYPEDEFS_HOME}">
                 <include name="**/*.swc"/>
+                <exclude name="airglobal/**/*.swc"/>
+                <exclude name="playerglobal/**/*.swc"/>
             </fileset>
         </copy>
         <antcall target="rename_jquery" />
+    </target>
+    
+    <target name="copy-playerglobal" depends="check-typedefs-home" unless="env.PLAYERGLOBAL_HOME">
+        <copy todir="${basedir}/frameworks/libs/player/${playerglobal.version}" flatten="true" overwrite="true" failonerror="true">
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}/playerglobal/target">
+                <include name="playerglobal.swc"/>
+            </fileset>
+        </copy>
+    </target>
+    
+    <target name="copy-airglobal" depends="check-typedefs-home" unless="env.AIR_HOME">
+        <copy todir="${basedir}/frameworks/libs/air" flatten="true" overwrite="true" failonerror="true">
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}/airglobal/target">
+                <include name="airglobal.swc"/>
+            </fileset>
+        </copy>
     </target>
     
     <target name="copy-compiler" depends="check-compiler-home" description="Copy compiler jars to where they are supposed to go">
@@ -976,7 +1005,7 @@ limitations under the License.
 
     </target>
 
-    <target name="jsonly-package" if="env.AIR_HOME"
+    <target name="jsonly-package" if="swf.distribution"
         description="subset binary package to be a js-only package if AIR_HOME is set and we built a SWF+JS package">
         <!-- assumes temp folder contains the binary package with SWF stuff in it -->
         <delete dir="${basedir}/temp/royale-asjs/frameworks/libs" failonerror="false" includeEmptyDirs="true" />
@@ -1077,7 +1106,7 @@ limitations under the License.
         <property name="env.GOOG_HOME" value="${staging-dir}/js/lib/google/closure-library" />
 	</target>
 	
-    <target name="tweak-for-jsonly" unless="env.AIR_HOME" description="do a few more things so the JSOnly package works">
+    <target name="tweak-for-jsonly" unless="swf.distribution" description="do a few more things so the JSOnly package works">
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
         tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" failonerror="false"/>
         <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
@@ -1300,7 +1329,7 @@ limitations under the License.
 
     </target>
     
-    <target name="basictests-compile-js" depends="load-task" unless="env.AIR_HOME">
+    <target name="basictests-compile-js" depends="load-task" unless="swf.distribution">
         <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
         <property name="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
@@ -1349,9 +1378,9 @@ limitations under the License.
         Tests: Mustella checkintests
     -->
 
-    <target name="basictests-mustella" depends="mustella-setup,basictests" if="env.AIR_HOME" unless="skipTests"/>
+    <target name="basictests-mustella" depends="mustella-setup,basictests" if="swf.distribution" unless="skipTests"/>
 
-    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="env.AIR_HOME" unless="skipTests">
+    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="swf.distribution" unless="skipTests">
         <ant dir="${basedir}/mustella" />
     <!--
         <ant dir="${basedir}/mustella" target="makemustellaswc">
@@ -1365,7 +1394,7 @@ limitations under the License.
     <!-- To run the checkintests as well as any mustella tests need AIR for the adl and
          a flash player content debugger.
     -->
-    <target name="check-runtime-env" depends="check-air-home" if="env.AIR_HOME"
+    <target name="check-runtime-env" depends="check-air-home" if="swf.distribution"
         description="Check for the required runtime environment variables for the checkintests">
         
         <available file="${env.FLASHPLAYER_DEBUGGER}" property="FLASHPLAYER_DEBUGGER.set"/>
@@ -1402,7 +1431,7 @@ limitations under the License.
         <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/compiler-royaleTasks.jar"/>
     </target>
 
-    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME" unless="skipTests">
+    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="swf.distribution" unless="skipTests">
         <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
@@ -1475,11 +1504,11 @@ limitations under the License.
         <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
     
-    <target name="mxtests-mustella" depends="mustella-setup,mxtests" if="env.AIR_HOME" />
+    <target name="mxtests-mustella" depends="mustella-setup,mxtests" if="swf.distribution" />
     
     <target name="mxtests-compile-java" depends="basictests-compile-java" />
     
-    <target name="mxtests" depends="load-task,mxtests-compile-java" description="run MX tests using mustella"  if="env.AIR_HOME">
+    <target name="mxtests" depends="load-task,mxtests-compile-java" description="run MX tests using mustella"  if="swf.distribution">
         <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true" configname="flex"
@@ -1573,7 +1602,7 @@ limitations under the License.
         
     </target>
 
-    <target name="mxtests-compile-js" depends="load-task" unless="env.AIR_HOME">
+    <target name="mxtests-compile-js" depends="load-task" unless="swf.distribution">
         <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
         <property name="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js"/>
         <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
@@ -1722,13 +1751,13 @@ limitations under the License.
 		<checksum algorithm="SHA-512" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes" fileext=".sha512"/>
 	</target>
 
-    <target name="create-SHA-512-jsonly" if="env.AIR_HOME" >
+    <target name="create-SHA-512-jsonly" if="swf.distribution" >
         <echo message="Generating SHA-512 hashes for release artifacts"/>
         <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.tar.gz" forceOverwrite="yes" fileext=".sha512"/>
         <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.zip" forceOverwrite="yes" fileext=".sha512"/>
     </target>
 
-    <target name="sign-jsonly" if="env.AIR_HOME" >
+    <target name="sign-jsonly" if="swf.distribution" >
         <exec executable="gpg">
             <arg value="--armor" />
             <arg value="--output" />

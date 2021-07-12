@@ -42,6 +42,8 @@ import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
+import mx.events.HTTPStatusEvent;
+
 /*
 
 use namespace mx_internal;
@@ -68,6 +70,18 @@ use namespace mx_internal;
  */
 [Event(name="dataChange", type="mx.events.FlexEvent")]
 
+/**
+ *  Dispatched when a network request is made over HTTP 
+ *  and Flash Player or AIR can detect the HTTP status code.
+ * 
+ *  @eventType mx.events.HTTPStatusEvent.HTTP_STATUS
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="httpStatus", type="mx.events.HTTPStatusEvent")]
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -495,6 +509,25 @@ public class Image extends UIComponent
 		dispatchEvent(newEvent);
 	}
 
+	//----------------------------------
+	//  autoLoad copied from SWFLoader
+	//----------------------------------
+
+	/**
+	 *  @private
+	 *  Storage for the autoLoad property.
+	 */
+	private var _autoLoad:Boolean = true;
+
+
+	public function get autoLoad():Boolean
+	{
+		return _autoLoad;
+	}
+    public function set autoLoad(value:Boolean):void
+	{
+		_autoLoad = value;
+	}
 	//----------------------------------
 	//  scaleContent copied from SWFLoader
 	//----------------------------------
@@ -931,6 +964,34 @@ public class Image extends UIComponent
 		}
 
 	}
+	
+	private var brokenImage:Boolean = false;
+	private var useUnloadAndStop:Boolean;
+	private var _source:Object;
+	private var contentChanged:Boolean = false;
+	
+	public function load(url:Object = null):void
+    {
+        if (url)
+            _source = url;
+        
+        //unloadContent();
+        
+        isContentLoaded = false;
+        brokenImage = false;
+        useUnloadAndStop = false;
+        
+        // Prevent double loading an app when properties are set and
+        // then load() is called directly from application code instead
+        // of from commitProperties().
+        contentChanged = false;
+        
+        if (!_source || _source == "")
+            return;
+        
+       // loadContent(_source);
+    }
+	
 
 }
 

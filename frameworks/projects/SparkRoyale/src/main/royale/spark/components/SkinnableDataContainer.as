@@ -645,27 +645,30 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get typicalItem():Object
+     public function get typicalItem():Object
     {
-        return (dataGroup) 
+        trace("SkinnableDataContainer::typicalItem is not implemented");
+        return null;
+        /*return (dataGroup) 
             ? dataGroup.typicalItem 
-            : dataGroupProperties.typicalItem;
-    } */
+            : dataGroupProperties.typicalItem;*/
+    } 
 
     /**
      *  @private
      */
-    /* public function set typicalItem(value:Object):void
+     public function set typicalItem(value:Object):void
     {
-        if (dataGroup)
+        trace("SkinnableDataContainer::typicalItem is not implemented");
+        /*if (dataGroup)
         {
             dataGroup.typicalItem = value;
             dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
                                                      TYPICAL_ITEM_PROPERTY_FLAG, true);
         }
         else
-            dataGroupProperties.typicalItem = value;
-    } */
+            dataGroupProperties.typicalItem = value;*/
+    } 
     
     //--------------------------------------------------------------------------
     //
