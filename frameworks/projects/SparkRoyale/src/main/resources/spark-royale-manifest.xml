@@ -144,6 +144,8 @@
     <component id="CollectionChangeUpdateForArrayListData" class="spark.components.beads.CollectionChangeUpdateForArrayListData" />
     <component id="SelfItemRenderer" class="spark.components.beads.SelfItemRenderer"/>
     <component id="SelfItemRendererInitializer" class="spark.components.beads.SelfItemRendererInitializer"/>
+    <component id="DateTimeFormatter" class="spark.formatters.DateTimeFormatter"/>
+    <component id="NumberFormatter" class="spark.formatters.NumberFormatter"/>
 
 	
 </componentPackage>
