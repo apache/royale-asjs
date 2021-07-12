@@ -523,13 +523,13 @@ package org.apache.royale.utils
                     {
                         var fa:* = obj["attribute"];
                         if (fa && typeof(fa) === "function")
-                            value = fa(n);
+                            value = fa.call(obj, n);
                     }
                     else
                     {
                         var fc:* = obj["child"];
                         if (fc && typeof(fc) === "function")
-                            value = fc(n).toString();
+                            value = fc.call(obj, n).toString();
                     }
                 }
             }

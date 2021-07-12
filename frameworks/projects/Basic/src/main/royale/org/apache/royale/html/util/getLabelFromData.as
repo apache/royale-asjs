@@ -48,13 +48,13 @@ package org.apache.royale.html.util
                     {
                         var fal:* = data["attribute"];
                         if (fal && typeof(fal) === "function")
-                            value = fal(labelField);
+                            value = fal.call(data, labelField);
                     }
                     else
                     {
                         var fcl:* = data["child"];
                         if (fcl && typeof(fcl) === "function")
-                            value = fcl(labelField).toString();
+                            value = fcl.call(data, labelField).toString();
                     }
                 }
             }
@@ -74,13 +74,13 @@ package org.apache.royale.html.util
                     {
                         var fad:* = data["attribute"];
                         if (fad && typeof(fad) === "function")
-                            value = fad(labelField);
+                            value = fad.call(data, labelField);
                     }
                     else
                     {
                         var fcd:* = data["child"];
                         if (fcd && typeof(fcd) === "function")
-                            value = fcd(labelField).toString();
+                            value = fcd.call(data, labelField).toString();
                     }
                 }
             }

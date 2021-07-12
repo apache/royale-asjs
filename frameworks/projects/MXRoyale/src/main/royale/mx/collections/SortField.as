@@ -695,13 +695,13 @@ public class SortField extends EventDispatcher implements ISortField
                     {
                         var fa:* = obj["attribute"];
                         if (fa && typeof(fa) === "function")
-                            result = fa(_name);
+                            result = fa.call(obj, _name);
                     }
                     else
                     {
                         var fc:* = obj["child"];
                         if (fc && typeof(fc) === "function")
-                            result = fc(_name).toString();
+                            result = fc.call(obj, _name).toString();
                     }
                 }
             }
