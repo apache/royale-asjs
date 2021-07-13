@@ -315,7 +315,6 @@ TitleWindow
 		iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
 		iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
-		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 		font-size: 11px;
 		font-family: Arial;
 	}
