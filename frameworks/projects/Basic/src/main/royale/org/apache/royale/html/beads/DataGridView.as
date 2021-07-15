@@ -224,7 +224,7 @@ package org.apache.royale.html.beads
 			private function handleColumnListChange(event:Event):void
 			{
 				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-				var list:IDataGridColumnList = event.target as IDataGridColumnList;
+				var list:IDataGridColumnList = event.currentTarget as IDataGridColumnList;
 				sharedModel.selectedIndex = list.selectedIndex;
 
 				for(var i:int=0; i < _lists.length; i++) {
