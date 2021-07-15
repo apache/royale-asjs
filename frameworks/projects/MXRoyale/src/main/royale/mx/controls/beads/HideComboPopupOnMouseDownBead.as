@@ -24,6 +24,7 @@ package mx.controls.beads
 	import org.apache.royale.events.MouseEvent;
 	import mx.core.FlexGlobals;
 	import org.apache.royale.html.beads.HideComboPopupOnMouseDownBead;
+	import org.apache.royale.core.UIBase;
 	
 	/**
 	 *  The HideComboPopupOnMouseDownBead can be used with ComboBox to make sure mouse down events
@@ -47,6 +48,7 @@ package mx.controls.beads
 			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			callLater(function():void {
 				(FlexGlobals.topLevelApplication as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			});
 		}
 		
@@ -58,7 +60,8 @@ package mx.controls.beads
 		{
 			IEventDispatcher(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-            (FlexGlobals.topLevelApplication as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+			(FlexGlobals.topLevelApplication as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+			((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 		}
 	}
 }
