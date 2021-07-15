@@ -49,6 +49,10 @@ package mx.controls.beads
 			callLater(function():void {
 				(FlexGlobals.topLevelApplication as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 				((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				COMPILE::JS 
+				{
+					window.addEventListener("wheel", handleTopMostEventDispatcherMouseDown);
+				}
 			});
 		}
 		
@@ -62,6 +66,10 @@ package mx.controls.beads
 			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			(FlexGlobals.topLevelApplication as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+			COMPILE::JS 
+			{
+				window.removeEventListener("wheel", handleTopMostEventDispatcherMouseDown);
+			}
 		}
 	}
 }
