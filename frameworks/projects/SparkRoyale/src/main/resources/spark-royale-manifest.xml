@@ -145,6 +145,7 @@
     <component id="Sort" class="spark.collections.Sort"/>
     <component id="SortField" class="spark.collections.SortField"/>
     <component id="CollectionChangeUpdateForArrayListData" class="spark.components.beads.CollectionChangeUpdateForArrayListData" />
+    <component id="TabBarSelectionUpdateFromSelectableDataProvider" class="spark.components.beads.TabBarSelectionUpdateFromSelectableDataProvider"/>
     <component id="SelfItemRenderer" class="spark.components.beads.SelfItemRenderer"/>
     <component id="SelfItemRendererInitializer" class="spark.components.beads.SelfItemRendererInitializer"/>
     <component id="SimpleMotionPath" class="spark.effects.animation.SimpleMotionPath"/>
