@@ -48,6 +48,10 @@ package spark.components.supportClasses
         {
             super();
             addEventListener("click", clickHandler);    
+            COMPILE::JS
+            {
+            	element.style.whiteSpace = "nowrap";
+            }
             typeNames += " SparkTextButtonItemRenderer";
         }
             
