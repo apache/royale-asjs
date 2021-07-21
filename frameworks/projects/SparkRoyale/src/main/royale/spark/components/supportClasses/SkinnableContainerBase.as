@@ -19,12 +19,15 @@
 
 package spark.components.supportClasses
 {
-    
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutParent;
 // import flash.display.DisplayObject;
 
 // import mx.core.ContainerGlobals;
 import mx.core.IFlexDisplayObject;
+	import mx.core.IUIComponent;
 import mx.managers.IFocusManagerContainer;
+	import spark.core.ISparkLayoutHost;
 
 /**
  *  Normal State
@@ -61,7 +64,7 @@ import mx.managers.IFocusManagerContainer;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class SkinnableContainerBase extends SkinnableComponent implements IFocusManagerContainer
+public class SkinnableContainerBase extends SkinnableComponent implements IFocusManagerContainer, ILayoutParent
 {
     // include "../../core/Version.as";
 
@@ -146,5 +149,51 @@ public class SkinnableContainerBase extends SkinnableComponent implements IFocus
     {
         return enabled ? "normal" : "disabled";
     }
+
+    /**
+     * Returns the ILayoutHost which is its view. From ILayoutParent.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function getLayoutHost():ILayoutHost
+    {
+        return view as ILayoutHost;
+    }
+
+		//
+		// Delegate to displayView
+		//
+
+		override public function get measuredWidth():Number
+		{
+			var lh:ISparkLayoutHost = getLayoutHost() as ISparkLayoutHost;
+			var g:IUIComponent = (lh ? lh.displayView as IUIComponent : null);
+			return g ? g.measuredWidth : super.measuredWidth;
+		}
+		
+		override public function get measuredHeight():Number
+		{
+			var lh:ISparkLayoutHost = getLayoutHost() as ISparkLayoutHost;
+			var g:IUIComponent = (lh ? lh.displayView as IUIComponent : null);
+			return g ? g.measuredHeight : super.measuredHeight;
+		}
+
+		override public function setActualSize(w:Number, h:Number):void
+		{
+			super.setActualSize(w, h);
+
+			var lh:ISparkLayoutHost = getLayoutHost() as ISparkLayoutHost;
+			var g:IUIComponent = (lh ? lh.displayView as IUIComponent : null);
+			if (g && g != this)
+			{
+				g.setActualSize(w, h);
+				// TODO: See note in Spark Application.setActualSize().
+//				g.width = w;
+//				g.height = h;
+			}
+		}
 }
 }

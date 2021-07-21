@@ -16,37 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package spark.components.beads
-{	
-	import spark.events.RendererExistenceEvent;
-	import org.apache.royale.utils.sendStrandEvent;
-	import org.apache.royale.html.beads.DataContainerView;
-	import org.apache.royale.core.IItemRenderer;
-	import mx.core.IVisualElement;
 
+package spark.core
+{
+	import spark.layouts.supportClasses.LayoutBase;
 
 	/**
-	 *  The DataContainerView provides the visual elements for the DataContainer.
-	 *  
-	 *  @viewbead
+	 * 
 	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
+	 *  @playerversion Flash 10
+	 *  @playerversion AIR 1.5
 	 *  @productversion Royale 0.9.8
 	 */
-	public class DataContainerView extends org.apache.royale.html.beads.DataContainerView
+	public interface ISparkContainer
 	{
-		public function DataContainerView()
-		{
-			super();
-		}
-		
-		override protected function dispatchItemAdded(renderer:IItemRenderer):void
-		{
-			super.dispatchItemAdded(renderer);
-		    var newEvent:RendererExistenceEvent = new RendererExistenceEvent(RendererExistenceEvent.RENDERER_ADD, false, false, renderer as IVisualElement);
-		    sendStrandEvent(_strand,newEvent);
-		}
+		/**
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10
+		 *  @playerversion AIR 1.5
+		 *  @productversion Royale 0.9.8
+		 */
+		function get layout():LayoutBase;
 
+		/**
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10
+		 *  @playerversion AIR 1.5
+		 *  @productversion Royale 0.9.8
+		 */
+		function set layout(value:LayoutBase):void;
 	}
 }

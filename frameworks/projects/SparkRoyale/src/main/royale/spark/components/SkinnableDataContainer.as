@@ -31,9 +31,7 @@ import mx.utils.BitFlagUtil;
 
 import spark.components.supportClasses.SkinnableContainerBase;
 import spark.components.supportClasses.GroupBase;
-import spark.components.beads.SkinnableDataContainerView;
-import spark.components.beads.SparkDataContainerView;
-import spark.core.IViewport;
+import spark.core.ISparkContainer;
 //import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.LayoutBase;
 
@@ -51,7 +49,6 @@ import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.ILayoutHost;
-import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.core.ValuesManager;
@@ -230,7 +227,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.8
  */
-public class SkinnableDataContainer extends SkinnableContainerBase implements IItemRendererProvider, IStrandWithPresentationModel, ILayoutParent
+public class SkinnableDataContainer extends SkinnableContainerBase implements IItemRendererProvider, IStrandWithPresentationModel, ISparkContainer
 { //implements IItemRendererOwner
     //include "../core/Version.as";
     
@@ -291,20 +288,6 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
     }
 
 
-    /**
-     * Returns the ILayoutHost which is its view. From ILayoutParent.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function getLayoutHost():ILayoutHost
-    {
-        return view as ILayoutHost;
-    }
-
-    
     /**
      *  The presentation model for the list.
      *
@@ -440,7 +423,6 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @productversion Royale 0.9.8
      * 
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
      */
     [Bindable("dataProviderChanged")]
     [Inspectable(category="Data")]
@@ -451,13 +433,12 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             ? dataGroup.dataProvider 
             : dataGroupProperties.dataProvider; */
 
-        return ((view as SparkDataContainerView).contentView as DataGroup).dataProvider;
+        return (getLayoutHost().contentView as DataGroup).dataProvider;
     }
     
     /**
      *  @private
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
      */
     public function set dataProvider(value:IList):void
     {
@@ -471,27 +452,9 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             dataGroupProperties.dataProvider = value;
         dispatchEvent(new Event("dataProviderChanged")); */
 
-        if (isWidthSizedToContent() || isHeightSizedToContent())
-            ((view as SparkDataContainerView).contentView as DataGroup).addEventListener("itemsCreated", itemsCreatedHandler);
-        ((view as SparkDataContainerView).contentView as DataGroup).dataProvider = value;
+        (getLayoutHost().contentView as DataGroup).dataProvider = value;
     }
 
-    private function itemsCreatedHandler(event:Event):void
-    {
-        if (parent)
-        {
-            COMPILE::JS
-            {
-                // clear last width/height so elements size to content
-                element.style.width = "";
-                element.style.height = "";
-                ((view as SparkDataContainerView).contentView as DataGroup).element.style.width = "";
-                ((view as SparkDataContainerView).contentView as DataGroup).element.style.height = "";
-            }
-            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-        }
-    }
-    
     //----------------------------------
     //  itemRenderer
     //----------------------------------
@@ -513,7 +476,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             ? dataGroup.itemRenderer 
             : dataGroupProperties.itemRenderer; */
 
-        return ((view as SparkDataContainerView).contentView as DataGroup).itemRenderer;
+        return (getLayoutHost().contentView as DataGroup).itemRenderer;
     }
     
     /**
@@ -531,10 +494,10 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
         else
             dataGroupProperties.itemRenderer = value; */
 
-        ((view as SparkDataContainerView).contentView as DataGroup).itemRenderer = value;
+        (getLayoutHost().contentView as DataGroup).itemRenderer = value;
         // the ItemRendererFactory was already put on the DataGroup's strand and
         // determined which factory to use so we have to set it up later here.
-        var factory:ItemRendererClassFactory = ((view as SparkDataContainerView).contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
+        var factory:ItemRendererClassFactory = (getLayoutHost().contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
         factory.createFunction = factory.createFromClass;
         factory.itemRendererFactory = value;
     }
@@ -601,15 +564,12 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             ? dataGroup.layout 
             : dataGroupProperties.layout;
          */
-        //if (!_layout)
-        //    _layout = new BasicLayout();
         return _layout;
     }
 
     /**
      *  @private
      *  @royaleignorecoercion spark.components.GroupBase
-     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
      */
     public function set layout(value:LayoutBase):void
     {
@@ -626,9 +586,9 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
         _layout = value;
         if (getBeadByType(IBeadView))
         {
-            ((view as SkinnableDataContainerView).contentView as GroupBase).layout = value;
+            (getLayoutHost().contentView as GroupBase).layout = value;
             if (parent)
-                ((view as SkinnableDataContainerView).contentView as GroupBase).dispatchEvent(new Event("layoutNeeded"));       
+                (getLayoutHost().contentView as GroupBase).dispatchEvent(new Event("layoutNeeded"));       
         }
     }
     
@@ -948,13 +908,9 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
     /**
      *  @private
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
      */
     override public function addedToParent():void
     {
-//        if (!getBeadByType(IBeadLayout))
-//            addBead(new VerticalLayout());
-
         if (!initialized) {
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
@@ -967,15 +923,10 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
 
         dispatchEvent(new Event("beadsAdded"));
         dispatchEvent(new Event("initComplete"));
-        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
-            (isWidthSizedToContent() || !isNaN(explicitWidth)))
-            dispatchEvent(new Event("layoutNeeded"));
+        dispatchEvent(new Event("layoutNeeded"));
 
-//		((view as SparkDataContainerView).contentView as DataGroup).addEventListener("change", redispatcher);
-		((view as SparkDataContainerView).contentView as DataGroup).addEventListener("itemClick", redispatcher);
-		((view as SparkDataContainerView).contentView as DataGroup).addEventListener("doubleClick", redispatcher);
-		
-        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+		(getLayoutHost().contentView as DataGroup).addEventListener("itemClick", redispatcher);
+		(getLayoutHost().contentView as DataGroup).addEventListener("doubleClick", redispatcher);
     }
 
     override protected function createChildren():void
@@ -988,12 +939,6 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
         dispatchEvent(new Event("initBindings"));
     }
     
-    override public function setActualSize(w:Number, h:Number):void
-    {
-        super.setActualSize(w, h);
-        ((view as SparkDataContainerView).contentView as DataGroup).setActualSize(w, h);
-    }
-
 	private function redispatcher(event:Event):void
 	{
 		dispatchEvent(new Event(event.type));

@@ -16,68 +16,45 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 package spark.components.beads
-{
-	import mx.core.LayoutElementUIComponentUtils;
-	import org.apache.royale.core.Bead;
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IItemRenderer;
+{	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IItemRendererInitializer;
-	import org.apache.royale.core.IIndexedItemRendererInitializer;
-	import org.apache.royale.core.ILayoutChild;
-   
+	import org.apache.royale.core.SimpleCSSStyles;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.beads.HorizontalListItemRendererInitializer;
+
 	/**
-	 *  The SelfItemRendererInitializer class initializes self item renderers.
+	 *  The TabBarItemRendererInitializer class initializes item renderers
+	 *  in TabBar tab labels.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class SelfItemRendererInitializer extends Bead implements IItemRendererInitializer, IIndexedItemRendererInitializer
+	public class TabBarItemRendererInitializer extends org.apache.royale.html.beads.HorizontalListItemRendererInitializer
 	{
 		/**
-		 *  Constructor.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 		 */
-		public function SelfItemRendererInitializer()
+		public function TabBarItemRendererInitializer() 
 		{
-		}
-
-		/**
-		 *  @private
-		 */
-		public function initializeItemRenderer(renderer:IItemRenderer, data:Object):void
-		{
-			var child:IChild = data as IChild;
-			if (child == null) return;
-		
-			var sir:SelfItemRenderer = renderer as SelfItemRenderer;
-			if (sir == null) return;
-			
-			var clc:ILayoutChild = child as ILayoutChild;
-			if (clc)
-			{
-				LayoutElementUIComponentUtils.setSizeFromChild(sir, clc);
-			}
-			
-			sir.removeAllElements();
-			sir.addElement(child);
-			sir.invalidateSize();
 		}
 		
 		/**
-		 *  @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		public function initializeIndexedItemRenderer(renderer:IIndexedItemRenderer, data:Object, index:int):void
+		override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
 		{
-			initializeItemRenderer(renderer, data);
+			var style:SimpleCSSStyles = new SimpleCSSStyles();
+			style.marginBottom = presentationModel.separatorThickness;
+			(ir as UIBase).style = style;
+			//(ir as UIBase).height = presentationModel.rowHeight;
 		}
 	}
 }

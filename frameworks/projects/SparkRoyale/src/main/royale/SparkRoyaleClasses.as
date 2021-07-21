@@ -90,18 +90,20 @@ internal class SparkRoyaleClasses
 	import spark.components.SkinnablePopUpContainer; SkinnablePopUpContainer;
     
     import spark.components.beads.PanelView; PanelView;
-    import spark.components.beads.DataContainerView; DataContainerView;
     import spark.components.beads.GroupView; GroupView;
     import spark.components.beads.SkinnableContainerView; SkinnableContainerView;
     import spark.components.beads.SkinnableDataContainerView; SkinnableDataContainerView;
+    import spark.components.beads.SparkSkinViewport; SparkSkinViewport;
     import spark.components.beads.SparkSkinScrollingViewport; SparkSkinScrollingViewport;
 	import spark.components.beads.SparkSkinWithClipAndEnableScrollingViewport; SparkSkinWithClipAndEnableScrollingViewport;
+    import spark.components.beads.VirtualListView; VirtualListView;
     import spark.components.beads.CollectionChangeUpdateForArrayListData; CollectionChangeUpdateForArrayListData;
-	import spark.components.beads.TabBarSelectionUpdateFromSelectableDataProvider; TabBarSelectionUpdateFromSelectableDataProvider;
     import spark.components.beads.DropDownListView; DropDownListView;
     import spark.components.beads.TitleWindowView; TitleWindowView;
     import spark.components.beads.controllers.DropDownListController; DropDownListController;
     import spark.components.beads.controllers.TabBarController; TabBarController;
+    import spark.components.beads.SelfItemRendererInitializer; SelfItemRendererInitializer;
+    import spark.components.beads.TabBarItemRendererInitializer; TabBarItemRendererInitializer;
     import spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
     import spark.events.DropDownEvent; DropDownEvent;
 

@@ -70,7 +70,7 @@ DataGroup
 {
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
-	IBeadView:  ClassReference("spark.components.beads.DataContainerView");			
+	IBeadView:  ClassReference("spark.components.beads.SparkDataContainerView");	
 	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("spark.components.beads.SelfItemRenderer");
@@ -83,7 +83,7 @@ VirtualVDataGroup
 {
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
-	IBeadView:  ClassReference("mx.containers.beads.VirtualListView");			
+	IBeadView:  ClassReference("spark.components.beads.VirtualListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VirtualListVerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
@@ -98,32 +98,16 @@ NonVirtualHDataGroup
 {
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
-	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView");			
+	IBeadView:  ClassReference("spark.components.beads.SparkDataContainerView");	
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("spark.layouts.HorizontalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
 	IItemRenderer: ClassReference("spark.components.supportClasses.SparkTextButtonItemRenderer");
-	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
+	IItemRendererInitializer: ClassReference("spark.components.beads.TabBarItemRendererInitializer");
 	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
-
-/* not used
-NonVirtualVDataGroup
-{
-	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
-	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
-	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView");			
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
-	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
-	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
-	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
-	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
-	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
-	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-} */
 
 DropDownList
 {
@@ -165,7 +149,7 @@ NumericStepper
 Panel
 {
 	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
-	IViewport: ClassReference("spark.components.beads.SparkSkinViewport");
+	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
 	skinClass: ClassReference("spark.skins.spark.PanelSkin");
 		
 	background-color: #FFFFFF;

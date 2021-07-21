@@ -1709,7 +1709,7 @@ public class UIComponent extends UIBase
     public function set doubleClickEnabled(value:Boolean):void
     {
         // TODO
-        trace("doubleClickEnabled not implemented");
+        if (doTraceNI) trace("doubleClickEnabled not implemented");
     }
 
     //----------------------------------

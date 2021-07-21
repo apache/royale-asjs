@@ -20,6 +20,7 @@ package mx.core
 {
 //import flash.geom.Matrix;
 //import flash.geom.Matrix3D;
+	import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.geom.Point;
 
 //import mx.utils.MatrixUtil;
@@ -588,5 +589,52 @@ public class LayoutElementUIComponentUtils
             obj.setActualSize(fitSize.x, fitSize.y);
         */
     }
+    
+	/**
+	 *  Set size of target based on size of child.
+	 *
+	 *  This sets the proper explicitXX and percentXX values either way
+	 *  (parent from child, or child from parent).  The values are
+	 *  different depending on which direction, but they are proper to 
+	 *  handle all cases.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 */
+	public static function setSizeFromChild(target:ILayoutChild, child:ILayoutChild):void
+	{
+		setWidthFromChild(target, child);
+		setHeightFromChild(target, child);
+	}
+
+	public static function setWidthFromChild(target:ILayoutChild, child:ILayoutChild):void
+	{
+		if (!isNaN(child.percentWidth))
+		{
+			target.explicitWidth = NaN;
+			target.percentWidth = 100;
+		}
+		else
+		{
+			target.explicitWidth = child.explicitWidth;
+			target.percentWidth = NaN;
+		}
+	}
+
+	public static function setHeightFromChild(target:ILayoutChild, child:ILayoutChild):void
+	{
+		if (!isNaN(child.percentHeight))
+		{
+			target.explicitHeight = NaN;
+			target.percentHeight = 100;
+		}
+		else
+		{
+			target.explicitHeight = child.explicitHeight;
+			target.percentHeight = NaN;
+		}
+	}
 }
 }
