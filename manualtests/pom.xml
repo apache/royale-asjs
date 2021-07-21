@@ -22,12 +22,12 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.9-SNAPSHOT</version>
   </parent>
   
   <groupId>org.apache.royale.manualtests</groupId>
   <artifactId>manualtests</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>pom</packaging>
   
   <properties>
@@ -75,154 +75,98 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-<<<<<<< HEAD
       <version>${royale.framework.version}</version>
-=======
-      <version>0.9.8-SNAPSHOT</version>
->>>>>>> parent of 12a17f2e0 ([maven-release-plugin] prepare for next development iteration)
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
