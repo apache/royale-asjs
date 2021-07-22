@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-native</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.8</version>
   </parent>
 
   <artifactId>ButtonExample</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.8</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Native: ButtonExample</name>
@@ -76,4 +76,4 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
-<properties /></project>
+<properties><project.build.outputTimestamp>2021-07-22T09:03:38Z</project.build.outputTimestamp></properties></project>
