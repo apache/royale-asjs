@@ -1045,7 +1045,6 @@
         unless="release.version"/>
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="wagon:upload" />
-            <arg value="-X" />
             <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
             <!--arg value="-Dwagon.includes=**" />
             <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->
