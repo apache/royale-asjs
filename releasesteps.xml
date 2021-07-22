@@ -187,12 +187,19 @@
         <mkdir dir="${artifactfolder}/artifacts" />
         <unzip src="${artifactfolder}/archive.zip" dest="${artifactfolder}/artifacts"/>
     </target>
+	<target name="fixsources" if="fixfolder">
+	    <fixcrlf srcdir="${fixfolder}" eol="dos" fixlast="false">
+		    <include name="**/*.sass"/>
+	    </fixcrlf>   
+    </target>
     <target name="build-source" >
         <mkdir dir="${artifactfolder}/sources" />
         <unzip src="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" dest="${artifactfolder}/sources" >
             <cutdirsmapper dirs="1" />
         </unzip>
-        
+        <antcall target="fixsources">
+		<param name="fixfolder" value="${artifactfolder}/sources"/>
+	</antcall>
         <!-- build these modules -->
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="-X" />
