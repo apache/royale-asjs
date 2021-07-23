@@ -383,6 +383,36 @@
     <target name="Release_Step_011_Sign" depends="get-artifact-folder">
         <fail message="release.version not specified"
             unless="release.version"/>
+	<antcall target="sign-swc-artifacts">
+		<param name="swcname" value="Ace"/>
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-application-archetype/${release.version}/royale-jewel-application-archetype-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-application-archetype/${release.version}/royale-jewel-application-archetype-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-application-archetype/${release.version}/royale-jewel-application-archetype-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-module-application-archetype/${release.version}/royale-jewel-module-application-archetype-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-module-application-archetype/${release.version}/royale-jewel-module-application-archetype-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-module-application-archetype/${release.version}/royale-jewel-module-application-archetype-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-library-archetype/${release.version}/royale-jewel-library-archetype-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-library-archetype/${release.version}/royale-jewel-library-archetype-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-library-archetype/${release.version}/royale-jewel-library-archetype-${release.version}-sources.jar" />
+	</antcall>
 	<antcall target="sign-file" >
 		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}.pom" />
 	</antcall>
