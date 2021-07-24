@@ -20,10 +20,56 @@
 package mx.globalization
 {
 
+/**
+ *  The DateTimeNameStyle class enumerates constants that control the length of
+ *  the month names and weekday names that are used when formatting dates. Use 
+ *  these constants for the <code>nameStyle</code> parameter of the 
+ *  DateTimeFormatter <code>getMonthNames()</code> and 
+ *  <code>getWeekDayNames()</code> methods. 
+ *
+ *  <p>The <code>LONG_ABBREVIATION</code> and <code>SHORT_ABBREVIATION</code> 
+ *  may be the same or different depending on the operating system settings.</p>
+ *
+ *  @see DateTimeFormatter
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.1
+ *  @playerversion AIR 2.0
+ *  @productversion Royale 0.9.8
+ */
 public class DateTimeNameStyle
 {
+	/**
+	 *  Specifies the full form or full name style for month names and weekday 
+	 *  names.  Examples: Tuesday, November.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.1
+	 *  @playerversion AIR 2.0
+	 *  @productversion Royale 0.9.8
+	 */
 	public static const FULL:String = "full";
+
+	/**
+	 *  Specifies the long abbreviation style for month names and weekday names.
+	 *  Examples: Tues for Tuesday, Nov for November.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.1
+	 *  @playerversion AIR 2.0
+	 *  @productversion Royale 0.9.8
+	 */
 	public static const LONG_ABBREVIATION:String = "longAbbreviation";
+
+	/**
+	 *  Specifies the short abbreviation style for month names and weekday names.
+	 *  Examples: T for Tuesday, N for November.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.1
+	 *  @playerversion AIR 2.0
+	 *  @productversion Royale 0.9.8
+	 */
 	public static const SHORT_ABBREVIATION:String = "shortAbbreviation";
 }
 

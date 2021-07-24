@@ -20,11 +20,51 @@
 package mx.globalization
 {
 
+/**
+ *  A data structure that represents a currency amount and currency symbol or 
+ *  string that were extracted by parsing a currency value.
+ *
+ *  @see CurrencyFormatter.parse()
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.1
+ *  @playerversion AIR 2.0
+ *  @productversion Royale 0.9.8
+ */
 public class CurrencyParseResult
 {
+	/**
+	 *  The portion of the input string that corresponds to the currency symbol or
+	 *  currency string.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.1
+	 *  @playerversion AIR 2.0
+	 *  @productversion Royale 0.9.8
+	 */
 	public var currencyString : String;
+
+	/**
+	 *  The currency amount value that was extracted from the input string.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.1
+	 *  @playerversion AIR 2.0
+	 *  @productversion Royale 0.9.8
+	 */
 	public var value : Number;
 
+	/**
+	 *  Constructs a currency parse result object.
+	 *
+	 *  @param value A number representing the currency amount value.
+	 *  @param symbol A string representing the currency symbol.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.1
+	 *  @playerversion AIR 2.0
+	 *  @productversion Royale 0.9.8
+	 */
 	public function CurrencyParseResult(value:Number = NaN, symbol:String = "")
 	{
 		this.value = value;

@@ -20,38 +20,28 @@
 package mx.globalization
 {
 
-//import flash.globalization.LastOperationStatus;
-
 import mx.core.mx_internal;
-
 use namespace mx_internal;
+
 
 /**
  *  The LastOperationStatus class enumerates constant values that represent the
  *  status of the most recent globalization service operation.
  *
- *  These values can be retrieved through the read-only property
+ *  These values can be retrieved through the read-only property 
  *  <code>lastOperationStatus</code> available in most globalization classes.
  *
- *  @see flash.globalization.LastOperationStatus
-
  *  @langversion 3.0
  *  @playerversion Flash 10.1
- *  @playerversion AIR 2.5
+ *  @playerversion AIR 2.0
  *  @productversion Royale 0.9.8
  */
 public final class LastOperationStatus
 {
-    //include "../core/Version.as";
-
     //--------------------------------------------------------------------------
     //
     //  Class Constants
     //
-    //--------------------------------------------------------------------------
-
-    //--------------------------------------------------------------------------
-    //  Duplicated constants from flash.globalization.LastOperationError
     //--------------------------------------------------------------------------
 
     /**
@@ -60,11 +50,9 @@ public final class LastOperationStatus
      *  This status can be returned by all constructors, non-static methods,
      *  static methods and read/write properties.
      *
-     *  @see flash.globalization.LastOperationStatus.NO_ERROR
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const NO_ERROR:String
@@ -78,11 +66,9 @@ public final class LastOperationStatus
      *  <code>DateTimeFormatter.setDateTimeStyles()</code>, and when retrieving
      *  properties such as <code>CurrencyFormatter.groupingPattern</code>.
      *
-     *  @see flash.globalization.LastOperationStatus.USING_FALLBACK_WARNING
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const USING_FALLBACK_WARNING:String
@@ -94,11 +80,9 @@ public final class LastOperationStatus
      *
      *  Class constructors can return this status.
      *
-     *  @see flash.globalization.LastOperationStatus.USING_DEFAULT_WARNING
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const USING_DEFAULT_WARNING:String
@@ -115,11 +99,9 @@ public final class LastOperationStatus
      *  and sets the <code>lastOperationStatus</code> value to
      *  <code>LastOperationStatus.PARSE_ERROR</code>.
      *
-     *  @see flash.globalization.LastOperationStatus.PARSE_ERROR
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const PARSE_ERROR:String
@@ -132,11 +114,9 @@ public final class LastOperationStatus
      *  <code>DateTimeFormatter.setDateTimePattern()</code> and when retrieving
      *  properties suce as <code>Collator.ignoreCase</code>.
      *
-     *  @see flash.globalization.LastOperationStatus.UNSUPPORTED_ERROR
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const UNSUPPORTED_ERROR:String
@@ -149,16 +129,15 @@ public final class LastOperationStatus
      *  when the operation is not successful and the return error code is not
      *  known.
      *
-     *  @see flash.globalization.LastOperationStatus.ERROR_CODE_UNKNOWN
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
 
     public static const ERROR_CODE_UNKNOWN:String
                 = "errorCodeUnknown";
+
     /**
      *  Indicates that the pattern for formatting a number, date, or time is
      *  invalid.
@@ -170,18 +149,16 @@ public final class LastOperationStatus
      *  <code>lastOperationStatus</code> property after an invalid "xx" pattern
      *  is used for date formatting:</p>
      *
-     *  <pre>
+     *  <listing version="3.0">
      *  var df:DateTimeFormatter = new DateTimeFormatter();
      *  df.setStyle("locale","en_US");
      *  df.setDateTimePattern("xx");
      *  trace(df.lastOperationStatus); // "patternSyntaxError"
-     *  </pre>
-     *
-     *  @see flash.globalization.LastOperationStatus.PATTERN_SYNTAX_ERROR
+     *  </listing>
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const PATTERN_SYNTAX_ERROR:String
@@ -190,11 +167,9 @@ public final class LastOperationStatus
     /**
      *  Indicates that memory allocation has failed.
      *
-     *  @see flash.globalization.LastOperationStatus.MEMORY_ALLOCATION_ERROR
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const MEMORY_ALLOCATION_ERROR:String
@@ -207,18 +182,16 @@ public final class LastOperationStatus
      *  status is set when <code>CurrencyFormatter.grouping</code> property is
      *  set to the invalid value "3;".</p>
      *
-     *  <pre>
+     *  <listing version="3.0">
      *  var cf:CurrencyFormatter = new CurrencyFormatter();
      *  cf.setStyle("locale","en_US");
      *  cf.groupingPattern = "3;";
      *  trace(cf.lastOperationStatus); // "illegalArgumentError"
-     *  </pre>
-     *
-     *  @see flash.globalization.LastOperationStatus.ILLEGAL_ARGUMENT_ERROR
+     *  </listing>
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const ILLEGAL_ARGUMENT_ERROR:String
@@ -227,11 +200,9 @@ public final class LastOperationStatus
     /**
      *  Indicates that given buffer is not enough to hold the result.
      *
-     *  @see flash.globalization.LastOperationStatus.BUFFER_OVERFLOW_ERROR
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
 
@@ -245,18 +216,16 @@ public final class LastOperationStatus
      *  <code>NumberFormatter.negativeNumberFormat</code> property to an
      *  out-of-range value results in an invalid attribute value status.</p>
      *
-     *  <pre>
+     *  <listing version="3.0">
      *  var nf:NumberFormatter = new NumberFormatter();
      *  nf.setStyle("locale","en_US");
      *  nf.negativeNumberFormat = 9;
      *  nf.lastOperationStatus; // "invalidAttrValue"
-     *  </pre>
-     *
-     *  @see flash.globalization.LastOperationStatus.INVALID_ATTR_VALUE
+     *  </listing>
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const INVALID_ATTR_VALUE:String
@@ -266,11 +235,9 @@ public final class LastOperationStatus
      *  Indicates that an operation resulted a value that exceeds a specified
      *  numeric type.
      *
-     *  @see flash.globalization.LastOperationStatus.NUMBER_OVERFLOW_ERROR
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const NUMBER_OVERFLOW_ERROR:String
@@ -279,11 +246,9 @@ public final class LastOperationStatus
     /**
      *  Indicates that invalid Unicode value was found.
      *
-     *  @see flash.globalization.LastOperationStatus.INVALID_CHAR_FOUND
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const INVALID_CHAR_FOUND:String
@@ -292,11 +257,9 @@ public final class LastOperationStatus
     /**
      *  Indicates that a truncated Unicode character value was found.
      *
-     *  @see flash.globalization.LastOperationStatus.TRUNCATED_CHAR_FOUND
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const TRUNCATED_CHAR_FOUND:String
@@ -306,11 +269,9 @@ public final class LastOperationStatus
      *  Indicates that an iterator went out of range or an invalid parameter was
      *  specified for month, day, or time.
      *
-     *  @see flash.globalization.LastOperationStatus.INDEX_OUT_OF_BOUNDS_ERROR
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const INDEX_OUT_OF_BOUNDS_ERROR:String
@@ -319,11 +280,9 @@ public final class LastOperationStatus
     /**
      *  Indicates that an underlying platform API failed for an operation.
      *
-     *  @see flash.globalization.LastOperationStatus.PLATFORM_API_FAILED
-     *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const PLATFORM_API_FAILED:String
@@ -339,36 +298,19 @@ public final class LastOperationStatus
      *  value <code>UNEXPECTED_TOKEN</code> after a call to the
      *  <code>LocaleID.getKeysAndValues()</code> method.</p>
      *
-     *  <pre>
+     *  <listing version="3.0">
      *  var locale:flash.globalization.LocaleID = new flash.globalization.LocaleID("en-US&#64;Collation");
      *  var kav:Object = locale.getKeysAndValues();
      *  trace(locale.lastOperationStatus); // "unexpectedToken"
-     *  </pre>
-     *
-     *  @see flash.globalization.LastOperationStatus.UNEXPECTED_TOKEN
+     *  </listing>
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
+     *  @playerversion AIR 2.0
      *  @productversion Royale 0.9.8
      */
     public static const UNEXPECTED_TOKEN:String
                     = "unexpectedToken";
-
-    //--------------------------------------------------------------------------
-    //  Additional constants besides constants from
-    //  flash.globalization.LastOperationError
-    //--------------------------------------------------------------------------
-
-    /**
-     *  Indicates that <code>Locale</code> is not defined.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.1
-     *  @playerversion AIR 2.5
-     *  @productversion Royale 0.9.8
-     */
-    public static const LOCALE_UNDEFINED_ERROR:String = "localeUndefinedError";
 
     //--------------------------------------------------------------------------
     //
@@ -377,11 +319,11 @@ public final class LastOperationStatus
     //--------------------------------------------------------------------------
 
     /**
-    *  @private
-    *  Check if given <code>lastOperationStatus</code> is a error (not a warning).
-    *
-    *  A fatal error means errors other than no-error and warnings.
-    */
+     *  @private
+     *  Check if given <code>lastOperationStatus</code> is a error (not a warning).
+     *
+     *  A fatal error means errors other than no-error and warnings.
+     */
     mx_internal static function isError(lastOperationStatus:String):Boolean
     {
         switch (lastOperationStatus)
