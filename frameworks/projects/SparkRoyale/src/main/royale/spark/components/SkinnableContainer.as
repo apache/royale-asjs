@@ -51,6 +51,7 @@ import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.ValueEvent;
@@ -367,7 +368,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost
+public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost, ILayoutParent
 {// SkinnableContainerBase 
  //    implements IDeferredContentOwner, IVisualElementContainer
    // include "../core/Version.as";

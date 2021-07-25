@@ -87,6 +87,9 @@ package org.apache.royale.html.supportClasses
 			{
 				contentArea = new c() as UIBase;
 			}
+
+			if (!contentArea)
+				contentArea = value as UIBase;
 		}
 		
 		/**

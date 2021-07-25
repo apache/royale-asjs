@@ -51,6 +51,7 @@ import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.core.ValuesManager;
@@ -229,7 +230,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.8
  */
-public class SkinnableDataContainer extends SkinnableContainerBase implements IItemRendererProvider, IStrandWithPresentationModel
+public class SkinnableDataContainer extends SkinnableContainerBase implements IItemRendererProvider, IStrandWithPresentationModel, ILayoutParent
 { //implements IItemRendererOwner
     //include "../core/Version.as";
     
