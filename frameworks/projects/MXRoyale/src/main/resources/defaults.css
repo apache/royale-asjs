@@ -493,15 +493,14 @@ PanelTitleBar
 
 pop|PopUpManagerModal
 {
-	background-color: #E2E2E2;
-	position: fixed;
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-	opacity: 0.2;
-	top: 0px;
-	left: 0px;
-	width: 100%;
+	-webkit-backdrop-filter: blur(1px);
+	backdrop-filter: blur(1px);
+	background: rgba(226, 226, 226, 0.2);
 	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 
 TabNavigator
