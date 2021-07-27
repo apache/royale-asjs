@@ -18,6 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+	COMPILE::JS
+	{
+		import org.apache.royale.core.WrappedHTMLElement;
+	}
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.html.beads.IViewWithPopUp;
 	import org.apache.royale.utils.callLater;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -51,7 +58,7 @@ package mx.controls.beads
 				((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 				COMPILE::JS 
 				{
-					window.addEventListener("wheel", handleTopMostEventDispatcherMouseDown);
+					window.addEventListener("wheel", handleWheelEvent);
 				}
 			});
 		}
@@ -68,8 +75,33 @@ package mx.controls.beads
 			((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			COMPILE::JS 
 			{
-				window.removeEventListener("wheel", handleTopMostEventDispatcherMouseDown);
+				window.removeEventListener("wheel", handleWheelEvent);
 			}
 		}
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		private function handleWheelEvent(event:Event):void
+		{
+			var target:WrappedHTMLElement = event.target as WrappedHTMLElement;
+			if (target)
+			{
+				var child:IChild = target.royale_wrapper as IChild;
+				var popup:Object = ((this._strand as IStrandWithModelView).view as IViewWithPopUp).popUp;
+				while (child)
+				{
+					if (child == popup)
+					{
+						return;
+					}
+					child = child.parent as IChild;
+				}
+			}
+			handleTopMostEventDispatcherMouseDown(null);
+		}
+				
+
 	}
 }
