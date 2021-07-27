@@ -591,8 +591,9 @@ ToggleButtonBar
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
-	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TextButtonItemRenderer");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.OverridableSelectableItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.SelectableTextButtonItemRenderer");
+	ISelectableItemRenderer: ClassReference("org.apache.royale.html.supportClasses.SelectableTextButtonItemRenderer");
 	
 	border-style: none;
 }

@@ -60,7 +60,6 @@ package org.apache.royale.core
          */
         override public function set strand(value:IStrand):void
         {
-            super.strand = value;
             selectableBeadClass = ValuesManager.valuesImpl.getValue(value, "iSelectableItemRenderer") as Class;
         }
         

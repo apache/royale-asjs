@@ -155,6 +155,7 @@
     <component id="DateItemRenderer" class="org.apache.royale.html.supportClasses.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.royale.html.supportClasses.DayNameItemRenderer"/>
     <component id="TextButtonItemRenderer" class="org.apache.royale.html.supportClasses.TextButtonItemRenderer"/>
+    <component id="SelectableTextButtonItemRenderer" class="org.apache.royale.html.supportClasses.SelectableTextButtonItemRenderer"/>
     <component id="DataFieldProviderBead" class="org.apache.royale.html.beads.DataFieldProviderBead"/>
     <component id="ButtonBarButtonItemRenderer" class="org.apache.royale.html.supportClasses.ButtonBarButtonItemRenderer"/>
     <!--
