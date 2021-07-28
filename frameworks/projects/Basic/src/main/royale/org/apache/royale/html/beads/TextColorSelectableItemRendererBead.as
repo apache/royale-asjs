@@ -41,6 +41,7 @@ package org.apache.royale.html.beads
 				var element:HTMLElement = (_strand as IUIBase).element;
 				element.style["color"] = selected ? "black" : "black";
 				element.style["background-color"] = selected ? "white" : null;
+				element.style["background-image"] = selected ? 'url("ButtonSelectedImage")' : null;
 			}
 		}
 	}
