@@ -30,6 +30,7 @@ import mx.core.Container;
 import mx.core.ContainerLayout;
 import mx.core.UIComponent;
 
+import org.apache.royale.html.beads.DragBead;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IStrand;
@@ -70,12 +71,16 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
     override public function set strand(value:IStrand):void
     {
         titleBar = new PanelTitleBar();
-		var panel:IEventDispatcher = value as IEventDispatcher;
-		panel.addEventListener("widthChanged", handleSizeChanged);
-		panel.addEventListener("heightChanged", handleSizeChanged);
-		panel.addEventListener("sizeChanged", handleSizeChanged);
+	var dragBead:DragBead = new DragBead();
+	dragBead.hitArea = titleBar;
+        dragBead.moveArea = (titleBar as UIComponent).screen;
+	value.addBead(dragBead);
+	var panel:IEventDispatcher = value as IEventDispatcher;
+	panel.addEventListener("widthChanged", handleSizeChanged);
+	panel.addEventListener("heightChanged", handleSizeChanged);
+	panel.addEventListener("sizeChanged", handleSizeChanged);
         super.strand = value;
-	}
+     }
 	
 	private var sawSizeChanged:Boolean;
 	
