@@ -21,6 +21,10 @@ package mx.containers
 {
 
 	import org.apache.royale.events.CloseEvent;
+	import org.apache.royale.html.beads.DragBead;
+	import org.apache.royale.events.IEventDispatcher;
+	import mx.core.UIComponent;
+	import mx.containers.beads.PanelView;
 /*
 import mx.core.mx_internal;
 
@@ -285,6 +289,16 @@ public class TitleWindow extends Panel
     {
         _showCloseButton = value;
     }
+
+    override public function addedToParent():void
+	{
+		super.addedToParent();
+		var dragBead:DragBead = new DragBead();
+		var titleBar:IEventDispatcher = (view as PanelView).titleBar as IEventDispatcher;
+		dragBead.hitArea = titleBar;
+		dragBead.moveArea = (titleBar as UIComponent).screen;
+		addBead(dragBead);
+	}
 
 }
 
