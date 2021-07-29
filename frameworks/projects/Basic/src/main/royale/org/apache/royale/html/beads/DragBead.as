@@ -114,11 +114,11 @@ package org.apache.royale.html.beads
 			var yDelta:Number = event.clientY - startingPoint.y;
 			var potentialX:Number = _host.x + xDelta;
 			var potentialY:Number = _host.y + yDelta;
-			if (potentialX < 0 || potentialX > _moveArea.x + _moveArea.width - _host.width)
+			if (potentialX < _moveArea.x || potentialX > _moveArea.x + _moveArea.width - _host.width)
 			{
 				xDelta = 0;
 			}
-			if (potentialY < 0 || potentialY > _moveArea.y + _moveArea.height - _host.height)
+			if (potentialY < _moveArea.y || potentialY > _moveArea.y + _moveArea.height - _host.height)
 			{
 				yDelta = 0;
 			}
