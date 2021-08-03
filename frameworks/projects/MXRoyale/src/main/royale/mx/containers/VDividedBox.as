@@ -76,7 +76,6 @@ public class VDividedBox extends DividedBox
 	//
 	//--------------------------------------------------------------------------
 
-	import org.apache.royale.events.MouseEvent;
 	/**
 	 *  Constructor.
 	 *  
@@ -89,36 +88,7 @@ public class VDividedBox extends DividedBox
 	{
 		super();
 		typeNames = "VDividedBox";
-		super.direction = "vertical";
-		addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 	}
-
-	protected function mouseDownHandler(event:MouseEvent):void
-	{
-		if (event.target != this)
-		{
-			return;
-		}
-		addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-		topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-	}
-
-	protected function mouseUpHandler(event:MouseEvent):void
-	{
-		removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-		topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-	}
-
-	protected function mouseMoveHandler(event:MouseEvent):void
-	{
-		var h1:int = Math.floor(100 * event.localY / height);
-		h1 = Math.min(h1, 95);
-		h1 = Math.max(h1, 5);
-		getChildAt(0).percentHeight = h1;
-		getChildAt(1).percentHeight = 100 - h1;
-		_layout.layout();
-	}
-
 
 	//--------------------------------------------------------------------------
 	//
