@@ -19,13 +19,13 @@
 
 package spark.effects
 {
-import flash.geom.Vector3D;
+//import flash.geom.Vector3D;
 
 import mx.core.mx_internal;
 import mx.effects.IEffectInstance;
 
 import spark.effects.animation.MotionPath;
-import spark.effects.supportClasses.AnimateTransformInstance;
+//import spark.effects.supportClasses.AnimateTransformInstance;
 
 use namespace mx_internal;
 import spark.effects.Animate;

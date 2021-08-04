@@ -33,11 +33,9 @@ internal class MXRoyaleClasses
 	import mx.core.DesignLayer; DesignLayer;
 	import mx.effects.AnimateProperty; AnimateProperty;
 	import mx.effects.easing.Cubic; Cubic;
-	//import mx.effects.easing.Quintic; Quintic;
 	import mx.events.StateChangeEvent; StateChangeEvent;
 	import mx.graphics.BitmapFill; BitmapFill;
 	import mx.graphics.BitmapFillMode; BitmapFillMode;
-	//import mx.managers.PopUpManagerChildList; PopUpManagerChildList;
 	import mx.core.mx_internal; mx_internal;
 	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
