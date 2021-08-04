@@ -196,7 +196,7 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 */
-		private function inputChangeHandler(event:Event) : void
+		protected function inputChangeHandler(event:Event) : void
 		{
 			var newValue:Number = Number(input.text);
 
