@@ -88,6 +88,8 @@ public class VDividedBox extends DividedBox
 	{
 		super();
 		typeNames = "VDividedBox";
+
+		super.direction = BoxDirection.VERTICAL;				
 	}
 
 	//--------------------------------------------------------------------------

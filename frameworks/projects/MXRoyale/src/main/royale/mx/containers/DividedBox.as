@@ -20,30 +20,33 @@
 package mx.containers
 {
 /*
-import flash.display.DisplayObject;
-import flash.events.Event;
-import flash.events.MouseEvent;
 import flash.geom.Point;
 
-import mx.core.EdgeMetrics;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
 import mx.core.IInvalidating;
 */
 
+import mx.events.MouseEvent;
+import mx.core.IChildList;
+import org.apache.royale.events.Event;
+import mx.core.UIComponent;
+import mx.core.EdgeMetrics;
+import org.apache.royale.geom.Point;
 import org.apache.royale.core.ValuesManager;
-import org.apache.royale.html.supportClasses.IDividedContainerGripper;
+import org.apache.royale.core.IUIBase;
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.DividedBoxLayout;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.ChildExistenceChangedEvent;
+import mx.events.DividerEvent;
+import mx.containers.dividedBoxClasses.BoxDivider;
 
+use namespace mx_internal;
 /*
 import mx.core.mx_internal;
-import mx.events.ChildExistenceChangedEvent;
-import mx.events.DividerEvent;
 import mx.managers.CursorManager;
 import mx.managers.CursorManagerPriority;
 import mx.styles.IStyleManager2;
@@ -227,10 +230,10 @@ public class DividedBox extends Box
 						 childRemoveHandler);
 	}
     
-    override protected function createLayout():void
-    {
-        _layout = new DividedBoxLayout();
-    }
+	override protected function createLayout():void
+	{
+		_layout = new DividedBoxLayout();
+	}
 
 	//--------------------------------------------------------------------------
 	//
@@ -247,7 +250,7 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-	protected var activeDivider:IDividedContainerGripper;
+	mx_internal var activeDivider:BoxDivider;
 	
 	/**
 	 *  @private
@@ -310,10 +313,10 @@ public class DividedBox extends Box
 	 */
 	private var layoutStyleChanged:Boolean = false;
 
-    /**
-     *  @private
-     */
-    private	var _resizeToContent:Boolean = false;
+	/**
+	 *  @private
+	 */
+	private	var _resizeToContent:Boolean = false;
 
 	/**
 	 *  @private
@@ -367,6 +370,53 @@ public class DividedBox extends Box
 		}
 	}
 
+        //----------------------------------
+        //  $numChildren
+        //----------------------------------
+        
+        /**
+         *  @private
+         *  This property allows access to the Player's native implementation
+         *  of the numChildren property, which can be useful since components
+         *  can override numChildren and thereby hide the native implementation.
+         *  Note that this "base property" is final and cannot be overridden,
+         *  so you can count on it to reflect what is happening at the player level.
+         */
+        COMPILE::JS
+        mx_internal final function get $sprite_numChildren():int
+        {
+            return super.numChildren;
+        }
+        
+        //----------------------------------
+        //  numChildren
+        //----------------------------------
+        
+        /**
+         *  @private
+         *  Storage for the numChildren property.
+         */
+        mx_internal var _numChildren:int = 0;
+
+        //----------------------------------
+        //  firstChildIndex
+        //----------------------------------
+        
+        /**
+         *  @private
+         *  Storage for the firstChildIndex property.
+         */
+        private var _firstChildIndex:int = 0;
+        
+        /**
+         *  @private
+         *  The index of the first content child,
+         *  when dealing with both content and non-content children.
+         */
+        mx_internal function get firstChildIndex():int
+        {
+            return _firstChildIndex;
+        }
 	//----------------------------------
 	//  dividerClass
 	//----------------------------------
@@ -381,7 +431,7 @@ public class DividedBox extends Box
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-//	protected var dividerClass:Class = IDividedContainerGripper;
+	protected var dividerClass:Class;
 
 	//----------------------------------
 	//  liveDragging
@@ -431,6 +481,59 @@ public class DividedBox extends Box
 		return 0;
 	}
 
+        //----------------------------------
+        //  rawChildren
+        //----------------------------------
+        
+        /**
+         *  @private
+         *  The single IChildList object that's always returned
+         *  from the rawChildren property, below.
+         */
+        private var _rawChildren:DividedBoxChildrenList;
+        
+        /**
+         *  A container typically contains child components, which can be enumerated
+         *  using the <code>Container.getChildAt()</code> method and 
+         *  <code>Container.numChildren</code> property.  In addition, the container
+         *  may contain style elements and skins, such as the border and background.
+         *  Flash Player and AIR do not draw any distinction between child components
+         *  and skins.  They are all accessible using the player's 
+         *  <code>getChildAt()</code> method  and
+         *  <code>numChildren</code> property.  
+         *  However, the Container class overrides the <code>getChildAt()</code> method 
+         *  and <code>numChildren</code> property (and several other methods) 
+         *  to create the illusion that
+         *  the container's children are the only child components.
+         *
+         *  <p>If you need to access all of the children of the container (both the
+         *  content children and the skins), then use the methods and properties
+         *  on the <code>rawChildren</code> property instead of the regular Container methods. 
+         *  For example, use the <code>Container.rawChildren.getChildAt())</code> method.
+         *  However, if a container creates a ContentPane Sprite object for its children,
+         *  the <code>rawChildren</code> property value only counts the ContentPane, not the
+         *  container's children.
+         *  It is not always possible to determine when a container will have a ContentPane.</p>
+         * 
+         *  <p><b>Note:</b>If you call the <code>addChild</code> or 
+         *  <code>addChildAt</code> method of the <code>rawChildren</code> object,
+         *  set <code>tabFocusEnabled = false</code> on the component that you have added.
+         *  Doing so prevents users from tabbing to the visual-only component
+         *  that you have added.</p>
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function get rawChildren():IChildList
+        {
+            if (!_rawChildren)
+                _rawChildren = new DividedBoxChildrenList(this);
+            
+            return _rawChildren;
+        }
+        
     //----------------------------------
     //	resizeToContent
     //----------------------------------
@@ -598,7 +701,7 @@ public class DividedBox extends Box
         if (!dividerLayer)
            return;
 
-			var vm:EdgeMetrics = viewMetrics;
+			var vm:EdgeMetrics = viewMetricsAndPadding;
 
 			dividerLayer.x = vm.left;
 			dividerLayer.y = vm.top;
@@ -654,14 +757,14 @@ public class DividedBox extends Box
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function getDividerAt(i:int):IDividedContainerGripper
+	public function getDividerAt(i:int):BoxDivider
 	{
 		if (dividerLayer) {
 			// Check whether this is a valid divider index.
 			if (i < 0 || i >= dividerLayer.numChildren)
 				return null;
 			else
-				return IDividedContainerGripper(dividerLayer.getChildAt(i));
+				return BoxDivider(dividerLayer.getChildAt(i));
 		}
 		else {
 			return null;
@@ -721,7 +824,7 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-	private function createDivider(i:int):IDividedContainerGripper
+	private function createDivider(i:int):BoxDivider
 	{
 		// Create separate layer for holding divider objects.
 		if (!dividerLayer)
@@ -729,21 +832,18 @@ public class DividedBox extends Box
 			dividerLayer = UIComponent(rawChildren.addChild(new UIComponent()));
 		}
 
-		var divider:IDividedContainerGripper = new f() as IDividedContainerGripper;
-		var c:Class = ValuesManager.valuesImpl.getValue(this, IDividedContainerGripper) as Class;
-		if (c)
+		var divider:BoxDivider = BoxDivider(new dividerClass());
+		dividerLayer.addChild(divider);
+
+		// if we are creating the active divider bring the divider layer 
+		// to the top most so that users can see the divider line over 
+		// the other children
+		if (i == PROXY_DIVIDER_INDEX)
 		{
-			COMPILE::JS
-			{
-				var f:Function = c as Function;
-				divider = new f() as IDividedContainerGripper;
-			}
-			if (result)
-			{
-				dividerLayer.addBead(result);
-			}
+			rawChildren.setChildIndex(dividerLayer, 
+					rawChildren.numChildren-1);
 		}
-		dividerLayer.addBead(divider);
+
 		
 		// if we are creating the active divider bring the divider layer 
 		// to the top most so that users can see the divider line over 
@@ -754,7 +854,7 @@ public class DividedBox extends Box
 										  rawChildren.numChildren-1);
 		}
 		
-		// Tell IDividedContainerGripper to use DividedBox's styles,
+		// Tell UIComponent to use DividedBox's styles,
 		// unless we are sliding the divider; in that case,
 		// use the styles of the divider we are sliding.
 		//var basedOn:IFlexDisplayObject = (i == PROXY_DIVIDER_INDEX) ?
@@ -777,32 +877,38 @@ public class DividedBox extends Box
                                    prevChild:IUIComponent,
                                    nextChild:IUIComponent):void
 	{
-		 The mouse-over thickness of the divider is normally determined
-		 by the dividerAffordance style, and the visible thickness is 
-		 normally determined by the dividerThickness style, assuming that
-		 the relationship thickness <= affordance <= gap applies. But if
-		 one of the other five orderings applies, here is a table of what
-		 happens:
-		
-		  divider    divider    horizontalGap/  dividerWidth/  visible width/
-		 Thickness  Affordance  verticalGap     dividerHeight  visible height
-		                                           
-		    4           6             8               6              4
-		    4           8             6               6              4
-		    6           4             8               6              6
-		    6           8             4               4              4
-		    8           4             6               6              6        
-		    8           6             4               4              4
+		 //The mouse-over thickness of the divider is normally determined
+		 //by the dividerAffordance style, and the visible thickness is 
+		 //normally determined by the dividerThickness style, assuming that
+		 //the relationship thickness <= affordance <= gap applies. But if
+		 //one of the other five orderings applies, here is a table of what
+		 //happens:
+		//
+		  //divider    divider    horizontalGap/  dividerWidth/  visible width/
+		 //Thickness  Affordance  verticalGap     dividerHeight  visible height
+		                                           //
+		    //4           6             8               6              4
+		    //4           8             6               6              4
+		    //6           4             8               6              6
+		    //6           8             4               4              4
+		    //8           4             6               6              6        
+		    //8           6             4               4              4
 
-		var divider:IDividedContainerGripper = IDividedContainerGripper(getDividerAt(i));
+		var divider:UIComponent = UIComponent(getDividerAt(i));
 
-		var vm:EdgeMetrics = viewMetrics;
+		 var vm:EdgeMetrics = viewMetricsAndPadding;
 
-		var verticalGap:Number = getStyle("verticalGap");
+		 //Thickness  Affordance  verticalGap     dividerHeight  visible height
+		                                           //
+		    //4           6             8               6              4
+		//var verticalGap:Number = getStyle("verticalGap");
+		var verticalGap:Number = 8;
 		var horizontalGap:Number = getStyle("horizontalGap");
 
-		var thickness:Number = divider.getStyle("dividerThickness");
-		var affordance:Number = divider.getStyle("dividerAffordance");
+		//var thickness:Number = divider.getStyle("dividerThickness");
+		var thickness:Number = 4;
+		//var affordance:Number = divider.getStyle("dividerAffordance");
+		var affordance:Number = 6;
 
 		if (isVertical())
 		{
@@ -820,7 +926,8 @@ public class DividedBox extends Box
 			if (dividerHeight > verticalGap)
 				dividerHeight = verticalGap;
 			
-			divider.setActualSize(unscaledWidth - vm.left - vm.right, dividerHeight);
+			//divider.setActualSize(unscaledWidth - vm.left - vm.right, dividerHeight);
+			divider.setWidthAndHeight(unscaledWidth - vm.left - vm.right, dividerHeight);
 
 			divider.move(vm.left,
 						 Math.round((prevChild.y + prevChild.height +
@@ -855,37 +962,37 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-//	mx_internal function changeCursor(divider:IDividedContainerGripper):void
-//	{
-//		if (cursorID == CursorManager.NO_CURSOR)
-//		{
-//			// If a cursor skin has been set for the specified IDividedContainerGripper,
-//			// use it. Otherwise, use the cursor skin for the DividedBox.
-//			var cursorClass:Class = isVertical() ?
-//									getStyle("verticalDividerCursor") as Class :
-//									getStyle("horizontalDividerCursor") as Class;
+	mx_internal function changeCursor(divider:UIComponent):void
+	{
+		//if (cursorID == CursorManager.NO_CURSOR)
+		//{
+			//// If a cursor skin has been set for the specified UIComponent,
+			//// use it. Otherwise, use the cursor skin for the DividedBox.
+			//var cursorClass:Class = isVertical() ?
+									//getStyle("verticalDividerCursor") as Class :
+									//getStyle("horizontalDividerCursor") as Class;
 //
-//			cursorID = cursorManager.setCursor(cursorClass,
-//											   CursorManagerPriority.HIGH, 0, 0);
-//		}
-//	}
+			//cursorID = cursorManager.setCursor(cursorClass,
+											   //CursorManagerPriority.HIGH, 0, 0);
+		//}
+	}
 
 	/**
 	 *  @private
 	 */
-//	mx_internal function restoreCursor():void
-//	{
+	mx_internal function restoreCursor():void
+	{
 //		if (cursorID != CursorManager.NO_CURSOR)
 //		{
 //			cursorManager.removeCursor(cursorID);
 //			cursorID = CursorManager.NO_CURSOR;
 //		}
-//	}
+	}
 
 	/**
 	 *  @private
 	 */
-	mx_internal function getDividerIndex(divider:IDividedContainerGripper):int
+	mx_internal function getDividerIndex(divider:UIComponent):int
 	{
 		var n:int = numChildren;
 		for (var i:int = 0; i < n - 1; i++)
@@ -909,7 +1016,7 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-	mx_internal function startDividerDrag(divider:IDividedContainerGripper,
+	mx_internal function startDividerDrag(divider:BoxDivider,
                                           trigger:MouseEvent):void
 	{
 		// Make sure the user is not currently dragging.
@@ -929,11 +1036,11 @@ public class DividedBox extends Box
 		{
 			activeDivider = createDivider(PROXY_DIVIDER_INDEX);
 			activeDivider.visible = false;
-			activeDivider.state = DividerState.DOWN;
+			activeDivider.state = "down";
 			activeDivider.setActualSize(divider.width, divider.height);
 			activeDivider.move(divider.x, divider.y);
 			activeDivider.visible = true;
-			divider.state = DividerState.UP;
+			divider.state = "up";
 		}
 
 		if (isVertical())
@@ -949,8 +1056,8 @@ public class DividedBox extends Box
 
 		computeMinAndMaxDelta();
 
-		systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
-		systemManager.deployMouseShields(true);
+		topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+		//systemManager.deployMouseShields(true);
 	}
 
 	/**
@@ -1044,7 +1151,7 @@ public class DividedBox extends Box
 	 *  @param trigger May be null if the event is not a MouseEvent but
 	 *  a mouse event from another sandbox.
 	 */
-	mx_internal function stopDividerDrag(divider:IDividedContainerGripper,
+	mx_internal function stopDividerDrag(divider:BoxDivider,
                                          trigger:MouseEvent):void
 	{
 	    if (trigger)
@@ -1059,7 +1166,7 @@ public class DividedBox extends Box
         if (!liveDragging)
 		{
 			if (dragDelta == 0)
-				getDividerAt(activeDividerIndex).state = DividerState.OVER;
+				getDividerAt(activeDividerIndex).state = "over";
 
 			if (activeDivider)
 				dividerLayer.removeChild(activeDivider);
@@ -1072,8 +1179,8 @@ public class DividedBox extends Box
 		}
 
 		resetDividerTracking();
-		systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
-        systemManager.deployMouseShields(false);
+		topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+        //systemManager.deployMouseShields(false);
 	}
 
 	/**
@@ -1258,8 +1365,8 @@ public class DividedBox extends Box
 				child.percentWidth = childSize;
 
 			// Force a re-measure.
-			if (child is IInvalidating)
-				IInvalidating(child).invalidateSize();
+			//if (child is IInvalidating)
+				//IInvalidating(child).invalidateSize();
 		}
 
 		// assert(amt == 0)
@@ -1295,8 +1402,8 @@ public class DividedBox extends Box
 				child.percentWidth = childSize;
 
 			// Force a re-measure.
-			if (child is IInvalidating)
-				IInvalidating(child).invalidateSize();
+			//if (child is IInvalidating)
+				//IInvalidating(child).invalidateSize();
 		}
 	}
 
@@ -1340,7 +1447,7 @@ public class DividedBox extends Box
 	 */
 	private function childAddHandler(event:ChildExistenceChangedEvent):void
 	{
-		var child:DisplayObject = event.relatedObject;
+		var child:UIComponent = event.relatedObject;
 
 		child.addEventListener("includeInLayoutChanged",
                                child_includeInLayoutChangedHandler);
@@ -1366,7 +1473,7 @@ public class DividedBox extends Box
 	 */
 	private function childRemoveHandler(event:ChildExistenceChangedEvent):void
 	{
-		var child:DisplayObject = event.relatedObject;
+		var child:UIComponent = event.relatedObject;
 		
         child.removeEventListener("includeInLayoutChanged",
                                   child_includeInLayoutChangedHandler);
@@ -1412,6 +1519,186 @@ public class DividedBox extends Box
         invalidateSize();
 	}
 	
+        //--------------------------------------------------------------------------
+        //
+        //  Methods: Support for rawChildren access
+        //
+        //--------------------------------------------------------------------------
+        
+        /**
+         *  @private
+         *  This class overrides addChild() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_addChild(child:IUIComponent):IUIComponent
+        {
+            // This method is only used to implement rawChildren.addChild(),
+            // so the child being added is assumed to be a non-content child.
+            // (You would use just addChild() to add a content child.)
+            // If there are no content children, the new child is placed
+            // in the pre-content partition.
+            // If there are content children, the new child is placed
+            // in the post-content partition.
+            if (_numChildren == 0)
+                _firstChildIndex++;
+            
+            super.addingChild(child);
+            $uibase_addChild(child);
+            super.childAdded(child);
+            
+            dispatchEvent(new Event("childrenChanged"));
+            
+            return child;
+        }
+        
+        /**
+         *  @private
+         *  This class overrides addChildAt() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_addChildAt(child:IUIComponent,
+                                                    index:int):IUIComponent
+        {
+            if (_firstChildIndex < index &&
+                index < _firstChildIndex + _numChildren + 1)
+            {
+                _numChildren++;
+            }
+            else if (index <= _firstChildIndex)
+            {
+                _firstChildIndex++;
+            }
+            
+            super.addingChild(child);
+            $uibase_addChildAt(child, index);
+            super.childAdded(child);
+            
+            dispatchEvent(new Event("childrenChanged"));
+            
+            return child;
+        }
+        
+        /**
+         *  @private
+         *  This class overrides removeChild() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_removeChild(
+            child:IUIComponent):IUIComponent
+        {
+            var index:int = rawChildren_getChildIndex(child);
+            return rawChildren_removeChildAt(index);
+        }
+        
+        /**
+         *  @private
+         *  This class overrides removeChildAt() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_removeChildAt(index:int):IUIComponent
+        {
+            var child:IUIComponent = super.getChildAt(index);
+            
+            super.removingChild(child);
+            $uibase_removeChildAt(index);
+            super.childRemoved(child);
+            
+            if (_firstChildIndex < index &&
+                index < _firstChildIndex + _numChildren)
+            {
+                _numChildren--;
+            }
+            else if (_numChildren == 0 || index < _firstChildIndex)
+            {
+                _firstChildIndex--;
+            }
+            
+            invalidateSize();
+            invalidateDisplayList();
+            
+            dispatchEvent(new Event("childrenChanged"));
+            
+            return child;
+        }
+        
+        /**
+         *  @private
+         *  This class overrides getChildAt() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_getChildAt(index:int):IUIComponent
+        {
+            return super.getChildAt(index);
+        }
+        
+        /**
+         *  @private
+         *  This class overrides getChildByName() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_getChildByName(name:String):IUIComponent
+        {
+            return super.getChildByName(name);
+        }
+        
+        /**
+         *  @private
+         *  This class overrides getChildIndex() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_getChildIndex(child:IUIComponent):int
+        {
+            return super.getChildIndex(child);
+        }
+        
+        /**
+         *  @private
+         *  This class overrides setChildIndex() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_setChildIndex(child:IUIComponent,
+                                                       newIndex:int):void
+        {
+            var oldIndex:int = super.getChildIndex(child);
+            
+            super.setChildIndex(child, newIndex);
+            
+            // Is this a piece of chrome that was previously before
+            // the content children and is now after them in the list?
+            if (oldIndex < _firstChildIndex && newIndex >= _firstChildIndex)
+            {
+                _firstChildIndex--;
+            }
+                
+                // Is this a piece of chrome that was previously after
+                // the content children and is now before them in the list?
+            else if (oldIndex >= _firstChildIndex && newIndex <= _firstChildIndex)
+            {
+                _firstChildIndex++
+            }
+            
+            dispatchEvent(new Event("childrenChanged"));
+        }
+        
+        
+        /**
+         *  @private
+         *  This class overrides contains() to deal with only content children,
+         *  so in order to implement the rawChildren property we need
+         *  a parallel method that deals with all children.
+         */
+        mx_internal function rawChildren_contains(child:IUIBase):Boolean
+        {
+            return super.contains(child);
+        }
 }
 
 }
@@ -1499,6 +1786,205 @@ class ChildSizeInfo
 	 *  @private
 	 */
 	public var size:Number;
+
+
+        
 }
 
+import mx.core.IUIComponent;
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.geom.Point;
 
+import mx.containers.DividedBox;
+import mx.core.IChildList;
+import mx.core.mx_internal;
+
+use namespace mx_internal;
+/**
+ *  @private
+ *  Helper class for the rawChildren property of the Container class.
+ *  For descriptions of the properties and methods,
+ *  see the IChildList interface.
+ *
+ *  @see mx.core.Container
+ */
+class DividedBoxChildrenList implements IChildList
+{
+//    include "../core/Version.as";
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Notes
+    //
+    //--------------------------------------------------------------------------
+    
+    /*
+    
+    Although at the level of a Flash DisplayObjectContainer, all
+    children are equal, in a Flex Container some children are "more
+    equal than others". (George Orwell, "Animal Farm")
+    
+    In particular, Flex distinguishes between content children and
+    non-content (or "chrome") children. Content children are the kind
+    that can be specified in MXML. If you put several controls
+    into a VBox, those are its content children. Non-content children
+    are the other ones that you get automatically, such as a
+    background/border, scrollbars, the titlebar of a Panel,
+    AccordionHeaders, etc.
+    
+    Most application developers are uninterested in non-content children,
+    so Container overrides APIs such as numChildren and getChildAt()
+    to deal only with content children. For example, Container, keeps
+    its own _numChildren counter.
+    
+    However, developers of custom containers need to be able to deal
+    with both content and non-content children, so they require similar
+    APIs that operate on all children.
+    
+    For the public API, it would be ugly to have double APIs on Container
+    such as getChildAt() and all_getChildAt(). Instead, Container has
+    a public rawChildren property which lets you access APIs which
+    operate on all the children, in the same way that the
+    DisplayObjectContainer APIs do. For example, getChildAt(0) returns
+    the first content child, while rawChildren.getChildAt(0) returns
+    the first child (either content or non-content).
+    
+    This ContainerRawChildrenList class implements the rawChildren
+    property. Note that it simply calls a second set of parallel
+    mx_internal APIs in Container. (They're named, for example,
+    _getChildAt() instead of all_getChildAt()).
+    
+    Many of the all-children APIs in Container such as _getChildAt()
+    simply call super.getChildAt() in order to get the implementation
+    in DisplayObjectContainer. It would be nice if we could eliminate
+    _getChildAt() in Container and simply implement the all-children
+    version in this class by calling the DisplayObjectContainer method.
+    But once Container overrides getChildAt(), there is no way
+    to call the supermethod through an instance.
+    
+    */
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Constructor
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  @private
+     *  Constructor.
+     */
+    public function DividedBoxChildrenList(owner:DividedBox)
+    {
+        super();
+        
+        this.owner = owner;
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Variables
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  @private
+     */
+    private var owner:DividedBox;
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Properties
+    //
+    //--------------------------------------------------------------------------
+    
+    //----------------------------------
+    //  numChildren
+    //----------------------------------
+    
+    /**
+     *  @private
+     */
+    public function get numChildren():int
+    {
+        return owner.$sprite_numChildren;
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Methods
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  @private
+     */
+    public function addChild(child:IUIComponent):IUIComponent
+    {
+        return owner.rawChildren_addChild(child);
+    }
+    
+    /**
+     *  @private
+     */
+    public function addChildAt(child:IUIComponent, index:int):IUIComponent
+    {
+        return owner.rawChildren_addChildAt(child, index);
+    }
+    
+    /**
+     *  @private
+     */
+    public function removeChild(child:IUIComponent):IUIComponent
+    {
+        return owner.rawChildren_removeChild(child);
+    }
+    
+    /**
+     *  @private
+     */
+    public function removeChildAt(index:int):IUIComponent
+    {
+        return owner.rawChildren_removeChildAt(index);
+    }
+    
+    /**
+     *  @private
+     */
+    public function getChildAt(index:int):IUIComponent
+    {
+        return owner.rawChildren_getChildAt(index);
+    }
+    
+    /**
+     *  @private
+     */
+    public function getChildByName(name:String):IUIComponent
+    {
+        return owner.rawChildren_getChildByName(name);
+    }
+    
+    /**
+     *  @private
+     */
+    public function getChildIndex(child:IUIComponent):int
+    {
+        return owner.rawChildren_getChildIndex(child);
+    }
+    
+    /**
+     *  @private
+     */
+    public function setChildIndex(child:IUIComponent, newIndex:int):void
+    {       
+        owner.rawChildren_setChildIndex(child, newIndex);
+    }
+    
+    /**
+     *  @private
+     */
+    public function contains(child:IUIBase):Boolean
+    {
+        return owner.rawChildren_contains(child);
+    }   
+}   

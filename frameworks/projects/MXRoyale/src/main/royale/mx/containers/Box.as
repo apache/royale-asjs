@@ -23,6 +23,9 @@ package mx.containers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.layouts.HorizontalLayout;
 	import org.apache.royale.html.beads.layouts.VerticalLayout;
+	import mx.core.mx_internal;
+
+	use namespace mx_internal;
 
 /*
 import flash.events.Event;
@@ -31,9 +34,6 @@ import mx.containers.beads.BoxLayout;
 import mx.core.Container;
 /*
 import mx.core.IUIComponent;
-import mx.core.mx_internal;
-
-use namespace mx_internal;
 */
 
 
@@ -310,7 +310,7 @@ public class Box extends Container
 	/**
 	 * @private
 	 */
-	protected function isVertical():Boolean
+	mx_internal function isVertical():Boolean
 	{
 		return _direction == BoxDirection.VERTICAL;
 	}
