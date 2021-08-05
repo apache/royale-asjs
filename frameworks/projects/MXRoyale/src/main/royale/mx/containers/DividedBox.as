@@ -34,6 +34,7 @@ import mx.core.UIComponent;
 import mx.core.EdgeMetrics;
 import org.apache.royale.geom.Point;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.IUIBase;
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.DividedBoxLayout;
@@ -225,9 +226,9 @@ public class DividedBox extends Box
 	{
 		super();
 
-        addEventListener(ChildExistenceChangedEvent.CHILD_ADD, childAddHandler);
-		addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, 
-						 childRemoveHandler);
+        //addEventListener(ChildExistenceChangedEvent.CHILD_ADD, childAddHandler);
+		//addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, 
+						 //childRemoveHandler);
 	}
     
 	override protected function createLayout():void
@@ -1445,10 +1446,8 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-	private function childAddHandler(event:ChildExistenceChangedEvent):void
+	private function childAddHandler(child:UIComponent):void
 	{
-		var child:UIComponent = event.relatedObject;
-
 		child.addEventListener("includeInLayoutChanged",
                                child_includeInLayoutChangedHandler);
 
@@ -1468,12 +1467,57 @@ public class DividedBox extends Box
 		dbPreferredHeight = NaN;
 	}
 
+        /**
+         *  @copy org.apache.royale.core.IParent#addElementAt()
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
+        override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+	{
+		super.addElementAt(c, index, dispatchEvent);
+		childAddHandler(c as UIComponent);
+	}
+
+	/**
+	 *  @copy org.apache.royale.core.IParent#addElement()
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+	 */
+	override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+	{
+		super.addElement(c, dispatchEvent);
+		childAddHandler(c as UIComponent);
+	}
+
+
+	/**
+	 *  @copy org.apache.royale.core.IParent#removeElement()
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+	 */
+	override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+	{
+		super.removeElement(c, dispatchEvent);
+		childRemoveHandler(c as UIComponent);
+	}
+
 	/**
 	 *  @private
 	 */
-	private function childRemoveHandler(event:ChildExistenceChangedEvent):void
+	private function childRemoveHandler(child:UIComponent):void
 	{
-		var child:UIComponent = event.relatedObject;
 		
         child.removeEventListener("includeInLayoutChanged",
                                   child_includeInLayoutChangedHandler);

@@ -19,6 +19,7 @@
 
 package mx.containers
 {
+import mx.containers.dividedBoxClasses.BoxDivider;
 /*
 import mx.core.mx_internal;
 use namespace mx_internal;
@@ -93,6 +94,7 @@ public class HDividedBox extends DividedBox
 		typeNames = "HDividedBox";
 		
 		super.direction = BoxDirection.HORIZONTAL;				
+		dividerClass = BoxDivider;
 	}
 
 	//--------------------------------------------------------------------------

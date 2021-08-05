@@ -20,6 +20,8 @@
 package mx.containers
 {
 
+import mx.containers.dividedBoxClasses.BoxDivider;
+
 /**
  *  The VDividedBox container lays out its children vertically
  *  in the same way as the VBox container, but it inserts
@@ -90,6 +92,7 @@ public class VDividedBox extends DividedBox
 		typeNames = "VDividedBox";
 
 		super.direction = BoxDirection.VERTICAL;				
+		dividerClass = BoxDivider;
 	}
 
 	//--------------------------------------------------------------------------
@@ -111,6 +114,7 @@ public class VDividedBox extends DividedBox
 	override public function set direction(value:String):void
 	{
 	}
+
 }
 
 }
