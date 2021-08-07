@@ -663,6 +663,8 @@ public class DividedBox extends Box
 	override protected function updateDisplayList(unscaledWidth:Number,
 												  unscaledHeight:Number):void
 	{
+		dividerLayer.width = unscaledWidth;
+		dividerLayer.height = unscaledHeight;
  		var n:int;
  		var i:int;
 
@@ -825,12 +827,27 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
+	override public function invalidateDisplayList():void
+	{
+		super.invalidateDisplayList();
+		updateDisplayList(width, height);
+	}
+
+	override public function get numElements():int
+	{
+		return dividerLayer ? super.numElements - 1 : super.numElements;
+	}
+
+	/**
+	 *  @private
+	 */
 	private function createDivider(i:int):BoxDivider
 	{
 		// Create separate layer for holding divider objects.
 		if (!dividerLayer)
 		{
 			dividerLayer = UIComponent(rawChildren.addChild(new UIComponent()));
+			dividerLayer.setIncludeInLayout(false);
 		}
 
 		var divider:BoxDivider = BoxDivider(new dividerClass());
@@ -864,7 +881,7 @@ public class DividedBox extends Box
 		//
 		//divider.styleName = basedOn;
 		//
-		//divider.owner = this;
+		divider.owner = this;
 		
 		return divider;
 	}
@@ -895,7 +912,7 @@ public class DividedBox extends Box
 		    //8           4             6               6              6        
 		    //8           6             4               4              4
 
-		var divider:UIComponent = UIComponent(getDividerAt(i));
+		var divider:BoxDivider = BoxDivider(getDividerAt(i));
 
 		 var vm:EdgeMetrics = viewMetricsAndPadding;
 
@@ -1083,7 +1100,7 @@ public class DividedBox extends Box
 		
 			var sz:Number = vertical ? child.height : child.width;
 
-			var mx:Number = vertical ? child.maxHeight : child.maxWidth;
+			var myMx:Number = vertical ? child.maxHeight : child.maxWidth;
 			
 			var umn:Number = vertical ?
 							 child.explicitMinHeight :
@@ -1094,12 +1111,12 @@ public class DividedBox extends Box
 			
 			// Compute these for later use.
 			var dMin:Number = Math.max(0, sz - mn);
-			var dMax:Number = Math.max(0, mx - sz);
+			var dMax:Number = Math.max(0, myMx - sz);
 
 			if (sz > 0 && sz < smallest)
 				smallest = sz;
 
-			oldChildSizes.push(new ChildSizeInfo(sz, mn, mx, dMin, dMax));
+			oldChildSizes.push(new ChildSizeInfo(sz, mn, myMx, dMin, dMax));
 		}
 
 		// Remember the smallest child size we saw.

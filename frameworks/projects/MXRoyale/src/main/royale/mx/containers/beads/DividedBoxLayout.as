@@ -94,9 +94,10 @@ package mx.containers.beads
 		
 		override public function layout():Boolean
 		{
-            preLayoutAdjustment();
-            return super.layout();
-            postLayoutAdjustment();
+			target.invalidateDisplayList(); // trigger synchronous updateDisplayList() TODO - consider moving everything to layout
+			preLayoutAdjustment();
+			return super.layout();
+			postLayoutAdjustment();
 		}
         
         /**
