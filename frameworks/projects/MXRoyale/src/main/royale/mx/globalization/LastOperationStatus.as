@@ -311,6 +311,20 @@ public final class LastOperationStatus
      */
     public static const UNEXPECTED_TOKEN:String
                     = "unexpectedToken";
+    //--------------------------------------------------------------------------
+    //  Additional constants besides constants from
+    //  flash.globalization.LastOperationError
+    //--------------------------------------------------------------------------
+
+    /**
+     *  Indicates that <code>Locale</code> is not defined.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.1
+     *  @playerversion AIR 2.0
+     *  @productversion Royale 0.9.8
+     */
+    public static const LOCALE_UNDEFINED_ERROR:String = "localeUndefinedError";
 
     //--------------------------------------------------------------------------
     //
