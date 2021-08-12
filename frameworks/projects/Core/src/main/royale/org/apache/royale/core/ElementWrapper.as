@@ -265,7 +265,11 @@ package org.apache.royale.core
 			{
 				_beads = new Vector.<IBead>();
 			}
-            if (goog.DEBUG && !(bead is IBead)) throw new TypeError('Cannot convert '+bead+' to IBead');
+            if (goog.DEBUG && !(bead is IBead)) {
+                //console output is more descriptive than the error because the error message stringification only has [object Object]:
+                console.log('Cannot convert ',bead,' to IBead');
+                throw new TypeError('Cannot convert '+bead+' to IBead');
+            }
 			_beads.push(bead);
 			bead.strand = this;
 		}
