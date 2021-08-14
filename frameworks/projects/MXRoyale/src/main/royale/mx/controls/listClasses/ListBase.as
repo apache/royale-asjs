@@ -1027,6 +1027,11 @@ use namespace mx_internal;
         override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             var contentView:IParent = getLayoutHost().contentView as IParent;
+            if (c == contentView)
+            {
+                super.addElement(c);
+                return;
+            }
             if (contentView == this)
                 return super.addElement(c, dispatchEvent);
             contentView.addElement(c, dispatchEvent);
