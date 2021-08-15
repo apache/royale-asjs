@@ -55,8 +55,8 @@
     <maven.version>3.5.4</maven.version>
 
     <royale.build-tools.version>1.2.1</royale.build-tools.version>
-    <project.royale.compiler.version>${project.version}</project.royale.compiler.version>
-    <royale.typedefs.version>${project.version}</royale.typedefs.version>
+    <project.royale.compiler.version>0.9.8</project.royale.compiler.version>
+    <royale.typedefs.version>0.9.8</royale.typedefs.version>
 
     <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>
