@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-blog</artifactId>
-    <version>0.9.8</version>
+    <version>0.9.9-SNAPSHOT</version>
   </parent>
 
   <artifactId>BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label</artifactId>
-  <version>0.9.8</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0006: Binding the text property of a Jewel Textinput to update a text label</name>
@@ -52,14 +52,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.8</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Blue-Theme</artifactId>
-      <version>0.9.8</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -73,7 +73,7 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>0.9.8</version>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -81,4 +81,4 @@
     </profile>
   </profiles>
 
-<properties><project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties></project>
+<properties /></project>
