@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.8</version>
   </parent>
 
   <artifactId>projects</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.8</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -39,7 +39,7 @@
         -js-vector-index-checks=false;
         -js-resolve-uncertain=false;
       </project.compiler.options>
-  </properties>
+  <project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties>
   
   <name>Apache Royale: Framework: Libs</name>
 
