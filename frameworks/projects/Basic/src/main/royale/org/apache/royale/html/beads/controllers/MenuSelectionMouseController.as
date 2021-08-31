@@ -61,8 +61,6 @@ package org.apache.royale.html.beads.controllers
 			super();
 		}
 				
-		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  

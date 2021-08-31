@@ -558,7 +558,10 @@ public class UITextFormat extends TextFormat
         
         return lineMetrics;
     }
-    
+
+    COMPILE::JS
+    private static var measuringElementRef:HTMLSpanElement
+
     /**
      * @royaleignorecoercion mx.managers.SystemManager;
      * @royaleignorecoercion HTMLSpanElement; 
@@ -566,25 +569,37 @@ public class UITextFormat extends TextFormat
     COMPILE::JS
     private function measure(s:String, html:Boolean, roundUp:Boolean):TextLineMetrics
     {
-        var sm:SystemManager = systemManager as SystemManager;
-        if (sm.measuringElement == null)
-        {
-            sm.measuringElement = document.createElement("span") as HTMLSpanElement;
-            //everything else is absolute position so should be above this element
-            //sm.measuringElement.style.position = "float"; // to try to keep it from affecting position of other elements
-            // offsetWidth/Height not computed for display: none
-            //sm.measuringElement.style.display = "none"; // to try to keep it hidden
-            sm.measuringElement.style.opacity = 0;
-            sm.measuringElement.style["pointer-events"] = "none";
-            sm.element.appendChild(sm.measuringElement);
+        //sometimes this can be requested in some code that does not pass a reference to systemManager, so use
+        //a cached reference to the measuringElement - needs review
+        var measuringElement:HTMLSpanElement = measuringElementRef;
+
+        if (!measuringElement) {
+            measuringElementRef = (systemManager as SystemManager).measuringElement;
+            measuringElement = measuringElementRef;
+            if (!measuringElement) {
+                var sm:SystemManager = systemManager as SystemManager;
+                if (sm.measuringElement == null)
+                {
+                    measuringElement = document.createElement("span") as HTMLSpanElement;
+                    //everything else is absolute position so should be above this element
+                    //sm.measuringElement.style.position = "float"; // to try to keep it from affecting position of other elements
+                    // offsetWidth/Height not computed for display: none
+                    //sm.measuringElement.style.display = "none"; // to try to keep it hidden
+                    measuringElement.style.opacity = 0;
+                    measuringElement.style["pointer-events"] = "none";
+                    sm.element.appendChild(measuringElement);
+                    sm.measuringElement = measuringElement;
+                }
+            }
         }
+
         if (s.indexOf("&nbsp;") >= 0)
-            sm.measuringElement.innerHTML = s;
+            measuringElement.innerHTML = s;
         else
-            sm.measuringElement.textContent = s;
+            measuringElement.textContent = s;
         var tlm:TextLineMetrics = new TextLineMetrics();
-        tlm.width = sm.measuringElement.offsetWidth;
-        tlm.height = sm.measuringElement.offsetHeight;
+        tlm.width = measuringElement.offsetWidth;
+        tlm.height = measuringElement.offsetHeight;
         return tlm;
     }
     

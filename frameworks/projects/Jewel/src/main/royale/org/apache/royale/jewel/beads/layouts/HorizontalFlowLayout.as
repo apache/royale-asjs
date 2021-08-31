@@ -24,10 +24,6 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.layout.EdgeData;
 	}
-	// COMPILE::JS {
-    //     import org.apache.royale.core.UIBase;
-    //     import org.apache.royale.core.WrappedHTMLElement;
-    // }
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
@@ -77,14 +73,13 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
+			hostComponent.replaceClass("flow");
+			
+			applyStyleToLayout(hostComponent, "gap");
+			
 			COMPILE::JS
 			{
-				if(hostClassList.contains("flow"))
-					hostClassList.remove("flow");
-				hostClassList.add("flow");
-
-				applyStyleToLayout(hostComponent, "gap");
-				setGap(_gap);
+			setGap(_gap);
 			}
 		}
 
@@ -127,9 +122,9 @@ package org.apache.royale.jewel.beads.layouts
 		// private function setGap(value:Boolean):void
 		// {
 		// 	if (value)
-		// 		hostClassList.add("gap");
+		// 		hostComponent.addClass("gap");
 		// 	else
-		// 		hostClassList.remove("gap");
+		// 		hostComponent.removeClass("gap");
 		// }
 
 		/**
@@ -203,10 +198,10 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			if (value >= 0 && value <= GapConstants.GAPS)
 			{
-				if (hostClassList.contains("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px"))
-					hostClassList.remove("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px");
+				if (hostComponent.containsClass("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px"))
+					hostComponent.removeClass("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px");
 				if(value != 0)
-					hostClassList.add("gap-" + value + "x" + GapConstants.GAP_STEP + "px");
+					hostComponent.addClass("gap-" + value + "x" + GapConstants.GAP_STEP + "px");
 			} else
 				throw new Error("Gap needs to be between 0 and " + GapConstants.GAPS);
 		}

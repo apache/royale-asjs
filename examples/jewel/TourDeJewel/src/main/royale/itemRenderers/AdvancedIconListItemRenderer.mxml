@@ -42,7 +42,7 @@ limitations under the License.
                 return getItemClassname(item)
             }
 
-            private function clickCloseButton():void
+            private function mutateData():void
 			{
                 var view:ListView = this.itemRendererOwnerView as ListView;
 				if (view) {
@@ -52,8 +52,13 @@ limitations under the License.
                         if (collection) {
                             iconListItem.componentSet = (iconListItem.componentSet == 'Jewel') ? 'Basic' : 'Jewel';
                             collection.itemUpdated(iconListItem);
+                            //fake a dataChange to force update the colorClass of this renderer
+                            dispatchEvent(new Event('dataChange'))
                         }
-                        //(host.dataProvider as ArrayList).removeItemAt(index);
+                        if (host.selectedItem == data) {
+                            //fake a selectionChange to trigger selection level bindings
+                            host.dispatchEvent(new Event('selectionChanged'));
+                        }
                     }
                 }
             }
@@ -83,13 +88,13 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding/>
+        <j:HorizontalLayout gap="8" itemsVerticalAlign="itemsCenter"/>
     </j:beads>
 
-    <js:MaterialIcon text="{iconListItem ? iconListItem.icon : ''}"
-                
-                visible="{iconListItem ? iconListItem.icon != null : false}"
-                className="{colorClass}"
-                click="clickCloseButton()"/>
+    <js:MaterialIcon text="{iconListItem.icon}"
+            visible="{iconListItem.icon != null}"
+            className="{colorClass}"
+            click="mutateData()"/>
 
     <j:Label html="{text}" multiline="true"/>
 

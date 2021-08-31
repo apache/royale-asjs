@@ -19,18 +19,68 @@
 
 package mx.controls.dataGridClasses
 {
-    import mx.core.Container;
+    //import mx.core.Container;
+    import mx.controls.DataGrid;
 
-    public class DataGridListArea extends Container
+    COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+    }
+    import org.apache.royale.html.beads.DataGridListArea;
+    import org.apache.royale.html.supportClasses.IDataGridColumnList;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.UIBase;
+
+
+    public class DataGridListArea extends org.apache.royale.html.beads.DataGridListArea
     {
         public function DataGridListArea()
         {
             super();
-            COMPILE::JS
-            {
-                typeNames = 'Container DataGridListArea';
+        }
+
+
+        COMPILE::JS
+        private var _userOnetimeSuperInternalChildren:Boolean;
+        COMPILE::JS
+        override public function internalChildren():Array
+        {
+            var arr:Array = super.internalChildren();
+            if (_userOnetimeSuperInternalChildren) {
+                _userOnetimeSuperInternalChildren = false;
+                return arr;
             }
-                
+            // remove scrolling divs from the list
+            // in theory, the only thing that calls this
+            // is HorizontalLayout
+            var children:Array = [];
+            for each (var child:WrappedHTMLElement in arr)
+            {
+                if (child.royale_wrapper)
+                    children.push(child);
+            }
+            return children;
+        }
+
+        private var _listCount:int=0;
+
+        COMPILE::JS
+        override public function addElement(c:IChild, dispatchEvent:Boolean = true):void{
+            if (c is IDataGridColumnList) {
+                _userOnetimeSuperInternalChildren = true;
+                addElementAt(c, _listCount, dispatchEvent);
+                _listCount++;
+            } else super.addElement(c, dispatchEvent);
+        }
+
+        public function resetEmpty():void{
+            _listCount = 0;
+        }
+
+
+        COMPILE::JS
+        public function contains(other:UIBase):Boolean{
+            return this.element.contains(other.element);
         }
     }
 

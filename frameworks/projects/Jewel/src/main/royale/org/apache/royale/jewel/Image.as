@@ -26,6 +26,16 @@ package org.apache.royale.jewel
 	import org.apache.royale.html.util.addElementToWrapper;
     }
 
+	/**
+	 *  Report the image was loaded
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+	 */
+	[Event(name="loadComplete", type="org.apache.royale.events.Event")]
+	
 	  /**
 	   *  The Jewel Image is a simple component that loads an Image.
 	   *  For button images use ImageButton

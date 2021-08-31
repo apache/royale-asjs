@@ -18,16 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.collections.IArrayList;
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataProviderNotifier;
 	import org.apache.royale.core.IDocument;
-	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
 	 *  Base class for all data provider notifiers.
@@ -37,7 +36,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataProviderNotifierBase implements IBead, IDocument, IDataProviderNotifier
+	public class DataProviderNotifierBase extends Bead implements IDocument, IDataProviderNotifier
 	{
 		/**
 		 *  constructor.
@@ -51,9 +50,7 @@ package org.apache.royale.html.supportClasses
 		{
 		}
 		
-		protected var dataProvider:ArrayList;
-		
-		protected var _strand:IStrand;
+		protected var dataProvider:IArrayList;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -62,27 +59,32 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IBeadModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
 			if (_strand[destinationPropertyName] == null) {
-				var model:IBeadModel = UIBase(_strand).model as IBeadModel;
-				IEventDispatcher(model).addEventListener(changeEventName, destinationChangedHandler);
+				var model:IBeadModel = (_strand as UIBase).model as IBeadModel;
+				(model as IEventDispatcher).addEventListener(changeEventName, destinationChangedHandler);
 			}
 			else {
 				destinationChangedHandler(null);
 			}
 		}
 		
+		/**
+		 *  The change handler function that will be called when change event is thrown
+		 */
 		protected function destinationChangedHandler(event:Event):void
 		{
-
+			// to implement in subclasses
 		}
 		
 		protected var document:Object;
-		
 		/**
 		 * @private
 		 */
@@ -92,7 +94,9 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		private var _destinationPropertyName:String;
-		
+		/**
+		 *  The property in the component, usually dataProvider
+		 */
 		public function get destinationPropertyName():String
 		{
 			return _destinationPropertyName;
@@ -103,7 +107,9 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		private var _changeEventName:String;
-		
+		/**
+		 * the event name, usually "dataProviderChanged"
+		 */
 		public function get changeEventName():String
 		{
 			return _changeEventName;
@@ -114,7 +120,6 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		private var _sourceID:String;
-		
 		/**
 		 *  The ID of the object holding the ArrayList, usually a model.
 		 *  
@@ -133,7 +138,6 @@ package org.apache.royale.html.supportClasses
 		}
 		
 		private var _propertyName:String;
-		
 		/**
 		 *  The property in the sourceID that is the ArrayList.
 		 *  

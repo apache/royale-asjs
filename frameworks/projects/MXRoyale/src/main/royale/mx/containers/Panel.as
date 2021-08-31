@@ -43,7 +43,6 @@ import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
 import mx.core.IFontContextComponent;
 import mx.core.IUIComponent;
-import mx.core.IUITextField;
 import mx.core.UIComponent;
 import mx.core.UIComponentCachePolicy;
 import mx.core.UITextField;
@@ -64,6 +63,7 @@ import mx.containers.beads.PanelView;
 import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
 import mx.core.UIComponent;
+import mx.core.IUITextField;
 
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
@@ -91,6 +91,17 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  */
 //[Style(name="borderAlpha", type="Number", inherit="no", theme="halo, spark")]
 
+    /**
+     *  The color of the border for this component.
+     *
+     *  @default 0
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */
+    [Style(name="borderColor", type="uint", format="Color", inherit="yes")]
 /**
  *  Thickness of the bottom border of the Panel control.
  *  If this style is not set and the Panel control contains a ControlBar
@@ -180,7 +191,10 @@ include "../styles/metadata/ModalTransparencyStyles.as";
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="dropShadowEnabled", type="Boolean", inherit="no", theme="halo")]
+[Style(name="dropShadowEnabled", type="Boolean", inherit="no", theme="halo")]
+
+[Style(name="dropShadowEnabled", type="Panel", inherit="no", theme="halo")]
+
 
 /**
  *  Array of two colors used to draw the footer
@@ -636,6 +650,19 @@ public class Panel extends Container
         dispatchEvent(new Event("statusChanged"));
     }
 
+    //----------------------------------
+    //  titleBar
+    //----------------------------------
+
+    /**
+     *  The TitleBar sub-control that displays the Panel container's title bar.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var titleBar:UIComponent;
 
     //----------------------------------
     //  title
@@ -1014,8 +1041,18 @@ public class Panel extends Container
             contentView.percentHeight = 100;
         }
     }
-    
-
+	
+    private var _headerHeight:Number = 0;
+	
+	public function get headerHeight():Number
+	{
+		return _headerHeight;
+	}
+	
+	public function set headerHeight(value:Number):void
+	{
+		_headerHeight = value;
+	}
     /**
      * @private
      * @royaleignorecoercion mx.containers.beads.PanelView
@@ -1026,6 +1063,28 @@ public class Panel extends Container
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         panelView.contentArea.dispatchEvent(new ValueEvent("childrenAdded"));
         super.childrenAdded();
+    }
+    
+    //----------------------------------
+    //  titleTextField
+    //----------------------------------
+
+    /**
+     *  The UITextField sub-control that displays the title.
+     *  The title field is a child of the <code>titleBar</code> sub-control.
+     * 
+     *  @see #titleBar
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var titleTextField:IUITextField;
+	
+	public function getTitleTextField():IUITextField
+    {
+        return titleTextField;
     }
     
 

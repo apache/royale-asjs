@@ -91,6 +91,9 @@
 
         <!-- Use of the instanceof operator. -->
         <warn-instance-of-changes>false</warn-instance-of-changes>
+
+        <!-- avoid warnings for 'this within closure' (multiple, intentional) -->
+        <warn-this-within-closure>false</warn-this-within-closure>
     </compiler>
     
     <export-protected-symbols>true</export-protected-symbols>

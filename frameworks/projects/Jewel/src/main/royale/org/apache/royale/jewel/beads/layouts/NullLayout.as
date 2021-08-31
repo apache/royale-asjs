@@ -46,6 +46,14 @@ package org.apache.royale.jewel.beads.layouts
         public function NullLayout()
         {
             super();
-        }        
+        }
+
+        /**
+         * @copy org.apache.royale.core.IBeadLayout#layout
+         */
+		override public function layout():Boolean
+		{
+            return true;
+        }   
 	}
 }

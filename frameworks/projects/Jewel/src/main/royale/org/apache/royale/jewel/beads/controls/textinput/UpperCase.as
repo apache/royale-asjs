@@ -21,7 +21,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	
 	/**
@@ -49,8 +48,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 		}
 
-		protected var t:TextInputBase;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -61,17 +58,26 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 */
 		public function set strand(value:IStrand):void
 		{
-			t = value as TextInputBase;
-			IEventDispatcher(t).addEventListener(Event.CHANGE, changeToUpperCase);
-			t.text = t.text.toUpperCase();
+			var host:TextInputBase = value as TextInputBase;
+			host.addEventListener(Event.CHANGE, changeToUpperCase);
+			host.text = host.text.toUpperCase();
 		}
 		
 		/**
+		 * Change text to upper case as user types
+		 * 
 		 * @private
 		 */
-		private function changeToUpperCase(event:Event):void
+		protected function changeToUpperCase(event:Event):void
 		{
-			t.text = t.text.toUpperCase();
+			COMPILE::JS
+			{
+			var input:HTMLInputElement = event.target.input as HTMLInputElement;
+			var start:Number = input.selectionStart;
+			var end:Number = input.selectionEnd;
+			input.value = input.value.toUpperCase();
+			input.setSelectionRange(start, end);
+			}
 		}
 	}
 }

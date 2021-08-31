@@ -271,7 +271,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      */
     public function AdvancedDataGridColumn(columnName:String = null)
     {
-        super();
+        super(columnName);
 
       /*   if (columnName)
         {
@@ -286,7 +286,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
     //
     //--------------------------------------------------------------------------
 
-    mx_internal var list:UIBase; //BaseEx;
+   // mx_internal var list:UIBase; //BaseEx;
     
     /**
      *  @private
@@ -521,7 +521,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
     //  editable
     //----------------------------------
 
-    [Inspectable(category="General")]
+    //[Inspectable(category="General")]
 
     /**
      *  A flag that indicates whether the items in the column are editable.
@@ -538,13 +538,13 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var editable:Boolean = true;
+    //public var editable:Boolean = true;
 
     //----------------------------------
     //  itemEditor
     //----------------------------------
 
-    [Inspectable(category="General")]
+    //[Inspectable(category="General")]
 
     /**
      *  A class factory for the instances of the item editor to use for the 
@@ -559,13 +559,13 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var itemEditor:IFactory = defaultItemEditorFactory;
+    //public var itemEditor:IFactory = defaultItemEditorFactory;
 
     //----------------------------------
     //  editorDataField
     //----------------------------------
 
-    [Inspectable(category="General")]
+   // [Inspectable(category="General")]
 
     /**
      *  The name of the property of the item editor that contains the new
@@ -582,7 +582,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var editorDataField:String = "text";
+    //public var editorDataField:String = "text";
 
     //----------------------------------
     //  editorHeightOffset
@@ -734,7 +734,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public function get headerRenderer():IFactory
+    override public function get headerRenderer():IFactory
     {
         return _headerRenderer;
     }
@@ -742,7 +742,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
     /**
      *  @private
      */
-    public function set headerRenderer(value:IFactory):void
+    override public function set headerRenderer(value:IFactory):void
     {
         _headerRenderer = value;
 
@@ -868,13 +868,13 @@ public class AdvancedDataGridColumn extends DataGridColumn
     } */
 
 
-    //----------------------------------
+   /* //----------------------------------
     //  resizable
     //----------------------------------
 
     [Inspectable(category="General")]
 
-    /**
+    /!**
      *  Set to <code>true</code> if the user is allowed to resize
      *  the width of the column.
      *  If <code>true</code>, the user can drag the grid lines between 
@@ -886,22 +886,22 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
+     *!/
     public var resizable:Boolean = true;
 
     //----------------------------------
     //  showDataTips
     //----------------------------------
 
-    /**
+    /!**
      *  @private
      *  Storage for the showDataTips property.
-     */
+     *!/
     private var _showDataTips:*;
 
     [Inspectable(category="Advanced")]
 
-    /**
+    /!**
      *  Set to <code>true</code> to show data tips in the column.
      *  If <code>true</code>, datatips are displayed for text in the rows. Datatips
      *  are tooltips designed to show the text that is too long for the row.
@@ -912,23 +912,23 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
+     *!/
     public function get showDataTips():*
     {
         return _showDataTips;
     }
 
-    /**
+    /!**
      *  @private
-     */
+     *!/
     public function set showDataTips(value:*):void
     {
         _showDataTips = value;
 
-       /*  if (owner)
+       /!*  if (owner)
         {
             owner.invalidateList();
-        } */
+        } *!/
     }
 
     //----------------------------------
@@ -937,7 +937,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
 
     [Inspectable(category="General")]
 
-    /**
+    /!**
      *  Set to <code>true</code> to indicate that the user can click on the
      *  header of this column to sort the data provider.
      *  If this property and the AdvancedDataGrid <code>sortableColumns</code> property 
@@ -955,23 +955,23 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
+     *!/
     public var sortable:Boolean = true;
 
     //----------------------------------
     //  sortCompareFunction
     //----------------------------------
 
-    /**
+    /!**
      *  @private
      *  Storage for the sortCompareFunction property.
-     */
+     *!/
     private var _sortCompareFunction:Function;
 
     [Bindable("sortCompareFunctionChanged")]
     [Inspectable(category="Advanced")]
 
-    /**
+    /!**
      *
      *  A callback function that gets called when sorting the data in
      *  the column.  If this property is not specified, the sort tries
@@ -1013,15 +1013,15 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
+     *!/
     public function get sortCompareFunction():Function
     {
         return _sortCompareFunction;
     }
 
-    /**
+    /!**
      *  @private
-     */
+     *!/
     public function set sortCompareFunction(value:Function):void
     {
         _sortCompareFunction = value;
@@ -1029,7 +1029,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
       //  dispatchEvent(new Event("sortCompareFunctionChanged"));
     }
 
-
+*/
     //----------------------------------
     //  sortCompareType
     //----------------------------------
@@ -1066,37 +1066,37 @@ public class AdvancedDataGridColumn extends DataGridColumn
     } */
 
 
-    //----------------------------------
+   /* //----------------------------------
     //  visible
     //----------------------------------
 
-    /**
+    /!**
      *  @private
      *  Storage for the visible property.
-     */
+     *!/
     private var _visible:Boolean = true;
 
     [Inspectable(category="General", defaultValue="true")]
 
-    /**
+    /!**
      *  If <code>true</code>, the column is visible.
      *  Set to <code>false</code> to hide the column.
      *
      *  @default true
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
-     */
+     *!/
     public function get visible():Boolean
     {
         return _visible;
     }
 
-    /**
+    /!**
      *  @private
-     */
+     *!/
     public function set visible(value:Boolean):void
     {
         if (_visible != value)
@@ -1106,16 +1106,16 @@ public class AdvancedDataGridColumn extends DataGridColumn
             if (owner)
             {
                 (owner as AdvancedDataGrid).columnsInvalid();
-                // columns invisible at init don't get a dataprovider so 
+                // columns invisible at init don't get a dataprovider so
                 // force assignment by faking a dp change
                 (owner as AdvancedDataGrid).model.dispatchEvent(new Event("dataProviderChanged"));
-                
+
                 //owner.invalidateProperties();
                 //owner.invalidateSize();
                 //owner.invalidateList();
             }
         }
-    }
+    }*/
 
 
 

@@ -57,6 +57,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
+		[Bindable("rowCountChanged")]
 		public function get rowCount():int
 		{
 			return _rowCount;

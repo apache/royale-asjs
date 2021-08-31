@@ -35,5 +35,10 @@ package org.apache.royale.jewel.beads.models
         function get dispatcher():IEventDispatcher;
         function set dispatcher(value:IEventDispatcher):void;
         function get hasDispatcher():Boolean;
+        
+        function get isItemClicked():Boolean;
+        function set isItemClicked(value:Boolean):void;
+
+        function setDataProvider__NoCheck(value:Object):void
     }
 }

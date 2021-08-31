@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.HTMLElementWrapper;
 	import org.apache.royale.core.IUIBase;
 	}
-	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.utils.sendStrandEvent;
@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Disabled extends Bead
+	public class Disabled extends DispatcherBead
 	{
 		/**
 		 *  constructor.
@@ -51,7 +51,9 @@ package org.apache.royale.jewel.beads.controls
 		}
 
 		COMPILE::JS
-		protected var lastTabVal:String;
+		protected var lastElementTabVal:String = null;
+
+		protected var initialized:Boolean = false;
 
 		private var _disabled:Boolean = true;
         /**
@@ -71,17 +73,15 @@ package org.apache.royale.jewel.beads.controls
         {
 			if(value != _disabled)
 			{
+				_disabled = value;
 				COMPILE::JS
 				{
-				if(value && _strand)
-					lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
-				}
-				_disabled = value;
 				if(_strand)
 				{
 					updateHost();
 					sendStrandEvent(_strand, new ValueEvent("disabledChange", disabled));
-				}	
+				}
+				}
 			}
         }
 
@@ -96,11 +96,7 @@ package org.apache.royale.jewel.beads.controls
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			COMPILE::JS
-            {
-            lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
-            }
+			super.strand = value;
 			updateHost();
 		}
 
@@ -111,31 +107,37 @@ package org.apache.royale.jewel.beads.controls
 			var elem:HTMLElement = (_strand as HTMLElementWrapper).element;
 			var pos:HTMLElement = (_strand as IUIBase).positioner;
 			
+			if(!initialized){
+				initialized = true;
+            	lastElementTabVal = elem.getAttribute("tabindex");
+			}
+			
 			if(_disabled) {
+				setDisableAndTabIndex(pos, true);
 				setDisableAndTabIndex(elem);
-				setDisableAndTabIndex(pos);
 			} else {
-				removeDisableAndTabIndex(elem);
-				removeDisableAndTabIndex(pos);
+				removeDisableAndTabIndex(pos, true);
+				removeDisableAndTabIndex(elem, false, lastElementTabVal);
 			}
 			}
 		}
 
 		COMPILE::JS
-		protected function setDisableAndTabIndex(o:HTMLElement):void
+		protected function setDisableAndTabIndex(o:HTMLElement, positioner:Boolean = false):void
 		{
 			o.setAttribute("disabled", "");
-			o.tabIndex = -1;
+			o.style.pointerEvents = 'none';
+			if(!positioner)
+				o.tabIndex = -1;
 		}
 
 		COMPILE::JS
-		protected function removeDisableAndTabIndex(o:*):void
+		protected function removeDisableAndTabIndex(o:*, positioner:Boolean = false, lastTabVal:String = null):void
 		{
 			o.removeAttribute("disabled");
-				
-			lastTabVal ?
-				o.tabIndex = lastTabVal :
-				o.tabIndex = null;
+			o.style.pointerEvents = '';
+			if(!positioner)
+				o.tabIndex = (lastTabVal == null) ? null : lastTabVal;
 		}
 	}
 }

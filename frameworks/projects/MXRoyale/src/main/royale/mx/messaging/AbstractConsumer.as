@@ -359,8 +359,9 @@ public class AbstractConsumer extends MessageAgent
         {
             if (value < 0)
             {
-                var message:String = resourceManager.getString(
-                    "messaging", "resubscribeIntervalNegative");
+                /* var message:String = resourceManager.getString(
+                    "messaging", "resubscribeIntervalNegative"); */
+                var message:String = "resubscribeInterval cannot take a negative value.";
                 throw new ArgumentError(message);
             }
             else if (value == 0)
@@ -929,10 +930,12 @@ public class AbstractConsumer extends MessageAgent
             _shouldBeSubscribed = false;
             var errMsg:ErrorMessage = new ErrorMessage();
             errMsg.faultCode = "Client.Error.Subscribe";
-            errMsg.faultString = resourceManager.getString(
+            /* errMsg.faultString = resourceManager.getString(
                 "messaging", "consumerSubscribeError");
             errMsg.faultDetail = resourceManager.getString(
-                "messaging", "failedToSubscribe");
+                "messaging", "failedToSubscribe"); */
+            errMsg.faultString = "Consumer subscribe error";
+            errMsg.faultDetail = "The consumer was not able to subscribe to its target destination.";
             errMsg.correlationId = _subscribeMsg.messageId;
             fault(errMsg, _subscribeMsg);
             return;

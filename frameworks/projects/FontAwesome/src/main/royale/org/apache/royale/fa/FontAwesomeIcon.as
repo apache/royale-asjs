@@ -48,9 +48,13 @@ package org.apache.royale.fa
          *  @productversion Royale 0.0
          *
          *  @royaleignorecoercion HTMLElement
-		 * <inject_html>
-		 *     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		 * </inject_html>		 
+		 * <inject_script>
+		 *     var link = document.createElement("link");
+		 *     link.setAttribute("rel", "stylesheet");
+		 *     link.setAttribute("type", "text/css");
+		 *     link.setAttribute("href", "http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+		 *     document.head.appendChild(link);
+		 * </inject_script>		 
          */
         public function FontAwesomeIcon()
         {

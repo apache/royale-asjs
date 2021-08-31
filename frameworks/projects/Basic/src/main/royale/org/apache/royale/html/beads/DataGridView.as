@@ -35,6 +35,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.DataGridButtonBar;
+	import org.apache.royale.core.IDataGridHeader;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
@@ -104,7 +105,7 @@ package org.apache.royale.html.beads
 			/**
 			 * Returns the component used as the header for the DataGrid.
 			 */
-			public function get header():IUIBase
+			public function get header():IDataGridHeader
 			{
 				return _header;
 			}
@@ -189,7 +190,8 @@ package org.apache.royale.html.beads
 			protected function handleDataProviderChanged(event:Event):void
 			{
                 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-                for (var i:int=0; i < _lists.length; i++)
+				var l:uint = _lists ?  _lists.length : 0;
+                for (var i:int=0; i < l; i++)
                 {
                     var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
                     list.dataProvider = sharedModel.dataProvider;
@@ -222,7 +224,7 @@ package org.apache.royale.html.beads
 			private function handleColumnListChange(event:Event):void
 			{
 				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-				var list:IDataGridColumnList = event.target as IDataGridColumnList;
+				var list:IDataGridColumnList = event.currentTarget as IDataGridColumnList;
 				sharedModel.selectedIndex = list.selectedIndex;
 
 				for(var i:int=0; i < _lists.length; i++) {
@@ -285,12 +287,21 @@ package org.apache.royale.html.beads
 					list.labelField = dataGridColumn.dataField;
 					list.addEventListener('change',handleColumnListChange);
 					list.addBead(presentationModel as IBead);
+					onCreatedList(list, dataGridColumn);
 
 					(_listArea as IParent).addElement(list as IChild);
 					_lists.push(list);
 				}
 
 				sendStrandEvent(_strand,"layoutNeeded");
+			}
+
+			/**
+			 * provides a way for subclasses to perform any creation activity manipulation on lists
+			 * before they are added to the listArea
+			 */
+			protected function onCreatedList(list:IDataGridColumnList, forColumn:IDataGridColumn):void{
+
 			}
 			
 			/**

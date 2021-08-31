@@ -21,8 +21,9 @@ limitations under the License.
                                         xmlns:j="library://ns.apache.org/royale/jewel"
                                         xmlns:js="library://ns.apache.org/royale/basic"
                                         xmlns:html="library://ns.apache.org/royale/html"
-                                        className="layout vertical"
-                                        sectionClick="handleNavToggle(event)">
+                                        sectionClick="handleNavToggle(event)"
+                                        minHeight="48">
+                                        <!-- using 'minHeight' instead of 'height' here since collapsible changes heigth of the renderer -->
 
     <fx:Script>
 		<![CDATA[
@@ -64,11 +65,11 @@ limitations under the License.
 
         override public function onChange(selectedItem:Object):void{
             trace('selectedItem',selectedItem)
-            var parentNav:Navigation =   this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
+            var parentNav:Navigation =  this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
             if (parentNav) {
                 //this hierarchy support is a bit kooky, and probably there will be something better later with Hierarchical data setup
-                navlink.selectedChild =selectedItem as NavigationLinkVO;
-                if (parentNav.selectedItem!= this.data){
+                navlink.selectedChild = selectedItem as NavigationLinkVO;
+                if (parentNav.selectedItem != this.data) {
                     parentNav.selectedItem = this.data;
                 }
                 parentNav.dispatchEvent(new Event('change'));
@@ -79,14 +80,18 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding />
+        <!-- We can't add layout here since this renderer has its own needed to work -->
     </j:beads>
 
-    <js:MaterialIcon text="{navlink ? navlink.icon : ''}"  visible="{navlink ? navlink.icon != null : false}"/>
+    <!-- if we need to layout items in the render introduce a container like the following -->
+    <j:HGroup gap="8" itemsVerticalAlign="itemsCenter" height="48">
+        <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
 
-    <html:Span className="navigation-section-title" text="{text}"/>
-    
-    <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
-                visible="{navlink.subMenu != null}" />
+        <html:Span className="navigation-section-title" text="{text}"/>
+        
+        <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
+                        visible="{navlink.subMenu != null}"/>
+    </j:HGroup>
 
 </j:CollapsibleNavigationSectionRenderer>
 

@@ -304,10 +304,12 @@ public class MessageResponder extends Responder
         var errorMsg:ErrorMessage = new ErrorMessage();
         errorMsg.correlationId = message.messageId;
         errorMsg.faultCode = "Client.Error.RequestTimeout";
-        errorMsg.faultString = resourceManager.getString(
+        /* errorMsg.faultString = resourceManager.getString(
             "messaging", "requestTimedOut");
         errorMsg.faultDetail = resourceManager.getString(
-            "messaging", "requestTimedOut.details");
+            "messaging", "requestTimedOut.details"); */
+        errorMsg.faultString = "Request timed out";
+        errorMsg.faultDetail = "The request timeout for the sent message was reached without receiving a response from the server.";
         return errorMsg;
     }
 

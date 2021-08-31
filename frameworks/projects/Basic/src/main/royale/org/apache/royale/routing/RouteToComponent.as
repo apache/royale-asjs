@@ -23,7 +23,7 @@ package org.apache.royale.routing
   import org.apache.royale.core.IStrand;
   [DefaultProperty("routes")]
   /**
-   * RouteToComponent is a bead designed for Router
+   * RouteToComponent is a bead designed for IRouter
    * One or more routes should be assigned to the bead
    */
   public class RouteToComponent extends PathRouteBead

@@ -31,6 +31,11 @@ limitations under the License.
         import models.ProductModel;
 
         import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.collections.ArrayListView;
+        import org.apache.royale.collections.IArrayListView;
+        import org.apache.royale.html.util.getLabelFromData;
+        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
+        import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
         import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 
         import vos.IconListVO;
@@ -148,6 +153,59 @@ limitations under the License.
 		// {
 		// 	this.dgFixedWidth.width = 500;
 		// }
+
+		private function changeExplicitWidth(event:Event):void{
+			this.dgFixedWidth.width = this.dgFixedWidth.width == 500 ? 240 : 500;
+		}
+
+		private function changeDataprovider(event:Event):void{
+			if (this.dgFixedWidth.dataProvider && this.dgFixedWidth.dataProvider.length){
+				this.dgFixedWidth.dataProvider = null;
+			} else {
+				this.dgFixedWidth.dataProvider = listModel.iconDetailListData;
+			}
+		}
+
+		private function formatLabel(item:Product, column:IDataGridColumnList):String {
+			if (column.labelField == "sales")
+				return item.sales + " €";
+			return getLabelFromData(column, item);
+		}
+
+		private function resequenceColumns(columnsArray:Array):Array{
+			if (columnsArray) {
+				if (columnsArray.length){
+					columnsArray.unshift(columnsArray.pop());
+				}
+			} else columnsArray = [];
+			return columnsArray;
+		}
+
+		private function isJewelCheck(val:Object):String{
+			return val.componentSet == 'Jewel'? 'yep':'nope';
+		}
+
+		private function toggleColumn(grid:DataGrid, target:DataGridColumn, insertionNeighbor:DataGridColumn):void{
+			var cols:Array = grid.columns;
+			var foundIdx:int = cols.indexOf(target);
+			if (foundIdx == -1){
+				foundIdx = cols.indexOf(insertionNeighbor);
+				if (foundIdx == -1) cols.push(target)
+				else cols.splice(foundIdx + 1, 0 ,target);
+			} else {
+				cols.splice(foundIdx,1);
+			}
+
+			grid.columns = cols;
+		}
+
+		private function updateSelectedItem():void
+		{
+			var selectedProduct:Product = (dg2.dataProvider as IArrayListView).getItemAt(dg2.selectedIndex) as Product;
+			selectedProduct.title = "NEW-" + (Math.floor(Math.random()*1000));
+			(dg2.dataProvider as IArrayListView).itemUpdated(selectedProduct);
+		}
+
 		]]>
 	</fx:Script>
 
@@ -161,7 +219,7 @@ limitations under the License.
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
-			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel DataGrid">
@@ -184,9 +242,12 @@ limitations under the License.
 					<j:DataGrid localId="dg1" 
 						change="lb1.html = describeItem(event.target.selectedItem)"
 						initComplete="loadDataProvider(dg1)">
+						<!-- <j:beads>
+							<js:LabelFunction labelFunction="formatLabel"/>
+						</j:beads> -->
 						<j:columns>
 							<j:DataGridColumn label="Title" dataField="title"/>
-							<j:DataGridColumn label="Sales" dataField="sales"/>
+							<j:DataGridColumn label="Sales" dataField="sales" labelFunction="formatLabel"/>
 						</j:columns>
 					</j:DataGrid>
 
@@ -216,24 +277,35 @@ limitations under the License.
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card localId="card2" height="400">
+				<j:beads>
+					<j:LayoutChildren/>
+				</j:beads>
 				<j:CardHeader itemsVerticalAlign="itemsCenter">
 					<j:BarSection>
 						<html:H3 text="Percentage Width and Height" className="primary-normal"/>
 					</j:BarSection>
 					<j:BarSection itemsHorizontalAlign="itemsRight">
-						<j:HSlider minimum="200" maximum="600" value="400" valueChange="card2.height = event.target.value"/>
+						<j:HSlider minimum="200" maximum="600"
+								   width="170"
+								   value="400"
+								   change="card2.height = event.target.value"
+								   valueChange="card2.height = event.target.value"/>
 					</j:BarSection>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
+					<j:beads>
+						<j:LayoutChildren/>
+					</j:beads>
 					<j:Label multiline="true">
 						<j:html><![CDATA[<p><i>width</i> and <i>height</i> set to 100%, no <i>columnWidth</i> or <i>rowHeight</i>, and default <i>dataProvider</i>.<br>Note: this card need to set <i>height</i> so datagrid 100% could work.</p>]]></j:html>
 					</j:Label>
 					
 					<j:DataGrid localId="dg2" width="100%" height="100%" 
-								dataProvider="{productModel.productList}"
+								dataProvider="{new ArrayListView(productModel.productList)}"
 								change="lb2.html = describeItem(event.target.selectedItem)">
 						<j:beads>
 							<j:DataGridColumnLabelsChange/>
+							<j:DataGridSort/>
 						</j:beads>
 						<j:columns>
 							<j:DataGridColumn label="Title" dataField="title"/>
@@ -242,6 +314,8 @@ limitations under the License.
 					</j:DataGrid>
 
 					<j:Label localId="lb2" html="DataGrid selection will be shown here"/>
+
+					<j:Button text="Update selected title" click="updateSelectedItem()" emphasis="primary"/>
 
 				</j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign="itemsRight">
@@ -337,8 +411,7 @@ limitations under the License.
 					<j:Label text="Using specific column widths, rowHeight=54 and height=220, first column uses a custom renderer and last column has right alignment"
 						multiline="true"/>
 					
-					<j:DataGrid localId="dg4" height="205"
-						rowHeight="54" emphasis="primary" 
+					<j:DataGrid localId="dg4" height="205" emphasis="primary" 
 						change="dataGridChange(event.target as DataGrid, lb4)"
 						dataProvider="{productModel.productList}">
 						<j:columns>
@@ -348,6 +421,7 @@ limitations under the License.
 							<j:DataGridColumn label="Sales" dataField="sales" columnWidth="80" align="right"/>
 						</j:columns>
 						<j:beads>
+							<j:DataGridPresentationModel rowHeight="54"/>
 							<j:RemoveAllDataGridItemRendererForArrayListData/>
 						</j:beads>
 					</j:DataGrid>
@@ -396,16 +470,17 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Width 100% adn no columnWidth" className="primary-normal"/>
+					<html:H3 text="Width 100% and no columnWidth" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 				
 					<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment. Clicking on row icon, remove the entire row."
 						multiline="true"/>
 
-					<j:DataGrid localId="dg5" width="100%" height="240" emphasis="secondary" rowHeight="42"
+					<j:DataGrid localId="dg5" width="100%" height="240" emphasis="secondary"
 						change="dataGridChange(event.target as DataGrid, lb5)">
 						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
 							<js:ConstantBinding
 								sourceID="listModel"
 								sourcePropertyName="iconDetailListData"
@@ -436,8 +511,7 @@ limitations under the License.
 					<j:Label text="Using specific column widths, rowHeight=40 and emphasis='emphasized'"
 						multiline="true"/>
 
-					<j:DataGrid localId="dg6" height="246"
-						rowHeight="40" emphasis="emphasized" 
+					<j:DataGrid localId="dg6" height="246" emphasis="emphasized" 
 						change="dataGridChange(event.target as DataGrid, lb6)"
 						dataProvider="{listModel.iconListData}">
 						<j:columns>
@@ -445,6 +519,9 @@ limitations under the License.
 												itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
 							<j:DataGridColumn label="Label" dataField="label" columnWidth="200"/>
 						</j:columns>
+						<j:beads>
+							<j:DataGridPresentationModel rowHeight="40"/>
+						</j:beads>
 					</j:DataGrid>
 
 					<j:Label localId="lb6" text="DataGrid selection will be shown here"/>
@@ -456,7 +533,7 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 		
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
 					<html:H3 text="No rowHeight" className="primary-normal"/>
@@ -466,7 +543,7 @@ limitations under the License.
 					<j:Label text="Row height is not setupe and there are different amount of data in cells"
 						multiline="true"/>
 
-					<j:DataGrid id="biggerData" width="350" emphasis="emphasized" 
+					<j:DataGrid id="biggerData" emphasis="emphasized" 
 								dataProvider="{listModel.dgBiggerRowData}">
 						<j:columns>
 							<j:DataGridColumn label="Name" dataField="name" columnWidth="90" />
@@ -475,58 +552,105 @@ limitations under the License.
 					</j:DataGrid>
 				</j:CardPrimaryContent>
 			</j:Card>
-		</j:GridCell>
+		</j:GridCell> -->
 		
-		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataGrid"/>
-				
-				<j:Label text="width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment, last column has columnWidth=40. Clicking on row icon, remove the entire row."
-					multiline="true"/>
+				<j:CardHeader>
+					<html:H3 text="Mixed column width variations #1" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment, last column has columnWidth=75. Clicking on row icon, remove the entire row."
+						multiline="true"/>
 
-				<j:DataGrid width="100%" height="240" emphasis="secondary" rowHeight="42"
-					change="dataGridChange(event.target as DataGrid, datagrid3_lb)">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="listModel"
-							sourcePropertyName="iconDetailListData"
-							destinationPropertyName="dataProvider"/>
-					</j:beads>
-					<j:columns>
-						<j:DataGridColumn label="Icon" 
-										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
-						<j:DataGridColumn label="Label" dataField="label" align="center"/>
-						<j:DataGridColumn label="Is Jewel?" columnWidth="40"
-										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
-					</j:columns>
-				</j:DataGrid>
+					<j:DataGrid width="100%" height="240" emphasis="secondary">
+						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
+							<js:ConstantBinding
+								sourceID="listModel"
+								sourcePropertyName="iconDetailListData"
+								destinationPropertyName="dataProvider"/>
+						</j:beads>
+						<j:columns>
+							<j:DataGridColumn label="Icon"
+											itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+							<j:DataGridColumn label="Label" dataField="label" align="center"/>
+							<j:DataGridColumn label="Is Jewel?" columnWidth="75"
+											itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
+						</j:columns>
+					</j:DataGrid>
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataGrid"/>
-				
-				<j:Label text="Setup fixed size of DataGrid to 500px after initComplete. Last column has columnWidth=40."
-					multiline="true"/>
+				<j:CardHeader>
+					<html:H3 text="Mixed column width variations #2" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Toggle fixed size of DataGrid between 240px and 500px via button. Last column has columnWidth=75. Toggle dataprovider between null and test data set via button"
+							 multiline="true"/>
 
-				<j:DataGrid localId="dgFixedWidth" height="240" emphasis="secondary" rowHeight="42">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="listModel"
-							sourcePropertyName="iconDetailListData"
-							destinationPropertyName="dataProvider"/>
-						
-					</j:beads>
-					<j:columns>
-						<j:DataGridColumn label="Icon" 
-										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
-						<j:DataGridColumn label="Label" dataField="label" align="center"/>
-						<j:DataGridColumn label="Is Jewel?" columnWidth="40"
-										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
-					</j:columns>
-				</j:DataGrid>
+					<j:DataGrid localId="dgFixedWidth" height="240" emphasis="secondary">
+						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
+							<js:ConstantBinding
+									sourceID="listModel"
+									sourcePropertyName="iconDetailListData"
+									destinationPropertyName="dataProvider"/>
+
+						</j:beads>
+						<j:columns>
+							<j:DataGridColumn label="Icon"
+											  itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+							<j:DataGridColumn label="Label" dataField="label" align="center"/>
+							<j:DataGridColumn label="Is Jewel?" columnWidth="75"
+											  itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
+						</j:columns>
+					</j:DataGrid>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Button text="Change Explicit Width" click="changeExplicitWidth(event)" emphasis="primary"/>
+					<j:Button text="Cycle Dataprovider" click="changeDataprovider(event)" emphasis="primary"/>
+				</j:CardActions>
 			</j:Card>
-		</j:GridCell> -->
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Column swapping" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Provides example of changing column order and also removing/adding a column. "
+							 multiline="true"/>
+
+					<j:DataGrid localId="columns1Grid" width="100%" height="240" emphasis="secondary">
+						<j:beads>
+							<j:DataGridPresentationModel rowHeight="42"/>
+							<js:ConstantBinding
+									sourceID="listModel"
+									sourcePropertyName="iconDetailListData"
+									destinationPropertyName="dataProvider"/>
+						</j:beads>
+						<j:columns>
+							<j:DataGridColumn label="Icon"
+											  itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+							<j:DataGridColumn label="Label" dataField="label" align="center"/>
+							<j:DataGridColumn label="Is Jewel?" columnWidth="75" localId="isJewelCol1"
+											  itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
+							<j:DataGridColumn label="Is Jewel?" columnWidth="75" localId="isJewelCol2"
+											  labelFunction="isJewelCheck"/>
+						</j:columns>
+					</j:DataGrid>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Button text="Resequence Columns" click="columns1Grid.columns = resequenceColumns(columns1Grid.columns)" emphasis="primary"/>
+					<j:Button text="Toggle column presence" click="toggleColumn(columns1Grid, isJewelCol2, isJewelCol1)" emphasis="primary"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
 
 	</j:Grid>
 

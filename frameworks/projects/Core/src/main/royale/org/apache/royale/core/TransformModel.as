@@ -26,7 +26,7 @@ package org.apache.royale.core
 	public class TransformModel extends EventDispatcher implements ITransformModel
 	{
 		
-		public static const CHANGE:String = "transferModelChange";
+		public static const CHANGE:String = "transformModelChange";
 		
 		private var _matrix:Matrix;
 		protected var _strand:IStrand;
@@ -44,7 +44,9 @@ package org.apache.royale.core
 		{
 			sendStrandEvent(_strand,CHANGE);
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.ITransformHost
+		 */
 		private function get host():ITransformHost
 		{
 			return _strand as ITransformHost;

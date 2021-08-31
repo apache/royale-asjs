@@ -29,9 +29,11 @@ import mx.core.ILayoutElement;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
+import mx.events.DragEvent;
 
 import spark.components.Group;
 import spark.components.supportClasses.GroupBase;
+import spark.layouts.supportClasses.DropLocation;
 import spark.core.NavigationUnit;
 import spark.layouts.HorizontalAlign;
 import spark.layouts.VerticalLayout;
@@ -1731,22 +1733,24 @@ public class LayoutBase extends org.apache.royale.core.LayoutBase implements IEv
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
-    public function calculateDropLocation(dragEvent:DragEvent):DropLocation
+     *
+     */
+    public function calculateDropLocation(dragEvent:DragEvent):DropLocation // not implemented
     {
         // Find the drop index
-        var dropPoint:Point = globalToLocal(dragEvent.stageX, dragEvent.stageY);
-        var dropIndex:int = calculateDropIndex(dropPoint.x, dropPoint.y);
-        if (dropIndex == -1)
-            return null;
-        
-        // Create and fill the drop location info
         var dropLocation:DropLocation = new DropLocation();
-        dropLocation.dragEvent = dragEvent;
-        dropLocation.dropPoint = dropPoint;
-        dropLocation.dropIndex = dropIndex;
+        //var dropPoint:Point = globalToLocal(dragEvent.stageX, dragEvent.stageY);
+        //var dropIndex:int = calculateDropIndex(dropPoint.x, dropPoint.y);
+        //if (dropIndex == -1)
+            //return null;
+        //
+        //// Create and fill the drop location info
+        //dropLocation.dragEvent = dragEvent;
+        //dropLocation.dropPoint = dropPoint;
+        //dropLocation.dropIndex = dropIndex;
         return dropLocation;
     }
-     */
+     
     
     /**
      *  Sizes, positions and parents the drop indicator based on the specified

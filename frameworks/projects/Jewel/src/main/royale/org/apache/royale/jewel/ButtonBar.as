@@ -23,7 +23,7 @@ package org.apache.royale.jewel
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.jewel.beads.models.ButtonBarModel;
 	
 	/**
 	 *  The Jewel ButtonBar class is a component that displays a set of Buttons. The ButtonBar
@@ -64,24 +64,24 @@ package org.apache.royale.jewel
             typeNames = "jewel buttonbar";
 
 			// default height and rowHeight
-			height = rowHeight = 38;
+			//height = rowHeight = 38;
 		}
 		
 		/**
-		 *  @see org.apache.royale.html.beads.models.ButtonBarModel#buttonWidths
+		 *  @see org.apache.royale.jewel.beads.models.ButtonBarModel#buttonWidths
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		public function get buttonWidths():Array
 		{
 			return ButtonBarModel(model).buttonWidths;
 		}
 		/**
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		public function set buttonWidths(value:Array):void
 		{
@@ -89,20 +89,20 @@ package org.apache.royale.jewel
 		}
 		
 		/**
-		 *  @see org.apache.royale.html.beads.models.ButtonBarModel#widthType
+		 *  @see org.apache.royale.jewel.beads.models.ButtonBarModel#widthType
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		// public function get widthType():Number
 		// {
 		// 	return ButtonBarModel(model).widthType;
 		// }
 		/**
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		// public function set widthType(value:Number):void
 		// {

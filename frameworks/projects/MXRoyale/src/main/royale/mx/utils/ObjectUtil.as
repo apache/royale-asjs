@@ -205,7 +205,7 @@ public class ObjectUtil
      */
     private static function cloneInternal(result:Object, value:Object):void
     {
-        if (value && value.hasOwnProperty("uid"))
+        if (value && /*value.hasOwnProperty*/("uid" in value))
             result.uid = value.uid;
     
         var classInfo:Object = getClassInfo(value);
@@ -214,7 +214,7 @@ public class ObjectUtil
         {
             //@todo the following 'v = value[p]' will only be emulated safely in js by using reflection library:
             v = value[p];
-            if (v && v.hasOwnProperty("uid"))
+            if (v && /*v.hasOwnProperty*/("uid" in v))
                 cloneInternal(result[p], v);
         }
     }

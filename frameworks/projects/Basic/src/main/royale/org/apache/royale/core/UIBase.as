@@ -38,6 +38,9 @@ package org.apache.royale.core
 
     COMPILE::JS
     {
+		import goog.events.EventTarget;
+		import org.apache.royale.core.IChild;
+        import org.apache.royale.events.EventDispatcher;
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
     }
@@ -720,13 +723,14 @@ package org.apache.royale.core
         {
             if(!isNaN(_x))
                 return _x
-            var strpixels:String = positioner.style.left as String;
+            var pos:WrappedHTMLElement = positioner;
+            var strpixels:String = pos.style.left as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
             {
-                pixels = positioner.offsetLeft;
-                if (positioner.parentNode != positioner.offsetParent)
-                    pixels -= (positioner.parentNode as HTMLElement).offsetLeft;
+                pixels = pos.offsetLeft;
+                if (pos.parentNode != pos.offsetParent)
+                    pixels -= (pos.parentNode as HTMLElement).offsetLeft;
             }
             return pixels;
         }
@@ -748,10 +752,11 @@ package org.apache.royale.core
 			}
 			COMPILE::JS
 			{
-				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetLeft;
-                positioner.style.left = value.toString() + 'px';
+                var pos:WrappedHTMLElement = positioner;
+				//pos.style.position = 'absolute';
+                if (pos.parentNode != pos.offsetParent)
+                    value += (pos.parentNode as HTMLElement).offsetLeft;
+                pos.style.left = value.toString() + 'px';
 			}
         }
         
@@ -789,13 +794,14 @@ package org.apache.royale.core
         {
             if(!isNaN(_y))
                 return _y
-            var strpixels:String = positioner.style.top as String;
+            var pos:WrappedHTMLElement = positioner;
+            var strpixels:String = pos.style.top as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
             {
-                pixels = positioner.offsetTop;
-                if (positioner.parentNode != positioner.offsetParent)
-                    pixels -= (positioner.parentNode as HTMLElement).offsetTop;
+                pixels = pos.offsetTop;
+                if (pos.parentNode != pos.offsetParent)
+                    pixels -= (pos.parentNode as HTMLElement).offsetTop;
             }
             return pixels;
         }
@@ -817,10 +823,11 @@ package org.apache.royale.core
 			}
 			COMPILE::JS
 			{
-				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetTop;
-                positioner.style.top = value.toString() + 'px';
+                var pos:WrappedHTMLElement = positioner;
+				//pos.style.position = 'absolute';
+                if (pos.parentNode != pos.offsetParent)
+                    value += (pos.parentNode as HTMLElement).offsetTop;
+                pos.style.top = value.toString() + 'px';
 			}
         }
         
@@ -982,6 +989,7 @@ package org.apache.royale.core
         /**
          *  @private
          *  @royaleignorecoercion String
+		 *  @royaleemitcoercion org.apache.royale.core.IStyleObject
          */
         public function set style(value:Object):void
         {
@@ -1112,6 +1120,15 @@ package org.apache.royale.core
          *  @royalesuppresspublicvarwarning
          */
 		public var beads:Array;
+
+        COMPILE::JS
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IChild
+		 * @royaleemitcoercion org.apache.royale.events.EventDispatcher
+		 */
+		override public function getParentEventTarget():goog.events.EventTarget{
+			return (this as IChild).parent as EventDispatcher;
+		}
 		
         
         /**
@@ -1198,13 +1215,12 @@ package org.apache.royale.core
             {
                 var children:Array = internalChildren();
                 if (index >= children.length)
-                    addElement(c);
+					element.appendChild(c.positioner);
                 else
-                {
                     element.insertBefore(c.positioner,
                         children[index]);
-                    (c as IUIBase).addedToParent();
-                }
+				(c as IUIBase).addedToParent();
+
             }
         }
         
@@ -1303,8 +1319,7 @@ package org.apache.royale.core
             }
             COMPILE::JS
             {
-                var children:Array = internalChildren();
-                return children.length;
+                return internalChildren().length;
             }
         }
         
@@ -1383,11 +1398,26 @@ package org.apache.royale.core
             
             for each (var bead:IBead in beads)
                 addBead(bead);
-                
+            
+            loadBeads();
+            sendEvent(this,"beadsAdded");
+        }
+
+        /**
+         *  load necesary beads. This method can be override in subclasses to
+         *  add other custom beads needed, so all requested beads be loaded before
+         *  signal the "beadsAdded" event.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+        protected function loadBeads():void
+        {
 			loadBeadFromValuesManager(IBeadModel, "iBeadModel", this);
             loadBeadFromValuesManager(IBeadView, "iBeadView", this);
 			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
-            sendEvent(this,"beadsAdded");
         }
 
         private var _measurementBead:IMeasurementBead;

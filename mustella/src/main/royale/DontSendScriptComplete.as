@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package {
 
-import flash.net.*;
-import flash.events.Event;
+COMPILE::SWF{
+	import flash.net.*;
+	import flash.events.Event;
+}
+
 
 [Mixin]
 /**

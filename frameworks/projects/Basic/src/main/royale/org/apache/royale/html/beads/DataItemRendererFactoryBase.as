@@ -51,11 +51,12 @@ package org.apache.royale.html.beads
 			super(target);
 		}
 
-		/**
-		 * the dataProvider
-		 */
-		protected var dp:Object;
-						
+		protected function get dataGroup():IItemRendererOwnerView
+		{
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			return view.dataGroup;
+		}
+
 		/**
 		 *  This Factory deletes all renderers, and generates a renderer
 		 *  for every data provider item.
@@ -67,20 +68,40 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
 		 */		
 		override protected function dataProviderChangeHandler(event:Event):void
-		{			
-			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererOwnerView = view.dataGroup;
-			
+		{
 			removeAllItemRenderers(dataGroup);
 			
-			dp = dataProviderModel.dataProvider;
-			if (!dp)
+			if(!dataProviderExist)
 				return;
 			
+			createAllItemRenderers(dataGroup);
+			
+			dispatchItemCreatedEvent();
+		}
+
+		/**
+		 * check if model and dataprovider exists. This check is done through all methods
+		 * @private
+		 */
+		protected function get dataProviderExist():Boolean
+		{
+			if (!dataProviderModel || !dataProviderModel.dataProvider)
+				return false;
+			
+			return true;
+		}
+
+		/**
+		 *  create all item renderers
+		 *  
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
+		 */
+		protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
+		{
 			var n:int = dataProviderLength; 
 			for (var i:int = 0; i < n; i++)
 			{				
@@ -91,14 +112,11 @@ package org.apache.royale.html.beads
 				(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, i);
 				ir.data = data;				
 			}
-			
-			dispatchItemCreatedEvent();
 		}
 
 		protected function dispatchItemCreatedEvent():void
 		{
 			sendStrandEvent(_strand,"itemsCreated");
 		}
-
 	}
 }

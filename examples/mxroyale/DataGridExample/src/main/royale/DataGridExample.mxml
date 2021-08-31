@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:mx="library://ns.apache.org/royale/mx"
+				   xmlns:prod="products.*"
+                   width="100%" height="800"
+				   creationComplete="onInitialize()"
+                   layout="vertical" >
+	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
+	<fx:Style>
+		@namespace "library://ns.apache.org/royale/mx";
+
+
+		Application {
+			horizontalGap: 50px;
+		}
+
+
+		.outline{
+			border-width: 1px;
+			border-style: solid;
+			border-color: black;
+		}
+
+
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.events.Event;
+			import mx.controls.DataGrid;
+			import mx.collections.ArrayCollection;
+			import mx.core.UIComponent;
+
+			import products.Product;
+			import products.addRandomADGColumns;
+			import products.addRandomDGColumns;
+
+			import org.apache.royale.reflection.getQualifiedClassName;
+
+			import models.ProductsModel;
+
+			[Bindable]
+			public var multipleSelectionState:Boolean = true;
+
+			[Bindable]
+			public var columnCount:int = 3;
+
+			private function onInitialize():void{
+				productsModel = new ProductsModel();
+				//deferred assignment of dataProvider after columns are set
+				_swappedDP = true;
+				onToggleDataProvider();
+				_startupDGCols = dataGrid.columns;
+				_startupADGCols = advancedDataGrid.columns;
+			}
+
+			private var _startupDGCols:Array;
+			private var _startupADGCols:Array;
+
+
+			private function log(str:Object):void{
+				COMPILE::SWF{
+					trace(str+'');
+				}
+				COMPILE::JS{
+					console.log(str+'');
+				}
+			}
+
+			public function dataGridChange(grid:Object) : void
+			{
+			//	output.text = "Clicked on row "+grid.selectedIndex;
+				log("Click on row "+grid.selectedIndex);
+				infoLabel.text = 'Last Click on row '+grid.selectedIndex + ' of '+grid.id;
+				log(UIComponent(infoLabel.parent).width)
+			}
+
+			private function addNewValue():void {
+				/*var item:String = newValue.text;
+				if (item == "" || item == null) item = "New Value";
+				var num:Number = Number((Math.random()*100).toFixed());
+				var product:Product = new Product("abc123", item, 30, num, "assets/smallorangerect.jpg");
+				productsModel.productList.addItem(product);
+				newValue.text = "";*/
+			}
+
+			private function deleteRow():void {
+				/*var rowNumber:Number = rowToDelete.value;
+				if (rowNumber < productsModel.productList.length) {
+					productsModel.productList.removeItemAt(rowNumber);
+				}*/
+			}
+
+
+			[Bindable]
+			public var productsModel:ProductsModel;
+
+
+			//provides a quick way to create separate collections via binding. This means
+			//that the sort on one component does not affect the sort on another which shares the same collection
+			//as its dataProvider
+			public function getCollectionCopy(from:ArrayCollection):ArrayCollection{
+				return new ArrayCollection(from? from.source.slice() : null)
+			}
+
+
+			private var col1s:Array;
+			private var cols2:Array;
+
+			private function onToggleColumns():void {
+				if (dataGrid.columns.length >= 3) {
+					var assigned:Array = _startupDGCols.slice();
+					assigned.length=2;
+					dataGrid.columns = assigned;
+					assigned = _startupADGCols.slice();
+					assigned.length=2;
+					advancedDataGrid.columns =assigned;
+					columnCount = assigned.length
+				} else {
+					dataGrid.columns = _startupDGCols;
+					advancedDataGrid.columns =_startupADGCols;
+
+					columnCount = _startupDGCols.length
+				}
+			}
+
+
+			private function onToggleColumnVisible():void {
+				dataGrid.columns[0].visible = !dataGrid.columns[0].visible;
+				advancedDataGrid.columns[0].visible = !advancedDataGrid.columns[0].visible;
+			}
+
+			private var _swappedDP:Boolean;
+			private function onToggleDataProvider():void {
+				if (!_swappedDP) {
+					dataGrid.dataProvider = getCollectionCopy(productsModel.alternateProductList);
+					advancedDataGrid.dataProvider = getCollectionCopy(productsModel.alternateProductList);
+				} else {
+					dataGrid.dataProvider = getCollectionCopy(productsModel.productList);
+					advancedDataGrid.dataProvider = getCollectionCopy(productsModel.productList);
+				}
+				_swappedDP = !_swappedDP;
+			}
+
+			private function onToggleAddRandomColumns():void{
+				if (dataGrid.columns.length >3){
+					dataGrid.columns = _startupDGCols;
+					advancedDataGrid.columns =_startupADGCols;
+					columnCount = _startupDGCols.length
+					return;
+				}
+				var force:int = 3;
+				var max:int = 3;
+
+				var base:Array = _startupDGCols.slice();
+				addRandomDGColumns(base, max,force);
+				dataGrid.columns = base;
+
+				base = _startupADGCols.slice();
+				addRandomADGColumns(base, max, force);
+				advancedDataGrid.columns = base;
+				columnCount = base.length;
+			}
+
+			private function onToggleScrollPolicy(horizontal:Boolean=true):void{
+
+				var policy:String= (horizontal ? 'horizontal' : 'vertical') + 'ScrollPolicy';
+				var current:String = dataGrid[policy];
+
+				switch(current){
+					case 'auto':
+						dataGrid[policy] = 'on';
+						advancedDataGrid[policy] = 'on';
+						break;
+					case 'on':
+						dataGrid[policy]= 'off';
+						advancedDataGrid[policy] = 'off';
+						break;
+					case 'off':
+						dataGrid[policy] = 'auto';
+						advancedDataGrid[policy] = 'auto';
+						break;
+
+				}
+			}
+
+			private function onToggleMultipleSelection():void{
+				var current:Boolean = dataGrid.allowMultipleSelection;
+				current = !current;
+				dataGrid.allowMultipleSelection = current;
+				advancedDataGrid.allowMultipleSelection = current;
+
+				multipleSelectionState = current;
+			}
+
+		]]>
+	</fx:Script>
+<mx:HBox>
+	<mx:VBox>
+		<mx:Label text="mx:DataGrid"/>
+		<mx:DataGrid id="dataGrid"
+					 horizontalScrollPolicy="on"
+					 allowMultipleSelection="true"
+					 y="130"
+					 width="400" height="350"
+					 dragEnabled="true"
+					 dropEnabled="true"
+					 change="dataGridChange(dataGrid)"
+					 rowHeight="40">
+			<mx:columns>
+				<mx:DataGridColumn headerText="Image" dataField="image" width="50" sortable="false" itemRenderer="mx.controls.Image"/>
+				<mx:DataGridColumn headerText="Name" dataField="title" />
+				<mx:DataGridColumn headerText="Sales" dataField="sales" width="80" />
+			</mx:columns>
+		</mx:DataGrid>
+	</mx:VBox>
+
+	<mx:VBox>
+		<mx:Label text="mx:AdvancedDataGrid" />
+		<mx:AdvancedDataGrid id="advancedDataGrid"
+							 horizontalScrollPolicy="on"
+							 allowMultipleSelection="true"
+							 y="30"
+							 width="400" height="350"
+							 dragEnabled="true"
+							 dropEnabled="true"
+							 change="dataGridChange(advancedDataGrid)"
+							 rowHeight="40">
+			<mx:columns>
+				<mx:AdvancedDataGridColumn headerText="Image" dataField="image" sortable="false" width="50" itemRenderer="mx.controls.Image"/>
+				<mx:AdvancedDataGridColumn headerText="Name" dataField="title"  />
+				<mx:AdvancedDataGridColumn headerText="Sales" dataField="sales" width="80" />
+			</mx:columns>
+		</mx:AdvancedDataGrid>
+	</mx:VBox>
+</mx:HBox>
+
+<mx:HBox>
+
+	<mx:VBox styleName="outline" height="500" width="300">
+	<!--	<mx:Image source="assets/smallbluerect.jpg" width="50" height="36"/>
+		<mx:Image source="assets/smallbluerect.jpg" width="50" height="36" horizontalAlign="center"/>
+		<mx:Image source="assets/smallbluerect.jpg" width="50" height="36" horizontalAlign="right"/>
+		<mx:Image source="assets/smallbluerect.jpg" width="50" height="36" maintainAspectRatio="false"/>
+		<mx:Image data="assets/smallbluerect.jpg" width="50" height="36" maintainAspectRatio="false" horizontalAlign="center"/>
+		<mx:Image data="assets/smallbluerect.jpg" width="50" height="36" maintainAspectRatio="false" horizontalAlign="right"/>-->
+
+		<mx:Button label="Swap Columns 2 vs. 3" click="onToggleColumns()"/>
+		<mx:Button label="Toggle Col 1 Visible" click="onToggleColumnVisible()"/>
+		<mx:Button label="Toggle dataProvider" click="onToggleDataProvider()"/>
+
+		<mx:Button label="Toggle add 3 Extra Columns" click="onToggleAddRandomColumns()"/>
+		<mx:Button label="{'Cycle HorizontalScrollPolicy (' + dataGrid.horizontalScrollPolicy +')'}" click="onToggleScrollPolicy(true)"/>
+		<mx:Button label="{'Cycle VerticalScrollPolicy (' + dataGrid.verticalScrollPolicy +')'}" click="onToggleScrollPolicy(false)"/>
+		<mx:Button label="{'Toggle allowMultipleSelection (' + multipleSelectionState +')'}" click="onToggleMultipleSelection()"/>
+		<mx:Label id="infoLabel" height="15"/>
+		<mx:Label id="columnCountLabel" text="{'Columns used:' + columnCount}"/>
+		<mx:Label id="gridSelections" text="{'dataGrid indices:' + dataGrid.selectedIndices}" />
+		<mx:Label id="gridSelection" text="{'dataGrid index:' + dataGrid.selectedIndex}" />
+		<mx:Label id="adgSelections" text="{'advancedDataGrid indices:' + advancedDataGrid.selectedIndices}" />
+		<mx:Label id="adgSelection" text="{'advancedDataGrid index:' + advancedDataGrid.selectedIndex}" />
+	</mx:VBox>
+
+</mx:HBox>
+
+
+</mx:Application>

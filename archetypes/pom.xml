@@ -22,22 +22,25 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
   </parent>
 
   <artifactId>royale-maven-archetypes</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Archetypes</name>
   <description>Maven archetypes for creating royale maven projects</description>
 
   <properties>
-    <royale.framework.version>0.9.7-SNAPSHOT</royale.framework.version>
-  <project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
+    <royale.framework.version>${project.version}</royale.framework.version>
+  <project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties>
   
   <modules>
     <module>royale-simple-application-archetype</module>
+    <module>royale-jewel-application-archetype</module>
+    <module>royale-jewel-library-archetype</module>
+    <module>royale-jewel-module-application-archetype</module>
     <module>royale-simple-application-pure-js-archetype</module>
     <module>royale-simple-application-pure-swf-archetype</module>
     <module>royale-simple-library-archetype</module>

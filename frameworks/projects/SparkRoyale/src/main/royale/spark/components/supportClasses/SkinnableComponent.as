@@ -169,9 +169,68 @@ public class SkinnableComponent extends UIComponent
     {
       
     }
-	
-	
-    
+
+    //----------------------------------
+    //  selectable
+    //----------------------------------
+
+    [Inspectable(category="General", defaultValue="true")]
+
+    /**
+     *  A flag indicating whether the content is selectable.  On a Desktop, a user can 
+     *  select content with the mouse or with the keyboard when the control has 
+     *  keyboard focus.  On a touch interaction device, a user can select text with 
+     *  their fingers once they've entered into selection mode for the text component.
+     * 
+     *  <p><b>For the Spark theme, see
+     *  spark.components.RichEditableText.selectable</b></p>
+     *
+     *  <p><b>For the Mobile theme, see
+     *  spark.components.supportClasses.StyleableStageText.selectable</b></p>
+     * 
+     *  @see spark.components.RichEditableText#selectable
+     *  @see spark.components.supportClasses.StyleableStageText#selectable
+     *  
+     *  @default true
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get selectable():Boolean
+    {
+        /*if (textDisplay)
+            return textDisplay.selectable;*/
+            
+        // want the default to be true
+        /*var v:* = textDisplayProperties.selectable;
+        return (v === undefined) ? true : v;*/
+
+        trace("selectable is not implemented");
+        return true;
+    }
+
+    /**
+     *  @private
+     */
+    public function set selectable(value:Boolean):void
+    {
+        /*if (textDisplay)
+        {
+            textDisplay.selectable = value;
+            textDisplayProperties = BitFlagUtil.update(
+                uint(textDisplayProperties), SELECTABLE_PROPERTY_FLAG, true);
+        }
+        else
+        {
+            textDisplayProperties.selectable = value;
+        }
+        
+        // Generate an UPDATE_COMPLETE event.
+        invalidateProperties(); */      
+        trace("selectable is not implemented");             
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -231,6 +290,7 @@ public class SkinnableComponent extends UIComponent
 
     }
 
+	private var skinStateInvalidated:Boolean = false;
  
     /**
      *  Marks the component so that the new state of the skin is set
@@ -243,13 +303,16 @@ public class SkinnableComponent extends UIComponent
      */
     public function invalidateSkinState():void
     {
-        if (GOOG::DEBUG)
-            trace("invalidateSkinState not implemented");
+		skinStateInvalidated = true;
+		
+	    if (skin)
+	    {
+		    skin.currentState = getCurrentSkinState();
+			skinStateInvalidated = false;
+	    }
     }
 	
-	
-	
-	//----------------------------------
+    //----------------------------------
     //  skin
     //----------------------------------
     
@@ -288,9 +351,76 @@ public class SkinnableComponent extends UIComponent
         
         _skin = value;
         findSkinParts();
+		if (skinStateInvalidated)
+			invalidateSkinState();
         dispatchEvent(new Event("skinChanged"));
     }
-    
+
+    /**
+     *  Create the skin for the component.
+     *  You do not call this method directly.
+     *  Flex calls it automatically when it calls <code>createChildren()</code> or
+     *  the <code>UIComponent.commitProperties()</code> method.
+     *  Typically, a subclass of SkinnableComponent does not override this method.
+     *
+     *  <p>This method instantiates the skin for the component,
+     *  adds the skin as a child of the component, and
+     *  resolves all part associations for the skin</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    protected function attachSkin():void
+    {
+        // Class
+        if (!skin)
+        {
+            var skinClass:Class = getStyle("skinClass") as Class;
+
+            if (skinClass)
+                setSkin( new skinClass() );
+        }
+
+        if (skin)
+        {
+           // skin.owner = this;
+
+            // As a convenience if someone has declared hostComponent
+            // we assign a reference to ourselves.  If the hostComponent
+            // property exists as a direct result of utilizing [HostComponent]
+            // metadata it will be strongly typed. We need to do more work
+            // here and only assign if the type exactly matches our component
+            // type.
+            if ("hostComponent" in skin)
+            {
+                try
+                {
+                    Object(skin).hostComponent = this;
+                }
+                catch (err:Error) {}
+            }
+
+            // the skin's styles should be the same as the components
+          //  skin.styleName = this;
+
+            // Note: The Spark PanelAccImpl adds a child Sprite at index 0.
+            // The skin should be in front of that.
+            super.addChild(skin);
+
+            //skin.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, skin_propertyChangeHandler);
+        }
+        else
+        {
+           // throw(new Error(resourceManager.getString("components", "skinNotFound", [this])));
+        }
+
+        findSkinParts();
+
+        invalidateSkinState();
+    }
+
     /**
      * @private 
      * 
@@ -402,18 +532,7 @@ public class SkinnableComponent extends UIComponent
         */
     }
 
-	//dataGroup copied from SkinnableDataContainer
-	/**
-     *  An optional skin part that defines the DataGroup in the skin class 
-     *  where data items get pushed into, rendered, and laid out.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     *  @royalesuppresspublicvarwarning
-     */
-    public var dataGroup:DataGroup;
+    protected function partRemoved(partName:String, instance:Object):void {} // not implemented
 
 	// getCurrentSkinState copied from SkinnableContainerBase
 	/* override */ protected function getCurrentSkinState():String

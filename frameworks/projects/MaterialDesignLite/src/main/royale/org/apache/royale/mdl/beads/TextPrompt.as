@@ -31,7 +31,7 @@ package org.apache.royale.mdl.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 
-    import org.apache.royale.mdl.supportClasses.ITextField;
+	import org.apache.royale.mdl.supportClasses.ITextField;
 	import org.apache.royale.mdl.supportClasses.TextFieldBase;
 	
 	/**
@@ -86,8 +86,8 @@ package org.apache.royale.mdl.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.mdl.supportClasses.ITextField
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -98,7 +98,7 @@ package org.apache.royale.mdl.beads
 			//if (!model.hasOwnProperty("text")) {
 			//	throw new Error("Model requires a text property when used with TextPromptBead");
 			//}
-			IEventDispatcher(UIBase(_strand)).addEventListener("textChange", handleTextChange);
+			(_strand as IEventDispatcher).addEventListener("textChange", handleTextChange);
 
 			COMPILE::SWF
 			{
@@ -142,6 +142,8 @@ package org.apache.royale.mdl.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.mdl.supportClasses.TextFieldBase
 		 */
 		private function handleTextChange( event:Event ):void
 		{
@@ -162,9 +164,9 @@ package org.apache.royale.mdl.beads
 
 			COMPILE::JS
 			{
-				var model:Object = UIBase(_strand).model;
+				var model:Object = (_strand as UIBase).model;
 				
-				if (TextFieldBase(mdlTi).text != null && TextFieldBase(mdlTi).text.length > 0 )
+				if ((mdlTi as TextFieldBase).text != null && (mdlTi as TextFieldBase).text.length > 0 )
 				{
 					mdlTi.textNode.nodeValue = "";
 				} 

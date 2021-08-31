@@ -27,10 +27,10 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.html.beads.ITableView;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.HGroup;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
-	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
 	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
@@ -185,7 +185,7 @@ package org.apache.royale.jewel.beads.views
 
 		private function createButtonsRow():void
 		{
-			var view:TableView = _table.getBeadByType(IBeadView) as TableView;
+			var view:ITableView = _table.getBeadByType(IBeadView) as ITableView;
 			buttonsRow = new TableRow();
 
 			tableHeader = new TableHeaderCell();
@@ -360,8 +360,8 @@ package org.apache.royale.jewel.beads.views
 			}
 
 			// first row with nav buttons
-			var view:TableView = _table.getBeadByType(IBeadView) as TableView;
-			view.thead.addElementAt(buttonsRow, 0, false);
+			var view:ITableView = _table.getBeadByType(IBeadView) as ITableView;
+			view.header.addElementAt(buttonsRow, 0, false);
 		}
 
 		private function selectCurrentDate():void

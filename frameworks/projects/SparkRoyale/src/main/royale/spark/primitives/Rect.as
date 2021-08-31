@@ -200,9 +200,9 @@ public class Rect extends UIComponent
     //  bottomRightRadiusY
     //----------------------------------
     
-    /* private var _bottomRightRadiusY:Number;
+    private var _bottomRightRadiusY:Number;
     
-    [Inspectable(category="General", minValue="0.0")] */
+    [Inspectable(category="General", minValue="0.0")]
     
     /**
      *  The y radius of the bottom right corner of the rectangle.
@@ -214,7 +214,7 @@ public class Rect extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get bottomRightRadiusY():Number 
+    public function get bottomRightRadiusY():Number 
     {
         return _bottomRightRadiusY;
     }
@@ -225,11 +225,11 @@ public class Rect extends UIComponent
         {
             _bottomRightRadiusY = value;
             
-            invalidateSize();
-            invalidateDisplayList();
-            invalidateParentSizeAndDisplayList();
+            //invalidateSize();
+            //invalidateDisplayList();
+            //invalidateParentSizeAndDisplayList();
         }
-    } */
+    }
             
     //----------------------------------
     //  radiusX
@@ -342,9 +342,9 @@ public class Rect extends UIComponent
     //  topLeftRadiusY
     //----------------------------------
     
-    /* private var _topLeftRadiusY:Number;
+    private var _topLeftRadiusY:Number;
     
-    [Inspectable(category="General", minValue="0.0")] */
+    [Inspectable(category="General", minValue="0.0")]
     
     /**
      *  The y radius of the top left corner of the rectangle.
@@ -356,7 +356,7 @@ public class Rect extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get topLeftRadiusY():Number 
+    public function get topLeftRadiusY():Number 
     {
         return _topLeftRadiusY;
     }
@@ -367,11 +367,11 @@ public class Rect extends UIComponent
         {
             _topLeftRadiusY = value;
             
-            invalidateSize();
-            invalidateDisplayList();
-            invalidateParentSizeAndDisplayList();
+            //invalidateSize();
+            //invalidateDisplayList();
+            //invalidateParentSizeAndDisplayList();
         }
-    } */
+    } 
     
     //----------------------------------
     //  topRightRadiusX
@@ -412,9 +412,9 @@ public class Rect extends UIComponent
     //  topRightRadiusY
     //----------------------------------
     
-    /* private var _topRightRadiusY:Number;
+    private var _topRightRadiusY:Number;
     
-    [Inspectable(category="General", minValue="0.0")] */
+    [Inspectable(category="General", minValue="0.0")]
     
     /**
      *  The y radius of the top right corner of the rectangle.
@@ -426,7 +426,7 @@ public class Rect extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get topRightRadiusY():Number 
+    public function get topRightRadiusY():Number 
     {
         return _topRightRadiusY;
     }
@@ -437,11 +437,11 @@ public class Rect extends UIComponent
         {
             _topRightRadiusY = value;
             
-            invalidateSize();
-            invalidateDisplayList();
-            invalidateParentSizeAndDisplayList();
+            //invalidateSize();
+            //invalidateDisplayList();
+            //invalidateParentSizeAndDisplayList();
         }
-    } */
+    } 
         
     //--------------------------------------------------------------------------
     //

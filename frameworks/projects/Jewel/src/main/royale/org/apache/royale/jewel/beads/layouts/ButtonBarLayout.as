@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.jewel.beads.models.ButtonBarModel;
 
 	/**
 	 *  The Jewel ButtonBarLayout class bead sizes and positions the button
@@ -100,35 +100,35 @@ package org.apache.royale.jewel.beads.layouts
                 {
 				if(hostComponent)
 				{
-					if (hostClassList.contains("pixelWidths"))
-						hostClassList.remove("pixelWidths");
-					if (hostClassList.contains("proportinalWidths"))
-						hostClassList.remove("proportinalWidths");
-					if (hostClassList.contains("percentWidths"))
-						hostClassList.remove("percentWidths");
-					if (hostClassList.contains("naturalWidths"))
-						hostClassList.remove("naturalWidths");
-					if (hostClassList.contains("sameWidths"))
-						hostClassList.remove("sameWidths");
+					if (hostComponent.containsClass("pixelWidths"))
+						hostComponent.removeClass("pixelWidths");
+					if (hostComponent.containsClass("proportionalWidths"))
+						hostComponent.removeClass("proportionalWidths");
+					if (hostComponent.containsClass("percentWidths"))
+						hostComponent.removeClass("percentWidths");
+					if (hostComponent.containsClass("naturalWidths"))
+						hostComponent.removeClass("naturalWidths");
+					if (hostComponent.containsClass("sameWidths"))
+						hostComponent.removeClass("sameWidths");
 					if(isNaN(model.widthType))
 					{
-						hostClassList.add("sameWidths");
+						hostComponent.addClass("sameWidths");
 					}
 					else
 					{
 						switch(model.widthType)
 						{
 							case ButtonBarModel.PIXEL_WIDTHS:
-								hostClassList.add("pixelWidths");
+								hostComponent.addClass("pixelWidths");
 								break;
 							case ButtonBarModel.PROPORTIONAL_WIDTHS:
-								hostClassList.add("proportinalWidths");
+								hostComponent.addClass("proportionalWidths");
 								break;
 							case ButtonBarModel.PERCENT_WIDTHS:
-								hostClassList.add("percentWidths");
+								hostComponent.addClass("percentWidths");
 								break;
 							case ButtonBarModel.NATURAL_WIDTHS:
-								hostClassList.add("naturalWidths");
+								hostComponent.addClass("naturalWidths");
 								break;
 						}
 					}
@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.layouts
 		 * @copy org.apache.royale.core.IBeadLayout#layout
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 * @royaleignorecoercion org.apache.royale.core.IStrand
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		override public function layout():Boolean
 		{
@@ -163,6 +163,8 @@ package org.apache.royale.jewel.beads.layouts
 					
 					if (model.widthType == ButtonBarModel.PIXEL_WIDTHS) {
 						if (widthValue != null) ilc.width = Number(widthValue);
+					} else {
+						ilc.width = NaN;
 					}
 					// else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
 					// 	if (widthValue != null) ilc.element.style["flex-grow"] = String(widthValue);

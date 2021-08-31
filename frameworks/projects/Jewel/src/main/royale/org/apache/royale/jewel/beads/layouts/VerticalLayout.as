@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.debugging.assert;
 
 	/**
 	 *  The VerticalLayout class is a vertical layout
@@ -120,9 +121,9 @@ package org.apache.royale.jewel.beads.layouts
 		// private function setGap(value:Boolean):void
 		// {
 		// 	if (value)
-		// 		hostClassList.add("gap");
+		// 		hostComponent.addClass("gap");
 		// 	else
-		// 		hostClassList.remove("gap");
+		// 		hostComponent.removeClass("gap");
 		// }
 
 		/**
@@ -199,14 +200,11 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setGap(value:Number):void
 		{
-			if (value >= 0 && value <= GapConstants.GAPS)
-			{
-				if (hostClassList.contains("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px"))
-					hostClassList.remove("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px");
-				if(value != 0)
-					hostClassList.add("gap-" + value + "x" + GapConstants.GAP_STEP + "px");
-			} else
-				throw new Error("Gap needs to be between 0 and " + GapConstants.GAPS);
+			assert(value >= 0 && value <= GapConstants.GAPS,"Gap needs to be between 0 and " + GapConstants.GAPS + ", got " + value);
+			if (hostComponent.containsClass("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px"))
+				hostComponent.removeClass("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px");
+			if(value != 0)
+				hostComponent.addClass("gap-" + value + "x" + GapConstants.GAP_STEP + "px");
 		}
 
 		private var variableRowHeightInitialized:Boolean;
@@ -242,7 +240,7 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setVariableRowHeight(value:Boolean):void
 		{
-			hostClassList.toggle("variableRowHeight", value);
+			hostComponent.toggleClass("variableRowHeight", value);
 		}
 
 		/**
@@ -334,8 +332,6 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				super.layout();
-
 				return true;
 			}
 		}

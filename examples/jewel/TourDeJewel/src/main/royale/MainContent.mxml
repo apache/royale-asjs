@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:ApplicationResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+<j:ResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
@@ -28,7 +28,11 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
+            import org.apache.royale.events.Event;
+            import org.apache.royale.icons.MaterialIcon;
+            import org.apache.royale.jewel.Alert;
             import org.apache.royale.jewel.supportClasses.ISelectableContent;
+            import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
             import org.apache.royale.routing.RouteState;
             import org.apache.royale.utils.OSUtils;
 
@@ -44,6 +48,39 @@ limitations under the License.
                     setNavFromHash(baseName);
                 } else {
                     goToHome();
+                }
+            }
+
+            private function setResponsiveSizeIndicatorListeners():void
+            {
+                responsiveSizeIndicator.addEventListener('phoneResponsiveSize', changeIconToShowResponsiveSizeState);
+                responsiveSizeIndicator.addEventListener('tabletResponsiveSize', changeIconToShowResponsiveSizeState);
+                responsiveSizeIndicator.addEventListener('desktopResponsiveSize', changeIconToShowResponsiveSizeState);
+                responsiveSizeIndicator.addEventListener('widescreenResponsiveSize', changeIconToShowResponsiveSizeState);
+                responsiveSizeIndicator.addEventListener('fullResponsiveSize', changeIconToShowResponsiveSizeState);
+            }
+            
+            private function changeIconToShowResponsiveSizeState(event:Event = null):void
+            {
+                if(event.type == 'phoneResponsiveSize') {
+                    responsiveSizeIndicator.icon.text = MaterialIconType.PHONE_IPHONE;
+                    responsiveSizeIndicatorToolTip.toolTip = ResponsiveSizes.PHONE + " Size";
+                }
+                else if(event.type == 'tabletResponsiveSize') {
+                    responsiveSizeIndicator.icon.text = MaterialIconType.TABLET_MAC;
+                    responsiveSizeIndicatorToolTip.toolTip = ResponsiveSizes.TABLET + " Size";
+                }
+                else if(event.type == 'desktopResponsiveSize') {
+                    responsiveSizeIndicator.icon.text = MaterialIconType.DESKTOP_MAC;
+                    responsiveSizeIndicatorToolTip.toolTip = ResponsiveSizes.DESKTOP + " Size";
+                }
+                else if(event.type == 'widescreenResponsiveSize') {
+                    responsiveSizeIndicator.icon.text = MaterialIconType.TV;
+                    responsiveSizeIndicatorToolTip.toolTip = ResponsiveSizes.WIDESCREEN + " Size";
+                }
+                else if(event.type == 'fullResponsiveSize') {
+                    responsiveSizeIndicator.icon.text = MaterialIconType.PANORAMA;
+                    responsiveSizeIndicatorToolTip.toolTip = ResponsiveSizes.FULL + " Size";
                 }
             }
 
@@ -162,6 +199,11 @@ limitations under the License.
 
             [Bindable]
             public var orientation:String = "No Orientation";
+
+            private function switchFooterBar():void
+            {
+                drawerFooter.visible = footerbar.visible = main.hasFooterBar = !footerbar.visible;
+            }
         ]]>
     </fx:Script>
 
@@ -170,7 +212,7 @@ limitations under the License.
     </j:model>
 
     <j:beads>
-        <js:Router localId="router" stateChange="hashChanged()" /> 
+        <js:HashRouter localId="router" stateChange="hashChanged()" /> 
         <js:ContainerDataBinding/>
         <js:BrowserOrientation localId="bo"/>
 		<j:CleanValidationErrors/>
@@ -209,16 +251,14 @@ limitations under the License.
             </j:Navigation>
         </j:DrawerContent>
 
-        <j:DrawerFooter>
-            <j:BarRow>
-                <j:BarSection>
-                    <j:IconButton>
-                        <j:icon>
-                            <js:MaterialIcon text="{MaterialIconType.FEEDBACK}" />
-                        </j:icon>
-                    </j:IconButton>
-                </j:BarSection>
-            </j:BarRow>
+        <j:DrawerFooter localId="drawerFooter">
+            <j:BarSection>
+                <j:IconButton>
+                    <j:icon>
+                        <js:MaterialIcon text="{MaterialIconType.FEEDBACK}" />
+                    </j:icon>
+                </j:IconButton>
+            </j:BarSection>
         </j:DrawerFooter>
 
     </j:Drawer>
@@ -252,20 +292,21 @@ limitations under the License.
             <j:BarSection itemsHorizontalAlign="itemsRight">
                 <j:IconButton>
                     <j:beads>
-                        <j:Badge text="27" emphasis="primary" preindex="true" overlap="true"/>
+                        <j:BadgeWithMouseClick text="✖" emphasis="primary" preindex="true" overlap="true" click="Alert.show('This example shows use of BadgeWithMouseClick', 'Badge With Mouse Click');"/>
                     </j:beads>
                     <j:icon>
                         <js:MaterialIcon text="{MaterialIconType.ADD_ALARM}" />
                     </j:icon>
                 </j:IconButton>
-                <j:IconButton>
-                    <j:beads>
-                        <j:Badge text="209" emphasis="emphasized" subindex="true" preindex="true" overlap="true"/>
-                    </j:beads>
-                    <j:icon>
-                        <js:MaterialIcon text="{MaterialIconType.ANNOUNCEMENT}" />
-                    </j:icon>
-                </j:IconButton>
+                <j:IconButton localId="responsiveSizeIndicator" beadsAdded="setResponsiveSizeIndicatorListeners()">
+                        <j:icon>
+                            <js:MaterialIcon localId="responsiveSizeIndicatorIcon"/>
+                        </j:icon>
+                        <j:beads>
+                            <j:ToolTip localId="responsiveSizeIndicatorToolTip"/>
+                            <j:ResponsiveResizeListener/>
+                        </j:beads>
+                    </j:IconButton>
             </j:BarSection>
         </j:BarRow>
     </j:FooterBar>
@@ -292,7 +333,7 @@ limitations under the License.
                         <js:MaterialToggleIcon text="{MaterialIconType.SCREEN_LOCK_ROTATION}" selectedText="{MaterialIconType.SCREEN_ROTATION}" />
                     </j:icon>
                 </j:ToggleButton>
-                <j:ToggleButton click="footerbar.visible = !footerbar.visible">
+                <j:ToggleButton click="switchFooterBar()">
                     <j:beads>
                         <j:ToolTip toolTip="show/hide FooterBar"/>
                     </j:beads>
@@ -343,7 +384,8 @@ limitations under the License.
         <local:PopUpPlayGround name="popup_panel"/>
         <local:AdvancedListPlayGround name="advanced_list_panel"/>
         <local:VirtualListsPlayGround name="virtual_lists_panel"/>
+        <local:ProgressLoaderPlayGround name="progressloader_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->
-</j:ApplicationResponsiveView>
+</j:ResponsiveView>

@@ -41,6 +41,31 @@ use namespace mx_internal;
 [Event(name="exitState", type="mx.events.FlexEvent")]
 
 /**
+ *  Dispatched after a view state has been entered.
+ *
+ *  @eventType mx.events.FlexEvent.ENTER_STATE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="enterState", type="mx.events.FlexEvent")] // not implemented
+
+/**
+ *  Dispatched just before a view state is exited.
+ *  This event is dispatched before the changes
+ *  to the default view state have been removed.
+ *
+ *  @eventType mx.events.FlexEvent.EXIT_STATE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="exitState", type="mx.events.FlexEvent")] // not implemented
+/**
  *  The State class defines a view state, a particular view of a component.
  *  For example, a product thumbnail could have two view states;
  *  a base view state with minimal information, and a rich view state with

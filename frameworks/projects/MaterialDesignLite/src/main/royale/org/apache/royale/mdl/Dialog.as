@@ -27,6 +27,7 @@ package org.apache.royale.mdl
     {
       import org.apache.royale.core.WrappedHTMLElement;
 			import org.apache.royale.html.util.addElementToWrapper;
+			import org.apache.royale.html.util.DialogPolyfill;
     }
 
      [Event(name="close", type="org.apache.royale.events.Event")]
@@ -51,11 +52,6 @@ package org.apache.royale.mdl
 	{
 		/**
 		 *  constructor.
-         *
-         *  <inject_html>
-         *  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css">
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js"></script>
-         *  </inject_html>
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -112,8 +108,9 @@ package org.apache.royale.mdl
 
 					if (!("showModal" in dialog))
 					{
-						window["dialogPolyfill"]["registerDialog"](dialog);
+						DialogPolyfill.registerDialog(dialog);
 					}
+
 				}
 			}
 		}

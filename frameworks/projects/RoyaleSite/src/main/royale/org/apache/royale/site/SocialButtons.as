@@ -65,15 +65,15 @@ package org.apache.royale.site
             element = ul as WrappedHTMLElement;
             var li:HTMLLIElement = document.createElement("li") as HTMLLIElement;
             li.className = "fa SocialButton fa-search";
-            li.innerHTML = "<a href='http://royale.apache.org/#grve-search-modal'></a>";
+            li.innerHTML = "<a href='https://royale.apache.org/#grve-search-modal'></a>";
             element.appendChild(li);
             li = document.createElement("li") as HTMLLIElement;
             li.className = "fa SocialButton fa-share-alt";
-            li.innerHTML = "<a href='http://royale.apache.org/#grve-social-modal'></a>";
+            li.innerHTML = "<a href='https://royale.apache.org/#grve-social-modal'></a>";
             element.appendChild(li);
             li = document.createElement("li") as HTMLLIElement;
             li.className = "fa SocialButton fa-th";
-            li.innerHTML = "<a href='http://royale.apache.org/#grve-toggle-menu'></a>";
+            li.innerHTML = "<a href='https://royale.apache.org/#grve-toggle-menu'></a>";
             element.appendChild(li);
 			return element;
 		}

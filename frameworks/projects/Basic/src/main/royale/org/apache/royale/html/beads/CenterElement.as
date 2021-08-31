@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  The CenterElement bead breaks the normal layout flow and forces
@@ -38,20 +39,24 @@ package org.apache.royale.html.beads
 	 *  @productversion Royale 0.0
 	 */
 	
-	public class CenterElement implements IBead
+	public class CenterElement extends Bead
 	{
-		private var _strand:IStrand;
 		public function CenterElement()
 		{
 		}
-		
-		public function set strand(value:IStrand):void
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IChild
+		 */
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			var layoutParent:ILayoutParent = getLayoutParent((value as IChild).parent);
-			IEventDispatcher(layoutParent).addEventListener('layoutComplete', layoutCompleteHandler);
+			listenOnStrand('layoutComplete', layoutCompleteHandler);
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+		 */
 		private function layoutCompleteHandler(e:Event):void
 		{
 			var childWidth:Number = host.width;
@@ -62,11 +67,18 @@ package org.apache.royale.html.beads
 			host.y = (parentHeight - childHeight) / 2;
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+		 */
 		private function get host():ILayoutChild
 		{
 			return _strand as ILayoutChild;
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
+		 * @royaleignorecoercion org.apache.royale.core.IChild
+		 */
 		private function getLayoutParent(value:IParent):ILayoutParent
 		{
 			while (value)

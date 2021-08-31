@@ -35,6 +35,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.DispatcherBead;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
@@ -50,7 +51,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class VirtualDataItemRendererFactoryBase extends EventDispatcher implements IBead, IDataProviderVirtualItemRendererMapper
+	public class VirtualDataItemRendererFactoryBase extends DispatcherBead implements IDataProviderVirtualItemRendererMapper
 	{
         /**
          *  Constructor.
@@ -73,8 +74,6 @@ package org.apache.royale.html.beads
 
         protected var rendererMap:Object;
         
-		protected var _strand:IStrand;
-		
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *  
@@ -83,10 +82,10 @@ package org.apache.royale.html.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
+			listenOnStrand("initComplete",finishSetup);
 		}
 		
 		/**

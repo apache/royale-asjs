@@ -58,7 +58,10 @@ package org.apache.royale.jewel
     [Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
+	 * Wizard is a container that navigates from one content to the next.
+	 * The content is organized in wizard pages It can provide previous and next navigation buttons
 	 * 
+	 * @see org.apache.royale.jewel.WizardPage
 	 */
     public class Wizard extends Group implements IContainerBaseStrandChildrenHost
     {

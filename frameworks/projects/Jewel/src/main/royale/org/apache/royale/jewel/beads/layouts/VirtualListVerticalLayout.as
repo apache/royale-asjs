@@ -35,8 +35,8 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
         
@@ -132,7 +132,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IListWithPresentationModel
 		 */
 		override public function layout():Boolean
 		{
@@ -156,7 +156,7 @@ package org.apache.royale.jewel.beads.layouts
                     inLayout = false;
                     return true;
                 }
-                var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
+                var presentationModel:IListPresentationModel = (host as IListWithPresentationModel).presentationModel as IListPresentationModel;
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
 				var hostWidth:Number = host.width;
@@ -283,7 +283,7 @@ package org.apache.royale.jewel.beads.layouts
                     inLayout = false;
                     return true;
                 }
-                var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
+                var presentationModel:IListPresentationModel = (host as IListWithPresentationModel).presentationModel as IListPresentationModel;
                 var totalHeight:Number = presentationModel.rowHeight * dp.length;
                 var viewportTop:Number = Math.max(contentView.element.scrollTop, 0);
                 var viewportHeight:Number = contentView.height;

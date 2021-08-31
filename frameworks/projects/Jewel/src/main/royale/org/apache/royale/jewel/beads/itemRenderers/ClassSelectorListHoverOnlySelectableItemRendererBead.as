@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.utils.IClassSelectorListSupport;
 
 	/**
-	 *  UnselectableElement bead prevents from text selection of html element
+	 *  UnselectableElement bead prevents selection but can be hovered
 	 *
 	 *  @viewbead
 	 *  @langversion 3.0
@@ -51,8 +51,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			super.strand = value;
 			ir = value as IClassSelectorListSupport;
-			ir.addClass("selectable");
+			ir.addClass("hoverable");
 		}
+		
+		override public function set selected(value:Boolean):void
+        {
+			// this renderer is not selectable, so don't do anything       
+        }
+
+		override public function set down(value:Boolean):void
+        {
+            // this renderer is not selectable, so don't do anything 
+        }
 		
         /**
          * @private

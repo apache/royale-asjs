@@ -74,6 +74,7 @@ COMPILE::JS {
 import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IFlexInfo;
+import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.IPopUpHost;
 import org.apache.royale.core.IPopUpHostParent;
@@ -695,16 +696,19 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get controlBarVisible():Boolean
+     public function get controlBarVisible():Boolean
     {
-        return (controlBarGroup)
+        /*return (controlBarGroup)
             ? controlBarGroup.visible
-            : controlBarGroupProperties.visible;
+            : controlBarGroupProperties.visible;*/
+		trace("Application::controlBarVisible not implemented")
+		
+		return true;
     } 
 
     public function set controlBarVisible(value:Boolean):void
     {
-        if (controlBarGroup)
+       /* if (controlBarGroup)
         {
             controlBarGroup.visible = value;
             controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint,
@@ -715,8 +719,10 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
 
         invalidateSkinState();
         if (skin)
-            skin.invalidateSize();
-    }*/
+            skin.invalidateSize(); */
+		trace("Application::controlBarVisible not implemented")
+
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1264,15 +1270,10 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
     //  parameters
     //----------------------------------
 
+    private var _parameters:Object;
+    
     /**
-     *  @private
-     *  Storage for the parameters property.
-     *  This variable is set in the initialize() method of SystemManager.
-     */
-    // mx_internal var _parameters:Object;
-
-    /**
-     *  An Object containing name-value
+     *  The parameters property returns an Object containing name-value
      *  pairs representing the parameters provided to this Application.
      *
      *  <p>You can use a for-in loop to extract all the names and values
@@ -1281,16 +1282,45 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
      *  <p>There are two sources of parameters: the query string of the
      *  Application's URL, and the value of the FlashVars HTML parameter
      *  (this affects only the main Application).</p>
-     *
+     *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
-    // public function get parameters():Object
-    // {
-        // return _parameters;
-    // }
+    public function get parameters():Object
+    {
+        COMPILE::SWF
+        {
+            return loaderInfo.parameters;
+        }
+        COMPILE::JS
+        {
+            if (!_parameters)
+            {
+                _parameters = {};
+                var query:String = location.search.substring(1);
+                if(query)
+                {
+                    var vars:Array = query.split("&");
+                    for (var i:int=0;i<vars.length;i++) {
+                        var pair:Array = vars[i].split("=");
+                        _parameters[pair[0]] = decodeURIComponent(pair[1]);
+                    }
+                }
+            }
+            return _parameters;
+        }
+    }
+
+    public function set parameters(value:Object):void
+    {
+        // do nothing in SWF.  It is determined by loaderInfo.
+        COMPILE::JS
+        {
+            _parameters = value;
+        }
+    }
 
     //----------------------------------
     //  resizeForSoftKeyboard
@@ -1426,10 +1456,10 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
     /**
      *  @private
      */
-    /* override public function initialize():void
+    override public function initialize():void
     {
         // trace("FxApp initialize FxApp");
-
+    /*
         var sm:ISystemManager = systemManager;
 
         // add listener if one is already attached
@@ -1455,8 +1485,19 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
                 setStyle("osStatusBarHeight", 0);
             }
         }
+    */
         
-        _url = LoaderUtil.normalizeURL(sm.loaderInfo);
+        // Flex:  _url = LoaderUtil.normalizeURL(sm.loaderInfo);
+        COMPILE::SWF
+        {
+            _url = loaderInfo.url;
+        }
+        COMPILE::JS
+        {
+            _url = document.URL;
+        }
+     
+    /*
         _parameters = sm.loaderInfo.parameters;
 
         initManagers(sm);
@@ -1464,16 +1505,17 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         // Setup the default context menu here. This allows the application
         // developer to override it in the initialize event, if desired.
         initContextMenu();
-
+    */
         super.initialize();
-
+    /*
         // Stick a timer here so that we will execute script every 1.5s
         // no matter what.
         // This is strictly for the debugger to be able to halt.
         // Note: isDebugger is true only with a Debugger Player.
         if (sm.isTopLevel() && Capabilities.isDebugger == true)
             setInterval(debugTickler, 1500);
-    } */
+    */
+    }
     
     /**
      *  @private
@@ -2294,6 +2336,15 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
 		return _softKeyboardRect;
 	}*/
      
+    override public function setActualSize(w:Number, h:Number):void
+    {
+		super.setActualSize(w, h);
+		if (!skin) {
+			((view as ILayoutHost).contentView as Group).width = w;
+			((view as ILayoutHost).contentView as Group).height = h;
+		}
+    }
+
      //--------------------------------------------------------------------------
      //
      //  IPopUpHost

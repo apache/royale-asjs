@@ -23,7 +23,7 @@ limitations under the License.
                  xmlns:rs="library://ns.apache.org/royale/site"
                  xmlns:local="*"
                  className="DocTopBar TopBar">
-    <Img className="logo" src="http://royale.codeoscopic.com/wp-content/uploads/2018/01/apache-royale-tm-logo-light.svg" />
+    <Img className="logo" src="https://royale.apache.org/wp-content/uploads/2018/01/apache-royale-tm-logo-light.svg" />
     <rs:TopMenu />
     <rs:SocialButtons />
 </Div>

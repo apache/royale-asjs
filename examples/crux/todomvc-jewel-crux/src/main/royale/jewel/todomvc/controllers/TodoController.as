@@ -24,6 +24,7 @@ package jewel.todomvc.controllers
 	import jewel.todomvc.vos.TodoVO;
 
 	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.collections.IArrayList;
 
 	/**
      * The Todo Controller holds all the global actions. The views dispatch events that bubbles and
@@ -199,10 +200,10 @@ package jewel.todomvc.controllers
 				model.listItems = model.allItems;
 			} 
 			else if(model.filterState == TodoModel.ACTIVE_FILTER) {
-				model.listItems = model.activeItems;
+				model.listItems = model.activeItems as IArrayList;
 			}
 			else if(model.filterState == TodoModel.COMPLETED_FILTER) {
-				model.listItems = model.completedItems;
+				model.listItems = model.completedItems as IArrayList;
 			}
 		}
 	}

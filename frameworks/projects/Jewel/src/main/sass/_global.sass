@@ -32,7 +32,7 @@ html, body
 ::-moz-focus-inner, ::-moz-focus-outer
 	border: 0
 
-input:focus, textarea:focus, select:focus, div:focus, label:focus, li:focus
+input:focus, textarea:focus, select:focus, div:focus, label:focus, nav:focus, li:focus, a:focus
 	outline: none
 
 select::-ms-expand
@@ -49,20 +49,16 @@ button, input, textarea
 	
 j|View
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ViewLayout")
 
-j|ApplicationResponsiveView
-	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+j|ResponsiveView
+	// IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
+	// IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
-.applicationResponsiveView
+.responsive-view
 	display: inline-flex
 	width: 100%
 	height: 100%
-
-j|ApplicationView
-	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 // .responsive
 // 	width: 100%
@@ -92,7 +88,7 @@ j|Grid
 
 j|ScrollableGrid
 	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
-	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+	// IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 
 j|GridCell
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridCellLayout")
@@ -101,7 +97,7 @@ j|Container
 	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.BasicLayout")
 	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
-	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+	// IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 	//align-items: flex-start
 
 j|HContainer
@@ -115,10 +111,10 @@ j|Image
 	IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ImageView")
 //vertical-align: top
 
-j|DataGroup
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
-	IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer")
-	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
+j|BinaryImage
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.BinaryImageModel")
+	IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ImageView")
+	IBinaryImageLoader:  ClassReference("org.apache.royale.html.beads.BinaryImageLoader")
 
 j|DataContainer
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DataProviderModel")
@@ -129,7 +125,7 @@ j|DataContainer
 	IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer")
 	IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataContainerItemRendererInitializer")
 	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
-	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+	// IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 
 j|Validator
 	ILocalizedValuesImpl: ClassReference("org.apache.royale.core.SimpleLocalizedValuesImpl")
@@ -147,6 +143,10 @@ j|Form
 		// --- IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea")
 
+	j|DataGroup
+		// IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+		// IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.StringItemRenderer")
+		// IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
 
 // -- Horizontal Rule (HR)
 hr

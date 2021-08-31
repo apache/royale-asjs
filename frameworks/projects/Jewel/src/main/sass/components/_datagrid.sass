@@ -16,7 +16,6 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 // Jewel DataGrid
 
 // DataGrid variables
@@ -28,12 +27,23 @@
     
     .jewel.buttonbar.header
         width: 100%
+        flex: 0 0 auto
+
+        .jewel.button
+            // padding-left: 2px
+            // padding-right: 2px
+            // justify-content: flex-start
+            width: 100%
 
     .listarea
         width: 100%
-        flex: 1 1 0%
+        flex: 1 1 auto
 
     .jewel.list.column
+        padding-left: 0
+        padding-right: 0
+        position: relative
+        min-height: 100%
 
         &.first
         
@@ -43,14 +53,17 @@
         
         .jewel.item.datagrid
             width: 100%
-        
+
+    span:empty:before
+        content: "@@ZERO_WIDTH_SPACE"
+        //content: "\200b" <-- this does not survive sass compilation, so instead using a token for replacement in a post-sass processing step above
+
 j|DataGrid
-    IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel")
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView")
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout")
     headerClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar")
-    headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout")
+    headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridColumnLayout")
     listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea")
     columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList")
 
@@ -58,7 +71,7 @@ j|DataGridListArea
     IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
-    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 
 j|DataGridColumnList
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
@@ -69,3 +82,22 @@ j|DataGridColumnList
 
 //Nothing to change from j|ButtonBar
 j|DataGridButtonBar
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer")
+
+j|VirtualDataGrid
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualDataGridView")
+    columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList")
+
+j|VirtualDataGridListArea
+    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+    listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGrid")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
+
+j|VirtualDataGridColumnList
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VirtualDataGridListAreaLayout")
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DataGridItemRenderer")
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataGridColumnListItemRendererInitializer")
+    ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")

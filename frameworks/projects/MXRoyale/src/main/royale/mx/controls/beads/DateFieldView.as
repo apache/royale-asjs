@@ -29,6 +29,13 @@ package mx.controls.beads
     import org.apache.royale.html.supportClasses.IDateChooser;
     import org.apache.royale.html.beads.DateFieldView;
     import mx.controls.TextInput;
+    import org.apache.royale.core.IDateChooserModel;
+    import org.apache.royale.core.IDateChooserModelWithChangeCheck;
+    import org.apache.royale.core.IPopUpHost;
+    import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.utils.PointUtils;
+    import mx.controls.DateField;
 	
     /**
      *  The NumericStepperView class overrides the Basic
@@ -79,6 +86,54 @@ package mx.controls.beads
             return _popUp;
         }
 
+		override public function set popUpVisible(value:Boolean):void
+		{
+			// prevent resursive calls
+			// setting _popUp.selectedDate below triggers a change event
+			// which tries to close the popup causing a recursive call.
+			// There might be a better way to resolve this problem, but this works for now...
+			if(_showingPopup)
+				return;
+
+			if (value != _popUpVisible)
+			{
+				_showingPopup = true;
+				_popUpVisible = value;
+				if (value)
+				{
+					if (!_popUp)
+                    {
+                        _popUp = ValuesManager.valuesImpl.newInstance(_strand, "iPopUp") as IDateChooser;
+                    }
+
+                    var parseFunction:Function = (_strand as DateField).parseFunction;
+                    var dateField:DateField = _strand as DateField;
+                    if (dateField.parseFunction)
+                    {
+                        _popUp.selectedDate = dateField.parseFunction(_textInput.text, dateField.formatString);
+                    }
+                    var popUpModel:IDateChooserModelWithChangeCheck = _popUp.getBeadByType(IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
+                    popUpModel.disableChangeCheck = true;
+
+					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());
+					var point:Point = new Point(_textInput.width, _button.height);
+					var p2:Point = PointUtils.localToGlobal(point, _strand);
+					var p3:Point = PointUtils.globalToLocal(p2, host);
+					_popUp.x = p3.x;
+					_popUp.y = p3.y;
+					COMPILE::JS {
+						_popUp.element.style.position = "absolute";
+					}
+
+					host.popUpParent.addElement(_popUp);
+				}
+				else
+				{
+					UIUtils.removePopUp(_popUp);
+				}
+			}
+			_showingPopup = false;
+		}
 
 	}
 }

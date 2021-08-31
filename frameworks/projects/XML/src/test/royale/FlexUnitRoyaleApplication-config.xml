@@ -94,6 +94,10 @@
 
         <namespaces>
             <namespace>
+                <uri>http://ns.adobe.com/mxml/2009</uri>
+                <manifest>../../../../../mxml-2009-manifest.xml</manifest>
+            </namespace>
+            <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../../main/resources/basic-manifest.xml</manifest>
             </namespace>

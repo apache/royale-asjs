@@ -19,9 +19,8 @@
 package org.apache.royale.html.beads.models
 {	
 	import org.apache.royale.core.IDateChooserModelWithChangeCheck;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 	
 	/**
 	 *  The DateChooserModel is a bead class that manages the data for a DataChooser. 
@@ -33,7 +32,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateChooserModel extends EventDispatcher implements IDateChooserModelWithChangeCheck
+	public class DateChooserModel extends DispatcherBead implements IDateChooserModelWithChangeCheck
 	{
 		public function DateChooserModel()
 		{
@@ -43,29 +42,14 @@ package org.apache.royale.html.beads.models
 //			displayedMonth = today.getMonth();
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		
 		private var _dayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 		private var _monthNames:Array = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-        private var _days:Array;
+		private var _days:Array;
 		private var _displayedYear:Number;
 		private var _displayedMonth:Number;
 		private var _firstDayOfWeek:Number = 0;
 		private var _selectedDate:Date;
-        private var _disableChangeCheck:Boolean;
+		private var _disableChangeCheck:Boolean;
 		
 		/**
 		 *  An array of strings used to name the days of the week with Sunday being the
@@ -121,7 +105,7 @@ package org.apache.royale.html.beads.models
 		{
 			if (value != _displayedYear) {
 				_displayedYear = value;
-                updateCalendar();
+				updateCalendar();
 				dispatchEvent( new Event("displayedYearChanged") );
 			}
 		}
@@ -142,7 +126,7 @@ package org.apache.royale.html.beads.models
 		{
 			if (_displayedMonth != value) {
 				_displayedMonth = value;
-                updateCalendar();
+				updateCalendar();
 				dispatchEvent( new Event("displayedMonthChanged") );
 			}
 		}
@@ -166,18 +150,18 @@ package org.apache.royale.html.beads.models
 				dispatchEvent( new Event("firstDayOfWeekChanged") );
 			}
 		}
-		
-        public function get days():Array
-        {
-            return _days;
-        }
-        public function set days(value:Array):void
-        {
-            if (value != _days) {
-                _days = value;
-                dispatchEvent( new Event("daysChanged") );
-            }
-        }
+
+		public function get days():Array
+		{
+			return _days;
+		}
+		public function set days(value:Array):void
+		{
+			if (value != _days) {
+				_days = value;
+				dispatchEvent( new Event("daysChanged") );
+			}
+		}
 
 		/**
 		 *  The currently selected date or null if no date has been selected.
@@ -193,115 +177,115 @@ package org.apache.royale.html.beads.models
 		}
 		public function set selectedDate(value:Date):void
 		{
-            COMPILE::JS
-            {
-                // in JS, date compare does not compare values, only if same instance
-                if (!disableChangeCheck && value != null && _selectedDate != null && value.getTime() == _selectedDate.getTime())
-                    return;
-            }
+			COMPILE::JS
+			{
+				// in JS, date compare does not compare values, only if same instance
+				if (!disableChangeCheck && value != null && _selectedDate != null && value.getTime() == _selectedDate.getTime())
+					return;
+			}
 			if (value != _selectedDate) {
 				_selectedDate = value;
+		
+				if (value != null) {
+					var needsUpdate:Boolean = false;
+					if (value.getMonth() != _displayedMonth) {
+						needsUpdate = true;
+						_displayedMonth = value.getMonth();
+					}
+					if (value.getFullYear() != _displayedYear) {
+						needsUpdate = true;
+						_displayedYear  = value.getFullYear();
+					}
+					if (needsUpdate) updateCalendar();
+				}
 				
-                if (value != null) {
-                    var needsUpdate:Boolean = false;
-                    if (value.getMonth() != _displayedMonth) {
-                        needsUpdate = true;
-                        _displayedMonth = value.getMonth();
-                    }
-                    if (value.getFullYear() != _displayedYear) {
-                        needsUpdate = true;
-                        _displayedYear  = value.getFullYear();
-                    }
-                    if (needsUpdate) updateCalendar();
-                }
-                
-                dispatchEvent( new Event("selectedDateChanged") );
-            }
-            else if (disableChangeCheck)
-                dispatchEvent( new Event("selectedDateChanged") );
-        }
-        
-        /**
-         *  The currently selected date or null if no date has been selected.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function get disableChangeCheck():Boolean
-        {
-            return _disableChangeCheck;
-        }
-        public function set disableChangeCheck(value:Boolean):void
-        {
-            _disableChangeCheck = value;
-        }
-        
-        // Utilities
+				dispatchEvent( new Event("selectedDateChanged") );
+			}
+			else if (disableChangeCheck)
+				dispatchEvent( new Event("selectedDateChanged") );
+		}
+		
+		/**
+		 *  The currently selected date or null if no date has been selected.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		public function get disableChangeCheck():Boolean
+		{
+			return _disableChangeCheck;
+		}
+		public function set disableChangeCheck(value:Boolean):void
+		{
+			_disableChangeCheck = value;
+		}
+		
+		// Utilities
         
         
-        /**
-         * @private
-         */
-        private function updateCalendar():void
-        {       
-            var firstDay:Date = new Date(displayedYear,displayedMonth,1);
-            
-            _days = new Array(42);
-            
-            // skip to the first day and renumber to the last day of the month
+		/**
+		 * @private
+		 */
+		private function updateCalendar():void
+		{       
+			var firstDay:Date = new Date(displayedYear,displayedMonth,1);
+			_days = new Array(42);
+				
+			// skip to the first day and renumber to the last day of the month
 			var i:int = firstDay.getDay();
-            var dayNumber:int = 1;
-            var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
-            
-            while(dayNumber <= numDays) {
-                _days[i++] = new Date(displayedYear, displayedMonth, dayNumber++);
-            }
-            
-        }
-        
-        /**
-         * @private
-         */
-        private function numberOfDaysInMonth(month:Number, year:Number):Number
-        {
-            var n:int;
-            
-            if (month == 1) // Feb
-            {
-                if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) // leap year
-                    n = 29;
-                else
-                    n = 28;
-            }
-                
-            else if (month == 3 || month == 5 || month == 8 || month == 10)
-                n = 30;
-                
-            else
-                n = 31;
-            
-            return n;
-        }
-        
-        /**
-         * @private
-         */
-        public function getIndexForSelectedDate():Number
-        {
-            if (!_selectedDate) return -1;
-
-            var str:String = _selectedDate.toDateString();
-
-            for(var i:int=0; i < _days.length; i++) {
-                var test:Date = _days[i] as Date;
+			var dayNumber:int = 1;
+			var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
 				
-				if (test && test.toDateString() == str)
+			while(dayNumber <= numDays) {
+				_days[i++] = new Date(displayedYear, displayedMonth, dayNumber++);
+			}
+				
+		}
+        
+		/**
+		 * @private
+		 */
+		private function numberOfDaysInMonth(month:Number, year:Number):Number
+		{
+			var n:int;
+			
+			if (month == 1) // Feb
+			{
+				if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) // leap year
+					n = 29;
+				else
+					n = 28;
+			}
+					
+			else if (month == 3 || month == 5 || month == 8 || month == 10)
+				n = 30;
+					
+			else
+				n = 31;
+			
+			return n;
+		}
+        
+		/**
+		 * @private
+		 *  @royaleignorecoercion Date
+		 */
+		public function getIndexForSelectedDate():Number
+		{
+			if (!_selectedDate) return -1;
+
+			var str:String = _selectedDate.toDateString();
+
+			for(var i:int=0; i < _days.length; i++) {
+					var test:Date = _days[i] as Date;
+
+					if (test && test.toDateString() == str)
 					return i;
 
-            }
-            return -1;
+			}
+			return -1;
 		}
 	}
 }

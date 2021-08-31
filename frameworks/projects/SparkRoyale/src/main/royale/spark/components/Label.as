@@ -48,8 +48,10 @@ import flashx.textLayout.formats.TLFTypographicCase; */
 //import mx.core.IEmbeddedFontRegistry;
 //import mx.core.IFlexModuleFactory;
 import mx.core.IUIComponent;
+import org.apache.royale.html.beads.SelectableBead;
 //import mx.core.Singleton;
 import mx.core.mx_internal;
+import org.apache.royale.core.ValuesManager;
 
 import spark.components.supportClasses.TextBase;
 //import spark.utils.TextUtil;
@@ -410,7 +412,26 @@ public class Label extends TextBase
     }
 	
 	
+    public function set lineBreak(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("lineBreak not implemented");
+    }
 	
+    public function set baselineShift(value:Object):void
+    {
+        if (GOOG::DEBUG)
+            trace("baselineShift not implemented");
+    }
+
+    override public function addedToParent():void
+	{
+		super.addedToParent();
+		var selectableBead:SelectableBead = new SelectableBead();
+		selectableBead.selectable = false;
+		addBead(selectableBead);
+	}
+
     public function get digitWidth():String
     {
         return "";
@@ -420,13 +441,15 @@ public class Label extends TextBase
         
     }
 	    
+    // TODO figure out if Flex values are identical
     public function get textDecoration():String
     {
-        return "";
+        return ValuesManager.valuesImpl.getValue(this, "textDecoration");
     }
+
     public function set textDecoration(value:String):void
     {
-        
+        setStyle("textDecoration", value);
     }
     
     //--------------------------------------------------------------------------
@@ -1686,7 +1709,8 @@ public class Label extends TextBase
     {
         //when measuring, turn off wrapping
         var oldValue:String = element.style.whiteSpace;
-        element.style.whiteSpace = "nowrap";
+        if ((isNaN(explicitWidth) && isNaN(percentWidth)) || getStyle("lineBreak") == "explicit")
+	        element.style.whiteSpace = "nowrap";
         var mw:Number = super.measuredWidth;
         element.style.whiteSpace = oldValue;
         return mw + 1;
@@ -1697,7 +1721,8 @@ public class Label extends TextBase
     {
         //when measuring, turn off wrapping
         var oldValue:String = element.style.whiteSpace;
-        element.style.whiteSpace = "nowrap";
+        if ((isNaN(explicitWidth) && isNaN(percentWidth)) || getStyle("lineBreak") == "explicit")
+	        element.style.whiteSpace = "nowrap";
         var mh:Number = super.measuredHeight;
         element.style.whiteSpace = oldValue;
         return mh;

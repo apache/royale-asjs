@@ -81,5 +81,18 @@ package org.apache.royale.utils
 		 *  @productversion Royale 0.9.3
 		 */
 		function containsClass(name:String):Boolean
+
+        /**
+		 *  Replace a class for a new one. If new class is not set, use the old one instead
+		 *
+         *  @param oldClass Name of selector to remove.
+         *  @param newClass Name of selector to set.
+         * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        function replaceClass(oldClass:String, newClass:String = null):void
 	}
 }

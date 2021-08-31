@@ -35,6 +35,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.utils.sendStrandEvent;
 	import org.apache.royale.core.ILabelFieldItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -141,8 +142,9 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
-		private function dataProviderChangeHandler(event:Event):void
+		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
@@ -156,16 +158,17 @@ package org.apache.royale.html.beads
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				var tf:ILabelFieldItemRenderer = itemRendererFactory.createItemRenderer() as ILabelFieldItemRenderer;
-				tf.index = i;
-				dataGroup.addItemRenderer(tf, false);
-				if (selectionModel.labelField) {
+				var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+				var tf:ILabelFieldItemRenderer = ir as ILabelFieldItemRenderer;
+				ir.index = i;
+				dataGroup.addItemRenderer(ir, false);
+				if (tf && selectionModel.labelField) {
 					tf.labelField = selectionModel.labelField;
 				}
-				tf.data = dp[i];
+				ir.data = dp[i];
 
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-				newEvent.itemRenderer = tf;
+				newEvent.itemRenderer = ir;
 				dispatchEvent(newEvent);
 			}
 

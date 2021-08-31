@@ -22,10 +22,10 @@
 	<parent>
 		<groupId>org.apache.royale.manualtests</groupId>
 		<artifactId>manualtests</artifactId>
-		<version>0.9.7</version>
+		<version>0.9.8</version>
 	</parent>
 	<artifactId>UnitTests</artifactId>
-	<version>0.9.7</version>
+	<version>0.9.8</version>
 	<packaging>swf</packaging>
 	<name>Apache Royale: ManualTests: UnitTests</name>
 
@@ -41,7 +41,7 @@
 		<swf>${project.artifactId}</swf>
 		<width>100%</width>
 		<height>100%</height>
-	<project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
+	<project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties>
 
 	<build>
 		<defaultGoal>compile</defaultGoal>
@@ -60,7 +60,7 @@
 						-swf-version=30;
 						-js-default-initializers;
 						-source-map=true;
-						-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css;
+						-compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
 						-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta,Transient;
 						-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta,Transient;
 					</additionalCompilerOptions>
@@ -85,28 +85,28 @@
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>MXRoyale</artifactId>
-			<version>0.9.7</version>
+			<version>0.9.8</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.7</version>
+			<version>0.9.8</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Network</artifactId>
-			<version>0.9.7</version>
+			<version>0.9.8</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>XML</artifactId>
-			<version>0.9.7</version>
+			<version>0.9.8</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>
@@ -130,8 +130,8 @@
 								-swf-version=30;
 								-js-default-initializers;
 								-source-map=true;
-								-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css;
-								-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-swf.swc:defaults.css;
+								-compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
+								-compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-swf.swc:defaults.css;
 								-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta,Transient;
 								-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta,Transient;
 							</additionalCompilerOptions>
@@ -207,21 +207,21 @@
 				<dependency>
 					<groupId>org.apache.royale.framework</groupId>
 					<artifactId>MXRoyale</artifactId>
-					<version>0.9.7</version>
+					<version>0.9.8</version>
 					<type>swc</type>
 					<classifier>swf</classifier>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.royale.framework</groupId>
 					<artifactId>Reflection</artifactId>
-					<version>0.9.7</version>
+					<version>0.9.8</version>
 					<type>swc</type>
 					<classifier>swf</classifier>
 				</dependency>
 				<dependency>
 					<groupId>org.apache.royale.framework</groupId>
 					<artifactId>Network</artifactId>
-					<version>0.9.7</version>
+					<version>0.9.8</version>
 					<type>swc</type>
 					<classifier>swf</classifier>
 				</dependency>

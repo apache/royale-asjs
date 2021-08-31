@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
   </parent>
 
   <artifactId>StyleExample</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: StyleExample</name>
@@ -51,21 +51,21 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -79,14 +79,14 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.8</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.8</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -94,4 +94,4 @@
     </profile>
   </profiles>
 
-<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>
+<properties><project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties></project>

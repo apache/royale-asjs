@@ -107,8 +107,7 @@ package org.apache.royale.html
 		}
 
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion org.apache.royale.core.HTMLIFrameElement
+		 * @royaleignorecoercion HTMLIFrameElement
 		 */
 		override protected function createElement():WrappedHTMLElement
 		{
@@ -127,12 +126,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.html.beads.models.WebBrowserModel
 		 */
 		public function get url():String
 		{
 			return (model as WebBrowserModel).url;
 		}
-
+		/**
+     *  @royaleignorecoercion org.apache.royale.html.beads.models.WebBrowserModel
+		 */
 		public function set url(value:String):void
 		{
 			(model as WebBrowserModel).url = value;

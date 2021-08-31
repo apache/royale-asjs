@@ -203,6 +203,47 @@ public class PopUpMenuButton extends PopUpButton
         
         //invalidateProperties();     
     }
+
+
+    //--------------------------------------------------------------------------
+    //  label
+    //--------------------------------------------------------------------------
+
+    /**
+     *  @private
+     *  Storage for the label property.
+     */
+    private var _label:String = "";
+    /**
+     *  @private
+     */
+    private var labelSet:Boolean = false;
+
+    [Inspectable(category="General", defaultValue="")]
+
+    /**
+     *  @private
+     */
+    override public function set label(value:String):void
+    {
+        // labelSet is different from labelChanged as it is never unset.
+        labelSet = true;
+        _label = value;
+        if (parent)
+        {
+            setLabel();
+            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
+    }
+
+    override public function get label():String{
+        if (labelSet) return _label
+        var val:String = super.label;
+        if (val) {
+            val = val.substr(0, val.lastIndexOf(downArrowString)).replace("&nbsp;"," ");
+        }
+        return val;
+    }
     
     //--------------------------------------------------------------------------
     //  labelField
@@ -304,10 +345,11 @@ public class PopUpMenuButton extends PopUpButton
             var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
             
             menuEvent.label = popUpMenu.itemToLabel(event.item);
-            /*if (labelSet)
-                super.label = _label;
-            else*/
-                super.label = popUpMenu.itemToLabel(event.item).replace(" ", "&nbsp;") + downArrowString;
+
+            var oldLabel:String = super.label;
+            var labelBase:String = labelSet ? _label || '' : popUpMenu.itemToLabel(event.item);
+            super.label = labelBase.replace(" ", "&nbsp;") + downArrowString
+
             //setSafeIcon(popUpMenu.itemToIcon(event.item));
             menuEvent.menu = popUpMenu;
             menuEvent.menu.selectedIndex = menuEvent.index = 
@@ -316,8 +358,9 @@ public class PopUpMenuButton extends PopUpButton
             /*itemRenderer = */menuEvent.itemRenderer = 
                 event.itemRenderer;
             dispatchEvent(menuEvent);
-            PopUpManager.removePopUp(popUp);
-            if (parent)
+            //@todo here could be possible need to check for 'closeOnActivity != false' or via implementation in PopUpButton
+            close(); //instead of 'PopUpManager.removePopUp(popUp)' ensures the showing/not showing state in the base component is maintained
+            if (parent && oldLabel != super.label)
                 (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
         }
     }
@@ -335,15 +378,24 @@ public class PopUpMenuButton extends PopUpButton
         
         if (dataProvider != null)
         {
-            getPopUp();
+            if (popUpMenu) popUpMenu.dataProvider = dataProvider;
+            else getPopUp();
             if ((popUpMenu.dataProvider as ICollectionView).length > 0)
             {
                 var cursor:IViewCursor = (popUpMenu.dataProvider as ICollectionView).createCursor();
                 var value:Object = cursor.current;
-                lbl = popUpMenu.itemToLabel(value).replace(" ", "&nbsp;") + lbl;
+                if (labelSet) lbl = _label ? _label + lbl : lbl;
+                else lbl = popUpMenu.itemToLabel(value) + lbl;
             }
+        } else {
+            if (popUpMenu) {
+                popUpMenu.removeEventListener(MenuEvent.ITEM_CLICK, menuChangeHandler);
+                close();
+                popUpMenu = null; //tbc
+            }
+            if (labelSet) lbl = _label ? _label + lbl : lbl;
         }
-        label = lbl;
+        super.label = lbl.replace(" ", "&nbsp;");
     }
 
 	}

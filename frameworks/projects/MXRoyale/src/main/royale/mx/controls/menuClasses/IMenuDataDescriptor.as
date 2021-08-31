@@ -164,6 +164,9 @@ public interface IMenuDataDescriptor
      *  @productversion Flex 3
      */
 	function getGroupName(node:Object):String;
+	
+	/* public */ function get dataDescriptor():IMenuDataDescriptor
+   	/* public */ function set dataDescriptor(value:IMenuDataDescriptor):void
 }
 
 }

@@ -19,22 +19,16 @@
 package org.apache.royale.html.beads.models
 {
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ICascadingMenuModel;
 	import org.apache.royale.events.Event;
 
-	public class CascadingMenuModel extends MenuModel
+	public class CascadingMenuModel extends MenuModel implements ICascadingMenuModel
 	{
 		public function CascadingMenuModel()
 		{
 			super();
 		}
-		
-		private var _strand:IStrand;
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
-		
+				
 		private var _submenuField:String = "menu";
 		
 		/**

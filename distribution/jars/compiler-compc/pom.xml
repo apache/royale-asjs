@@ -22,13 +22,13 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-compc</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
 
   <build>
     <plugins>
@@ -37,11 +37,13 @@
         <configuration>
           <archive>
             <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathLayoutType>custom</classpathLayoutType>
-              <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
+              <addClasspath>false</addClasspath>
               <mainClass>org.apache.royale.compiler.clients.COMPC</mainClass>
             </manifest>
+            <manifestEntries>
+              <!-- These paths are all defined the way the layout will be in the distribution -->
+              <Class-Path>compiler-common.jar compiler.jar</Class-Path>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>
@@ -52,8 +54,8 @@
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
   </dependencies>
 
-<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>
+<properties><project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties></project>

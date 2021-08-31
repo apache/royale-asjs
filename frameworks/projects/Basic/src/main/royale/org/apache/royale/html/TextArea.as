@@ -117,6 +117,7 @@ package org.apache.royale.html
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLTextAreaElement
          */
         [Bindable(event="change")]
         public function get html():String
@@ -133,6 +134,7 @@ package org.apache.royale.html
 
         /**
          *  @private
+         *  @royaleignorecoercion HTMLTextAreaElement
          */
 		public function set html(value:String):void
 		{

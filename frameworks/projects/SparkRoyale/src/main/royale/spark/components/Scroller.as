@@ -295,7 +295,6 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
      */ 
 //[Style(name="verticalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
 
-
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -622,6 +621,12 @@ public class Scroller extends SkinnableComponent
     {
         return _pullEnabled;    
     } */
+
+	public function set verticalScrollPolicy(value:String):void
+	{
+		// not implemented
+	}
+
     
     /**
      *  @private
@@ -1111,6 +1116,15 @@ public class Scroller extends SkinnableComponent
      */
     private function installViewport():void
     {
+        if (!viewport) return;
+        
+    		// moved from addedToParent()
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp.isWidthSizedToContent())
+        		vp.setWidth(width);
+		if (vp.isHeightSizedToContent())
+        		vp.setHeight(height);
+
         /*  SWF?
         if (skin && viewport)
         {*/
@@ -3890,11 +3904,6 @@ public class Scroller extends SkinnableComponent
     override public function addedToParent():void
     {
         super.addedToParent();
-		var vp:UIComponent = _viewport as UIComponent;
-		if (vp.isWidthSizedToContent())
-        		vp.setWidth(width);
-		if (vp.isHeightSizedToContent())
-        		vp.setHeight(height);
         installViewport();
     }
     
@@ -3907,6 +3916,22 @@ public class Scroller extends SkinnableComponent
 		if (vp.isHeightSizedToContent())
         		vp.setHeight(height);
     }
+
+	override public function get measuredWidth():Number
+	{
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp)
+			return vp.measuredWidth;
+		return super.measuredWidth;
+	}
+	
+	override public function get measuredHeight():Number
+	{
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp)
+			return vp.measuredHeight;
+		return super.measuredHeight;
+	}	
 }
 
 }

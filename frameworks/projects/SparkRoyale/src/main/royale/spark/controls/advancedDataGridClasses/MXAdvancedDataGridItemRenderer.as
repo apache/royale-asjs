@@ -82,6 +82,7 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
     {
         super();
        // focusEnabled = false;
+		typeNames = "MXAdvancedDataGridItemRenderer";
     }
     
 	override protected function createChildren():void
@@ -98,7 +99,7 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
      *  @private
      *  Storage for the listData property.
      */
-    private var _listData:Object;
+    private var _listData:BaseListData;
     
     [Bindable("dataChange")]
 
@@ -115,7 +116,7 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function get listData():Object
+    public function get listData():BaseListData
     {
         return _listData;
     }
@@ -123,7 +124,7 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
     /**
      *  @private
      */
-    public function set listData(value:Object):void
+    public function set listData(value:BaseListData):void
     {
         _listData = value;
         

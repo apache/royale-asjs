@@ -67,7 +67,7 @@ package org.apache.royale.jewel.beads.controls
 				return _align;
 		}
 
-    [Inspectable(category="General", enumeration="left,right,center", defaultValue="left")]
+    	[Inspectable(category="General", enumeration="left,right,center", defaultValue="left")]
 		public function set align(value:String):void
 		{
 			if(_align !== value)

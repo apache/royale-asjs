@@ -32,7 +32,6 @@ import flash.ui.Keyboard; */
 /* 
 import mx.collections.ArrayCollection;
 import mx.collections.IList;
-import mx.core.DragSource;
 import mx.core.EventPriority;
 import mx.core.IFactory;
 import mx.core.IFlexDisplayObject;
@@ -41,7 +40,6 @@ import mx.core.IVisualElement;
 import mx.core.InteractionMode;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponentGlobals;
-import mx.events.DragEvent;
 import mx.events.FlexEvent;
 import mx.events.SandboxMouseEvent;
 import mx.events.TouchInteractionEvent;
@@ -55,10 +53,18 @@ import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.DropLocation;
 
  */  //ListBase and List share selection properties that are mx_internal
+import mx.events.DragEvent;
+import mx.core.DragSource;
+import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
+import org.apache.royale.html.beads.SingleSelectionDragImageBead;
+import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
+import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
 import mx.managers.IFocusManagerComponent;
 import spark.components.supportClasses.ListBase;
 import mx.core.mx_internal;
+import mx.core.UIComponent;
 use namespace mx_internal;
+[Event(name="dragComplete", type="mx.events.DragEvent")]
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -72,7 +78,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes", theme="spark, mobile")]
-
 /**
  *  The alpha of the border for this component.
  *
@@ -96,7 +101,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark, mobile")]
-
 /**
  *  Controls the visibility of the border for this component.
  *
@@ -216,7 +220,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */ 
-//[Style(name="horizontalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
+[Style(name="horizontalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
 
 /**
  *  @copy spark.components.supportClasses.GroupBase#style:rollOverColor
@@ -229,7 +233,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="rollOverColor", type="uint", format="Color", inherit="yes", theme="spark")]
-
 /**
  *  The color of the background of a renderer when the user selects it.
  *
@@ -243,7 +246,6 @@ use namespace mx_internal;
  *  @productversion Flex 4
  */
 //[Style(name="selectionColor", type="uint", format="Color", inherit="yes", theme="spark, mobile")]
-
 /**
  *  @copy spark.components.supportClasses.GroupBase#style:symbolColor
  *   
@@ -305,7 +307,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */ 
-//[Style(name="verticalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
+[Style(name="verticalScrollPolicy", type="String", inherit="no", enumeration="off,on,auto")]
 
 //--------------------------------------
 //  Other metadata
@@ -546,6 +548,75 @@ public class List extends ListBase implements IFocusManagerComponent
     //
     //--------------------------------------------------------------------------
 
+	public function set horizontalScrollPolicy(value:String):void
+	{
+		// not implemented
+	}
+
+	public function set allowMultipleSelection(value:Boolean):void
+	{
+		// not implemented
+	}
+
+	public function set selectionColor(value:uint):void
+	{
+		// not implemented
+	}
+
+	public function set rollOverColor(value:uint):void
+	{
+		// not implemented
+	}
+
+	public function set borderColor(value:uint):void
+	{
+		// not implemented
+	}
+
+	public function set contentBackgroundAlpha(value:Number):void
+	{
+		// not implemented
+	}
+
+	public function set alternatingItemColors(value:Array):void
+	{
+		// not implemented
+	}
+
+	private var _dragEnabled:Boolean = false;
+	public function get dragEnabled():Boolean
+	{
+		return _dragEnabled;
+	}
+	public function set dragEnabled(value:Boolean):void
+	{
+		_dragEnabled = value;
+	}
+
+	private var _dropEnabled:Boolean = false;
+	public function get dropEnabled():Boolean
+	{
+		return _dropEnabled;
+	}
+	public function set dropEnabled(value:Boolean):void
+	{
+		_dropEnabled = value;
+	}
+
+	override public function addedToParent():void
+	{
+		super.addedToParent();
+
+		if (dragEnabled) {
+			addBead(new SingleSelectionDragSourceBead());
+			addBead(new SingleSelectionDragImageBead());
+		}
+		if (dropEnabled) {
+			addBead(new SingleSelectionDropTargetBead());
+			addBead(new SingleSelectionDropIndicatorBead());
+		}
+	}
+
     //----------------------------------
     //  hasFocusableChildren
     //----------------------------------
@@ -607,10 +678,10 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* override public function get useVirtualLayout():Boolean
-    {
+     override public function get useVirtualLayout():Boolean
+     {
         return super.useVirtualLayout;
-    } */
+     }
 
     /**
      *  Overrides the inherited default property , it is true for this class.
@@ -628,10 +699,10 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* override public function set useVirtualLayout(value:Boolean):void
-    {
+     override public function set useVirtualLayout(value:Boolean):void
+     {
         super.useVirtualLayout = value;
-    } */
+     }
     
 
     //--------------------------------------------------------------------------
@@ -692,7 +763,9 @@ public class List extends ListBase implements IFocusManagerComponent
      */
    /*  private var _dragEnabled:Boolean = false;
     
-    [Inspectable(defaultValue="false")] */
+  //  [Inspectable(defaultValue="false")]
+
+    */
     
     /**
      *  A flag that indicates whether you can drag items out of
@@ -746,9 +819,9 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @private
      *  Storage for the dragMoveEnabled property.
      */
-    /* private var _dragMoveEnabled:Boolean = false;
+    private var _dragMoveEnabled:Boolean = false;
     
-    [Inspectable(defaultValue="false")] */
+  /*  [Inspectable(defaultValue="false")] */
     
     /**
      *  A flag that indicates whether items can be moved instead
@@ -770,18 +843,18 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get dragMoveEnabled():Boolean
+    public function get dragMoveEnabled():Boolean
     {
-        return _dragMoveEnabled;
-    } */
+        return _dragMoveEnabled; // not implemented
+    }
     
     /**
      *  @private
      */
-    /* public function set dragMoveEnabled(value:Boolean):void
+    public function set dragMoveEnabled(value:Boolean):void
     {
-        _dragMoveEnabled = value;
-    } */
+        _dragMoveEnabled = value; // not implemented
+    }
 
     //----------------------------------
     //  dropEnabled
@@ -856,7 +929,7 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @private
      *  Internal storage for the selectedIndices property.
      */
-//	private var _selectedIndices:Vector.<int> = new Vector.<int>();
+	private var _selectedIndices:Vector.<int> = new Vector.<int>();
     
     /**
      *  @private
@@ -891,18 +964,18 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-   /*  public function get selectedIndices():Vector.<int>
+    public function get selectedIndices():Vector.<int> // not implemented
     {
         return _selectedIndices;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set selectedIndices(value:Vector.<int>):void
+    public function set selectedIndices(value:Vector.<int>):void // not implemented
     {
         setSelectedIndices(value, false);
-    } */
+    }
     
     /**
      *  @private
@@ -916,34 +989,34 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @param changeCaret if true, the caret will be set to the selectedIndex as a side-effect of calling 
      *  this method.  If false, caretIndex won't change.
      */
-    /* mx_internal function setSelectedIndices(value:Vector.<int>, dispatchChangeEvent:Boolean = false, changeCaret:Boolean = true):void
+    mx_internal function setSelectedIndices(value:Vector.<int>, dispatchChangeEvent:Boolean = false, changeCaret:Boolean = true):void // not implemented
     {
-        // TODO (jszeto) Do a deep compare of the vectors
-        if (_proposedSelectedIndices == value || 
-            (value && value.length == 1 && 
-             selectedIndices && selectedIndices.length == 1 &&    
-             value[0] == selectedIndices[0]))
-        {
-            // this should short-circuit, but we should check to make sure 
-            // that caret doesn't need to be changed either, as that's a side
-            // effect of setting selectedIndex
-            if (changeCaret)
-                setCurrentCaretIndex(selectedIndex);
-            
-            return;
-        }
-        
-        if (dispatchChangeEvent)
-            dispatchChangeAfterSelection = (dispatchChangeAfterSelection || dispatchChangeEvent);
-        
-        if (value)
-            _proposedSelectedIndices = value;
-        else
-            _proposedSelectedIndices = new Vector.<int>();
-        multipleSelectionChanged = true;
-        changeCaretOnSelection = changeCaret;
-        invalidateProperties();
-    } */
+        //// TODO (jszeto) Do a deep compare of the vectors
+        //if (_proposedSelectedIndices == value || 
+            //(value && value.length == 1 && 
+             //selectedIndices && selectedIndices.length == 1 &&    
+             //value[0] == selectedIndices[0]))
+        //{
+            //// this should short-circuit, but we should check to make sure 
+            //// that caret doesn't need to be changed either, as that's a side
+            //// effect of setting selectedIndex
+            //if (changeCaret)
+                //setCurrentCaretIndex(selectedIndex);
+            //
+            //return;
+        //}
+        //
+        //if (dispatchChangeEvent)
+            //dispatchChangeAfterSelection = (dispatchChangeAfterSelection || dispatchChangeEvent);
+        //
+        //if (value)
+            //_proposedSelectedIndices = value;
+        //else
+            //_proposedSelectedIndices = new Vector.<int>();
+        //multipleSelectionChanged = true;
+        //changeCaretOnSelection = changeCaret;
+        //invalidateProperties();
+    }
     
     //----------------------------------
     //  selectedItems
@@ -971,54 +1044,56 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get selectedItems():Vector.<Object>
+     // not implemented
+    public function get selectedItems():Vector.<Object>
     {
         var result:Vector.<Object> = new Vector.<Object>();
-        
-        if (selectedIndices)
-        {
-            var count:int = selectedIndices.length;
-            
-            for (var i:int = 0; i < count; i++)
-                result[i] = dataProvider.getItemAt(selectedIndices[i]);  
-        }
-        
+        //
+        //if (selectedIndices)
+        //{
+            //var count:int = selectedIndices.length;
+            //
+            //for (var i:int = 0; i < count; i++)
+                //result[i] = dataProvider.getItemAt(selectedIndices[i]);  
+        //}
+        //
         return result;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set selectedItems(value:Vector.<Object>):void
+    // not implemented
+    public function set selectedItems(value:Vector.<Object>):void
     {
-        var indices:Vector.<int> = new Vector.<int>();
-        
-        if (value)
-        {
-            var count:int = value.length;
-            
-            for (var i:int = 0; i < count; i++)
-            {
-                var index:int = dataProvider.getItemIndex(value[i]);
-                if (index != -1)
-                { 
-                    indices.splice(0, 0, index);   
-                }
-                // If an invalid item is in the selectedItems vector,
-                // we set selectedItems to an empty vector, which 
-                // essentially clears selection. 
-                if (index == -1)
-                {
-                    indices = new Vector.<int>();
-                    break;  
-                }
-            }
-        }
-        
-        _proposedSelectedIndices = indices;
-        multipleSelectionChanged = true;
-        invalidateProperties(); 
-    } */
+        //var indices:Vector.<int> = new Vector.<int>();
+        //
+        //if (value)
+        //{
+            //var count:int = value.length;
+            //
+            //for (var i:int = 0; i < count; i++)
+            //{
+                //var index:int = dataProvider.getItemIndex(value[i]);
+                //if (index != -1)
+                //{ 
+                    //indices.splice(0, 0, index);   
+                //}
+                //// If an invalid item is in the selectedItems vector,
+                //// we set selectedItems to an empty vector, which 
+                //// essentially clears selection. 
+                //if (index == -1)
+                //{
+                    //indices = new Vector.<int>();
+                    //break;  
+                //}
+            //}
+        //}
+        //
+        //_proposedSelectedIndices = indices;
+        //multipleSelectionChanged = true;
+        //invalidateProperties(); 
+    }
 
     //----------------------------------
     //  pageScrollingEnabled
@@ -1668,8 +1743,9 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    // protected function dragStartHandler(event:DragEvent):void
-    // {
+	// not implemented
+    protected function dragStartHandler(event:DragEvent):void
+    {
         // if (event.isDefaultPrevented())
             // return;
         
@@ -1683,7 +1759,7 @@ public class List extends ListBase implements IFocusManagerComponent
                            // 0 /*yOffset*/, 
                            // 0.5 /*imageAlpha*/, 
                            // dragMoveEnabled);
-    // } 
+    } 
     
     /**
      *  @private
@@ -1706,33 +1782,34 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* protected function dragCompleteHandler(event:DragEvent):void
+	// not implemented
+    protected function dragCompleteHandler(event:DragEvent):void
     {
-        if (event.isDefaultPrevented())
-            return;
-        
-        // Remove the dragged items only if they were drag moved to
-        // a different list. If the items were drag moved to this
-        // list, the reordering was already handles in the 
-        // DragEvent.DRAG_DROP listener.
-        if (!dragMoveEnabled ||
-            event.action != DragManager.MOVE || 
-            event.relatedObject == this)
-            return;
-        
-        // Clear the selection, but remember which items were moved
-        var movedIndices:Vector.<int> = selectedIndices;
-        setSelectedIndices(new Vector.<int>(), true);
-        validateProperties(); // To commit the selection
-        
-        // Remove the moved items
-        movedIndices.sort(compareValues);
-        var count:int = movedIndices.length;
-        for (var i:int = count - 1; i >= 0; i--)
-        {
-            dataProvider.removeItemAt(movedIndices[i]);
-        }
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+        //
+        //// Remove the dragged items only if they were drag moved to
+        //// a different list. If the items were drag moved to this
+        //// list, the reordering was already handles in the 
+        //// DragEvent.DRAG_DROP listener.
+        //if (!dragMoveEnabled ||
+            //event.action != DragManager.MOVE || 
+            //event.relatedObject == this)
+            //return;
+        //
+        //// Clear the selection, but remember which items were moved
+        //var movedIndices:Vector.<int> = selectedIndices;
+        //setSelectedIndices(new Vector.<int>(), true);
+        //validateProperties(); // To commit the selection
+        //
+        //// Remove the moved items
+        //movedIndices.sort(compareValues);
+        //var count:int = movedIndices.length;
+        //for (var i:int = count - 1; i >= 0; i--)
+        //{
+            //dataProvider.removeItemAt(movedIndices[i]);
+        //}
+    }
     
     /**
      *  Creates an instance of a class that is used to display the visuals
@@ -1773,22 +1850,23 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function addDragData(dragSource:DragSource):void
+    // not implemented
+    public function addDragData(dragSource:DragSource):void
     {
-        dragSource.addHandler(copySelectedItemsForDragDrop, "itemsByIndex");
-        
-        // Calculate the index of the focus item within the vector
-        // of ordered items returned for the "itemsByIndex" format.
-        var caretIndex:int = 0;
-        var draggedIndices:Vector.<int> = selectedIndices;
-        var count:int = draggedIndices.length;
-        for (var i:int = 0; i < count; i++)
-        {
-            if (mouseDownIndex > draggedIndices[i])
-                caretIndex++;
-        }
-        dragSource.addData(caretIndex, "caretIndex");
-    } */
+        //dragSource.addHandler(copySelectedItemsForDragDrop, "itemsByIndex");
+        //
+        //// Calculate the index of the focus item within the vector
+        //// of ordered items returned for the "itemsByIndex" format.
+        //var caretIndex:int = 0;
+        //var draggedIndices:Vector.<int> = selectedIndices;
+        //var count:int = draggedIndices.length;
+        //for (var i:int = 0; i < count; i++)
+        //{
+            //if (mouseDownIndex > draggedIndices[i])
+                //caretIndex++;
+        //}
+        //dragSource.addData(caretIndex, "caretIndex");
+    }
 
     /**
      *  @private
@@ -2122,28 +2200,29 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function destroyDropIndicator():DisplayObject
+    public function destroyDropIndicator():UIComponent // not implemented
     {
-        var dropIndicatorInstance:DisplayObject = layout.dropIndicator;
-        if (!dropIndicatorInstance)
-            return null;
-        
-        // Release the reference from the layout
-        layout.dropIndicator = null;
-        
-        // Release it if it's a dynamic skin part
-        var count:int = numDynamicParts("dropIndicator");
-        for (var i:int = 0; i < count; i++)
-        {
-            if (dropIndicatorInstance == getDynamicPartAt("dropIndicator", i))
-            {
-                // This was a dynamic part, remove it now:
-                removeDynamicPartInstance("dropIndicator", dropIndicatorInstance);
-                break;
-            }
-        }
-        return dropIndicatorInstance;
-    } */
+        //var dropIndicatorInstance:DisplayObject = layout.dropIndicator;
+        //if (!dropIndicatorInstance)
+            //return null;
+        //
+        //// Release the reference from the layout
+        //layout.dropIndicator = null;
+        //
+        //// Release it if it's a dynamic skin part
+        //var count:int = numDynamicParts("dropIndicator");
+        //for (var i:int = 0; i < count; i++)
+        //{
+            //if (dropIndicatorInstance == getDynamicPartAt("dropIndicator", i))
+            //{
+                //// This was a dynamic part, remove it now:
+                //removeDynamicPartInstance("dropIndicator", dropIndicatorInstance);
+                //break;
+            //}
+        //}
+        //return dropIndicatorInstance;
+	    return null;
+    }
     
     /**
      *  @private
@@ -2163,35 +2242,35 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* protected function dragEnterHandler(event:DragEvent):void
+    protected function dragEnterHandler(event:DragEvent):void // not implemented
     {
-        if (event.isDefaultPrevented())
-            return;
-        
-        var dropLocation:DropLocation = calculateDropLocation(event); 
-        if (dropLocation)
-        {
-            DragManager.acceptDragDrop(this);
-            
-            // Create the dropIndicator instance. The layout will take care of
-            // parenting, sizing, positioning and validating the dropIndicator.
-            createDropIndicator();
-            
-            // Show focus
-            drawFocusAnyway = true;
-            drawFocus(true);
-            
-            // Notify manager we can drop
-            DragManager.showFeedback(event.ctrlKey ? DragManager.COPY : DragManager.MOVE);
-
-            // Show drop indicator
-            layout.showDropIndicator(dropLocation);
-        }
-        else
-        {
-            DragManager.showFeedback(DragManager.NONE);
-        }
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+        //
+        //var dropLocation:DropLocation = calculateDropLocation(event); 
+        //if (dropLocation)
+        //{
+            //DragManager.acceptDragDrop(this);
+            //
+            //// Create the dropIndicator instance. The layout will take care of
+            //// parenting, sizing, positioning and validating the dropIndicator.
+            //createDropIndicator();
+            //
+            //// Show focus
+            //drawFocusAnyway = true;
+            //drawFocus(true);
+            //
+            //// Notify manager we can drop
+            //DragManager.showFeedback(event.ctrlKey ? DragManager.COPY : DragManager.MOVE);
+//
+            //// Show drop indicator
+            //layout.showDropIndicator(dropLocation);
+        //}
+        //else
+        //{
+            //DragManager.showFeedback(DragManager.NONE);
+        //}
+    }
     
     /**
      *  @private
@@ -2211,37 +2290,37 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* protected function dragOverHandler(event:DragEvent):void
+    protected function dragOverHandler(event:DragEvent):void // not implemented
     {
-        if (event.isDefaultPrevented())
-            return;
-        
-        var dropLocation:DropLocation = calculateDropLocation(event);
-        if (dropLocation)
-        {
-            // Show focus
-            drawFocusAnyway = true;
-            drawFocus(true);
-            
-            // Notify manager we can drop
-            DragManager.showFeedback(event.ctrlKey ? DragManager.COPY : DragManager.MOVE);
-
-            // Show drop indicator
-            layout.showDropIndicator(dropLocation);
-        }
-        else
-        {
-            // Hide if previously showing
-            layout.hideDropIndicator();
-
-            // Hide focus
-            drawFocus(false);
-            drawFocusAnyway = false;
-            
-            // Notify manager we can't drop
-            DragManager.showFeedback(DragManager.NONE);
-        }
-    } */
+        //if (event.isDefaultPrevented())
+            //return;
+        //
+        //var dropLocation:DropLocation = calculateDropLocation(event);
+        //if (dropLocation)
+        //{
+            //// Show focus
+            //drawFocusAnyway = true;
+            //drawFocus(true);
+            //
+            //// Notify manager we can drop
+            //DragManager.showFeedback(event.ctrlKey ? DragManager.COPY : DragManager.MOVE);
+//
+            //// Show drop indicator
+            //layout.showDropIndicator(dropLocation);
+        //}
+        //else
+        //{
+            //// Hide if previously showing
+            //layout.hideDropIndicator();
+//
+            //// Hide focus
+            //drawFocus(false);
+            //drawFocusAnyway = false;
+            //
+            //// Notify manager we can't drop
+            //DragManager.showFeedback(DragManager.NONE);
+        //}
+    }
     
     /**
      *  @private
@@ -2314,113 +2393,113 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* protected function dragDropHandler(event:DragEvent):void
+    protected function dragDropHandler(event:DragEvent):void // not implemented
     {
-        if (event.isDefaultPrevented())
-            return;
-        
-        // Hide the drop indicator
-        layout.hideDropIndicator();
-        destroyDropIndicator();
-        
-        // Hide focus
-        drawFocus(false);
-        drawFocusAnyway = false;
-        
-        // Get the dropLocation
-        var dropLocation:DropLocation = calculateDropLocation(event);
-        if (!dropLocation)
-            return;
-        
-        // Find the dropIndex
-        var dropIndex:int = dropLocation.dropIndex;
-        
-        // Make sure the manager has the appropriate action
-        DragManager.showFeedback(event.ctrlKey ? DragManager.COPY : DragManager.MOVE);
-        
-        var dragSource:DragSource = event.dragSource;
-        var items:Vector.<Object> = dragSource.dataForFormat("itemsByIndex") as Vector.<Object>;
-
-        var caretIndex:int = -1;
-        if (dragSource.hasFormat("caretIndex"))
-            caretIndex = event.dragSource.dataForFormat("caretIndex") as int;
-        
-        // Clear the selection first to avoid extra work while adding and removing items.
-        // We will set a new selection further below in the method.
-        var indices:Vector.<int> = selectedIndices; 
-        setSelectedIndices(new Vector.<int>(), false);
-        validateProperties(); // To commit the selection
-        
-        // If we are reordering the list, remove the items now,
-        // adjusting the dropIndex in the mean time.
-        // If the items are drag moved to this list from a different list,
-        // the drag initiator will remove the items when it receives the
-        // DragEvent.DRAG_COMPLETE event.
-        if (dragMoveEnabled &&
-            event.action == DragManager.MOVE &&
-            event.dragInitiator == this)
-        {
-            // Remove the previously selected items
-            indices.sort(compareValues);
-            for (var i:int = indices.length - 1; i >= 0; i--)
-            {
-                if (indices[i] < dropIndex)
-                    dropIndex--;
-                dataProvider.removeItemAt(indices[i]);
-            }
-        }
-        
-        // Drop the items at the dropIndex
-        var newSelection:Vector.<int> = new Vector.<int>();
-
-        // Update the selection with the index of the caret item
-        if (caretIndex != -1)
-            newSelection.push(dropIndex + caretIndex);
-
-        // Create dataProvider if needed
-        if (!dataProvider)
-            dataProvider = new ArrayCollection();
-        
-        var copyItems:Boolean = (event.action == DragManager.COPY);
-        for (i = 0; i < items.length; i++)
-        {
-            // Get the item, clone if needed
-            var item:Object = items[i];
-            if (copyItems)
-                item = copyItemWithUID(item);
-
-            // Copy the data
-            dataProvider.addItemAt(item, dropIndex + i);
-
-            // Update the selection
-            if (i != caretIndex)
-                newSelection.push(dropIndex + i);
-        }
-
-        // Set the selection
-        setSelectedIndices(newSelection, false);
-
-        // Scroll the caret index in view
-        if (caretIndex != -1)
-        {
-            // Sometimes we may need to scroll several times as for virtual layouts
-            // this is not guaranteed to bring in the element in view the first try
-            // as some items in between may not be loaded yet and their size is only
-            // estimated.
-            var delta:Point;
-            var loopCount:int = 0;
-            while (loopCount++ < 10)
-            {
-                validateNow();
-                delta = layout.getScrollPositionDeltaToElement(dropIndex + caretIndex);
-                if (!delta || (delta.x == 0 && delta.y == 0))
-                    break;
-                layout.horizontalScrollPosition += delta.x;
-                layout.verticalScrollPosition += delta.y;
-            }
-        }
+        //if (event.isDefaultPrevented())
+            //return;
+        //
+        //// Hide the drop indicator
+        //layout.hideDropIndicator();
+        //destroyDropIndicator();
+        //
+        //// Hide focus
+        //drawFocus(false);
+        //drawFocusAnyway = false;
+        //
+        //// Get the dropLocation
+        //var dropLocation:DropLocation = calculateDropLocation(event);
+        //if (!dropLocation)
+            //return;
+        //
+        //// Find the dropIndex
+        //var dropIndex:int = dropLocation.dropIndex;
+        //
+        //// Make sure the manager has the appropriate action
+        //DragManager.showFeedback(event.ctrlKey ? DragManager.COPY : DragManager.MOVE);
+        //
+        //var dragSource:DragSource = event.dragSource;
+        //var items:Vector.<Object> = dragSource.dataForFormat("itemsByIndex") as Vector.<Object>;
+//
+        //var caretIndex:int = -1;
+        //if (dragSource.hasFormat("caretIndex"))
+            //caretIndex = event.dragSource.dataForFormat("caretIndex") as int;
+        //
+        //// Clear the selection first to avoid extra work while adding and removing items.
+        //// We will set a new selection further below in the method.
+        //var indices:Vector.<int> = selectedIndices; 
+        //setSelectedIndices(new Vector.<int>(), false);
+        //validateProperties(); // To commit the selection
+        //
+        //// If we are reordering the list, remove the items now,
+        //// adjusting the dropIndex in the mean time.
+        //// If the items are drag moved to this list from a different list,
+        //// the drag initiator will remove the items when it receives the
+        //// DragEvent.DRAG_COMPLETE event.
+        //if (dragMoveEnabled &&
+            //event.action == DragManager.MOVE &&
+            //event.dragInitiator == this)
+        //{
+            //// Remove the previously selected items
+            //indices.sort(compareValues);
+            //for (var i:int = indices.length - 1; i >= 0; i--)
+            //{
+                //if (indices[i] < dropIndex)
+                    //dropIndex--;
+                //dataProvider.removeItemAt(indices[i]);
+            //}
+        //}
+        //
+        //// Drop the items at the dropIndex
+        //var newSelection:Vector.<int> = new Vector.<int>();
+//
+        //// Update the selection with the index of the caret item
+        //if (caretIndex != -1)
+            //newSelection.push(dropIndex + caretIndex);
+//
+        //// Create dataProvider if needed
+        //if (!dataProvider)
+            //dataProvider = new ArrayCollection();
+        //
+        //var copyItems:Boolean = (event.action == DragManager.COPY);
+        //for (i = 0; i < items.length; i++)
+        //{
+            //// Get the item, clone if needed
+            //var item:Object = items[i];
+            //if (copyItems)
+                //item = copyItemWithUID(item);
+//
+            //// Copy the data
+            //dataProvider.addItemAt(item, dropIndex + i);
+//
+            //// Update the selection
+            //if (i != caretIndex)
+                //newSelection.push(dropIndex + i);
+        //}
+//
+        //// Set the selection
+        //setSelectedIndices(newSelection, false);
+//
+        //// Scroll the caret index in view
+        //if (caretIndex != -1)
+        //{
+            //// Sometimes we may need to scroll several times as for virtual layouts
+            //// this is not guaranteed to bring in the element in view the first try
+            //// as some items in between may not be loaded yet and their size is only
+            //// estimated.
+            //var delta:Point;
+            //var loopCount:int = 0;
+            //while (loopCount++ < 10)
+            //{
+                //validateNow();
+                //delta = layout.getScrollPositionDeltaToElement(dropIndex + caretIndex);
+                //if (!delta || (delta.x == 0 && delta.y == 0))
+                    //break;
+                //layout.horizontalScrollPosition += delta.x;
+                //layout.verticalScrollPosition += delta.y;
+            //}
+        //}
     }
-	*/
+
     /**
      *  Makes a deep copy of the object by calling the 
      *  <code>ObjectUtil.copy()</code> method, and replaces 
@@ -2511,19 +2590,20 @@ public class List extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function ensureIndexIsVisible(index:int):void
+		// not implemented
+    public function ensureIndexIsVisible(index:int):void
     {
-        if (!layout)
-            return;
-
-        var spDelta:Point = dataGroup.layout.getScrollPositionDeltaToElement(index);
-         
-        if (spDelta)
-        {
-            dataGroup.horizontalScrollPosition += spDelta.x;
-            dataGroup.verticalScrollPosition += spDelta.y;
-        }
-    } */
+        //if (!layout)
+            //return;
+//
+        //var spDelta:Point = dataGroup.layout.getScrollPositionDeltaToElement(index);
+         //
+        //if (spDelta)
+        //{
+            //dataGroup.horizontalScrollPosition += spDelta.x;
+            //dataGroup.verticalScrollPosition += spDelta.y;
+        //}
+    }
     
     /**
      *  Adjusts the selected indices to account for items being added to or 
@@ -2753,7 +2833,7 @@ public class List extends ListBase implements IFocusManagerComponent
     /**
      *  @private
      */
-    /* mx_internal function findStringLoop(str:String, startIndex:int, stopIndex:int):Number
+    public function findStringLoop(str:String, startIndex:int, stopIndex:int):Number
     {
         // Try to find the item based on the start and stop indices
         for (startIndex; startIndex != stopIndex; startIndex++)
@@ -2767,7 +2847,7 @@ public class List extends ListBase implements IFocusManagerComponent
             }
         }
         return -1;
-    } */
+    } 
     
     /**
      *  @private

@@ -28,10 +28,8 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IImage
+	public interface IImage extends IHasImage
 	{		
-		COMPILE::JS
-		function get imageElement():Element;
 		COMPILE::JS
 		function applyImageData(binaryDataAsString:String):void;
 

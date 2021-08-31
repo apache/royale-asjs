@@ -66,7 +66,7 @@ limitations under the License.
         </html:Header>
         
         <html:Section localId="main">
-            <j:List localId="todolist" width="100%"
+            <j:DataContainer localId="todolist" width="100%"
                 labelField="label" className="todo-list" 
                 dataProvider="{todoModel.listItems}"/>
         </html:Section>
@@ -83,7 +83,7 @@ limitations under the License.
                 Created by
                 <a href="http://github.com/carlosrovira" target="_blank">Carlos Rovira</a>
                 for
-                <a href="http://royale.apache.org" target="_blank">Apache Royale</a>
+                <a href="https://royale.apache.org" target="_blank">Apache Royale</a>
             </p>
             <p>Inspired in <a href="http://todomvc.com" target="_blank">TodoMVC</a></p>
         ]]>

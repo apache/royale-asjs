@@ -19,14 +19,13 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
@@ -38,7 +37,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ListItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
+	public class ListItemRendererInitializer extends IndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -69,17 +68,26 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{	
 			super.strand = value;
             ownerView = (value as IStrandWithModelView).view as IItemRendererOwnerView;
-            presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
+			if(_strand as IListWithPresentationModel)
+            	presentationModel = (_strand as IListWithPresentationModel).presentationModel as IListPresentationModel;            
 		}
         
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
             if (presentationModel) {
-				if(!presentationModel.variableRowHeight)
+				if(!isNaN(presentationModel.rowHeight) && !presentationModel.variableRowHeight)
+				{
                 	StyledUIBase(ir).height = presentationModel.rowHeight;
-				// else
-                // 	StyledUIBase(ir).minHeight = presentationModel.rowHeight;
-
+				}
+				else if(!isNaN(presentationModel.rowHeight) && presentationModel.variableRowHeight)
+				{
+                	StyledUIBase(ir).minHeight = presentationModel.rowHeight;
+				}
+				else if(!presentationModel.variableRowHeight)
+				{
+                	StyledUIBase(ir).height = isNaN(presentationModel.rowHeight) ? NaN : ListPresentationModel.DEFAULT_ROW_HEIGHT;
+				}
+				
                 if(ir is IAlignItemRenderer)
                 {
                     (ir as IAlignItemRenderer).align = presentationModel.align;
@@ -93,6 +101,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 					(ir as StyledMXMLItemRenderer).emphasis = StyledUIBase(_strand).emphasis;
 				}
 			}
+
+			super.setupVisualsForItemRenderer(ir);
 		}
 	}
 }

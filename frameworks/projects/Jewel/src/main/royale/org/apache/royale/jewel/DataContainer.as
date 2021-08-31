@@ -26,25 +26,35 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
-	 *  Indicates that the initialization of the list is complete.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
 	 */
-	[Event(name="initComplete", type="org.apache.royale.events.Event")]
+	[DefaultProperty("dataProvider")]
 
 	/**
-	 *  The DataContainer class is a component that displays multiple data items. The DataContainer uses
-	 *  the following bead types:
+	 *  The Jewel DataContainer class is a component that displays multiple data items.
+	 * 
+	 *  This component gets the data through its `dataProvider` property that receives 
+	 *  an `ArrayList` of data objects. To represent each item the component use 
+	 *  an [ItemRenderer](/features/item-renderers) class that can be configured and customized. 
+	 * 
+	 *  The component generate dynamically as many instances of ItemRenderer as items in the 
+	 *  data provider array and fill each instance with the appropiate data. 
+	 *  By default it uses `StringItemRenderer` as the item renderer.
+	 * 
+	 *  By default items are layout vertically using Jewel `VerticalLayout`. This component 
+	 *  has a `Viewport` that clip generated items.
+	 *  
+	 *  The DataContainer uses the following bead types:
 	 *
 	 *  org.apache.royale.core.IBeadModel: the data model, which includes the dataProvider.
 	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the list.
-	 *  org.apache.royale.core.IBeadController: the bead that handles input and output.
 	 *  org.apache.royale.core.IBeadLayout: the bead responsible for the size and position of the itemRenderers.
 	 *  org.apache.royale.core.IDataProviderItemRendererMapper: the bead responsible for creating the itemRenders.
-	 *  org.apache.royale.core.IItemRenderer: the class or factory used to display an item in the list.
+	 *  org.apache.royale.core.IItemRendererClassFactory: the factory for the itemrenders.
+	 *  org.apache.royale.core.IItemRenderer: the class that describes the each piece of data.
+	 *  org.apache.royale.core.IItemRendererInitializer: the class that initialize the renderer and provide additional configuration.
+	 *  org.apache.royale.core.IViewport: the class that defines the area that display content
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -67,6 +77,7 @@ package org.apache.royale.jewel
             typeNames = "jewel datacontainer";
 		}
 
+		[Bindable("labelFieldChanged")]
 		/**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -89,6 +100,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+		[Bindable("dataProviderChanged")]
 		/**
 		 *  The data being display by the List.
 		 *
@@ -109,7 +121,6 @@ package org.apache.royale.jewel
         {
             IDataProviderModel(model).dataProvider = value;
         }
-
 
 		/**
 		 *  The presentation model for the list.

@@ -135,7 +135,7 @@ package org.apache.royale.jewel.beads.models
 		}
 
 
-		private var _dataProvider:IArrayList;
+		protected var _dataProvider:IArrayList;
 
         /**
          *  @copy org.apache.royale.core.ISelectionModel#dataProvider
@@ -145,6 +145,7 @@ package org.apache.royale.jewel.beads.models
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
+        [Bindable("dataProviderChanged")]
 		public function get dataProvider():Object
 		{
 			return _dataProvider;
@@ -157,9 +158,33 @@ package org.apache.royale.jewel.beads.models
 		{
             if (value == _dataProvider) return;
 
+            const oldIndex:int = _selectedIndex;
+            var itemChanged:Boolean = setDataProvider(value);
+
+            dispatchChange("dataProviderChanged");
+			if (itemChanged || oldIndex != _selectedIndex) {
+                dispatchChange("selectionChanged");
+			}
+        }
+		
+        public function setDataProvider__NoCheck(value:Object):void
+		{
+            const oldIndex:int = _selectedIndex;
+            var itemChanged:Boolean = setDataProvider(value);
+
+            dispatchChange("dataProviderChanged");
+			if (itemChanged || oldIndex != _selectedIndex) {
+                dispatchChange("selectionChanged");
+			}
+        }
+
+        /**
+         *  @private
+         */
+		public function setDataProvider(value:Object):Boolean
+		{
             _dataProvider = value as IArrayList;
             var itemChanged:Boolean;
-            const oldIndex:int = _selectedIndex;
             if (_dataProvider) {
                 if (_selectedItem) {
                     _selectedIndex = _dataProvider.getItemIndex(_selectedItem);
@@ -184,13 +209,10 @@ package org.apache.royale.jewel.beads.models
                 _selectedIndex = -1;
             }
 
-            dispatchChange("dataProviderChanged");
-			if (itemChanged || oldIndex != _selectedIndex) {
-                dispatchChange("selectionChanged");
-			}
+            return itemChanged;
 		}
 
-		private var _selectedIndex:int = -1;
+		protected var _selectedIndex:int = -1;
 		private var _rollOverIndex:int = -1;
 		private var _labelField:String = null;
 
@@ -217,6 +239,18 @@ package org.apache.royale.jewel.beads.models
                 dispatchChange("labelFieldChanged");
 			}
 		}
+
+        private var _itemClicked:Boolean = false;
+        /**
+         * Identify when the selection is from a user click or when is programatically
+         */
+        public function get isItemClicked():Boolean {
+            return _itemClicked;
+        }
+        public function set isItemClicked(value:Boolean):void {
+            if(value !== _itemClicked)
+                _itemClicked = value;
+        }
 
         /**
          *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
@@ -276,7 +310,7 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
-		private var _selectedItem:Object;
+		protected var _selectedItem:Object;
 
         /**
          *  @copy org.apache.royale.core.ISelectionModel#selectedItem

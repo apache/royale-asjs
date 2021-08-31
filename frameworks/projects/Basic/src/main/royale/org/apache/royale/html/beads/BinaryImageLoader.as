@@ -90,6 +90,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IBinaryImage
 		 * @royaleignorecoercion org.apache.royale.core.IBinaryImageModel
 		 * @royaleignorecoercion org.apache.royale.core.IImageView
 		 */

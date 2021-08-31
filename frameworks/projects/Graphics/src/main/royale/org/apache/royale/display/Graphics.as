@@ -49,8 +49,15 @@ package org.apache.royale.display
         
         COMPILE::SWF
         private static var instanceMap:Dictionary;
-        
-        
+
+        COMPILE::JS
+        private var suppressPathPointerEvents = true;
+
+        COMPILE::JS
+        public function setSuppressPathPointerEvents(value:Boolean):void{
+            suppressPathPointerEvents = value;
+        }
+
         public static function getInstanceFor(target:IGraphicsTarget):Graphics{
             if (!target) return null;
             var graphicsInst:Graphics;
@@ -124,9 +131,12 @@ package org.apache.royale.display
             COMPILE::JS
             {
                 //increment the Graphics instance index
-                _instIdx ++;
+                _inst_idx = _instIdx++;
             }
         }
+
+        COMPILE::JS
+        private var _inst_idx:uint;
         
         private var graphicsTarget:IGraphicsTarget;
         
@@ -141,9 +151,9 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
-                var svg:SVGElement = graphicsTarget.graphicsRenderTarget;
-                while (svg.firstChild) {
-                    svg.removeChild(svg.firstChild);
+                var renderTarget:SVGElement = this.renderTarget;
+                while (renderTarget.firstChild) {
+                    renderTarget.removeChild(renderTarget.firstChild);
                 }
                 _defs = null;
                 defsIdx = 0;
@@ -169,7 +179,7 @@ package org.apache.royale.display
             private var _nonZeroFill:Boolean;
             private var _defs:SVGDefsElement;
             
-            private function get svg():SVGElement{
+            private function get renderTarget():SVGElement{
                 return graphicsTarget.graphicsRenderTarget;
             }
             
@@ -179,7 +189,7 @@ package org.apache.royale.display
             private function get defs():SVGDefsElement{
                 if (!_defs) {
                     _defs = createGraphicsSVG('defs', false) as SVGDefsElement;
-                    var svgNode:SVGElement = svg;
+                    var svgNode:SVGElement = renderTarget.ownerSVGElement ?  renderTarget.ownerSVGElement : renderTarget;
                     if (svgNode.childNodes.length) {
                         svgNode.insertBefore(_defs, svgNode.childNodes[0]);
                     } else svgNode.appendChild(_defs);
@@ -207,7 +217,7 @@ package org.apache.royale.display
              */
             private function getCurrentPath():SVGPathElement{
                 if (!_currentPath) {
-                    _currentPath = createGraphicsSVG('path') as SVGPathElement;
+                    _currentPath = createGraphicsSVG('path', suppressPathPointerEvents) as SVGPathElement;
                     _currentStrokePath = _currentPath;
                     _currentPath.setAttributeNS(null, 'd','');
                     _pathData = _currentPath.getAttributeNodeNS(null,'d');
@@ -223,7 +233,7 @@ package org.apache.royale.display
                         }
                     }
                     else setNoFill(_currentPath);
-                    svg.appendChild(_currentPath);
+                    renderTarget.appendChild(_currentPath);
                     //apply the current stroke now, spawning stroke paths if necessary as determined by stroke implementation
                     currentStroke.apply(this, _currentPath);
                 }
@@ -268,12 +278,12 @@ package org.apache.royale.display
                     //if we had no stroke, then no need to create the original, just continue after
                     if (getCurrentPath().getAttributeNS(null, 'stroke') !== 'none') {
                         //otherwise set current path stroke to none, transfer previous stroke attributes to new sub path
-                        _currentStrokePath = createGraphicsSVG('path') as SVGPathElement;
+                        _currentStrokePath = createGraphicsSVG('path', suppressPathPointerEvents) as SVGPathElement;
                         _currentStrokePath.setAttributeNS(null, 'd', getPathData().value);
                         _currentStrokePath.setAttributeNS(null, 'fill', 'none');
                         currentStroke.apply(this,_currentStrokePath);
                         getCurrentPath().setAttributeNS(null, 'stroke', 'none');
-                        svg.appendChild(_currentStrokePath);
+                        renderTarget.appendChild(_currentStrokePath);
                         if (fromPaint) {
                             _strokePathData = _currentStrokePath.getAttributeNodeNS(null, 'd');
                             return _currentStrokePath;
@@ -281,13 +291,13 @@ package org.apache.royale.display
                     }
                 }
                 
-                _currentStrokePath = createGraphicsSVG('path') as SVGPathElement;
+                _currentStrokePath = createGraphicsSVG('path',suppressPathPointerEvents) as SVGPathElement;
                 //then create the new stroke target
                 _strokeMove = true;
                 _currentStrokePath.setAttributeNS(null, 'd', 'M' + _lastPoint);
                 _currentStrokePath.setAttributeNS(null, 'fill', 'none');
                 _strokePathData = _currentStrokePath.getAttributeNodeNS(null, 'd');
-                svg.appendChild(_currentStrokePath);
+                renderTarget.appendChild(_currentStrokePath);
                 _lastPoint = null;
                 return _currentStrokePath;
             }
@@ -324,7 +334,7 @@ package org.apache.royale.display
                 patternElement.appendChild(imageUse);
 
                 defs.appendChild(patternElement);
-                patternElement.setAttribute('id', 'royale-bitmapfill-' + _instIdx + '-' + defsIdx);
+                patternElement.setAttribute('id', 'royale-bitmapfill-' + _inst_idx + '-' + defsIdx);
                 defsIdx++;
                 return patternElement;
             }
@@ -338,7 +348,7 @@ package org.apache.royale.display
                 var gradientElement:SVGGradientElement = createGraphicsSVG(elementType, false) as SVGGradientElement;
                 gradientElement.setAttributeNS(null, 'gradientUnits', 'userSpaceOnUse');
                 defs.appendChild(gradientElement);
-                gradientElement.setAttribute('id', 'royale-gradient-' + _instIdx + '-' + defsIdx);
+                gradientElement.setAttribute('id', 'royale-gradient-' + _inst_idx + '-' + defsIdx);
                 defsIdx++;
                 return gradientElement;
             }
@@ -466,7 +476,7 @@ package org.apache.royale.display
 
                 var bitmapFill:GraphicsBitmapFill = BITMAP_FILL;
                 bitmapFill.bitmapData = bitmap;
-                bitmapFill.matrix = matrix ? matrix.clone()/* as Matrix*/: null;;
+                bitmapFill.matrix = matrix ? matrix.clone()/* as Matrix*/: null;
                 bitmapFill.repeat = repeat;
                 bitmapFill.smooth = smooth;
                 currentFill = bitmapFill;
@@ -606,6 +616,8 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
+                if (isNaN(x)) x = 0;
+                if (isNaN(y)) y = 0;
                 var lp:String = x + ' ' + y;
                 /*if (!_lastStartPoint)*/ _lastStartPoint = lp;
                 _moveTo = 'M' + lp;
@@ -621,6 +633,8 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
+                if (isNaN(x)) x = 0;
+                if (isNaN(y)) y = 0;
                 var lp:String = x + ' ' + y;
                 if (!_lastStartPoint) _lastStartPoint = '0 0';
                 appendPathData('L' + lp, lp);
@@ -635,6 +649,10 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
+                if (isNaN(controlX)) controlX = 0;
+                if (isNaN(controlY)) controlY = 0;
+                if (isNaN(anchorX)) anchorX = 0;
+                if (isNaN(anchorY)) anchorY = 0;
                 var lp:String = anchorX + ' ' + anchorY;
                 if (!_lastStartPoint) _lastStartPoint = '0 0';
                 appendPathData('Q' + controlX + ' ' + controlY + ' ' + lp, lp);

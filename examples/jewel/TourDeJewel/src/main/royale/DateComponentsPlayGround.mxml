@@ -86,6 +86,12 @@ limitations under the License.
 
 			[Bindable]
 			public var promptText:String = "DD/MM/YYYY";
+
+			[Bindable]
+			public var minDate:Date = new Date(2020, 11, 13);
+			
+			[Bindable]
+			public var maxDate:Date = new Date();
 		]]>
 	</fx:Script>
 
@@ -95,7 +101,7 @@ limitations under the License.
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
-			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 		
 		<c:ExampleHeader title="Jewel DateField &amp; DateChooser">
@@ -115,7 +121,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DateChooser (Spanish)"/>
-				<j:DateChooser localId="dateChooserES" change="dateChooserESChanged()" initComplete="configDateChooserToES()"/>
+				<j:DateChooser localId="dateChooserES" change="dateChooserESChanged()" beadsAdded="configDateChooserToES()"/>
 				<j:Label localId="dateChooserESSelectedDate" multiline="true" html="&lt;strong>DateChooser fecha seleccionada:&lt;/strong> " width="275"/>
 			</j:Card>
 		</j:GridCell>
@@ -131,8 +137,8 @@ limitations under the License.
 						</j:beads>
 					</j:DateField>
 					<j:Button text="Select today" click="dateFieldToToday()" emphasis="primary"/>
-					<j:Button text="Date to null" click="dateFieldToNull()" />
 				</j:HGroup>
+				<j:Button text="Date to null" click="dateFieldToNull()" />
 				<j:Label localId="dateFieldDefaultSelectedDate" multiline="true" html="&lt;strong>DateField selected date:&lt;/strong> "/>
 			</j:Card>
 		</j:GridCell>
@@ -161,7 +167,7 @@ limitations under the License.
 				<j:Label multiline="true" html="&lt;strong>DateChooser selected date:&lt;/strong> {dateChooserSelectedDate.selectedDate}" width="275"/>
 			</j:Card>
 		</j:GridCell>
-		
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DateField Disabled"/>
@@ -178,6 +184,131 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 				</j:DateChooser>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Sizing" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is not set, so it defaults to 162px.</p>]]></j:html>
+					</j:Label>
+					<j:DateField>
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+					
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is set to 140 pixels.</p>]]></j:html>
+					</j:Label>
+					<j:DateField width="140">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+					
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is set to 100%.</p>]]></j:html>
+					</j:Label>
+					<j:DateField width="100%">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+
+					<html:Hr width="100%"/>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> size is set to 50%.</p>]]></j:html>
+					</j:Label>
+					<j:DateField width="50%">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Resizing" className="secondary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>Following <b>DateField</b> width size is managed by a slider.</p>]]></j:html>
+					</j:Label>
+
+					<j:DateField localId="df3">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
+						</j:beads>
+					</j:DateField>
+
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsCenter">
+					<j:beads>
+						<j:VerticalLayout gap="3"/>
+					</j:beads>
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="width: {df3.width}px"/>
+						<j:HSlider width="250" value="200" minimum="100" maximum="400" valueChange="df3.width = event.target.value;"/>
+					</j:HGroup>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="DateChooser Restricted Date Range"/>
+				<j:DateChooser localId="dateChooserRes">
+					<j:beads>
+						<j:DateChooserDateRangeRestriction minDate="{minDate}" maxDate="{maxDate}"/>
+					</j:beads>
+				</j:DateChooser>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Min Date"/>
+					<j:DateField change="minDate = event.target.selectedDate;" selectedDate="{minDate}"/>
+				</j:HGroup>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Max Date"/>
+					<j:DateField change="maxDate = event.target.selectedDate;" selectedDate="{maxDate}"/>
+				</j:HGroup>
+
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="DateField Restricted Date Range"/>
+				<j:DateField localId="dateFieldRes">
+					<j:beads>
+						<j:DateFieldDateRangeRestriction minDate="{minDate}" maxDate="{maxDate}"/>
+					</j:beads>
+				</j:DateField>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Min Date"/>
+					<j:DateField change="minDate = event.target.selectedDate;" selectedDate="{minDate}"/>
+				</j:HGroup>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:Label text="Select Max Date"/>
+					<j:DateField change="maxDate = event.target.selectedDate;" selectedDate="{maxDate}"/>
+				</j:HGroup>
+
 			</j:Card>
 		</j:GridCell>
 

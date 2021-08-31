@@ -230,7 +230,8 @@ package org.apache.royale.core
         protected function loadHandler(event:Object):void
         {
             imageElement.removeEventListener('load', loadHandler);
-			sendStrandEvent(_strand,"layoutNeeded");
+			sendStrandEvent(_strand, "loadComplete");
+			sendStrandEvent(_strand, "layoutNeeded");
         }
         /**
          * @royaleignorecoercion HTMLElement

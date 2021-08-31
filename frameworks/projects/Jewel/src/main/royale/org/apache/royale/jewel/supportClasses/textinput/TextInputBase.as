@@ -31,6 +31,7 @@ package org.apache.royale.jewel.supportClasses.textinput
     import org.apache.royale.events.Event;
     import org.apache.royale.events.KeyboardEvent;
     import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
+    import org.apache.royale.events.utils.WhitespaceKeys;
     
     /**
      *  Dispatched when text in the control changes through user input.
@@ -45,7 +46,7 @@ package org.apache.royale.jewel.supportClasses.textinput
     /**
      *  Dispatched when the user presses the Enter key.
      *
-     *  @eventType mx.events.FlexEvent.ENTER
+     *  @eventType org.apache.royale.events.utils.WhitespaceKeys.ENTER
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -195,9 +196,9 @@ package org.apache.royale.jewel.supportClasses.textinput
         {
             COMPILE::JS
             {
-            if (event.key === KeyboardEvent.KEYCODE__ENTER) {
+            if (event.key === WhitespaceKeys.ENTER) {
                 // Cancel the default action, if needed
-                event.preventDefault();
+                //event.preventDefault();
                 dispatchEvent(new Event("enter"));
             }
             }
@@ -247,21 +248,5 @@ package org.apache.royale.jewel.supportClasses.textinput
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(input);
 		}
-
-        /**
-         *  set focus on the text box programatically
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-		public function setFocus():void
-		{
-            COMPILE::JS
-            {
-                input.focus();
-            }
-        }
 	}
 }

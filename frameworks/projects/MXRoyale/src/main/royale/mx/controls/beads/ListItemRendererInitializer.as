@@ -34,6 +34,8 @@ package mx.controls.beads
     import org.apache.royale.core.UIBase;
     import org.apache.royale.html.beads.ListItemRendererInitializer;
     import mx.controls.treeClasses.TreeListData;
+
+	import mx.core.UIComponent;
     
 	/**
 	 *  The TreeItemRendererInitializer class initializes item renderers
@@ -74,7 +76,15 @@ package mx.controls.beads
 		{
             if (!dataProviderModel)
                 return;
-            
+
+			if (ir is UIComponent) {
+				COMPILE::JS{
+					//we are using a UIComponent as a renderer, but it is too late to use .isAbsolute = false
+					//so swap it out here:
+					ir.element.style.position = 'relative';
+				}
+			}
+
             super.initializeIndexedItemRenderer(ir, data, index);
             
 			if (ir is IOwnerViewItemRenderer)

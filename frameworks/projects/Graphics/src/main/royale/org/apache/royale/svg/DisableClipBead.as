@@ -115,7 +115,9 @@ package org.apache.royale.svg
 				cachedClipPath = null;
 			}
 		}
-		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		public function get host():IRenderedObject
 		{
 			return _strand as IRenderedObject;

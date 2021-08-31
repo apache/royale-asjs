@@ -19,11 +19,10 @@
 package org.apache.royale.html.beads.models
 {
 	import org.apache.royale.collections.ICollectionView;
-	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IMultiSelectionModel;
-	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 
     /**
      *  The MultiSelectionCollectionViewModel class is a selection model for
@@ -35,7 +34,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-	public class MultiSelectionCollectionViewModel extends EventDispatcher implements IRollOverModel, IMultiSelectionModel
+	public class MultiSelectionCollectionViewModel extends DispatcherBead implements IRollOverModel, IMultiSelectionModel
 	{
         /**
          *  Constructor.
@@ -47,21 +46,6 @@ package org.apache.royale.html.beads.models
          */
 		public function MultiSelectionCollectionViewModel()
 		{
-		}
-
-		private var _strand:IStrand;
-
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
 		}
 
 		private var _dataProvider:ICollectionView;
@@ -101,11 +85,11 @@ package org.apache.royale.html.beads.models
 				{
 					if (_selectedIndices[i] < length)
 					{
-						indices.push(value.getItemAt(_selectedIndices[i]));
+						indices.push(_selectedIndices[i]);
 					}
-					_selectedIndices = indices;
-					syncItemsAndIndices();
 				}
+				_selectedIndices = indices;
+				syncItemsAndIndices();
 			}
 			dispatchEvent(new Event("dataProviderChanged"));
 		}

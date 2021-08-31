@@ -31,160 +31,170 @@ package org.apache.royale.routing
   import org.apache.royale.utils.loadBeadFromValuesManager;
   import org.apache.royale.utils.callLater;
   [DefaultProperty("beads")]
-    /**
-     *  Dispatched when the state is changed.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    [Event(name="stateChange", type="org.apache.royale.events.Event")]
+	/**
+	 *  Dispatched when the state is changed.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
+	[Event(name="stateChange", type="org.apache.royale.events.Event")]
 
-    /**
-     *  Dispatched when bindings are initialized
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    [Event(name="initBindings", type="org.apache.royale.events.Event")]
+	/**
+	 *  Dispatched when bindings are initialized
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
+	[Event(name="initBindings", type="org.apache.royale.events.Event")]
 
-    /**
-     * Router is a bead which automatically handles browsing history.
-     * It could be attached to any strand, but typically it would be attached to Application or View
-     * Listen to stateChange events to handle changes to browsing history and use setState and renderState for modifying the history.
-     * The state of the router can be modified before committing the state changes.
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-  public class Router extends Strand implements IBead, IMXMLDocument
+	/**
+	 * Router is deprecated. Please use HashRouter or BrowserRouter instead.
+   * Router is a bead which automatically handles browsing history.
+	 * It could be attached to any strand, but typically it would be attached to Application or View
+	 * Listen to stateChange events to handle changes to browsing history and use setState and renderState for modifying the history.
+	 * The state of the router can be modified before committing the state changes.
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+   *  @deprecated
+	 */
+	[Deprecated(message="Use BrowserRouter or HashRouter instead")]
+  public class Router extends Strand implements IRouter, IBead, IMXMLDocument
   {
-    public function Router()
-    {
-      
-    }
-    public function get host():IStrand
-    {
-      return _strand;
-    }
-    private var _strand:IStrand;
+		[Deprecated(message="Use BrowserRouter or HashRouter instead")]
+		public function Router()
+		{
+
+		}
+
+		public function get host():IStrand
+		{
+		  return _strand;
+		}
+
+		private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-      loadBeadFromValuesManager(IPathRouteBead, "iPathRouteBead", this);
+			loadBeadFromValuesManager(IPathRouteBead, "iPathRouteBead", this);
 			COMPILE::JS
 			{
 				window.addEventListener("hashchange", hashChangeHandler);
 			}
 
-      // wait until the app is initialized. Calling onInit async soves this problem
-      callLater(onInit);
+			// wait until the app is initialized. Calling onInit async soves this problem
+			callLater(onInit);
 		}
-    /**
-     * Helper function to attach event listener without the need for casting
-     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-     */
-    protected function listenOnStrand(eventType:String,handler:Function,capture:Boolean=false):void
-    {
-      (_strand as IEventDispatcher).addEventListener(eventType, handler, capture);
-    }
-    private function onInit(event:Event):void
-    {
-      if(beads)
-      {
-        for each (var bead:IBead in beads)
-          addBead(bead);
-      }
-      // needed for binding in MXML
-      dispatchEvent(new Event("initBindings"));
 
-      COMPILE::JS
-      {
-        if(location.hash)
-        {
-          hashChangeHandler();
-        }
-        else// if there's no hash we should still dispatch a stateChange event so the beads can set defaults
-        {
-          dispatchEvent(new Event("stateChange"));
-        }
-      }
-    }
+		/**
+		 * Helper function to attach event listener without the need for casting
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		protected function listenOnStrand(eventType:String,handler:Function,capture:Boolean=false):void
+		{
+		  (_strand as IEventDispatcher).addEventListener(eventType, handler, capture);
+		}
+
+		protected function onInit(event:Event):void
+		{
+		  if(beads)
+		  {
+			for each (var bead:IBead in beads)
+			  addBead(bead);
+		  }
+		  // needed for binding in MXML
+		  dispatchEvent(new Event("initBindings"));
+
+		  COMPILE::JS
+		  {
+			if(location.hash)
+			{
+			  hashChangeHandler();
+			}
+			else// if there's no hash we should still dispatch a stateChange event so the beads can set defaults
+			{
+			  dispatchEvent(new Event("stateChange"));
+			}
+		  }
+		}
+
 		private function hashChangeHandler():void
 		{
-      parseHash();
+			parseHash();
 			dispatchEvent(new Event("stateChange"));
 		}
-    private function parseHash():void
-    {
-      //TODO SWF implementation
-      COMPILE::JS
-      {
-        var hash:String = location.hash;
-        var index:int = 0;
-        if(hash.indexOf("!")==1){
-          index = 1;
-        }
-        hash = hash.slice(index+1);
-        var ev:ValueEvent = new ValueEvent("hashReceived",hash);
-        dispatchEvent(ev);
-      }
-    }
 
-    private var _routeState:RouteState;
+		private function parseHash():void
+		{
+		  //TODO SWF implementation
+		  COMPILE::JS
+		  {
+			var hash:String = location.hash;
+			var index:int = 0;
+			if(hash.indexOf("!")==1){
+			  index = 1;
+			}
+			hash = hash.slice(index+1);
+			var ev:ValueEvent = new ValueEvent("urlReceived",hash);
+			dispatchEvent(ev);
+		  }
+		}
 
-    public function get routeState():RouteState
-    {
-      if(!_routeState){
-        _routeState = new RouteState();
-      }
-    	return _routeState;
-    }
+		private var _routeState:RouteState;
 
-    public function set routeState(value:RouteState):void
-    {
-    	_routeState = value;
-    }
-    /**
-     * Commits the current state to the browsing history
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    public function setState():void
-    {
-      COMPILE::JS
-      {
-        var hash:String = "#!";
-        var ev:ValueEvent = new ValueEvent("hashNeeded","");
-        dispatchEvent(ev);
-        var stateEv:ValueEvent = new ValueEvent("stateNeeded",{});
-        dispatchEvent(stateEv);
-        if(!ev.defaultPrevented)
-        {
-          hash += ev.value;
-          window.history.pushState(stateEv.value,_routeState.title,hash);
-          sendStrandEvent(this,"stateSet");
-        }
-      }
-    }
-    /**
-     * Same as setState, but also notifies of the state change 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    public function renderState():void
-    {
-      setState();
-      dispatchEvent(new Event("stateChange"));
-    }
+		public function get routeState():RouteState
+		{
+		  if(!_routeState){
+			_routeState = new RouteState();
+		  }
+			return _routeState;
+		}
+
+		public function set routeState(value:RouteState):void
+		{
+			_routeState = value;
+		}
+		/**
+		 * Commits the current state to the browsing history
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function setState():void
+		{
+		  COMPILE::JS
+		  {
+			var hash:String = "#!";
+			var ev:ValueEvent = new ValueEvent("urlNeeded","");
+			dispatchEvent(ev);
+			var stateEv:ValueEvent = new ValueEvent("stateNeeded",{});
+			dispatchEvent(stateEv);
+			if(!ev.defaultPrevented)
+			{
+			  hash += ev.value;
+			  window.history.pushState(stateEv.value,_routeState.title,hash);
+			  sendStrandEvent(this,"stateSet");
+			}
+		  }
+		}
+		/**
+		 * Same as setState, but also notifies of the state change
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function renderState():void
+		{
+		  setState();
+		  dispatchEvent(new Event("stateChange"));
+		}
 
 		private var _mxmlDescriptor:Array;
 		private var _mxmlDocument:Object = this;

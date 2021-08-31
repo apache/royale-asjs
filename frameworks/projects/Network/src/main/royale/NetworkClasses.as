@@ -31,6 +31,8 @@ package
         import org.apache.royale.net.HTTPConstants; HTTPConstants;
         import org.apache.royale.net.URLBinaryUploader; URLBinaryUploader;
         import org.apache.royale.net.URLVariables; URLVariables;
+        import org.apache.royale.net.navigateToURL; navigateToURL;
+
         import org.apache.royale.net.events.ResultEvent; ResultEvent;
         import org.apache.royale.net.events.FaultEvent; FaultEvent;
         
@@ -51,6 +53,9 @@ package
         // registerClassAlias("DSK", AcknowledgeMessageExt);
         // registerClassAlias("DSA", AsyncMessageExt);
         // registerClassAlias("DSC", CommandMessageExt);
+
+        //TEMPORARY WIP - this should be migrated to AMFConnection at some point when fully completed:
+        import org.apache.royale.net.remoting.amf.AMF0NetConnection; AMF0NetConnection;
         
     }
 }

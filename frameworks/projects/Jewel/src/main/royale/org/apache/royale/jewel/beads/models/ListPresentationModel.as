@@ -50,9 +50,8 @@ package org.apache.royale.jewel.beads.models
 		{
 			super();
 		}
-
 		
-		private var _rowHeight:Number = DEFAULT_ROW_HEIGHT;
+		private var _rowHeight:Number = NaN;
 		/**
 		 *  The height of each row.
 		 *
@@ -61,6 +60,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+        [Bindable("rowHeightChanged")]
 		public function get rowHeight():Number
 		{
 			return _rowHeight;
@@ -83,6 +83,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
+		[Bindable("alignChanged")]
 		public function get align():String
 		{
 			return _align;
@@ -105,6 +106,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
+		[Bindable("variableRowHeightChanged")]
 		public function get variableRowHeight():Boolean
 		{
 			return _variableRowHeight;

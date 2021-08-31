@@ -34,6 +34,7 @@ use namespace mx_internal;  */
 
 import org.apache.royale.core.IItemRenderer;
 import spark.components.DataRenderer;
+import org.apache.royale.events.Event;
 /**
  *  The ItemRenderer class is the base class for Spark item renderers.
  *
@@ -159,7 +160,7 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private
      *  storage for the autoDrawBackground property 
      */ 
-   // private var _autoDrawBackground:Boolean = true;
+    private var _autoDrawBackground:Boolean = true;
     
     /**
      *  Specifies whether the item renderer draws the 
@@ -185,27 +186,27 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get autoDrawBackground():Boolean
+    public function get autoDrawBackground():Boolean
     {
         return _autoDrawBackground;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set autoDrawBackground(value:Boolean):void
+    public function set autoDrawBackground(value:Boolean):void
     {
-        if (_autoDrawBackground == value)
-            return;
-        
-        _autoDrawBackground = value;
-        
-        if (_autoDrawBackground)
-        {
-            redrawRequested = true;
-            super.$invalidateDisplayList();
-        }
-    } */
+        //if (_autoDrawBackground == value)
+            //return;
+        //
+        //_autoDrawBackground = value;
+        //
+        //if (_autoDrawBackground)
+        //{
+            //redrawRequested = true;
+            //super.$invalidateDisplayList();
+        //}
+    }
     
     //----------------------------------
     //  down
@@ -344,9 +345,9 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private
      *  storage for the itemIndex property 
      */    
-    /* private var _itemIndex:int;
+    private var _itemIndex:int;
     
-    [Bindable("itemIndexChanged")] */
+  /*@todo review this:  [Bindable("itemIndexChanged")] */
     
     /**
      *  @inheritDoc 
@@ -358,29 +359,29 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */    
-    /* public function get itemIndex():int
+    public function get itemIndex():int
     {
         return _itemIndex;
-    } */
+    }
     
     /**
      *  @private
      */    
-    /* public function set itemIndex(value:int):void
+    public function set itemIndex(value:int):void
     {
         if (value == _itemIndex)
             return;
         
         _itemIndex = value;
-        
-        if (autoDrawBackground)
-        {
-            redrawRequested = true;
-            super.$invalidateDisplayList();
-        }
-        
-        dispatchEvent(new Event("itemIndexChanged"));
-    } */
+   //@todo does this need to dispatch  "itemIndexChanged" to support Bindable ?
+        //if (autoDrawBackground)
+        //{
+            //redrawRequested = true;
+            //super.$invalidateDisplayList();
+        //}
+        //
+        //dispatchEvent(new Event("itemIndexChanged"));
+    }
     
     //----------------------------------
     //  index
@@ -582,7 +583,7 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private
      *  Storage for the dragging property. 
      */
-    //private var _dragging:Boolean = false;
+    private var _dragging:Boolean = false;
 
     /**
      *  @inheritDoc  
@@ -592,22 +593,24 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get dragging():Boolean
+    // not implemented
+    public function get dragging():Boolean
     {
         return _dragging;
-    } */
+    }
 
     /**
      *  @private  
      */
-    /* public function set dragging(value:Boolean):void
+    // not implemented
+    public function set dragging(value:Boolean):void
     {
         if (value != _dragging)
         {
             _dragging = value;
-            invalidateRendererState();
+            //invalidateRendererState();
         }
-    } */
+    }
 
     //----------------------------------
     //  label
@@ -617,9 +620,9 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private 
      *  Storage var for label
      */ 
-   /*  private var _label:String = "";
+     private var _label:String = "";
     
-    [Bindable("labelChanged")] */
+    [Bindable("labelChanged")]
     
     /**
      *  @inheritDoc 
@@ -631,15 +634,15 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get label():String
+    public function get label():String
     {
         return _label;
-    } */
+    }
     
     /**
      *  @private
      */ 
-    /* public function set label(value:String):void
+     public function set label(value:String):void
     {
         if (value == _label)
             return;
@@ -648,11 +651,16 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
             
         // Push the label down into the labelDisplay,
         // if it exists
-        if (labelDisplay)
-            labelDisplay.text = _label;
+        COMPILE::JS
+        {
+            if (this.element) {
+                //labelDisplay.text = _label;
+                this.element.textContent = value;
+            }
+        }
         
         dispatchEvent(new Event("labelChanged"));
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -718,44 +726,44 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* protected function getCurrentRendererState():String
+    protected function getCurrentRendererState():String // not implemented
     {
         // this code is pretty confusing without multi-dimensional states, but it's
         // defined in order of precedence.
         
-        if (dragging && hasState("dragging"))
-            return "dragging";
-        
-        if (selected && down && hasState("downAndSelected"))
-            return "downAndSelected";
-        
-        if (selected && showsCaret && hasState("selectedAndShowsCaret"))
-            return "selectedAndShowsCaret";
-        
-        if (hovered && showsCaret && hasState("hoveredAndShowsCaret"))
-            return "hoveredAndShowsCaret";
-        
-        if (showsCaret && hasState("normalAndShowsCaret"))
-            return "normalAndShowsCaret"; 
-          
-        if (down && hasState("down"))
-            return "down";
-        
-        if (selected && hasState("selected"))
-            return "selected";
-        
-        if (hovered && hasState("hovered"))
-            return "hovered";
-        
-        if (hasState("normal"))    
-            return "normal";
+        //if (dragging && hasState("dragging"))
+            //return "dragging";
+        //
+        //if (selected && down && hasState("downAndSelected"))
+            //return "downAndSelected";
+        //
+        //if (selected && showsCaret && hasState("selectedAndShowsCaret"))
+            //return "selectedAndShowsCaret";
+        //
+        //if (hovered && showsCaret && hasState("hoveredAndShowsCaret"))
+            //return "hoveredAndShowsCaret";
+        //
+        //if (showsCaret && hasState("normalAndShowsCaret"))
+            //return "normalAndShowsCaret"; 
+          //
+        //if (down && hasState("down"))
+            //return "down";
+        //
+        //if (selected && hasState("selected"))
+            //return "selected";
+        //
+        //if (hovered && hasState("hovered"))
+            //return "hovered";
+        //
+        //if (hasState("normal"))    
+            //return "normal";
         
         // If none of the above states are defined in the item renderer,
         // we return currentState, so we don't change the state just 
         // in case the developer put the item renderer into its 
         // own custom state.
         return currentState;
-    } */
+    }
     
     /**
      *  Marks the renderer's state as invalid so that the new state is set

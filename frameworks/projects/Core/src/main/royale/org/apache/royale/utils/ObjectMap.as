@@ -42,9 +42,10 @@ package org.apache.royale.utils
 
     public class ObjectMap
     {
-        public function ObjectMap(weak:Boolean=false)
+        public function ObjectMap(weak:Boolean=false,forceEnumerable:Boolean=false)
         {
             _weak = weak;
+            _forceEnumerable = forceEnumerable;
             COMPILE::SWF
             {
                 _map = new Dictionary(weak);
@@ -58,7 +59,7 @@ package org.apache.royale.utils
         COMPILE::JS
         private function makeMap():void
         {
-            if(_weak && typeof WeakMap == "function")
+            if(_weak && !_forceEnumerable && typeof WeakMap == "function")
             {
                 _map = new WeakMap();
                 assignFunctions();
@@ -78,6 +79,7 @@ package org.apache.royale.utils
         }
 
         private var _weak:Boolean;
+        private var _forceEnumerable:Boolean;
         private var _map:Object;
         private var _usesObjects:Boolean = false;
 
@@ -93,6 +95,23 @@ package org.apache.royale.utils
         public function delete(key:Object):void
         {
             delete _map[key];
+        }
+
+        /**
+         *  Perform function for each pair.
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         * 
+         */
+        COMPILE::SWF
+        public function forEach(callback:Function,thisArg:Object=null):void
+        {
+            for (var key:Object in _map)
+            {
+                callback(_map[key],key,_map);
+            }
         }
 
         /**
@@ -173,6 +192,10 @@ package org.apache.royale.utils
              *  @royalesuppresspublicvarwarning
              */
             public var delete:Function = objectDelete;
+            /**
+             *  @royalesuppresspublicvarwarning
+             */
+            public var forEach:Function = objectForEach;
         }
 
         COMPILE::JS
@@ -182,6 +205,7 @@ package org.apache.royale.utils
             this.has = _map.has.bind(_map);
             this.set = _map.set.bind(_map);
             this.delete = _map.delete.bind(_map);
+            this.forEach = (_weak ? null : _map.forEach.bind(_map));
         }
 
         COMPILE::JS
@@ -228,6 +252,12 @@ package org.apache.royale.utils
             }
         }
         COMPILE::JS
+        private function objectForEach(callback:Function,thisArg:Object=null):void
+        {
+		// if (_weak) throw ...
+		trace("ObjectMap::objectForEach() not implemented in this browser");
+        }
+        COMPILE::JS
         public function clear():void
         {
             if(_usesObjects)
@@ -243,6 +273,5 @@ package org.apache.royale.utils
                 assignFunctions();
             }
         }
-
     }    
 }

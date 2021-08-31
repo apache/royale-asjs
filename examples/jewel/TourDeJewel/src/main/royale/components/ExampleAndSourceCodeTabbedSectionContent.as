@@ -27,7 +27,7 @@ package components
     import org.apache.royale.jewel.ScrollableSectionContent;
     import org.apache.royale.jewel.TabBar;
     import org.apache.royale.jewel.TabBarContent;
-    import org.apache.royale.jewel.beads.layouts.Paddings;
+    import org.apache.royale.html.beads.layouts.Paddings;
 
     import services.GitHubService;
 

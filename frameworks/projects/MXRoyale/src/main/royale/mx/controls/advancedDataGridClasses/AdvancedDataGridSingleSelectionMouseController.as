@@ -74,7 +74,7 @@ package mx.controls.advancedDataGridClasses
 		{
 			var node:Object = event.data;
 			
-            var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).adg;
+            var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).grid as AdvancedDataGrid;
             var hasChildren:Boolean = adg.hasChildren(node);
             if (hasChildren)
             {
@@ -84,9 +84,10 @@ package mx.controls.advancedDataGridClasses
     				adg.openNode(node);
     			}
             }
-              
-			// reset the selection
-            ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
+
+			//avoid doing this (it breaks ctrl-click de-selection which is managed at the top level):
+			//was: reset the selection
+			//            ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 	    
 	    var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_CLICK);
@@ -95,6 +96,7 @@ package mx.controls.advancedDataGridClasses
 			for (var i:int = 0; i < lists.length; i++)
 				if (lists[i] == _strand) break;
 			newEvent.columnIndex = i;
+			newEvent.itemRenderer = event.currentTarget;
             IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 	}

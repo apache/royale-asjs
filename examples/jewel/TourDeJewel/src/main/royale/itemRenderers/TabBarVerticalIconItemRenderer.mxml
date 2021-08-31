@@ -17,11 +17,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:TabBarButtonInidicatorRestrictedToContentItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<j:TabBarButtonInidicatorRestrictedToContentItemRenderer 
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic" 
-    xmlns:html="library://ns.apache.org/royale/html" 
-    xmlns="http://www.w3.org/1999/xhtml">
+    xmlns:html="library://ns.apache.org/royale/html">
 
     <fx:Script>
         <![CDATA[
@@ -36,13 +36,14 @@ limitations under the License.
     </fx:Script>
 
     <j:beads>
-        <js:ItemRendererDataBinding />
+        <js:ItemRendererDataBinding/>
+        <js:Paddings paddingLeft="24" paddingRight="24" paddingTop="12" paddingBottom="12"/>
     </j:beads>
 
     <j:VGroup itemsHorizontalAlign="itemsCenter">
-        <js:MaterialIcon text="{tabButton ? tabButton.icon : ''}"  
-                    visible="{tabButton ? tabButton.icon != null : false}"/>
-        <html:Span text="{tabButton ? tabButton.label : ''}"/>
+        <js:MaterialIcon text="{tabButton.icon}"  
+                    visible="{tabButton.icon != null}"/>
+        <html:Span text="{tabButton.label}"/>
     </j:VGroup>
 
 </j:TabBarButtonInidicatorRestrictedToContentItemRenderer>

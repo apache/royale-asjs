@@ -42,9 +42,9 @@ COMPILE::SWF{
 COMPILE::JS{
 	public class ByteArray extends org.apache.royale.utils.BinaryData implements IDataInput, IDataOutput
 	{	
-		public function ByteArray()
+		public function ByteArray(bytes:Object = null)
 		{
-		super();
+			super(bytes);
 		}
 		public function readMultiByte(length:uint, charSet:String):String
 		{

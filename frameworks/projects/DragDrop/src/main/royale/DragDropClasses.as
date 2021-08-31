@@ -52,6 +52,8 @@ internal class DragDropClasses
 	
 	import org.apache.royale.html.beads.DragDropListItemRendererInitializer; DragDropListItemRendererInitializer;
 
+	import org.apache.royale.html.beads.controllers.SimpleDraggableController; SimpleDraggableController;
+
 }
 
 }

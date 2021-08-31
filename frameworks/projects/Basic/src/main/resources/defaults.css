@@ -253,6 +253,7 @@ DateChooserList {
 
 DateChooserHeader {	
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.DayNameItemRenderer");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.HorizontalListItemRendererInitializer");
 	height: 20px;
 	border-style: solid;
 	border-color: #000000;
@@ -607,8 +608,6 @@ Panel
 	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
 	IPanelContentArea: ClassReference("org.apache.royale.html.Container");
 	
-	background-color: #FFFFFF;
-	border: 1px solid #333333
 }
 
 PanelWithControlBar
@@ -759,6 +758,16 @@ CascadingMenuItemRenderer
 }
 
 Router
+{
+	IPathRouteBead: ClassReference("org.apache.royale.routing.PathRouteBead");
+}
+
+HashRouter
+{
+	IPathRouteBead: ClassReference("org.apache.royale.routing.PathRouteBead");
+}
+
+BrowserRouter
 {
 	IPathRouteBead: ClassReference("org.apache.royale.routing.PathRouteBead");
 }

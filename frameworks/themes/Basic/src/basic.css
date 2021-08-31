@@ -89,6 +89,11 @@ PanelContent
 	background-color: #FFFFFF;
 }
 
+Panel
+{
+	background-color: #FFFFFF;
+	border: 1px solid #333333
+}
 PanelTitleBar
 {
 	border-bottom: 1px solid #333333;

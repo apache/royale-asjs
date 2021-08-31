@@ -23,6 +23,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
 	import org.apache.royale.jewel.beads.views.ComboBoxView;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	import org.apache.royale.jewel.List;
+    import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 *  The SearchFilter bead class is a specialty bead that can be used with
@@ -47,8 +50,12 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 		}
 
-		override protected function keyUpLogic(input:Object):void
+		private var comboView:IComboBoxView;
+
+		override protected function textInputKeyUpLogic(input:Object):void
 		{
+			if(!list) return;
+			
 			// first remove a previous selection
 			if(list.selectedIndex != -1)
 			{
@@ -57,48 +64,63 @@ package org.apache.royale.jewel.beads.controls.combobox
 				input.text = tmp;
 			}
 
-			var popUpVisible:Boolean = input.parent.view.popUpVisible;
-            if (!popUpVisible) {
-                //force popup ?:
-                input.parent.view.popUpVisible = true;
-                
-				//or avoid ?:
-                //return;
-            }
+            if (!comboView.popUpVisible)
+                comboView.popUpVisible = true;
 			
 			// fill "list" with the internal list in the combobox popup
-			list = input.parent.view.popup.view.list;
+			//list = comboView.popup.view.list;
 			
-			applyFilter(input.parent.view.textinput.text.toUpperCase());
+			applyFilter(comboView.textinput.text.toUpperCase());
 
-			ComboBoxView(_strand['view']).autoResizeHandler(); //as we filter the popup list will be smaller, and we want to reposition
+			ComboBoxView(comboView).autoResizeHandler(); //as we filter the popup list will be smaller, and we want to reposition
+		}
+
+		override protected function selectItem(item:Object):void
+		{
+			// Select the item in the list if text is the same 
+			// we do at the end to avoid multiple selection (if there's more than one matches)
+			// in that case, select the first one in the list
+			// if(item != null)
+			// 	list.selectedItem = item;
 		}
 
 		override protected function onBeadsAdded(event:Event):void{
-            if ('view' in _strand && _strand['view'] is IComboBoxView) {
-                var _textInput:TextInputBase = IComboBoxView(_strand['view']).textinput as TextInputBase;
+			listenOnStrand('dismissPopUp', removeListListeners);
+			listenOnStrand('popUpOpened', popUpOpenedHandler);
+			listenOnStrand('popUpClosed', popUpClosedHandler);
+
+			comboView = event.target.view as IComboBoxView;
+            if (comboView)
+			{
+                var _textInput:TextInputBase = comboView.textinput as TextInputBase;
                 if (_textInput) {
-					COMPILE::JS {
-                        _textInput.element.addEventListener('focus', onInputFocus);
+					COMPILE::JS
+					{
+                    _textInput.element.addEventListener('focus', onInputFocus);
                     }
             	}
             }
 		}
 
 		override protected function onInputFocus(event:Event):void{
-            var popUpVisible:Boolean =  IComboBoxView(_strand['view']).popUpVisible;
-            if (!popUpVisible) {
-                //force popup ?:
-                IComboBoxView(_strand['view']).popUpVisible = true;
-
-                //or avoid ?:
-                //return;
-            }
+            if (!comboView.popUpVisible)
+                 IEventDispatcher((comboView as IComboBoxView).textinput).dispatchEvent(new Event(MouseEvent.CLICK));
 			
-			// fill "list" with the internal list in the combobox popup
-			list = event.target.royale_wrapper.parent.view.popup.view.list;
-
-			//applyFilter(IComboBoxView(_strand['view']).textinput.text.toUpperCase());
 		}
+
+		protected function popUpOpenedHandler():void {
+			// fill "list" with the internal list in the combobox popup
+			list = comboView.popup.view.list;
+		}
+
+		protected function popUpClosedHandler():void {
+			list = null;
+		}
+
+		public override function set list(value:List):void
+        {
+            super.list = value;
+        }
+
 	}
 }

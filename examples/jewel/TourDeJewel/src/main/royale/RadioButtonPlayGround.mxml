@@ -25,7 +25,7 @@ limitations under the License.
 	
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
-			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel RadioButton">
@@ -34,49 +34,98 @@ limitations under the License.
 			</c:description>
 		</c:ExampleHeader>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-				<html:H3 text="Jewel RadioButton"/>
+				<j:CardHeader>
+					<j:CardTitle text="States" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
 
-				<j:RadioButton text="RadioButton 1" groupName="radios" value="Test 1"/>
-				<j:RadioButton text="RadioButton 2" groupName="radios" value="Test 2" selected="true"/>
-				<j:RadioButton text="RadioButton 3" groupName="radios" value="Test 3"/>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>A RadioButton can have the following four states.</p>]]></j:html>
+					</j:Label>
 
-				<j:RadioButton text="Disabled">
-					<j:beads>
-						<j:Disabled/>
-					</j:beads>
-				</j:RadioButton>
+					<j:RadioButton text="RadioButton 1" groupName="radios" value="Test 1"/>
+					<j:RadioButton text="RadioButton 2" groupName="radios" value="Test 2" selected="true"/>
+					<j:RadioButton text="RadioButton 3" groupName="radios" value="Test 3"/>
 
-				<j:RadioButton text="Set and Disabled" selected="true">
-					<j:beads>
-						<j:Disabled/>
-					</j:beads>
-				</j:RadioButton>
+					<j:RadioButton text="Disabled">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:RadioButton>
+
+					<j:RadioButton text="Set and Disabled" selected="true">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:RadioButton>
+				</j:CardPrimaryContent>
+			</j:Card>
+        </j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<j:CardHeader>
+					<j:CardTitle text="Switch Version" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>SwitchRadio is s Switch representation of RadioButton with same capabilities.</p>]]></j:html>
+					</j:Label>
+
+					<j:SwitchRadio text="SwitchRadio 1" groupName="radios2" value="Test 1"/>
+					<j:SwitchRadio text="SwitchRadio 2" groupName="radios2" value="Test 2" selected="true"/>
+					<j:SwitchRadio text="SwitchRadio 3" groupName="radios2" value="Test 3"/>
+
+					<j:SwitchRadio text="Disabled">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:SwitchRadio>
+
+					<j:SwitchRadio text="Set and Disabled" selected="true">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:SwitchRadio>
+				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-				<html:H3 text="Jewel RadioButton Sizing"/>
+				<j:CardHeader>
+					<j:CardTitle text="InputButton Size" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
 
-				<j:RadioButton groupName="radios_sizes" text="No size"/>
-				<j:RadioButton groupName="radios_sizes" text="width and height to 60">
-					<j:beads>
-						<j:InputButtonSize width="60" height="60"/>
-					</j:beads>
-				</j:RadioButton>
-				<j:RadioButton groupName="radios_sizes" text="Only width to 45">
-					<j:beads>
-						<j:InputButtonSize width="45"/>
-					</j:beads>
-				</j:RadioButton>
-				<j:RadioButton groupName="radios_sizes" text="Only height to 35 and disabled" selected="true">
-					<j:beads>
-						<j:Disabled localId="opt3disable" disabled="true"/>
-						<j:InputButtonSize height="35"/>
-					</j:beads>
-				</j:RadioButton>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>The InputButtonSize bead allow to change dimensions of the radio.</p>]]></j:html>
+					</j:Label>
+
+					<j:RadioButton groupName="radios_sizes" text="No size"/>
+					
+					<j:RadioButton groupName="radios_sizes" text="width and height to 60">
+						<j:beads>
+							<j:InputButtonSize width="60" height="60"/>
+						</j:beads>
+					</j:RadioButton>
+					
+					<j:RadioButton groupName="radios_sizes" text="Only width to 45">
+						<j:beads>
+							<j:InputButtonSize width="45"/>
+						</j:beads>
+					</j:RadioButton>
+					
+					<j:RadioButton groupName="radios_sizes" text="Only height to 35 and disabled" selected="true">
+						<j:beads>
+							<j:Disabled localId="opt3disable" disabled="true"/>
+							<j:InputButtonSize height="35"/>
+						</j:beads>
+					</j:RadioButton>
+				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>
 	</j:Grid>

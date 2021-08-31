@@ -43,6 +43,7 @@ package mx.messaging.channels
 		import org.apache.royale.net.URLLoader;
 		import org.apache.royale.net.URLRequest;
 		import org.apache.royale.net.URLRequestHeader;
+		import org.apache.royale.net.URLVariables;
 		import mx.events.HTTPStatusEvent;	
 	}
 	
@@ -91,8 +92,9 @@ package mx.messaging.channels
 			super(id, uri);
 			if (uri.length > 0)
 			{
-				var message:String = resourceManager.getString(
-					"messaging", "noURIAllowed");
+				/* var message:String = resourceManager.getString(
+					"messaging", "noURIAllowed"); */
+				var message:String = "Error for DirectHTTPChannel. No URI can be specified.";
 				throw new InvalidChannelError(message);
 			}
 			clientId = ("DirectHTTPChannel" + clientCounter++);
@@ -308,8 +310,9 @@ package mx.messaging.channels
 		
 		override public function setCredentials(credentials:String, agent:MessageAgent=null, charset:String=null):void
 		{
-			var message:String = resourceManager.getString(
-				"messaging", "authenticationNotSupported");
+			/* var message:String = resourceManager.getString(
+				"messaging", "authenticationNotSupported"); */
+			var message:String = "Authentication not supported on DirectHTTPChannel (no proxy).";
 			throw new ChannelError(message);
 		}
 		
@@ -352,6 +355,7 @@ import mx.messaging.messages.ErrorMessage;
 import mx.messaging.messages.IMessage;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
+import mx.utils.StringUtil;  // temp until resource bundles worked out
 
 use namespace mx_internal;
 
@@ -441,16 +445,18 @@ class DirectHTTPMessageResponder extends MessageResponder
 		msg.clientId = clientId;
 		msg.correlationId = message.messageId;
 		msg.faultCode = "Server.Error.Request";
-		msg.faultString = resourceManager.getString(
-			"messaging", "httpRequestError");
+		/* msg.faultString = resourceManager.getString(
+			"messaging", "httpRequestError"); */
+		msg.faultString = "HTTP request error";
 		var details:String = event.toString();
 		if (message is HTTPRequestMessage)
 		{
 			details += ". URL: ";
 			details += HTTPRequestMessage(message).url;
 		}
-		msg.faultDetail = resourceManager.getString(
-			"messaging", "httpRequestError.details", [ details ]);
+		/* msg.faultDetail = resourceManager.getString(
+			"messaging", "httpRequestError.details", [ details ]); */
+		msg.faultDetail = StringUtil.substitute("Error: {0}", details);
 		msg.rootCause = event;
 		msg.body = URLLoader(event.target).data;
 		msg.headers[AbstractMessage.STATUS_CODE_HEADER] = lastStatus;
@@ -474,10 +480,12 @@ class DirectHTTPMessageResponder extends MessageResponder
 		msg.clientId = clientId;
 		msg.correlationId = message.messageId;
 		msg.faultCode = "Channel.Security.Error";
-		msg.faultString = resourceManager.getString(
+		/* msg.faultString = resourceManager.getString(
 			"messaging", "securityError");
 		msg.faultDetail = resourceManager.getString(
-			"messaging", "securityError.details", [ message.destination ]);
+			"messaging", "securityError.details", [ message.destination ]); */
+		msg.faultString = "Security error accessing url";
+		msg.faultDetail = StringUtil.substitute("Destination: {0}", message.destination);
 		msg.rootCause = event;
 		msg.body = URLLoader(event.target).data;
 		msg.headers[AbstractMessage.STATUS_CODE_HEADER] = lastStatus;

@@ -38,7 +38,15 @@ import spark.events.TitleWindowBoundsEvent;
 use namespace mx_internal; */
     import mx.events.CloseEvent;
     import mx.events.MouseEvent;
+    COMPILE::JS
+    {
+        import org.apache.royale.events.Event;
+    }
 
+    COMPILE::SWF
+    {
+        import flash.events.Event;
+    }
 //--------------------------------------
 //  Events
 //--------------------------------------
@@ -596,35 +604,35 @@ public class TitleWindow extends Panel
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* protected function moveArea_mouseUpHandler(event:Event):void
+    protected function moveArea_mouseUpHandler(event:Event):void // not implemented
     {
-        var sbRoot:DisplayObject = systemManager.getSandboxRoot();
-        
-        sbRoot.removeEventListener(
-            MouseEvent.MOUSE_MOVE, moveArea_mouseMoveHandler, true);
-        sbRoot.removeEventListener(
-            MouseEvent.MOUSE_UP, moveArea_mouseUpHandler, true);
-        sbRoot.removeEventListener(
-            SandboxMouseEvent.MOUSE_UP_SOMEWHERE, moveArea_mouseUpHandler);
-        
-        systemManager.deployMouseShields(false);
-        
-        // Check to see that a move actually occurred and that the
-        // user did not just click on the moveArea
-        if (startBounds)
-        {
-            // Dispatch "windowMoveEnd" event with the starting bounds and current bounds.
-            var endEvent:TitleWindowBoundsEvent =
-                new TitleWindowBoundsEvent(TitleWindowBoundsEvent.WINDOW_MOVE_END,
-                                           false, false, startBounds,
-                                           new Rectangle(x, y, width, height));
-            dispatchEvent(endEvent);
-            startBounds = null;
-        }
-        
-        offsetX = NaN;
-        offsetY = NaN;
-    } */
+        //var sbRoot:DisplayObject = systemManager.getSandboxRoot();
+        //
+        //sbRoot.removeEventListener(
+            //MouseEvent.MOUSE_MOVE, moveArea_mouseMoveHandler, true);
+        //sbRoot.removeEventListener(
+            //MouseEvent.MOUSE_UP, moveArea_mouseUpHandler, true);
+        //sbRoot.removeEventListener(
+            //SandboxMouseEvent.MOUSE_UP_SOMEWHERE, moveArea_mouseUpHandler);
+        //
+        //systemManager.deployMouseShields(false);
+        //
+        //// Check to see that a move actually occurred and that the
+        //// user did not just click on the moveArea
+        //if (startBounds)
+        //{
+            //// Dispatch "windowMoveEnd" event with the starting bounds and current bounds.
+            //var endEvent:TitleWindowBoundsEvent =
+                //new TitleWindowBoundsEvent(TitleWindowBoundsEvent.WINDOW_MOVE_END,
+                                           //false, false, startBounds,
+                                           //new Rectangle(x, y, width, height));
+            //dispatchEvent(endEvent);
+            //startBounds = null;
+        //}
+        //
+        //offsetX = NaN;
+        //offsetY = NaN;
+    }
 
     //----------------------------------
     //  Active Window Handlers and helper methods

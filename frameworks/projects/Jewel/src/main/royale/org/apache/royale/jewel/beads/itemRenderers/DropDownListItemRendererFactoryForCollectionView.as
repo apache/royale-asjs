@@ -57,8 +57,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			removeAllItemRenderers(dataGroup);
 
-			dp = dataProviderModel.dataProvider;
-			if (!dp)
+			if (!dataProviderModel.dataProvider)
 				return;
 			
 			var offset:int = (dataProviderModel as IDropDownListModel).offset;
@@ -91,7 +90,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				dped.removeEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			}
 			// listen for individual items being added in the future.
-			dped = dp as IEventDispatcher;
+			dped = dataProviderModel.dataProvider as IEventDispatcher;
 			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);

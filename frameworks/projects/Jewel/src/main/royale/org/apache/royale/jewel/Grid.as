@@ -19,7 +19,6 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.jewel.beads.layouts.GridLayout;
-	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 	import org.apache.royale.jewel.supportClasses.container.AlignmentItemsContainer;
 	import org.apache.royale.utils.StringUtil;
 

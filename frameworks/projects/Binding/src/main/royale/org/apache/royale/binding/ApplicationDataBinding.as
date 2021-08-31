@@ -59,39 +59,23 @@ package org.apache.royale.binding
 		public function ApplicationDataBinding()
 		{
 			super();
+            initEventType = 'viewChanged';
 		}
 
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
-        override public function set strand(value:IStrand):void
-        {
-            _strand = value;
-            IEventDispatcher(_strand).addEventListener("viewChanged", viewChangedHandler);
-        }
+
         /**
          * @royaleignorecoercion org.apache.royale.core.IBinding
          * @royaleignorecoercion String
+         * @private
          */
-        private function viewChangedHandler(event:Event):void
-        {
-            if (!("_bindings" in _strand))
-                return;
-
+        override protected function processBindingData(bindingData:Array, first:int):void{
             var fieldWatcher:Object;
             var sb:SimpleBinding;
-            var bindingData:Array = _strand["_bindings"];
-            var n:int = bindingData[0];
-            var bindings:Array = [];
             var binding:Object = null;
+            var n:int = bindingData[first];
+            var bindings:Array = [];
             var i:int;
-            var index:int = 1;
+            var index:int = first + 1;
             for (i = 0; i < n; i++)
             {
                 binding = {};
@@ -159,14 +143,5 @@ package org.apache.royale.binding
             }
         }
 
-        private function makeGenericBinding(binding:Object, index:int, watchers:Object):void
-        {
-            var gb:GenericBinding = new GenericBinding();
-            gb.setDocument(_strand);
-            gb.destinationData = binding.destination;
-			gb.destinationFunction = binding.destFunc;
-            gb.source = binding.source;
-            setupWatchers(gb, index, watchers.watchers, null);
-        }
     }
 }

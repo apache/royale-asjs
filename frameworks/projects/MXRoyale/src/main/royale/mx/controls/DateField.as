@@ -1830,7 +1830,7 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
      *  @private
      *  Storage for the selectableRange property.
      */
-   // private var _selectableRange:Object = null;
+    private var _selectableRange:Object = null;
 
     /**
      *  @private
@@ -1871,22 +1871,23 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get selectableRange():Object
+    public function get selectableRange():Object
     {
         return _selectableRange;
     }
- */
+ 
     /**
      *  @private
      */
-    /* public function set selectableRange(value:Object):void
+    public function set selectableRange(value:Object):void
     {
-        _selectableRange = scrubTimeValue(value);
-        selectableRangeChanged = true;
-        updateDateFiller = true;
-
-        invalidateProperties();
-    } */
+        //_selectableRange = scrubTimeValue(value);
+        //selectableRangeChanged = true;
+        //updateDateFiller = true;
+//
+        //invalidateProperties();
+	    // not implemented
+    }
 
     //----------------------------------
     //  selectedDate
@@ -2924,6 +2925,14 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
         return s == null ? "" : s;
     }
    
+    /**
+     *  @private
+     */
+    override public function set text(value:String):void
+    {
+        ((view as DateFieldView).textInputField as TextInput).text = value == null ? "" : value;
+    }
+
     override public function setFocus():void
     {
         return (view as DateFieldView).setFocus();
@@ -2951,6 +2960,15 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
 	{
 		if (child == (view as DateFieldView).popUp) return true;
 		return super.owns(child);
+	}
+	
+	//----------------------------------
+	//  value
+        //----------------------------------
+	
+        override public function get value():Object
+	{
+               return selectedDate;	
 	}
 }
 

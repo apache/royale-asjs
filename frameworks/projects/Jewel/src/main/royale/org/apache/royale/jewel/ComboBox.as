@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.core.IComboBox;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.beads.models.ComboBoxPresentationModel;
@@ -38,6 +41,34 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
+    
+	/**
+     *  Dispatched when the popup is opened.
+     *
+     *  @toplevel
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     */
+	[Event(name="popUpOpened", type="org.apache.royale.events.Event")]
+	
+	/**
+     *  Dispatched when the popup is closed.
+     *
+     *  @toplevel
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     */
+	[Event(name="popUpClosed", type="org.apache.royale.events.Event")]
+
+	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("dataProvider")]
 
 	/**
 	 *  The ComboBox class is a component that displays an input field and
@@ -55,7 +86,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ComboBox extends StyledUIBase
+	public class ComboBox extends StyledUIBase implements IComboBox, IItemRendererProvider
 	{
 		/**
 		 *  Constructor.
@@ -160,44 +191,28 @@ package org.apache.royale.jewel
 			ISelectionModel(model).selectedItem = value;
 		}
 
-		[Bindable("rowHeightChanged")]
+		/*
+		* IItemRendererProvider
+		*/
+		
+		private var _itemRenderer:IFactory = null;
+		
 		/**
-		 *  The default height of each cell in every column
+		 *  The class or factory used to display each item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel
 		 */
-        public function get rowHeight():Number
-        {
-            return (presentationModel as IComboBoxPresentationModel).rowHeight;
-        }
-        public function set rowHeight(value:Number):void
-        {
-            (presentationModel as IComboBoxPresentationModel).rowHeight = value;
-        }
-
-		[Bindable("rowCountChanged")]
-		/**
-		 *  Maximum number of rows visible in the ComboBox popup list.
-		 *  If there are fewer items in the dataProvider, the ComboBox shows only as many items as there are in the dataProvider.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel
-		 */
-        public function get rowCount():int
-        {
-            return (presentationModel as IComboBoxPresentationModel).rowCount;
-        }
-        public function set rowCount(value:int):void
-        {
-            (presentationModel as IComboBoxPresentationModel).rowCount = value;
-        }
+		public function get itemRenderer():IFactory
+		{
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void
+		{
+			_itemRenderer = value;
+		}
 
 		/**
 		 *  The presentation model for the combobox.
@@ -206,6 +221,7 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel
 		 */
 		public function get presentationModel():IComboBoxPresentationModel

@@ -22,8 +22,10 @@ package org.apache.royale.jewel.supportClasses.card
 	import org.apache.royale.jewel.VContainer;
 
 	/**
-	 *  The CardPrimaryContent class is a the main container for Cards.
-	 *  Adding this container means we want a more complex card structure
+	 *  The CardPrimaryContent class is a the main content container for Cards.
+	 *  Adding this container means we want a more complex card structure.
+	 * 
+	 *  Content are placed vertically by default.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

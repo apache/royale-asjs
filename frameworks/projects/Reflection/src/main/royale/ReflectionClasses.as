@@ -48,11 +48,14 @@ internal class ReflectionClasses
 	//utils
 	import org.apache.royale.reflection.utils.getMembersWithMetadata; getMembersWithMetadata;
 	import org.apache.royale.reflection.utils.getMembers; getMembers;
+	import org.apache.royale.reflection.utils.getInstanceVarsAndAccessors; getInstanceVarsAndAccessors;
 	import org.apache.royale.reflection.utils.MemberTypes; MemberTypes;
 	import org.apache.royale.reflection.utils.getStaticConstantsByConvention; getStaticConstantsByConvention;
 	import org.apache.royale.reflection.utils.getMembersWithNameMatch; getMembersWithNameMatch;
 	import org.apache.royale.reflection.utils.getMembersWithQNameMatch; getMembersWithQNameMatch;
 	import org.apache.royale.reflection.utils.filterForMetaTags; filterForMetaTags;
+	import org.apache.royale.reflection.utils.isDerivedType; isDerivedType;
+	import org.apache.royale.reflection.utils.isSameType; isSameType;
 	
 	import org.apache.royale.reflection.ExtraData; ExtraData;
 	import org.apache.royale.reflection.AccessorDefinition; AccessorDefinition;

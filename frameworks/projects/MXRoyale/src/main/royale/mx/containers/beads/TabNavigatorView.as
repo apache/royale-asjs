@@ -124,15 +124,20 @@ public class TabNavigatorView extends GroupView
         tabBar.percentWidth = 100;
         tabBar.addEventListener("change", tabChangeHandler);
         addEventListener("change", tabChangeHandler);
-        if (tabBar.parent == null) {
-            (_strand as IContainerBaseStrandChildrenHost).$addElement(tabBar);
-        }
-            
         if (!_contentArea) {
             var cls:Class = ValuesManager.valuesImpl.getValue(_strand, "iTabNavigatorContentArea");
+            var viewportClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iViewport");
             _contentArea = new cls() as UIBase;
+            if (viewportClass)
+            {
+                _contentArea.addBead((new viewportClass()) as IBead)
+            }
             _contentArea.id = "tabNavigatorContent";
             _contentArea.typeNames = "TabNavigatorContent";
+        }
+
+        if (tabBar.parent == null) {
+            (_strand as IContainerBaseStrandChildrenHost).$addElement(tabBar);
         }
         contentArea.percentWidth = 100;
         contentArea.percentHeight = 100;

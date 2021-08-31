@@ -512,13 +512,13 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get isDropDownOpen():Boolean
+    public function get isDropDownOpen():Boolean // not implemented
     {
-        if (dropDownController)
-            return dropDownController.isOpen;
-        else
+        //if (dropDownController)
+            //return dropDownController.isOpen;
+        //else
             return false;
-    } */
+    }
         
 	//----------------------------------
 	//  closeDropDownOnResize
@@ -806,10 +806,10 @@ public class DropDownListBase extends List
      *  Called whenever we need to update the text passed to the labelDisplay skin part
      */
     // TODO (jszeto): Make this protected and make the name more generic (passing data to skin) 
-    /* mx_internal function updateLabelDisplay(displayItem:* = undefined):void
+    mx_internal function updateLabelDisplay(displayItem:* = undefined):void
     {
         // DropDownList and ComboBox will override this function
-    } */
+    }
     
     /**
      *  @private
@@ -1095,22 +1095,22 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* protected function dropDownController_closeHandler(event:DropDownEvent):void
-    {
-        addEventListener(FlexEvent.UPDATE_COMPLETE, close_updateCompleteHandler);
-        invalidateSkinState();
-        
-        if (!event.isDefaultPrevented())
-        {
-            // Even if the dropDown was programmatically closed, assume the selection 
-            // changed as a result of a previous user interaction
-            setSelectedIndex(userProposedSelectedIndex, true);  
-        }
-        else
-        {
-            changeHighlightedSelection(selectedIndex);
-        }
-    } */
+    //protected function dropDownController_closeHandler(event:DropDownEvent):void
+    //{
+        //addEventListener(FlexEvent.UPDATE_COMPLETE, close_updateCompleteHandler);
+        //invalidateSkinState();
+        //
+        //if (!event.isDefaultPrevented())
+        //{
+            //// Even if the dropDown was programmatically closed, assume the selection 
+            //// changed as a result of a previous user interaction
+            //setSelectedIndex(userProposedSelectedIndex, true);  
+        //}
+        //else
+        //{
+            //changeHighlightedSelection(selectedIndex);
+        //}
+    //}
 
     /**
      *  @private

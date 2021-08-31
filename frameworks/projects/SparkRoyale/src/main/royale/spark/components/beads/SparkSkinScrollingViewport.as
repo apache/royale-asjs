@@ -21,7 +21,10 @@ package spark.components.beads
 {
 
 import mx.core.mx_internal;
-use namespace mx_internal;
+
+    import spark.core.IViewport;
+
+    use namespace mx_internal;
 
 import spark.components.supportClasses.GroupBase;
 import spark.components.supportClasses.SkinnableComponent;
@@ -36,7 +39,6 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.geom.Size;
-import spark.components.SkinnableContainer;
 
 COMPILE::SWF
 {

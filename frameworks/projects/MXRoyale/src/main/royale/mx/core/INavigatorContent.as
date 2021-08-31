@@ -19,9 +19,9 @@
 
 package mx.core
 {
-//import mx.managers.IToolTipManagerClient;
+import mx.managers.IToolTipManagerClient;
 import org.apache.royale.events.IEventDispatcher
-
+import mx.core.IUIComponent;
 /**
  *  The INavigatorContent interface defines the interface that a container must 
  *  implement to be used as the child of a navigator container, 
@@ -36,7 +36,7 @@ import org.apache.royale.events.IEventDispatcher
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public interface INavigatorContent extends IEventDispatcher // IDeferredContentOwner, IToolTipManagerClient
+public interface INavigatorContent extends IEventDispatcher,IUIComponent, IToolTipManagerClient // IDeferredContentOwner
 {
     [Bindable("labelChanged")]
     /**

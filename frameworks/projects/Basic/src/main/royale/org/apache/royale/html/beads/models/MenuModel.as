@@ -44,8 +44,6 @@ package org.apache.royale.html.beads.models
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
 		/**
 		 * @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -57,8 +55,6 @@ package org.apache.royale.html.beads.models
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			super.strand = value;
-			
 			MenuModel.menuList.push(_strand);
 		}
 		

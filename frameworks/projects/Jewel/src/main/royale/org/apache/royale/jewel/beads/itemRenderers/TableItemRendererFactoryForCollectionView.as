@@ -18,173 +18,89 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-    import org.apache.royale.collections.ICollectionView;
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IItemRendererClassFactory;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
+    import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IParent;
-    import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.IStrandWithModelView;
+    import org.apache.royale.core.ITableModel;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.IListView;
-    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+    import org.apache.royale.html.beads.DataItemRendererFactoryBase;
+    import org.apache.royale.html.beads.ITableView;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.controls.TextAlign;
-    import org.apache.royale.jewel.beads.models.TableModel;
-    import org.apache.royale.jewel.beads.views.TableView;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
-    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
-    import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
     import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
      * and generates the appropiate table structure with thead, tbody and table rows and cells
      * to hold the columns and data in cells.
 	 */
-	public class TableItemRendererFactoryForCollectionView extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
+	public class TableItemRendererFactoryForCollectionView extends DataItemRendererFactoryBase implements IDataProviderItemRendererMapper
 	{
 		public function TableItemRendererFactoryForCollectionView(target:Object = null)
 		{
 			super(target);
 		}
-
-		protected var _strand:IStrand;
 		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		public function set strand(value:IStrand):void
+		private var table:Table;
+		private var view:ITableView;
+
+		override protected function finishSetup(event:Event):void
 		{
-			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete", initComplete);
+			super.finishSetup(event);
+			table = _strand as Table;
+		}
+
+		override protected function get dataGroup():IItemRendererOwnerView {
+			if(!view)
+				view = (_strand as IStrandWithModelView).view as ITableView;
+			return view.dataGroup;
+		}
+		
+		protected function get model():ITableModel {
+			return dataProviderModel as ITableModel;
 		}
 
 		/**
-		 *  finish setup
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 */
-		protected function initComplete(event:Event):void
-		{
-			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
+         *  Remove all itemrenderers
+         * 
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
+         */
+        override protected function removeAllItemRenderers(dataGroup:IItemRendererOwnerView):void
+        {
+			// TBodyContentArea - remove data items
+            super.removeAllItemRenderers(dataGroup);
 
-			view = _strand.getBeadByType(IListView) as TableView;
-			tbody = view.dataGroup as TBodyContentArea;
+			// THEAD - remove header items
+			removeElements(view.header);
+        }
 
-            model = _strand.getBeadByType(IBeadModel) as TableModel;
-			model.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-
-            table = _strand as Table;
-			
-			dataProviderChangeHandler(null);
-		}
-		
-		protected var labelField:String;
-		
-		private var _itemRendererFactory:IItemRendererClassFactory;
-		
 		/**
-		 *  The org.apache.royale.core.IItemRendererClassFactory used
-		 *  to generate instances of item renderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
+		 *  create all item renderers
+		 *  
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
 		 */
-		public function get itemRendererFactory():IItemRendererClassFactory
+		override protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
 		{
-			if(!_itemRendererFactory)
-				_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
-			
-			return _itemRendererFactory;
-		}
-		
-		/**
-		 *  @private
-		 */
-		public function set itemRendererFactory(value:IItemRendererClassFactory):void
-		{
-			_itemRendererFactory = value;
-		}
-
-        protected var view:TableView;
-        protected var model:TableModel;
-        protected var table:Table;
-
-		private var tbody:TBodyContentArea;
-
-        /**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		protected function dataProviderChangeHandler(event:Event):void
-		{
-			// -- 1) CLEANING PHASE
-            if (!model)
+			if(!model.columns)
 				return;
-			var dp:ICollectionView = model.dataProvider as ICollectionView;
-			if (!dp)
-			{
-				model.selectedIndex = -1;
-				model.selectedItem = null;
-				model.selectedItemProperty = null;
 
-				// TBodyContentArea - remove data items
-				tbody.removeAllItemRenderers();
-				return;
-			}
-			// remove this and better add beads when needed
-			// listen for individual items being added in the future.
-			// var dped:IEventDispatcher = dp as IEventDispatcher;
-			// dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-			// dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-			
-            // TBodyContentArea - remove data items
-			tbody.removeAllItemRenderers();
-			
-            // THEAD - remove header items
-			removeElements(view.thead);
-            // -- add the header
+			// -- add the header
             createHeader();
 			
-			
 			// -- 2) CREATION PHASE
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			labelField = model.labelField;
-			
             var column:TableColumn;
             var ir:TableItemRenderer;
 
-			var n:int = dp.length;
+			var n:int = model.dataProvider.length;
 			var index:int = 0;
 			for (var i:int = 0; i < n; i++)
 			{
@@ -200,26 +116,32 @@ package org.apache.royale.jewel.beads.itemRenderers
                         ir = itemRendererFactory.createItemRenderer() as TableItemRenderer;
                     }
 
-					labelField =  column.dataField;
-                    var item:Object = dp.getItemAt(i);
+					ir.dataField = column.dataField;
+					ir.rowIndex = i;
+					ir.columnIndex = j;
+					if(column.align != "")
+						ir.align = column.align;
+					
+					var data:Object = model.dataProvider.getItemAt(i);
+					
+					(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
+                    
+					dataGroup.addItemRendererAt(ir, index);
 
-                    (ir as StyledDataItemRenderer).dataField = labelField;
-					(ir as StyledDataItemRenderer).rowIndex = i;
-					(ir as StyledDataItemRenderer).columnIndex = j;
-                    fillRenderer(index++, item, (ir as IIndexedItemRenderer), presentationModel);
-			        
-                    if(column.align != "")
-                    {
-                        ir.align = column.align;
-                    }
+					ir.labelField = column.dataField;
+					ir.index = index;
+					ir.data = data;
+
+					index++;
                 }
 			}
-			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-            table.dispatchEvent(new Event("layoutNeeded"));
-        }
+		}
 
-		public function removeElements(container: IParent):void
+		/**
+		 *  remove all elements in a container.
+		 *  Needed to remove THEAD contents as part of cleaning
+		 */
+		protected function removeElements(container: IParent):void
 		{
 			if(container != null)
 			{
@@ -230,36 +152,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 		}
 
-        /**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 * @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
-		 */
-		protected function fillRenderer(index:int,
-										item:Object,
-										itemRenderer:IIndexedItemRenderer,
-										presentationModel:IListPresentationModel):void
-		{
-			tbody.addItemRendererAt(itemRenderer, index);
-			(itemRenderer as ILabelFieldItemRenderer).labelField = labelField;
-			
-			if (presentationModel) {
-				UIBase(itemRenderer).height = presentationModel.rowHeight;
-			}
-			
-			setData(itemRenderer, item, index);
-		}
-
 		/**
-		 * @private
+		 * Create the THEAD in the creation phase with the columns info
 		 */
-		protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
-		{
-			itemRenderer.index = index;
-			itemRenderer.data = data;
-		}
-
-        private function createHeader():void
+        protected function createHeader():void
 		{
             var createHeaderRow:Boolean = false;
             var test:TableColumn;
@@ -276,9 +172,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 
             if (createHeaderRow) 
             {
-				if(view.thead == null)
-                	view.thead = new THead();
-				var thead:THead = view.thead;
+				if(view.header == null)
+                	view.header = new THead();
 				var headerRow:TableRow = new TableRow();
 				
 				for(c=0; c < model.columns.length; c++)
@@ -296,40 +191,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 					headerRow.addElement(tableHeader);
 				}
 
-				thead.addElement(headerRow);
-				table.addElement(thead);
+				view.header.addElement(headerRow);
+				table.addElementAt(view.header as THead, 0);
 			}
         }
-
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		// protected function itemAddedHandler(event:CollectionEvent):void
-		// {
-		// }
-
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		// protected function itemRemovedHandler(event:CollectionEvent):void
-		// {
-		// }
-
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 */
-		// protected function itemUpdatedHandler(event:CollectionEvent):void
-		// {
-		// }
     }
 }

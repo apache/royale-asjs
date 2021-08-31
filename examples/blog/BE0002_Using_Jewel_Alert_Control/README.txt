@@ -25,4 +25,4 @@ This basic example shows how to display an Alert dialog in a Royale application.
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-http://royale.apache.org/using-jewel-alert-control/
+https://royale.apache.org/using-jewel-alert-control/

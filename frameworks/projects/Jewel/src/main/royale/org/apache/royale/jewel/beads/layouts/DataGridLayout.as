@@ -27,7 +27,9 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IDataGridView;
-    import org.apache.royale.html.beads.models.ButtonBarModel;
+    import org.apache.royale.jewel.beads.models.ButtonBarModel;
+    import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
+    import org.apache.royale.jewel.supportClasses.datagrid.DataGridWidthDenominator;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
@@ -71,6 +73,7 @@ package org.apache.royale.jewel.beads.layouts
 			_strand = value;
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 			(_strand as IEventDispatcher).addEventListener("sizeChanged", sizeChangedNeeded);
+			(_strand as IEventDispatcher).addEventListener("widthChanged", sizeChangedNeeded);
 		}
 		
 		/**
@@ -84,10 +87,19 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 *  sizeChangedNeeded
 		 * 
-		 *  @param event 
+		 *  @param event
+		 *
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 */
 		private function sizeChangedNeeded(event:Event):void
 		{
+			var view:IDataGridView = datagrid.view as IDataGridView
+			var header:IUIBase = view.header;
+			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			bbmodel.buttonWidths = null;
+			header.dispatchEvent(new Event('headerLayoutReset'));
 			layout();
 		}
 
@@ -113,7 +125,7 @@ package org.apache.royale.jewel.beads.layouts
          * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.ButtonBarModel
 		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn
 		 */
 		public function layout():Boolean
@@ -124,13 +136,13 @@ package org.apache.royale.jewel.beads.layouts
 			// so we call requestAnimationFrame until get right values
 			COMPILE::JS
 			{
-			if(initLayout && model.dataProvider){
-				if(datagrid.height == 0 && !isNaN(datagrid.percentHeight)) {
-					requestAnimationFrame(layout);
-					return true;
-				} else
-					initLayout = false;
-			}
+				if(initLayout && model.dataProvider){
+					if(datagrid.height == 0 && !isNaN(datagrid.percentHeight)) {
+						requestAnimationFrame(layout);
+						return true;
+					} else
+						initLayout = false;
+				}
 			}
 
 			var view:IDataGridView = datagrid.view as IDataGridView
@@ -140,62 +152,103 @@ package org.apache.royale.jewel.beads.layouts
             // in the bbmodel, so do all layout based on the bbmodel, not the set
             // of columns that may contain invisible columns
             var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
-            var bblayout:ButtonBarLayout = header.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
+			bbmodel.dataProvider.source = model.columns;
+            var bblayout:DataGridColumnLayout = header.getBeadByType(DataGridColumnLayout) as DataGridColumnLayout;
 			var listArea:IUIBase = view.listArea;
 			
 			var displayedColumns:Array = view.columnLists;
 			
 			// Width
-			var defaultColumnWidth:Number = 0;
+			//var defaultColumnWidth:Number = 0;
+			var defaultColumnWidth:DataGridColumnWidth = null;
+
+			var l:uint = bbmodel.dataProvider.length;
+			var i:int;
+			var columnDef:IDataGridColumn;
+			var isDGWidthSizedToContent:Boolean = datagrid.isWidthSizedToContent();
+			var denominatorInst:DataGridWidthDenominator = new DataGridWidthDenominator();
+
+			denominatorInst.value = l;
+			var explicitWidths:Number = 0;
+			var explicitPercents:uint = 0;
+			for(i=0; i < l; i++) {
+				columnDef = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
+				if (!isNaN(columnDef.explicitColumnWidth)) {
+					denominatorInst.value--;
+					explicitWidths += columnDef.explicitColumnWidth;
+				} else if(!isNaN(columnDef.percentColumnWidth)) {
+					explicitPercents += columnDef.percentColumnWidth;
+				}
+			}
 
 			// When still don't have header buttonWidths, we need a defaultColumnWidth
 			if(!bbmodel.buttonWidths)
 			{
-				if(datagrid.percentWidth)
-					defaultColumnWidth = datagrid.percentWidth / bbmodel.dataProvider.length;
-				else 
-					defaultColumnWidth = datagrid.width / bbmodel.dataProvider.length;
-				
-				// special case when no width is set at all, defaultColumnWidth will be 0
-				if(defaultColumnWidth == 0 && datagrid.isWidthSizedToContent())
-					defaultColumnWidth = 80;
+				if (denominatorInst.value) {
+					defaultColumnWidth = new DataGridColumnWidth();
+					defaultColumnWidth.setDefault();
+					defaultColumnWidth.widthType = DataGridColumnWidth.PERCENT;
+					defaultColumnWidth.denominator = denominatorInst;
+					bblayout.defaultWidth = defaultColumnWidth;
+					//not sure about the logic behind these default assessments:
+					if (datagrid.percentWidth) {
+						defaultColumnWidth.value = ((100 - explicitPercents) * .01 * datagrid.percentWidth) / denominatorInst.value ;
+						//if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.PERCENT;
+					} else if (datagrid.explicitWidth){
+						defaultColumnWidth.value = ((100 - explicitPercents)/100 * datagrid.width - explicitWidths) / denominatorInst.value;
+						//if (defaultColumnWidth.value) defaultColumnWidth.widthType = DataGridColumnWidth.DEFAULT;
+					}
+					// special case when no width is set at all, defaultColumnWidth will be 0
+					if (defaultColumnWidth.value == 0){
+						if (isDGWidthSizedToContent || (100 - explicitPercents <= 0)) {
+							defaultColumnWidth.value = 80;
+							defaultColumnWidth.widthType = DataGridColumnWidth.PIXELS;
+						} else {
+							defaultColumnWidth.value = (100 - explicitPercents) / denominatorInst.value;
+							//defaultColumnWidth.widthType = DataGridColumnWidth.EXPLICIT_PERCENT;
+						}
+					}
+				}
 			}
 			
 			var columnWidths:Array = [];
-			var totalWidth:Number = 0;
 
-			for(var i:int=0; i < bbmodel.dataProvider.length; i++)
+			var existing:Boolean = bbmodel.buttonWidths != null;
+			for(i=0; i < l; i++)
 			{
-				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
+				columnDef = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
-				var columnWidth:Number = defaultColumnWidth != 0 ? defaultColumnWidth : bbmodel.buttonWidths[i];
-				
-				// Column's Width
-				// if just one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
-				if (!isNaN(columnDef.columnWidth)) {
-					columnWidth = columnDef.columnWidth;
-					bblayout.widthType = ButtonBarModel.PIXEL_WIDTHS;
+
+				var columnWidth:DataGridColumnWidth = existing ? bbmodel.buttonWidths[i] || new DataGridColumnWidth() : new DataGridColumnWidth() ;
+				columnWidth.denominator = denominatorInst;
+
+				if (!isNaN(columnDef.explicitColumnWidth)) {
+					columnWidth.widthType = DataGridColumnWidth.PIXELS;
+					columnWidth.value = columnDef.columnWidth;
+					columnWidth.column = columnDef;
+				} else {
+					if (!isNaN(columnDef.percentColumnWidth)) {
+						columnWidth.widthType = DataGridColumnWidth.PERCENT;
+						columnWidth.value = columnDef.percentColumnWidth;
+						columnWidth.column = columnDef;
+					} else {
+						columnWidth.setFrom(defaultColumnWidth);
+					}
+
 				}
-				
-				if(datagrid.percentWidth)
-					columnList.percentWidth = columnWidth;
-				else
-					columnList.width = columnWidth;
-				
-				totalWidth += columnWidth;
+				columnWidth.configureWidth(columnList);
+
 				columnWidths.push(columnWidth);
 				
 				// Column's Height - remove columns height if rows not surround datagrid height (and this one is set to pixels)
-				if(model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > (datagrid.height - header.height))
+				/*if(model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > (datagrid.height - header.height))
 					columnList.height = NaN;
 				else 
-					columnList.percentHeight = 100;
+					columnList.percentHeight = 100;*/
 			}
 
 			bbmodel.buttonWidths = columnWidths;
-			
-			if(isNaN(datagrid.percentWidth))
-				datagrid.width = totalWidth;
+
 			
 			header.dispatchEvent(new Event("layoutNeeded"));
 			listArea.dispatchEvent(new Event("layoutNeeded"));

@@ -54,23 +54,22 @@ package mx.controls.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			if (model.dataProvider == null)
-			{
-				model.addEventListener("dataProviderChanged", dataProviderChangedHandler);
-			} else
-			{
-				dataProviderChangedHandler(null);
-			}
+			model.addEventListener("dataProviderChanged", dataProviderChangedHandler);
+			dataProviderChangedHandler(null);
 		}
 
 		protected function dataProviderChangedHandler(event:Event):void
 		{
-			dataProvider = model.dataProvider as IEventDispatcher;
-			if (dataProvider)
-			{
-				detachEventListeners();
+			if (dataProvider != model.dataProvider){
+				if (dataProvider)
+				{
+					detachEventListeners();
+				}
+				dataProvider = model.dataProvider as IEventDispatcher;
+				if (dataProvider) {
+					attachEventListeners();
+				}
 			}
-			attachEventListeners();
 		}
 
 		private function get model():ISelectionModel

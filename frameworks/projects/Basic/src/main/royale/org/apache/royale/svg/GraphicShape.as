@@ -271,19 +271,41 @@ package org.apache.royale.svg
 			element.style.left = xOffset + "px";
 			element.style.top = yOffset + "px";
 		}
+
+		/**
+		 *  @copy org.apache.royale.core.ILayoutChild#setX
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion HTMLElement
+		 */
 		COMPILE::JS
-		override public function set x(value:Number):void
+		override public function setX(value:Number):void
 		{
-			super.x = value;
+			positioner.style.left = value.toString() + 'px';
 			// Needed for SVG inside SVG
 			element.setAttribute("x", value);
 		}
+		
+		/**
+		 *  @copy org.apache.royale.core.ILayoutChild#setY
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion HTMLElement
+		 */
 		COMPILE::JS
-		override public function set y(value:Number):void
+		override public function setY(value:Number):void
 		{
-			super.y = value;
+			positioner.style.top = value.toString() + 'px';
 			// Needed for SVG inside SVG
 			element.setAttribute("y", value);
 		}
+		
+
 	}
 }

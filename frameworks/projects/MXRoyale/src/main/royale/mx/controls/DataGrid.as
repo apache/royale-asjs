@@ -50,7 +50,6 @@ import mx.controls.dataGridClasses.DataGridHeader;
 import mx.controls.dataGridClasses.DataGridItemRenderer;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.listClasses.IListItemRenderer;
 import mx.controls.listClasses.ListBaseContentHolder;
 import mx.controls.listClasses.ListBaseSeekPending;
 import mx.controls.listClasses.ListRowInfo;
@@ -91,15 +90,25 @@ import mx.utils.StringUtil;
 
 use namespace mx_internal;
 */
-    
+
+import mx.controls.listClasses.IListItemRenderer;
+import mx.core.UIComponent;
+import mx.controls.beads.DataGridSortBead;
 import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.ListBase;
+import mx.controls.listClasses.AdvancedListBase;
+import mx.controls.listClasses.DataGridListBase;
+import mx.controls.beads.DataGridColumnResizeBead;
+import mx.controls.beads.DataGridLinesBeadForICollectionView;
+import mx.events.DragEvent;
+
 import mx.core.mx_internal;
 use namespace mx_internal;
 
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IDataGrid;
 import org.apache.royale.core.IDataGridModel;
+import org.apache.royale.html.beads.IDataGridView;
 import org.apache.royale.core.IDataGridPresentationModel;
 import org.apache.royale.core.ValuesManager;
 
@@ -132,7 +141,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="itemEditBegin", type="mx.events.DataGridEvent")]
+[Event(name="itemEditBegin", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when the item editor has just been instantiated.
@@ -156,7 +165,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="itemEditEnd", type="mx.events.DataGridEvent")]
+[Event(name="itemEditEnd", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when an item renderer gets focus, which can occur if the user
@@ -170,7 +179,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="itemFocusIn", type="mx.events.DataGridEvent")]
+[Event(name="itemFocusIn", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when an item renderer loses focus, which can occur if the user
@@ -226,7 +235,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="headerRelease", type="mx.events.DataGridEvent")]
+[Event(name="headerRelease", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when the user releases the mouse button on a column header after 
@@ -290,7 +299,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="verticalGridLines", type="Boolean", inherit="no")]
+[Style(name="verticalGridLines", type="Boolean", inherit="no")]
 
 /**
  *  A flag that indicates whether to show horizontal grid lines between
@@ -709,7 +718,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DataGrid extends ListBase implements IDataGrid// implements IIMESupport
+public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid// implements IIMESupport
 {
 
     //--------------------------------------------------------------------------
@@ -730,6 +739,8 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     {
         super();
         typeNames = "DataGrid";
+        addBead(new DataGridLinesBeadForICollectionView());
+        addBead(new DataGridColumnResizeBead());
     }
 
     //--------------------------------------------------------------------------
@@ -738,6 +749,470 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     //
     //--------------------------------------------------------------------------
 
+
+    /**
+     *  A flag that indicates whether the user can change the size of the
+     *  columns.
+     *  If <code>true</code>, the user can stretch or shrink the columns of
+     *  the DataGrid control by dragging the grid lines between the header cells.
+     *  If <code>true</code>, individual columns must also have their
+     *  <code>resizable</code> properties set to <code>false</code> to
+     *  prevent the user from resizing a particular column.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var resizableColumns:Boolean = true;
+
+    /**
+     *  A flag that indicates whether the user can sort the data provider items
+     *  by clicking on a column header cell.
+     *  If <code>true</code>, the user can sort the data provider items by
+     *  clicking on a column header cell.
+     *  The <code>DataGridColumn.dataField</code> property of the column
+     *  or the <code>DataGridColumn.sortCompareFunction</code> property
+     *  of the column is used as the sort field.
+     *  If a column is clicked more than once
+     *  the sort alternates between ascending and descending order.
+     *  If <code>true</code>, individual columns can be made to not respond
+     *  to a click on a header by setting the column's <code>sortable</code>
+     *  property to <code>false</code>.
+     *
+     *  <p>When a user releases the mouse button over a header cell, the DataGrid
+     *  control dispatches a <code>headerRelease</code> event if both
+     *  this property and the column's sortable property are <code>true</code>.
+     *  If no handler calls the <code>preventDefault()</code> method on the event, the
+     *  DataGrid sorts using that column's <code>DataGridColumn.dataField</code> or
+     *  <code>DataGridColumn.sortCompareFunction</code> properties.</p>
+     *
+     *  @default true
+     *
+     *  @see mx.controls.dataGridClasses.DataGridColumn#dataField
+     *  @see mx.controls.dataGridClasses.DataGridColumn#sortCompareFunction
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var sortableColumns:Boolean = true;
+
+
+    /**
+     *  Returns the item renderer for a column cell or for a column header. 
+     *  This method returns the default item renderer if no custom render is assigned
+     *  to the column.
+     *
+     *  <p>This method is public so that is can be accessed by the DataGridHeader class, 
+     *  and is primarily used in subclasses of the DataGrid control.</p>
+     * 
+     *  @param c The DataGridColumn instance of the item renderer.
+     * 
+     *  @param forHeader <code>true</code> to return the header item renderer, 
+     *  and <code>false</code> to return the item render for the column cells.
+     * 
+     *  @param data If <code>forHeader</code> is <code>false</code>, 
+     *  the <code>data</code> Object for the item renderer. 
+     *  If <code>forHeader</code> is <code>true</code>, 
+     *  the DataGridColumn instance.  
+     * 
+     *  @return The item renderer.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function createColumnItemRenderer(c:DataGridColumn, forHeader:Boolean, data:Object):IListItemRenderer // not implemented
+    {
+        //var factory:IFactory;
+//
+        //// get the factory for the data
+        //factory = c.getItemRendererFactory(forHeader, data);
+        //if (!factory)
+        //{
+            //if (data == null)
+                //factory = nullItemRenderer;
+            //if (!factory)
+                //factory = itemRenderer;
+        //}
+//
+        //var renderer:IListItemRenderer;
+//
+        //// if it is the default column factory, see if
+        //// the freeItemRenderersTable has a free one
+        //if (factory == c.itemRenderer)
+        //{
+            //if (freeItemRenderersTable[c] && freeItemRenderersTable[c].length)
+            //{
+                //renderer = freeItemRenderersTable[c].pop();
+                //delete c.freeItemRenderersByFactory[factory][renderer];
+            //}
+        //}
+        //else if (c.freeItemRenderersByFactory)
+        //{
+            //// other re-usable renderers are in the FactoryMap
+            //var d:Dictionary = c.freeItemRenderersByFactory[factory];
+            //if (d)
+            //{
+                //for (var p:* in d)
+                //{
+                    //renderer = IListItemRenderer(p);
+                    //delete d[p];
+                    //break;
+                //}
+            //}
+        //}
+//
+        //if (!renderer )
+        //{
+            //renderer = factory.newInstance();
+            //if (renderer)
+            //{
+        //renderer.styleName = c;
+        //factoryMap[renderer] = factory;
+        //}
+        //}
+//
+//
+        //if (renderer)
+            //renderer.owner = this;
+        //return renderer;
+	    return null;
+    }
+
+
+    /**
+     *  This method closes an item editor currently open on an item renderer. 
+     *  You typically only call this method from within the event listener 
+     *  for the <code>itemEditEnd</code> event, after
+     *  you have already called the <code>preventDefault()</code> method to 
+     *  prevent the default event listener from executing.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function destroyItemEditor():void // not implemented
+    {
+        //// trace("destroyItemEditor");
+        //if (itemEditorInstance)
+        //{
+            //DisplayObject(itemEditorInstance).removeEventListener(KeyboardEvent.KEY_DOWN, editorKeyDownHandler);
+            //if (focusManager)
+                //focusManager.defaultButtonEnabled = true;
+            //systemManager.getSandboxRoot().
+                //removeEventListener(MouseEvent.MOUSE_DOWN, editorMouseDownHandler, true);
+            //systemManager.getSandboxRoot().
+                //removeEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, editorMouseDownHandler);
+            //systemManager.removeEventListener(Event.RESIZE, editorAncestorResizeHandler);
+            //removeEventListener(Event.RESIZE, editorAncestorResizeHandler);
+//
+            //var event:DataGridEvent =
+                //new DataGridEvent(DataGridEvent.ITEM_FOCUS_OUT);
+            //event.columnIndex = _editedItemPosition.columnIndex;
+            //event.rowIndex = _editedItemPosition.rowIndex;
+            //event.itemRenderer = itemEditorInstance;
+            //dispatchEvent(event);
+//
+            //if (! _columns[_editedItemPosition.columnIndex].rendererIsEditor)
+            //{
+                //// FocusManager.removeHandler() does not find
+                //// itemEditors in focusableObjects[] array
+                //// and hence does not remove the focusRectangle
+                //if (itemEditorInstance && itemEditorInstance is UIComponent)
+                    //UIComponent(itemEditorInstance).drawFocus(false);
+//
+                //// setfocus back to us so something on stage has focus
+				//// only if focus is null or is in this DG
+				//var focusComp:InteractiveObject = getFocus();
+				//if (focusComp == null || contains(focusComp))
+	                //deferFocus();
+                //
+                //// defer focus can cause focusOutHandler to destroy the editor
+                //// and make itemEditorInstance null
+                //if (itemEditorInstance)
+                //{
+                    //// must call removeChild() so FocusManager.lastFocus becomes null
+                    //actualContentHolder.removeChild(DisplayObject(itemEditorInstance));
+                    //editedItemRenderer.visible = true;
+                //}
+            //}
+            //itemEditorInstance = null;
+            //_editedItemPosition = null;
+        //}
+    }
+
+    protected function drawRowBackground(s:UIComponent, rowIndex:int, y:Number, height:Number, color:uint, dataIndex:int):void
+    {
+	// not implemented
+    }
+    
+    public function set horizontalGridLines(value:Boolean):void {} // not implemented
+    public function set horizontalGridLineColor(value:uint):void {} // not implemented
+    public function set selectionColor(value:uint):void {} // not implemented
+    public function set headerSeparatorSkin(value:Class):void {} // not implemented
+    
+    //public function set editable(value:Boolean):void {} // not implemented
+	
+	//----------------------------------
+    //  editable
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the draggableColumns property.
+     */
+    private var _editable:Boolean = false;
+    
+    [Inspectable(category="General")]
+
+    /**
+     *  A flag that indicates whether or not the user can edit
+     *  items in the data provider.
+     *  If <code>true</code>, the item renderers in the control are editable.
+     *  The user can click on an item renderer to open an editor.
+     *
+     *  <p>You can turn off editing for individual columns of the
+     *  DataGrid control using the <code>DataGridColumn.editable</code> property,
+     *  or by handling the <code>itemEditBeginning</code> and
+     *  <code>itemEditBegin</code> events</p>
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get editable():Boolean
+    {
+        return _editable;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set editable(value:Boolean):void
+    {
+        _editable = value;
+    }
+	
+	//----------------------------------
+    //  editedItemPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    private var bEditedItemPositionChanged:Boolean = false;
+
+    /**
+     *  @private
+     *  undefined means we've processed it
+     *  null means don't put up an editor
+     *  {} is the coordinates for the editor
+     */
+    private var _proposedEditedItemPosition:*;
+
+    /**
+     *  @private
+     *  the last editedItemPosition and the last
+     *  position where editing was attempted if editing
+     *  was cancelled.  We restore editing
+     *  to this point if we get focus from the TAB key
+     */
+    private var lastEditedItemPosition:*;
+
+    /**
+     *  @private
+     */
+    private var _editedItemPosition:Object;
+
+    /**
+     *  @private
+     */
+    private var itemEditorPositionChanged:Boolean = false;
+
+
+    [Bindable("itemFocusIn")]
+
+    /**
+     *  The column and row index of the item renderer for the
+     *  data provider item being edited, if any.
+     *
+     *  <p>This Object has two fields, <code>columnIndex</code> and 
+     *  <code>rowIndex</code>,
+     *  the zero-based column and row indexes of the item.
+     *  For example: {columnIndex:2, rowIndex:3}</p>
+     *
+     *  <p>Setting this property scrolls the item into view and
+     *  dispatches the <code>itemEditBegin</code> event to
+     *  open an item editor on the specified item renderer.</p>
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get editedItemPosition():Object
+    {
+        if (_editedItemPosition)
+            return {rowIndex: _editedItemPosition.rowIndex,
+                columnIndex: _editedItemPosition.columnIndex};
+        else
+            return _editedItemPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set editedItemPosition(value:Object):void
+    {
+        if (!value)
+        {
+            //setEditedItemPosition(null);
+            return;
+        }
+ 
+        var newValue:Object = {rowIndex: value.rowIndex,
+            columnIndex: value.columnIndex};
+
+        //setEditedItemPosition(newValue);
+    }
+
+    /**
+     *  @private
+     *  Storage for the headerHeight property.
+     */
+   /* mx_internal*/ private var _headerHeight:Number = 22;
+
+    [Bindable("resize")]
+    //[Inspectable(category="General", defaultValue="22")]
+
+    /**
+     *  The height of the header cell of the column, in pixels.
+     *  If set explicitly, that height will be used for all of
+     *  the headers. If not set explicitly,
+     *  the height will based on style settings and the header
+     *  renderer.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get headerHeight():Number
+    {
+        return _headerHeight;
+    }
+
+    /**
+     *  @private
+     */
+    public function set headerHeight(value:Number):void
+    {
+        _headerHeight = value;
+       /* _explicitHeaderHeight = true;
+        itemsSizeChanged = true;
+
+        invalidateDisplayList();*/
+    }
+
+    /**
+     *  @private
+     *  Storage for the showHeaders property.
+     */
+    private var _showHeaders:Boolean = true;
+
+    [Bindable("showHeadersChanged")]
+  //  [Inspectable(category="General", defaultValue="true")]
+
+    /**
+     *  A flag that indicates whether the control should show
+     *  column headers.
+     *  If <code>true</code>, the control shows column headers.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showHeaders():Boolean
+    {
+        return _showHeaders;
+    }
+
+    /**
+     *  @private
+     */
+    public function set showHeaders(value:Boolean):void
+    {
+        if (value == _showHeaders)
+            return;
+
+        _showHeaders = value;
+        /*itemsSizeChanged = true;
+
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("showHeadersChanged"));*/
+    }
+
+	//----------------------------------
+    //  minColumnWidth
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    private var _minColumnWidth:Number;
+
+    /**
+     *  @private
+     */
+    private var minColumnWidthInvalid:Boolean = false;
+
+    [Inspectable(defaultValue="NaN")]
+
+    /**
+     *  The minimum width of the columns, in pixels.  If not NaN,
+     *  the DataGrid control applies this value as the minimum width for
+     *  all columns.  Otherwise, individual columns can have
+     *  their own minimum widths.
+     *  
+     *  @default NaN
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get minColumnWidth():Number
+    {
+        return _minColumnWidth;
+    }
+
+    /**
+     *  @private
+     */
+    public function set minColumnWidth(value:Number):void
+    {
+        _minColumnWidth = value;
+        minColumnWidthInvalid = true;
+        //itemsSizeChanged = true;
+       // columnsInvalid = true;
+       // invalidateDisplayList();
+    }
     [Inspectable(environment="none")]
 
 
@@ -782,20 +1257,57 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
      */
     public function get columns():Array
     {
-        return IDataGridModel(model).columns;
+        var arr:Array = IDataGridModel(model).columns;
+        return arr ? arr.slice() : [];
     }
     /**
      * @royaleignorecoercion org.apache.royale.core.IDataGridModel
      */
     public function set columns(value:Array):void
     {
-        IDataGridModel(model).columns = value;
+        var index:int = 0;
         for each (var col:DataGridColumn in value)
         {
             col.owner = this;
+            col.colNum = index++;
         }
+        value = value? value.slice() : value;
+        IDataGridModel(model).columns = value;
     }
-	
+
+    /**
+     *  @private
+     *  Storage for the draggableColumns property.
+     */
+    private var _draggableColumns:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  A flag that indicates whether the user is allowed to reorder columns.
+     *  If <code>true</code>, the user can reorder the columns
+     *  of the DataGrid control by dragging the header cells.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get draggableColumns():Boolean
+    {
+        return _draggableColumns;
+    }
+
+    /**
+     *  @private
+     */
+    public function set draggableColumns(value:Boolean):void
+    {
+        _draggableColumns = value;
+    }
+
     /**
      * @private
      */
@@ -830,6 +1342,66 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     public function set presentationModel(value:IBead):void
     {
         _presentationModel = value as IDataGridPresentationModel;
+    }
+    
+    /**
+     *  Displays a drop indicator under the mouse pointer to indicate that a
+     *  drag and drop operation is allowed and where the items will
+     *  be dropped.
+     *
+     *  @param event A DragEvent object that contains information as to where
+     *  the mouse is.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function showDropFeedback(event:DragEvent):void
+    {
+        //To Do
+        trace("showDropFeedback is not implemented");
+    }
+
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+
+        addBead(new DataGridSortBead())
+
+        COMPILE::JS{
+            this.element.style['overflow-y'] = 'hidden';
+        }
+
+       /* addBead(new AdvancedDataGridSortBead());
+        addEventListener(AdvancedDataGridEvent.SORT, sortHandler);
+        // Register default handlers for item editing.
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_BEGINNING,
+                itemEditorItemEditBeginningHandler);
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_BEGIN,
+                itemEditorItemEditBeginHandler);
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_END,
+                itemEditorItemEditEndHandler);*/
+
+    }
+
+    COMPILE::JS
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+     */
+    override protected function getVerticalScrollElement():HTMLElement{
+        return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
+    }
+
+    COMPILE::JS
+    /**
+     * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+     */
+    override protected function getHorizontalScrollElement():HTMLElement{
+        return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
     }
 }
 

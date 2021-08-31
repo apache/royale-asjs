@@ -20,7 +20,21 @@
 package mx.binding
 {
 
+COMPILE::SWF{
+	import flash.utils.Dictionary;
+}
+
 import mx.events.PropertyChangeEvent;
+
+
+import org.apache.royale.events.ValueChangeEvent;
+import org.apache.royale.reflection.DefinitionWithMetaData;
+import org.apache.royale.reflection.MetaDataArgDefinition;
+import org.apache.royale.reflection.MetaDataDefinition;
+import org.apache.royale.reflection.TypeDefinition;
+import org.apache.royale.reflection.describeType;
+import org.apache.royale.reflection.utils.getMembersWithNameMatch;
+import org.apache.royale.reflection.utils.filterForMetaTags;
 
 [ExcludeClass]
 
@@ -38,7 +52,7 @@ public class BindabilityInfo
 	//  Class constants
 	//
 	//--------------------------------------------------------------------------
-	
+
 	/**
 	 *  Name of [Bindable] metadata.
 	 *  
@@ -57,7 +71,7 @@ public class BindabilityInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public static const MANAGED:String = "Managed";
+//	public static const MANAGED:String = "Managed";
 	
 	/**
 	 *  Name of [ChangeEvent] metadata.
@@ -67,7 +81,7 @@ public class BindabilityInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public static const CHANGE_EVENT:String = "ChangeEvent";
+//	public static const CHANGE_EVENT:String = "ChangeEvent";
 	
 	/**
 	 *  Name of [NonCommittingChangeEvent] metadata.
@@ -77,8 +91,8 @@ public class BindabilityInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public static const NON_COMMITTING_CHANGE_EVENT:String =
-		"NonCommittingChangeEvent";
+	//public static const NON_COMMITTING_CHANGE_EVENT:String =
+	//	"NonCommittingChangeEvent";
 
 	/**
 	 *  Name of describeType() <accessor> element.
@@ -100,6 +114,50 @@ public class BindabilityInfo
 	 */
 	public static const METHOD:String = "method";
 
+
+	COMPILE::SWF
+	private static const cache:Dictionary = new Dictionary();
+
+	COMPILE::JS
+	private static const cache:Map = new Map()
+
+	//--------------------------------------------------------------------------
+	//
+	//  Static methods
+	//
+	//--------------------------------------------------------------------------
+
+	public static function getCachedInfo(forTarget:Object):BindabilityInfo{
+		var typeDef:TypeDefinition = describeType(forTarget);
+		var info:BindabilityInfo = getFromCache(typeDef);
+		if (!info) {
+			info = new BindabilityInfo(typeDef, true);
+		}
+		return info;
+	}
+
+	private static function getFromCache(typeDef:TypeDefinition):BindabilityInfo{
+		var info:BindabilityInfo;
+		COMPILE::SWF{
+			info = cache[typeDef.getClass()]
+		}
+		COMPILE::JS{
+			info = cache.get(typeDef.getClass())
+		}
+		return info;
+	}
+
+	private static function storeInCache(info:BindabilityInfo):void{
+		var typeDef:TypeDefinition = info.typeDefinition;
+		COMPILE::SWF{
+			cache[typeDef.getClass()] = info;
+		}
+		COMPILE::JS{
+			cache.set(typeDef.getClass(), info);
+		}
+	}
+
+
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor
@@ -114,11 +172,14 @@ public class BindabilityInfo
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function BindabilityInfo(typeDescription:XML)
+	public function BindabilityInfo(typeDefinition:TypeDefinition, cache:Boolean=false)
 	{
 		super();
 
-		this.typeDescription = typeDescription;
+		this.typeDefinition = typeDefinition;
+		if (cache) {
+			storeInCache(this);
+		}
 	}
 
 	//--------------------------------------------------------------------------
@@ -130,7 +191,7 @@ public class BindabilityInfo
 	/**
 	 *  @private
 	 */
-	private var typeDescription:XML;
+	private var typeDefinition:TypeDefinition;
 	
 	/**
 	 *  @private
@@ -168,33 +229,29 @@ public class BindabilityInfo
 			// Seed with class-level events.
 			changeEvents = copyProps(getClassChangeEvents(), {});
 
-			// Get child-specific events.
-			var childDesc:XMLList =
-				typeDescription.accessor.(@name == childName) +
-				typeDescription.method.(@name == childName);
-			
-			var numChildren:int = childDesc.length();
+			var accessorsAndMethods:Array = [];
+
+			getMembersWithNameMatch(typeDefinition.accessors, childName, accessorsAndMethods);
+			getMembersWithNameMatch(typeDefinition.methods, childName, accessorsAndMethods);
+
+			var numChildren:int = accessorsAndMethods.length;
 
 			if (numChildren == 0)
 			{
-				// we've been asked for events on an unknown property
-				if (!typeDescription.@dynamic)
-				{
-					trace("warning: no describeType entry for '" +
-						  childName + "' on non-dynamic type '" +
-						  typeDescription.@name + "'");
-				}
+				trace("warning: no describeType entry for '" +
+						childName + "' on non-dynamic type '" +
+						typeDefinition.name + "'");
 			}
 			else
 			{
 				if (numChildren > 1)
 				{
 					trace("warning: multiple describeType entries for '" +
-						  childName + "' on type '" + typeDescription.@name +
-						  "':\n" + childDesc);
+							childName + "' on type '" + typeDefinition.name +
+							"':\n" + accessorsAndMethods);
 				}
 
-				addBindabilityEvents(childDesc.metadata, changeEvents);
+				addBindabilityEvents(accessorsAndMethods, changeEvents);
 			}
 
 			childChangeEvents[childName] = changeEvents;
@@ -207,35 +264,45 @@ public class BindabilityInfo
 	 *  @private
 	 *  Build or return cached class change events object.
 	 */
+
 	private function getClassChangeEvents():Object
 	{
 		if (!classChangeEvents)
 		{
 			classChangeEvents = {};
 
-			addBindabilityEvents(typeDescription.metadata, classChangeEvents);
+			//@todo check this (currently fails in swf at runtime)
+			//addBindabilityEvents(typeDefinition.metadata, classChangeEvents);
 
-			// Class-level [Managed] means all properties
-			// dispatch propertyChange.
-			if (typeDescription.metadata.(@name == MANAGED).length() > 0)
-			{
-				classChangeEvents[PropertyChangeEvent.PROPERTY_CHANGE] = true;
+
+			//if class has Bindable metadata, assume yes ?
+			if (typeDefinition.retrieveMetaDataByName('Bindable').length) {
+				classChangeEvents[ValueChangeEvent.VALUE_CHANGE] = true;
 			}
+			// tbd, do we want this?
+			// Class-level [Managed] means all properties
+			// dispatch valueChange.
+			if (typeDefinition.retrieveMetaDataByName('Managed').length) {
+				classChangeEvents[ValueChangeEvent.VALUE_CHANGE] = true;
+			}
+
 		}
 
 		return classChangeEvents;
 	}
 
+
 	/**
 	 *  @private
 	 */
-	private function addBindabilityEvents(metadata:XMLList,
+
+	private function addBindabilityEvents(members:Array,
 										  eventListObj:Object):void
 	{
-		addChangeEvents(metadata.(@name == BINDABLE), eventListObj, true);
-		addChangeEvents(metadata.(@name == CHANGE_EVENT), eventListObj, true);
-		addChangeEvents(metadata.(@name == NON_COMMITTING_CHANGE_EVENT),
-						eventListObj, false);
+		var metaNames:Array = [BINDABLE];
+		var changeEvents:Array = filterForMetaTags(members, metaNames);
+
+		addChangeEvents(changeEvents, eventListObj );
 	}
 
 	/**
@@ -244,20 +311,40 @@ public class BindabilityInfo
 	 *  to an event list object.
 	 *  Note: metadata's first arg value is assumed to be change event name.
 	 */
-	private function addChangeEvents(metadata:XMLList, eventListObj:Object, isCommit:Boolean):void
+
+	private function addChangeEvents(members:Array, eventListObj:Object):void
 	{
-		for each (var md:XML in metadata)
+		for each (var md:DefinitionWithMetaData in members)
 		{
-			var arg:XMLList = md.arg;
-			if (arg.length() > 0)
-			{
-				var eventName:String = arg[0].@value;
-				eventListObj[eventName] = isCommit;
-			}
-			else
-			{
-				trace("warning: unconverted Bindable metadata in class '" +
-					  typeDescription.@name + "'");
+			var metaNames:Array = [BINDABLE];
+
+			for each(var meta:String in metaNames) {
+				var metaItems:Array = md.retrieveMetaDataByName(meta);
+				if (metaItems.length) {
+					//if there is no arg, then it is valueChange
+					for each(var metaItem:MetaDataDefinition in metaItems) {
+						if (metaItem.args.length) {
+							//check for no key
+							var eventTypeArgs:Array = metaItem.getArgsByKey('');
+							if (!eventTypeArgs.length) {
+								//check for 'event' key
+								eventTypeArgs = metaItem.getArgsByKey('event');
+							}
+							if (eventTypeArgs.length) {
+								eventListObj[MetaDataArgDefinition(eventTypeArgs[0]).value] = true;
+							}
+						} else {
+							if (meta == BINDABLE) {
+								eventListObj[ValueChangeEvent.VALUE_CHANGE] = true;
+							}
+							else {
+								trace("warning: unconverted change events metadata in class '" +
+										typeDefinition.name + "'", metaItem);
+							}
+
+						}
+					}
+				}
 			}
 		}
 	}

@@ -33,9 +33,13 @@ package org.apache.royale.icons
         /**
          *  constructor.
          * 
-         *  <inject_html>
-         *  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-         *  </inject_html>
+         *  <inject_script>
+         *  var link = document.createElement("link");
+         *  link.setAttribute("rel", "stylesheet");
+         *  link.setAttribute("type", "text/css");
+         *  link.setAttribute("href", "https://fonts.googleapis.com/icon?family=Material+Icons");
+         *  document.head.appendChild(link);
+         *  </inject_script>
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -19,15 +19,15 @@
 -->
 <project>
   <output>
-    <movie fps="60"/>
-    <movie height="600"/>
-    <movie disabled="False"/>
-    <movie background="#FFFFFF"/>
     <movie path="bin-debug/CruxQuickStart.swf"/>
-    <movie width="800"/>
     <movie platform="Flash Player"/>
-    <movie version="11"/>
+    <movie disabled="False"/>
+    <movie height="600"/>
+    <movie width="800"/>
+    <movie fps="60"/>
+    <movie background="#FFFFFF"/>
     <movie input=""/>
+    <movie version="11"/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
   <jsOutput>
@@ -40,38 +40,41 @@
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
     <option es="False"/>
+    <option warnings="True"/>
+    <option strict="True"/>
+    <option useResourceBundleMetadata="True"/>
+    <option allowSourcePathOverlap="False"/>
     <option verboseStackTraces="False"/>
-    <option customSDK=""/>
-    <option loadConfig=""/>
-    <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/crux-jewel-example-index-template.html +configname=flex"/>
-    <option optimize="False"/>
-    <option staticLinkRSL="False"/>
+    <option showDeprecationWarnings="True"/>
+    <option benchmark="False"/>
+    <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/crux-jewel-example-index-template.html -js-default-initializers=true -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient -keep-code-with-metadata=Inject +configname=flex  "/>
     <option antBuildPath="build/build.xml"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
     <option showActionScriptWarnings="True"/>
-    <option compilerConstants=""/>
+    <option staticLinkRSL="False"/>
+    <option accessible="False"/>
     <option locale=""/>
     <option linkReport=""/>
-    <option showDeprecationWarnings="True"/>
-    <option showUnusedTypeSelectorWarnings="True"/>
-    <option showBindingWarnings="True"/>
-    <option strict="True"/>
-    <option accessible="False"/>
+    <option customSDK=""/>
+    <option compilerConstants=""/>
     <option useNetwork="True"/>
-    <option allowSourcePathOverlap="False"/>
-    <option useResourceBundleMetadata="True"/>
-    <option benchmark="False"/>
-    <option warnings="True"/>
+    <option optimize="False"/>
+    <option sourceMap="False"/>
+    <option loadConfig=""/>
+    <option showBindingWarnings="True"/>
   </build>
   <mavenBuild>
+    <option dominoNotesPlatform=""/>
     <option mavenBuildPath=""/>
-    <option settingsFilePath=""/>
     <option commandLine=""/>
+    <option dominoNotesProgram=""/>
+    <option settingsFilePath=""/>
     <actions>
-      <action action="install" actionName="Build"/>
-      <action action="clean package" actionName="Clean and package"/>
-      <action action="clean" actionName="Clean"/>
-      <action action="clean install" actionName="Clean and Build"/>
-      <action action="war:exploded" actionName="Exploded"/>
+      <action actionName="Build" action="install"/>
+      <action actionName="Clean and package" action="clean package"/>
+      <action actionName="Clean" action="clean"/>
+      <action actionName="Clean and Build" action="clean install"/>
+      <action actionName="Exploded" action="war:exploded"/>
     </actions>
   </mavenBuild>
   <includeLibraries></includeLibraries>
@@ -83,6 +86,7 @@
     <element path="Library\AS3\frameworks\Flex4"/>
   </intrinsics>
   <library></library>
+  <modules/>
   <compileTargets>
     <compile path="src/main/royale/CruxQuickStart.mxml"/>
   </compileTargets>
@@ -91,23 +95,25 @@
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
+    <option testMovie=""/>
+    <option isExportedToExistingSource="False"/>
     <option isPrimeFacesVisualEditor="False"/>
-    <option defaultBuildTargets=""/>
     <option visualEditorExportPath=""/>
     <option showHiddenPaths="False"/>
+    <option defaultBuildTargets=""/>
     <option isRoyale="True"/>
-    <option testMovie=""/>
     <option testMovieCommand=""/>
-    <option isExportedToExistingSource="False"/>
   </options>
   <moonshineRunCustomization>
-    <option customUrlToLaunch=""/>
+    <option webBrowser="Google Chrome"/>
+    <option targetPlatform="5"/>
     <option deviceSimulator="null"/>
-    <option targetPlatform="2"/>
     <option urlToLaunch=""/>
-    <option projectType="2"/>
     <option launchMethod="Simulator"/>
-    <deviceSimulator>null</deviceSimulator>
+    <option projectType="2"/>
+    <option deviceConnectType="USB"/>
+    <option customUrlToLaunch=""/>
+    <deviceSimulator>Apple iPad</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
     <certIosProvisioning>null</certIosProvisioning>

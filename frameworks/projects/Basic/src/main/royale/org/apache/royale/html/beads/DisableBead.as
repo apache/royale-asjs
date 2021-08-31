@@ -66,16 +66,15 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 		 */
 		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-            COMPILE::JS
-            {
-                _lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
-            }
+			COMPILE::JS
+			{
+				_lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+			}
 			updateHost();
 		}
 		
@@ -107,7 +106,9 @@ package org.apache.royale.html.beads
 		{
 			updateHost();
 		}
-		
+		/**
+		 * 	@royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
 		private function get host():IUIBase
 		{
 			return _strand as IUIBase;

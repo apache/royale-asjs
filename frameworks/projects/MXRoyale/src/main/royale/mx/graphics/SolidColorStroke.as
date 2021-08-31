@@ -36,8 +36,55 @@ package mx.graphics
             this.weight = weight;
             this.color = color;
             this.alpha = alpha;
+			this.joints = joints;
+			this.miterLimit = miterLimit;
 		}
 		
+		
+		private var _joints:String = "round";
+
+        /**
+         *  The join type of two segments.
+         *  Possible values are miter round and bevel. 
+         *  
+         *  @default miter
+         *
+         *  @see org.apache.royale.graphics.LineStyle
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.7
+         */        
+	public function get joints():String
+	{
+		return _joints;
+	}
+	public function set joints(val:String):void
+	{
+		_joints = val;
+	}
+	
+	private var _miterLimit:Number = 4;
+		/**
+		 *  The miter limit at the join of two segments.
+		 *  
+		 *  @default 4
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.7
+		 */        
+	public function get miterLimit():Number
+	{
+		return _miterLimit;
+	}
+	public function set miterLimit(val:Number):void
+	{
+		_miterLimit = val;
+	}
+	
 	private var _weight:Number;
 
     public function get weight():Number
@@ -48,6 +95,8 @@ package mx.graphics
     {
         _weight = value;
     }
+	// not implemented
+	public function set pixelHinting(value:Boolean):void {}
 
 	private var _color:Number;
 

@@ -21,6 +21,7 @@ package org.apache.royale.routing
   import org.apache.royale.core.Bead;
   import org.apache.royale.events.ValueEvent;
   import org.apache.royale.core.IStrand;
+  import org.apache.royale.events.Event;
 
   [DefaultProperty("routes")]
   public class RouteToParameters extends Bead
@@ -30,21 +31,22 @@ package org.apache.royale.routing
       
     }
     /**
-     * @royaleignorecoercion org.apache.royale.routing.Router
+     * @royaleignorecoercion org.apache.royale.routing.IRouter
      */
-    private function get host():Router{
-      return _strand as Router
+    private function get host():IRouter{
+      return _strand as IRouter
     }
     override public function set strand(value:IStrand):void
     {
       _strand = value;
-      listenOnStrand("hashNeeded",hashNeeded);
-      listenOnStrand("hashReceived",hashReceived);
+      listenOnStrand("urlNeeded",urlNeeded);
+      listenOnStrand("urlReceived",urlReceived);
       listenOnStrand("stateChange",stateChanged)
     }
-    private function hashNeeded(ev:ValueEvent):void
+
+    protected function urlNeeded(event:ValueEvent):void
     {
-      var hash:String = ev.value;
+      var hash:String = event.value;
       var paramStr:String = buildParameterString();
       var trailing:String = "";
       var index:int = hash.indexOf("#");
@@ -53,13 +55,13 @@ package org.apache.royale.routing
         trailing = hash.slice(index);
         hash = hash.slice(0,index);
       }
-      ev.value = hash + paramStr + trailing;
+      event.value = hash + paramStr + trailing;
 
     }
 
-    private function hashReceived(ev:ValueEvent):void
+    protected function urlReceived(event:ValueEvent):void
     {
-      var hash:String = ev.value;
+      var hash:String = event.value;
       var index:int = hash.indexOf("?");
       if(index == -1)//no params
         return;
@@ -71,7 +73,8 @@ package org.apache.royale.routing
       }
       host.routeState.parameters = parseParameters(hash);
     }
-    private function stateChanged():void
+
+    protected function stateChanged(event:Event):void
     {
       var params:Object = host.routeState.parameters;
       // apply routes

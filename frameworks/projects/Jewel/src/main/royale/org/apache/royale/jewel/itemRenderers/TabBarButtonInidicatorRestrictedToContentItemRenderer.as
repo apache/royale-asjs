@@ -17,7 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
-{    
+{
+	import org.apache.royale.utils.observeElementSize;
+
 	/**
 	 *  The TabBarButtonInidicatorRestrictedToContentItemRenderer
      *  is a TabBarButtonItemRenderer that restrict indicator to content
@@ -40,17 +42,49 @@ package org.apache.royale.jewel.itemRenderers
 		public function TabBarButtonInidicatorRestrictedToContentItemRenderer()
 		{
 			super();
+
+			COMPILE::JS
+			{
+			// since span content and _internal must by synced on size, 
+			// but are in different DOM branches
+            observeElementSize(content, contentSizeChanged);
+            }
 		}
 
+		COMPILE::JS
+		private var _internal_:HTMLDivElement;
+
 		/**
-		 * adding indicator to positioner makes the indicator fill all available space
-		 * adding to "span" HTMLElement restrict indicator to content.
-		 * Override this function in TabBarButtonItemRenderer subclasses
+		 * We create an internal element with the text and make it invisible.
+		 * So we position absolutely to the bottom and add the indicator
+		 * to this internal element.
+		 * In this way we can manage paddings and other things
+		 * in extended renderers.
 		 */
 		COMPILE::JS
 		override protected function addIndicator():void
 		{
-			span.appendChild(indicator);
+			// this is to position the indicator when restricted
+			_internal_ = document.createElement('div') as HTMLDivElement;
+			_internal_.className = "_internal_";
+			positioner.appendChild(_internal_);
+			_internal_.appendChild(indicator);
+		}
+
+		COMPILE::JS
+        private function contentSizeChanged():void
+		{
+			updateInternalSize();
+        }
+
+		/**
+		 * updated internal size according to real content size
+		 */
+		COMPILE::JS
+		protected function updateInternalSize():void
+		{
+			_internal_.style.width = content.offsetWidth + "px";
+			_internal_.style.height = content.offsetHeight + "px";
 		}
 	}
 }

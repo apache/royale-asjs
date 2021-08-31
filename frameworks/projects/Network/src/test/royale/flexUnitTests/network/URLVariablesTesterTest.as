@@ -96,6 +96,14 @@ package flexUnitTests.network
             assertEquals(tester[''], 'EmptyStringValue', 'unexpected decoded value');
     
         }
+
+        [Test]
+        public function testDecodingWithPlus():void
+        {
+            var tester:URLVariables = new URLVariables('test1=test1Value+with+spaces');
+            assertEquals(tester['test1'], 'test1Value with spaces', 'unexpected decoded value');
+
+        }
     
     
     

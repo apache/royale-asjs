@@ -60,6 +60,9 @@ $checkbox-label-font-size: 16px
 
         &[disabled]
 
+            & + span
+                color: $disabled-font-color
+
             & + span::before
                 background: $disabled-color
                 @if $flat
@@ -68,9 +71,6 @@ $checkbox-label-font-size: 16px
                     border: 1px solid $disabled-border-color// .094em
                 border-radius: $checkbox-border-radius
 
-            & + span
-                color: $disabled-font-color
-
             & + span::after
                 background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{darken($disabled-color, 15%)}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
 
@@ -78,4 +78,96 @@ $checkbox-label-font-size: 16px
     span
         padding-left: $checkbox-label-separation
         //font-size: $checkbox-label-font-size
+
+
+// Jewel CheckBoxSwitch
+
+// CheckBoxSwitch variables
+$switch-button-size: 24px
+$switch-button-offset: 2px
+$switch-inner-size: $switch-button-size - (2 * $switch-button-offset)
+$switch-button-border-radius: 50%
+$switch-transition-delay: .4s
+$switch-label-separation: 8px
+
+.jewel.switch
+
+    input
+        &:checked 
+            + .switch
+                @if $flat
+                    background: $primary-color
+                @else
+                    background: linear-gradient(lighten($primary-color, 0%), lighten($primary-color, 10%))
+                box-shadow: 0px 0px 0px 1px darken($primary-color, 5%)
+
+        &:focus
+            + .switch
+                box-shadow: 0px 0px 0px 1px darken($primary-color, 10%)
         
+        // &:checked:focus
+        //     + .switch
+        //         box-shadow: 0px 0px 0px 1px darken($primary-color, 10%)
+
+        &:checked 
+            + .switch::before
+                @if $flat
+                    background: lighten($primary-color, 45%)
+                    box-shadow: none
+                @else
+                    background: lighten($primary-color, 45%)
+                    box-shadow: -1px 0px 1px 0px rgba(0, 0, 0, .1)
+                transform: translateX($switch-inner-size)
+
+        &[disabled]
+            &:checked 
+                + .switch
+                    @if $flat
+                        background: lighten($disabled-font-color, 10%)
+                    @else
+                        background: lighten($disabled-font-color, 10%)
+                    box-shadow: 0px 0px 0px 1px lighten($disabled-font-color, 5%)
+
+            & + .switch
+                @if $flat
+                    background: lighten($default-color, 10%)
+                @else
+                    background: lighten($default-color, 10%)
+                box-shadow: 0px 0px 0px 1px lighten($disabled-font-color, 15%)
+                
+            & + .switch::before
+                @if $flat
+                    background: lighten($default-color, 25%)
+                    box-shadow: none
+                @else
+                    background: lighten($disabled-color, 10%)
+                    box-shadow: none
+
+    .switch
+        @if $flat
+            background: linear-gradient(lighten($default-color, 0%), lighten($default-color, 0%))
+        @else
+            background: linear-gradient(lighten($default-color, 0%), lighten($default-color, 10%))
+        box-shadow: 0px 0px 0px 1px darken($default-color, 5%)
+        transition: $switch-transition-delay
+        border-radius: $checkbox-border-radius
+
+        &::before
+            @if $flat
+                background: lighten($default-color, 45%)
+                box-shadow: none
+            @else
+                background: lighten($primary-color, 45%)
+                box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, .1)
+            transition: $switch-transition-delay
+            border-radius: $checkbox-border-radius 
+
+    .label
+        padding-left: $switch-label-separation
+
+    &.radio
+        .switch
+            border-radius: $switch-inner-size
+
+            &::before
+                border-radius: $switch-button-border-radius

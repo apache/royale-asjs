@@ -20,6 +20,8 @@ package mx.controls.beads
 {	
     import org.apache.royale.core.IItemRenderer;   
     import org.apache.royale.core.SelectableItemRendererClassFactory;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
 
 	/**
@@ -48,7 +50,11 @@ package mx.controls.beads
         override public function createItemRenderer():IItemRenderer
         {
             var ir:IItemRenderer = super.createItemRenderer();
-			ir["outerDocument"] = (_strand as AdvancedDataGridColumnList).adg.mxmlDocument;
+			ir["outerDocument"] = (_strand as AdvancedDataGridColumnList).grid.mxmlDocument;
+			if (ir.getBeadByType(IBeadController) == null) {
+				//add a default mouse controller for DropInRenderers that may not have a mousecontroller
+				ir.addBead(new ItemRendererMouseController());
+			}
 			return ir;
         }		        
 	}

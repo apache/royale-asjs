@@ -25,6 +25,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -52,17 +53,6 @@ package org.apache.royale.html.beads.controllers
 			super();
 		}
 
-		private var _strand:IStrand;
-
-		/**
-		 * @private
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
-
 		/**
 		 * @private
 		 */
@@ -87,7 +77,18 @@ package org.apache.royale.html.beads.controllers
 			sendStrandEvent(_strand,"change");
 			*/
 		}
-		
+
+		override protected function selectedHandler(event:ItemClickedEvent):void
+		{
+			super.selectedHandler(event);
+
+			var itemExpandedEvent:ItemClickedEvent = new ItemClickedEvent("itemExpanded");
+				itemExpandedEvent.index = event.index;
+				itemExpandedEvent.data = event.data;
+
+			sendEvent(event.target as IEventDispatcher, itemExpandedEvent);
+		}
+
 		/**
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */

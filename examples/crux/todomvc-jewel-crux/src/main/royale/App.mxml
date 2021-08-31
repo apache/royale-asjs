@@ -23,7 +23,7 @@
                xmlns:config="jewel.todomvc.config.*"
                xmlns:views="jewel.todomvc.views.*">
 
-    <fx:Style source="../../main/resources/todomvc-styles.css"/>
+    <fx:Style source="../../main/resources/default.css"/>
 
     <j:valuesImpl>
         <js:SimpleCSSValuesImpl />
@@ -42,20 +42,10 @@
             <crux:beanProviders>
                 <config:Beans/>
             </crux:beanProviders>
-
             <crux:config>
-                <crux:CruxConfig>
-                    <crux:eventPackages>
-                        <fx:Array>
-                            <fx:String>jewel.todomvc.events.*</fx:String>
-                        </fx:Array>
-                    </crux:eventPackages>
-                    <crux:viewPackages>
-                        <fx:Array>
-                            <fx:String>jewel.todomvc.views.*</fx:String>
-                        </fx:Array>
-                    </crux:viewPackages>
-                </crux:CruxConfig>
+                <crux:CruxConfig
+                    eventPackages="jewel.todomvc.events.*"
+                    viewPackages="jewel.todomvc.views.*"/>
             </crux:config>
         </crux:Crux>
 	</j:beads>

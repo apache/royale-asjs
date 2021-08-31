@@ -33,7 +33,7 @@
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
-        <version>${royale.compiler.version}</version>
+        <version>${project.royale.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
@@ -43,7 +43,7 @@
           <dependency>
             <groupId>org.apache.royale.compiler</groupId>
             <artifactId>compiler-jx</artifactId>
-            <version>${royale.compiler.version}</version>
+            <version>${project.royale.compiler.version}</version>
           </dependency>
         </dependencies>
       </plugin>

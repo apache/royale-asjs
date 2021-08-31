@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+#set($dollar = '$')
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+    
+  <parent>
+      <groupId>\${groupId}</groupId>
+      <artifactId>${rootArtifactId}</artifactId>
+      <version>\${version}</version>
+  </parent>
+
+  <artifactId>${module}</artifactId>
+  <packaging>swf</packaging>
+
+  <name>Apache Royale Jewel Module :: ${module}</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>${module}.mxml</mainClass>
+          <targets>JSRoyale</targets>
+          <debug>false</debug>
+          <additionalCompilerOptions>
+            -source-map=true;
+            -js-compiler-option=--variable_map_input_file ../../../../../${application}/target/javascript/bin/js-release/gccvars.txt;
+            -js-compiler-option+=--property_map_input_file ../../../../../${application}/target/javascript/bin/js-release/gccprops.txt
+#if (${includeCrux} == 'true' || ${includeCrux} == 'yes' || ${includeCrux} == 'y')
+            -js-default-initializers=true;
+            -compiler.exclude-defaults-css-files=MXRoyale-${royale.framework.version}-js.swc:defaults.css;
+            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+            -keep-code-with-metadata=Inject;
+#end
+            <!-- to access JSON object graph subobjects --> 
+            <!-- -js-dynamic-access-unknown-members=true;  -->
+          </additionalCompilerOptions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>generate-css-using-sass</id>
+            <goals>
+                <goal>update-stylesheets</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- copy module files from Module target folder to Application target folder-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <!-- for js-release (copy all to 'modules' folder)-->
+          <execution>
+            <id>copy-resources-release</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${dollar}{basedir}/target/javascript/bin/js-release/</directory>
+                </resource>
+              </resources>
+              <outputDirectory>${dollar}{basedir}/../${application}/target/javascript/bin/js-release/modules/</outputDirectory>
+            </configuration>
+          </execution>
+          <!-- for js-debug (copy all to js-debug but will need a next step later (check **))-->
+          <execution>
+            <id>copy-resources-debug</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${dollar}{basedir}/target/javascript/bin/js-debug/</directory>
+                </resource>
+              </resources>
+              <outputDirectory>${dollar}{basedir}/../${application}/target/javascript/bin/js-debug/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- (**) for js-debug: we need to move two files from 'target/js-debug' to 'target/js-debug/modules' since Application expect to find it there -->
+      <plugin>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>debug-move-files</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>rename</goal>
+            </goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <sourceFile>${dollar}{basedir}/../${application}/target/javascript/bin/js-debug/${dollar}{artifactId}__deps.js</sourceFile>
+                  <destinationFile>${dollar}{basedir}/../${application}/target/javascript/bin/js-debug/modules/${dollar}{artifactId}__deps.js</destinationFile>
+                </fileSet>
+                <fileSet>
+                  <sourceFile>${dollar}{basedir}/../${application}/target/javascript/bin/js-debug/${dollar}{artifactId}.css</sourceFile>
+                  <destinationFile>${dollar}{basedir}/../${application}/target/javascript/bin/js-debug/modules/${dollar}{artifactId}.css</destinationFile>
+                </fileSet>
+              </fileSets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
+
+</project>

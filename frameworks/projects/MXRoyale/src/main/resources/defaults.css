@@ -22,6 +22,7 @@
 @namespace core "mx.core.*";
 @namespace containerBeads "mx.containers.beads.*";
 @namespace adg "mx.controls.advancedDataGridClasses.*";
+@namespace dg "mx.controls.dataGridClasses.*";
 @namespace pop "mx.managers.*";
 @namespace menu "mx.controls.menuClasses.*";
 
@@ -47,6 +48,10 @@ global {
 	verticalGap: 6;
     padding : 0px;
 	errorColor: #CE2929;
+}
+
+Button {
+	white-space: nowrap;
 }
 
 /* -------------------------------------------------------
@@ -75,13 +80,25 @@ Basic|DataGridColumnList {
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
 }
 
-Basic|DataGridButtonBar {
-	IItemRenderer: ClassReference("mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer");
+dg|DataGridButtonBar {
+	IItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridHeaderRenderer");
+	position: absolute;
 }
 
 adg|AdvancedDataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer");
 	position: absolute;
+}
+
+dg|DataGridHeaderRenderer{
+	horizontalAlign: center;
+	vertical-align: middle;
+	border-top: 1px solid #222222;
+	border-bottom: 1px solid #222222;
+	border-right: 1px solid #222222;
+	border-left: none;
+	font-weight: bold;
+	overflow: hidden;
 }
 
 adg|AdvancedDataGridHeaderRenderer {
@@ -92,6 +109,12 @@ adg|AdvancedDataGridHeaderRenderer {
 	border-right: 1px solid #222222;
 	border-left: none;
 	font-weight: bold;
+	overflow: hidden;
+}
+
+Application
+{
+	IBeadLayout: ClassReference("mx.containers.beads.ApplicationLayout");
 }
 
 AdvancedDataGrid
@@ -132,6 +155,10 @@ adg|AdvancedDataGridColumnList {
 
 adg|AdvancedDataGridItemRenderer {
     padding-left: 5px;
+}
+
+dg|DataGridItemRenderer {
+	padding-left: 5px;
 }
 
 Alert
@@ -202,14 +229,15 @@ Container
 
 DataGrid
 {
+	alternatingItemColors: #F7F7F7, #FFFFFF;
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
-	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+	IDataGridPresentationModel: ClassReference("mx.controls.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("mx.controls.beads.DataGridView");
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("mx.controls.dataGridClasses.DataGridColumnList");
-	columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar");
-	columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	columnContainerClass: ClassReference("mx.controls.dataGridClasses.DataGridButtonBar");
+	columnLayoutClass: ClassReference("mx.controls.beads.layouts.DataGridHeaderLayout");
 	listAreaClass: ClassReference("mx.controls.dataGridClasses.DataGridListArea");
 	
 	background-color: #FFFFFF;
@@ -219,7 +247,16 @@ DataGrid
 }
 
 DataGridColumnList {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.DataGridColumnICollectionViewModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IBeadView:  ClassReference("mx.containers.beads.DataGridListListView");
+	IBeadController:  ClassReference("mx.controls.dataGridClasses.DataGridSingleSelectionMouseController");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IItemRendererClassFactory: ClassReference("mx.controls.beads.DataGridSelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.DataGridItemRendererInitializer");
+	IItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridItemRenderer");
+	ISelectableItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridSelectableItemRendererBead");
 	border-style: none;
 	background-color: #FFFFFF;
 }
@@ -227,7 +264,7 @@ DataGridColumnList {
 DataGridListArea {
 	background-color: #FFFFFF;
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
-	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewport: ClassReference("mx.controls.dataGridClasses.DataGridListAreaViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	flex-grow: 1;
 }
@@ -250,11 +287,19 @@ DateField {
 	IPopUp: ClassReference("mx.controls.dateFieldClasses.DateFieldDateChooser");
 }
 
+DownloadButton
+{
+	border: solid 1px #000;
+	text-decoration: none;
+	white-space: nowrap;
+}
+
 FormItem
 {
 	IBeadView: ClassReference("mx.containers.beads.FormItemView");
 	IContentView: ClassReference("mx.containers.beads.FormItemContainer");
-	indicatorGap: 0px;
+	indicatorSkin: ClassReference("mx.supportClasses.FormItemRequired");
+	indicatorGap: 14px;
 }
 
 containerBeads|FormItemContainer
@@ -328,11 +373,20 @@ menu|MenuBarItemRenderer {
 	margin-right: 10px;
 	cursor: pointer;
 }
-/*
+
 Menu {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.CascadingMenuModel");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.CascadingMenuItemRenderer");
+	IMenu: ClassReference("org.apache.royale.html.CascadingMenu");
+	IBeadModel: ClassReference("mx.controls.beads.models.CascadingMenuModel");
+	IBeadController: ClassReference("mx.controls.beads.controllers.CascadingMenuSelectionMouseController");
+	IItemRenderer: ClassReference("mx.controls.menuClasses.CascadingMenuItemRenderer");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
+	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
+	IListPresentationModel: ClassReference("org.apache.royale.html.beads.models.ListPresentationModel");
+	
 	position: absolute;
 	background-color: white;
 	border-width: 1px;
@@ -340,7 +394,34 @@ Menu {
 	border-color: #222222;
 	box-shadow: 2px 2px 5px gray;
 }
+MultiSelectionList
+{
+    IBeadModel: ClassReference("mx.controls.beads.models.ArrayMultiSelectionModel");
+    IBeadView:  ClassReference("mx.controls.beads.MultiSelectionListView");            
+    IBeadController: ClassReference("mx.controls.beads.controllers.ListMultiSelectionMouseController");
+    IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+    IItemRendererClassFactory: ClassReference("mx.controls.beads.MultiSelectionItemRendererClassFactory");
+    IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
+    IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
+    ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
+    IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+    IListPresentationModel: ClassReference("org.apache.royale.html.beads.models.ListPresentationModel");
 
+}
+
+NavBar
+{
+   paddingBottom: 1;
+	paddingLeft: 1;
+	paddingRight: 0;
+	paddingTop: 1;
+		horizontalGap: 6;
+}
+
+
+/*
 MenuItemRenderer {
 	margin-top: 4px;
 	margin-left: 2px;
@@ -412,13 +493,14 @@ PanelTitleBar
 
 pop|PopUpManagerModal
 {
-	background-color: #E2E2E2;
-	position: fixed;
-	opacity: 0.2;
-	top: 0px;
-	left: 0px;
-	width: 100%;
+	-webkit-backdrop-filter: blur(1px);
+	backdrop-filter: blur(1px);
+	background: rgba(226, 226, 226, 0.2);
 	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 
 TabNavigator
@@ -426,6 +508,7 @@ TabNavigator
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
 	IBeadView: ClassReference("mx.containers.beads.TabNavigatorView");
 	ITabNavigatorContentArea: ClassReference("mx.core.Container");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	verticalGap: 0;	
 	background-color: #FFFFFF;
 }
@@ -435,6 +518,11 @@ TabNavigator
 	border: 1px solid #333333
 }
 
+/* ProgressBar
+{
+	IBeadView: ClassReference("mx.controls.beads.ProgressBarView");
+} */
+
 TextInput
 {
 	border-color: #000000;
@@ -443,6 +531,41 @@ TextInput
 	font-size: 11px;
 	font-family: Arial;
 }
+
+TinyEditor
+{
+	border-color: #000000;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #FFFFFF;
+	font-size: 11px;
+	font-family: Arial;
+}
+
+TinyEditor .__editor
+{
+	flex-grow: 1;
+	overflow: auto;
+}
+
+TinyEditor .__toolbar-item
+{
+	padding: 0px;	
+}
+
+TinyEditor .__toolbar
+{
+	padding: 0px;	
+}
+
+TinyEditor .__wrapper
+{
+	display: flex;
+	flex-direction: column-reverse;
+	width: 100%;
+	height: 100%;
+}
+
 
 Tree
 {
@@ -464,12 +587,13 @@ ToggleButtonBar
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ButtonBarView");			
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadController: ClassReference("mx.controls.listClasses.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
-	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TextButtonItemRenderer");
+	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	
 	border-style: none;
 }
@@ -477,6 +601,7 @@ ToggleButtonBar
 ViewStack
 {
 	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 charts|ChartBase

@@ -21,9 +21,13 @@ package mx.controls.beads.controllers
 {
 	import mx.collections.XMLListCollection;
 	
+	import org.apache.royale.core.IMenu;
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController;
-	import org.apache.royale.html.beads.models.CascadingMenuModel;
+	import org.apache.royale.core.ICascadingMenuModel
 	import org.apache.royale.html.CascadingMenu;
+	import org.apache.royale.events.ItemClickedEvent;
+	
+	import mx.events.MenuEvent;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -37,7 +41,7 @@ package mx.controls.beads.controllers
 	public class CascadingMenuSelectionMouseController extends org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController
 	{
 
-		override protected function getSubMenuDataProvider(node:Object, model:CascadingMenuModel):Object
+		override protected function getSubMenuDataProvider(node:Object, model:ICascadingMenuModel):Object
 		{
 			if (!(node is XML))
 			{
@@ -46,7 +50,7 @@ package mx.controls.beads.controllers
 			return new XMLListCollection((node as XML).children());
 		}
 		
-		override protected function getHasMenu(node:Object, model:CascadingMenuModel):Boolean
+		override protected function getHasMenu(node:Object, model:ICascadingMenuModel):Boolean
 		{
 			if (!(node is XML))
 			{
@@ -55,6 +59,26 @@ package mx.controls.beads.controllers
 			return (node as XML).children().length() > 0;
 		}
 
+		override protected function selectedHandler(event:ItemClickedEvent):void
+		{
+			super.selectedHandler(event);
+			var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
+			var data:Object = event.target.data;
+			menuEvent.item = data;
+			var menu:IMenu = _strand as IMenu;
+			var label:String;
+			if (data is XML)
+			{
+				label = data.attribute(menu.labelField);
+			}
+			else
+			{
+				label = data[menu.labelField];
+			}
+			menuEvent.label = label;
+			menuEvent.index = event.index;
+			findMenuDispatcher().dispatchEvent(menuEvent);
+		}
 
 		/**
 		 * @private

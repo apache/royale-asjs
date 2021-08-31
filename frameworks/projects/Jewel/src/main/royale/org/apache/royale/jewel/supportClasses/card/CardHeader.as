@@ -21,8 +21,11 @@ package org.apache.royale.jewel.supportClasses.card
 	import org.apache.royale.jewel.HContainer;
 	
 	/**
-	 *  The CardHeader class is a header for Cards where Title and actions (i.e: buttons, icons)
-	 *  can be located.
+	 *  The CardHeader class is a header used in Jewel Card component where title, icons
+	 *  or actions (i.e: buttons, icons) can be located. 
+	 * 
+	 *  Actions are placed horizontally by default, and can be separated using 
+	 *  BarSection for left, middle and right sections.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -45,7 +48,5 @@ package org.apache.royale.jewel.supportClasses.card
 
 			typeNames = "card-header";
 		}
-
-        
 	}
 }

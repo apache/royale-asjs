@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
+    import org.apache.royale.core.IDataGrid;
+    import org.apache.royale.core.IListWithPresentationModel;
     import org.apache.royale.html.supportClasses.IDataGridColumnList;
-    import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.utils.IEmphasis;
 
     /**
@@ -30,20 +31,33 @@ package org.apache.royale.jewel.supportClasses.datagrid
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public interface IDataGridColumnList extends org.apache.royale.html.supportClasses.IDataGridColumnList, IEmphasis
+    public interface IDataGridColumnList extends org.apache.royale.html.supportClasses.IDataGridColumnList, IEmphasis, IListWithPresentationModel
     {
         function get rollOverIndex():int;
         function set rollOverIndex(value:int):void;
 
         /**
-		 *  Pointer back to the DataGrid that owns this column List
+		 *  Pointer back to the IDataGrid that owns this column List
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		function get datagrid():DataGrid;
-		function set datagrid(value:DataGrid):void;
+		function get datagrid():IDataGrid;
+		function set datagrid(value:IDataGrid):void;
+
+        /**
+         *  The DataGridColumn for this list
+         *  
+         *
+         *  @toplevel
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         */
+		function get columnInfo():IDataGridColumn;
+		function set columnInfo(value:IDataGridColumn):void;
     }
 }

@@ -23,10 +23,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
     
 	/**
 	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 
@@ -38,7 +34,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TabBarButtonItemRenderer extends StyledMXMLItemRenderer implements INavigationRenderer
+	public class TabBarButtonItemRenderer extends ListItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -55,93 +51,43 @@ package org.apache.royale.jewel.itemRenderers
 			typeNames = "jewel tabbarbutton";
 		}
 
-		// private var _href:String = "#";
-        /**
-         *  the navigation link url
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		// public function get href():String
-		// {
-        //     return _href;   
-		// }
-		// public function set href(value:String):void
-		// {
-        //     _href = value;
-		// }
-
-		private var _text:String = "";
-
-		[Bindable(event="textChange")]
-        /**
-         *  The text of the navigation link
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-
-		public function set text(value:String):void
-		{
-            if(value != _text) {
-				_text = value;
-				COMPILE::JS
-				{
-				if(MXMLDescriptor == null)
-				{
-					element.innerHTML = _text;
-				}
-				}
-				dispatchEvent(new Event('textChange'));
-			}
-		}
-
 		/**
-		 *  Sets the data value and uses the String version of the data for display.
-		 * 
-		 *  @param Object data The object being displayed by the itemRenderer instance.
+		 *  How items align in the itemRenderer instance.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		override public function set data(value:Object):void
+		override public function get align():String
 		{
-			text = getLabelFromData(this, value);
-            super.data = value;
-			
-            // if(value.href !== undefined)
-			// {
-            //     href = String(value.href);
-			// }
+			return layout.itemsHorizontalAlign;
+		}
 
-			// COMPILE::JS
-			// {
-			// if(textNode != null)
-			// {
-			// 	textNode.nodeValue = text;
-			// 	(element as HTMLElement).setAttribute('href', href);
-			// }	
-			// }
+		override public function set align(value:String):void
+		{
+			switch(value)
+			{
+				case "left":
+					layout.itemsHorizontalAlign = "itemsLeft";
+					break;
+				case "center":
+					layout.itemsHorizontalAlign = "itemsCenter";
+					break;
+				case "right":
+					layout.itemsHorizontalAlign = "itemsRight";
+					break;
+			}
 		}
 
 		COMPILE::JS
-		protected var span:HTMLSpanElement;
+		public var content:HTMLSpanElement;
 		
 		COMPILE::JS
-		protected var indicator:HTMLSpanElement;
+		public var indicator:HTMLSpanElement;
 		
 		COMPILE::JS
-		protected var indicator_content:HTMLSpanElement;
+		public var indicator_content:HTMLSpanElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -150,8 +96,11 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            span = addElementToWrapper(this, 'span') as HTMLSpanElement;
-			span.className = "content";
+			//element (span content)
+            content = addElementToWrapper(this, 'span') as HTMLSpanElement;
+			content.className = "content";
+			
+			//postioner (button)
 			positioner = document.createElement('button') as WrappedHTMLElement;
 
 			indicator = document.createElement('span') as HTMLSpanElement;
@@ -159,24 +108,17 @@ package org.apache.royale.jewel.itemRenderers
 			addIndicator();
 			
 			indicator_content = document.createElement('span') as HTMLSpanElement;
-			indicator_content.className = "indicatorContent";
+			indicator_content.className = "indicator-content";
 			indicator.appendChild(indicator_content);
-            
-			//a.setAttribute('href', href);
-
-			// if(MXMLDescriptor == null)
-			// {
-			// 	textNode = document.createTextNode('') as Text;
-			// 	a.appendChild(textNode);
-			// }
 
             return element;
         }
 
 		/**
-		 * adding indicator to positioner makes the indicator fill all available space
-		 * adding to "span" HTMLElement restrict indicator to content.
-		 * Override this function in TabBarButtonItemRenderer subclasses
+		 * Adding indicator to positioner makes the indicator fill all available space
+		 * Override this function in TabBarButtonItemRenderer subclasses.
+		 * Check TabBarButtonInidicatorRestrictedToContentItemRenderer for a "restricted to content" indicator
+		 * @see org.apache.royale.jewel.itemRenderers. TabBarButtonInidicatorRestrictedToContentItemRenderer
 		 */
 		COMPILE::JS
 		protected function addIndicator():void
@@ -191,12 +133,12 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
-		public function animateIndicator(positionDiff:Number, widthDiff:Number, duration:int, easingFunction:String):void
+		public function animateIndicator(axis:String, positionDiff:Number, widthDiff:Number, duration:int, easingFunction:String):void
 		{
 			indicator_content["animate"](
 				[
 					{
-						transform: "translateX(" + positionDiff + "px) scaleX(" + widthDiff + ")"
+						transform: "translate" + axis + "(" + positionDiff + "px) scale" + axis + "(" + widthDiff + ")"
 					},
 					{
 						transform: "none"

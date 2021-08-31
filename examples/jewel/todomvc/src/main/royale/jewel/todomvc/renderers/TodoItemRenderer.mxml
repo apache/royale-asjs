@@ -22,7 +22,7 @@ limitations under the License.
     xmlns:js="library://ns.apache.org/royale/basic"
     rollOver="rollOverHandler(event)"
     rollOut="rollOutHandler(event)"
-    width="100%">
+    width="100%" minHeight="60">
 
     <fx:Script>
         <![CDATA[
@@ -134,6 +134,8 @@ limitations under the License.
     <j:beads>
         <js:SimpleStatesImpl/>
         <js:ItemRendererDataBinding />
+        <j:HorizontalLayout itemsVerticalAlign="itemsCenter"/>
+        <js:Paddings padding="0"/>
     </j:beads>
     
     <j:CheckBox selected="{item ? item.done : false}"
@@ -147,7 +149,7 @@ limitations under the License.
     <j:Label localId="description" width="84%" 
         text="{item ? item.label : ''}" multiline="true"
         visible.normal="true" visible.editing="false"
-        className="{item ? (item.done ? 'todolabel completed' : 'todolabel') : 'todolabel' }"
+        className="{item ? (item.done ? 'completed' : '') : '' }"
         doubleClick="goToEditMode(event)"/>
 
     <j:TextInput localId="editfield" width="100%"

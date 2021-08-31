@@ -20,9 +20,11 @@ package org.apache.royale.jewel.beads.controls.combobox
 {
 	COMPILE::JS
 	{
+	import org.apache.royale.core.HTMLElementWrapper;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.views.ComboBoxView;
 	}
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.jewel.beads.controls.Disabled;
 	
 	/**
@@ -47,42 +49,40 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 		}
 
+		COMPILE::JS
+		protected var lastTextInputElementTabVal:String = null;
+		COMPILE::JS
+		protected var lastButtonElementTabVal:String = null;
+
 		override protected function updateHost():void
 		{
-			super.updateHost();
-			
 			COMPILE::JS
 			{
 			var view:ComboBoxView = (_strand as UIBase).view as ComboBoxView;
 
 			if (view) {
+				var pos:HTMLElement = (_strand as IUIBase).positioner;
+				
+				if(!initialized)
+				{
+					initialized = true;
+					lastElementTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+					lastTextInputElementTabVal = view.textinput.element.getAttribute("tabindex");
+					lastButtonElementTabVal = view.button.element.getAttribute("tabindex");
+				}
+				
                 if(disabled) {
-					view.textinput.element.setAttribute('disabled', '');
-					view.textinput.positioner.setAttribute('disabled', '');
-					view.button.element.setAttribute('disabled', '');
-					view.button.positioner.setAttribute('disabled', '');
-					
-					view.textinput.element.setAttribute('tabindex', '-1');
-					view.textinput.positioner.setAttribute('tabindex', '-1');
-					view.button.element.setAttribute('tabindex', '-1');
-					view.button.positioner.setAttribute('tabindex', '-1');
+					setDisableAndTabIndex(pos, true);
+					setDisableAndTabIndex(view.textinput.positioner, true);
+					setDisableAndTabIndex(view.textinput.element);
+					setDisableAndTabIndex(view.button.positioner, true);
+					setDisableAndTabIndex(view.button.element);
 				} else {
-					view.textinput.element.removeAttribute('disabled');
-					view.textinput.positioner.removeAttribute('disabled');
-					view.button.element.removeAttribute('disabled');
-					view.button.positioner.removeAttribute('disabled');
-
-					if(lastTabVal) {
-						view.textinput.element.setAttribute('tabindex', lastTabVal);
-						view.textinput.positioner.setAttribute('tabindex', lastTabVal);
-						view.button.element.setAttribute('tabindex', lastTabVal);
-						view.button.positioner.setAttribute('tabindex', lastTabVal);
-					} else {
-						view.textinput.element.removeAttribute('tabindex');
-						view.textinput.positioner.removeAttribute('tabindex');
-						view.button.element.removeAttribute('tabindex');
-						view.button.positioner.removeAttribute('tabindex');
-					}
+					removeDisableAndTabIndex(pos, true);
+					removeDisableAndTabIndex(view.textinput.positioner, true);
+					removeDisableAndTabIndex(view.textinput.element, false, lastTextInputElementTabVal);
+					removeDisableAndTabIndex(view.button.positioner, true);
+					removeDisableAndTabIndex(view.button.element, false, lastButtonElementTabVal);
 				}
             }
 			}

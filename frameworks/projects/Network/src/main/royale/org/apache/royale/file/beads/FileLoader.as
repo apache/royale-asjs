@@ -19,6 +19,7 @@ package org.apache.royale.file.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.file.FileProxy;
 	import org.apache.royale.file.IFileModel;
 	import org.apache.royale.utils.BinaryData;
@@ -44,7 +45,7 @@ package org.apache.royale.file.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class FileLoader implements IBead
+	public class FileLoader extends EventDispatcher implements IBead
 	{
 		private var _strand:IStrand;
 
@@ -83,6 +84,7 @@ package org.apache.royale.file.beads
 		protected function fileLoadHandler(event:Event):void
 		{
 			fileModel.fileContent = new BinaryData(event.target.result);
+			dispatchEvent(new Event(Event.COMPLETE));
 		}
 		
 		/**
@@ -97,8 +99,11 @@ package org.apache.royale.file.beads
 		{
 			_strand = value;
 		}
-		
-		private function get fileModel():IFileModel
+		/**
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
+		 *  @royaleignorecoercion org.apache.royale.file.FileProxy
+		 */
+		protected function get fileModel():IFileModel
 		{
 			return (_strand as FileProxy).model as IFileModel;
 		}

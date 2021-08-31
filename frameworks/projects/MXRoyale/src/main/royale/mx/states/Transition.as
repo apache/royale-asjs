@@ -20,7 +20,7 @@
 package mx.states
 {
 
-//import mx.effects.IEffect;
+import mx.effects.IEffect;
 import org.apache.royale.states.Transition;
 
 [DefaultProperty("effect")]
@@ -132,7 +132,19 @@ public class Transition extends org.apache.royale.states.Transition
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    //public var effect:IEffect;
+     public function set effect(value:IEffect):void
+     {
+	if (!effects)
+	{
+		effects = [];
+	}
+	effects[0] = value;
+     }
+
+     public function get effect():IEffect
+     {
+	return effects && effects.length > 0 ? effects[0] as IEffect : null;
+     }
 
     //----------------------------------
     //  fromState

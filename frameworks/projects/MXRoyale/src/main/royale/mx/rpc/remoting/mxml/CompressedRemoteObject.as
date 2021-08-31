@@ -85,9 +85,11 @@ package mx.rpc.remoting.mxml
         /**
          * Uses the pako library for the zlib compression algorithm
          *
-         * <inject_html>
-         * <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.6/pako.min.js"></script>
-         * </inject_html>
+         * <inject_script>
+         * var script = document.createElement("script");
+         * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/pako/1.0.6/pako.min.js");
+         * document.head.appendChild(script);
+         * </inject_script>
          */
         public function CompressedRemoteObject(destination:String = null)
         {

@@ -21,7 +21,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	
 	/**
@@ -49,8 +48,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 		}
 
-		protected var t:TextInputBase;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -61,17 +58,26 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 */
 		public function set strand(value:IStrand):void
 		{
-			t = value as TextInputBase;
-			IEventDispatcher(t).addEventListener(Event.CHANGE, changeToLowerCase);
-			t.text = t.text.toLowerCase();
+			var host:TextInputBase = value as TextInputBase;
+			host.addEventListener(Event.CHANGE, changeToLowerCase);
+			host.text = host.text.toLowerCase();
 		}
 		
 		/**
+		 * Change text to lower case as user types
+		 * 
 		 * @private
 		 */
-		private function changeToLowerCase(event:Event):void
+		protected function changeToLowerCase(event:Event):void
 		{
-			t.text = t.text.toLowerCase();
+			COMPILE::JS
+			{
+			var input:HTMLInputElement = event.target.input as HTMLInputElement;
+			var start:Number = input.selectionStart;
+			var end:Number = input.selectionEnd;
+			input.value = input.value.toLowerCase();
+			input.setSelectionRange(start, end);
+			}
 		}
 	}
 }

@@ -446,17 +446,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
     {
         super();
        /*  menuBarItemRenderer = new ClassFactory(MenuBarItem);
-        tabChildren = false; */
-		
-		addEventListener("change", changeHandler);
-    }
-
-    protected function changeHandler(event:Event):void
-    {
-        var item:Object = (model as MenuBarModel).selectedItem;
-        var menuEvent:MenuEvent = new MenuEvent("itemClick");
-        menuEvent.item = item;
-        dispatchEvent(menuEvent);
+        tabChildren = false; */		
     }
     
     /**

@@ -175,17 +175,17 @@ hr {
 .jewel.button.icon {
   padding: 0.429em 0.87em;
 }
-.jewel.button.icon i {
+.jewel.button.icon span {
   margin-left: 0px;
   margin-right: 0px;
 }
-.jewel.button.left-space i {
-  margin-left: 0px;
-  margin-right: 8px;
-}
-.jewel.button.right-space i {
+.jewel.button.left-space span {
   margin-left: 8px;
   margin-right: 0px;
+}
+.jewel.button.right-space span {
+  margin-left: 0px;
+  margin-right: 8px;
 }
 
 .jewel.button.primary {
@@ -371,7 +371,7 @@ hr {
   border-bottom: 1px solid #d2dadf;
   padding: 12px 20px;
 }
-.jewel.card .card-header .card-title {
+.jewel.card .card-title {
   font-size: 1.5em;
   margin: 0.408rem 0rem;
   letter-spacing: 0.0125em;
@@ -420,19 +420,65 @@ j|CardActions {
   border: 1px solid #0f88d1;
   border-radius: 3px;
 }
+.jewel.checkbox input[disabled] + span {
+  color: #737373;
+}
 .jewel.checkbox input[disabled] + span::before {
   background: #404040;
   border: 1px solid #0d0d0d;
   border-radius: 3px;
-}
-.jewel.checkbox input[disabled] + span {
-  color: #737373;
 }
 .jewel.checkbox input[disabled] + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23191919' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.checkbox span {
   padding-left: 8px;
+}
+
+.jewel.switch input:checked + .switch {
+  background: linear-gradient(#3cadf1, #6cc1f4);
+  box-shadow: 0px 0px 0px 1px #24a3ef;
+}
+.jewel.switch input:focus + .switch {
+  box-shadow: 0px 0px 0px 1px #1198e9;
+}
+.jewel.switch input:checked + .switch::before {
+  background: white;
+  box-shadow: -1px 0px 1px 0px rgba(0, 0, 0, 0.1);
+  transform: translateX(20px);
+}
+.jewel.switch input[disabled]:checked + .switch {
+  background: #8c8c8c;
+  box-shadow: 0px 0px 0px 1px #7f7f7f;
+}
+.jewel.switch input[disabled] + .switch {
+  background: #737373;
+  box-shadow: 0px 0px 0px 1px #999999;
+}
+.jewel.switch input[disabled] + .switch::before {
+  background: #595959;
+  box-shadow: none;
+}
+.jewel.switch .switch {
+  background: linear-gradient(#595959, #737373);
+  box-shadow: 0px 0px 0px 1px #4c4c4c;
+  transition: 0.4s;
+  border-radius: 3px;
+}
+.jewel.switch .switch::before {
+  background: white;
+  box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.4s;
+  border-radius: 3px;
+}
+.jewel.switch .label {
+  padding-left: 8px;
+}
+.jewel.switch.radio .switch {
+  border-radius: 20px;
+}
+.jewel.switch.radio .switch::before {
+  border-radius: 50%;
 }
 
 .jewel.combobox .jewel.textinput input {
@@ -463,6 +509,19 @@ j|CardActions {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23191919' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 
+.jewel.datagrid {
+  background: linear-gradient(#7f7f7f, #737373);
+  border-bottom: 1px solid #333333;
+  box-shadow: inset 0 1px 0 #8c8c8c;
+  border-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.buttonbar.header {
+  background: linear-gradient(#737373, #666666);
+  border: 0 none;
+  box-shadow: none;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
 .jewel.datagrid .jewel.buttonbar.header .jewel.button.first {
   border-bottom-left-radius: 0;
 }
@@ -473,16 +532,22 @@ j|CardActions {
   border-top-width: 0px;
   border-left-width: 0px;
   border-right-width: 0px;
-  border-bottom-width: 1px;
+  border-bottom-width: 0px;
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   border-style: solid;
   border-color: #333333;
 }
+.jewel.datagrid .listarea:focus {
+  border: 1px solid #0f88d1;
+}
+.jewel.datagrid .jewel.list:focus {
+  border-color: inherit;
+}
 .jewel.datagrid .jewel.list.column {
   border-radius: 0px;
   border-bottom-width: 0px;
-  box-shadow: inset 0px 0.5px 0px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0px 1px 0px 0px rgba(0, 0, 0, 0.1);
 }
 .jewel.datagrid .jewel.list.column.first {
   border-bottom-left-radius: 0.25rem;
@@ -491,7 +556,13 @@ j|CardActions {
   border-bottom-right-radius: 0.25rem;
 }
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid {
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: 1px solid #6d6d6d;
+  border-right: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.hovered {
   background: #75c5f5;
@@ -814,7 +885,6 @@ j|FormItem {
 }
 
 .jewel.item {
-  padding: 8px;
   background: transparent;
 }
 .jewel.item.hovered {
@@ -839,10 +909,14 @@ j|FormItem {
 }
 
 .jewel.list {
+  color: #FFFFFF;
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   box-shadow: inset 0 1px 0 #8c8c8c;
   border-radius: 3px;
+}
+.jewel.list:focus {
+  border: 1px solid #0f88d1;
 }
 .jewel.list[disabled] {
   pointer-events: none;
@@ -855,6 +929,17 @@ j|FormItem {
 }
 .jewel.list[disabled] .jewel.item.selected, .jewel.list[disabled] .jewel.item.selectable:active {
   background: #191919 !important;
+}
+
+.jewel.loader {
+  border: 16px solid #737373;
+  border-radius: 50%;
+}
+.jewel.loader.segment {
+  border-top-color: #404040;
+}
+.jewel.loader.primary.segment {
+  border-top-color: #3CADF1;
 }
 
 .jewel.navigation {
@@ -878,6 +963,10 @@ j|FormItem {
   margin-left: auto;
 }
 
+.jewel.navigationgroup.no-submenu.hovered {
+  background: #737373 !important;
+}
+
 .navigation-section-group {
   transition: height 0.5s;
   overflow: hidden !important;
@@ -886,76 +975,62 @@ j|FormItem {
   padding-left: 34px;
 }
 
+.jewel.numericstepper {
+  height: 38px;
+}
+.jewel.numericstepper .jewel.textinput {
+  width: calc(100% - 33px);
+}
 .jewel.numericstepper .jewel.textinput input {
-  width: 8em;
   border-radius: 0.25rem 0px 0px 0.25rem;
 }
-
-@media (max-width: 992px) {
-  .jewel.numericstepper {
-    width: 190px;
-    height: 39px;
-  }
-  .jewel.numericstepper .jewel.textinput {
-    left: 38px;
-  }
-  .jewel.numericstepper .jewel.textinput input {
-    border-radius: 0;
-  }
-}
-.jewel.spinner {
-  width: 34px;
-}
-.jewel.spinner .jewel.button {
-  padding: 0px;
-  height: 19px;
+.jewel.numericstepper .jewel.button {
   border-radius: 0 0.25rem 0.25rem 0;
   border-left: 0px;
+  width: 12%;
+  width: 33px;
+  height: 50%;
 }
-.jewel.spinner .jewel.button, .jewel.spinner .jewel.button:hover, .jewel.spinner .jewel.button:hover:focus, .jewel.spinner .jewel.button:active, .jewel.spinner .jewel.button:active:focus {
+.jewel.numericstepper .jewel.button, .jewel.numericstepper .jewel.button:hover, .jewel.numericstepper .jewel.button:hover:focus, .jewel.numericstepper .jewel.button:active, .jewel.numericstepper .jewel.button:active:focus {
   color: transparent;
 }
-.jewel.spinner .jewel.button.up {
+.jewel.numericstepper .jewel.button.up {
   border-bottom-right-radius: 0px;
 }
-.jewel.spinner .jewel.button.up::after {
+.jewel.numericstepper .jewel.button.up::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
   width: 12px;
   height: 7px;
-  left: calc(50% - 6px);
-  top: calc(50% - 3.5px);
 }
-.jewel.spinner .jewel.button.down {
+.jewel.numericstepper .jewel.button.down {
   border-top-right-radius: 0px;
   border-top-style: groove;
 }
-.jewel.spinner .jewel.button.down::after {
+.jewel.numericstepper .jewel.button.down::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
   width: 12px;
   height: 7px;
-  left: calc(50% - 6px);
-  top: calc(50% - 3.5px);
+}
+.jewel.numericstepper .jewel.button.up, .jewel.numericstepper .jewel.button.down {
+  padding: 8.5px 16px;
 }
 
 @media (max-width: 992px) {
-  .jewel.spinner {
-    left: -112px;
-    width: auto;
+  .jewel.numericstepper .jewel.textinput input {
+    border-radius: 0;
   }
-  .jewel.spinner .jewel.button {
-    width: 39px;
-    height: 38px;
-  }
-  .jewel.spinner .jewel.button.up {
-    left: 149px;
+  .jewel.numericstepper .jewel.button.up {
     border: 1px solid #333333;
     border-radius: 0 0.25rem 0.25rem 0;
+    margin-left: -1px;
+    height: 100%;
   }
-  .jewel.spinner .jewel.button.down {
-    left: -39px;
+  .jewel.numericstepper .jewel.button.down {
     border: 1px solid #333333;
     border-radius: 0.25rem 0 0 0.25rem;
     border-top-style: solid;
+    margin-right: -1px;
+    height: 100%;
   }
 }
 .popup-content::before {
@@ -1145,6 +1220,14 @@ j|FormItem {
     border-radius: 0px;
   }
 }
+.jewel.tabbar.sameWidths > * {
+  flex: 1 0 0% !important;
+}
+
+j|TabBar {
+  itemsExpand: true;
+}
+
 .jewel.tabbarbutton {
   font-size: 1em;
   font-weight: 500;
@@ -1158,12 +1241,7 @@ j|FormItem {
   font-weight: 600;
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.jewel.tabbarbutton > .content {
-  padding-top: 12px;
-  padding-bottom: 12px;
-}
-.jewel.tabbarbutton .indicator > .indicatorContent {
-  height: 2px;
+.jewel.tabbarbutton .indicator > .indicator-content {
   background-color: #3CADF1;
 }
 .jewel.tabbarbutton.hovered {
@@ -1174,19 +1252,24 @@ j|FormItem {
   background: rgba(60, 173, 241, 0.4);
 }
 
+.jewel.tabbar.layout.horizontal .indicator > .indicator-content {
+  height: 2px;
+}
+.jewel.tabbar.layout.vertical .indicator > .indicator-content {
+  width: 2px;
+}
+
 .jewel.simpletable {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   box-shadow: inset 0 1px 0 #8c8c8c;
   border-radius: 0.25rem;
 }
-.jewel.simpletable .jewel.thead tr {
-  border-bottom: 1px solid #595959;
-}
 .jewel.simpletable .jewel.tableheadercell:first-of-type {
   border-left: 0px;
 }
 .jewel.simpletable .jewel.tableheadercell {
+  padding: 12px;
   background: linear-gradient(#7f7f7f, #737373);
   box-shadow: inset 0 1px 0 #8c8c8c;
   font-weight: 700;
@@ -1202,6 +1285,9 @@ j|FormItem {
   border-top: 1px solid #595959;
   border-left: 1px solid #595959;
 }
+.jewel.simpletable .jewel.tablecell > * {
+  padding: 12px;
+}
 .jewel.simpletable .jewel.tfoot .jewel.tablecell {
   border-left: 0px;
   background: linear-gradient(#7f7f7f, #8c8c8c);
@@ -1214,13 +1300,11 @@ j|FormItem {
   box-shadow: inset 0 1px 0 #8c8c8c;
   border-radius: 0.25rem;
 }
-.jewel.table .jewel.thead tr {
-  border-bottom: 1px solid #595959;
-}
 .jewel.table .jewel.tableheadercell:first-of-type {
   border-left: 0px;
 }
 .jewel.table .jewel.tableheadercell {
+  padding: 12px;
   background: linear-gradient(#7f7f7f, #737373);
   box-shadow: inset 0 1px 0 #8c8c8c;
   font-weight: 700;
@@ -1228,6 +1312,10 @@ j|FormItem {
   font-size: 1em;
   color: #FFFFFF;
   border-left: 1px solid #595959;
+  border-bottom: 1px solid #595959;
+}
+.jewel.table .jewel.tablerow:first-child .jewel.tablecell {
+  border-top: 0px solid transparent;
 }
 .jewel.table .jewel.tablecell:first-of-type {
   border-left: 0px;
@@ -1242,6 +1330,9 @@ j|FormItem {
   box-shadow: inset 0 1px 0 #a6a6a6;
 }
 
+.jewel.tableitem {
+  height: 100%;
+}
 .jewel.tableitem.hovered {
   color: #FFFFFF;
   background: #3CADF1;
@@ -1249,6 +1340,20 @@ j|FormItem {
 .jewel.tableitem.selected, .jewel.tableitem.selectable:active {
   color: #FFFFFF;
   background: #24a3ef;
+}
+.jewel.tableitem.calendar {
+  border-radius: 4px;
+}
+.jewel.tableitem.calendar[disabled] {
+  color: #737373;
+  pointer-events: none;
+}
+.jewel.tableitem.calendar.selected {
+  font-weight: bold;
+}
+.jewel.tableitem.calendar.selected[disabled] {
+  color: #FFFFFF;
+  background: #191919;
 }
 
 a:link {
@@ -1277,6 +1382,26 @@ a:active {
 
 .primary-darkest {
   color: #063b5b;
+}
+
+.weight-lightest {
+  font-weight: 100;
+}
+
+.weight-light {
+  font-weight: 300;
+}
+
+.weight-regular {
+  font-weight: 400;
+}
+
+.weight-bold {
+  font-weight: 600;
+}
+
+.weight-bolder {
+  font-weight: 800;
 }
 
 h1 {
@@ -1312,6 +1437,81 @@ div {
   font-size: 14px;
 }
 
+@media (min-width: 992px) and (max-width: 1200px) {
+  .jewel {
+    font-size: 100%;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 2em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.25em;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .jewel {
+    font-size: 99%;
+  }
+
+  h1 {
+    font-size: 1.9em;
+  }
+
+  h2 {
+    font-size: 1.9em;
+  }
+
+  h3 {
+    font-size: 1.4em;
+  }
+
+  h4 {
+    font-size: 1.1em;
+  }
+
+  h5 {
+    font-size: 0.98em;
+  }
+}
+@media (min-width: 0px) and (max-width: 768px) {
+  .jewel {
+    font-size: 97%;
+  }
+
+  h1 {
+    font-size: 1.7em;
+  }
+
+  h2 {
+    font-size: 1.7em;
+  }
+
+  h3 {
+    font-size: 1.3em;
+  }
+
+  h4 {
+    font-size: 1em;
+  }
+
+  h5 {
+    font-size: 0.97em;
+  }
+}
 .jewel.textinput {
   font-weight: 400;
   color: #FFFFFF;
@@ -1341,6 +1541,30 @@ div {
 .jewel.textinput input[disabled] + i {
   color: #737373;
 }
+.jewel.textinput input {
+  margin: 0;
+  padding: 0.679em 14px;
+}
+.jewel.textinput.icon input {
+  padding-left: 42px;
+  padding-right: 14px;
+}
+.jewel.textinput.icon i.fonticon {
+  left: 14px;
+}
+.jewel.textinput.icon i.fonticon.material-icons {
+  left: 10px;
+}
+.jewel.textinput.icon.right input {
+  padding-left: 14px;
+  padding-right: 42px;
+}
+.jewel.textinput.icon.right i.fonticon {
+  right: 14px;
+}
+.jewel.textinput.icon.right i.fonticon.material-icons {
+  right: 10px;
+}
 .jewel.textinput.errorBorder input {
   border: 1px #EC1C24 solid;
 }
@@ -1350,6 +1574,8 @@ div {
   color: #FFFFFF;
 }
 .jewel.textarea textarea {
+  margin: 0;
+  padding: 0.72em 1.12em;
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   border-radius: 0.25rem;

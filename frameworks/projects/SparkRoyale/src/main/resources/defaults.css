@@ -39,6 +39,7 @@ global {
 Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
+	white-space: nowrap;
 }
 CheckBox
 {
@@ -67,14 +68,27 @@ Image
 
 DataGroup
 {
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
+	IBeadView:  ClassReference("spark.components.beads.DataContainerView");			
+	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("spark.components.beads.SelfItemRenderer");
+	IItemRendererInitializer: ClassReference("spark.components.beads.SelfItemRendererInitializer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+VirtualVDataGroup
+{
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
-	IBeadView:  ClassReference("org.apache.royale.html.beads.VirtualListView");			
+	IBeadView:  ClassReference("mx.containers.beads.VirtualListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VirtualListVerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
-	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
 	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
@@ -89,12 +103,13 @@ NonVirtualHDataGroup
 	IBeadLayout: ClassReference("spark.layouts.HorizontalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
 	IItemRenderer: ClassReference("spark.components.supportClasses.SparkTextButtonItemRenderer");
-	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
 	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+/* not used
 NonVirtualVDataGroup
 {
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
@@ -103,12 +118,12 @@ NonVirtualVDataGroup
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
-	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
-	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
+	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-}
+} */
 
 DropDownList
 {
@@ -139,7 +154,7 @@ List
 	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
-	IContentView: ClassReference("spark.components.DataGroup");
+	IContentView: ClassReference("spark.components.VirtualVDataGroup");
 }
 
 NumericStepper
@@ -186,6 +201,16 @@ SkinnableContainer
 	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	IContentView: ClassReference("spark.components.Group");
+	border-width: 1px;
+}
+
+SkinnableDataContainer
+{
+	IBeadView: ClassReference("spark.components.beads.SkinnableDataContainerView");
+	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
+	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IContentView: ClassReference("spark.components.DataGroup");
 	border-width: 1px;
 }
 
@@ -270,8 +295,13 @@ TitleWindow
     {
 	    IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 	    IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-	    IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
     }
+
+	SkinnableDataContainer
+	{
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+	}
 
 	Label
 	{
@@ -285,7 +315,6 @@ TitleWindow
 		iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 		iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
 		iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');
-		IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 		font-size: 11px;
 		font-family: Arial;
 	}

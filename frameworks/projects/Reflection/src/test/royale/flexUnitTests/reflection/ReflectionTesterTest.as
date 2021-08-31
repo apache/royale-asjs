@@ -76,6 +76,7 @@ package flexUnitTests.reflection
         public function testBasicDescribeTypeClass():void
         {
             var def:TypeDefinition = describeType(TestClass2);
+
             
             assertEquals( def.packageName, "flexUnitTests.reflection.support", "Unexpected package name");
             assertEquals( def.name, "TestClass2", "Unexpected type name");
@@ -122,14 +123,40 @@ package flexUnitTests.reflection
             assertEquals(
                     "flexUnitTests.reflection.support.TestClass4",
                     constructor.declaredBy.qualifiedName, "unexpected constructor declaredBy");
-            
+
             assertEquals(
                     0,
+                    constructor.parameters.length, "unexpected constructor params");
+            //TestClass3 extends TestClass1
+            def =  describeType(TestClass3);
+            //TestClass3 has no explicit constructor defined, it should still be represented and has no parameters
+            constructor = def.constructorMethod;
+
+            assertEquals(
+                    "flexUnitTests.reflection.support.TestClass3",
+                    constructor.declaredBy.qualifiedName, "unexpected constructor declaredBy");
+
+            assertEquals(
+                    0,
+                    constructor.parameters.length, "unexpected constructor params");
+
+            def =  describeType(TestClass1);
+
+            constructor = def.constructorMethod;
+
+            assertEquals(
+                    "flexUnitTests.reflection.support.TestClass1",
+                    constructor.declaredBy.qualifiedName, "unexpected constructor declaredBy");
+
+
+            //there is one optional parameter in the base class
+            assertEquals(
+                    1,
                     constructor.parameters.length, "unexpected constructor params");
             
             
         }
-        
+
         
         [TestVariance(variance="JS", description="Variance in test due to current inability for js target to reflect into non-Royale base classes or typedefs")]
         [Test]
@@ -144,7 +171,7 @@ package flexUnitTests.reflection
             assertEquals( 3, variables.length, "unexpected instance variables length");
             
             //there is a difference based on the EventDispatcher inheritance chain differences between js and swf:
-            expected = isJS ? 6 : 7;
+            expected = isJS ? 5 : 7;
             var methods:Array = def.methods;
             assertEquals( expected, methods.length, "unexpected instance methods length");
             
@@ -177,7 +204,7 @@ package flexUnitTests.reflection
             assertEquals( 3, variables.length, "unexpected instance variables length");
             
             //there is a difference based on the EventDispatcher inheritance chain differences between js and swf:
-            expected = isJS ? 6 : 7;
+            expected = isJS ? 5 : 7;
             var methods:Array = def.methods;
             assertEquals( expected, methods.length, "unexpected instance methods length");
             

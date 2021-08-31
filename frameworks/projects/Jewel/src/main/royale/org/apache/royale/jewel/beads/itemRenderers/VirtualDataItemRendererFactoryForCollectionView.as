@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -30,7 +30,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
 	/**
-	 *  The DataItemRendererFactoryForArrayData class reads an
+	 *  The VirtualDataItemRendererFactoryForCollectionView class reads an
 	 *  array of data and creates an item renderer for every
 	 *  item in the array.  Other implementations of
 	 *  IDataProviderItemRendererMapper map different data 
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			super(target);
 		}
 
-		private var dp:ArrayList;
+		private var dp:IArrayList;
 		
 		/**
 		 *  
@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			if (!dataProviderModel)
 				return;
-			dp = dataProviderModel.dataProvider as ArrayList;
+			dp = dataProviderModel.dataProvider as IArrayList;
 			if (!dp)
 				return;
 			

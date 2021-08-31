@@ -1471,13 +1471,13 @@ public class TextArea extends ScrollControlBase
      *  @private
      *  Storage for selectable property.
      */
-//    private var _selectable:Boolean = true;
+    private var _selectable:Boolean = true;
 
     /**
      *  @private
      *  Change flag for selectable property.
      */
-//    private var selectableChanged:Boolean = false;
+    private var selectableChanged:Boolean = false;
 
 //    [Inspectable(category="General", defaultValue="true")]
 
@@ -1492,24 +1492,24 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get selectable():Boolean
-//    {
-//        return _selectable;
-//    }
-//
+    public function get selectable():Boolean
+    {
+        return _selectable;
+    }
+
 //    /**
 //     *  @private
 //     */
-//    public function set selectable(value:Boolean):void
-//    {
-//        if (value == selectable)
-//            return;
-//
-//        _selectable = value;
-//        selectableChanged = true;
-//
-//        invalidateProperties();
-//    }
+    public function set selectable(value:Boolean):void
+    {
+        if (value == selectable)
+            return;
+
+        _selectable = value;
+        selectableChanged = true;
+
+        invalidateProperties();
+    }
 
     //----------------------------------
     //  selectionBeginIndex

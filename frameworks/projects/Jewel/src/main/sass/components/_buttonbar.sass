@@ -35,11 +35,11 @@ $border-radius: .25rem
             border-bottom-right-radius: $border-radius
 
 j|ButtonBar
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel")
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ButtonBarModel")
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView")			
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer")
     IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer")
@@ -50,14 +50,20 @@ j|ButtonBar
 
 
 // IconButtonBar
-
 j|IconButtonBar
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.IconButtonBarItemRenderer")
     // this requires in App to define in CSS -> iconClass: ClassReference("org.apache.royale.icons.MaterialIcon")
 
 // ToggleButtonBar
 
-// ButtonVar variables
+.jewel.buttonbar
+    &.toggle-on-click
+        .jewel.togglebutton
+            &.selected
+                pointer-events: none
+
 j|ToggleButtonBar
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ToggleButtonBarView")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ToggleButtonBarSelectionMouseController")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer")
     // this requires in App to define in CSS -> iconClass: ClassReference("org.apache.royale.icons.MaterialIcon")

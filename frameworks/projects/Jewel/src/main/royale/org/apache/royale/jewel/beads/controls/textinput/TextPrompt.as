@@ -25,7 +25,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.CSSTextField;
 	import org.apache.royale.core.UIBase;
 	}
-	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -42,7 +42,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TextPrompt extends Bead
+	public class TextPrompt extends DispatcherBead
 	{
 		/**
 		 *  constructor.
@@ -98,7 +98,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			COMPILE::JS
 			{
 			listenOnStrand("beadsAdded", beadsAddedHandler);

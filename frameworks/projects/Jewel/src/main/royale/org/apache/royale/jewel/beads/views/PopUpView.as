@@ -30,6 +30,8 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.PopUp;
     import org.apache.royale.jewel.supportClasses.popup.PopUpContent;
     import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  The PopUpView class is a bead for PopUp that creates the dialog
@@ -66,6 +68,10 @@ package org.apache.royale.jewel.beads.views
 		public function get content():UIBase
 		{
             return getHost().content;
+		}
+		public function set content(value:UIBase):void
+		{
+            getHost().content = value;
 		}
 		
 		/**
@@ -125,7 +131,6 @@ package org.apache.royale.jewel.beads.views
 			// There might be a better way to resolve this problem, but this works for now...
 			if(_showingPopup)
 				return;
-
 			if (value != _popUpVisible)
 			{
 				_showingPopup = true;
@@ -134,31 +139,34 @@ package org.apache.royale.jewel.beads.views
 				{
 					//create the backdrop
 					_popUp = new PopUpContent();
-					_popUp.addElement(content as IChild);
-					UIUtils.addPopUp(_popUp, getHost());
-					// viewBead.popUp is StyledUIBase that fills 100% of browser window, then we display the "iPopUp content" inside
-					
-					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
-					setTimeout(prepareForPopUp,  300);
-					// COMPILE::JS
-					// {
-					// window.addEventListener('resize', autoResizeHandler, false);
-					// }
-
-					// autoResizeHandler();
+					showPopUp();
 				}
 				else
 				{
-					UIUtils.removePopUp(_popUp);
-					COMPILE::JS
-					{
-					document.body.classList.remove("viewport");
-					// window.removeEventListener('resize', autoResizeHandler, false);
-					}
+					hidePopUp();
 					_popUp = null;
 				}
 			}
 			_showingPopup = false;
+		}
+
+		private function showPopUp():void
+		{
+			UIUtils.addPopUp(_popUp, getHost());
+			// viewBead.popUp is StyledUIBase that fills 100% of browser window, then we display the "iPopUp content" inside
+			
+			// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
+			setTimeout(prepareForPopUp,  300);		
+		}
+
+		private function hidePopUp():void
+		{
+			UIUtils.removePopUp(_popUp);
+			COMPILE::JS
+			{
+			document.body.classList.remove("viewport");
+			// window.removeEventListener('resize', autoResizeHandler, false);
+			}
 		}
 
 		// COMPILE::JS
@@ -167,7 +175,17 @@ package org.apache.royale.jewel.beads.views
 		private function prepareForPopUp():void
         {
 			if(_popUp) {
+				if(!content)
+				{
+					content = loadBeadFromValuesManager(UIBase, "iPopUpContent", _strand) as UIBase;
+				}
+
+				// this internal event is used in PopUpMouseController to attach listeners to content
+				sendStrandEvent(_strand, "showingPopUp");
+				
+				_popUp.addElement(content as IChild);
 				_popUp.addClass("open");
+
 				COMPILE::JS
 				{
 				//avoid scroll in html

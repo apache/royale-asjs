@@ -19,18 +19,24 @@
 package mx.controls.beads.layouts
 {
     import mx.controls.beads.DataGridView;
+    import mx.controls.beads.models.DataGridPresentationModel;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.core.ScrollControlBase;
     import mx.core.ScrollPolicy;
     
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.html.beads.layouts.DataGridLayout;
     import org.apache.royale.html.beads.models.ButtonBarModel;
-	
+    import org.apache.royale.html.IListPresentationModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithPresentationModel;
+    import org.apache.royale.events.Event;
     /**
      *  The DataGridLayout class.
      * 
@@ -53,6 +59,44 @@ package mx.controls.beads.layouts
 		{
         }
 
+        COMPILE::JS
+        protected var scrollListening:Boolean;
+
+        COMPILE::JS
+        protected var spacer:HTMLDivElement;
+
+
+
+        public var firstVisibleIndex:int;
+
+        public var lastVisibleIndex:int;
+
+        public var maxVerticalScrollPosition:Number;
+
+        public var actualRowHeight:Number;
+
+        COMPILE::JS
+        private var _deferred:Boolean;
+
+        COMPILE::JS
+        private function layoutOnScroll():void
+        {
+            layout();
+            _deferred = false;
+        }
+        
+        COMPILE::JS
+        protected function scrollHandler(e:Event):void
+        {
+            (uiHost.view as DataGridView).header.element.scrollLeft = (uiHost.view as DataGridView).listArea.element.scrollLeft;
+            // not atomic test-and-set, but scroll events aren't super-fast
+            if (_deferred) return;
+            _deferred = true;
+            //this seems necessary for some browsers:
+            requestAnimationFrame(layoutOnScroll);
+            //trace("MX DataGridLayout scrollHandler");
+        }
+
         override protected function getColumnsForLayout():Array
         {
             var view:DataGridView = (uiHost.view as DataGridView);
@@ -67,10 +111,11 @@ package mx.controls.beads.layouts
                 ww += columnWidths[i];
             }
             var view:DataGridView = (uiHost.view as DataGridView);
-            if (ww > view.listArea.width)
+            if (ww < view.listArea.width)
             {
-                // fudge last column if offscreen so it scrolls horizontally properly if
-                // vertical scrollbar is always on
+                // fudge last column if it has a gap for the vertical scrollbar
+                // so it will appear flush with right border if
+                // vertical scrollbar is showing
                 COMPILE::JS
                 {
                     if (view.listArea.element.offsetWidth > view.listArea.element.clientWidth)
@@ -79,11 +124,44 @@ package mx.controls.beads.layouts
                             view.listArea.element.clientWidth;
                     }
                 }
+            } else {
+                COMPILE::JS
+                {
+                    if ((uiHost as ScrollControlBase).horizontalScrollPolicy != mx.core.ScrollPolicy.OFF) {
+                        columnWidths[columnWidths.length - 1] += view.listArea.element.offsetWidth -
+                                view.listArea.element.clientWidth;
+                    }
+
+                }
             }
             
             super.setHeaderWidths(columnWidths);
         }
-        
+
+
+        protected function scrollPolicyChangedHandler(event:Event):void{
+       /*
+            //temp
+            var policy:String = event.type.substr(0,event.type.indexOf('Changed'));
+            trace(policy, uiHost[policy])*/
+
+            if (event.type == 'verticalScrollPolicyChanged') {
+                //if the recent change was to 'off' then reset the scroll position to top to match what Flex does
+                if ((uiHost as ScrollControlBase).verticalScrollPolicy == ScrollPolicy.OFF) {
+                    //reset the scroll top
+                    var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
+                    COMPILE::JS{
+                        listArea.element.scrollTop = 0;
+                    }
+                }
+            }
+            layout();
+            if (event.type == 'horizontalScrollPolicyChanged') {
+                //request re-render of the vertical column lines for the listArea
+                uiHost.dispatchEvent(new Event("renderColumnsNeeded"))
+            }
+        }
+
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
@@ -96,6 +174,16 @@ package mx.controls.beads.layouts
          */
         override public function layout():Boolean
         {
+            COMPILE::JS
+            {
+                if (!scrollListening) {
+                    (uiHost.view as IDataGridView).listArea.element.addEventListener("scroll", scrollHandler);
+                    uiHost.addEventListener('horizontalScrollPolicyChanged', scrollPolicyChangedHandler);
+                    uiHost.addEventListener('verticalScrollPolicyChanged', scrollPolicyChangedHandler);
+                    scrollListening = true;
+                }
+            }
+            var presentationModel:DataGridPresentationModel = (uiHost as IStrandWithPresentationModel).presentationModel as DataGridPresentationModel;
             var view:DataGridView = (uiHost.view as DataGridView);
             // do the proportional sizing of columns
             var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
@@ -104,6 +192,11 @@ package mx.controls.beads.layouts
             
             var totalWidths:Number = 0;
             var unspecifiedWidths:int = 0;
+            var vScrollbarWidth:Number = 0;
+            COMPILE::JS{
+                vScrollbarWidth = view.listArea.element.offsetWidth - view.listArea.element.clientWidth;
+            }
+
             if (view.visibleColumns)
             {
                 for(var i:int=0; i < view.visibleColumns.length; i++) {
@@ -138,14 +231,14 @@ package mx.controls.beads.layouts
                 }
                 else if (totalWidths > 0)
                 {
-                    if (totalWidths != useWidth)
-                    {
-                        var factor:Number = useWidth / totalWidths;
-                        for(i=0; i < view.visibleColumns.length; i++) {
-                            columnDef = view.visibleColumns[i] as DataGridColumn;
-                            columnDef.columnWidth = columnDef.width * factor;
-                        }                
+
+
+                    var factor:Number = totalWidths != useWidth ? useWidth / totalWidths : 1;
+                    for(i=0; i < view.visibleColumns.length; i++) {
+                        columnDef = view.visibleColumns[i] as DataGridColumn;
+                        columnDef.columnWidth = columnDef.width * factor;
                     }
+
                 }
             }
             
@@ -158,7 +251,7 @@ package mx.controls.beads.layouts
                 {
                    view.header.element.scrollLeft = view.listArea.element.scrollLeft;
                 }
-                if (totalWidths < useWidth)
+                if (totalWidths < useWidth - vScrollbarWidth)
                 {
                     // this loop should prevent totalWidth < useWidth next time through
                     for(i=0; i < view.visibleColumns.length; i++) {
@@ -172,11 +265,113 @@ package mx.controls.beads.layouts
                     for(i=0; i < view.visibleColumns.length; i++) {
                         columnDef = view.visibleColumns[i] as DataGridColumn;
                         columnDef.columnWidth = columnDef.width;
-                    }                
+                    }
+                    if (totalWidths == useWidth && vScrollbarWidth) {
+                        //columnDef is the last column from the above loop:
+                        columnDef.columnWidth -= vScrollbarWidth;
+                    }
                 }
             }
-            
-            return super.layout();
+
+            var retval:Boolean = super.layout();
+
+           /* COMPILE::JS
+            {
+                if (!uiHost.isHeightSizedToContent())
+                {
+                    if (uiHost.element.style["overflow-x"] == "hidden")
+                        (uiHost.view as IDataGridView).listArea.element.style["overflow-x"] = "hidden";
+                }
+            }*/
+
+            if (!uiHost.isHeightSizedToContent())
+            {
+                var header:IUIBase = (uiHost.view as IDataGridView).header;
+        //        var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+                // do the proportional sizing of columns
+                /*var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);
+                var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
+                var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom) - header.height - 1;
+                */
+                useHeight = useHeight - header.height - 1
+                var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
+                if (!displayedColumns) return retval;
+                var n:int = displayedColumns.length;
+                var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
+                actualRowHeight = presentationModel.rowHeight
+                        + presentationModel.separatorThickness;
+                COMPILE::JS
+                {
+                    firstVisibleIndex = Math.floor(listArea.element.scrollTop / actualRowHeight);
+                    var scrollTop:Number = listArea.element.scrollTop;
+                    var topSpacerHeight:Number = Math.floor(listArea.element.scrollTop / actualRowHeight)
+                            * actualRowHeight;
+                }
+                var model:IDataGridModel = uiHost.model as IDataGridModel;
+                if (model.dataProvider && model.dataProvider.length)
+                {
+                    var totalHeight:Number = model.dataProvider.length * actualRowHeight;
+                    maxVerticalScrollPosition = totalHeight - useHeight;
+                    COMPILE::JS
+                    {
+                        if (!spacer)
+                        {
+                            spacer = document.createElement("div") as HTMLDivElement;
+                            listArea.element.appendChild(spacer);
+                        }
+                        // the lists are "absolute" so they float over the spacer
+                        spacer.style.height = totalHeight.toString() + "px";
+                        topSpacerHeight = Math.min(topSpacerHeight, totalHeight - useHeight);
+                        // if we have enough to scroll, then make the columns a row taller because
+                        // the virtual scrolling neds to shift the column lists
+                        if (totalHeight > useHeight)
+                        {
+                            var numVisibleRows:int = Math.floor(useHeight / actualRowHeight);
+                            lastVisibleIndex = firstVisibleIndex + numVisibleRows + 1;
+                            useHeight = actualRowHeight * (numVisibleRows + 1);
+                        }
+                        else
+                            lastVisibleIndex = model.dataProvider.length - 1;
+                        /*if (uiHost.element.style["overflow-x"] == "hidden")
+                            listArea.element.style["overflow-x"] = "hidden";*/
+                    }
+                }
+                /*COMPILE::JS
+                {
+                    if (listArea.element.offsetHeight > listArea.element.clientHeight)
+                    {
+                        // horizontal scrollbar is always shown
+                        useHeight -= listArea.element.offsetHeight - listArea.element.clientHeight;
+                    }
+                }*/
+                for (i = 0; i < n; i++)
+                {
+                    var columnList:UIBase = displayedColumns[i] as UIBase;
+                    if (presentationModel.virtualized) //set the columnList to a specific height if virtualized
+                        columnList.height = useHeight;
+                    COMPILE::JS
+                    {
+                        if (!presentationModel.virtualized) topSpacerHeight = 0; //we don't need a vertical offset if all renderers are present
+                        columnList.element.style.position = "absolute";
+                        columnList.element.style.top = (topSpacerHeight + 1).toString() + 'px';
+                        columnList.dispatchEvent(new Event("layoutNeeded"));
+                    }
+                }
+                COMPILE::JS
+                {
+                    // chrome has bug where moving things resets scrollTop
+                    listArea.element.scrollTop = scrollTop;
+                }
+            }
+
+
+            return retval;
+        }
+
+
+        public function isVisibleIndex(index:int):Boolean
+        {
+            return index >= firstVisibleIndex && index <= lastVisibleIndex;
         }
 	}
 }

@@ -41,6 +41,7 @@ package spark.components.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IDropDownListView;
+    import org.apache.royale.html.util.getLabelFromData;
 
     /**
      *  @private
@@ -72,7 +73,7 @@ package spark.components.beads
          */
         public var label:Button;
 
-        private var selectionModel:ISelectionModel;
+        protected var selectionModel:ISelectionModel;
 
         /**
          */
@@ -100,19 +101,23 @@ package spark.components.beads
 
         }
 
-        private function selectionChangeHandler(event:Event):void
+        protected function selectionChangeHandler(event:Event):void
         {
             if (selectionModel.selectedItem == null)
             {
                 label.label = (host as DropDownList).prompt;
             }
-            else if (selectionModel.labelField != null)
-            {
-                label.label = selectionModel.selectedItem[selectionModel.labelField].toString();
-            }
             else
             {
-                label.label = selectionModel.selectedItem.toString();
+                var ddl:DropDownList = (this.host as DropDownList);
+                if (ddl["labelFunction"] != null)
+                {
+                    label.label = ddl["labelFunction"](selectionModel.selectedItem);
+                }
+                else
+                {
+                    label.label = getLabelFromData(selectionModel, selectionModel.selectedItem);
+                }
             }
         }
 
@@ -183,7 +188,13 @@ package spark.components.beads
         {
             var list:DropDownList = host as DropDownList;
             var view:DropDownListView = list.view as DropDownListView;
-            view.label.setActualSize(list.width, list.height);
+			var w:Number = list.width;
+			if (list.isWidthSizedToContent())
+			    w = list.measuredWidth;
+			var h:Number = list.height;
+			if (list.isHeightSizedToContent())
+			    h = list.measuredHeight;
+            view.label.setActualSize(w, h);
 
             return false;
         }

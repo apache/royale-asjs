@@ -20,7 +20,7 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.utils.callLater;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
@@ -31,7 +31,7 @@ package org.apache.royale.html.beads
 	/**
 	 *  The HideComboPopupOnMouseDownBead can be used with ComboBox to make sure mouse down events
 	 *  close an open popup. For this bead to work the application needs to be sized to the
-	 *  window size. See org.apache.royale.core.BrowserResizeListener for a way to achieve this.
+	 *  window size. See org.apache.royale.core.BrowserResizeListener or BrowserResizeApplicationListener for a way to achieve this.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -44,7 +44,7 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		protected var viewBead:IComboBoxView;
 		
@@ -92,10 +92,11 @@ package org.apache.royale.html.beads
 		 */
 		protected function handlePopupShow(event:Event):void
 		{
-			IEventDispatcher(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			var popup:IUIBase = viewBead.popUp as IUIBase;
+			popup.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			callLater(function():void {
-				IUIBase(viewBead.popUp).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				popup.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
 			});
 		}
 		

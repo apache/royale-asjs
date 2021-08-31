@@ -18,12 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	COMPILE::SWF
-    {
-	import flash.display.DisplayObject;
-
-	import org.apache.royale.core.IRenderedObject;
-    }
     COMPILE::JS
     {
 	import org.apache.royale.core.WrappedHTMLElement;
@@ -60,7 +54,7 @@ package org.apache.royale.jewel
 
 		protected function get headerClassName():String
 		{
-			return "barHeader";
+			return "bar-header";
 		}
 
 		/**
@@ -77,13 +71,11 @@ package org.apache.royale.jewel
 
 		COMPILE::JS
 		private var _positioner:WrappedHTMLElement;
-
 		COMPILE::JS
 		override public function get positioner():WrappedHTMLElement
 		{
 			return _positioner;
 		}
-
 		COMPILE::JS
 		override public function set positioner(value:WrappedHTMLElement):void
 		{

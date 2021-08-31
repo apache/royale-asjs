@@ -156,7 +156,30 @@ package flexUnitTests.xml
             assertEquals( xml3.foo.@boo,'boo', 'xml3.foo.@boo should be "boo"');
 
         }
-        
+
+        [Test]
+        public function testWhitespaceVariants():void{
+            XML.ignoreWhitespace = false;
+
+            var test:XML = new XML("    test   \n ");
+            assertEquals(test.toString().length,13, 'unexpected length')
+            XML.ignoreWhitespace = true;
+            test = new XML("    test   \n ");
+            assertEquals(test.toString().length,4, 'unexpected length')
+
+            XML.ignoreWhitespace = false;
+            var xml1:XML = new XML('<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+            XML.ignoreWhitespace = true;
+            xml1 = new XML('<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+            XML.ignoreWhitespace = false;
+            xml1 = new XML('    \r\n<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />\r\n');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+            XML.ignoreWhitespace = true;
+            xml1 = new XML('    \r\n<mynode red="value1"\r\n green="value2" blue="value3" \r\nyellow="value4" />\r\n');
+            assertEquals(xml1.toXMLString().length,67, 'unexpected length');
+        }
        
         
         [Test]
@@ -425,6 +448,32 @@ package flexUnitTests.xml
                     '  <test>test</test>\n' +
                     '</root>', 'testAppendNonXMLChild 4 result is bad');
             
+        }
+
+        [Test]
+        public function testReplace():void{
+            //WIP
+            var xml:XML =<test><a href="something">test link content</a></test>;
+
+            var child:XML = xml.children()[0];
+            xml.replace(0, child.toString());
+            assertEquals(
+                    xml.toXMLString(),
+                    '<test>test link content</test>', 'testReplace 1 result is bad');
+            xml =<test><a href="something">test link content</a></test>;
+            xml.replace(0, null);
+
+            assertEquals(
+                    xml.toXMLString(),
+                    '<test>null</test>', 'testReplace 2 result is bad');
+
+            xml =<test><a href="something">test link content</a></test>;
+            xml.replace(0, undefined);
+
+            assertEquals(
+                    xml.toXMLString(),
+                    '<test>undefined</test>', 'testReplace 3 result is bad');
+
         }
         
         
@@ -1121,6 +1170,35 @@ package flexUnitTests.xml
             
     
             XML.setSettings(XML.defaultSettings());
+        }
+
+        [Test]
+        public function testElements():void{
+            XML.setSettings(XML.defaultSettings());
+            var xml:XML = <root>   <test/><?foo bar?>Something<el1/><!-- comment --> surrounded With Whitespace <el2/></root>;
+
+
+            var elements:XMLList = xml.elements();
+
+
+            assertEquals(
+                    elements.toString(),
+                    '<test/>\n' +
+                    '<el1/>\n' +
+                    '<el2/>', 'elements only should be 3 elements');
+
+            elements = xml.elements('el1')
+            assertEquals(
+                    elements.toXMLString(),
+                    '<el1/>', 'elements query should return 1 element');
+
+            var el:XML = <el1/>;
+            xml.appendChild(el)
+
+            elements = xml.elements('el1')
+            assertEquals(
+                    elements.toXMLString(),
+                    '<el1/>\n<el1/>', 'elements query should return 2 elements');
         }
 
         [Test]

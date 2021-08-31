@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ITitleBarModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 	
 	/**
 	 *  The TitleBarModel class bead holds the values for the org.apache.royale.html.TitleBar's 
@@ -33,31 +31,16 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TitleBarModel extends EventDispatcher implements IBead, ITitleBarModel
+	public class TitleBarModel extends DispatcherBead implements ITitleBarModel
 	{
 		public function TitleBarModel()
 		{
 			super();
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		
 		private var _title:String;
 		
-        [Bindable("titleChange")]
+		[Bindable("titleChange")]
 		/**
 		 *  The string title for the org.apache.royale.html.TitleBar.
 		 * 

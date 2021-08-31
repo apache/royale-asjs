@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.html.CascadingMenu;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 * This bead class generates instances of the CascadingMenu for use with MenuBar.
@@ -31,7 +31,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class CascadingMenuFactory implements IBead, IFactory
+	public class CascadingMenuFactory extends Bead implements IFactory
 	{
 		/**
 		 * Constructor.
@@ -43,21 +43,6 @@ package org.apache.royale.html.beads
 		 */
 		public function CascadingMenuFactory()
 		{
-		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 * @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
 		}
 		
 		/**

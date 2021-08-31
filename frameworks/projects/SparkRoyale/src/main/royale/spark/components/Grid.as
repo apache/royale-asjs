@@ -732,7 +732,7 @@ package spark.components
 		 *  @private
 		 */
 		/*override*/ 
-		public function set horizontalScrollPosition(value:Number):void 
+		override public function set horizontalScrollPosition(value:Number):void 
 		{
 			if (_horizontalScrollPosition == value)
 				return;
@@ -850,7 +850,7 @@ package spark.components
 		 *  @private
 		 */
 		/* override */ 
-		public function set verticalScrollPosition(value:Number):void 
+		override public function set verticalScrollPosition(value:Number):void 
 		{
 			if (_verticalScrollPosition == value)
 				return;

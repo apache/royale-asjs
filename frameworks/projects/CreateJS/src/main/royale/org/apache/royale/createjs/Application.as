@@ -101,7 +101,7 @@ package org.apache.royale.createjs
 	 * 
      * This is the CreateJS Application class which must be used in place of the normal
 	 * Royale Application. CreateJS uses the HTML5 &lt;canvas&gt;, rather than the HTML DOM. This
-	 * class sets up the canvas and injects the necessary HTML elements into the index.html
+	 * class sets up the canvas and injects the necessary script elements into the index.html
 	 * file to bootstrap CreateJS.
 	 *
 	 *  @see ViewBase
@@ -172,12 +172,16 @@ package org.apache.royale.createjs
 	{
         /**
          * The Royale Compiler will inject html into the index.html file.  Surround with
-         * "inject_html" tag as follows:
+         * "inject_script" tag as follows:
          *
-         * <inject_html>
-         * <script src="https://code.createjs.com/easeljs-0.8.1.min.js"></script>
-		 * <script src="https://code.createjs.com/tweenjs-0.6.2.min.js"></script>
-         * </inject_html>
+         * <inject_script>
+         * var script = document.createElement("script");
+         * script.setAttribute("src", "https://code.createjs.com/easeljs-0.8.1.min.js");
+         * document.head.appendChild(script);
+	 * script = document.createElement("script");
+	 * script.setAttribute("src", "https://code.createjs.com/tweenjs-0.6.2.min.js");
+	 * document.head.appendChild(script);
+         * </inject_script>
          */
 		public function Application()
 		{

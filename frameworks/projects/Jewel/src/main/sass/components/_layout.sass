@@ -54,9 +54,9 @@ $gap-size: 10px !default
 		> *
 			flex: 0 1 auto
 
-		&.variableRowHeight
-			> *
-				flex: 0 0 auto
+		// &.variableRowHeight
+		// 	> *
+		// 		flex: 0 0 auto
 				
 		&.flow
 			flex-wrap: wrap
@@ -72,6 +72,9 @@ $gap-size: 10px !default
 			> *
 				flex: 0 0 auto !important
 
+		&.tile
+			flex-wrap: wrap
+
 		// FormItemLayout
 		&.formitem
 			width: 100%
@@ -85,13 +88,22 @@ $gap-size: 10px !default
 					margin-left: 0px
 				> *
 					margin-left: $gap + $i * $gap-step
+
+		&.itemsReverse
+			@for $i from 1 through $gaps
+				&.gap-#{$i}x#{$gap-step}px
+					> *:last-child
+						margin-left: 0px
+					> *
+						margin-left: $gap + $i * $gap-step
+
 		&.sameWidths
 			> *
 				flex: 1 0 0
 		&.pixelWidths
 			> *
 				flex: none
-		&.proportinalWidths
+		&.proportionalWidths
 			> *
 				flex: 1 0
 		&.percentWidths
@@ -110,9 +122,9 @@ $gap-size: 10px !default
 		> *
 			flex: 0 1 auto
 		
-		&.variableRowHeight
-			> *
-				flex: 0 0 auto
+		// &.variableRowHeight
+		// 	> *
+		// 		flex: 0 0 auto
 		
 		&.flow
 			flex-wrap: wrap
@@ -128,10 +140,13 @@ $gap-size: 10px !default
 			> * 
 				flex: 0 0 auto !important
 
+		&.tile
+			flex-wrap: wrap
+
 		// FormLayout (consider for now Forms are always vertical)
 		&.form
 			width: 100%
-		
+
 		// FormItemLayout
 		// &.formitem
 		// 	width: 100%
@@ -143,10 +158,14 @@ $gap-size: 10px !default
 				> *
 					margin-top: $gap + $i * $gap-step
 
-	// Tile	
-	&.tile
-		flex-flow: row wrap
-		align-items: flex-start
+		&.itemsReverse
+			@for $i from 1 through $gaps
+				&.gap-#{$i}x#{$gap-step}px
+					> *:-child
+						margin-top: 0px
+					> *
+						margin-top: $gap + $i * $gap-step
+
 	
 	// this not compile******
 	// &.gap
@@ -218,6 +237,9 @@ $gap-size: 10px !default
 		&.itemsRight
 			justify-content: flex-end
 		
+		&.itemsReverse
+			flex-direction: row-reverse
+		
 	&.vertical
 		// Vertical Items Align
 		&.itemsCentered
@@ -235,8 +257,12 @@ $gap-size: 10px !default
 		&.itemsRight
 			align-items: flex-end
 		
+		&.itemsReverse
+			flex-direction: column-reverse
+			
 	&.table
-		display: table
+		table
+			display: table
 
 @each $size in $size-names			
 	@if index($size-names, $size) == 1

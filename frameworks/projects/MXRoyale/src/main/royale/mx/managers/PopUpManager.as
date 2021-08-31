@@ -201,7 +201,7 @@ public class PopUpManager
         var popUpHost:IPopUpHost = UIUtils.findPopUpHost(parent as IUIBase);
         if (modal)
         {
-            PopUpManagerModal.show(popUpHost as IUIBase);
+            PopUpManagerModal.show(popUpHost as IUIBase, window);
             modalWindows.push(window);
         }
         if (popUpHost is UIComponent)
@@ -258,11 +258,11 @@ public class PopUpManager
 		{
 	        var popUpHost:IUIBase = (popUp.parent as IPopUpHostParent).popUpHost as IUIBase;
 			UIUtils.removePopUp(popUp as IChild);
-	        if (modalWindows.length > 0 && modalWindows[modalWindows.length - 1] == popUp)
-	        {
-	            PopUpManagerModal.remove(popUpHost);
-	            modalWindows.pop();
-	        }
+            var modalIndex:int = modalWindows.indexOf(popUp);
+            if (modalIndex != -1) {
+                PopUpManagerModal.remove(popUpHost, popUp);
+                modalWindows.splice(modalIndex,1);
+            }
 		}
     }
 } // class

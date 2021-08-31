@@ -22,12 +22,12 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IMenu;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ICascadingMenuModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.CascadingMenu;
-	import org.apache.royale.html.beads.models.CascadingMenuModel;
-	import org.apache.royale.html.beads.models.MenuModel;
 	import org.apache.royale.html.Menu;
+	import org.apache.royale.html.beads.models.MenuModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
@@ -60,22 +60,6 @@ package org.apache.royale.html.beads.controllers
 		{
 			super();
 		}
-				
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
 		
 		/**
 		 * @private
@@ -93,7 +77,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			var node:Object = event.data;
 			
-			var model:CascadingMenuModel = _strand.getBeadByType(IBeadModel) as CascadingMenuModel;
+			var model:ICascadingMenuModel = _strand.getBeadByType(IBeadModel) as ICascadingMenuModel;
 			
 			if (getHasMenu(node, model)) {
 				var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iMenu");
@@ -139,7 +123,7 @@ package org.apache.royale.html.beads.controllers
 				var menuModel:ISelectionModel = menu.model as ISelectionModel;
 				if (menuModel && menuModel.selectedItem == selectedItem)
 				{
-					var dp:Object = getSubMenuDataProvider(selectedItem, menuModel as CascadingMenuModel);
+					var dp:Object = getSubMenuDataProvider(selectedItem, menuModel as ICascadingMenuModel);
 					if (dp)
 					{
 						// though this is being called in a loop, performance shouldn't be a big issue as
@@ -180,12 +164,12 @@ package org.apache.royale.html.beads.controllers
 			return null;
 		}
 
-		protected function getSubMenuDataProvider(node:Object, model:CascadingMenuModel):Object
+		protected function getSubMenuDataProvider(node:Object, model:ICascadingMenuModel):Object
 		{
 			return node[model.submenuField];
 		}
 		
-		protected function getHasMenu(node:Object, model:CascadingMenuModel):Boolean
+		protected function getHasMenu(node:Object, model:ICascadingMenuModel):Boolean
 		{
 			return node.hasOwnProperty(model.submenuField);
 		}

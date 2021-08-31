@@ -30,6 +30,7 @@ package mx.net
  import org.apache.royale.net.URLRequest;
  import org.apache.royale.file.beads.FileUploader;
  import mx.net.beads.FileUploaderUsingFormData;
+ import mx.net.supportClasses.ByteArrayFileLoader;
 
    public class FileReference extends FileProxy
    {
@@ -63,6 +64,15 @@ package mx.net
 			{
 				var fileFilter:FileFilter = typeFilter[i] as FileFilter;
 				var filters:Array = fileFilter.extension.split(";");
+				for (var j:int = 0; j < filters.length; j++)
+				{
+					var filter:String = filters[j];
+					if (filter.charAt(0) == '*')
+					{
+						filter = filter.substring(1);
+						filters[j] = filter;
+					}
+				}
 				allFilters = allFilters.concat(filters);
 			}
 			_browser.filter = allFilters.join(",");
@@ -76,9 +86,25 @@ package mx.net
 		  if (!_loader)
 		  {
 			  // FileLoaderAndUploader has injected this
-			  _loader = getBeadByType(FileLoader) as FileLoader;
+			  _loader = getBeadByType(ByteArrayFileLoader) as FileLoader;
+			  if (!_loader)
+			  {
+				   _loader = new ByteArrayFileLoader();
+				   addBead(_loader);
+			  }
 		  }
+		  _loader.addEventListener(Event.COMPLETE, loaderCompleteHandler);
 		  _loader.load();
+	  }
+	
+	  public function cancel():void
+	   {
+		   _uploader.cancel();
+	   }
+
+	  public function loaderCompleteHandler(event:Event):void
+	  {
+		  dispatchEvent(new Event(Event.COMPLETE));
 	  }
 	  
 	  public function get data():ByteArray
@@ -90,16 +116,40 @@ package mx.net
 	  {
 		  _uploader.upload(request.url);
 	  }
+
+	// not implemented
+	  public function download(request:URLRequest, defaultFileName:String = null):void {}
+	 
 	  
 	  private function modelChangedHandler(event:Event):void
 	  {
 		  dispatchEvent(new Event(Event.SELECT));
 	  }
 	  
+	  /**
+	   *  @royaleignorecoercion HTMLAnchorElement
+	   */
 	  public function save(data:*, defaultFileName:String = null):void
+      {
+		COMPILE::JS
+		{
+		  var a:HTMLAnchorElement = document.createElement("a") as HTMLAnchorElement;
+		  a.href = URL.createObjectURL(new Blob([data]));
+		  if (defaultFileName == null)
+		  {
+		  		  a.setAttribute("download", "download.pdf");
+		  		  a.text = "download.pdf";
+		  }
+		  else
           {
-
+		  		  a.setAttribute("download", defaultFileName);
+		  		  a.text = defaultFileName;
           }
+          document.body.appendChild(a);
+ 		  a.click();
+  		  document.body.removeChild(a);
+		}
+      }
 
       
 

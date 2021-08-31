@@ -34,16 +34,24 @@ j|Navigation
     IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.NavigationItemRendererInitializer")
     ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
-    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView")
 
 
 // Jewel NavigationLinkItemRenderer
 
 // NavigationLinkItemRenderer variables
 .jewel.navigationlink
-    min-height: 48px
 
 j|NavigationLinkItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
+
+// Jewel CollapsibleNavigationSectionRenderer
+.jewel.navigationgroup
+    &.no-submenu
+
+
+j|CollapsibleNavigationSectionRenderer
+    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
+    // don't add IBeadLayout. We add one in code since this render creates additional elements

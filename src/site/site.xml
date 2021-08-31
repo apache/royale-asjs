@@ -32,7 +32,7 @@
     <custom>
         <reflowSkin>
             <theme>site</theme>
-            <titleTemplate>Apache Royale® - %2$s</titleTemplate>
+            <titleTemplate>Apache Royaleï¿½ - %2$s</titleTemplate>
             <breadcrumbs>false</breadcrumbs>
             <highlightJs>true</highlightJs>
         </reflowSkin>
@@ -41,7 +41,7 @@
     <bannerLeft>
         <name>Apache Royale</name>
         <src>img/logo-royale.png</src>
-        <href>http://royale.apache.org/</href>
+        <href>https://royale.apache.org/</href>
     </bannerLeft>
 
     <bannerRight>
@@ -60,7 +60,7 @@
         </head>
 
         <links>
-            <item name="Apache Royale Homepage" href="http://royale.apache.org/" />
+            <item name="Apache Royale Homepage" href="https://royale.apache.org/" />
             <item name="Apache Royale Documentation" href="https://apache.github.io/royale-docs/"/>
         </links>
 

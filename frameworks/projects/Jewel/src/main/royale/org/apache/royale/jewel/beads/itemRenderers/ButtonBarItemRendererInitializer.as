@@ -51,6 +51,8 @@ package org.apache.royale.jewel.beads.itemRenderers
         
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
+			// we're not using custom paddings here, since renderer is jewel button
+
 			if (presentationModel) {
                 if(!presentationModel.variableRowHeight)
                 	StyledUIBase(ir).height = presentationModel.rowHeight;
@@ -74,16 +76,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 			{
 				StyledUIBase(ir).emphasis = buttonBar.emphasis;
 			}
-
+			
 			if(ir.index == 0)
 			{
 				StyledUIBase(ir).addClass("first");
-			} 
-			else if(ir.index == buttonBar.dataProvider.length - 1 )
+			}
+			
+			if(ir.index == buttonBar.dataProvider.length - 1 )
 			{
 				StyledUIBase(ir).addClass("last");
 			}
-			else
+			
+			if(ir.index != 0 && ir.index != buttonBar.dataProvider.length - 1 )
 			{
 				StyledUIBase(ir).addClass("middle");
 			}

@@ -123,6 +123,7 @@
         <ant dir="${basedir}/royale/TreeExample"/>
         <ant dir="${basedir}/mxroyale/HelloWorld"/>
         <ant dir="${basedir}/mxroyale/ControlsExample"/>
+        <ant dir="${basedir}/mxroyale/DataGridExample"/>
         <ant dir="${basedir}/native/ButtonExample"/>
         <ant dir="${basedir}/native/USStatesMap"/>
     </target>
@@ -184,6 +185,7 @@
         <ant dir="${basedir}/royale/TreeExample" target="clean"/>
         <ant dir="${basedir}/mxroyale/HelloWorld" target="clean"/>
         <ant dir="${basedir}/mxroyale/ControlsExample" target="clean"/>
+        <ant dir="${basedir}/mxroyale/DataGridExample" target="clean"/>
         <ant dir="${basedir}/native/ButtonExample" target="clean"/>
         <ant dir="${basedir}/native/USStatesMap" target="clean"/>
     </target>

@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    COMPILE::JS
-    {
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
-    }
-	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.jewel.beads.models.TabBarPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 *  The TabBar class is a List used for navigate other organized content
@@ -50,54 +48,65 @@ package org.apache.royale.jewel
 		public function TabBar()
 		{
 			super();
-
             typeNames = "jewel tabbar";
-
 			//TabBar is always selected, so selectedIndex can't be -1, at least it will default to 0
 			ISelectionModel(model).selectedIndex = 0;
-
-			// rowHeight is not set by default, so set it to NaN
-			rowHeight = NaN;
-
-			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
-
-		private function internalMouseHandler(event:MouseEvent):void
+		
+		private var _sameWidths:Boolean = false;
+		/**
+		 *  Assigns variable gap to grid from 1 to 20
+		 *  Activate "gap-Xdp" effect selector to set a numeric gap 
+		 *  between grid cells
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        public function get sameWidths():Boolean
+        {
+            return _sameWidths;
+        }
+		/**
+         *  @private
+         */
+		public function set sameWidths(value:Boolean):void
 		{
-			COMPILE::JS
+			if (value != _sameWidths)
 			{
-				// avoid a link tries to open a new page 
-				event.preventDefault();
+				_sameWidths = value;
+				toggleClass("sameWidths", _sameWidths);
 			}
 		}
 
+
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 *  The presentation model for the tabbar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 */
-		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
+		override public function get presentationModel():IBead
 		{
-			addElementToWrapper(this,'div');
-			element.className = "content";
-			positioner = document.createElement('div') as WrappedHTMLElement;
-			return element;
+			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			if (presModel == null) {
+				presModel = new TabBarPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
 		}
 
-		COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
-            _positioner.royale_wrapper = this;
-			_positioner.appendChild(element);
-		}
+		/**
+		 * Load the layout bead if it hasn't already been loaded.
+         * 
+         * @private
+         */
+        // override protected function addLayoutBead():void {
+		// 	// we need to proxy the layout bead to the content in TabBarView
+		// }
 	}
 }

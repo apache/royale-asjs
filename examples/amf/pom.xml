@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
   </parent>
 
   <artifactId>examples-amf-webapps</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Examples: AMF Web Apps ----------------------------</name>
@@ -35,4 +35,4 @@
     <module>SampleAmfWebApp</module>
   </modules>
 
-<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>
+<properties><project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties></project>

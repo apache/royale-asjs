@@ -72,7 +72,6 @@ package org.apache.royale.html.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
 			super.strand = value;
 			
             // Even though super.addedToParent dispatched "beadsAdded", DataContainer still needs its data mapper
@@ -186,7 +185,7 @@ package org.apache.royale.html.beads
             dispatchItemAdded(renderer);
         }
         
-        private function dispatchItemAdded(renderer:IItemRenderer):void
+        protected function dispatchItemAdded(renderer:IItemRenderer):void
         {
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
             newEvent.item = renderer;
@@ -238,6 +237,7 @@ package org.apache.royale.html.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          * 	@royaleignorecoercion org.apache.royale.core.IItemRenderer
+         * 	@royaleignorecoercion org.apache.royale.core.IParent
          */
         public function getItemRendererForIndex(index:int):IItemRenderer
         {

@@ -310,7 +310,6 @@ package spark.components
      *  <p>At compile time, you can put TLF markup tags inside
      *  the RichEditableText tag, as the following example shows:
      *  <pre>
-     *  &lt;s:RichEditableText&gt;Hello &lt;s:span fontWeight="bold"&gt;World!&lt;/s:span&gt;&lt;/s:RichEditableText&gt;
      *  </pre>
      *  In this case, the MXML compiler sets the <code>content</code>
      *  property, causing a TextFlow to be automatically created
@@ -885,7 +884,7 @@ package spark.components
          *  @private
          */
         /* override public function get baselinePosition():Number
-        {
+        {c
             return getStyle("paddingTop") + ascent;
         } */
         
@@ -961,6 +960,9 @@ package spark.components
             // This class does not support truncation
             return false;
         }
+	
+	public function set verticalAlign(value:String):void {}
+
                
         //----------------------------------
         // percentHeight
@@ -3925,6 +3927,8 @@ package spark.components
             
             return true;            
         }
+
+	public function set fontLookup(value:String):void {} // not implemented
         
         /**
          *  @private

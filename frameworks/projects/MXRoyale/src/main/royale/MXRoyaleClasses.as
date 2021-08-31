@@ -27,10 +27,17 @@ package
  */
 internal class MXRoyaleClasses
 {
+	import mx.automation.IAutomationObject; IAutomationObject;
+	import mx.controls.SWFLoader; SWFLoader;
+	import mx.core.DPIClassification; DPIClassification;
+	import mx.core.DesignLayer; DesignLayer;
+	import mx.effects.AnimateProperty; AnimateProperty;
+	import mx.effects.easing.Cubic; Cubic;
+	import mx.events.StateChangeEvent; StateChangeEvent;
+	import mx.graphics.BitmapFill; BitmapFill;
+	import mx.graphics.BitmapFillMode; BitmapFillMode;
 	import mx.core.mx_internal; mx_internal;
 	import mx.core.ScrollPolicy; ScrollPolicy;
-	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
-	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
 	import mx.effects.IEffectInstance; IEffectInstance;
 	import mx.events.EffectEvent; EffectEvent;
@@ -51,6 +58,7 @@ internal class MXRoyaleClasses
 	import mx.events.MoveEvent; MoveEvent;
 	import mx.events.ValidationResultEvent; ValidationResultEvent;
     import mx.containers.beads.AdvancedDataGridListVirtualListView; AdvancedDataGridListVirtualListView;
+	import mx.containers.beads.DataGridListListView; DataGridListListView;
 	import mx.containers.beads.AdvancedDataGridHeaderLayout; AdvancedDataGridHeaderLayout;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
@@ -67,6 +75,7 @@ internal class MXRoyaleClasses
 	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
 	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
 	import mx.events.CloseEvent; CloseEvent;
+	import mx.events.DataEvent; DataEvent;
 	import mx.controls.HRule; HRule;
 	import mx.events.ListEvent; ListEvent;
 	import mx.events.SliderEvent; SliderEvent;
@@ -78,8 +87,12 @@ internal class MXRoyaleClasses
 	import mx.effects.Tween; Tween;
 	import mx.effects.Fade; Fade;
 	import mx.core.Container;Container;
+	import mx.core.ContainerGlobals; ContainerGlobals;
+	import mx.graphics.ImageSnapshot; ImageSnapshot;
 
 	import mx.system.ApplicationDomain; ApplicationDomain;
+	import mx.system.System; System;
+	import mx.system.Security; Security;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
 	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
@@ -93,9 +106,11 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData; DataItemRendererFactoryForICollectionViewAdvancedDataGridData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
+	import mx.effects.effectClasses.ActionEffectInstance; ActionEffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
 	import mx.charts.HitData; HitData;
-	import mx.events.MenuEvent; MenuEvent;
+	import mx.effects.effectClasses.RotateInstance; RotateInstance;
+	
 	import mx.events.FlexEvent; FlexEvent;
 	import mx.managers.PopUpManager; PopUpManager; 
 	import mx.core.IVisualElementContainer; IVisualElementContainer;
@@ -124,6 +139,7 @@ internal class MXRoyaleClasses
 	import mx.effects.easing.Bounce; Bounce;
 	import mx.effects.easing.Exponential; Exponential;
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
+	import mx.effects.effectClasses.AnimatePropertyInstance; AnimatePropertyInstance;
 	import mx.effects.TweenEffect; TweenEffect; 
 	import mx.rpc.Fault; Fault;
 	import mx.rpc.events.InvokeEvent; InvokeEvent;
@@ -145,9 +161,12 @@ internal class MXRoyaleClasses
 	import mx.effects.Parallel; Parallel; 
 	import mx.rpc.events.FaultEvent; FaultEvent;
 	import mx.events.AdvancedDataGridEvent; AdvancedDataGridEvent;
+	import mx.events.DataGridEvent; DataGridEvent;
+	import mx.events.DataGridEventReason; DataGridEventReason;
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
 	import mx.rpc.soap.WebService; WebService;
 	import mx.collections.ISort; ISort;
+	import mx.collections.AsyncListView; AsyncListView;
 	import mx.utils.Base64Encoder; Base64Encoder;
 	import mx.utils.Base64Decoder; Base64Decoder;
 	import mx.utils.BitFlagUtil; BitFlagUtil;
@@ -163,6 +182,7 @@ internal class MXRoyaleClasses
 	import mx.errors.EOFError; EOFError;
 	import mx.events.TextEvent; TextEvent;
 	import mx.display.Bitmap; Bitmap;
+	import mx.display.Loader; Loader;
 	import mx.external.ExternalInterface; ExternalInterface;
 	import mx.events.KeyboardEvent; KeyboardEvent;
 	import mx.geom.Matrix; Matrix;
@@ -172,6 +192,8 @@ internal class MXRoyaleClasses
 	import mx.events.HTTPStatusEvent; HTTPStatusEvent;
 	import mx.net.FileReference; FileReference;
 	import mx.net.FileFilter; FileFilter;
+	import mx.net.URLLoaderDataFormat; URLLoaderDataFormat;
+	
 	import mx.events.ProgressEvent; ProgressEvent;
 	import mx.events.ColorPickerEvent; ColorPickerEvent;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
@@ -181,12 +203,15 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSelectableItemRendererBead; AdvancedDataGridSelectableItemRendererBead;
     import mx.controls.dataGridClasses.DataGridColumnList; DataGridColumnList;
     import mx.controls.dataGridClasses.DataGridListArea; DataGridListArea;
+	import mx.controls.dataGridClasses.DataGridListAreaViewport; DataGridListAreaViewport;
+	import mx.controls.dataGridClasses.DataGridSingleSelectionMouseController; DataGridSingleSelectionMouseController;
     import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
     import mx.controls.beads.DataGridView; DataGridView;
     import mx.controls.beads.layouts.AdvancedDataGridLayout; AdvancedDataGridLayout;
     import mx.controls.beads.layouts.DataGridLayout; DataGridLayout;
     import mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout; AdvancedDataGridVirtualListVerticalLayout;
-    import mx.controls.listClasses.VirtualListVerticalLayout; VirtualListVerticalLayout;
+	import mx.controls.beads.layouts.DataGridHeaderLayout; DataGridHeaderLayout;
+	import mx.controls.listClasses.VirtualListVerticalLayout; VirtualListVerticalLayout;
     import mx.controls.listClasses.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
     import mx.controls.treeClasses.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
     import mx.controls.beads.TreeItemRendererMouseController; TreeItemRendererMouseController;
@@ -207,11 +232,14 @@ internal class MXRoyaleClasses
 	import mx.core.LayoutDirection; LayoutDirection;
 	import mx.styles.IAdvancedStyleClient; IAdvancedStyleClient;
 	import mx.collections.IComplexSortField; IComplexSortField;
+	import mx.collections.HierarchicalData; HierarchicalData
+
 	import mx.core.IIMESupport; IIMESupport;
 	import mx.core.InteractionMode; InteractionMode;
 	import mx.collections.ComplexFieldChangeWatcher; ComplexFieldChangeWatcher;
 	import mx.binding.BindabilityInfo; BindabilityInfo;
 	import mx.binding.utils.ChangeWatcher; ChangeWatcher;
+	import mx.binding.utils.BindingUtils; BindingUtils;
 	import mx.validators.IValidatorListener; IValidatorListener;
 	import mx.managers.IToolTipManagerClient; IToolTipManagerClient;
 	import mx.events.ToolTipEvent; ToolTipEvent;
@@ -231,10 +259,11 @@ internal class MXRoyaleClasses
 	import mx.rpc.CallResponder; CallResponder;
 	import mx.rpc.http.Operation; Operation;
 	import mx.events.TreeEvent; TreeEvent;
-	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
 	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
+	import mx.events.DynamicEvent; DynamicEvent;
+	import mx.events.ChildExistenceChangedEvent; ChildExistenceChangedEvent;
 	
 	import mx.controls.PopUpButton; PopUpButton;
 	import mx.controls.PopUpMenuButton; PopUpMenuButton;
@@ -263,7 +292,20 @@ internal class MXRoyaleClasses
     import mx.containers.beads.TabNavigatorView; TabNavigatorView;
     import mx.controls.TabBar; TabBar;
     import mx.controls.beads.models.ComboBoxModel; ComboBoxModel;
+    import mx.controls.beads.models.CascadingMenuModel; CascadingMenuModel;
     
+	import mx.collections.errors.ItemPendingError; ItemPendingError;
+	import mx.controls.scrollClasses.ScrollThumb; ScrollThumb;
+	import mx.effects.EffectTargetFilter; EffectTargetFilter;
+	import mx.effects.effectClasses.PropertyChanges; PropertyChanges;
+	import mx.effects.IEffect; IEffect;
+	import mx.effects.IEffectTargetHost; IEffectTargetHost;
+	import mx.events.RSLEvent; RSLEvent;
+	import mx.skins.halo.DataGridHeaderSeparator; DataGridHeaderSeparator;
+	import mx.filters.BaseDimensionFilter; BaseDimensionFilter;
+	import mx.filters.BaseFilter; BaseFilter;
+	import mx.filters.IBitmapFilter; IBitmapFilter;
+
     import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
 	import mx.controls.beads.models.DataGridColumnICollectionViewModel; DataGridColumnICollectionViewModel;
     import mx.controls.beads.models.DataGridICollectionViewModel; DataGridICollectionViewModel;
@@ -271,6 +313,11 @@ internal class MXRoyaleClasses
     import mx.controls.beads.models.ListPresentationModel; ListPresentationModel;
     import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
     import mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer; TextButtonDataGridColumnItemRenderer;
+	import mx.controls.beads.DataGridItemRendererInitializer; DataGridItemRendererInitializer;
+	import mx.controls.beads.DataGridSelectableItemRendererClassFactory; DataGridSelectableItemRendererClassFactory;
+	import mx.controls.dataGridClasses.DataGridButtonBar; DataGridButtonBar;
+	import mx.controls.dataGridClasses.DataGridItemRenderer; DataGridItemRenderer;
+	import mx.controls.dataGridClasses.DataGridSelectableItemRendererBead; DataGridSelectableItemRendererBead;
     
     import mx.controls.menuClasses.MenuBarItemRenderer; MenuBarItemRenderer;
     import mx.controls.menuClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
@@ -278,6 +325,7 @@ internal class MXRoyaleClasses
 
     import mx.containers.beads.FormItemView; FormItemView;
     import mx.containers.beads.FormItemContainer; FormItemContainer;
+    import mx.containers.beads.VirtualListView; VirtualListView;
 
 
 	// --- RpcClassAliasInitializer
@@ -301,6 +349,71 @@ internal class MXRoyaleClasses
 	// RpcClassAliasInitializer ----------------------------------------
     
 	import mx.net.URLLoader; URLLoader;
+	import mx.events.FlexMouseEvent; FlexMouseEvent;
+	import mx.controls.HSlider; HSlider;
+	import mx.controls.sliderClasses.Slider; Slider;
+	import mx.controls.sliderClasses.SliderDirection; SliderDirection;
+	import mx.controls.HorizontalList; HorizontalList;
+	import mx.effects.easing.Elastic; Elastic;
+	import mx.controls.listClasses.TileListItemRenderer; TileListItemRenderer;
+	import mx.controls.listClasses.TileBase; TileBase;
+	import mx.controls.listClasses.TileBaseDirection; TileBaseDirection;
+	
+	import mx.utils.NameUtil; NameUtil;
+	import mx.core.BitmapAsset; BitmapAsset;
+
+	import mx.events.TimerEvent; TimerEvent;
+	import mx.utils.Timer; Timer;
+	import mx.controls.menuClasses.IMenuItemRenderer; IMenuItemRenderer;
+	import mx.controls.menuClasses.IMenuDataDescriptor; IMenuDataDescriptor;
+	import mx.controls.menuClasses.IMenuBarItemRenderer; IMenuBarItemRenderer;
+	import mx.utils.GraphicsUtil; GraphicsUtil;
+        import mx.dummy.ContextMenuItem; ContextMenuItem;
+	import mx.containers.ApplicationControlBar; ApplicationControlBar;
+	import mx.filters.BitmapFilterType; BitmapFilterType;
+	import mx.filters.BitmapFilterQuality; BitmapFilterQuality;
+	import mx.net.URLRequestMethod; URLRequestMethod;
+	import mx.controls.ButtonLabelPlacement; ButtonLabelPlacement;
+	import mx.display.NativeMenu; NativeMenu;
+	
+	import mx.printing.PrintJobOptions; PrintJobOptions;
+	import mx.text.TextFieldAutoSize; TextFieldAutoSize;
+	import mx.errors.ScriptTimeoutError; ScriptTimeoutError;
+	import mx.controls.beads.models.ArrayMultiSelectionModel; ArrayMultiSelectionModel;
+    import mx.controls.beads.MultiSelectionListView; MultiSelectionListView; 
+    import mx.controls.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
+    import mx.controls.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
+	import mx.utils.DescribeTypeCache; DescribeTypeCache;
+	import mx.events.FocusRequestDirection; FocusRequestDirection;
+	import mx.core.IBorder; IBorder;
+	import mx.core.IRectangularBorder; IRectangularBorder;
+	import mx.events.EventPhase; EventPhase;
+	import mx.core.ComponentDescriptor; ComponentDescriptor;
+	import mx.core.UIComponentDescriptor; UIComponentDescriptor;
+	import mx.binding.Binding; Binding;
+	import mx.binding.IBindingClient; IBindingClient;
+	import mx.binding.BindingManager; BindingManager;
+	import mx.data.EncryptedLocalStore; EncryptedLocalStore;
+	import mx.filesystem.File; File;
+	import mx.system.Capabilities; Capabilities;
+	import mx.filesystem.FileMode; FileMode;
+	import mx.filesystem.FileStream; FileStream;
+	import mx.net.Socket; Socket;
+	import mx.utils.Endian; Endian;
+	import mx.text.Font; Font;
+	import mx.net.LocalConnection; LocalConnection;
+
+
+	import mx.globalization.supportClasses.GlobalizationBase; GlobalizationBase;
+	import mx.globalization.CurrencyParseResult; CurrencyParseResult;
+	import mx.globalization.DateTimeFormatter; DateTimeFormatter;
+	import mx.globalization.DateTimeNameStyle; DateTimeNameStyle;
+	import mx.globalization.DateTimeStyle; DateTimeStyle;
+	import mx.globalization.LastOperationStatus; LastOperationStatus;
+	import mx.globalization.LocaleID; LocaleID;
+	import mx.globalization.NationalDigitsType; NationalDigitsType;
+	import mx.globalization.NumberFormatter; NumberFormatter;
+	import mx.globalization.NumberParseResult; NumberParseResult;
 }
 
 }

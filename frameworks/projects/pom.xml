@@ -22,22 +22,29 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
   </parent>
 
   <artifactId>projects</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <packaging>pom</packaging>
 
   <properties>
-      <project.compiler.options>${repo.compiler.options};-js-default-initializers=false;-source-map=${source.map};-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false</project.compiler.options>
-  <project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
+      <project.compiler.options>
+        ${repo.compiler.options};
+        -js-default-initializers=false;
+        -source-map=${source.map};
+        -source-map-source-root=/frameworks/projects/${project.artifactId}/src/main/royale/
+        -js-complex-implicit-coercions=false;
+        -js-vector-index-checks=false;
+        -js-resolve-uncertain=false;
+      </project.compiler.options>
+  <project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties>
   
   <name>Apache Royale: Framework: Libs</name>
 
   <modules>
-    <!-- Disabled because it requires an ACE typedef and that isn't available in the Maven build yet -->
-    <!--module>Ace</module-->
+    <module>Ace</module>
     <module>Basic</module>
     <module>Binding</module>
     <module>Charts</module>

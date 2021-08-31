@@ -19,6 +19,7 @@
 package mx.controls.listClasses
 {
     import mx.collections.ArrayList;
+    import org.apache.royale.core.IFactory;
     import mx.collections.IList;
     
     import org.apache.royale.core.IBead;
@@ -42,6 +43,8 @@ package mx.controls.listClasses
     import org.apache.royale.html.List;
     import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
     import org.apache.royale.html.supportClasses.TreeListData;
+    import org.apache.royale.html.beads.ItemRendererFunctionBead;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a
@@ -114,6 +117,24 @@ package mx.controls.listClasses
         {
             return dp.getItemAt(index);
         }
+
+	override protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
+	{
+		var functionBead:ItemRendererFunctionBead = _strand.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+		var rendererFunction:Function = functionBead ? functionBead.itemRendererFunction : null;
+		var n:int = dataProviderLength; 
+		for (var i:int = 0; i < n; i++)
+		{				
+			var data:Object = getItemAt(i);
+			var ir:IIndexedItemRenderer = rendererFunction ? (rendererFunction(data) as IFactory).newInstance() as IIndexedItemRenderer :
+				itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+
+			dataGroup.addItemRenderer(ir, false);
+			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, i);
+			ir.data = data;				
+		}
+	}
+
 		
 	}
 }

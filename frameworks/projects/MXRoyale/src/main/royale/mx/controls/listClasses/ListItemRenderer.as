@@ -75,6 +75,15 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
             typeNames = "ListItemRenderer";
             isAbsolute = false;
         }
+        addEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler);
+    }
+
+    private function doubleClickHandler(event:MouseEvent):void
+    {
+        var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_DOUBLE_CLICK);
+        newEvent.rowIndex = index;
+		newEvent.columnIndex = 0;
+		getComponentDispatcher().dispatchEvent(newEvent);        
     }
 
     COMPILE::SWF
@@ -134,12 +143,6 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
         le.columnIndex = 0;
         le.itemRenderer = this;
         getComponentDispatcher().dispatchEvent(le);
-        // not sure why this doesn't use ItemRendererMouseController
-        // selection controller is looking for clicked
-        var ice:ItemClickedEvent = new ItemClickedEvent("itemClicked");
-        ice.index = rowIndex;
-        ice.data = data;
-        dispatchEvent(ice);
     }
 
     private var _itemRendererOwnerView:IItemRendererOwnerView;
@@ -246,6 +249,11 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
             {
                 var xml:XML = value as XML;
                 return xml[labelField];
+            }
+            else if (value is XMLList)
+            {
+                var singlexml:XML = value.toXML();
+                return singlexml[labelField];
             }
             return getLabelFromData(this,value);
         }

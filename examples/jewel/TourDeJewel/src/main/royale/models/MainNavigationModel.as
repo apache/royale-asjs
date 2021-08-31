@@ -39,6 +39,7 @@ package models
             new NavigationLinkVO("Virtual Lists", "virtual_lists_panel", MaterialIconType.LINE_WEIGHT),
             new NavigationLinkVO("NumericStepper", "numericstepper_panel", MaterialIconType.UNFOLD_MORE),
             new NavigationLinkVO("PopUp", "popup_panel", MaterialIconType.FLIP_TO_FRONT),
+            new NavigationLinkVO("ProgressBar", "progressloader_panel", MaterialIconType.AUTORENEW),
             new NavigationLinkVO("RadioButton", "radiobutton_panel", MaterialIconType.RADIO_BUTTON_CHECKED),
             new NavigationLinkVO("Slider", "slider_panel", MaterialIconType.STORAGE),
             new NavigationLinkVO("Snackbar", "snackbar_panel", MaterialIconType.VIDEO_LABEL),
@@ -52,7 +53,7 @@ package models
         {
             return _controlsDrawerNavigation;
         }
-        
+        // Note: for disable a node add a "true" as a final param on the obejct you want. This is "false" by default
         private var _containerDrawerNavigation:ArrayList = new ArrayList([
             new NavigationLinkVO("Card", "card_panel", MaterialIconType.WEB_ASSET),
             new NavigationLinkVO("Layouts", "layouts_panel", MaterialIconType.VIEW_QUILT),

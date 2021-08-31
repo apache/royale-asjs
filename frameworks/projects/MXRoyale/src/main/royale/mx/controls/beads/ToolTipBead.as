@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+	import mx.core.FlexGlobals;
+	import mx.managers.SystemManager;
+
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.accessories.ToolTipBead;
+	import org.apache.royale.geom.Rectangle;
     
     import mx.core.UIComponent;
 	
@@ -73,8 +77,32 @@ package mx.controls.beads
                 if (tt)
                 {
                     tt.element.style.color = isError ? "#ff0000" : "#000";
+					adjustInsideBoundsIfNecessary();
                 }
             }
         }
+
+		COMPILE::JS
+		private function adjustInsideBoundsIfNecessary():void{ //could override determinePosition instead
+			var screen:Rectangle = ((FlexGlobals.topLevelApplication as UIComponent).systemManager as SystemManager).screen;
+			var deltaX:int = 0;
+			var deltaY:int = 0;
+			if (tt.x + tt.width > screen.width) {
+				deltaX -= (tt.x + tt.width - screen.width)
+			} else if (tt.x < 0) {
+				deltaX = tt.x;
+			}
+			if (tt.y + tt.height > screen.height) {
+				deltaY -= (tt.y + tt.height - screen.height)
+			} else if (tt.y < 0) {
+				deltaY = tt.y;
+			}
+
+			if (deltaX || deltaY) {
+				tt.x += deltaX;
+				tt.y += deltaY;
+			}
+		}
+
 	}
 }

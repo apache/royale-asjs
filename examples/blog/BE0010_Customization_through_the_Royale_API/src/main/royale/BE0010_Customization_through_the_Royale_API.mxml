@@ -39,7 +39,7 @@
             private var alert:Alert;
             private var check:CheckBox;
 
-            // Adding content to Alert component and changing ControlBar's Buttons Layout
+            // Adding content to Alert component and changing controlBar's Buttons Layout
             private function clickHandler(event:MouseEvent):void {
                 alert = Alert.show("This example shows access to AlertView and ControlBar to add a CheckBox to Alert's content area and expand Buttons layout and change defaults. The height of the alert is set up to 300px too.", "Cutomized Alert Example", 3);
                 alert.addEventListener(CloseEvent.CLOSE, alertClickHandler);

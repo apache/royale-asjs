@@ -18,14 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.layout.ILayoutChildren;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendStrandEvent;
 	
     /**
      *  The StyledLayoutBase class is an extension of LayoutBase
@@ -57,10 +61,7 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public static const LAYOUT_TYPE_NAMES:String = "";
 
-		protected var hostComponent:UIBase;
-
-		COMPILE::JS
-		protected var hostClassList:DOMTokenList;
+		protected var hostComponent:StyledUIBase;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -75,14 +76,8 @@ package org.apache.royale.jewel.beads.layouts
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-
-			COMPILE::JS
-			{
-				hostComponent = host as UIBase;
-				hostClassList = hostComponent.positioner.classList;
-			}
-
-			IEventDispatcher(value).addEventListener("beadsAdded", beadsAddedHandler);
+			hostComponent = host as StyledUIBase;
+			listenOnStrand("beadsAdded", beadsAddedHandler);
 			beadsAddedHandler();
 		}
 
@@ -100,14 +95,17 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			COMPILE::JS
 			{
-				applyStyleToLayout(hostComponent, "itemsExpand");
-				setHostClassList("itemsExpand", _itemsExpand ? "itemsExpand":"");
+			applyStyleToLayout(hostComponent, "itemsExpand");
+			setHostComponentClass("itemsExpand", _itemsExpand ? "itemsExpand":"");
+			
+			applyStyleToLayout(hostComponent, "itemsReverse");
+			setHostComponentClass("itemsReverse", _itemsReverse ? "itemsReverse":"");
 
-				applyStyleToLayout(hostComponent, "itemsHorizontalAlign");
-				setHostClassList(_itemsHorizontalAlign, _itemsHorizontalAlign);
+			applyStyleToLayout(hostComponent, "itemsHorizontalAlign");
+			setHostComponentClass(_itemsHorizontalAlign, _itemsHorizontalAlign);
 
-				applyStyleToLayout(hostComponent, "itemsVerticalAlign");
-				setHostClassList(_itemsVerticalAlign, _itemsVerticalAlign);
+			applyStyleToLayout(hostComponent, "itemsVerticalAlign");
+			setHostComponentClass(_itemsVerticalAlign, _itemsVerticalAlign);
 			}
 		}
 
@@ -132,6 +130,10 @@ package org.apache.royale.jewel.beads.layouts
 					case "itemsExpand":
 						if(!itemsExpandInitialized)
 							itemsExpand = "true" == cssValue;
+						break;
+					case "itemsReverse":
+						if(!itemsReverseInitialized)
+							itemsReverse = "true" == cssValue;
 						break;
 					case "itemsHorizontalAlign":
 						if (!itemsHorizontalAlign)
@@ -175,9 +177,9 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					setHostClassList(_itemsHorizontalAlign, value);
-					_itemsHorizontalAlign = value;
-					itemsHorizontalAlignInitialized = true;
+				setHostComponentClass(_itemsHorizontalAlign, value);
+				_itemsHorizontalAlign = value;
+				itemsHorizontalAlignInitialized = true;
 				}
 			}
         }
@@ -210,9 +212,9 @@ package org.apache.royale.jewel.beads.layouts
             {
                 COMPILE::JS
                 {
-					setHostClassList(_itemsVerticalAlign, value);
-					_itemsVerticalAlign = value;
-					itemsVerticalAlignInitialized = true;
+				setHostComponentClass(_itemsVerticalAlign, value);
+				_itemsVerticalAlign = value;
+				itemsVerticalAlignInitialized = true;
 				}
 			}
         }
@@ -237,26 +239,177 @@ package org.apache.royale.jewel.beads.layouts
         {
             if (_itemsExpand != value)
             {
-                
 				COMPILE::JS
                 {
-				    setHostClassList("itemsExpand", value ? "itemsExpand" : "");
-					_itemsExpand = value;
-					itemsExpandInitialized = true;
+				setHostComponentClass("itemsExpand", value ? "itemsExpand" : "");
+				_itemsExpand = value;
+				itemsExpandInitialized = true;
+				}
+            }
+        }
+		
+		private var itemsReverseInitialized:Boolean;
+		private var _itemsReverse:Boolean = false;
+        /**
+		 *  A boolean flag to activate "itemsReverse" effect selector.
+		 *  Make items to invert its order
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        public function get itemsReverse():Boolean
+        {
+            return _itemsReverse;
+        }
+
+        public function set itemsReverse(value:Boolean):void
+        {
+            if (_itemsReverse != value)
+            {
+				COMPILE::JS
+                {
+				setHostComponentClass("itemsReverse", value ? "itemsReverse" : "");
+				_itemsReverse = value;
+				itemsReverseInitialized = true;
 				}
             }
         }
 
         COMPILE::JS
-        protected function setHostClassList(oldValue:String, newValue:String):void {
+        protected function setHostComponentClass(oldValue:String, newValue:String):void {
             if (!hostComponent) return;
 			
-            if (oldValue && hostClassList.contains(oldValue)) {
+            if (oldValue && hostComponent.containsClass(oldValue)) {
 				if (oldValue == newValue) return;
-                hostClassList.remove(oldValue);
+                hostComponent.removeClass(oldValue);
 			}
         
-            if (newValue) hostClassList.add(newValue);
+            if (newValue) hostComponent.addClass(newValue);
+        }
+
+		/**
+		 *  Allow user to wait for the host size to be set in case of unset or %
+		 *  or  avoid and perform layout
+		 */
+		public var waitForSize:Boolean = false;
+
+		/**
+		 * We call requestAnimationFrame until we get width and height
+		 */
+		COMPILE::JS
+		protected function checkHostSize():void {
+			if((host.width == 0 && !isNaN(host.percentWidth)) || 
+				(host.height == 0 && !isNaN(host.percentHeight)))
+			{
+				requestAnimationFrame(checkHostSize);
+			} else
+			{
+				waitForSize = false;
+				executeLayout();
+			}
+		}
+
+		/**
+		 *  Performs the layout in three parts: before, layout, after.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutParent
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		override public function performLayout():void
+		{
+			// avoid running this layout instance recursively.
+			if (isLayoutRunning) return;
+			
+			isLayoutRunning = true;
+			/* Not all components need measurement
+			COMPILE::SWF
+			{
+				host.measuredHeight = host.height;
+				host.measuredWidth = host.width;
+			}
+			*/
+			
+			viewBead = (host as ILayoutParent).getLayoutHost();
+			
+			if (viewBead.beforeLayout())
+			{
+				COMPILE::SWF
+				{
+				executeLayout();
+				}
+
+				COMPILE::JS
+				{
+				if(waitForSize) {
+					checkHostSize();
+				} else
+					executeLayout();
+				}
+			}
+		}
+
+		protected var viewBead:ILayoutHost;
+
+		public function executeLayout():void
+		{
+			if (layout()) {
+				if(layoutChildren)
+					layoutChildren.executeLayoutChildren();
+				viewBead.afterLayout();	
+			}
+
+			isLayoutRunning = false;
+			
+			sendStrandEvent(_strand, "layoutComplete");
+			
+			/* measurement may not matter for all components
+			COMPILE::SWF
+			{
+				// check sizes to see if layout changed the size or not
+				// and send an event to re-layout parent of host
+				if (host.width != host.measuredWidth ||
+					host.height != host.measuredHeight)
+				{
+					isLayoutRunning = true;
+					host.dispatchEvent(new Event("sizeChanged"));
+					isLayoutRunning = false;
+				}
+			}
+			*/
+		}
+
+		private var _layoutChildren:ILayoutChildren;
+        
+        /**
+         *  The org.apache.royale.core.ILayoutChildren used 
+         *  to initialize instances of item renderers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererInitializer
+         */
+        public function get layoutChildren():ILayoutChildren
+        {
+            if(!_layoutChildren)
+                _layoutChildren = loadBeadFromValuesManager(ILayoutChildren, "iItemRendererInitializer", _strand) as ILayoutChildren;
+            
+            return _layoutChildren;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set layoutChildren(value:ILayoutChildren):void
+        {
+            _layoutChildren = value;
         }
 	}
 }

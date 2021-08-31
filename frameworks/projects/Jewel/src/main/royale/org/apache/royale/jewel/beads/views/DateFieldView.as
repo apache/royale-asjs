@@ -33,6 +33,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateFormatter;
 	import org.apache.royale.core.IFormatter;
+	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
@@ -48,6 +49,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -128,7 +130,7 @@ package org.apache.royale.jewel.beads.views
 			getHost().addElement(_textInput);
 
 			_button = new Button();
-			_button.width = 38;
+			
 			COMPILE::JS {
                 _button.element.setAttribute('tabindex', -1);
 			}
@@ -148,7 +150,30 @@ package org.apache.royale.jewel.beads.views
 			// 	_textInput.element.setAttribute('readonly', 'true');
 			// }
 
+			initSize();
+
 			getHost().addEventListener("initComplete",handleInitComplete);
+		}
+
+		public static const DEFAULT_BUTTON_WIDTH:Number = 38;
+		public static const DEFAULT_WIDTH:Number = 162;
+
+		/**
+		 * Size the component at start up
+		 *
+		 * @private
+		 */
+		protected function initSize():void
+		{
+			_button.width = DEFAULT_BUTTON_WIDTH;
+
+			var df:ILayoutChild = host as ILayoutChild;
+
+			// if no width (neither px or %), set default width
+			if(df.isWidthSizedToContent())
+				df.width = DEFAULT_WIDTH;
+			
+			_textInput.percentWidth = 100;
 		}
 
 		private var model:IDateChooserModel;
@@ -157,7 +182,7 @@ package org.apache.royale.jewel.beads.views
 		 * @royaleignorecoercion org.apache.royale.core.IDateFormatter
 		 * @royaleignorecoercion org.apache.royale.jewel.DateField
 		 */
-		private function handleInitComplete(event:Event):void
+		protected function handleInitComplete(event:Event):void
 		{
 			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
@@ -176,7 +201,7 @@ package org.apache.royale.jewel.beads.views
 			mask.formatter = formatter;
 		}
 		
-		private function handlePopUpInitComplete(event:Event):void
+		protected function handlePopUpInitComplete(event:Event):void
 		{
 			getHost().dispatchEvent(new Event("dateChooserInitComplete"));
 		}
@@ -243,12 +268,15 @@ package org.apache.royale.jewel.beads.views
 					table = (popUp.view as DateChooserView).table;
 
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
-					setTimeout(prepareForPopUp,  300);
-
+					
 					COMPILE::JS
 					{
 					window.addEventListener('resize', autoResizeHandler, false);
 					}
+
+					prepareForPopUp();
+
+					sendStrandEvent(_strand, "popUpOpened");
 
 					autoResizeHandler();
 				}
@@ -262,6 +290,7 @@ package org.apache.royale.jewel.beads.views
 					}
 					_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
 					_popUp = null;
+					sendStrandEvent(_strand, "popUpClosed");
 				}
 			}
 			_showingPopup = false;

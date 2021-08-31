@@ -19,16 +19,17 @@
 package org.apache.royale.html.beads
 {
 
-	import org.apache.royale.core.IBead;
+	COMPILE::SWF {
+		import org.apache.royale.html.accessories.ToolTipBead;
+	}
+
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.utils.sendStrandEvent;
 
-	COMPILE::SWF {
-		import org.apache.royale.html.accessories.ToolTipBead;
-	}
 
 /**
 	 *  The AccessibilityAltBead class is a bead that can be used with
@@ -40,7 +41,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class AccessibilityAltBead implements IBead
+	public class AccessibilityAltBead extends Bead
 	{
 		/**
 		 *  constructor.
@@ -54,7 +55,6 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
 		private var _alt:String;
 		
 		/**
@@ -67,7 +67,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
 			updateHost();
@@ -89,7 +89,9 @@ package org.apache.royale.html.beads
 				updateHost();
 			}
 		}
-
+		/**
+     * @royaleignorecoercion Object
+		 */
 		private function updateHost():void
 		{
 			if(!_strand)
@@ -105,8 +107,8 @@ package org.apache.royale.html.beads
 			}
 			
 			COMPILE::JS {
-                (_strand as Object).element.alt = _alt;
-            }
+				(_strand as Object).element.alt = _alt;
+			}
 
 			sendStrandEvent(_strand,new ValueEvent("altChange", alt));
 				

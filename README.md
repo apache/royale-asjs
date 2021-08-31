@@ -9,7 +9,7 @@ For detailed information about using Royale, visit:
 
 For more information about the Apache Royale project, visit:
 
-<http://royale.apache.org>
+<https://royale.apache.org>
 
 # Getting Royale
 
@@ -55,7 +55,7 @@ Royale requires Java SDK 1.8 or greater to be installed on your computer. For mo
 
 ### Ant
 
-Royale requires Ant 1.8 or greater to be installed on your computer.
+The Royale Ant build requires Ant 1.8 or greater to be installed on your computer.
 
 For more information on installing Ant, see:
 
@@ -196,9 +196,70 @@ or for both JS and SWF output:
 npm install @apache-royale/royale-js-swf -g
 ```
 
+### Maven
+
+The Royale Maven build generally doesn't require an installation of Maven as we utilise the `Maven Wrapper` which automatically fetches the right version of Maven. However, you can also build using your local Maven installation. 
+
+If you want to use your local installation, just use `mvn` instead of `mvnw`
+
+#### Maven Prerequisites
+
+The Maven build does a prerequisite check before actually starting the build, so it should point out to you parts that aren't setup correctly. 
+
+So-far there is only one environment-variable the Maven build uses, this is the same the Ant build uses. For details on this please refer to the chapter of the Ant setup guide titled: `Flash Player Content Debugger`. If you don't provide this environment variable, the build will be able to build, it will just not run any tests that require the FlashPlayer.
+
+All other parts are automatically downloaded using the tooling we built for the Apache Flex project. This will automatically download missing things like `playerglobal` or `airglobal` files.
+
+NOTE: After Adobe finally ended the life of the FlashPlayer, most of the automatically downloaded files are no longer available in the locations they were previously hosted on. Therefore, the automatic fetching of artifacts no longer works. The team is currently working on a replacement for the playerglobal. Right now it is probably the simplest approach to request a snapshot of the adobe artifacts from someone who has a copy of them or to build without the `option-with-swf` profiles.
+
+# Building with Maven
+
+As the Royale repository is split up into 3 parts, we have to run 3 separate Maven builds.
+
+Even if the Maven build doesn't require the projects to be checked out in specially named directories, for the sake of simplicity we will assume you checked out everything in the following directory structure:
+
+* {checkout-root}
+  * royale-compiler
+  * royale-typedefs
+  * royale-asjs
+
+Then starting from the checkout-root directory, the commands look as follows:
+
+```bash
+cd royale-compiler
+./mvnw install
+
+cd ../royale-typedefs
+./mvnw install
+
+cd ../royale-asjs
+./mvnw install
+```
+This should build the basic framework and you can start writing your firs Maven based Royale applications.
+
+However, there are ways to build additional parts and ways to customize how things are built. For this we utilize Maven profiles.
+
+We use the following general rules of thumb for naming profiles:
+
+- If activating a profile adds new modules to the build and generally builds things which aren't built without activating the profile, the profile name starts with `with-`
+- If activating a profile changes the way something is built, the profile name starts with `option-with-`.
+
+Listing of `with-` profiles:
+
+- `with-distribution`: Additionally creates `distributions`. These are usually used by Ant builds or IDE integrations. Assembling the distributions usually takes some additional time, therefore it is only built on request. On the CI server this can be used to build the binaries the Royale Installer can download. When used locally there is also an option to set a Maven property `distributionTargetFolder`. Adding `-DdistributionTargetFolder={some path}` to the build options of the `royale-asjs` module, will also create a local unzipped version of the Royale development kit, which can be used by IDEs to provide Royale support.  
+- `with-examples`: Also build all examples
+- `with-manualtests`: Also builds the modules in the `manualtests` directory of the `royale-asjs` repository. 
+- `with-ui-testsuite`: Additionally builds the ui testsuite in the `royale-asjs` repository. This testsuite automatically deploys applications built in the `examples` on a local webserver and automates a local Browser instance to click through the applications (NOTE: This currently might require a bit of tweaking) 
+
+Listing of `option-with-` profiles:
+
+- `option-with-cordova`: Additionally builds all example using the Cordova tooling
+- `option-with-flex-sdk-tests`: Additionally runs some tests from the old Apache Flex SDK
+- `option-with-sass-compile`: The Themes contain a lot of Modules, where each contains SASS resources. Compiling all of these on every build would only slow down the build. Especially because the SASS resources are only changed very infrequently. Therefore, the compiled CSS files are checked in. When enabling this profile the checked in CSS resources are replaced by freshly compiled versions, which then can be checked in.
+- `option-with-swf`: Per default the Royale build only builds the JavaScript-only version. This can be used to build web-based applications. If you however wish to build Flash and Air versions, you need to activate this profile in order for also building the Flash enabled versions of all libraries.
 
 # Using Royale
 
 In order to get started using Royale, you are invited to follow along with the [Quick Start Guide](https://github.com/apache/royale-asjs/wiki/Quick-Start).
 
-### Thanks for using [Apache Royale](http://royale.apache.org). Enjoy!
+### Thanks for using [Apache Royale](https://royale.apache.org). Enjoy!

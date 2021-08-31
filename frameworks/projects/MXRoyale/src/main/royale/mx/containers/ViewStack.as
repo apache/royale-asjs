@@ -988,6 +988,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
 
             COMPILE::JS
             {
+		child.setIncludeInLayout(true); // Add current child to layout
                 // must set visible=true otherwise child has display:none
                 // and measurements of its children will not be correct
                 child.setVisible(true);
@@ -1209,6 +1210,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
         {
             var currentChild:UIComponent = UIComponent(getChildAt(lastIndex));
 
+            currentChild.setIncludeInLayout(false); // Remove current child from layout
             currentChild.setVisible(false); // Hide the current child
 
             /*
@@ -1359,6 +1361,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
             var uiChild:IUIComponent = IUIComponent(child);
             // ViewStack creates all of its children initially invisible.
             // They are made as they become the selected child.
+	    uiChild.includeInLayout = false;
             uiChild.visible = false;
         }
         if (child is INavigatorContent)

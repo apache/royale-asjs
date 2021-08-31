@@ -23,25 +23,45 @@ package org.apache.royale.net
     {
         import flash.events.HTTPStatusEvent;
         import flash.events.IOErrorEvent;
+        import flash.events.ProgressEvent;
         import flash.net.URLLoader;
         import flash.net.URLRequest;
         import flash.net.URLRequestHeader;
     }
     COMPILE::JS
     {
-        import org.apache.royale.events.ValueEvent;
+        import window.ProgressEvent;
     }
-    
-    import org.apache.royale.events.DetailEvent;
+
+    import org.apache.royale.events.ValueEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.ProgressEvent;
-    import org.apache.royale.utils.BinaryData;
-    import org.apache.royale.utils.Endian;
 
+
+    /**
+     *  Dispatched when the response is progressively loading.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="progress", type="org.apache.royale.events.ProgressEvent")]
+
+
+    /**
+     *  Dispatched when the http status is determined.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="httpStatus", type="org.apache.royale.events.ValueEvent")]
 
 	/**
-	 *  The URLBinaryLoader class is a relatively low-level class designed to get
-	 *  binary data over HTTP the intent is to create similar classes for text and URL vars.  
+	 *  The URLLoader class is a relatively low-level class designed to get
+	 *  data over HTTP.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -50,6 +70,8 @@ package org.apache.royale.net
 	 */
     public class URLLoader extends URLLoaderBase
     {
+        public var dataFormat:String = "text"
+	
         COMPILE::JS
         private static var _corsCredentialsChecker:Function;
         COMPILE::JS
@@ -120,11 +142,21 @@ package org.apache.royale.net
          */        
         public function load(request:org.apache.royale.net.URLRequest):void
         {
+            bytesLoaded = 0;
+            bytesTotal = 0;
             // copied from HTTPService            
             COMPILE::SWF
             {
-                if (!urlLoader)
+                if (!urlLoader) {
                     urlLoader = new flash.net.URLLoader();
+                    urlLoader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
+                    urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
+                    if (HTTPStatusEvent.HTTP_RESPONSE_STATUS) // only on AIR
+                        urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
+                    urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
+                    urlLoader.addEventListener(flash.events.ProgressEvent.PROGRESS, swfLoadProgressHandler);
+                }
+
                 /*
                 var sawContentType:Boolean;
                 if (headers)
@@ -155,11 +187,7 @@ package org.apache.royale.net
                         request.data = contentData;
                 }
                 */
-                urlLoader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
-                urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-                if (HTTPStatusEvent.HTTP_RESPONSE_STATUS) // only on AIR
-                    urlLoader.addEventListener(HTTPStatusEvent.HTTP_RESPONSE_STATUS, statusHandler);
-                urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
+
                 var req:flash.net.URLRequest = new flash.net.URLRequest();
                 req.url = request.url;
                 req.data = request.data;
@@ -169,7 +197,7 @@ package org.apache.royale.net
                 for (var i:int; i < n; i++)
                 {
                     var hdr:flash.net.URLRequestHeader = 
-                            new flash.net.URLRequestHeader(req[i].name, req[i].value);
+                            new flash.net.URLRequestHeader(request.requestHeaders[i].name, request.requestHeaders[i].value);
                     req.requestHeaders.push(hdr);
                 }
                 urlLoader.load(req);
@@ -177,8 +205,15 @@ package org.apache.royale.net
             COMPILE::JS
             {
                 var element:XMLHttpRequest = this.element as XMLHttpRequest;
-                element.onreadystatechange = progressHandler;
-                
+                if (!element.onreadystatechange){
+                    element.onreadystatechange = progressHandler;
+                    var commonHandler:Function = jsEventHandler;
+                    element.onprogress = commonHandler;
+                    element.onloadstart = commonHandler;
+                    element.onloadend = commonHandler;
+                    element.onload = commonHandler;
+                }
+
                 var url:String = request.url;
                 
                 /*                
@@ -207,10 +242,11 @@ package org.apache.royale.net
                 // element.timeout = _timeout;
                 
                 var sawContentType:Boolean = false;
-                if (request.requestHeaders) {
-                    var n:int = request.requestHeaders.length;
+                var requestHeaders:Array = request.requestHeaders;
+                if (requestHeaders) {
+                    var n:int = requestHeaders.length;
                     for (var i:int = 0; i < n; i++) {
-                        var header:HTTPHeader = request.requestHeaders[i];
+                        var header:HTTPHeader = requestHeaders[i];
                         if (header.name == HTTPHeader.CONTENT_TYPE) {
                             sawContentType = true;
                         }
@@ -257,7 +293,11 @@ package org.apache.royale.net
             if ("responseURL" in event)
                 _responseURL = event.responseURL;
             */
-            dispatchEvent(new Event(event.type));
+            if (event.type == HTTPStatusEvent.HTTP_STATUS){
+                dispatchEvent( new ValueEvent(HTTPConstants.STATUS, event.status) );
+            } else {
+                dispatchEvent(new Event(event.type))
+            }
         }
         
         /**
@@ -303,13 +343,43 @@ package org.apache.royale.net
                 {
                     dispatchEvent(HTTPConstants.IO_ERROR);
                 }
-                else
+                //otherwise wait for 'load' event to dispatch 'complete' so that bytesLoaded and bytesTotal are accurate
+                /*else
                 {
                     dispatchEvent(HTTPConstants.COMPLETE);
-                }
+                }*/
             }
         }
-        
+
+        COMPILE::JS
+        protected function jsEventHandler(e:window.ProgressEvent):void{
+            if (e.loaded) {
+                //there is some quantity of loaded bytes, but bytesTotal may be unknown (e.lengthComputable)
+                bytesLoaded = e.loaded;
+                bytesTotal = e.lengthComputable ? e.total : 0;
+                //avoid instantiation and dispatch unless we are being listened to
+                if (e.type=='progress' && hasEventListener(org.apache.royale.events.ProgressEvent.PROGRESS))
+                    dispatchEvent(new org.apache.royale.events.ProgressEvent(org.apache.royale.events.ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal ));
+                if (e.type == 'load') {
+                    if (!e.lengthComputable) {
+                        bytesTotal = bytesLoaded;
+                    }
+                    dispatchEvent(HTTPConstants.COMPLETE);
+                }
+            } else {
+                bytesLoaded = 0;
+                bytesTotal = 0;
+            }
+        }
+
+        COMPILE::SWF
+        protected function swfLoadProgressHandler(e:flash.events.ProgressEvent):void{
+            bytesTotal = e.bytesTotal;
+            bytesLoaded = e.bytesLoaded;
+            //avoid instantiation and dispatch unless we are being listened to
+            if (hasEventListener(org.apache.royale.events.ProgressEvent.PROGRESS))
+                dispatchEvent(new org.apache.royale.events.ProgressEvent(org.apache.royale.events.ProgressEvent.PROGRESS,false,false,bytesLoaded,bytesTotal ))
+        }
         /**
          *  The text returned from the server.
          *  

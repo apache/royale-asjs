@@ -20,17 +20,9 @@
 package mx.controls.advancedDataGridClasses
 {
 
-/* import flash.display.DisplayObject;
-import flash.events.Event;
- */
-import mx.controls.AdvancedDataGrid;
 
-COMPILE::JS
-{
-import org.apache.royale.core.WrappedHTMLElement;
-}
-import org.apache.royale.html.beads.DataGridListArea;
 
+import mx.controls.dataGridClasses.DataGridListArea
 
 /**
  *  The AdvancedDataGridColumnList class represnts a column in an AdvancedDataGrid control.
@@ -51,22 +43,7 @@ public class AdvancedDataGridListArea extends DataGridListArea
         typeNames += " AdvancedDataGridListArea";
         
     }
-    
-    COMPILE::JS
-    override public function internalChildren():Array
-    {
-        var arr:Array = super.internalChildren();
-        // remove scrolling divs from the list
-        // in theory, the only thing that calls this
-        // is HorizontalLayout
-        var children:Array = [];
-        for each (var child:WrappedHTMLElement in children)
-        {
-            if (child.royale_wrapper)
-                children.push(child);
-        }
-        return children;
-    }
+
 }
 
 }

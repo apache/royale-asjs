@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.Bead;
 
     /**
      *  The DataFieldProviderBead class is a model that holds dataField used mostly
@@ -32,7 +29,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-	public class DataFieldProviderBead implements IBead
+	public class DataFieldProviderBead extends Bead
 	{
         /**
          *  Constructor.
@@ -44,21 +41,6 @@ package org.apache.royale.html.beads
          */
 		public function DataFieldProviderBead()
 		{
-		}
-
-		private var _strand:IStrand;
-		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
 		}
 
 		private var _dataField:String = null;

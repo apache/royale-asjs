@@ -22,12 +22,12 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
   </parent>
 
   <groupId>org.apache.royale.examples</groupId>
   <artifactId>examples</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Examples</name>
@@ -37,8 +37,8 @@
     <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
     <!-- In Release mode we only want to copy assets folder content to assets destination folder, the rest is managed by compiler -->
     <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
-    <royale.framework.version>0.9.7-SNAPSHOT</royale.framework.version>
-  <project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties>
+    <royale.framework.version>${project.version}</royale.framework.version>
+  <project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties>
 
   <modules>
     <module>express</module>
@@ -144,7 +144,7 @@
     </profile>
 
     <profile>
-      <id>with-cordova</id>
+      <id>option-with-cordova</id>
       <build>
         <pluginManagement>
           <plugins>

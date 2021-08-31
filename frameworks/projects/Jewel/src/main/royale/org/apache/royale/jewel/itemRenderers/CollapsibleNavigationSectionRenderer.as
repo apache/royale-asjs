@@ -28,6 +28,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.elements.A;
 	import org.apache.royale.jewel.Navigation;
+	import org.apache.royale.jewel.beads.layouts.VerticalLayout;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
 	import org.apache.royale.utils.ClassSelectorList;
 	import org.apache.royale.utils.MXMLDataInterpreter;
@@ -37,6 +38,9 @@ package org.apache.royale.jewel.itemRenderers
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 
      *  Navigation List Component. It handles Objects with "label" and "href" data.
 	 *  Extend this (you can do it in MXML) to support more data like for example: icon data.
+	 * 
+	 *  Note: This render creates a sub list, so we add in this class a concrete layout (VerticalLayout). So don't try
+	 *  to change layout (adding via CSS, mxml beads, etc...). For layout the renderer parts, use a container (i.e: HGroup, VGroup,...)
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -57,22 +61,26 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 			typeNames = "jewel navigationgroup";
+			
 			navLinkClassSelector = new ClassSelectorList(sectionNavItem);
 			navLinkClassSelector.addNames("jewel navigationlink");
 			navLinkClassSelector.add("selectable");
- 
-			if(MXMLDescriptor != null)
-			{
-				navLinkClassSelector.add("mxmlContent");
-			}
+
 			open = false;
 			addEventListener('click', onSectionNav);
 		}
 		
 		private function onSectionNav(event:Event):void{
 			var navTarget:Object = event.target;
-			if (event.target == sectionNavItem || event.target.parent == sectionNavItem) {
-				event.stopImmediatePropagation();
+
+			// this check should be smarter, check sectionNavItem and its childs
+			if (event.target == sectionNavItem || event.target.parent == sectionNavItem || event.target.parent.parent == sectionNavItem) {
+				if(children != null) {
+					event.stopImmediatePropagation();
+				} else {
+					// avoid change event 2 times
+					return;
+				}
 				navTarget = this;
 				//make 'this' the event.target
 				dispatchEvent(new Event('sectionClick'));
@@ -82,41 +90,19 @@ package org.apache.royale.jewel.itemRenderers
 					navTarget.hovered = true;
 				}
 			}
+
+			// avoid double change in submenu items
+			event.stopImmediatePropagation();
 		}
 		
-		public function getSelectedSubmenuItem():Object{
-			if (childNavigation && open) return childNavigation.selectedItem;
+		public function getSelectedSubmenuItem():Object {
+			if (childNavigation) return childNavigation.selectedItem;
 			return null;
 		}
-		
 
 		private var navLinkClassSelector:ClassSelectorList;
-		
-		// private var _href:String = "#";
-        /**
-         *  the navigation link url
-		 *  while the parent is primarily for hiding or showing its
-		 *  children, it is still an active link, and will dispatch events,
-		 *  so that other external view state changes may (or may not) be reflected
-		 *  So it has the same capabilities for navigation as its children, if that
-		 *  is needed.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.6
-         */
-		// public function get href():String
-		// {
-        //     return _href;   
-		// }
-		// public function set href(value:String):void
-		// {
-        //     _href = value;
-		// }
 
 		private var _text:String = "";
-
         /**
          *  The text of the navigation link
          *  
@@ -130,7 +116,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
             return _text;
 		}
-
 		public function set text(value:String):void
 		{
              _text = value;
@@ -198,15 +183,14 @@ package org.apache.royale.jewel.itemRenderers
 				super.addElement(childNavigation);
 				if (!_open) 
 				{
-					COMPILE::JS
-					{
-					childNavigation.element.style.height = 0;
-					}
+				COMPILE::JS
+				{
+				childNavigation.element.style.height = 0;
+				}
 				}
 			}
 			childNavigation.dataProvider = children;
 		}
-		
 		
 		private var sectionNavItem:A;
 		
@@ -228,7 +212,6 @@ package org.apache.royale.jewel.itemRenderers
 		override public function set data(value:Object):void
 		{
 			if(value == null) {
-				// _href = "#";
 				_text = null;
 				open = false;
 				//super.data setter will dispatch dataChange
@@ -249,19 +232,13 @@ package org.apache.royale.jewel.itemRenderers
 				_text = String(value);
 			}
 			// text = getLabelFromData(this, value);
-			
-            // if(value.href !== undefined)
-			// {
-            //     href = String(value.href);
-			// }
 
 			COMPILE::JS
 			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-					// (element as HTMLElement).setAttribute('href', href);
-				}	
+			if(textNode != null)
+			{
+				textNode.nodeValue = text;
+			}	
 			}
 			
 			if (submenuField in value && value[submenuField] is IArrayList){
@@ -270,16 +247,14 @@ package org.apache.royale.jewel.itemRenderers
 			} else {
 				children = null;
 				processChildren();
+				addClass("no-submenu");
 			}
 			
-			
 			//super.data dispatches the dataChange
-			_inData=true;
-			super.data=value;
-			_inData=false;
+			_inData = true;
+			super.data = value;
+			_inData = false;
 		}
-		
-		
 		
 		private var _mxmlProperties:Array ;
 		
@@ -302,7 +277,13 @@ package org.apache.royale.jewel.itemRenderers
 			MXMLDataInterpreter.generateMXMLInstances(this, sectionNavItem, MXMLDescriptor);
 			MXMLDescriptor.length = 0;
 			super.addedToParent();
-			
+			addLayoutBead();
+		}
+
+		public function addLayoutBead():void {
+			var parentLayout:VerticalLayout = new VerticalLayout();
+			parentLayout.itemsVerticalAlign = "itemsCentered";
+			addBead(parentLayout);
 		}
 		
 		/**
@@ -312,7 +293,6 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-
 			var nav:WrappedHTMLElement = addElementToWrapper(this, 'nav');
 			sectionNavItem = new A();
 			// sectionNavItem.href = href;

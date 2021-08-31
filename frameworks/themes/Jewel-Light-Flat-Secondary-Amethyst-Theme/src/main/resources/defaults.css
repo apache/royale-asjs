@@ -138,6 +138,10 @@
   background: #b427b1;
 }
 
+.jewel.loader.secondary.segment {
+  border-top-color: #C92CC6;
+}
+
 .jewel.snackbar.secondary .jewel.snackbar-content {
   background: #C92CC6;
   border: 0px solid;

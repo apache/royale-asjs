@@ -68,7 +68,7 @@ import org.apache.royale.utils.UIModuleUtils;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="setup", type="mx.events.ModuleEvent")]
+[Event(name="setup", type="mx.events.ModuleEvent")] // not implemented
 
 /**
  *  Dispatched when the module is finished loading.
@@ -92,7 +92,7 @@ import org.apache.royale.utils.UIModuleUtils;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="error", type="mx.events.ModuleEvent")]
+[Event(name="error", type="mx.events.ModuleEvent")] // not implemented
 
 /**
  *  Dispatched at regular intervals as the module loads.

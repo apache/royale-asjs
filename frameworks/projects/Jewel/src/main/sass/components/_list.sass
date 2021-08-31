@@ -24,6 +24,9 @@
     align-items: stretch
     align-content: flex-start
     -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
+    
+    > *
+        flex: 0 0 auto
 
     &.no-chrome
         background: transparent
@@ -38,21 +41,16 @@
 j|List
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ListView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+    IBeadKeyController: ClassReference("org.apache.royale.jewel.beads.controllers.ListKeyDownController")
+    // IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ListItemRenderer")
     IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ListItemRendererInitializer")
     ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
-    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
-    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView")
-    //IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel")
-    //IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData")
-
-j|ListItemRenderer
-    IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
-
+    IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView")
     
 @media -royale-swf	
     j|List
@@ -68,3 +66,4 @@ j|VirtualList
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.VirtualListView")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VirtualListVerticalLayout")
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView")
+    IBeadKeyController: ClassReference("org.apache.royale.jewel.beads.controllers.VirtualListKeyDownController")

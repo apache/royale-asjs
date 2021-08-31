@@ -20,6 +20,7 @@
 
 package mx.controls.listClasses
 {
+import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
 
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -36,6 +37,12 @@ import flash.utils.setInterval;
 
 import mx.collections.ArrayCollection;
 */
+COMPILE::SWF{
+import flash.display.DisplayObject;
+}
+COMPILE::JS{
+    import DisplayObject = org.apache.royale.core.UIBase;;
+}
 import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
 import mx.collections.IViewCursor;
@@ -44,6 +51,7 @@ import mx.collections.SortField;
 import mx.controls.beads.AdvancedDataGridView;
 import mx.controls.beads.layouts.AdvancedDataGridLayout;
 import mx.controls.dataGridClasses.DataGridColumn;
+import mx.controls.dataGridClasses.DataGridListArea;
 import mx.core.IFactory;
 import mx.core.Keyboard;
 import mx.core.ScrollControlBase;
@@ -53,6 +61,7 @@ import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
 import mx.events.FlexEvent;
 import mx.events.ListEvent;
+import mx.managers.IFocusManagerComponent;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IDataProviderNotifier;
@@ -63,7 +72,11 @@ import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
+import org.apache.royale.geom.Point;
 import org.apache.royale.utils.loadBeadFromValuesManager;
+import org.apache.royale.html.beads.IDataGridView;
+import org.apache.royale.core.IDataGrid;
+import org.apache.royale.core.IDataGridModel;
 
 use namespace mx_internal;
 
@@ -464,8 +477,8 @@ include "../../styles/metadata/PaddingStyles.as"
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class AdvancedListBase extends ListBase /* extends UIComponent 
-                      implements IDataRenderer, IFocusManagerComponent,
+public class AdvancedListBase extends ListBase implements IFocusManagerComponent /* extends UIComponent 
+                      implements IDataRenderer,
                       IListItemRenderer, IDropInListItemRenderer,
                       IEffectTargetHost */
 {
@@ -560,6 +573,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 	        iterator = collection.createCursor();
 	        collectionIterator = collection.createCursor(); //IViewCursor(collection);
 		}
+        clearSelectionData();
+        (model as ISelectionModel).selectedIndex = -1;
         super.dataProvider = value;
 
     }
@@ -1784,73 +1799,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 	 _styleFunction = value;
      }
 	 
-	 
-    //----------------------------------
-    //  columnCount
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the columnCount property.
-     */
-    private var _columnCount:int = -1;
-
-    /**
-     *  The number of columns to be displayed in a TileList control or items 
-     *  in a HorizontalList control. 
-     *  For the data grids, specifies the number of visible columns.
-     *
-     *  <p><b>Note</b>: Setting this property has no effect on a DataGrid control,
-     *  which bases the number of columns on the control width and the
-     *  individual column widths.</p>
-     * 
-     *  @default 4
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-     public function get columnCount():int
-    {
-        return _columnCount;
-    } 
-
-    /**
-     *  @private
-     */
-     public function set columnCount(value:int):void
-    {
-       /* explicitColumnCount = value;
-
-        if (_columnCount != value)
-        {
-            setColumnCount(value);
-            columnCountChanged = true;
-            invalidateProperties();
-
-            invalidateSize();
-            itemsSizeChanged = true;
-            invalidateDisplayList();
-
-            dispatchEvent(new Event("columnCountChanged"));
-        } */
-    } 
-
-    /**
-     *  Internal version for setting columnCount
-     *  without invalidation or notification.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-   /*  mx_internal function setColumnCount(value:int):void
-    {
-        _columnCount = value;
-    } */
-
+	
 
     //----------------------------------
     //  data
@@ -1927,11 +1876,11 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @private
      *  Storage for the dataTipField property.
      */
-    /* private var _dataTipField:String = "label";
+    private var _dataTipField:String = "label";
 
     [Bindable("dataTipFieldChanged")]
     [Inspectable(category="Data", defaultValue="label")]
- */
+
     /**
      *  Name of the field in the data provider items to display as the 
      *  data tip. By default, the list looks for a property named 
@@ -1949,15 +1898,15 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  public function get dataTipField():String
+    override public function get dataTipField():String
     {
         return _dataTipField;
     }
-	*/
+    
     /**
      *  @private
      */
-   /* public function set dataTipField(value:String):void
+    override public function set dataTipField(value:String):void
     {
         _dataTipField = value;
 
@@ -1965,7 +1914,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         invalidateDisplayList();
 
         dispatchEvent(new Event("dataTipFieldChanged"));
-    } */
+    }
 
     //----------------------------------
     //  dataTipFunction
@@ -2007,7 +1956,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-     public function get dataTipFunction():Function
+    override public function get dataTipFunction():Function
     {
         return _dataTipFunction;
     } 
@@ -2015,7 +1964,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     /**
      *  @private
      */
-     public function set dataTipFunction(value:Function):void
+    override public function set dataTipFunction(value:Function):void
     {
         _dataTipFunction = value;
 
@@ -2600,7 +2549,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         if (collection)
             value = Math.min(collection.length - 1, value);
         clearSelected();
-        super.selectedIndex = value;
+		if (allowMultipleSelection)
+			commitSelectedIndices([value]);
+		else
+	        super.selectedIndex = value;
     }
     
     //----------------------------------
@@ -3662,9 +3614,24 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function itemRendererToIndices(item:IListItemRenderer):Point
+     protected function itemRendererToIndices(item:IListItemRenderer):Point
     {
-        if (!item || !(item.name in rowMap))
+        //inr royale, the renderer is IIndexedItemRenderer
+        if (!item) return null;
+        var index:int = item.index;
+
+
+        var list:AdvancedDataGridColumnList = item.parent as AdvancedDataGridColumnList;
+        if (!list) return null;
+        var column:DataGridColumn = list.columnInfo as DataGridColumn;
+
+        if (column) {
+            var colIndex:int = IDataGridModel(IDataGrid(list.grid).model).columns.indexOf(column);
+            return new Point(colIndex, index);
+        }
+
+        return null;
+       /* if (!item || !(item.name in rowMap))
             return null;
             
         var index:int = rowMap[item.name].rowIndex;
@@ -3680,8 +3647,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                          i + horizontalScrollPosition,
                          index < lockedRowCount ?
                          index :
-                         index + verticalScrollPosition + offscreenExtraRowsTop);
-    } */
+                         index + verticalScrollPosition + offscreenExtraRowsTop);*/
+    }
 
     /**
      *  Get an item renderer for the index of an item in the data provider,
@@ -4491,39 +4458,25 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     /**
      *  @private
      */
-   /*  mx_internal function clearHighlight(item:IListItemRenderer):void
+    mx_internal function clearHighlight(item:IListItemRenderer):void
     {
-        var uid:String = itemToUID(item.data);
-        
-        drawItem(visibleData[uid], isItemSelected(item.data),
-                 false, uid == caretUID);
-
-        var pt:Point = itemRendererToIndices(item);
-        if (pt && lastHighlightItemIndices)
-        {
-            var listEvent:ListEvent =
-                new ListEvent(ListEvent.ITEM_ROLL_OUT);
-            listEvent.columnIndex = lastHighlightItemIndices.x;
-            listEvent.rowIndex = lastHighlightItemIndices.y;
-            listEvent.itemRenderer = lastHighlightItemRendererAtIndices;
-            dispatchEvent(listEvent);
-            lastHighlightItemIndices = null;
-        }
-    } */
-
-    /**
-     *  Refresh all rows on next update.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-     public function invalidateList():void
-    {
-       // itemsSizeChanged = true;
-       // invalidateDisplayList();
-    } 
+        //var uid:String = itemToUID(item.data);
+        //
+        //drawItem(visibleData[uid], isItemSelected(item.data),
+                 //false, uid == caretUID);
+//
+        //var pt:Point = itemRendererToIndices(item);
+        //if (pt && lastHighlightItemIndices)
+        //{
+            //var listEvent:ListEvent =
+                //new ListEvent(ListEvent.ITEM_ROLL_OUT);
+            //listEvent.columnIndex = lastHighlightItemIndices.x;
+            //listEvent.rowIndex = lastHighlightItemIndices.y;
+            //listEvent.itemRenderer = lastHighlightItemRendererAtIndices;
+            //dispatchEvent(listEvent);
+            //lastHighlightItemIndices = null;
+        //}
+    }
 
     /**
      *  Refreshes all rows now.  Calling this method can require substantial
@@ -4857,7 +4810,14 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             return;
         }
 
-        (model as ISelectionModel).selectedIndex/*_selectedIndex*/ = selectedData[p].index;
+        //this should always resolve to the most recently selected index for the single selection model
+        var idx:int = (model as ISelectionModel).selectedIndex;
+        var newIndex:int = this.selectedIndices[0];
+        if (idx == newIndex) {
+            //force a change
+            (model as ISelectionModel).selectedIndex = -1;
+        }
+        (model as ISelectionModel).selectedIndex = newIndex;
         //_selectedItem = selectedData[p].data;
     }
 
@@ -4929,8 +4889,11 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
                 //Clear all other selections, this is a single click
                 clearSelected(transition);
-                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
-                drawItem(index, true, uid == highlightUID, true, transition);
+				if (allowMultipleSelection)
+				{
+	                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
+    	            drawItem(index, true, uid == highlightUID, true, transition);
+				}
                 (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
                 //_selectedItem = item.data;
                 iterator.seek(CursorBookmark.CURRENT, (model as ISelectionModel).selectedIndex /*_selectedIndex*/ - 
@@ -4985,7 +4948,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             {
                 removeSelectionData(uid);
                 drawItem(selectionData.index, false, uid == highlightUID, true, transition);
-                if (/*item.*/data == selectedItem)
+               // if (/*item.*/data == selectedItem)
                     calculateSelectedIndexAndItem();
             }
             else
@@ -5073,6 +5036,9 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         //        lastSeekPending));
         //
         //}
+
+        //set the selection model index to the most recent index
+        (model as ISelectionModel).selectedIndex = index;
     }
 
     /**
@@ -5506,6 +5472,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      */
     private function setSelectionIndicesLoop(index:int, indices:Array, firstTime:Boolean = false):void
     {
+		
         while (indices.length)
         {
             if (index != indices[0])
@@ -5526,6 +5493,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             indices.shift();
 
             var data:Object = collectionIterator.current;
+            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
+            // trace("uid = " + itemToUID(data));
             if (firstTime)
             {
                 (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
@@ -5536,8 +5505,6 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 				anchorBookmark = collectionIterator.bookmark;
                 firstTime = false;
             }
-            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
-            // trace("uid = " + itemToUID(data));
         }
 
         if (initialized)
@@ -5632,7 +5599,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
                 if (items.length == 0)
                 {
-                    (model as ISelectionModel).selectedIndex = index; //_selectedIndex = viewIndex;
+                    (model as ISelectionModel).selectedIndex = viewIndex; //_selectedIndex = viewIndex;
                     //_selectedItem = item;
                     caretIndex = viewIndex;
                     caretBookmark = collectionIterator.bookmark;
@@ -8521,6 +8488,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                         iterator.seek(CursorBookmark.FIRST,
                                       verticalScrollPosition);
                 */
+
+
+                //update the selectedIndices after the sort
+                var items:Array = copySelectedItems(true);
+                commitSelectedItems(items);
+
                         // re-dispatch off strand so DataGridView can pick it up
                         dispatchEvent(event);
                         /*
@@ -8980,6 +8953,11 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         if (!enabled || !selectable)
             return;
 
+        //if it was a click elsewhere (e.g. on the header), then ignore it:
+        var listArea:DataGridListArea = IDataGridView(this.view).listArea as DataGridListArea;
+        if (listArea && !listArea.contains(event.target as DisplayObject)) {
+            return;
+        }
         // trace("mouseDown");
         isPressed = true;
 
@@ -9016,8 +8994,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         }
         else
         {*/
-            if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
-                mouseDownItem = item;
+        if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
+            mouseDownItem = item;
         /*}*/
     }
 

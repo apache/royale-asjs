@@ -26,6 +26,7 @@ package spark.components
     
 	import org.apache.royale.events.Event;
 	import org.apache.royale.textLayout.elements.TextFlow;
+	import org.apache.royale.textLayout.formats.TextLayoutFormat;
 	
 	//--------------------------------------
 	//  Styles
@@ -719,16 +720,15 @@ package spark.components
 		 *  @playerversion AIR 1.5
 		 *  @productversion Royale 0.9.4
 		 */
-		/* public function getFormatOfRange(requestedFormats:Vector.<String>=null,
-		anchorPosition:int=-1,
-		activePosition:int=-1):TextLayoutFormat
+		public function getFormatOfRange(requestedFormats:Vector.<String>=null, anchorPosition:int=-1, activePosition:int=-1):TextLayoutFormat
 		{
-		if (!(textDisplay is RichEditableText))
-		return null;
-		
-		return RichEditableText(textDisplay).getFormatOfRange(
-		requestedFormats, anchorPosition, activePosition);
-		} */
+			return null; // not implemented
+			//if (!(textDisplay is RichEditableText))
+				//return null;
+//
+			//return RichEditableText(textDisplay).getFormatOfRange(
+					//requestedFormats, anchorPosition, activePosition);
+		}
 		
 		/**
 		 *  @copy spark.components.RichEditableText#setFormatOfRange()
@@ -738,16 +738,15 @@ package spark.components
 		 *  @playerversion AIR 1.5
 		 *  @productversion Royale 0.9.4
 		 */
-		/* public function setFormatOfRange(format:TextLayoutFormat,
-		anchorPosition:int=-1, 
-		activePosition:int=-1):void
+		public function setFormatOfRange(format:TextLayoutFormat, anchorPosition:int=-1, activePosition:int=-1):void
 		{
-		if (!(textDisplay is RichEditableText))
-		return;
-		
-		RichEditableText(textDisplay).setFormatOfRange(
-		format, anchorPosition, activePosition);
-		} */
+			// not implemented
+		//if (!(textDisplay is RichEditableText))
+		//return;
+		//
+		//RichEditableText(textDisplay).setFormatOfRange(
+		//format, anchorPosition, activePosition);
+		}
 		
 		/**
 		 *  @copy spark.components.RichEditableText#scrollToRange()
@@ -764,6 +763,10 @@ package spark.components
 			
 			// textDisplay.scrollToRange(anchorPosition, activePosition);
 		}        
+
+		public function set horizontalScrollPolicy(value:String):void {} // not implemented
+		public function set verticalScrollPolicy(value:String):void {} // not implemented
+			
 	}
 	
 }

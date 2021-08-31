@@ -19,8 +19,6 @@
 package org.apache.royale.core
 {
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.events.EventDispatcher;
     
     /**
      *  The BeadViewBase class is the base class for most view beads.

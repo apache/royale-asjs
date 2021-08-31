@@ -61,6 +61,8 @@ public class FlexVersion
      *  @productversion Flex 3
      */
     public static const VERSION_3_0:uint = 0x03000000;
+    
+    public static const VERSION_4_0:uint = 0x04000000
 
    
 

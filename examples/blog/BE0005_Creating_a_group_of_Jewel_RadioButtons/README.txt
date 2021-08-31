@@ -25,4 +25,4 @@ In this example we'll Learn how to configure a group of Jewel RadioButton contro
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-http://royale.apache.org/creating-a-group-of-jewel-radiobuttons/
+https://royale.apache.org/creating-a-group-of-jewel-radiobuttons/

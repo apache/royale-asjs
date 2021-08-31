@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:DataGridItemRenderer
+    xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:js="library://ns.apache.org/royale/basic">
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.html.util.getLabelFromData;
+
+            /**
+             *  commit changes to the data and exit 'editing' state
+             */
+            public function updateLabelAndExit(event:Event):void {
+                commitLabelChanges();
+            }
+
+            /**
+             *  Change renderer state to edit mode by clicking in the label
+             */
+            public function goToEditMode(event:Event):void
+            {
+                currentState = "editing";
+                editfield.text = static.text;
+                editfield.setFocus();
+
+                COMPILE::JS
+                {
+                document.addEventListener('click', commitLabelChanges, true);
+                }
+            }
+
+            /**
+             *  remove document listener to stop listening click events. If user made changes to label, commit 
+             *  changes to the todo item and exit 'editing' state.
+             */
+            public function commitLabelChanges():void {
+                COMPILE::JS
+                {
+                document.removeEventListener('click', commitLabelChanges, true);
+                }
+                
+                if(getLabelFromData(this, data) != editfield.text)
+                {
+                    static.text = editfield.text; // this should be done really in an event like below in a more generic solution
+                    dispatchEvent(new Event("somethingChanged", data, editfield.text));
+                }
+                currentState = 'normal';
+            }
+
+            // public function tih(event:Event):void
+            // {
+            //     editfield.element.addEventListener('focus', onInputFocus);
+            // }
+
+            // protected function onInputFocus(event:Event):void{
+            //     trace(event);
+            // }
+		]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:SimpleStatesImpl/>
+        <js:ItemRendererDataBinding/>
+        <js:Paddings padding="0"/><!-- remove all default paddings -->
+    </j:beads>
+
+    <j:states>
+		<js:State name="normal"/>
+		<js:State name="editing"/>
+	</j:states>
+
+        <!-- visible.normal="true" visible.editing="false"  -->
+    <j:Label localId="static" 
+        includeIn="normal"
+        width="100%" height="100%"
+        text="{getLabelFromData(this, data)}"
+        doubleClick="goToEditMode(event)"
+        >
+        <j:beads>
+            <js:Paddings padding="18"/>
+        </j:beads>
+    </j:Label>
+
+        <!-- visible.normal="false" visible.editing="true" -->
+    <j:TextInput localId="editfield" 
+        includeIn="editing"
+        width="100%" height="100%"
+        enter="updateLabelAndExit(event)"
+        />
+        <!-- beadsAdded="tih(event)" -->
+
+</j:DataGridItemRenderer>
+

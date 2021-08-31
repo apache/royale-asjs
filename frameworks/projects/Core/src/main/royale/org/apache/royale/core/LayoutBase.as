@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	COMPILE::SWF
+	{
+	import org.apache.royale.events.IEventDispatcher;
+	}
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
@@ -30,7 +34,6 @@ package org.apache.royale.core
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.MarginData;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
@@ -83,10 +86,9 @@ package org.apache.royale.core
 		{
 			_strand = value;
 			host = value as ILayoutChild;
-			var sizeChange:Function = handleSizeChange;
-			listenOnStrand("widthChanged", sizeChange);
-			listenOnStrand("heightChanged", sizeChange);
-			listenOnStrand("sizeChanged", sizeChange);
+			listenOnStrand("widthChanged", handleSizeChange);
+			listenOnStrand("heightChanged", handleSizeChange);
+			listenOnStrand("sizeChanged", handleSizeChange);
 
 			listenOnStrand("childrenAdded", handleChildrenAdded);
 			listenOnStrand("initComplete", handleInitComplete);
@@ -299,7 +301,7 @@ package org.apache.royale.core
 			return viewBead.contentView;
 		}
 		
-		private var isLayoutRunning:Boolean = false;
+		protected var isLayoutRunning:Boolean = false;
 		
 		/**
 		 * Performs the layout in three parts: before, layout, after.
@@ -308,7 +310,6 @@ package org.apache.royale.core
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function performLayout():void

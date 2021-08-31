@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-    import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.IBead;
     import org.apache.royale.core.IParent;
+    import org.apache.royale.core.Bead;
 
 	/**
 	 *  @langversion 3.0
@@ -35,27 +34,16 @@ package org.apache.royale.html.beads
 	 * Alignment can be any of the valid css properties for vertical-align
 	 * see https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align
 	 */
-    public class VerticalAlignChildren implements IBead
+    public class VerticalAlignChildren extends Bead
     {
-        public function VerticalAlignChildren()
-        {
-            
-        }
-		private var _strand:IStrand;
-
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		public function set strand(value:IStrand):void
+		public function VerticalAlignChildren()
+		{
+				
+		}
+		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-            (_strand as IEventDispatcher).addEventListener("childrenAdded",setAlignment);
+			listenOnStrand("childrenAdded",setAlignment);
 		}
 		private var _alignment:String;
 
@@ -68,7 +56,6 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.3
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function get alignment():String
 		{
@@ -105,5 +92,5 @@ package org.apache.royale.html.beads
 				}
 			}
 		}
-    }
+	}
 }

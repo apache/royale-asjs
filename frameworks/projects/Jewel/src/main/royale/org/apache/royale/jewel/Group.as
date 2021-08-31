@@ -25,29 +25,29 @@ package org.apache.royale.jewel
     import org.apache.royale.utils.MXMLDataInterpreter;
 
     /**
-	 *  Indicates that the children of the container is have been added.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 */
-	[Event(name="childrenAdded", type="org.apache.royale.events.Event")]
-	
-	/**
 	 * The default property uses when additional MXML content appears within an element's
 	 * definition in an MXML file.
 	 */
 	[DefaultProperty("mxmlContent")]
 
     /**
-     *  The Jewel Group class provides a light-weight container for visual elements. By default
-	 *  the Group does not have a layout, allowing its children to be sized and positioned
-	 *  using styles or CSS.
+     *  The Jewel Group class provides a light-weight container for visual elements.
+	 * 
+	 *  By default Group have a Basiclayout, allowing its children to be positioned using absolute
+	 *  values (Notice Basic version doesn't provide any layout at all). You can swap the layout 
+	 *  for any other one available making children arrange in different ways (i.e: horizontal, vertical,...)
+	 *  
+	 *  Group doesn't clip content so elements inside the group aren't hidden far beyond group boundaries.
+	 *  Also, no scrolling support is built in Group. Group doesn't have any chrome or visuals just 
+	 *  position inner childs.
+	 *  
+	 *  Other Group feature are "View States" to provide state management to show diferent parts to the user
+	 * 
+	 *  For scrolling and clipping you can use Jewel Container
      *
      *  @toplevel
      *  @see org.apache.royale.jewel.beads.layout
-     *  @see org.apache.royale.jewel.supportClasses.jewel.ScrollingViewport
+     *  @see org.apache.royale.jewel.supportClasses.Viewport
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -93,8 +93,6 @@ package org.apache.royale.jewel
 				dispatchEvent(new Event("initBindings"));
 				dispatchEvent(new Event("initComplete"));
 				_initialized = true;
-				
-				//?? why was this added here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will already have called it
 			}
 		}
 		
@@ -134,6 +132,8 @@ package org.apache.royale.jewel
 		}
 		
 		/**
+		 *  The array of childs for this group. Is the `DefaultProperty`.
+		 * 
 		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
 		 *  
 		 *  @langversion 3.0

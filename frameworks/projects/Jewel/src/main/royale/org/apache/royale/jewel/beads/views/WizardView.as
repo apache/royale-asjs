@@ -38,7 +38,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.Wizard;
 	import org.apache.royale.jewel.WizardPage;
 	import org.apache.royale.jewel.beads.models.WizardModel;
-	import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy;
+	import org.apache.royale.jewel.supportClasses.LayoutProxy;
 
 	/**
 	 *  The Wizard class creates the visual elements of the org.apache.royale.jewel.Wizard
@@ -360,7 +360,7 @@ package org.apache.royale.jewel.beads.views
 			// _strand.addBead(layoutBead);
 		}
 
-		private var _wizardLayoutProxy:WizardLayoutProxy;
+		private var _wizardLayoutProxy:LayoutProxy;
 
 		/**
 		 * The sub-element used as the parent of the container's elements. This does not
@@ -376,7 +376,7 @@ package org.apache.royale.jewel.beads.views
 			// we want to return a proxy for the wizard which will have numElements, getElementAt, etc.
 			// functions that will use the wizard.$numElements, wizard.$getElementAt, etc. functions
 			if (_wizardLayoutProxy == null) {
-				_wizardLayoutProxy = new WizardLayoutProxy(_strand);
+				_wizardLayoutProxy = new LayoutProxy(_strand);
 			}
 			return _wizardLayoutProxy;
 		}

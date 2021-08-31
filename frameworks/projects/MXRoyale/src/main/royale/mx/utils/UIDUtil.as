@@ -257,10 +257,11 @@ public class UIDUtil
                 {
                 */
                     if ("mx_internal_uid" in item)
-                        return item.mx_internal_uid;
+                        return item['mx_internal_uid']
 
+                    //something that is not IUID but has 'uid'
                     if ("uid" in item)
-                        return item.uid;
+                        return item['uid'];
 
                     COMPILE::SWF
                     {
@@ -272,7 +273,7 @@ public class UIDUtil
                         result = createUID();
                         try 
                         {
-                            item.mx_internal_uid = result;
+                            item['mx_internal_uid'] = result;
                         }
                         catch(e:Error)
                         {

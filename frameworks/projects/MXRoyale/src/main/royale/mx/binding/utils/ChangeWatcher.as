@@ -26,10 +26,10 @@ package mx.binding.utils
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.Event;
 
-import mx.core.EventPriority;
+//import mx.core.EventPriority;
 import mx.binding.BindabilityInfo;
 import mx.events.PropertyChangeEvent;
-// import mx.utils.DescribeTypeCache;
+import org.apache.royale.events.ValueChangeEvent;
 
 /**
  *  The ChangeWatcher class defines utility methods
@@ -140,9 +140,7 @@ public class ChangeWatcher
      *  @productversion Flex 3
      */
     public static function watch(host:Object, chain:Object,
-                                 handler:Function,
-                                 commitOnly:Boolean = false,
-                                 useWeakReference:Boolean = false):ChangeWatcher
+                                 handler:Function):ChangeWatcher
     {
         if (!(chain is Array))
             chain = [ chain ];
@@ -150,9 +148,8 @@ public class ChangeWatcher
         if (chain.length > 0)
         {
             var w:ChangeWatcher =
-                new ChangeWatcher(chain[0], handler, commitOnly,
-                    watch(null, chain.slice(1), handler, commitOnly));
-            w.useWeakReference = useWeakReference;
+                new ChangeWatcher(chain[0], handler,
+                    watch(null, chain.slice(1), handler));
             w.reset(host);
             return w;
         }
@@ -187,10 +184,9 @@ public class ChangeWatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public static function canWatch(host:Object, name:String,
-                                    commitOnly:Boolean = false):Boolean
+    public static function canWatch(host:Object, name:String):Boolean
     {
-        return !isEmpty(getEvents(host, name, commitOnly));
+        return !isEmpty(getEvents(host, name));
     }
 
     /**
@@ -213,16 +209,14 @@ public class ChangeWatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public static function getEvents(host:Object, name:String,
-                                     commitOnly:Boolean = false):Object
+    public static function getEvents(host:Object, name:String):Object
     {
         if (host is IEventDispatcher)
         {
             // Get { eventName: isCommitting, ... } for all change events
             // defined by host's class on prop <name>
-            /*var allEvents:Object = DescribeTypeCache.describeType(host).
-                                   bindabilityInfo.getChangeEvents(name);
-            if (commitOnly)
+            var allEvents:Object = BindabilityInfo.getCachedInfo(host).getChangeEvents(name);
+            /*if (commitOnly)
             {
                 // Filter out non-committing events.
                 var commitOnlyEvents:Object = {};
@@ -234,7 +228,9 @@ public class ChangeWatcher
             else
             {
                 return allEvents;
-            }*/return {};
+            }return {};*/
+
+            return allEvents;
         }
         else
         {
@@ -285,7 +281,6 @@ public class ChangeWatcher
      *  @productversion Flex 3
      */
     public function ChangeWatcher(access:Object, handler:Function,
-                                  commitOnly:Boolean = false,
                                   next:ChangeWatcher = null)
     {
         super();
@@ -294,10 +289,10 @@ public class ChangeWatcher
         name = access is String ? access as String : access.name;
         getter = access is String ? null : access.getter;
         this.handler = handler;
-        this.commitOnly = commitOnly;
+   //     this.commitOnly = commitOnly;
         this.next = next;
         events = {};
-        useWeakReference = false;
+     //   useWeakReference = false;
         isExecuting = false;
     }
 
@@ -361,7 +356,7 @@ public class ChangeWatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    private var commitOnly:Boolean;
+  //  private var commitOnly:Boolean;
 
     /**
      *  If watching a chain, this is a watcher on the next property
@@ -527,18 +522,18 @@ public class ChangeWatcher
             {
                 host.removeEventListener(p, wrapHandler);
             }
-            events = {};
+            if (newHost == null) events = {};
         }
 
         host = newHost;
 
         if (host != null)
         {
-            events = getEvents(host, name, commitOnly);
+            events = getEvents(host, name);
             for (p in events)
             {
-                host.addEventListener(p, wrapHandler, false,
-                    EventPriority.BINDING, useWeakReference);
+                host.addEventListener(p, wrapHandler, false/*,
+                    EventPriority.BINDING, useWeakReference*/);
             }
         }
 
@@ -561,6 +556,7 @@ public class ChangeWatcher
      *  @private
      *  Listener for change events.
      *  Resets chained watchers and calls user-supplied handler.
+     *
      */
     private function wrapHandler(event:Event):void
     {
@@ -573,10 +569,14 @@ public class ChangeWatcher
                 if (next)
                     next.reset(getHostPropertyValue());
 
-                if (event is PropertyChangeEvent)
+                if (event is ValueChangeEvent){
+                    if ((event as ValueChangeEvent).propertyName == name)
+                        handler(event);
+                }
+                else if (event is PropertyChangeEvent)
                 {
                     if ((event as PropertyChangeEvent).property == name)
-                        handler(event as PropertyChangeEvent);
+                        handler(event);
                 }
                 else
                 {

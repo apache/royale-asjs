@@ -23,6 +23,7 @@ package mx.controls.beads
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.html.beads.NumericStepperView;
+    import org.apache.royale.events.Event;
 	
     /**
      *  The NumericStepperView class overrides the Basic
@@ -56,5 +57,26 @@ package mx.controls.beads
 		{
 			return input;
 		}
+
+
+		/**
+		 * @private
+		 */
+		override protected function inputChangeHandler(event:Event) : void
+		{
+			var signAndNumber:Array = input.text.split("-");
+			var newValue:Number = Number(signAndNumber.length == 2 ? signAndNumber[1] : signAndNumber[0]);
+			var sign:int = signAndNumber.length == 2 ? -1 : 1;
+
+			if( !isNaN(newValue) ) {
+				spinner.value = newValue * sign;
+			}
+			else {
+				input.text = String(spinner.value);
+			}
+		}
+
 	}
+
+
 }

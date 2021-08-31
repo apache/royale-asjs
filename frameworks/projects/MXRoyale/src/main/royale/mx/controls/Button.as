@@ -34,8 +34,10 @@ import mx.core.UIComponent;
 import mx.events.FlexEvent;
 
 import org.apache.royale.binding.ItemRendererDataBinding;
+import org.apache.royale.binding.DataBindingBase;
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.html.accessories.ToolTipBead;
 import org.apache.royale.html.beads.models.ImageAndTextModel;
 
@@ -356,7 +358,11 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		COMPILE::JS {
 			setInnerHTML();
 		}
+		if (parent)
+			(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 	}
+
+
 	
 	//----------------------------------
 	//  toolTip
@@ -432,6 +438,25 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	}
 	
 	private var bindingAdded:Boolean;
+
+	/**
+	 * By default, ItemRendererDataBinding is added on-demand if an instance is used as a Drop-In Renderer
+	 * But Button subclasses need to be able to add whatever binding support makes sense, and avoid the possibility
+	 * of conflicting databinding support. Using this method in subclasses is one way to achieve that.
+
+	 * @param bindingImplClass a class that is a subclass of DataBindingBase
+	 * @param init true if the bindings should be initialized immediately
+	 */
+	protected function addBindingSupport(bindingImplClass:Class, init:Boolean):void{
+		if (!bindingAdded) {
+			if (!getBeadByType(DataBindingBase)) {
+				var bindingImpl:DataBindingBase = new bindingImplClass()
+				addBead(bindingImpl);
+				if (init) bindingImpl.initializeNow(); //no need to use an event in this case
+			}
+			bindingAdded = true;
+		}
+	}
 	
 	
 	/**
@@ -444,10 +469,8 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 
 		if (!bindingAdded)
 		{
-			addBead(new ItemRendererDataBinding());
-			bindingAdded = true;
+			addBindingSupport(ItemRendererDataBinding, true);
 		}
-		dispatchEvent(new Event("initBindings"));
 		
         _data = value;
 
@@ -557,7 +580,9 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 *  @private
 	 *  Storage for labelPlacement property.
 	 */
-	private var _labelPlacement:String = "right";//ButtonLabelPlacement.RIGHT;
+	//private var _labelPlacement:String = "right";//ButtonLabelPlacement.RIGHT;
+	private var _labelPlacement:String = ButtonLabelPlacement.RIGHT;
+
 	
 	[Bindable("labelPlacementChanged")]
 	[Inspectable(category="General", enumeration="left,right,top,bottom", defaultValue="right")]
@@ -592,6 +617,8 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	public function set labelPlacement(value:String):void
 	{
 		_labelPlacement = value;
+		invalidateSize();
+       		invalidateDisplayList();
 		dispatchEvent(new Event("labelPlacementChanged"));
 	}
 	
@@ -673,9 +700,11 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	COMPILE::JS
 	protected function setInnerHTML():void
 	{
+		var label:String = ITextModel(model).text;
 		if (label != null) {
 			element.innerHTML = label;
 		}
+		var icon:String = ImageAndTextModel(model).image;
 		if (icon != null) {
 			element.style.background = "url('"+icon+"') no-repeat 2px center";
 			
@@ -689,7 +718,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		
 		measuredWidth = Number.NaN;
 		measuredHeight = Number.NaN;
-	};
+	}
 	
 	/**
 	 * 

@@ -32,7 +32,6 @@
         vertical-align: bottom
         text-overflow: ellipsis
         letter-spacing: 0
-        padding: 12px
         text-align: left
         
     .jewel.tbody 
@@ -45,8 +44,6 @@
     //td
     .jewel.tablecell
         position: relative
-        > *
-            padding: 12px
 
 j|SimpleTable
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
@@ -57,10 +54,10 @@ j|SimpleTable
 // Table variables
 $tableitem-min-height: 34px
 .jewel.table
-    position: relative
-    white-space: nowrap
-    border-spacing: 0px
-    overflow: hidden
+    
+    table
+        width: 100%
+        border-spacing: 0px
 
     // th
     .jewel.tableheadercell
@@ -68,7 +65,6 @@ $tableitem-min-height: 34px
         vertical-align: bottom
         text-overflow: ellipsis
         letter-spacing: 0
-        padding: 12px
         text-align: left
     
     .jewel.tbody 
@@ -81,25 +77,15 @@ $tableitem-min-height: 34px
     // td
     .jewel.tablecell
         position: relative
-        // > *
-        //     padding: 12px
+        height: 100%
         
     &.fixedHeader
-        table-layout: fixed
+        overflow-y: auto
 
-        // .jewel.thead tr
-        //     display: block
-
-        .jewel.tbody
-            display: block
-            overflow: auto
-            // width must be table width
-            
-            .jewel.tablerow
-                display: block
-            
-        .jewel.tablecell
-            display: inline-block
+        .jewel.tableheadercell
+                position: sticky
+                top: 0
+                z-index: 1
 
 j|Table
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.TableLayout")
@@ -108,18 +94,21 @@ j|Table
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TableItemRenderer")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController")
+    IBeadKeyController: ClassReference("org.apache.royale.jewel.beads.controllers.TableKeyDownController")
+    IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererInitializer")
     ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead")
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
-    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+    // this bead was created for SWF, so we should try to avoid this for JS in the future
     IContentView: ClassReference("org.apache.royale.jewel.supportClasses.table.TBodyContentArea")
 
 
 .jewel.tableitem
-    padding: 10px
+    // padding: 10px
     cursor: pointer
     text-decoration: none
-    align-items: center
+    // align-items: center
     letter-spacing: 0
     line-height: normal !important
     overflow: hidden
@@ -130,19 +119,18 @@ j|Table
         cursor: pointer
         // pointer-events: auto
 
-    &.with-childs
-        padding: 6px
     &.calendar
-        border-radius: 4px
+        // border-radius: 4px
         
         &.selected
-            font-weight: bold
+            // font-weight: bold
     
 .empty-cell
     pointer-events: none
 
 j|TableItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
 
 
 

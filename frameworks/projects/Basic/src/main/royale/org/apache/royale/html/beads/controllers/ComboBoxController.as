@@ -29,18 +29,21 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IComboBoxView;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.Bead;
 	
-	public class ComboBoxController implements IBeadController
+	public class ComboBoxController extends Bead implements IBeadController
 	{
 		public function ComboBoxController()
 		{
 		}
 		
-		private var _strand:IStrand;
-		
 		protected var viewBead:IComboBoxView;
 		
-		public function set strand(value:IStrand):void
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.IComboBoxView
+		 * 
+		 */
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
@@ -48,24 +51,31 @@ package org.apache.royale.html.beads.controllers
 			if (viewBead) {
 				finishSetup(null);
 			} else {
-				IEventDispatcher(_strand).addEventListener("viewChanged", finishSetup);
+				listenOnStrand("viewChanged", finishSetup);
 			}
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.html.beads.IComboBoxView
+		 */
 		protected function finishSetup(event:Event):void
 		{
 			if (viewBead == null) {
 				viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
 			}
 			
-			IEventDispatcher(viewBead.popupButton).addEventListener("click", handleButtonClick);
-            IEventDispatcher(viewBead.textInputField).addEventListener("click", handleButtonClick);
+			(viewBead.popupButton as IEventDispatcher).addEventListener("click", handleButtonClick);
+			(viewBead.textInputField as IEventDispatcher).addEventListener("click", handleButtonClick);
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleButtonClick(event:MouseEvent):void
 		{			
 			viewBead.popUpVisible = !viewBead.popUpVisible;
-			IEventDispatcher(viewBead.popUp).addEventListener("change", handleListChange);
+			(viewBead.popUp as IEventDispatcher).addEventListener("change", handleListChange);
 		}
 		
 		private function handleListChange(event:Event):void

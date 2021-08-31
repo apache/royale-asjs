@@ -292,7 +292,7 @@ import org.apache.royale.events.Event;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="textInputStyleName", type="String", inherit="no")]
+[Style(name="textInputStyleName", type="String", inherit="no")]
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -376,6 +376,16 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
     //  Variables
     //
     //--------------------------------------------------------------------------
+	
+	 /**
+     *  The ICollectionView of items this component displays.  
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var collection:ICollectionView;
 
 
     /**
@@ -763,7 +773,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set text(value:String):void
     {
-        trace("ComboBox.text not implemented");
+        ((view as IComboBoxView).textInputField as org.apache.royale.html.TextInput).text = value;
     }
     
     //----------------------------------

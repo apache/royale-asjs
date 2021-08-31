@@ -18,47 +18,48 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
-	import org.apache.royale.core.IStyledUIBase;
-	import org.apache.royale.jewel.supportClasses.table.TableColumn;
+import org.apache.royale.core.IStyledUIBase;
+import org.apache.royale.jewel.supportClasses.table.TableColumn;
 
+/**
+ *  The DataGridColumn class is the collection of properties that describe
+ *  a column of the org.apache.royale.jewel.DataGrid: which renderer
+ *  to use for each cell in the column, the width of the column, the label for the
+ *  column, and the name of the field in the data containing the value to display
+ *  in the column.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.9.7
+ */
+public class DataGridColumn extends TableColumn implements IDataGridColumn
+{
 	/**
-	 *  The DataGridColumn class is the collection of properties that describe
-	 *  a column of the org.apache.royale.jewel.DataGrid: which renderer 
-	 *  to use for each cell in the column, the width of the column, the label for the 
-	 *  column, and the name of the field in the data containing the value to display 
-	 *  in the column.
-	 *  
+	 *  constructor.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DataGridColumn extends TableColumn implements IDataGridColumn
+	public function DataGridColumn()
 	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function DataGridColumn()
-		{
-		}
-		
-		/**
-		 * Returns a new instance of a UIBase component to be used as the actual
-		 * column in the grid.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function createColumn():IStyledUIBase
-		{
-			return new DataGridColumnList();
+	}
+
+	
+
+
+	private var _visible:Boolean = true;
+	public function set visible(value:Boolean):void{
+		if (value != _visible) {
+			_visible = value;
+			//somehow, invalidate layout
 		}
 	}
+
+	public function get visible():Boolean{
+		return _visible;
+	}
+}
 }

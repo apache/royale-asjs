@@ -27,12 +27,15 @@ package flexUnitTests.network
     import flexUnitTests.network.support.TestClass3;
     import flexUnitTests.network.support.TestClass4;
     import flexUnitTests.network.support.DynamicTestClass;
-    
+    import flexUnitTests.network.support.TestClass6;
+    import flexUnitTests.network.support.TestClass7a;
+    import flexUnitTests.network.support.TestClass7b;
     import org.apache.royale.test.asserts.*;
     
     import org.apache.royale.net.remoting.amf.AMFBinaryData;
     import org.apache.royale.reflection.*;
-    
+    import org.apache.royale.reflection.utils.*;
+
     
     public class AMFBinaryDataTesterTest
     {
@@ -50,6 +53,7 @@ package flexUnitTests.network
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
+            ExtraData.addAll();
         }
         
         [AfterClass]
@@ -159,7 +163,21 @@ package flexUnitTests.network
             assertTrue( !isFinite(num), "post-write read of written Number was not correct");
             assertTrue( (num < 0), "post-write read of written Number was not correct");
         }
-        
+
+        [Test]
+        public function testNullAndUndefinedEncoding():void
+        {
+            var ba:AMFBinaryData = new AMFBinaryData();
+            ba.writeObject(null);
+            ba.writeObject(undefined);
+
+            ba.position = 0;
+            var val:* = ba.readObject();
+            assertStrictlyEquals(val, null, 'Should be null');
+            val = ba.readObject();
+            assertStrictlyEquals(val, undefined, 'Should be undefined');
+        }
+
         
         [Test]
         public function testArrayInstance():void
@@ -270,7 +288,60 @@ package flexUnitTests.network
             
             
         }
-        
+
+        [Test]
+        public function testVector():void{
+            var ba:AMFBinaryData = new AMFBinaryData();
+            var instance:Vector.<int> = new <int>[1,-1,0];
+            ba.writeObject(instance);
+
+
+            //RoyaleUnitTestRunner.consoleOut(getBytesOut(ba, true));
+
+            assertEquals( ba.length, 15, "post-write length was not correct");
+            assertEquals( ba.position, 15, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [0x0d, 0x07, 0x00, 0x00, 0x00, 0x00, 0x01, 0xff, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x00]), "post-write bytes did not match expected data");
+            ba.position = 0;
+            var obj:Object = ba.readObject();
+
+            assertTrue( obj is Vector.<int>, "post-write read did not match expected result");
+            assertTrue( obj.toString() == instance.toString(), "post-write read did not match expected result");
+
+            ba.length = 0;
+            var instBool:Vector.<Boolean> = new <Boolean>[true, false, true, false];
+            ba.writeObject(instBool);
+
+
+            assertTrue( bytesMatchExpectedData(ba, [0x10, 0x09, 0x00, 0x01, 0x03, 0x02, 0x03, 0x02]), "post-write bytes did not match expected data");
+            ba.position = 0;
+            obj = ba.readObject();
+            assertTrue( obj.toString() == instBool.toString(), "post-write read did not match expected result");
+
+
+            ba.length = 0;
+            registerClassAlias('Bool', Boolean);
+            ba.writeObject(instBool);
+           // RoyaleUnitTestRunner.consoleOut(getBytesOut(ba, true));
+
+            assertTrue( bytesMatchExpectedData(ba, [0x10, 0x09, 0x00, 0x09, 0x42, 0x6f, 0x6f, 0x6c, 0x03, 0x02, 0x03, 0x02]), "post-write bytes did not match expected data");
+
+            ba.position = 0;
+            obj = ba.readObject();
+            assertTrue( obj.toString() == instBool.toString(), "post-write read did not match expected result");
+
+
+
+            ba.length = 0;
+
+            var tc1:TestClass1 = new TestClass1();
+            var instObject:Vector.<TestClass1> = new <TestClass1>[new TestClass1(), new TestClass1(), tc1, tc1, null, tc1];
+
+            ba.writeObject(instObject);
+
+            assertTrue( bytesMatchExpectedData(ba, [0x10, 0x0d, 0x00, 0x01, 0x0a, 0x13, 0x01, 0x15, 0x74, 0x65, 0x73, 0x74, 0x46, 0x69, 0x65, 0x6c, 0x64, 0x31, 0x06, 0x01, 0x0a, 0x01, 0x06, 0x01, 0x0a, 0x01, 0x06, 0x01, 0x0a, 0x06, 0x01, 0x0a, 0x06]), "post-write bytes did not match expected data");
+
+        }
+
         
         [Test]
         public function testAnonObject():void
@@ -531,6 +602,112 @@ package flexUnitTests.network
             
             //javascript toXMLString pretty printing does not match exactly flash...
             assertTrue( xml.toXMLString() === xml2.toXMLString(), "XML round-tripping failed");
+        }
+
+
+        [Test]
+        public function testWithCustomNS():void
+        {
+            var ba:AMFBinaryData = new AMFBinaryData();
+            var test:TestClass6 = new TestClass6();
+            ba.writeObject(test);
+            ba.position = 0;
+            assertEquals(ba.length, 50, 'unexpected serialized content with custom namespaces');
+            //cover variation in order
+            const validOptions:Array = [
+                '0a23010b6d79566172156d794163636573736f7206177075626c69634d79566172061f7075626c6963206163636573736f72',
+                '0a2301156d794163636573736f720b6d79566172061f7075626c6963206163636573736f7206177075626c69634d79566172'
+            ];
+
+            assertTrue(validOptions.indexOf(getBytesOut(ba)) != -1, 'unexpected byte content with custom namespace content');
+
+           /* var restored:Object = ba.readObject();
+
+            var json:String = JSON.stringify(restored)*/
+            //order may be different... need json object check here for: {"myAccessor":"public accessor","myVar":"publicMyVar"}
+        }
+
+        [Test]
+        public function testTransientAndBindable():void{
+            var ba:AMFBinaryData = new AMFBinaryData();
+            registerClassAlias('TestClass7a', TestClass7a);
+            registerClassAlias('TestClass7b', TestClass7b);
+            var test1:TestClass7a = new TestClass7a();
+            test1.something = 'whatever';
+            ba.writeObject(test1);
+
+            ba.position = 0;
+
+            var retrieved:Object = ba.readObject();
+
+            assertTrue(retrieved is TestClass7a, 'unexpected deserialization');
+
+            var test2:TestClass7b = new TestClass7b();
+            test1.something = 'whatever';
+            ba.length = 0;
+            ba.writeObject(test2);
+
+            ba.position = 0;
+            retrieved = ba.readObject();
+
+            assertTrue(retrieved is TestClass7b, 'unexpected deserialization');
+
+        }
+
+
+        [Test]
+        public function testTransientDeserialized():void{
+            //if a transient field is already serialized, then we do deserialize it
+            //this means it can be sent from the server (for example) but is not sent to the server
+
+            //to test this we will use TestClass7b (where 'something' is not Transient) which will serialize the 'something' field with an alias that matches
+            //a subsequent deserialization to a TestClass7a instance (where 'something' is Transient);
+            //the expected result will be that the Transient field is still deserialized
+
+            var ba:AMFBinaryData = new AMFBinaryData();
+            registerClassAlias('TestClass7a', TestClass7b);
+            var test1:TestClass7b = new TestClass7b();
+            test1.something = 'something interesting';
+            ba.length = 0;
+            //non-transient inbound:
+            ba.writeObject(test1);
+
+            //The bytes for the above can differ between swf and js. 54 vs. 57 bytes length
+            //It is possible to correct that. But it is the swf output that is serializing the 'something' field twice
+            // (second time is string ref for both field and value, so quite compact, but still unnecessary)
+            //so not trying to match that exactly, because it is redundant data.
+
+            ba.position = 0;
+
+            //read it back as TestClass7a
+            registerClassAlias('TestClass7a', TestClass7a);
+
+            var retrieved:Object = ba.readObject();
+
+
+            assertTrue(retrieved is TestClass7a, 'unexpected deserialization');
+            assertEquals(retrieved.something , 'something interesting', 'unexpected deserialization');
+            assertEquals(retrieved.test , 'test', 'unexpected deserialization');
+
+            //this time round it won't be read out because it is Transient for serialization/inbound:
+            ba.position = 0;
+            ba.length=0;
+            ba.writeObject(retrieved);
+            ba.position = 0;
+            retrieved = ba.readObject();
+            assertTrue(retrieved is TestClass7a, 'unexpected deserialization');
+            assertEquals(retrieved.something , null, 'unexpected deserialization');
+            assertEquals(retrieved.test , 'test', 'unexpected deserialization');
+        }
+
+
+        private function getBytesOut(bytes:AMFBinaryData, asTestData:Boolean=false):String{
+            var out:Array = [];
+            for each(var byte:uint in bytes) {
+                if (asTestData)  out.push('0x'+('0'+byte.toString(16)).substr(-2));
+                else out.push(('0'+byte.toString(16)).substr(-2));
+            }
+            return asTestData? '['+out.join(', ') +']':out.join('');
         }
         
     }

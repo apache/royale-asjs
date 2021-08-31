@@ -96,6 +96,11 @@ package org.apache.royale.file.beads
 		/**
 		 * @private
 		 */
+		public function cancel():void
+		{
+			_uploader.cancel();
+		}
+
 		private function blobChangedHandler(e:Event):void
 		{
 			(_strand as FileProxy).model.removeEventListener('blobChanged', blobChangedHandler);

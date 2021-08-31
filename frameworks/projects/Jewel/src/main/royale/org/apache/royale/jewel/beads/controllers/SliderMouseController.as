@@ -153,9 +153,9 @@ package org.apache.royale.jewel.beads.controllers
 				SliderView(sliderView).redraw();
 
 				// value has change so dispatch VALUE_CHANGE event to the strand
-				if(event is ValueChangeEvent) {
-					IEventDispatcher(_strand).dispatchEvent(event.cloneEvent());
-				}
+				// if(event is ValueChangeEvent) {
+				// 	IEventDispatcher(_strand).dispatchEvent(event.cloneEvent());
+				// }
 			}
 		}
 

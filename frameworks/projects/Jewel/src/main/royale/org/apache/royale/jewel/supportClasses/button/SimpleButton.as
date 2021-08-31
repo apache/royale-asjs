@@ -318,6 +318,22 @@ package org.apache.royale.jewel.supportClasses.button
         {
             return false;
         }
+
+        /**
+		 *  Replace a class for a new one
+		 *
+         *  @param oldClass Name of selector to remove.
+         *  @param newClass Name of selector to set.
+         * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+        public function replaceClass(oldClass:String, newClass:String = null):void
+        {
+            // To implement. Need to implement this interface or extensions will not compile
+        }
     }
 
     /**

@@ -81,7 +81,7 @@ package org.apache.royale.file.beads
 			delegate = document.createElement('input') as WrappedHTMLElement;
 			delegate.setAttribute('type', 'file');
 			goog.events.listen(delegate, 'change', fileChangeHandler);
-		}
+			}
 		
 		/**
 		 *  @private
@@ -106,6 +106,11 @@ package org.apache.royale.file.beads
 			createDelegate();
 		}
 		
+		COMPILE::JS
+		private var focusedButton:WrappedHTMLElement;
+		COMPILE::JS
+		private var interval:int = -1;
+		
 		/**
 		 *  Open up the system file browser. A user selection will trigger a 'modelChanged' event on the strand.
 		 *
@@ -113,6 +118,7 @@ package org.apache.royale.file.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
 		public function browse():void
 		{
@@ -122,10 +128,88 @@ package org.apache.royale.file.beads
 			}
 			COMPILE::JS 
 			{
+				focusedButton = document.activeElement as WrappedHTMLElement;
+				//trace("activeElement is: " + focusedButton);
+				focusedButton.addEventListener("blur", blurHandler);
+				focusedButton.addEventListener("focus", focusHandler);				
+				window.addEventListener("keydown", keyHandler);
+				window.addEventListener("mousemove", mouseHandler);
+				window.addEventListener("mousedown", mouseHandler);
 				delegate.click();
 			}
 		}
 		
+		COMPILE::JS
+		private function blurHandler(e:Object):void
+		{
+			//trace("blur: " + e);
+			//trace("files: " + (delegate as HTMLInputElement).files.length);
+			cleanupWindow();
+		}
+
+		public static const CANCEL_TIMEOUT:Number = 150;
+		
+		COMPILE::JS
+		private function focusHandler(e:Object):void
+		{
+			//trace("focus: " + e);
+			//trace("files: " + (delegate as HTMLInputElement).files.length);
+			cleanup();
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
+		}
+		
+		COMPILE::JS
+		private function keyHandler(e:Object):void
+		{
+			//trace("key: " + e);
+			//trace("files: " + (delegate as HTMLInputElement).files.length);
+			cleanup();
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
+		}
+		
+		COMPILE::JS
+		private function mouseHandler(e:Object):void
+		{
+			//trace("mouse: " + e);
+			//trace("files: " + (delegate as HTMLInputElement).files.length);
+			cleanup();
+			setTimeout(maybeCancel, CANCEL_TIMEOUT);
+		}
+				
+		COMPILE::JS
+		private function cleanupWindow():void
+		{
+			window.removeEventListener("keydown", keyHandler);
+			window.removeEventListener("mousemove", mouseHandler);
+			window.removeEventListener("mousedown", mouseHandler);
+		}
+		
+		COMPILE::JS
+		private function cleanup():void
+		{
+			focusedButton.removeEventListener("focus", focusHandler);
+			focusedButton.removeEventListener("blur", blurHandler);
+			window.removeEventListener("keydown", keyHandler);
+			window.removeEventListener("mousemove", mouseHandler);
+			window.removeEventListener("mousedown", mouseHandler);
+		}
+		
+		private var frameCount:int = 0;
+		/**
+		 *  @royaleignorecoercion HTMLInputElement
+		 */
+		COMPILE::JS
+		private function maybeCancel():void
+		{
+			if ((delegate as HTMLInputElement).files.length) {
+				//trace("FileReference ok");
+			}
+			else {
+				host.dispatchEvent(new Event("cancel"));
+				//trace("FileReference cancel");
+			}
+		}
+						
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -141,6 +225,7 @@ package org.apache.royale.file.beads
 		
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.file.FileProxy
 		 */
 		private function get host():FileProxy
 		{
@@ -150,10 +235,12 @@ package org.apache.royale.file.beads
 		/**
 		 *  @private
 		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */		
 		COMPILE::JS
 		private function fileChangeHandler(e:org.apache.royale.events.Event):void
 		{
+			//trace("fileChange");
 			var fileModel:IFileModel = host.model as IFileModel;
 			fileModel.fileReference = (delegate as HTMLInputElement).files[0];
 			host.dispatchEvent(new Event("modelChanged"));

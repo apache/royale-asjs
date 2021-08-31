@@ -24,19 +24,18 @@ package org.apache.royale.jewel.beads.views
 	}
 	COMPILE::JS
     {
-    import goog.events;
-
-    import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IStyledUIBase;
 	}
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
@@ -81,6 +80,10 @@ package org.apache.royale.jewel.beads.views
 		protected var listModel:ISelectionModel;
 
 		protected var lastSelectedIndex:int = -1;
+		
+		protected function get presentationModel():IListPresentationModel {
+			return (_strand as IListWithPresentationModel).presentationModel as IListPresentationModel;
+		}
 
 		/**
 		 * @private
@@ -92,36 +95,7 @@ package org.apache.royale.jewel.beads.views
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
-			goog.events.listen((_strand as IRenderedObject).element, 'keydown', keyEventHandler);
-			
 			super.handleInitComplete(event);
-		}
-
-		/**
-		 * @private
-		 */
-		COMPILE::JS
-		protected function keyEventHandler(event:KeyboardEvent):void
-		{
-			event.preventDefault();
-
-			var prevIndex:int = listModel.selectedIndex;
-
-			if(event.key === KeyboardEvent.KEYCODE__UP)
-			{
-				if(prevIndex > 0)
-					listModel.selectedIndex -=1;
-			} 
-			else if(event.key === KeyboardEvent.KEYCODE__DOWN)
-			{
-				listModel.selectedIndex +=1;
-			}
-
-			if(prevIndex != listModel.selectedIndex)
-			{
-				selectionChangeHandler(null);
-				scrollToIndex(listModel.selectedIndex);
-			}
 		}
 
 		/**
@@ -158,6 +132,19 @@ package org.apache.royale.jewel.beads.views
 			}
 			
 			lastSelectedIndex = listModel.selectedIndex;
+
+			itemClickedAction();
+		}
+
+		/**
+		 * if the selection was not from a user click selection, then scrol to index
+		 */
+		protected function itemClickedAction():void
+		{
+			if(!(listModel as IJewelSelectionModel).isItemClicked)
+			{
+				scrollToIndex(lastSelectedIndex);
+			}
 		}
 
 		protected var lastRollOverIndex:int = -1;
@@ -208,13 +195,14 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function scrollToIndex(index:int):Boolean
 		{
-			var scrollArea:HTMLElement = (_strand as IRenderedObject).element;
+			if (index == -1) return false;
+			
+			var scrollArea:HTMLElement = (_strand as IStyledUIBase).element;
 			var oldScroll:Number = scrollArea.scrollTop;
 
 			var totalHeight:Number = 0;
-			var pm:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
-			if(pm.variableRowHeight)
+			if(presentationModel.variableRowHeight)
 			{
 				//each item render can have its own height
 				var n:int = listModel.dataProvider.length;
@@ -227,12 +215,12 @@ package org.apache.royale.jewel.beads.views
 				}
 
 				scrollArea.scrollTop = Math.min(irHeights[index], totalHeight);
-
-			} else 
+			} 
+			else 
 			{
 				var rowHeight:Number;
 				// all items renderers with same height
-				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : rowHeight;
+				rowHeight = isNaN(presentationModel.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : presentationModel.rowHeight;
 				totalHeight = listModel.dataProvider.length * rowHeight - scrollArea.clientHeight;
 				
 				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
@@ -240,6 +228,16 @@ package org.apache.royale.jewel.beads.views
 
 			return oldScroll != scrollArea.scrollTop;
 		}
+
+		/**
+		 * 
+		 * @param index 
+		 */
+		// public function setFocusOnItem(index:int):void
+		// {
+		// 	var ir:IFocusable = dataGroup.getItemRendererForIndex(index) as IFocusable;
+		// 	ir.setFocus();
+		// }
 	}
 
 	COMPILE::SWF
@@ -315,6 +313,11 @@ package org.apache.royale.jewel.beads.views
 			lastSelectedIndex = listModel.selectedIndex;
 		}
 
+		protected function itemClickedAction():void
+		{
+		
+		}
+		
 		protected var lastRollOverIndex:int = -1;
 
 		/**

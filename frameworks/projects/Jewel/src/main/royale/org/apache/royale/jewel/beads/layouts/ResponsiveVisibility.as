@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.layouts
 {	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.utils.IClassSelectorListSupport;
 	
 	/**
 	 *  The ResponsiveVisibility bead class is a specialty bead that 
@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 		}
 
-		private var _phoneVisible:Boolean;
+		private var _phoneVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-phone" and "hidden-phone" effect selectors.
@@ -75,7 +75,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
-		private var _tabletVisible:Boolean;
+		private var _tabletVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-tablet" and "hidden-tablet" effect selectors.
@@ -104,7 +104,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
-		private var _desktopVisible:Boolean;
+		private var _desktopVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-desktop" and "hidden-desktop" effect selectors.
@@ -133,7 +133,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 		
-		private var _wideScreenVisible:Boolean;
+		private var _wideScreenVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-widescreen" and "hidden-widescreen" effect selectors.
@@ -162,7 +162,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -180,70 +180,30 @@ package org.apache.royale.jewel.beads.layouts
 			showOrHideHost();
 		}
 
-		private function showOrHideHost():void
+		protected function showOrHideHost():void
 		{
-			var host:StyledUIBase = _strand as StyledUIBase;
+			var host:IClassSelectorListSupport = _strand as IClassSelectorListSupport;
 			if (host)
             {
-				if(_phoneVisible != null)
-				{
-					if(_phoneVisible)
-					{
-						if (host.containsClass("hidden-phone"))
-							host.removeClass("hidden-phone");
-						host.addClass("visible-phone");
-					} else
-					{
-						if (host.containsClass("visible-phone"))
-							host.removeClass("visible-phone");
-						host.addClass("hidden-phone");
-					}
-				}
+				if(phoneVisible)
+					host.replaceClass("hidden-phone", "visible-phone");
+				else
+					host.replaceClass("visible-phone", "hidden-phone");
 
-				if(_tabletVisible != null)
-				{
-					if(_tabletVisible)
-					{
-						if (host.containsClass("hidden-tablet"))
-							host.removeClass("hidden-tablet");
-						host.addClass("visible-tablet");
-					} else
-					{
-						if (host.containsClass("visible-tablet"))
-							host.removeClass("visible-tablet");
-						host.addClass("hidden-tablet");
-					}
-				}
+				if(tabletVisible)
+					host.replaceClass("hidden-tablet", "visible-tablet");
+				else
+					host.replaceClass("visible-tablet", "hidden-tablet");
 
-				if(_desktopVisible != null)
-				{
-					if(_desktopVisible)
-					{
-						if (host.containsClass("hidden-desktop"))
-							host.removeClass("hidden-desktop");
-						host.addClass("visible-desktop");
-					} else
-					{
-						if (host.containsClass("visible-desktop"))
-							host.removeClass("visible-desktop");
-						host.addClass("hidden-desktop");
-					}
-				}
+				if(desktopVisible)
+					host.replaceClass("hidden-desktop", "visible-desktop");
+				else
+					host.replaceClass("visible-desktop", "hidden-desktop");
 
-				if(_wideScreenVisible != null)
-				{
-					if(_wideScreenVisible)
-					{
-						if (host.containsClass("hidden-widescreen"))
-							host.removeClass("hidden-widescreen");
-						host.addClass("visible-widescreen");
-					} else
-					{
-						if (host.containsClass("visible-widescreen"))
-							host.removeClass("visible-widescreen");
-						host.addClass("hidden-widescreen");
-					}
-				}
+				if(wideScreenVisible)
+					host.replaceClass("hidden-widescreen", "visible-widescreen");
+				else
+					host.replaceClass("visible-widescreen", "hidden-widescreen");
             }
 		}
 	}

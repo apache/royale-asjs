@@ -87,6 +87,9 @@ package org.apache.royale.html.supportClasses
 			{
 				contentArea = new c() as UIBase;
 			}
+
+			if (!contentArea)
+				contentArea = value as UIBase;
 		}
 		
 		/**
@@ -98,7 +101,7 @@ package org.apache.royale.html.supportClasses
 		{
 			_strand = value;
 			
-			var f:Function = ValuesManager.valuesImpl.getValue(value, "iContentView") as Function;
+			var f:Class = ValuesManager.valuesImpl.getValue(value, "iContentView");
 			if (f)
 			{
 				contentArea = new f() as UIBase;

@@ -58,10 +58,11 @@ limitations under the License.
         <js:ItemRendererDataBinding />
         <j:ToolTip localId="tt" toolTip="{getToolTip(text)}"/>
         <js:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
+        <j:HorizontalLayout gap="8" itemsVerticalAlign="itemsCenter"/>
     </j:beads>
 
-    <js:MaterialIcon text="{iconList ? iconList.icon : ''}"  visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>
-
+    <js:MaterialIcon text="{iconList.icon}"  visible="{iconList.icon != null}" click="clickCloseButton()"/>
+    
     <j:Label html="{text}" multiline="true"/>
 
 </j:ListItemRenderer>

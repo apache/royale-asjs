@@ -37,6 +37,8 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.geom.Size;
 import spark.components.SkinnableContainer;
+import spark.components.SkinnableDataContainer;
+import spark.layouts.supportClasses.LayoutBase;
 
 COMPILE::SWF
 {
@@ -94,9 +96,12 @@ public class SparkSkinViewport extends EventDispatcher implements IBead, IViewpo
         var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
         if (c)
         {
-            host.setSkin(new c());
+            if (!host.skin)
+            {
+                host.setSkin(new c());
+            }
             host.skin.addEventListener("initComplete", initCompleteHandler);
-            contentArea = host.skin; // temporary assigment so that SkinnableContainer.addElement can add the skin
+            contentArea = host.skin; // temporary assigment so that SkinnableXXContainer.addElement can add the skin
         }
         else
         {
@@ -120,6 +125,12 @@ public class SparkSkinViewport extends EventDispatcher implements IBead, IViewpo
             if (sc.layout)
                 (contentArea as GroupBase).layout = sc.layout;       
         }
+        else if (host is SkinnableDataContainer)
+        {
+            var sdc:SkinnableDataContainer = host as SkinnableDataContainer;
+            if (sdc.layout)
+                (contentArea as GroupBase).layout = sdc.layout;
+        }
             
 		COMPILE::JS
 		{
@@ -137,23 +148,25 @@ public class SparkSkinViewport extends EventDispatcher implements IBead, IViewpo
     {
         if(host != contentArea)
         {
+            var scl:LayoutBase = null;
+
             if (host is SkinnableContainer)
             {
                 var sc:SkinnableContainer = host as SkinnableContainer;
-                if (sc.layout)
-                {
-                    if (!sc.layout.isWidthSizedToContent())
-                        contentArea.percentWidth = 100;
-                    if (!sc.layout.isHeightSizedToContent())
-                        contentArea.percentHeight = 100;
-                }
-                else
-                {
-                    if (host.isWidthSizedToContent())
-                        contentArea.percentWidth = 100;
-                    if (host.isHeightSizedToContent())
-                        contentArea.percentHeight = 100;                    
-                }
+                scl = sc.layout;
+            }
+            else if (host is SkinnableDataContainer)
+            {
+                var sdc:SkinnableDataContainer = host as SkinnableDataContainer;
+                scl = sdc.layout;
+            }
+
+            if (scl)
+            {
+                if (!scl.isWidthSizedToContent())
+                    contentArea.percentWidth = 100;
+                if (!scl.isHeightSizedToContent())
+                   contentArea.percentHeight = 100;
             }
             else
             {

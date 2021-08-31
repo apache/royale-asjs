@@ -18,12 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.ITextModel;
 	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.DispatcherBead;
 	
 	/**
 	 *  The ToggleButtonModel class bead holds values for org.apache.royale.html.Buttons 
@@ -34,7 +32,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ToggleButtonModel extends EventDispatcher implements IBead, IToggleButtonModel, ITextModel
+	public class ToggleButtonModel extends DispatcherBead implements IToggleButtonModel, ITextModel
 	{
 		/**
 		 *  constructor.
@@ -48,22 +46,7 @@ package org.apache.royale.html.beads.models
 		{
 			super();
 		}
-		
-		protected var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		
+
 		private var _text:String;
 		
 		/**

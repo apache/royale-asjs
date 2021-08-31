@@ -30,7 +30,10 @@ import spark.primitives.supportClasses.StrokedElement; */
 import org.apache.royale.events.EventDispatcher;
 import mx.core.mx_internal;
 import mx.graphics.IStroke;
+import mx.graphics.SolidColorStroke;
 import mx.graphics.IFill;
+import mx.core.UIComponent;
+import mx.display.Graphics;
 import org.apache.royale.core.UIBase;
 
 use namespace mx_internal;
@@ -50,7 +53,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class Line extends UIBase
+public class Line extends UIComponent
 { //extends StrokedElement
   //  include "../core/Version.as";
 
@@ -79,12 +82,22 @@ public class Line extends UIBase
     //  Properties
     //
     //--------------------------------------------------------------------------
-    
+    COMPILE::JS{
+	private var _blendMode:String = "auto";
+	public function get blendMode():String
+	{
+		return _blendMode;
+	}
+    public function set blendMode(value:String):void
+	{
+		_blendMode = value;
+	}
+	}
     //----------------------------------
     //  xFrom
     //----------------------------------
 
-    private var _xFrom:Number = 0;
+    private var _xFrom:Number;
     
     [Inspectable(category="General")]
 
@@ -121,7 +134,7 @@ public class Line extends UIBase
     //  xTo
     //----------------------------------
 
-    private var _xTo:Number = 0;
+    private var _xTo:Number;
     
     [Inspectable(category="General")]
 
@@ -158,7 +171,7 @@ public class Line extends UIBase
     //  yFrom
     //----------------------------------
 
-    private var _yFrom:Number = 0;
+    private var _yFrom:Number;
     
     [Inspectable(category="General")]
 
@@ -195,7 +208,7 @@ public class Line extends UIBase
     //  yTo
     //----------------------------------
 
-    private var _yTo:Number = 0;
+    private var _yTo:Number;
     
     [Inspectable(category="General")]
 
@@ -257,13 +270,21 @@ public class Line extends UIBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* override protected function measure():void
+    private var realXFrom:Number;
+    private var realXTo:Number;
+    private var realYFrom:Number;
+    private var realYTo:Number;
+    private var measuredWidth:Number;
+    private var measuredHeight:Number;
+    private var measuredX:Number;
+    private var measuredY:Number;
+    override protected function measure():void
     {
-        measuredWidth = Math.abs(xFrom - xTo);
-        measuredHeight = Math.abs(yFrom - yTo);
-        measuredX = Math.min(xFrom, xTo);
-        measuredY = Math.min(yFrom, yTo);
-    } */
+        measuredWidth = Math.abs(realXFrom - realXTo);
+        measuredHeight = Math.abs(realYFrom - realYTo);
+        measuredX = Math.min(realXFrom, realXTo);
+        measuredY = Math.min(realYFrom, realYTo);
+    }
 
     /**
      * @private 
@@ -294,16 +315,17 @@ public class Line extends UIBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  override protected function draw(g:Graphics):void
+    //  override protected function draw(g:Graphics):void
+    protected function draw(g:Graphics):void
     {
         // Our bounding box is (x1, y1, x2, y2)
-        var x1:Number = measuredX + drawX;
-        var y1:Number = measuredY + drawY;
-        var x2:Number = measuredX + drawX + width;
-        var y2:Number = measuredY + drawY + height;    
+        var x1:Number = measuredX;
+        var y1:Number = measuredY;
+        var x2:Number = measuredX + measuredWidth;
+        var y2:Number = measuredY + measuredHeight;    
         
         // Which way should we draw the line?
-        if ((xFrom <= xTo) == (yFrom <= yTo))
+        if ((realXFrom <= realXTo) == (realYFrom <= realYTo))
         { 
             // top-left to bottom-right
             g.moveTo(x1, y1);
@@ -315,7 +337,7 @@ public class Line extends UIBase
             g.moveTo(x1, y2);
             g.lineTo(x2, y1);
         }
-    } */
+    }
 	
 	
 	
@@ -375,7 +397,67 @@ public class Line extends UIBase
         invalidateParentSizeAndDisplayList(); */
     }
 
-	
-}
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+    
+    override protected function updateDisplayList(unscaledWidth:Number,
+                                                  unscaledHeight:Number):void
+    {
+        super.updateDisplayList(unscaledWidth,unscaledHeight);
+        if (stroke is SolidColorStroke)
+	{
+		var solidColorStroke:SolidColorStroke = stroke as SolidColorStroke;
+		if (!isNaN(_xFrom) && !isNaN(_yFrom) && !isNaN(_xTo) && !isNaN(_yTo) )
+		{
+			realXFrom = _xFrom;
+			realYFrom = _yFrom;
+			realXTo = _xTo;
+			realYTo = _yTo;
+		} else
+		{
+			var hasWidth:Boolean =  !isNaN(unscaledWidth) && unscaledWidth > solidColorStroke.weight;
+			var hasHeight:Boolean =  !isNaN(unscaledHeight) && unscaledHeight > solidColorStroke.weight;
+			if (hasWidth || hasHeight)
+			{
+				var isDiagonal:Boolean = hasWidth && hasHeight;
+				if (isDiagonal)
+				{
+					var isRightDefined:Boolean = (right is String) && (right as String).indexOf(":") > -1;
+					realXFrom = isRightDefined ? 0 : unscaledWidth;
+					realXTo = isRightDefined ? unscaledWidth : 0;
+					realYFrom = 0;
+					realYTo = unscaledHeight;
+				} else
+				{
+					realXFrom = 0;
+					realYFrom = 0;
+					realXTo = hasWidth ? unscaledWidth : 0;
+					realYTo = hasHeight ? unscaledHeight : 0;
+				}
+			} else
+			{
+				return;
+			}
+		}
+		width = Math.max(width, solidColorStroke.weight);
+		height = Math.max(height, solidColorStroke.weight);
+		var g:Graphics = graphics;
+		g.lineStyle(solidColorStroke.weight, solidColorStroke.color, solidColorStroke.alpha);
+		g.clear();
+		measure();
+		draw(g);
+		g.endStroke();
+	}
+    }
 
+}
 }

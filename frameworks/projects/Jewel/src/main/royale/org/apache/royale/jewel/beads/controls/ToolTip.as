@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls
 {
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IPopUpHost;
@@ -43,7 +44,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ToolTip implements IBead, IToolTipBead
+	public class ToolTip extends DispatcherBead implements IBead, IToolTipBead
 	{
 		/**
 		 *  constructor.
@@ -87,6 +88,26 @@ package org.apache.royale.jewel.beads.controls
             _toolTip = value;
 		}
 
+		private var _className:String;
+		/**
+		 *  An optional css class to add to specific tooltips for additional
+		 *  styling via css.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get className():String
+		{
+			return _className;
+		}
+		public function set className(value:String):void
+		{
+			_className = value;
+			if (tt) tt.className = value;
+		}
+
 		/**
 		 *  Sets the tooltip y relative position to one of
 		 *  LEFT, MIDDLE or RIGHT.
@@ -115,8 +136,6 @@ package org.apache.royale.jewel.beads.controls
 			_yPos = pos;
 		}
 
-		private var _strand:IStrand;
-
 		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -126,9 +145,9 @@ package org.apache.royale.jewel.beads.controls
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 
 			//ToolTip in iOS produces a bad behaviour, used in a button and user has to do a second touch to trigger click event
 			if(OSUtils.getOS() != OSUtils.IOS_OS)
@@ -160,6 +179,7 @@ package org.apache.royale.jewel.beads.controls
 			if (tt) host.popUpParent.removeElement(tt);
 
             tt = new ToolTipLabel();
+			if (_className) tt.className = _className;
             tt.html = toolTip;
 
 			// add this before measuring or measurement is not accurate.

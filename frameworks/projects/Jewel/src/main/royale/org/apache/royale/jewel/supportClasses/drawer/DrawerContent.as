@@ -26,7 +26,7 @@ package org.apache.royale.jewel.supportClasses.drawer
 	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The DrawerContent class is a Container component mainly used in Drawer to hold 
+	 *  The DrawerContent class is a container component used in a Drawer to hold 
      *  content like navigation, icons, or text.
 	 *
 	 *  @langversion 3.0

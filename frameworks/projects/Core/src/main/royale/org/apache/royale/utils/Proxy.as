@@ -101,12 +101,8 @@ COMPILE::JS
 public dynamic class Proxy extends EventDispatcher
 {
     /**
-     *  Constructor.
-     * 
-     *  @param delay The number of milliseconds 
-     *  to wait before dispatching the event.
-     *  @param repeatCount The number of times to dispatch
-     *  the event.  If 0, keep dispatching forever.
+     *  The Proxy class calls methods when properties
+     *  are set and read and deleted.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -145,12 +141,13 @@ public dynamic class Proxy extends EventDispatcher
 		return delete valueMap[propName];
     }
 	
-	public function propertyNames():Array
+	public function propertyNames():Object
 	{
-		var names:Array = [];
-		for (var p:String in valueMap)
-			names.push(p);
-		return names;
+//		var names:Array = [];
+//		for (var p:String in valueMap)
+//			names.push(p);
+//		return names;
+		return valueMap;
 	}
 }
 

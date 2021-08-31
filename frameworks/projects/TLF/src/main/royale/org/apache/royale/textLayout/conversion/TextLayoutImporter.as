@@ -30,6 +30,7 @@ package org.apache.royale.textLayout.conversion
 	import org.apache.royale.textLayout.elements.IListElement;
 	import org.apache.royale.textLayout.elements.IListItemElement;
 	import org.apache.royale.textLayout.elements.IParagraphElement;
+	import org.apache.royale.textLayout.elements.ParagraphElement;
 	import org.apache.royale.textLayout.elements.ISpanElement;
 	import org.apache.royale.textLayout.elements.ITableElement;
 	import org.apache.royale.textLayout.elements.InlineGraphicElement;
@@ -76,7 +77,7 @@ package org.apache.royale.textLayout.conversion
 				// elements
 	 			_defaultConfiguration.addIEInfo("TextFlow", TextFlow,        BaseTextLayoutImporter.parseTextFlow,	BaseTextLayoutExporter.exportTextFlow);
 				_defaultConfiguration.addIEInfo("br", BreakElement,          BaseTextLayoutImporter.parseBreak,		BaseTextLayoutExporter.exportFlowElement);
-				_defaultConfiguration.addIEInfo("p", IParagraphElement,       BaseTextLayoutImporter.parsePara,		BaseTextLayoutExporter.exportParagraphFormattedElement);
+				_defaultConfiguration.addIEInfo("p", ParagraphElement,       BaseTextLayoutImporter.parsePara,		BaseTextLayoutExporter.exportParagraphFormattedElement);
 				_defaultConfiguration.addIEInfo("span", SpanElement,         BaseTextLayoutImporter.parseSpan,		BaseTextLayoutExporter.exportSpan);
 				_defaultConfiguration.addIEInfo("tab", TabElement,           BaseTextLayoutImporter.parseTab,		BaseTextLayoutExporter.exportFlowElement);
 				_defaultConfiguration.addIEInfo("list", ListElement,  		 BaseTextLayoutImporter.parseList,		BaseTextLayoutExporter.exportList);

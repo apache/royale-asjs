@@ -48,6 +48,10 @@ package org.apache.royale.svg.beads
 		{
 		}
 		
+		/**
+		 *  @royaleignorecoercion HTMLElement
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
 		COMPILE::JS
 		override protected function sizeChangedHandler(event:Object):void
 		{

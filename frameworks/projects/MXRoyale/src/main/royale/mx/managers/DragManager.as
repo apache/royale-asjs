@@ -79,6 +79,35 @@ public class DragManager
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  Constant that specifies that the type of drag action is "none".
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const NONE:String = "none";
+
+    /**
+     *  Constant that specifies that the type of drag action is "copy".
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const COPY:String = "copy";
+
+    /**
+     *  Constant that specifies that the type of drag action is "move".
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const MOVE:String = "move";
 
     /**
      *  Constant that specifies that the type of drag action is "link".
@@ -86,7 +115,7 @@ public class DragManager
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public static const LINK:String = "link";
     
@@ -97,8 +126,28 @@ public class DragManager
     //  Class properties
     //
     //--------------------------------------------------------------------------
-    
-   
+
+    //----------------------------------
+    //  isDragging
+    //----------------------------------
+
+    /**
+     *  Read-only property that returns <code>true</code>
+     *  if a drag is in progress.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static function get isDragging():Boolean
+    {
+        /*return impl.isDragging;*/
+        //TODO
+        trace("isDragging is not implemented");
+        return false;
+    }
+       
     //--------------------------------------------------------------------------
     //
     //  Class methods
@@ -200,7 +249,26 @@ public class DragManager
 	impl.showFeedback(feedback);
 	*/    
 	}
-    
+        
+    /**
+     *  Returns the current drag and drop feedback.
+     *
+     *  @return  Possible return values are <code>DragManager.COPY</code>, 
+     *  <code>DragManager.MOVE</code>,
+     *  <code>DragManager.LINK</code>, or <code>DragManager.NONE</code>.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static function getFeedback():String
+    {
+        /*return impl.getFeedback();*/
+        //TODO
+        trace("getFeedback is not implemented");
+        return ""
+    }
    
 }
 }

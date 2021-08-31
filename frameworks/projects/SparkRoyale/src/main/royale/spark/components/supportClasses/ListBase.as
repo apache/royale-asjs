@@ -39,18 +39,20 @@ import spark.components.supportClasses.RegExPatterns;
 import spark.events.IndexChangeEvent;
 import spark.events.ListEvent;
 import spark.events.RendererExistenceEvent;
-import spark.layouts.supportClasses.LayoutBase;
-import spark.utils.LabelUtil;*/
+import spark.layouts.supportClasses.LayoutBase;*/
+import spark.utils.LabelUtil;
 import mx.collections.IList;
 import mx.core.IFactory;
 import mx.core.mx_internal;
 
+import org.apache.royale.html.beads.ItemRendererFunctionBead;
 import spark.components.DataGroup;
 import spark.components.SkinnableContainer;
 import spark.components.beads.SparkContainerView;
 import spark.layouts.VerticalLayout;
 
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.events.Event;
@@ -136,6 +138,20 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  */
 //[Event(name="caretChange", type="spark.events.IndexChangeEvent")]
 
+
+/**
+ *  Dispatched when a renderer is added to the container.
+ *  The <code>event.renderer</code> property contains 
+ *  the renderer that was added.
+ *
+ *  @eventType spark.events.RendererExistenceEvent.RENDERER_ADD
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4
+ */
+[Event(name="rendererAdd", type="spark.events.RendererExistenceEvent")] // not implemeneted
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -551,7 +567,50 @@ public class ListBase  extends SkinnableContainer
         factory.createFunction = factory.createFromClass;
         factory.itemRendererFactory = value;
     }
+
+
+    //----------------------------------
+    //  itemRendererFunction
+    //----------------------------------
     
+    [Inspectable(category="Data")]
+    
+    /**
+     *  @copy spark.components.DataGroup#itemRendererFunction
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function get itemRendererFunction():Function
+    {
+
+	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+	if (itemRendererFunctionBead)
+        {
+            return itemRendererFunctionBead.itemRendererFunction;
+        }
+
+        return null;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set itemRendererFunction(value:Function):void
+    {
+	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+        if (!itemRendererFunctionBead)
+        {
+            itemRendererFunctionBead = new ItemRendererFunctionBead();
+            contentView.addBead(itemRendererFunctionBead);
+        }
+        itemRendererFunctionBead.itemRendererFunction = value;
+    }
+
     /**
      *  @private
      */
@@ -687,9 +746,9 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-    /* private var _labelFunction:Function; 
+     private var _labelFunction:Function;
     
-    [Inspectable(category="Data")] */
+    /*[Inspectable(category="Data")] */
     
     /**
      *  A user-supplied function to run on each item to determine its label.  
@@ -713,23 +772,24 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get labelFunction():Function
+    public function get labelFunction():Function
     {
         return _labelFunction;
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  public function set labelFunction(value:Function):void
+    // not implemeneted
+    public function set labelFunction(value:Function):void
     {
         if (value == _labelFunction)
             return;
-            
+
         _labelFunction = value;
-        labelFieldOrFunctionChanged = true;
-        invalidateProperties(); 
-    } */
+        //labelFieldOrFunctionChanged = true;
+        //invalidateProperties(); 
+    }
 
 
     //----------------------------------
@@ -1023,6 +1083,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function get selectedItem():*
     {
+        return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem;
         /* if (_pendingSelectedItem !== undefined)
             return _pendingSelectedItem;
             
@@ -1040,6 +1101,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set selectedItem(value:*):void
     {
+        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem = value;
       //  setSelectedItem(value, false);
     }
 
@@ -1073,7 +1135,7 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-    //private var _useVirtualLayout:Boolean = false;
+    private var _useVirtualLayout:Boolean = false;
     
     /**
      *  Sets the value of the <code>useVirtualLayout</code> property
@@ -1089,10 +1151,10 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get useVirtualLayout():Boolean
+    public function get useVirtualLayout():Boolean
     {
         return (layout) ? layout.useVirtualLayout : _useVirtualLayout;
-    } */
+    }
 
     /**
      *  @private
@@ -1103,7 +1165,7 @@ public class ListBase  extends SkinnableContainer
      *  however in this case, always honoring the layout's useVirtalLayout property seems 
      *  less likely to cause confusion.
      */
-    /* public function set useVirtualLayout(value:Boolean):void
+    public function set useVirtualLayout(value:Boolean):void
     {
         if (value == useVirtualLayout)
             return;
@@ -1111,7 +1173,7 @@ public class ListBase  extends SkinnableContainer
         _useVirtualLayout = value;
         if (layout)
             layout.useVirtualLayout = value;
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -1295,6 +1357,19 @@ public class ListBase  extends SkinnableContainer
         }
     } */
 
+	//dataGroup copied from SkinnableDataContainer
+	/**
+     *  An optional skin part that defines the DataGroup in the skin class 
+     *  where data items get pushed into, rendered, and laid out.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     *  @royalesuppresspublicvarwarning
+     */
+    public var dataGroup:DataGroup;
+
     /**
      *  @private
      */
@@ -1372,11 +1447,11 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* override public function itemToLabel(item:Object):String
+    public function itemToLabel(item:Object):String
     {
         return LabelUtil.itemToLabel(item, labelField, labelFunction);
     }
-     */
+     
     //--------------------------------------------------------------------------
     //
     //  Methods
@@ -2190,6 +2265,10 @@ public class ListBase  extends SkinnableContainer
         super.addedToParent();
         if (requireSelection && selectedIndex == -1)
             selectedIndex = 0;
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("change", redispatcher);
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("itemClick", redispatcher);
+		((view as SparkContainerView).contentView as DataGroup).addEventListener("doubleClick", redispatcher);
+		
         setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
     }
     
@@ -2198,6 +2277,11 @@ public class ListBase  extends SkinnableContainer
         super.setActualSize(w, h);
         ((view as SparkContainerView).contentView as DataGroup).setActualSize(w, h);
     }
+
+	private function redispatcher(event:Event):void
+	{
+		dispatchEvent(new Event(event.type));
+	}
 }
 
 }

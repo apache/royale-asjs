@@ -22,12 +22,12 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-node</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
   </parent>
 
   <groupId>org.apache.royale.examples.node</groupId>
   <artifactId>Node-HelloWorld</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: NodeJS: HelloWorld</name>
@@ -49,4 +49,4 @@
   <dependencies>
   </dependencies>
 
-<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>
+<properties><project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties></project>

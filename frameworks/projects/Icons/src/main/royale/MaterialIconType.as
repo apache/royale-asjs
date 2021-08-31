@@ -1076,6 +1076,8 @@ package
         public static const TRIP_ORIGIN:String = 'trip_origin';
         public static const CHECK_CIRCLE_OUTLINE:String = 'check_circle_outline';
         public static const WORK_OFF:String = 'work_off';
+
         public static const PRINT_DISABLED:String = 'print_disabled';
+        public static const MOBILE_SCREEN:String = 'mobile_screen';
     }
 }

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:vos="vos.*">
+
+    <fx:Style>        
+        .box {
+            background: #666;
+            border-radius: 3px;
+            padding: 12px;
+            color: white;
+        }
+    </fx:Style>
+
+    <j:beads>
+        <js:ApplicationDataBinding/>
+    </j:beads>
+
+    <j:initialView>
+        <j:View>
+            <j:beads>
+                <j:HorizontalCenteredLayout/>
+                <js:Paddings padding="50"/>
+            </j:beads>
+
+            <j:Card width="500">
+                <j:CardHeader>
+                    <html:H3 text="Using TileHorizontalLayout" className="primary-normal"/>
+                </j:CardHeader>
+                
+                <j:CardExpandedContent>
+                    <j:TabBar localId="tabbar" width="100%" selectedIndex="0" sameWidths="true"
+                        itemRenderer="itemRenderers.TabBarVerticalIconItemRenderer">
+                        <js:ArrayList>
+                            <fx:Array>
+                                <vos:TabBarButtonVO label="Tile Container" hash="sec1" icon="{FontAwesome5IconType.TH_LARGE}"/>
+                                <vos:TabBarButtonVO label="Tile DataContainer" hash="sec2" icon="{FontAwesome5IconType.TH_LIST}"/>
+                            </fx:Array>
+                        </js:ArrayList>
+                    </j:TabBar>
+                </j:CardExpandedContent>
+
+                <j:CardPrimaryContent>
+                    <j:TabBarContent selectedContent="{(tabbar.selectedItem as TabBarButtonVO).hash}">
+                        <j:SectionContent name="sec1">
+                            <j:Container width="100%">
+                                <j:beads>
+                                    <j:TileHorizontalLayout localId="thl" verticalGap="6"
+                                        horizontalGap="6" requestedColumnCount="3"/>
+                                </j:beads>
+                                
+                                <html:Div className="box" text="1"/>
+                                <html:Div className="box" text="2"/>
+                                <html:Div className="box" text="3"/>
+                                <html:Div className="box" text="4"/>
+                                <html:Div className="box" text="5"/>
+                                <html:Div className="box" text="6"/>
+                                <html:Div className="box" text="7"/>
+                                <html:Div className="box" text="8"/>
+                                <html:Div className="box" text="9"/>
+                                <html:Div className="box" text="10"/>
+                                <html:Div className="box" text="11"/>
+                                <html:Div className="box" text="12"/>
+
+                            </j:Container>
+                        </j:SectionContent>
+                            
+						<j:SectionContent name="sec2">
+                            <j:DataContainer width="100%" height="250"
+                                itemRenderer="itemRenderers.VerticalIconListItemRenderer">
+                                <j:beads>
+                                    <j:ScrollingViewport/>
+                                    <j:TileHorizontalLayout localId="thll" verticalGap="6"
+                                            horizontalGap="6" columnWidth="130" rowHeight="70"/>
+                                </j:beads>
+
+                                <js:ArrayList>
+                                    <fx:Array>
+                                        <vos:IconListVO label="Ank" icon="{FontAwesome5IconType.ANKH}"/>
+                                        <vos:IconListVO label="Atom" icon="{FontAwesome5IconType.ATOM}"/>
+                                        <vos:IconListVO label="Burn" icon="{FontAwesome5IconType.BURN}"/>
+                                        <vos:IconListVO label="Candy Cane" icon="{FontAwesome5IconType.CANDY_CANE}"/>
+                                        <vos:IconListVO label="Fire" icon="{FontAwesome5IconType.FIRE_ALT}"/>
+                                        <vos:IconListVO label="Duck" icon="{FontAwesome5IconType.DUCK}"/>
+                                        <vos:IconListVO label="Cloud And Moon" icon="{FontAwesome5IconType.CLOUD_MOON}"/>
+                                        <vos:IconListVO label="Europe" icon="{FontAwesome5IconType.GLOBE_EUROPE}"/>
+                                        <vos:IconListVO label="Electric Guitar" icon="{FontAwesome5IconType.GUITAR_ELECTRIC}"/>
+                                        <vos:IconListVO label="Mask" icon="{FontAwesome5IconType.MASK}"/>
+                                        <vos:IconListVO label="Skull" icon="{FontAwesome5IconType.SKULL}"/>
+                                        <vos:IconListVO label="Spider" icon="{FontAwesome5IconType.SPIDER}"/>
+                                    </fx:Array>
+                                </js:ArrayList>
+                                
+                            </j:DataContainer>
+                        </j:SectionContent>
+
+                    </j:TabBarContent>
+                </j:CardPrimaryContent>
+
+                <j:CardActions>
+                    <j:BarSection width="50%">
+                        <j:beads>
+                            <j:VerticalLayout/>
+                        </j:beads>
+                        <j:VGroup>
+							<j:Label text="columnWidth"/>
+							<j:HSlider width="200" value="85" minimum="50" maximum="150" 
+                                    valueChange="tabbar.selectedIndex == 0 ? thl.columnWidth = event.target.value : thll.columnWidth = event.target.value;"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="horizontalGap"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" 
+                                    valueChange="tabbar.selectedIndex == 0 ? thl.horizontalGap = event.target.value : thll.horizontalGap = event.target.value;"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="requestedColumnCount"/>
+							<j:HSlider width="200" value="4" minimum="1" maximum="8" 
+                                    valueChange="tabbar.selectedIndex == 0 ? thl.requestedColumnCount = event.target.value : thll.requestedColumnCount = event.target.value;"/>
+						</j:VGroup>
+                    </j:BarSection>
+                    <j:BarSection width="50%" itemsHorizontalAlign="itemsRight">
+                        <j:beads>
+                            <j:VerticalLayout/>
+                        </j:beads>
+                        <j:VGroup>
+							<j:Label text="rowHeight"/>
+							<j:HSlider width="200" value="60" minimum="50" maximum="150" 
+                                    valueChange="tabbar.selectedIndex == 0 ? thl.rowHeight = event.target.value : thll.rowHeight = event.target.value;"/>
+						</j:VGroup>
+						<j:VGroup>
+							<j:Label text="verticalGap"/>
+							<j:HSlider width="200" value="6" minimum="0" maximum="20" 
+                                    valueChange="tabbar.selectedIndex == 0 ? thl.verticalGap = event.target.value : thll.verticalGap = event.target.value;"/>
+						</j:VGroup>
+                    </j:BarSection>
+                </j:CardActions>
+            </j:Card>
+        </j:View>
+    </j:initialView>
+
+</j:Application>

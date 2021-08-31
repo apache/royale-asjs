@@ -245,7 +245,9 @@ package org.apache.royale.utils
                 loadHandler();
                 
         }
-        
+        /**
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         COMPILE::JS
         protected function loadHandler():void
         {

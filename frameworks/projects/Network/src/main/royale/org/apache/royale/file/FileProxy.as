@@ -70,6 +70,7 @@ package org.apache.royale.file
 
 		/**
 		 *  @copy org.apache.royale.file.IFileModel#lastModified
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */
 		public function get lastModified():uint
 		{
@@ -78,6 +79,7 @@ package org.apache.royale.file
 		
 		/**
 		 *  @copy org.apache.royale.file.IFileModel#name
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */
 		public function get name():String
 		{
@@ -86,6 +88,7 @@ package org.apache.royale.file
 		
 		/**
 		 *  @copy org.apache.royale.file.IFileModel#type
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */
 		public function get type():String
 		{
@@ -94,6 +97,7 @@ package org.apache.royale.file
 
 		/**
 		 *  @copy org.apache.royale.file.IFileModel#size
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */
 		public function get size():Number
 		{
@@ -102,6 +106,7 @@ package org.apache.royale.file
 
 		/**
 		 *  @copy org.apache.royale.file.IFileModel#blob
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */
 		public function get blob():Object
 		{
@@ -110,6 +115,7 @@ package org.apache.royale.file
 
 		/**
 		 *  @copy org.apache.royale.file.IFileModel#fileContent
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
 		 */
 		public function set fileContent(value:BinaryData):void
 		{
@@ -124,7 +130,9 @@ package org.apache.royale.file
 		{
 			return (model as IFileModel).fileReference;
 		}
-
+		/**
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
+		 */
 		COMPILE::JS
 		public function get fileReference():File
 		{
@@ -137,6 +145,9 @@ package org.apache.royale.file
 			(model as IFileModel).fileReference = value;
 		}
 
+		/**
+		 *  @royaleignorecoercion org.apache.royale.file.IFileModel
+		 */
 		COMPILE::JS
 		public function set fileReference(value:File):void
 		{

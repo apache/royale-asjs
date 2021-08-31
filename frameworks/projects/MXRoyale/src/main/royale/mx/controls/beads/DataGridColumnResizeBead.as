@@ -20,7 +20,10 @@ package mx.controls.beads
 {
     import mx.collections.ICollectionView;
     import mx.controls.AdvancedDataGrid;
+
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.controls.dataGridClasses.DataGridColumn;
+    import mx.controls.listClasses.ListBase;
     import mx.core.ScrollPolicy;
     import mx.events.AdvancedDataGridEvent;
     
@@ -62,7 +65,7 @@ package mx.controls.beads
         
         private var _view:org.apache.royale.html.beads.DataGridView;
         
-        private var adg:AdvancedDataGrid;
+        private var gridBase:ListBase;
         
         /**                         	
          *  @copy org.apache.royale.core.IBead#strand
@@ -82,7 +85,7 @@ package mx.controls.beads
             
             IEventDispatcher(_strand).addEventListener("initComplete", handleInitComplete);
 
-            adg = value as AdvancedDataGrid;            
+            gridBase = value as ListBase;
         }
         
         private var _stroke:IStroke;
@@ -138,9 +141,15 @@ package mx.controls.beads
             IEventDispatcher(model).addEventListener("dataProviderChanged", drawLines);
             
             // if the headerText gets changed, the overlay is removed, so re-apply it
-            IEventDispatcher(_header.model).addEventListener("dataProviderChanged", handleInitComplete);
+            IEventDispatcher(_header.model).addEventListener("dataProviderChanged", onHeaderDataProviderChange);
         }
-        
+
+
+        protected function onHeaderDataProviderChange(event:Event):void{
+            if (!_overlay.parent) _header.addElement(_overlay);
+            drawLines(event);
+        }
+
 
         /**
          * This event handler is invoked whenever something happens to the DataGrid. This
@@ -187,8 +196,12 @@ package mx.controls.beads
             
             var firstOne:Boolean = true;
             // draw the verticals
+	    if(columns == null){
+	       return;
+	    }
             for (var i:int=0; i < columns.length; i++) {
-                var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
+                //var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
+                var column:DataGridColumn = columns[i] as DataGridColumn;
                 if (column.visible)
                 {
                     // if a column is visible, don't draw a resize target unless
@@ -245,7 +258,8 @@ package mx.controls.beads
 
             columnIndex = -1;
             for (var i:int=0; i < columns.length - 1; i++) {
-                var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
+                //var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
+                var column:DataGridColumn = columns[i] as DataGridColumn;
                 if (column.visible)
                 {
                     xpos += column.columnWidth;
@@ -304,7 +318,12 @@ package mx.controls.beads
             _overlay.removeEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler, false);
             _header.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, false);
             _header.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false);
-            startX = lastX = event.localX;
+            var localX:Number = event.localX;
+            COMPILE::JS{
+                //adjust for the left scroll position of the underlying header
+                localX -= this._header.element.scrollLeft;
+            }
+            startX = lastX = localX;
         }
 
         /**
@@ -330,6 +349,9 @@ package mx.controls.beads
             }
             _header.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, false);
             _header.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false);
+
+            if (columnIndex == -1)
+                return;
             
             var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
             var columns:Array = sharedModel.columns;
@@ -347,12 +369,12 @@ package mx.controls.beads
             }
             columns[columnIndex].width += deltaWidth;
             columns[columnIndex].columnWidth += deltaWidth;
-            if (adg.horizontalScrollPolicy == ScrollPolicy.OFF)
+            if (gridBase.horizontalScrollPolicy == ScrollPolicy.OFF)
             {
                 columns[columnIndex + 1].columnWidth -= deltaWidth;
                 columns[columnIndex + 1].width -= deltaWidth;
             }
-            adg.dispatchEvent(new Event("layoutNeeded"));
+            gridBase.dispatchEvent(new Event("layoutNeeded"));
             drawLines(null);
         }
         

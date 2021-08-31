@@ -72,8 +72,7 @@ package org.apache.royale.html.accessories
 		{
 			if (!toolTip || tt)
 				return;
-
-			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			listenOnStrand(MouseEvent.MOUSE_OUT, rollOutHandler);
 
 			var comp:IUIBase = _strand as IUIBase
 			host = UIUtils.findPopUpHost(comp);
@@ -93,6 +92,7 @@ package org.apache.royale.html.accessories
 		 * @private
 		 * Determines the position of the toolTip.
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		override protected function determinePosition(event:MouseEvent, base:Object):Point
 		{

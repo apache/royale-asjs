@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-maven-archetypes</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8</version>
   </parent>
 
   <artifactId>royale-simple-library-archetype</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8</version>
   <packaging>maven-archetype</packaging>
 
   <name>Apache Royale: Framework: Archetypes: Simple Royale Library</name>
@@ -37,7 +37,7 @@
       <extension>
         <groupId>org.apache.maven.archetype</groupId>
         <artifactId>archetype-packaging</artifactId>
-        <version>3.0.1</version>
+        <version>3.1.1</version>
       </extension>
     </extensions>
 
@@ -45,10 +45,10 @@
       <plugins>
         <plugin>
           <artifactId>maven-archetype-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.1.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
   </build>
 
-<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>
+<properties><project.build.outputTimestamp>2021-08-27T13:25:31Z</project.build.outputTimestamp></properties></project>

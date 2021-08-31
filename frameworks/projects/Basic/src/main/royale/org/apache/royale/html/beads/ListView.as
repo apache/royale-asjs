@@ -125,19 +125,6 @@ package org.apache.royale.html.beads
 
 		protected var listModel:ISelectionModel;
 
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			super.strand = value;
-		}
 
 		/**
 		 * @private

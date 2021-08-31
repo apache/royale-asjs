@@ -27,17 +27,16 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.events.Event;
 	}
-	COMPILE::JS
+    COMPILE::JS
 	{
-    import org.apache.royale.jewel.ControlBar;	
+    import org.apache.royale.jewel.HGroup;
 	}
     import org.apache.royale.core.IAlertModel;
-    import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.StyledUIBase;
@@ -52,7 +51,6 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.TitleBar;
     import org.apache.royale.jewel.VGroup;
-    import org.apache.royale.jewel.beads.layouts.HorizontalLayout;
     import org.apache.royale.jewel.beads.views.AlertTitleBarView;
 	
 	/**
@@ -135,27 +133,27 @@ package org.apache.royale.jewel.beads.views
 
 			COMPILE::SWF
             {
-                var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
-                var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
-                if (backgroundColor != null || backgroundImage != null)
-                {
-                    loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
-                }
+			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(value, "background-color");
+			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(value, "background-image");
+			if (backgroundColor != null || backgroundImage != null)
+			{
+				loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", value);
+			}
 
-                var borderStyle:String;
-                var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
-                if (borderStyles is Array)
-                {
-                    borderStyle = borderStyles[1];
-                }
-                if (borderStyle == null)
-                {
-                    borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
-                }
-                if (borderStyle != null && borderStyle != "none")
-                {
-                    loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
-                }
+			var borderStyle:String;
+			var borderStyles:Object = ValuesManager.valuesImpl.getValue(value, "border");
+			if (borderStyles is Array)
+			{
+				borderStyle = borderStyles[1];
+			}
+			if (borderStyle == null)
+			{
+				borderStyle = ValuesManager.valuesImpl.getValue(value, "border-style") as String;
+			}
+			if (borderStyle != null && borderStyle != "none")
+			{
+				loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
+			}
             }
 
 			alertModel = (_strand as UIBase).model as IAlertModel;
@@ -167,53 +165,55 @@ package org.apache.royale.jewel.beads.views
 			IParent(_strand).addElement(titleBar);
 
 			// Text
-			label = new Label();
-			label.multiline = true;
-			label.html = alertModel.message ? alertModel.message : "";
+			createContent();
 			
-			content = new VGroup();
-			content.addClass("content");
-			content.addElement(label);
-			IParent(_strand).addElement(content);
-			
-			// ControlBar
+			// controlBar
 			createButtons();
 			IParent(_strand).addElement(controlBar);
 
-			var layout:HorizontalLayout = controlBar.getBeadByType(IBeadLayout) as HorizontalLayout;
-			layout.itemsHorizontalAlign = "itemsRight";
-			layout.gap = 2;
-
 			COMPILE::SWF
             {
-                refreshSize();
+            refreshSize();
             }
 
 			setTimeout(prepareForPopUp,  300);
 		}
 
-		private function prepareForPopUp():void
+		protected function createContent():void
+		{
+			// Text
+			label = new Label();
+			label.multiline = true;
+			label.html = alertModel.message ? alertModel.message : "";
+
+			content = new VGroup();
+			content.addClass("content");
+			content.addElement(label);
+			IParent(_strand).addElement(content);
+		}
+
+		protected function prepareForPopUp():void
         {
 			COMPILE::JS
 			{
-				UIBase(_strand).element.classList.add("open");
+			UIBase(_strand).element.classList.add("open");
 			}
 		}
 
-		private function createButtons():void
+		protected function createButtons():void
 		{
 			COMPILE::SWF
 			{
-				controlBar = new Group();
+			controlBar = new Group();
             }
 
 			COMPILE::JS
 			{
-				controlBar = new ControlBar();
-				
-				// var controlBarLayout:HorizontalLayout = new HorizontalLayout();
-				// controlBar.addBead(controlBarLayout);
-				// controlBarLayout.itemsHorizontalAlign = "itemsSpaceBetween";
+			controlBar = new HGroup();
+			controlBar.className = "controlbar";
+
+			(controlBar as HGroup).itemsHorizontalAlign = "itemsRight";
+			(controlBar as HGroup).gap = 2;
 			}
 
             var flags:uint = alertModel.flags;
@@ -303,7 +303,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleOK(event:MouseEvent):void
+		protected function handleOK(event:MouseEvent):void
 		{
 			// create some custom event where the detail value
 			// is the OK button flag. Do same for other event handlers
@@ -313,7 +313,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleCancel(event:MouseEvent):void
+		protected function handleCancel(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.CANCEL);
 		}
@@ -321,7 +321,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleYes(event:MouseEvent):void
+		protected function handleYes(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.YES);
 		}
@@ -329,7 +329,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleNo(event:MouseEvent):void
+		protected function handleNo(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.NO);
 		}

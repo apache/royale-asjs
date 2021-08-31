@@ -22,7 +22,7 @@
     <description>
         ${description}
     </description>
-    <author email="dev@royale.apache.org" href="http://royale.apache.org">
+    <author email="dev@royale.apache.org" href="https://royale.apache.org">
         Apache Royale Team
     </author>
     <content src="index.html" />

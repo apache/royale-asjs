@@ -18,6 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
+	COMPILE::JS
+	{
+		import org.apache.royale.html.Spinner;
+		import org.apache.royale.html.supportClasses.SpinnerButton;
+		import goog.events;
+		import goog.events.EventType;
+	}
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IRangeModel;
 	import org.apache.royale.core.IStrand;
@@ -29,13 +36,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.beads.ISpinnerView;
   import org.apache.royale.utils.sendStrandEvent;
-    COMPILE::JS
-    {
-        import org.apache.royale.html.Spinner;
-        import org.apache.royale.html.supportClasses.SpinnerButton;
-        import goog.events;
-        import goog.events.EventType;
-    }
+	import org.apache.royale.core.Bead;
 
 	/**
 	 *  The SpinnerMouseController class bead handles mouse events on the
@@ -47,7 +48,7 @@ package org.apache.royale.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class SpinnerMouseController implements IBeadController
+	public class SpinnerMouseController extends Bead implements IBeadController
 	{
 		/**
 		 *  constructor.
@@ -63,8 +64,6 @@ package org.apache.royale.html.beads.controllers
 
 		private var rangeModel:IRangeModel;
 
-		private var _strand:IStrand;
-
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -77,35 +76,35 @@ package org.apache.royale.html.beads.controllers
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 
 			rangeModel = UIBase(value).model as IRangeModel;
 
-            COMPILE::SWF
-            {
-                var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
-                spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
-                spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
-                spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
-                spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
-            }
+			COMPILE::SWF
+			{
+				var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
+				spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
+				spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
+				spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
+				spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
+			}
 
-            COMPILE::JS
-            {
-            	var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
+			COMPILE::JS
+			{
+				var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
 
-                var incrementButton:SpinnerButton = spinnerBead.increment;
-                var decrementButton:SpinnerButton = spinnerBead.decrement;
+				var incrementButton:SpinnerButton = spinnerBead.increment;
+				var decrementButton:SpinnerButton = spinnerBead.decrement;
 
-                goog.events.listen(incrementButton.element, goog.events.EventType.CLICK,
-                    incrementClickHandler);
+				goog.events.listen(incrementButton.element, goog.events.EventType.CLICK,
+					incrementClickHandler);
 
-                goog.events.listen(decrementButton.element, goog.events.EventType.CLICK,
-                    decrementClickHandler);
+				goog.events.listen(decrementButton.element, goog.events.EventType.CLICK,
+					decrementClickHandler);
 
-            }
+			}
 		}
 
 		/**

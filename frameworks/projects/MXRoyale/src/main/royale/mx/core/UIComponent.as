@@ -43,8 +43,14 @@ COMPILE::SWF
 {
 import flash.display.DisplayObject;
 import flash.display.Graphics;
+import flash.display.GradientType;
+}
+COMPILE::JS{
+    import org.apache.royale.core.WrappedHTMLElement;
 }
 import mx.display.Graphics;
+import mx.geom.Matrix;
+import mx.utils.GraphicsUtil;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
 import mx.events.KeyboardEvent;
@@ -65,6 +71,7 @@ import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
+import mx.utils.NameUtil;
 import org.apache.royale.utils.MXMLDataInterpreter;
 use namespace mx_internal;
 
@@ -77,6 +84,7 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
+
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.styles.BorderStyles;
 import org.apache.royale.effects.IEffect;
@@ -89,6 +97,7 @@ import org.apache.royale.geom.Rectangle;
 import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
+import org.apache.royale.reflection.getQualifiedClassName;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -99,6 +108,11 @@ import mx.events.ValidationResultEvent;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import mx.managers.IFocusManagerComponent;
 import mx.events.FocusEvent;
+import mx.styles.CSSStyleDeclaration;
+
+import org.apache.royale.utils.ClassSelectorList;
+import mx.display.NativeMenu;
+import mx.binding.BindingManager;
 
 /**
  *  Set a different class for click events so that
@@ -128,6 +142,12 @@ import mx.events.FocusEvent;
  *  @productversion Flex 3
  */
 [Event(name="show", type="mx.events.FlexEvent")]
+// not implemented
+[Event(name="hide", type="mx.events.FlexEvent")]
+// not implemented
+[Event(name="mouseDownOutside", type="mx.events.FlexMouseEvent")]
+// not implemented
+[Event(name="remove", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when the component has finished its construction
@@ -255,11 +275,70 @@ import mx.events.FocusEvent;
 [Event(name="valueCommit", type="mx.events.FlexEvent")]
 
 
+/**
+ *  Dispatched after the <code>currentState</code> property changes,
+ *  but before the view state changes.
+ * 
+ *  <p>This event is only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.StateChangeEvent.CURRENT_STATE_CHANGING
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="currentStateChange", type="org.apache.royale.events.ValueChangeEvent")]
 
 [Event(name="focusOut", type="mx.events.FocusEvent")]
 
 [Event(name="change", type="org.apache.royale.events.Event")]
 
+/**
+ *  Dispatched when the component has finished its construction
+ *  and has all initialization properties set.
+ *
+ *  <p>After the initialization phase, properties are processed, the component
+ *  is measured, laid out, and drawn, after which the
+ *  <code>creationComplete</code> event is dispatched.</p>
+ * 
+ *  @eventType = mx.events.MouseEvent.CONTEXT_MENU
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="contextMenu", type="mx.events.MouseEvent")]
+
+//--------------------------------------
+//  Tooltip events
+//--------------------------------------
+
+/**
+ *  Dispatched by the component when it is time to create a ToolTip.
+ *
+ *  <p>If you create your own IToolTip object and place a reference
+ *  to it in the <code>toolTip</code> property of the event object
+ *  that is passed to your <code>toolTipCreate</code> handler,
+ *  the ToolTipManager displays your custom ToolTip.
+ *  Otherwise, the ToolTipManager creates an instance of
+ *  <code>ToolTipManager.toolTipClass</code> to display.</p>
+ *
+ *  <p>The sequence of ToolTip events is <code>toolTipStart</code>,
+ *  <code>toolTipCreate</code>, <code>toolTipShow</code>,
+ *  <code>toolTipShown</code>, <code>toolTipHide</code>,
+ *  and <code>toolTipEnd</code>.</p>
+ *
+ *  @eventType mx.events.ToolTipEvent.TOOL_TIP_CREATE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="toolTipCreate", type="mx.events.ToolTipEvent")]
 //--------------------------------------
 //  Drag-and-drop events
 //--------------------------------------
@@ -319,6 +398,24 @@ import mx.events.FocusEvent;
  *  @productversion Flex 3
  */
 [Event(name="dragEnter", type="mx.events.DragEvent")]
+
+/**
+ *  Dispatched by the component when the user drags outside the component,
+ *  but does not drop the data onto the target.
+ *
+ *  <p>You use this event to restore the drop target to its normal appearance
+ *  if you modified its appearance as part of handling the
+ *  <code>dragEnter</code> or <code>dragOver</code> event.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_EXIT
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.8
+ */
+[Event(name="dragExit", type="mx.events.DragEvent")]
+
 /**
  *  Dispatched by the drop target when the user releases the mouse over it.
  *
@@ -336,6 +433,7 @@ import mx.events.FocusEvent;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
+
 [Event(name="dragDrop", type="mx.events.DragEvent")]
 
 /**
@@ -412,6 +510,79 @@ import mx.events.FocusEvent;
 [Event(name="keyUp", type="mx.events.KeyboardEvent")]
 [Event(name="keyDown", type="mx.events.KeyboardEvent")]
 
+
+/**
+ *  Dispatched when the object has moved.
+ *
+ *  <p>You can move the component by setting the <code>x</code>
+ *  or <code>y</code> properties, by calling the <code>move()</code>
+ *  method, by setting one
+ *  of the following properties either on the component or on other
+ *  components such that the LayoutManager needs to change the
+ *  <code>x</code> or <code>y</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>When you call the <code>move()</code> method, the <code>move</code>
+ *  event is dispatched before the method returns.
+ *  In all other situations, the <code>move</code> event is not dispatched
+ *  until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_COMPLETE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragComplete", type="mx.events.DragEvent")]
+
+/**
+ *  Dispatched when the object has moved.
+ *
+ *  <p>You can move the component by setting the <code>x</code>
+ *  or <code>y</code> properties, by calling the <code>move()</code>
+ *  method, by setting one
+ *  of the following properties either on the component or on other
+ *  components such that the LayoutManager needs to change the
+ *  <code>x</code> or <code>y</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>When you call the <code>move()</code> method, the <code>move</code>
+ *  event is dispatched before the method returns.
+ *  In all other situations, the <code>move</code> event is not dispatched
+ *  until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_OVER
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="dragOver", type="mx.events.DragEvent")]
+
 /**
  *  The main color for a component.
  *  
@@ -421,6 +592,45 @@ import mx.events.FocusEvent;
  *  @productversion Flex 4
  */
 [Style(name="chromeColor", type="uint", format="Color", inherit="yes")]
+/**
+ *  Specifies the desired layout direction of a component. The allowed values
+ *  are <code>"ltr"</code> for left-to-right layout, used for 
+ *  components using Latin-style scripts, and <code>"rtl"</code> for
+ *  right-to-left layout, used for components using scripts such
+ *  as Arabic and Hebrew.
+ * 
+ *  <p>In ActionScript you can set the layoutDirection using the values 
+ *  <code>mx.core.LayoutDirection.LTR</code>, 
+ *  <code>mx.core.LayoutDirection.RTL</code> or 
+ *  <code>undefined</code>, to inherit the layoutDirection from the parent.</p>
+ * 
+ *  <p>The layoutDirection should typically be set on the 
+ *  <code>Application</code> rather than on individual components. If the 
+ *  layoutDirection is <code>"rtl"</code>, most visual elements, except text 
+ *  and images, will be mirrored.  The directionality of text is determined 
+ *  by the <code>direction</code> style.</p>
+ * 
+ *  <p>Components which handle Keyboard.LEFT and Keyboard.RIGHT events
+ *  typically swap the key’s meaning when layoutDirection is 
+ *  <code>“rtl”</code>.  In other words, left always means move left and
+ *  right always means move right, regardless of the 
+ *  <code>layoutDirection</code></p>
+ * 
+ *  <p>Note: This style applies to all Spark components and MX components that
+ *  specify UIFTETextField as their textFieldClass.</p> 
+ * 
+ *  @default "ltr"
+ * 
+ *  @see MXFTEText.css
+ *  @see mx.core.ILayoutDirectionElement
+ *  @see mx.core.LayoutDirection
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10
+ *  @playerversion AIR 1.5
+ *  @productversion Flex 4.1
+ */
+[Style(name="layoutDirection", type="String", enumeration="ltr,rtl", inherit="yes")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
@@ -502,11 +712,7 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
     
-    //--------------------------------------------------------------------------
-    //
-    //  Class constants
-    //
-    //--------------------------------------------------------------------------
+    protected static const doTraceNI:Boolean = false;
     
     /**
      *  The default value for the <code>measuredWidth</code> property.
@@ -592,12 +798,44 @@ public class UIComponent extends UIBase
     // When changing this constant, make sure you change
     // the constant with the same name in LayoutElementUIComponentUtils
 
+    private static var sessionId:int;
+
     //--------------------------------------------------------------------------
     //
     //  Class properties
     //
     //--------------------------------------------------------------------------
     
+    //----------------------------------
+    //  showInAutomationHierarchy
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the <code>showInAutomationHierarchy</code> property.
+     */
+    private var _showInAutomationHierarchy:Boolean = true;
+
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get showInAutomationHierarchy():Boolean
+    {
+        return _showInAutomationHierarchy;
+    }
+
+    /**
+     *  @private
+     */
+    public function set showInAutomationHierarchy(value:Boolean):void
+    {
+        _showInAutomationHierarchy = value;
+    }
 	
     //--------------------------------------------------------------------------
     //
@@ -635,6 +873,81 @@ public class UIComponent extends UIBase
             addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
             addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
         }
+    }
+    
+    //----------------------------------
+    //  className
+    //----------------------------------
+
+    /**
+     *  The name of this instance's class, such as <code>"Button"</code>.
+     *
+     *  <p>This string does not include the package name.
+     *  If you need the package name as well, call the
+     *  <code>getQualifiedClassName()</code> method in the flash.utils package.
+     *  It returns a string such as <code>"mx.controls::Button"</code>.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get className():String
+    {
+        return NameUtil.getUnqualifiedClassName(this);
+    }
+    
+    public function executeBindings(recurse:Boolean = false):void
+    {
+	   var bindingsHost:Object = descriptor && descriptor.document ? descriptor.document : parentMxmlDocument;
+       BindingManager.executeBindings(bindingsHost, id, this);
+	   //recurse = false;
+	   //trace("UIComponent.executeBindings is not implemented");
+	   
+    }
+
+
+	//----------------------------------
+	//  descriptor
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the descriptor property.
+     *  This variable is initialized in the construct() method
+     *  using the _descriptor in the initObj, which is set in
+     *  createComponentFromDescriptor().
+     *  If this UIComponent was not created by createComponentFromDescriptor(),
+     *  its 'descriptor' property is null.
+     */
+    mx_internal var _descriptor:UIComponentDescriptor;
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  Reference to the UIComponentDescriptor, if any, that was used
+     *  by the <code>createComponentFromDescriptor()</code> method to create this
+     *  UIComponent instance. If this UIComponent instance
+     *  was not created from a descriptor, this property is null.
+     *
+     *  @see mx.core.UIComponentDescriptor
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get descriptor():UIComponentDescriptor
+    {
+        return _descriptor;
+    }
+
+    /**
+     *  @private
+     */
+    public function set descriptor(value:UIComponentDescriptor):void
+    {
+        _descriptor = value;
     }
 
     //--------------------------------------------------------------------------
@@ -698,6 +1011,22 @@ public class UIComponent extends UIBase
 	
        }
 	
+	
+    public function get layoutDirection():String
+    {
+        return "";
+    }
+    
+   
+    public function set layoutDirection(value:String):void
+    {
+        // Set the value to null to inherit the layoutDirection.
+        if (value == null)
+            setStyle("layoutDirection", undefined);
+        else
+            setStyle("layoutDirection", value);
+    }
+    
 	
     //----------------------------------
     //  initialized
@@ -857,7 +1186,6 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     *  @royaleignorecoercion mx.core.IUIComponent
      */
     COMPILE::JS
     public function get name():String
@@ -965,6 +1293,29 @@ public class UIComponent extends UIBase
         return 2 + lineMetrics.ascent;*/
         return 0;
     }
+	
+	/**
+     *  @private
+     *  This method is called at the beginning of each getter
+     *  for the baselinePosition property.
+     *  If it returns false, the getter should return NaN
+     *  because the baselinePosition can't be computed.
+     *  If it returns true, the getter can do computations
+     *  like textField.y + textField.baselinePosition
+     *  because these properties will be valid.
+     */
+    mx_internal function validateBaselinePosition():Boolean
+    {
+        trace("UIComponent::validateBaselinePosition not implemented");
+
+        return true;
+    }
+	
+	public function notifyStyleChangeInChildren(
+                        styleProp:String, recursive:Boolean):void
+    {
+			trace("UIComponent::notifyStyleChangeInChildren not implemented");
+	}
 
     //--------------------------------------------------------------------------
     //
@@ -1026,6 +1377,19 @@ public class UIComponent extends UIBase
       _accessibilityEnabled = value;
     }
     
+    private var _blocker:Object;
+	
+	public function get blocker():Object
+    {
+        return _blocker;
+    }
+    
+    public function set blocker(value:Object):void
+    {
+      _blocker = value;
+    }
+	
+    private var _useHandCursor:Boolean;
     /**
      *  From flash.display.Sprite
      *
@@ -1038,15 +1402,33 @@ public class UIComponent extends UIBase
     { override }
     public function get useHandCursor():Boolean
     {
-        trace("useHandCursor not implemented");
-        return false;
+	    COMPILE::JS
+	    {
+		    return _useHandCursor;
+	    }
+	    COMPILE::SWF
+	    {
+		trace("useHandCursor not implemented");
+		return false;
+	    }
     }
     
     COMPILE::SWF
     { override }
     public function set useHandCursor(value:Boolean):void
     {
-        trace("useHandCursor not implemented");
+	    COMPILE::JS
+	    {
+		    if (value != _useHandCursor)
+		    {
+			    element.style.cursor = value ? "pointer" : "auto";
+			    _useHandCursor = value;
+		    }
+	    }
+	    COMPILE::SWF
+	    {
+		trace("useHandCursor not implemented");
+	    }
     }
 	
 	 /**
@@ -1275,7 +1657,7 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     *  @royaleignorecoercion mx.core.IUIComponent
+     *  @royaleemitcoercion mx.core.IUIComponent
      */
     public function get owner():IUIComponent
     {
@@ -1813,9 +2195,7 @@ COMPILE::JS
 {
     public function get stage():Object
     {
-        // TODO
-        trace("stage not implemented");
-        return null;
+        return systemManager;
     }
 }
     //--------------------------------------------------------------------------
@@ -2003,10 +2383,16 @@ COMPILE::JS
             initialized = true;
         }
 
-        if (!mxmlDocument && parent is UIComponent)
-            mxmlDocument = UIComponent(parent).mxmlDocument;
-        else if (!mxmlDocument && parent is ContainerContentArea)
-            mxmlDocument = UIComponent(ContainerContentArea(parent).parent).mxmlDocument;
+        if (!mxmlDocument)
+		{
+			var p:IChild = parent as IChild;
+			while (p && !(p is UIComponent))
+			{
+				p = p.parent as IChild;
+			}
+			if (p)
+				mxmlDocument = UIComponent(p).mxmlDocument;
+		}
     }
     
     //----------------------------------
@@ -2237,10 +2623,10 @@ COMPILE::JS
                 oldWidth = this.positioner.style.width;
                 oldLeft = this.positioner.style.left;
                 oldRight = this.positioner.style.right;
-                if (oldWidth.length)
-                    this.positioner.style.width = "";
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     return 0; // this.positioner.style.left = "";
+                if (oldWidth.length)
+                    this.positioner.style.width = "";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
@@ -2250,6 +2636,8 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         if (child) // child is null for TextNodes
                             mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
+                        else
+                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                     }
                 }
                 if (oldWidth.length)
@@ -2312,10 +2700,10 @@ COMPILE::JS
                 oldTop = this.positioner.style.top;
                 oldBottom = this.positioner.style.bottom;
                 oldHeight = this.positioner.style.height;
-                if (oldHeight.length)
-                    this.positioner.style.height = "";
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
                     return 0; //this.positioner.style.top = "";
+                if (oldHeight.length)
+                    this.positioner.style.height = "";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && numChildren > 0)
                 {
@@ -2324,6 +2712,8 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         if (child)
                             mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
+                        else
+                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                     }
                 }
                 if (oldHeight.length)
@@ -3031,6 +3421,14 @@ COMPILE::JS
 
     /**
      *  @private
+     */
+    mx_internal function setIncludeInLayout(value:Boolean):void
+    {
+	_includeInLayout = value;
+    }
+    
+    /**
+     *  @private
      *  Storage for the includeInLayout property.
      */
     private var _includeInLayout:Boolean = true;
@@ -3258,11 +3656,22 @@ COMPILE::JS
     //  styleName
     //----------------------------------
 
+
+    //
+    COMPILE::JS
+    override protected function computeFinalClassNames():String
+    {
+        var computed:String = super.computeFinalClassNames();
+        if (typeof _styleName == 'string') computed += ' ' + _styleName;
+        return  computed;
+    }
+
     /**
      *  @private
      *  Storage for the styleName property.
      */
     private var _styleName:Object /* String, CSSStyleDeclaration, or UIComponent */;
+    private var _classSelectorList:ClassSelectorList; //implementation support for styleName string values
 
     [Inspectable(category="General")]
 
@@ -3297,11 +3706,20 @@ COMPILE::JS
     {
         if (_styleName === value)
             return;
+        if (typeof value == 'string' || !value) {
+            COMPILE::JS{
+                if (_styleName) element.classList.remove(_styleName);
+                _styleName = value;
+                if (value) element.classList.add(value)
+            }
+            COMPILE::SWF{
+                trace("styleName not yet implemented for string assignments");
+            }
+        } else {
+            // TODO
+            trace("styleName not implemented for non-string assignments");
+        }
 
-        _styleName = value;
-
-        // TODO
-        trace("styleName not implemented");
     }
 
     //----------------------------------
@@ -3508,6 +3926,36 @@ COMPILE::JS
     {
         return numElements;
     }
+
+    /**
+     *  @copy org.apache.royale.core.IParent#numElements
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
+    override public function get numElements():int
+    {
+        COMPILE::SWF
+        {
+            return super.numElements;
+        }
+        COMPILE::JS
+        {
+            var arr:Array = internalChildren();
+			var n:int = arr.length;
+			var num:int = 0;
+			for (var i:int = 0; i < n; i++)
+			{
+				if ((arr[i] as WrappedHTMLElement).royale_wrapper)
+					num++;
+			}
+			return num;
+        }
+    }
+
     
     /**
      *  @private
@@ -3517,7 +3965,7 @@ COMPILE::JS
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
-        trace("setChildIndex not implemented");
+        if (doTraceNI) trace("setChildIndex not implemented");
     }
 
     /**
@@ -3799,7 +4247,7 @@ COMPILE::JS
      */
     public function invalidateProperties():void
     {
-        trace("invalidateProperties not implemented");
+        if (doTraceNI) trace("invalidateProperties not implemented");
     }
 
     /**
@@ -3845,7 +4293,7 @@ COMPILE::JS
      */
     protected function invalidateParentSizeAndDisplayList():void
     {
-        trace("invalidateParentSizeAndDisplayList not implemented");
+        if (doTraceNI) trace("invalidateParentSizeAndDisplayList not implemented");
     }
 
     protected var invalidateDisplayListFlag:Boolean = false;
@@ -3874,7 +4322,7 @@ COMPILE::JS
      */
     public function invalidateDisplayList():void
     {
-        trace("invalidateDisplayList not implemented");
+        if (doTraceNI) trace("invalidateDisplayList not implemented");
         invalidateDisplayListFlag = true;
     }
 
@@ -4097,7 +4545,7 @@ COMPILE::JS
      */
     protected function commitProperties():void
     {
-        trace("commitProperties not implemented");
+        if (doTraceNI) trace("commitProperties not implemented");
     }
 
     //--------------------------------------------------------------------------
@@ -4114,9 +4562,239 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+	mx_internal var invalidateSizeFlag:Boolean = false;
     public function validateSize(recursive:Boolean = false):void
     {
-        trace("validateSize not implemented");
+        //trace("validateSize not implemented");
+		if (recursive)
+        {
+            for (var i:int = 0; i < numChildren; i++)
+            {
+                //var child:DisplayObject = getChildAt(i);
+                var child:IUIComponent = getChildAt(i);
+                if (child is ILayoutManagerClient )
+                    (child as ILayoutManagerClient ).validateSize(true);
+            }
+        }
+
+        if (invalidateSizeFlag)
+        {
+            var sizeChanging:Boolean = measureSizes();
+
+            if (sizeChanging && includeInLayout)
+            {
+                // TODO (egeorgie): we don't need this invalidateDisplayList() here
+                // because we'll call it if the parent sets new actual size?
+                invalidateDisplayList();
+                invalidateParentSizeAndDisplayList();
+            }
+        }
+    }
+	
+	protected function canSkipMeasurement():Boolean
+    {
+        // We can skip the measure function if the object's width and height
+        // have been explicitly specified (e.g.: the object's MXML tag has
+        // attributes like width="50" and height="100").
+        //
+        // If an object's width and height have been explicitly specified,
+        // then the explicitWidth and explicitHeight properties contain
+        // Numbers (as opposed to NaN)
+        return !isNaN(explicitWidth) && !isNaN(explicitHeight);
+    }
+	
+	/**
+     *  @private
+     *  Holds the last recorded value of the scaleX property.
+     */
+    private var oldScaleX:Number = 1.0;
+
+    /**
+     *  @private
+     *  Holds the last recorded value of the scaleY property.
+     */
+    private var oldScaleY:Number = 1.0;
+	
+	mx_internal function adjustSizesForScaleChanges():void
+    {
+        var xScale:Number = scaleX;
+        var yScale:Number = scaleY;
+
+        var scalingFactor:Number;
+
+        if (xScale != oldScaleX)
+        {
+            if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
+            {
+                scalingFactor = Math.abs(xScale / oldScaleX);
+
+                if (explicitMinWidth)
+                    explicitMinWidth *= scalingFactor;
+
+                if (!isNaN(explicitWidth))
+                    explicitWidth *= scalingFactor;
+
+                if (explicitMaxWidth)
+                    explicitMaxWidth *= scalingFactor;
+            }
+
+            oldScaleX = xScale;
+        }
+
+        if (yScale != oldScaleY)
+        {
+            if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
+            {
+                scalingFactor = Math.abs(yScale / oldScaleY);
+
+                if (explicitMinHeight)
+                    explicitMinHeight *= scalingFactor;
+
+                if (explicitHeight)
+                    explicitHeight *= scalingFactor;
+
+                if (explicitMaxHeight)
+                    explicitMaxHeight *= scalingFactor;
+            }
+
+            oldScaleY = yScale;
+        }
+    }
+	
+	 mx_internal function measureSizes():Boolean
+    {
+        var changed:Boolean = false;
+
+        if (!invalidateSizeFlag)
+            return changed;
+
+        var scalingFactor:Number;
+        var newValue:Number;
+
+        if (canSkipMeasurement())
+        {
+            invalidateSizeFlag = false;
+            _measuredMinWidth = 0;
+            _measuredMinHeight = 0;
+        }
+        else
+        {
+            var xScale:Number = Math.abs(scaleX);
+            var yScale:Number = Math.abs(scaleY);
+
+            if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
+            {
+                if (xScale != 1.0)
+                {
+                    _measuredMinWidth /= xScale;
+                    _measuredWidth /= xScale;
+                }
+
+                if (yScale != 1.0)
+                {
+                    _measuredMinHeight /= yScale;
+                    _measuredHeight /= yScale;
+                }
+            }
+
+            measure();
+
+            invalidateSizeFlag = false;
+
+            if (!isNaN(explicitMinWidth) && measuredWidth < explicitMinWidth)
+                measuredWidth = explicitMinWidth;
+
+            if (!isNaN(explicitMaxWidth) && measuredWidth > explicitMaxWidth)
+                measuredWidth = explicitMaxWidth;
+
+            if (!isNaN(explicitMinHeight) && measuredHeight < explicitMinHeight)
+                measuredHeight = explicitMinHeight;
+
+            if (!isNaN(explicitMaxHeight) && measuredHeight > explicitMaxHeight)
+                measuredHeight = explicitMaxHeight;
+
+            if (FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0)
+            {
+                if (xScale != 1.0)
+                {
+                    _measuredMinWidth *= xScale;
+                    _measuredWidth *= xScale;
+                }
+
+                if (yScale != 1.0)
+                {
+                    _measuredMinHeight *= yScale;
+                    _measuredHeight *= yScale;
+                }
+            }
+        }
+
+        adjustSizesForScaleChanges();
+
+        if (isNaN(oldMinWidth))
+        {
+            // This branch does the same thing as the else branch,
+            // but it is optimized for the first time that
+            // measureSizes() is called on this object.
+            oldMinWidth = !isNaN(explicitMinWidth) ?
+                          explicitMinWidth :
+                          measuredMinWidth;
+
+            oldMinHeight = !isNaN(explicitMinHeight) ?
+                           explicitMinHeight :
+                           measuredMinHeight;
+
+            oldExplicitWidth = !isNaN(explicitWidth) ?
+                                explicitWidth :
+                                measuredWidth;
+
+            oldExplicitHeight = !isNaN(explicitHeight) ?
+                                 explicitHeight :
+                                 measuredHeight;
+
+            changed = true;
+        }
+        else
+        {
+            newValue = !isNaN(explicitMinWidth) ?
+                        explicitMinWidth :
+                        measuredMinWidth;
+            if (newValue != oldMinWidth)
+            {
+                oldMinWidth = newValue;
+                changed = true;
+            }
+
+            newValue = !isNaN(explicitMinHeight) ?
+                       explicitMinHeight :
+                       measuredMinHeight;
+            if (newValue != oldMinHeight)
+            {
+                oldMinHeight = newValue;
+                changed = true;
+            }
+
+            newValue = !isNaN(explicitWidth) ?
+                       explicitWidth :
+                       measuredWidth;
+            if (newValue != oldExplicitWidth)
+            {
+                oldExplicitWidth = newValue;
+                changed = true;
+            }
+
+            newValue = !isNaN(explicitHeight) ?
+                       explicitHeight :
+                       measuredHeight;
+            if (newValue != oldExplicitHeight)
+            {
+                oldExplicitHeight = newValue;
+                changed = true;
+            }
+
+        }
+
+        return changed;
     }
 
     /**
@@ -4389,7 +5067,7 @@ COMPILE::JS
     protected function updateDisplayList(unscaledWidth:Number,
                                         unscaledHeight:Number):void
     {
-        trace("updateDisplayList not implemented");  
+        if (doTraceNI) trace("updateDisplayList not implemented");  
         invalidateDisplayListFlag = false;
     }
 
@@ -4735,12 +5413,11 @@ COMPILE::JS
      */
     public function get fontFamily():Object
     {
-        trace("fontFamily not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "fontFamily");
     }
     public function set fontFamily(value:Object):void
     {
-        trace("fontFamily not implemented");
+        setStyle("fontFamily", value);
     }
 	[Inspectable(category="General")]
 	
@@ -4754,7 +5431,16 @@ COMPILE::JS
     public function get uid():String
     {
         if (!_uid)
-            _uid = toString();
+        {
+            COMPILE::SWF
+            {
+                _uid = toString();
+            }
+            COMPILE::JS // toString() doesn't give a unique id, a static var will at least be good for a session
+            {
+                _uid = "session_id" + sessionId++;
+            }
+        }
 
         return _uid;
     }
@@ -5062,7 +5748,7 @@ COMPILE::JS
     {//            trace("getStyle not implemented");
 //        return 0;
 		var value:* = ValuesManager.valuesImpl.getValue(this,styleProp);
-        if (value === undefined && typeof(_styleName) === "object")
+        if (value === undefined && _styleName != null && typeof(_styleName) === "object")
             value = styleName.getStyle(styleProp);
             
 //		if (!value) value = 0;
@@ -5265,7 +5951,7 @@ COMPILE::JS
                 } 
                 else 
                 {
-                    positioner.style.visibility = null;
+                    positioner.style.visibility = '';
                 }
             }
         }
@@ -6060,8 +6746,6 @@ COMPILE::JS
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
-     *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-     *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
      */
     override public function get topMostEventDispatcher():IEventDispatcher
     {
@@ -6088,6 +6772,22 @@ COMPILE::JS
         super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
     }
 
+    private var _render:Object
+
+    public function get render():Object
+    {
+        //To Do
+        trace("render is not implemented");
+        return _render;
+    }
+
+    public function set render(value:Object):void
+    {
+        _render = value;
+        //To Do
+        trace("render is not implemented");
+    }
+
     [Bindable("visibleChanged")]
     COMPILE::JS
     override public function get visible():Boolean
@@ -6111,11 +6811,305 @@ COMPILE::JS
             } 
             else 
             {
-                positioner.style.visibility = null;
+                positioner.style.visibility = '';
                 dispatchEvent(new Event('show'));
             }
             dispatchEvent(new Event('visibleChanged'));
         }
+    }
+    
+    //In Flex smoothBitmapContent was in SWFLoader and Image extends SWFLoader extends UIComponent,In Royale Image extends UIComponent So i added smoothBitmapContent in UIComponent
+
+    //----------------------------------
+    //  smoothBitmapContent
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the smoothBitmapContent property.
+     */
+	private var smoothBitmapContentChanged:Boolean = false;
+    private var _smoothBitmapContent:Boolean = false;
+    
+    [Bindable("smoothBitmapContentChanged")]
+    [Inspectable(category="General", defaultValue="false")]
+    
+    /**
+     *  A flag that indicates whether to smooth the content when it
+     *  is scaled. Only Bitmap content can be smoothed.
+     *  If <code>true</code>, and the content is a Bitmap then smoothing property 
+     *  of the content is set to <code>true</code>. 
+     *  If <code>false</code>, the content isn't smoothed. 
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get smoothBitmapContent():Boolean
+    {
+        return _smoothBitmapContent;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set smoothBitmapContent(value:Boolean):void
+    {
+        if (_smoothBitmapContent != value)
+        {
+            _smoothBitmapContent = value;
+            
+            smoothBitmapContentChanged = true;
+            invalidateDisplayList();
+        }
+        
+        dispatchEvent(new Event("smoothBitmapContentChanged"));
+    }
+    public function drawRoundRect(x:Number, y:Number, w:Number, h:Number,
+                                  r:Object = null, c:Object = null,
+                                  alpha:Object = null, rot:Object = null,
+                                  gradient:String = null, ratios:Array = null,
+                                  hole:Object = null):void
+    {
+        var g:mx.display.Graphics = graphics;
+
+        // Quick exit if w or h is zero. This happens when scaling a component
+        // to a very small value, which then gets rounded to 0.
+        if (!w || !h)
+            return;
+
+        // If color is an object then allow for complex fills.
+        if (c !== null)
+        {
+            if (c is Array)
+            {
+                var alphas:Array;
+
+                if (alpha is Array)
+                    alphas = alpha as Array;
+                else
+                    alphas = [ alpha, alpha ];
+
+                if (!ratios)
+                    ratios = [ 0, 0xFF ];
+
+                var matrix:mx.geom.Matrix = null;
+
+                if (rot)
+                {
+                    if (rot is Matrix)
+                    {
+                        matrix = Matrix(rot);
+                    }
+                    else
+                    {
+                        matrix = new Matrix();
+
+                        if (rot is Number)
+                        {
+                            matrix.createGradientBox(
+                                w, h, Number(rot) * Math.PI / 180, x, y);
+                        }
+                        else
+                        {
+                            matrix.createGradientBox(
+                                rot.w, rot.h, rot.r, rot.x, rot.y);
+                        }
+                    }
+                }
+                
+				COMPILE::SWF {
+					if (gradient == GradientType.RADIAL)
+					{
+						g.beginGradientFill(GradientType.RADIAL,
+											c as Array, alphas, ratios, matrix);
+					}
+					else
+					{
+						g.beginGradientFill(GradientType.LINEAR,
+											c as Array, alphas, ratios, matrix);
+					}
+				}
+            }
+            else
+            {
+                g.beginFill(Number(c), Number(alpha));
+            }
+        }
+
+        var ellipseSize:Number;
+
+        // Stroke the rectangle.
+        if (!r)
+        {
+            g.drawRect(x, y, w, h);
+        }
+        else if (r is Number)
+        {
+            ellipseSize = Number(r) * 2;
+            g.drawRoundRect(x, y, w, h, ellipseSize, ellipseSize);
+        }
+        else
+        {
+            GraphicsUtil.drawRoundRectComplex(g, x, y, w, h, r.tl, r.tr, r.bl, r.br);
+        }
+
+        // Carve a rectangular hole out of the middle of the rounded rect.
+        if (hole)
+        {
+            var holeR:Object = hole.r;
+            if (holeR is Number)
+            {
+                ellipseSize = Number(holeR) * 2;
+                g.drawRoundRect(hole.x, hole.y, hole.w, hole.h,
+                                ellipseSize, ellipseSize);
+            }
+            else
+            {
+                GraphicsUtil.drawRoundRectComplex(g, hole.x, hole.y, hole.w, hole.h,
+                                       holeR.tl, holeR.tr, holeR.bl, holeR.br);
+            }
+        }
+
+        if (c !== null)
+            g.endFill();
+    }
+    
+    //----------------------------------
+    //  styleDeclaration
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the styleDeclaration property.
+     */
+    private var _styleDeclaration:CSSStyleDeclaration;
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  Storage for the inline inheriting styles on this object.
+     *  This CSSStyleDeclaration is created the first time that
+     *  the <code>setStyle()</code> method
+     *  is called on this component to set an inheriting style.
+     *  Developers typically never need to access this property directly.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get styleDeclaration():CSSStyleDeclaration
+    {
+        return _styleDeclaration;
+    }
+
+    /**
+     *  @private
+     */
+    public function set styleDeclaration(value:CSSStyleDeclaration):void
+    {
+        _styleDeclaration = value;
+    }
+
+    [Bindable] public var _contextMenu:NativeMenu
+
+	COMPILE::JS {
+		public function get contextMenu():NativeMenu {
+			return _contextMenu;
+		}
+		public function set contextMenu(value:NativeMenu):void {
+		   _contextMenu = value
+		}
+	}
+	
+	
+	public function drawFocus(isFocused:Boolean):void
+    {
+        // Gets called by removeChild() after un-parented.
+    /*    if (!parent)
+            return;
+
+        var focusObj:DisplayObject = getFocusObject();
+        var focusPane:Sprite = focusManager ? focusManager.focusPane : null;
+
+        if (isFocused && !preventDrawFocus) //&& !isEffectStarted
+        {
+            var focusOwner:DisplayObjectContainer = focusPane.parent;
+
+            if (focusOwner != parent)
+            {
+                if (focusOwner)
+                {
+                    if (focusOwner is ISystemManager)
+                        ISystemManager(focusOwner).focusPane = null;
+                    else
+                        IUIComponent(focusOwner).focusPane = null;
+                }
+                if (parent is ISystemManager)
+                    ISystemManager(parent).focusPane = focusPane;
+                else
+                    IUIComponent(parent).focusPane = focusPane;
+            }
+
+            var focusClass:Class = getStyle("focusSkin");
+
+            if (!focusClass)
+                return;
+
+            if (focusObj && !(focusObj is focusClass))
+            {
+                focusPane.removeChild(focusObj);
+                focusObj = null;
+            }
+
+            if (!focusObj)
+            {
+                focusObj = new focusClass();
+                
+                focusObj.name = "focus";
+
+                focusPane.addChild(focusObj);
+            }
+
+            if (focusObj is ILayoutManagerClient )
+                ILayoutManagerClient (focusObj).nestLevel = nestLevel;
+
+            if (focusObj is ISimpleStyleClient)
+                ISimpleStyleClient(focusObj).styleName = this;
+
+            addEventListener(MoveEvent.MOVE, focusObj_moveHandler, true);
+            addEventListener(MoveEvent.MOVE, focusObj_moveHandler);
+            addEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler, true);
+            addEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler);
+            addEventListener(Event.REMOVED, focusObj_removedHandler, true);
+
+            focusObj.visible = true;
+            hasFocusRect = true;
+
+            adjustFocusRect();
+        }
+        else if (hasFocusRect)
+        {
+            hasFocusRect = false;
+
+            if (focusObj)
+            {
+                focusObj.visible = false;
+                
+                if (focusObj is ISimpleStyleClient)
+                  ISimpleStyleClient(focusObj).styleName = null;
+            }
+
+            removeEventListener(MoveEvent.MOVE, focusObj_moveHandler);
+            removeEventListener(MoveEvent.MOVE, focusObj_moveHandler, true);
+            removeEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler, true);
+            removeEventListener(ResizeEvent.RESIZE, focusObj_resizeHandler);
+            removeEventListener(Event.REMOVED, focusObj_removedHandler, true);
+        }  */
     }
 
 }

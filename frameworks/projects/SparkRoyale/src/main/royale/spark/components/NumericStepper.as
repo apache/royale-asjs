@@ -30,6 +30,7 @@ import flash.events.KeyboardEvent; */
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
 import mx.managers.IFocusManagerComponent;
+import spark.components.TextInput;
 
 //import spark.formatters.NumberFormatter;
 import spark.components.supportClasses.Range; 
@@ -313,6 +314,17 @@ public class NumericStepper extends Range
      *  @productversion Flex 4
      */
     //public var textDisplay:TextInput;
+    private var _textDisplay:TextInput;
+    public function get textDisplay():TextInput
+	{
+		// not implemented - TODO create spark view that has an accessible text input
+		if (!_textDisplay)
+		{
+			_textDisplay = new TextInput();
+		}
+		return _textDisplay;
+	}
+
 
     //--------------------------------------------------------------------------
     //

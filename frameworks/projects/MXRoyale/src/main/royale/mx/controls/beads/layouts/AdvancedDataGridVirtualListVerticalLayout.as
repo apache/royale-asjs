@@ -36,7 +36,8 @@ package mx.controls.beads.layouts
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.html.beads.VirtualDataContainerView;
 
-	
+    import mx.controls.beads.models.DataGridPresentationModel;
+
     COMPILE::SWF {
         import org.apache.royale.geom.Size;
     }
@@ -69,11 +70,12 @@ package mx.controls.beads.layouts
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
-            dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+            (IStrandWithPresentationModel(value).presentationModel as DataGridPresentationModel).virtualized = true;
         }
         
-        private function dataProviderChangeHandler(event:Event):void
+        override protected function dataProviderChangeHandler(event:Event):void
         {
+            super.dataProviderChangeHandler(event);
             var factory:IDataProviderVirtualItemRendererMapper = host.getBeadByType(IDataProviderVirtualItemRendererMapper) as IDataProviderVirtualItemRendererMapper;
             while (visibleIndexes.length)
             {
@@ -120,7 +122,7 @@ package mx.controls.beads.layouts
                         return true;
                     }
                     var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
-                    var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
+                    var widthSizedToContent:Boolean = host.isWidthSizedToContent();
                     var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
                     var hostWidth:Number = host.width;
                     var hostHeight:Number = host.height;
@@ -233,6 +235,7 @@ package mx.controls.beads.layouts
                 }
                 COMPILE::JS
                 {
+                    var hostWidth:Number = host.width;
                     // the strategy for virtualization in JS is to leverage the built-in scrollbars
                     // by creating a topSpacer and bottomSpacer that take up the area that is offscreen
                     // so the scrollbars have the right metrics, then create enough renderers to
@@ -258,7 +261,7 @@ package mx.controls.beads.layouts
                         var topValue:Number = parseFloat(top.substring(0, c));
                         if (topValue < 0)
                         {
-                            trace(host.element.style.top);
+                            //trace(host.element.style.top);
                             host.element.style.top = "1px";                            
                         }
                     }
@@ -336,12 +339,14 @@ package mx.controls.beads.layouts
                             // same list/datagroup, but for ADG, the padding is outside of the lists
                             ir  = factory.getItemRendererForIndex(i, i - startIndex);
                             ir.element.style.display = "block";
+							(ir as IUIBase).width = hostWidth;
                             visibleIndexes.push(i);
                         }
                         else if (i > lastIndex)
                         {
                             ir  = factory.getItemRendererForIndex(i, i - startIndex);
                             ir.element.style.display = "block";
+							(ir as IUIBase).width = hostWidth;
                             visibleIndexes.push(i);
                         }
                     }

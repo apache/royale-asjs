@@ -789,6 +789,26 @@ public class Label extends UIComponent
 		return element;
 	}
 	
+    //----------------------------------
+    //  truncateToFit
+    //----------------------------------
+
+    /**
+     *  If this propery is <code>true</code>, and the Label control size is
+     *  smaller than its text, the text of the 
+     *  Label control is truncated using 
+     *  a localizable string, such as <code>"..."</code>.
+     *  If this property is <code>false</code>, text that does not fit is clipped.
+     * 
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public var truncateToFit:Boolean = true;
+	
 
     //--------------------------------------------------------------------------
     //

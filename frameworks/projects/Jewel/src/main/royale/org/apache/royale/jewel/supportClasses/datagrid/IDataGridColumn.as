@@ -22,7 +22,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 	import org.apache.royale.jewel.supportClasses.table.ITableColumn;
 
 	/**
-	 *  Jewel IDataGridColumn is the interface used by Jewel DataGridColumn in the Jewel DataGrid.
+	 *  Jewel IDataGridColumn is the interface used by components that define a column for data grid type components.
 	 * 
 	 *  Define which renderer to use for each cell in the column, and other optional data like
 	 *  the width, the label (used in header), and the name of the field in the data containing the value to display 
@@ -30,15 +30,6 @@ package org.apache.royale.jewel.supportClasses.datagrid
 	 */
 	public interface IDataGridColumn extends ITableColumn
 	{	
-		/**
-		 *  Returns a new instance of a UIBase component to be used as the actual
-		 *  column in the grid.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		function createColumn():IStyledUIBase;
+		
 	}
 }

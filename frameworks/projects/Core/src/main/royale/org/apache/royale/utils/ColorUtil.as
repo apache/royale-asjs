@@ -20,6 +20,8 @@
 package org.apache.royale.utils
 {
 	
+	import org.apache.royale.utils.number.pinValue;
+
 	/**
 	 *  The ColorUtil class is an all-static class
 	 *  with methods for working with RGB colors within Royale.
@@ -65,9 +67,9 @@ package org.apache.royale.utils
 		 */
 		public static function adjustBrightness(rgb:uint, brite:Number):uint
 		{
-			var r:Number = Math.max(Math.min(((rgb >> 16) & 0xFF) + brite, 255), 0);
-			var g:Number = Math.max(Math.min(((rgb >> 8) & 0xFF) + brite, 255), 0);
-			var b:Number = Math.max(Math.min((rgb & 0xFF) + brite, 255), 0);
+			var r:Number = pinValue(((rgb >> 16) & 0xFF) + brite, 0, 255);
+			var g:Number = pinValue(((rgb >> 8) & 0xFF) + brite, 0, 255);
+			var b:Number = pinValue((rgb & 0xFF) + brite, 0, 255);
 			
 			return (r << 16) | (g << 8) | b;
 		} 

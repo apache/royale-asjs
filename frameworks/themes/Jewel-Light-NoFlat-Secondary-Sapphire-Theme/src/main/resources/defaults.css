@@ -137,6 +137,10 @@
   background: #2767a9;
 }
 
+.jewel.loader.secondary.segment {
+  border-top-color: #2C74BE;
+}
+
 .jewel.snackbar.secondary .jewel.snackbar-content {
   background: linear-gradient(#3481d0, #2767a9);
   border: 1px solid #1e4e80;

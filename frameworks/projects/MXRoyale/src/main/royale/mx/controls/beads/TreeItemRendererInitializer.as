@@ -31,6 +31,7 @@ package mx.controls.beads
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
     import mx.controls.treeClasses.TreeListData;
+    import mx.controls.listClasses.ListBase;
     
 	/**
 	 *  The TreeItemRendererInitializer class initializes item renderers
@@ -72,11 +73,11 @@ package mx.controls.beads
             var hasChildren:Boolean = treeData.hasChildren(data);
             
             // Set the listData with the depth of this item
-            var treeListData:TreeListData = new TreeListData();
+            var treeListData:TreeListData = new TreeListData("", "", _strand as ListBase);
             treeListData.depth = depth;
             treeListData.isOpen = isOpen;
             treeListData.hasChildren = hasChildren;
-            treeListData.owner = _strand;
+	    treeListData.item = data;
             
             (ir as IListDataItemRenderer).listData = treeListData;
             

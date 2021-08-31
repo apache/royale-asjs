@@ -117,6 +117,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion Array
+		 *  @royaleignorecoercion org.apache.royale.collections.TreeData
 		 */
 		override public function acceptingDrop(dropTarget:Object, type:String):void
 		{

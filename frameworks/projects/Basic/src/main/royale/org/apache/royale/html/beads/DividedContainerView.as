@@ -30,6 +30,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DividedContainerDivider;
 	import org.apache.royale.html.supportClasses.IDividedContainerDivider;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 * The DividedContainerView class is responsible for generating the
@@ -41,7 +43,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class DividedContainerView implements IBeadView
+	public class DividedContainerView extends BeadViewBase
 	{
 		/**
 		 * Constructor.
@@ -55,25 +57,16 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		private var _strand:IStrand;
 
 		/**
 		 * @copy org.apache.royale.core.IStrand#strand
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
-			(_strand as IEventDispatcher).addEventListener("childrenAdded", handleChildrenAdded);
+			listenOnStrand("childrenAdded", handleChildrenAdded);
 			(_strand as UIBase).model.addEventListener("pairAdjustmentChanged", handlePairAdjustmentChanged);
-		}
-
-		/**
-		 * @private
-		 */
-		public function get host():IUIBase
-		{
-			return _strand as IUIBase;
 		}
 
 		/**
@@ -105,8 +98,7 @@ package org.apache.royale.html.beads
 			}
 
 			((host as UIBase).model as DividedContainerModel).pairAdjustments = adjustments;
-
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 
 		/**
@@ -114,7 +106,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handlePairAdjustmentChanged(event:Event):void
 		{
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 	}
 }

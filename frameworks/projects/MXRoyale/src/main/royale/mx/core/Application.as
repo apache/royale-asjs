@@ -315,7 +315,6 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		
 		this.valuesImpl = new AllCSSValuesImpl();
 		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
-		addBead(new ApplicationLayout());
         addBead(new ClassAliasBead());
 
         instanceParent = this;
@@ -456,6 +455,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         //addBead(new MixinManager());  should now be handled by SystemManager
         
 		this.initManagers();
+		
+        _url = loaderInfo.url;
 
         dispatchEvent(new FlexEvent("applicationComplete"));
     }
@@ -640,6 +641,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         ElementWrapper.converterMap["FocusEvent"] = FocusEventConverter.convert;
         addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
         
+        _url = document.URL;
+
         initManagers();
         
 //		if (initialView)

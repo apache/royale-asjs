@@ -21,6 +21,7 @@
 
 <componentPackage>
 
+    <component id="BrowserResizeListener" class="org.apache.royale.core.BrowserResizeListener"/>
     <component id="Application" class="org.apache.royale.core.Application"/>
     <component id="AirApplication" class="org.apache.royale.core.AirApplication"/>
     <component id="View" class="org.apache.royale.core.View"/>
@@ -114,7 +115,7 @@
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
-    <component id="StyleInheritanceBead" class="org.apache.royale.html.beads.StyleInheritanceBead"/>
+    <component id="DragBead" class="org.apache.royale.html.beads.DragBead"/>
     <component id="HideComboPopupOnMouseDownBead" class="org.apache.royale.html.beads.HideComboPopupOnMouseDownBead"/>
     <component id="KeepComboPopupWithinParentBounds" class="org.apache.royale.html.beads.KeepComboPopupWithinParentBounds"/>
     <component id="StyleInheritanceWithObserverBead" class="org.apache.royale.html.beads.StyleInheritanceWithObserverBead"/>
@@ -148,7 +149,6 @@
     <component id="AccordionItemRenderer" class="org.apache.royale.html.supportClasses.AccordionItemRenderer"/>
     <component id="AccordionCollapseBead" class="org.apache.royale.html.beads.AccordionCollapseBead"/>
     <component id="DispatchInputFinishedBead" class="org.apache.royale.html.beads.DispatchInputFinishedBead"/>
-    <component id="SetFocus" class="org.apache.royale.html.beads.SetFocus"/>
     <component id="DispatchKeyboardEventBead" class="org.apache.royale.html.beads.DispatchKeyboardEventBead"/>
     <component id="TreeItemRenderer" class="org.apache.royale.html.supportClasses.TreeItemRenderer"/>
     <component id="TreeXMLItemRenderer" class="org.apache.royale.html.supportClasses.TreeXMLItemRenderer"/>
@@ -169,6 +169,7 @@
     <component id="ThrottleBead" class="org.apache.royale.html.beads.ThrottleBead"/>
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
+    <component id="SelectableBead" class="org.apache.royale.html.beads.SelectableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
     <component id="DisableLoaderBead" class="org.apache.royale.html.beads.DisableLoaderBead" />
     <component id="ShrinkableDisableLoaderBead" class="org.apache.royale.html.beads.ShrinkableDisableLoaderBead" />
@@ -187,6 +188,7 @@
      <component id="ImageAndTextButtonView" class="org.apache.royale.html.beads.ImageAndTextButtonView" />
      -->
     <component id="Viewport" class="org.apache.royale.html.supportClasses.Viewport" />
+    <component id="NoViewport" class="org.apache.royale.html.supportClasses.NoViewport" />
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport" />
     <component id="HScrollViewport" class="org.apache.royale.html.supportClasses.HScrollViewport" />
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
@@ -220,6 +222,7 @@
     <component id="DynamicUpdateItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicUpdateItemRendererForArrayListData"/>
     <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData" />
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView" />
+    <component id="SelectionDataItemRendererFactoryForCollectionView" class="org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView" />
     <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllItemRendererForArrayListData" />
     <component id="DynamicRemoveAllByNullItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllByNullItemRendererForArrayListData" />
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
@@ -246,6 +249,9 @@
     <component id="OneFlexibleChildVerticalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildVerticalLayoutForOverflow"/>
     <component id="OneFlexibleChildHorizontalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayoutForOverflow"/>
     <component id="ScrollingFlexibleChild" class="org.apache.royale.html.beads.layouts.ScrollingFlexibleChild"/>
+    
+    <component id="Paddings" class="org.apache.royale.html.beads.layouts.Paddings"/>
+    <component id="Positioning" class="org.apache.royale.html.beads.layouts.Positioning"/>
 
     <component id="SubAppLoader" class="org.apache.royale.html.SubAppLoader" />
 
@@ -289,7 +295,15 @@
     <component id="SetRouteTitle" class="org.apache.royale.routing.SetRouteTitle"/>
     <component id="RouteTitleLookup" class="org.apache.royale.routing.RouteTitleLookup"/>
     <component id="Router" class="org.apache.royale.routing.Router"/>
+    <component id="HashRouter" class="org.apache.royale.routing.HashRouter"/>
+    <component id="BrowserRouter" class="org.apache.royale.routing.BrowserRouter"/>
 
     <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
+	
+	<component id="CollectionSelectedItemByField" class="org.apache.royale.html.beads.CollectionSelectedItemByField"/>	
+    <component id="ErrorImage" class="org.apache.royale.html.beads.ErrorImage"/>
 
+    <component id="LabelFunction" class="org.apache.royale.html.beads.LabelFunction"/>
+
+    <component id="FocusEvents" class="org.apache.royale.html.beads.FocusEvents"/>
 </componentPackage>

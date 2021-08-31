@@ -18,14 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS {
-	import org.apache.royale.core.UIBase;
-    }
 	COMPILE::SWF {
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ILayoutChild;
-	}
 	import org.apache.royale.core.ILayoutView;
+	}
 	import org.apache.royale.events.Event;
 
     /**
@@ -72,21 +69,12 @@ package org.apache.royale.jewel.beads.layouts
 		override public function beadsAddedHandler(event:Event = null):void
 		{
 			super.beadsAddedHandler();
-			
-			COMPILE::JS
-			{
-				if (hostClassList.contains("layout"))
-					hostClassList.remove("layout");
-				hostClassList.add("layout");
-				if(hostClassList.contains("basic"))
-					hostClassList.remove("basic");
-				hostClassList.add("basic");
-			}
+			hostComponent.replaceClass("layout");
+			hostComponent.replaceClass("basic");
 		}
 
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
          */
 		override public function layout():Boolean
 		{
@@ -221,21 +209,6 @@ package org.apache.royale.jewel.beads.layouts
 		         *      position: absolute  
 				 *  }
 				 */
-				
-				// We just need to make chids resize themselves (through `sizeChanged` event)
-				var contentView:ILayoutView = layoutView;
-				var n:int = contentView.numElements;
-				var child:UIBase;
-
-				if (n == 0) return false;
-				
-				for(var i:int=0; i < n; i++) {
-					child = contentView.getElementAt(i) as UIBase;
-					if (!child)
-						continue;
-					child.dispatchEvent('sizeChanged');
-				}
-
                 return true;
             }
 		}

@@ -19,6 +19,25 @@
 
 # Apache Royale TodoMVC Example (Crux version)
 
+This example shows you how to structure and organize an Apache Royale Application based on the MVC paradigm taking [TodoMVC.com](http://todomvc.com/) as the model. 
+
+The example showcase the following features:
+
+- Jewel Component Set
+- MVC
+- Crux (microframework)
+- Beans & BeanProvider
+- IoC (Inversion of control)
+- DI (Dependency Injection)
+- Event Handling
+- Theme customization
+- Strand & Beads
+- View States
+- Item Renderers
+- Data Binding
+- Routing
+- LocalStorage with AMF encoding  (automatic encoding/decoding)
+
 > Apache Royale™ is a productive, open-source frontend application technology that lets you code in MXML & AS3 and output to different formats, included Javascript and SWF.
 
 > _[Apache Royale™ Website](https://royale.apache.org)_

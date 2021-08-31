@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IDrawingLayerBead;
+	import org.apache.royale.core.IParent;
 	
 	COMPILE::SWF {
 		import org.apache.royale.html.beads.SolidBackgroundBead;
@@ -59,6 +60,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -71,7 +73,7 @@ package org.apache.royale.html.beads
 				_layer.element.style['pointer-events'] = 'none';
 				_layer.element.style['overflow'] = 'hidden';
 			}
-			UIBase(_strand).addElement(_layer);
+			(_strand as IParent).addElement(_layer);
 		}
 		
 		private var _layer:UIBase;

@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils
 {
-    import org.apache.royale.core.IUIBase;
+import org.apache.royale.core.HTMLElementWrapper;
+import org.apache.royale.core.IUIBase;
 
     /**
 	 *  The ClassSelectorList class is used to manage the list of class selectors
@@ -37,6 +38,23 @@ package org.apache.royale.utils
 		}
 
         private var component:IUIBase;
+
+        COMPILE::JS
+        private var _override:HTMLElement
+
+        COMPILE::JS
+        private function get classSelectorTarget():HTMLElement{
+            return _override || component.positioner;
+        }
+
+        /**
+         * @royaleignorecoercion HTMLElement
+         */
+        public function setOverride(value:Object):void{
+            COMPILE::JS{
+                _override = value as HTMLElement;
+            }
+        }
         
         private var startIndex:int = 0;
         private var count:int = 0;
@@ -55,7 +73,7 @@ package org.apache.royale.utils
         {
             COMPILE::JS
             {
-            component.positioner.classList.add(name);
+            classSelectorTarget.classList.add(name);
             if (!component.parent)
                 startIndex++;
             }
@@ -78,7 +96,7 @@ package org.apache.royale.utils
         {
             COMPILE::JS
             {
-            var positioner:HTMLElement = component.positioner as HTMLElement;
+            var positioner:HTMLElement = classSelectorTarget as HTMLElement;
             var classList:DOMTokenList = positioner.classList;
             for (var i:int = 0; i < startIndex; i++)
             {
@@ -107,9 +125,9 @@ package org.apache.royale.utils
             //IE11 does not support second value so instead of
             //component.positioner.classList.toggle(name, value);
             if(value)
-                component.positioner.classList.add(name);
+                classSelectorTarget.classList.add(name);
             else
-                component.positioner.classList.remove(name);
+                classSelectorTarget.classList.remove(name);
 
             if (!component.parent && value)
                 startIndex++;
@@ -131,7 +149,7 @@ package org.apache.royale.utils
         {
             COMPILE::JS
             {
-            return component.positioner.classList.contains(name);
+            return classSelectorTarget.classList.contains(name);
             }
             COMPILE::SWF
             {//not implemented
@@ -156,7 +174,7 @@ package org.apache.royale.utils
         {
             COMPILE::JS
             {
-                var positioner:HTMLElement = component.positioner as HTMLElement;
+                var positioner:HTMLElement = classSelectorTarget as HTMLElement;
                 var classList:DOMTokenList = positioner.classList;
                 if (component.parent)
                 {

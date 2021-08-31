@@ -44,17 +44,19 @@ package flexUnitTests.reflection
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
+            ExtraData.addAll();
         }
         
         [AfterClass]
         public static function tearDownAfterClass():void
         {
+            ExtraData.reset();
         }
         
         [Before]
         public function setUp():void
         {
-            ExtraData.addAll();
+
         }
         
         [After]

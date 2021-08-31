@@ -17,9 +17,11 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
-{	
-    
-    import org.apache.royale.collections.TreeData;
+{
+
+import mx.controls.AdvancedDataGrid;
+
+	import org.apache.royale.collections.TreeData;
     import org.apache.royale.core.Bead;
     import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IIndexedItemRenderer;
@@ -72,16 +74,16 @@ package mx.controls.beads
             
             var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
 
-            if (!adgColumnList.adg) return;
+            if (!adgColumnList.grid) return;
 
             var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
-
-			var depth:int = adgColumnList.adg.getDepth(data);
-			var isOpen:Boolean = adgColumnList.adg.isItemOpen(data);
-			var hasChildren:Boolean = adgColumnList.adg.hasChildren(data);
+			var adg:AdvancedDataGrid = (adgColumnList.grid as AdvancedDataGrid);
+			var depth:int = adg.getDepth(data);
+			var isOpen:Boolean = adg.isItemOpen(data);
+			var hasChildren:Boolean = adg.hasChildren(data);
             var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
 
-			var dataField:String = adgColumnList.adg.columns[adgColumnListModel.columnIndex].dataField;
+			var dataField:String = adg.columns[adgColumnListModel.columnIndex].dataField;
 			var text:String = "";
 			try {
 				text = data[dataField];
@@ -89,14 +91,14 @@ package mx.controls.beads
 			{
 			}
 			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData(text, dataField, adgColumnListModel.columnIndex, "", adgColumnList.adg, index);
+			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData(text, dataField, adgColumnListModel.columnIndex, "", (adgColumnList.grid as AdvancedDataGrid), index);
 			treeListData.depth = depth;
 			treeListData.open = isOpen;
 			treeListData.hasChildren = hasChildren;
 			
 			(ir as IListDataItemRenderer).listData = treeListData;
-            if (firstColumn && adgColumnList.adg.groupLabelField)
-                (ir as ILabelFieldItemRenderer).labelField = adgColumnList.adg.groupLabelField;			            
+            if (firstColumn && adg.groupLabelField)
+                (ir as ILabelFieldItemRenderer).labelField = adg.groupLabelField;
         }
 
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
@@ -107,7 +109,7 @@ package mx.controls.beads
 				if (ir is UIComponent)
 				{
 					(ir as UIComponent).isAbsolute = false;
-					(ir as UIComponent).element.style.position = null;
+					(ir as UIComponent).element.style.position = 'relative';
 				}
 			}
 		}

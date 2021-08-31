@@ -56,6 +56,11 @@ import org.apache.royale.events.Event;
  */
 [Event(name="scroll", type="mx.events.ScrollEvent")]
 
+[Style(name="borderStyle", type="String", inherit="no")]
+
+[Style(name="borderColor", type="String", inherit="yes")]
+
+[Style(name="borderSkin", type="String", inherit="yes")]
 
 /**
  *  The ScrollControlBase class is the base class for controls
@@ -349,6 +354,8 @@ public class ScrollControlBase extends UIComponent
     //----------------------------------
     //  borderMetrics
     //----------------------------------
+	
+	protected var border:IFlexDisplayObject;
 
     /**
      *  Returns an EdgeMetrics object that has four properties:
@@ -365,11 +372,11 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get borderMetrics():EdgeMetrics
-//    {
-//        return (border && border is IRectangularBorder) ?
-//                IRectangularBorder(border).borderMetrics : EdgeMetrics.EMPTY;
-//    }
+    public function get borderMetrics():EdgeMetrics
+    {
+        return (border && border is IRectangularBorder) ?
+                IRectangularBorder(border).borderMetrics : EdgeMetrics.EMPTY;
+    }
 
     //----------------------------------
     //  horizontalScrollPosition
@@ -430,7 +437,7 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the horizontalScrollPolicy property.
      */
-    private var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
+    public var _horizontalScrollPolicy:String = ScrollPolicy.OFF;
 
     [Bindable("horizontalScrollPolicyChanged")]
     [Inspectable(enumeration="off,on,auto", defaultValue="off")]
@@ -481,6 +488,12 @@ public class ScrollControlBase extends UIComponent
         {
             _horizontalScrollPolicy = newPolicy;
 //            invalidateDisplayList();
+
+            COMPILE::JS{
+                if (parent) {
+                    applyScrollPolicy(true, false);
+                }
+            }
 
             dispatchEvent(new Event("horizontalScrollPolicyChanged"));
         }
@@ -777,7 +790,7 @@ public class ScrollControlBase extends UIComponent
      *  @private
      *  Storage for the verticalScrollPolicy property.
      */
-    private var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
+    public var _verticalScrollPolicy:String = ScrollPolicy.AUTO;
 
     [Bindable("verticalScrollPolicyChanged")]
     [Inspectable(enumeration="off,on,auto", defaultValue="auto")]
@@ -827,6 +840,11 @@ public class ScrollControlBase extends UIComponent
         {
             _verticalScrollPolicy = newPolicy;
 //            invalidateDisplayList();
+            COMPILE::JS{
+                if (parent) {
+                    applyScrollPolicy(false, true);
+                }
+            }
 
             dispatchEvent(new Event("verticalScrollPolicyChanged"));
         }
@@ -1480,10 +1498,40 @@ public class ScrollControlBase extends UIComponent
     override public function addedToParent():void
     {
         super.addedToParent();
-        if (_horizontalScrollPolicy == ScrollPolicy.OFF)
-            element.style["overflow-x"] = "hidden";
-        if (_verticalScrollPolicy == ScrollPolicy.OFF)
-            element.style["overflow-y"] = "hidden";            
+        applyScrollPolicy(true, true);
+    }
+
+    COMPILE::JS
+    private function applyScrollPolicy(horizontal:Boolean, vertical:Boolean):void{
+        var policy:String;
+        var applied:String;
+        var target:HTMLElement
+        if (horizontal) {
+            target = getHorizontalScrollElement();
+            if (target){
+                policy = _horizontalScrollPolicy;
+                applied = policy == ScrollPolicy.OFF ? 'hidden' : (policy == ScrollPolicy.ON ? 'scroll' : 'auto');
+                target.style["overflow-x"] = applied;
+            }
+        }
+        if (vertical) {
+            target = getVerticalScrollElement();
+            if (target) {
+                policy = _verticalScrollPolicy;
+                applied = policy == ScrollPolicy.OFF ? 'hidden' : (policy == ScrollPolicy.ON ? 'scroll' : 'auto');
+                target.style["overflow-y"] = applied;
+            }
+        }
+    }
+
+    COMPILE::JS
+    protected function getHorizontalScrollElement():HTMLElement{
+      return element;
+    }
+
+    COMPILE::JS
+    protected function getVerticalScrollElement():HTMLElement{
+        return element;
     }
 }
 }

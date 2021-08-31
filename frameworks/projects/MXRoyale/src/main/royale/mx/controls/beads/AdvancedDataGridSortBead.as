@@ -20,6 +20,7 @@ package mx.controls.beads
 {
 	import mx.controls.AdvancedDataGrid;
 	import mx.controls.beads.DataGridView;
+	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.events.AdvancedDataGridEvent;
 	
 	import org.apache.royale.core.IBead;
@@ -60,6 +61,11 @@ package mx.controls.beads
             // probably down on one button and up on another button
             // so the ButtonBar won't change selection
             if (event.target == buttonBar) return;
+			var column:DataGridColumn = event.target.data as DataGridColumn;
+			if (column && !column.sortable) {
+				//ignore clicks on headers of columns that are not sortable
+				return;
+			}
             var adgEvent:AdvancedDataGridEvent = new AdvancedDataGridEvent(AdvancedDataGridEvent.SORT);
             adgEvent.columnIndex = buttonBar.selectedIndex;
             adgEvent.dataField = adg.columns[adgEvent.columnIndex].dataField;

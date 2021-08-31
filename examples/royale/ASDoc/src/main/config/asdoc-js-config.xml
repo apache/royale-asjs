@@ -509,7 +509,7 @@
    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
    <metadata>
       <title>Apache Royale Application</title>
-      <description>http://royale.apache.org/</description>
+      <description>https://royale.apache.org/</description>
       <publisher>Apache Software Foundation</publisher>
       <creator>unknown</creator>
       <language>EN</language>

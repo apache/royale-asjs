@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.debugging
 {
-
+    import org.apache.royale.debugging.assert;
     COMPILE::JS
     {
         import goog.DEBUG;

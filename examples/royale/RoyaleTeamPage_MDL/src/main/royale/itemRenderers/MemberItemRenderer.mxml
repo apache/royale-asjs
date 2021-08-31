@@ -59,7 +59,7 @@ limitations under the License.
         <mdl:CardSupportingText>
             <js:Group className="cardRow1">
                 <js:HTMLText html="{member.bio}" className="bio"/>
-                <js:Image src="http://royale.apache.org/{member.photoURL}" className="photo"/>
+                <js:Image src="https://royale.apache.org/{member.photoURL}" className="photo"/>
             </js:Group>
             <!--<js:TextNode text="{member.bio}"/>-->
         </mdl:CardSupportingText>

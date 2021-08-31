@@ -35,8 +35,7 @@ import org.apache.royale.events.ValueEvent;
 //import mx.utils.BitFlagUtil;
 
 //import spark.core.IDisplayText;
-//import spark.layouts.supportClasses.LayoutBase;
-
+import spark.layouts.supportClasses.LayoutBase;
 use namespace mx_internal;
 
 //--------------------------------------
@@ -65,7 +64,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark")]
+[Style(name="borderColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  Controls the visibility of the border for this component.
@@ -101,7 +100,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="dropShadowVisible", type="Boolean", inherit="no", theme="spark")]
+[Style(name="dropShadowVisible", type="Boolean", inherit="no")]
 
 //--------------------------------------
 //  Skin states
@@ -295,7 +294,7 @@ public class Panel extends SkinnableContainer
      *  controlBarGroupProperties stores booleans as to whether these properties 
      *  have been explicitely set or not.
      */
-   // mx_internal var controlBarGroupProperties:Object = { visible: true };
+    mx_internal var controlBarGroupProperties:Object = { visible: true };
     
     //--------------------------------------------------------------------------
     //
@@ -307,7 +306,7 @@ public class Panel extends SkinnableContainer
     //  controlBarGroup
     //---------------------------------- 
     
-   // [SkinPart(required="false")]
+    [SkinPart(required="false")]
     
     /**
      *  The skin part that defines the appearance of the 
@@ -322,7 +321,7 @@ public class Panel extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   // public var controlBarGroup:Group;
+     public var controlBarGroup:Group;
     
     //----------------------------------
     //  titleField
@@ -371,7 +370,7 @@ public class Panel extends SkinnableContainer
     //  controlBarContent
     //---------------------------------- 
     
-    //[ArrayElementType("mx.core.IVisualElement")]
+    [ArrayElementType("mx.core.IVisualElement")]
     
     /**
      *  The set of components to include in the control bar area of the 
@@ -391,30 +390,30 @@ public class Panel extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get controlBarContent():Array
+     public function get controlBarContent():Array
     {
         if (controlBarGroup)
             return controlBarGroup.getMXMLContent();
         else
             return controlBarGroupProperties.controlBarContent;
-    } */
+    } 
     
     /**
      *  @private
      */
-    /* public function set controlBarContent(value:Array):void
+     public function set controlBarContent(value:Array):void
     {
         if (controlBarGroup)
         {
             controlBarGroup.mxmlContent = value;
-            controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
-                CONTROLBAR_PROPERTY_FLAG, value != null);
+          //  controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
+          //      CONTROLBAR_PROPERTY_FLAG, value != null);
         }
         else
             controlBarGroupProperties.controlBarContent = value;
         
         invalidateSkinState();
-    } */
+    } 
     
     //----------------------------------
     //  controlBarLayout
@@ -430,27 +429,27 @@ public class Panel extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get controlBarLayout():LayoutBase
+     public function get controlBarLayout():LayoutBase
     {
         return (controlBarGroup) 
-        ? controlBarGroup.layout 
+        ? controlBarGroup.layout as spark.layouts.supportClasses.LayoutBase
             : controlBarGroupProperties.layout;
-    } */
+    } 
     
     /**
      *  @private
      */
-    /* public function set controlBarLayout(value:LayoutBase):void
+     public function set controlBarLayout(value:LayoutBase):void
     {
         if (controlBarGroup)
         {
             controlBarGroup.layout = value;
-            controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
-                LAYOUT_PROPERTY_FLAG, true);
+         //   controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
+          //      LAYOUT_PROPERTY_FLAG, true);
         }
         else
             controlBarGroupProperties.layout = value;
-    } */
+    } 
     
     //----------------------------------
     //  controlBarVisible
@@ -473,23 +472,23 @@ public class Panel extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get controlBarVisible():Boolean
+    public function get controlBarVisible():Boolean
     {
         return (controlBarGroup) 
         ? controlBarGroup.visible 
             : controlBarGroupProperties.visible;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set controlBarVisible(value:Boolean):void
+    public function set controlBarVisible(value:Boolean):void
     {
         if (controlBarGroup)
         {
             controlBarGroup.visible = value;
-            controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
-                VISIBLE_PROPERTY_FLAG, value);
+            /*controlBarGroupProperties = BitFlagUtil.update(controlBarGroupProperties as uint, 
+                VISIBLE_PROPERTY_FLAG, value);*/
         }
         else
             controlBarGroupProperties.visible = value;
@@ -497,7 +496,7 @@ public class Panel extends SkinnableContainer
         invalidateSkinState();
         if (skin)
             skin.invalidateSize();
-    } */
+    }
     
     //----------------------------------
     //  title

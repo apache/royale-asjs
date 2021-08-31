@@ -23,6 +23,7 @@
 $list-border-radius: 3px
 
 .jewel.list
+    color: $default-font-color
     @if $flat
         background: lighten($default-color, 15%)
         border: 1px solid $default-color
@@ -32,6 +33,12 @@ $list-border-radius: 3px
         border: 1px solid darken($default-color, 15%)
         box-shadow: inset 0 1px 0 lighten($default-color, 20%)
     border-radius: $list-border-radius
+
+    &:focus
+        @if $flat
+            border: 1px solid $primary-color
+        @else
+            border: 1px solid darken($primary-color, 15%)
 
     &[disabled]
         pointer-events: none

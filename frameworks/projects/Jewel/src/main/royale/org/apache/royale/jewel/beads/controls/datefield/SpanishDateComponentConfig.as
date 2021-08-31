@@ -20,8 +20,8 @@ package org.apache.royale.jewel.beads.controls.datefield
 {
     import org.apache.royale.core.IDateControlConfigBead;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.jewel.beads.models.DateChooserModel;
     import org.apache.royale.jewel.DateField;
+    import org.apache.royale.jewel.beads.models.DateChooserModel;
 
     /**
 	 *  The SpanishDateFieldConfig class is a specialty bead that is used

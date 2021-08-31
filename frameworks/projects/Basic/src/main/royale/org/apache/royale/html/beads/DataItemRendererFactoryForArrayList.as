@@ -72,8 +72,7 @@ package org.apache.royale.html.beads
         
 		/**
 		 *  @private
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+         *  @royaleignorecoercion org.apache.royale.collections.IArrayList
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{

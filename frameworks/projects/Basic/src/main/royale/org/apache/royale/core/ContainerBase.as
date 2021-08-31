@@ -107,6 +107,11 @@ package org.apache.royale.core
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
 			var contentView:IParent = getLayoutHost().contentView as IParent;
+			if (c == contentView)
+			{
+				super.addElement(c);
+				return;
+			}
 			contentView.addElement(c, dispatchEvent);
             if (dispatchEvent)
                 sendEvent(this,new ValueEvent("childrenAdded", c));

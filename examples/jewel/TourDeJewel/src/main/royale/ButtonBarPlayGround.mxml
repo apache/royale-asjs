@@ -21,8 +21,9 @@ limitations under the License.
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic"
-	xmlns:models="models.*" 
-	xmlns:c="components.*" sourceCodeUrl="ButtonBarPlayGround.mxml">
+	xmlns:models="models.*" xmlns:c="components.*" 
+	sourceCodeUrl="ButtonBarPlayGround.mxml"
+	initComplete="setDataProvider(event)">
 
 	<c:beads>
 		<js:ContainerDataBinding/>
@@ -34,7 +35,7 @@ limitations under the License.
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
-			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel ButtonBar">
@@ -147,23 +148,26 @@ limitations under the License.
 
 				<j:Label html="Is a IconButtonBar with ToggleButtons as item renderers"/>
 
-				<html:H4 text="Width 100% and emphasized color, selectedIndex is 2"/>
+				<html:H4 text="Width 100% and emphasized color, selectedIndex is {tbb.selectedIndex}"/>
 
-				<j:ToggleButtonBar localId="tbb" 
+				<j:ToggleButtonBar localId="tbb" className="iconButtonBarFontAwesomeIcon"
 					change="tbbChangeHandler(event)"
 					selectedIndex="2"
 					emphasis="primary" width="100%" 
+					dataProvider="{listModel.iconButtonDataFW}"/>
+				
+				<html:H4 text="toggleOnClick is true, no Width and icons to the right, selectedIndex is {tbb2.selectedIndex}"/>
+				
+				<j:ToggleButtonBar localId="tbb2" toggleOnClick="true"
+					change="tbbChangeHandler(event)"
+					emphasis="emphasized" rightPosition="true" iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				
-				<html:H4 text="No Width and icons to the right, selectedIndex is 0"/>
-
-				<j:ToggleButtonBar localId="tbb2" 
-					change="tbbChangeHandler(event)"
-					selectedIndex="0"
-					emphasis="emphasized" rightPosition="true"  iconField="icon"
-					dataProvider="{listModel.iconButtonData}"/>
+				<j:ToggleButtonBar localId="tbb3"
+					emphasis="secondary" iconField="icon"/>
 				
 				<j:Label localId="tbb_label"/> 
+				
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
@@ -172,13 +176,23 @@ limitations under the License.
 		<![CDATA[
 			import org.apache.royale.core.ISelectable;
 			import org.apache.royale.events.Event;
-			import org.apache.royale.html.beads.models.ButtonBarModel;
+			import org.apache.royale.jewel.beads.models.ButtonBarModel;
 
 			public function tbbChangeHandler(event:Event):void
 			{
-				var selected:Boolean = (event.target.getElementAt(event.target.selectedIndex) as ISelectable).selected;
-				tbb_label.text = event.target.selectedItem.label + ' (icon: ' + event.target.selectedItem.icon + '). isSelected? ' + selected;
+				if(event.target.selectedIndex != -1) {
+					var selected:Boolean = (event.target.getElementAt(event.target.selectedIndex) as ISelectable).selected;
+					tbb_label.text = event.target.selectedItem.label + ' (icon: ' + event.target.selectedItem.icon + '). isSelected? ' + selected;
+				} else {
+					tbb_label.text = "Nothing is selected";
+				}
 			}
+
+			private var tbb3AL:ArrayList = new ArrayList(["SALE", "RENTAL"]);
+
+            protected function setDataProvider(event:Event):void {
+                tbb3.dataProvider = tbb3AL;
+            }
 		]]>
 	</fx:Script>
 

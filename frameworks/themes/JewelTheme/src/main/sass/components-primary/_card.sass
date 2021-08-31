@@ -20,6 +20,7 @@
 // Jewel Card
 
 // Card variables
+$card-padding: 20px
 
 .jewel.card
     font:
@@ -46,13 +47,16 @@
             border-bottom: 1px solid desaturate(lighten($primary-color, 26%), 70%)
         padding: 12px 20px
 
-        .card-title
-            font-size: 1.5em
-            margin: 0.408rem 0rem
-            letter-spacing: 0.0125em
+    .card-title
+        font-size: 1.5em
+        margin: 0.408rem 0rem
+        letter-spacing: 0.0125em
+
+    .card-expanded-content
+        // margin: -$card-padding -$card-padding $card-padding/2 -$card-padding
 
     .card-primary-content
-        padding: 20px
+        padding: $card-padding
 
     .card-actions
         @if $flat

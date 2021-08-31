@@ -484,7 +484,7 @@
    <!-- Metadata added to SWFs via the SWF Metadata tag. -->
    <metadata>
       <title>Apache Royale Application</title>
-      <description>http://royale.apache.org/</description>
+      <description>https://royale.apache.org/</description>
       <publisher>Apache Software Foundation</publisher>
       <creator>Apache Software Foundation</creator>
       <language>en_US</language>

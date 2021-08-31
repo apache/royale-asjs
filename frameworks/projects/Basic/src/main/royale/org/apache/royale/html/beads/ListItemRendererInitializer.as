@@ -60,6 +60,7 @@ package org.apache.royale.html.beads
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
 		override public function set strand(value:IStrand):void
 		{	

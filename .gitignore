@@ -18,6 +18,7 @@
 # VSCode conf files
 **/.vscode/**
 *.code-workspace
+!/archetypes/**
 
 
 # building

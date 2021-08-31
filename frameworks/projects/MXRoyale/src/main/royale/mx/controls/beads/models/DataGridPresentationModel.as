@@ -42,6 +42,15 @@ package mx.controls.beads.models
 		{
             super();
             separatorThickness = 0;
-		}		
+		}
+
+        private var _virtualized:Boolean;
+
+        public function get virtualized():Boolean{
+            return _virtualized;
+        }
+        public function set virtualized(value:Boolean):void{
+            _virtualized = value;
+        }
     }
 }

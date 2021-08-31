@@ -33,6 +33,8 @@ package org.apache.royale.jewel
 
 	/**
      *  Dispatched when Slider change its value.
+	 *  Note that this event is not fired correctly on IE11, use 'change' event as well to
+	 *  get 'continuous' updates for IE11
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2

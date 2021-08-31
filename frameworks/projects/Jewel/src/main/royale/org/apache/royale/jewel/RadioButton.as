@@ -32,6 +32,7 @@ package org.apache.royale.jewel
     import org.apache.royale.html.util.addElementToWrapper;
     }
 
+    import org.apache.royale.core.ITextButton;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.jewel.supportClasses.IInputButton;
     import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase;
@@ -41,7 +42,8 @@ package org.apache.royale.jewel
      *  
      *  A RadioButton consists of a circle and, typically, text that clearly communicates a
      *  condition that will be set when the user clicks or touches it. Radio buttons
-     *  always appear in groups of two or more with the same <code>groupName</code> propert. 
+     *  always appear in groups of two or more with the same <code>groupName</code> property.
+     *   
      *  While they can be individually selected, can only be deselected by selecting 
      *  a different RadioButton in the same group (which deselects the rest of RadioButton).
      *  
@@ -50,7 +52,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class RadioButton extends SelectableButtonBase implements IInputButton
+    public class RadioButton extends SelectableButtonBase implements IInputButton, ITextButton
     {
         /**
          *  Constructor.
@@ -309,11 +311,23 @@ package org.apache.royale.jewel
         }
         
         COMPILE::JS
-        /**
-         * a HTMLSpanElement decorator for this component
-         * added to the positioner.
+		private var _spanLabel:HTMLSpanElement;
+		/**
+         *  the span for the label text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.8
          */
-        protected var radio:HTMLSpanElement;
+		COMPILE::JS
+		public function get spanLabel():HTMLSpanElement {
+			return _spanLabel;
+		}
+		COMPILE::JS
+		public function set spanLabel(value:HTMLSpanElement):void {
+			_spanLabel = value;
+		}
 
         COMPILE::JS
         /**
@@ -336,8 +350,8 @@ package org.apache.royale.jewel
             icon.value = String(value);
             
             textNode = document.createTextNode('') as Text;
-            radio = document.createElement('span') as HTMLSpanElement;
-            radio.appendChild(textNode);
+            spanLabel = document.createElement('span') as HTMLSpanElement;
+            spanLabel.appendChild(textNode);
             
             positioner = document.createElement('label') as WrappedHTMLElement;
             
@@ -365,7 +379,7 @@ package org.apache.royale.jewel
 			_positioner = value;
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(element);
-            _positioner.appendChild(radio);
+            _positioner.appendChild(spanLabel);
 		}
 
         /**

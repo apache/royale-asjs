@@ -40,7 +40,7 @@ limitations under the License.
 			{
                 var view:ListView = this.itemRendererOwnerView as ListView;
                 var column:DataGridColumnList = view.host as DataGridColumnList;
-                (column.datagrid.dataProvider as ArrayList).removeItemAt(index);
+                (column.datagrid.model.dataProvider as ArrayList).removeItemAt(index);
             }
 		]]>
     </fx:Script>
@@ -50,8 +50,8 @@ limitations under the License.
         <j:HorizontalCenteredLayout/>
     </j:beads>
 
-    <js:MaterialIcon text="{iconList ? iconList.icon : ''}" 
-        visible="{iconList ? iconList.icon != null : false}"
+    <js:MaterialIcon text="{iconList.icon}" 
+        visible="{iconList.icon != null}"
         click="clickCloseButton(event)"/>
 
 </j:DataGridItemRenderer>
