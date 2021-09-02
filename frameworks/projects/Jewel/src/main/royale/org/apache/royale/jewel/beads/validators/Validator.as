@@ -383,15 +383,20 @@ package org.apache.royale.jewel.beads.validators
 
 			COMPILE::JS
 			{
-			window.addEventListener('resize', repositionHandler, false);
-			window.addEventListener('scroll', repositionHandler, true);
-			repositionHandler();
-			}
+				window.addEventListener('resize', repositionHandler, false);
+				window.addEventListener('scroll', repositionHandler, true);
+				repositionHandler();
 
-			COMPILE::JS
+				createErrorBorder();
+			}
+		}
+
+		COMPILE::JS
+		protected function createErrorBorder():void
+		{
+			if (!hostClassList.contains("errorBorder"))
 			{
-				if (!hostClassList.contains("errorBorder"))
-					hostClassList.add("errorBorder");
+				hostClassList.add("errorBorder");
 			}
 		}
 
@@ -498,21 +503,28 @@ package org.apache.royale.jewel.beads.validators
         {
 			COMPILE::JS
 			{
-			window.removeEventListener('resize', repositionHandler, false);
-			window.removeEventListener('scroll', repositionHandler, true);
+				window.removeEventListener('resize', repositionHandler, false);
+				window.removeEventListener('scroll', repositionHandler, true);
 			}
             if (_errorTip) {
 				IEventDispatcher(_host.popUpParent).removeEventListener("cleanValidationErrors", destroyErrorTip);
                 _host.popUpParent.removeElement(_errorTip);
 				_errorTip = null;
 			}
+
 			COMPILE::JS
 			{
+				destroyErrorBorder();
+			}
+        }
+
+		COMPILE::JS
+		protected function destroyErrorBorder():void
+		{
 			if (hostClassList && hostClassList.contains("errorBorder"))
 			{
 				hostClassList.remove("errorBorder");
 			}
-			}
-        }
+		}
 	}
 }
