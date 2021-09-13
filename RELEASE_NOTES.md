@@ -1,14 +1,14 @@
 Apache Royale 0.9.8
 ===================
 - Core
- - Added getClassStyle function that get an Object with all styles in a CSS className.
+ - Added getClassStyle function that gets an Object with all styles in a CSS className.
 - Basic
-  - Move getParentEventTarget() from EventDispatcher to UIBase to reduce require dependencies. This allows EventDispatcher to be used in non-GUI contexts, such as Node.js.
-  - UIBase, added loadBeads hook method
-  - Added BrowserResizeListener bead that listen for browser resizing and resizes a component accordingly. Old one was renamed to "BrowserResizeApplicationListener"
-  - StyledUIBase & ClassSelectorListSupport, added replaceClass method
+  - Move getParentEventTarget() from EventDispatcher to UIBase to reduce required dependencies. This allows EventDispatcher to be used in non-GUI contexts, such as Node.js.
+  - UIBase: added loadBeads hook method
+  - Added BrowserResizeListener bead that listen for browser resizing and resizes a component accordingly. The old bead was renamed to "BrowserResizeApplicationListener"
+  - StyledUIBase & ClassSelectorListSupport: added replaceClass method
   - Added ILabelFunction and LabelFunction bead
-  - Added LayoutChildren: A bead to trigger layout in children. Added support in StyledLayoutBase.
+  - Added LayoutChildren: A bead to trigger the layout in children. Added support in StyledLayoutBase.
   - Added interfaces for better extension in Basic and Jewel: IColumns, ITableModel, ITableView, ITextButton, IPaddings, IPositioning
   - Paddings: New bead to add padding in mxml to a component
   - Positioning: New bead to add positioning in mxml to a component
@@ -16,79 +16,79 @@ Apache Royale 0.9.8
 
 - RoyaleUnit
   - Fixed issue where CIListener incorrectly escaped quotes in messages.
-  - Better error messages when [BeforeClass] or [AfterClass] is detected, but method is not found by reflection.
+  - Better error messages when [BeforeClass] or [AfterClass] is detected, but the method is not found by reflection.
 - Jewel
-  - ASDocs: multiple refactors in many components to document and describe better components
+  - ASDocs: multiple refactors in many components to document and describe components better.
   - Item Renderers
-    - Refactor to make Basic Layout the default (before was horizontal baked)
-    - Initializers now use new Paddings bead. Create a default if no one is found.
-    - Remove then minimum height of 34px, so we can have renderers with less height
-  - New BinaryImage component
+    - Refactor to make Basic Layout the default (horizontal was the default).
+    - Initializers now use new Paddings bead. Create a default if one is not found.
+    - Remove the minimum height of 34px, so we can have renderers with less height.
+  - New BinaryImage component.
   - Card:
-    - New CardExpandedContent: Used for content that needs to avoid paddings like navigation bars
+    - New CardExpandedContent: Used for content like navigation bars that need to avoid padding.
   - Button, CheckBox, RadioButton: 
-    - add "spanLabel" to separate the text from other decorations like icons and get more control over styling
-  - Image added "loadComplete" event
-    - New ClipImage bead for images to allow clipping
-    - New ErrorImage beads
-  - Added SimpleLoader component that show an indeterminate spin circle
+    - add "spanLabel" to separate the text from other decorations like icons and get more control over styling.
+  - Image: added "loadComplete" event.
+    - New ClipImage bead for images to allow clipping.
+    - New ErrorImage beads.
+  - Added SimpleLoader component that shows an indeterminate spin circle.
   - DataContainer
-    - dataProvider is now the DefaultProperty
+    - dataProvider is now the DefaultProperty.
   - List 
-    - Added label function through beads
-    - New ListAlternateRowColor bead (should be temporal until get nth-child css styles work in compiler)
-    - dataProvider is now the DefaultProperty
-    - Fixes on SearchFilterForList
+    - Added label function through beads.
+    - New ListAlternateRowColor bead (should be temporary until we get nth-child css styles working in compiler)
+    - dataProvider is now the DefaultProperty.
+    - Fixes on SearchFilterForList.
   - ComboBox:
-    - Fix Sizing issues
-    - Improve open popup faster
-    - new ComboBoxItemByField bead that allows to select an item by field
-    - dataProvider is now the DefaultProperty
-    - add item renderer support at mxml (TLC) level
-    - Fixes on SearchFilter
+    - Fixed sizing issues
+    - Improved speed of opening a popup.
+    - New ComboBoxItemByField bead that lets you select an item by field.
+    - dataProvider is now the DefaultProperty.
+    - Add item renderer support at mxml (TLC) level.
+    - Fixes to SearchFilter.
   - DateField:
-    - Fix Sizing issues
+    - Fixed sizing issues.
   - TabBar: 
-    - Multiple refactors to decouple functionality in beads and make renderers more flexible. Now we allow vertical layouts and indicator in renderer can be positiones in different places
+    - Multiple refactors to decouple functionality in beads and make renderers more flexible. Now we allow vertical layoutss and indicators in renderers can be positioned in different places.
     - Add "sameWidths" to make all buttons share the same width.
-    - dataProvider is now the DefaultProperty
+    - dataProvider is now the DefaultProperty.
   - Table
-    - Refactor to get better scrolling and fixed header
-    - Added label function through beads
-    - New TableAlternateRowColor bead
-    - Solve RTE when set columns at runtime
-    - Added Initializer
-    - New TableAlternateRowColor bead (should be temporal until get nth-child css styles work in compiler)
-    - Removed CRUD beads and added new CRUDTableItemRendererFactoryForCollectionView
+    - Refactored to get better scrolling and fixed header.
+    - Added label function through beads.
+    - New TableAlternateRowColor bead.
+    - Solved RTE when setting columns at runtime.
+    - Added Initializer.
+    - New TableAlternateRowColor bead (should be temporary until we get nth-child css styles working in the compiler)
+    - Removed CRUD beads and added new CRUDTableItemRendererFactoryForCollectionView.
   - DataGrid
-    - Multiple fixes in column dimensions to allow more configurations
-    - Added sorting through DataGridSortBead
-    - Added swap of columns
-    - Added label function through beads
-    - dataProvider is now the DefaultProperty
-    - add item renderer support at mxml (TLC) level
-  - PresentationModels refactor for List and DataGrid based controls to allow more flexibility
+    - Multiple fixes in column dimensions to allow more configurations.
+    - Added sorting through DataGridSortBead.
+    - Added swapping of columns.
+    - Added label function through beads.
+    - dataProvider is now the DefaultProperty.
+    - Added item renderer support at mxml (TLC) level.
+  - PresentationModels refactor for List and DataGrid based controls to allow more flexibility.
   - NumericStepper:
-    - Fix Sizing Issues
-  - New responsive beads: ResponsiveSize, ResponsiveResizeListener and ResponsiveLabelVisibility
-  - New TileHorizontalLayout and TileVerticalLayout beads
-  - New ViewLayout for View
-  - Removed Jewel ControlBar since it was just an HGroup
+    - Fixed sizing issues.
+  - New responsive beads: ResponsiveSize, ResponsiveResizeListener and ResponsiveLabelVisibility.
+  - New TileHorizontalLayout and TileVerticalLayout beads.
+  - New ViewLayout for View.
+  - Removed Jewel ControlBar since it was just an HGroup.
   - Jewel Themes:
-    - Lots of changes to accommodate the rest of component development and fixes in jewel
-    - Add fluid text sizing responsiveness, so size of text shrinks or grows depending on device to fit on different screens
-  - Start of VirtualDataGrid component (still has some issues)
+    - Lots of changes to accommodate the rest of component development and fixes in Jewel.
+    - Added fluid text sizing responsiveness, so size of text shrinks or grows depending on device to fit on different screens.
+  - Start of VirtualDataGrid component (still has some issues).
 - Collections
-  - ArrayList.length now is bindable
+  - ArrayList.length now is bindable.
 
 - Maven Distribtuon:
   The distributions built by Maven should now be equivalent to those of the Ant build.
   
 - Maven Archetypes:
-  - updated royale-simple-application-archetype
-  - new new royale-jewel-application-archetype
-  - new new royale-jewel-module-application-archetype
-  - new new royale-jewel-crux-application-archetype
+  - Updated royale-simple-application-archetype
+  - Nw royale-jewel-application-archetype.
+  - New royale-jewel-module-application-archetype.
+  - New royale-jewel-crux-application-archetype
 
 Apache Royale 0.9.7
 ===================
