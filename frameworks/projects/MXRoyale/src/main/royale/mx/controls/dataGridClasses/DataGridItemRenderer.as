@@ -373,7 +373,7 @@ public class DataGridItemRenderer extends StringItemRenderer
 		dispatchEvent(new FlexEvent("dataChange"));
     }
     
-    private var _listData:BaseListData;
+    private var _listData:Object;
     
     [Bindable("__NoChangeEvent__")]
     /**
@@ -385,12 +385,12 @@ public class DataGridItemRenderer extends StringItemRenderer
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
     }
     
-    public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
         _listData = value;
     }

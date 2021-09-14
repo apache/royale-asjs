@@ -198,7 +198,7 @@ package org.apache.royale.utils
                     return classInterfaceMap.get(rightOperand);
             }
             
-            if (leftOperand.ROYALE_CLASS_INFO.interfaces)
+            if (leftOperand.ROYALE_CLASS_INFO && leftOperand.ROYALE_CLASS_INFO.interfaces)
             {
                 if (checkInterfaces(leftOperand, rightOperand))
                 {
@@ -266,14 +266,15 @@ package org.apache.royale.utils
             interfaces = leftOperand.ROYALE_CLASS_INFO.interfaces;
             for (i = interfaces.length - 1; i > -1; i--)
             {
-                if (interfaces[i] === rightOperand)
+                var theInterface:* = interfaces[i];
+                if (theInterface === rightOperand)
                 {
                     return true;
                 }
                 
-                if (interfaces[i].prototype.ROYALE_CLASS_INFO.interfaces)
+                if (theInterface.prototype.ROYALE_CLASS_INFO && theInterface.prototype.ROYALE_CLASS_INFO.interfaces)
                 {
-                    var isit:Boolean = checkInterfaces(interfaces[i].prototype, rightOperand);
+                    var isit:Boolean = checkInterfaces(theInterface.prototype, rightOperand);
                     if (isit) return true;
                 }
             }

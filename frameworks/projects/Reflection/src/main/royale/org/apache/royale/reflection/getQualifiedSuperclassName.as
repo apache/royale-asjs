@@ -39,7 +39,7 @@ COMPILE::SWF
         }
         COMPILE::JS
         {
-            var constructorAsObject:Object = value["constructor"];
+            var constructorAsObject:Object = (value is Class) ? value : value["constructor"];
             value = constructorAsObject.superClass_;
             if (value == null || value.ROYALE_CLASS_INFO == null)
                 return null;
