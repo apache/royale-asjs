@@ -187,12 +187,19 @@
         <mkdir dir="${artifactfolder}/artifacts" />
         <unzip src="${artifactfolder}/archive.zip" dest="${artifactfolder}/artifacts"/>
     </target>
+	<target name="fixsources" if="fixfolder">
+	    <fixcrlf srcdir="${fixfolder}" eol="dos" fixlast="false">
+		    <include name="**/*.sass"/>
+	    </fixcrlf>   
+    </target>
     <target name="build-source" >
         <mkdir dir="${artifactfolder}/sources" />
         <unzip src="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" dest="${artifactfolder}/sources" >
             <cutdirsmapper dirs="1" />
         </unzip>
-        
+        <antcall target="fixsources">
+		<param name="fixfolder" value="${artifactfolder}/sources"/>
+	</antcall>
         <!-- build these modules -->
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="-X" />
@@ -376,6 +383,36 @@
     <target name="Release_Step_011_Sign" depends="get-artifact-folder">
         <fail message="release.version not specified"
             unless="release.version"/>
+	<antcall target="sign-swc-artifacts">
+		<param name="swcname" value="Ace"/>
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-application-archetype/${release.version}/royale-jewel-application-archetype-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-application-archetype/${release.version}/royale-jewel-application-archetype-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-application-archetype/${release.version}/royale-jewel-application-archetype-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-module-application-archetype/${release.version}/royale-jewel-module-application-archetype-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-module-application-archetype/${release.version}/royale-jewel-module-application-archetype-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-module-application-archetype/${release.version}/royale-jewel-module-application-archetype-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-library-archetype/${release.version}/royale-jewel-library-archetype-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-library-archetype/${release.version}/royale-jewel-library-archetype-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-jewel-library-archetype/${release.version}/royale-jewel-library-archetype-${release.version}-sources.jar" />
+	</antcall>
 	<antcall target="sign-file" >
 		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}.pom" />
 	</antcall>
@@ -1038,7 +1075,6 @@
         unless="release.version"/>
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="wagon:upload" />
-            <arg value="-X" />
             <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
             <!--arg value="-Dwagon.includes=**" />
             <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->

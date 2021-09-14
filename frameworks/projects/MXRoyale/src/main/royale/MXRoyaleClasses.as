@@ -33,11 +33,9 @@ internal class MXRoyaleClasses
 	import mx.core.DesignLayer; DesignLayer;
 	import mx.effects.AnimateProperty; AnimateProperty;
 	import mx.effects.easing.Cubic; Cubic;
-	//import mx.effects.easing.Quintic; Quintic;
 	import mx.events.StateChangeEvent; StateChangeEvent;
 	import mx.graphics.BitmapFill; BitmapFill;
 	import mx.graphics.BitmapFillMode; BitmapFillMode;
-	//import mx.managers.PopUpManagerChildList; PopUpManagerChildList;
 	import mx.core.mx_internal; mx_internal;
 	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.controls.beads.ToolTipBead; ToolTipBead;
@@ -406,6 +404,16 @@ internal class MXRoyaleClasses
 	import mx.net.LocalConnection; LocalConnection;
 
 
+	import mx.globalization.supportClasses.GlobalizationBase; GlobalizationBase;
+	import mx.globalization.CurrencyParseResult; CurrencyParseResult;
+	import mx.globalization.DateTimeFormatter; DateTimeFormatter;
+	import mx.globalization.DateTimeNameStyle; DateTimeNameStyle;
+	import mx.globalization.DateTimeStyle; DateTimeStyle;
+	import mx.globalization.LastOperationStatus; LastOperationStatus;
+	import mx.globalization.LocaleID; LocaleID;
+	import mx.globalization.NationalDigitsType; NationalDigitsType;
+	import mx.globalization.NumberFormatter; NumberFormatter;
+	import mx.globalization.NumberParseResult; NumberParseResult;
 }
 
 }

@@ -70,12 +70,12 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
     override public function set strand(value:IStrand):void
     {
         titleBar = new PanelTitleBar();
-		var panel:IEventDispatcher = value as IEventDispatcher;
-		panel.addEventListener("widthChanged", handleSizeChanged);
-		panel.addEventListener("heightChanged", handleSizeChanged);
-		panel.addEventListener("sizeChanged", handleSizeChanged);
+	var panel:IEventDispatcher = value as IEventDispatcher;
+	panel.addEventListener("widthChanged", handleSizeChanged);
+	panel.addEventListener("heightChanged", handleSizeChanged);
+	panel.addEventListener("sizeChanged", handleSizeChanged);
         super.strand = value;
-	}
+     }
 	
 	private var sawSizeChanged:Boolean;
 	

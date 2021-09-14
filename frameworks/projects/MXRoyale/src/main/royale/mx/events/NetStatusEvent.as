@@ -39,6 +39,7 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class NetStatusEvent extends flash.events.NetStatusEvent
 {
+	public static const NET_STATUS:String = "netStatus";
 	public function NetStatusEvent(type:String, bubbles:Boolean = false,
 							  cancelable:Boolean = false, info:Object = null
 							  )

@@ -99,7 +99,6 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  */
 //[Event(name="elementRemove", type="spark.events.ElementExistenceEvent")]
 
- include "../styles/metadata/BasicInheritingTextStyles.as"
 /*include "../styles/metadata/AdvancedInheritingTextStyles.as"
 include "../styles/metadata/SelectionFormatTextStyles.as"
  */
