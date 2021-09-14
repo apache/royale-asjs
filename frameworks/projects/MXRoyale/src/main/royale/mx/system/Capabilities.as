@@ -64,5 +64,10 @@ package mx.system
 			trace("serverString in Capabilities is not implemented");
 			return "";
 		}
+		
+		public static function get version():String {
+			trace("version in Capabilities is not implemented");
+			return "";
+		}
 	}
 }

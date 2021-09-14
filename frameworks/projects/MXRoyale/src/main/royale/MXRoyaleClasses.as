@@ -404,6 +404,9 @@ internal class MXRoyaleClasses
 	import mx.utils.Endian; Endian;
 	import mx.text.Font; Font;
 	import mx.net.LocalConnection; LocalConnection;
+	import mx.net.ObjectEncoding; ObjectEncoding;
+	import mx.core.ByteArrayAsset; ByteArrayAsset;
+	import mx.core.ContainerRawChildrenList; ContainerRawChildrenList;
 
 
 }

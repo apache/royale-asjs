@@ -116,7 +116,7 @@ public class XMLLoadEvent extends Event
     }
 
     COMPILE::JS
-    public function formatToString(className:String, ... rest):String
+    override public function formatToString(className:String, ... rest):String
     {
         if (rest)
         {

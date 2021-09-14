@@ -234,5 +234,6 @@
 	<component id="NavBar" class="mx.controls.NavBar" />
 	<component id="ApplicationControlBar" class="mx.containers.ApplicationControlBar" />
    <component id="MultiSelectionList" class="mx.controls.MultiSelectionList"/>
+   <component id="CurrencyFormatter" class="mx.formatters.CurrencyFormatter"/>
 
 </componentPackage>

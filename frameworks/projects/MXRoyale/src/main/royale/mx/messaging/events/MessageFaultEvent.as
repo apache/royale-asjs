@@ -299,7 +299,7 @@ public class MessageFaultEvent extends Event
     }
     
     COMPILE::JS
-    public function formatToString(className:String, ... args):String
+    override public function formatToString(className:String, ... args):String
     {
         for each (var s:String in args)
         className += " " + s;

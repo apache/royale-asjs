@@ -60,6 +60,14 @@ COMPILE::JS{
         public function writeObject(object:*):void
         {
 		}
+		
+		public var _objectEncoding:uint = 0;
+		public function get objectEncoding():uint {
+			return _objectEncoding;
+		}
+		public function set objectEncoding(value:uint):void {
+			_objectEncoding = value;
+		}
 	}
 }
 
