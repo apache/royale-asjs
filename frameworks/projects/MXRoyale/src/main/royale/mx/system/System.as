@@ -83,5 +83,14 @@ package mx.system
 		public static function get totalMemory():uint {
 			return 0;
 		}
+		
+		
+		public static var _useCodePage:Boolean = false;
+		public static function get useCodePage():Boolean {
+			return _useCodePage;
+		}
+		public static function set useCodePage(value:Boolean):void {
+			_useCodePage = value;
+		}
 	}
 }

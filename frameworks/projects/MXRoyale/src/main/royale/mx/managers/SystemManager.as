@@ -515,6 +515,20 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  get the main stage if we're loaded into another swf in the same sandbox
      */
+	
+	COMPILE::JS {
+		public function get stage():Object
+		{ 
+			return null;
+		}
+	}
+	
+	COMPILE::SWF {
+		override public function get stage():Stage
+		{ 
+			return null;
+		}
+	}
     /* override public function get stage():Stage
     {
         if (_stage)

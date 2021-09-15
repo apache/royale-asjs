@@ -23,6 +23,7 @@ package mx.managers
 import org.apache.royale.events.IEventDispatcher;
 import mx.core.IChildList;
 import mx.core.UIComponent;
+import flash.display.Stage;
 /**
  *  An ISystemManager manages an "application window".
  *  Every application that runs on the desktop or in a browser
@@ -103,6 +104,12 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
     function get rawChildren():IChildList;
     function get numModalWindows():int;
     function set numModalWindows(value:int):void;
+	COMPILE::SWF {
+		function get stage():Stage;
+	}
+	COMPILE::JS {
+		function get stage():Object;
+	}
  
 	
 	//--------------------------------------------------------------------------

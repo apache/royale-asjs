@@ -265,5 +265,11 @@ public class PopUpManager
             }
 		}
     }
+	
+	
+	public static function bringToFront(popUp:IFlexDisplayObject):void
+    {
+		trace("bringToFront in PopUpManager is not implemented");
+    }
 } // class
 } // package

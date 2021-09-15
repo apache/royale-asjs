@@ -35,6 +35,22 @@ package mx.dummy
 			trace("set caption in ContextMenuItem is not implemented");
 			_caption = value;
 		}
+		
+		public var _enabled:Boolean = false;
+		public function get enabled():Boolean {
+			return _enabled;
+		}
+		public function set enabled(value:Boolean):void {
+			_enabled = value;
+		}
+		
+		public var _separatorBefore:Boolean = false;
+		public function get separatorBefore():Boolean {
+			return _separatorBefore;
+		}
+		public function set separatorBefore(value:Boolean):void {
+			_separatorBefore = value;
+		}
 
     }
 }

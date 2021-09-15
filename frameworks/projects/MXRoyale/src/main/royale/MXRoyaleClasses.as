@@ -418,6 +418,8 @@ internal class MXRoyaleClasses
 	import mx.globalization.NationalDigitsType; NationalDigitsType;
 	import mx.globalization.NumberFormatter; NumberFormatter;
 	import mx.globalization.NumberParseResult; NumberParseResult;
+	import mx.core.LayoutContainer; LayoutContainer;
+	import mx.containers.utilityClasses.Layout; Layout;
 }
 
 }

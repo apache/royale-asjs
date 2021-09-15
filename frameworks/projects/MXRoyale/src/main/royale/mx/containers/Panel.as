@@ -69,6 +69,11 @@ import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
+import mx.core.ContainerLayout;
+import mx.core.mx_internal;
+
+
+use namespace mx_internal;
 
 //--------------------------------------
 //  Styles
@@ -1086,6 +1091,27 @@ public class Panel extends Container
     {
         return titleTextField;
     }
+	
+	
+	//----------------------------------
+    //  usePadding
+    //----------------------------------
+
+    /**
+     *  @private
+     */
+    mx_internal function get usePadding():Boolean
+    {
+        // We use margins for all layouts except absolute.
+        return layout != ContainerLayout.ABSOLUTE;
+    }
+	
+	 /**
+     *  @private
+     *  A reference to this Panel container's title icon.
+     */
+    mx_internal var titleIconObject:Object = null;
+	
     
 
 
