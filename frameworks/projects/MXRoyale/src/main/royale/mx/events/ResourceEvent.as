@@ -214,7 +214,7 @@ public class ResourceEvent extends ProgressEvent
     /**
      *  @private
      */
-    override public function clone():Event
+    override public function cloneEvent():Event
     {
         return new ResourceEvent(type, bubbles, cancelable,
                                  bytesLoaded, bytesTotal, errorText);

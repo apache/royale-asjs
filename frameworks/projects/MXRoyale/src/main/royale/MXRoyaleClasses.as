@@ -34,6 +34,7 @@ internal class MXRoyaleClasses
 	import mx.effects.AnimateProperty; AnimateProperty;
 	import mx.effects.easing.Cubic; Cubic;
 	import mx.events.StateChangeEvent; StateChangeEvent;
+	import mx.events.ResourceEvent; ResourceEvent;
 	import mx.graphics.BitmapFill; BitmapFill;
 	import mx.graphics.BitmapFillMode; BitmapFillMode;
 	import mx.core.mx_internal; mx_internal;
