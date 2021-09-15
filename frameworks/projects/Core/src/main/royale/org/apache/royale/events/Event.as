@@ -244,8 +244,8 @@ package org.apache.royale.events
 		}
 		
 		COMPILE::JS {
-			public function formatToString(className:String, ... arguments):String {
-				 for each (var s:String in arguments)
+			public function formatToString(className:String, ...args):String {
+				 for each (var s:String in args)
 					className += " " + s;
 			  
 				return className;
