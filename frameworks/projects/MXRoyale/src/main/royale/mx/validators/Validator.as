@@ -124,8 +124,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // protected static const ROMAN_LETTERS:String =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    protected static const ROMAN_LETTERS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 
     /**
      *  A String containing the decimal digits 0 through 9.    
@@ -682,10 +681,10 @@ public class Validator extends EventDispatcher
     /**
      *  @private
      */
-    /* private var requiredFieldErrorOverride:String;
+     private var requiredFieldErrorOverride:String;
 
     [Inspectable(category="Errors", defaultValue="null")]
-     */
+  
     /**
      *  Error message when a value is missing and the 
      *  <code>required</code> property is <code>true</code>. 
@@ -707,7 +706,7 @@ public class Validator extends EventDispatcher
      */
     public function set requiredFieldError(value:String):void
     {
-        //requiredFieldErrorOverride = value;
+        requiredFieldErrorOverride = value;
 
         _requiredFieldError = value != null ?
                               value : "" ;
@@ -765,10 +764,10 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function resourcesChanged():void
+    protected function resourcesChanged():void
     {
         requiredFieldError = requiredFieldErrorOverride;
-    } */
+    }
 
     /**
      *  @private
@@ -1147,5 +1146,6 @@ public class Validator extends EventDispatcher
     {
         resourcesChanged();
     } */
+	
 }
 }
