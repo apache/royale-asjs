@@ -65,10 +65,10 @@ package mx.system
 			
 			COMPILE::JS
 			{
-				var span:HTMLSpanElement = document.createElement("span") as HTMLSpanElement;
-				span.innerText = str;
-				span.id = "copyToClipboard";
-				document.body.appendChild( span );
+				var pre:HTMLPreElement = document.createElement("pre") as HTMLPreElement;
+				pre.innerText = str;
+				pre.id = "copyToClipboard";
+				document.body.appendChild( pre );
 				var copyToClipboard:Element = document.getElementById("copyToClipboard");
 				var selection:Selection = window.getSelection();
 				var range:Range = document.createRange();
@@ -76,7 +76,7 @@ package mx.system
 				selection.removeAllRanges();
 				selection.addRange(range);
 				document.execCommand("copy");
-				document.body.removeChild( span );
+				document.body.removeChild( pre );
 			}
 		}
 		
