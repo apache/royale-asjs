@@ -422,6 +422,8 @@ internal class MXRoyaleClasses
 	import mx.containers.utilityClasses.Layout; Layout;
 	import mx.validators.ZipCodeValidator; ZipCodeValidator;
 	import mx.validators.ZipCodeValidatorDomainType; ZipCodeValidatorDomainType;
+	import mx.controls.dataGridClasses.DataGridHeaderBase; DataGridHeaderBase;
+	import mx.controls.dataGridClasses.DataGridHeader; DataGridHeader;
 }
 
 }
