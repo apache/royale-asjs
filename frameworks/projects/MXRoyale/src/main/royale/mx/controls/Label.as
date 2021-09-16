@@ -35,6 +35,7 @@ import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
+import mx.core.IUITextField;
 
 /*
 import mx.core.UITextField;
@@ -808,6 +809,22 @@ public class Label extends UIComponent
      *  @productversion Flex 3
      */
     public var truncateToFit:Boolean = true;
+	
+	
+	//----------------------------------
+    //  textField
+    //----------------------------------
+
+    /**
+     *  The internal UITextField that renders the text of this Label.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var textField:IUITextField;
+
 	
 
     //--------------------------------------------------------------------------
