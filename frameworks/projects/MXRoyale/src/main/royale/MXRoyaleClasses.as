@@ -420,6 +420,8 @@ internal class MXRoyaleClasses
 	import mx.globalization.NumberParseResult; NumberParseResult;
 	import mx.core.LayoutContainer; LayoutContainer;
 	import mx.containers.utilityClasses.Layout; Layout;
+	import mx.validators.ZipCodeValidator; ZipCodeValidator;
+	import mx.validators.ZipCodeValidatorDomainType; ZipCodeValidatorDomainType;
 }
 
 }
