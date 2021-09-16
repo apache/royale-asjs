@@ -185,6 +185,14 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 			return 13;
 		return code.charCodeAt();
 	}
+	
+	public var _keyLocationVal:uint = 0;
+	public function get keyLocation():uint {
+		return _keyLocationVal;
+	}
+    public function set keyLocation(value:uint):void {
+		_keyLocationVal = value;
+	}
 }
 
 }
