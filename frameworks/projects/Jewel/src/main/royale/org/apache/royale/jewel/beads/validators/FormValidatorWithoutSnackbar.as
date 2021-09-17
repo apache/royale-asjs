@@ -20,7 +20,16 @@ package org.apache.royale.jewel.beads.validators
 {
     import org.apache.royale.jewel.beads.validators.FormValidator;
     import org.apache.royale.events.Event;
-    
+
+	/**
+	 *  The FormValidatorWithoutSnackbar class is a specialty bead that can be used with
+	 *  form control. It prevents from displaying Snackbar notification in case of errors.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.9
+	 */
 	public class FormValidatorWithoutSnackbar extends FormValidator 
 	{
 		public function FormValidatorWithoutSnackbar()
