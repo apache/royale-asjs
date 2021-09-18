@@ -21,6 +21,8 @@ package mx.core
 {    
 //    import mx.managers.IToolTipManagerClient;
 //    import mx.styles.ISimpleStyleClient;
+	import org.apache.royale.geom.Rectangle;
+
 
     /**
      *  The IUITextField interface defines the basic set of APIs
@@ -163,6 +165,8 @@ package mx.core
         function setTextFormat(format:UITextFormat,
                                beginIndex:int = -1,
                                endIndex:int = -1):void;
+							   
+		function getCharBoundaries(charIndex:int):Rectangle;
         
     }
     

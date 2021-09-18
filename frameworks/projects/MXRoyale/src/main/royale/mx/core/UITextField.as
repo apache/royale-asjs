@@ -41,6 +41,7 @@ import flash.text.TextLineMetrics;
  
  import org.apache.royale.core.TextLineMetrics;
  import org.apache.royale.events.Event;
+ import org.apache.royale.geom.Rectangle;
  
  COMPILE::JS
  {
@@ -3032,6 +3033,11 @@ public class UITextField  extends UIComponent implements IUITextField
      public function set defaultTextFormat(value:TextFormat):void
      {
      }
+	 
+	 public function getCharBoundaries(charIndex:int):Rectangle {
+		trace("interface method getCharBoundaries of IUITextField is implemented without stub in UITextField");
+		return null;
+	 }
 }
 
 }
