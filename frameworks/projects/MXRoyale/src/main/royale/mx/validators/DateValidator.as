@@ -293,6 +293,68 @@ public class DateValidator extends Validator
                             //  resourceManager.getString(
                             //     "validators", "requiredFieldError");
     }
+	
+	
+	//----------------------------------
+	//  allowedFormatChars
+	//----------------------------------
+
+	/**
+	 *  @private
+	 *  Storage for the allowedFormatChars property.
+	 */
+	private var _allowedFormatChars:String;
+
+    /**
+	 *  @private
+	 */
+	private var allowedFormatCharsOverride:String;
+	
+	[Inspectable(category="General", defaultValue="null")]
+
+	/** 
+	 *  The set of formatting characters allowed for separating
+	 *  the month, day, and year values.
+	 *
+	 *  @default "/\-. "
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get allowedFormatChars():String
+	{
+		return _allowedFormatChars;
+	}
+
+    /**
+	 *  @private
+	 */
+	public function set allowedFormatChars(value:String):void
+	{	
+		if (value != null)
+		{
+			var n:int = value.length;
+			for (var i:int = 0; i < n; i++)
+			{
+				if (DECIMAL_DIGITS.indexOf(value.charAt(i)) != -1)
+				{
+					/* var message:String = resourceManager.getString(
+						"validators", "invalidFormatChars");
+					throw new Error(message); */
+				}
+			}
+		}
+
+		allowedFormatCharsOverride = value;
+
+		_allowedFormatChars = value != null ?
+							  value : "";
+							  /* resourceManager.getString(
+							      "validators",
+								  "dateValidatorAllowedFormatChars"); */
+	}
 
 }
 
