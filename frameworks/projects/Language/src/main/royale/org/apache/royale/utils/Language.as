@@ -512,11 +512,36 @@ package org.apache.royale.utils
             return sorted;
         }
         
+        private static function getValue(obj:Object, n:String):*
+        {
+            var value:* = obj[n];
+            COMPILE::JS
+            {
+                // support XML data in JS (in libraries without access to XML class)
+                if (value == null)
+                {
+                    if (n.charAt(0) == '@')
+                    {
+                        var fa:* = obj["attribute"];
+                        if (fa && typeof(fa) === "function")
+                            value = fa.call(obj, n);
+                    }
+                    else
+                    {
+                        var fc:* = obj["child"];
+                        if (fc && typeof(fc) === "function")
+                            value = fc.call(obj, n).toString();
+                    }
+                }
+            }
+            return value;
+        }
+        
         private static function compareStringCaseinsensitive(a:Object, b:Object):int
         {
             for each(var n:String in sortNames)
             {
-                var v:int = (a[n] || zeroStr).toString().toLowerCase().localeCompare((b[n] || zeroStr).toString().toLowerCase());
+                var v:int = (getValue(a, n) || zeroStr).toString().toLowerCase().localeCompare((getValue(b, n) || zeroStr).toString().toLowerCase());
                 if (v != 0)
                 {
                     return v * muler;
@@ -529,7 +554,7 @@ package org.apache.royale.utils
         {
             for each(var n:String in sortNames)
             {
-                var v:int = (a[n] || zeroStr).toString().localeCompare((b[n] || zeroStr).toString());
+                var v:int = (getValue(a, n) || zeroStr).toString().localeCompare((getValue(b, n) || zeroStr).toString());
                 if (v != 0)
                 {
                     return v * muler;
@@ -542,10 +567,10 @@ package org.apache.royale.utils
         {
             for each(var n:String in sortNames)
             {
-                if (Number(a[n]) > Number(b[n]))
+                if (Number(getValue(a, n)) > Number(getValue(b, n)))
                 {
                     return muler;
-                } else if (Number(a[n]) < Number(b[n]))
+                } else if (Number(getValue(a, n)) < Number(getValue(b, n)))
                 {
                     return -muler;
                 }
