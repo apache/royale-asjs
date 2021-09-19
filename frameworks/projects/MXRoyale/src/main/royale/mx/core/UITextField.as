@@ -3038,6 +3038,24 @@ public class UITextField  extends UIComponent implements IUITextField
 		trace("interface method getCharBoundaries of IUITextField is implemented without stub in UITextField");
 		return null;
 	 }
+	 
+	 public var _background:Boolean = false;
+	 
+	 public function get background():Boolean {
+		return _background;
+	 }
+	 public function set background(value:Boolean):void{
+		_background = value;
+	 }
+
+	 public var _backgroundColor:uint = 0xFFFFFF;
+	 
+	 override public function get backgroundColor():uint {
+		return _backgroundColor;
+	 }
+	 override public function set backgroundColor(value:uint):void {
+		_backgroundColor = value;
+	 }
 }
 
 }

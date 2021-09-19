@@ -167,6 +167,28 @@ package mx.core
                                endIndex:int = -1):void;
 							   
 		function getCharBoundaries(charIndex:int):Rectangle;
+		
+		/**
+		 *  @copy flash.text.TextField#background
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		function get background():Boolean;
+		function set background(value:Boolean):void;
+
+		/**
+		 *  @copy flash.text.TextField#backgroundColor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		function get backgroundColor():uint;
+		function set backgroundColor(value:uint):void;
         
     }
     
