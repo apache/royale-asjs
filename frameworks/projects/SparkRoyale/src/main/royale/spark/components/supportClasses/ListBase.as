@@ -213,7 +213,7 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   // public static const NO_SELECTION:int = -1;
+    public static const NO_SELECTION:int = -1;
     
     /**
      *  @private
