@@ -425,6 +425,7 @@ internal class MXRoyaleClasses
 	import mx.controls.dataGridClasses.DataGridHeaderBase; DataGridHeaderBase;
 	import mx.controls.dataGridClasses.DataGridHeader; DataGridHeader;
 	import mx.printing.PrintJob; PrintJob;
+	import mx.containers.accordionClasses.AccordionHeader; AccordionHeader;
 }
 
 }
