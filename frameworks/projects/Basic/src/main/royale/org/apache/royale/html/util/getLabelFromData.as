@@ -32,65 +32,13 @@ package org.apache.royale.html.util
         if (data is String) return "" + data;
         if(!data) return "";
 
-        var labelField:String;
-        var value:String;
-
-        if (obj["labelField"]) 
-        {
-            labelField = obj["labelField"];
-            value = "" + data[labelField];
-            COMPILE::JS
-            {
-                // support XML data in JS (in libraries without access to XML class)
-                if (value == "undefined")
-                {
-                    if (labelField.charAt(0) == '@')
-                    {
-                        var fal:* = data["attribute"];
-                        if (fal && typeof(fal) === "function")
-                            value = fal.call(data, labelField);
-                    }
-                    else
-                    {
-                        var fcl:* = data["child"];
-                        if (fcl && typeof(fcl) === "function")
-                            value = fcl.call(data, labelField).toString();
-                    }
-                }
-            }
-            return value;
+        if (obj["labelField"]) return "" + data[obj["labelField"]];
+        if (obj["dataField"]) return "" + data[obj["dataField"]];
+        var label:String = data["label"];
+        if(label != null){
+            return label;
         }
-
-        if (obj["dataField"]) 
-        {
-            labelField = obj["dataField"];
-            value = "" + data[labelField];
-            COMPILE::JS
-            {
-                // support XML data in JS (in libraries without access to XML class)
-                if (value == "undefined")
-                {
-                    if (labelField.charAt(0) == '@')
-                    {
-                        var fad:* = data["attribute"];
-                        if (fad && typeof(fad) === "function")
-                            value = fad.call(data, labelField);
-                    }
-                    else
-                    {
-                        var fcd:* = data["child"];
-                        if (fcd && typeof(fcd) === "function")
-                            value = fcd.call(data, labelField).toString();
-                    }
-                }
-            }
-            return value;
-        }
-
-        value = data["label"];
-        if (value != null)
-            return value;
-
         return "" + data;
+
     }
 }
