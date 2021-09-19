@@ -824,6 +824,74 @@ public class Label extends UIComponent
      *  @productversion Flex 3
      */
     protected var textField:IUITextField;
+	
+	//----------------------------------
+    //  textHeight
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the textHeight property.
+     */
+    private var _textHeight:Number;
+
+    /**
+     *  The height of the text.
+     *
+     *  <p>The value of the <code>textHeight</code> property is correct only
+     *  after the component has been validated.
+     *  If you set <code>text</code> and then immediately ask for the
+     *  <code>textHeight</code>, you might receive an incorrect value.
+     *  You should wait for the component to validate
+     *  or call the <code>validateNow()</code> method before you get the value.
+     *  This behavior differs from that of the flash.text.TextField control,
+     *  which updates the value immediately.</p>
+     *
+     *  @see flash.text.TextField
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get textHeight():Number
+    {
+        return _textHeight;
+    }
+
+    //----------------------------------
+    //  textWidth
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the textWidth property.
+     */
+    private var _textWidth:Number;
+
+    /**
+     *  The width of the text.
+     *
+     *  <p>The value of the <code>textWidth</code> property is correct only
+     *  after the component has been validated.
+     *  If you set <code>text</code> and then immediately ask for the
+     *  <code>textWidth</code>, you might receive an incorrect value.
+     *  You should wait for the component to validate
+     *  or call the <code>validateNow()</code> method before you get the value.
+     *  This behavior differs from that of the flash.text.TextField control,
+     *  which updates the value immediately.</p>
+     *
+     *  @see flash.text.TextField
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get textWidth():Number
+    {
+        return _textWidth;
+    }
 
 	
 
