@@ -424,6 +424,7 @@ internal class MXRoyaleClasses
 	import mx.validators.ZipCodeValidatorDomainType; ZipCodeValidatorDomainType;
 	import mx.controls.dataGridClasses.DataGridHeaderBase; DataGridHeaderBase;
 	import mx.controls.dataGridClasses.DataGridHeader; DataGridHeader;
+	import mx.printing.PrintJob; PrintJob;
 }
 
 }
