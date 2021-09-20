@@ -228,7 +228,7 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    if (i >= dp.length) continue; // no more renderers needed
+                    if (i >= dp.length) break; // no more renderers needed
                     
                     var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
@@ -361,7 +361,7 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    if (i >= dp.length) continue; // no more renderers needed
+                    if (i >= dp.length) break; // no more renderers needed
                     
                     var ir:IIndexedItemRenderer;
                     if (i < firstIndex)

@@ -212,7 +212,6 @@ internal class MXRoyaleClasses
     import mx.controls.beads.layouts.DataGridLayout; DataGridLayout;
     import mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout; AdvancedDataGridVirtualListVerticalLayout;
 	import mx.controls.beads.layouts.DataGridHeaderLayout; DataGridHeaderLayout;
-	import mx.controls.listClasses.VirtualListVerticalLayout; VirtualListVerticalLayout;
     import mx.controls.listClasses.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
     import mx.controls.treeClasses.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
     import mx.controls.beads.TreeItemRendererMouseController; TreeItemRendererMouseController;
