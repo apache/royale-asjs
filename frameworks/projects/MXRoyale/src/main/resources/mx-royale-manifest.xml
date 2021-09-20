@@ -146,6 +146,7 @@
 
 	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
 	<component id="ChannelSet" class="mx.messaging.ChannelSet" />
+	<component id="Consumer" class="mx.messaging.Consumer" />
 
 	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
 	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
