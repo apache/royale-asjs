@@ -228,8 +228,24 @@ package org.apache.royale.jewel.beads.validators
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get isError():Boolean {
-			return (_errorTip != null);
+		public function get isError():Boolean
+		{
+			if (!noErrorTip)
+			{
+				return (_errorTip != null);
+			}
+			else
+			{
+				COMPILE::JS
+				{
+					return hostClassList.contains("errorBorder");
+				}
+
+				COMPILE::SWF
+				{
+					return false;
+				}
+			}
 		}
 
 		/**
