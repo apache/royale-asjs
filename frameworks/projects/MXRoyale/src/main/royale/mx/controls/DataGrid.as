@@ -748,7 +748,9 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     //  Variables
     //
     //--------------------------------------------------------------------------
-
+	
+	
+	 public var itemEditorInstance:IListItemRenderer;
 
     /**
      *  A flag that indicates whether the user can change the size of the
