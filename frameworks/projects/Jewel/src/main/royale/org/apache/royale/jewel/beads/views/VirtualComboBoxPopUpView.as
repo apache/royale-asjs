@@ -50,7 +50,14 @@ package org.apache.royale.jewel.beads.views
 
 		override public function set strand(value:IStrand):void{
 			super.strand = value;
+			
+			var virtualComboBoxPopup:VirtualComboBoxPopUp = _strand as VirtualComboBoxPopUp;
+			if (virtualComboBoxPopup && virtualComboBoxPopup.itemRenderer)
+			{
+				list.itemRenderer = virtualComboBoxPopup.itemRenderer;
+			}
 			(list.model as IJewelSelectionModel).dispatchEvent(new Event("popUpCreated"));
+
 		}
         
         override public function get list():List
@@ -60,10 +67,6 @@ package org.apache.royale.jewel.beads.views
 				_list.addEventListener("beadsAdded", beadsAddedHandler);
             }
 
-			if((_strand as VirtualComboBoxPopUp).itemRenderer)
-			{
-				_list.itemRenderer = (_strand as VirtualComboBoxPopUp).itemRenderer;
-			}
             return _list;
         }
     }
