@@ -221,7 +221,7 @@ public class MessageEvent extends Event
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    [SWFOverride(returns="flash.events.Event"))]
+    [SWFOverride(returns="flash.events.Event")]
     COMPILE::SWF { override }
     public function clone():Event
     {

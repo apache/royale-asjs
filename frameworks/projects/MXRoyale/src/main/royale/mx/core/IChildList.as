@@ -113,7 +113,7 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
 	function addChild(child:IUIComponent):IUIComponent;
 	
     /**
@@ -137,7 +137,7 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
 	function addChildAt(child:IUIComponent, index:int):IUIComponent;
 	
     /**
@@ -159,7 +159,7 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
 	function removeChild(child:IUIComponent):IUIComponent;
 	
     /**
@@ -181,7 +181,7 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */	     
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
 	function removeChildAt(index:int):IUIComponent;
 	
 	/**
@@ -197,7 +197,7 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
   	function getChildAt(index:int):IUIComponent;
 	
     /**
@@ -213,7 +213,7 @@ public interface IChildList
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
   	function getChildByName(name:String):IUIComponent;
   	
 	/**
@@ -258,7 +258,7 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
   	function getChildIndex(child:IUIComponent):int;
   	
 	/**
@@ -276,7 +276,7 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int")]
 	function setChildIndex(child:IUIComponent, newIndex:int):void;
 	
 	/**
@@ -294,7 +294,7 @@ public interface IChildList
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
 	function contains(child:IUIBase):Boolean;
 }
 

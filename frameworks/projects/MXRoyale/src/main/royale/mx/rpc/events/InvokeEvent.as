@@ -97,7 +97,7 @@ public class InvokeEvent extends AbstractEvent
      * event type.
      * @private
      */
-    [SWFOverride(returns="flash.events.Event"))]
+    [SWFOverride(returns="flash.events.Event")]
     override public function clone():Event
     {
         return new InvokeEvent(type, bubbles, cancelable, token, message);

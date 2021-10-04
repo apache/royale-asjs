@@ -273,7 +273,7 @@ public class ChannelFaultEvent extends ChannelEvent
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    [SWFOverride(returns="flash.events.Event"))]
+    [SWFOverride(returns="flash.events.Event")]
     override public function clone():Event
     {
         var faultEvent:ChannelFaultEvent = new ChannelFaultEvent(type, bubbles, cancelable, channel, reconnecting, faultCode, faultString, faultDetail, rejected, connected);

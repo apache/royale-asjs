@@ -187,7 +187,7 @@ public class ResultEvent extends AbstractEvent
      * event type.
      * @private
      */
-    [SWFOverride(returns="flash.events.Event"))]
+    [SWFOverride(returns="flash.events.Event")]
     override public function clone():Event
     {
         return new ResultEvent(type, bubbles, cancelable, result, token, message);

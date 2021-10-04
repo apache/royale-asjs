@@ -3858,7 +3858,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function addChild(child:IUIComponent):IUIComponent
@@ -3878,7 +3878,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function addChildAt(child:IUIComponent,
@@ -3903,7 +3903,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function removeChild(child:IUIComponent):IUIComponent
@@ -3927,7 +3927,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function removeChildAt(index:int):IUIComponent
@@ -3946,7 +3946,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function getChildAt(index:int):IUIComponent
@@ -3997,7 +3997,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int")]
     COMPILE::SWF 
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
@@ -4008,7 +4008,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     COMPILE::SWF 
     { override }
     public function getChildIndex(child:IUIComponent):int
@@ -4019,7 +4019,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function getChildByName(name:String):IUIComponent
@@ -4031,7 +4031,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     COMPILE::SWF 
     { override }
     public function contains(child:IUIBase):Boolean
@@ -4371,7 +4371,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point")]
     COMPILE::SWF 
     { override }
     public function localToGlobal(value:Point):Point
@@ -4392,7 +4392,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point")]
     COMPILE::SWF 
     { override }
     public function globalToLocal(value:Point):Point

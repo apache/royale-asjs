@@ -215,7 +215,7 @@ public class MessageAckEvent extends MessageEvent
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    [SWFOverride(returns="flash.events.Event"))]
+    [SWFOverride(returns="flash.events.Event")]
     override public function clone():Event
     {
         return new MessageAckEvent(type, bubbles, cancelable, message as AcknowledgeMessage, correlation);

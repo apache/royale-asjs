@@ -222,7 +222,7 @@ public class LogEvent extends Event
     /**
 	 *  @private
      */
-    [SWFOverride(returns="flash.events.Event"))]
+    [SWFOverride(returns="flash.events.Event")]
     COMPILE::SWF { override }
     public function clone():Event
     {

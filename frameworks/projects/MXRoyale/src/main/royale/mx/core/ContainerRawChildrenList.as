@@ -135,7 +135,7 @@ public class ContainerRawChildrenList implements IChildList
     public function get numChildren():int
     {
         // return owner.$numChildren;
-		return null;
+		return 0;
     }
 
     //--------------------------------------------------------------------------
@@ -147,7 +147,7 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     public function addChild(child:IUIComponent):IUIComponent
     {
         // return owner.rawChildren_addChild(child);
@@ -157,7 +157,7 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
     public function addChildAt(child:IUIComponent, index:int):IUIComponent
     {
         // return owner.rawChildren_addChildAt(child, index);
@@ -167,7 +167,7 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     public function removeChild(child:IUIComponent):IUIComponent
     {
         // return owner.rawChildren_removeChild(child);
@@ -177,7 +177,7 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     public function removeChildAt(index:int):IUIComponent
     {
         // return owner.rawChildren_removeChildAt(index);
@@ -187,7 +187,7 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     public function getChildAt(index:int):IUIComponent
     {
         // return owner.rawChildren_getChildAt(index);
@@ -197,7 +197,7 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     public function getChildByName(name:String):IUIComponent
     {
         // return owner.rawChildren_getChildByName(name);
@@ -207,17 +207,17 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     public function getChildIndex(child:IUIComponent):int
     {
         // return owner.rawChildren_getChildIndex(child);
-		return null;
+		return 0;
     }
 
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int")]
     public function setChildIndex(child:IUIComponent, newIndex:int):void
     {       
         // owner.rawChildren_setChildIndex(child, newIndex);
@@ -235,11 +235,11 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     public function contains(child:IUIComponent):Boolean
     {
         // return owner.rawChildren_contains(child);
-		return null;
+		return false;
     }   
 }
 

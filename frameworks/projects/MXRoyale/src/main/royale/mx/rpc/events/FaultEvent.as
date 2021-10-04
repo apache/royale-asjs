@@ -183,7 +183,7 @@ public class FaultEvent extends AbstractEvent
      * event type.
      * @private
      */
-    [SWFOverride(returns="flash.events.Event"))]
+    [SWFOverride(returns="flash.events.Event")]
     override public function clone():Event
     {
         return new FaultEvent(type, bubbles, cancelable, fault, token, message);

@@ -1588,7 +1588,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function addChild(child:IUIComponent):IUIComponent
@@ -1771,7 +1771,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function addChildAt(child:IUIComponent,
@@ -1794,7 +1794,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function removeChild(child:IUIComponent):IUIComponent
@@ -1815,7 +1815,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function removeChildAt(index:int):IUIComponent
@@ -1829,7 +1829,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function getChildAt(index:int):IUIComponent
@@ -3702,7 +3702,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int")]
     COMPILE::SWF 
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
@@ -3713,7 +3713,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     COMPILE::SWF 
     { override }
     public function getChildIndex(child:IUIComponent):int
@@ -3731,7 +3731,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function getChildByName(name:String):IUIComponent
@@ -3743,7 +3743,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     COMPILE::SWF 
     { override }
     public function contains(child:IUIComponent):Boolean

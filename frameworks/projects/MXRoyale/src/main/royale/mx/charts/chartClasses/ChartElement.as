@@ -302,7 +302,7 @@ public class ChartElement extends DualStyleObject implements IChartElement2
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     override public function addChild(child:IUIComponent):IUIComponent
     {
         super.addChild(child);
@@ -338,7 +338,7 @@ public class ChartElement extends DualStyleObject implements IChartElement2
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
     override public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
