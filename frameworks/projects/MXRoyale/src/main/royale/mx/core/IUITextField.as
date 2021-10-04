@@ -187,8 +187,8 @@ package mx.core
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		function get backgroundColor():uint;
-		function set backgroundColor(value:uint):void;
+		function get backgroundColor():Object;
+		function set backgroundColor(value:Object):void;
         
     }
     

@@ -3050,11 +3050,11 @@ public class UITextField  extends UIComponent implements IUITextField
 
 	 public var _backgroundColor:uint = 0xFFFFFF;
 	 
-	 override public function get backgroundColor():uint {
+	 override public function get backgroundColor():Object {
 		return _backgroundColor;
 	 }
-	 override public function set backgroundColor(value:uint):void {
-		_backgroundColor = value;
+	 override public function set backgroundColor(value:Object):void {
+		_backgroundColor = value as uint;
 	 }
 }
 

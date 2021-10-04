@@ -20,7 +20,7 @@
 package mx.core
 {
 
-import mx.core.UIComponent;
+import mx.core.IUIComponent;
 import org.apache.royale.geom.Point;
 
 use namespace mx_internal;
@@ -147,7 +147,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function addChild(child:UIComponent):UIComponent
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    public function addChild(child:IUIComponent):IUIComponent
     {
         // return owner.rawChildren_addChild(child);
 		return null;
@@ -156,7 +157,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function addChildAt(child:UIComponent, index:int):UIComponent
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    public function addChildAt(child:IUIComponent, index:int):IUIComponent
     {
         // return owner.rawChildren_addChildAt(child, index);
 		return null;
@@ -165,7 +167,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function removeChild(child:UIComponent):UIComponent
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    public function removeChild(child:IUIComponent):IUIComponent
     {
         // return owner.rawChildren_removeChild(child);
 		return null;
@@ -174,7 +177,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function removeChildAt(index:int):UIComponent
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    public function removeChildAt(index:int):IUIComponent
     {
         // return owner.rawChildren_removeChildAt(index);
 		return null;
@@ -183,7 +187,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function getChildAt(index:int):UIComponent
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    public function getChildAt(index:int):IUIComponent
     {
         // return owner.rawChildren_getChildAt(index);
 		return null;
@@ -192,7 +197,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function getChildByName(name:String):UIComponent
+    [SWFOverride(returns="flash.display.DisplayObject"))]
+    public function getChildByName(name:String):IUIComponent
     {
         // return owner.rawChildren_getChildByName(name);
 		return null;
@@ -201,7 +207,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function getChildIndex(child:UIComponent):int
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    public function getChildIndex(child:IUIComponent):int
     {
         // return owner.rawChildren_getChildIndex(child);
 		return null;
@@ -210,7 +217,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function setChildIndex(child:UIComponent, newIndex:int):void
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    public function setChildIndex(child:IUIComponent, newIndex:int):void
     {       
         // owner.rawChildren_setChildIndex(child, newIndex);
     }
@@ -227,7 +235,8 @@ public class ContainerRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function contains(child:UIComponent):Boolean
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    public function contains(child:IUIComponent):Boolean
     {
         // return owner.rawChildren_contains(child);
 		return null;
