@@ -107,6 +107,7 @@ import org.apache.royale.utils.observeElementSize;
 
         import org.apache.royale.jewel.supportClasses.INavigationRenderer; INavigationRenderer;
         import org.apache.royale.jewel.supportClasses.ISelectableContent; ISelectableContent;
+        import org.apache.royale.jewel.supportClasses.ISelectableWithIndeterminacy; ISelectableWithIndeterminacy;
         import org.apache.royale.jewel.supportClasses.textinput.ITextInput; ITextInput;
 
         import org.apache.royale.jewel.supportClasses.Viewport; Viewport;

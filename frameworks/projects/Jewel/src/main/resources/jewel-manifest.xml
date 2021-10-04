@@ -85,6 +85,7 @@
     <component id="SwitchRadio" class="org.apache.royale.jewel.SwitchRadio"/>
     <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
     <component id="Switch" class="org.apache.royale.jewel.Switch"/>
+    <component id="ThreeCheckBox" class="org.apache.royale.jewel.ThreeCheckBox"/>
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
     <component id="List" class="org.apache.royale.jewel.List"/>
@@ -220,6 +221,8 @@
     <component id="ComboBoxDisabled" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"/>
     <component id="ComboBoxTruncateText" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText"/>
     <component id="ComboBoxListCloseOnClick" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxListCloseOnClick" />
+    <component id="ThreeCheckBoxLabelState" class="org.apache.royale.jewel.beads.controls.threecheckbox.ThreeCheckBoxLabelState"/>
+    <component id="ThreeCheckBoxStatesValues" class="org.apache.royale.jewel.beads.controls.threecheckbox.ThreeCheckBoxStatesValues"/>
 
     <component id="LayoutChildren" class="org.apache.royale.jewel.beads.layouts.LayoutChildren"/>
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
