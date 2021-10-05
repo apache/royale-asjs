@@ -131,7 +131,7 @@ package org.apache.royale.jewel.beads.views
 
 			_button = new Button();
         	_button.tabIndex = -1;
-			
+
 			_button.text = '\u25BC';
 
 			initSize();
@@ -139,7 +139,7 @@ package org.apache.royale.jewel.beads.views
 			var parent:IParent = host as ComboBox;
 			parent.addElement(_textinput);
 			parent.addElement(_button);
-			
+
 			model = host.getBeadByType(IComboBoxModel) as IComboBoxModel;
 
 			if (model is IJewelSelectionModel) {
@@ -188,33 +188,31 @@ package org.apache.royale.jewel.beads.views
                     _comboPopUp = new _popUpClass() as ComboBoxPopUp;
 					_comboPopUp.addBead((host as ComboBox).presentationModel);
 					_comboPopUp.model = model;
-					
+
 					// if  user defines item render for combo must be pased to popup list
 
 					// priority goes to instance itemRenderer
 					if((combobox as IItemRendererProvider).itemRenderer)
 					{
-						if((combobox as IItemRendererProvider).itemRenderer) {
-							_comboPopUp.itemRenderer = (combobox as IItemRendererProvider).itemRenderer;
-						}
-					} else 
+						_comboPopUp.itemRenderer = (combobox as IItemRendererProvider).itemRenderer;
+					} else
 					// second priority goes CSS defined itemRenderer
 					{
 						var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(host, "iItemRenderer") as Class;
 						if(itemRendererClass != null)
 							_comboPopUp.itemRendererClass = itemRendererClass;
 					}
-					
+
 					UIUtils.addPopUp(_comboPopUp, host);
                     // var popupHost:IPopUpHost = UIUtils.findPopUpHost(host);
                     // popupHost.popUpParent.addElement(_comboPopUp);
 
                     // popup is ComboBoxPopUp that fills 100% of browser window-> We want the internal List inside its view to adjust height
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
-					
+
 					//popup width needs to be set before position inside bounding client to work ok
 					_list.width = host.width;
-					
+
                     COMPILE::JS
                     {
 					// Fix temporary: when soft keyboard opens in ios devices browser is not resized, so popup gets under the keyboard
@@ -230,7 +228,7 @@ package org.apache.royale.jewel.beads.views
 
 					window.addEventListener('resize', autoResizeHandler, false);
                     }
-                    
+
 					prepareForPopUp();
 
 					sendStrandEvent(_strand, "popUpOpened");
@@ -290,7 +288,7 @@ package org.apache.royale.jewel.beads.views
 		 * @private
 		 */
 		protected function initSize():void
-		{ 
+		{
 			_button.width = DEFAULT_BUTTON_WIDTH;
 
 			var cmb:ILayoutChild = host as ILayoutChild;
@@ -298,7 +296,7 @@ package org.apache.royale.jewel.beads.views
 			// if no width (neither px or %), set default width
 			if(cmb.isWidthSizedToContent())
 				cmb.width = DEFAULT_WIDTH;
-			
+
 			_textinput.percentWidth = 100;
 		}
 
@@ -325,7 +323,7 @@ package org.apache.royale.jewel.beads.views
 					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = positionInsideBoundingClientRect(host, _list, origin);
 					var point:Point = PointUtils.localToGlobal(origin, host);
-					
+
 					// by default list appear below textinput
 
 					// if there's no enough space below, reposition above input
@@ -334,7 +332,7 @@ package org.apache.royale.jewel.beads.views
 						var origin2:Point = new Point(0, button.y - _list.height - top);
 						var relocated2:Point = positionInsideBoundingClientRect(host, _list, origin2);
 						_list.y = relocated2.y;
-					
+
 						//if start to cover input...
 						if(_list.y == 0)
 						{
