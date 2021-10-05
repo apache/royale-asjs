@@ -249,6 +249,7 @@ package org.apache.royale.test.runners
 
 		/**
 		 * @private
+		 * @royaleignorecoercion Class
 		 */
 		protected function continueNext():Boolean
 		{
