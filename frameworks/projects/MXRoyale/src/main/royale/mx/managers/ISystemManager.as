@@ -22,7 +22,7 @@ package mx.managers
 
 import org.apache.royale.events.IEventDispatcher;
 import mx.core.IChildList;
-import mx.core.UIComponent;
+//import mx.core.UIComponent;
 //import flash.display.Stage;
 /**
  *  An ISystemManager manages an "application window".

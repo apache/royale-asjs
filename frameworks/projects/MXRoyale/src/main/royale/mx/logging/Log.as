@@ -21,8 +21,8 @@ package mx.logging
 {
 
 import mx.logging.errors.InvalidCategoryError;
-import mx.managers.ISystemManager;
-import mx.managers.SystemManager;
+//import mx.managers.ISystemManager;
+//import mx.managers.SystemManager;
 import mx.messaging.errors.ArgumentError;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;

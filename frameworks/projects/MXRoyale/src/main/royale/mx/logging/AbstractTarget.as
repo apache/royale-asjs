@@ -21,8 +21,8 @@ package mx.logging
 {
 
 import mx.logging.errors.InvalidFilterError;
-import mx.managers.ISystemManager;
-import mx.managers.SystemManager;
+//import mx.managers.ISystemManager;
+//import mx.managers.SystemManager;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 import org.apache.royale.utils.UIDUtil;

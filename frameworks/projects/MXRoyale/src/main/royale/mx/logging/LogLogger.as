@@ -22,7 +22,7 @@ package mx.logging
 
 import org.apache.royale.events.EventDispatcher;
 import mx.managers.ISystemManager;
-import mx.managers.SystemManager;
+//import mx.managers.SystemManager;
 import mx.messaging.errors.ArgumentError;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;

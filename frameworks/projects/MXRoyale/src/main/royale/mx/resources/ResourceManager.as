@@ -30,7 +30,7 @@ import mx.core.mx_internal;
 //import mx.events.ModuleEvent;
 //import mx.events.ResourceEvent;
 import mx.modules.IModuleInfo;
-import mx.modules.ModuleManager;
+//import mx.modules.ModuleManager;
 import mx.utils.StringUtil;
 
 /**

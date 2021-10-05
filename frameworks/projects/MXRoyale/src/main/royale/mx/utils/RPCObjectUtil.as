@@ -39,7 +39,7 @@ import mx.collections.IList;
  */
 public class RPCObjectUtil
 {
-    include "../core/Version.as";
+    //include "../core/Version.as";
     
     /**
     *  Array of properties to exclude from debugging output.
