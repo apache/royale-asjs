@@ -68,6 +68,7 @@
     <module>Language</module>
     <module>MaterialDesignLite</module>
     <module>Mobile</module>
+    <module>MXRoyaleBase</module>
     <module>MXRoyale</module>
     <module>Network</module>
     <module>Reflection</module>

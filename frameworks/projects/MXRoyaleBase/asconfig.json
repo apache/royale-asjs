@@ -24,19 +24,18 @@
             "SWF"
         ],
         "include-classes": [
-            "MXRoyaleClasses"
+            "MXRoyaleBaseClasses"
         ],
         "include-sources": [
             "src/main/royale"
         ],
         "source-path": [
-            "src/main/royale",
-            "../MXRoyaleBase/src/main/royale"
+            "src/main/royale"
         ],
         "external-library-path": [
             "../../../../frameworks/libs/air/airglobal.swc"
         ],
-        "output": "target/MXRoyale.swc"
+        "output": "target/MXRoyaleBase.swc"
     },
     "additionalOptions": "-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject -js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent -js-compiler-define+=COMPILE::SWF,false -js-compiler-define+=COMPILE::JS,true"
 }

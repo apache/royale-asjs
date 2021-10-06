@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<componentPackage>
+
+	<!-- collections -->
+	<component id="ListCollectionView" 					class="mx.collections.ListCollectionView"/>
+	<component id="ArrayCollection" 					class="mx.collections.ArrayCollection"/>
+	<component id="ArrayList" 							class="mx.collections.ArrayList"/>
+	<component id="SortField" 							class="mx.collections.SortField"/>
+	<component id="Sort" 								class="mx.collections.Sort"/>
+	<component id="XMLListCollection" 					class="mx.collections.XMLListCollection"/>
+	<component id="GroupingCollection" 					class="mx.collections.GroupingCollection"/>
+	<component id="GroupingCollection2" 				class="mx.collections.GroupingCollection2"/>
+	<component id="HierarchicalData" 					class="mx.collections.HierarchicalData"/>
+	<component id="Grouping" 							class="mx.collections.Grouping" />
+	<component id="GroupingField" 						class="mx.collections.GroupingField" />
+
+
+	<!-- formatters -->
+	<component id="NumberFormatter" 					class="mx.formatters.NumberFormatter"/>
+	<component id="DateFormatter" 						class="mx.formatters.DateFormatter"/>
+	<component id="PhoneFormatter" 						class="mx.formatters.PhoneFormatter"/>
+	<component id="CurrencyFormatter" 					class="mx.formatters.CurrencyFormatter"/>
+
+	<!-- logging -->
+	<component id="TraceTarget" 						class="mx.logging.targets.TraceTarget"/>
+
+	<!-- managers -->
+	<component id="CursorManager" 						class="mx.managers.CursorManager" />
+
+	<!-- messaging -->
+	<component id="AMFChannel" 							class="mx.messaging.channels.AMFChannel" />
+	<component id="ChannelSet" 							class="mx.messaging.ChannelSet" />
+	<component id="Consumer" 							class="mx.messaging.Consumer" />
+
+	<!-- rpc -->
+	<component id="AsyncToken" 							class="mx.rpc.AsyncToken" />
+	<component id="CompressedRemoteObject" 				class="mx.rpc.remoting.mxml.CompressedRemoteObject" />
+	<component id="RemoteObject" 						class="mx.rpc.remoting.mxml.RemoteObject" />
+	<component id="RemoteObjectOperation"				class="mx.rpc.remoting.mxml.Operation"/>
+	<component id="HTTPService" 						class="mx.rpc.http.mxml.HTTPService" />
+	<component id="WebService" 							class="mx.rpc.soap.mxml.WebService" />
+	<component id="WebServiceOperation" 				class="mx.rpc.soap.mxml.Operation" />
+
+	<!-- validators -->
+	<component id="Validator"						 	class="mx.validators.Validator"/>
+	<component id="StringValidator" 					class="mx.validators.StringValidator"/>
+	<component id="RegExpValidator" 					class="mx.validators.RegExpValidator"/>
+	<component id="NumberValidator" 					class="mx.validators.NumberValidator"/>
+	<component id="PhoneNumberValidator" 				class="mx.validators.PhoneNumberValidator"/>
+	<component id="DateValidator" 						class="mx.validators.DateValidator"/>
+	<component id="EmailValidator" 						class="mx.validators.EmailValidator"/>
+	<component id="ZipCodeValidator" 					class="mx.validators.ZipCodeValidator"/>
+
+
+</componentPackage>

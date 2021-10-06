@@ -40,7 +40,7 @@
             <path-element>../../../../../libs/Effects.swc</path-element>
             <path-element>../../../../../libs/Express.swc</path-element>
             <path-element>../../../../../libs/Charts.swc</path-element>
-            <path-element>../../../../../libs/Network.swc</path-element>
+	          <path-element>../../../../../libs/Network.swc</path-element>
             <path-element>../../../../../libs/Reflection.swc</path-element>
         </external-library-path>
         
@@ -82,11 +82,6 @@
                 <uri>library://ns.apache.org/royale/mx</uri>
                 <manifest>../resources/mx-royale-manifest.xml</manifest>
             </namespace>
-            <!-- include MXRoyaleBase definitions -->
-            <namespace>
-                <uri>library://ns.apache.org/royale/mx</uri>
-                <manifest>../../../../MXRoyaleBase/src/main/resources/mx-royale-manifest.xml</manifest>
-            </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/mx</uri>
                 <manifest>../resources/mx-royale-as-manifest.xml</manifest>
@@ -95,68 +90,19 @@
         
         <source-path>
             <path-element>../royale</path-element>
-            <!-- include MXRoyaleBase sources -->
-            <path-element>../../../../MXRoyaleBase/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
 
         <!-- Use of the instanceof operator. -->
         <warn-instance-of-changes>false</warn-instance-of-changes>
-
-        <!-- avoid warnings for 'this within closure' (multiple, intentional) -->
-        <warn-this-within-closure>false</warn-this-within-closure>
     </compiler>
-    
-    <include-file>
-        <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_align_center.png</name>
-        <path>../resources/assets/icon_align_center.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_align_justify.png</name>
-        <path>../resources/assets/icon_align_justify.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_align_left.png</name>
-        <path>../resources/assets/icon_align_left.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_align_right.png</name>
-        <path>../resources/assets/icon_align_right.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_bullet.png</name>
-        <path>../resources/assets/icon_bullet.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_style_bold.png</name>
-        <path>../resources/assets/icon_style_bold.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_style_italic.png</name>
-        <path>../resources/assets/icon_style_italic.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_style_underline.png</name>
-        <path>../resources/assets/icon_style_underline.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_required_indicator.png</name>
-        <path>../resources/assets/icon_required_indicator.png</path>
-    </include-file>
-    <include-file>
-        <name>assets/icon_error_indicator.png</name>
-        <path>../resources/assets/icon_error_indicator.png</path>
-    </include-file>
+
 
     <include-lookup-only>true</include-lookup-only>
 
     <include-classes>
-        <class>MXRoyaleClasses</class>
+        <class>MXRoyaleBaseClasses</class>
     </include-classes>
     
     <include-namespaces>

@@ -25,15 +25,12 @@
     <version>0.9.9-SNAPSHOT</version>
   </parent>
 
-  <artifactId>MXRoyale</artifactId>
+  <artifactId>MXRoyaleBase</artifactId>
   <version>0.9.9-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <name>Apache Royale: Framework: Libs: MXRoyale</name>
-
-  <properties>
-      <mxroyale.base>${project.basedir}/../MXRoyaleBase</mxroyale.base>
-  </properties>
+  <name>Apache Royale: Framework: Libs: MXRoyaleBase</name>
+  <description>contains Royale versions of mostly non-UI classes represented in the Apache Flex framework</description>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -49,60 +46,10 @@
               <uri>library://ns.apache.org/royale/mx</uri>
               <manifest>${project.basedir}/src/main/resources/mx-royale-manifest.xml</manifest>
             </namespace>
-            <namespace>
-              <uri>library://ns.apache.org/royale/mx</uri>
-              <manifest>${mxroyale.base}/src/main/resources/mx-royale-manifest.xml</manifest>
-            </namespace>
           </namespaces>
           <includeClasses>
-            <includeClass>MXRoyaleClasses</includeClass>
+            <includeClass>MXRoyaleBaseClasses</includeClass>
           </includeClasses>
-          <includeFiles>
-              <include-file>
-                  <name>defaults.css</name>
-                  <path>../src/main/resources/defaults.css</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_align_center.png</name>
-                  <path>../src/main/resources/assets/icon_align_center.png</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_align_justify.png</name>
-                  <path>../src/main/resources/assets/icon_align_justify.png</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_align_left.png</name>
-                  <path>../src/main/resources/assets/icon_align_left.png</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_align_right.png</name>
-                  <path>../src/main/resources/assets/icon_align_right.png</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_bullet.png</name>
-                  <path>../src/main/resources/assets/icon_bullet.png</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_style_bold.png</name>
-                  <path>../src/main/resources/assets/icon_style_bold.png</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_style_italic.png</name>
-                  <path>../src/main/resources/assets/icon_style_italic.png</path>
-              </include-file>
-              <include-file>
-                  <name>assets/icon_style_underline.png</name>
-                  <path>../src/main/resources/assets/icon_style_underline.png</path>
-              </include-file>
-	      <include-file>
-                  <name>assets/icon_required_indicator.png</name>
-                  <path>../src/main/resources/assets/icon_required_indicator.png</path>
-              </include-file>
-	      <include-file>
-                  <name>assets/icon_error_indicator.png</name>
-                  <path>../src/main/resources/assets/icon_error_indicator.png</path>
-              </include-file>
-          </includeFiles>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
           <defines>
@@ -120,7 +67,6 @@
               </define>
           </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <includeLookupOnly>true</includeLookupOnly>
           <additionalCompilerOptions>
               ${project.compiler.options};
               -js-compiler-define=COMPILE::JS,true;
@@ -131,10 +77,8 @@
               -namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;
               -compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;
               -compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml;
-              -compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${mxroyale.base}/src/main/resources/mx-royale-manifest.xml;
               -compiler.warn-instance-of-changes=false;
               -compiler.warn-this-within-closure=false;
-              -source-path+=${mxroyale.base}/src/main/royale;
           </additionalCompilerOptions>
         </configuration>
       </plugin>
@@ -143,15 +87,6 @@
   </build>
   
   <dependencies>
-    <!--
-    Note: this is not needed, because we are linking in the source code directly
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>MXRoyaleBase</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>-->
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
@@ -249,15 +184,6 @@
     <profile>
       <id>option-with-swf</id>
       <dependencies>
-        <!--
-        Note: this is not needed, because we are linking in the source code directly
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>MXRoyaleBase</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>-->
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Binding</artifactId>
@@ -353,4 +279,4 @@
     </profile>
   </profiles>
 
-</project>
+<properties /></project>
