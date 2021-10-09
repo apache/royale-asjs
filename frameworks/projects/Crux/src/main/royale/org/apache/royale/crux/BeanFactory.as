@@ -149,29 +149,20 @@ package org.apache.royale.crux
 						crux.config.tearDownEventPriority);//, true ); - weak refernce
 			}
 			
-			
-			/**
-			 * override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
-			 {
-            var source:Object = getActualDispatcher_(type);
-            goog.events.listen(source, type, handler);
-        }
-			 */
-			//@todo...
-			/*if(crux.dispatcher)
+
+			if(crux.dispatcher)
 			{
 				// as long as the dispatcher is a view, set it up like any other view
 				// this allows it to be automatically torn down if caught by tearDownEventHandler()
-				if( crux.dispatcher is IRoyaleElement) //DisplayObject
+				if( crux.dispatcher is UIBase) //DisplayObject
 				{
-						CruxManager.setUp( UIBase( crux.dispatcher ) );
-
+					CruxManager.setUp( UIBase( crux.dispatcher ) );
 				}
 				else
 				{
 					setUpBean( createBeanFromSource( crux.dispatcher ) );
 				}
-			}*/
+			}
 			
 			crux.dispatcher.dispatchEvent( new CruxEvent( CruxEvent.LOAD_COMPLETE, crux ) );
 		}
