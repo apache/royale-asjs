@@ -35,7 +35,7 @@
             <path-element>../../../../../libs/Basic.swc</path-element>
             <path-element>../../../../../libs/Network.swc</path-element>
             <path-element>../../../../../libs/Reflection.swc</path-element>
-            <path-element>../../../../../libs/MXRoyale.swc</path-element>
+            <path-element>../../../../../libs/MXRoyaleBase.swc</path-element>
             <path-element>../../../../../libs/Storage.swc</path-element>
         </external-library-path>
         <allow-subclass-overrides>true</allow-subclass-overrides>
