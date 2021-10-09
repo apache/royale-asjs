@@ -1,3 +1,10 @@
+Apache Royale 0.9.9 NIGHTLY
+===================
+
+-MXRoyale
+ - MXRoyale has been split 2 libs : MXRoyaleBase (mostly non-UI code) and MXRoyale (mostly UI code). Users of MXRoyale should see no immediate changes as the build of this swc remains the same.
+
+
 Apache Royale 0.9.8
 ===================
 - Core
