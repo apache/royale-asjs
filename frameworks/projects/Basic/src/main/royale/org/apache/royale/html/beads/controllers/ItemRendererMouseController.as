@@ -92,8 +92,8 @@ package org.apache.royale.html.beads.controllers
 			COMPILE::JS {
 				var positioner:WrappedHTMLElement = (_strand as UIBase).positioner;
 				
-				goog.events.listen(positioner, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
-				goog.events.listen(positioner, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEENTER, this.handleMouseOver);
+				goog.events.listen(positioner, goog.events.EventType.MOUSELEAVE, this.handleMouseOut);
 				goog.events.listen(positioner, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
 				goog.events.listen(positioner, goog.events.EventType.CLICK, this.handleMouseClick);
 				goog.events.listen(positioner, goog.events.EventType.MOUSEUP, this.handleMouseUp);
