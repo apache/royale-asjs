@@ -246,6 +246,8 @@ public class TreeItemRenderer extends UIComponent
             text = (treeListData.owner as Tree).labelFunction(data);
         else
             text = dataToString(value);
+
+        var isBranch : Boolean = (treeListData.owner as Tree).dataDescriptor.isBranch(data);
         
         var indentSpace:String = "    ";
         var extraSpace:String = " ";
@@ -260,7 +262,7 @@ public class TreeItemRenderer extends UIComponent
             indent += indentSpace;
         }
         
-        indent += (treeListData.hasChildren ? (treeListData.isOpen ? "▼" : "▶") : "") + extraSpace;
+        indent += (isBranch || treeListData.hasChildren ? (treeListData.isOpen ? "▼" : "▶") : "") + extraSpace;
         
         disclosureIcon.text = indent;
 

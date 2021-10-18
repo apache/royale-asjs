@@ -115,7 +115,7 @@
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
-    <component id="StyleInheritanceBead" class="org.apache.royale.html.beads.StyleInheritanceBead"/>
+    <component id="DragBead" class="org.apache.royale.html.beads.DragBead"/>
     <component id="HideComboPopupOnMouseDownBead" class="org.apache.royale.html.beads.HideComboPopupOnMouseDownBead"/>
     <component id="KeepComboPopupWithinParentBounds" class="org.apache.royale.html.beads.KeepComboPopupWithinParentBounds"/>
     <component id="StyleInheritanceWithObserverBead" class="org.apache.royale.html.beads.StyleInheritanceWithObserverBead"/>
@@ -188,6 +188,7 @@
      <component id="ImageAndTextButtonView" class="org.apache.royale.html.beads.ImageAndTextButtonView" />
      -->
     <component id="Viewport" class="org.apache.royale.html.supportClasses.Viewport" />
+    <component id="NoViewport" class="org.apache.royale.html.supportClasses.NoViewport" />
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport" />
     <component id="HScrollViewport" class="org.apache.royale.html.supportClasses.HScrollViewport" />
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />

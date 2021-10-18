@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.9-SNAPSHOT</version>
   </parent>
 
   <artifactId>projects</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -34,6 +34,7 @@
         ${repo.compiler.options};
         -js-default-initializers=false;
         -source-map=${source.map};
+        -source-map-source-root=/frameworks/projects/${project.artifactId}/src/main/royale/
         -js-complex-implicit-coercions=false;
         -js-vector-index-checks=false;
         -js-resolve-uncertain=false;
@@ -43,8 +44,7 @@
   <name>Apache Royale: Framework: Libs</name>
 
   <modules>
-    <!-- Disabled because it requires an ACE typedef and that isn't available in the Maven build yet -->
-    <!--module>Ace</module-->
+    <module>Ace</module>
     <module>Basic</module>
     <module>Binding</module>
     <module>Charts</module>
@@ -68,6 +68,7 @@
     <module>Language</module>
     <module>MaterialDesignLite</module>
     <module>Mobile</module>
+    <module>MXRoyaleBase</module>
     <module>MXRoyale</module>
     <module>Network</module>
     <module>Reflection</module>

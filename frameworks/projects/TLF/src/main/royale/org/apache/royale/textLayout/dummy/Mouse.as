@@ -23,6 +23,15 @@ package org.apache.royale.textLayout.dummy {
 		public static function registerCursor(name : String, cursor : MouseCursorData) : void {
 			
 		}
+		
+		public static function show() : void {
+			trace("Mouse::show not implemented");
+		}
+		
+		public static function hide() : void {
+			trace("Mouse::hide not implemented");
+
+		}
 
 	}
 

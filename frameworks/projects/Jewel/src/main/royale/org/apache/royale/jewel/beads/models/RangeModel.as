@@ -19,8 +19,8 @@
 package org.apache.royale.jewel.beads.models
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.ValueChangeEvent;
@@ -197,7 +197,6 @@ package org.apache.royale.jewel.beads.models
 		{
 			return _value;
 		}
-		
 		public function set value(newValue:Number):void
 		{
 			if (newValue != _value)

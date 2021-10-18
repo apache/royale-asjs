@@ -22,13 +22,13 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.9-SNAPSHOT</version>
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-asc</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.9-SNAPSHOT</version>
 
   <build>
     <plugins>
@@ -37,11 +37,13 @@
         <configuration>
           <archive>
             <manifest>
-              <addClasspath>true</addClasspath>
-              <classpathLayoutType>custom</classpathLayoutType>
-              <customClasspathLayout>$${artifact.artifactId}.$${artifact.extension}</customClasspathLayout>
+              <addClasspath>false</addClasspath>
               <mainClass>org.apache.royale.compiler.clients.ASC</mainClass>
             </manifest>
+            <manifestEntries>
+              <!-- These paths are all defined the way the layout will be in the distribution -->
+              <Class-Path>compiler-common.jar compiler.jar</Class-Path>
+            </manifestEntries>
           </archive>
         </configuration>
       </plugin>
@@ -52,7 +54,7 @@
     <dependency>
       <groupId>org.apache.royale.compiler</groupId>
       <artifactId>compiler</artifactId>
-      <version>${royale.compiler.version}</version>
+      <version>${project.royale.compiler.version}</version>
     </dependency>
   </dependencies>
 

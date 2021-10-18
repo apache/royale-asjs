@@ -88,7 +88,27 @@ package org.apache.royale.html.elements
             _target = value;
             setAttribute('target', value);
 		}
-		
+
+		private var _download:String = "";
+
+		/**
+		 *  Prompts the user to save the linked URL instead of navigating to it
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		public function get download():String
+		{
+			return _download;
+		}
+		public function set download(value:String):void
+		{
+			_download = value;
+			setAttribute('download', value);
+		}
+
 		private var _rel:String = "";
         /**
          *  The rel attribute specifies the relationship between the current document and the linked document.

@@ -52,6 +52,7 @@ import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.ValueEvent;
@@ -100,7 +101,6 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  */
 //[Event(name="elementRemove", type="spark.events.ElementExistenceEvent")]
 
- include "../styles/metadata/BasicInheritingTextStyles.as"
 /*include "../styles/metadata/AdvancedInheritingTextStyles.as"
 include "../styles/metadata/SelectionFormatTextStyles.as"
  */
@@ -368,7 +368,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost
+public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost, ILayoutParent
 {// SkinnableContainerBase 
  //    implements IDeferredContentOwner, IVisualElementContainer
    // include "../core/Version.as";
@@ -895,6 +895,12 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
     {
         /* _contentModified = true;
         currentContentGroup.removeAllElements(); */
+
+        // Copied from mx.core.Container
+        while (numChildren > 0)
+        {
+            removeChildAt(0);
+        }
     } 
     
     /*
@@ -1385,7 +1391,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
          return contentView.getElementAt(index);
      }
      
-     [SWFOverride(returns="flash.display.DisplayObject"))]
+     [SWFOverride(returns="flash.display.DisplayObject")]
      COMPILE::SWF
      override public function getChildAt(index:int):IUIComponent
      {

@@ -50,7 +50,7 @@ package mx.controls.beads
         override public function createItemRenderer():IItemRenderer
         {
             var ir:IItemRenderer = super.createItemRenderer();
-			ir["outerDocument"] = (_strand as AdvancedDataGridColumnList).grid.mxmlDocument;
+			ir["outerDocument"] = (_strand as AdvancedDataGridColumnList).grid.parentMxmlDocument;
 			if (ir.getBeadByType(IBeadController) == null) {
 				//add a default mouse controller for DropInRenderers that may not have a mousecontroller
 				ir.addBead(new ItemRendererMouseController());

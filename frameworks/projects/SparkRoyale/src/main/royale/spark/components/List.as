@@ -2833,7 +2833,7 @@ public class List extends ListBase implements IFocusManagerComponent
     /**
      *  @private
      */
-    /* mx_internal function findStringLoop(str:String, startIndex:int, stopIndex:int):Number
+    public function findStringLoop(str:String, startIndex:int, stopIndex:int):Number
     {
         // Try to find the item based on the start and stop indices
         for (startIndex; startIndex != stopIndex; startIndex++)
@@ -2847,7 +2847,7 @@ public class List extends ListBase implements IFocusManagerComponent
             }
         }
         return -1;
-    } */
+    } 
     
     /**
      *  @private

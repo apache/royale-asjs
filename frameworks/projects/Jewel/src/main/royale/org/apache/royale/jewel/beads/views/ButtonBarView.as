@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.jewel.ButtonBar;
 	
 	/**

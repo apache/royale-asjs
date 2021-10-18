@@ -296,8 +296,29 @@ package org.apache.royale.jewel.beads.layouts
 					throw new Error(screen + " numerator must be between 1 and " + MAX_COLUMNS);
 				if (den <= 0 || den > MAX_COLUMNS)
 					throw new Error(screen + " denominator must be between 1 and " + MAX_COLUMNS);
+
+				var layNum:Number;
+                var layDen:Number;
+				switch(screen){
+					case WIDESCREEN:
+						layNum = _wideScreenNumerator;
+                    	layDen = _wideScreenDenominator;
+						break;
+                	case DESKTOP:
+                    	layNum = _desktopNumerator;
+                    	layDen = _desktopDenominator;
+						break;
+                	case TABLET:
+                    	layNum = _tabletNumerator;
+                    	layDen = _tabletDenominator;
+						break;
+					default:
+                    	layNum = _phoneNumerator;
+                    	layDen = _phoneDenominator;
+						break;
+                }
 				
-				hostComponent.replaceClass(screen + "-col-" + _desktopNumerator + "-" + _desktopDenominator, screen + "-col-" + num + "-" + den);
+				hostComponent.replaceClass(screen + "-col-" + layNum + "-" + layDen, screen + "-col-" + num + "-" + den);
 			}
         }
 

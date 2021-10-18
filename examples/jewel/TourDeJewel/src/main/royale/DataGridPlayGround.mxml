@@ -31,14 +31,15 @@ limitations under the License.
         import models.ProductModel;
 
         import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.collections.ArrayListView;
+        import org.apache.royale.collections.IArrayListView;
         import org.apache.royale.html.util.getLabelFromData;
+        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
         import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
         import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
-		import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
 
         import vos.IconListVO;
         import vos.Product;
-        import org.apache.royale.collections.ArrayListView;
 
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
@@ -198,6 +199,13 @@ limitations under the License.
 			grid.columns = cols;
 		}
 
+		private function updateSelectedItem():void
+		{
+			var selectedProduct:Product = (dg2.dataProvider as IArrayListView).getItemAt(dg2.selectedIndex) as Product;
+			selectedProduct.title = "NEW-" + (Math.floor(Math.random()*1000));
+			(dg2.dataProvider as IArrayListView).itemUpdated(selectedProduct);
+		}
+
 		]]>
 	</fx:Script>
 
@@ -306,6 +314,8 @@ limitations under the License.
 					</j:DataGrid>
 
 					<j:Label localId="lb2" html="DataGrid selection will be shown here"/>
+
+					<j:Button text="Update selected title" click="updateSelectedItem()" emphasis="primary"/>
 
 				</j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign="itemsRight">

@@ -49,6 +49,7 @@ import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
+import org.apache.royale.core.ILayoutView;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
@@ -61,6 +62,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
 //import spark.utils.MaskUtil;
 
 use namespace mx_internal;
+import spark.components.ResizeMode;
 
 //--------------------------------------
 //  Styles
@@ -332,7 +334,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class GroupBase extends UIComponent implements ILayoutParent, IContainer, IViewport
+public class GroupBase extends UIComponent implements ILayoutParent, ILayoutView, IContainer, IViewport
 {
 
     //--------------------------------------------------------------------------
@@ -505,7 +507,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     // layout is initialized in createChildren() if layout 
     // hasn't been set yet by someone else
     private var _layout:Object;//LayoutBase;
-   // private var _layoutProperties:Object = null;
+    private var _layoutProperties:Object = null;
    // private var layoutInvalidateSizeFlag:Boolean = false;
    // private var layoutInvalidateDisplayListFlag:Boolean = false;
     public function set contentBackgroundColor(value:uint):void {} // not implemented
@@ -687,7 +689,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     /**
      *  @private
      */
-    /* public function set horizontalScrollPosition(value:Number):void 
+    public function set horizontalScrollPosition(value:Number):void 
     {
         if (_layout)
         {
@@ -701,7 +703,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         {
             _layoutProperties = {horizontalScrollPosition: value};
         }
-    } */
+    }
     
     //----------------------------------
     //  verticalScrollPosition
@@ -739,7 +741,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     /**
      *  @private
      */
-    /* public function set verticalScrollPosition(value:Number):void 
+    public function set verticalScrollPosition(value:Number):void 
     {
         if (_layout)
         {
@@ -753,7 +755,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         {
             _layoutProperties = {verticalScrollPosition: value};
         }
-    } */
+    }
     
     //----------------------------------
     //  clipAndEnableScrolling
@@ -954,9 +956,9 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
     //  resizeMode
     //----------------------------------
     
-    /* private var _resizeMode:String = ResizeMode.NO_SCALE; 
+    private var _resizeMode:String = ResizeMode.NO_SCALE; 
     
-    [Inspectable(category="General", enumeration="noScale,scale", defaultValue="noScale")] */
+    [Inspectable(category="General", enumeration="noScale,scale", defaultValue="noScale")] 
 
     /**
      *  The ResizeMode for this container. If the resize mode
@@ -975,7 +977,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get resizeMode():String
+    public function get resizeMode():String
     {
         return _resizeMode; 
     }
@@ -987,7 +989,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
 
         // If old value was scale, reset it            
         if (_resizeMode == ResizeMode.SCALE)
-            setStretchXY(1, 1);
+            //setStretchXY(1, 1);
 
         _resizeMode = value;
         
@@ -998,7 +1000,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         
         // Invalidate the display list so that our validateMatrix() gets called.
         invalidateDisplayList();
-    } */
+    }
 
     //----------------------------------
     //  mouseOpaque

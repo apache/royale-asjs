@@ -30,7 +30,6 @@ import mx.controls.listClasses.IListItemRenderer;
 import mx.core.ClassFactory;
 import mx.core.ContextualClassFactory;
 import mx.core.IEmbeddedFontRegistry;
-import mx.core.IFactory;
 import mx.core.IFlexModuleFactory;
 import mx.core.IIMESupport;
 import mx.core.Singleton;
@@ -41,8 +40,8 @@ import mx.utils.StringUtil;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.controls.TextInput;
-import mx.core.IFactory;
 import mx.core.ClassFactory;
+import mx.core.IFactory;
 use namespace mx_internal;
 
 import org.apache.royale.events.Event;
@@ -83,6 +82,11 @@ import org.apache.royale.html.supportClasses.DataGridColumn;
  */
 [Style(name="headerStyleName", type="String", inherit="no")]
 
+
+
+[Style(name="fontWeight", type="String", inherit="yes")]
+
+
 /**
  *  The number of pixels between the container's left border and its content 
  *  area.
@@ -106,6 +110,10 @@ import org.apache.royale.html.supportClasses.DataGridColumn;
  *  @productversion Flex 3
  */
 //[Style(name="paddingRight", type="Number", format="Length", inherit="no")]
+
+
+
+[Style(name="color", type="uint", format="Color", inherit="yes")]
 
 /**
  *  The DataGridColumn class describes a column in a DataGrid control.
@@ -547,12 +555,35 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 
     public function get textAlign():Object
     {
-        trace("textAlign not implemented");
+        trace("DataGridColumn::textAlign not implemented");
         return 0;
     }
     public function set textAlign(value:Object):void
     {
-        trace("textAlign not implemented");
+        trace("DataGridColumn::textAlign not implemented");
+    }
+
+    /**
+     *  Sets a style property on this DataGridColumn.
+     *
+     *  @param styleProp The name of the style property.
+     *
+     *  @param newValue The value of the style property.
+     *  The value may be of any type.
+     *  The values <code>null</code>, <code>""</code>, <code>false</code>,
+     *  <code>NaN</code>, and <code>0</code> are all valid style values,
+     *  but the value <code>undefined</code> is not.
+     *  Setting a style property to the value <code>undefined</code>
+     *  is the same as calling the <code>clearStyle()</code> method.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function setStyle(styleProp:String, newValue:*):void
+    {
+        trace("DataGridColumn::setStyle is not implemented");
     }
 
     //----------------------------------
@@ -895,11 +926,11 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
        
        private var _headerRenderer:IFactory;
 		
-       /**
+   /**
 	*  The itemRenderer class or factory to use to make instances of itemRenderers for
 	*  display of data.
 	*
-        *  @langversion 3.0
+    *  @langversion 3.0
 	*  @playerversion Flash 10.2
 	*  @playerversion AIR 2.6
 	*  @productversion Royale 0.0
@@ -909,15 +940,25 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 	{
 	   return _headerRenderer;
 	}
+
 	public function set headerRenderer(value:IFactory):void
 	{
 	  _headerRenderer = value;
 	  trace("DataGridColumn.headerRenderer is not implemented");
 	}
-	
-	        //----------------------------------
-		//  editable
-		//----------------------------------
+
+    public function set mxItemRenderer(value:IFactory):void
+    {
+        if (super.itemRenderer != value)
+        {
+            super.itemRenderer = value;
+
+            dispatchEvent(new Event("itemRendererChanged"));
+        }
+    }
+        //----------------------------------
+    //  editable
+    //----------------------------------
 
 		private var _editable:Boolean = true;
 
@@ -950,6 +991,206 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
 		{
 			_editable = value;
 		}
+		
+        //----------------------------------
+        //  dataTipFunction
+        //----------------------------------
+
+        /**
+         *  @private
+         *  Storage for the dataTipFunction property.
+         */
+        private var _dataTipFunction:Function;
+
+        [Bindable("dataTipFunctionChanged")]
+        [Inspectable(category="Advanced")]
+
+        /**
+         *  Specifies a callback function to run on each item of the data provider 
+         *  to determine its dataTip.
+         *  This property is used by the <code>itemToDataTip</code> method.
+         * 
+         *  <p>By default the control looks for a property named <code>label</code>
+         *  on each data provider item and displays it as its dataTip.
+         *  However, some data providers do not have a <code>label</code> property 
+         *  nor do they have another property that you can use for displaying data 
+         *  in the rows.
+         *  For example, you might have a data provider that contains a lastName 
+         *  and firstName fields, but you want to display full names as the dataTip.
+         *  You can specify a function to the <code>dataTipFunction</code> property 
+         *  that returns a single String containing the value of both fields. You 
+         *  can also use the <code>dataTipFunction</code> property for handling 
+         *  formatting and localization.</p>
+         * 
+         *  <p>The function must take a single Object parameter, containing the
+         *  data provider element, and return a String.</p>
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function get dataTipFunction():Function
+        {
+            return _dataTipFunction;
+        }
+
+        /**
+         *  @private
+         */
+        public function set dataTipFunction(value:Function):void
+        {
+            _dataTipFunction = value;
+
+            /*if (owner)
+            {
+                owner.invalidateList();
+            }*/
+
+            dispatchEvent(new Event("labelFunctionChanged"));
+        }
+		
+	/**
+     *  Returns a String that the item renderer displays as the datatip for the given data object,
+     *  based on the <code>dataTipField</code> and <code>dataTipFunction</code> properties.
+     *  If the method cannot convert the parameter to a String, it returns a
+     *  single space.
+     * 
+     *  <p>This method is for use by developers who are creating subclasses 
+     *  of the DataGridColumn class.
+     *  It is not for use by application developers.</p>
+     *
+     *  @param data Object to be rendered.
+     *
+     *  @return Displayable String based on the data.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function itemToDataTip(data:Object):String
+    {
+        if (dataTipFunction != null)
+            return dataTipFunction(data);
+
+        
+
+        if (typeof(data) == "object" || typeof(data) == "xml")
+        {
+            var field:String = dataTipField;
+            
+
+            if (field in data && data[field] != null)
+                data = data[field];
+            else if (dataField in data && data[dataField] != null)
+                data = data[dataField];
+			else
+				data = null;
+        }
+
+        if (data is String)
+            return String(data);
+
+        try
+        {
+            return data.toString();
+        }
+        catch(e:Error)
+        {
+        }
+
+        return " ";
+    }
+		//----------------------------------
+		//  dataTipField
+		//----------------------------------
+
+		/**
+		 *  @private
+		 *  Storage for the dataTipField property.
+		 */
+		private var _dataTipField:String;
+
+		[Bindable("dataTipFieldChanged")]
+		[Inspectable(category="Advanced", defaultValue="label")]
+
+		/**
+		 *  The name of the field in the data provider to display as the datatip. 
+		 *  By default, the DataGrid control looks for a property named 
+		 *  <code>label</code> on each data provider item and displays it.
+		 *  However, if the data provider does not contain a <code>label</code>
+		 *  property, you can set the <code>dataTipField</code> property to
+		 *  specify a different property.  
+		 *  For example, you could set the value to "FullName" when a user views a
+		 *  set of people's names included from a database.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function get dataTipField():String
+		{
+			return _dataTipField;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set dataTipField(value:String):void
+		{
+			_dataTipField = value;
+
+			if (owner)
+			{
+				//owner.invalidateList();
+			}
+
+			dispatchEvent(new Event("dataTipChanged"));
+		}
+		
+		//----------------------------------
+		//  itemEditor
+		//----------------------------------
+
+	    	[Inspectable(category="General")]
+
+		/**
+		 *  A class factory for the instances of the item editor to use for the 
+		 *  column, when it is editable.
+		 *
+		 *  @default new ClassFactory(mx.controls.TextInput)
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public var itemEditor:IFactory = defaultItemEditorFactory;
+
+		//----------------------------------
+		//  editorDataField
+		//----------------------------------
+
+		[Inspectable(category="General")]
+
+		/**
+		 *  The name of the property of the item editor that contains the new
+		 *  data for the list item.
+		 *  For example, the default <code>itemEditor</code> is
+		 *  TextInput, so the default value of the <code>editorDataField</code> 
+		 *  property is <code>"text"</code>, which specifies the 
+		 *  <code>text</code> property of the TextInput control.
+		 *
+		 *  @default "text"
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public var editorDataField:String = "text";
 }
 
 }

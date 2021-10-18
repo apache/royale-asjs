@@ -580,7 +580,9 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 *  @private
 	 *  Storage for labelPlacement property.
 	 */
-	private var _labelPlacement:String = "right";//ButtonLabelPlacement.RIGHT;
+	//private var _labelPlacement:String = "right";//ButtonLabelPlacement.RIGHT;
+	private var _labelPlacement:String = ButtonLabelPlacement.RIGHT;
+
 	
 	[Bindable("labelPlacementChanged")]
 	[Inspectable(category="General", enumeration="left,right,top,bottom", defaultValue="right")]
@@ -615,6 +617,8 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	public function set labelPlacement(value:String):void
 	{
 		_labelPlacement = value;
+		invalidateSize();
+       		invalidateDisplayList();
 		dispatchEvent(new Event("labelPlacementChanged"));
 	}
 	

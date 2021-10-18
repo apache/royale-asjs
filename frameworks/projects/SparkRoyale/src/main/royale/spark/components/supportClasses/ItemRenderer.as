@@ -34,6 +34,7 @@ use namespace mx_internal;  */
 
 import org.apache.royale.core.IItemRenderer;
 import spark.components.DataRenderer;
+import org.apache.royale.events.Event;
 /**
  *  The ItemRenderer class is the base class for Spark item renderers.
  *
@@ -610,12 +611,6 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
             //invalidateRendererState();
         }
     }
-    
-    // not implemented
-    public function get label():String {return "label"} 
-
-    // not implemented
-    public function set label(value:String):void {}
 
     //----------------------------------
     //  label
@@ -625,9 +620,9 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @private 
      *  Storage var for label
      */ 
-   /*  private var _label:String = "";
+     private var _label:String = "";
     
-    [Bindable("labelChanged")] */
+    [Bindable("labelChanged")]
     
     /**
      *  @inheritDoc 
@@ -639,15 +634,15 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get label():String
+    public function get label():String
     {
         return _label;
-    } */
+    }
     
     /**
      *  @private
      */ 
-    /* public function set label(value:String):void
+     public function set label(value:String):void
     {
         if (value == _label)
             return;
@@ -656,11 +651,16 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
             
         // Push the label down into the labelDisplay,
         // if it exists
-        if (labelDisplay)
-            labelDisplay.text = _label;
+        COMPILE::JS
+        {
+            if (this.element) {
+                //labelDisplay.text = _label;
+                this.element.textContent = value;
+            }
+        }
         
         dispatchEvent(new Event("labelChanged"));
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //

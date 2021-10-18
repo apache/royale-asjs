@@ -18,12 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+	COMPILE::JS
+	{
+		import org.apache.royale.core.WrappedHTMLElement;
+	}
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.html.beads.IViewWithPopUp;
 	import org.apache.royale.utils.callLater;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import mx.core.FlexGlobals;
 	import org.apache.royale.html.beads.HideComboPopupOnMouseDownBead;
+	import org.apache.royale.core.UIBase;
 	
 	/**
 	 *  The HideComboPopupOnMouseDownBead can be used with ComboBox to make sure mouse down events
@@ -47,6 +55,11 @@ package mx.controls.beads
 			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			callLater(function():void {
 				(FlexGlobals.topLevelApplication as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+				COMPILE::JS 
+				{
+					window.addEventListener("wheel", handleWheelEvent);
+				}
 			});
 		}
 		
@@ -58,7 +71,37 @@ package mx.controls.beads
 		{
 			IEventDispatcher(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-            (FlexGlobals.topLevelApplication as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+			(FlexGlobals.topLevelApplication as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+			((_strand as UIBase).topMostEventDispatcher as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_DOWN, handleTopMostEventDispatcherMouseDown);
+			COMPILE::JS 
+			{
+				window.removeEventListener("wheel", handleWheelEvent);
+			}
 		}
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		private function handleWheelEvent(event:Event):void
+		{
+			var target:WrappedHTMLElement = event.target as WrappedHTMLElement;
+			if (target)
+			{
+				var child:IChild = target.royale_wrapper as IChild;
+				var popup:Object = ((this._strand as IStrandWithModelView).view as IViewWithPopUp).popUp;
+				while (child)
+				{
+					if (child == popup)
+					{
+						return;
+					}
+					child = child.parent as IChild;
+				}
+			}
+			handleTopMostEventDispatcherMouseDown(null);
+		}
+				
+
 	}
 }

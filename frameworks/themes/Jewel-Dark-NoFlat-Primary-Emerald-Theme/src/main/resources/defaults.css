@@ -420,19 +420,65 @@ j|CardActions {
   border: 1px solid #638c29;
   border-radius: 3px;
 }
+.jewel.checkbox input[disabled] + span {
+  color: #737373;
+}
 .jewel.checkbox input[disabled] + span::before {
   background: #404040;
   border: 1px solid #0d0d0d;
   border-radius: 3px;
-}
-.jewel.checkbox input[disabled] + span {
-  color: #737373;
 }
 .jewel.checkbox input[disabled] + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23191919' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.checkbox span {
   padding-left: 8px;
+}
+
+.jewel.switch input:checked + .switch {
+  background: linear-gradient(#8cc63c, #a3d263);
+  box-shadow: 0px 0px 0px 1px #7eb435;
+}
+.jewel.switch input:focus + .switch {
+  box-shadow: 0px 0px 0px 1px #71a02f;
+}
+.jewel.switch input:checked + .switch::before {
+  background: #f5faee;
+  box-shadow: -1px 0px 1px 0px rgba(0, 0, 0, 0.1);
+  transform: translateX(20px);
+}
+.jewel.switch input[disabled]:checked + .switch {
+  background: #8c8c8c;
+  box-shadow: 0px 0px 0px 1px #7f7f7f;
+}
+.jewel.switch input[disabled] + .switch {
+  background: #737373;
+  box-shadow: 0px 0px 0px 1px #999999;
+}
+.jewel.switch input[disabled] + .switch::before {
+  background: #595959;
+  box-shadow: none;
+}
+.jewel.switch .switch {
+  background: linear-gradient(#595959, #737373);
+  box-shadow: 0px 0px 0px 1px #4c4c4c;
+  transition: 0.4s;
+  border-radius: 3px;
+}
+.jewel.switch .switch::before {
+  background: #f5faee;
+  box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.4s;
+  border-radius: 3px;
+}
+.jewel.switch .label {
+  padding-left: 8px;
+}
+.jewel.switch.radio .switch {
+  border-radius: 20px;
+}
+.jewel.switch.radio .switch::before {
+  border-radius: 50%;
 }
 
 .jewel.combobox .jewel.textinput input {
@@ -1298,8 +1344,16 @@ j|TabBar {
 .jewel.tableitem.calendar {
   border-radius: 4px;
 }
+.jewel.tableitem.calendar[disabled] {
+  color: #737373;
+  pointer-events: none;
+}
 .jewel.tableitem.calendar.selected {
   font-weight: bold;
+}
+.jewel.tableitem.calendar.selected[disabled] {
+  color: #FFFFFF;
+  background: #191919;
 }
 
 a:link {

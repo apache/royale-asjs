@@ -38,5 +38,7 @@ package org.apache.royale.jewel.beads.models
         
         function get isItemClicked():Boolean;
         function set isItemClicked(value:Boolean):void;
+
+        function setDataProvider__NoCheck(value:Object):void
     }
 }

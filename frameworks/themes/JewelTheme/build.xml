@@ -27,7 +27,15 @@
     <property file="${ROYALE_HOME}/local.properties"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
-    
+    <condition property="AIR_HOME" value="${env.AIR_HOME}">
+        <isset property="env.AIR_HOME" />
+    </condition>
+    <property name="AIR_HOME" value="${ROYALE_HOME}"/>
+    <condition property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}">
+        <isset property="env.PLAYERGLOBAL_HOME" />
+    </condition>
+    <property name="PLAYERGLOBAL_HOME" value="${ROYALE_HOME}/frameworks/libs/player"/>
+
     <property name="target.name" value="${ant.project.name}.swc" />
     
     <tstamp>
@@ -35,13 +43,13 @@
     </tstamp>
     <echo>swc-date is ${royale.swc-date}</echo>
     
-    <echo>AIR_HOME is ${env.AIR_HOME}</echo>
+    <echo>AIR_HOME is ${AIR_HOME}</echo>
     
     <!-- doesn't contain compiled files so only need to compile JS version -->
     <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
-    <target name="compile-js" unless="env.AIR_HOME">
+    <target name="compile-js" unless="AIR_HOME">
         <ant dir="${ROYALE_HOME}/frameworks/js/themes/${ant.project.name}JS/" inheritAll="false" >
             <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
             <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
@@ -51,7 +59,7 @@
         <copy file="${ROYALE_HOME}/frameworks/js/themes/${ant.project.name}JS/target/${ant.project.name}JS.swc" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
     </target>
     
-    <target name="copy-swc" if="env.AIR_HOME">
+    <target name="copy-swc" if="AIR_HOME">
         <copy file="${basedir}/target/${target.name}" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
     </target>
     
@@ -85,7 +93,7 @@
         <ant dir="src/test/royale" target="clean"/>
     </target>
     
-    <target name="compile" description="Compiles .as files into .swc" if="env.AIR_HOME">
+    <target name="compile" description="Compiles .as files into .swc" if="AIR_HOME">
         <echo message="Compiling libs/${ant.project.name}.swc"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
@@ -97,7 +105,7 @@
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="+env.AIR_HOME=${AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />

@@ -64,5 +64,7 @@ public class FlexCSSStyles extends AllCSSStyles
     public var horizontalGap:*;
     public var verticalGap:*;
 
+    // Spark styles
+    public var skinClass:*;
 }
 }

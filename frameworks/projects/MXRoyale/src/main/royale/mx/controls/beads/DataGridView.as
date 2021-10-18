@@ -123,12 +123,22 @@ COMPILE::JS{
         }
 
         protected function columnsChanged(event:Event):void{
-            if (columnLists == null) createLists()
-            else recreateLists();
+            if (columnLists == null)
+            {
+                createLists()
+            }
+            else
+            {
+                recreateLists();
+            }
             handleColumnsInvalid(null);
         }
 
-        
+        protected function itemRendererChangedHandler(event:Event):void
+        {
+            columnsChanged(event);
+        }
+
         protected function handleCollectionChanged(event:Event):void
         {
             if (columnLists == null) return;
@@ -203,11 +213,30 @@ COMPILE::JS{
             {
                 generateCols();
                 createLists();
+
                 (header as DataGridButtonBar).dataProvider = sharedModel.columns;            
             }
             if (sharedModel.columns == null)
                 return;
+
+            registerRendererChange();
+
             super.handleDataProviderChanged(event);
+        }
+
+        private function registerRendererChange():void
+        {
+            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            if (sharedModel.columns == null || sharedModel.dataProvider == null) return;
+
+            for (var i:int=0; i < sharedModel.columns.length; i++)
+            {
+                var col:DataGridColumn = (sharedModel.columns[i] as DataGridColumn);
+                if (!col.hasEventListener("itemRendererChanged"))
+                {
+                    col.addEventListener("itemRendererChanged", itemRendererChangedHandler);
+                }
+            }
         }
 
         /**
@@ -317,6 +346,7 @@ COMPILE::JS{
                         (sharedModel.columns[i] as DataGridColumn).itemRenderer = host.itemRenderer;
                 }
             }
+
             super.createLists();
         }
 

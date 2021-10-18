@@ -27,7 +27,15 @@
     <property file="${ROYALE_HOME}/local.properties"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
-    
+    <condition property="AIR_HOME" value="${env.AIR_HOME}">
+        <isset property="env.AIR_HOME" />
+    </condition>
+    <property name="AIR_HOME" value="${ROYALE_HOME}"/>
+    <condition property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}">
+        <isset property="env.PLAYERGLOBAL_HOME" />
+    </condition>
+    <property name="PLAYERGLOBAL_HOME" value="${ROYALE_HOME}/frameworks/libs/player"/>
+
     <property name="target.name" value="${ant.project.name}.swc" />
     
     <tstamp>
@@ -46,7 +54,7 @@
         </ant>
     </target>
     
-    <target name="copy-swc" if="env.AIR_HOME">
+    <target name="copy-swc" if="AIR_HOME">
         <copy file="${basedir}/target/${target.name}" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
     </target>
     
@@ -57,14 +65,22 @@
             </not>
         </condition>
         <!-- exclude from js-only build -->
-        <condition property="skip-tests" >
-            <not>
-                <isset property="env.AIR_HOME" />
-            </not>
+        <condition property="skip-swf-tests">
+            <or>
+                <isset property="skip-tests" />
+                <not>
+                    <!-- env.AIR_HOME is how we determine if it's a SWF distritbution -->
+                    <isset property="env.AIR_HOME" />
+                </not>
+            </or>
         </condition>
     </target>
     
     <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
+        <antcall target="test-swf" />
+    </target>
+    
+    <target name="test-swf" unless="skip-swf-tests">
         <ant dir="src/test/royale" />
     </target>
     
@@ -86,7 +102,7 @@
         <ant dir="src/test/royale" target="clean"/>
     </target>
     
-    <target name="compile" description="Compiles .as files into .swc" if="env.AIR_HOME">
+    <target name="compile" description="Compiles .as files into .swc" if="AIR_HOME">
         <!-- use antcall so that resultproperty can be used in other projects and
          they don't collide when being run one after the other -->
         <antcall target="compile-swf" />
@@ -104,7 +120,7 @@
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+            <arg value="+env.AIR_HOME=${AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />

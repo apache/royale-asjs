@@ -28,8 +28,15 @@ limitations under the License.
             private function valueChangeHandler(event:Event):void {
                 result.text = "Default NumericStepper: " + numericStepper.value;
             }
+
+			[Bindable]
+            public var someBindableValue:Number = 5;
 		]]>
 	</fx:Script>
+
+	<c:beads>
+        <js:ContainerDataBinding />
+    </c:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
@@ -65,6 +72,15 @@ limitations under the License.
 					<j:NumericStepper stepSize="2"/>
 					<j:Label text="NumericStepper stepSize='2'"/>
 				</j:HGroup>
+				
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+					<j:NumericStepper stepSize="1"
+							minimum="0"
+							maximum="999"
+							value="{someBindableValue}" />
+					<j:Label text="NumericStepper value data binding"/>
+				</j:HGroup>
+
 			</j:Card>
         </j:GridCell>
 

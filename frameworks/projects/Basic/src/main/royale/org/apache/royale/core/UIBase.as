@@ -723,13 +723,14 @@ package org.apache.royale.core
         {
             if(!isNaN(_x))
                 return _x
-            var strpixels:String = positioner.style.left as String;
+            var pos:WrappedHTMLElement = positioner;
+            var strpixels:String = pos.style.left as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
             {
-                pixels = positioner.offsetLeft;
-                if (positioner.parentNode != positioner.offsetParent)
-                    pixels -= (positioner.parentNode as HTMLElement).offsetLeft;
+                pixels = pos.offsetLeft;
+                if (pos.parentNode != pos.offsetParent)
+                    pixels -= (pos.parentNode as HTMLElement).offsetLeft;
             }
             return pixels;
         }
@@ -751,10 +752,11 @@ package org.apache.royale.core
 			}
 			COMPILE::JS
 			{
-				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetLeft;
-                positioner.style.left = value.toString() + 'px';
+                var pos:WrappedHTMLElement = positioner;
+				//pos.style.position = 'absolute';
+                if (pos.parentNode != pos.offsetParent)
+                    value += (pos.parentNode as HTMLElement).offsetLeft;
+                pos.style.left = value.toString() + 'px';
 			}
         }
         
@@ -792,13 +794,14 @@ package org.apache.royale.core
         {
             if(!isNaN(_y))
                 return _y
-            var strpixels:String = positioner.style.top as String;
+            var pos:WrappedHTMLElement = positioner;
+            var strpixels:String = pos.style.top as String;
             var pixels:Number = parseFloat(strpixels);
             if (isNaN(pixels))
             {
-                pixels = positioner.offsetTop;
-                if (positioner.parentNode != positioner.offsetParent)
-                    pixels -= (positioner.parentNode as HTMLElement).offsetTop;
+                pixels = pos.offsetTop;
+                if (pos.parentNode != pos.offsetParent)
+                    pixels -= (pos.parentNode as HTMLElement).offsetTop;
             }
             return pixels;
         }
@@ -820,10 +823,11 @@ package org.apache.royale.core
 			}
 			COMPILE::JS
 			{
-				//positioner.style.position = 'absolute';
-                if (positioner.parentNode != positioner.offsetParent)
-                    value += (positioner.parentNode as HTMLElement).offsetTop;
-                positioner.style.top = value.toString() + 'px';
+                var pos:WrappedHTMLElement = positioner;
+				//pos.style.position = 'absolute';
+                if (pos.parentNode != pos.offsetParent)
+                    value += (pos.parentNode as HTMLElement).offsetTop;
+                pos.style.top = value.toString() + 'px';
 			}
         }
         

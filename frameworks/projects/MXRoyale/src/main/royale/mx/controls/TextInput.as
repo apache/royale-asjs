@@ -127,6 +127,11 @@ use namespace mx_internal;
  */
 [Event(name="textInput", type="mx.events.TextEvent")]
 
+[Style(name="borderStyle", type="String", inherit="no")]
+
+[Style(name="borderColor", type="unit", format="Color" inherit="no")]
+
+[Style(name="letterSpacing", type="Number", inherit="yes")]
 
 //--------------------------------------
 //  Other metadata
@@ -321,6 +326,8 @@ public class TextInput extends UIComponent implements ITextInput
      *  @private
      */
     private var errorCaught:Boolean = false;
+    
+    protected var textField:mx.core.IUITextField;
 
     //--------------------------------------------------------------------------
     //
@@ -654,12 +661,7 @@ public class TextInput extends UIComponent implements ITextInput
         _editable = value;
 	COMPILE::JS
 	{
-		if(value == false) {
-			(element as HTMLInputElement).readOnly = true;
-		}
-		else {
-			 (element as HTMLInputElement).readOnly = value;
-		}
+		(element as HTMLInputElement).readOnly = !value;
 	}
 	
      /*   if (value == _editable)

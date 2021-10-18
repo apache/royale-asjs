@@ -112,7 +112,7 @@ public class FlexPrintJob
      *  @private
      *  Storage for the pageHeight property.
      */
-   // private var _pageHeight:Number = 0;
+    private var _pageHeight:Number = 0;
 
     /**
      *  The height  of the printable area on the printer page; 
@@ -124,10 +124,10 @@ public class FlexPrintJob
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public function get pageHeight():Number
+     public function get pageHeight():Number
     {
         return _pageHeight;
-    } */
+    }
 
     //----------------------------------
     //  pageWidth
@@ -137,7 +137,7 @@ public class FlexPrintJob
      *  @private
      *  Storage for the pageWidth property.
      */
-   // private var _pageWidth:Number = 0;
+    private var _pageWidth:Number = 0;
     
     /**
      *  The width of the printable area on the printer page;
@@ -149,10 +149,10 @@ public class FlexPrintJob
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get pageWidth():Number
+     public function get pageWidth():Number
     {
         return _pageWidth;
-    } */
+    }
 
     //----------------------------------
     //  printAsBitmap

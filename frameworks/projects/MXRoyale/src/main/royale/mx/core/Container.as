@@ -43,6 +43,7 @@ package mx.core
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.states.State;
     import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.geom.Point;
 
 COMPILE::JS
 {
@@ -212,6 +213,25 @@ use namespace mx_internal;
  */
 [Event(name="scroll", type="mx.events.ScrollEvent")]
 
+[Style(name="borderThickness", type="Number", format="Length", inherit="no")]
+
+[Style(name="borderColor", type="unit", format="Color" inherit="no")]
+
+[Style(name="backgroundAlpha", type="Number", inherit="no")]
+
+[Style(name="contentBackgroundAlpha", type="Number", inherit="yes")]
+
+/**
+ *  The alpha value for the overlay that is placed on top of the
+ *  container when it is disabled.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Style(name="disabledOverlayAlpha", type="Number", inherit="no")]
+
 /**
  * The default property uses when additional MXML content appears within an element's
  * definition in an MXML file.
@@ -319,9 +339,9 @@ public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
 					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer,
-                       IListItemRenderer,
+                       IListItemRenderer,INavigatorContent
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
-                       INavigatorContent
+                       
 
 {
 
@@ -512,6 +532,198 @@ public class Container extends UIComponent
     }
     
     //----------------------------------
+    //  verticalScrollPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the verticalScrollPosition property.
+     */
+    private var _verticalScrollPosition:Number = 0;
+
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The current position of the vertical scroll bar.
+     *  This is equal to the distance in pixels between the top edge
+     *  of the scrollable surface and the topmost piece of the surface
+     *  that is currently visible.
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get verticalScrollPosition():Number
+    {
+        trace("Container::verticalScrollPosition is not implemented");
+        /*if (!isNaN(verticalScrollPositionPending))
+            return verticalScrollPositionPending;*/
+
+        return _verticalScrollPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set verticalScrollPosition(value:Number):void
+    {
+        trace("Container::verticalScrollPosition is not implemented");
+        if (_verticalScrollPosition == value)
+            return;
+
+        // Note: We can't use maxVerticalScrollPosition to clamp the value here.
+        // The verticalScrollBar may not exist yet,
+        // or its maxPos might change during layout.
+        // (For example, you could set the verticalScrollPosition of a childless container,
+        // then add a child which causes it to have a scrollbar.)
+        // The verticalScrollPosition gets clamped to the range 0 through maxVerticalScrollPosition
+        // late, in the updateDisplayList() method, just before the scrollPosition
+        // of the verticalScrollBar is set.
+
+        _verticalScrollPosition = value;
+        /*scrollPositionChanged = true;
+        if (!initialized)
+            verticalScrollPositionPending = value;
+
+        invalidateDisplayList();*/
+
+        dispatchEvent(new Event("viewChanged"));
+    }
+
+    //----------------------------------
+    //  horizontalScrollPosition
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the horizontalScrollPosition property.
+     */
+    private var _horizontalScrollPosition:Number = 0;
+
+    [Bindable("scroll")]
+    [Bindable("viewChanged")]
+    [Inspectable(defaultValue="0")]
+
+    /**
+     *  The current position of the horizontal scroll bar.
+     *  This is equal to the distance in pixels between the left edge
+     *  of the scrollable surface and the leftmost piece of the surface
+     *  that is currently visible.
+     *  
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get horizontalScrollPosition():Number
+    {
+        trace("Container::horizontalScrollPosition is not implemented");
+        /*if (!isNaN(horizontalScrollPositionPending))
+            return horizontalScrollPositionPending;*/
+        return _horizontalScrollPosition;
+    }
+
+    /**
+     *  @private
+     */
+    public function set horizontalScrollPosition(value:Number):void
+    {
+        trace("Container::horizontalScrollPosition is not implemented");
+        if (_horizontalScrollPosition == value)
+            return;
+
+        // Note: We can't use maxHorizontalScrollPosition to clamp the value here.
+        // The horizontalScrollBar may not exist yet,
+        // or its maxPos might change during layout.
+        // (For example, you could set the horizontalScrollPosition of a childless container,
+        // then add a child which causes it to have a scrollbar.)
+        // The horizontalScrollPosition gets clamped to the range 0 through maxHorizontalScrollPosition
+        // late, in the updateDisplayList() method, just before the scrollPosition
+        // of the horizontalScrollBar is set.
+
+        _horizontalScrollPosition = value;
+        /*scrollPositionChanged = true;
+        if (!initialized)
+            horizontalScrollPositionPending = value;
+
+        invalidateDisplayList();*/
+
+        dispatchEvent(new Event("viewChanged"));
+    }
+
+    //----------------------------------
+    //  maxHorizontalScrollPosition
+    //----------------------------------
+
+    /**
+     *  The largest possible value for the
+     *  <code>horizontalScrollPosition</code> property.
+     *  Defaults to 0 if the horizontal scrollbar is not present.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get maxHorizontalScrollPosition():Number
+    {
+        trace("Container::maxHorizontalScrollPosition is not implemented");        
+        return 0;
+        /*return horizontalScrollBar ?
+               horizontalScrollBar.maxScrollPosition :
+               Math.max(scrollableWidth - viewableWidth, 0);*/
+    }
+
+    //----------------------------------
+    //  maxVerticalScrollPosition
+    //----------------------------------
+
+    /**
+     *  The largest possible value for the
+     *  <code>verticalScrollPosition</code> property.
+     *  Defaults to 0 if the vertical scrollbar is not present.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get maxVerticalScrollPosition():Number
+    {
+        trace("Container::maxVerticalScrollPosition is not implemented");
+        return 0;
+        /*return verticalScrollBar ?
+               verticalScrollBar.maxScrollPosition :
+               Math.max(scrollableHeight - viewableHeight, 0);*/
+    }
+    
+    /**
+     *  @copy mx.core.UIComponent#globalToContent()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+     public function globalToContent(point:Point):Point
+    {
+        trace("Container::globalToContent is not implemented");
+        return null;
+        
+        /*if (contentPane)
+            return contentPane.globalToLocal(point);
+        
+        return globalToLocal(point);*/
+    }
+
+    //----------------------------------
     //  verticalScrollPolicy
     //----------------------------------
     
@@ -619,6 +831,69 @@ public class Container extends UIComponent
 //        }
     }
 
+
+    //----------------------------------
+    //  autoLayout
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the autoLayout property.
+     */
+    private var _autoLayout:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  If <code>true</code>, measurement and layout are done
+     *  when the position or size of a child is changed.
+     *  If <code>false</code>, measurement and layout are done only once,
+     *  when children are added to or removed from the container.
+     *
+     *  <p>When using the Move effect, the layout around the component that
+     *  is moving does not readjust to fit that the Move effect animates.
+     *  Setting a container's <code>autoLayout</code> property to
+     *  <code>true</code> has no effect on this behavior.</p>
+     *
+     *  <p>The Zoom effect does not work when the <code>autoLayout</code> 
+     *  property is <code>false</code>.</p>
+     *
+     *  <p>The <code>autoLayout</code> property does not apply to
+     *  Accordion or ViewStack containers.</p>
+     * 
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get autoLayout():Boolean
+    {
+        return _autoLayout;
+    }
+
+    /**
+     *  @private
+     */
+    public function set autoLayout(value:Boolean):void
+    {
+        _autoLayout = value;
+
+        // If layout is being turned back on, trigger a layout to occur now.
+        if (value)
+        {
+            invalidateSize();
+            invalidateDisplayList();
+
+            var p:IInvalidating = parent as IInvalidating;
+            if (p)
+            {
+                p.invalidateSize();
+                p.invalidateDisplayList();
+            }
+        }
+    }
     /**
      *  Number of pixels between the container's bottom border
      *  and the bottom of its content area.
@@ -930,7 +1205,7 @@ public class Container extends UIComponent
 	 *  @private
 	 *  Storage for the data property;
 	 */
-	private var _data:Object;
+	private var _data:Object = null;
 	
 	[Bindable("dataChange")]
 	[Inspectable(environment="none")]
@@ -1147,6 +1422,11 @@ public class Container extends UIComponent
 	override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 	{
 		var contentView:IParent = getLayoutHost().contentView as IParent;
+		if (c == contentView)
+		{
+			super.addElement(c);
+			return;
+		}
 		contentView.addElement(c, dispatchEvent);
 		if (dispatchEvent)
 			this.dispatchEvent(new ValueEvent("childrenAdded", c));
@@ -1217,7 +1497,7 @@ public class Container extends UIComponent
 		return contentView.getElementAt(index);
 	}
 	
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF
     override public function getChildAt(index:int):IUIComponent
     {
@@ -1225,6 +1505,25 @@ public class Container extends UIComponent
         var contentView:IParent = layoutHost.contentView as IParent;
         return contentView.getElementAt(index) as IUIComponent;
     }
+
+	/**
+	 * @private
+	 */
+	public function removeElementAt(index:int):IChild
+	{
+		return removeChildAt(index) as IChild;
+	}
+    
+	/**
+	 * @private
+	 */
+	public function removeAllElements():void
+	{
+		for (var i:int = numElements - 1; i >= 0; i--)
+		{
+			removeElementAt(i);
+		}
+	}
 
 	/*
 	* IContainerBaseStrandChildrenHost
@@ -1499,6 +1798,60 @@ public class Container extends UIComponent
             return contentPane.mouseY;
         */
         return super.contentMouseY; 
+    }
+	
+	
+	    //----------------------------------
+    //  rawChildren
+    //----------------------------------
+
+    /**
+     *  @private
+     *  The single IChildList object that's always returned
+     *  from the rawChildren property, below.
+     */
+    private var _rawChildren:ContainerRawChildrenList;
+
+    /**
+     *  A container typically contains child components, which can be enumerated
+     *  using the <code>Container.getChildAt()</code> method and 
+     *  <code>Container.numChildren</code> property.  In addition, the container
+     *  may contain style elements and skins, such as the border and background.
+     *  Flash Player and AIR do not draw any distinction between child components
+     *  and skins.  They are all accessible using the player's 
+     *  <code>getChildAt()</code> method  and
+     *  <code>numChildren</code> property.  
+     *  However, the Container class overrides the <code>getChildAt()</code> method 
+     *  and <code>numChildren</code> property (and several other methods) 
+     *  to create the illusion that
+     *  the container's children are the only child components.
+     *
+     *  <p>If you need to access all of the children of the container (both the
+     *  content children and the skins), then use the methods and properties
+     *  on the <code>rawChildren</code> property instead of the regular Container methods. 
+     *  For example, use the <code>Container.rawChildren.getChildAt())</code> method.
+     *  However, if a container creates a ContentPane Sprite object for its children,
+     *  the <code>rawChildren</code> property value only counts the ContentPane, not the
+     *  container's children.
+     *  It is not always possible to determine when a container will have a ContentPane.</p>
+     * 
+     *  <p><b>Note:</b>If you call the <code>addChild</code> or 
+     *  <code>addChildAt</code> method of the <code>rawChildren</code> object,
+     *  set <code>tabFocusEnabled = false</code> on the component that you have added.
+     *  Doing so prevents users from tabbing to the visual-only component
+     *  that you have added.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get rawChildren():IChildList
+    {
+        if (!_rawChildren)
+            _rawChildren = new ContainerRawChildrenList(this);
+
+        return _rawChildren;
     }
 
 }

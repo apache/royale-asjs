@@ -45,6 +45,7 @@
 	<component id="Box" class="mx.containers.Box" />
 	<component id="Canvas" class="mx.containers.Canvas" />
 	<component id="Container" class="mx.core.Container" />
+	<component id="Repeater" class="mx.core.Repeater" />
 	<component id="HBox" class="mx.containers.HBox" />
 	<component id="HDividedBox" class="mx.containers.HDividedBox" />
     <component id="Panel" class="mx.containers.Panel" />
@@ -56,35 +57,34 @@
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BasicLayout" class="mx.containers.beads.layouts.BasicLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
+	<component id="ButtonBarLayout" class="mx.containers.beads.ButtonBarLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
     <component id="PopUpButton" class="mx.controls.PopUpButton"/>
+    <component id="TileList" class="mx.controls.TileList"/>
     <component id="PopUpMenuButton" class="mx.controls.PopUpMenuButton"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
-	<component id="CompressedRemoteObject" class="mx.rpc.remoting.mxml.CompressedRemoteObject" />
-	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
-    <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation"/>
-	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
-    <component id="WebService" class="mx.rpc.soap.mxml.WebService" />
-    <component id="WebServiceOperation" class="mx.rpc.soap.mxml.Operation" />
-	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
+
+	<!--<component id="NumberValidator" class="mx.validators.NumberValidator"/>
 	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
 	<component id="DateValidator" class="mx.validators.DateValidator"/>
-	<component id="EmailValidator" class="mx.validators.EmailValidator"/>
+	<component id="EmailValidator" class="mx.validators.EmailValidator"/>-->
 	<component id="Module" class="mx.modules.Module"/>
 	<component id="ModuleLoader" class="mx.modules.ModuleLoader"/>
 	<component id="State" class="mx.states.State" />
     <component id="Transition" class="mx.states.Transition" />
 	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
-	<component id="ArrayList" class="mx.collections.ArrayList"/>
+	<component id="ButtonItemRenderer" class="mx.supportClasses.ButtonItemRenderer" />
+	<component id="FormItemRequired" class="mx.supportClasses.FormItemRequired" />
+	<!--<component id="ArrayList" class="mx.collections.ArrayList"/>-->
 	<component id="UIComponent" class="mx.core.UIComponent"/>
 	<component id="Container" class="mx.core.Container"/>
 	<component id="ControlBar" class="mx.containers.ControlBar"/>
 	<component id="Panel" class="mx.containers.Panel"/>
 	<component id="ToolTip" class="mx.controls.ToolTip" />
     <component id="TinyEditor" class="mx.controls.TinyEditor" />
-	<component id="SortField" class="mx.collections.SortField"/>
-	<component id="Sort" class="mx.collections.Sort"/>
+	<!--<component id="SortField" class="mx.collections.SortField"/>
+	<component id="Sort" class="mx.collections.Sort"/>-->
 	<component id="Stroke" class="mx.graphics.Stroke"/>
 	<component id="SolidColor" class="mx.graphics.SolidColor"/>
 	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke"/>
@@ -99,31 +99,31 @@
 	<component id="Move" class="mx.effects.Move"/>
 	<component id="LinearGradient" class="mx.graphics.LinearGradient"/>
 	<component id="ListBase" class="mx.controls.listClasses.ListBase" />
-	<component id="Grouping" class="mx.collections.Grouping" />
-	<component id="GroupingField" class="mx.collections.GroupingField" />
+	<!--<component id="Grouping" class="mx.collections.Grouping" />
+	<component id="GroupingField" class="mx.collections.GroupingField" />-->
 	<component id="MenuBar" class="mx.controls.MenuBar"/>
-	<component id="NumberFormatter" class="mx.formatters.NumberFormatter"/>
+	<!--<component id="NumberFormatter" class="mx.formatters.NumberFormatter"/>-->
     <component id="Form" class="mx.containers.Form" />
 	<component id="FormHeading" class="mx.containers.FormHeading"/>
     <component id="FormItem" class="mx.containers.FormItem" />
-	<component id="XMLListCollection" class="mx.collections.XMLListCollection"/>
+	<!--<component id="XMLListCollection" class="mx.collections.XMLListCollection"/>-->
 	<component id="TreeItemRenderer" class="mx.controls.treeClasses.TreeItemRenderer" />
 	<component id="ToggleButtonBar" class="mx.controls.ToggleButtonBar"/>
 	<component id="DragManager" class="mx.managers.DragManager" />
-	<component id="TraceTarget" class="mx.logging.targets.TraceTarget"/>
-	<component id="GroupingCollection2" class="mx.collections.GroupingCollection2" />
+	<!--<component id="TraceTarget" class="mx.logging.targets.TraceTarget"/>-->
+	<!--<component id="GroupingCollection2" class="mx.collections.GroupingCollection2" />-->
 	<component id="AdvancedListBase" class="mx.controls.listClasses.AdvancedListBase" />
-	<component id="AsyncToken" class="mx.rpc.AsyncToken" />
+
 	<component id="VScrollBar" class="mx.controls.VScrollBar"/>
 	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke"/>
-	<component id="CursorManager" class="mx.managers.CursorManager" />
-	<component id="Validator" class="mx.validators.Validator"/>
-	<component id="DateFormatter" class="mx.formatters.DateFormatter"/>
+	<!--<component id="CursorManager" class="mx.managers.CursorManager" />-->
+	<!--<component id="Validator" class="mx.validators.Validator"/>-->
+	<!--<component id="DateFormatter" class="mx.formatters.DateFormatter"/>-->
 	<component id="MenuBar" class="mx.controls.MenuBar"/>
     <component id="Menu" class="mx.controls.Menu"/>
 	<component id="Glow" class="mx.effects.Glow"/>
-	<component id="StringValidator" class="mx.validators.StringValidator"/>
-	<component id="RegExpValidator" class="mx.validators.RegExpValidator"/>
+	<!--<component id="StringValidator" class="mx.validators.StringValidator"/>
+	<component id="RegExpValidator" class="mx.validators.RegExpValidator"/>-->
 	<component id="AdvancedDataGridHeaderRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer" />
 	<component id="AdvancedDataGridColumn" class="mx.controls.advancedDataGridClasses.AdvancedDataGridColumn" />
 	<component id="AdvancedDataGridColumnGroup" class="mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup" />
@@ -139,18 +139,20 @@
 	<component id="Tree" class="mx.controls.Tree"/>
 	<component id="LinkBar" class="mx.controls.LinkBar"/>
 
-	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
+	<!--<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
 	<component id="ChannelSet" class="mx.messaging.ChannelSet" />
+	<component id="Consumer" class="mx.messaging.Consumer" />-->
 
-	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
-	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
+<!--	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
+	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>-->
 	<component id="Alert" class="mx.controls.Alert" />
 	<component id="ToolBar" class="mx.controls.richTextEditorClasses.ToolBar"/>
 	<component id="AdvancedDataGrid" class="mx.controls.AdvancedDataGrid" />
         <component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
 	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
         <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
-	<component id="PhoneFormatter" class="mx.formatters.PhoneFormatter"/>
+        <component id="Accordion" class="mx.containers.Accordion" />
+	<!--<component id="PhoneFormatter" class="mx.formatters.PhoneFormatter"/>-->
 
 
     <component id="WipeLeft" class="mx.effects.WipeLeft" />
@@ -214,11 +216,23 @@
     <component id="CartesianDataCanvas" class="mx.charts.chartClasses.CartesianDataCanvas"/>
     <component id="PolarDataCanvas" class="mx.charts.chartClasses.PolarDataCanvas"/>
 
-    <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
-    <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
+    <!--<component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
+    <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>-->
+    <!--<component id="HierarchicalData" class="mx.collections.HierarchicalData"/>-->
 
     <component id="DownloadButton" class="mx.controls.DownloadButton"/>
     <component id="HSlider" class="mx.controls.HSlider"/>
     <component id="Slider" class="mx.controls.sliderClasses.Slider"/>
     <component id="HorizontalList" class="mx.controls.HorizontalList"/>
+    <component id="AddChild" class="mx.states.AddChild"/>
+	<component id="TextField" class="mx.text.TextField"/>
+	<component id="Rotate" class="mx.effects.Rotate"/>
+	<component id="NavBar" class="mx.controls.NavBar" />
+	<component id="ApplicationControlBar" class="mx.containers.ApplicationControlBar" />
+   <component id="MultiSelectionList" class="mx.controls.MultiSelectionList"/>
+   <!--<component id="CurrencyFormatter" class="mx.formatters.CurrencyFormatter"/>-->
+   <!--<component id="ZipCodeValidator" class="mx.validators.ZipCodeValidator"/>-->
+   <component id="PrintDataGrid" class="mx.printing.PrintDataGrid"/>
+   
+
 </componentPackage>

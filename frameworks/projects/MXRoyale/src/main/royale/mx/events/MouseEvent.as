@@ -48,6 +48,8 @@ public class MouseEvent extends org.apache.royale.events.MouseEvent
 	public static const ROLL_OUT:String = org.apache.royale.events.MouseEvent.ROLL_OUT;
 	public static const CLICK:String = org.apache.royale.events.MouseEvent.CLICK;
 	public static const DOUBLE_CLICK:String = org.apache.royale.events.MouseEvent.DOUBLE_CLICK;
+	public static const CONTEXT_MENU:String = org.apache.royale.events.MouseEvent.CONTEXT_MENU;
+	public static const MOUSE_WHEEL:String = org.apache.royale.events.MouseEvent.MOUSE_WHEEL;
 	
 	//--------------------------------------------------------------------------
 	//

@@ -20,22 +20,46 @@
 package spark.components
 {
 
-import org.apache.royale.events.Event;
-
 import mx.collections.IList;
 import mx.core.IDataRenderer;
 import mx.core.IFactory;
+import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
 import mx.events.PropertyChangeEvent;
 import mx.utils.BitFlagUtil;
 
 import spark.components.supportClasses.SkinnableContainerBase;
+import spark.components.supportClasses.GroupBase;
+import spark.components.beads.SkinnableDataContainerView;
+import spark.components.beads.SparkDataContainerView;
 import spark.core.IViewport;
-import spark.events.RendererExistenceEvent;
+//import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.LayoutBase;
 
 use namespace mx_internal;
+
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IItemRendererProvider;
+import org.apache.royale.core.IStrandWithPresentationModel;
+import org.apache.royale.core.IListPresentationModel;
+import org.apache.royale.html.beads.models.ListPresentationModel;
+
+import org.apache.royale.binding.ContainerDataBinding;
+import org.apache.royale.binding.DataBindingBase;
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IBeadView;
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.ILayoutParent;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.ItemRendererClassFactory;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.ValueEvent;
+import org.apache.royale.utils.loadBeadFromValuesManager;
+
 
 /**
  *  Dispatched when a renderer is added to the container.
@@ -49,7 +73,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Event(name="rendererAdd", type="spark.events.RendererExistenceEvent")]
+//[Event(name="rendererAdd", type="spark.events.RendererExistenceEvent")]
 
 /**
  *  Dispatched when a renderer is removed from the container.
@@ -63,7 +87,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Event(name="rendererRemove", type="spark.events.RendererExistenceEvent")]
+//[Event(name="rendererRemove", type="spark.events.RendererExistenceEvent")]
 
 //include "../styles/metadata/BasicInheritingTextStyles.as"
 
@@ -204,10 +228,10 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
- *  @productversion Flex 4
+ *  @productversion Royale 0.9.8
  */
-public class SkinnableDataContainer extends SkinnableContainerBase implements IItemRendererOwner
-{
+public class SkinnableDataContainer extends SkinnableContainerBase implements IItemRendererProvider, IStrandWithPresentationModel, ILayoutParent
+{ //implements IItemRendererOwner
     //include "../core/Version.as";
     
     //--------------------------------------------------------------------------
@@ -258,12 +282,49 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.8
      */
     public function SkinnableDataContainer()
     {
         super();
+        typeNames = "SkinnableDataContainer";
     }
+
+
+    /**
+     * Returns the ILayoutHost which is its view. From ILayoutParent.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function getLayoutHost():ILayoutHost
+    {
+        return view as ILayoutHost;
+    }
+
+    
+    /**
+     *  The presentation model for the list.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+     */
+    public function get presentationModel():IBead
+    {
+        var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+        if (presModel == null) {
+            presModel = new ListPresentationModel();
+            presModel.rowHeight = 18;
+            addBead(presModel);
+        }
+        return presModel;
+    }
+
     
     //--------------------------------------------------------------------------
     //
@@ -283,7 +344,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public var dataGroup:DataGroup;
+    //public var dataGroup:DataGroup;
     
     /**
      *  @private
@@ -302,7 +363,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  dataGroupProperties stores booleans as to whether these properties 
      *  have been explicitly set or not.
      */
-    private var dataGroupProperties:Object = {};
+    //private var dataGroupProperties:Object = {};
     
     //--------------------------------------------------------------------------
     //
@@ -320,7 +381,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
     //  autoLayout
     //----------------------------------
 
-    [Inspectable(defaultValue="true")]
+    //[Inspectable(defaultValue="true")]
 
     /**
      *  @copy spark.components.supportClasses.GroupBase#autoLayout
@@ -332,7 +393,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function get autoLayout():Boolean
+    /* public function get autoLayout():Boolean
     {
         if (dataGroup)
             return dataGroup.autoLayout;
@@ -342,12 +403,12 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             var v:* = dataGroupProperties.autoLayout;
             return (v === undefined) ? true : v;
         }
-    }
+    } */
 
     /**
      *  @private
      */
-    public function set autoLayout(value:Boolean):void
+    /* public function set autoLayout(value:Boolean):void
     {
         if (dataGroup)
         {
@@ -358,7 +419,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
         else
             dataGroupProperties.autoLayout = value;
     }
-    
+     */
     //----------------------------------
     //  dataProvider
     //----------------------------------    
@@ -376,21 +437,31 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.8
+     * 
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
      */
     [Bindable("dataProviderChanged")]
     [Inspectable(category="Data")]
     
     public function get dataProvider():IList
     {       
-        return (dataGroup) 
+        /* return (dataGroup) 
             ? dataGroup.dataProvider 
-            : dataGroupProperties.dataProvider;
+            : dataGroupProperties.dataProvider; */
+
+        return ((view as SparkDataContainerView).contentView as DataGroup).dataProvider;
     }
     
+    /**
+     *  @private
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
+     */
     public function set dataProvider(value:IList):void
     {
-        if (dataGroup)
+        /* if (dataGroup)
         {
             dataGroup.dataProvider = value;
             dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
@@ -398,7 +469,27 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
         }
         else
             dataGroupProperties.dataProvider = value;
-        dispatchEvent(new Event("dataProviderChanged"));
+        dispatchEvent(new Event("dataProviderChanged")); */
+
+        if (isWidthSizedToContent() || isHeightSizedToContent())
+            ((view as SparkDataContainerView).contentView as DataGroup).addEventListener("itemsCreated", itemsCreatedHandler);
+        ((view as SparkDataContainerView).contentView as DataGroup).dataProvider = value;
+    }
+
+    private function itemsCreatedHandler(event:Event):void
+    {
+        if (parent)
+        {
+            COMPILE::JS
+            {
+                // clear last width/height so elements size to content
+                element.style.width = "";
+                element.style.height = "";
+                ((view as SparkDataContainerView).contentView as DataGroup).element.style.width = "";
+                ((view as SparkDataContainerView).contentView as DataGroup).element.style.height = "";
+            }
+            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
     }
     
     //----------------------------------
@@ -413,28 +504,39 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.8
      */
+    [SWFOverride(returns="org.apache.royale.core.IFactory")]
     public function get itemRenderer():IFactory
     {
-        return (dataGroup) 
+        /* return (dataGroup) 
             ? dataGroup.itemRenderer 
-            : dataGroupProperties.itemRenderer;
+            : dataGroupProperties.itemRenderer; */
+
+        return ((view as SparkDataContainerView).contentView as DataGroup).itemRenderer;
     }
     
     /**
      *  @private
      */
+    [SWFOverride(params="org.apache.royale.core.IFactory", altparams="mx.core.IFactory")]
     public function set itemRenderer(value:IFactory):void
     {
-        if (dataGroup)
+        /* if (dataGroup)
         {
             dataGroup.itemRenderer = value;
             dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
                                                      ITEM_RENDERER_PROPERTY_FLAG, true);
         }
         else
-            dataGroupProperties.itemRenderer = value;
+            dataGroupProperties.itemRenderer = value; */
+
+        ((view as SparkDataContainerView).contentView as DataGroup).itemRenderer = value;
+        // the ItemRendererFactory was already put on the DataGroup's strand and
+        // determined which factory to use so we have to set it up later here.
+        var factory:ItemRendererClassFactory = ((view as SparkDataContainerView).contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
+        factory.createFunction = factory.createFromClass;
+        factory.itemRendererFactory = value;
     }
     
     //----------------------------------
@@ -449,13 +551,15 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.8
      */
     public function get itemRendererFunction():Function
     {
-        return (dataGroup) 
+        /* return (dataGroup) 
             ? dataGroup.itemRendererFunction 
-            : dataGroupProperties.itemRendererFunction;
+            : dataGroupProperties.itemRendererFunction; */
+
+        return null;
     }
     
     /**
@@ -463,19 +567,21 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      */
     public function set itemRendererFunction(value:Function):void
     {
-        if (dataGroup)
+        /* if (dataGroup)
         {
             dataGroup.itemRendererFunction = value;
             dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
                                                      ITEM_RENDERER_FUNCTION_PROPERTY_FLAG, true);
         }
         else
-            dataGroupProperties.itemRendererFunction = value;
+            dataGroupProperties.itemRendererFunction = value; */
     }
     
     //----------------------------------
     //  layout
     //----------------------------------
+
+    private var _layout:LayoutBase;
     
     [Inspectable(category="General")]
     
@@ -487,20 +593,27 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.8
      */     
     public function get layout():LayoutBase
     {
-        return (dataGroup) 
+        /* return (dataGroup) 
             ? dataGroup.layout 
             : dataGroupProperties.layout;
+         */
+        //if (!_layout)
+        //    _layout = new BasicLayout();
+        return _layout;
     }
 
     /**
      *  @private
+     *  @royaleignorecoercion spark.components.GroupBase
+     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
      */
     public function set layout(value:LayoutBase):void
     {
+        /*
         if (dataGroup)
         {
             dataGroup.layout = value;
@@ -509,13 +622,21 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
         }
         else
             dataGroupProperties.layout = value;
+         */
+        _layout = value;
+        if (getBeadByType(IBeadView))
+        {
+            ((view as SkinnableDataContainerView).contentView as GroupBase).layout = value;
+            if (parent)
+                ((view as SkinnableDataContainerView).contentView as GroupBase).dispatchEvent(new Event("layoutNeeded"));       
+        }
     }
     
     //----------------------------------
     //  typicalItem
     //----------------------------------
 
-    [Inspectable(category="Data")]
+    //[Inspectable(category="Data")]
     
     /**
      *  @copy spark.components.DataGroup#typicalItem
@@ -525,27 +646,30 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function get typicalItem():Object
+     public function get typicalItem():Object
     {
-        return (dataGroup) 
+        trace("SkinnableDataContainer::typicalItem is not implemented");
+        return null;
+        /*return (dataGroup) 
             ? dataGroup.typicalItem 
-            : dataGroupProperties.typicalItem;
-    }
+            : dataGroupProperties.typicalItem;*/
+    } 
 
     /**
      *  @private
      */
-    public function set typicalItem(value:Object):void
+     public function set typicalItem(value:Object):void
     {
-        if (dataGroup)
+        trace("SkinnableDataContainer::typicalItem is not implemented");
+        /*if (dataGroup)
         {
             dataGroup.typicalItem = value;
             dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
                                                      TYPICAL_ITEM_PROPERTY_FLAG, true);
         }
         else
-            dataGroupProperties.typicalItem = value;
-    }
+            dataGroupProperties.typicalItem = value;*/
+    } 
     
     //--------------------------------------------------------------------------
     //
@@ -567,7 +691,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
-     *  @productversion Flex 4
+     *  @productversion Royale 0.9.8
      */
     public function itemToLabel(item:Object):String
     {
@@ -596,7 +720,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  @productversion Flex 4
      * 
      */
-    public function updateRenderer(renderer:IVisualElement, itemIndex:int, data:Object):void
+    /* public function updateRenderer(renderer:IVisualElement, itemIndex:int, data:Object):void
     {
         // set the owner
         renderer.owner = this;
@@ -613,7 +737,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
         if ((renderer is IDataRenderer) && (renderer !== data))
             IDataRenderer(renderer).data = data;
     }
-
+     */
     //--------------------------------------------------------------------------
     //
     //  Overridden methods
@@ -627,7 +751,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
     {
         super.partAdded(partName, instance);
 
-        if (instance == dataGroup)
+        /* if (instance == dataGroup)
         {
             // copy proxied values from dataGroupProperties (if set) to dataGroup
             
@@ -694,7 +818,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
                 dataGroup.addEventListener(
                     RendererExistenceEvent.RENDERER_REMOVE, dispatchEvent);
             }
-        }
+        } */
     }
     
     /**
@@ -702,7 +826,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      */
     override protected function partRemoved(partName:String, instance:Object):void
     {
-        super.partRemoved(partName, instance);
+        /* super.partRemoved(partName, instance);
 
         if (instance == dataGroup)
         {
@@ -738,7 +862,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             dataGroup.dataProvider = null;
             dataGroup.layout = null;
             dataGroup.rendererUpdateDelegate = null;
-        }
+        } */
     }
     
     /**
@@ -748,7 +872,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  for property change events.  If no one's listening for them, then we don't 
      *  listen for them on our dataGroup.
      */
-    override public function addEventListener(
+    /* override public function addEventListener(
         type:String, listener:Function, useCapture:Boolean=false, priority:int=0, useWeakReference:Boolean=false) : void
     {
         super.addEventListener(type, listener, useCapture, priority, useWeakReference);
@@ -772,7 +896,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             dataGroup.addEventListener(
                 RendererExistenceEvent.RENDERER_REMOVE, dispatchEvent);
         }
-    }
+    } */
     
     /**
      *  @private
@@ -781,7 +905,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
      *  for property change events.  If no one's listening for them, then we don't 
      *  listen for them on our dataGroup.
      */
-    override public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false) : void
+    /* override public function removeEventListener(type:String, listener:Function, useCapture:Boolean=false) : void
     {
         super.removeEventListener(type, listener, useCapture);
         
@@ -804,7 +928,76 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
                     RendererExistenceEvent.RENDERER_REMOVE, dispatchEvent);
             }
         }
+    } */
+
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods
+    //
+    //--------------------------------------------------------------------------
+
+    //--------------------------------------------------------------------------
+    //
+    //  IMXMLDocument et al
+    //
+    //--------------------------------------------------------------------------
+    
+    private var _mxmlDescriptor:Array;
+    private var _mxmlDocument:Object = this;
+
+    /**
+     *  @private
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SparkDataContainerView
+     */
+    override public function addedToParent():void
+    {
+//        if (!getBeadByType(IBeadLayout))
+//            addBead(new VerticalLayout());
+
+        if (!initialized) {
+            // each MXML file can also have styles in fx:Style block
+            ValuesManager.valuesImpl.init(this);
+        }
+
+        super.addedToParent();
+
+        // Load the layout bead if it hasn't already been loaded.
+        loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+
+        dispatchEvent(new Event("beadsAdded"));
+        dispatchEvent(new Event("initComplete"));
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            dispatchEvent(new Event("layoutNeeded"));
+
+//		((view as SparkDataContainerView).contentView as DataGroup).addEventListener("change", redispatcher);
+		((view as SparkDataContainerView).contentView as DataGroup).addEventListener("itemClick", redispatcher);
+		((view as SparkDataContainerView).contentView as DataGroup).addEventListener("doubleClick", redispatcher);
+		
+        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
     }
+
+    override protected function createChildren():void
+    {
+        super.createChildren();
+        
+        if (getBeadByType(DataBindingBase) == null)
+            addBead(new ContainerDataBinding());
+        
+        dispatchEvent(new Event("initBindings"));
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        ((view as SparkDataContainerView).contentView as DataGroup).setActualSize(w, h);
+    }
+
+	private function redispatcher(event:Event):void
+	{
+		dispatchEvent(new Event(event.type));
+	}
 }
 
 }

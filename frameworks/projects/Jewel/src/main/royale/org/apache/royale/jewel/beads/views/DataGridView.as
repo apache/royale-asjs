@@ -31,9 +31,9 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
@@ -42,6 +42,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.LabelFunction;
 	import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
@@ -95,7 +96,6 @@ package org.apache.royale.jewel.beads.views
             // see if there is a presentation model already in place. if not, add one.
             sharedModel = _dg.model as IDataGridModel;
             IEventDispatcher(sharedModel).addEventListener("dataProviderChanged", handleDataProviderChanged);
-            IEventDispatcher(sharedModel).addEventListener("sortChanged", handleSortChanged);
             IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
             listenOnStrand("initComplete", initCompleteHandler);
@@ -338,16 +338,20 @@ package org.apache.royale.jewel.beads.views
             if(dp)
 			{
 				dp.removeEventListener(CollectionEvent.ITEM_ADDED, handleItemAddedAndRemoved);
+				dp.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemAddedAndRemoved);
 				dp.removeEventListener(CollectionEvent.ITEM_REMOVED, handleItemAddedAndRemoved);
 				dp.removeEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleItemAddedAndRemoved);
+				dp.removeEventListener(CollectionEvent.COLLECTION_CHANGED, handleCollectionChanged);
 			}
 			dp = sharedModel.dataProvider as IEventDispatcher;
 			if (dp)
             {
 			    // listen for individual items being added in the future.
 			    dp.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAddedAndRemoved);
+			    dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemAddedAndRemoved);
 				dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemAddedAndRemoved);
 				dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleItemAddedAndRemoved);
+				dp.addEventListener(CollectionEvent.COLLECTION_CHANGED, handleCollectionChanged);
             }
 
             for (var i:int=0; i < columnLists.length; i++)
@@ -367,26 +371,27 @@ package org.apache.royale.jewel.beads.views
             }
         }
 
+        private var layout:IBeadLayout;
+
         /**
-         * @private
-         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
-         */
-        protected function handleSortChanged(event:Event):void
-        {
+		 *  Handles the itemAdded event by adding the item.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
+		 */
+		protected function handleCollectionChanged(event:CollectionEvent):void
+		{
             for (var i:int=0; i < columnLists.length; i++)
             {
                 var list:IDataGridColumnList = columnLists[i] as IDataGridColumnList;
-                IStrandWithModel(list).model.sortChangedHandler(dp);
+                ((list as UIBase).model as IJewelSelectionModel).setDataProvider__NoCheck(dp);
             }
+
             host.dispatchEvent(new Event("layoutNeeded"));
-
-            COMPILE::JS{
-                synchHScroll(null);
-            }
         }
-
-        private var layout:IBeadLayout;
 
         /**
 		 *  Handles the itemAdded event by adding the item.

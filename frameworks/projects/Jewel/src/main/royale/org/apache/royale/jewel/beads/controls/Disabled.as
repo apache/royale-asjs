@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.HTMLElementWrapper;
 	import org.apache.royale.core.IUIBase;
 	}
-	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.utils.sendStrandEvent;
@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Disabled extends Bead
+	public class Disabled extends DispatcherBead
 	{
 		/**
 		 *  constructor.
@@ -96,7 +96,7 @@ package org.apache.royale.jewel.beads.controls
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			super.strand = value;
 			updateHost();
 		}
 

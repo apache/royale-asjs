@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.collections.ArrayList;
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
 
     /**
 	 *  The EasyDataProviderChangeNotifier is similar to DataProviderChangeNotifier
@@ -90,7 +89,7 @@ package org.apache.royale.html.beads
 		 */
 		private function setDataProvider():void
 		{
-			dataProvider = selectionModel.dataProvider as ArrayList;
+			dataProvider = selectionModel.dataProvider as IArrayList;
 			if(dataProvider)
 				attachEventListeners();
 		}

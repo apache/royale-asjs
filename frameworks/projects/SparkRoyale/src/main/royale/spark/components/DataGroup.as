@@ -44,6 +44,7 @@ import spark.events.RendererExistenceEvent;
 import mx.core.IVisualElement;
 import mx.collections.IList;
  import spark.components.supportClasses.GroupBase;
+import org.apache.royale.html.beads.ItemRendererFunctionBead;
  import mx.core.IUIComponent;
 
  import mx.core.mx_internal;
@@ -504,6 +505,7 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
+    [SWFOverride(returns="org.apache.royale.core.IFactory")]
     public function get itemRenderer():IFactory
     {
         return _itemRenderer;
@@ -512,6 +514,7 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
     /**
      *  @private
      */
+    [SWFOverride(params="org.apache.royale.core.IFactory", altparams="mx.core.IFactory")]
     public function set itemRenderer(value:IFactory):void
     {
         _itemRenderer = value;
@@ -553,23 +556,27 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
      */
     public function get itemRendererFunction():Function // not implemeneted
     {
-        //return _itemRendererFunction;
-	return null;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+	    if (itemRendererFunctionBead)
+        {
+            return itemRendererFunctionBead.itemRendererFunction;
+        }
+
+        return null;
     }
     
     /**
      *  @private
      */
-    public function set itemRendererFunction(value:Function):void // not implemeneted
+    public function set itemRendererFunction(value:Function):void
     {
-        //_itemRendererFunction = value;
-        //
-        //removeDataProviderListener();
-        //removeAllItemRenderers();
-        //invalidateProperties();
-        //
-        //itemRendererChanged = true;
-        //typicalItemChanged = true;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+        if (!itemRendererFunctionBead)
+        {
+            itemRendererFunctionBead = new ItemRendererFunctionBead();
+            addBead(itemRendererFunctionBead);
+        }
+        itemRendererFunctionBead.itemRendererFunction = value;
     }
 
     //----------------------------------

@@ -100,7 +100,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="labelStyleName", type="String", inherit="no")]
+[Style(name="labelStyleName", type="String", inherit="no")]
 
 /**
  *  Width of the form labels.
@@ -111,7 +111,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Style(name="labelWidth", type="Number", format="Length", inherit="yes")]
+[Style(name="labelWidth", type="Number", format="Length", inherit="yes")]
 
 /**
  *  Number of pixels between the container's bottom border

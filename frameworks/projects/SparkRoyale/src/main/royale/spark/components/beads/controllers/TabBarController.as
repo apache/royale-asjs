@@ -58,6 +58,7 @@ import org.apache.royale.core.IViewport;
             _strand = value;
             var eventDispatcher:IEventDispatcher = (_strand.getBeadByType(IViewport) as IViewport).contentView as IEventDispatcher;
             eventDispatcher.addEventListener("itemsCreated", handleDataProviderChanged);
+            handleDataProviderChanged(null);
         }
         
         private function clickHandler(event:org.apache.royale.events.MouseEvent):void
@@ -68,6 +69,16 @@ import org.apache.royale.core.IViewport;
             if (list is ISelectableList)
             {
                 (list as ISelectableList).selectedIndex = index;
+            }
+            else
+            {
+                // legacy behavior
+                var tabbar:ListBase = _strand as ListBase;
+                if (tabbar)
+                {
+                    tabbar.selectedIndex = index;
+                    tabbar.dispatchEvent(new Event("selectedIndexChanged"));
+                }
             }
         }
         

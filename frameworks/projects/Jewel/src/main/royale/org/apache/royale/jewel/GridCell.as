@@ -79,7 +79,7 @@ package org.apache.royale.jewel
         {
 			COMPILE::JS
             {
-				setFractionForScreen(GridCellLayout.DESKTOP, value, layout.wideScreenDenominator);
+				setFractionForScreen(GridCellLayout.WIDESCREEN, value, layout.wideScreenDenominator);
 			
 				if (parent)
                 	setClassName(computeFinalClassNames()); 
@@ -107,7 +107,7 @@ package org.apache.royale.jewel
         {
 			COMPILE::JS
             {
-				setFractionForScreen(GridCellLayout.DESKTOP, layout.wideScreenNumerator, value);
+				setFractionForScreen(GridCellLayout.WIDESCREEN, layout.wideScreenNumerator, value);
 			
 				if (parent)
                 	setClassName(computeFinalClassNames()); 
@@ -293,8 +293,29 @@ package org.apache.royale.jewel
 					throw new Error(screen + " numerator must be between 1 and " + GridCellLayout.MAX_COLUMNS);
 				if (den <= 0 || den > GridCellLayout.MAX_COLUMNS)
 					throw new Error(screen + " denominator must be between 1 and " + GridCellLayout.MAX_COLUMNS);
+
+				var layNum:Number;
+                var layDen:Number;
+				switch(screen){
+					case GridCellLayout.WIDESCREEN:
+						layNum = layout.wideScreenNumerator;
+                    	layDen = layout.wideScreenDenominator;
+						break;
+                	case GridCellLayout.DESKTOP:
+                    	layNum = layout.desktopNumerator;
+                    	layDen = layout.desktopDenominator;
+						break;
+                	case GridCellLayout.TABLET:
+                    	layNum = layout.tabletNumerator;
+                    	layDen = layout.tabletDenominator;
+						break;
+					default:
+                    	layNum = layout.phoneNumerator;
+                    	layDen = layout.phoneDenominator;
+						break;
+                }
 				
-				typeNames = StringUtil.removeWord(typeNames, " " + screen + "-col-" + layout.desktopNumerator + "-" + layout.desktopDenominator);
+				typeNames = StringUtil.removeWord(typeNames, " " + screen + "-col-" + layNum + "-" + layDen);
 				typeNames += " " + screen + "-col-" + num + "-" + den;
 			}
         }

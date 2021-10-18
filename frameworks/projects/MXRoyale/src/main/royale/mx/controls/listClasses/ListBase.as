@@ -31,6 +31,7 @@ import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
+import mx.events.DragEvent;
 import mx.utils.UIDUtil;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
@@ -56,6 +57,8 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
+import mx.controls.dataGridClasses.DataGridListData;
+import mx.events.FlexEvent;
 
 use namespace mx_internal;
 
@@ -84,6 +87,53 @@ use namespace mx_internal;
  */
 [Event(name="itemDoubleClick", type="mx.events.ListEvent")]
 	
+//--------------------------------------
+//  Styles
+//--------------------------------------
+
+
+/**
+ *  The colors to use for the backgrounds of the items in the list. 
+ *  The value is an array of one or more colors. 
+ *  The backgrounds of the list items alternate among the colors in the array. 
+ *
+ *  <p>For DataGrid controls, all items in a row have the same background color, 
+ *  and each row's background color is determined from the array of colors.</p>
+ *
+ *  <p>For the TileList control, which uses a single list to populate a 
+ *  two-dimensional display, the style can result in a checkerboard appearance,
+ *  stripes, or other patterns based on the number of columns and rows and
+ *  the number of colors specified.  TileList cycles through the colors, placing
+ *  the individual item background colors according to the 
+ *  layout direction. If you have an even number of colors and an even number of
+ *  columns for a TileList layed out horizontally, you will get striping.  If
+ *  the number of columns is an odd number, you will get a checkerboard pattern.
+ *  </p>
+ *
+ *  @default undefined
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.0
+ */
+[Style(name="alternatingItemColors", type="Array", arrayType="uint", format="Color", inherit="yes")]
+
+/**
+ *  A flag that controls whether items are highlighted as the mouse rolls 
+ *  over them.
+ *  If <code>true</code>, rows are highlighted as the mouse rolls over them.
+ *  If <code>false</code>, rows are highlighted only when selected.
+ *
+ *  @default true
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.8
+ */
+[Style(name="useRollOver", type="Boolean", inherit="no")]
+
     /**
      *  
      *  @langversion 3.0
@@ -183,6 +233,45 @@ use namespace mx_internal;
             _dragMoveEnabled = value;
         }
         
+	
+	//----------------------------------
+        //  menuSelectionMode 
+        //----------------------------------
+        
+        /**
+         *  @public
+         *  Storage for the menuSelectionMode property.
+         */
+        public var _menuSelectionMode:Boolean = false;
+        
+        /**
+         *  A flag that indicates whether you can drag items out of
+         *  this control and drop them on other controls.
+         *  If <code>true</code>, dragging is enabled for the control.
+         *  If the <code>menuSelectionMode</code> property is also <code>true</code>,
+         *  you can drag items and drop them within this control
+         *  to reorder the items.
+         *
+         *  @default false
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function get menuSelectionMode():Boolean
+        {
+            return _menuSelectionMode;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set menuSelectionMode(value:Boolean):void
+        {
+            _menuSelectionMode = value;
+        }
+	
         //----------------------------------
         //  dataProvider
         //----------------------------------
@@ -564,7 +653,55 @@ use namespace mx_internal;
 
        // dispatchEvent(new Event("variableRowHeightChanged"));
     }
+	//----------------------------------
+    //  iconFunction
+    //----------------------------------
 
+    /**
+     *  @private
+     *  Storage for iconFunction property.
+     */
+    private var _iconFunction:Function;
+
+    [Bindable("iconFunctionChanged")]
+    [Inspectable(category="Data")]
+
+    /**
+     *  A user-supplied function to run on each item to determine its icon.  
+     *  By default the list does not try to display icons with the text 
+     *  in the rows.  However, by specifying an icon function, you can specify 
+     *  a Class for a graphic that will be created and displayed as an icon 
+     *  in the row.  This property is ignored by DataGrid.
+     *
+     *  <p>The iconFunction takes a single argument which is the item
+     *  in the data provider and returns a Class, as the following example shows:</p>
+     * 
+     *  <pre>iconFunction(item:Object):Class</pre>
+     * 
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function get iconFunction():Function
+    {
+        return _iconFunction;
+    }
+
+    /**
+     *  @private
+     */
+    public function set iconFunction(value:Function):void
+    {
+        _iconFunction = value;
+
+        itemsSizeChanged = true;
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("iconFunctionChanged"));
+    }
     //----------------------------------
     //  allowMultipleSelection
     //----------------------------------
@@ -890,6 +1027,11 @@ use namespace mx_internal;
         override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
         {
             var contentView:IParent = getLayoutHost().contentView as IParent;
+            if (c == contentView)
+            {
+                super.addElement(c);
+                return;
+            }
             if (contentView == this)
                 return super.addElement(c, dispatchEvent);
             contentView.addElement(c, dispatchEvent);
@@ -961,6 +1103,41 @@ use namespace mx_internal;
           //return visibleData[itemToUID(item)];
 	      return null;
       }
+            
+       /**
+        *  Hides the drop indicator under the mouse pointer that indicates that a
+        *  drag and drop operation is allowed.
+        *
+        *  @param event A DragEvent object that contains information about the
+        *  mouse location.
+        *  
+        *  @langversion 3.0
+        *  @playerversion Flash 9
+        *  @playerversion AIR 1.1
+        *  @productversion Flex 3
+        */
+       public function hideDropFeedback(event:DragEvent):void
+       {
+           //To Do
+           trace("hideDropFeedback is not implemented");
+       }
+
+      /**
+       *  Determines if an item is being displayed by a renderer.
+       *
+       *  @param item A data provider item.
+       *  @return <code>true</code> if the item is being displayed.
+       *  
+       *  @langversion 3.0
+       *  @playerversion Flash 9
+       *  @playerversion AIR 1.1
+       *  @productversion Flex 3
+       */
+        public function isItemVisible(item:Object):Boolean
+        {
+            return itemToItemRenderer(item) != null;
+        }
+
         /**
          * @private
          */
@@ -1447,6 +1624,291 @@ use namespace mx_internal;
             
             return " ";
         }
+		
+	//----------------------------------
+    //  columnCount
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the columnCount property.
+     */
+    private var _columnCount:int = -1;
+    
+    /**
+     *  @private
+     */
+    private var columnCountChanged:Boolean = true;
+
+    /**
+     *  The number of columns to be displayed in a TileList control or items 
+     *  in a HorizontalList control.
+     *  For the DataGrid it is the number of visible columns.
+     *  <b>Note</b>: Setting this property has no effect on a DataGrid control,
+     *  which bases the number of columns on the control width and the
+     *  individual column widths.
+     * 
+     *  @default 4
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get columnCount():int
+    {
+        return _columnCount;
+    }
+
+    /**
+     *  @private
+     */
+    public function set columnCount(value:int):void
+    {
+        explicitColumnCount = value;
+
+        if (_columnCount != value)
+        {
+            _columnCount = value;
+            columnCountChanged = true;
+            invalidateProperties();
+
+            invalidateSize();
+            itemsSizeChanged = true;
+            invalidateDisplayList();
+
+            dispatchEvent(new Event("columnCountChanged"));
+        }
+    }
+
+    
+
+	//----------------------------------
+    //  dataTipField
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the dataTipField property.
+     */
+    private var _dataTipField:String = "label";
+
+    [Bindable("dataTipFieldChanged")]
+    [Inspectable(category="Data", defaultValue="label")]
+
+    /**
+     *  Name of the field in the data provider items to display as the 
+     *  data tip. By default, the list looks for a property named 
+     *  <code>label</code> on each item and displays it.
+     *  However, if the data objects do not contain a <code>label</code> 
+     *  property, you can set the <code>dataTipField</code> property to
+     *  use a different property in the data object. An example would be 
+     *  "FullName" when viewing a
+     *  set of people's names retrieved from a database.
+     * 
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function get dataTipField():String
+    {
+        return _dataTipField;
+    }
+
+    /**
+     *  @private
+     */
+    public function set dataTipField(value:String):void
+    {
+        _dataTipField = value;
+
+        itemsSizeChanged = true;
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("dataTipFieldChanged"));
+    }
+	 //----------------------------------
+    //  dataTipFunction
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the dataTipFunction property.
+     */
+	protected var itemsSizeChanged:Boolean = false;
+    private var _dataTipFunction:Function;
+
+    [Bindable("dataTipFunctionChanged")]
+    [Inspectable(category="Data")]
+
+    /**
+     *  User-supplied function to run on each item to determine its dataTip.  
+     *  By default, the list looks for a property named <code>label</code> 
+     *  on each data provider item and displays it.
+     *  However, some items do not have a <code>label</code> property 
+     *  nor do they have another property that can be used for displaying 
+     *  in the rows. An example is a data set that has lastName and firstName 
+     *  fields, but you want to display full names. You can supply a 
+     *  <code>dataTipFunction</code> that finds the appropriate
+     *  fields and return a displayable string. The 
+     *  <code>dataTipFunction</code> is also good for handling formatting
+     *  and localization.
+     *
+     *  <p>The dataTipFunction takes a single argument which is the item
+     *  in the data provider and returns a String, as the following example shows:</p>
+     * 
+     *  <pre>myDataTipFunction(item:Object):String</pre>
+     * 
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get dataTipFunction():Function
+    {
+        return _dataTipFunction;
+    }
+
+    /**
+     *  @private
+     */
+    public function set dataTipFunction(value:Function):void
+    {
+        _dataTipFunction = value;
+
+        itemsSizeChanged = true;
+        invalidateDisplayList();
+
+        dispatchEvent(new Event("dataTipFunctionChanged"));
+    }
+    
+    //----------------------------------
+    //  listData
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the listData property.
+     */
+    private var _listData:BaseListData;
+
+    [Bindable("dataChange")]
+    [Inspectable(environment="none")]
+
+    /**
+     *  
+     *  When a component is used as a drop-in item renderer or drop-in
+     *  item editor, Flex initializes the <code>listData</code> property
+     *  of the component with the additional data from the list control.
+     *  The component can then use the <code>listData</code> property
+     *  and the <code>data</code> property to display the appropriate
+     *  information as a drop-in item renderer or drop-in item editor.
+     *
+     *  <p>You do not set this property in MXML or ActionScript;
+     *  Flex sets it when the component is used as a drop-in item renderer
+     *  or drop-in item editor.</p>
+     *
+     *  @see mx.controls.listClasses.IDropInListItemRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get listData():BaseListData
+    {
+        return _listData;
+    }
+
+    /**
+     *  @private
+     */
+    public function set listData(value:BaseListData):void
+    {
+        _listData = value;
+    }
+	
+    //----------------------------------
+    //  data
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the data property.
+     */
+    private var _data:Object = null;
+
+    [Bindable("dataChange")]
+    [Inspectable(environment="none")]
+
+    /**
+     *  The item in the data provider this component should render when
+     *  this component is used as an item renderer or item editor.
+     *  The list class sets this property on each renderer or editor
+     *  and the component displays the data.  ListBase-derived classes
+     *  support this property for complex situations like having a
+     *  List of DataGrids or a DataGrid where one column is a List.
+     *
+     *  <p>The list classes use the <code>listData</code> property
+     *  in addition to the <code>data</code> property to determine what
+     *  to display.
+     *  If the list class is in a DataGrid it expects the <code>dataField</code>
+     *  property of the column to map to a property in the data
+     *  and sets <code>selectedItem</code> value to that property.
+     *  If it is in a List or TileList control, it expects the 
+     *  <code>labelField</code> property of the list to map to a property 
+     *  in the data, and sets <code>selectedItem</code> value to that property.
+     *  Otherwise it sets the <code>selectedItem</code> to the data itself.</p>
+     * 
+     *  <p>This property uses the data provider but does not set it. 
+     *  In all cases, you must set the data provider in some other way.</p>
+     *
+     *  <p>You do not set this property in MXML.</p>
+     *
+     *  @see mx.core.IDataRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get data():Object
+    {
+        return _data;
+    }
+
+    /**
+     *  @private
+     */
+    public function set data(value:Object):void
+    {
+        _data = value;
+
+        if (_listData && _listData is DataGridListData)
+            selectedItem = _data[DataGridListData(_listData).dataField];
+        else if (_listData is ListData && ListData(_listData).labelField in _data)
+            selectedItem = _data[ListData(_listData).labelField];
+        else
+            selectedItem = _data;
+
+        dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+    }
+	
+	public function measureHeightOfItems(index:int = -1, count:int = 0):Number
+    {
+        return NaN;
+    }
+	
+	public function measureWidthOfItems(index:int = -1, count:int = 0):Number
+    {
+        return NaN;
+    }
+    
 
     }
 }

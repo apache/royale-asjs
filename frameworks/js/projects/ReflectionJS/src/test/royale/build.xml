@@ -146,7 +146,7 @@
             <arg value="-compiler.targets=JSRoyale" />
             <arg value="-js-output=target" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
-            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${PLAYERGLOBAL_HOME}" />
         </mxmlc>
     </target>
 

@@ -23,26 +23,26 @@ package org.apache.royale.events
 	COMPILE::SWF
 	public class ElementEvents
 	{
-        //--------------------------------------
-        //   Static Property
-        //--------------------------------------
-        
-        static public const elementEvents:Object = {
+		//--------------------------------------
+		//   Static Property
+		//--------------------------------------
+		
+		static public const elementEvents:Object = {
 			'click': 1,
 			'doubleClick': 1,
-            'change': 1,
-            'keyup': 1,
-            'keydown': 1,
-            'load': 1,
-            'mouseOver': 1,
-            'mouseOut': 1,
-            'mouseUp': 1,
-            'mouseDown': 1,
-            'mouseMove': 1,
-            'rollOver': 1,
+			'change': 1,
+			'keyup': 1,
+			'keydown': 1,
+			'load': 1,
+			'mouseOver': 1,
+			'mouseOut': 1,
+			'mouseUp': 1,
+			'mouseDown': 1,
+			'mouseMove': 1,
+			'rollOver': 1,
 			'rollOut': 1,
 			'mouseWheel': 1
-        };
+		};
 	}
 
 	COMPILE::JS
@@ -54,20 +54,22 @@ package org.apache.royale.events
 		//--------------------------------------
 
 		static public const elementEvents:Object = {
-                'click': 1,
-				'dblclick': 1,
-                'change': 1,
-                'keyup': 1,
-                'keydown': 1,
-                'load': 1,
-				'mouseover': 1,
-				'mouseout': 1,
-				'mouseup': 1,
-				'mousedown': 1,
-				'mousemove': 1,
-				'rollover': 1,
-				'rollout': 1,
-				'wheel': 1
-			};
+			'click': 1,
+			'dblclick': 1,
+			'change': 1,
+			'keyup': 1,
+			'keydown': 1,
+			'load': 1,
+			'mouseenter': 1,
+			'mouseleave': 1,
+			'mouseover': 1,
+			'mouseout': 1,
+			'mouseup': 1,
+			'mousedown': 1,
+			'mousemove': 1,
+			'rollover': 1,
+			'rollout': 1,
+			'wheel': 1
+		};
 	}
 }

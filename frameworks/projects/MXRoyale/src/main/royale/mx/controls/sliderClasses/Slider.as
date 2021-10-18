@@ -1393,17 +1393,17 @@ public class Slider extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-  /*  public function get value():Number
+    public function get value():Number
     {
         return _values[0];
-    }  */
+    }  
 
     /**
      *  @private
      */
-/*    public function set value(val:Number):void
+    public function set value(val:Number):void
     {
-        setValueAt(val, 0, true);
+       // setValueAt(val, 0, true);
         valuesChanged = true;
         minimumSet = true;
 
@@ -1411,7 +1411,7 @@ public class Slider extends UIComponent
         invalidateDisplayList();
 
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));   
-    }  */
+    }  
 
     //----------------------------------
     //  values

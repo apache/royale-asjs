@@ -56,6 +56,12 @@ package org.apache.royale.utils
         static private var muler:Number;
         static private var zeroStr:String = String.fromCharCode(0);
         
+        /**
+         * Var for speeding up checkInterfaces()
+         */
+        static private var interfaceMap:Object = null;
+        static private var isInitInterfaceMap:Boolean = false;
+        
         //--------------------------------------
         //   Static Function
         //--------------------------------------
@@ -172,11 +178,40 @@ package org.apache.royale.utils
             
             if (leftOperand.ROYALE_CLASS_INFO === undefined)
                 return false; // could be a function but not an instance
+
+            if (!isInitInterfaceMap)
+            {
+                if (typeof WeakMap == "function")
+                {
+                	    interfaceMap = new WeakMap();
+                }
+                isInitInterfaceMap = true;
+            }
+
+            var classInterfaceMap:Object;
+
+            // check interface check cache
+            if (interfaceMap && interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+            {
+                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                if (classInterfaceMap && classInterfaceMap.has(rightOperand))
+                    return classInterfaceMap.get(rightOperand);
+            }
             
-            if (leftOperand.ROYALE_CLASS_INFO.interfaces)
+            if (leftOperand.ROYALE_CLASS_INFO && leftOperand.ROYALE_CLASS_INFO.interfaces)
             {
                 if (checkInterfaces(leftOperand, rightOperand))
                 {
+                    // update interface check cache
+                    if (interfaceMap)
+                    {
+                        if (!interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+                        {
+                            interfaceMap.set(leftOperand.ROYALE_CLASS_INFO, new WeakMap());
+                        }
+                        classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                        classInterfaceMap.set(rightOperand, true);
+                    }
                     return true;
                 }
             }
@@ -191,6 +226,16 @@ package org.apache.royale.utils
                     {
                         if (checkInterfaces(superClass, rightOperand))
                         {
+                            // update interface check cache
+                            if (interfaceMap)
+                            {
+                                if (!interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+                                {
+                                    interfaceMap.set(leftOperand.ROYALE_CLASS_INFO, new WeakMap());
+                                }
+                                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                                classInterfaceMap.set(rightOperand, true);
+                            }
                             return true;
                         }
                     }
@@ -198,6 +243,16 @@ package org.apache.royale.utils
                 }
             }
             
+            // update interface check cache
+            if (interfaceMap)
+            {
+                if (!interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+                {
+                    interfaceMap.set(leftOperand.ROYALE_CLASS_INFO, new WeakMap());
+                }
+                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                classInterfaceMap.set(rightOperand, false);
+            }
             return false;
         }
         
@@ -211,14 +266,15 @@ package org.apache.royale.utils
             interfaces = leftOperand.ROYALE_CLASS_INFO.interfaces;
             for (i = interfaces.length - 1; i > -1; i--)
             {
-                if (interfaces[i] === rightOperand)
+                var theInterface:* = interfaces[i];
+                if (theInterface === rightOperand)
                 {
                     return true;
                 }
                 
-                if (interfaces[i].prototype.ROYALE_CLASS_INFO.interfaces)
+                if (theInterface.prototype.ROYALE_CLASS_INFO && theInterface.prototype.ROYALE_CLASS_INFO.interfaces)
                 {
-                    var isit:Boolean = checkInterfaces(interfaces[i].prototype, rightOperand);
+                    var isit:Boolean = checkInterfaces(theInterface.prototype, rightOperand);
                     if (isit) return true;
                 }
             }
@@ -486,10 +542,10 @@ package org.apache.royale.utils
         {
             for each(var n:String in sortNames)
             {
-                if (a[n] > b[n])
+                if (Number(a[n]) > Number(b[n]))
                 {
                     return muler;
-                } else if (a[n] < b[n])
+                } else if (Number(a[n]) < Number(b[n]))
                 {
                     return -muler;
                 }

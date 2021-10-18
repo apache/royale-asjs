@@ -33,7 +33,7 @@ package org.apache.royale.display
 
 		
 		COMPILE::JS
-		function get graphicsRenderTarget():SVGSVGElement;
+		function get graphicsRenderTarget():SVGElement;
 
     }
 	

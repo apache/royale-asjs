@@ -29,7 +29,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -37,8 +37,8 @@
 
   <!--
         This build builds only the framework libraries per default.
-        - In order to build the examples, activate the "build-examples" profile
-        - In order to assemble a distribution, activate the "build-distribution" profile.
+        - In order to build the examples, activate the "with-examples" profile
+        - In order to assemble a distribution, activate the "with-distribution" profile.
   -->
 
   <scm>
@@ -54,9 +54,9 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
-    <royale.build-tools.version>1.1.0</royale.build-tools.version>
-    <royale.compiler.version>0.9.8-SNAPSHOT</royale.compiler.version>
-    <royale.typedefs.version>0.9.8-SNAPSHOT</royale.typedefs.version>
+    <royale.build-tools.version>1.2.1</royale.build-tools.version>
+    <project.royale.compiler.version>0.9.9-SNAPSHOT</project.royale.compiler.version>
+    <royale.typedefs.version>0.9.9-SNAPSHOT</royale.typedefs.version>
 
     <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>
@@ -154,7 +154,7 @@
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
           <artifactId>royale-maven-plugin</artifactId>
-          <version>${royale.compiler.version}</version>
+          <version>${project.royale.compiler.version}</version>
           <extensions>true</extensions>
           <configuration>
             <targetPlayer>${flash.version}</targetPlayer>
@@ -172,7 +172,7 @@
             <dependency>
               <groupId>org.apache.royale.compiler</groupId>
               <artifactId>compiler-jx</artifactId>
-              <version>${royale.compiler.version}</version>
+              <version>${project.royale.compiler.version}</version>
             </dependency>
           </dependencies>
         </plugin>
@@ -348,6 +348,14 @@
             
             <!-- Exclude serc/assets like *.afdesign or other files that generate other project source files like SVGs -->
             <exclude>src/assets/**</exclude>
+
+            <!--
+              Exclude these empty files, as they are empty and therefore don't contain anything
+              (They are needed for supporting the FlashBuilder product)
+            -->
+            <exclude>**/localfonts.ser</exclude>
+            <exclude>**/macfonts.ser</exclude>
+            <exclude>**/winfonts.ser</exclude>
           </excludes>
         </configuration>
       </plugin>
@@ -376,13 +384,13 @@
       </modules>
     </profile>
 
-    <profile>
+    <!-- Disabled for now till I find out what the module is about -->
+    <!--profile>
       <id>with-ui-testsuite</id>
-      <!-- Disabled for now till I find out what the module is about -->
-      <!--modules>
+      <modules>
         <module>testsuite</module>
-      </modules-->
-    </profile>
+      </modules>
+    </profile-->
 
     <profile>
       <id>option-with-swf</id>
@@ -392,11 +400,12 @@
       </properties>
       <dependencies>
         <dependency>
-          <groupId>com.adobe.air.framework</groupId>
-          <artifactId>airglobal</artifactId>
-          <version>${air.version}</version>
+          <groupId>org.apache.royale.typedefs</groupId>
+          <artifactId>royale-typedefs-airglobal</artifactId>
+          <version>${royale.typedefs.version}</version>
           <type>swc</type>
           <scope>runtime</scope>
+          <classifier>swf</classifier>
         </dependency>
       </dependencies>
     </profile>
@@ -417,7 +426,7 @@
           <plugin>
             <groupId>org.apache.royale.compiler</groupId>
             <artifactId>royale-maven-plugin</artifactId>
-            <version>${royale.compiler.version}</version>
+            <version>${project.royale.compiler.version}</version>
             <extensions>true</extensions>
             <configuration>
               <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>

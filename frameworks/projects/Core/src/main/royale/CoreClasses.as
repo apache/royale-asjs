@@ -349,7 +349,10 @@ internal class CoreClasses
 	import org.apache.royale.utils.date.addMonths; addMonths;
 	import org.apache.royale.utils.date.addSeconds; addSeconds;
 	import org.apache.royale.utils.date.addYears; addYears;
-	
+
+	import org.apache.royale.utils.number.pinValue; pinValue;
+	import org.apache.royale.utils.number.getPercent; getPercent;
+
 	import org.apache.royale.utils.event.hasPlatformModifier; hasPlatformModifier;
 	import org.apache.royale.utils.sendEvent; sendEvent;
 	import org.apache.royale.utils.sendBeadEvent; sendBeadEvent;

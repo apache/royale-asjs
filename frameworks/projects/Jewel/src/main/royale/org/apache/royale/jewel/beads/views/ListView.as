@@ -133,7 +133,14 @@ package org.apache.royale.jewel.beads.views
 			
 			lastSelectedIndex = listModel.selectedIndex;
 
-			// if the selection was not from a user click selection, then scrol to index
+			itemClickedAction();
+		}
+
+		/**
+		 * if the selection was not from a user click selection, then scrol to index
+		 */
+		protected function itemClickedAction():void
+		{
 			if(!(listModel as IJewelSelectionModel).isItemClicked)
 			{
 				scrollToIndex(lastSelectedIndex);
@@ -188,6 +195,8 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function scrollToIndex(index:int):Boolean
 		{
+			if (index == -1) return false;
+			
 			var scrollArea:HTMLElement = (_strand as IStyledUIBase).element;
 			var oldScroll:Number = scrollArea.scrollTop;
 
@@ -304,6 +313,11 @@ package org.apache.royale.jewel.beads.views
 			lastSelectedIndex = listModel.selectedIndex;
 		}
 
+		protected function itemClickedAction():void
+		{
+		
+		}
+		
 		protected var lastRollOverIndex:int = -1;
 
 		/**

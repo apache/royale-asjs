@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.treeClasses
 {
+	import mx.controls.Tree;
 	import mx.events.ItemClickEvent;
+	import mx.events.TreeEvent;
 	
 	import org.apache.royale.collections.ITreeData;
 	import org.apache.royale.core.ISelectionModel;
@@ -27,6 +29,7 @@ package mx.controls.treeClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -59,10 +62,64 @@ package mx.controls.treeClasses
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
-			super.selectedHandler(event);	    
+			listModel.selectedIndex = event.index;
+			listModel.selectedItem = event.data;
+			sendEvent(listView.host,"change");
+
 		    var newEvent:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK);
-            newEvent.index = event.index;
+            	newEvent.index = event.index;
             IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}	    
+
+		/**
+		 * @private
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			if (listModel)
+			{
+				listModel.removeEventListener("dataProviderChanged", handleDataProviderChanged);
+			}
+			super.strand = value;
+			listModel.addEventListener("dataProviderChanged", handleDataProviderChanged);
+			handleDataProviderChanged(null);
+		}
+
+		private var modelDP:IEventDispatcher;
+
+		protected function handleDataProviderChanged(event:Event):void
+		{
+			if (modelDP)
+			{
+				modelDP.removeEventListener(TreeEvent.ITEM_OPEN, handleItemOpen);
+			}
+			modelDP = listModel.dataProvider as IEventDispatcher;
+			if (!modelDP)
+				return;
+			modelDP.addEventListener(TreeEvent.ITEM_OPEN, handleItemOpen);
+		}
+
+		protected function handleItemOpen(event:TreeEvent):void
+		{
+			IEventDispatcher(_strand).dispatchEvent(event);
+		}
+
+		override protected function expandedHandler(event:ItemClickedEvent):void
+		{
+			var treeData:ITreeData = listModel.dataProvider as ITreeData;
+			if (treeData == null) return;
+			
+			var node:Object = event.data;
+			var isBranch : Boolean = (_strand as Tree).dataDescriptor.isBranch(node);
+			
+			if (isBranch || treeData.hasChildren(node))
+			{
+				if (treeData.isOpen(node)) {
+					treeData.closeNode(node);
+				} else {
+					treeData.openNode(node);
+				}
+			}
+		}
 	}
 }

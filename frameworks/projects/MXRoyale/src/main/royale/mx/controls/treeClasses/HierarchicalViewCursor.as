@@ -86,6 +86,21 @@ public class HierarchicalViewCursor extends EventDispatcher
 		more = model.length > 1;
     }
 
+    /**
+     *  Finalizes the cursor, to clean up resources.
+     *  Required because weak references are not available in JS.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function finalizeThis():void
+    {
+        if (modelCursor) modelCursor.finalizeThis();
+        if (collection) collection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -994,6 +1009,10 @@ public class HierarchicalViewCursor extends EventDispatcher
         COMPILE::JS
         {
             var output:Array = [];
+	    if (collection.length == 0)
+	    {
+		    return output;
+	    }
             var cursor:IViewCursor = collection.createCursor();
             do {
                 output.push(cursor.current);

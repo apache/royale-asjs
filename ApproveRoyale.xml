@@ -367,6 +367,12 @@
                 <exclude name="**/*.jpg"/>
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
+                <!-- exclude font (ser) -->
+                <!--
+                    Exclude these empty files, as they are empty and therefore don't contain anything
+                    (They are needed for supporting the FlashBuilder product)
+                  -->
+                <exclude name="**/*.ser"/>
                 <!--          End of binary files           -->
                 <!--          JSON doesn't really have a comment format     -->
                 <exclude name="**/*.json"/>
@@ -432,6 +438,12 @@
                 <exclude name="**/*.jpg"/>
                 <exclude name="**/*.mp3"/>
                 <exclude name="**/*.flv"/>
+                <!-- exclude font (ser) -->
+                <!--
+                    Exclude these empty files, as they are empty and therefore don't contain anything
+                    (They are needed for supporting the FlashBuilder product)
+                  -->
+                <exclude name="**/*.ser"/>
                 <!--          End of binary files           -->
                 <!--          JSON doesn't really have a comment format     -->
                 <exclude name="**/*.json"/>

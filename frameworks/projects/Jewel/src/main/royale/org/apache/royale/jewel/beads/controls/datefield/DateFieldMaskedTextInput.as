@@ -25,15 +25,16 @@ package org.apache.royale.jewel.beads.controls.datefield
 	COMPILE::SWF
 	{
 		import flash.events.TextEvent;
-		import org.apache.royale.core.CSSTextField;			
-		import org.apache.royale.html.beads.ITextFieldView;			
+
+		import org.apache.royale.core.CSSTextField;
+		import org.apache.royale.events.Event;
+		import org.apache.royale.events.IEventDispatcher;
+		import org.apache.royale.html.beads.ITextFieldView;
 	}
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.IFormatter;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
 	
 	/**
 	 *  The DateFieldMaskedTextInput class is a specialty bead that is used

@@ -2788,7 +2788,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
         override public function addChild(child:IUIComponent):IUIComponent
         {
             return addChildAt(child, numChildren);
@@ -2851,7 +2851,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+        [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
         override public function addChildAt(child:IUIComponent,
                                             index:int):IUIComponent
         {
@@ -2903,7 +2903,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
         override public function removeChild(child:IUIComponent):IUIComponent
         {
             /*
@@ -2968,7 +2968,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(returns="flash.display.DisplayObject"))]
+        [SWFOverride(returns="flash.display.DisplayObject")]
         override public function removeChildAt(index:int):IUIComponent
         {
             return removeChild(getChildAt(index));
@@ -2999,7 +2999,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(returns="flash.display.DisplayObject"))]
+        [SWFOverride(returns="flash.display.DisplayObject")]
         override public function getChildAt(index:int):IUIComponent
         {
             if (contentPane)
@@ -3033,7 +3033,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(returns="flash.display.DisplayObject"))]
+        [SWFOverride(returns="flash.display.DisplayObject")]
         override public function getChildByName(name:String):IUIComponent
         {
             if (contentPane)
@@ -3095,7 +3095,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
         override public function getChildIndex(child:IUIComponent):int
         {
             if (contentPane)
@@ -3131,7 +3131,7 @@ package mx.charts
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
          */
-        [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+        [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int")]
         override public function setChildIndex(child:IUIComponent, newIndex:int):void
         {
             var oldIndex:int;
@@ -3178,7 +3178,7 @@ package mx.charts
         /**
          *  @private
          */
-        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+        [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
         override public function contains(child:IUIBase):Boolean
         {
             if (contentPane)

@@ -241,7 +241,7 @@ package org.apache.royale.jewel
 		  *  @playerversion AIR 2.6
 		  *  @productversion Royale 0.9.4
 		  */
-		static public function show(message:String, title:String="", flags:uint=Alert.OK, parent:Object = null, modal:Boolean = true) : Alert
+		static public function show(message:String, title:String="", flags:uint=Alert.OK, parent:Object = null, modal:Boolean = true):Alert
 		{
 			var alert:Alert = new Alert();
 			alert.message = message;
@@ -249,9 +249,13 @@ package org.apache.royale.jewel
 			alert.flags = flags;
 			
 			if(modal)
+			{
 				alert.showModal(parent);
+			}
 			else
+			{
 				alert.show(parent);
+			}
 
 			return alert;
 		}

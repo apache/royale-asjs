@@ -102,7 +102,8 @@ package org.apache.royale.html.beads
 		{
 			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
-			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+			// may be called before IDataProviderModel bead is added
+			if (dataModel) dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 		}
         
 		
@@ -185,7 +186,7 @@ package org.apache.royale.html.beads
             dispatchItemAdded(renderer);
         }
         
-        private function dispatchItemAdded(renderer:IItemRenderer):void
+        protected function dispatchItemAdded(renderer:IItemRenderer):void
         {
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
             newEvent.item = renderer;

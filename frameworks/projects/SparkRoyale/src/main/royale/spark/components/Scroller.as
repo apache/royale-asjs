@@ -1116,6 +1116,15 @@ public class Scroller extends SkinnableComponent
      */
     private function installViewport():void
     {
+        if (!viewport) return;
+        
+    		// moved from addedToParent()
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp.isWidthSizedToContent())
+        		vp.setWidth(width);
+		if (vp.isHeightSizedToContent())
+        		vp.setHeight(height);
+
         /*  SWF?
         if (skin && viewport)
         {*/
@@ -3895,11 +3904,6 @@ public class Scroller extends SkinnableComponent
     override public function addedToParent():void
     {
         super.addedToParent();
-		var vp:UIComponent = _viewport as UIComponent;
-		if (vp.isWidthSizedToContent())
-        		vp.setWidth(width);
-		if (vp.isHeightSizedToContent())
-        		vp.setHeight(height);
         installViewport();
     }
     

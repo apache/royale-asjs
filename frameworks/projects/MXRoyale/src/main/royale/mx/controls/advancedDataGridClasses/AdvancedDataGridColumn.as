@@ -544,7 +544,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
     //  itemEditor
     //----------------------------------
 
-    [Inspectable(category="General")]
+    //[Inspectable(category="General")]
 
     /**
      *  A class factory for the instances of the item editor to use for the 
@@ -559,13 +559,13 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var itemEditor:IFactory = defaultItemEditorFactory;
+    //public var itemEditor:IFactory = defaultItemEditorFactory;
 
     //----------------------------------
     //  editorDataField
     //----------------------------------
 
-    [Inspectable(category="General")]
+   // [Inspectable(category="General")]
 
     /**
      *  The name of the property of the item editor that contains the new
@@ -582,7 +582,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var editorDataField:String = "text";
+    //public var editorDataField:String = "text";
 
     //----------------------------------
     //  editorHeightOffset

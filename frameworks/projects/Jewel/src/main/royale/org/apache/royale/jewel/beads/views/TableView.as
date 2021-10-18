@@ -61,6 +61,11 @@ package org.apache.royale.jewel.beads.views
 			listModel.addEventListener("columnsChanged", columnsChangedHandler);
 		}
 
+		override protected function itemClickedAction():void
+		{
+			// nothing to do
+		}
+
 		/**
 		 * When columns change, trigger a data provider change to redo all table
 		 */

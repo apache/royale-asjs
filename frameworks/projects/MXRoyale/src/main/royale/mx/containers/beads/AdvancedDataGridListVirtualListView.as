@@ -21,12 +21,13 @@ package mx.containers.beads
 {
 import mx.controls.AdvancedDataGrid;
 
-import org.apache.royale.html.beads.VirtualListView;
 COMPILE::SWF
 {
     import org.apache.royale.core.IStrand;
 }
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.IItemRenderer;
+import org.apache.royale.core.IParent;
 import org.apache.royale.core.IRollOverModel;
 import org.apache.royale.core.ISelectableItemRenderer;
 import org.apache.royale.core.ISelectionModel;
@@ -108,6 +109,23 @@ public class AdvancedDataGridListVirtualListView extends VirtualListView
         }
     }
 
+    /**
+     * @copy org.apache.royale.core.IItemRendererOwnerView#removeAllItemRenderers()
+     * @private
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     *  @royaleignorecoercion org.apache.royale.core.IParent
+     */
+    override public function removeAllItemRenderers():void
+    {
+        while ((contentView as IParent).numElements > 0) {
+            var child:IChild = (contentView as IParent).getElementAt(0);
+            (contentView as IParent).removeElement(child);
+        }
+    }
 }
 }
 

@@ -71,11 +71,11 @@ package mx.controls.beads.layouts
         {
             super.strand = value;
             (IStrandWithPresentationModel(value).presentationModel as DataGridPresentationModel).virtualized = true;
-            dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
         }
         
-        private function dataProviderChangeHandler(event:Event):void
+        override protected function dataProviderChangeHandler(event:Event):void
         {
+            super.dataProviderChangeHandler(event);
             var factory:IDataProviderVirtualItemRendererMapper = host.getBeadByType(IDataProviderVirtualItemRendererMapper) as IDataProviderVirtualItemRendererMapper;
             while (visibleIndexes.length)
             {
@@ -209,7 +209,7 @@ package mx.controls.beads.layouts
                     }
                     for (var i:int = startIndex; i < endIndex; i++)
                     {
-                        if (i >= dp.length) continue; // no more renderers needed
+                        if (i >= dp.length) break; // no more renderers needed
                         
                         var ir:IIndexedItemRenderer;
                         if (i < firstIndex)
@@ -261,7 +261,7 @@ package mx.controls.beads.layouts
                         var topValue:Number = parseFloat(top.substring(0, c));
                         if (topValue < 0)
                         {
-                            trace(host.element.style.top);
+                            //trace(host.element.style.top);
                             host.element.style.top = "1px";                            
                         }
                     }
@@ -330,7 +330,7 @@ package mx.controls.beads.layouts
                     }
                     for (var i:int = startIndex; i < endIndex; i++)
                     {
-                        if (i >= dp.length) continue; // no more renderers needed
+                        if (i >= dp.length) break; // no more renderers needed
                         
                         var ir:IIndexedItemRenderer;
                         if (i < firstIndex)

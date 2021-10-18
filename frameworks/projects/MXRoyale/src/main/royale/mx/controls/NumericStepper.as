@@ -21,6 +21,7 @@ package mx.controls
 {
 	
 import org.apache.royale.core.IRangeModel;
+import org.apache.royale.html.beads.models.RangeModel;
 import org.apache.royale.events.Event;
 
 /*
@@ -484,6 +485,7 @@ public class NumericStepper extends UIComponent
     public function set stepSize(value:Number):void
     {
         IRangeModel(model).stepSize = value;
+	(model as RangeModel).snapInterval = value; // TODO check that snapInterval was not explicitly set
     }
 
     //----------------------------------

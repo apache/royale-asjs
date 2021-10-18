@@ -27,6 +27,7 @@ import mx.core.mx_internal;
 
 import spark.components.supportClasses.GroupBase;
 import spark.components.SkinnableContainer;
+import spark.components.SkinnableDataContainer;
 import spark.core.NavigationUnit;
 
 import org.apache.royale.core.IBeadLayout;
@@ -94,6 +95,8 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
 		var usingSkin:Boolean = false;
 		if (host is SkinnableContainer)
 			usingSkin = (host as SkinnableContainer).skin != null;
+		else if (host is SkinnableDataContainer)
+			usingSkin = (host as SkinnableDataContainer).skin != null;
 				
         if (!usingSkin && target != host)
         {

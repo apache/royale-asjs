@@ -69,6 +69,8 @@ package org.apache.royale.net
         var windowTarget:Window = window.open(needsPostSupport? "" : url, windowName);
         if (!windowTarget) throw new Error('navigateToURL requires interaction trigger');
         if (needsPostSupport) {
+            //something like this seems to be necessary. Tested on Chrome:
+            windowName = windowTarget['name'] = 'window_'+(Math.round((Math.random()* 100000))).toString(16);
             var submittedForm:HTMLFormElement = doPostForm(url, windowName, request.data, request.contentType, request.method);
             if (!submittedForm) {
                 throw new Error('unsupported contentType in navigateToURL', request.contentType);

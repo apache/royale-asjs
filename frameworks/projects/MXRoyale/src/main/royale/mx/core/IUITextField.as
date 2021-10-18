@@ -21,6 +21,8 @@ package mx.core
 {    
 //    import mx.managers.IToolTipManagerClient;
 //    import mx.styles.ISimpleStyleClient;
+	import org.apache.royale.geom.Rectangle;
+
 
     /**
      *  The IUITextField interface defines the basic set of APIs
@@ -163,6 +165,30 @@ package mx.core
         function setTextFormat(format:UITextFormat,
                                beginIndex:int = -1,
                                endIndex:int = -1):void;
+							   
+		function getCharBoundaries(charIndex:int):Rectangle;
+		
+		/**
+		 *  @copy flash.text.TextField#background
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		function get background():Boolean;
+		function set background(value:Boolean):void;
+
+		/**
+		 *  @copy flash.text.TextField#backgroundColor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		function get backgroundColor():Object;
+		function set backgroundColor(value:Object):void;
         
     }
     

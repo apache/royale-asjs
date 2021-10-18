@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 		}
 
-		private var _phoneVisible:Boolean;
+		private var _phoneVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-phone" and "hidden-phone" effect selectors.
@@ -75,7 +75,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
-		private var _tabletVisible:Boolean;
+		private var _tabletVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-tablet" and "hidden-tablet" effect selectors.
@@ -104,7 +104,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
-		private var _desktopVisible:Boolean;
+		private var _desktopVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-desktop" and "hidden-desktop" effect selectors.
@@ -133,7 +133,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 		
-		private var _wideScreenVisible:Boolean;
+		private var _wideScreenVisible:Boolean = true;
 		/**
 		 *  Makes the component to be visible or hidden in phone size
 		 *  Uses "visible-widescreen" and "hidden-widescreen" effect selectors.
@@ -185,38 +185,25 @@ package org.apache.royale.jewel.beads.layouts
 			var host:IClassSelectorListSupport = _strand as IClassSelectorListSupport;
 			if (host)
             {
-				if(phoneVisible != null)
-				{
-					if(phoneVisible)
-						host.replaceClass("hidden-phone", "visible-phone");
-					else
-						host.replaceClass("visible-phone", "hidden-phone");
-				}
+				if(phoneVisible)
+					host.replaceClass("hidden-phone", "visible-phone");
+				else
+					host.replaceClass("visible-phone", "hidden-phone");
 
-				if(tabletVisible != null)
-				{
-					if(tabletVisible)
-						host.replaceClass("hidden-tablet", "visible-tablet");
-					else
-						host.replaceClass("visible-tablet", "hidden-tablet");
+				if(tabletVisible)
+					host.replaceClass("hidden-tablet", "visible-tablet");
+				else
+					host.replaceClass("visible-tablet", "hidden-tablet");
 
-				}
+				if(desktopVisible)
+					host.replaceClass("hidden-desktop", "visible-desktop");
+				else
+					host.replaceClass("visible-desktop", "hidden-desktop");
 
-				if(desktopVisible != null)
-				{
-					if(desktopVisible)
-						host.replaceClass("hidden-desktop", "visible-desktop");
-					else
-						host.replaceClass("visible-desktop", "hidden-desktop");
-				}
-
-				if(wideScreenVisible != null)
-				{
-					if(wideScreenVisible)
-						host.replaceClass("hidden-widescreen", "visible-widescreen");
-					else
-						host.replaceClass("visible-widescreen", "hidden-widescreen");
-				}
+				if(wideScreenVisible)
+					host.replaceClass("hidden-widescreen", "visible-widescreen");
+				else
+					host.replaceClass("visible-widescreen", "hidden-widescreen");
             }
 		}
 	}

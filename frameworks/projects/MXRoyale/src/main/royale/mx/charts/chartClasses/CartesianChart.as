@@ -2036,12 +2036,12 @@ public class CartesianChart extends ChartBase
             {
                 if (goog.DEBUG)
                     if (id)
-                        UIComponent(_verticalAxisRenderers[i]).id = id + "_verticalAxisRenderer" + i.toString();
+                        UIComponent(_verticalAxisRenderers[i]).id = id + "_verticalAxisRenderers" + i.toString();
             }
             addChild(UIComponent(_verticalAxisRenderers[i]));
             COMPILE::JS
             {
-                UIComponent(_verticalAxisRenderer[i]).element.style.position = "absolute";
+                UIComponent(_verticalAxisRenderers[i]).element.style.position = "absolute";
             }
         }
         adjustAxesPlacements();

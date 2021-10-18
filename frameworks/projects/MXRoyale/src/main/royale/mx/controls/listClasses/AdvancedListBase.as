@@ -1799,73 +1799,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
 	 _styleFunction = value;
      }
 	 
-	 
-    //----------------------------------
-    //  columnCount
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the columnCount property.
-     */
-    private var _columnCount:int = -1;
-
-    /**
-     *  The number of columns to be displayed in a TileList control or items 
-     *  in a HorizontalList control. 
-     *  For the data grids, specifies the number of visible columns.
-     *
-     *  <p><b>Note</b>: Setting this property has no effect on a DataGrid control,
-     *  which bases the number of columns on the control width and the
-     *  individual column widths.</p>
-     * 
-     *  @default 4
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-     public function get columnCount():int
-    {
-        return _columnCount;
-    } 
-
-    /**
-     *  @private
-     */
-     public function set columnCount(value:int):void
-    {
-       /* explicitColumnCount = value;
-
-        if (_columnCount != value)
-        {
-            setColumnCount(value);
-            columnCountChanged = true;
-            invalidateProperties();
-
-            invalidateSize();
-            itemsSizeChanged = true;
-            invalidateDisplayList();
-
-            dispatchEvent(new Event("columnCountChanged"));
-        } */
-    } 
-
-    /**
-     *  Internal version for setting columnCount
-     *  without invalidation or notification.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-   /*  mx_internal function setColumnCount(value:int):void
-    {
-        _columnCount = value;
-    } */
-
+	
 
     //----------------------------------
     //  data
@@ -1942,11 +1876,11 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @private
      *  Storage for the dataTipField property.
      */
-    /* private var _dataTipField:String = "label";
+    private var _dataTipField:String = "label";
 
     [Bindable("dataTipFieldChanged")]
     [Inspectable(category="Data", defaultValue="label")]
- */
+
     /**
      *  Name of the field in the data provider items to display as the 
      *  data tip. By default, the list looks for a property named 
@@ -1964,15 +1898,15 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  public function get dataTipField():String
+    override public function get dataTipField():String
     {
         return _dataTipField;
     }
-	*/
+    
     /**
      *  @private
      */
-   /* public function set dataTipField(value:String):void
+    override public function set dataTipField(value:String):void
     {
         _dataTipField = value;
 
@@ -1980,7 +1914,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
         invalidateDisplayList();
 
         dispatchEvent(new Event("dataTipFieldChanged"));
-    } */
+    }
 
     //----------------------------------
     //  dataTipFunction
@@ -2022,7 +1956,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-     public function get dataTipFunction():Function
+    override public function get dataTipFunction():Function
     {
         return _dataTipFunction;
     } 
@@ -2030,7 +1964,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
     /**
      *  @private
      */
-     public function set dataTipFunction(value:Function):void
+    override public function set dataTipFunction(value:Function):void
     {
         _dataTipFunction = value;
 

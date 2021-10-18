@@ -26,7 +26,7 @@ import mx.resources.ResourceManager;
 //  Other metadata
 //--------------------------------------
 
-[ResourceBundle("sparkEffects")]
+//[ResourceBundle("sparkEffects")]
 
 /**
  * The NumberInterpolator class provides interpolation between

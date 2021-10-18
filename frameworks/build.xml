@@ -59,6 +59,14 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}" />
+    <condition property="AIR_HOME" value="${env.AIR_HOME}">
+        <isset property="env.AIR_HOME" />
+    </condition>
+    <property name="AIR_HOME" value="${ROYALE_HOME}"/>
+    <condition property="PLAYERGLOBAL_HOME" value="${env.PLAYERGLOBAL_HOME}">
+        <isset property="env.PLAYERGLOBAL_HOME" />
+    </condition>
+    <property name="PLAYERGLOBAL_HOME" value="${ROYALE_HOME}/frameworks/libs/player"/>
 
     <target name="main" depends="check-compile-env,clean,prepare,compile,test,fonts"
         description="Clean build of all SWCs"/>
@@ -72,7 +80,7 @@
             <available file="${basedir}/libs/player/${playerglobal.version}/playerglobal.swc" />
         </condition>
         <condition property="playerglobal.notneeded">
-            <isset property="env.PLAYERGLOBAL_HOME" />
+            <isset property="PLAYERGLOBAL_HOME" />
         </condition>
     </target>
 
@@ -81,7 +89,7 @@
             <available file="${basedir}/libs/air/airglobal.swc" />
         </condition>
         <condition property="airglobal.notneeded">
-            <isset property="env.AIR_HOME" />
+            <isset property="AIR_HOME" />
         </condition>
     </target>
 
@@ -141,6 +149,7 @@
 		<antcall target="FontAwesome"/>
 		<antcall target="Express"/>
         <antcall target="RoyaleSite"/>
+        <antcall target="MXRoyaleBase"/>
         <antcall target="MXRoyale"/>
         <antcall target="SparkRoyale"/>
         <antcall target="Crux"/>
@@ -182,6 +191,7 @@
         <antcall target="FontAwesomeTest"/>
         <antcall target="ExpressTest"/>
         <antcall target="RoyaleSiteTest"/>
+        <antcall target="MXRoyaleBaseTest"/>
         <antcall target="MXRoyaleTest"/>
         <antcall target="SparkRoyaleTest"/>
         <antcall target="CruxTest"/>
@@ -242,6 +252,7 @@
         <ant dir="${basedir}/projects/Text" target="clean"/>
         <ant dir="${basedir}/projects/TLF" target="clean"/>
         <ant dir="${basedir}/projects/RoyaleSite" target="clean"/>
+        <ant dir="${basedir}/projects/MXRoyaleBase" target="clean"/>
         <ant dir="${basedir}/projects/MXRoyale" target="clean"/>
         <ant dir="${basedir}/projects/SparkRoyale" target="clean"/>
         <ant dir="${basedir}/projects/Crux" target="clean"/>
@@ -513,6 +524,14 @@
 
     <target name="RoyaleSiteTest" description="Test of RoyaleSite.swc">
         <ant dir="${basedir}/projects/RoyaleSite" target="test"/>
+    </target>
+
+    <target name="MXRoyaleBase" description="Clean build of MXRoyaleBase.swc">
+        <ant dir="${basedir}/projects/MXRoyaleBase"/>
+    </target>
+
+    <target name="MXRoyaleBaseTest" description="Test of MXRoyaleBase.swc">
+        <ant dir="${basedir}/projects/MXRoyaleBase" target="test"/>
     </target>
 
     <target name="MXRoyale" description="Clean build of MXRoyale.swc">

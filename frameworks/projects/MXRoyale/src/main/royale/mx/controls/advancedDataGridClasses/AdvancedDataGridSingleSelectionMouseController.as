@@ -96,6 +96,7 @@ package mx.controls.advancedDataGridClasses
 			for (var i:int = 0; i < lists.length; i++)
 				if (lists[i] == _strand) break;
 			newEvent.columnIndex = i;
+			newEvent.itemRenderer = event.currentTarget;
             IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 	}

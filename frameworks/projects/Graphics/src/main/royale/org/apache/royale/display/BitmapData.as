@@ -32,8 +32,40 @@
         private var _ctx:CanvasRenderingContext2D;
         private var _lockedData:ImageData;
         private static var _instIdx:uint = 0;
-        
-        
+
+        private static var _fromCanvas:Boolean;
+
+        /**
+         * A javascript-only method to use an external canvas for a bitmapData. The canvas is 'cloned' so it returns a BitmapData 'snapshot' at the
+         * time this method is called.
+         *
+         * Note that the default fillColor is different to the BitmapData constructor. This is transparent black, the default for Canvas
+         *
+         * @royaleignorecoercion HTMLCanvasElement
+         * @royaleignorecoercion CanvasRenderingContext2D
+         */
+        public static function fromCanvas(canvasElement:HTMLCanvasElement, transparent:Boolean=true, fillColor:uint = 0x00000000):BitmapData{
+            var w:uint = canvasElement.width;
+            var h:uint = canvasElement.height;
+            if (!canvasElement || !w || !h) throw new Error('ArgumentError: Error #2015: Invalid BitmapData.');
+            _fromCanvas = true;
+            var bdata:BitmapData = new BitmapData(w, h, transparent);
+            _fromCanvas = false;
+            bdata._width = w;
+            bdata._height = h;
+            //clone the canvas and assign it
+            var newCanvas:HTMLCanvasElement = document.createElement('canvas') as HTMLCanvasElement;
+            newCanvas.width = w;
+            newCanvas.height = h;
+            var context:CanvasRenderingContext2D = newCanvas.getContext('2d') as CanvasRenderingContext2D;
+
+            bdata._canvas = newCanvas;
+            bdata._ctx = context;
+            bdata._transparent = transparent;
+            bdata.init(fillColor); //if this is transparent black (default) then no fill will be drawn
+            context.drawImage(canvasElement, 0, 0);
+            return bdata;
+        }
     
         /**
          *
@@ -47,25 +79,28 @@
          */
         public function BitmapData(width:uint, height:uint, transparent:Boolean = true, fillColor:uint = 0xffffffff)
         {
-            if ((width<0 || width > 8191)|| (height<0 || height>8191) || (width * height > 16777215)) throw new Error('width and/or height exceed the maximum dimensions');
-            this._transparent = transparent;
-            if (width && height) {
-                _canvas = document.createElement('canvas') as HTMLCanvasElement;
-                _canvas.width = _width = width;
-                _canvas.height = _height = height;
-                _id = 'royale-bitmapdata-' + _instIdx++;
-                _canvas.setAttributeNS(null,'id', _id);
-                
-                _ctx = _canvas.getContext('2d') as CanvasRenderingContext2D;
-                if (fillColor || !transparent) { //do nothing for transparent black, it is the default
-                    _ctx.fillStyle = convertColorValToStyle(fillColor);
-                    _ctx.fillRect(0, 0, width, height);
-                }
-                _svgTarget = JSRuntimeGraphicsStore.getInstance().addBitmapDataImpl(_canvas);
-                requestAnimationFrame(onRenderUpdate);
-                
-            } else throw new Error('ArgumentError: Error #2015: Invalid BitmapData.');
-           
+            if (!_fromCanvas) {
+                if ((width<0 || width > 8191)|| (height<0 || height>8191) || (width * height > 16777215)) throw new Error('width and/or height exceed the maximum dimensions');
+                this._transparent = transparent;
+                if (width && height) {
+                    _canvas = document.createElement('canvas') as HTMLCanvasElement;
+                    _canvas.width = _width = width;
+                    _canvas.height = _height = height;
+                    _ctx = _canvas.getContext('2d') as CanvasRenderingContext2D;
+                    init(fillColor);
+                } else throw new Error('ArgumentError: Error #2015: Invalid BitmapData.');
+            }
+        }
+
+        private function init(fillColor:uint):void{
+            if (fillColor || !_transparent) { //do nothing for transparent black, it is the default
+                _ctx.fillStyle = convertColorValToStyle(fillColor);
+                _ctx.fillRect(0, 0, width, height);
+            }
+            _id = 'royale-bitmapdata-' + _instIdx++;
+            _canvas.setAttributeNS(null,'id', _id);
+            _svgTarget = JSRuntimeGraphicsStore.getInstance().addBitmapDataImpl(_canvas);
+            requestAnimationFrame(onRenderUpdate);
         }
         
         private var _id:String;
@@ -95,7 +130,7 @@
             //BitmapData.prototype[altName] = isSafariDT
             _safariDT = isSafariDT;
             _checked = true;
-            console.log('safari Desktop?', isSafariDT);
+           // console.log('safari Desktop?', isSafariDT);
             return isSafariDT;
         }
     
@@ -343,6 +378,8 @@
             if (!_canvas) throw new Error('ArgumentError: Error #2015: Invalid BitmapData');
             return new Rectangle(0, 0, _width, _height);
         }
+
+
     
         public function dispose():void{
             if (_canvas) {
@@ -354,9 +391,45 @@
             }
         }
 
-	// not implemented
-	public function draw(source:Object, matrix:Object = null, colorTransform:Object = null, blendMode:String = null, clipRect:Object = null, smoothing:Boolean = false):void
-	    {}
+        // not yet implemented
+        public function copyPixels(sourceBitmapData:BitmapData, sourceRect:Rectangle, destPoint:Point, alphaBitmapData:BitmapData = null, alphaPoint:Point = null, mergeAlpha:Boolean = false):void{
+            if (sourceBitmapData._ctx) {
+                if (alphaBitmapData == null) {
+                    _ctx.putImageData(sourceBitmapData._ctx.getImageData(0,0,sourceBitmapData.width, sourceBitmapData.height), destPoint.x, destPoint.y, sourceRect.x, sourceRect.y, sourceRect.width, sourceRect.height);
+                } else {
+                    trace('@todo BitmapData copyPixels with alphaBitmapData not yet implemented');
+                }
+            }
+
+        }
+
+        public function draw(source:Object, matrix:Matrix = null, colorTransform:Object = null, blendMode:String = null, clipRect:Rectangle = null, smoothing:Boolean = false):void
+        {
+            var sourceData:BitmapData = source as BitmapData
+            if (sourceData){
+
+                //@todo colorTransform/blendMode/clipRect
+                //note this seems to be not included in latest typedefs:
+                var oldSmoothing:Boolean = _ctx['imageSmoothingEnabled'];
+                _ctx['imageSmoothingEnabled'] = smoothing;
+                //note @todo: for blendMode check globalCompositeOperation docs - it might be quite close
+                if (matrix) {
+                    _ctx.setTransform(matrix.a, matrix.b, matrix.c, matrix.d,matrix.tx,matrix.ty);
+                }
+                _ctx.drawImage(sourceData._canvas, 0, 0);
+
+                if (matrix){
+                    _ctx.setTransform(1, 0, 0, 1, 0, 0);
+                }
+
+                _ctx['imageSmoothingEnabled'] = oldSmoothing;
+            } else {
+                trace('BitmapData draw not yet implemented')
+            }
+
+
+        }
+
         
     }
 }

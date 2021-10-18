@@ -77,10 +77,17 @@ package org.apache.royale.html.beads.layouts
         {
             super.strand = value;
             dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+
             COMPILE::JS
             {
             host.element.addEventListener("scroll", scrollHandler);
             }
+        }
+
+        protected function dataProviderChangeHandler(event:Event):void
+        {
+            visibleIndexes = [];
         }
         
         COMPILE::JS
@@ -221,7 +228,7 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    if (i >= dp.length) continue; // no more renderers needed
+                    if (i >= dp.length) break; // no more renderers needed
                     
                     var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
@@ -354,7 +361,7 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    if (i >= dp.length) continue; // no more renderers needed
+                    if (i >= dp.length) break; // no more renderers needed
                     
                     var ir:IIndexedItemRenderer;
                     if (i < firstIndex)

@@ -39,18 +39,20 @@ import spark.components.supportClasses.RegExPatterns;
 import spark.events.IndexChangeEvent;
 import spark.events.ListEvent;
 import spark.events.RendererExistenceEvent;
-import spark.layouts.supportClasses.LayoutBase;
-import spark.utils.LabelUtil;*/
+import spark.layouts.supportClasses.LayoutBase;*/
+import spark.utils.LabelUtil;
 import mx.collections.IList;
 import mx.core.IFactory;
 import mx.core.mx_internal;
 
+import org.apache.royale.html.beads.ItemRendererFunctionBead;
 import spark.components.DataGroup;
 import spark.components.SkinnableContainer;
 import spark.components.beads.SparkContainerView;
 import spark.layouts.VerticalLayout;
 
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.events.Event;
@@ -211,7 +213,7 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   // public static const NO_SELECTION:int = -1;
+    public static const NO_SELECTION:int = -1;
     
     /**
      *  @private
@@ -565,7 +567,7 @@ public class ListBase  extends SkinnableContainer
         factory.createFunction = factory.createFromClass;
         factory.itemRendererFactory = value;
     }
-    
+
 
     //----------------------------------
     //  itemRendererFunction
@@ -581,28 +583,34 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    public function get itemRendererFunction():Function // not implemeneted
+    public function get itemRendererFunction():Function
     {
-        //return (dataGroup) 
-            //? dataGroup.itemRendererFunction 
-            //: dataGroupProperties.itemRendererFunction;
-	    return null;
+
+	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+	if (itemRendererFunctionBead)
+        {
+            return itemRendererFunctionBead.itemRendererFunction;
+        }
+
+        return null;
     }
     
     /**
      *  @private
      */
-    public function set itemRendererFunction(value:Function):void // not implemeneted
+    public function set itemRendererFunction(value:Function):void
     {
-        //if (dataGroup)
-        //{
-            //dataGroup.itemRendererFunction = value;
-            //dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
-                                                     //ITEM_RENDERER_FUNCTION_PROPERTY_FLAG, true);
-        //}
-        //else
-            //dataGroupProperties.itemRendererFunction = value;
+	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
+        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
+        if (!itemRendererFunctionBead)
+        {
+            itemRendererFunctionBead = new ItemRendererFunctionBead();
+            contentView.addBead(itemRendererFunctionBead);
+        }
+        itemRendererFunctionBead.itemRendererFunction = value;
     }
+
     /**
      *  @private
      */
@@ -738,9 +746,9 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-    /* private var _labelFunction:Function; 
+     private var _labelFunction:Function;
     
-    [Inspectable(category="Data")] */
+    /*[Inspectable(category="Data")] */
     
     /**
      *  A user-supplied function to run on each item to determine its label.  
@@ -764,10 +772,10 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get labelFunction():Function
+    public function get labelFunction():Function
     {
         return _labelFunction;
-    } */
+    }
     
     /**
      *  @private
@@ -775,10 +783,10 @@ public class ListBase  extends SkinnableContainer
     // not implemeneted
     public function set labelFunction(value:Function):void
     {
-        //if (value == _labelFunction)
-            //return;
-            //
-        //_labelFunction = value;
+        if (value == _labelFunction)
+            return;
+
+        _labelFunction = value;
         //labelFieldOrFunctionChanged = true;
         //invalidateProperties(); 
     }
@@ -1157,7 +1165,7 @@ public class ListBase  extends SkinnableContainer
      *  however in this case, always honoring the layout's useVirtalLayout property seems 
      *  less likely to cause confusion.
      */
-     public function set useVirtualLayout(value:Boolean):void
+    public function set useVirtualLayout(value:Boolean):void
     {
         if (value == useVirtualLayout)
             return;
@@ -1349,6 +1357,19 @@ public class ListBase  extends SkinnableContainer
         }
     } */
 
+	//dataGroup copied from SkinnableDataContainer
+	/**
+     *  An optional skin part that defines the DataGroup in the skin class 
+     *  where data items get pushed into, rendered, and laid out.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     *  @royalesuppresspublicvarwarning
+     */
+    public var dataGroup:DataGroup;
+
     /**
      *  @private
      */
@@ -1426,11 +1447,11 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* override public function itemToLabel(item:Object):String
+    public function itemToLabel(item:Object):String
     {
         return LabelUtil.itemToLabel(item, labelField, labelFunction);
     }
-     */
+     
     //--------------------------------------------------------------------------
     //
     //  Methods

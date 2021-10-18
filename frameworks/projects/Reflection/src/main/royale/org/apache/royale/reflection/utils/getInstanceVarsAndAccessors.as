@@ -51,7 +51,7 @@ package org.apache.royale.reflection.utils
 				var includeItem:Boolean = (access == 'readwrite' && (accessorFilter & MemberTypes.ACCESS_READ_WRITE)) ||
 						(access == 'readonly' && (accessorFilter & MemberTypes.ACCESS_READ_ONLY)) ||
 						(access == 'writeonly' && (accessorFilter & MemberTypes.ACCESS_WRITE_ONLY));
-				if (includeItem) {
+				if (!includeItem) {
 					accessors.splice(l,1);
 				}
 			}
