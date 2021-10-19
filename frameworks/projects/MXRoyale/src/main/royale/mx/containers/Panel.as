@@ -1112,6 +1112,52 @@ public class Panel extends Container
      */
     mx_internal var titleIconObject:Object = null;
 	
+	//----------------------------------
+    //  titleIcon
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the titleIcon property.
+     */ 
+    private var _titleIcon:Class;
+    
+    /**
+     *  @private
+     */
+    private var _titleIconChanged:Boolean = false;
+
+    [Bindable("titleIconChanged")]
+    [Inspectable(category="General", defaultValue="", format="EmbeddedFile")]
+
+    /**
+     *  The icon displayed in the title bar.
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get titleIcon():Class
+    {
+        return _titleIcon;
+    }
+
+    /**
+     *  @private
+     */
+    public function set titleIcon(value:Class):void
+    {
+        _titleIcon = value;
+        _titleIconChanged = true;
+        
+        invalidateProperties();
+        invalidateSize();
+        
+        dispatchEvent(new Event("titleIconChanged"));
+    }
     
 
 

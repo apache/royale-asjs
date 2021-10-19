@@ -71,6 +71,7 @@ package org.apache.royale.events
         public static const DOUBLE_CLICK:String = "doubleClick";
         public static const WHEEL:String = "mouseWheel";
         public static const CONTEXT_MENU:String = "contextMenu"
+		public static const MOUSE_WHEEL:String = "mouseWheel";
         
         /**
          *  Constructor.
@@ -284,6 +285,7 @@ package org.apache.royale.events
         public static const DOUBLE_CLICK:String = "dblclick";
         public static const WHEEL:String = "wheel";
         public static const CONTEXT_MENU:String = "contextMenu"
+		public static const MOUSE_WHEEL:String = "mouseWheel";
         
         /**
          *  Constructor.

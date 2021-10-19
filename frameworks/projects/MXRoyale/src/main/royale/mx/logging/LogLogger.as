@@ -256,7 +256,7 @@ public class LogLogger extends EventDispatcher implements ILogger
 	
 	private function argToString(arg:Object):String
 	{
-		if (!arg) return null;
+		if (arg == null) return null;
 
 		if (arg is XML || arg is XMLList)
 		{

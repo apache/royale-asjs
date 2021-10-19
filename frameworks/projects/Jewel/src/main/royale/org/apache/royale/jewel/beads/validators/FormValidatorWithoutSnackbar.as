@@ -16,49 +16,46 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.controls.beads
-{	
-    import org.apache.royale.core.IItemRenderer;   
-    import org.apache.royale.core.SelectableItemRendererClassFactory;
-	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
-    import mx.controls.dataGridClasses.DataGridColumnList;
+package org.apache.royale.jewel.beads.validators
+{
+    import org.apache.royale.jewel.beads.validators.FormValidator;
+    import org.apache.royale.events.Event;
 
 	/**
-	 *  The AdvancedDataGridItemRendererInitializer class initializes item renderers
-     *  in tree classes.
-	 *  
+	 *  The FormValidatorWithoutSnackbar class is a specialty bead that can be used with
+	 *  form control. It prevents from displaying Snackbar notification in case of errors.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.9
 	 */
-	public class DataGridSelectableItemRendererClassFactory extends SelectableItemRendererClassFactory
+	public class FormValidatorWithoutSnackbar extends FormValidator 
 	{
+		public function FormValidatorWithoutSnackbar()
+		{
+			super();
+		}
+
 		/**
-		 *  constructor.
+		 *  Override of the base class dispatchValidEvent in order to remove snackbar notification.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.9
 		 */
-		public function DataGridSelectableItemRendererClassFactory()
+		override protected function dispatchValidEvent():void
 		{
-		}
-				
-        override public function createItemRenderer():IItemRenderer
-        {
-            var ir:IItemRenderer = super.createItemRenderer();
-			COMPILE::JS 
+			//Override this method in order to remove snackbar notification
+			if (isError)
 			{
-			ir["outerDocument"] = (_strand as DataGridColumnList).grid.parentMxmlDocument;
+				hostComponent.dispatchEvent(new Event("invalid"));
 			}
-			if (ir.getBeadByType(IBeadController) == null) {
-				//add a default mouse controller for DropInRenderers that may not have a mousecontroller
-				ir.addBead(new ItemRendererMouseController());
+			else
+			{
+				hostComponent.dispatchEvent(new Event("valid"));
 			}
-			return ir;
-        }		        
+		}
 	}
 }

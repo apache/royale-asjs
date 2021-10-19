@@ -300,6 +300,25 @@ package org.apache.royale.jewel.beads.validators
             _requiredFieldError = value;
 		}
 
+		private var _noErrorTip:Boolean;
+		/**
+		 *  If true removes displaying error tip
+		 *  Default false
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.9
+		 */
+		public function get noErrorTip():Boolean
+		{
+			return _noErrorTip;
+		}
+		public function set noErrorTip(value:Boolean):void
+		{
+			_noErrorTip = value;
+		}
+
 		/**
 		 *  Performs validation and return the result.
 		 *  When result is false(invalid), errorTip appears on the control.
@@ -367,26 +386,31 @@ package org.apache.royale.jewel.beads.validators
 			if (!errorText)
 				return;
 
-			if (_errorTip == null) {
-				_errorTip = new ErrorTipLabel();
+			if (!noErrorTip) {
+				if (_errorTip == null) {
+					_errorTip = new ErrorTipLabel();
 
-				_host = UIUtils.findPopUpHost(hostComponent);
-				_host.popUpParent.addElement(_errorTip, false);
-				IEventDispatcher(_host.popUpParent).addEventListener("cleanValidationErrors", cleanValidationErrorsHandler);
+					_host = UIUtils.findPopUpHost(hostComponent);
+					_host.popUpParent.addElement(_errorTip, false);
+					IEventDispatcher(_host.popUpParent).addEventListener("cleanValidationErrors", cleanValidationErrorsHandler);
+				}
+				COMPILE::JS
+				{
+					hostComponent.element.addEventListener("blur", removeTip);
+				}
+
+				_errorTip.text = errorText;
+
+				COMPILE::JS
+				{
+					window.addEventListener('resize', repositionHandler, false);
+					window.addEventListener('scroll', repositionHandler, true);
+					repositionHandler();
+				}
 			}
+
 			COMPILE::JS
 			{
-				hostComponent.element.addEventListener("blur",removeTip);
-			}
-
-            _errorTip.text = errorText;
-
-			COMPILE::JS
-			{
-				window.addEventListener('resize', repositionHandler, false);
-				window.addEventListener('scroll', repositionHandler, true);
-				repositionHandler();
-
 				createErrorBorder();
 			}
 		}

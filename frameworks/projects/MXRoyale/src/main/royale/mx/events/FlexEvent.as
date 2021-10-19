@@ -156,7 +156,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const BUTTON_DOWN:String = "buttonDown";
+    public static const BUTTON_DOWN:String = "buttonDown";
     
     /**
      *  The <code>FlexEvent.BACK_KEY_PRESSED</code> constant defines the value of the

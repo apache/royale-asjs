@@ -63,6 +63,7 @@ package org.apache.royale.events
 		public static const ADDED_TO_STAGE:String = "addedToStage";
 		public static const MOUSE_LEAVE:String = "mouseLeave";
 		public static const ENTER_FRAME:String = "enterFrame";
+		public static const RESIZE:String = "resize";
 		
 		//--------------------------------------
 		//   Constructor
@@ -181,6 +182,7 @@ package org.apache.royale.events
 		public static const ADDED_TO_STAGE:String = "addedToStage";
 		public static const MOUSE_LEAVE:String = "mouseLeave";
 		public static const ENTER_FRAME:String = "enterFrame";
+		public static const RESIZE:String = "resize";
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);

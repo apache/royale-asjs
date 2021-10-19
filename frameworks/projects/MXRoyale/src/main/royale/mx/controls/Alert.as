@@ -331,7 +331,8 @@ public class Alert extends Panel
 				"controls", "cancelLabel");
 		*/
 	}
-    //----------------------------------
+    
+	//----------------------------------
     //  noLabel
     //----------------------------------
     
@@ -339,14 +340,47 @@ public class Alert extends Panel
      *  @private
      *  Storage for the noLabel property.
      */
-    //private static var _noLabel:String;
+    private static var _noLabel:String;
     
     /**
      *  @private
      */
-    //private static var noLabelOverride:String;
+    private static var noLabelOverride:String;
 
-    //[Inspectable(category="General")]
+    [Inspectable(category="General")]
+
+    /**
+     *  The label for the No button.
+     *
+     *  <p>If you use a different label, you may need to adjust the 
+     *  <code>buttonWidth</code> property to fully display it.</p>
+     *
+     *  The English resource bundle sets this property to "NO". 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static function get noLabel():String
+    {
+        //initialize();
+        
+        return _noLabel;
+    }
+
+    /**
+     *  @private
+     */
+    public static function set noLabel(value:String):void
+    {
+        noLabelOverride = value;
+
+        _noLabel = value != null ?
+                   value : ""
+                   /* resourceManager.getString(
+                      "controls", "noLabel"); */
+    }
 
     /**
      *  @private
@@ -383,18 +417,55 @@ public class Alert extends Panel
 		*/
 	}
 	
+   //----------------------------------
+    //  yesLabel
+    //----------------------------------
+    
     /**
      *  @private
      *  Storage for the yesLabel property.
      */
-    //private static var _yesLabel:String;
+    private static var _yesLabel:String;
     
     /**
      *  @private
      */
-    //private static var yesLabelOverride:String;
+    private static var yesLabelOverride:String;
 
-    //[Inspectable(category="General")]
+    [Inspectable(category="General")]
+
+    /**
+     *  The label for the Yes button.
+     *
+     *  <p>If you use a different label, you may need to adjust the 
+     *  <code>buttonWidth</code> property to fully display the label.</p>
+     *
+     *  The English resource bundle sets this property to "YES". 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static function get yesLabel():String
+    {
+        //initialize();
+        
+        return _yesLabel;
+    }
+
+    /**
+     *  @private
+     */
+    public static function set yesLabel(value:String):void
+    {
+        yesLabelOverride = value;
+
+        _yesLabel = value != null ?
+                    value : ""
+                    /* resourceManager.getString(
+                        "controls", "yesLabel"); */
+    }
 
     //--------------------------------------------------------------------------
     //

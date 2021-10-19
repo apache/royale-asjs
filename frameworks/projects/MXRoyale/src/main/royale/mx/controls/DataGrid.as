@@ -195,7 +195,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="itemFocusOut", type="mx.events.DataGridEvent")]
+[Event(name="itemFocusOut", type="mx.events.DataGridEvent")]
 
 /**
  *  Dispatched when a user changes the width of a column, indicating that the 
@@ -249,7 +249,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="headerShift", type="mx.events.IndexChangedEvent")]
+[Event(name="headerShift", type="mx.events.IndexChangedEvent")]
 
 //--------------------------------------
 //  Styles

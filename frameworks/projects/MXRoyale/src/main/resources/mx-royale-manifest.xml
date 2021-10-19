@@ -235,5 +235,8 @@
 	<component id="ApplicationControlBar" class="mx.containers.ApplicationControlBar" />
    <component id="MultiSelectionList" class="mx.controls.MultiSelectionList"/>
    <component id="CurrencyFormatter" class="mx.formatters.CurrencyFormatter"/>
+   <component id="ZipCodeValidator" class="mx.validators.ZipCodeValidator"/>
+   <component id="PrintDataGrid" class="mx.printing.PrintDataGrid"/>
+   
 
 </componentPackage>

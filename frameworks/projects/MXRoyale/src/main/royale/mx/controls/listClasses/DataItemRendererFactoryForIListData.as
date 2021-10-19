@@ -73,51 +73,29 @@ package mx.controls.listClasses
 			super();
 		}
         
-        private var dp:IList;
-        
         /**
          * @private
-         * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-         * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         override protected function dataProviderChangeHandler(event:Event):void
         {
             if (!dataProviderModel)
                 return;
-            dp = dataProviderModel.dataProvider as IList;
-            if (!dp)
+            var dpTest:IList = dataProviderModel.dataProvider as IList;
+            if (!dpTest)
             {
                 // temporary until descriptor is used in MenuBarModel
                 var obj:Object = dataProviderModel.dataProvider;
                 if (obj is Array)
                 {
-                    dp = new ArrayList(obj as Array);
+                    dataProviderModel.dataProvider = new ArrayList(obj as Array);
                 }
                 else
                     return;
             }
-            
-            // listen for individual items being added in the future.
-            var dped:IEventDispatcher = dp as IEventDispatcher;
-            dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-            
-            super.dataProviderChangeHandler(event);
-            
-        }
-        
-        override protected function get dataProviderLength():int
-        {
-            return dp.length;
-        }
-        
-        override protected function getItemAt(index:int):Object
-        {
-            return dp.getItemAt(index);
-        }
 
+            super.dataProviderChangeHandler(event);
+        }
+        
 	override protected function createAllItemRenderers(dataGroup:IItemRendererOwnerView):void
 	{
 		var functionBead:ItemRendererFunctionBead = _strand.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
@@ -134,7 +112,6 @@ package mx.controls.listClasses
 			ir.data = data;				
 		}
 	}
-
 		
 	}
 }

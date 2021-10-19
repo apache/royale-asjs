@@ -220,8 +220,8 @@ public class ComboBox extends DropDownListBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  [SkinPart(required="false")]
-    public var textInput:TextInput; */
+    [SkinPart(required="false")]
+    public var textInput:TextInput;
     
     //--------------------------------------------------------------------------
     //
