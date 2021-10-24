@@ -16,35 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.reflection.nativejs {
-    
+package org.apache.royale.reflection
+{
+
     
     /**
-     * Provides data for a stand-in TypeDefinition of the native as3 type for javascript
+     *  Returns the qualified name of a closure instance. Using this to compare against is recommended when checking
+     *  for closures. It could insulate against future changes or future variation between targets
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
      */
-    COMPILE::JS
-    public function AS3Boolean():Object{
-        if (singleton) return singleton;
-        var ret:Object= {};
-        ret['classRef'] = Boolean;
-        ret['name'] = 'Boolean';
-        ret['NATIVE_TYPE'] = true;
-        ret['NATIVE_BASE'] = Object;
-        
-        ret['ROYALE_CLASS_INFO'] = { names: [{ name: 'Boolean', qName: 'Boolean', kind: 'class' }] };
-    
-        ret['ROYALE_REFLECTION_INFO'] = function():Object {
-            return {
-                'methods':function():Object {
-                    return {
-                        'Boolean':{'parameters':function():Object { return ['*',true]},'type':'','declaredBy':'Boolean'}
-                    };
-                }
-            };
-        };
-        singleton = ret;
-        return ret;
-    
+    public function getClosureQualifiedName():String
+	{
+        return ExtraData.CLOSURE_QNAME;
     }
 }
-var singleton:* = null; //the explicit assignment with null is necessary here

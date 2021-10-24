@@ -24,9 +24,10 @@ package org.apache.royale.reflection.nativejs {
     
     /**
      * Provides data for a stand-in TypeDefinition of the native as3 type for javascript
+     * @royaleignorecoercion Class
      */
     COMPILE::JS
-    public function AS3Vector(typeName:String='Vector.<*>'):Object{
+    public function AS3Vector(typeName:String='Vector.<*>', nativeBase:Class=null):Object{
         if (singletons) {
             if (singletons[typeName]) return singletons[typeName];
         } else {
@@ -36,6 +37,7 @@ package org.apache.royale.reflection.nativejs {
         ret['classRef'] = Language.synthVector(typeName.substring(8, typeName.length - 1));
         ret['name'] = typeName;
         ret['SYNTHETIC_TYPE'] = true;
+        ret['NATIVE_BASE'] = nativeBase || Object;
         
         ret['ROYALE_CLASS_INFO'] = { names: [{ name: typeName, qName: typeName, kind: 'class' }] };
     
@@ -57,8 +59,11 @@ package org.apache.royale.reflection.nativejs {
         };
         if (typeName == 'Vector.<*>') {
             //support for Vector variant subtypes
+            var wildCardBase:Class = ret['classRef'] as Class;
             ret['variant'] = function(subType:String):Object {
-                return AS3Vector(subType);
+                var ofType:String = subType.substring(7, subType.length )
+                var baseClassRef:Class = '<int><uint><Number>'.indexOf(ofType) == -1 ? wildCardBase : Object;
+                return AS3Vector(subType, baseClassRef);
             };
         }
         singletons[typeName] = ret;

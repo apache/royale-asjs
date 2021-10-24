@@ -34,6 +34,8 @@ package org.apache.royale.reflection {
 	 */
 	COMPILE::SWF
 	public class ExtraData {
+
+		internal static var CLOSURE_QNAME:String = "builtin.as$0.MethodClosure";
 		
 		public static function get isRelevant():Boolean{
 			return false;
@@ -76,6 +78,8 @@ package org.apache.royale.reflection {
      */
 	COMPILE::JS
 	public class ExtraData {
+
+		internal static var CLOSURE_QNAME:String = "builtin.as$0.MethodClosure";
 		
 		private static var reflectionData:Map;
 		
@@ -121,11 +125,22 @@ package org.apache.royale.reflection {
 		 * import org.apache.royale.reflection.nativejs.AS3Array
 		 * ExtraData.addExternalDefinition(AS3Array())
 		 *
+		 * @royaleignorecoercion Array
 		 */
 		public static function addExternDefintion(item:Object):void{
 			if (!reflectionData) reflectionData = new Map();
-			reflectionData.set(item['name'], item);
-			reflectionData.set(item['classRef'], item);
+			var items:Array;
+			if (!Array.isArray(item)) {
+				items = [item]
+			} else {
+				items = item as Array;
+			}
+			for each(item in items) {
+				reflectionData.set(item['name'], item);
+				if (item['classRef'] && !reflectionData.has(item['classRef'])){
+					reflectionData.set(item['classRef'], item);
+				}
+			}
 		}
 		
 		/**
@@ -148,7 +163,8 @@ package org.apache.royale.reflection {
 				AS3int(),
 				AS3uint(),
 				AS3Vector(),
-				AS3Object()
+				AS3Object(),
+				AS3Function()
 			];
 			while(items.length) addExternDefintion(items.pop());
 			

@@ -35,15 +35,34 @@ COMPILE::SWF
 	{
         COMPILE::SWF
         {
-            return flash.utils.getQualifiedSuperclassName(value).replace('::','.');
+            const val:String = flash.utils.getQualifiedSuperclassName(value);
+            return val && val.replace('::','.');
         }
         COMPILE::JS
         {
+            if (value === null || typeof value === 'undefined') return null;
             var constructorAsObject:Object = (value is Class) ? value : value["constructor"];
-            value = constructorAsObject.superClass_;
-            if (value == null || value.ROYALE_CLASS_INFO == null)
-                return null;
-            return value.ROYALE_CLASS_INFO.names[0].qName;
+            var superRef:Object = constructorAsObject.superClass_;
+            if (!superRef && ExtraData.hasData(constructorAsObject)) {
+                if (constructorAsObject == Function && value.prototype == undefined) {
+                    //special case - a Closure has Function as its Superclass.
+                    superRef = ExtraData.getData(Function)
+                } else {
+                    superRef = ExtraData.getData(constructorAsObject)['NATIVE_BASE'];
+                    if (superRef) {
+                        //we only have a reference to the native base-class constructor itself, we now need to get the extra data for it:
+                        superRef = ExtraData.getData(superRef)
+                    }
+                }
+                if (superRef) {
+                    superRef = superRef['ROYALE_CLASS_INFO'];
+                }
+            } else {
+                if (superRef == null) return null;
+                superRef = superRef.ROYALE_CLASS_INFO;
+            }
+
+            return superRef ? superRef.names[0].qName : null;
         }
     }
 }

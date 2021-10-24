@@ -39,8 +39,8 @@ COMPILE::JS{
         COMPILE::SWF
         {
             var s:String = flash.utils.getQualifiedClassName(value);
-            if (s === "builtin.as$0::MethodClosure")
-                return s;  // don't replace ::
+            /*if (s === ExtraData.CLOSURE_QNAME)
+                return s;  // don't replace ::*/
             //normalize for Vector:
             return s.replace('__AS3__.vec::','').replace('::','.');
         }
@@ -53,8 +53,8 @@ COMPILE::JS{
                 return "Number";
             }
             if (defName === "boolean") return "Boolean";
-            if (defName === "undefined") return null;
-            if (value === null) return null;
+            if (defName === "undefined") return 'void';
+            if (value === null) return "null";
             if (Array.isArray(value)) {
                 //exclude Vector emulation:
                 if (Language.SYNTH_TAG_FIELD in value) return value[Language.SYNTH_TAG_FIELD]['type'];
@@ -67,6 +67,7 @@ COMPILE::JS{
                 if (!value.prototype) {
                     //instance
                     if (ExtraData.hasData(value.constructor)) {
+                        if (value.constructor === Function) return ExtraData.CLOSURE_QNAME;
                         //value is instance of a 'native class'
                         classInfo =  ExtraData.getData(value.constructor)['ROYALE_CLASS_INFO'];
                     } else {
@@ -90,7 +91,7 @@ COMPILE::JS{
                     }
                 }
                 if (!classInfo) {
-                    if (defName === "function") return "builtin.as$0::MethodClosure";
+                    if (defName === "function") return value === Function || value.hasOwnProperty('prototype') ? "Function" : ExtraData.CLOSURE_QNAME;
 
                     //fallback
                     return "Object";
