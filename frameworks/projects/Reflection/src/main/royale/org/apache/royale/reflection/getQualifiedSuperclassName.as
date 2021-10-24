@@ -24,7 +24,10 @@ COMPILE::SWF
 }
     
     /**
-     *  The equivalent of flash.utils.getQualifiedSuperclassName.
+     *  The equivalent of flash.utils.getQualifiedSuperclassName,
+     *  except that qualified names do not include '::' between the package naming sequence and the definition name.
+     *  The '.' is always used to separate parts of the qualified name.
+     *  An example would be "my.package.path.MyClassName"
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2

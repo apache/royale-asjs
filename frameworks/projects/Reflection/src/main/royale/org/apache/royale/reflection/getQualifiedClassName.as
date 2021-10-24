@@ -27,8 +27,11 @@ COMPILE::JS{
 }
     
     /**
-     *  The equivalent of flash.utils.getQualifiedClassName.
-     * 
+     *  The equivalent of flash.utils.getQualifiedClassName,
+     *  except that qualified names do not include '::' between the package naming sequence and the definition name.
+     *  The '.' is always used to separate parts of the qualified name.
+     *  An example would be "my.package.path.MyClassName"
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -39,8 +42,6 @@ COMPILE::JS{
         COMPILE::SWF
         {
             var s:String = flash.utils.getQualifiedClassName(value);
-            /*if (s === ExtraData.CLOSURE_QNAME)
-                return s;  // don't replace ::*/
             //normalize for Vector:
             return s.replace('__AS3__.vec::','').replace('::','.');
         }
