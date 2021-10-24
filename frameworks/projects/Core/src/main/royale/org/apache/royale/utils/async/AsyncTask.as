@@ -117,12 +117,12 @@ package org.apache.royale.utils.async
     }
     protected function notifyDone():void{
       dispatchEvent(new Event("done"));
-      if(!doneCallbacks){
-        return;
+      if(doneCallbacks){
+        for(var i:int=0;i<doneCallbacks.length;i++){
+          doneCallbacks[i](this);
+        }
       }
-      for(var i:int=0;i<doneCallbacks.length;i++){
-        doneCallbacks[i](this);
-      }
+      destroy();
     }
     private var doneCallbacks:Array;
 
@@ -175,6 +175,53 @@ package org.apache.royale.utils.async
     {
     	_data = value;
     }
+    /**
+     * Keep references to event listeners for automatic cleanup
+     */
+    COMPILE::JS
+    override public function addEventListener(type:String, handler:Function, useCapture:Boolean = false, scope:Object = null):void
+    {
+      super.addEventListener(type,handler,useCapture,scope);
+      if(!listeners)
+      {
+        listeners = [];
+      }
+      listeners.push({
+        type:type,
+        handler:handler,
+        useCapture:useCapture
+      });
+    }
+    COMPILE::SWF
+    override public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+    {
+      if(!listeners)
+      {
+        listeners = [];
+      }
+      listeners.push({
+        type:type,
+        handler:listener,
+        useCapture:useCapture
+      });
 
+    }
+    private var listeners:Array;
+
+    // Clean up the instance for garbage collection
+    protected function destroy():void
+    {
+      
+      doneCallbacks = null;
+      if(listeners)
+      {
+        for(var i:int=0;i<listeners.length;i++)
+        {
+          var l:Object = listeners[i];
+          removeEventListener(l.type,l.handler,l.useCapture);
+        }
+        listeners = null;
+      }
+    }
   }
 }
