@@ -215,7 +215,7 @@ public class Alert extends Panel
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public static const NONMODAL:uint = 0x8000;
+    public static const NONMODAL:uint = 0x8000;
 
     //--------------------------------------------------------------------------
     //
@@ -537,7 +537,7 @@ public class Alert extends Panel
                                 moduleFactory:Object = null):Alert
                                 //moduleFactory:IFlexModuleFactory = null):Alert
     {
-       // var modal:Boolean = (flags & Alert.NONMODAL) ? false : true;
+        var modal:Boolean = (flags & Alert.NONMODAL) ? false : true;
 
         if (!parent)
         {
@@ -594,7 +594,7 @@ public class Alert extends Panel
         
         alert.addEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
 
-        PopUpManager.addPopUp(alert, parent, true);
+        PopUpManager.addPopUp(alert, parent, modal);
 
 		// let the controller that gets added during addPopUp to get the event first
 
