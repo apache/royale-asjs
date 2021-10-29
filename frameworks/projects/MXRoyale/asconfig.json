@@ -30,7 +30,8 @@
             "src/main/royale"
         ],
         "source-path": [
-            "src/main/royale"
+            "src/main/royale",
+            "../MXRoyaleBase/src/main/royale"
         ],
         "external-library-path": [
             "../../../../frameworks/libs/air/airglobal.swc"

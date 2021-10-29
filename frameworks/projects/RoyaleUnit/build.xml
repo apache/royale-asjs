@@ -120,7 +120,7 @@
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         
-        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" >
+        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" failonerror="true">
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />

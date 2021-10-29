@@ -24,5 +24,8 @@ package org.apache.royale.textLayout.dummy {
 		public var customItems:Array = [];
 		public var isSupported:Boolean;
 		public var items:Array;
+		public function hideBuiltInItems():void {
+			trace("hideBuiltInItems in ContextMenu is not implemented");
+		}
 	}
 }

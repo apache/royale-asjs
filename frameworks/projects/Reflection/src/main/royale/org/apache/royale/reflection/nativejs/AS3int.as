@@ -32,6 +32,7 @@ package org.apache.royale.reflection.nativejs {
         ret['classRef'] = int;
         ret['name'] = 'int';
         ret['SYNTHETIC_TYPE'] = true;
+        ret['NATIVE_BASE'] = Object;
         
         ret['ROYALE_CLASS_INFO'] = { names: [{ name: 'int', qName: 'int', kind: 'class' }] };
     

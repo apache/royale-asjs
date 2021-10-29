@@ -106,6 +106,7 @@
 
     <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
     <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>
+    <component id="FormValidatorWithoutSnackbar" class="org.apache.royale.jewel.beads.validators.FormValidatorWithoutSnackbar"/>
     <component id="StringValidator" class="org.apache.royale.jewel.beads.validators.StringValidator"/>
     <component id="DateValidator" class="org.apache.royale.jewel.beads.validators.DateValidator"/>
     <component id="SelectedItemNullValidator" class="org.apache.royale.jewel.beads.validators.SelectedItemNullValidator"/>

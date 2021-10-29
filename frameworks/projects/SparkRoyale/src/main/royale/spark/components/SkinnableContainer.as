@@ -1350,7 +1350,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
          return contentView.getElementAt(index);
      }
      
-     [SWFOverride(returns="flash.display.DisplayObject"))]
+     [SWFOverride(returns="flash.display.DisplayObject")]
      COMPILE::SWF
      override public function getChildAt(index:int):IUIComponent
      {

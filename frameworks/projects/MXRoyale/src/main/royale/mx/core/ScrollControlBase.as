@@ -62,6 +62,8 @@ import org.apache.royale.events.Event;
 
 [Style(name="borderSkin", type="String", inherit="yes")]
 
+[Style(name="textIndent", type="Number", inherit="yes")]
+
 /**
  *  The ScrollControlBase class is the base class for controls
  *  with scroll bars.

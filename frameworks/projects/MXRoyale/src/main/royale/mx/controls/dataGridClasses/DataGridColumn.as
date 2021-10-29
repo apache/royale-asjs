@@ -82,6 +82,11 @@ import org.apache.royale.html.supportClasses.DataGridColumn;
  */
 [Style(name="headerStyleName", type="String", inherit="no")]
 
+
+
+[Style(name="fontWeight", type="String", inherit="yes")]
+
+
 /**
  *  The number of pixels between the container's left border and its content 
  *  area.
@@ -105,6 +110,10 @@ import org.apache.royale.html.supportClasses.DataGridColumn;
  *  @productversion Flex 3
  */
 //[Style(name="paddingRight", type="Number", format="Length", inherit="no")]
+
+
+
+[Style(name="color", type="uint", format="Color", inherit="yes")]
 
 /**
  *  The DataGridColumn class describes a column in a DataGrid control.

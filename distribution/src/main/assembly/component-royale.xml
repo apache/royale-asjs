@@ -195,9 +195,21 @@
             </includes>
             <excludes>
                 <exclude>META-INF/**</exclude>
+                <exclude>*.bat</exclude>
             </excludes>
             <!-- Make all scripts in here executable -->
             <fileMode>0755</fileMode>
+            <lineEnding>lf</lineEnding>
+        </fileSet>
+        <fileSet>
+            <directory>${project.build.directory}/dependency/compiler</directory>
+            <outputDirectory>bin</outputDirectory>
+            <includes>
+                <include>*.bat</include>
+            </includes>
+            <!-- Make all scripts in here executable -->
+            <fileMode>0755</fileMode>
+            <lineEnding>crlf</lineEnding>
         </fileSet>
 
         <!-- Copy the js scripts -->
@@ -205,10 +217,24 @@
             <directory>../js/bin</directory>
             <outputDirectory>js/bin</outputDirectory>
             <includes>
-                <include>**</include>
+                <include>*</include>
+            </includes>
+            <excludes>
+                <exclude>*.bat</exclude>
+            </excludes>
+            <!-- Make all scripts in here executable -->
+            <fileMode>0755</fileMode>
+            <lineEnding>lf</lineEnding>
+        </fileSet>
+        <fileSet>
+            <directory>../js/bin</directory>
+            <outputDirectory>js/bin</outputDirectory>
+            <includes>
+                <include>*.bat</include>
             </includes>
             <!-- Make all scripts in here executable -->
             <fileMode>0755</fileMode>
+            <lineEnding>crlf</lineEnding>
         </fileSet>
 
         <!-- Copy the projects -->

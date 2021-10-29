@@ -131,6 +131,8 @@ use namespace mx_internal;
 
 [Style(name="borderColor", type="unit", format="Color" inherit="no")]
 
+[Style(name="letterSpacing", type="Number", inherit="yes")]
+
 //--------------------------------------
 //  Other metadata
 //--------------------------------------

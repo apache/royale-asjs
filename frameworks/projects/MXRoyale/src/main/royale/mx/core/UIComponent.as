@@ -584,6 +584,43 @@ import mx.binding.BindingManager;
 [Event(name="dragOver", type="mx.events.DragEvent")]
 
 /**
+ *  Dispatched when the object has moved.
+ *
+ *  <p>You can move the component by setting the <code>x</code>
+ *  or <code>y</code> properties, by calling the <code>move()</code>
+ *  method, by setting one
+ *  of the following properties either on the component or on other
+ *  components such that the LayoutManager needs to change the
+ *  <code>x</code> or <code>y</code> properties of the component:</p>
+ *
+ *  <ul>
+ *    <li><code>minWidth</code></li>
+ *    <li><code>minHeight</code></li>
+ *    <li><code>maxWidth</code></li>
+ *    <li><code>maxHeight</code></li>
+ *    <li><code>explicitWidth</code></li>
+ *    <li><code>explicitHeight</code></li>
+ *  </ul>
+ *
+ *  <p>When you call the <code>move()</code> method, the <code>move</code>
+ *  event is dispatched before the method returns.
+ *  In all other situations, the <code>move</code> event is not dispatched
+ *  until after the property changes.</p>
+ * 
+ *  <p>This event only dispatched when there are one or more 
+ *  relevant listeners attached to the dispatching object.</p>
+ *
+ *  @eventType mx.events.FocusEvent.KEY_FOCUS_CHANGE
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+
+[Event(name="keyFocusChange", type="mx.events.FocusEvent")]
+
+/**
  *  The main color for a component.
  *  
  *  @langversion 3.0
@@ -3821,7 +3858,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function addChild(child:IUIComponent):IUIComponent
@@ -3841,7 +3878,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function addChildAt(child:IUIComponent,
@@ -3866,7 +3903,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function removeChild(child:IUIComponent):IUIComponent
@@ -3890,7 +3927,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function removeChildAt(index:int):IUIComponent
@@ -3909,7 +3946,7 @@ COMPILE::JS
      *  @private
      *  @royaleignorecoercion mx.core.IUIComponent
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function getChildAt(index:int):IUIComponent
@@ -3960,7 +3997,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int")]
     COMPILE::SWF 
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
@@ -3971,7 +4008,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     COMPILE::SWF 
     { override }
     public function getChildIndex(child:IUIComponent):int
@@ -3982,7 +4019,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF 
     { override }
     public function getChildByName(name:String):IUIComponent
@@ -3994,7 +4031,7 @@ COMPILE::JS
     /**
      *  @private
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent")]
     COMPILE::SWF 
     { override }
     public function contains(child:IUIBase):Boolean
@@ -4334,7 +4371,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point")]
     COMPILE::SWF 
     { override }
     public function localToGlobal(value:Point):Point
@@ -4355,7 +4392,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point"))]
+    [SWFOverride(params="flash.geom.Point", altparams="org.apache.royale.geom.Point", returns="flash.geom.Point")]
     COMPILE::SWF 
     { override }
     public function globalToLocal(value:Point):Point

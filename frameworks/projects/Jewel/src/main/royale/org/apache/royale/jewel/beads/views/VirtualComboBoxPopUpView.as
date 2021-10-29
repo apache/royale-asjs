@@ -20,17 +20,18 @@ package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.List;
-    import org.apache.royale.jewel.VirtualList;
     import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+    import org.apache.royale.jewel.List;
+    import org.apache.royale.jewel.supportClasses.combobox.VirtualComboBoxPopUp;
+    import org.apache.royale.jewel.VirtualList;
 
     /**
 	 *  The VirtualComboBoxPopUpView class is a view bead for the VirtualComboBoxPopUp.
-     * 
+     *
      *  This class creates a VirtualList that will be pop up when the combo box needs
      *  to show the associated list
-     * 
-	 *  @viewbead	 
+     *
+	 *  @viewbead
 	 */
 	public class VirtualComboBoxPopUpView extends ComboBoxPopUpView
 	{
@@ -48,16 +49,24 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		override public function set strand(value:IStrand):void{
+
 			super.strand = value;
 			(list.model as IJewelSelectionModel).dispatchEvent(new Event("popUpCreated"));
+
 		}
-        
+
         override public function get list():List
         {
             if(!_list) {
                 _list = new VirtualList();
 				_list.addEventListener("beadsAdded", beadsAddedHandler);
+
+                if((_strand as VirtualComboBoxPopUp).itemRenderer)
+                {
+                    _list.itemRenderer = (_strand as VirtualComboBoxPopUp).itemRenderer;
+                }
             }
+
             return _list;
         }
     }

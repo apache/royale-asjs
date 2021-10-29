@@ -100,15 +100,16 @@ internal class SparkRoyaleClasses
     import spark.events.DropDownEvent; DropDownEvent;
 
 	
-import spark.components.IItemRenderer; IItemRenderer;
-import spark.effects.easing.IEaser; IEaser;
-import spark.events.TitleWindowBoundsEvent; TitleWindowBoundsEvent;
-import spark.components.IItemRendererOwner; IItemRendererOwner;
-import spark.utils.LabelUtil; LabelUtil;
-import spark.components.ResizeMode; ResizeMode;
-import spark.filters.BevelFilter; BevelFilter; 
+	import spark.components.IItemRenderer; IItemRenderer;
+	import spark.effects.easing.IEaser; IEaser;
+	import spark.events.TitleWindowBoundsEvent; TitleWindowBoundsEvent;
+	import spark.components.IItemRendererOwner; IItemRendererOwner;
+	import spark.utils.LabelUtil; LabelUtil;
+	import spark.components.ResizeMode; ResizeMode;
+	import spark.filters.BevelFilter; BevelFilter;
+	import spark.components.supportClasses.DropDownController; DropDownController;
 
-	
+	import spark.components.beads.SelfItemRendererInitializer;SelfItemRendererInitializer;
 }
 
 }

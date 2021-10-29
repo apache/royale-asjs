@@ -74,7 +74,7 @@ limitations under the License.
             </j:beads>
         </j:Image>
 
-        <html:H1 text="Welcome to Apache Royale Tour de Jewel Component Explorer v.0.9.8-SNAPSHOT">
+        <html:H1 text="Welcome to Apache Royale Tour de Jewel Component Explorer v.0.9.9-SNAPSHOT">
             <html:beads>
                 <j:TextAlign align="center"/>
             </html:beads>

@@ -393,8 +393,60 @@ COMPILE::SWF {
                 var superClass:Object = def.superClass_;
                 if (!superClass) {
                     //todo: support for when superClass is not a royale 'class'
-                } else while (superClass)
-                {
+                    if (ExtraData.hasData(qname)) {
+                        superClass = ExtraData.getData(qname)['NATIVE_BASE'];
+                    }
+
+                }
+                while (superClass) {
+                    var superData:Object;
+                    var js_native:Boolean = false;
+                    if (superClass.ROYALE_CLASS_INFO !== undefined) {
+                        superData = superClass.ROYALE_CLASS_INFO;
+                    } else {
+                        if (ExtraData.hasData(superClass)) {
+                            superData = ExtraData.getData(getQualifiedClassName(superClass))['ROYALE_CLASS_INFO'];
+                            if (superData) {
+                                js_native = true;
+                            } else {
+                                //exit
+                                superClass = null;
+                            }
+
+
+                        } else {
+                            //exit
+                            superClass = null;
+                            superData = null;
+                        }
+                    }
+                    if (superData) {
+                        qname = superData.names[0].qName;
+                        results.push(TypeDefinition.internalGetDefinition(qname));
+                        if (!js_native) {
+                            def = getDefinitionByName(qname);
+                            superClass = def.superClass_;
+                        } else {
+                            if (ExtraData.hasData(qname)) {
+                                superClass = ExtraData.getData(qname)['NATIVE_BASE']
+                            } else {
+                                superClass = null;
+                            }
+                        }
+                    }
+                }
+
+                    /*= superClass.ROYALE_CLASS_INFO !== undefined ? superClass.ROYALE_CLASS_INFO : null;
+                    if (!superData) {
+                        if (ExtraData.hasData(superClass)) {
+
+                        } else {
+                            superClass = null;
+                        }
+
+                    } else {
+                        superClass = def.superClass_;
+                    }
                     if (superClass.ROYALE_CLASS_INFO !== undefined) {
                         qname = superClass.ROYALE_CLASS_INFO.names[0].qName;
                         results.push(TypeDefinition.internalGetDefinition(qname));
@@ -404,9 +456,17 @@ COMPILE::SWF {
 
                     } else {
                         //todo: support for when superClass is not a royale 'class'
+                        if (ExtraData.hasData(superClass)) {
+                            results.push(TypeDefinition.internalGetDefinition(ExtraData.getData(superClass)[]));
+                            var baseName:String = ExtraData.getData(qname)['NATIVE_BASE'];
+                            if (baseName) {
+                                superClass = getDefinitionByName(baseName);
+                            }
+                        }
                         superClass = null;
+
                     }
-                }
+                }*/
             }
             
             if (_cache) {
@@ -890,7 +950,9 @@ COMPILE::SWF {
             while (collections.length) {
                 var collectionType:String = collections.shift();
                 var collection:Array =collections.shift();
-                collection.sort(function (item1:Object, item2:Object):int{ return item1.name < item2.name ? -1 : 1 });
+                if ('accessors,methods,variables'.indexOf(collectionType) != -1){
+                    collection.sort(function (item1:Object, item2:Object):int{ return item1.name < item2.name ? -1 : 1 });
+                }
                 s += collectionType+" :";
                 if (!collection || !collection.length) {
                     s+= "\n\t{none}\n"

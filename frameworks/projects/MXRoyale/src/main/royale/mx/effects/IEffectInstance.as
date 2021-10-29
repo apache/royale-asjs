@@ -110,13 +110,13 @@ public interface IEffectInstance
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* function get effect():IEffect; */
+    function get effect():IEffect;
     
     /**
      *  @private
      */
-/*     function set effect(value:IEffect):void;
- */
+    function set effect(value:IEffect):void;
+ 
     //----------------------------------
     //  effectTargetHost
     //----------------------------------

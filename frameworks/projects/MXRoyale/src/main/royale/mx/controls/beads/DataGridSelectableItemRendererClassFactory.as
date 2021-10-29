@@ -52,7 +52,7 @@ package mx.controls.beads
             var ir:IItemRenderer = super.createItemRenderer();
 			COMPILE::JS 
 			{
-			ir["outerDocument"] = (_strand as DataGridColumnList).grid.mxmlDocument;
+			ir["outerDocument"] = (_strand as DataGridColumnList).grid.parentMxmlDocument;
 			}
 			if (ir.getBeadByType(IBeadController) == null) {
 				//add a default mouse controller for DropInRenderers that may not have a mousecontroller

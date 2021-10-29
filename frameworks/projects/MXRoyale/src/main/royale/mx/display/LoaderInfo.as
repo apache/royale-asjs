@@ -52,6 +52,11 @@ package mx.display
             // TODO this should be the nominal height, whatever that means
             return _loader.content.height;
         }
+		
+		public var _url:String = "";
+		public function get url():String {
+			return _url;
+		}
 
     }
 }

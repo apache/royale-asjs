@@ -35,13 +35,16 @@ import mx.events.FlexEvent;
 
 import spark.components.List;
 //import spark.core.NavigationUnit;
-//import spark.events.DropDownEvent;
+import spark.events.DropDownEvent;
 import spark.events.IndexChangeEvent;
 
 import org.apache.royale.core.ISelectionModel;
 
 import mx.core.mx_internal;
 use namespace mx_internal;
+import spark.components.supportClasses.DropDownController;
+import org.apache.royale.geom.Point;
+import mx.core.UIComponent;
 
 //--------------------------------------
 //  Styles
@@ -223,7 +226,7 @@ public class DropDownListBase extends List
         super();
 	if((model as ISelectionModel).labelField == null) 
 			labelField =  "label";
-       // dropDownController = new DropDownController();
+        dropDownController = new DropDownController();
     }
     
     //--------------------------------------------------------------------------
@@ -248,7 +251,7 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    //public var dropDown:DisplayObject;
+    public var dropDown:UIComponent;
     
     //----------------------------------
     //  openButton
@@ -264,7 +267,7 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    //public var openButton:ButtonBase;
+    public var openButton:ButtonBase;
        
     //--------------------------------------------------------------------------
     //
@@ -460,7 +463,7 @@ public class DropDownListBase extends List
     /**
      *  @private
      */
-    //private var _dropDownController:DropDownController; 
+    private var _dropDownController:DropDownController; 
     
     /**
      *  Instance of the DropDownController class that handles all of the mouse, keyboard 
@@ -474,15 +477,15 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  protected function get dropDownController():DropDownController
+	protected function get dropDownController():DropDownController
     {
         return _dropDownController;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* protected function set dropDownController(value:DropDownController):void
+    protected function set dropDownController(value:DropDownController):void
     {
         if (_dropDownController == value)
             return;
@@ -498,7 +501,7 @@ public class DropDownListBase extends List
             _dropDownController.openButton = openButton;
         if (dropDown)
             _dropDownController.dropDown = dropDown;    
-    } */
+    }
     
     //----------------------------------
     //  isDropDownOpen
@@ -538,14 +541,14 @@ public class DropDownListBase extends List
      *  but user may set property before that. this flag indicates whether property has been explicitly set,
      *  and so will not need to be determined from css when stylesInitialized() or styleChanged() is called.
      */
-    //private var isCloseDropDownOnResizeExplicitlySet:Boolean = false;
+    private var isCloseDropDownOnResizeExplicitlySet:Boolean = false;
 
     /**
      *  @private
      */
-   /*  protected var _closeDropDownOnResize:Boolean = true;
+     protected var _closeDropDownOnResize:Boolean = true;
 	
-    [Inspectable(category="General", enumeration="true,false", defaultValue="true")] */
+    [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
 	
     /**
      *  When <code>true</code>, resizing the system manager
@@ -561,29 +564,29 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get closeDropDownOnResize():Boolean
+    public function get closeDropDownOnResize():Boolean
 	{
         return _closeDropDownOnResize;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set closeDropDownOnResize(value:Boolean):void
+    public function set closeDropDownOnResize(value:Boolean):void
 	{
         setCloseDropDownOnResize(value, true);
-    } */
+    }
 		
     /**
      *  @private
      */
-    /* private function setCloseDropDownOnResize(value:Boolean, explicitlySet:Boolean):void
+     private function setCloseDropDownOnResize(value:Boolean, explicitlySet:Boolean):void
 	{
         _closeDropDownOnResize = value;
         isCloseDropDownOnResizeExplicitlySet ||= explicitlySet;
         if (dropDownController)
             dropDownController.closeOnResize = _closeDropDownOnResize;
-	}    */     
+	}     
 
 	//----------------------------------
     //  userProposedSelectedIndex
@@ -592,23 +595,23 @@ public class DropDownListBase extends List
     /**
      *  @private
      */
-    //private var _userProposedSelectedIndex:Number = NO_SELECTION;
+    private var _userProposedSelectedIndex:Number = NO_SELECTION;
     
     /**
      *  @private
      */
-    /* mx_internal function set userProposedSelectedIndex(value:Number):void
+     mx_internal function set userProposedSelectedIndex(value:Number):void
     {
         _userProposedSelectedIndex = value;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* mx_internal function get userProposedSelectedIndex():Number
+     mx_internal function get userProposedSelectedIndex():Number
     {
         return _userProposedSelectedIndex;
-    } */
+    } 
     
     //--------------------------------------------------------------------------
     //
@@ -780,10 +783,10 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */ 
-    /* public function openDropDown():void
+    public function openDropDown():void
     {
         dropDownController.openDropDown();
-    } */
+    }
     
     /**
      *  Close the drop-down list and dispatch a <code>DropDownEvent.CLOSE</code> event. 
@@ -796,10 +799,10 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function closeDropDown(commit:Boolean):void
+    public function closeDropDown(commit:Boolean):void
     {
         dropDownController.closeDropDown(commit);
-    } */
+    }
     
     /**
      *  @private
@@ -836,7 +839,7 @@ public class DropDownListBase extends List
     /**
      *  @private 
      */ 
-    /* mx_internal function positionIndexInView(index:int, topOffset:Number = NaN, 
+    mx_internal function positionIndexInView(index:int, topOffset:Number = NaN, 
                                              bottomOffset:Number = NaN, 
                                              leftOffset:Number = NaN,
                                              rightOffset:Number = NaN):void
@@ -853,7 +856,7 @@ public class DropDownListBase extends List
             dataGroup.horizontalScrollPosition += spDelta.x;
             dataGroup.verticalScrollPosition += spDelta.y;
         }
-    } */
+    }
           
     /**
      *  @private
@@ -1067,23 +1070,23 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* mx_internal function dropDownController_openHandler(event:DropDownEvent):void
+     mx_internal function dropDownController_openHandler(event:DropDownEvent):void
     {
         addEventListener(FlexEvent.UPDATE_COMPLETE, open_updateCompleteHandler);
         userProposedSelectedIndex = selectedIndex;
         invalidateSkinState();  
-    } */
+    }
     
     /**
      *  @private
      */
-    /* mx_internal function open_updateCompleteHandler(event:FlexEvent):void
+    mx_internal function open_updateCompleteHandler(event:FlexEvent):void
     {   
         removeEventListener(FlexEvent.UPDATE_COMPLETE, open_updateCompleteHandler);
         positionIndexInView(selectedIndex, 0);
         
         dispatchEvent(new DropDownEvent(DropDownEvent.OPEN));
-    } */
+    }
     
     /**
      *  @private
@@ -1095,32 +1098,32 @@ public class DropDownListBase extends List
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    //protected function dropDownController_closeHandler(event:DropDownEvent):void
-    //{
-        //addEventListener(FlexEvent.UPDATE_COMPLETE, close_updateCompleteHandler);
-        //invalidateSkinState();
-        //
-        //if (!event.isDefaultPrevented())
-        //{
-            //// Even if the dropDown was programmatically closed, assume the selection 
-            //// changed as a result of a previous user interaction
-            //setSelectedIndex(userProposedSelectedIndex, true);  
-        //}
-        //else
-        //{
-            //changeHighlightedSelection(selectedIndex);
-        //}
-    //}
+    protected function dropDownController_closeHandler(event:DropDownEvent):void
+    {
+        addEventListener(FlexEvent.UPDATE_COMPLETE, close_updateCompleteHandler);
+        invalidateSkinState();
+        
+        if (!event.isDefaultPrevented())
+        {
+            // Even if the dropDown was programmatically closed, assume the selection 
+            // changed as a result of a previous user interaction
+           // setSelectedIndex(userProposedSelectedIndex, true);  
+        }
+        /* else
+        {
+            changeHighlightedSelection(selectedIndex);
+        } */
+    }
 
     /**
      *  @private
      */
-    /* private function close_updateCompleteHandler(event:FlexEvent):void
+    private function close_updateCompleteHandler(event:FlexEvent):void
     {   
         removeEventListener(FlexEvent.UPDATE_COMPLETE, close_updateCompleteHandler);
         
         dispatchEvent(new DropDownEvent(DropDownEvent.CLOSE));
-    } */
+    }
 }
 
 }

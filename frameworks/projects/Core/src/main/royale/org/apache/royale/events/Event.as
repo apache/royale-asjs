@@ -61,6 +61,9 @@ package org.apache.royale.events
 		public static const CONNECT:String = "connect";
 		public static const REMOVED_FROM_STAGE:String = "removedFromStage";
 		public static const ADDED_TO_STAGE:String = "addedToStage";
+		public static const MOUSE_LEAVE:String = "mouseLeave";
+		public static const ENTER_FRAME:String = "enterFrame";
+		public static const RESIZE:String = "resize";
 		
 		//--------------------------------------
 		//   Constructor
@@ -177,6 +180,9 @@ package org.apache.royale.events
 		public static const CONNECT:String = "connect";
 		public static const REMOVED_FROM_STAGE:String = "removedFromStage";
 		public static const ADDED_TO_STAGE:String = "addedToStage";
+		public static const MOUSE_LEAVE:String = "mouseLeave";
+		public static const ENTER_FRAME:String = "enterFrame";
+		public static const RESIZE:String = "resize";
 
         public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
             super(type);
@@ -234,6 +240,19 @@ package org.apache.royale.events
 				return true;
             return false;
         }
+			
+		public function get eventPhase():uint {
+			return 0;
+		}
+		
+		COMPILE::JS {
+			public function formatToString(className:String, ...args):String {
+				 for each (var s:String in args)
+					className += " " + s;
+			  
+				return className;
+			}
+		}
 
     }
 }

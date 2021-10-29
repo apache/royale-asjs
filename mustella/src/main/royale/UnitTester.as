@@ -1125,16 +1125,7 @@ public class UnitTester extends EventDispatcher
 			if (obj is DisplayObjectContainer)
 			{
 				var doc:DisplayObjectContainer = obj as DisplayObjectContainer;
-				if ("rawChildren" in doc)
-				{
-					var rc:Object = doc["rawChildren"];
-					n = rc.numChildren;
-					for (i = 0; i < n; i++)
-					{
-						_getObjectsUnderPoint(rc.getChildAt(i), pt, arr);
-					}
-				}
-                else if ("strandChildren" in doc)
+                if ("strandChildren" in doc)
                 {
                     var sc:Object = doc["strandChildren"];
                     n = sc.numElements;
@@ -1143,6 +1134,15 @@ public class UnitTester extends EventDispatcher
                         _getObjectsUnderPoint(sc.getElementAt(i), pt, arr);
                     }
                 }
+				else if ("rawChildren" in doc)
+				{
+					var rc:Object = doc["rawChildren"];
+					n = rc.numChildren;
+					for (i = 0; i < n; i++)
+					{
+						_getObjectsUnderPoint(rc.getChildAt(i), pt, arr);
+					}
+				}
 				else
 				{
 					if (doc.numChildren)

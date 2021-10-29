@@ -244,6 +244,140 @@ package flexUnitTests.reflection
             assertEquals( def.name, "Vector.<uint>", "Unexpected type name");
         
         }
-        
+
+
+        [Test]
+        public function testFunctionClass():void
+        {
+            assertEquals( getQualifiedClassName(Function), "Function", "Unexpected type name");
+            assertEquals( getDefinitionByName("Function"), Function, "Unexpected type");
+
+            var def:TypeDefinition = describeType(Function);
+            assertEquals( def.name, "Function", "Unexpected type name");
+
+        }
+
+
+        [Test]
+        public function testFunctionInstance():void
+        {
+            var inst:Function = testFunctionClass;
+            assertEquals( getQualifiedClassName(inst), "builtin.as$0.MethodClosure", "Unexpected type name");
+
+            var def:TypeDefinition = describeType(inst);
+            assertEquals( def.name, "MethodClosure", "Unexpected type name");
+
+            inst = testFunctionInstance;
+            assertEquals( getQualifiedClassName(inst), "builtin.as$0.MethodClosure", "Unexpected type name");
+
+            assertEquals( getQualifiedSuperclassName(inst), "Function", "Unexpected type name");
+
+            inst = function():void{};
+            assertEquals( getQualifiedClassName(inst), "Function", "Unexpected type name");
+
+            def = describeType(inst);
+            assertEquals( def.name, "Function", "Unexpected type name");
+
+            var me:Object = this;
+            inst = function():Object{return me};
+            assertEquals( getQualifiedClassName(inst), "Function", "Unexpected type name");
+
+            def = describeType(inst);
+            assertEquals( def.name, "Function", "Unexpected type name");
+        }
+
+
+        [Test]
+        public function testAncestry():void
+        {
+            var test:Object = Boolean;
+            var def:TypeDefinition = describeType(test);
+
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+            test = String;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = Number;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = uint;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = int;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = Array;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = Vector.<*>;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = Vector.<Number>;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = Vector.<int>;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = Vector.<uint>;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Object"], true));
+
+            test = Vector.<String>;
+            def = describeType(test);
+            assertTrue(containsDefinitions(def.baseClasses, ["Vector.<*>","Object"], true));
+
+
+            assertEquals(getQualifiedSuperclassName(Number), 'Object', 'Unexpected Superclass name');
+            assertEquals(getQualifiedSuperclassName(String), 'Object', 'Unexpected Superclass name');
+            assertEquals(getQualifiedSuperclassName(uint), 'Object', 'Unexpected Superclass name');
+            assertEquals(getQualifiedSuperclassName(int), 'Object', 'Unexpected Superclass name');
+            assertEquals(getQualifiedSuperclassName(Function), 'Object', 'Unexpected Superclass name');
+            assertEquals(getQualifiedSuperclassName(Array), 'Object', 'Unexpected Superclass name');
+            assertStrictlyEquals(getQualifiedSuperclassName(Object), null, 'Unexpected Superclass name');
+
+            var inst:Function =testFunctionInstance;
+            //closure:
+            assertEquals(getQualifiedSuperclassName(inst), "Function", 'Unexpected Superclass name');
+            //non-closure function ref
+            inst = function():void{};
+            assertEquals(getQualifiedSuperclassName(inst), "Object", 'Unexpected Superclass name');
+        }
+
+        [Test]
+        public function testNull():void
+        {
+            assertStrictlyEquals(getQualifiedClassName(null), "null", 'Unexpected class name');
+            assertStrictlyEquals(getQualifiedSuperclassName(null), null, 'Unexpected Superclass name');
+        }
+
+        [Test]
+        public function testUndefined():void
+        {
+            var val:* = undefined;
+            assertStrictlyEquals(getQualifiedClassName(val), "void", 'Unexpected class name');
+            assertStrictlyEquals(getQualifiedSuperclassName(val), null, 'Unexpected Superclass name');
+        }
+
+
+
+
+        private function containsDefinitions(collection:Array, requiredInOrder:Array, mustBeEqualLength:Boolean):Boolean {
+            if (mustBeEqualLength && collection.length != requiredInOrder.length) return false;
+
+            for (var i:uint = 0; i< collection.length; i++) {
+                var typeDef:TypeDefinition = collection[i];
+                if (typeDef.qualifiedName != requiredInOrder[i]) return false;
+            }
+
+            return true;
+        }
     }
 }
