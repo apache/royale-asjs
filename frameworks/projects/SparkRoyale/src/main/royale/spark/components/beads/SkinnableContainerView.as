@@ -107,10 +107,18 @@ public class SkinnableContainerView extends SparkContainerView
 			    {
 				    host.skin.setLayoutBoundsSize(NaN, host.height);
 				    host.measuredWidth = host.skin.measuredWidth;
-			    } else
+			    } 
+				else
 			    {
-				    host.skin.setLayoutBoundsSize(host.width, NaN);
-				    host.measuredHeight = host.skin.measuredHeight;
+					if (host.isHeightSizedToContent())
+					{
+					    host.skin.setLayoutBoundsSize(host.width, NaN);
+					    host.measuredHeight = host.skin.measuredHeight;
+					}
+					else
+					{
+						host.skin.setLayoutBoundsSize(host.width, host.height);
+					}
 			    }
             }
             else
