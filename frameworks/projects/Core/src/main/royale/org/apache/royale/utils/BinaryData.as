@@ -211,6 +211,33 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
+     *  The same as setting the length of the BinaryData to zero,
+     *  but will be more optimized on specific targets.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.9
+     */
+    public function clear():void
+    {
+        COMPILE::JS {
+            ba = new ArrayBuffer(0);
+            _position = 0;
+            _len = 0;
+            _typedArray = null;
+            _dataView = null;
+        }
+        COMPILE::SWF {
+            //not calling ba.clear() here, to keep consistent with js implementation of 'clear' above,
+            //because there is the possibility of external usage of 'ba' via the data getter.
+            //having 'clear' on this instance affecting external references would be inconsistent between targets if we propagated the
+            //clear call to the original ByteArray instance
+            ba = new ByteArray();
+        }
+    }
+
+    /**
 	 *  create a string representation of the binary data
 	 */
 	public function toString():String

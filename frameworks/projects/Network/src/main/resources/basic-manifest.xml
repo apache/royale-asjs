@@ -20,6 +20,7 @@
 
 <componentPackage>
     <component id="AMF0SupportBead" class="org.apache.royale.net.remoting.amf.AMF0SupportBead"/>
+    <component id="AMFClassAliasBead" class="org.apache.royale.net.beads.AMFClassAliasBead"/>
     <component id="SimpleRemoteObject" class="org.apache.royale.net.SimpleRemoteObject"/>
     <component id="RemoteObject" class="org.apache.royale.net.RemoteObject"/>
     <component id="CompressedRemoteObject" class="org.apache.royale.net.CompressedRemoteObject"/>

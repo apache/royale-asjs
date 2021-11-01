@@ -476,7 +476,6 @@ package flexUnitTests {
             //check bytes to account for precision loss between double and float comparisons
             assertTrue(bytesMatchExpectedData(bbe,[66,173,20,123]), "Error testing post writeFloat/readFloat round-tripping");
 
-
         }
     
     
@@ -615,6 +614,21 @@ package flexUnitTests {
             ba.writeDouble(3.1415927410);
             ba.position = 0;
             assertEquals( 3.1415927410, ba.readDouble(), "BinaryData readDouble: should be 3.1415927410");
+        }
+
+        [Test]
+        public function testClear():void
+        {
+            var ba:BinaryData = new BinaryData();
+            for (var i:int = 0; i < 50; i++) ba.writeByte(i);
+            ba.position = 25;
+            //test that the internal reference is severed to any external extraction of data after clear, this is different to setting 'length' to zero.
+            var olddata:Object = ba.data;
+            ba.clear();
+
+            assertEquals(0, ba.length, "BinaryData length after clear: should be 0");
+            assertEquals(0, ba.position, "BinaryData position after clear: should be 0");
+            assertNotEquals(ba.data, olddata, "BinaryData data accessor after clear: should be new internal instance");
         }
 
 }
