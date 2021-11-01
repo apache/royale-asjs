@@ -147,6 +147,8 @@
     <component id="CollectionChangeUpdateForArrayListData" class="spark.components.beads.CollectionChangeUpdateForArrayListData" />
     <component id="SelfItemRenderer" class="spark.components.beads.SelfItemRenderer"/>
     <component id="SimpleMotionPath" class="spark.effects.animation.SimpleMotionPath"/>
+    <component id="DateTimeFormatter" class="spark.formatters.DateTimeFormatter"/>
+    <component id="NumberFormatter" class="spark.formatters.NumberFormatter"/>
 
     <!-- MXItemRenderer -->
 	<component id="MXItemRenderer" class="spark.controls.listClasses.MXItemRenderer"/>

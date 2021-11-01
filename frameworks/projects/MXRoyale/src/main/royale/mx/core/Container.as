@@ -35,6 +35,7 @@ package mx.core
     import org.apache.royale.core.IMXMLDocument;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStatesImpl;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.events.Event;
@@ -99,8 +100,8 @@ import mx.styles.ISimpleStyleClient;
 import mx.styles.IStyleClient;
 import mx.styles.StyleProtoChain;
 
-use namespace mx_internal;
 */
+use namespace mx_internal;
 
 //--------------------------------------
 //  Events
@@ -1152,6 +1153,49 @@ public class Container extends UIComponent
 		dispatchEvent( new Event("layoutNeeded") );
 	}
 	
+    /**
+     *  @private
+     */
+    override mx_internal function childAdded(child:IUIBase):void
+    {
+		super.addingChild(child);
+		if (parent)
+		{
+			var oldMeasuredWidth:Number = measuredWidth;
+			var oldMeasuredHeight:Number = measuredHeight;
+			invalidateSize();
+			if (oldMeasuredWidth != measuredWidth ||
+				oldMeasuredHeight != measuredHeight)
+			{
+				if (parent is UIComponent)
+				{
+					(parent as UIComponent).invalidateSize();
+				}
+			}
+		}
+	}
+
+    /**
+     *  @private
+     */
+    override mx_internal function childRemoved(child:IUIBase):void
+    {
+		super.removingChild(child);
+		if (parent)
+		{
+			var oldMeasuredWidth:Number = measuredWidth;
+			var oldMeasuredHeight:Number = measuredHeight;
+			invalidateSize();
+			if (oldMeasuredWidth != measuredWidth ||
+				oldMeasuredHeight != measuredHeight)
+			{
+				if (parent is UIComponent)
+				{
+					(parent as UIComponent).invalidateSize();
+				}
+			}
+		}
+	}
 	
 	//----------------------------------
 	//  data
@@ -1453,7 +1497,7 @@ public class Container extends UIComponent
 		return contentView.getElementAt(index);
 	}
 	
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     COMPILE::SWF
     override public function getChildAt(index:int):IUIComponent
     {
@@ -1754,6 +1798,60 @@ public class Container extends UIComponent
             return contentPane.mouseY;
         */
         return super.contentMouseY; 
+    }
+	
+	
+	    //----------------------------------
+    //  rawChildren
+    //----------------------------------
+
+    /**
+     *  @private
+     *  The single IChildList object that's always returned
+     *  from the rawChildren property, below.
+     */
+    private var _rawChildren:ContainerRawChildrenList;
+
+    /**
+     *  A container typically contains child components, which can be enumerated
+     *  using the <code>Container.getChildAt()</code> method and 
+     *  <code>Container.numChildren</code> property.  In addition, the container
+     *  may contain style elements and skins, such as the border and background.
+     *  Flash Player and AIR do not draw any distinction between child components
+     *  and skins.  They are all accessible using the player's 
+     *  <code>getChildAt()</code> method  and
+     *  <code>numChildren</code> property.  
+     *  However, the Container class overrides the <code>getChildAt()</code> method 
+     *  and <code>numChildren</code> property (and several other methods) 
+     *  to create the illusion that
+     *  the container's children are the only child components.
+     *
+     *  <p>If you need to access all of the children of the container (both the
+     *  content children and the skins), then use the methods and properties
+     *  on the <code>rawChildren</code> property instead of the regular Container methods. 
+     *  For example, use the <code>Container.rawChildren.getChildAt())</code> method.
+     *  However, if a container creates a ContentPane Sprite object for its children,
+     *  the <code>rawChildren</code> property value only counts the ContentPane, not the
+     *  container's children.
+     *  It is not always possible to determine when a container will have a ContentPane.</p>
+     * 
+     *  <p><b>Note:</b>If you call the <code>addChild</code> or 
+     *  <code>addChildAt</code> method of the <code>rawChildren</code> object,
+     *  set <code>tabFocusEnabled = false</code> on the component that you have added.
+     *  Doing so prevents users from tabbing to the visual-only component
+     *  that you have added.</p>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get rawChildren():IChildList
+    {
+        if (!_rawChildren)
+            _rawChildren = new ContainerRawChildrenList(this);
+
+        return _rawChildren;
     }
 
 }

@@ -28,6 +28,7 @@ package org.apache.royale.reflection.nativejs {
         ret['classRef'] = Number;
         ret['name'] = 'Number';
         ret['NATIVE_TYPE'] = true;
+        ret['NATIVE_BASE'] = Object;
         
         ret['ROYALE_CLASS_INFO'] = { names: [{ name: 'Number', qName: 'Number', kind: 'class' }] };
     

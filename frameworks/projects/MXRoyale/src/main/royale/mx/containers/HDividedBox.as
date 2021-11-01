@@ -78,6 +78,7 @@ public class HDividedBox extends DividedBox
 	//  Constructor
 	//
 	//--------------------------------------------------------------------------
+	import org.apache.royale.events.MouseEvent;
 
 	/**
 	 *  Constructor.
@@ -92,9 +93,34 @@ public class HDividedBox extends DividedBox
 		super();
 		typeNames = "HDividedBox";
 		
-		super.direction = BoxDirection.HORIZONTAL;				
+		super.direction = BoxDirection.HORIZONTAL;	
+		addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+		
+	}
+	protected function mouseDownHandler(event:MouseEvent):void
+	{
+		if (event.target != this)
+		{
+			return;
+		}
+		addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+		topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+	}
+	protected function mouseUpHandler(event:MouseEvent):void
+	{
+		removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+		topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 	}
 
+	protected function mouseMoveHandler(event:MouseEvent):void
+	{
+		var w1:int = Math.floor(100 * event.localX / width);
+		w1 = Math.min(w1, 95);
+		w1 = Math.max(w1, 5);
+		getChildAt(0).percentWidth = w1;
+		getChildAt(1).percentWidth = 100 - w1;
+		_layout.layout();
+	}
 	//--------------------------------------------------------------------------
 	//
 	//  Overridden properties

@@ -41,6 +41,7 @@ import mx.managers.PopUpManager;
 import mx.core.LayoutDirection;
 import mx.events.SandboxMouseEvent;
 import mx.events.MouseEvent;
+import mx.core.ClassFactory;
 
 use namespace mx_internal;
 
@@ -1460,6 +1461,93 @@ public class ComboBox extends ComboBase
             close(event);
         }
     }
+	
+	//----------------------------------
+    //  dropdownFactory
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the dropdownFactory property.
+     */
+    private var _dropdownFactory:IFactory = new ClassFactory(List);
+
+    [Bindable("dropdownFactoryChanged")]
+
+    /**
+     *  The IFactory that creates a ListBase-derived instance to use
+     *  as the drop-down.
+     *  The default value is an IFactory for List
+     *
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get dropdownFactory():IFactory
+    {
+        return _dropdownFactory;
+    }
+
+    /**
+     *  @private
+     */
+    public function set dropdownFactory(value:IFactory):void
+    {
+        _dropdownFactory = value;
+
+        dispatchEvent(new Event("dropdownFactoryChanged"));
+    }
+	
+	
+	//----------------------------------
+    //  dropdownWidth
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the dropdownWidth property.
+     */
+    private var _dropdownWidth:Number = 100;
+
+    [Bindable("dropdownWidthChanged")]
+    [Inspectable(category="Size", defaultValue="100")]
+
+    /**
+     *  Width of the drop-down list, in pixels.
+     *  <p>The default value is 100 or the width of the longest text
+     *  in the <code>dataProvider</code>, whichever is greater.</p>
+     *
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get dropdownWidth():Number
+    {
+        return _dropdownWidth;
+    }
+
+    /**
+     *  @private
+     */
+
+    private var preferredDropdownWidth:Number;
+	
+    public function set dropdownWidth(value:Number):void
+    {
+        _dropdownWidth = value;
+
+        preferredDropdownWidth = value;
+
+        if (_dropdown)
+            _dropdown.setActualSize(value, _dropdown.height);
+
+        dispatchEvent(new Event("dropdownWidthChanged"));
+    }
+
 
 
 

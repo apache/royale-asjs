@@ -56,6 +56,10 @@ package
 
         //TEMPORARY WIP - this should be migrated to AMFConnection at some point when fully completed:
         import org.apache.royale.net.remoting.amf.AMF0NetConnection; AMF0NetConnection;
+
+        import org.apache.royale.utils.async.HttpRequestTask; HttpRequestTask;
+        import org.apache.royale.utils.async.HttpDownloadTask; HttpDownloadTask;
+        import org.apache.royale.utils.async.HttpUploadTask; HttpUploadTask;
         
     }
 }

@@ -27,8 +27,11 @@ COMPILE::JS{
 }
     
     /**
-     *  The equivalent of flash.utils.getQualifiedClassName.
-     * 
+     *  The equivalent of flash.utils.getQualifiedClassName,
+     *  except that qualified names do not include '::' between the package naming sequence and the definition name.
+     *  The '.' is always used to separate parts of the qualified name.
+     *  An example would be "my.package.path.MyClassName"
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -38,8 +41,9 @@ COMPILE::JS{
 	{
         COMPILE::SWF
         {
+            var s:String = flash.utils.getQualifiedClassName(value);
             //normalize for Vector:
-            return flash.utils.getQualifiedClassName(value).replace('__AS3__.vec::','').replace('::','.');
+            return s.replace('__AS3__.vec::','').replace('::','.');
         }
         COMPILE::JS
         {
@@ -50,8 +54,8 @@ COMPILE::JS{
                 return "Number";
             }
             if (defName === "boolean") return "Boolean";
-            if (defName === "undefined") return null;
-            if (value === null) return null;
+            if (defName === "undefined") return 'void';
+            if (value === null) return "null";
             if (Array.isArray(value)) {
                 //exclude Vector emulation:
                 if (Language.SYNTH_TAG_FIELD in value) return value[Language.SYNTH_TAG_FIELD]['type'];
@@ -64,6 +68,7 @@ COMPILE::JS{
                 if (!value.prototype) {
                     //instance
                     if (ExtraData.hasData(value.constructor)) {
+                        if (value.constructor === Function) return ExtraData.CLOSURE_QNAME;
                         //value is instance of a 'native class'
                         classInfo =  ExtraData.getData(value.constructor)['ROYALE_CLASS_INFO'];
                     } else {
@@ -87,6 +92,8 @@ COMPILE::JS{
                     }
                 }
                 if (!classInfo) {
+                    if (defName === "function") return value === Function || value.hasOwnProperty('prototype') ? "Function" : ExtraData.CLOSURE_QNAME;
+
                     //fallback
                     return "Object";
                 }

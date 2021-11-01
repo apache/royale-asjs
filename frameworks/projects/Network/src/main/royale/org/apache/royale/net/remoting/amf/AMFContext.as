@@ -1034,7 +1034,7 @@ internal class AMFContext extends BinaryData implements IDataInput, IDataOutput,
 							obj[prop] = fieldValue;
 						} else {
 							//@todo add debug-only logging for error checks (e.g. ReferenceError: Error #1074: Illegal write to read-only property)
-							if (goog.DEBUG) {
+							if (goog.DEBUG && AMFBinaryData.verboseLogging) {
 								trace('ReferenceError: Error #1056: Cannot create property ' + prop + ' on ' + localTraits.qName);
 							}
 						}

@@ -81,10 +81,17 @@
                 <uri>library://ns.apache.org/royale/mx</uri>
                 <manifest>../../../../../../projects/MXRoyale/src/main/resources/mx-royale-manifest.xml</manifest>
             </namespace>
+            <!-- include MXRoyaleBase definitions -->
+            <namespace>
+                <uri>library://ns.apache.org/royale/mx</uri>
+                <manifest>../../../../../../projects/MXRoyaleBase/src/main/resources/mx-royale-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <source-path>
             <path-element>../../../../../../projects/MXRoyale/src/main/royale</path-element>
+            <!-- include MXRoyaleBase sources -->
+            <path-element>../../../../../../projects/MXRoyaleBase/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>

@@ -165,14 +165,7 @@ package org.apache.royale.jewel.beads.views
 			IParent(_strand).addElement(titleBar);
 
 			// Text
-			label = new Label();
-			label.multiline = true;
-			label.html = alertModel.message ? alertModel.message : "";
-			
-			content = new VGroup();
-			content.addClass("content");
-			content.addElement(label);
-			IParent(_strand).addElement(content);
+			createContent();
 			
 			// controlBar
 			createButtons();
@@ -186,7 +179,20 @@ package org.apache.royale.jewel.beads.views
 			setTimeout(prepareForPopUp,  300);
 		}
 
-		private function prepareForPopUp():void
+		protected function createContent():void
+		{
+			// Text
+			label = new Label();
+			label.multiline = true;
+			label.html = alertModel.message ? alertModel.message : "";
+
+			content = new VGroup();
+			content.addClass("content");
+			content.addElement(label);
+			IParent(_strand).addElement(content);
+		}
+
+		protected function prepareForPopUp():void
         {
 			COMPILE::JS
 			{
@@ -194,7 +200,7 @@ package org.apache.royale.jewel.beads.views
 			}
 		}
 
-		private function createButtons():void
+		protected function createButtons():void
 		{
 			COMPILE::SWF
 			{
@@ -297,7 +303,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleOK(event:MouseEvent):void
+		protected function handleOK(event:MouseEvent):void
 		{
 			// create some custom event where the detail value
 			// is the OK button flag. Do same for other event handlers
@@ -307,7 +313,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleCancel(event:MouseEvent):void
+		protected function handleCancel(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.CANCEL);
 		}
@@ -315,7 +321,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleYes(event:MouseEvent):void
+		protected function handleYes(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.YES);
 		}
@@ -323,7 +329,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		private function handleNo(event:MouseEvent):void
+		protected function handleNo(event:MouseEvent):void
 		{
 			dispatchCloseEvent(Alert.NO);
 		}

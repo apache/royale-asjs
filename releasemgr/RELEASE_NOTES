@@ -1,3 +1,18 @@
+Apache Royale 0.9.8
+===================
+
+- Improvements/Additions in Basic/Jewel and Flex Emulation components
+- Improvements/Fixes to RoyaleUnit
+- Fixed some parity issues between maven and ant builds
+- Additions and fixes in maven archetypes
+- Improvements in source-maps (compiler)
+- Improvements in support for js minification (compiler)
+- Binding improvements (compiler, framework)
+- Many other compiler improvements and bugfixes.
+
+- Dozens of bugs reported, investigated, and squashed. For details of
+  closed bug reports see https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed
+
 Apache Royale 0.9.7
 ===================
 

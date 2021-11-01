@@ -115,7 +115,7 @@
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
-    <component id="StyleInheritanceBead" class="org.apache.royale.html.beads.StyleInheritanceBead"/>
+    <component id="DragBead" class="org.apache.royale.html.beads.DragBead"/>
     <component id="HideComboPopupOnMouseDownBead" class="org.apache.royale.html.beads.HideComboPopupOnMouseDownBead"/>
     <component id="KeepComboPopupWithinParentBounds" class="org.apache.royale.html.beads.KeepComboPopupWithinParentBounds"/>
     <component id="StyleInheritanceWithObserverBead" class="org.apache.royale.html.beads.StyleInheritanceWithObserverBead"/>

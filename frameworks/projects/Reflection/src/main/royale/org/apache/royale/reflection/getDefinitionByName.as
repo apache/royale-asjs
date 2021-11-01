@@ -59,6 +59,7 @@ COMPILE::JS
                 //use goog.global instead of window to support node too
                 o = goog.global;
                 for (var i:int = 0; i < n; i++) {
+                    if (!o) break;
                     o = o[parts[i]];
                 }
             } else {

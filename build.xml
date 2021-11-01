@@ -907,6 +907,8 @@ limitations under the License.
                 <exclude name="frameworks/test*/**"/>
                 <exclude name="frameworks/js/VanillaSDK/**"/>
                 <exclude name="**/*.iml"/>
+                <!-- the below is used in one case as a binary vector format for generating svg vector content -->
+                <exclude name="**/*.afdesign"/>
             </fileset>
         </copy>
         

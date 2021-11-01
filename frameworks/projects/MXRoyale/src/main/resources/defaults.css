@@ -242,8 +242,6 @@ DataGrid
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
-	width: 200px;
-	height: 200px;
 }
 
 DataGridColumnList {
@@ -493,13 +491,14 @@ PanelTitleBar
 
 pop|PopUpManagerModal
 {
-	background-color: #E2E2E2;
-	position: fixed;
-	opacity: 0.2;
-	top: 0px;
-	left: 0px;
-	width: 100%;
+	-webkit-backdrop-filter: blur(1px);
+	backdrop-filter: blur(1px);
+	background: rgba(226, 226, 226, 0.2);
 	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 
 TabNavigator
@@ -517,10 +516,10 @@ TabNavigator
 	border: 1px solid #333333
 }
 
-/* ProgressBar
+ProgressBar
 {
 	IBeadView: ClassReference("mx.controls.beads.ProgressBarView");
-} */
+}
 
 TextInput
 {
@@ -590,8 +589,11 @@ ToggleButtonBar
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
-	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
+	/* IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TextButtonItemRenderer"); */
+	/* ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead"); */
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TextButtonItemRenderer");
+	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.TextColorSelectableItemRendererBead");
 	
 	border-style: none;
 }

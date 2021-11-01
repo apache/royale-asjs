@@ -89,12 +89,7 @@ package org.apache.royale.jewel.beads.validators
 		override public function validate(event:Event = null):Boolean {
 			_isError = false;
             iterateAll(hostComponent as Group, true);
-			if (isError) {
-                if (requiredFieldError) Snackbar.show(requiredFieldError);
-				hostComponent.dispatchEvent(new Event("invalid"));
-			} else {
-				hostComponent.dispatchEvent(new Event("valid"));
-			}
+			dispatchValidEvent();
 
 			return !isError;
 		}
@@ -154,6 +149,22 @@ package org.apache.royale.jewel.beads.validators
                 destroyErrorTip();
 			}
             iterateAll(below, false, onlyVisible);
+		}
+
+		protected function dispatchValidEvent():void
+		{
+			if (isError)
+			{
+				if (requiredFieldError)
+				{
+					Snackbar.show(requiredFieldError);
+				}
+				hostComponent.dispatchEvent(new Event("invalid"));
+			}
+			else
+			{
+				hostComponent.dispatchEvent(new Event("valid"));
+			}
 		}
 	}
 }

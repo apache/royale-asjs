@@ -122,6 +122,13 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
+      <artifactId>MXRoyaleBase</artifactId>
+      <version>0.9.9-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
       <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
@@ -205,7 +212,7 @@
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
-          <artifactId>MXRoyale</artifactId>
+          <artifactId>MXRoyaleBase</artifactId>
           <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>

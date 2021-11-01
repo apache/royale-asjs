@@ -878,6 +878,11 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
         else
             super.setFocus();
     }
+	
+	protected function downArrowButton_buttonDownHandler(event:FlexEvent):void
+    {
+        // overridden by subclasses
+    }
 
 }
 

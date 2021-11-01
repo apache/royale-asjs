@@ -345,7 +345,7 @@ public class PolarDataCanvas extends ChartElement implements IDataCanvas
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     override public function addChild(child:IUIComponent):IUIComponent
     {
         var dc:PolarDataChild = new PolarDataChild(child);
@@ -366,7 +366,7 @@ public class PolarDataCanvas extends ChartElement implements IDataCanvas
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject")]
     override public function addChildAt(child:IUIComponent,index:int):IUIComponent
     {
         var dc:PolarDataChild = new PolarDataChild(child);
@@ -385,7 +385,7 @@ public class PolarDataCanvas extends ChartElement implements IDataCanvas
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
+    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject")]
     override public function removeChild(child:IUIComponent):IUIComponent
     {
          super.removeChild(child);
@@ -403,7 +403,7 @@ public class PolarDataCanvas extends ChartElement implements IDataCanvas
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */ 
-    [SWFOverride(returns="flash.display.DisplayObject"))]
+    [SWFOverride(returns="flash.display.DisplayObject")]
     override public function removeChildAt(index:int):IUIComponent
     {
         var child:IUIComponent = super.removeChildAt(index);

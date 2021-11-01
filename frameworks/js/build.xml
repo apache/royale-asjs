@@ -102,6 +102,7 @@
 		<antcall target="MaterialDesignLite"/>
         <antcall target="Icons" />
         <antcall target="Jewel"/>
+        <antcall target="MXRoyaleBase"/>
         <antcall target="MXRoyale"/>
         <antcall target="SparkRoyale"/>
         <antcall target="Crux"/>
@@ -158,6 +159,7 @@
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
         <ant dir="${basedir}/projects/IconsJS" target="clean"/>
         <ant dir="${basedir}/projects/JewelJS" target="clean"/>
+        <ant dir="${basedir}/projects/MXRoyaleBaseJS" target="clean"/>
         <ant dir="${basedir}/projects/MXRoyaleJS" target="clean"/>
         <ant dir="${basedir}/projects/CruxJS" target="clean"/>
         <ant dir="${basedir}/projects/SparkRoyaleJS" target="clean"/>
@@ -274,6 +276,10 @@
 
     <target name="Jewel" description="Clean build of JewelJS.swc">
         <ant dir="${basedir}/projects/JewelJS"/>
+    </target>
+
+    <target name="MXRoyaleBase" description="Clean build of MXRoyaleBaseJS.swc">
+        <ant dir="${basedir}/projects/MXRoyaleBaseJS"/>
     </target>
 
     <target name="MXRoyale" description="Clean build of MXRoyaleJS.swc">

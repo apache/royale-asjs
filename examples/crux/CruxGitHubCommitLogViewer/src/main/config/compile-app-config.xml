@@ -49,7 +49,7 @@
         <js-library-path append="true">
             <path-element>../../../../../../frameworks/js/libs/BasicJS.swc</path-element>
             <path-element>../../../../../../frameworks/js/libs/CruxJS.swc</path-element>
-            <path-element>../../../../../../frameworks/js/libs/MXRoyaleJS.swc</path-element>
+            <path-element>../../../../../../frameworks/js/libs/MXRoyaleBaseJS.swc</path-element>
         </js-library-path>
         <!--
         <library-path append="true">
@@ -58,8 +58,8 @@
             <path-element>../../../../../../frameworks/libs/MXRoyale.swc</path-element>
         </library-path>
          -->
-        <exclude-defaults-css-files>
+        <!--<exclude-defaults-css-files>
             <filename>MXRoyaleJS.swc:defaults.css</filename>
-        </exclude-defaults-css-files>
+        </exclude-defaults-css-files>-->
     </compiler>
 </royale-config>

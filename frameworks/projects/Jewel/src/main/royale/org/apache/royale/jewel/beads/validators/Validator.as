@@ -228,8 +228,24 @@ package org.apache.royale.jewel.beads.validators
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get isError():Boolean {
-			return (_errorTip != null);
+		public function get isError():Boolean
+		{
+			if (!noErrorTip)
+			{
+				return (_errorTip != null);
+			}
+			else
+			{
+				COMPILE::JS
+				{
+					return hostClassList.contains("errorBorder");
+				}
+
+				COMPILE::SWF
+				{
+					return false;
+				}
+			}
 		}
 
 		/**
@@ -300,6 +316,25 @@ package org.apache.royale.jewel.beads.validators
             _requiredFieldError = value;
 		}
 
+		private var _noErrorTip:Boolean;
+		/**
+		 *  If true removes displaying error tip
+		 *  Default false
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.9
+		 */
+		public function get noErrorTip():Boolean
+		{
+			return _noErrorTip;
+		}
+		public function set noErrorTip(value:Boolean):void
+		{
+			_noErrorTip = value;
+		}
+
 		/**
 		 *  Performs validation and return the result.
 		 *  When result is false(invalid), errorTip appears on the control.
@@ -367,31 +402,41 @@ package org.apache.royale.jewel.beads.validators
 			if (!errorText)
 				return;
 
-			if (_errorTip == null) {
-				_errorTip = new ErrorTipLabel();
+			if (!noErrorTip) {
+				if (_errorTip == null) {
+					_errorTip = new ErrorTipLabel();
 
-				_host = UIUtils.findPopUpHost(hostComponent);
-				_host.popUpParent.addElement(_errorTip, false);
-				IEventDispatcher(_host.popUpParent).addEventListener("cleanValidationErrors", cleanValidationErrorsHandler);
+					_host = UIUtils.findPopUpHost(hostComponent);
+					_host.popUpParent.addElement(_errorTip, false);
+					IEventDispatcher(_host.popUpParent).addEventListener("cleanValidationErrors", cleanValidationErrorsHandler);
+				}
+				COMPILE::JS
+				{
+					hostComponent.element.addEventListener("blur", removeTip);
+				}
+
+				_errorTip.text = errorText;
+
+				COMPILE::JS
+				{
+					window.addEventListener('resize', repositionHandler, false);
+					window.addEventListener('scroll', repositionHandler, true);
+					repositionHandler();
+				}
 			}
+
 			COMPILE::JS
 			{
-				hostComponent.element.addEventListener("blur",removeTip);
+				createErrorBorder();
 			}
+		}
 
-            _errorTip.text = errorText;
-
-			COMPILE::JS
+		COMPILE::JS
+		protected function createErrorBorder():void
+		{
+			if (!hostClassList.contains("errorBorder"))
 			{
-			window.addEventListener('resize', repositionHandler, false);
-			window.addEventListener('scroll', repositionHandler, true);
-			repositionHandler();
-			}
-
-			COMPILE::JS
-			{
-				if (!hostClassList.contains("errorBorder"))
-					hostClassList.add("errorBorder");
+				hostClassList.add("errorBorder");
 			}
 		}
 
@@ -498,21 +543,28 @@ package org.apache.royale.jewel.beads.validators
         {
 			COMPILE::JS
 			{
-			window.removeEventListener('resize', repositionHandler, false);
-			window.removeEventListener('scroll', repositionHandler, true);
+				window.removeEventListener('resize', repositionHandler, false);
+				window.removeEventListener('scroll', repositionHandler, true);
 			}
             if (_errorTip) {
 				IEventDispatcher(_host.popUpParent).removeEventListener("cleanValidationErrors", destroyErrorTip);
                 _host.popUpParent.removeElement(_errorTip);
 				_errorTip = null;
 			}
+
 			COMPILE::JS
 			{
+				destroyErrorBorder();
+			}
+        }
+
+		COMPILE::JS
+		protected function destroyErrorBorder():void
+		{
 			if (hostClassList && hostClassList.contains("errorBorder"))
 			{
 				hostClassList.remove("errorBorder");
 			}
-			}
-        }
+		}
 	}
 }

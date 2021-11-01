@@ -20,7 +20,6 @@
 package spark.filters
 {
 import org.apache.royale.events.IEventDispatcher;
-import flash.filters.BevelFilter;
 import mx.filters.BitmapFilter;
 import mx.filters.BitmapFilterType;
 import mx.filters.BaseDimensionFilter;
