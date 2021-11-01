@@ -448,9 +448,8 @@ package org.apache.royale.net.remoting.amf {
 					} else if (localTraits.isDynamic) {
 						obj[key] = fieldValue;
 					} else {
-						//@todo
-						trace('unknown field ', key)
-						if (goog.DEBUG) {
+						//@todo add debug-only logging for error checks (e.g. ReferenceError: Error #1074: Illegal write to read-only property)
+						if (goog.DEBUG && AMFBinaryData.verboseLogging) {
 							trace('ReferenceError: Error #1056: Cannot create property ' + key + ' on ' + localTraits.qName);
 						}
 					}
