@@ -110,41 +110,4 @@ package spark.layouts.supportClasses
 			_target = value;
 		}
 	}
-	override protected function handleChildrenAdded(event:Event):void
-	{
-		COMPILE::JS {
-			super.handleChildrenAdded(event);
-			listenToChildren();
-		}
-	}
-	
-	private function listenToChildren():void
-	{
-		var n:Number = layoutView.numElements;
-		for(var i:int=0; i < n; i++) {
-			var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
-			child.addEventListener("widthChanged", childResizeHandler);
-			child.addEventListener("heightChanged", childResizeHandler);
-			child.addEventListener("sizeChanged", childResizeHandler);
-		}
-	}
-	
-	override protected function childResizeHandler(event:Event):void
-	{
-		if (inUpdateDisplayList) 
-		{
-			// children are resizing during layout.
-			if (isNaN(target.explicitWidth) || isNaN(target.explicitHeight))
-			{
-				// that means our we need to be re-measured
-				target.invalidateSize();
-			}
-			return;
-		}
-		ranLayout = false;
-		super.childResizeHandler(event); // will set ranLayout if it did
-		if (!ranLayout)
-			performLayout();
-	}		
-		
 }
