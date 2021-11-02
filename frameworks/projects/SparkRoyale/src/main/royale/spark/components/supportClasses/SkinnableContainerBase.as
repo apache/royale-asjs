@@ -34,7 +34,7 @@ import mx.managers.IFocusManagerContainer;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-//[SkinState("normal")]
+[SkinState("normal")]
 
 /**
  *  Disabled State
@@ -44,7 +44,7 @@ import mx.managers.IFocusManagerContainer;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-//[SkinState("disabled")]
+[SkinState("disabled")]
 
 //--------------------------------------
 //  Excluded APIs
