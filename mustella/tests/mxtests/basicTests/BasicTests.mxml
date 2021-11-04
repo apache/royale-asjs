@@ -24,6 +24,7 @@ preloader="BasicTestsPreloader"
 -->
 <mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
     xmlns:mx="library://ns.apache.org/royale/mx"
+    xmlns:s="library://ns.apache.org/royale/spark"
     xmlns:haloviews="halo.views.*"
     xmlns:sparkviews="spark.views.*"
     height="800" width="1000"
@@ -211,4 +212,10 @@ preloader="BasicTestsPreloader"
         <mx:TextInput id="newStateInput" text="" enter="{currentState=newStateInput.text}" />
     </s:Group>    
     -->    
+<s:Group>
+        <s:layout>
+            <s:HorizontalLayout paddingTop="680" />
+        </s:layout>
+        <mx:Label text="This is a hack to run tests with ChildResize" />
+    </s:Group>
 </mx:Application>
