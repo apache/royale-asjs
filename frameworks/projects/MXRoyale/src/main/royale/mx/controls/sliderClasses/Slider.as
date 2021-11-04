@@ -453,7 +453,7 @@ use namespace mx_internal;
 
 [AccessibilityClass(implementation="mx.accessibility.SliderAccImpl")]
 
-[ResourceBundle("SharedResources")]
+//[ResourceBundle("SharedResources")]
 
 /**
  *  The Slider class is the base class for the Flex slider controls.

@@ -57,6 +57,7 @@ internal class MXRoyaleClasses
 	import mx.events.ResizeEvent; ResizeEvent;
 	/*import mx.utils.StringUtil; StringUtil;*/
 	import mx.core.DragSource; DragSource;
+	import mx.core.ContainerCreationPolicy; ContainerCreationPolicy;
 	import mx.events.DividerEvent; DividerEvent;
 	import mx.events.ScrollEvent; ScrollEvent;
 	import mx.events.MoveEvent; MoveEvent;

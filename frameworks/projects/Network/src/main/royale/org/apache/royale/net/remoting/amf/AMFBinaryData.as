@@ -46,6 +46,13 @@ package org.apache.royale.net.remoting.amf {
 	 */
 	public class AMFBinaryData extends BinaryData implements IDataInput, IDataOutput {
 
+		/**
+		 * For swf target this is not available, but for js (and possible other future targets)
+		 * setting it to false will avoid verbose logging in debug builds, that may slow down execution if logging is excessive.
+		 */
+		COMPILE::JS
+		public static var verboseLogging:Boolean = goog.DEBUG;
+
 		COMPILE::JS
 		private static var _propertyWriter:IDynamicPropertyWriter;
 		COMPILE::JS
@@ -184,7 +191,7 @@ package org.apache.royale.net.remoting.amf {
 			var value:* = _serializationContext.readObjectExternal();
 			var err:Error = _serializationContext.getError();
 			if (err) {
-				if (goog.DEBUG){
+				if (goog.DEBUG && AMFBinaryData.verboseLogging){
 					console.log('%c[AMFBinaryData.readObject] - Deserialization Error :'+ err.message,'color:red');
 				}
 				throw new Error(err.message);
