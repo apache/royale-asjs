@@ -520,10 +520,8 @@ package mx.containers.beads
 		
 		override protected function handleChildrenAdded(event:Event):void
 		{
-			COMPILE::JS {
-				super.handleChildrenAdded(event);
-				listenToChildren();
-			}
+			super.handleChildrenAdded(event);
+			listenToChildren();
 		}
 		
 		private function listenToChildren():void
