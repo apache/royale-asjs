@@ -16,18 +16,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.2-SNAPSHOT</version>
+    <version>0.9.9-SNAPSHOT</version>
   </parent>
 
   <artifactId>RoyaleStore_jquery</artifactId>
-  <version>0.9.2-SNAPSHOT</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: RoyaleStore_jquery</name>
@@ -39,53 +38,68 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>RoyaleStore.mxml</mainClass>
+          <mainClass>Ace.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+          <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
+          <namespaces>
+              <namespace>
+                  <uri>http://ns.adobe.com/mxml/2009</uri>
+                  <manifest>${project.basedir}/../../../frameworks/mxml-2009-manifest.xml</manifest>
+              </namespace>
+          </namespaces>
         </configuration>
       </plugin>
     </plugins>
   </build>
-  
+
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>DragDrop</artifactId>
-      <version>0.9.2-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Effects</artifactId>
-      <version>0.9.2-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.9.2-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>JQuery</artifactId>
-      <version>0.9.2-SNAPSHOT</version>
+      <artifactId>Ace</artifactId>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.2-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>BasicTheme</artifactId>
+      <version>0.9.9-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>theme</scope>
+      <classifier>js</classifier>
+    </dependency>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
-      <artifactId>royale-typedefs-jquery</artifactId>
+      <artifactId>royale-typedefs-ace</artifactId>
       <version>${royale.typedefs.version}</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
@@ -100,35 +114,35 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>DragDrop</artifactId>
-          <version>0.9.2-SNAPSHOT</version>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Effects</artifactId>
-          <version>0.9.2-SNAPSHOT</version>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Formatters</artifactId>
-          <version>0.9.2-SNAPSHOT</version>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
-          <artifactId>JQuery</artifactId>
-          <version>0.9.2-SNAPSHOT</version>
+          <artifactId>Ace</artifactId>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>0.9.2-SNAPSHOT</version>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -136,4 +150,4 @@
     </profile>
   </profiles>
 
-</project>
+<properties /></project>
