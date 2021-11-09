@@ -703,7 +703,16 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
             horizontalGap = 0;
 
         // Adjust to given width
-        var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText: label.text);
+	COMPILE::JS
+	{
+		var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText: label.text);
+	}
+	COMPILE::SWF
+	{
+		var lineMetrics:TextLineMetrics = new TextLineMetrics();
+		lineMetrics.width = label.width;
+		lineMetrics.height = label.height;
+	}
         var labelWidth:Number  = lineMetrics.width + UITextField.TEXT_WIDTH_PADDING;
         var maxLabelWidth:int = unscaledWidth - sortItemRendererWidth
                                 - horizontalGap - paddingLeft - paddingRight;
@@ -719,7 +728,14 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         }
 
         // Adjust to given height
-        var labelHeight:Number = label.textHeight + UITextField.TEXT_HEIGHT_PADDING;
+	COMPILE::JS
+	{
+		var labelHeight:Number = label.textHeight + UITextField.TEXT_HEIGHT_PADDING;
+	}
+	COMPILE::SWF
+	{
+		var labelHeight:Number = label.height + UITextField.TEXT_HEIGHT_PADDING;
+	}
         var maxLabelHeight:int = unscaledHeight - paddingTop - paddingBottom;
 
         if (maxLabelHeight < labelHeight)

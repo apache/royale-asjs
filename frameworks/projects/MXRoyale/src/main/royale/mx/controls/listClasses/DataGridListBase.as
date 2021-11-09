@@ -67,6 +67,7 @@ import mx.events.FlexEvent;
 import mx.events.ListEvent;
 
 import org.apache.royale.core.IChild;
+import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IDataProviderNotifier;
 import org.apache.royale.core.IIndexedItemRenderer;
 import org.apache.royale.core.IItemRenderer;
@@ -605,7 +606,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
 				// if we're sized to content and parent doesn't have explicitWidth
 				// meaning it is sizedToContent or may be % but depending on
 				// minHeight measurement, then force a layout
-				if (isHeightSizedToContent() && isNaN((parent as UIComponent).explicitHeight))			
+				if (isHeightSizedToContent() && isNaN((parent as ILayoutChild).explicitHeight))			
 					(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 			}
 		}
