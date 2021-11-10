@@ -23,11 +23,22 @@ limitations under the License.
     <js:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </js:valuesImpl>
+<fx:Style>
+		
+		global {
+    		IStatesImpl:            ClassReference("org.apache.royale.core.SimpleStatesImpl");
+		}
+	</fx:Style>
     <js:initialView>
-        <js:View>
+        <js:View id="mainView">
+        <js:states>
+            <js:State name="editorExcluded"/>
+            <js:State name="editorIncluded"/>
+        </js:states>
 		<js:VContainer>
-			<js:Label text="Hello World!" />
-			<ace:ACEEditor id="myEditor" width="400" height="400"/>
+			<js:TextButton text="Add Ace Editor" click="mainView.currentState='editorIncluded'"/>
+            <js:Spacer height="20" includeIn="editorIncluded"/>
+			<ace:ACEEditor includeIn="editorIncluded" id="myEditor" width="400" height="400"/>
 		</js:VContainer>
         </js:View>
     </js:initialView>
