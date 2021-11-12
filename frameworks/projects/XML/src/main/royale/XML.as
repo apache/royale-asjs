@@ -1294,9 +1294,7 @@ package
 			xml.resetNodeKind();
 			xml.setNodeKind(getNodeKindInternal());
 			xml._name = _name;
-			if(_value){
-				xml.setValue(_value);
-			}
+			xml.setValue(_value);
 			var len:int;
 			len = namespaceLength();
 			for(i=0;i<len;i++)
