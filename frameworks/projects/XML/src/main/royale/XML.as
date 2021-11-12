@@ -274,8 +274,11 @@ package
 		 */
 		static public var recursiveNotify:Boolean = false;
 		
-		static private function escapeAttributeValue(value:String):String
+		static private function escapeAttributeValue(value:*):String
 		{
+			if(value === undefined){
+				return "";
+			}
 			var arr:Array = String(value).split("");
 			var len:int = arr.length;
 			for(var i:int=0;i<len;i++)
@@ -3028,9 +3031,12 @@ package
 			// text, comment, processing-instruction, attribute, or element
 			var kind:String = getNodeRef();
 			if( kind == ATTRIBUTE)
-				return _value;
+				return _value == null ? "" : _value;
 			if(kind == TEXT)
-				return _value && _value.indexOf('<![CDATA[') == 0 ? _value.substring(9, _value.length-3): _value;
+			{
+				var textVal:String = _value == null ? "" : _value;
+				return textVal.indexOf('<![CDATA[') == 0 ? textVal.substring(9, textVal.length-3): textVal;
+			}
 			if(kind == COMMENT)
 				return "";
 			if(kind == PROCESSING_INSTRUCTION)
