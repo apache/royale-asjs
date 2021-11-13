@@ -342,7 +342,7 @@ package
 			var xml:XML = new XML();
 			xml._parent = parent;
 			xml._name = getQName(att.localName, '', att.namespaceURI, true);
-			xml._value = att.value;
+			xml.setValue(att.value);
 			parent.addChildInternal(xml);
 			return xml;
 		}
@@ -609,7 +609,7 @@ package
 				{
 					// _nodeKind = TEXT;
 					if (ignoreWhitespace) xmlStr = xmlStr.trim();
-					_value = xmlStr;
+					setValue(xmlStr);
 				}
 				else
 				{
@@ -618,7 +618,7 @@ package
 			} else {
 				if (!_internal) {
 					// _nodeKind = TEXT;
-					_value = '';
+					setValue('');
 				}
 			}
 
@@ -969,7 +969,7 @@ package
 			if (child is XML  && (child as XML).getNodeRef() == ATTRIBUTE){
 				//convert to text node
 				var xml:XML= new XML();
-				xml._value = child.toString();
+				xml.setValue(child.toString());
 				child = xml;
 				isTextSet = true;
 			}
@@ -1049,7 +1049,7 @@ package
 				{
 					if (isTextSet)
 					{
-						xml$_notify("textSet", child, child._value, null);
+						xml$_notify("textSet", child, child.getValue(), null);
 					}
 					xml$_notify("attributeAdded", this, child.name().toString(), child.getValue());
 				}
@@ -1057,7 +1057,7 @@ package
 				{
 					// the node with the _value may have a wrapper (with single child)
 					var childValueNode:XML = (child._children ? child._children[0] : child);
-					xml$_notify("textSet", childValueNode, childValueNode._value, null);
+					xml$_notify("textSet", childValueNode, childValueNode.getValue(), null);
 					// if no wrapper, then childValueNode._parent == this and childValueNode == child
 					xml$_notify("nodeAdded", childValueNode._parent, childValueNode, null);
 				}
@@ -1297,9 +1297,7 @@ package
 			xml.resetNodeKind();
 			xml.setNodeKind(getNodeKindInternal());
 			xml._name = _name;
-			if(_value){
-				xml.setValue(_value);
-			}
+			xml.setValue(_value);
 			var len:int;
 			len = namespaceLength();
 			for(i=0;i<len;i++)
@@ -1576,7 +1574,7 @@ package
 		
 		public function getValue():String
 		{
-			return _value;
+			return _value ? _value : "";
 		}
 		
 		public function hasAncestor(obj:*):Boolean
@@ -2228,7 +2226,7 @@ package
 						removed._parent = null;
 						_attributes.splice(i,1);
 						// "_name as QName" (and ignorecoercion) needed to avoid compiler from writing ".child()" due to "removed" being XML
-						xml$_notify("attributeRemoved", this, (removed._name as QName).localName, removed._value);
+						xml$_notify("attributeRemoved", this, (removed._name as QName).localName, removed.getValue());
 						return true;
 					}
 				}
@@ -2268,7 +2266,7 @@ package
 						_attributes.splice(i,1);
 						removedItem = true;
 						// "_name as QName" (and ignorecoercion) needed to avoid compiler from writing ".child()" due to "child" being XML
-						xml$_notify("attributeRemoved", this, (child._name as QName).localName, child._value);
+						xml$_notify("attributeRemoved", this, (child._name as QName).localName, child.getValue());
 					}
 				}
 				return removedItem;
@@ -2546,6 +2544,8 @@ package
 		public function setAttribute(attr:*,value:String):String
 		{
 			var i:int;
+			// stringify the value if not already a string
+			value = "" + value;
 			//make sure _attributes is not null
 			getAttributes();
 			
@@ -2564,8 +2564,7 @@ package
 							return value;
 						}
 					}
-					if(value)
-						attr.setValue(value);
+					attr.setValue(value);
 					addChild(attr);
 				}
 				return value;
@@ -2865,7 +2864,7 @@ package
 			var oldName:QName = _name;
 			_name = getQName(name,_name.prefix,_name.uri,_name.isAttribute)
 			// _name.localName = name;
-			xml$_notify("nameSet", (getNodeRef() == ATTRIBUTE ? xmlFromStringable(_value) : this), _name.toString(), oldName.toString());
+			xml$_notify("nameSet", (getNodeRef() == ATTRIBUTE ? xmlFromStringable(getValue()) : this), _name.toString(), oldName.toString());
 		}
 		
 		/**
@@ -2904,7 +2903,7 @@ package
 				delete this._nodeKind;
 			}
 			// oldName cannot be null, normally, but we're calling setName() from within parseXMLStr() for processing instructions
-			if (oldName) xml$_notify("nameSet", (ref == ATTRIBUTE ? xmlFromStringable(_value) : this), (name is QName ? _name : _name.toString()), oldName.toString());
+			if (oldName) xml$_notify("nameSet", (ref == ATTRIBUTE ? xmlFromStringable(getValue()) : this), (name is QName ? _name : _name.toString()), oldName.toString());
 		}
 		
 		/**
@@ -2971,7 +2970,12 @@ package
 		
 		public function setValue(value:String):void
 		{
-			_value = value;
+			if(value)
+			{
+				_value = value;
+			} else {
+				delete this._value;
+			}
 		}
 		
 		/**
@@ -3031,10 +3035,10 @@ package
 			// text, comment, processing-instruction, attribute, or element
 			var kind:String = getNodeRef();
 			if( kind == ATTRIBUTE)
-				return _value == null ? "" : _value;
+				return getValue();
 			if(kind == TEXT)
 			{
-				var textVal:String = _value == null ? "" : _value;
+				var textVal:String = getValue();
 				return textVal.indexOf('<![CDATA[') == 0 ? textVal.substring(9, textVal.length-3): textVal;
 			}
 			if(kind == COMMENT)
@@ -3226,28 +3230,29 @@ package
 			
 			var indent:String = indentArr.join("");
 			const nodeType:String = getNodeRef();
+			var strValue:String = getValue();
 			if(nodeType == TEXT) //4.
 			{
 				if(prettyPrinting)
 				{
-					var v:String = (_value+'').trim();
+					var v:String = strValue.trim();
 					if (v.indexOf('<![CDATA[') == 0) {
 						return indent + v;
 					}
 					return indent + escapeElementValue(v);
 				}
-				if (_value.indexOf('<![CDATA[') == 0)
-					return _value;
-				return escapeElementValue(_value);
+				if (strValue.indexOf('<![CDATA[') == 0)
+					return strValue;
+				return escapeElementValue(strValue);
 			}
 			if(nodeType == ATTRIBUTE)
-				return indent + escapeAttributeValue(_value);
+				return indent + escapeAttributeValue(strValue);
 			
 			if(nodeType == COMMENT)
-				return indent + "<!--" +  _value + "-->";
+				return indent + "<!--" +  strValue + "-->";
 			
 			if(nodeType == PROCESSING_INSTRUCTION)
-				return indent + "<?" + name().localName + " " + _value + "?>";
+				return indent + "<?" + name().localName + " " + strValue + "?>";
 			
 			// We excluded the other types, so it's a normal element
 			// step 8.
