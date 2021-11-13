@@ -66,7 +66,7 @@ import org.apache.royale.reflection.getDynamicFields;
  *  @productversion Flex 3
  *
  *  @royalesuppressexport
- *  JS PAYG : non-reflectable utility class, unused methods will be subject to deadcode elimination
+ *  JS optimization : non-reflectable utility class, unused methods will be subject to dead-code elimination
  */
 public class ObjectUtil
 {

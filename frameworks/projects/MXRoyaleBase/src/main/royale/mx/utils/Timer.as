@@ -21,7 +21,17 @@ package mx.utils
 
     import mx.events.TimerEvent;
 
-    import org.apache.royale.utils.Timer;
+    COMPILE::SWF{
+        import flash.utils.Timer;
+        import flash.events.TimerEvent;
+    }
+
+    COMPILE::JS{
+        import org.apache.royale.utils.Timer;
+        import org.apache.royale.events.Event;
+    }
+
+
 
     //--------------------------------------
     //  Events
@@ -35,7 +45,18 @@ package mx.utils
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.8
      */
-    [Event(name="timerComplete", type="org.apache.royale.events.Event")]
+    [Event(name="timerComplete", type="mx.events.TimerEvent")]
+
+    /**
+     *  Dispatched as requested via the delay and
+     *  repeat count parameters in the constructor.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="timer", type="mx.events.TimerEvent")]
 
 
     /**
@@ -49,6 +70,7 @@ package mx.utils
      *
      *  @royalesuppresspublicvarwarning
      */
+    COMPILE::JS
     public class Timer extends org.apache.royale.utils.Timer
     {
         public function Timer(delay:Number, repeatCount:int = 0)
@@ -56,14 +78,65 @@ package mx.utils
             super(delay, repeatCount);
         }
 
-        override public function stop():void
+        override protected function timerEvent(evtType:String):Event{
+            return new TimerEvent(evtType);
+        }
+
+        override protected function repeatsFinished():void{
+            dispatchEvent(timerEvent(TimerEvent.TIMER_COMPLETE));
+        }
+    }
+
+    //--------------------------------------
+    //  Events
+    //--------------------------------------
+
+    /**
+     *  Dispatched when timer stops
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     */
+    [Event(name="timerComplete", type="mx.events.TimerEvent")]
+
+    /**
+     *  Dispatched as requested via the delay and
+     *  repeat count parameters in the constructor.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    [Event(name="timer", type="mx.events.TimerEvent")]
+    /**
+     *  The Timer class dispatches events based on a delay
+     *  and repeat count.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     *
+     */
+    COMPILE::SWF
+    public class Timer extends flash.utils.Timer
+    {
+        public function Timer(delay:Number, repeatCount:int = 0)
         {
-            super.stop();
-            COMPILE::JS
+            super(delay, repeatCount);
+            addEventListener("timer", interceptor, false, 9999);
+            addEventListener("timerComplete", interceptor, false, 9999);
+        }
+
+        private function interceptor(event:flash.events.Event):void
+        {
+            if (event is flash.events.TimerEvent)
             {
-                if (!running) {
-                    dispatchEvent(new TimerEvent('timerComplete'));
-                }
+                event.stopImmediatePropagation();
+                dispatchEvent(new mx.events.TimerEvent(event.type));
             }
         }
     }

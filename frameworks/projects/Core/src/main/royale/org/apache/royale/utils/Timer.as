@@ -38,7 +38,7 @@ COMPILE::JS
 /**
  *  Dispatched as requested via the delay and
  *  repeat count parameters in the constructor.
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
@@ -94,6 +94,21 @@ public class Timer extends flash.utils.Timer
 		}
 	}
 }
+
+//--------------------------------------
+//  Events
+//--------------------------------------
+
+/**
+ *  Dispatched as requested via the delay and
+ *  repeat count parameters in the constructor.
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="timer", type="org.apache.royale.events.Event")]
 
 /**
  *  The Timer class dispatches events based on a delay
@@ -183,11 +198,23 @@ public class Timer extends EventDispatcher
 		    return;
 			
         _currentCount++;
+        var finished:Boolean;
         if (repeatCount > 0 && currentCount >= repeatCount) {
             stop();
+            finished = true;
         }
         
-        dispatchEvent(new Event('timer'));
+        dispatchEvent(timerEvent(TIMER));
+        if (finished) repeatsFinished();
+    }
+
+    protected function timerEvent(evtType:String):Event{
+        //for subclasses to override with an Event subclass, this class uses plain Event
+        return new Event(evtType);
+    }
+
+    protected function repeatsFinished():void{
+        //for subclass overrides only, this class does not dispatch any additional event here
     }
 }
 
