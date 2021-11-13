@@ -316,6 +316,15 @@ package flexUnitTests.xml
                     '<script><![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]></script>',
                     script.toXMLString(), 'unexpected toXMLString with child CDATA')
         }
+
+        [Test]
+        public function copyTest():void{
+            // make sure empty atributes are preserved.
+            var xml:XML = <foo baz=""/>;
+            assertEquals(xml.toXMLString(),'<foo baz=""/>',"unexpected to XMLString with empty attribute");
+            var xml2:XML = xml.copy();
+            assertEquals(xml2.toXMLString(),'<foo baz=""/>',"unexpected to XMLString with empty attribute after copy");
+        }
     
         [Test]
         [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
