@@ -620,6 +620,27 @@ import mx.binding.BindingManager;
 
 [Event(name="keyFocusChange", type="mx.events.FocusEvent")]
 
+
+/**
+ *  Dispatched by the drop target when the user releases the mouse over it.
+ *
+ *  <p>You use this event handler to add the drag data to the drop target.</p>
+ *
+ *  <p>If you call <code>Event.preventDefault()</code> in the event handler
+ *  for the <code>dragDrop</code> event for
+ *  a Tree control when dragging data from one Tree control to another,
+ *  it prevents the drop.</p>
+ *
+ *  @eventType mx.events.DragEvent.DRAG_START
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+
+[Event(name="dragStart", type="mx.events.DragEvent")]
+
 /**
  *  The main color for a component.
  *  
