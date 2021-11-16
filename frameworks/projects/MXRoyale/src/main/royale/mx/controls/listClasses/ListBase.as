@@ -86,6 +86,30 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 [Event(name="itemDoubleClick", type="mx.events.ListEvent")]
+
+/**
+ *  Dispatched when the user clicks on an item in the control.
+ *
+ *  @eventType mx.events.ListEvent.ITEM_ROLL_OVER
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="itemRollOver", type="mx.events.ListEvent")]
+
+/**
+ *  Dispatched when the user clicks on an item in the control.
+ *
+ *  @eventType mx.events.ListEvent.ITEM_ROLL_OUT
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="itemRollOut", type="mx.events.ListEvent")]
 	
 //--------------------------------------
 //  Styles
