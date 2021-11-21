@@ -26,7 +26,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 
 	/**
-	 *  The DataGridFixedHeader bead class is a specialty bead that can be use with a Jewel DataGrid control
+	 *  The DataGridLockedHeader bead class is a specialty bead that can be use with a Jewel DataGrid control
 	 *  when need to fix the header
 	 *  
 	 *  @langversion 3.0
@@ -34,9 +34,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.9
 	 */
-	public class DataGridFixedHeader implements IBead
+	public class DataGridLockedHeader implements IBead
 	{
-		public function DataGridFixedHeader()
+		public function DataGridLockedHeader()
 		{
 			super();
 		}
@@ -55,7 +55,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
             (dg as UIBase).style = "overflow: visible";
 
             var dgView:DataGridView = (dg as UIBase).view as DataGridView;
-            (dgView.header as DataGridButtonBar).style = "position: sticky; top: 0; z-index: 1;";
+            (dgView.header as DataGridButtonBar).style = "position: sticky; top: 0; z-index: 200;";
 		}
 	}
 }
