@@ -33,21 +33,21 @@ package org.apache.royale.jewel.beads.controls.datagrid
     import org.apache.royale.jewel.beads.views.DataGridView;
 
 	/**
-	 *  The DataGridLockedColumn bead class is a specialty bead that can be use with a Jewel DataGrid control
-	 *  when need to lock the columns
+	 *  The DataGridColumnVisibility bead class is a specialty bead that can be use with a Jewel DataGrid control
+	 *  when need to hide columns
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.9
 	 */
-	public class DataGridLockedColumn implements IBead
+	public class DataGridColumnVisibility implements IBead
 	{
         private var view:IDataGridView;
 
-        public var columnCount:int;
+        public var hide:Boolean = true;
 
-		public function DataGridLockedColumn()
+		public function DataGridColumnVisibility()
 		{
 			super();
 		}
@@ -62,27 +62,17 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		 */
         public function set strand(value:IStrand):void
 		{
-            if (columnCount == 0)
-                return;
-
-            var dg:IDataGrid = value as IDataGrid;
-
-            view = (dg as UIBase).view as DataGridView;
-            (view.header as DataGridButtonBar).style = "overflow: visible";
-            (view.listArea as DataGridListArea).style = "overflow: visible";
+            view = (value as UIBase).view as DataGridView;
             view.header.addEventListener("headerLayout", headerLayoutHandler);
 		}
 
         private function headerLayoutHandler(event:Event):void
         {
-            var left:int = 0;
-            for (var i:int = 0; i < columnCount; i++)
+            for (var i:int = 0; i < view.columnLists.length; i++)
             {
-                var width:int = ((view.header as DataGridButtonBar).buttonWidths[i] as DataGridColumnWidth).value;
-                ((view.header as DataGridButtonBar).getElementAt(i) as DatagridHeaderRenderer).style = "position: sticky; left: " + left + "px; z-index: 100; width: " + width + "px;";
-                (view.columnLists[i] as DataGridColumnList).style = "position: sticky; left: " + left + "px; z-index: 50;";
-                if (((view.columnLists[i] as DataGridColumnList).columnInfo as DataGridColumn).visible)
-                    left += width;
+                var display:String = ((view.columnLists[i] as DataGridColumnList).columnInfo as DataGridColumn).visible ? "block" : "none";
+                ((view.header as DataGridButtonBar).getElementAt(i) as DatagridHeaderRenderer).style = "display: " + display;
+                (view.columnLists[i] as DataGridColumnList).style = "display: " + display;
             }
         }
 	}
