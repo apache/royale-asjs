@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.threecheckbox
+package org.apache.royale.jewel.beads.controls.tristatecheckbox
 {
 	COMPILE::JS
 	{
-	import org.apache.royale.jewel.ThreeCheckBox;
+	import org.apache.royale.jewel.TriStateCheckBox;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.ThreeCheckBox;
+	import org.apache.royale.jewel.TriStateCheckBox;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
 	}
-	
+
 	/**
-	 * The ThreeCheckBoxLabelState bead allows us to display a different Text for each state.
+	 * The TriStateCheckBoxLabelState bead allows us to display a different Text for each state.
 	 */
     COMPILE::JS
-	public class ThreeCheckBoxLabelState extends Bead
+	public class TriStateCheckBoxLabelState extends Bead
 	{
-		
-		public function ThreeCheckBoxLabelState()
+
+		public function TriStateCheckBoxLabelState()
 		{
 		}
-		
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -53,15 +53,13 @@ package org.apache.royale.jewel.beads.controls.threecheckbox
 			_strand = value;
 			listenOnStrand("change", textLabelChangeHandler);
 			listenOnStrand(Event.COMPLETE, textLabelChangeHandler);
-			//listenOnStrand("valueCommit", textLabelChangeHandler);
-			//listenOnStrand("clickCommit", textLabelChangeHandler);
 		}
 
-		private function get hostBase():ThreeCheckBox
+		private function get hostBase():TriStateCheckBox
 		{
-			return _strand as ThreeCheckBox;
+			return _strand as TriStateCheckBox;
 		}
-		
+
 		protected function textLabelChangeHandler(event:Event):void
 		{
 			if(event.type == Event.COMPLETE)
@@ -76,38 +74,38 @@ package org.apache.royale.jewel.beads.controls.threecheckbox
 				return;
 			switch(hostBase.state)
 			{
-				case hostBase.STATE_INDETERMINATED:
-					_lastText = _indeterminatedText;
+				case hostBase.STATE_INDETERMINATE:
+					_lastText = _indeterminateText;
 					break;
 				case hostBase.STATE_UNCHECKED:
 					_lastText = _uncheckedText;
 					break;
 				case hostBase.STATE_CHECKED:
 					_lastText = _checkedText;
-					break;			
+					break;
 				default:
 					break;
 			}
 			if(_lastText != hostBase.text)
 				hostBase.text = _lastText;
-				
+
         }
 
-		private var _indeterminatedText:String;
-		public function get indeterminatedText():String { return _indeterminatedText; }
-		public function set indeterminatedText(value:String):void 		
+		private var _indeterminateText:String;
+		public function get indeterminateText():String { return _indeterminateText; }
+		public function set indeterminateText(value:String):void
 		{
-			_indeterminatedText = value;
+			_indeterminateText = value;
 
 			if(!hostBase)
 				return;
-			if(hostBase.state == hostBase.STATE_INDETERMINATED)
+			if(hostBase.state == hostBase.STATE_INDETERMINATE)
 				hostBase.text = value;
 		}
 
 		private var _uncheckedText:String;
 		public function get uncheckedText():String { return _uncheckedText; }
-		public function set uncheckedText(value:String):void 		
+		public function set uncheckedText(value:String):void
 		{
 			_uncheckedText = value;
 
@@ -119,7 +117,7 @@ package org.apache.royale.jewel.beads.controls.threecheckbox
 
 		private var _checkedText:String;
 		public function get checkedText():String { return _checkedText; }
-		public function set checkedText(value:String):void 		
+		public function set checkedText(value:String):void
 		{
 			_checkedText = value;
 
@@ -128,14 +126,14 @@ package org.apache.royale.jewel.beads.controls.threecheckbox
 			if(hostBase.state == hostBase.STATE_CHECKED)
 				hostBase.text = value;
 		}
-		
+
 	}
-	
+
     COMPILE::SWF
-	public class ThreeCheckBoxLabelState
+	public class TriStateCheckBoxLabelState
 	{
-		
-		public function ThreeCheckBoxLabelState()
+
+		public function TriStateCheckBoxLabelState()
 		{
 		}
 	}

@@ -28,24 +28,24 @@ package org.apache.royale.jewel
         import org.apache.royale.jewel.supportClasses.ISelectableWithIndeterminacy;
     }
     import org.apache.royale.events.Event;
-    
+
     /**
      *  Dispatched when the state of the control is set by code and not by manual user intervention.
      *
      *  It will be dispatched together with the general event "change".
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.8
      */
 	[Event(name="valueCommit", type="org.apache.royale.events.Event")]
-    
+
     /**
      *  Dispatched when the state of the control is manually set by the user by clicking on the control.
      *
      *  It will be dispatched together with the general event "change".
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -53,35 +53,35 @@ package org.apache.royale.jewel
      */
 	[Event(name="clickCommit", type="org.apache.royale.events.Event")]
     /**
-     *  The Jewel ThreeCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminated" state. 
-     *  
-     *  When a user clicks or touches this control or its associated text, the ThreeCheckBox changes. 
-     *  Its state from unchecked to checked or, from checked to indeterminated or, from indeterminated to unchecked. 
-     *  The state of the control is no longer binary: unchecked, checked, and indeterminated.
-     * 
-     * 
+     *  The Jewel TriStateCheckBox is an extension of the Jewel CheckBox control that adds a third "indeterminate" state.
+     *
+     *  When a user clicks or touches this control or its associated text, the TriStateCheckBox changes.
+     *  Its state from unchecked to checked or, from checked to indeterminate or, from indeterminate to unchecked.
+     *  The state of the control is no longer binary: unchecked, checked, and indeterminate.
+     *
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
     COMPILE::JS
-    public class ThreeCheckBox extends SelectableButtonBase implements ISelectableWithIndeterminacy, IInputButton, ITextButton
+    public class TriStateCheckBox extends SelectableButtonBase implements ISelectableWithIndeterminacy, IInputButton, ITextButton
     {
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function ThreeCheckBox()
+		public function TriStateCheckBox()
 		{
 			super();
 
             typeNames = "jewel checkbox";
-            
+
             addEventListener("beadsAdded", beadsAddedHandler);
         }
 
@@ -91,7 +91,7 @@ package org.apache.royale.jewel
         private function beadsAddedHandler(event:Event):void
         {
 			removeEventListener("beadsAdded", beadsAddedHandler);
-            
+
             isInitialized = true;
 
             if( stateInit == "init" )
@@ -101,10 +101,10 @@ package org.apache.royale.jewel
             dispatchEvent(new Event(Event.COMPLETE));
         }
 
-        private var _rejectedVersion:Boolean;        
+        private var _rejectedVersion:Boolean;
         public function set rejectedVersion(value:Boolean):void
-        { 
-            _rejectedVersion = value; 
+        {
+            _rejectedVersion = value;
             if(value)
             {
                 toggleClass("rejected",true);
@@ -121,7 +121,7 @@ package org.apache.royale.jewel
          */
 		override public function set selected(value:Boolean):void
 		{
-            if(value)   
+            if(value)
                 state = STATE_CHECKED;
             else{
                 state = STATE_UNCHECKED;
@@ -129,17 +129,17 @@ package org.apache.royale.jewel
 		}
 
         [Bindable("change")]
-		public function get indeterminated():Boolean
+		public function get indeterminate():Boolean
 		{
             return input.indeterminate;
 		}
         /**
          *  @private
          */
-		public function set indeterminated(value:Boolean):void
+		public function set indeterminate(value:Boolean):void
 		{
             if(value)
-                state = STATE_INDETERMINATED;
+                state = STATE_INDETERMINATE;
             else{
                 state = STATE_UNCHECKED;
             }
@@ -151,13 +151,13 @@ package org.apache.royale.jewel
         private var _STATE_CHECKED:String = "1";
         public function get STATE_CHECKED():String{ return _STATE_CHECKED; }
         public function set STATE_CHECKED(value:String):void{ _STATE_CHECKED = value; }
-        private var _STATE_INDETERMINATED:String = "-1";
-        public function get STATE_INDETERMINATED():String{ return _STATE_INDETERMINATED; }
-        public function set STATE_INDETERMINATED(value:String):void{ _STATE_INDETERMINATED = value; }
+        private var _STATE_INDETERMINATE:String = "-1";
+        public function get STATE_INDETERMINATE():String{ return _STATE_INDETERMINATE; }
+        public function set STATE_INDETERMINATE(value:String):void{ _STATE_INDETERMINATE = value; }
 
         private var _state:String;
         /**
-         * 
+         *
          * Component state: checked - unchecked - indeterminate
          */
         public function get state():String
@@ -168,7 +168,6 @@ package org.apache.royale.jewel
                 return _state;
         }
         [Bindable("change")]
-        /*[Inspectable(category="General", enumeration="stateChecked,stateUnchecked,stateIndeterminated")]*/
         public function set state(value:String):void
         {
 
@@ -184,22 +183,22 @@ package org.apache.royale.jewel
             _state = value;
 
             applyState(value);
-            
+
             if(!isInitialized)
                 return;
 
-            if(!isClickCommit)            
+            if(!isClickCommit)
                 dispatchEvent(new Event("valueCommit"));
             else
                 dispatchEvent(new Event("clickCommit"));
-            
+
             dispatchEvent(new Event(Event.CHANGE));
         }
 
-        protected function applyState(value:String):void 
+        protected function applyState(value:String):void
         {
             switch(value) {
-                case STATE_INDETERMINATED:
+                case STATE_INDETERMINATE:
                     input.indeterminate = true;
                     input.checked = false;
                     break;
@@ -222,33 +221,33 @@ package org.apache.royale.jewel
 
         private var isClickCommit:Boolean = false;
         /*
-            Internal Change. Sequence: deselected/unchecked, selected/checked and indeterminated
+            Internal Change. Sequence: deselected/unchecked, selected/checked and indeterminate
         */
-        protected function changeState():void 
+        protected function changeState():void
         {
             isClickCommit = true;
 
-            if(_state == STATE_INDETERMINATED)
+            if(_state == STATE_INDETERMINATE)
                 state = STATE_UNCHECKED;
             else if( _state == STATE_CHECKED)
-                state = STATE_INDETERMINATED;
+                state = STATE_INDETERMINATE;
             else
                 state = STATE_CHECKED;
-            
+
             isClickCommit = false;
         }
 
         /**
-         * 
-         * The selected and indeterminate properties, in isolation, cannot provide the real value represented in the component 
-         * because the input-checkbox allows a "selected" state with an "indeterminate". 
-         * 
-         * To know the real state of the component, the new property "state" must be interrogated. 
+         *
+         * The selected and indeterminate properties, in isolation, cannot provide the real value represented in the component
+         * because the input-checkbox allows a "selected" state with an "indeterminate".
+         *
+         * To know the real state of the component, the new property "state" must be interrogated.
          * The following functions are created to retrieve it directly.
-         * 
+         *
          */
         /**
-         * 
+         *
          * @return true, if the component is in "state" selected
          */
         public function isChecked():Boolean
@@ -256,7 +255,7 @@ package org.apache.royale.jewel
             return state == STATE_CHECKED ? true:false;
         }
         /**
-         * 
+         *
          * @return true, if the component is in "state" unselected
          */
         public function isUnChecked():Boolean
@@ -264,19 +263,19 @@ package org.apache.royale.jewel
             return state == STATE_UNCHECKED ? true:false;
         }
         /**
-         * 
-         * @return true, if the component is in "state" indeterminated
+         *
+         * @return true, if the component is in "state" indeterminate
          */
-        public function isIndeterminated():Boolean
+        public function isIndeterminate():Boolean
         {
-            return state == STATE_INDETERMINATED ? true:false;
+            return state == STATE_INDETERMINATE ? true:false;
         }
 
         /**
-         *  The string used as a label for the ThreeCheckBox.
+         *  The string used as a label for the TriStateCheckBox.
          *
          *  @royaleignorecoercion Text
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -303,20 +302,20 @@ package org.apache.royale.jewel
                 textNode = document.createTextNode('') as Text;
                 spanLabel.appendChild(textNode);
             }
-            
+
             textNode.nodeValue = value;
 		}
 
         /**
-         *  The value associated with the ThreeCheckBox.
-         * 
-         *  TODO. Manage the configured value according to the 3 current states. 
-         * 
+         *  The value associated with the TriStateCheckBox.
+         *
+         *  TODO. Manage the configured value according to the 3 current states.
+         *
          *  According to w3c ...
-         *  For checkboxes, the contents of the value property do not appear in the user interface. The value property only has meaning when submitting a form. 
-         *  If a checkbox is in checked state when the form is submitted, the name of the checkbox is sent along with the value of the value property 
+         *  For checkboxes, the contents of the value property do not appear in the user interface. The value property only has meaning when submitting a form.
+         *  If a checkbox is in checked state when the form is submitted, the name of the checkbox is sent along with the value of the value property
          *  (if the checkbox is not checked, no information is sent).
-         * 
+         *
          *  If we want the value property to contain a different value for each of the states we must "always" simulate a checked state for the information to be transferred.
          *  Would it be advisable to transfer this process to a Bead?
          *
@@ -338,7 +337,7 @@ package org.apache.royale.jewel
         /**
          *  the org.apache.royale.core.HTMLElementWrapper#element for this component
          *  added to the positioner. Is a HTMLInputElement.
-         * 
+         *
          *  @royalesuppresspublicvarwarning
          */
         private var _input:HTMLInputElement;
@@ -347,7 +346,7 @@ package org.apache.royale.jewel
 
         /**
          *  the input button
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -360,7 +359,7 @@ package org.apache.royale.jewel
 		private var _spanLabel:HTMLSpanElement;
 		/**
          *  the span for the label text
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -391,10 +390,10 @@ package org.apache.royale.jewel
             input.addEventListener(MouseEvent.CLICK, inputClick);
 
             spanLabel = document.createElement('span') as HTMLSpanElement;
-            positioner = document.createElement('label') as WrappedHTMLElement;   
+            positioner = document.createElement('label') as WrappedHTMLElement;
             return element;
         }
-        
+
         private function inputClick(event:MouseEvent):void
         {
             event.stopImmediatePropagation();
@@ -426,9 +425,9 @@ package org.apache.royale.jewel
     }
 
     COMPILE::SWF
-    public class ThreeCheckBox extends org.apache.royale.jewel.CheckBox
+    public class TriStateCheckBox extends org.apache.royale.jewel.CheckBox
     {
-		public function ThreeCheckBox()
+		public function TriStateCheckBox()
 		{
 			super();
         }

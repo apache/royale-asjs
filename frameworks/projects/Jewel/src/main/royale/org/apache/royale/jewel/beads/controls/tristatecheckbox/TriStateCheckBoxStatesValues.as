@@ -16,30 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.threecheckbox
+package org.apache.royale.jewel.beads.controls.tristatecheckbox
 {
 	COMPILE::JS
 	{
-	import org.apache.royale.jewel.ThreeCheckBox;
+	import org.apache.royale.jewel.TriStateCheckBox;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	}
-	
-	
+
+
 	/**
-	 * The ThreeCheckBoxStatesValues bead allows to set a custom value for each state. 
+	 * The TriStateCheckBoxStatesValues bead allows to set a custom value for each state.
 	 */
     COMPILE::JS
-	public class ThreeCheckBoxStatesValues implements IBead
+	public class TriStateCheckBoxStatesValues implements IBead
 	{
-		
-		public function ThreeCheckBoxStatesValues()
+
+		public function TriStateCheckBoxStatesValues()
 		{
 		}
-		
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -49,44 +49,44 @@ package org.apache.royale.jewel.beads.controls.threecheckbox
 		 */
 		public function set strand(value:IStrand):void
 		{
-			var hostBase:ThreeCheckBox = value as ThreeCheckBox;
-			
+			var hostBase:TriStateCheckBox = value as TriStateCheckBox;
+
 			var oldstateval:String = hostBase.state;
 			var newstateval:String = hostBase.state;
 
-			if( indeterminatedValue != "" && hostBase.STATE_INDETERMINATED != indeterminatedValue ){
-				if(oldstateval == hostBase.STATE_INDETERMINATED)
-					newstateval = indeterminatedValue;
-				hostBase.STATE_INDETERMINATED = indeterminatedValue;
+			if( indeterminateValue != "" && hostBase.STATE_INDETERMINATE != indeterminateValue ){
+				if(oldstateval == hostBase.STATE_INDETERMINATE)
+					newstateval = indeterminateValue;
+				hostBase.STATE_INDETERMINATE = indeterminateValue;
 			}
-				
+
 			if( uncheckedValue != "" && hostBase.STATE_UNCHECKED != uncheckedValue ){
 				if(oldstateval == hostBase.STATE_UNCHECKED)
 					newstateval = uncheckedValue;
 				hostBase.STATE_UNCHECKED = uncheckedValue;
 			}
-				
+
 			if( checkedValue != "" && hostBase.STATE_CHECKED != checkedValue ){
 				if(oldstateval == hostBase.STATE_CHECKED)
 					newstateval = checkedValue;
 				hostBase.STATE_CHECKED = checkedValue;
 			}
-			
+
 			if(oldstateval != newstateval)
 				hostBase.state = newstateval;
 		}
 
-		public var indeterminatedValue:String= "";
+		public var indeterminateValue:String= "";
 		public var uncheckedValue:String= "";
 		public var checkedValue:String= "";
-		
+
 	}
-	
+
     COMPILE::SWF
-	public class ThreeCheckBoxStatesValues
+	public class TriStateCheckBoxStatesValues
 	{
-		
-		public function ThreeCheckBoxStatesValues()
+
+		public function TriStateCheckBoxStatesValues()
 		{
 		}
 	}

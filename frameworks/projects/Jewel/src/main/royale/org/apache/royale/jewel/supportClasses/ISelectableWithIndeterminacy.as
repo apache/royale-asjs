@@ -21,9 +21,9 @@ package org.apache.royale.jewel.supportClasses
     import org.apache.royale.core.ISelectable;
 
     /**
-     *  The ISelectableWithIndeterminacy interface is a marker interface for indicating a class has three states by two property: 
-     *  selected property (inherited from ISelectable) and indeterminated property.
-     *  
+     *  The ISelectableWithIndeterminacy interface is a marker interface for indicating a class has three states by two property:
+     *  selected property (inherited from ISelectable) and indeterminate property.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -32,15 +32,15 @@ package org.apache.royale.jewel.supportClasses
 	public interface ISelectableWithIndeterminacy extends ISelectable
 	{
         /**
-         *  <code>true</code> if the item is indeterminated.
-         * 
+         *  <code>true</code> if the item is indeterminate.
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function get indeterminated():Boolean;
-		function set indeterminated(value:Boolean):void;
-        
+		function get indeterminate():Boolean;
+		function set indeterminate(value:Boolean):void;
+
 	}
 }
