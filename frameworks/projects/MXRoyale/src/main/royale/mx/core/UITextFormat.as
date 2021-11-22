@@ -574,11 +574,11 @@ public class UITextFormat extends TextFormat
         var measuringElement:HTMLSpanElement = measuringElementRef;
 
         if (!measuringElement) {
-            measuringElementRef = (systemManager as SystemManager).measuringElement;
+            measuringElementRef = (systemManager ? (systemManager as SystemManager).measuringElement : null);
             measuringElement = measuringElementRef;
             if (!measuringElement) {
                 var sm:SystemManager = systemManager as SystemManager;
-                if (sm.measuringElement == null)
+                if (!sm || sm.measuringElement == null)
                 {
                     measuringElement = document.createElement("span") as HTMLSpanElement;
                     //everything else is absolute position so should be above this element
@@ -587,8 +587,8 @@ public class UITextFormat extends TextFormat
                     //sm.measuringElement.style.display = "none"; // to try to keep it hidden
                     measuringElement.style.opacity = 0;
                     measuringElement.style["pointer-events"] = "none";
-                    sm.element.appendChild(measuringElement);
-                    sm.measuringElement = measuringElement;
+                    if (sm) sm.element.appendChild(measuringElement);
+                    if (sm) sm.measuringElement = measuringElement;
                 }
             }
         }
