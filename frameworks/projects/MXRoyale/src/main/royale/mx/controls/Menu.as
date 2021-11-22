@@ -94,6 +94,9 @@ package mx.controls
 	import mx.managers.IFocusManagerContainer;
 	import mx.managers.ISystemManager;
 	import mx.managers.PopUpManager;
+
+	import org.apache.royale.core.ILayoutParent;
+	import org.apache.royale.core.ILayoutView;
 	
 	use namespace mx_internal;
 	
@@ -588,7 +591,7 @@ package mx.controls
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider
+	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView
 	{
 		// include "../core/Version.as";
 		

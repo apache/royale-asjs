@@ -39,6 +39,7 @@
     <module>SparkHelloWorld</module>
     <module>RemoteObjectAMFTest</module>
     <module>DataGridExample</module>
+    <module>ResourceManagerExample</module>
   </modules>
 
   <build>

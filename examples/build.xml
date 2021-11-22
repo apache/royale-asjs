@@ -124,6 +124,7 @@
         <ant dir="${basedir}/mxroyale/HelloWorld"/>
         <ant dir="${basedir}/mxroyale/ControlsExample"/>
         <ant dir="${basedir}/mxroyale/DataGridExample"/>
+        <ant dir="${basedir}/mxroyale/ResourceManagerExample"/>
         <ant dir="${basedir}/native/ButtonExample"/>
         <ant dir="${basedir}/native/USStatesMap"/>
     </target>
