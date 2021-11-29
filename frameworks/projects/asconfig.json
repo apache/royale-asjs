@@ -34,7 +34,7 @@
             "JSRoyale"
         ],
         "external-library-path": [
-            "../../../frameworks/libs/air/airglobal.swc"
+            "../../frameworks/libs/air/airglobal.swc"
         ],
         "include-classes": [
             "BasicClasses"
@@ -63,10 +63,10 @@
             "Network/src/main/royale",
             "Reflection/src/main/royale",
             "Storage/src/main/royale",
-            "Testing/src/main/royale",
             "Text/src/main/royale",
             "TLF/src/main/royale",
-            "XML/src/main/royale"
+            "XML/src/main/royale",
+            "ExternsJS/InspireTree/src/main/royale"
         ]
     }
 }

@@ -1,0 +1,574 @@
+/**
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+
+// Global
+@import "global"
+
+@import "functions"
+
+$ParentChildIconSelectionColor-withoutHashForSVG: 29A89F // color for parent and child icons when selected in case of default
+$color1: #29A89F //blue //border color of checkbox when clicked
+$color1-withoutHashForSVG: '29A89F' //for checbox and left arrow "expanded and collapse" in case of all tree types
+$color-checkboxBackground: linear-gradient(#88e2dc, #5fd8cf) //color of checkbox background when it is clicked
+
+$primary-color: rgba(#04a3b3, 1)
+
+$lighten-color: lighten($primary-color, 5%)
+$lighten-font-color: lighten($primary-color, 10%)
+$extralighten-font-color: lighten($primary-color, 50%)
+
+$disabled-color: lighten($lighten-color, 55%)
+$disabled-font-color: darken($disabled-color, 5%)
+
+$primary-color-darkback: darken($primary-color, 5%)
+$primary-font-color-darkback: darken($primary-color, 10%)
+$extraprimary-color-darkback: darken($primary-color, 35%)
+
+$primary-color-two: darken($primary-color, 35%)
+
+$lighten-color-two: lighten($primary-color-two, 5%)
+$lighten-font-color-two: lighten($primary-color-two, 10%)
+$extralighten-font-color-two: lighten($primary-color-two, 50%)
+
+@import "iconssvg"
+
+.inspire-tree
+	-webkit-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+	.btn
+		background-color: rgba(255, 255, 255, 0.4)
+		border: 1px solid rgba(0, 0, 0, 0.2)
+		border-radius: 3px
+		display: inline-block
+		height: 20px
+		transition: all 150ms linear
+		width: 20px
+		&:hover
+			box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1)
+		& + .btn
+			margin-left: 5px
+		&.icon
+			position: relative
+			&::before
+				display: block
+				height: 14px
+				left: 50%
+				position: absolute
+				top: 50%
+				-webkit-transform: translate(-50%, -50%)
+				transform: translate(-50%, -50%)
+				width: 14px
+	.btn-group
+		display: inline-block
+		height: 35px
+		line-height: 35px
+	&:focus
+		outline: none
+	ol
+		list-style: none
+		margin: 0
+		padding: 0
+		ol
+			padding-left: 20px
+	li
+		& > .title-wrap
+			min-height: 35px
+			position: relative
+			z-index: 2
+	.toggle
+		height: 35px
+		left: 0
+		position: absolute
+		top: 0
+		width: 35px
+		z-index: 2
+		&::before
+			display: block
+			left: 50%
+			position: absolute
+			top: 50%
+			-webkit-transform: translate(-50%, -50%)
+			transform: translate(-50%, -50%)
+	input[type="checkbox"]
+		background: transparent
+		left: 50px !important
+		height: 24px
+		position: absolute
+		vertical-align: middle
+		width: 24px
+		z-index: 2
+		-moz-appearance: none
+		-ms-appearance: none
+		-o-appearance: none
+		-webkit-appearance: none
+		cursor: pointer
+	input[type="checkbox"]::before
+		background: linear-gradient(white, #f3f3f3)
+		border-radius: 3px
+		border: 1px solid #b3b3b3
+		content: " "
+		height: 22px
+		left: 0px
+		position: absolute
+		top: 0px
+		width: 22px
+	input[type="checkbox"]::after
+		background: encodeSVG("%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='" + $primary-color + "' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+		border-radius: 3px
+		border: 1px solid transparent
+		content: " "
+		height: 22px
+		left: 0px
+		opacity: 0
+		position: absolute
+		top: 0px
+		transform: scale(0)
+		transition: all 0.3s ease
+		width: 22px
+	input[type="checkbox"]:checked
+		&::after
+			background: encodeSVG("%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='" + $primary-color + "' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+			opacity: 1
+			transform: scale(1)
+		&:active
+			&::after
+				background: encodeSVG("%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='" + $primary-color + "' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+				opacity: 1
+				transform: scale(1)
+			&:focus
+				&::before
+					background: $color-checkboxBackground
+					border-radius: 3px
+					border: 1px solid $color1
+					outline: none
+		&:focus
+			&::before
+				background: $color-checkboxBackground
+				border-radius: 3px
+				border: 1px solid $color1
+				outline: none
+	input[type="checkbox"]:indeterminate
+		&::after
+			background: encodeSVG("%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='" + $primary-color + "' /%3E%3C/svg%3E") no-repeat center center
+			opacity: 1
+			transform: scale(1)
+		&:active
+			&::after
+				background: encodeSVG("%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='" + $primary-color + "' /%3E%3C/svg%3E") no-repeat center center
+				opacity: 1
+				transform: scale(1)
+			&:focus
+				&::before
+					background: $color-checkboxBackground
+					border-radius: 3px
+					border: 1px solid $color1
+					outline: none
+		&:focus
+			&::before
+				background: $color-checkboxBackground
+				border-radius: 3px
+				border: 1px solid $color1
+				outline: none
+	input[type="checkbox"]:focus
+		&::before
+			background: $color-checkboxBackground
+			border-radius: 3px
+			border: 1px solid $color1
+			outline: none
+	input[type="checkbox"][disabled]
+		color: silver
+		cursor: unset
+	input[type="checkbox"][disabled]::before
+		background: #f3f3f3
+		border-radius: 3px
+		border: 1px solid #b3b3b3
+	input[type="checkbox"][disabled]::after
+		background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23cccccc' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+	input[type="checkbox"]:checked[disabled]::after
+		background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23cccccc' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center
+	input[type="checkbox"]:indeterminate[disabled]::after
+		background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%23cccccc' /%3E%3C/svg%3E") no-repeat center center
+	&.rejected
+		input[type="checkbox"]:indeterminate
+			&::after
+				background: encodeSVG("%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='" + $primary-color + "' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center
+				opacity: 1
+				transform: scale(1)
+			&:active
+				&::after
+					background: encodeSVG("%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='" + $primary-color + "' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center
+					opacity: 1
+					transform: scale(1)
+		input[type="checkbox"]:indeterminate[disabled]::after
+			background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%23cccccc' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center
+	.title
+		cursor: default
+		display: block
+		height: 35px
+		line-height: 35px
+		overflow: hidden
+		padding-left: 42px
+		position: relative
+		text-overflow: ellipsis
+		vertical-align: middle
+		white-space: nowrap
+		z-index: 1
+		&.load-more
+			color: #476cb8
+			cursor: pointer
+			&:hover
+				text-decoration: underline
+		&::before
+			left: 30px
+			position: absolute
+			top: 45%
+			-webkit-transform: translateY(-50%)
+			transform: translateY(-50%)
+			vertical-align: top
+		&:focus
+			outline: none
+	&.drag-and-drop
+		li
+			&:not(.drop-target)
+				opacity: .5
+	.editable
+		form
+			display: inline-block
+			height: 35px
+			line-height: 35px
+			padding-top: 2px
+			input
+				height: 20px
+		& > .btn-group
+			display: none
+			padding-top: 2px
+			position: absolute
+			right: 10px
+			z-index: 3
+		&:hover
+			& > .btn-group
+				display: block
+	input
+		& + .btn-group
+			margin-left: 10px
+	& > .btn
+		&.icon
+			margin-left: 2px
+.itree-menu
+	background: #ddd
+	border: 1px solid #c4c4c4
+	border-radius: 3px
+	font-family: sans-serif
+	list-style: none
+	margin: 0
+	min-width: 150px
+	padding: 0
+	position: absolute
+	z-index: 10
+	a
+		display: block
+		padding: 3px 8px
+		&:hover
+			background: rgba(218, 250, 255, 0.5)
+			color: rgba(164, 234, 245, 0.5)
+.inspire-tree, .inspire-tree *
+	box-sizing: border-box
+.inspire-tree .collapsed > ol, .inspire-tree .hidden
+	display: none
+.drag-targeting.drag-targeting-insert.inspire-tree,
+.drag-targeting.drag-targeting-insert > .title-wrap > .title
+	border: 1px solid #2dadc5
+.drag-targeting
+	&.drag-targeting-above
+		& > .title-wrap
+			& > .title
+				border-top: 3px solid #2dadc5
+	&.drag-targeting-below
+		& > .title-wrap
+			& > .title
+				border-bottom: 3px solid #2dadc5
+.inspire-tree .editable form input, .inspire-tree .editable form .btn
+	vertical-align: top
+.inspire-tree
+	& > ol
+		& > .folder
+			&:first-child
+				&:not(:only-child)
+					background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAMCAYAAACji9dXAAAAFUlEQVQIW2M8d+HSf0YGBgYGRpJZAJ2uFKcp4HfpAAAAAElFTkSuQmCC")
+					background-position: 16px 25px
+					background-repeat: no-repeat
+	&.editable-add
+		& > ol
+			& > .folder
+				&:last-child
+					&:not(:only-child)
+						background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAYAAAA7zJfaAAAAFUlEQVQIW2M8d+HSf0YGBgYGRrqyABKeKU0SV+t2AAAAAElFTkSuQmCC")
+						background-repeat: repeat-y
+			& > .leaf
+				&:last-child
+					background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAYCAYAAAAh8HdUAAAAN0lEQVQ4T2M8d+HSfyMDPUYGEgBJimHmMo7aBAmK0dCDJgl4ioClDGLo0dBDDz0SMu5o2oMFFgBXbEeI0XwYIwAAAABJRU5ErkJgggAA")
+	li
+		&.expanded
+			&:not(:last-child)
+				& > ol
+					background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAYAAAA7zJfaAAAAFUlEQVQIW2M8d+HSf0YGBgYGRrqyABKeKU0SV+t2AAAAAElFTkSuQmCC")
+					background-position: 16px 25px
+					background-repeat: repeat-y
+			&.folder
+				&:not(.loading)
+					& > .title-wrap
+						background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAMCAYAAACji9dXAAAAFUlEQVQIW2M8d+HSf0YGBgYGRpJZAJ2uFKcp4HfpAAAAAElFTkSuQmCC")
+						background-position: 31px 13px
+						background-repeat: no-repeat
+	.leaf
+		&:not(:last-child):not(.detached)
+			background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAYCAYAAAAh8HdUAAAAN0lEQVQ4T2M8d+HSfyMDPUYGEgBJimHmMo7aBAmK0dCDJgl4ioClDGLo0dBDDz0SMu5o2oMFFgBXbEeI0XwYIwAAAABJRU5ErkJgggAA")
+			background-position: 11px 0
+			background-repeat: no-repeat
+			background-size: 19px
+		&:last-child
+			background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAANCAYAAABy6+R8AAAAKklEQVQoU2M8d+HSfyMDPUYGEgBJimHmMo7aBAmK0dCDJgl4ioClDGJoAGUZM32Z0U8tAAAAAElFTkSuQmCC")
+			background-position: 11px 0
+			background-repeat: no-repeat
+			background-size: 19px
+		&.detached
+			&:last-child
+				background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAMCAYAAACji9dXAAAAFUlEQVQIW2M8d+HSf0YGBgYGRpJZAJ2uFKcp4HfpAAAAAElFTkSuQmCC")
+				background-position: 11px 0
+				background-repeat: no-repeat
+				background-size: 19px
+.inspire-tree .folder:last-child:not(:only-child), .inspire-tree li .folder:last-child
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAMCAYAAACji9dXAAAAFUlEQVQIW2M8d+HSf0YGBgYGRpJZAJ2uFKcp4HfpAAAAAElFTkSuQmCC")
+	background-position: 16px 0
+	background-repeat: no-repeat
+.inspire-tree > ol .expanded:not(:last-child):not(:first-child), .inspire-tree li:not(:last-child)
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAYCAYAAAA7zJfaAAAAFUlEQVQIW2M8d+HSf0YGBgYGRrqyABKeKU0SV+t2AAAAAElFTkSuQmCC")
+	background-position: 16px 0
+	background-repeat: no-repeat
+.inspire-tree
+	.icon
+		&::before
+			background-position: 0 0
+			background-repeat: no-repeat
+			content: ''
+			display: inline-block
+			height: 14px
+			width: 14px
+	.icon-check
+		&::before
+			background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%236a6a6a%22%20d%3D%22M27%204l-15%2015-7-7-5%205%2012%2012%2020-20z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+		&:hover
+			&::before
+				background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%230ccc0a%22%20d%3D%22M27%204l-15%2015-7-7-5%205%2012%2012%2020-20z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+	.icon-collapse
+		&::before
+			background: $icon-collapse-svg  no-repeat center center
+			content: " "
+			height: 22px
+			left: 50%
+			top: 50%
+			width: 14px
+	.icon-cross
+		&::before
+			background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%236a6a6a%22%20d%3D%22M31.708%2025.708c-0-0-0-0-0-0l-9.708-9.708%209.708-9.708c0-0%200-0%200-0%200.105-0.105%200.18-0.227%200.229-0.357%200.133-0.356%200.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13%200.048-0.252%200.124-0.357%200.228%200%200-0%200-0%200l-9.708%209.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057%200.229l-4.586%204.586c-0.286%200.286-0.361%200.702-0.229%201.057%200.049%200.13%200.124%200.252%200.229%200.357%200%200%200%200%200%200l9.708%209.708-9.708%209.708c-0%200-0%200-0%200-0.104%200.105-0.18%200.227-0.229%200.357-0.133%200.355-0.057%200.771%200.229%201.057l4.586%204.586c0.286%200.286%200.702%200.361%201.057%200.229%200.13-0.049%200.252-0.124%200.357-0.229%200-0%200-0%200-0l9.708-9.708%209.708%209.708c0%200%200%200%200%200%200.105%200.105%200.227%200.18%200.357%200.229%200.356%200.133%200.771%200.057%201.057-0.229l4.586-4.586c0.286-0.286%200.362-0.702%200.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+		&:hover
+			&::before
+				background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23c00%22%20d%3D%22M31.708%2025.708c-0-0-0-0-0-0l-9.708-9.708%209.708-9.708c0-0%200-0%200-0%200.105-0.105%200.18-0.227%200.229-0.357%200.133-0.356%200.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13%200.048-0.252%200.124-0.357%200.228%200%200-0%200-0%200l-9.708%209.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057%200.229l-4.586%204.586c-0.286%200.286-0.361%200.702-0.229%201.057%200.049%200.13%200.124%200.252%200.229%200.357%200%200%200%200%200%200l9.708%209.708-9.708%209.708c-0%200-0%200-0%200-0.104%200.105-0.18%200.227-0.229%200.357-0.133%200.355-0.057%200.771%200.229%201.057l4.586%204.586c0.286%200.286%200.702%200.361%201.057%200.229%200.13-0.049%200.252-0.124%200.357-0.229%200-0%200-0%200-0l9.708-9.708%209.708%209.708c0%200%200%200%200%200%200.105%200.105%200.227%200.18%200.357%200.229%200.356%200.133%200.771%200.057%201.057-0.229l4.586-4.586c0.286-0.286%200.362-0.702%200.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+	.icon-expand
+		&::before
+			background: $icon-expand-svg  no-repeat center center
+			content: " "
+			height: 22px
+			left: 25%
+			top: 25%
+			width: 14px
+			-webkit-transform: rotate(-90deg)
+			-ms-transform: rotate(-90deg)
+			transform: rotate(-90deg)
+	.icon-file-empty
+		&::before
+			background-image: $icon-file-empty-svg
+	.icon-folder
+		&::before
+			background-image: $icon-folder-svg
+	.icon-folder-open
+		&::before
+			background-image: $icon-folder-open-svg
+	.icon-minus
+		&::before
+			background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%236a6a6a%22%20d%3D%22M0%2013v6c0%200.552%200.448%201%201%201h30c0.552%200%201-0.448%201-1v-6c0-0.552-0.448-1-1-1h-30c-0.552%200-1%200.448-1%201z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+		&:hover
+			&::before
+				background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23c00%22%20d%3D%22M0%2013v6c0%200.552%200.448%201%201%201h30c0.552%200%201-0.448%201-1v-6c0-0.552-0.448-1-1-1h-30c-0.552%200-1%200.448-1%201z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+	.icon-more
+		&::before
+			background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%236a6a6a%22%20d%3D%22M12%209.984c1.078%200%202.016%200.938%202.016%202.016s-0.938%202.016-2.016%202.016-2.016-0.938-2.016-2.016%200.938-2.016%202.016-2.016zM18%209.984c1.078%200%202.016%200.938%202.016%202.016s-0.938%202.016-2.016%202.016-2.016-0.938-2.016-2.016%200.938-2.016%202.016-2.016zM6%209.984c1.078%200%202.016%200.938%202.016%202.016s-0.938%202.016-2.016%202.016-2.016-0.938-2.016-2.016%200.938-2.016%202.016-2.016z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+	.icon-pencil
+		&::before
+			background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%236a6a6a%22%20d%3D%22M27%200c2.761%200%205%202.239%205%205%200%201.126-0.372%202.164-1%203l-2%202-7-7%202-2c0.836-0.628%201.874-1%203-1zM2%2023l-2%209%209-2%2018.5-18.5-7-7-18.5%2018.5zM22.362%2011.362l-14%2014-1.724-1.724%2014-14%201.724%201.724z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E%0A")
+		&:hover
+			&::before
+				background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%230ccc0a%22%20d%3D%22M27%200c2.761%200%205%202.239%205%205%200%201.126-0.372%202.164-1%203l-2%202-7-7%202-2c0.836-0.628%201.874-1%203-1zM2%2023l-2%209%209-2%2018.5-18.5-7-7-18.5%2018.5zM22.362%2011.362l-14%2014-1.724-1.724%2014-14%201.724%201.724z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E%0A")
+	.icon-plus
+		&::before
+			background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%236a6a6a%22%20d%3D%22M31%2012h-11v-11c0-0.552-0.448-1-1-1h-6c-0.552%200-1%200.448-1%201v11h-11c-0.552%200-1%200.448-1%201v6c0%200.552%200.448%201%201%201h11v11c0%200.552%200.448%201%201%201h6c0.552%200%201-0.448%201-1v-11h11c0.552%200%201-0.448%201-1v-6c0-0.552-0.448-1-1-1z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+		&:hover
+			&::before
+				background-image: url("data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%230ccc0a%22%20d%3D%22M31%2012h-11v-11c0-0.552-0.448-1-1-1h-6c-0.552%200-1%200.448-1%201v11h-11c-0.552%200-1%200.448-1%201v6c0%200.552%200.448%201%201%201h11v11c0%200.552%200.448%201%201%201h6c0.552%200%201-0.448%201-1v-11h11c0.552%200%201-0.448%201-1v-6c0-0.552-0.448-1-1-1z%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+	.loading
+		& > .title-wrap
+			input
+				display: none
+			.title
+				&::before
+					background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2714px%27%20height%3D%2714px%27%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%20preserveAspectRatio%3D%22xMidYMid%22%20class%3D%22uil-ring%22%3E%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22none%22%20class%3D%22bk%22%3E%3C%2Frect%3E%3Cdefs%3E%3Cfilter%20id%3D%22uil-ring-shadow%22%20x%3D%22-100%25%22%20y%3D%22-100%25%22%20width%3D%22300%25%22%20height%3D%22300%25%22%3E%3CfeOffset%20result%3D%22offOut%22%20in%3D%22SourceGraphic%22%20dx%3D%220%22%20dy%3D%220%22%3E%3C%2FfeOffset%3E%3CfeGaussianBlur%20result%3D%22blurOut%22%20in%3D%22offOut%22%20stdDeviation%3D%220%22%3E%3C%2FfeGaussianBlur%3E%3CfeBlend%20in%3D%22SourceGraphic%22%20in2%3D%22blurOut%22%20mode%3D%22normal%22%3E%3C%2FfeBlend%3E%3C%2Ffilter%3E%3C%2Fdefs%3E%3Cpath%20d%3D%22M10%2C50c0%2C0%2C0%2C0.5%2C0.1%2C1.4c0%2C0.5%2C0.1%2C1%2C0.2%2C1.7c0%2C0.3%2C0.1%2C0.7%2C0.1%2C1.1c0.1%2C0.4%2C0.1%2C0.8%2C0.2%2C1.2c0.2%2C0.8%2C0.3%2C1.8%2C0.5%2C2.8%20c0.3%2C1%2C0.6%2C2.1%2C0.9%2C3.2c0.3%2C1.1%2C0.9%2C2.3%2C1.4%2C3.5c0.5%2C1.2%2C1.2%2C2.4%2C1.8%2C3.7c0.3%2C0.6%2C0.8%2C1.2%2C1.2%2C1.9c0.4%2C0.6%2C0.8%2C1.3%2C1.3%2C1.9%20c1%2C1.2%2C1.9%2C2.6%2C3.1%2C3.7c2.2%2C2.5%2C5%2C4.7%2C7.9%2C6.7c3%2C2%2C6.5%2C3.4%2C10.1%2C4.6c3.6%2C1.1%2C7.5%2C1.5%2C11.2%2C1.6c4-0.1%2C7.7-0.6%2C11.3-1.6%20c3.6-1.2%2C7-2.6%2C10-4.6c3-2%2C5.8-4.2%2C7.9-6.7c1.2-1.2%2C2.1-2.5%2C3.1-3.7c0.5-0.6%2C0.9-1.3%2C1.3-1.9c0.4-0.6%2C0.8-1.3%2C1.2-1.9%20c0.6-1.3%2C1.3-2.5%2C1.8-3.7c0.5-1.2%2C1-2.4%2C1.4-3.5c0.3-1.1%2C0.6-2.2%2C0.9-3.2c0.2-1%2C0.4-1.9%2C0.5-2.8c0.1-0.4%2C0.1-0.8%2C0.2-1.2%20c0-0.4%2C0.1-0.7%2C0.1-1.1c0.1-0.7%2C0.1-1.2%2C0.2-1.7C90%2C50.5%2C90%2C50%2C90%2C50s0%2C0.5%2C0%2C1.4c0%2C0.5%2C0%2C1%2C0%2C1.7c0%2C0.3%2C0%2C0.7%2C0%2C1.1%20c0%2C0.4-0.1%2C0.8-0.1%2C1.2c-0.1%2C0.9-0.2%2C1.8-0.4%2C2.8c-0.2%2C1-0.5%2C2.1-0.7%2C3.3c-0.3%2C1.2-0.8%2C2.4-1.2%2C3.7c-0.2%2C0.7-0.5%2C1.3-0.8%2C1.9%20c-0.3%2C0.7-0.6%2C1.3-0.9%2C2c-0.3%2C0.7-0.7%2C1.3-1.1%2C2c-0.4%2C0.7-0.7%2C1.4-1.2%2C2c-1%2C1.3-1.9%2C2.7-3.1%2C4c-2.2%2C2.7-5%2C5-8.1%2C7.1%20c-0.8%2C0.5-1.6%2C1-2.4%2C1.5c-0.8%2C0.5-1.7%2C0.9-2.6%2C1.3L66%2C87.7l-1.4%2C0.5c-0.9%2C0.3-1.8%2C0.7-2.8%2C1c-3.8%2C1.1-7.9%2C1.7-11.8%2C1.8L47%2C90.8%20c-1%2C0-2-0.2-3-0.3l-1.5-0.2l-0.7-0.1L41.1%2C90c-1-0.3-1.9-0.5-2.9-0.7c-0.9-0.3-1.9-0.7-2.8-1L34%2C87.7l-1.3-0.6%20c-0.9-0.4-1.8-0.8-2.6-1.3c-0.8-0.5-1.6-1-2.4-1.5c-3.1-2.1-5.9-4.5-8.1-7.1c-1.2-1.2-2.1-2.7-3.1-4c-0.5-0.6-0.8-1.4-1.2-2%20c-0.4-0.7-0.8-1.3-1.1-2c-0.3-0.7-0.6-1.3-0.9-2c-0.3-0.7-0.6-1.3-0.8-1.9c-0.4-1.3-0.9-2.5-1.2-3.7c-0.3-1.2-0.5-2.3-0.7-3.3%20c-0.2-1-0.3-2-0.4-2.8c-0.1-0.4-0.1-0.8-0.1-1.2c0-0.4%2C0-0.7%2C0-1.1c0-0.7%2C0-1.2%2C0-1.7C10%2C50.5%2C10%2C50%2C10%2C50z%22%20fill%3D%22%23013138%22%20filter%3D%22url(%23uil-ring-shadow)%22%3E%3CanimateTransform%20attributeName%3D%22transform%22%20type%3D%22rotate%22%20from%3D%220%2050%2050%22%20to%3D%22360%2050%2050%22%20repeatCount%3D%22indefinite%22%20dur%3D%221s%22%3E%3C%2FanimateTransform%3E%3C%2Fpath%3E%3C%2Fsvg%3E")
+					content: ''
+					height: 14px
+					width: 14px
+	& > ol
+		position: relative
+	.wholerow
+		height: 35px
+		left: 0
+		margin-top: -35px
+		position: absolute
+		width: 100%
+		z-index: 1
+	.focused
+		& > .wholerow
+			border: 1px dotted black
+
+/* Custom */
+.inspire-tree
+	overflow: auto
+	border: 1px solid #d3d3d3
+	.title
+		padding-left: 85px
+	.icon
+		&::before
+			height: 16px
+			width: 16px
+	&.withoutcheckbox
+		.title
+			padding-left: 55px !important
+
+.editrevert.inspire-tree .icon-folder-open::after,
+.editrevert.inspire-tree .icon-folder::after
+	background: $icon-revert-svg
+	background-repeat: no-repeat
+	content: " "
+	cursor: pointer
+	height: 18px
+	position: absolute
+	right: 3px
+	top: 18%
+	width: 16px
+	z-index: 3
+.editrevert
+	&.inspire-tree
+		.title
+			padding-right: 20px
+.inspire-tree
+	&.noneicon
+		.title
+			padding-left: 58px
+		input[type="checkbox"]
+			left: 25px !important
+		.icon-folder
+			&::before
+				background-image: url()
+		.icon-folder-open
+			&::before
+				background-image: url()
+		.icon-file-empty
+			&::before
+				background-image: url()
+		.selected
+			& > .title-wrap
+				.icon-folder
+					&::before
+						background-image: url()
+				.icon-folder-open
+					&::before
+						background-image: url()
+				.icon-file-empty
+					&::before
+						background-image: url()
+		&.withoutcheckbox
+			.title
+				padding-left: 35px !important
+	&.readonly
+		input[type="checkbox"]
+			z-index: -1
+
+.inspire-tree .wholerow:hover,
+.inspire-tree .title-wrap:hover + .wholerow
+	background-color: $lighten-color
+	color: $extralighten-font-color
+
+.inspire-tree .matched > .wholerow,
+.inspire-tree .matched > .wholerow:hover,
+.inspire-tree .matched > .title-wrap:hover + .wholerow
+	background-color: $lighten-color
+
+.inspire-tree 
+	& > ol 
+		& > li 
+			& > div 
+				& > a 
+					color: #808080 
+					&:hover 
+						color: $extralighten-font-color
+			& > ol 
+				& > li 
+					& > div 
+						& > a 
+							color: #808080 
+							&:hover 
+								color: $extralighten-font-color
+
+.inspire-tree .selected > .wholerow
+	background-color: $primary-color-darkback
+	color: $extralighten-font-color
+
+.inspire-tree .selected > .wholerow:hover,
+.inspire-tree .selected > .title-wrap:hover + .wholerow
+	background-color: $lighten-color
+	color: $extralighten-font-color
+
+.inspire-tree
+	.selected
+		& > .title-wrap
+			& a.title.icon
+				color: white 
+			.icon-folder
+				&::before
+					background-image: $icon-folder-svg-selected
+			.icon-folder-open
+				&::before
+					background-image: $icon-folder-open-svg-selected
+			.icon-file-empty
+				&::before
+					background-image: $icon-file-empty-svg-selected
+		& > .icon-collapse
+			&::before
+				background: $icon-collapse-svg-selected  no-repeat center center
+		& > .icon-expand
+			&::before
+				background: $icon-expand-svg-selected  no-repeat center center

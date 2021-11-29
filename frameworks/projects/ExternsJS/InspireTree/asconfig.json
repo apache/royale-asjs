@@ -19,21 +19,15 @@
     "type": "lib",
     "compilerOptions": {
         "debug": true,
-        "define": [
-            {
-                "name": "CONFIG::release",
-                "value": true
-            },
-            {
-                "name": "CONFIG::debug",
-                "value": false
-            }
-        ],
         "targets": [
             "JSRoyale"
         ],
-        "include-sources": [
-            "InspireTree/src/main/royale"
-        ]
+        "include-classes": [
+            "src/main/royale/InspireTreeClasses.as"
+        ],
+        "source-path": [
+            "src/main/royale"
+        ],
+        "output": "target/InspireTree.swc"
     }
 }

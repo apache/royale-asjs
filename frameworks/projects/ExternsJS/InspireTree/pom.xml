@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.royale.framework</groupId>
+    <artifactId>ExternsJS</artifactId>
+    <version>0.9.9-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>InspireTree</artifactId>
+  <version>0.9.9-SNAPSHOT</version>
+  <packaging>swc</packaging>
+
+  <name>Apache Royale: Framework: Libs: ExternsJS: InspireTree</name>
+
+  <build>
+    <sourceDirectory>src/main/royale</sourceDirectory>
+
+    <plugins>
+
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <version>0.9.9-SNAPSHOT</version>
+        <extensions>true</extensions>
+
+        <configuration>
+            <!-- Make the classes listed in the manifest be available under the given namespace -->
+          <namespaces>
+            <namespace>
+              <uri>library://ns.apache.org/royale/externsjs/inspiretree</uri>
+              <manifest>${project.basedir}/src/main/resources/inspiretree-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+              <type>as</type>
+              <uri>library://ns.apache.org/royale/externsjs/inspiretree</uri>
+              <manifest>${project.basedir}/src/main/resources/inspiretree-as-manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <!-- Tell the compiler which classes to compile and include -->
+          <includeClasses>
+            <includeClass>InspireTreeClasses</includeClass>
+          </includeClasses>
+
+          <includeFiles>
+            <include-file>
+              <name>inspiretree/*</name>
+              <path>../src/main/resources/inspiretree/*</path>
+            </include-file>
+            <include-file>
+              <name>defaults.css</name>
+              <path>${project.basedir}/src/main/resources/defaults.css</path>
+            </include-file>
+          </includeFiles>
+
+          <includeLookupOnly>true</includeLookupOnly>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+          <skipExtern>true</skipExtern>
+          <skipAS>true</skipAS>
+
+          <additionalCompilerOptions>
+            ${project.compiler.options}
+            <!-- email Josh: 
+            With js-dynamic-access-unknown-members, the "dynamic-access" part of the name refers to how the JS is generated. 
+            It basically says that if you try to access a member that doesn't exist on a class, the generated JS should use 
+            brackets/string (obj["field"]) instead of a dot (obj.field) for member access. 
+            The idea is to force Closure compiler not to rename the name of the field on that particular line because Closure leaves strings as-is.
+            setTheme() is not declared on the Object class, so the generated JS output for obj.setTheme() will be obj["setTheme"]() if js-dynamic-access-unknown-members is true. 
+            If js-dynamic-access-unknown-members is false, then it will remain as obj.setTheme() in the generated JS, which may or may not be renamed by Closure in the release build.
+            (in some cases, Closure decides not to rename things, for whatever magical reasons it has... yes, even after months of wrangling Closure, 
+            I still don't completely understand everything that it does) -->
+            -js-dynamic-access-unknown-members=true; <!-- to access JSON object graph subobjects -->
+            -keep-as3-metadata+=Inject,Dispatcher,EventHandler,Event,PostConstruct,PreDestroy,ViewAdded,ViewRemoved,Bindable,Transient;
+            -keep-code-with-metadata=Inject;
+            -show-binding-warnings=false;
+          </additionalCompilerOptions>
+
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>nl.geodienstencentrum.maven</groupId>
+        <artifactId>sass-maven-plugin</artifactId>
+        <configuration>
+          <resources>
+              <resource>
+                  <source>
+                      <directory>${basedir}/src/main/resources/inspiretree</directory>
+                      <includes>
+                          <include>**/*.sass</include>
+                      </includes>
+                  </source>
+                  <destination>${basedir}/src/main/resources/externsjs/inspiretree</destination>
+              </resource>
+          </resources>
+        </configuration>
+        <executions>
+          <execution>
+              <id>generate-css-using-sass</id>
+              <goals>
+                  <goal>update-stylesheets</goal>
+              </goals>
+            <phase>generate-resources</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.google.code.maven-replacer-plugin</groupId>
+        <artifactId>replacer</artifactId>
+        <version>1.5.3</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <goals>
+              <goal>replace</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <includes>
+            <include>${basedir}/src/main/resources/**/*.css</include>
+          </includes>
+          <regex>false</regex>
+          <replacements>
+            <replacement>
+              <token>@@ZERO_WIDTH_SPACE</token>
+              <value>\200b</value>
+            </replacement>
+            <replacement>
+              <token>@@NON_BREAKING_SPACE</token>
+              <value>\0a</value>
+            </replacement>
+          </replacements>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.9.9-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Basic</artifactId>
+      <version>0.9.9-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>HTML</artifactId>
+      <version>0.9.9-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+
+  </dependencies>
+
+  <profiles>
+    <profile>
+      <id>platform-windows</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>nl.geodienstencentrum.maven</groupId>
+            <artifactId>sass-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-css-using-sass</id>
+                <goals>
+                  <goal>update-stylesheets</goal>
+                </goals>
+                <phase>generate-resources</phase>
+                <configuration>
+                  <sassOptions>
+                    <!-- on windows it is typical to have autoCRLF=true,
+                    so we don't want to overwrite
+                    the CRLF newlines with unix newlines (which is true by default)
+                    locally, because that will change git status of the css file
+                    on windows
+                    -->
+                    <unix_newlines>false</unix_newlines>
+                  </sassOptions>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>option-with-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Core</artifactId>
+          <version>0.9.9-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>HTML</artifactId>
+          <version>0.9.9-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.9-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
+<properties /></project>

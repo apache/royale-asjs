@@ -16,7 +16,8 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -27,250 +28,67 @@
 
   <artifactId>ExternsJS</artifactId>
   <version>0.9.9-SNAPSHOT</version>
-  <packaging>swc</packaging>
+  <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Libs: ExternsJS</name>
 
+  <modules>
+    <module>InspireTree</module>
+  </modules>
+
+  <properties>
+      <source.map>true</source.map>
+      <project.compiler.options>
+          -js-default-initializers=true;
+          -source-map=${source.map};
+          -source-map-source-root=${project.basedir}/src/main/royale/;
+      </project.compiler.options>
+  </properties>
+
   <build>
-    <sourceDirectory>src/main/royale</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
-        <version>${project.royale.compiler.version}</version>
-        <extensions>true</extensions>
-        <configuration>
-          <namespaces>
-            <namespace>
-              <uri>library://ns.apache.org/royale/externsjs</uri>
-              <manifest>${project.basedir}/src/main/resources/externsjs-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-              <type>as</type>
-              <uri>library://ns.apache.org/royale/externsjs</uri>
-              <manifest>${project.basedir}/src/main/resources/externsjs-as-manifest.xml</manifest>
-            </namespace>
-          </namespaces>
-          <includeClasses>
-            <includeClass>ExternsJSClasses</includeClass>
-          </includeClasses>
-          <includeFiles>
-            <include-file>
-              <name>defaults.css</name>
-              <path>../src/main/resources/defaults.css</path>
-            </include-file>
-          </includeFiles>
-          <includeLookupOnly>true</includeLookupOnly>
-          <allowSubclassOverrides>true</allowSubclassOverrides>
-          <skipExtern>true</skipExtern>
-          <skipAS>${royale.skipAS}</skipAS>
-          <!-- <additionalCompilerOptions>
-            -source-map=true;
-            -source-map-source-root=/frameworks/projects/ExternsJS/src/main/royale/
-          </additionalCompilerOptions> -->
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>nl.geodienstencentrum.maven</groupId>
-        <artifactId>sass-maven-plugin</artifactId>
-        <configuration>
-          <resources>
-              <resource>
-                  <source>
-                      <directory>${basedir}/src/main/resources/externsjs/inspiretree</directory>
-                      <includes>
-                          <include>**/*.sass</include>
-                      </includes>
-                  </source>
-                  <destination>${basedir}/src/main/resources/externsjs/inspiretree</destination>
-              </resource>
-          </resources>
-        </configuration>
-        <executions>
-          <execution>
-              <id>generate-css-using-sass</id>
-              <goals>
-                  <goal>update-stylesheets</goal>
-              </goals>
-            <phase>generate-resources</phase>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>com.google.code.maven-replacer-plugin</groupId>
-        <artifactId>replacer</artifactId>
-        <version>1.5.3</version>
-        <executions>
-          <execution>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>replace</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <includes>
-            <include>${basedir}/src/main/resources/**/*.css</include>
-          </includes>
-          <regex>false</regex>
-          <replacements>
-            <replacement>
-              <token>@@ZERO_WIDTH_SPACE</token>
-              <value>\200b</value>
-            </replacement>
-            <replacement>
-              <token>@@NON_BREAKING_SPACE</token>
-              <value>\0a</value>
-            </replacement>
-          </replacements>
-        </configuration>
+        <version>0.9.9-SNAPSHOT</version>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Binding</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Graphics</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Collections</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>HTML</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Basic</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Formatters</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
+  
+      <dependency>
+          <groupId>org.apache.royale.typedefs</groupId>
+          <artifactId>royale-typedefs-playerglobal</artifactId>
+          <version>0.9.9-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+          <scope>runtime</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>org.apache.royale.typedefs</groupId>
+          <artifactId>royale-typedefs-gcl</artifactId>
+          <version>0.9.9-SNAPSHOT</version>
+          <type>swc</type>
+          <scope>provided</scope>
+          <classifier>typedefs</classifier>
+      </dependency>
+
+      <!--
+      By declaring this dependency here, we force the royale-externs-js to be
+      added to the external library path of all modules. Without this it would
+      have gone to the library path.
+      -->
+      <dependency>
+          <groupId>org.apache.royale.typedefs</groupId>
+          <artifactId>royale-typedefs-js</artifactId>
+          <version>0.9.9-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>typedefs</classifier>
+          <scope>runtime</scope>
+      </dependency>
+
   </dependencies>
 
-  <profiles>
-    <profile>
-      <id>platform-windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>nl.geodienstencentrum.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>generate-css-using-sass</id>
-                <goals>
-                  <goal>update-stylesheets</goal>
-                </goals>
-                <phase>generate-resources</phase>
-                <configuration>
-                  <sassOptions>
-                    <!-- on windows it is typical to have autoCRLF=true,
-                    so we don't want to overwrite
-                    the CRLF newlines with unix newlines (which is true by default)
-                    locally, because that will change git status of the css file
-                    on windows
-                    -->
-                    <unix_newlines>false</unix_newlines>
-                  </sassOptions>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>option-with-swf</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Core</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Binding</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Graphics</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Collections</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>HTML</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Basic</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>
-        <dependency>
-          <groupId>org.apache.royale.framework</groupId>
-          <artifactId>Formatters</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
-          <type>swc</type>
-          <classifier>swf</classifier>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
-
-<properties /></project>
+</project>
