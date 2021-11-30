@@ -64,7 +64,7 @@ package org.apache.royale.utils.async
 			}
 		}
 		private var progressCallbacks:Array;
-    public function progress(callback:Function):AsyncTask{
+    public function progress(callback:Function):IAsyncTask{
       if(!progressCallbacks){
         progressCallbacks = [];
       }

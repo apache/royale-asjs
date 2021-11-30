@@ -65,7 +65,7 @@ package org.apache.royale.utils.async
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.6
      */
-    public function addTask(task:AsyncTask):void{
+    public function addTask(task:IAsyncTask):void{
       tasks.push(task);
     }
     
@@ -96,13 +96,13 @@ package org.apache.royale.utils.async
       _status = "pending";
       pendingTasks = [];
       for(var i:int=0;i<tasks.length;i++){
-        var task:AsyncTask = tasks[i];
+        var task:IAsyncTask = tasks[i];
         task.done(handleDone);
         pendingTasks.push(task);
         task.run();
       }
     }
-    private function handleDone(task:AsyncTask):void
+    private function handleDone(task:IAsyncTask):void
     {
       if(_status != "pending")
       {
@@ -120,7 +120,7 @@ package org.apache.royale.utils.async
           {
             while(pendingTasks.length)
             {
-              var pending:AsyncTask = pendingTasks.pop();
+              var pending:IAsyncTask = pendingTasks.pop();
               pending.cancel();
             }
             fail();
