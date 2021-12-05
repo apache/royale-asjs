@@ -45,7 +45,10 @@ package org.apache.royale.jewel.beads.views
         }
 
         override protected function setColumnHeight(column:StyledUIBase):void {
-            column.height = _dg.height - header.height;
+            if (_dg.height == 1)
+                column.percentHeight = 100;
+            else
+                column.height = _dg.height - header.height;
         }
     }
 }
