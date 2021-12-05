@@ -576,24 +576,20 @@ j|VirtualComboBoxPopUp {
   content: "\200b";
 }
 
-.first.jewel.list::-webkit-scrollbar
-{
+.first.jewel.list::-webkit-scrollbar {
     display: none;
 }
 
-.first.jewel.list
-{
+.first.jewel.list {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-.middle.jewel.list::-webkit-scrollbar
-{
+.middle.jewel.list::-webkit-scrollbar {
     display: none;
 }
 
-.middle.jewel.list
-{
+.middle.jewel.list {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
