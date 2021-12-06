@@ -32,6 +32,7 @@ package flexUnitTests
         public var languageTestClass:LanguageTesterTestClass;
         public var languageTestLoopVariants:LanguageTesterTestLoopVariants;
         public var languageTestArraySort:LanguageTesterArraySort;
+        public var languageTesttryCatch:LanguageTesterTestTryCatch;
         
         //core tests
         public var strandTesterTest:StrandTesterTest;
