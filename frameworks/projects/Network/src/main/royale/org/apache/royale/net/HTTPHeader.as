@@ -40,6 +40,37 @@ package org.apache.royale.net
          */
 		public static const CONTENT_TYPE:String = "Content-type";
 
+        /**
+         *  JSON Content-type.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.9
+         */
+		public static const APPLICATION_JSON:String = "application/json";
+
+        /**
+         *  Plain text Content-type.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.9
+         */
+		public static const TEXT_PLAIN:String = "text/plain";
+
+        /**
+         *
+		 *  HTTP form url encoded content type.
+		 *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.9
+         */
+        public static const FORM_URL_ENCODED:String = "application/x-www-form-urlencoded";
+
 		/**
 		 *  The Content-length header.
 		 *
