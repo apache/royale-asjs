@@ -70,10 +70,10 @@ $checkbox-button-yoffset: 0px
 
 			opacity: 0
 			
-		&:checked + span::after, &:checked:active + span::after
+		&:checked + span::after, &:checked:active + span::after, &:indeterminate + span::after, &:indeterminate:active + span::after
 			opacity: 1
 
-		&:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
+		&:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before, &:indeterminate:focus + span::before, &:indeterminate:active:focus + span::before
 			outline: none
 
 		&[disabled]

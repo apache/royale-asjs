@@ -24,6 +24,15 @@ $checkbox-border-radius: 3px
 $checkbox-label-separation: 8px
 $checkbox-label-font-size: 16px
 
+$checkbox-svg-checked: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{$primary-color}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
+$checkbox-svg-checked-disabled: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{darken($disabled-color, 15%)}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
+
+$checkbox-svg-indeterminate: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><rect stroke-width='0' stroke='#FFFFFF' height='12' width='12' y='5' x='5' fill='#{$primary-color}' /></svg>") no-repeat center center
+$checkbox-svg-indeterminate-disabled: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><rect stroke-width='0' stroke='#FFFFFF' height='12' width='12' y='5' x='5' fill='#{darken($disabled-color, 15%)}' /></svg>") no-repeat center center
+
+$checkbox-svg-rejected: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><line stroke-width='4' stroke='#{$primary-color}' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /></svg>") no-repeat center center
+$checkbox-svg-rejected-disabled: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><line stroke-width='4' stroke='#{darken($disabled-color, 15%)}' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /></svg>") no-repeat center center
+
 .jewel.checkbox
     
     // -- INPUT
@@ -39,7 +48,7 @@ $checkbox-label-font-size: 16px
             border-radius: $checkbox-border-radius
 
         + span::after
-            background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{$primary-color}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
+            background: $checkbox-svg-checked
             border: 1px solid transparent
             border-radius: $checkbox-border-radius
             
@@ -47,9 +56,16 @@ $checkbox-label-font-size: 16px
             transform: scale(0)
         
         &:checked + span::after, &:checked:active + span::after
+            background: $checkbox-svg-checked
             transform: scale(1)
         
-        &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
+        &:indeterminate + span::after, &:indeterminate:active + span::after
+            background: $checkbox-svg-indeterminate
+            //does not inherit the opacity that checked does.
+            opacity: 1
+            transform: scale(1)
+        
+        &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before, &:indeterminate:focus + span::before, &:indeterminate:active:focus + span::before
             @if $flat
                 background: lighten($primary-color, 25%)
                 border: 1px solid $primary-color
@@ -59,7 +75,6 @@ $checkbox-label-font-size: 16px
             border-radius: $checkbox-border-radius
 
         &[disabled]
-
             & + span
                 color: $disabled-font-color
 
@@ -71,14 +86,29 @@ $checkbox-label-font-size: 16px
                     border: 1px solid $disabled-border-color// .094em
                 border-radius: $checkbox-border-radius
 
-            & + span::after
-                background: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{darken($disabled-color, 15%)}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
+        &:checked[disabled] + span::after
+            background: $checkbox-svg-checked-disabled
+
+        &:indeterminate[disabled] + span::after
+            background: $checkbox-svg-indeterminate-disabled
 
     // -- LABEL
     span
         padding-left: $checkbox-label-separation
         //font-size: $checkbox-label-font-size
 
+    &.rejected
+
+        input
+        
+            &:indeterminate + span::after, &:indeterminate:active + span::after
+                background: $checkbox-svg-rejected
+                //does not inherit the opacity that checked does.
+                opacity: 1
+                transform: scale(1)
+
+            &:indeterminate[disabled] + span::after
+                background: $checkbox-svg-rejected-disabled
 
 // Jewel CheckBoxSwitch
 

@@ -34,7 +34,7 @@
     <component id="Grid" class="org.apache.royale.jewel.Grid"/>
     <component id="ScrollableGrid" class="org.apache.royale.jewel.ScrollableGrid"/>
     <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
-    
+
     <component id="SimpleLoader" class="org.apache.royale.jewel.SimpleLoader"/>
 
     <component id="SimpleTable" class="org.apache.royale.jewel.SimpleTable"/>
@@ -52,12 +52,12 @@
     <component id="DataGridColumnList" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList"/>
     <component id="DataGridListArea" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea"/>
     <component id="DataGridButtonBar" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar"/>
-    
+
     <component id="VirtualDataGrid" class="org.apache.royale.jewel.VirtualDataGrid"/>
     <component id="VirtualDataGridListArea" class="org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridListArea"/>
-    <component id="VirtualDataGridListAreaLayout" class="org.apache.royale.jewel.beads.layouts.VirtualDataGridListAreaLayout"/>    
+    <component id="VirtualDataGridListAreaLayout" class="org.apache.royale.jewel.beads.layouts.VirtualDataGridListAreaLayout"/>
     <component id="VirtualDataGridColumnList" class="org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList"/>
-    
+
     <component id="DataGridColumnLabelsChange" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridColumnLabelsChange"/>
     <component id="DataGridSort" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridSort"/>
     <component id="DataGridLockedHeader" class="org.apache.royale.jewel.beads.controls.datagrid.DataGridLockedHeader"/>
@@ -85,6 +85,7 @@
     <component id="SwitchRadio" class="org.apache.royale.jewel.SwitchRadio"/>
     <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
     <component id="Switch" class="org.apache.royale.jewel.Switch"/>
+    <component id="TriStateCheckBox" class="org.apache.royale.jewel.TriStateCheckBox"/>
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
     <component id="TitleBar" class="org.apache.royale.jewel.TitleBar"/>
     <component id="List" class="org.apache.royale.jewel.List"/>
@@ -119,7 +120,7 @@
     <component id="CreditCardValidator" class="org.apache.royale.jewel.beads.validators.CreditCardValidator"/>
 
     <component id="AssignTabContent" class="org.apache.royale.jewel.beads.controls.tabbar.AssignTabContent"/>
-    
+
     <component id="ListAlternateRowColor" class="org.apache.royale.jewel.beads.controls.list.ListAlternateRowColor"/>
     <component id="TableAlternateRowColor" class="org.apache.royale.jewel.beads.controls.table.TableAlternateRowColor"/>
 
@@ -168,7 +169,7 @@
     <component id="Image" class="org.apache.royale.jewel.Image"/>
     <component id="ImageIcon" class="org.apache.royale.jewel.ImageIcon"/>
 	<component id="BinaryImage" class="org.apache.royale.jewel.BinaryImage"/>
-	
+
     <component id="ClipImage" class="org.apache.royale.jewel.beads.controls.image.ClipImage"/>
 
     <component id="Card" class="org.apache.royale.jewel.Card"/>
@@ -190,7 +191,7 @@
     <component id="ResponsiveVisibility" class="org.apache.royale.jewel.beads.layouts.ResponsiveVisibility"/>
 
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
-    
+
     <component id="InputButtonSize" class="org.apache.royale.jewel.beads.controls.button.InputButtonSize"/>
     <component id="ResponsiveLabelVisibility" class="org.apache.royale.jewel.beads.controls.button.ResponsiveLabelVisibility"/>
     <component id="ResponsiveResizeListener" class="org.apache.royale.jewel.beads.layouts.ResponsiveResizeListener"/>
@@ -220,6 +221,8 @@
     <component id="ComboBoxDisabled" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"/>
     <component id="ComboBoxTruncateText" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText"/>
     <component id="ComboBoxListCloseOnClick" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxListCloseOnClick" />
+    <component id="TriStateCheckBoxLabelState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState"/>
+    <component id="TriStateCheckBoxStatesValues" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxStatesValues"/>
 
     <component id="LayoutChildren" class="org.apache.royale.jewel.beads.layouts.LayoutChildren"/>
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
