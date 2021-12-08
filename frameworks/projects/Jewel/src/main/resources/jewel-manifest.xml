@@ -189,6 +189,7 @@
     <component id="ResponsiveSize" class="org.apache.royale.jewel.beads.controls.ResponsiveSize"/>
     <component id="TextAlign" class="org.apache.royale.jewel.beads.controls.TextAlign"/>
     <component id="ResponsiveVisibility" class="org.apache.royale.jewel.beads.layouts.ResponsiveVisibility"/>
+    <component id="ReadOnly" class="org.apache.royale.jewel.beads.controls.ReadOnly"/>
 
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
 
