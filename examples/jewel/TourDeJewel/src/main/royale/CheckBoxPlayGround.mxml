@@ -93,54 +93,6 @@ limitations under the License.
 				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>
-
-		
-
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-            <j:Card>
-				<j:CardHeader>
-					<j:CardTitle text="Three CheckBox - States" className="primary-normal"/>
-				</j:CardHeader>
-				<j:CardPrimaryContent>
-
-					<j:Label multiline="true">
-						<j:html><![CDATA[<p>A <strong>ThreeCheckBox</strong> can have the following six states.</p>]]></j:html>
-					</j:Label>
-<!--
-					<j:ThreeCheckBox text="Not Checked (with ReadOnly bead)"/>
-
-					<j:ThreeCheckBox text="Checked" selected="true"/>
-
-					<j:ThreeCheckBox text="Indeterminated" indeterminated="true"/>
-
-					<j:ThreeCheckBox text="Disabled">
-						<j:beads>
-							<j:Disabled/>
-						</j:beads>
-					</j:ThreeCheckBox>
-
-					<j:ThreeCheckBox text="Checked And Disabled" selected="true">
-						<j:beads>
-							<j:Disabled/>
-						</j:beads>
-					</j:ThreeCheckBox>
-
-					<j:ThreeCheckBox text="Indeterminated And Disabled" indeterminated="true">
-						<j:beads>
-							<j:Disabled/>
-						</j:beads>
-					</j:ThreeCheckBox>
--->
-
-					<j:ThreeCheckBox indeterminated="true" rejectedVersion="true" emphasis="secondary">
-                    <j:beads>
-                        <j:ThreeCheckBoxLabelState checkedText="Checked..." uncheckedText="Unchecked..." indeterminatedText="Indeterminate..."/>
-                    </j:beads>
-					</j:ThreeCheckBox>
-				</j:CardPrimaryContent>
-			</j:Card>
-        </j:GridCell>
-
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
