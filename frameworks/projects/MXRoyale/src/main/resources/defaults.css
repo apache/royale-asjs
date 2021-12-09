@@ -415,9 +415,14 @@ NavBar
 	paddingLeft: 1;
 	paddingRight: 0;
 	paddingTop: 1;
-		horizontalGap: 6;
+	horizontalGap: 6;
 }
 
+LinkBar {
+	/* @todo restore this once rawChildren is working in LinkBar, otherwise selection indexing does not work
+	separatorSkin : ClassReference("mx.skins.halo.LinkSeparator");
+	*/
+}
 
 /*
 MenuItemRenderer {

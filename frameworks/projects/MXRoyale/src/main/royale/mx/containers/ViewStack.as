@@ -50,6 +50,8 @@ import mx.events.PropertyChangeEvent;
 //import mx.managers.HistoryManager;
 //import mx.managers.IHistoryManagerClient;
 
+import mx.utils.RoyaleUtil;
+
 import org.apache.royale.core.IChild;
 
 use namespace mx_internal;
@@ -353,6 +355,19 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
     //  Overridden properties
     //
     //--------------------------------------------------------------------------
+
+    //variation for emulation:
+    override public function invalidateProperties():void
+    {
+        var me:ViewStack = this;
+        if (RoyaleUtil.commitDeferred(commitProperties) && parent) {
+            //then force a view update after
+            RoyaleUtil.commitDeferred(function():void{
+                me.measure();
+                me.updateDisplayList(me.width, me.height);
+            })
+        }
+    }
 
     //----------------------------------
     //  autoLayout
