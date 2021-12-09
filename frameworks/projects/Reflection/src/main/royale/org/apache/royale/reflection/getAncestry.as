@@ -19,28 +19,27 @@
 package org.apache.royale.reflection
 {
 
+
     /**
-     *  The equivalent of flash.utils.describeType.
+     *  A utility function to return ancestry (base classes) as a set of qualified names.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.9
      *  
      *  @royaleignorecoercion Class
      */
-    public function describeType(value:Object):TypeDefinition
+    public function getAncestry(value:Object):Array
 	{
         COMPILE::SWF
         {
-            var xml:XML = getDataInternal(value);
-            return TypeDefinition.getDefinition(xml.@name, getDataInternal(value), value as Class);
+            return getAncestryInternal(getDataInternal(value));
         }
         COMPILE::JS
         {
             const qname:String = getQualifiedClassName(value);
-            var clazz:Class = value ? (value.prototype ? value : value.constructor) as Class : null;
-            return TypeDefinition.getDefinition(qname, getDataInternal(value, qname), clazz);
+            return getAncestryInternal(getDataInternal(value, qname));
         }
     }
 }
