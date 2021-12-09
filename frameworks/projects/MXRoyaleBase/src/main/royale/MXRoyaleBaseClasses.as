@@ -268,6 +268,7 @@ internal class MXRoyaleBaseClasses
 	import mx.utils.URLUtil;URLUtil;
 	import mx.utils.XMLNotifier;XMLNotifier;
 	import mx.utils.XMLUtil;XMLUtil;
+	import mx.utils.RoyaleUtil; RoyaleUtil;
 
 
 
