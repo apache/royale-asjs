@@ -702,7 +702,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		var label:String = ITextModel(model).text;
 		if (label != null) {
-			element.innerHTML = label;
+			element.textContent = label;
 		}
 		var icon:String = ImageAndTextModel(model).image;
 		if (icon != null) {
