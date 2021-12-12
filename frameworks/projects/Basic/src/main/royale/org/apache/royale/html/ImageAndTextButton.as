@@ -71,7 +71,11 @@ package org.apache.royale.html
             ImageAndTextModel(model).text = value;
             COMPILE::JS
             {
-                setInnerHTML();
+                if(!textNode){
+                    textNode = document.createTextNode(value) as Text;
+                    element.appendChild(textNode);
+                }
+                textNode.nodeValue = "\xa0" + value;
             }
         }
 
@@ -98,9 +102,15 @@ package org.apache.royale.html
             ImageAndTextModel(model).image = value;
             COMPILE::JS
             {
-                setInnerHTML();
+                imgElement.src = value;
             }
         }
+
+        COMPILE::JS
+        protected var imgElement:HTMLImageElement;
+        
+        COMPILE::JS
+        protected var textNode:Text;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -110,20 +120,10 @@ package org.apache.royale.html
         {
 			addElementToWrapper(this,'button');
             element.setAttribute('type', 'button');
+            imgElement = document.createElement("img") as HTMLImageElement;
+            element.appendChild(imgElement);
             return element;
         }
 
-        /**
-         */
-        COMPILE::JS
-        protected function setInnerHTML():void
-        {
-            var inner:String = '';
-            if (image != null)
-                inner += "<img src='" + image + "'/>";
-            inner += '&nbsp;';
-            inner += text;
-            element.innerHTML = inner;
-        };
 	}
 }
