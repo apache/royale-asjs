@@ -100,7 +100,8 @@ package spark.components.supportClasses
 			// 	(w - 17) + ',12 L ' + (w - 21) + ',5"</path></svg>';    
 				
 		}
-
+		
+		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
 			var elem:WrappedHTMLElement = super.createElement();
