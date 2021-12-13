@@ -63,6 +63,7 @@ COMPILE::SWF {
 
 import mx.core.mx_internal;
 import mx.core.FlexGlobals;
+import mx.core.IUIComponent;
 import mx.events.utils.MouseEventConverter;
 import mx.managers.ISystemManager;
 
@@ -85,6 +86,7 @@ import org.apache.royale.core.IValuesImpl;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.reflection.beads.ClassAliasBead;
+import spark.core.ISparkLayoutHost;
 
 use namespace mx_internal; 
 
@@ -2336,14 +2338,29 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
 		return _softKeyboardRect;
 	}*/
      
-    override public function setActualSize(w:Number, h:Number):void
-    {
-		super.setActualSize(w, h);
-		if (!skin) {
-			((view as ILayoutHost).contentView as Group).width = w;
-			((view as ILayoutHost).contentView as Group).height = h;
+		override public function setActualSize(w:Number, h:Number):void
+		{
+			super.setActualSize(w, h);
+
+			var lh:ISparkLayoutHost = getLayoutHost() as ISparkLayoutHost;
+			var g:IUIComponent = (lh ? lh.displayView as IUIComponent : null);
+			if (g && g != this)
+			{
+				// TODO: If Applicaiton has no explicit or percent sizes, then
+				//       this function is used to set the default size of the app.
+				//       Unfortunatley, setActualSize() [non-explicit width/height]
+				//       is overridden during LayoutBase.layout() when it gets
+				//       measured sizes.  So legacy code has this function
+				//       setting explicit sizes on contentView (and now displayView).
+				//       This is not ideal, since displayView then has explicit sizes
+				//       that always stick (hence, why this function doesn't do it
+				//       in SkinnableContainerBase).
+				//
+//				g.setActualSize(w, h);
+				g.width = w;
+				g.height = h;
+			}
 		}
-    }
 
      //--------------------------------------------------------------------------
      //

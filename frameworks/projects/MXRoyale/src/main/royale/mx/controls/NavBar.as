@@ -45,6 +45,8 @@ import mx.managers.ISystemManager;
 import mx.managers.SystemManager;
 //import mx.styles.StyleProtoChain;
 
+import mx.utils.RoyaleUtil;
+
 use namespace mx_internal;
 
 //--------------------------------------
@@ -156,6 +158,13 @@ public class NavBar extends Box
 
         direction = BoxDirection.HORIZONTAL;
 		showInAutomationHierarchy = true;
+    }
+
+
+    //variation for emulation:
+    override public function invalidateProperties():void
+    {
+        RoyaleUtil.commitDeferred(commitProperties);
     }
 
     //--------------------------------------------------------------------------

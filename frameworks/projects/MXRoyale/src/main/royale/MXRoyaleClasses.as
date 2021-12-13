@@ -306,6 +306,7 @@ internal class MXRoyaleClasses
 	import mx.effects.IEffectTargetHost; IEffectTargetHost;
 	/*import mx.events.RSLEvent; RSLEvent;*/
 	import mx.skins.halo.DataGridHeaderSeparator; DataGridHeaderSeparator;
+	import mx.skins.halo.LinkSeparator; LinkSeparator;
 	import mx.filters.BaseDimensionFilter; BaseDimensionFilter;
 	import mx.filters.BaseFilter; BaseFilter;
 	import mx.filters.IBitmapFilter; IBitmapFilter;

@@ -234,6 +234,18 @@ package flexUnitTests.reflection
             var expected:uint = isJS ? 1 : 3;
             assertEquals( expected, baseClasses.length, "unexpected baseclasses length");
         }
+
+
+        [TestVariance(variance="JS", description="Variance in baseClasses due to current inability for js target to reflect into non-Royale base classes or typedefs")]
+        [Test]
+        public function testGetAncestry():void
+        {
+            //similar to testBaseClasses but with a lighter dependency load if TypeDefinition is not being used
+            var ancestors:Array = getAncestry(TestClass3);
+
+            var expected:uint = isJS ? 2 : 4;
+            assertEquals( expected, ancestors.length, "unexpected ancestry length");
+        }
         
         
         [Test]

@@ -19,221 +19,87 @@
 
 package spark.components.beads
 {
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.supportClasses.Viewport;
+	import spark.components.supportClasses.GroupBase;
+	import spark.components.supportClasses.SkinnableComponent;
+	import spark.core.ISparkContainer;
+	import spark.layouts.BasicLayout;
 
-import mx.core.mx_internal;
-use namespace mx_internal;
-
-import spark.components.supportClasses.GroupBase;
-import spark.components.supportClasses.SkinnableComponent;
-
-import org.apache.royale.core.IBead;
-import org.apache.royale.core.IContentView;
-import org.apache.royale.core.IStrand;
-import org.apache.royale.core.IUIBase;
-import org.apache.royale.core.IViewport;
-import org.apache.royale.core.UIBase;
-import org.apache.royale.core.ValuesManager;
-import org.apache.royale.events.Event;
-import org.apache.royale.events.EventDispatcher;
-import org.apache.royale.geom.Size;
-import spark.components.SkinnableContainer;
-import spark.components.SkinnableDataContainer;
-import spark.layouts.supportClasses.LayoutBase;
-
-COMPILE::SWF
-{
-    import flash.geom.Rectangle;
-}
-
-/**
- *  @private
- *  The viewport that loads a Spark Skin.
- */
-public class SparkSkinViewport extends EventDispatcher implements IBead, IViewport
-{
-	//--------------------------------------------------------------------------
-	//
-	//  Constructor
-	//
-	//--------------------------------------------------------------------------
+	// for host.setSkin()
+	import mx.core.mx_internal;
+	use namespace mx_internal;
 
 	/**
-	 *  Constructor.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @private
+	 *  The viewport that loads a Spark Skin.
 	 */
-	public function SparkSkinViewport()
+	public class SparkSkinViewport extends org.apache.royale.html.supportClasses.Viewport
 	{
-		super();
-	}
-
-    protected var contentArea:UIBase;
-    
-    /**
-     * Get the actual parent of the container's content.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get contentView():IUIBase
-    {
-        return contentArea;
-    }
-    
-    protected var host:SkinnableComponent;
-    
-    /**
-     */
-    public function set strand(value:IStrand):void
-    {
-        host = value as SkinnableComponent;
-        
-        var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
-        if (c)
-        {
-            if (!host.skin)
-            {
-                host.setSkin(new c());
-            }
-            host.skin.addEventListener("initComplete", initCompleteHandler);
-            contentArea = host.skin; // temporary assigment so that SkinnableXXContainer.addElement can add the skin
-        }
-        else
-        {
-            var f:Function = ValuesManager.valuesImpl.getValue(value, "iContentView") as Function;
-            if (f)
-            {
-                contentArea = new f() as UIBase;
-            }
-            
-            if (!contentArea)
-                contentArea = value as UIBase;
-        }
-    }
-    
-    protected function initCompleteHandler(event:Event):void
-    {
-        contentArea = host.skin["contentGroup"];
-        if (host is SkinnableContainer)
-        {
-            var sc:SkinnableContainer = host as SkinnableContainer;
-            if (sc.layout)
-                (contentArea as GroupBase).layout = sc.layout;       
-        }
-        else if (host is SkinnableDataContainer)
-        {
-            var sdc:SkinnableDataContainer = host as SkinnableDataContainer;
-            if (sdc.layout)
-                (contentArea as GroupBase).layout = sdc.layout;
-        }
-            
-		COMPILE::JS
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.6
+		 */
+		public function SparkSkinViewport()
 		{
-		    adaptContentArea();
+			super();
 		}
-    }
-    
-    /**
-     * If the contentArea is not the same as the strand,
-     * we need to size it to 100% for scrolling to work correctly.
-     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-     */
-    COMPILE::JS
-    protected function adaptContentArea():void
-    {
-        if(host != contentArea)
-        {
-            var scl:LayoutBase = null;
 
-            if (host is SkinnableContainer)
-            {
-                var sc:SkinnableContainer = host as SkinnableContainer;
-                scl = sc.layout;
-            }
-            else if (host is SkinnableDataContainer)
-            {
-                var sdc:SkinnableDataContainer = host as SkinnableDataContainer;
-                scl = sdc.layout;
-            }
+		override public function set strand(value:IStrand):void
+		{
+			var host:SkinnableComponent = value as SkinnableComponent;
 
-            if (scl)
-            {
-                if (!scl.isWidthSizedToContent())
-                    contentArea.percentWidth = 100;
-                if (!scl.isHeightSizedToContent())
-                   contentArea.percentHeight = 100;
-            }
-            else
-            {
-                if (host.isWidthSizedToContent())
-                    contentArea.percentWidth = 100;
-                if (host.isHeightSizedToContent())
-                    contentArea.percentHeight = 100;
-                
-            }
-            contentArea.element.style.position = "absolute";
-        }
-    }
-    
-    /**
-     * @copy org.apache.royale.core.IViewport#setPosition()
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function setPosition(x:Number, y:Number):void
-    {
-        COMPILE::SWF {
-            contentArea.x = x;
-            contentArea.y = y;
-        }
-    }
-    
-    /**
-     * @copy org.apache.royale.core.IViewport#layoutViewportBeforeContentLayout()
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
-    {
-        COMPILE::SWF {
-            if (!isNaN(width))
-                contentArea.width = width;
-            if (!isNaN(height))
-                contentArea.height = height;
-        }
-    }
-    
-    /**
-     * @copy org.apache.royale.core.IViewport#layoutViewportAfterContentLayout()
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function layoutViewportAfterContentLayout(contentSize:Size):void
-    {
-        COMPILE::SWF {
-            var hostWidth:Number = UIBase(host).width;
-            var hostHeight:Number = UIBase(host).height;
-            
-            var rect:flash.geom.Rectangle = new flash.geom.Rectangle(0, 0, hostWidth, hostHeight);
-            contentArea.scrollRect = rect;
-            
-            return;
-        }
-    }
-}
+			super.strand = value;
 
+			var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
+			if (c)
+			{
+				if (!host.skin)
+				{
+					host.setSkin(new c());
+				}
+				host.skin.addEventListener("initComplete", initCompleteHandler);
+			}
+		}
+
+		protected function initCompleteHandler(event:Event):void
+		{
+			var host:SkinnableComponent = _strand as SkinnableComponent;
+
+			// can SkinPart do this better?
+			contentArea = host.skin["contentGroup"];
+			prepareContentView();
+		}
+
+		protected function prepareContentView():void
+		{
+			var host:ILayoutChild = _strand as ILayoutChild;
+			var g:GroupBase = contentView as GroupBase;
+			
+			if (!host || !g)
+				return;
+				
+			if (host == g)
+			{
+				if (g.layout == null)
+					g.layout = new BasicLayout();
+				return;
+			}
+
+			// only for the case where host.layout was set before view set
+			var hc:ISparkContainer = _strand as ISparkContainer;
+			if (hc.layout != null)
+				g.layout = hc.layout;
+
+			if (g.layout == null)
+				g.layout = new BasicLayout();
+		}
+	}
 }

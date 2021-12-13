@@ -123,6 +123,73 @@
   color: #737373;
 }
 
+.jewel.checkbox.emphasized input + span::before {
+  background: linear-gradient(#7f7f7f, #737373);
+  border: 1px solid #333333;
+}
+.jewel.checkbox.emphasized input + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23C92CC6' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox.emphasized input:checked + span::after, .jewel.checkbox.emphasized input:checked:active + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23C92CC6' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox.emphasized input:indeterminate + span::after, .jewel.checkbox.emphasized input:indeterminate:active + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%23C92CC6' /%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox.emphasized input:focus + span::before, .jewel.checkbox.emphasized input:checked:focus + span::before, .jewel.checkbox.emphasized input:checked:active:focus + span::before, .jewel.checkbox.emphasized input:indeterminate:focus + span::before, .jewel.checkbox.emphasized input:indeterminate:active:focus + span::before {
+  background: linear-gradient(#eba3ea, #e279e0);
+  border: 1px solid #8a1e88;
+}
+.jewel.checkbox.emphasized input[disabled] + span {
+  color: #737373;
+}
+.jewel.checkbox.emphasized input[disabled] + span::before {
+  background: #404040;
+  border: 1px solid #0d0d0d;
+}
+.jewel.checkbox.emphasized input:checked[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23191919' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox.emphasized input:indeterminate[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%23191919' /%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox.emphasized.rejected input:indeterminate + span::after, .jewel.checkbox.emphasized.rejected input:indeterminate:active + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%23C92CC6' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox.emphasized.rejected input:indeterminate[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%23191919' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
+}
+
+.jewel.switch.emphasized input:checked + .switch {
+  background: linear-gradient(#c92cc6, #d94fd6);
+  box-shadow: 0px 0px 0px 1px #b427b1;
+}
+.jewel.switch.emphasized input:focus + .switch {
+  box-shadow: 0px 0px 0px 1px #9f239d;
+}
+.jewel.switch.emphasized input:checked + .switch::before {
+  background: #f9e2f8;
+}
+.jewel.switch.emphasized input[disabled]:checked + .switch {
+  background: #8c8c8c;
+  box-shadow: 0px 0px 0px 1px #7f7f7f;
+}
+.jewel.switch.emphasized input[disabled] + .switch {
+  background: #737373;
+  box-shadow: 0px 0px 0px 1px #999999;
+}
+.jewel.switch.emphasized input[disabled] + .switch::before {
+  background: #595959;
+}
+.jewel.switch.emphasized .switch {
+  background: linear-gradient(#595959, #737373);
+  box-shadow: 0px 0px 0px 1px #4c4c4c;
+}
+.jewel.switch.emphasized .switch::before {
+  background: #f9e2f8;
+  box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.emphasized.hovered {
   background: #da58d8;
 }

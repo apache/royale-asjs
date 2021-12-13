@@ -46,6 +46,7 @@ internal class ReflectionClasses
 	import org.apache.royale.reflection.getQualifiedSuperclassName; getQualifiedSuperclassName;
 	import org.apache.royale.reflection.registerClassAlias; registerClassAlias;
 	import org.apache.royale.reflection.getClosureQualifiedName; getClosureQualifiedName;
+	import org.apache.royale.reflection.getAncestry; getAncestry;
 	//utils
 	import org.apache.royale.reflection.utils.getMembersWithMetadata; getMembersWithMetadata;
 	import org.apache.royale.reflection.utils.getMembers; getMembers;

@@ -2158,7 +2158,10 @@ public class LayoutBase extends org.apache.royale.core.LayoutBase implements IEv
     
     override public function layout():Boolean
     {
-        var n:int = layoutView.numElements;
+        // TODO: can we just use target all the time?  in other words, is target always host.view.contentView?
+        //       sometimes host == null, and SparkLayoutBead used target.numElements before
+        //
+        var n:int = (host ? layoutView.numElements : target.numElements);
         if (n == 0)
             return false;
         

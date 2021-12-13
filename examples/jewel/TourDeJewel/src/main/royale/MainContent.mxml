@@ -362,6 +362,7 @@ limitations under the License.
         <local:DateComponentsPlayGround name="datecomponents_panel"/>
         <local:ComboBoxPlayGround name="combobox_panel"/>
         <local:CheckBoxPlayGround name="checkbox_panel"/>
+        <local:TriStateCheckBoxPlayGround name="tristatecheckbox_panel"/>
         <local:MiscelaneaPlayGound name="miscelanea_panel"/>
         <local:HeadingsAndText name="text_panel"/>
         <local:LabelPlayGround name="label_panel"/>
