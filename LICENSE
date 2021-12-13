@@ -402,5 +402,5 @@ mvnw.cmd
 Are provided from the Github Project: https://github.com/takari/maven-wrapper
 which is distributed under the Apache 2.0 license.
 
-Markdown.as has portions based on code from Remarkable 1.87, which is available under an
+The Markdown project has portions based on code from Remarkable 1.87, which is available under an
 MIT license. For details, see https://github.com/jamiemcg/Remarkable/blob/master/LICENSE
