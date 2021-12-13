@@ -292,6 +292,33 @@ package spark.components.supportClasses
         {
             throw new Error("Method not implemented.");
         }
+
+		COMPILE::JS
+		override public function get measuredWidth():Number
+		{
+			if (isNaN(_measuredWidth) || (!_measuredWidth && text != ""))
+				measure();
+			return super.measuredWidth;
+		}
+		
+		COMPILE::JS
+		override public function get measuredHeight():Number
+		{
+			if (isNaN(_measuredHeight) || (!_measuredHeight && text != ""))
+				measure();
+			return super.measuredHeight;
+		}
+
+		COMPILE::JS
+		override protected function measure():void
+		{
+			var oldParent = element.parentElement;
+			document.body.appendChild(element);
+			_measuredWidth = element.offsetWidth;
+			_measuredHeight = element.offsetHeight;
+			document.body.removeChild(element);
+			oldParent.appendChild(element);
+		}
     }
 
 }

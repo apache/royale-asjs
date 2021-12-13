@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,37 +19,39 @@
 
 package spark.components.beads
 {
+	import mx.containers.beads.VirtualListView;
+	import mx.core.IVisualElement;
 	import mx.core.LayoutElementUIComponentUtils;
 	import mx.core.UIComponent;
+	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.beads.ContainerView;
+	import org.apache.royale.utils.sendStrandEvent;
 	import spark.components.supportClasses.GroupBase;
 	import spark.core.ISparkContainer;
-	import spark.core.ISparkLayoutHost;
+	import spark.events.RendererExistenceEvent;
 	import spark.layouts.BasicLayout;
-	
+		
 	/**
-	 *  @private
-	 *  The SparkContainerView for emulation.
+	 *  @viewbead
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
 	 */
-	public class SparkContainerView extends ContainerView implements ISparkLayoutHost
+	public class VirtualListView extends mx.containers.beads.VirtualListView
 	{
-		/**
-		 *  Constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Royale 0.9.6
-		 */
-		public function SparkContainerView()
+		public function VirtualListView()
 		{
 			super();
 		}
-		
+
+		//
+		//  From SparkDataContainerView (also derived from Basic DataContainer)
+		//
+
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -57,6 +59,24 @@ package spark.components.beads
 			prepareDisplayView();
 		}
 		
+		override protected function dispatchItemAdded(renderer:IItemRenderer):void
+		{
+			super.dispatchItemAdded(renderer);
+			var newEvent:RendererExistenceEvent = new RendererExistenceEvent(RendererExistenceEvent.RENDERER_ADD, false, false, renderer as IVisualElement);
+			sendStrandEvent(_strand,newEvent);
+		}
+
+		override protected function itemsCreatedHandler(event:Event):void
+		{
+			// Note that we assume host has same sizing as content group, if applicable
+			var host:UIComponent = _strand as UIComponent;
+			if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
+			{
+				host.invalidateSize();
+			}
+			super.itemsCreatedHandler(event);
+		}
+
 		protected function prepareContentView():void
 		{
 			var host:ILayoutChild = _strand as ILayoutChild;
