@@ -84,7 +84,7 @@ limitations under the License.
                         <j:html><![CDATA[<p>A <strong>TriStateCheckBox</strong> can have the following six states.</p>]]></j:html>
                     </j:Label>
 
-                    <j:TriStateCheckBox text="Not Checked (with ReadOnly bead)"/>
+                    <j:TriStateCheckBox text="Not Checked"/>
 
                     <j:TriStateCheckBox text="Checked" selected="true"/>
 
@@ -161,7 +161,7 @@ limitations under the License.
                 <j:CardPrimaryContent>
 
                     <j:Label multiline="true">
-                        <j:html><![CDATA[<p>Select one or more options.</p>]]></j:html>
+                        <j:html><![CDATA[<p>Select one or more options. The check showing the group status has the ReadOnly bead configured.</p>]]></j:html>
                     </j:Label>
                     
                     <j:VGroup width="230" gap="5" className="groupoptions">
