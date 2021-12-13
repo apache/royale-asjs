@@ -32,6 +32,7 @@ package spark.components.supportClasses
 		import org.apache.royale.svg.elements.Svg;
 		import org.apache.royale.svg.elements.ClipPath;
 		import org.apache.royale.svg.GraphicShape;
+		import org.apache.royale.html.util.createSVG;
 	}
 	
 	/**
@@ -118,7 +119,7 @@ package spark.components.supportClasses
 			text.y = 3;
 			text.element.setAttribute("clip-path",'url(#' + clipid + ')');
 			svg.addElement(text)
-			var style:SVGStyleElement = new SVGStyleElement();
+			var style:SVGStyleElement = createSVG('style') as SVGStyleElement;
 			style.innerHTML = '<![CDATA[' +
 				'text{ dominant-baseline: hanging;' +
 				/*    font: 12px Verdana, Helvetica, Arial, sans-serif;*/
