@@ -16,23 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.royale.markdown
 {
-
-    /**
-    *  @private
-    *  This class is used to link additional classes into Markdown.swc
-    *  beyond those that are found by dependency analysis starting
-    *  from the classes specified in manifest.xml.
-    */
-    internal class MarkdownClasses
-    {
-        import org.apache.royale.markdown.MarkdownParser;MarkdownParser;
-        import org.apache.royale.markdown.Environment;Environment;
-        import org.apache.royale.markdown.TagToken;TagToken;
-        import org.apache.royale.markdown.CoreState;CoreState;
-        
-        
-    }
+	public class List implements IRule
+	{
+		public function List()
+		{
+			
+		}
+	}
 }
-

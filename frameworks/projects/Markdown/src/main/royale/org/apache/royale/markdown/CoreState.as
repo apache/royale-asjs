@@ -20,7 +20,7 @@ package org.apache.royale.markdown
 {
 	public class CoreState implements IState
 	{
-		public function CoreState(parser:MarkDownParser,str:String,env:Environment)
+		public function CoreState(parser:MarkdownParser,str:String,env:Environment)
 		{
 			
 		}
