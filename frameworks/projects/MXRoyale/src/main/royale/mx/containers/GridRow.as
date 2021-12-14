@@ -348,8 +348,8 @@ public class GridRow extends HBox
      */
     override public function invalidateSize():void
     {
-        if (ROYALE::DISPLAYOBJECT)
-            trace("this syntax is valid?");
+        /*if (ROYALE::DISPLAYOBJECT)
+            trace("this syntax is valid?");*/
         
         super.invalidateSize();
         if (parent)
