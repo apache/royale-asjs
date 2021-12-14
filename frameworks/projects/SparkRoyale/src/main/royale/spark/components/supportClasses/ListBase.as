@@ -57,6 +57,9 @@ import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.core.IContainer;
+import org.apache.royale.core.IParent;
+import org.apache.royale.events.ValueEvent;
 
 use namespace mx_internal;   //ListBase and List share selection properties that are mx_internal
 
@@ -195,7 +198,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class ListBase  extends SkinnableDataContainer
+public class ListBase  extends SkinnableDataContainer implements IContainer
 { //extends SkinnableDataContainer implements IDataProviderEnhance
     //include "../../core/Version.as";
 
@@ -2141,6 +2144,33 @@ public class ListBase  extends SkinnableDataContainer
 	{
 		dispatchEvent(new Event(event.type));
 	}
+
+    /*
+    * IContainer
+    */
+    
+    /**
+     *  @private
+     */
+    public function childrenAdded():void
+    {
+        dispatchEvent(new ValueEvent("childrenAdded"));
+    }
+    
+    /**
+     * @copy org.apache.royale.core.IContentViewHost#strandChildren
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get strandChildren():IParent
+    {
+        return this;
+    }
+
+
 }
 
 }
