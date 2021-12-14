@@ -98,6 +98,8 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.geom.Rectangle;
 
+import mx.utils.RoyaleUtil;
+
 //--------------------------------------
 //  Events
 //--------------------------------------
@@ -3736,8 +3738,15 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     { override }
     public function getChildByName(name:String):IUIComponent
     {
-        trace("getChildByName not implemented");
-        return null;
+        COMPILE::SWF
+        {
+            return super.getChildByName(name) as IUIComponent;
+        }
+        COMPILE::JS
+        {
+            return RoyaleUtil.childByName(this, name);
+        }
+
     }
     
     /**
