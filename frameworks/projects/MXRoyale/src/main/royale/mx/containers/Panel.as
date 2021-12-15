@@ -1120,7 +1120,7 @@ public class Panel extends Container
      *  @private
      *  Storage for the titleIcon property.
      */ 
-    private var _titleIcon:Class;
+    private var _titleIcon:Object;
     
     /**
      *  @private
@@ -1128,7 +1128,7 @@ public class Panel extends Container
     private var _titleIconChanged:Boolean = false;
 
     [Bindable("titleIconChanged")]
-    [Inspectable(category="General", defaultValue="", format="EmbeddedFile")]
+ //   [Inspectable(category="General", defaultValue="", format="EmbeddedFile")]
 
     /**
      *  The icon displayed in the title bar.
@@ -1140,7 +1140,7 @@ public class Panel extends Container
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get titleIcon():Class
+    public function get titleIcon():Object
     {
         return _titleIcon;
     }
@@ -1148,8 +1148,9 @@ public class Panel extends Container
     /**
      *  @private
      */
-    public function set titleIcon(value:Class):void
+    public function set titleIcon(value:Object):void
     {
+        //@todo deal with string (url) for Royale instead of Class
         _titleIcon = value;
         _titleIconChanged = true;
         

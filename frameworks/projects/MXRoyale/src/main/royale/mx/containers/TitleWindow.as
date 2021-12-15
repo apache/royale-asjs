@@ -23,6 +23,7 @@ package mx.containers
 	import org.apache.royale.events.CloseEvent;
 	import org.apache.royale.html.beads.DragBead;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IPanelModel;
 	import mx.core.UIComponent;
 	import mx.containers.beads.PanelView;
 /*
@@ -275,11 +276,13 @@ public class TitleWindow extends Panel
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    private var _showCloseButton:Boolean = false;
-	
     public function get showCloseButton():Boolean
     {
-        return _showCloseButton;
+        var model:IPanelModel = this.model as IPanelModel;
+        if (model) {
+            return model.showCloseButton;
+        }
+        return false;
     }
 
     /**
@@ -287,7 +290,10 @@ public class TitleWindow extends Panel
      */
     public function set showCloseButton(value:Boolean):void
     {
-        _showCloseButton = value;
+        var model:IPanelModel = this.model as IPanelModel;
+        if (model) {
+            model.showCloseButton = value;
+        }
     }
 
     override public function addedToParent():void

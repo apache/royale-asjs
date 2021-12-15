@@ -492,6 +492,15 @@ PanelTitleBar
 	padding-left: 1px;
 	padding-right: 1px;
 	border-bottom: 1px solid #333333;
+	display: flex /* added this because I don't see the layout bead working here, @todo investigate*/
+}
+
+PanelTitleBar .CloseButton {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	width: 16px;
+	height: 16px;
 }
 
 pop|PopUpManagerModal
