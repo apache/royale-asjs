@@ -669,6 +669,17 @@ public class Panel extends Container
      */
     protected var titleBar:UIComponent;
 
+    /**
+     * PanelView coercion ignore because it is already typed-checked prior, below
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
+    override public function addedToParent():void
+    {
+        //support for subclass access, as per original Flex code
+        titleBar = view is PanelView ? PanelView(view).titleBar as UIComponent : null;
+        super.addedToParent();
+    }
+
     //----------------------------------
     //  title
     //----------------------------------

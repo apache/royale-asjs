@@ -46,6 +46,10 @@ public class PanelTitleBar extends UIComponent
 	{
 		super();
         typeNames += " PanelTitleBar";
+		COMPILE::JS{
+			//@todo review this... (see css changes in same commit) trying to achieve similar effect to native browser (css) layout that is used in Alert TitleBar
+			this.positioner.style.display = '';
+		}
 	}
 }
 
