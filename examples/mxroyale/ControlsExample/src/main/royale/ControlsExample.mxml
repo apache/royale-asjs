@@ -42,24 +42,38 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.royale.events.Event;
-			
-			private function pushMePushed(event:MouseEvent):void
-			{
-				trace("The PushMe button was pushed");
-			}
-			
-			private function changeIcon():void
-			{
-				button2.icon = "assets/mediumredrect.jpg";
-			}
-			
-			private function otherPushMe():void
-			{
-				trace("The other button was pushed");
-				text1.htmlText = "The Button with an icon was pushed.";
-				dispatchEvent(new Event("layoutNeeded"));
-			}
+		import mx.containers.TitleWindow;
+		import mx.events.CloseEvent;
+		import mx.managers.PopUpManager;
+
+		import org.apache.royale.events.Event;
+
+		private function pushMePushed(event:MouseEvent):void {
+			trace("The PushMe button was pushed");
+		}
+
+		private function changeIcon():void {
+			button2.icon = "assets/mediumredrect.jpg";
+		}
+
+		private function otherPushMe():void {
+			trace("The other button was pushed");
+			text1.htmlText = "The Button with an icon was pushed.";
+			dispatchEvent(new Event("layoutNeeded"));
+		}
+
+		private function testTitleWindow():void {
+			var titleWindow:TitleWindow = new TitleWindow();
+			titleWindow.width = 600;
+			titleWindow.height = 500;
+			titleWindow.title = "My TitleWindow";
+			titleWindow.showCloseButton = true;
+			titleWindow.addEventListener(mx.events.CloseEvent.CLOSE, function (e:mx.events.CloseEvent):void{
+				PopUpManager.removePopUp(titleWindow);
+			})
+			PopUpManager.addPopUp(titleWindow, this, true);
+			PopUpManager.centerPopUp(titleWindow);
+		}
 		]]>
 	</fx:Script>
 	
@@ -93,6 +107,7 @@ limitations under the License.
 	</mx:Canvas>
 	<mx:TextArea text="This is the TextArea control!"
 		maxChars="100"/>
-
+	<mx:Button label="Launch TitleWindow" click="testTitleWindow()"
+			   toolTip="launchs a test TitleWindow" />
         
 </mx:Application>
