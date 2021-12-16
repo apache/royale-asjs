@@ -103,6 +103,10 @@ public class CanvasLayout extends LayoutBase
     //
     //--------------------------------------------------------------------------
 
+	/**
+	 *
+	 * @royaleignorecoercion Number
+	 */
 	override public function layout():Boolean
 	{
 		COMPILE::SWF
@@ -212,7 +216,8 @@ public class CanvasLayout extends LayoutBase
 			// each child must have position:absolute for BasicLayout to work
 			for (i=0; i < n; i++) {
 				var child:IUIComponent = target.getLayoutChildAt(i);
-				var hCenter:Number = Number((child as ILayoutElement).horizontalCenter);
+				var layoutChild:ILayoutElement = child as ILayoutElement;
+				var hCenter:Number = Number(layoutChild.horizontalCenter);
 				child.positioner.style.position = "absolute";
 				var layoutNeeded:Boolean = true;
 				var hh:Number = child.height;
@@ -227,6 +232,36 @@ public class CanvasLayout extends LayoutBase
 					ww = target.width * child.percentWidth / 100;
 					layoutNeeded = false;
 				}
+				if (layoutNeeded) {
+					//@todo check precedence here of percent-based vs. constraint-based
+					if (!isNaN(layoutChild.left)) {
+						child.x = layoutChild.left as Number;
+						if (!isNaN(layoutChild.right)) {
+							child.element.style.right = layoutChild.right+'px';
+						} else {
+							child.element.style.right = '';
+						}
+					} else //@todo check this:
+						if (!isNaN(layoutChild.right)) {
+						child.element.style.right = layoutChild.right+'px';
+					} else {
+						child.element.style.right = '';
+					}
+					if (!isNaN(layoutChild.top)) {
+						child.y = layoutChild.top as Number;
+						if (!isNaN(layoutChild.bottom)) {
+							child.element.style.bottom = layoutChild.bottom+'px';
+						} else {
+							child.element.style.bottom = '';
+						}
+					} else  //@todo check this:
+						if (!isNaN(layoutChild.bottom)) {
+						child.element.style.bottom = layoutChild.bottom+'px';
+					} else {
+						child.element.style.bottom = '';
+					}
+				}
+
 				if (!isNaN(hCenter))
 				{
 					// TODO consider how this affects measurement of target
