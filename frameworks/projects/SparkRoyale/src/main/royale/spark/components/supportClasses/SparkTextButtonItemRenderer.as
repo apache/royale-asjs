@@ -312,7 +312,7 @@ package spark.components.supportClasses
 		COMPILE::JS
 		override protected function measure():void
 		{
-			var oldParent = element.parentElement;
+			var oldParent:Element = element.parentElement;
 			document.body.appendChild(element);
 			_measuredWidth = element.offsetWidth;
 			_measuredHeight = element.offsetHeight;
