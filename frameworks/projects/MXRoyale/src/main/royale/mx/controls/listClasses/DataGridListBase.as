@@ -36,7 +36,7 @@ import flash.utils.Dictionary;
 import flash.utils.clearInterval;
 import flash.utils.setInterval;
 
-import mx.collections.ArrayCollection;
+
 */
 COMPILE::SWF{
     import flash.display.DisplayObject;
@@ -51,6 +51,7 @@ import mx.collections.ICollectionView;
 import mx.collections.IViewCursor;
 import mx.collections.Sort;
 import mx.collections.SortField;
+import mx.collections.ArrayCollection;
 import mx.controls.beads.DataGridView;
 import mx.controls.beads.layouts.DataGridLayout;
 import mx.controls.dataGridClasses.DataGridColumn;
@@ -582,16 +583,18 @@ public class DataGridListBase extends ListBase /* extends UIComponent
 
     /**
      *  @private
+     *  @royaleignorecoercion Array
      */
     override public function set dataProvider(value:Object):void
     {
         if (collection)
             collection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
 
+        if (value is Array) value = new ArrayCollection(value as Array);
         collection = value as ICollectionView;
         if (collection)
 		{
-        		collection.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+        	collection.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
 	        iterator = collection.createCursor();
 	        collectionIterator = collection.createCursor(); //IViewCursor(collection);
 		}
