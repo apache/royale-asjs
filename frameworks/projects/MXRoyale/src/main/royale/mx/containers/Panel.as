@@ -821,7 +821,8 @@ public class Panel extends Container
         var panelView:PanelView = view as PanelView;
         if (panelView.contentArea == this)
             return super.numElements;
-        return panelView.contentArea.numElements;
+        //likewise, contentArea may not be available yet during early phases, use null safety:
+        return panelView.contentArea ? panelView.contentArea.numElements : 0;
     }
     
     /**
