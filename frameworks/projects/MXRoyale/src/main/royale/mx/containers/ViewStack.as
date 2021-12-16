@@ -971,7 +971,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
         var top:Number = contentY;
 
         // Stretch the selectedIndex to fill our size
-        if (selectedIndex != -1)
+        if (nChildren && selectedIndex != -1)
         {
             var child:UIComponent =
                 UIComponent(getChildAt(selectedIndex));
