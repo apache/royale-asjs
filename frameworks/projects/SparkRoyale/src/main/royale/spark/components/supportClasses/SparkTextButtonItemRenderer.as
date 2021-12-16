@@ -273,7 +273,7 @@ package spark.components.supportClasses
             throw new Error("Method not implemented.");
         }
 
-        public function get processedDescriptors():Boolean
+       /* public function get processedDescriptors():Boolean
         {
             throw new Error("Method not implemented.");
         }
@@ -281,7 +281,7 @@ package spark.components.supportClasses
         public function set processedDescriptors(value:Boolean):void
         {
             throw new Error("Method not implemented.");
-        }
+        }*/
 
         public function get updateCompletePendingFlag():Boolean
         {

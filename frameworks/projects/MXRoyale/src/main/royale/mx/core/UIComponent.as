@@ -39,6 +39,8 @@ import flash.events.IEventDispatcher;
 
 import mx.controls.beads.ToolTipBead;
 import mx.core.mx_internal;
+import mx.managers.IToolTipManagerClient;
+
 COMPILE::SWF
 {
 import flash.display.DisplayObject;
@@ -761,7 +763,7 @@ public class UIComponent extends UIBase
     IMXMLDocument,
     IInvalidating,
     IStatesObject,
-    ISimpleStyleClient,
+    ISimpleStyleClient,IToolTipManagerClient,
     IUIComponent, IVisualElement, IFlexModule, IValidatorListener
 {
     //--------------------------------------------------------------------------
@@ -1123,6 +1125,10 @@ public class UIComponent extends UIBase
 
         if (value)
         {
+            if (_needsLayout) {
+                //invalidateSize();
+                dispatchEvent(new Event('layoutNeeded'));
+            }
             dispatchEvent(new FlexEvent(FlexEvent.CREATION_COMPLETE));
         }
     }
@@ -2692,10 +2698,15 @@ COMPILE::JS
                     for (var i:int = 0; i < numChildren; i++)
                     {
                         var child:IUIComponent = getChildAt(i);
-                        if (child) // child is null for TextNodes
+                        //@todo investigate traces
+                        if (child is IUIComponent) // child is null for TextNodes
                             mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
-                        else
-                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
+                        else {
+                            if (child is IUIBase) {
+                                mw = Math.max(mw, child.width);
+                            }
+                            trace(getQualifiedClassName(this) + " Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
+                        }
                     }
                 }
                 if (oldWidth.length)
@@ -2768,10 +2779,15 @@ COMPILE::JS
                     for (var i:int = 0; i < numChildren; i++)
                     {
                         var child:IUIComponent = getChildAt(i);
-                        if (child)
+                        //@todo investigate traces
+                        if (child is IUIComponent) // child is null for TextNodes
                             mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
-                        else
-                            trace("Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
+                        else {
+                            if (child is IUIBase) {
+                                mh = Math.max(mh, child.height);
+                            }
+                            trace(getQualifiedClassName(this) + " Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
+                        }
                     }
                 }
                 if (oldHeight.length)
@@ -4006,8 +4022,8 @@ COMPILE::JS
 			var n:int = arr.length;
 			var num:int = 0;
 			for (var i:int = 0; i < n; i++)
-			{
-				if ((arr[i] as WrappedHTMLElement).royale_wrapper)
+			{   //@todo review issuses with internal native support that points to 'this' (2nd check below), can cause infinite recursion in measurement if avoided:
+				if ((arr[i] as WrappedHTMLElement).royale_wrapper && (arr[i] as WrappedHTMLElement).royale_wrapper != this)
 					num++;
 			}
 			return num;
@@ -4193,8 +4209,61 @@ COMPILE::JS
      */
     protected function initializationComplete():void
     {
-        dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
+        processedDescriptors = true;
     }
+
+        //----------------------------------
+        //  processedDescriptors
+        //----------------------------------
+
+        /**
+         *  @private
+         *  Storage for the processedDescriptors property.
+         */
+        private var _processedDescriptors:Boolean = false;
+
+        [Inspectable(environment="none")]
+
+        /**
+         *  Set to <code>true</code> after immediate or deferred child creation,
+         *  depending on which one happens. For a Container object, it is set
+         *  to <code>true</code> at the end of
+         *  the <code>createComponentsFromDescriptors()</code> method,
+         *  meaning after the Container object creates its children from its child descriptors.
+         *
+         *  <p>For example, if an Accordion container uses deferred instantiation,
+         *  the <code>processedDescriptors</code> property for the second pane of
+         *  the Accordion container does not become <code>true</code> until after
+         *  the user navigates to that pane and the pane creates its children.
+         *  But, if the Accordion had set the <code>creationPolicy</code> property
+         *  to <code>"all"</code>, the <code>processedDescriptors</code> property
+         *  for its second pane is set to <code>true</code> during application startup.</p>
+         *
+         *  <p>For classes that are not containers, which do not have descriptors,
+         *  it is set to <code>true</code> after the <code>createChildren()</code>
+         *  method creates any internal component children.</p>
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function get processedDescriptors():Boolean
+        {
+            return _processedDescriptors;
+        }
+
+        /**
+         *  @private
+         */
+        public function set processedDescriptors(value:Boolean):void
+        {
+            _processedDescriptors = value;
+
+            if (value)
+                dispatchEvent(new FlexEvent(FlexEvent.INITIALIZE));
+        }
+
     
     /**
      *  Create child objects of the component.
@@ -4221,9 +4290,17 @@ COMPILE::JS
      */
     protected function createChildren():void
     {
-        MXMLDataInterpreter.generateMXMLInstances(mxmlDocument, this, MXMLDescriptor);
+        var children:Array =  this.MXMLDescriptor;
+        if (children && children.length && !processedMXMLDescriptors) {
+            layoutDeferred = true;
+            MXMLDataInterpreter.generateMXMLInstances(mxmlDocument, this, children);
+            layoutDeferred = false;
+            processedMXMLDescriptors = true;
+        }
     }
-    
+
+    private var processedMXMLDescriptors : Boolean;
+
     private var _mxmlDescriptor:Array;
     
     /**
@@ -4338,6 +4415,82 @@ COMPILE::JS
 		_measuredHeight = NaN;
         if (parent)
             (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded")); // might cause too many layouts
+    }
+
+    private var _layoutDeferred:Boolean;
+    /**
+     *  Support for deferred layout requests
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     * @productversion Royale 0.9.9
+     */
+    protected function get layoutDeferred():Boolean{
+        return _layoutDeferred
+    }
+    protected function set layoutDeferred(value:Boolean):void{
+        _layoutDeferred = value;
+        if (!value && _needsLayout) {
+            dispatchEvent(new Event('layoutNeeded'));
+        }
+    }
+    private var _needsLayout:Boolean;
+    /**
+     *  Support for deferred layout requests
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     * @productversion Royale 0.9.9
+     */
+    protected function get needsLayout():Boolean{
+        return _needsLayout;
+    }
+
+    /**
+     *  Support for deferred layout requests
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     * @productversion Royale 0.9.9
+     */
+    COMPILE::JS
+    override public function dispatchEvent(event:Object):Boolean{
+        //trap the layout requests and ignore them if we have deferred layout
+        if (event.type == "layoutNeeded" || event == 'layoutNeeded') {
+            if (_layoutDeferred) {
+                _needsLayout = true;
+                return false;
+            } else {
+                //layout will run, no 'need' to re-run later
+                _needsLayout = false;
+            }
+        }
+        return super.dispatchEvent(event);
+    }
+    /**
+     *  Support for deferred layout requests
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     * @productversion Royale 0.9.9
+     */
+    COMPILE::SWF
+    override public function dispatchEvent(event:Event):Boolean{
+        //trap the layout requests and ignore them if we have deferred layout
+        if (event.type == "layoutNeeded") {
+            if (_layoutDeferred) {
+                _needsLayout = true;
+                return false;
+            } else {
+                //layout will run, no 'need' to re-run later
+                _needsLayout = false;
+            }
+        }
+        return super.dispatchEvent(event);
     }
 
     /**
