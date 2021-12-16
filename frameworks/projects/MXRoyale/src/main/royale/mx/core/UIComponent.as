@@ -2686,7 +2686,7 @@ COMPILE::JS
                 if (oldWidth.length)
                     this.positioner.style.width = "";
                 var mw:Number = this.positioner.offsetWidth;
-                if (mw == 0 && numChildren > 0)
+                if (mw == 0 && _initialized && numChildren > 0)
                 {
                     // if children are aboslute positioned, offsetWidth can be 0 in Safari
                     for (var i:int = 0; i < numChildren; i++)
@@ -2763,7 +2763,7 @@ COMPILE::JS
                 if (oldHeight.length)
                     this.positioner.style.height = "";
                 var mh:Number = this.positioner.offsetHeight;
-                if (mh == 0 && numChildren > 0)
+                if (mh == 0 && _initialized && numChildren > 0)
                 {
                     for (var i:int = 0; i < numChildren; i++)
                     {
