@@ -42,10 +42,11 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
+		import components.TitleWindowPopupWindowWithViewStack;
 		import mx.containers.TitleWindow;
-		import mx.events.CloseEvent;
 		import mx.managers.PopUpManager;
-
+		import mx.events.CloseEvent;
+		import mx.events.FlexEvent;
 		import org.apache.royale.events.Event;
 
 		private function pushMePushed(event:MouseEvent):void {
@@ -74,9 +75,26 @@ limitations under the License.
 			PopUpManager.addPopUp(titleWindow, this, true);
 			PopUpManager.centerPopUp(titleWindow);
 		}
+
+		private function testViewStack():void {
+			var test:TitleWindowPopupWindowWithViewStack = PopUpManager.createPopUp(this,TitleWindowPopupWindowWithViewStack) as TitleWindowPopupWindowWithViewStack;
+			test.addEventListener(mx.events.CloseEvent.CLOSE, close);
+			//@todo implement and test other child creationPolicies...
+			test.childCreationPolicyTest = 'none';
+			test.title = "ViewStack with creationPolicy test:"+test.childCreationPolicyTest;
+			PopUpManager.centerPopUp(test);
+
+			function close(event:mx.events.CloseEvent):void{
+				PopUpManager.removePopUp(test)
+			}
+		}
 		]]>
 	</fx:Script>
-	
+	<mx:Canvas width="300" height="100" backgroundColor="yellow">
+		<mx:Label text="left:2 right:2 top:2" left="2" right="2" top="2" backgroundColor="white"/>
+		<mx:Label text="left:10 right:40 top:40" left="10" right="40" top="40" backgroundColor="white"/>
+		<mx:Label text="left:40 right:40 top:80" left="40" right="40" top="80" backgroundColor="white" />
+	</mx:Canvas>
 	<mx:VBox id="vbox1">
 		<mx:Label text="Hello World"/>
 		<mx:Button label="Change Icon" click="changeIcon()"
@@ -109,5 +127,7 @@ limitations under the License.
 		maxChars="100"/>
 	<mx:Button label="Launch TitleWindow" click="testTitleWindow()"
 			   toolTip="launchs a test TitleWindow" />
-        
+	<mx:Button label="Launch ViewStack" click="testViewStack()"
+			   toolTip="launchs a test ViewStack with LinkBar" />
+
 </mx:Application>

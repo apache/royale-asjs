@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:mx="library://ns.apache.org/royale/mx"
+                layout="absolute"
+                creationComplete="onCreationComplete(event)"
+                showCloseButton="true"
+                width="850"
+                height="680">
+
+    <fx:Script><![CDATA[
+        import mx.events.FlexEvent;
+
+        public var childCreationPolicyTest:String = 'none';
+
+        private function viewStackChange(event:IndexChangedEvent):void {
+
+        }
+        import mx.events.IndexChangedEvent;
+
+        private function onCreationComplete(event:FlexEvent):void {
+            for (var i:uint=0;i<10;i++) {
+                var inst:Canvas = new StackItem();
+                inst.creationPolicy = i >0 ? childCreationPolicyTest : 'all';
+                inst.label = "Inst:"+i;
+                inst.addEventListener(FlexEvent.PREINITIALIZE, childEvent);
+                inst.addEventListener(FlexEvent.INITIALIZE, childEvent)
+                inst.addEventListener(FlexEvent.CREATION_COMPLETE, childEvent)
+                inst.addEventListener(FlexEvent.CONTENT_CREATION_COMPLETE, childEvent)
+                Properties_vs.addChild(inst);
+            }
+
+        }
+
+
+        private function childEvent(event:Event):void{
+            var target:StackItem = event.target as StackItem;
+            trace(event.type, target.label);
+        }
+
+        ]]>
+    </fx:Script>
+    <mx:Canvas width="223" left="0" top="0" bottom="0" horizontalScrollPolicy="off" id="linkBarCanvas">
+        <mx:LinkBar id="Properties_lbar" width="215" direction="vertical" dataProvider="Properties_vs" left="0" top="0" bottom="0"/>
+    </mx:Canvas>
+    <mx:VRule x="223" top="0" bottom="0" id="propertiesVRule"/>
+    <mx:ViewStack id="Properties_vs" change="viewStackChange(event)" top="0" bottom="0" right="0" left="225"/>
+
+
+</mx:TitleWindow>
