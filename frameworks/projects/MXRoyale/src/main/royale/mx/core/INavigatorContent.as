@@ -36,7 +36,7 @@ import mx.core.IUIComponent;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public interface INavigatorContent extends IEventDispatcher,IUIComponent, IToolTipManagerClient // IDeferredContentOwner
+public interface INavigatorContent extends IEventDispatcher,IUIComponent,IDeferredContentOwner, IToolTipManagerClient
 {
     [Bindable("labelChanged")]
     /**

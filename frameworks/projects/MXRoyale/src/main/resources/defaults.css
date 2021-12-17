@@ -990,7 +990,7 @@ charts|DataTip
 	{
 		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
-		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("mx.containers.beads.supportClasses.ContainerContentArea");
 	}
 	
 	DataGrid {
@@ -1034,7 +1034,7 @@ charts|DataTip
 	
 	Panel
 	{
-		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea");
+		IContentView: ClassReference("mx.containers.beads.supportClasses.ContainerContentArea");
 		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
 		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");    
 	}

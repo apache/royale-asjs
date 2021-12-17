@@ -1180,21 +1180,21 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function createDeferredContent():void
-    {
+     public function createDeferredContent():void
+    {   //@todo similar fix as mx Container for creationPolicy NONE (at least)
         var children:Array =  this.MXMLDescriptor;
         if (children)
         {
-			creatingDeferredContent = true;
+			/*creatingDeferredContent = true;
             generateMXMLInstances(document, children);
 			creatingDeferredContent = false;
             mxmlContentCreated = true; // keep the code from recursing back into here.
             _deferredContentCreated = true; 
-            dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));
+            dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));*/
             return;
         }
         
-        if (!mxmlContentCreated)
+        /*if (!mxmlContentCreated)
         {
             mxmlContentCreated = true;
             
@@ -1205,11 +1205,11 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
                 _deferredContentCreated = true;
                 dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));
             }
-        }
+        }*/
     }
-
+    //@todo similar fix as mx for creationPolicy NONE (at least)
     private var _deferredContentCreated:Boolean;
-    */
+
     /**
      *  Contains <code>true</code> if deferred content has been created.
      *  
@@ -1218,10 +1218,10 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get deferredContentCreated():Boolean
+     public function get deferredContentCreated():Boolean
     {
         return _deferredContentCreated;
-    } */
+    }
 
     /**
      *  @private

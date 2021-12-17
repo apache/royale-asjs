@@ -19,7 +19,9 @@
 
 package mx.core
 {
-    import org.apache.royale.binding.ContainerDataBinding;
+import mx.events.ChildExistenceChangedEvent;
+
+import org.apache.royale.binding.ContainerDataBinding;
     import org.apache.royale.binding.DataBindingBase;
     import org.apache.royale.core.ContainerBaseStrandChildren;
     import org.apache.royale.core.IBeadLayout;
@@ -81,6 +83,7 @@ import mx.controls.listClasses.IListItemRenderer;
 import mx.events.FlexEvent;
 import mx.events.IndexChangedEvent;
 import mx.managers.IFocusManagerContainer;
+import org.apache.royale.utils.MXMLDataInterpreter;
 
 COMPILE::SWF
 {
@@ -1086,25 +1089,110 @@ public class Container extends UIComponent
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
 		}
-		
-		super.addedToParent();		
-		
+		const noChildrenNow:Boolean = creationPolicy == 'none';
+
+        if (noChildrenNow) _deferSetInitialized = true;
+		super.addedToParent();
+
 		// Load the layout bead if it hasn't already been loaded.
 		loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
-        dispatchEvent(new Event("initComplete"));
-        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
-            (isWidthSizedToContent() || !isNaN(explicitWidth)))
-			dispatchEvent(new Event("layoutNeeded"));
+        if (!noChildrenNow) {
+            //we don't want to run the states etc, they will error at this point
+            dispatchEvent(new Event("initComplete"));
+            if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+                    (isWidthSizedToContent() || !isNaN(explicitWidth)))
+                dispatchEvent(new Event("layoutNeeded"));
+        }
+
 	}
+
+
+    override public function initialize():void
+    {
+        if (initialized)
+            return;
+
+        if (creationPolicy == 'none') {
+            _deferSetInitialized = true;
+            dispatchEvent(new FlexEvent(FlexEvent.PREINITIALIZE));
+
+            _measuredWidth = NaN;
+            _measuredHeight = NaN;
+
+            // This should always be the last thing that initialize() calls.
+            initializationComplete();
+            return;
+        }
+        super.initialize();
+    }
 	
     override protected function createChildren():void
     {
+        if (creationPolicy == 'none') return;
         super.createChildren();
-        
-        if (getBeadByType(DataBindingBase) == null && '_bindings' in this /*mxmlDocument == this*/)
-            addBead(new ContainerDataBinding());
+        if ('_bindings' in this) {
+            if (getBeadByType(DataBindingBase) == null) {
+                addBead(new ContainerDataBinding());
+            }
+            dispatchEvent(new Event("initBindings"));
+        }
+    }
 
-        dispatchEvent(new Event("initBindings"));
+
+    private var _deferSetInitialized:Boolean;
+    /**
+     *  @private
+     */
+    override public function set initialized(value:Boolean):void
+    {
+        if (value && !_deferSetInitialized) {
+            dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));
+            super.initialized = value;
+        } else {
+            _deferSetInitialized = false;
+        }
+    }
+
+
+    override protected function initializationComplete():void
+    {
+        // Don't call super.initializationComplete().
+        //variation to flex sdk
+        //did we already create content ?
+        if (creationPolicy != 'none') {
+            super.initializationComplete();
+        }
+    }
+
+    /**
+     *  Performs the equivalent action of calling
+     *  the <code>createComponentsFromDescriptors(true)</code> method for containers
+     *  that implement the IDeferredContentOwner interface to support deferred instantiation.
+     *
+     *  @see #createComponentsFromDescriptors()
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Flex 4
+     */
+    public function createDeferredContent():void
+    {
+        if (creationPolicy == 'none') {
+            creationPolicyNone = false;
+            _deferSetInitialized = false
+            createChildren();
+            //run the original addedToParent stuff
+            dispatchEvent(new Event("initComplete"));
+            if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+                    (isWidthSizedToContent() || !isNaN(explicitWidth)))
+                dispatchEvent(new Event("layoutNeeded"));
+
+            processedDescriptors = true;
+            creationPolicyNone = true;
+            //dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));
+            initialized = true;
+        }
     }
     
     /**
@@ -1152,13 +1240,78 @@ public class Container extends UIComponent
 	{
 		dispatchEvent( new Event("layoutNeeded") );
 	}
+
+
+
+    override mx_internal function addingChild(child:IUIBase):void
+    {
+
+        COMPILE::SWF{
+            //was
+            // Throw an RTE if child is not an IUIComponent.
+            //var uiChild:IUIComponent = IUIComponent(child);
+            if (!(child is IUIComponent)) {
+                //commented out for now, to allow legacy mustella tests to pass in swf
+              //  trace('this is child is not an IUIComponent', child )
+               // throw new Error('child is not IUIComponent '+child)
+            }
+
+        }
+
+
+        // Set the child's virtual parent, nestLevel, document, etc.
+        super.addingChild(child);
+
+        invalidateSize();
+        invalidateDisplayList();
+
+        /*if (!contentPane)
+        {
+            // If this is the first content child, then any chrome
+            // that already exists is positioned in front of it.
+            // If other content children already existed, then set the
+            // depth of this object to be just behind the existing
+            // content children.
+            if (_numChildren == 0)
+                _firstChildIndex = super.numChildren;
+
+            // Increment the number of content children.
+            _numChildren++;
+        }
+
+        if (contentPane && !autoLayout)
+        {
+            forceLayout = true;
+            // weak reference
+            UIComponentGlobals.layoutManager.addEventListener(
+                    FlexEvent.UPDATE_COMPLETE, layoutCompleteHandler, false, 0, true);
+        }*/
+    }
 	
     /**
      *  @private
      */
     override mx_internal function childAdded(child:IUIBase):void
     {
-		super.addingChild(child);
+        if (hasEventListener("childrenChanged"))
+            dispatchEvent(new Event("childrenChanged"));
+
+        if (hasEventListener(ChildExistenceChangedEvent.CHILD_ADD))
+        {
+            var event:ChildExistenceChangedEvent =
+                    new ChildExistenceChangedEvent(
+                            ChildExistenceChangedEvent.CHILD_ADD);
+            event.relatedObject = child as UIComponent;
+            dispatchEvent(event);
+        }
+
+       /* if (child.hasEventListener(FlexEvent.ADD))
+            child.dispatchEvent(new FlexEvent(FlexEvent.ADD));*/
+
+        //why is this calling addingChild in the super?
+	//	super.addingChild(child);
+        super.childAdded(child);
+
 		if (parent)
 		{
 			var oldMeasuredWidth:Number = measuredWidth;
@@ -1175,12 +1328,36 @@ public class Container extends UIComponent
 		}
 	}
 
+
+    /**
+     *  @private
+     */
+    override mx_internal function removingChild(child:IUIBase):void
+    {
+        super.removingChild(child);
+
+       /* if (child.hasEventListener(FlexEvent.REMOVE))
+            child.dispatchEvent(new FlexEvent(FlexEvent.REMOVE));*/
+
+        if (hasEventListener(ChildExistenceChangedEvent.CHILD_REMOVE))
+        {
+            var event:ChildExistenceChangedEvent =
+                    new ChildExistenceChangedEvent(
+                            ChildExistenceChangedEvent.CHILD_REMOVE);
+            event.relatedObject = child as UIComponent;
+            dispatchEvent(event);
+        }
+    }
+
     /**
      *  @private
      */
     override mx_internal function childRemoved(child:IUIBase):void
     {
-		super.removingChild(child);
+        //why is this calling removingChild in the super?
+		//super.removingChild(child);
+
+        super.childRemoved(child);
 		if (parent)
 		{
 			var oldMeasuredWidth:Number = measuredWidth;
@@ -1701,9 +1878,10 @@ public class Container extends UIComponent
         // don't have this property (ie Group).
         // This style is an implementation detail and should be considered
         // private. Do not set it from CSS.
-        /*if (creationPolicyNone)
-            return ContainerCreationPolicy.NONE;*/
-        return getStyle("_creationPolicy");
+        if (creationPolicyNone)
+            return ContainerCreationPolicy.NONE;
+        //return getStyle("_creationPolicy");
+        return  getStyle("_creationPolicy");
     }
 
     /**
@@ -1712,8 +1890,7 @@ public class Container extends UIComponent
     public function set creationPolicy(value:String):void
     {
         var styleValue:String = value;
-        
-        /*if (value == ContainerCreationPolicy.NONE)
+        if (value == ContainerCreationPolicy.NONE)
         {
             // creationPolicy of none is not inherited by descendants.
             // In this case, set the style to "auto" and set a local
@@ -1724,12 +1901,14 @@ public class Container extends UIComponent
         else
         {
             creationPolicyNone = false;
-        }*/
-        
+        }
         setStyle("_creationPolicy", styleValue);
 
         //setActualCreationPolicies(value);
     }
+
+
+    [Bindable("childrenChanged")]
     /**
      *  Returns an Array of DisplayObject objects consisting of the content children 
      *  of the container.
@@ -1798,6 +1977,25 @@ public class Container extends UIComponent
             return contentPane.mouseY;
         */
         return super.contentMouseY; 
+    }
+
+    //----------------------------------
+    //  deferredContentCreated
+    //----------------------------------
+
+    /**
+     *  IDeferredContentOwner equivalent of processedDescriptors
+     *
+     *  @see UIComponent#processedDescriptors
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get deferredContentCreated():Boolean
+    {
+        return processedDescriptors;
     }
 	
 	
