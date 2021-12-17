@@ -4479,18 +4479,21 @@ COMPILE::JS
      * @productversion Royale 0.9.9
      */
     COMPILE::SWF
-    override public function dispatchEvent(event:Event):Boolean{
-        //trap the layout requests and ignore them if we have deferred layout
-        if (event.type == "layoutNeeded") {
-            if (_layoutDeferred) {
-                _needsLayout = true;
-                return false;
-            } else {
-                //layout will run, no 'need' to re-run later
-                _needsLayout = false;
+    {
+        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent")]
+        override public function dispatchEvent(event:Event):Boolean {
+            //trap the layout requests and ignore them if we have deferred layout
+            if (event.type == "layoutNeeded") {
+                if (_layoutDeferred) {
+                    _needsLayout = true;
+                    return false;
+                } else {
+                    //layout will run, no 'need' to re-run later
+                    _needsLayout = false;
+                }
             }
+            return super.dispatchEvent(event);
         }
-        return super.dispatchEvent(event);
     }
 
     /**
