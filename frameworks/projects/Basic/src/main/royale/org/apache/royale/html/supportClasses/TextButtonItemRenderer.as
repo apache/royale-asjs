@@ -32,6 +32,7 @@ package org.apache.royale.html.supportClasses
 	COMPILE::JS
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.beads.IHasLabelField;
 	}
 
 	/**
@@ -43,7 +44,7 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 	 */
-	public class TextButtonItemRenderer extends TextButton implements ITextItemRenderer
+	public class TextButtonItemRenderer extends TextButton implements ITextItemRenderer, IHasLabelField
 	{
 		public function TextButtonItemRenderer()
 		{

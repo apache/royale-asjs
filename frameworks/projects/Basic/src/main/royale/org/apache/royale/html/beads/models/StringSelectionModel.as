@@ -23,6 +23,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.html.beads.IHasLabelField;
 		
     /**
      *  The StringSelectionModel class is a selection model for
@@ -33,7 +34,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class StringSelectionModel extends EventDispatcher implements ISelectionModel
+	public class StringSelectionModel extends EventDispatcher implements ISelectionModel, IHasLabelField
 	{
         /**
          *  Constructor.

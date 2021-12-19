@@ -40,6 +40,7 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.geom.Rectangle;
     import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.html.beads.IHasLabelField;
 	
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.royale.html.TextField as an itemRenderer.
@@ -49,7 +50,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase, IRoyaleElement
+	public class TextFieldItemRenderer extends CSSTextField implements ITextItemRenderer, IStrand, IUIBase, IRoyaleElement, IHasLabelField
 	{
 		/**
 		 *  constructor.

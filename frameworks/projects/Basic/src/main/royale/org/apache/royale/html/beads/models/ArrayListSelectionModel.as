@@ -23,6 +23,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.core.DispatcherBead;
+	import org.apache.royale.html.beads.IHasLabelField;
 
 	/**
 	 *  The ArrayListSelectionModel class is a selection model for
@@ -34,7 +35,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ArrayListSelectionModel extends DispatcherBead implements ISelectionModel, IRollOverModel
+	public class ArrayListSelectionModel extends DispatcherBead implements ISelectionModel, IRollOverModel, IHasLabelField
 	{
 		/**
 		 *  Constructor.

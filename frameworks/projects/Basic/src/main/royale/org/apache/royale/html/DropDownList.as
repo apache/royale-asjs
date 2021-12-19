@@ -26,6 +26,7 @@ package org.apache.royale.html
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.beads.models.ArraySelectionModel;
         import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.beads.IHasLabelField;
     }
 
     //--------------------------------------
@@ -62,7 +63,7 @@ package org.apache.royale.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DropDownList extends Button
+	public class DropDownList extends Button implements IHasLabelField
 	{
         /**
          *  Constructor.

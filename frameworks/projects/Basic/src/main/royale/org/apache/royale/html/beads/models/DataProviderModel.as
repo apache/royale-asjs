@@ -21,6 +21,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.beads.IHasLabelField;
 			
     /**
      *  The DataProviderModel class is a model for
@@ -31,7 +32,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataProviderModel extends DispatcherBead implements IDataProviderModel
+	public class DataProviderModel extends DispatcherBead implements IDataProviderModel, IHasLabelField
 	{
         /**
          *  Constructor.

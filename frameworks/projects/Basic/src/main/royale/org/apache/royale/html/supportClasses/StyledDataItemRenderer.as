@@ -27,6 +27,7 @@ package org.apache.royale.html.supportClasses
 		import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
 		import org.apache.royale.core.IBeadController;
+		import org.apache.royale.html.beads.IHasDataField;
 	}
 
 	/**
@@ -39,7 +40,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class StyledDataItemRenderer extends StyledUIItemRendererBase
+	public class StyledDataItemRenderer extends StyledUIItemRendererBase implements IHasDataField
 	{
 		/**
 		 *  constructor.

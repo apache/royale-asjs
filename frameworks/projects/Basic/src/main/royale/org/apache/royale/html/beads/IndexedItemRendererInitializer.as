@@ -36,7 +36,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class IndexedItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class IndexedItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer, IHasLabelField
 	{
 		/**
 		 *  constructor.
@@ -51,7 +51,19 @@ package org.apache.royale.html.beads
 		}
 		
 		protected var dataProviderModel:IDataProviderModel;
-		protected var labelField:String;
+		private var _labelField:String;
+		/**
+		 * Label field
+		 */
+		public function get labelField():String
+		{
+			return _labelField;
+		}
+
+		public function set labelField(value:String):void
+		{
+			_labelField = value;
+		}
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand

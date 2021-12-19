@@ -29,7 +29,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-	public class DataFieldProviderBead extends Bead
+	public class DataFieldProviderBead extends Bead implements IHasDataField
 	{
         /**
          *  Constructor.

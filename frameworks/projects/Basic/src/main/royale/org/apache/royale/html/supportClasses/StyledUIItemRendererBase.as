@@ -23,6 +23,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.core.ILabelFieldItemRenderer;
+	import org.apache.royale.html.beads.IHasLabelField;
 		
 	[DefaultProperty("mxmlContent")]
 
@@ -44,7 +45,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class StyledUIItemRendererBase extends StyledUIBase implements ILabelFieldItemRenderer
+	public class StyledUIItemRendererBase extends StyledUIBase implements ILabelFieldItemRenderer, IHasLabelField
 	{
 		/**
 		 *  constructor.
