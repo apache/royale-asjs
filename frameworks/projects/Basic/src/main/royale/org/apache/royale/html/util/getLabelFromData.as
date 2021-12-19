@@ -19,16 +19,16 @@
 package org.apache.royale.html.util
 {
 
-    import org.apache.royale.html.beads.IHasLabelField;
-    import org.apache.royale.html.beads.IHasDataField;
+    import org.apache.royale.core.IHasLabelField;
+    import org.apache.royale.core.IHasDataField;
 
     /**
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
-     *  @royaleignorecoercion org.apache.royale.html.beads.IHasLabelField
-     *  @royaleignorecoercion org.apache.royale.html.beads.IHasDataField
+     *  @royaleignorecoercion org.apache.royale.core.IHasLabelField
+     *  @royaleignorecoercion org.apache.royale.core.IHasDataField
      * Utility function to get a label string from a value object
      */
     public function getLabelFromData(obj:Object,data:Object):String

@@ -29,7 +29,7 @@ package org.apache.royale.html.supportClasses
 		import org.apache.royale.core.IBeadController;
 	}
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.html.beads.IHasDataField;
+	import org.apache.royale.core.IHasDataField;
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class

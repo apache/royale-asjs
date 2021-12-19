@@ -26,8 +26,8 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.svg.CompoundGraphic;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.utils.MXMLDataInterpreter;
-    import org.apache.royale.html.beads.IHasDataField;
-    import org.apache.royale.html.beads.IHasLabelField;
+    import org.apache.royale.core.IHasDataField;
+    import org.apache.royale.core.IHasLabelField;
 	
 	/**
 	 *  The GraphicsItemRenderer provides a base class for itemRenderers that use graphics rather than

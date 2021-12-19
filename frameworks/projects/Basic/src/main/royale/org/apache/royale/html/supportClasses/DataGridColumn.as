@@ -22,7 +22,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.html.List;
-	import org.apache.royale.html.beads.IHasDataField;
+	import org.apache.royale.core.IHasDataField;
 
 	/**
 	 *  The DataGridColumn class is the collection of properties that describe

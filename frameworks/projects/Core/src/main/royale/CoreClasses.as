@@ -290,6 +290,8 @@ internal class CoreClasses
 	import org.apache.royale.core.IDataGridHeader; IDataGridHeader;
 	import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
 	import org.apache.royale.core.IDateChooserModelWithChangeCheck; IDateChooserModelWithChangeCheck;
+	import org.apache.royale.core.IHasDataField; IHasDataField;
+	import org.apache.royale.core.IHasLabelField; IHasLabelField;
 	import org.apache.royale.core.ParentDocumentBead; ParentDocumentBead;
 	import org.apache.royale.core.ItemRendererOwnerViewBead; ItemRendererOwnerViewBead;
 	import org.apache.royale.core.TransformBeadBase; TransformBeadBase;

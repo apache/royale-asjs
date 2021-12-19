@@ -16,10 +16,12 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads
+package org.apache.royale.core
 {
 	public interface IHasDataField
 	{
-		function get dataField():String;
+		{
+			function get dataField():String;
+		}
 	}
 }

@@ -28,7 +28,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.html.beads.IHasLabelField;
+	import org.apache.royale.core.IHasLabelField;
 
 	COMPILE::JS
 	{

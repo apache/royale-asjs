@@ -47,7 +47,7 @@ package org.apache.royale.html
 	import org.apache.royale.html.beads.models.ListPresentationModel;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.core.IListWithPresentationModel;
-	import org.apache.royale.html.beads.IHasLabelField;
+	import org.apache.royale.core.IHasLabelField;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.

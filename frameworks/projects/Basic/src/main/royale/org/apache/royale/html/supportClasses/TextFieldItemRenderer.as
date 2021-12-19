@@ -40,7 +40,7 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.geom.Rectangle;
     import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.html.beads.IHasLabelField;
+	import org.apache.royale.core.IHasLabelField;
 	
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.royale.html.TextField as an itemRenderer.

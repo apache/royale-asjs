@@ -19,7 +19,7 @@
 package org.apache.royale.html
 {
     import org.apache.royale.core.ISelectionModel;
-    import org.apache.royale.html.beads.IHasLabelField;
+    import org.apache.royale.core.IHasLabelField;
 
     COMPILE::JS
     {

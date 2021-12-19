@@ -23,7 +23,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.IMultiSelectionModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.IHasLabelField;
+	import org.apache.royale.core.IHasLabelField;
 
     /**
      *  The MultiSelectionCollectionViewModel class is a selection model for
