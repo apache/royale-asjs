@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.IHasLabelField;
 
 	/**
 	 *  The IndexedItemRendererInitializer class initializes item renderers

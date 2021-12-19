@@ -36,6 +36,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendStrandEvent;
 	import org.apache.royale.core.DispatcherBead;
+	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.core.IHasDataField;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	

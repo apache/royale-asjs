@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.sendBeadEvent;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IHasLabelField;
 
 
     /**

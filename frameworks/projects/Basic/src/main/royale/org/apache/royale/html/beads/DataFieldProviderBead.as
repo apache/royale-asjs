@@ -19,6 +19,7 @@
 package org.apache.royale.html.beads
 {
     import org.apache.royale.core.Bead;
+    import org.apache.royale.core.IHasDataField;
 
     /**
      *  The DataFieldProviderBead class is a model that holds dataField used mostly
