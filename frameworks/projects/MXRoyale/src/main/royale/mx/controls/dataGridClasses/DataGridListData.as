@@ -22,6 +22,7 @@ package mx.controls.dataGridClasses
 
 import mx.controls.listClasses.BaseListData;
 import mx.core.IUIComponent;
+import org.apache.royale.core.IHasDataField;
 
 /**
  *  The DataGridListData class defines the data type of the <code>listData</code> property that is
@@ -40,7 +41,7 @@ import mx.core.IUIComponent;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DataGridListData extends BaseListData
+public class DataGridListData extends BaseListData implements IHasDataField
 {
 //	include "../../core/Version.as";
 
@@ -88,17 +89,17 @@ public class DataGridListData extends BaseListData
 	//
 	//--------------------------------------------------------------------------
 
-	[Bindable("__NoChangeEvent__")]
+	private var _dataField:String;
 
-    /**
-	 *  Name of the field or property in the data provider associated with the column. 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
-	 */
-	public var dataField:String;
+	public function get dataField():String
+	{
+		return _dataField;
+	}
+
+	public function set dataField(value:String):void
+	{
+		_dataField = value;
+	}
 
 }
 
