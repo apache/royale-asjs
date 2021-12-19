@@ -34,6 +34,7 @@ internal class CoreClasses
 	import org.apache.royale.core.LayoutBase; LayoutBase;
 	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;
 	import org.apache.royale.core.ApplicationBase; ApplicationBase;
+	import org.apache.royale.core.ILabeledData; ILabeledData;
 	import org.apache.royale.core.IList; IList;
 	import org.apache.royale.core.IIcon; IIcon;
 	import org.apache.royale.core.ITextButton; ITextButton;
