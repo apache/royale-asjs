@@ -32,6 +32,7 @@ package spark.components.supportClasses
     import spark.components.supportClasses.ToggleButtonBase;
     import mx.controls.listClasses.IListItemRenderer;
     import mx.events.ListEvent;
+    import org.apache.royale.core.IHasLabelField;
 
     /**
      *  The TextButtonItemRenderer is the default renderer for TabBar
@@ -42,7 +43,7 @@ package spark.components.supportClasses
      *  @productversion Flex 3
      */
 
-    public class SparkTextButtonItemRenderer extends ToggleButtonBase implements IListItemRenderer
+    public class SparkTextButtonItemRenderer extends ToggleButtonBase implements IListItemRenderer, IHasLabelField
     {
         public function SparkTextButtonItemRenderer()
         {

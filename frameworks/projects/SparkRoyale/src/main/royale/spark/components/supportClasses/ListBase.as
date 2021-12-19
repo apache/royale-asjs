@@ -60,6 +60,7 @@ import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IParent;
 import org.apache.royale.events.ValueEvent;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;   //ListBase and List share selection properties that are mx_internal
 
@@ -198,7 +199,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class ListBase  extends SkinnableDataContainer implements IContainer
+public class ListBase  extends SkinnableDataContainer implements IContainer, IHasLabelField
 { //extends SkinnableDataContainer implements IDataProviderEnhance
     //include "../../core/Version.as";
 

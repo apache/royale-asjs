@@ -39,6 +39,7 @@ package spark.components.gridClasses
     import mx.core.mx_internal;
 	import mx.collections.SortField;// import spark.collections.SortField;
     import spark.components.Grid;
+    import org.apache.royale.core.IHasDataField;
 
     use namespace mx_internal;
 
@@ -94,7 +95,7 @@ package spark.components.gridClasses
  *  @playerversion AIR 2.5
  *  @productversion Flex 4.5
  */   
-public class GridColumn extends EventDispatcher
+public class GridColumn extends EventDispatcher implements IHasDataField
 {
     // include "../../core/Version.as";
     
