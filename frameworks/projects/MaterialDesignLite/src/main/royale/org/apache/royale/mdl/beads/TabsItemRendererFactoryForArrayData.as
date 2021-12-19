@@ -35,6 +35,7 @@ package org.apache.royale.mdl.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IHasLabelField;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -48,7 +49,7 @@ package org.apache.royale.mdl.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    public class TabsItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
+    public class TabsItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper, IHasLabelField
     {
         public function TabsItemRendererFactoryForArrayData(target:Object = null)
         {
@@ -57,7 +58,15 @@ package org.apache.royale.mdl.beads
 
         protected var dataProviderModel:ITabModel;
 
-        protected var labelField:String;
+        protected var _labelField:String;
+        /**
+         * Label field
+         */
+        public function get labelField():String
+        {
+        	return _labelField;
+        }
+
         protected var tabsIdField:String;
 
         private var _strand:IStrand;
@@ -94,7 +103,7 @@ package org.apache.royale.mdl.beads
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
             tabsIdField = dataProviderModel.tabIdField;
-            labelField = dataProviderModel.labelField
+            _labelField = dataProviderModel.labelField
 
             dataProviderChangeHandler(null);
         }
