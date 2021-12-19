@@ -84,10 +84,10 @@ COMPILE::JS
          */
         public static function retrieveEvent(nativeEvent:Object):Object{
             if (nativeEvent['_RYL_ORIG']) {
-                var rlyEvt:goog.events.Event = nativeEvent['_RYL_ORIG'] as goog.events.Event;
+                var rylEvt:goog.events.Event = nativeEvent['_RYL_ORIG'] as goog.events.Event;
                 //retrieve it with the currentTarget updated
-                rlyEvt.currentTarget = getTargetWrapper(nativeEvent.currentTarget)
-                return rlyEvt;
+                rylEvt.currentTarget = getTargetWrapper(nativeEvent.currentTarget)
+                return rylEvt;
             }
             return nativeEvent;
         }
