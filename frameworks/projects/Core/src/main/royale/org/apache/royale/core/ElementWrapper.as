@@ -195,8 +195,11 @@ package org.apache.royale.core
                 e = converter(nativeEvent,eventObject);
             else
             {
-                e = new org.apache.royale.events.BrowserEvent();
-                e.wrapEvent(eventObject);
+                e = EventUtils.retrieveEvent(nativeEvent) as IBrowserEvent;
+                if (e == nativeEvent) {
+                    e = new org.apache.royale.events.BrowserEvent();
+                    e.wrapEvent(eventObject);
+                }
             }
 			return ElementWrapper.googFireListener(listener, e);
 		}
@@ -365,7 +368,9 @@ package org.apache.royale.core
                 eventType = e.type;
                 if (ElementEvents.elementEvents[eventType])
                 {
-                    e = EventUtils.createEvent(eventType, e["bubbles"]);
+                    var orig:Object = e;
+                    e = EventUtils.tagNativeEvent(EventUtils.createEvent(eventType, e["bubbles"]), orig);
+                    orig.target = orig.currentTarget = this;
                 }
             }
             var source:Object = this.getActualDispatcher_(eventType);
