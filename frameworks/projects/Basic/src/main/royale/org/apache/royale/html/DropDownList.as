@@ -19,6 +19,7 @@
 package org.apache.royale.html
 {
     import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.html.beads.IHasLabelField;
 
     COMPILE::JS
     {
@@ -26,7 +27,6 @@ package org.apache.royale.html
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.beads.models.ArraySelectionModel;
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.html.beads.IHasLabelField;
     }
 
     //--------------------------------------

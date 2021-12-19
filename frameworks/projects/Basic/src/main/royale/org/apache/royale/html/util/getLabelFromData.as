@@ -19,11 +19,16 @@
 package org.apache.royale.html.util
 {
 
+    import org.apache.royale.html.beads.IHasLabelField;
+    import org.apache.royale.html.beads.IHasDataField;
+
     /**
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
+     *  @royaleignorecoercion org.apache.royale.html.beads.IHasLabelField
+     *  @royaleignorecoercion org.apache.royale.html.beads.IHasDataField
      * Utility function to get a label string from a value object
      */
     public function getLabelFromData(obj:Object,data:Object):String
@@ -32,8 +37,8 @@ package org.apache.royale.html.util
         if (data is String) return "" + data;
         if(!data) return "";
 
-        if (obj["labelField"]) return "" + data[obj["labelField"]];
-        if (obj["dataField"]) return "" + data[obj["dataField"]];
+        if (obj is IHasLabelField && (obj as IHasLabelField).labelField && data[(obj as IHasLabelField).labelField] != null) return "" + data[(obj as IHasLabelField).labelField];
+        if (obj is IHasDataField && (obj as IHasDataField).dataField && data[(obj as IHasDataField).dataField] != null) return "" + data[(obj as IHasDataField).dataField];
         var label:String = data["label"];
         if(label != null){
             return label;

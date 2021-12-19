@@ -28,11 +28,11 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.util.getLabelFromData;
+	import org.apache.royale.html.beads.IHasLabelField;
 
 	COMPILE::JS
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.beads.IHasLabelField;
 	}
 
 	/**

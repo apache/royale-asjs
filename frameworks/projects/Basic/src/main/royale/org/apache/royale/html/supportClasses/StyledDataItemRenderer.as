@@ -25,10 +25,10 @@ package org.apache.royale.html.supportClasses
 	COMPILE::JS
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+		import org.apache.royale.html.util.addElementToWrapper;
 		import org.apache.royale.core.IBeadController;
-		import org.apache.royale.html.beads.IHasDataField;
 	}
+	import org.apache.royale.html.beads.IHasDataField;
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
