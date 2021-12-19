@@ -1895,7 +1895,7 @@ package
 		{
 			/*if(!_name)
 				_name = getQName("","","",false);*/
-			return _name;
+			return _name ? _name : null;
 		}
 		
 		/**
