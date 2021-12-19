@@ -32,6 +32,7 @@ package org.apache.royale.jewel
     import org.apache.royale.jewel.beads.models.ListPresentationModel;
     import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
     import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+    import org.apache.royale.core.IHasLabelField;
 
 
     //--------------------------------------
@@ -68,7 +69,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class DropDownList extends DataContainerBase
+	public class DropDownList extends DataContainerBase implements IHasLabelField
 	{
         /**
          *  Constructor.

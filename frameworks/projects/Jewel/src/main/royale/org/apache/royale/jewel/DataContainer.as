@@ -24,6 +24,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+	import org.apache.royale.core.IHasLabelField;
 
 	/**
 	 * The default property uses when additional MXML content appears within an element's
@@ -61,7 +62,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DataContainer extends DataContainerBase implements IListWithPresentationModel
+	public class DataContainer extends DataContainerBase implements IListWithPresentationModel, IHasLabelField
 	{
 		/**
 		 *  constructor.
