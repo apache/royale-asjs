@@ -46,6 +46,7 @@ import mx.managers.SystemManager;
 //import mx.styles.StyleProtoChain;
 
 import mx.utils.RoyaleUtil;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;
 
@@ -134,7 +135,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class NavBar extends Box
+public class NavBar extends Box implements IHasLabelField
 {
    // include "../core/Version.as";
 

@@ -21,23 +21,13 @@ package mx.controls.beads
 
 
 	import mx.controls.DataGrid;
-	import mx.controls.dataGridClasses.DataGridListArea;
-
-    import org.apache.royale.core.Bead;
-    import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.IIndexedItemRendererInitializer;
-    import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IListDataItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.SimpleCSSStyles;
-    import org.apache.royale.core.UIBase;
-    import mx.controls.dataGridClasses.DataGridListData;
+	import mx.controls.beads.models.DataGridColumnICollectionViewModel;
 	import mx.controls.dataGridClasses.DataGridColumnList;
-    import mx.controls.beads.models.DataGridColumnICollectionViewModel;
+	import mx.controls.dataGridClasses.DataGridListData;
 	import mx.core.UIComponent;
+
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IListDataItemRenderer;
     
 	/**
 	 *  The DataGridItemRendererInitializer class initializes item renderers

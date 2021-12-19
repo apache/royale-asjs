@@ -59,6 +59,7 @@ import org.apache.royale.events.ValueEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.events.FlexEvent;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;
 
@@ -168,7 +169,8 @@ use namespace mx_internal;
 	*/
 	public class ListBase extends ScrollControlBase 
         implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, 
-                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel
+                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel,
+                    IHasLabelField
 	{  //extends UIComponent
 	
 	

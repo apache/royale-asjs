@@ -64,6 +64,7 @@ import mx.graphics.IStroke;
 import mx.graphics.SolidColor;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.ISimpleStyleClient;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;
 
@@ -227,7 +228,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class BarSeries extends Series implements IStackable2, IBar
+public class BarSeries extends Series implements IStackable2, IBar, IHasLabelField
 {
 //    include "../../core/Version.as";
 
