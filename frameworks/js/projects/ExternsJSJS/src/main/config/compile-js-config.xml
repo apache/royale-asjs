@@ -23,42 +23,25 @@
         
         <!-- build both SWF and JS. -->
         <targets>
+            <target>SWF</target>
             <target>JSRoyale</target>
         </targets>
         <strict-xml>true</strict-xml>
 
-        <external-library-path>
-            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Binding.swc</path-element>
-            <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/Basic.swc</path-element>
-            <path-element>../../../../../libs/Collections.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
-            <path-element>../../../../../libs/Formatters.swc</path-element>
-        </external-library-path>
-        
-        <allow-subclass-overrides>true</allow-subclass-overrides>
-        <mxml>
-            <children-as-data>true</children-as-data>
-            <imports>
-                <implicit-import>org.apache.royale.events.*</implicit-import>
-                <implicit-import>org.apache.royale.geom.*</implicit-import>
-                <implicit-import>org.apache.royale.core.ClassFactory</implicit-import>
-                <implicit-import>org.apache.royale.core.IFactory</implicit-import>
-            </imports>
-        </mxml>
+		<mxml>
+			<children-as-data>true</children-as-data>
+		</mxml>
 		<binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
         <define>
             <name>COMPILE::SWF</name>
-            <value>true</value>
+            <value>false</value>
         </define>
         <define>
             <name>COMPILE::JS</name>
-            <value>false</value>
+            <value>true</value>
         </define>
 
         <keep-as3-metadata>
@@ -71,38 +54,43 @@
 	  
         <locale/>
         
-        <library-path/>
-
+        <external-library-path append="true">
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
+            <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+        </external-library-path>
+        
+        <source-path>
+            <path-element>../../../../../../projects/ExternsJS/src/main/royale</path-element>
+        </source-path>
+        
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/externsjs</uri>
-                <manifest>../resources/externsjs-manifest.xml</manifest>
+                <manifest>../../../../../../projects/ExternsJS/src/main/resources/externsjs-manifest.xml</manifest>
             </namespace>
         </namespaces>
-        
-        <source-path>
-            <path-element>../royale</path-element>
-        </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
     <include-file>
-        <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
     </include-file>
 
-    <include-lookup-only>true</include-lookup-only>
-    
     <include-classes>
         <class>ExternsJSClasses</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/royale/externsjs</uri>
+        <uri>library://ns.apache.org/royale/basic</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
+
+    <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
+    <js-resolve-uncertain>false</js-resolve-uncertain>
+    <js-vector-index-checks>false</js-vector-index-checks>
         
-    <target-player>${playerglobal.version}</target-player>
-	
 
 </royale-config>
