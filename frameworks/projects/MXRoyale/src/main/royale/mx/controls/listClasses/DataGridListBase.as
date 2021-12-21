@@ -677,7 +677,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected var collection:ICollectionView;
+    /* protected */ public var collection:ICollectionView;
 
     /**
      *  The main IViewCursor instance used to fetch items from the
@@ -2573,7 +2573,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public function get selectable():Boolean
+    override public function get selectable():Boolean
     {
         return _selectable;
     }
@@ -2581,7 +2581,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
     /**
      *  @private
      */
-    public function set selectable(value:Boolean):void
+    override public function set selectable(value:Boolean):void
     {
         _selectable = value;
     }
