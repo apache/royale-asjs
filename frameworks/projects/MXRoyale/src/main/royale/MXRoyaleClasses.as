@@ -432,6 +432,7 @@ internal class MXRoyaleClasses
 	import mx.printing.PrintJob; PrintJob;
 	import mx.containers.accordionClasses.AccordionHeader; AccordionHeader;
 	/*import mx.net.FileReferenceList; FileReferenceList;*/
+	import mx.controls.beads.ProgressBarView; ProgressBarView;
 }
 
 }
