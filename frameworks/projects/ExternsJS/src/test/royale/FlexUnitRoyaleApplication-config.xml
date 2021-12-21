@@ -42,6 +42,7 @@
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
             <path-element>../../../../../libs/Language.swc</path-element>
+            <path-element>../../../../../libs/Reflection.swc</path-element>
             <path-element>../../../../../libs/ExternsJS.swc</path-element>
             <path-element>../../../../../libs/RoyaleUnit.swc</path-element>
         </library-path>
@@ -53,6 +54,7 @@
             <path-element>../../../../../js/libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../js/libs/CollectionsJS.swc</path-element>
             <path-element>../../../../../js/libs/LanguageJS.swc</path-element>
+            <path-element>../../../../../js/libs/ReflectionJS.swc</path-element>
             <path-element>../../../../../js/libs/ExternsJSJS.swc</path-element>
             <path-element>../../../../../js/libs/RoyaleUnitJS.swc</path-element>
         </js-library-path>
@@ -95,10 +97,10 @@
                 <uri>http://ns.adobe.com/mxml/2009</uri>
                 <manifest>../../../../../mxml-2009-manifest.xml</manifest>
             </namespace>
-            <namespace>
+            <!-- <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../../main/resources/basic-manifest.xml</manifest>
-            </namespace>
+            </namespace> -->
         </namespaces>
         
         <warn-no-constructor>false</warn-no-constructor>

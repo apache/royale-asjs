@@ -198,7 +198,8 @@
         <antcall target="CruxTest"/>
         <antcall target="JewelTest"/>
         <antcall target="IconsTest"/>
-        <antcall target="ExternsJSTest"/>
+        <!-- No tests yet -->
+        <!-- <antcall target="ExternsJSTest"/> -->
     </target>
 
     <target name="fonts">

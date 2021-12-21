@@ -78,10 +78,6 @@
                 <uri>library://ns.apache.org/royale/externsjs</uri>
                 <manifest>../resources/externsjs-manifest.xml</manifest>
             </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/royale/externsjs</uri>
-                <manifest>../resources/externsjs-as-manifest.xml</manifest>
-            </namespace>
         </namespaces>
         
         <source-path>

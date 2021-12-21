@@ -48,8 +48,8 @@ package flexUnitTests
         [Test]
         public function testSomething():void
         {
-            assertTrue("something" == "somthing","Should be something");
-            assertEquals("something","somthing","Should be something");
+            assertTrue("something" == "something","Should be true");
+            assertEquals("something","something","Should be something");
         }
 
 

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-    import flexUnitTests.language.*
     
     [Suite]
     [RunWith("org.apache.royale.test.runners.SuiteRunner")]
