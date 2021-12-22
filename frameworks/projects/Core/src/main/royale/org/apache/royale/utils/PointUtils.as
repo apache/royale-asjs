@@ -27,6 +27,8 @@ package org.apache.royale.utils
 
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.geom.Point;
+    import org.apache.royale.core.IRenderedObject;
+    import org.apache.royale.debugging.assert;
 
 	/**
 	 *  The PointUtils class is a collection of static functions that convert
@@ -44,11 +46,13 @@ package org.apache.royale.utils
 		 */
 		public function PointUtils()
 		{
-			throw new Error("PointUtils should not be instantiated.");
+			assert(false,"PointUtils should not be instantiated.");
 		}
 
 		/**
 		 *  Converts a point from global coordinates to local coordinates
+         *  Works with IRenderedObject or any object that has an element property.
+         *  Also works with an HTMLElement.
 		 *
 		 *  @param point The point being converted.
 		 *  @param local The component used as reference for the conversion.
@@ -58,6 +62,7 @@ package org.apache.royale.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
          *  @royaleignorecoercion HTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
 		 */
 		public static function globalToLocal( pt:org.apache.royale.geom.Point, local:Object ):org.apache.royale.geom.Point
 		{
@@ -70,7 +75,16 @@ package org.apache.royale.utils
             {
                 var x:Number = pt.x;
                 var y:Number = pt.y;
-                var element:HTMLElement = local.element as HTMLElement;
+                var element:HTMLElement;
+                if(local.getBoundingClientRect){
+                    element = local as HTMLElement;
+                } else if(local.element){
+                    element = local.element as HTMLElement;
+                } else if(local is IRenderedObject){
+                    element = (local as IRenderedObject).element;
+                } else {
+                    assert(false,"Invalid object used for PointUtils.globalToLocal")
+                }
 				if ( element.getBoundingClientRect ) {// TODO take scrollbar widths into account
 					var rect:Object = element.getBoundingClientRect();
 					x = x - rect.left - window.pageXOffset;//window.scrollX doesn't work on IE11
@@ -96,6 +110,8 @@ package org.apache.royale.utils
 
         /**
          *  Converts a point from local coordinates to global coordinates
+         *  Works with IRenderedObject or any object that has an element property.
+         *  Also works with an HTMLElement.
          *
          *  @param point The point being converted.
          *  @param local The component used as reference for the conversion.
@@ -105,6 +121,7 @@ package org.apache.royale.utils
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          *  @royaleignorecoercion HTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
          */
         public static function localToGlobal( pt:org.apache.royale.geom.Point, local:Object ):org.apache.royale.geom.Point
         {
@@ -121,7 +138,16 @@ package org.apache.royale.utils
             {
                 var x:Number = pt.x;
                 var y:Number = pt.y;
-                var element:HTMLElement = local.element as HTMLElement;
+                var element:HTMLElement;
+                if(local.getBoundingClientRect){
+                    element = local as HTMLElement;
+                } else if(local.element){
+                    element = local.element as HTMLElement;
+                } else if(local is IRenderedObject){
+                    element = (local as IRenderedObject).element;
+                } else {
+                    assert(false,"Invalid object used for PointUtils.localToGlobal")
+                }
                 if ( element.getBoundingClientRect ) {// TODO take scrollbar widths into account
                 	var rect:Object = element.getBoundingClientRect();
 					x = rect.left + x + window.pageXOffset;//window.scrollX doesn't work on IE11
