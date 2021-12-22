@@ -1732,6 +1732,23 @@ public class UIComponent extends UIBase
     {
         _owner = value;
     }
+	
+	//----------------------------------
+    //  automationOwner
+    //----------------------------------
+    
+    /**
+     *  @inheritDoc
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 4
+     */
+    public function get automationOwner():IUIComponent
+    {
+        return owner;
+    }
 
     //----------------------------------
     //  doubleClickEnabled

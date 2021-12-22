@@ -38,6 +38,7 @@ import flash.text.TextLineMetrics;
  import mx.styles.ISimpleStyleClient;
  import mx.styles.IStyleManager2;
  import mx.utils.StringUtil;
+ import mx.core.IUIComponent;
  
  import org.apache.royale.core.TextLineMetrics;
  import org.apache.royale.events.Event;
@@ -2833,7 +2834,7 @@ public class UITextField  extends UIComponent implements IUITextField
     /**
      *  @private
      */
-    //private var _owner:DisplayObjectContainer;
+    private var _owner:IUIComponent; /* DisplayObjectContainer; */
 
     /**
      *  By default, set to the parent container of this object. 
@@ -2854,17 +2855,18 @@ public class UITextField  extends UIComponent implements IUITextField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get owner():DisplayObjectContainer
+    override public function get owner():IUIComponent
     {
-        return _owner ? _owner : parent;
+        return _owner ? _owner : parent as IUIComponent;
     }
 
-    public function set owner(value:DisplayObjectContainer):void
+    override public function set owner(value:IUIComponent):void
     {
         _owner = value;
     }
 
-    private function creatingSystemManager():ISystemManager
+
+  /*   private function creatingSystemManager():ISystemManager
     {
         return ((moduleFactory != null) && (moduleFactory is ISystemManager))
                 ? ISystemManager(moduleFactory)
