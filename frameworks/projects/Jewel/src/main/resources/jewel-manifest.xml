@@ -225,7 +225,7 @@
     <component id="ComboBoxListCloseOnClick" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxListCloseOnClick" />
     <component id="TriStateCheckBoxLabelState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState"/>
     <component id="TriStateCheckBoxState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxState"/>
-    <component id="TriStateCheckBoxTooltipState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxTooltipState"/>
+    <!-- <component id="TriStateCheckBoxTooltipState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxTooltipState"/> -->
 
     <component id="LayoutChildren" class="org.apache.royale.jewel.beads.layouts.LayoutChildren"/>
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
