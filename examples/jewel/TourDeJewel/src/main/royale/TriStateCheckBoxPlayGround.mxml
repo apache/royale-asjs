@@ -221,7 +221,7 @@ limitations under the License.
                     </j:TriStateCheckBox>   
                 
                     <j:Label multiline="true">
-                        <j:html><![CDATA[<p>The <strong>TriStateCheckBoxStatesValues</strong> bead allows to set a custom value for each state. <p>By default, the "unchecked" state is assigned a value of "0", the "checked" state a value of "1" and the "indeterminate" state a value of "-1".</p>]]></j:html>
+                        <j:html><![CDATA[<p>The <strong>TriStateCheckBoxState</strong> bead allows to set a custom value for each state. <p>By default, the "unchecked" state is assigned a value of "0", the "checked" state a value of "1" and the "indeterminate" state a value of "-1".</p>]]></j:html>
                     </j:Label>
 
                     <j:HGroup percentWidth="100" itemsVerticalAlign="itemsCenter" gap="5">
@@ -232,7 +232,7 @@ limitations under the License.
                         <j:Label text="Custom: " width="100"/>
                         <j:TriStateCheckBox localId="trCh1" text="{trCh1.state}" >
                             <j:beads>
-                                <j:TriStateCheckBoxStatesValues checkedValue="valChecked" uncheckedValue="valUnchecked" indeterminateValue="valIndeterminate"/>
+                                <j:TriStateCheckBoxState checkedValue="valChecked" uncheckedValue="valUnchecked" indeterminateValue="valIndeterminate"/>
                             </j:beads>
                         </j:TriStateCheckBox>
                     </j:HGroup>
