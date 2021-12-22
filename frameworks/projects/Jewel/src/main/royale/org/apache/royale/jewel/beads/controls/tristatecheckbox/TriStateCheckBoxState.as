@@ -27,13 +27,13 @@ package org.apache.royale.jewel.beads.controls.tristatecheckbox
 
 
 	/**
-	 * The TriStateCheckBoxStatesValues bead allows to set a custom value for each state.
+	 * The TriStateCheckBoxState bead allows to set a custom value for each state.
 	 */
     COMPILE::JS
-	public class TriStateCheckBoxStatesValues implements IBead
+	public class TriStateCheckBoxState implements IBead
 	{
 
-		public function TriStateCheckBoxStatesValues()
+		public function TriStateCheckBoxState()
 		{
 		}
 
@@ -83,10 +83,10 @@ package org.apache.royale.jewel.beads.controls.tristatecheckbox
 	}
 
     COMPILE::SWF
-	public class TriStateCheckBoxStatesValues
+	public class TriStateCheckBoxState
 	{
 
-		public function TriStateCheckBoxStatesValues()
+		public function TriStateCheckBoxState()
 		{
 		}
 	}
