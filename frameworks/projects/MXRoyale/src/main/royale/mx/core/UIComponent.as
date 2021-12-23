@@ -4226,6 +4226,7 @@ COMPILE::JS
      */
     protected function initializationComplete():void
     {
+        layoutDeferred = false;
         processedDescriptors = true;
     }
 
@@ -4311,7 +4312,6 @@ COMPILE::JS
         if (children && children.length && !processedMXMLDescriptors) {
             layoutDeferred = true;
             MXMLDataInterpreter.generateMXMLInstances(mxmlDocument, this, children);
-            layoutDeferred = false;
             processedMXMLDescriptors = true;
         }
     }
