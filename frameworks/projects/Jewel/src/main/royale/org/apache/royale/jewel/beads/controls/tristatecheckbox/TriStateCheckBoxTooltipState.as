@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.controls.tristatecheckbox
 	import org.apache.royale.jewel.TriStateCheckBox;
 
 	
+    COMPILE::JS
 	public class TriStateCheckBoxTooltipState extends ToolTip
 	{
 		
@@ -98,5 +99,14 @@ package org.apache.royale.jewel.beads.controls.tristatecheckbox
             updateHost();
 		}
 		
+	}
+
+    COMPILE::SWF
+	public class TriStateCheckBoxTooltipState extends ToolTip
+	{
+		
+		public function TriStateCheckBoxTooltipState()
+		{
+		}
 	}
 }
