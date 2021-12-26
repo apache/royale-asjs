@@ -299,7 +299,7 @@
                 <exclude name="closure/goog/asserts/asserts.js"/>
                 <exclude name="closure/goog/base.js"/>
                 <exclude name="closure/goog/deps.js"/>
-                <exclude name="closure/goog/debug/debug.js"/>
+                <exclude name="closure/goog/debug/**"/>
                 <exclude name="closure/goog/debug/entrypointregistry.js"/>
                 <exclude name="closure/goog/debug/error.js"/>
                 <exclude name="closure/goog/debug/errorcontext.js"/>
@@ -329,6 +329,10 @@
                 <!-- need dependencies for sanitizing html -->
                 <exclude name="closure/goog/html/**"/>
                 <exclude name="closure/goog/dom/**"/>
+                <exclude name="closure/goog/functions/**"/>
+                <exclude name="closure/goog/math/**"/>
+                <exclude name="closure/goog/useragent/**"/>
+                <exclude name="closure/goog/log/**"/>
                 <exclude name="closure/goog/i18n/bidi.js"/>
                 <exclude name="closure/goog/string/typedstring.js"/>
                 <exclude name="closure/goog/string/const.js"/>

@@ -18,16 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.string
 {
-	COMPILE::JS{
-		import goog.html.sanitizer.HtmlSanitizer;
-		import goog.html.SafeHtml;
-	}
 
 	public function sanitizeHtml(html:String):String
 	{
 		COMPILE::JS
 		{
-			return SafeHtml.unwrap(HtmlSanitizer.sanitize(html));
+			return InternalSafeHtml.unwrap(InternalHtmlSanitizer.sanitize(html));
 		}
 		//TODO sanitize in swf
 		COMPILE::SWF

@@ -18,15 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.string
 {
-	public function sanitizeUrl(url:String):String
+	COMPILE::JS{
+		import goog.html.sanitizer.HtmlSanitizer;
+		import goog.html.SafeHtml;
+	}
+	COMPILE::JS
+	internal class InternalHtmlSanitizer extends HtmlSanitizer
 	{
-		COMPILE::JS{
-			return InternalSafeUrl.unwrap(InternalSafeUrl.sanitize(url));
+		public function InternalHtmlSanitizer()
+		{
+			super();
 		}
-
-		//TODO sanitize in swf
-		COMPILE::SWF{
-			return url;
+		public static function sanitize(html:String):SafeHtml
+		{
+			return HtmlSanitizer.sanitize(html);
 		}
 	}
 }
