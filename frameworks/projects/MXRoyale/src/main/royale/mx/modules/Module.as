@@ -198,7 +198,7 @@ public class Module extends Container implements IModule, IFlexInfo //extends La
         if (obj.cssData)
             return obj.cssData;
         
-        return obj.ROYALE_CLASS_INFO;
+        return obj.ROYALE_CLASS_INFO || obj.ROYALE_INTERFACE_INFO;
     }
 
     /**

@@ -51,20 +51,33 @@ package org.apache.royale.reflection
      */
     COMPILE::JS
     internal function getDataInternal(value:Object, qName:String):Object {
-        var data:Object = value.ROYALE_CLASS_INFO || (value.prototype ? value.prototype.ROYALE_CLASS_INFO : null);
-        if (!data) {
+        var classValue:Object = value.ROYALE_CLASS_INFO ? value : value.prototype;
+        var data:Object = classValue ? classValue.ROYALE_CLASS_INFO : null;
+        do{
+            if(data)break;
             if (ExtraData.hasData(qName)) {
-                data = ExtraData.getData(qName)['ROYALE_CLASS_INFO'];
-            } else {
-                var key:* = (value.constructor && value.constructor != Function && !Language.isSynthType(value)) ? value.constructor : value;
-                data = ExtraData.hasData(key) ? ExtraData.getData(key)['ROYALE_CLASS_INFO'] : null;
-                if (!data) {
-                    key = getDefinitionByName(qName);
-                    data = ExtraData.hasData(key) ? ExtraData.getData(key)['ROYALE_CLASS_INFO'] : null;
-                }
+                classValue = ExtraData.getData(qName)
+                data = classValue['ROYALE_CLASS_INFO'];
             }
+            if(data)break;
+            var key:* = (value.constructor && value.constructor != Function && !Language.isSynthType(value)) ? value.constructor : value;
+            if(ExtraData.hasData(key)){
+                classValue = ExtraData.getData(key);
+                data = classValue['ROYALE_CLASS_INFO'];
+            }
+            if(data)break;
+            key = getDefinitionByName(qName);
+            if(ExtraData.hasData(key)) {
+                classValue = ExtraData.getData(key);
+                data = classValue['ROYALE_CLASS_INFO'];
+            }
+
+        }while(false);
+        if(data && classValue.ROYALE_INTERFACE_INFO)
+        {
+            data.interfaces = classValue.ROYALE_INTERFACE_INFO.interfaces;
         }
-        return data;
+        return data ? data : null;
     }
 
 }

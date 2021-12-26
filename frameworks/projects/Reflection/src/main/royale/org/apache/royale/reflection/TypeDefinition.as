@@ -289,6 +289,13 @@ COMPILE::SWF {
                     _rawData = def.prototype.ROYALE_CLASS_INFO;
                     if (_rawData == null) {
                         _rawData = ExtraData.hasData(def) ? ExtraData.getData(def)['ROYALE_CLASS_INFO'] : null;
+                        if(_rawData) {
+                            var interfaceInfo:Object = ExtraData.getData(def)['ROYALE_INTERFACE_INFO'];
+                            _rawData.interfaces = interfaceInfo ? interfaceInfo.interfaces : [];
+                        }
+                    } else {
+                        interfaceInfo = def.prototype.ROYALE_INTERFACE_INFO;
+                        _rawData.interfaces = interfaceInfo ? interfaceInfo.interfaces : [];
                     }
                 }
             }
@@ -428,14 +435,23 @@ COMPILE::SWF {
                     if ((_kind || kind) == "interface") {
                         //collect.length can expand during the loop below
                         for (i = 0; i < collect.length; i++) {
-                            collect.push.apply(collect, (collect[i].prototype.ROYALE_CLASS_INFO.interfaces || []));
+                            var info:Object = collect[i].prototype.ROYALE_INTERFACE_INFO;
+                            var interfaces:Array;
+                            if(info && info.interfaces)
+                            {
+                                interfaces = info.interfaces;
+                            } else {
+                                interfaces = [];
+                            }                            
+                            collect.push.apply(collect, interfaces);
                         }
                     } else {
                         var superClass:Object = def.superClass_;
                         while (superClass && superClass.ROYALE_CLASS_INFO !== undefined)
                         {
                             data = superClass.ROYALE_CLASS_INFO;
-                            var latest:Array = data.interfaces;
+                            var interfaceData:Object = superClass.ROYALE_INTERFACE_INFO;
+                            var latest:Array = interfaceData ? interfaceData.interfaces : null;
                             if (latest) {
                                 n = latest.length;
                                 for (i=0;i<n;i++) if (collect.indexOf(latest[i])==-1) collect.push(latest[i]);

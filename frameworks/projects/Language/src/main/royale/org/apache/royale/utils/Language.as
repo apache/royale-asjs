@@ -95,9 +95,14 @@ package org.apache.royale.utils
                 if (leftOperand == null) {
                     return null;
                 }
-                const leftType:String = '' + (leftOperand.ROYALE_CLASS_INFO ? leftOperand.ROYALE_CLASS_INFO.names[0].qName : String(leftOperand));
-                const rightType:String = '' + (rightOperand.prototype && rightOperand.prototype.ROYALE_CLASS_INFO ? rightOperand.prototype.ROYALE_CLASS_INFO.names[0].qName: String(rightOperand));
-                throw new TypeError('Error #1034: Type Coercion failed: cannot convert ' + leftType + ' to ' + rightType);
+                if(goog.DEBUG)
+                {
+                    const leftType:String = '' + (leftOperand.ROYALE_CLASS_INFO ? leftOperand.ROYALE_CLASS_INFO.names[0].qName : String(leftOperand));
+                    const rightType:String = '' + (rightOperand.prototype && rightOperand.prototype.ROYALE_CLASS_INFO ? rightOperand.prototype.ROYALE_CLASS_INFO.names[0].qName: String(rightOperand));
+                    throw new TypeError('Error #1034: Type Coercion failed: cannot convert ' + leftType + ' to ' + rightType);
+                } else {
+                    throw new TypeError('Type Coercion failed.');
+                }
             }
             
             return itIs ? leftOperand : null;
@@ -176,7 +181,7 @@ package org.apache.royale.utils
             if (rightOperand.constructor === _synthType)
                 return rightOperand['checkIs'](leftOperand);
             
-            if (leftOperand.ROYALE_CLASS_INFO === undefined)
+            if (leftOperand.ROYALE_INTERFACE_INFO === undefined)
                 return false; // could be a function but not an instance
 
             if (!isInitInterfaceMap)
@@ -191,25 +196,25 @@ package org.apache.royale.utils
             var classInterfaceMap:Object;
 
             // check interface check cache
-            if (interfaceMap && interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+            if (interfaceMap && interfaceMap.has(leftOperand.ROYALE_INTERFACE_INFO))
             {
-                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_INTERFACE_INFO);
                 if (classInterfaceMap && classInterfaceMap.has(rightOperand))
                     return classInterfaceMap.get(rightOperand);
             }
             
-            if (leftOperand.ROYALE_CLASS_INFO && leftOperand.ROYALE_CLASS_INFO.interfaces)
+            if (leftOperand.ROYALE_INTERFACE_INFO && leftOperand.ROYALE_INTERFACE_INFO.interfaces)
             {
                 if (checkInterfaces(leftOperand, rightOperand))
                 {
                     // update interface check cache
                     if (interfaceMap)
                     {
-                        if (!interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+                        if (!interfaceMap.has(leftOperand.ROYALE_INTERFACE_INFO))
                         {
-                            interfaceMap.set(leftOperand.ROYALE_CLASS_INFO, new WeakMap());
+                            interfaceMap.set(leftOperand.ROYALE_INTERFACE_INFO, new WeakMap());
                         }
-                        classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                        classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_INTERFACE_INFO);
                         classInterfaceMap.set(rightOperand, true);
                     }
                     return true;
@@ -220,20 +225,20 @@ package org.apache.royale.utils
             
             if (superClass)
             {
-                while (superClass && superClass.ROYALE_CLASS_INFO)
+                while (superClass && superClass.ROYALE_INTERFACE_INFO)
                 {
-                    if (superClass.ROYALE_CLASS_INFO.interfaces)
+                    if (superClass.ROYALE_INTERFACE_INFO.interfaces)
                     {
                         if (checkInterfaces(superClass, rightOperand))
                         {
                             // update interface check cache
                             if (interfaceMap)
                             {
-                                if (!interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+                                if (!interfaceMap.has(leftOperand.ROYALE_INTERFACE_INFO))
                                 {
-                                    interfaceMap.set(leftOperand.ROYALE_CLASS_INFO, new WeakMap());
+                                    interfaceMap.set(leftOperand.ROYALE_INTERFACE_INFO, new WeakMap());
                                 }
-                                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_INTERFACE_INFO);
                                 classInterfaceMap.set(rightOperand, true);
                             }
                             return true;
@@ -246,11 +251,11 @@ package org.apache.royale.utils
             // update interface check cache
             if (interfaceMap)
             {
-                if (!interfaceMap.has(leftOperand.ROYALE_CLASS_INFO))
+                if (!interfaceMap.has(leftOperand.ROYALE_INTERFACE_INFO))
                 {
-                    interfaceMap.set(leftOperand.ROYALE_CLASS_INFO, new WeakMap());
+                    interfaceMap.set(leftOperand.ROYALE_INTERFACE_INFO, new WeakMap());
                 }
-                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_CLASS_INFO);
+                classInterfaceMap = interfaceMap.get(leftOperand.ROYALE_INTERFACE_INFO);
                 classInterfaceMap.set(rightOperand, false);
             }
             return false;
@@ -263,7 +268,7 @@ package org.apache.royale.utils
         {
             var i:int, interfaces:Array;
             
-            interfaces = leftOperand.ROYALE_CLASS_INFO.interfaces;
+            interfaces = leftOperand.ROYALE_INTERFACE_INFO.interfaces;
             for (i = interfaces.length - 1; i > -1; i--)
             {
                 var theInterface:* = interfaces[i];
@@ -272,7 +277,7 @@ package org.apache.royale.utils
                     return true;
                 }
                 
-                if (theInterface.prototype.ROYALE_CLASS_INFO && theInterface.prototype.ROYALE_CLASS_INFO.interfaces)
+                if (theInterface.prototype.ROYALE_INTERFACE_INFO && theInterface.prototype.ROYALE_INTERFACE_INFO.interfaces)
                 {
                     var isit:Boolean = checkInterfaces(theInterface.prototype, rightOperand);
                     if (isit) return true;

@@ -572,19 +572,17 @@ package
 				//as3 docs say this is a TypeError, but it is actually not (in AVM), return an empty text node
 				return new XML();
 			}
-			else if (xml.ROYALE_CLASS_INFO != null)
+			else if(xml is XML)
 			{
-				var className:String = xml.ROYALE_CLASS_INFO.names[0].name;
-				switch(className){
-					case "XML":
-						return xml;
-					case "XMLList":
-						var xmlList:XMLList = xml as XMLList;
-						if (xmlList.length() == 1)
-							return xmlList[0];
-						// throw TypeError
-						return null;
-				}
+				return xml;
+			}
+			else if(xml is XMLList)
+			{
+				var xmlList:XMLList = xml as XMLList;
+				if (xmlList.length() == 1)
+					return xmlList[0];
+				// throw TypeError
+				return null;
 
 			}
 			if (defaultNS !== undefined) {
