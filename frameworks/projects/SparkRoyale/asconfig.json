@@ -32,10 +32,30 @@
         "source-path": [
             "src/main/royale"
         ],
+        "js-external-library-path": [
+            "../../js/libs/MXRoyaleJS.swc",
+            "../../js/libs/MXRoyaleBaseJS.swc"
+        ],
         "external-library-path": [
-            "../../../../frameworks/libs/air/airglobal.swc"
+            "../../../../frameworks/libs/air/airglobal.swc",
+            "../../libs/MXRoyale.swc",
+            "../../libs/MXRoyaleBase.swc"
+
+        ],
+        "namespace": [
+            {
+                "uri": "library://ns.apache.org/royale/spark",
+                "manifest": "src/main/resources/spark-royale-manifest.xml"
+            }
         ],
         "output": "target/SparkRoyale.swc"
     },
-    "additionalOptions": "-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject -js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent -js-compiler-define+=COMPILE::SWF,false -js-compiler-define+=COMPILE::JS,true"
+    "additionalOptions": [
+        "-compiler.define+=GOOG::DEBUG,true",
+        "-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject",
+        "-js-compiler-define+=GOOG::DEBUG,goog.DEBUG",
+        "-js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent",
+        "-js-compiler-define+=COMPILE::SWF,false",
+        "-js-compiler-define+=COMPILE::JS,true"
+    ]
 }

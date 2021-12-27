@@ -34,6 +34,7 @@ import mx.core.mx_internal;
 import mx.effects.Tween;
 import org.apache.royale.geom.Rectangle;
 import org.apache.royale.geom.Point;
+import org.apache.royale.core.IUIBase;
 import mx.managers.ISystemManager;
 import mx.events.FlexMouseEvent;
 import mx.core.UIComponentGlobals;
@@ -1548,6 +1549,21 @@ public class ComboBox extends ComboBase
         dispatchEvent(new Event("dropdownWidthChanged"));
     }
 
+    // the following override is necessary as long as the view is not a UIComponent and getExplicitOrMeasuredHeight fails
+    override public function get measuredHeight():Number
+    {
+        var comboView:IComboBoxView = view as IComboBoxView;
+        return Math.max((comboView.textInputField as IUIBase).height, (comboView.popupButton as IUIBase).height);
+    }
+
+    // Make sure Basic components scale correctly in height
+    override public function set explicitHeight(value:Number):void
+    {
+        super.explicitHeight = value;
+        var comboView:IComboBoxView = view as IComboBoxView;
+        (comboView.textInputField as IUIBase).height = value;
+        (comboView.popupButton as IUIBase).height = value;
+    }
 
 
 

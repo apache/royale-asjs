@@ -39,6 +39,7 @@
             <path-element>../../../../../libs/DragDrop.swc</path-element>
             <path-element>../../../../../libs/HTML.swc</path-element>
             <path-element>../../../../../libs/MXRoyale.swc</path-element>
+            <path-element>../../../../../libs/MXRoyaleBase.swc</path-element>
             <path-element>../../../../../libs/Reflection.swc</path-element>
             <path-element>../../../../../libs/Text.swc</path-element>
             <path-element>../../../../../libs/TLF.swc</path-element>

@@ -1010,7 +1010,7 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
     	throw new Error("Method not implemented.");
     }
 
-    public function get processedDescriptors():Boolean
+    /*public function get processedDescriptors():Boolean
     {
     	throw new Error("Method not implemented.");
     }
@@ -1018,7 +1018,7 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
     public function set processedDescriptors(value:Boolean):void
     {
     	throw new Error("Method not implemented.");
-    }
+    }*/
 
     public function get updateCompletePendingFlag():Boolean
     {

@@ -6022,13 +6022,13 @@ package spark.components
 			return 0;
 		}
 		
-		public function set processedDescriptors(value:Boolean):void {
+		/*public function set processedDescriptors(value:Boolean):void {
 			
 		}
 		
 		public function get processedDescriptors():Boolean {
 			return false;
-		}
+		}*/
 		
 		public function set updateCompletePendingFlag(value:Boolean):void {
 			

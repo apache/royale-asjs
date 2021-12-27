@@ -18,43 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.advancedDataGridClasses
 {
+	import mx.collections.CursorBookmark;
 	import mx.collections.ICollectionView;
 	import mx.collections.IViewCursor;
-    import mx.collections.CursorBookmark;
-	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
-    import mx.controls.beads.models.DataGridColumnICollectionViewModel;
-    import mx.core.IUIComponent;
-	
-	import org.apache.royale.collections.FlattenedList;
-	import org.apache.royale.collections.HierarchicalData;
-	import org.apache.royale.collections.ITreeData;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IDataProviderItemRendererMapper;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererClassFactory;
+
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.core.IListDataItemRenderer;
-    import org.apache.royale.core.IIndexedItemRendererInitializer;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.ItemRendererEvent;
-	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryBase;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
-	import org.apache.royale.html.supportClasses.TreeListData;
 	
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a

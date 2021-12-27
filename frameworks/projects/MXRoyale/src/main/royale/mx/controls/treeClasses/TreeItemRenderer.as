@@ -66,6 +66,7 @@ import org.apache.royale.html.util.getLabelFromData;
 import org.apache.royale.html.supportClasses.TreeListData;
 import org.apache.royale.core.IItemRendererOwnerView;
 import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IHasLabelField;
 
 /**
  *  The TreeItemRenderer class defines the default item renderer for a Tree control. 
@@ -84,7 +85,7 @@ import org.apache.royale.core.ISelectableItemRenderer;
  *  @productversion Flex 3
  */
 public class TreeItemRenderer extends UIComponent 
-    implements IDataRenderer, IDropInListItemRenderer, IItemRenderer, ILabelFieldItemRenderer
+    implements IDataRenderer, IDropInListItemRenderer, IItemRenderer, ILabelFieldItemRenderer, IHasLabelField
 {
    
 
@@ -270,6 +271,11 @@ public class TreeItemRenderer extends UIComponent
     
     protected function dataToString(value:Object):String
     {
+        if (value is XML && labelField && labelField.indexOf("@") > -1)
+        {
+            var attName:String = labelField.split("@")[1] as String;
+            return (value as XML).attribute(attName).toString();
+        }
         return getLabelFromData(this,value);
     }
 

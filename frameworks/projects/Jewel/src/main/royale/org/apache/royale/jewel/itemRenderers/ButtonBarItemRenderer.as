@@ -26,6 +26,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.Button;
+	import org.apache.royale.core.IHasLabelField;
 
 	/**
 	 *  The ButtonBarItemRenderer class extends Button and turns it into an itemRenderer
@@ -36,7 +37,7 @@ package org.apache.royale.jewel.itemRenderers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBarItemRenderer extends Button implements ITextItemRenderer, IOwnerViewItemRenderer
+	public class ButtonBarItemRenderer extends Button implements ITextItemRenderer, IOwnerViewItemRenderer, IHasLabelField
 	{
 		public function ButtonBarItemRenderer()
 		{

@@ -18,34 +18,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.externsjs.inspiretree
 {
-    COMPILE::SWF {
-    import flash.events.Event;
-    }
+	COMPILE::SWF {
+	import flash.events.Event;
+	}
 
 	COMPILE::JS
 	{
 		import org.apache.royale.externsjs.inspiretree.InspireTree;
 		import org.apache.royale.externsjs.inspiretree.InspireTreeDOM;
-    	import org.apache.royale.core.IDataProviderModel;
-    	import org.apache.royale.core.ISelectionModel;
+		import org.apache.royale.core.IDataProviderModel;
+		import org.apache.royale.core.ISelectionModel;
 		import org.apache.royale.core.StyledUIBase;
-        import org.apache.royale.core.WrappedHTMLElement;
-    	import org.apache.royale.events.Event;
-        import org.apache.royale.html.util.addElementToWrapper;
-    	import org.apache.royale.externsjs.inspiretree.beads.models.InspireTreeModel;
-    	import org.apache.royale.externsjs.inspiretree.vos.ItemTreeNode;
-    	import org.apache.royale.core.StyledUIBase;
+		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.events.Event;
+		import org.apache.royale.html.util.addElementToWrapper;
+		import org.apache.royale.externsjs.inspiretree.beads.models.InspireTreeModel;
+		import org.apache.royale.externsjs.inspiretree.vos.ItemTreeNode;
 	}
-    /**
-     *  It triggers just before launching the creation.  
+	import org.apache.royale.core.IHasLabelField;
+
+	/**
+	 *  It triggers just before launching the creation.  
 	 * 
 	 *  It can be captured to make adjustments before creating the js instance.
 	 *  (See InspireTreePaginateBead)
-     */
+	 */
 	[Event(name="onBeforeCreation", type="org.apache.royale.events.Event")]
-    /**
-     *  Indicates that the creation is complete.  
-     */
+	/**
+	 *  Indicates that the creation is complete.  
+	 */
 	[Event(name="onCreationComplete", type="org.apache.royale.events.Event")]
 	/*
 
@@ -53,31 +54,31 @@ package org.apache.royale.externsjs.inspiretree
 	[Event(name="onPrepareTreeDataComplete", type="org.apache.royale.events.Event")]
 
 	COMPILE::JS
-	public class InspireTreeBasicControl extends StyledUIBase implements IInspireTree
+	public class InspireTreeBasicControl extends StyledUIBase implements IInspireTree, IHasLabelField
 	{
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion org.apache.royale.html.util.addElementToWrapper
-         */
-        override protected function createElement():WrappedHTMLElement
-        {
+		 */
+		override protected function createElement():WrappedHTMLElement
+		{
 			addElementToWrapper(this, 'div');
-            return element;
-        }
-        /**
-         *  Constructor.
-         */
+			return element;
+		}
+		/**
+		 *  Constructor.
+		 */
 		public function InspireTreeBasicControl()
 		{
 			super();			
 			//typeNames = "inspiretree";
-            addEventListener("beadsAdded", beadsAddedHandler);
-        }
+			addEventListener("beadsAdded", beadsAddedHandler);
+		}
 
-        private function beadsAddedHandler(event:Event):void
-        {
+		private function beadsAddedHandler(event:Event):void
+		{
 			removeEventListener("beadsAdded", beadsAddedHandler);
-        }
+		}
 
 		override public function addedToParent():void
 		{
@@ -96,7 +97,7 @@ package org.apache.royale.externsjs.inspiretree
 		public function set uid(value:String):void{ _uid = value; }
 
 		private var _initialized:Boolean = false;
-        public function isInitialized():Boolean { return _initialized ? true:false;};
+		public function isInitialized():Boolean { return _initialized ? true:false;};
 
 		private var _jsTree:InspireTree;
 		public function get jsTree():InspireTree{ return _jsTree; }
@@ -107,7 +108,7 @@ package org.apache.royale.externsjs.inspiretree
 
 		// Init ---------------------------------------- Data configuration [wip] -------------------------------------------------
 
-        [Bindable("labelFieldChanged")]
+		[Bindable("labelFieldChanged")]
 		public function get labelField():String
 		{
 			return IDataProviderModel(model).labelField;
@@ -117,7 +118,7 @@ package org.apache.royale.externsjs.inspiretree
 		 */
 		public function set labelField(value:String):void
 		{
-            IDataProviderModel(model).labelField = value;
+			IDataProviderModel(model).labelField = value;
 		}
 
 		/**
@@ -131,7 +132,7 @@ package org.apache.royale.externsjs.inspiretree
 		public function get boundField():String { return InspireTreeModel(model).boundField; }
 		public function set boundField(value:String):void{ InspireTreeModel(model).boundField = value; }
 
-        [Bindable("dataProviderChanged")]
+		[Bindable("dataProviderChanged")]
 		public function get dataProvider():Object
 		{
 			return IDataProviderModel(model).dataProvider;
@@ -145,7 +146,7 @@ package org.apache.royale.externsjs.inspiretree
 			updateDataViewTree();            
 		}
 
-        [Bindable("selectionChanged")]
+		[Bindable("selectionChanged")]
 		public function get selectedIndex():int
 		{
 			return ISelectionModel(model).selectedIndex;
@@ -158,7 +159,7 @@ package org.apache.royale.externsjs.inspiretree
 			ISelectionModel(model).selectedIndex = value;
 		}
 
-        [Bindable("selectionChanged")]
+		[Bindable("selectionChanged")]
 		public function get selectedItem():Object
 		{
 			return ISelectionModel(model).selectedItem;
@@ -168,7 +169,7 @@ package org.apache.royale.externsjs.inspiretree
 			ISelectionModel(model).selectedItem = value;
 		}
 
-        //[Bindable("allowDragAndDropChanged")]
+		//[Bindable("allowDragAndDropChanged")]
 		/**
 		 * Allow Drag and Drop
 		 */
@@ -183,23 +184,23 @@ package org.apache.royale.externsjs.inspiretree
 		/**
 		 * Function to obtain the description of the parent nodes.
 		 * <p>The <code>labelFunctionParent</code> property takes a reference to a function. 
-     	 * The function takes a single argument which is the item in the data provider and returns a String:</p>
-    	 * 
-		 *  <pre>myLabelFunction(item:Object):String</pre>
-      	 * 
-     	 *  @param item The data item. Null items return the empty string. 
-		 */
+		 * The function takes a single argument which is the item in the data provider and returns a String:</p>
+			* 
+			*  <pre>myLabelFunction(item:Object):String</pre>
+			* 
+			*  @param item The data item. Null items return the empty string. 
+			*/
 		public function get labelFunctionParent():Function{ return InspireTreeModel(model).labelFunctionParent; }
 		public function set labelFunctionParent(value:Function):void{ InspireTreeModel(model).labelFunctionParent = value; }
 		/**
 		 * Function to obtain the description of the parent nodes.
 		 * <p>The <code>labelFunctionChild</code> property takes a reference to a function. 
-     	 * The function takes a single argument which is the item in the data provider and returns a String:</p>
-    	 * 
-		 *  <pre>myLabelFunction(item:Object):String</pre>
-      	 * 
-     	 *  @param item The data item. Null items return the empty string. 
-		 */
+		 * The function takes a single argument which is the item in the data provider and returns a String:</p>
+			* 
+			*  <pre>myLabelFunction(item:Object):String</pre>
+			* 
+			*  @param item The data item. Null items return the empty string. 
+			*/
 		public function get labelFunctionChild():Function { return InspireTreeModel(model).labelFunctionChild; }
 		public function set labelFunctionChild(value:Function):void{ InspireTreeModel(model).labelFunctionChild = value; }
 
@@ -208,7 +209,7 @@ package org.apache.royale.externsjs.inspiretree
 			// The dpArray should be sorted according to the desired display
 			var localdataProviderTree:Array = new Array();
 			for (var idxGen:int=0; idxGen < dpArray.length; idxGen++)
-        	{
+			{
 				var itemGroup:Object = new ItemTreeNode();
 				itemGroup.text = labelFunctionParent(dpArray[idxGen]);
 
@@ -241,18 +242,18 @@ package org.apache.royale.externsjs.inspiretree
 
 		
 		public function updateDataViewTree():void
-        { 
+		{ 
 			if(!_initialized)
 				return;
 
 			jsTree.reload();
-        }
+		}
 		/**
 		 * Recreate the InspireTree instance with the current options.
 		 */
 		public function reCreateViewTree(onlyView:Boolean=false):void
 		{			
-            dispatchEvent(new Event("onBeforeCreation"));
+			dispatchEvent(new Event("onBeforeCreation"));
 
 			//if(!onlyView || !jsTree)
 				jsTree = new InspireTree(InspireTreeModel(model).configOption);
@@ -261,7 +262,7 @@ package org.apache.royale.externsjs.inspiretree
 
 			uid = element.getAttribute('data-uid');
 			trace(uid);
-            dispatchEvent(new Event("onCreationComplete"));
+			dispatchEvent(new Event("onCreationComplete"));
 		}
 		
 	}	
@@ -273,5 +274,4 @@ package org.apache.royale.externsjs.inspiretree
 		{
 		}
 	}
-	
 }

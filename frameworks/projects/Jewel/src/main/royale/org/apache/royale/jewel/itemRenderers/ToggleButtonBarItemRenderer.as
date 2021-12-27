@@ -30,6 +30,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.jewel.ToggleButton;
 	import org.apache.royale.jewel.ToggleButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
+	import org.apache.royale.core.IHasLabelField;
 
 	/**
 	 *  The ButtonBarItemRenderer class extends Button and turns it into an itemRenderer
@@ -40,7 +41,7 @@ package org.apache.royale.jewel.itemRenderers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
 	 */
-	public class ToggleButtonBarItemRenderer extends ToggleButton implements ITextItemRenderer, IOwnerViewItemRenderer
+	public class ToggleButtonBarItemRenderer extends ToggleButton implements ITextItemRenderer, IOwnerViewItemRenderer, IHasLabelField
 	{
 		public function ToggleButtonBarItemRenderer()
 		{

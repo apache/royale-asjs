@@ -19,134 +19,99 @@
 
 package spark.components.beads
 {
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.html.supportClasses.ScrollingViewport;
+	import spark.components.supportClasses.GroupBase;
+	import spark.components.supportClasses.SkinnableComponent;
+	import spark.core.ISparkContainer;
+	import spark.layouts.BasicLayout;
 
-import mx.core.mx_internal;
-
-    import spark.core.IViewport;
-
-    use namespace mx_internal;
-
-import spark.components.supportClasses.GroupBase;
-import spark.components.supportClasses.SkinnableComponent;
-
-import org.apache.royale.core.IBead;
-import org.apache.royale.core.IContentView;
-import org.apache.royale.core.IStrand;
-import org.apache.royale.core.IUIBase;
-import org.apache.royale.core.IScrollingViewport;
-import org.apache.royale.core.UIBase;
-import org.apache.royale.core.ValuesManager;
-import org.apache.royale.events.Event;
-import org.apache.royale.events.EventDispatcher;
-import org.apache.royale.geom.Size;
-
-COMPILE::SWF
-{
-    import flash.geom.Rectangle;
-}
-
-/**
- *  @private
- *  The viewport that loads a Spark Skin.
- */
-public class SparkSkinScrollingViewport extends SparkSkinViewport implements IScrollingViewport
-{
-	//--------------------------------------------------------------------------
-	//
-	//  Constructor
-	//
-	//--------------------------------------------------------------------------
+	// for host.setSkin()
+	import mx.core.mx_internal;
+	use namespace mx_internal;
 
 	/**
-	 *  Constructor.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @private
+	 *  The scrolling viewport that loads a Spark Skin.
 	 */
-	public function SparkSkinScrollingViewport()
+	public class SparkSkinScrollingViewport extends org.apache.royale.html.supportClasses.ScrollingViewport
 	{
-		super();
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.6
+		 */
+		public function SparkSkinScrollingViewport()
+		{
+			super();
+		}
+
+		override public function set strand(value:IStrand):void
+		{
+			var host:SkinnableComponent = value as SkinnableComponent;
+
+			super.strand = value;
+
+			var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
+			if (c)
+			{
+				if (!host.skin)
+				{
+					host.setSkin(new c());
+				}
+				host.skin.addEventListener("initComplete", initCompleteHandler);
+			}
+		}
+
+		protected function initCompleteHandler(event:Event):void
+		{
+			var host:SkinnableComponent = _strand as SkinnableComponent;
+
+			// can SkinPart do this better?
+			contentArea = host.skin["contentGroup"];
+			COMPILE::JS
+			{
+				setScrollStyle();
+			}
+			prepareContentView();
+		}
+
+		protected function prepareContentView():void
+		{
+			var host:ILayoutChild = _strand as ILayoutChild;
+			var g:GroupBase = contentView as GroupBase;
+			
+			if (!host || !g)
+				return;
+				
+			if (host == g)
+			{
+				if (g.layout == null)
+					g.layout = new BasicLayout();
+				return;
+			}
+
+			// only for the case where host.layout was set before view set
+			var hc:ISparkContainer = _strand as ISparkContainer;
+			if (hc.layout != null)
+				g.layout = hc.layout;
+
+			if (g.layout == null)
+				g.layout = new BasicLayout();
+		}
+
+		COMPILE::JS
+		override protected function setScrollStyle():void
+		{
+			// default GroupBase.clipAndEnableScrolling == false, so we initially disable scrolling
+			contentArea.element.style.overflow = "visible";
+			adaptContentArea();
+		}
 	}
-
-    override protected function initCompleteHandler(event:Event):void
-    {
-		super.initCompleteHandler(event);
-        COMPILE::JS
-        {
-            setScrollStyle();
-        }        
-    }
-    
-    /**
-     * Subclasses override this method to change scrolling behavior
-     */
-    COMPILE::JS
-    protected function setScrollStyle():void
-    {
-        contentArea.element.style.overflow = "auto";
-    }
-    
-    COMPILE::SWF
-    protected var _verticalScrollPosition:Number = 0;
-    
-    public function get verticalScrollPosition():Number
-    {
-        COMPILE::JS
-        {
-            return contentArea.element.scrollTop;
-        }
-        COMPILE::SWF
-        {
-            return _verticalScrollPosition;
-        }
-    }
-    public function set verticalScrollPosition(value:Number):void
-    {
-        COMPILE::JS
-        {
-            contentArea.element.scrollTop = value;
-        }
-        COMPILE::SWF
-        {
-            _verticalScrollPosition = value;
-            dispatchEvent(new Event("verticalScrollPositionChanged"));
-            // handleVerticalScrollChange();  figure out how to re-use from ScrollingViewport
-            // given we need different timing (waiting on initComplete)
-        }
-    }
-
-    COMPILE::SWF
-    protected var _horizontalScrollPosition:Number = 0;
-    
-    public function get horizontalScrollPosition():Number
-    {
-        COMPILE::JS
-        {
-            return contentArea.element.scrollLeft;
-        }
-        COMPILE::SWF
-        {
-            return _horizontalScrollPosition;
-        }
-    }
-    
-    public function set horizontalScrollPosition(value:Number):void
-    {
-        COMPILE::JS
-        {
-           contentArea.element.scrollLeft = value;
-        }
-        COMPILE::SWF
-        {
-            _horizontalScrollPosition = value;
-            dispatchEvent(new Event("horizontalScrollPositionChanged"));
-            // handleHorizontalScrollChange();     figure out how to re-use from ScrollingViewport
-            // given we need different timing (waiting on initComplete)         
-        }
-    }
-
-}
-
 }

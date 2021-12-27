@@ -19,6 +19,7 @@
 package org.apache.royale.html
 {
     import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.IHasLabelField;
 
     COMPILE::JS
     {
@@ -62,7 +63,7 @@ package org.apache.royale.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DropDownList extends Button
+	public class DropDownList extends Button implements IHasLabelField
 	{
         /**
          *  Constructor.

@@ -34,6 +34,7 @@ internal class CoreClasses
 	import org.apache.royale.core.LayoutBase; LayoutBase;
 	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;
 	import org.apache.royale.core.ApplicationBase; ApplicationBase;
+	import org.apache.royale.core.ILabeledData; ILabeledData;
 	import org.apache.royale.core.IList; IList;
 	import org.apache.royale.core.IIcon; IIcon;
 	import org.apache.royale.core.ITextButton; ITextButton;
@@ -290,6 +291,8 @@ internal class CoreClasses
 	import org.apache.royale.core.IDataGridHeader; IDataGridHeader;
 	import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
 	import org.apache.royale.core.IDateChooserModelWithChangeCheck; IDateChooserModelWithChangeCheck;
+	import org.apache.royale.core.IHasDataField; IHasDataField;
+	import org.apache.royale.core.IHasLabelField; IHasLabelField;
 	import org.apache.royale.core.ParentDocumentBead; ParentDocumentBead;
 	import org.apache.royale.core.ItemRendererOwnerViewBead; ItemRendererOwnerViewBead;
 	import org.apache.royale.core.TransformBeadBase; TransformBeadBase;

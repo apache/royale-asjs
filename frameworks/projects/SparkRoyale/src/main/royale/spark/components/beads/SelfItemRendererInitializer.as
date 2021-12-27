@@ -19,6 +19,7 @@
 
 package spark.components.beads
 {
+	import mx.core.LayoutElementUIComponentUtils;
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IItemRenderer;
@@ -60,23 +61,17 @@ package spark.components.beads
 			var sir:SelfItemRenderer = renderer as SelfItemRenderer;
 			if (sir == null) return;
 			
-			var plc:ILayoutChild = sir.parent as ILayoutChild;
 			var clc:ILayoutChild = child as ILayoutChild;
-			if (plc && clc)
+			if (clc)
 			{
-				sir.explicitWidth = NaN;
-				sir.percentWidth = NaN;
-				if (!plc.isWidthSizedToContent() && !clc.isWidthSizedToContent()) sir.percentWidth = 100;
-				sir.explicitHeight = NaN;
-				sir.percentHeight = NaN;
-				if (!plc.isHeightSizedToContent() && !clc.isHeightSizedToContent()) sir.percentHeight = 100;
+				LayoutElementUIComponentUtils.setSizeFromChild(sir, clc);
 			}
 			
 			sir.removeAllElements();
 			sir.addElement(child);
 			sir.invalidateSize();
 		}
-
+		
 		/**
 		 *  @private
 		 */

@@ -413,9 +413,15 @@ j|CardActions {
   transform: scale(0);
 }
 .jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233AB549' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
   transform: scale(1);
 }
-.jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
+.jewel.checkbox input:indeterminate + span::after, .jewel.checkbox input:indeterminate:active + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%233AB549' /%3E%3C/svg%3E") no-repeat center center;
+  opacity: 1;
+  transform: scale(1);
+}
+.jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before, .jewel.checkbox input:indeterminate:focus + span::before, .jewel.checkbox input:indeterminate:active:focus + span::before {
   background: linear-gradient(#a6e2ad, #7fd68a);
   border: 1px solid #277b32;
   border-radius: 3px;
@@ -428,11 +434,22 @@ j|CardActions {
   border: 1px solid #0d0d0d;
   border-radius: 3px;
 }
-.jewel.checkbox input[disabled] + span::after {
+.jewel.checkbox input:checked[disabled] + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23191919' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox input:indeterminate[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Crect stroke-width='0' stroke='%23FFFFFF' height='12' width='12' y='5' x='5' fill='%23191919' /%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.checkbox span {
   padding-left: 8px;
+}
+.jewel.checkbox.rejected input:indeterminate + span::after, .jewel.checkbox.rejected input:indeterminate:active + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%233AB549' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
+  opacity: 1;
+  transform: scale(1);
+}
+.jewel.checkbox.rejected input:indeterminate[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cline stroke-width='4' stroke='%23191919' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /%3E%3C/svg%3E") no-repeat center center;
 }
 
 .jewel.switch input:checked + .switch {

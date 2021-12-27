@@ -70,6 +70,7 @@
             <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ChartsJS.swc</path-element>
             <path-element>../../../../../libs/MXRoyaleJS.swc</path-element>
+            <path-element>../../../../../libs/MXRoyaleBaseJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
             <path-element>../../../../../libs/TextJS.swc</path-element>
             <path-element>../../../../../libs/TLFJS.swc</path-element>

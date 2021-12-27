@@ -97,6 +97,7 @@ package mx.controls
 
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IHasLabelField;
 	
 	use namespace mx_internal;
 	
@@ -591,7 +592,7 @@ package mx.controls
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView
+	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView, IHasLabelField
 	{
 		// include "../core/Version.as";
 		

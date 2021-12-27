@@ -72,6 +72,7 @@ internal class MXRoyaleClasses
     import mx.containers.beads.layouts.BasicLayout; BasicLayout;
 	import mx.containers.beads.PanelInternalContainer; PanelInternalContainer;
 	import mx.containers.beads.PanelInternalContainerView; PanelInternalContainerView;
+	import mx.containers.beads.supportClasses.ContainerContentArea;ContainerContentArea;
 	import mx.controls.beads.AlertView; AlertView;
     import mx.controls.beads.controllers.AlertMouseController; AlertMouseController;
     import mx.containers.errors.ConstraintError; ConstraintError;
@@ -431,6 +432,7 @@ internal class MXRoyaleClasses
 	import mx.printing.PrintJob; PrintJob;
 	import mx.containers.accordionClasses.AccordionHeader; AccordionHeader;
 	/*import mx.net.FileReferenceList; FileReferenceList;*/
+	import mx.controls.beads.ProgressBarView; ProgressBarView;
 }
 
 }

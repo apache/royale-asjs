@@ -19,10 +19,10 @@
 package org.apache.royale.jewel
 {
     COMPILE::JS{
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.events.MouseEvent;
         import org.apache.royale.core.ITextButton;
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.events.MouseEvent;
+        import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase;
         import org.apache.royale.jewel.supportClasses.IInputButton;
         import org.apache.royale.jewel.supportClasses.ISelectableWithIndeterminacy;

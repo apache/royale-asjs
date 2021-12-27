@@ -28,6 +28,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.util.getLabelFromData;
+	import org.apache.royale.core.IHasLabelField;
 
 	COMPILE::JS
 	{
@@ -43,7 +44,7 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 	 */
-	public class TextButtonItemRenderer extends TextButton implements ITextItemRenderer
+	public class TextButtonItemRenderer extends TextButton implements ITextItemRenderer, IHasLabelField
 	{
 		public function TextButtonItemRenderer()
 		{

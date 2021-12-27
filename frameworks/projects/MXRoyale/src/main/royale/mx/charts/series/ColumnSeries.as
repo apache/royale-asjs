@@ -60,6 +60,7 @@ import mx.graphics.IFill;
 import mx.graphics.SolidColor;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.ISimpleStyleClient;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;
 
@@ -227,7 +228,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ColumnSeries extends Series implements IColumn,IStackable2
+public class ColumnSeries extends Series implements IColumn,IStackable2, IHasLabelField
 {
 //    include "../../core/Version.as";
 

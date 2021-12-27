@@ -44,6 +44,7 @@ package spark.components
     import org.apache.royale.core.ILayoutHost;
     import org.apache.royale.core.IStrand;
     import mx.core.IUIComponent;
+
     /**
      *  Defines the radius of the TabBar buttons' top-left and top-right corners for the default
      *  TabBarButton skin.
@@ -189,16 +190,5 @@ package spark.components
             if (TabBar.createAccessibilityImplementation != null)
                 TabBar.createAccessibilityImplementation(this);
         } */
-
-        override public function get measuredWidth():Number
-        {
-            var contentView:IUIComponent = (this.view as ILayoutHost).contentView as IUIComponent;
-            if (contentView)
-            {
-                (contentView.getBeadByType(LayoutBase) as LayoutBase).measure();
-                measuredWidth = contentView.measuredWidth;
-            }
-            return super.measuredWidth;
-        }
     }
 }

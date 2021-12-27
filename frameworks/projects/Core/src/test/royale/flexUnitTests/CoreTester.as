@@ -43,5 +43,7 @@ package flexUnitTests
         public var keyboardEventConverterTest:KeyboardEventConverterTest;
         public var stringUtilsTest:StringUtilsTest;
         public var sanitizerTest:SanitizeTest;
+        public var eventsTest:EventsTest;
+
     }
 }

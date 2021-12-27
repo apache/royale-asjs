@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.sendBeadEvent;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IHasLabelField;
 
 
     /**
@@ -36,7 +37,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class CollectionChangeUpdateForArrayListData extends Bead
+	public class CollectionChangeUpdateForArrayListData extends Bead implements IHasLabelField
 	{
 		/**
 		 *  Constructor
@@ -50,7 +51,19 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		protected var labelField:String;
+		private var _labelField:String;
+		/**
+		 * Label field
+		 */
+		public function get labelField():String
+		{
+			return _labelField;
+		}
+
+		public function set labelField(value:String):void
+		{
+			_labelField = value;
+		}
 
 		/**
 		 *  @copy org.apache.royale.core.IStrand

@@ -640,7 +640,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected var collection:ICollectionView;
+     /* protected */ public var collection:ICollectionView;
 
     /**
      *  The main IViewCursor instance used to fetch items from the
@@ -2527,7 +2527,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public function get selectable():Boolean
+    override public function get selectable():Boolean
     {
         return _selectable;
     }
@@ -2535,7 +2535,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
     /**
      *  @private
      */
-    public function set selectable(value:Boolean):void
+    override public function set selectable(value:Boolean):void
     {
         _selectable = value;
     }

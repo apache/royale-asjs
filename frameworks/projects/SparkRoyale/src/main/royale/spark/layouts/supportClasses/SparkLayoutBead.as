@@ -19,188 +19,95 @@
 
 package spark.layouts.supportClasses
 {
-import mx.core.Container;
-import mx.core.ILayoutElement;
-import mx.core.IVisualElement;
-import mx.core.UIComponent;
-import mx.core.mx_internal;
-
-import spark.components.supportClasses.GroupBase;
-import spark.components.SkinnableContainer;
-import spark.components.SkinnableDataContainer;
-import spark.core.NavigationUnit;
-
-import org.apache.royale.core.IBeadLayout;
-import org.apache.royale.core.ILayoutHost;
-import org.apache.royale.core.IStrand;
-import org.apache.royale.core.LayoutBase;
-import org.apache.royale.core.UIBase;
-import org.apache.royale.events.Event;
-import org.apache.royale.events.EventDispatcher;
-import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.utils.MXMLDataInterpreter;
-import org.apache.royale.utils.loadBeadFromValuesManager;
-
-use namespace mx_internal;
-
-/**
- *  The SparkLayoutBead class is a layout bead that pumps the Spark 
- *  LayoutBase subclasses.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10
- *  @playerversion AIR 1.5
- *  @productversion Flex 4
- */
-public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
-{
-    //--------------------------------------------------------------------------
-    //
-    //  Constructor
-    //
-    //--------------------------------------------------------------------------
-
-    /**
-     *  Constructor. 
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Flex 4
-     */    
-    public function SparkLayoutBead()
-    {
-        super();
-    }
-
-	private var sawSizeChanged:Boolean;
+	import mx.core.UIComponent;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import spark.components.supportClasses.GroupBase;
+	import spark.components.supportClasses.SkinnableComponent;
 	
-	override	 protected function handleSizeChange(event:Event):void
+	/**
+	 *  The SparkLayoutBead class is a layout bead that pumps the Spark 
+	 *  LayoutBase subclasses.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10
+	 *  @playerversion AIR 1.5
+	 *  @productversion Royale 0.9.6
+	 */
+	public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
 	{
-		sawSizeChanged = true;
-		super.handleSizeChange(event);
-	}
-	
-	private var ranLayout:Boolean;	
-	private var inUpdateDisplayList:Boolean;	
-		
-    override public function layout():Boolean
-    {
-		ranLayout = true;
-		
-        var n:int = target.numChildren;
-        if (n == 0)
-            return false;
-        
-		var usingSkin:Boolean = false;
-		if (host is SkinnableContainer)
-			usingSkin = (host as SkinnableContainer).skin != null;
-		else if (host is SkinnableDataContainer)
-			usingSkin = (host as SkinnableDataContainer).skin != null;
-				
-        if (!usingSkin && target != host)
-        {
-            var tlc:UIComponent = host as UIComponent;
-            if (!tlc.isWidthSizedToContent() &&
-                !tlc.isHeightSizedToContent())
-                target.setActualSize(tlc.width, tlc.height);
-        }
-        
-		if ((!isNaN(target.percentWidth)) || (!isNaN(target.percentHeight)))
-			if (!sawSizeChanged)
-				return false;
-				
-        var w:Number = target.width;
-        var h:Number = target.height;
-        if (target.layout.isHeightSizedToContent())
-            h = target.measuredHeight;
-        if (target.layout.isWidthSizedToContent())
-            w = target.measuredWidth;
-		inUpdateDisplayList = true;
-        target.layout.updateDisplayList(w, h);
-		inUpdateDisplayList = false;
-        
-        // update the target's actual size if needed.
-        if (target.layout.isWidthSizedToContent() && target.layout.isHeightSizedToContent()) {
-            target.setActualSize(target.getExplicitOrMeasuredWidth(), 
-                target.getExplicitOrMeasuredHeight());
-        }
-        else if (target.layout.isWidthSizedToContent())
-            target.setWidth(target.getExplicitOrMeasuredWidth());
-        else if (target.layout.isHeightSizedToContent())
-            target.setHeight(target.getExplicitOrMeasuredHeight());
-        
-        return true;
-    }
-    
-    //--------------------------------------------------------------------------
-    //
-    //  Properties
-    //
-    //--------------------------------------------------------------------------
-    
-    private var _strand:IStrand;
-    
-    override public function set strand(value:IStrand):void
-    {
-        _strand = value;
-        var host:UIBase = value as UIBase;
-        _target = (host.view as ILayoutHost).contentView as GroupBase;
-        super.strand = value;
-        	// The main layout may not get put on the strand until
-		// after children are added so listen here as well
-		if (target.parent)
-			listenToChildren();		
-    }
-    
-    private var _target:GroupBase;
-    
-    public function get target():GroupBase
-    {
-        return _target;
-    }
-    
-    public function set target(value:GroupBase):void
-    {
-        _target = value;
-    }
-
-	override protected function handleChildrenAdded(event:Event):void
-	{
-		COMPILE::JS {
-			super.handleChildrenAdded(event);
-			listenToChildren();
-		}
-	}
-	
-	private function listenToChildren():void
-	{
-		var n:Number = layoutView.numElements;
-		for(var i:int=0; i < n; i++) {
-			var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
-			child.addEventListener("widthChanged", childResizeHandler);
-			child.addEventListener("heightChanged", childResizeHandler);
-			child.addEventListener("sizeChanged", childResizeHandler);
-		}
-	}
-	
-	override protected function childResizeHandler(event:Event):void
-	{
-		if (inUpdateDisplayList) 
+		/**
+		 *  Constructor. 
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10
+		 *  @playerversion AIR 1.5
+		 *  @productversion Royale 0.9.6
+		 */    
+		public function SparkLayoutBead()
 		{
-			// children are resizing during layout.
-			if (isNaN(target.explicitWidth) || isNaN(target.explicitHeight))
-			{
-				// that means our we need to be re-measured
-				target.invalidateSize();
-			}
-			return;
+			super();
 		}
-		ranLayout = false;
-		super.childResizeHandler(event); // will set ranLayout if it did
-		if (!ranLayout)
-			performLayout();
-	}		
 		
-}
+		private var sawSizeChanged:Boolean;
+		
+		override protected function handleSizeChange(event:Event):void
+		{
+			sawSizeChanged = true;
+			super.handleSizeChange(event);
+		}
+		
+		override public function layout():Boolean
+		{
+			// NOTE: Can't test numChildren, due to virtual layouts
+			//var n:int = target.numChildren;
+			//if (n == 0)
+			//	return false;
+			
+			var usingSkin:Boolean = false;
+			if (host is SkinnableComponent)
+				usingSkin = (host as SkinnableComponent).skin != null;
+			
+			if (!usingSkin && target != host)
+			{
+				var tlc:UIComponent = host as UIComponent;
+				if (!tlc.isWidthSizedToContent() && !tlc.isHeightSizedToContent())
+					target.setActualSize(tlc.width, tlc.height);
+			}
+			
+			if (!isNaN(target.percentWidth) || !isNaN(target.percentHeight))
+			{
+				if (!sawSizeChanged)
+					return false;
+			}
+			
+			target.layout.layout();
+			return true;
+		}
+		
+		private var _strand:IStrand;
+		
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			var host:UIBase = value as UIBase;
+			_target = (host.view as ILayoutHost).contentView as GroupBase;
+			super.strand = value;
+		}
+		
+		private var _target:GroupBase;
+		
+		public function get target():GroupBase
+		{
+			return _target;
+		}
+		
+		public function set target(value:GroupBase):void
+		{
+			_target = value;
+		}
+	}
 }

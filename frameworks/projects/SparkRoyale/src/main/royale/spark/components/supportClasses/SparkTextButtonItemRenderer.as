@@ -32,6 +32,7 @@ package spark.components.supportClasses
     import spark.components.supportClasses.ToggleButtonBase;
     import mx.controls.listClasses.IListItemRenderer;
     import mx.events.ListEvent;
+    import org.apache.royale.core.IHasLabelField;
 
     /**
      *  The TextButtonItemRenderer is the default renderer for TabBar
@@ -42,7 +43,7 @@ package spark.components.supportClasses
      *  @productversion Flex 3
      */
 
-    public class SparkTextButtonItemRenderer extends ToggleButtonBase implements IListItemRenderer
+    public class SparkTextButtonItemRenderer extends ToggleButtonBase implements IListItemRenderer, IHasLabelField
     {
         public function SparkTextButtonItemRenderer()
         {
@@ -273,7 +274,7 @@ package spark.components.supportClasses
             throw new Error("Method not implemented.");
         }
 
-        public function get processedDescriptors():Boolean
+       /* public function get processedDescriptors():Boolean
         {
             throw new Error("Method not implemented.");
         }
@@ -281,7 +282,7 @@ package spark.components.supportClasses
         public function set processedDescriptors(value:Boolean):void
         {
             throw new Error("Method not implemented.");
-        }
+        }*/
 
         public function get updateCompletePendingFlag():Boolean
         {
@@ -292,6 +293,33 @@ package spark.components.supportClasses
         {
             throw new Error("Method not implemented.");
         }
+
+		COMPILE::JS
+		override public function get measuredWidth():Number
+		{
+			if (isNaN(_measuredWidth) || (!_measuredWidth && text != ""))
+				measure();
+			return super.measuredWidth;
+		}
+		
+		COMPILE::JS
+		override public function get measuredHeight():Number
+		{
+			if (isNaN(_measuredHeight) || (!_measuredHeight && text != ""))
+				measure();
+			return super.measuredHeight;
+		}
+
+		COMPILE::JS
+		override protected function measure():void
+		{
+			var oldParent:Element = element.parentElement;
+			document.body.appendChild(element);
+			_measuredWidth = element.offsetWidth;
+			_measuredHeight = element.offsetHeight;
+			document.body.removeChild(element);
+			oldParent.appendChild(element);
+		}
     }
 
 }

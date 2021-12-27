@@ -1,0 +1,66 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<mx:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009"
+                xmlns:mx="library://ns.apache.org/royale/mx"
+                layout="absolute"
+                creationComplete="onCreationComplete(event)"
+                showCloseButton="true"
+                width="850"
+                height="680">
+
+    <fx:Script><![CDATA[
+        import mx.events.FlexEvent;
+
+        public var childCreationPolicyTest:String = 'none';
+
+        private function viewStackChange(event:IndexChangedEvent):void {
+
+        }
+        import mx.events.IndexChangedEvent;
+
+        private function onCreationComplete(event:FlexEvent):void {
+            for (var i:uint=0;i<10;i++) {
+                var inst:Canvas = new StackItem();
+                inst.creationPolicy = i >0 ? childCreationPolicyTest : 'all';
+                inst.label = "Inst:"+i;
+                inst.addEventListener(FlexEvent.PREINITIALIZE, childEvent);
+                inst.addEventListener(FlexEvent.INITIALIZE, childEvent)
+                inst.addEventListener(FlexEvent.CREATION_COMPLETE, childEvent)
+                inst.addEventListener(FlexEvent.CONTENT_CREATION_COMPLETE, childEvent)
+                Properties_vs.addChild(inst);
+            }
+
+        }
+
+
+        private function childEvent(event:Event):void{
+            var target:StackItem = event.target as StackItem;
+            trace(event.type, target.label);
+        }
+
+        ]]>
+    </fx:Script>
+    <mx:Canvas width="223" left="0" top="0" bottom="0" horizontalScrollPolicy="off" id="linkBarCanvas">
+        <mx:LinkBar id="Properties_lbar" width="215" direction="vertical" dataProvider="Properties_vs" left="0" top="0" bottom="0"/>
+    </mx:Canvas>
+    <mx:VRule x="223" top="0" bottom="0" id="propertiesVRule"/>
+    <mx:ViewStack id="Properties_vs" change="viewStackChange(event)" top="0" bottom="0" right="0" left="225"/>
+
+
+</mx:TitleWindow>

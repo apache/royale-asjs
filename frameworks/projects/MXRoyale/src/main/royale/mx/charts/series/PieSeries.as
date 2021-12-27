@@ -66,6 +66,7 @@ import mx.graphics.SolidColorStroke;
 import mx.graphics.Stroke;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.ISimpleStyleClient;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;
 
@@ -297,7 +298,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class PieSeries extends Series
+public class PieSeries extends Series implements IHasLabelField
 {
 //    include "../../core/Version.as";
 

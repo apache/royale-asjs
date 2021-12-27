@@ -47,6 +47,7 @@ package org.apache.royale.html
 	import org.apache.royale.html.beads.models.ListPresentationModel;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.core.IListWithPresentationModel;
+	import org.apache.royale.core.IHasLabelField;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -74,7 +75,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataContainer extends DataContainerBase implements IStrandWithPresentationModel, IListWithPresentationModel
+	public class DataContainer extends DataContainerBase implements IStrandWithPresentationModel, IListWithPresentationModel, IHasLabelField
 	{
 		/**
 		 *  constructor.
