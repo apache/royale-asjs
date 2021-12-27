@@ -48,7 +48,7 @@ COMPILE::SWF {
             internal static function registerClassAlias(aliasName:String, classObject:Class ) :void{
                 var info:* = classObject.prototype.ROYALE_CLASS_INFO;
                 if (!info && ExtraData.hasData(classObject)) {
-                    info = ExtraData.getData(classObject)['ROYALE_CLASS_INFO'];
+                    info = ExtraData.getData(classObject).ROYALE_CLASS_INFO;
                 }
                 if (info) {
                     //a class may have more than one alias point to it, but only the most recently registered
@@ -64,7 +64,7 @@ COMPILE::SWF {
                     var altClass:Class = _aliasMappings[aliasName];
                     if (altClass) {
                         var altInfo:* = altClass.prototype.ROYALE_CLASS_INFO;
-                        if (!altInfo) altInfo = ExtraData.getData(altClass)['ROYALE_CLASS_INFO'];
+                        if (!altInfo) altInfo = ExtraData.getData(altClass).ROYALE_CLASS_INFO;
                         if (altInfo){
                             delete altInfo.alias;
                         }
@@ -288,9 +288,9 @@ COMPILE::SWF {
                     else def = getDefinitionByName(_name);
                     _rawData = def.prototype.ROYALE_CLASS_INFO;
                     if (_rawData == null) {
-                        _rawData = ExtraData.hasData(def) ? ExtraData.getData(def)['ROYALE_CLASS_INFO'] : null;
+                        _rawData = ExtraData.hasData(def) ? ExtraData.getData(def).ROYALE_CLASS_INFO : null;
                         if(_rawData) {
-                            var interfaceInfo:Object = ExtraData.getData(def)['ROYALE_INTERFACE_INFO'];
+                            var interfaceInfo:Object = ExtraData.getData(def).ROYALE_INTERFACE_INFO;
                             _rawData.interfaces = interfaceInfo ? interfaceInfo.interfaces : [];
                         }
                     } else {
@@ -742,7 +742,7 @@ COMPILE::SWF {
            var qname:String = data.names[0].qName;
            var def:Object = getDefinitionByName(qname);
             
-           const infoDataSource:Function =  def.prototype.ROYALE_REFLECTION_INFO || ExtraData.getData(qname)['ROYALE_REFLECTION_INFO'];
+           const infoDataSource:Function =  def.prototype.ROYALE_REFLECTION_INFO || ExtraData.getData(qname).ROYALE_REFLECTION_INFO;
            var rdata:* =  infoDataSource();
            var itemClass:Class = lookups[collection];
 

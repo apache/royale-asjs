@@ -32,9 +32,9 @@ import org.apache.royale.reflection.getClosureQualifiedName;
         funcDef['NATIVE_TYPE'] = true;
         funcDef['NATIVE_BASE'] = Object;
 
-        funcDef['ROYALE_CLASS_INFO'] = { names: [{ name: 'Function', qName: 'Function', kind: 'class', isDynamic: true }] };
+        funcDef.ROYALE_CLASS_INFO = { names: [{ name: 'Function', qName: 'Function', kind: 'class', isDynamic: true }] };
 
-        funcDef['ROYALE_REFLECTION_INFO'] = function():Object {
+        funcDef.ROYALE_REFLECTION_INFO = function():Object {
             return {
                 'accessors':function():Object {
                     return {
@@ -58,9 +58,9 @@ import org.apache.royale.reflection.getClosureQualifiedName;
         funcDef['NATIVE_TYPE'] = true;
         funcDef['NATIVE_BASE'] = Function;
 
-        funcDef['ROYALE_CLASS_INFO'] = { names: [{ name: methodClosureName, qName: methodClosureQName, kind: 'class', isDynamic: true }] };
+        funcDef.ROYALE_CLASS_INFO = { names: [{ name: methodClosureName, qName: methodClosureQName, kind: 'class', isDynamic: true }] };
 
-        funcDef['ROYALE_REFLECTION_INFO'] = function():Object {
+        funcDef.ROYALE_REFLECTION_INFO = function():Object {
             return {
                 'accessors':function():Object {
                     return {

@@ -58,7 +58,7 @@ COMPILE::SWF
                     }
                 }
                 if (superRef) {
-                    superRef = superRef['ROYALE_CLASS_INFO'];
+                    superRef = superRef.ROYALE_CLASS_INFO;
                 }
             } else {
                 if (superRef == null) return null;

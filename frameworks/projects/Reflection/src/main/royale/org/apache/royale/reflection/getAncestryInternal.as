@@ -72,7 +72,7 @@ COMPILE::JS
                     superData = superClass.ROYALE_CLASS_INFO;
                 } else {
                     if (ExtraData.hasData(superClass)) {
-                        superData = ExtraData.getData(getQualifiedClassName(superClass))['ROYALE_CLASS_INFO'];
+                        superData = ExtraData.getData(getQualifiedClassName(superClass)).ROYALE_CLASS_INFO;
                         if (superData) {
                             js_native = true;
                         } else {

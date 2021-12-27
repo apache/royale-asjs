@@ -70,7 +70,7 @@ COMPILE::JS{
                     if (ExtraData.hasData(value.constructor)) {
                         if (value.constructor === Function) return ExtraData.CLOSURE_QNAME;
                         //value is instance of a 'native class'
-                        classInfo =  ExtraData.getData(value.constructor)['ROYALE_CLASS_INFO'];
+                        classInfo =  ExtraData.getData(value.constructor).ROYALE_CLASS_INFO;
                     } else {
                         if (Language.isSynthType(value.constructor)) {
                             return value.constructor['type'];
@@ -82,7 +82,7 @@ COMPILE::JS{
                     if (!classInfo) {
                         if (ExtraData.hasData(value)) {
                             //value is a native 'class'
-                            classInfo =  ExtraData.getData(value)['ROYALE_CLASS_INFO'];
+                            classInfo =  ExtraData.getData(value).ROYALE_CLASS_INFO;
                         }
                     }
                     if (!classInfo) {

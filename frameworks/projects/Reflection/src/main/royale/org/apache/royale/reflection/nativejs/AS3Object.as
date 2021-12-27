@@ -29,9 +29,9 @@ package org.apache.royale.reflection.nativejs {
         ret['name'] = 'Object';
         ret['NATIVE_TYPE'] = true;
     
-        ret['ROYALE_CLASS_INFO'] = { names: [{ name: 'Object', qName: 'Object', kind: 'class', isDynamic: true }] };
+        ret.ROYALE_CLASS_INFO = { names: [{ name: 'Object', qName: 'Object', kind: 'class', isDynamic: true }] };
     
-        ret['ROYALE_REFLECTION_INFO'] = function():Object {
+        ret.ROYALE_REFLECTION_INFO = function():Object {
             return {
                 'accessors':function():Object {
                     return {

@@ -57,19 +57,19 @@ package org.apache.royale.reflection
             if(data)break;
             if (ExtraData.hasData(qName)) {
                 classValue = ExtraData.getData(qName)
-                data = classValue['ROYALE_CLASS_INFO'];
+                data = classValue.ROYALE_CLASS_INFO;
             }
             if(data)break;
             var key:* = (value.constructor && value.constructor != Function && !Language.isSynthType(value)) ? value.constructor : value;
             if(ExtraData.hasData(key)){
                 classValue = ExtraData.getData(key);
-                data = classValue['ROYALE_CLASS_INFO'];
+                data = classValue.ROYALE_CLASS_INFO;
             }
             if(data)break;
             key = getDefinitionByName(qName);
             if(ExtraData.hasData(key)) {
                 classValue = ExtraData.getData(key);
-                data = classValue['ROYALE_CLASS_INFO'];
+                data = classValue.ROYALE_CLASS_INFO;
             }
 
         }while(false);

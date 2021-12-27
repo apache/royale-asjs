@@ -39,9 +39,9 @@ package org.apache.royale.reflection.nativejs {
         ret['SYNTHETIC_TYPE'] = true;
         ret['NATIVE_BASE'] = nativeBase || Object;
         
-        ret['ROYALE_CLASS_INFO'] = { names: [{ name: typeName, qName: typeName, kind: 'class' }] };
+        ret.ROYALE_CLASS_INFO = { names: [{ name: typeName, qName: typeName, kind: 'class' }] };
     
-        ret['ROYALE_REFLECTION_INFO'] = function():Object {
+        ret.ROYALE_REFLECTION_INFO = function():Object {
             return {
                 'accessors':function():Object {
                     return {
