@@ -319,6 +319,7 @@ internal class CoreClasses
 		import org.apache.royale.utils.js.loadJavascript; loadJavascript;
 		import org.apache.royale.utils.css.loadCSS; loadCSS;
 	}
+	import org.apache.royale.utils.object.classFromInstance; classFromInstance;
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
 	import org.apache.royale.debugging.assertType; assertType;

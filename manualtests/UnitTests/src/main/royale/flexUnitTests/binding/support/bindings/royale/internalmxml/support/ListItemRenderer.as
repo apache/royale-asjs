@@ -84,7 +84,7 @@ package flexUnitTests.binding.support.bindings.royale.internalmxml.support
 				{
 				if(MXMLDescriptor == null)
 				{
-					element.innerHTML = _text;
+					element.textContent = _text;
 				}
 				}
 				dispatchEvent(new Event('textChange'));
