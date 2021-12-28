@@ -32,14 +32,14 @@
   <name>Apache Royale: Examples: Royale: MenuExample</name>
   
   <build>
-	<sourceDirectory>src/main/royale</sourceDirectory>
+	<sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>MenuExample.mxml</mainClass>
+          <mainClass>main/royale/MenuExample.mxml</mainClass>
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
         </configuration>
