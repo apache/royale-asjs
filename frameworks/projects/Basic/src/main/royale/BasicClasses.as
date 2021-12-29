@@ -269,6 +269,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.DateChooserModel; DateChooserModel;
 	import org.apache.royale.html.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 	import org.apache.royale.html.beads.controllers.DateChooserMouseController; DateChooserMouseController;
+	import org.apache.royale.html.beads.controllers.DateChooserKeyboardController; DateChooserKeyboardController;
+	import org.apache.royale.html.beads.controllers.DateChooserMouseKeyboardController; DateChooserMouseKeyboardController;
 	import org.apache.royale.html.beads.controllers.DateFieldMouseController; DateFieldMouseController;
 	import org.apache.royale.html.beads.controllers.RangeStepperMouseController; RangeStepperMouseController;
 	import org.apache.royale.html.supportClasses.DataGridColumn; DataGridColumn;

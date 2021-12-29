@@ -233,6 +233,10 @@
     <component id="DateChooser" class="org.apache.royale.html.DateChooser"/>
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
     <component id="DateChooserHeader" class="org.apache.royale.html.supportClasses.DateChooserHeader" />
+    <component id="DateChooserView" class="org.apache.royale.html.beads.DateChooserView" />
+    <component id="DateChooserMouseController" class="org.apache.royale.html.beads.controllers.DateChooserMouseController" />
+    <component id="DateChooserKeyboardController" class="org.apache.royale.html.beads.controllers.DateChooserKeyboardController" />
+    <component id="DateChooserMouseKeyboardController" class="org.apache.royale.html.beads.controllers.DateChooserMouseKeyboardController" />
     <component id="DateField" class="org.apache.royale.html.DateField"/>
     <component id="DateFieldDateChooser" class="org.apache.royale.html.supportClasses.DateFieldDateChooser"/>
     <component id="VerticalColumnLayout" class="org.apache.royale.html.beads.layouts.VerticalColumnLayout" />

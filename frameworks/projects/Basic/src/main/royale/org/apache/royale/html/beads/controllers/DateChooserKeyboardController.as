@@ -17,20 +17,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
-{	
+{
 	import org.apache.royale.html.beads.DateChooserView;
 	import org.apache.royale.html.beads.models.DateChooserModel;
-	import org.apache.royale.html.supportClasses.DateChooserButton;
-	import org.apache.royale.html.supportClasses.DateChooserList;
-	
-	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IBeadModel;
+
+ 	import org.apache.royale.core.IBeadController;
+ 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.events.IEventDispatcher;
-	
+ 	import org.apache.royale.core.IStrand;
+ 	import org.apache.royale.events.Event;
+ 	import org.apache.royale.events.KeyboardEvent;
+ 	import org.apache.royale.events.IEventDispatcher;
+
 	/**
 	 *  The DateChooserMouseController class is responsible for listening to
 	 *  mouse event related to the DateChooser. Events such as selecting a date
@@ -41,7 +39,7 @@ package org.apache.royale.html.beads.controllers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateChooserMouseController extends CalendarNavigation implements IBeadController
+	public class DateChooserKeyboardController extends CalendarNavigation implements IBeadController
 	{
 		/**
 		 *  constructor.
@@ -51,7 +49,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function DateChooserMouseController()
+		public function DateChooserKeyboardController()
 		{
 		}
 		
@@ -63,56 +61,44 @@ package org.apache.royale.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion org.apache.royale.html.beads.DateChooserView
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @productversion Royale 0.9
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
 			var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
-			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
-			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
-			
-			(view.dayList as IEventDispatcher).addEventListener("change", listHandler);
-		}
-		
-		/**
-		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DateChooserList
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.DateChooserModel
-		 * @royaleignorecoercion Date
-		 */
-		private function listHandler(event:Event):void
-		{
-			var list:DateChooserList = event.target as DateChooserList;
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
-			model.selectedDate = list.selectedItem as Date;
+			IEventDispatcher(_strand).addEventListener(KeyboardEvent.KEY_DOWN, keyboardHandler);
 		}
 
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.DateChooserModel
-		 */
-		private function prevMonthClickHandler(event:MouseEvent):void
+		private function keyboardHandler(event:KeyboardEvent):void
 		{
-			event.preventDefault();
-            
 			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			nextMonth(model);
+			var changed:Boolean = false;
+			var newDate:Date;
+
+			switch (event.key) {
+				case "ArrowUp":
+					newDate = previousWeek(model);
+					changed = true;
+				break;
+				case "ArrowDown":
+					newDate = nextWeek(model);
+					changed = true;
+				break;
+				case "ArrowLeft":
+					newDate = previousDay(model);
+					changed = true;
+				break;
+				case "ArrowRight":
+					newDate = nextDay(model);
+					changed = true;
+				break;
+			}
+
+			if (changed) {
+				model.selectedDate = newDate;
+				IEventDispatcher(_strand).dispatchEvent( new Event("change") );
+			}
 		}
-		
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.models.DateChooserModel
-		 */
-		private function nextMonthClickHandler(event:MouseEvent):void
-		{
-			event.preventDefault();
-            
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			previousMonth(model);
-		}
-		
 	}
 }
