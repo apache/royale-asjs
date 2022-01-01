@@ -1130,34 +1130,6 @@ package org.apache.royale.core
 			return (this as IChild).parent as EventDispatcher;
 		}
 		
-        
-        /**
-         *  @copy org.apache.royale.core.IStrand#addBead()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.IBeadModel
-         *  @royaleignorecoercion org.apache.royale.core.IBeadView
-         */        
-		override public function addBead(bead:IBead):void
-		{
-            var isView:Boolean;
-			
-			super.addBead(bead);
-            //TODO This check for model does not seem to make sense. There used to be a model assignment here.
-            // It does not look to me like model is being assigned anywhere anymore and that probably needs to be fixed - Harbs @1/1/22
-			if (this._model !== bead && bead is IBeadView) {
-				_view = bead as IBeadView;
-				isView = true
-			}
-			
-			if (isView) {
-				sendEvent(this,"viewChanged");
-			}
-		}
-		
         /**
          *  @copy org.apache.royale.core.IParent#addElement()
          * 
@@ -1414,12 +1386,15 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
+         * 
          */
         protected function loadBeads():void
         {
-			loadBeadFromValuesManager(IBeadModel, "iBeadModel", this);
-            loadBeadFromValuesManager(IBeadView, "iBeadView", this);
+			_model = loadBeadFromValuesManager(IBeadModel, "iBeadModel", this) as IBeadModel;
+            _view = loadBeadFromValuesManager(IBeadView, "iBeadView", this) as IBeadView;
 			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
+            sendEvent(this,"viewChanged");
         }
 
         private var _measurementBead:IMeasurementBead;
