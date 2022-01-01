@@ -1146,6 +1146,8 @@ package org.apache.royale.core
             var isView:Boolean;
 			
 			super.addBead(bead);
+            //TODO This check for model does not seem to make sense. There used to be a model assignment here.
+            // It does not look to me like model is being assigned anywhere anymore and that probably needs to be fixed - Harbs @1/1/22
 			if (this._model !== bead && bead is IBeadView) {
 				_view = bead as IBeadView;
 				isView = true
