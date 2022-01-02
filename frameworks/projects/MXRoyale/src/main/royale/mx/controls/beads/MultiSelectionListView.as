@@ -41,6 +41,7 @@ package mx.controls.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
+	import org.apache.royale.core.IStrandWithModel;
 
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List
@@ -68,10 +69,11 @@ package mx.controls.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
-			listModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
+			listModel = (_strand as IStrandWithModel).model as IMultiSelectionModel;
 			listModel.addEventListener("selectedIndicesChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
@@ -157,7 +159,7 @@ package mx.controls.beads
 		{
 			super.handleInitComplete(event);
 
-			listModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
+			listModel = (_strand as IStrandWithModel).model as IMultiSelectionModel;
 			listModel.addEventListener("selectedIndicesChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 		}

@@ -62,12 +62,12 @@ package org.apache.royale.mobile.beads
 		
 		public function get toolBar():ToolBar
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			return model.toolBar;
 		}
 		public function set toolBar(value:ToolBar):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			model.toolBar = value;
 		}
 		
@@ -79,7 +79,7 @@ package org.apache.royale.mobile.beads
 		{
 			super.strand = value;
 			
-			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			
 			if (model.toolBarItems)
 			{
@@ -94,7 +94,7 @@ package org.apache.royale.mobile.beads
 		{			
 			super.addViewElements();
 			
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			model.addEventListener("viewPushed", handlePushEvent);
 			model.addEventListener("viewPopped", handlePopEvent);
 			
@@ -109,7 +109,7 @@ package org.apache.royale.mobile.beads
 		
 		private function handlePushEvent(event:Event):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			var n:int = model.views.length;
 			if (n > 0) {
 				showViewByIndex(n-1);
@@ -118,7 +118,7 @@ package org.apache.royale.mobile.beads
 		
 		private function handlePopEvent(event:Event):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			var n:int = model.views.length;
 			if (n > 0) {
 				showViewByIndex(n-1);
@@ -127,7 +127,7 @@ package org.apache.royale.mobile.beads
 		
 		public function showView(view:IViewManagerView):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			for(var i:int=0; i < model.views.length; i++) {
 				if (view == model.views[i]) {
 					showViewByIndex(i);
@@ -138,7 +138,7 @@ package org.apache.royale.mobile.beads
 		
 		protected function showViewByIndex(index:int):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			
 			if (_topView != null) {
 				getHost().removeElement(_topView);

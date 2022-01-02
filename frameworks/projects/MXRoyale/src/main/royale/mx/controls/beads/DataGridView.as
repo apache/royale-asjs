@@ -85,10 +85,10 @@ COMPILE::JS{
         protected var columnClass:Class = DataGridColumn;
         
         public var visibleColumns:Array = [];
-        
+        private var host:IDataGrid;
         override protected function handleInitComplete(event:Event):void
         {
-            var host:IDataGrid = _strand as IDataGrid;
+            host = _strand as IDataGrid;
             
             if (host.model.columns == null && host.model.dataProvider != null)
             {
@@ -172,7 +172,7 @@ COMPILE::JS{
                 //@todo check listeners are not already attached from previous occasion....here
                 col.addEventListener("headerTextChanged", updateHeader);
                 var list:DataGridColumnList = col.list as DataGridColumnList;
-                var adgColumnListModel:DataGridColumnICollectionViewModel = list.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
+                var adgColumnListModel:DataGridColumnICollectionViewModel = list.model as DataGridColumnICollectionViewModel;
                 adgColumnListModel.columnIndex = i;
                 list.visible = col.visible;
                 list.addEventListener(ItemClickEvent.ITEM_CLICK, itemClickHandler);
@@ -208,7 +208,7 @@ COMPILE::JS{
          */
         override protected function handleDataProviderChanged(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
             if (sharedModel.columns == null && sharedModel.dataProvider != null && sharedModel.dataProvider.length > 0)
             {
                 generateCols();
@@ -226,7 +226,7 @@ COMPILE::JS{
 
         private function registerRendererChange():void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
             if (sharedModel.columns == null || sharedModel.dataProvider == null) return;
 
             for (var i:int=0; i < sharedModel.columns.length; i++)
@@ -245,7 +245,7 @@ COMPILE::JS{
          */
         private function generateCols():void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
             if (sharedModel.dataProvider.length > 0)
             {
                 var col:DataGridColumn;
