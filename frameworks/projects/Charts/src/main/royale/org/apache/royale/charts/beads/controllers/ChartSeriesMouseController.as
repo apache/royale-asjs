@@ -35,6 +35,7 @@ package org.apache.royale.charts.beads.controllers
 
 	import org.apache.royale.charts.core.IChartItemRenderer;
 	import org.apache.royale.charts.core.IChartDataModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	public class ChartSeriesMouseController implements IBeadController
 	{
@@ -86,7 +87,7 @@ package org.apache.royale.charts.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			listModel = value.getBeadByType(IChartDataModel) as IChartDataModel;
+			listModel = getModelByType(value,IChartDataModel) as IChartDataModel;
 			listView = value.getBeadByType(IListView) as IListView;
 			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);

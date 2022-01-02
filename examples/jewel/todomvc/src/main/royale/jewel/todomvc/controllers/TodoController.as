@@ -28,6 +28,7 @@ package jewel.todomvc.controllers
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 
 	/**
      * The Todo Controller holds all the global actions. The views dispatch events that bubbles and
@@ -50,6 +51,7 @@ package jewel.todomvc.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		override public function set strand(value:IStrand):void {
 			super.strand = value;
@@ -62,7 +64,7 @@ package jewel.todomvc.controllers
 			listenOnStrand(TodoEvent.ITEM_LABEL_CHANGED, itemLabelChangedHandler);            
 			listenOnStrand(TodoEvent.ITEM_REMOVED, itemRemovedHandler);            
 			
-        	model = _strand.getBeadByType(IBeadModel) as TodoModel;
+        	model = (_strand as IStrandWithModel).model as TodoModel;
 			
 			// retrieve local items and use it if exists
 			model.allItems = new ArrayList(model.getItemStore());

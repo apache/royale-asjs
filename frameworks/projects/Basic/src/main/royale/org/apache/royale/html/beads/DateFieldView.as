@@ -213,7 +213,7 @@ package org.apache.royale.html.beads
 
 					var model:IDateChooserModel = getModelByType(_strand,IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
-                    var popUpModel:IDateChooserModelWithChangeCheck = _popUp.getBeadByType(IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
+                    var popUpModel:IDateChooserModelWithChangeCheck = getModelByType(_popUp,IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
                     popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());

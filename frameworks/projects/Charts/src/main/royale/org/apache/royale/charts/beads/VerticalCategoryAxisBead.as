@@ -27,6 +27,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.models.ArraySelectionModel;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The VerticalCategoryAxisBead displays a vertical axis with
@@ -161,7 +162,7 @@ package org.apache.royale.charts.beads
 		 */
 		protected function handleItemsCreated(event:Event):void
 		{	
-			var model:ArraySelectionModel = strand.getBeadByType(ISelectionModel) as ArraySelectionModel;
+			var model:ArraySelectionModel = getModelByType(strand,ISelectionModel) as ArraySelectionModel;
 			var items:Array;
 			if (model.dataProvider is Array) items = model.dataProvider as Array;
 			else return;

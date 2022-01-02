@@ -30,6 +30,7 @@ package org.apache.royale.charts.beads.layouts
 	import org.apache.royale.graphics.SolidColor;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The PieChartLayout class calculates the size and position of all of the itemRenderers for
@@ -59,7 +60,7 @@ package org.apache.royale.charts.beads.layouts
 		 */
 		override public function layout():Boolean
 		{
-			var selectionModel:ISelectionModel = strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var selectionModel:ISelectionModel = getModelByType(strand,ISelectionModel) as ISelectionModel;
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return false;
