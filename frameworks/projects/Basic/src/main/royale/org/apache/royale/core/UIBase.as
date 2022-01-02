@@ -1391,7 +1391,6 @@ package org.apache.royale.core
          */
         protected function loadBeads():void
         {
-			_model = loadBeadFromValuesManager(IBeadModel, "iBeadModel", this) as IBeadModel;
             _view = loadBeadFromValuesManager(IBeadView, "iBeadView", this) as IBeadView;
 			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
             sendEvent(this,"viewChanged");
