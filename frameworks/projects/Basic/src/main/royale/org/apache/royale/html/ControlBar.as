@@ -66,15 +66,6 @@ package org.apache.royale.html
 			typeNames = "ControlBar";
 		}
 
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
-		}
-
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
