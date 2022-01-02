@@ -37,6 +37,8 @@ package org.apache.royale.externsjs.inspiretree.beads
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.core.IStyledUIBase;
+    import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.core.IStrandWithModel;
 	}
     /**
      * Simulates the Read-Only state in checkboxes.
@@ -90,12 +92,14 @@ package org.apache.royale.externsjs.inspiretree.beads
             _strand = value;
 			(_strand as IEventDispatcher).addEventListener("initComplete", init);
 		}
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		private function init(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
 
-			var treeModel:InspireTreeModel = (_strand.getBeadByType(IBeadModel) as InspireTreeModel);
+			var treeModel:InspireTreeModel = ((_strand as IStrandWithModel).model as InspireTreeModel);
 			treeModel.addEventListener("checkboxModeChanged", updateHost);
 
 			updateHost();
@@ -126,8 +130,10 @@ package org.apache.royale.externsjs.inspiretree.beads
 					sendStrandEvent(_strand, new ValueEvent("readonlyChange", readOnly));
 				}
 			}
-        }
-
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		private function updateHost(event:Event = null):void
 		{
 			if(!strand)
@@ -139,7 +145,7 @@ package org.apache.royale.externsjs.inspiretree.beads
 
             initialized = true;
 
-            var checkboxMode:Boolean =(_strand.getBeadByType(IBeadModel) as InspireTreeModel).checkboxMode;
+            var checkboxMode:Boolean =((_strand as IStrandWithModel).model as InspireTreeModel).checkboxMode;
             if(!checkboxMode)
                 return;
 

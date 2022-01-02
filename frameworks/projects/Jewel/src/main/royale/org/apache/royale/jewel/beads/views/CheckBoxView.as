@@ -40,6 +40,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.UIBase;
     import org.apache.royale.jewel.CheckBox;
     import org.apache.royale.utils.css.addDynamicSelector;
+    import org.apache.royale.html.util.getModelByType;
 	
     /**
      *  The CheckBoxView class is the default view for SWF platform
@@ -144,10 +145,10 @@ package org.apache.royale.jewel.beads.views
 			// always run size change since there are no size change events
 			sizeChangeHandler(null);
 			}
-            
+
 			COMPILE::SWF
 			{
-			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
+			_toggleButtonModel = getModelByType(value,IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
 			_toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);

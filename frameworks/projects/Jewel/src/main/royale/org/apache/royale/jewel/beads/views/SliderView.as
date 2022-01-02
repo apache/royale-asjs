@@ -109,7 +109,7 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
             var host:UIBase = UIBase(_strand);
-            rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+            rangeModel = host.model as IRangeModel;
 
             COMPILE::SWF {
 				_track = new Button();

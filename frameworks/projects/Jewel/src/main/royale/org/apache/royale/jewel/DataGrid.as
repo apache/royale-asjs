@@ -27,6 +27,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.jewel.beads.models.DataGridPresentationModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The change event is dispatched whenever the datagrid's selection changes.
@@ -220,7 +221,7 @@ package org.apache.royale.jewel
 		 */
 		public function get presentationModel():IBead
 		{
-			var presModel:IDataGridPresentationModel = getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
+			var presModel:IDataGridPresentationModel = getModelByType(this,IDataGridPresentationModel) as IDataGridPresentationModel;
 			if (presModel == null) {
 				presModel = new DataGridPresentationModel();
 				addBead(presModel);

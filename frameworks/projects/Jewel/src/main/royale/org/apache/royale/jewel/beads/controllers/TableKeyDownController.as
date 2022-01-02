@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.ITableView;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The Jewel TableKeyDownController class is a key controller for
@@ -90,7 +91,7 @@ package org.apache.royale.jewel.beads.controllers
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			tableModel = value.getBeadByType(ISelectionModel) as ITableModel;
+			tableModel = getModelByType(value,ISelectionModel) as ITableModel;
 			tableView = value.getBeadByType(IBeadView) as ITableView;
 
             listenOnStrand(KeyboardEvent.KEY_DOWN, keyDownEventHandler);

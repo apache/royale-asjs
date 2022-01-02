@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.jewel.beads.models.ButtonBarModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The Jewel ButtonBarLayout class bead sizes and positions the button
@@ -80,7 +81,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
-			model = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
+			model = getModelByType(_strand,ButtonBarModel) as ButtonBarModel;
 			hostComponent.addEventListener("headerLayout", onHeaderLayoutCheck);
 			hostComponent.addEventListener("headerLayoutReset", onHeaderLayoutCheck);
 		}
@@ -90,7 +91,7 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		protected function get datagrid():UIBase
 		{
-			return (_strand as UIBase).parent as UIBase;
+			return host.parent as UIBase;
 		}
 
 		COMPILE::JS

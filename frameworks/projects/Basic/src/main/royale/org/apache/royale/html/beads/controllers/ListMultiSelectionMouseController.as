@@ -34,6 +34,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.utils.getSelectionRenderBead;
 	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The ListMultiSelectionMouseController class is a controller for
@@ -107,7 +108,7 @@ package org.apache.royale.html.beads.controllers
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			listModel = value.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
+			listModel = getModelByType(value,IMultiSelectionModel) as IMultiSelectionModel;
 			listView = value.getBeadByType(IListView) as IListView;
 			listenOnStrand("itemAdded", handleItemAdded);
 			listenOnStrand("itemRemoved", handleItemRemoved);

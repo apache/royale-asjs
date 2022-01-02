@@ -31,6 +31,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 	import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  Disable dates which are outside restriction provided by minDate and maxDate properties
@@ -134,7 +135,7 @@ package org.apache.royale.jewel.beads.controls.datechooser
 
 		public function setUpBead():void
 		{
-			model = _strand.getBeadByType(DateChooserModel) as DateChooserModel;
+			model = getModelByType(_strand,DateChooserModel) as DateChooserModel;
 
 			view = _strand.getBeadByType(DateChooserView) as DateChooserView;
 			view.previousButton.addEventListener(MouseEvent.CLICK, refreshDateRange);

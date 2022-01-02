@@ -134,7 +134,7 @@ package org.apache.royale.html.beads.controllers
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			
 			var model:IDateChooserModel = getModelByType(_strand,IDateChooserModel) as IDateChooserModel;
-			model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
+			model.selectedDate = (getModelByType(viewBead.popUp as IStrand,IDateChooserModel) as IDateChooserModel).selectedDate;
 
 			viewBead.popUpVisible = false;
 			sendStrandEvent(_strand,"change");

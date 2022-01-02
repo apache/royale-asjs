@@ -30,6 +30,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.DropDownList;
 	import org.apache.royale.jewel.beads.models.IDropDownListModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The DropDownListView class creates the visual elements of the org.apache.royale.jewel.DropDownList
@@ -85,7 +86,7 @@ package org.apache.royale.jewel.beads.views
 				dropDownList.addElement(dropDownList.dropDown);
 			}
 
-			model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			model = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			model.addEventListener("selectionChanged", selectionChangeHandler);
 
 			super.handleInitComplete(event);

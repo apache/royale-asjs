@@ -58,12 +58,13 @@ package org.apache.royale.maps.google
 			super();
 
 			className = "Map";
-
-			var model:IBeadModel = getBeadByType(IBeadModel) as IBeadModel;
-			if (model == null) {
-				model = new MapModel();
-				addBead(model);
-			}
+			
+			this.model = new MapModel();
+			// var model:IBeadModel = getBeadByType(IBeadModel) as IBeadModel;
+			// if (model == null) {
+			// 	model = new MapModel();
+			// 	addBead(model);
+			// }
 		}
 
 		public function get token():String

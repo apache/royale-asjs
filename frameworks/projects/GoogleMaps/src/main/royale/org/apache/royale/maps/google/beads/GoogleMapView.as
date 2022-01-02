@@ -85,6 +85,7 @@ package org.apache.royale.maps.google.beads
 		private var service:PlacesService;
 
 		private var _strand:IStrand;
+		private var host:GoogleMap;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -98,8 +99,9 @@ package org.apache.royale.maps.google.beads
 		{
 			super.strand = value;
 			_strand = value;
+			host = value as GoogleMap;
 
-			var token:String = (_strand as GoogleMap).token;
+			var token:String = host.token;
 			var src:String = 'https://maps.googleapis.com/maps/api/js?v=3.exp';
 			if (token)
 				src += '&key=' + token;
@@ -128,14 +130,14 @@ package org.apache.royale.maps.google.beads
 		public function mapit( centerLat:Number, centerLng:Number, zoom:Number ):void
 		{
 			if (!initialized) {
-				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				var model:MapModel = host.model as MapModel;
 				model.currentCenter = new LatLng(centerLat, centerLng);
 				model.zoom = zoom;
 				var mapOptions:Object = new Object();
 				mapOptions['center'] = model.currentCenter;
 				mapOptions['zoom'] = zoom;
 
-				realMap = new Map((_strand as UIBase).element, mapOptions);
+				realMap = new Map(host.element, mapOptions);
 				geocoder = null;
 
 			    model.addEventListener("zoomChanged", handleModelChange);
@@ -153,7 +155,7 @@ package org.apache.royale.maps.google.beads
 		{
 			mapit(37.333, -121.900, 12);
 			initialized = true;
-			IEventDispatcher(_strand).dispatchEvent(new Event('ready'));
+			host.dispatchEvent(new Event('ready'));
 		}
 
 		/**
@@ -180,7 +182,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function setCenter(location:LatLng):void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			model.currentCenter = new LatLng(location.lat(), location.lng());
 			realMap.setCenter(model.currentCenter);
 		}
@@ -195,7 +197,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function markCurrentLocation():void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			createMarker(model.currentCenter as LatLng);
 		}
 
@@ -245,7 +247,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function nearbySearch(placeName:String):void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 
 			if (markers == null) markers = [];
 			service = new PlacesService(realMap);
@@ -278,7 +280,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function centerChangeHandler() : void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			model.currentCenter = realMap.getCenter();
 
 			var newEvent:Event = new Event('centered');
@@ -290,7 +292,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function boundsChangeHandler():void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			model.currentCenter = realMap.getCenter();
 
 			var newEvent:Event = new Event('boundsChanged');
@@ -302,7 +304,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function zoomChangeHandler():void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			model.currentCenter = realMap.getCenter();
 
 			var newEvent:Event = new Event('zoomChanged');
@@ -314,7 +316,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function positionHandler(results:Array, status:String):void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			if (status == GeocoderStatus.OK) {
 				model.currentCenter = results[0].geometry.location;
 				realMap.setCenter(model.currentCenter);
@@ -329,7 +331,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		public function geocodeHandler(results:Array, status:String):void
 		{
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			if (status == GeocoderStatus.OK) {
 				model.currentCenter = results[0].geometry.location;
 				realMap.setCenter(model.currentCenter);
@@ -361,7 +363,7 @@ package org.apache.royale.maps.google.beads
 
 					markers.push(marker);
 				}
-				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				var model:MapModel = host.model as MapModel;
 				model.searchResults = searchResults;
 			}
 		}
@@ -376,7 +378,7 @@ package org.apache.royale.maps.google.beads
 		public function handleModelChange(event:Event):void
 		{
 			if (event.type == "zoomChanged") {
-				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				var model:MapModel = host.model as MapModel;
 				realMap.setZoom(model.zoom);
 			}
 		}
@@ -393,11 +395,11 @@ package org.apache.royale.maps.google.beads
 				map: realMap
 			});
 
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			model.selectedMarker = newMarker;
 
 			var newEvent:Event = new Event('markerClicked');
-			IEventDispatcher(_strand).dispatchEvent(newEvent);
+			host.dispatchEvent(newEvent);
 		}
 
 	} // end ::JS
@@ -427,6 +429,8 @@ package org.apache.royale.maps.google.beads
 		private var _loader:HTMLLoader;
 		private var page:String;
 
+		private var host:GoogleMap;
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -438,24 +442,24 @@ package org.apache.royale.maps.google.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-
+			host = value as GoogleMap;
 			_loader = new HTMLLoader();
 			_loader.x = 0;
 			_loader.y = 0;
-			_loader.width = UIBase(value).width;
-			_loader.height = UIBase(value).height;
+			_loader.width = host.width;
+			_loader.height = host.height;
 			_loader.placeLoadStringContentInApplicationSandbox = false;
 
-			IEventDispatcher(_strand).addEventListener("widthChanged",handleSizeChange);
-			IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);
+			host.addEventListener("widthChanged",handleSizeChange);
+			host.addEventListener("heightChanged",handleSizeChange);
 
-			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+			var model:IBeadModel = host.model as IBeadModel;
 			model.addEventListener("zoomChanged", handleZoomChange);
 			model.addEventListener("currentLocationChanged", handleCurrentLocationChange);
 
-			(_strand as UIBase).addChild(_loader);
+			host.addChild(_loader);
 
-			var token:String = GoogleMap(_strand).token;
+			var token:String = host.token;
 			if (token)
 				page = pageTemplateStart + "&key=" + token + pageTemplateEnd;
 			else
@@ -490,13 +494,13 @@ package org.apache.royale.maps.google.beads
 				_loader.window.addEventListener("markerClicked",onMarkerClicked);
 			}
 
-			IEventDispatcher(_strand).dispatchEvent(new org.apache.royale.events.Event("ready"));
+			host.dispatchEvent(new org.apache.royale.events.Event("ready"));
 		}
 
 		private function handleZoomChange(event:org.apache.royale.events.Event):void
 		{
 			if (_loader && page) {
-				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				var model:MapModel = host.model as MapModel;
 				setZoom(model.zoom);
 			}
 		}
@@ -504,7 +508,7 @@ package org.apache.royale.maps.google.beads
 		private function handleCurrentLocationChange(event:org.apache.royale.events.Event):void
 		{
 			if (_loader && page) {
-				var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+				var model:MapModel = host.model as MapModel;
 				setCenter(model.currentCenter);
 			}
 		}
@@ -514,8 +518,8 @@ package org.apache.royale.maps.google.beads
 		 */
 		private function handleSizeChange(event:org.apache.royale.events.Event):void
 		{
-			_loader.width = UIBase(_strand).width;
-			_loader.height = UIBase(_strand).height;
+			_loader.width = host.width;
+			_loader.height = host.height;
 		}
 
 		/**
@@ -523,7 +527,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		private function onMapCentered():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("centered") );
+			host.dispatchEvent( new org.apache.royale.events.Event("centered") );
 		}
 
 		/**
@@ -531,7 +535,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		private function onMapBoundsChanged():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("boundsChanged") );
+			host.dispatchEvent( new org.apache.royale.events.Event("boundsChanged") );
 		}
 
 		/**
@@ -539,7 +543,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		private function onMapZoomChanged():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("zoomChanged") );
+			host.dispatchEvent( new org.apache.royale.events.Event("zoomChanged") );
 		}
 
 		/**
@@ -547,7 +551,7 @@ package org.apache.royale.maps.google.beads
 		 */
 		private function onMapDragEnd():void
 		{
-			IEventDispatcher(_strand).dispatchEvent( new org.apache.royale.events.Event("dragEnd") );
+			host.dispatchEvent( new org.apache.royale.events.Event("dragEnd") );
 		}
 
 		/**
@@ -561,7 +565,7 @@ package org.apache.royale.maps.google.beads
 				results.push(place);
 			}
 
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			model.searchResults = results;
 		}
 
@@ -576,10 +580,10 @@ package org.apache.royale.maps.google.beads
 				map: event.marker.getMap()
 			});
 
-			var model:MapModel = _strand.getBeadByType(IBeadModel) as MapModel;
+			var model:MapModel = host.model as MapModel;
 			model.selectedMarker = marker;
 
-			IEventDispatcher(_strand).dispatchEvent(new org.apache.royale.events.Event("markerClicked"));
+			host.dispatchEvent(new org.apache.royale.events.Event("markerClicked"));
 		}
 
 		/**

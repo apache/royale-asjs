@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.controllers
     import org.apache.royale.jewel.Snackbar;
     import org.apache.royale.jewel.beads.models.SnackbarModel;
     import org.apache.royale.utils.Timer;
+    import org.apache.royale.html.util.getModelByType;
 
     /**
 	 *  The SnackbarController class bead handles duration of the Snackbar
@@ -83,7 +84,7 @@ package org.apache.royale.jewel.beads.controllers
                 // start the timer for dismiss
                 durationChangeHandler(null);
 
-                var model:SnackbarModel = _strand.getBeadByType(SnackbarModel) as SnackbarModel;
+                var model:SnackbarModel = getModelByType(_strand,SnackbarModel) as SnackbarModel;
                 model.addEventListener("durationChange", durationChangeHandler);
             }
 		}
@@ -113,7 +114,7 @@ package org.apache.royale.jewel.beads.controllers
 				_timer.reset();
 			}
 
-            var model:SnackbarModel = _strand.getBeadByType(SnackbarModel) as SnackbarModel;
+            var model:SnackbarModel = getModelByType(_strand,SnackbarModel) as SnackbarModel;
             if (model.duration < 0) {
                 timerHandler(null);
 			} else if (model.duration > 0) {

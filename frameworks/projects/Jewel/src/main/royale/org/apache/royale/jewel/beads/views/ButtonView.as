@@ -43,6 +43,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.utils.CSSUtils;
     import org.apache.royale.utils.SolidBorderUtil;
     import org.apache.royale.utils.StringTrimmer;
+    import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The ButtonView class is the default view for
@@ -104,7 +105,7 @@ package org.apache.royale.jewel.beads.views
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			textModel = value.getBeadByType(ITextModel) as ITextModel;
+			textModel = getModelByType(value,ITextModel) as ITextModel;
 			textModel.addEventListener("textChange", textChangeHandler);
 			textModel.addEventListener("htmlChange", htmlChangeHandler);
 			shape = new Shape();

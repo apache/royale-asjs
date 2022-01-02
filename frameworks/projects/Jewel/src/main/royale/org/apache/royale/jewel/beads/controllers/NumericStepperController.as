@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.beads.views.NumericStepperView;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The NumericStepperController class is responsible for listening to
@@ -103,7 +104,7 @@ package org.apache.royale.jewel.beads.controllers
 			// as resizing the component
 			spinner.addEventListener("valueChange", spinnerValueChanged);
 			
-			var model:IRangeModel = _strand.getBeadByType(IRangeModel) as IRangeModel;
+			var model:IRangeModel = getModelByType(_strand,IRangeModel) as IRangeModel;
 
 			// listen for changes and update the UI accordingly
 			model.addEventListener("valueChange", modelChangeHandler);
