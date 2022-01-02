@@ -39,6 +39,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.Button;
     import org.apache.royale.html.TextButton;
     import org.apache.royale.utils.sendStrandEvent;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.royale.html.Slider 
@@ -81,12 +82,7 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
-			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layout == null) {
-				var klass:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout");
-				_strand.addBead(new klass() as IBead);
-			}
+			loadBeadFromValuesManager(IBeadLayout,"iBeadLayout",_strand);
 			
 			COMPILE::SWF {
 				var s:UIBase = UIBase(_strand);

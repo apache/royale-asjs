@@ -19,15 +19,12 @@
 package org.apache.royale.html
 {
 
-	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IChrome;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
+	COMPILE::JS
+	{
+		import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-    }
+	}
 
 	/**
 	 *  The ControlBar class is used within a Panel as a place to position
@@ -43,7 +40,7 @@ package org.apache.royale.html
 	 *  org.apache.royale.html.beads.IBorderBead: if present, displays a border around the component.
 	 *  org.apache.royale.html.beads.IBackgroundBead: if present, displays a solid background below the ControlBar.
 	 *
-     *  @toplevel
+	 *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -66,17 +63,17 @@ package org.apache.royale.html
 			typeNames = "ControlBar";
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
 			addElementToWrapper(this,'div');
 			typeNames = "ControlBar";
 
-            return element;
-        }
+			return element;
+		}
 
 	}
 }

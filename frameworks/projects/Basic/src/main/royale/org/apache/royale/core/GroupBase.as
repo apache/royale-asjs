@@ -109,8 +109,18 @@ package org.apache.royale.core
 			super.addedToParent();
 			
 			// Load the layout bead if it hasn't already been loaded.
-			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+            if(needsLayout())
+                loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
 		}
+
+        /**
+         * Subclasses can override this method to declare whether they need a layout.
+         * Components which do not need a layout can avoid searching for layout beads
+         */
+        protected function needsLayout():Boolean
+        {
+            return true;
+        }
 		
 		/*
 		 * IContainer

@@ -38,6 +38,11 @@ package org.apache.royale.html
 			return false;
 		}
 
+		override protected function needsLayout():Boolean
+		{
+			return false;
+		}
+
 		COMPILE::SWF
 		{
 			private var _nodeValue:String;

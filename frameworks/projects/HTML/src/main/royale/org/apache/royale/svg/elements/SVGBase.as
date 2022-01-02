@@ -34,6 +34,10 @@ package org.apache.royale.svg.elements
     {
       return false;
     }
+    override protected function needsLayout():Boolean
+    {
+      return false;
+    }
     override public function get x():Number{
       return Number(element.getAttribute("x"));
     }
