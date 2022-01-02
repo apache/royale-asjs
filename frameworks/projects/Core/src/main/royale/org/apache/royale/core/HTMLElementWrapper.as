@@ -186,6 +186,8 @@ package org.apache.royale.core
                 if(value is IBead){
                     addBead(_model);
                 }
+                sendStrandEvent(this,"modelChanged");
+
             }
         }
         
