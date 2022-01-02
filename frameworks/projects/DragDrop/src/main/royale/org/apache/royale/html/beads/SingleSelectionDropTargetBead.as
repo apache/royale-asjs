@@ -45,6 +45,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.utils.sendStrandEvent;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.html.util.getModelByType;
 
 
 	/**
@@ -354,7 +355,7 @@ package org.apache.royale.html.beads
 			var dragSource:Object = DragEvent.dragSource;
 			var sourceIndex:int = 0;
 
-			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			var dataProviderModel:IDataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			if (dataProviderModel.dataProvider is Array) {
 				var dataArray:Array = dataProviderModel.dataProvider as Array;
 

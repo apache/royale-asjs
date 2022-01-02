@@ -24,6 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.DataGrid;
+	import org.apache.royale.core.IStrandWithModel;
 
 		/**
 		 *  The DataGridColumnReorderView bead extends DataGridView and
@@ -72,13 +73,14 @@ package org.apache.royale.html.beads
 			/**
 			 * @private
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
             override protected function handleInitComplete(event:Event):void
 			{
 				super.handleInitComplete(event);
 
-				 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+				 var sharedModel:IDataGridModel = (_strand as IStrandWithModel).model as IDataGridModel;
 				(sharedModel as IEventDispatcher).addEventListener("headerModelChanged", handleHeaderModelChanged);
 			}
 
@@ -86,13 +88,14 @@ package org.apache.royale.html.beads
 			 * @private
 		   * @royaleignorecoercion org.apache.royale.html.DataGrid
 		   * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+			 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 			 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 			 */
 			private function handleHeaderModelChanged(event:Event):void
 			{
 				 trace("** Detected that the DataGrid's header has changed in some way");
 				 var host:DataGrid = _strand as DataGrid;
-				 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+				 var sharedModel:IDataGridModel = (_strand as IStrandWithModel).model as IDataGridModel;
 
 				 host.removeElement(header);
 				 host.removeElement(listArea);
