@@ -181,10 +181,11 @@ package org.apache.royale.core
         {
             if (_model != value)
             {
-                assert(value is IBeadModel,"Only an IBeadModel can be assigned as a model");
                 _model = value as IBeadModel;
-                addBead(_model);
-                sendStrandEvent(this,"modelChanged");
+
+                if(value is IBead){
+                    addBead(_model);
+                }
             }
         }
         
