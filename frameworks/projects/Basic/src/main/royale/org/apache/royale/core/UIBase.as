@@ -1391,9 +1391,32 @@ package org.apache.royale.core
          */
         protected function loadBeads():void
         {
-            _view = loadBeadFromValuesManager(IBeadView, "iBeadView", this) as IBeadView;
-			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
-            sendEvent(this,"viewChanged");
+            if(needsView())
+            {
+                _view = loadBeadFromValuesManager(IBeadView, "iBeadView", this) as IBeadView;
+                sendEvent(this,"viewChanged");
+            }
+            
+            if(needsController())
+                loadBeadFromValuesManager(IBeadController, "iBeadController", this);
+            
+        }
+        /**
+         * Subclasses can override this method to declare whether they need a view.
+         * Components which do not need a view can avoid searching for view beads
+         */
+        protected function needsView():Boolean
+        {
+            return true;
+        }
+
+        /**
+         * Subclasses can override this method to declare whether they need a controller.
+         * Components which do not need a controller can avoid searching for controller beads
+         */
+        protected function needsController():Boolean
+        {
+            return true;
         }
 
         private var _measurementBead:IMeasurementBead;

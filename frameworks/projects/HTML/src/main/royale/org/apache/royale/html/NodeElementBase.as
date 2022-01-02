@@ -28,6 +28,16 @@ package org.apache.royale.html
 			typeNames = "";
 		}
 
+		override protected function needsView():Boolean
+		{
+			return false;
+		}
+
+		override protected function needsController():Boolean
+		{
+			return false;
+		}
+
 		COMPILE::SWF
 		{
 			private var _nodeValue:String;
