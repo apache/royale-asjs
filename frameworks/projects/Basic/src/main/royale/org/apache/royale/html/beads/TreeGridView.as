@@ -46,6 +46,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.utils.sendStrandEvent;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IStrandWithModel;
 	
 	/**
 	 * The TreeGridView class is responsible for creating the sub-components of the TreeGrid:
@@ -218,10 +219,11 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		private function handleSelectedIndexChanged(event:Event):void
 		{
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var sharedModel:IDataGridModel = (_strand as IStrandWithModel).model as IDataGridModel;
 			var newIndex:int = sharedModel.selectedIndex;
 			
 			for(var i:int=0; i < _lists.length; i++) {
@@ -234,10 +236,11 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		private function handleColumnListChange(event:Event):void
 		{
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var sharedModel:IDataGridModel = (_strand as IStrandWithModel).model as IDataGridModel;
 			
 			if (event.target is List) {
 				var list:List = event.target as List;

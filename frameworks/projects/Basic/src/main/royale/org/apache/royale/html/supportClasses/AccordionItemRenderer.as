@@ -27,6 +27,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.Panel;
 	import org.apache.royale.html.TitleBar;
 	import org.apache.royale.html.beads.PanelView;
+	import org.apache.royale.html.util.getModelByType;
 	
 	public class AccordionItemRenderer extends Panel implements IItemRenderer, ICollapsible
 	{
@@ -60,7 +61,9 @@ package org.apache.royale.html.supportClasses
 		{
 			super.height = value;
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrand
+		 */
 		public function set data(value:Object):void
 		{
 			while (numElements > 0)
@@ -71,7 +74,7 @@ package org.apache.royale.html.supportClasses
 			var dataAsStrand:IStrand = value as IStrand;
 			if (dataAsStrand)
 			{
-				var dataTitleModel:ITitleBarModel = dataAsStrand.getBeadByType(ITitleBarModel) as ITitleBarModel;
+				var dataTitleModel:ITitleBarModel = getModelByType(dataAsStrand,ITitleBarModel) as ITitleBarModel;
 				if (dataTitleModel)
 				{
 //					titleBar.model = dataTitleModel;

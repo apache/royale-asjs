@@ -42,6 +42,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.utils.sendStrandEvent;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.core.IStrandWithModelView;
 
 		/**
 		 *  The DataGridView class is the visual bead for the org.apache.royale.html.DataGrid.
@@ -183,13 +184,19 @@ package org.apache.royale.html.beads
 				if (_listArea)
 					sendEvent(_listArea,"layoutChanged");
 			}
-
+			/**
+			 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+			 */
+			private function get typedStrand():IStrandWithModelView
+			{
+				return _strand as IStrandWithModelView
+			}
 			/**
 			 * @private
 			 */
 			protected function handleDataProviderChanged(event:Event):void
 			{
-                var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+                var sharedModel:IDataGridModel = typedStrand.model as IDataGridModel;
 				var l:uint = _lists ?  _lists.length : 0;
                 for (var i:int=0; i < l; i++)
                 {
@@ -206,7 +213,7 @@ package org.apache.royale.html.beads
 			 */
 			private function handleSelectedIndexChanged(event:Event):void
 			{
-				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+				var sharedModel:IDataGridModel = typedStrand.model as IDataGridModel;
 				var newIndex:int = sharedModel.selectedIndex;
 
 				for (var i:int=0; i < _lists.length; i++)
@@ -223,7 +230,7 @@ package org.apache.royale.html.beads
 			 */
 			private function handleColumnListChange(event:Event):void
 			{
-				var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+				var sharedModel:IDataGridModel = typedStrand.model as IDataGridModel;
 				var list:IDataGridColumnList = event.currentTarget as IDataGridColumnList;
 				sharedModel.selectedIndex = list.selectedIndex;
 

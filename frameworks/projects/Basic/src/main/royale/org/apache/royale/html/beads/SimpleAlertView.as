@@ -39,6 +39,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The SimpleAlertView class creates the visual elements of the 
@@ -100,7 +101,7 @@ package org.apache.royale.html.beads
 				loadBeadFromValuesManager(IBorderBead, "iBorderBead", value);
 			}
 			
-			var model:IAlertModel = _strand.getBeadByType(IAlertModel) as IAlertModel;
+			var model:IAlertModel = getModelByType(_strand,IAlertModel) as IAlertModel;
 			model.addEventListener("messageChange",handleMessageChange);
 			model.addEventListener("htmlMessageChange",handleMessageChange);
 

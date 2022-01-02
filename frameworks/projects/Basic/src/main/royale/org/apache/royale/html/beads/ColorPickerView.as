@@ -42,6 +42,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.IColorPickerPopUp;
 	import org.apache.royale.core.IColorModel;
     import org.apache.royale.core.IPopUp;
+    import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The ColorPickerView class creates the visual elements of the org.apache.royale.html.ColorPicker 
@@ -184,7 +185,7 @@ package org.apache.royale.html.beads
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value && !list.visible) {
-				var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
+      	var model:IColorModel = getModelByType(_strand,IColorModel) as IColorModel;
 				(list as IColorPickerPopUp).model = model;
 				list.visible = true;
 				
@@ -227,7 +228,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function colorChangeAction():void
 		{
-			var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
+      var model:IColorModel = getModelByType(_strand,IColorModel) as IColorModel;
 			COMPILE::JS 
 			{
 				selectedColorDisplay.element.style.backgroundColor = CSSUtils.attributeFromColor(model.color);

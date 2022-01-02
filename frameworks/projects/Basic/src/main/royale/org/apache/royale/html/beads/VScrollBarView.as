@@ -33,6 +33,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.events.Event;
 	import org.apache.royale.html.Button;
 	import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The ScrollBarView class is the default view for
@@ -76,7 +77,7 @@ package org.apache.royale.html.beads
         override protected function changeHandler(event:Event):void
         {
         	layout.layout();
-        	sbModel = host.getBeadByType(IScrollBarModel) as IScrollBarModel;
+        	sbModel = getModelByType(host,IScrollBarModel) as IScrollBarModel;
         	sbModel.stepSize = Math.max(Math.round(host.height / STEP_RATE), 1);
         }            
 

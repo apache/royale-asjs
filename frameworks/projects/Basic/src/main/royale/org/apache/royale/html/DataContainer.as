@@ -48,6 +48,7 @@ package org.apache.royale.html
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -146,7 +147,7 @@ package org.apache.royale.html
 		 */
 		public function get presentationModel():IBead
 		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+      var presModel:IListPresentationModel = getModelByType(this,IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
 			    presModel = loadBeadFromValuesManager(IListPresentationModel, "iListPresentationModel", this) as IListPresentationModel;
 				if (presModel == null)

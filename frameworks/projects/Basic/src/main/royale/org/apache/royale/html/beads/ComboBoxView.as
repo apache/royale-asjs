@@ -36,6 +36,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.beads.IComboBoxView;
 	import org.apache.royale.html.util.getLabelFromData;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.html.ComboBox 
@@ -144,7 +145,7 @@ package org.apache.royale.html.beads
 			list = new popUpClass() as UIBase;
 			list.visible = false;
 			
-			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+      var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			
@@ -177,7 +178,7 @@ package org.apache.royale.html.beads
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value && !list.visible) {
-				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+      var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
 				list.model = model;
 				list.width = input.width;
 				list.height = 200;
@@ -222,7 +223,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function itemChangeAction():void
 		{
-			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+      var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
 			input.text = getLabelFromData(model,model.selectedItem);
 		}
 		

@@ -30,6 +30,7 @@ package org.apache.royale.html.beads.controllers
     import org.apache.royale.utils.Timer;
     import org.apache.royale.utils.UIUtils;
     import org.apache.royale.utils.sendStrandEvent;
+    import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -132,7 +133,7 @@ package org.apache.royale.html.beads.controllers
             
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			
-			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			var model:IDateChooserModel = getModelByType(_strand,IDateChooserModel) as IDateChooserModel;
 			model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
 
 			viewBead.popUpVisible = false;
