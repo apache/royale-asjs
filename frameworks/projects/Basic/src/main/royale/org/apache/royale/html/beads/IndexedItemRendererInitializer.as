@@ -27,6 +27,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.utils.sendStrandEvent;
 	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The IndexedItemRendererInitializer class initializes item renderers
@@ -78,7 +79,7 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+      dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			labelField = dataProviderModel.labelField;			
 		}
 		

@@ -27,6 +27,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The DataItemRendererFactoryBase class is a base class
@@ -80,7 +81,7 @@ package org.apache.royale.html.beads
 		protected function finishSetup(event:Event):void
 		{			
 			(_strand as IEventDispatcher).removeEventListener("initComplete", finishSetup);
-			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
 			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 

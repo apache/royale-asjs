@@ -28,6 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	import org.apache.royale.html.util.getModelByType;
 		
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List
@@ -56,7 +57,7 @@ package org.apache.royale.html.beads
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
-			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+      listModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			var mapper:IEventDispatcher = _strand.getBeadByType(IDataProviderItemRendererMapper) as IEventDispatcher;

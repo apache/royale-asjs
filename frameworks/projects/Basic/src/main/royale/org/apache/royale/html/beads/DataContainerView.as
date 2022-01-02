@@ -35,6 +35,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.
@@ -90,7 +92,8 @@ package org.apache.royale.html.beads
 		 */
 		protected function beadsAddedHandler(event:Event):void
 		{
-			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
+
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 			// may be called before IDataProviderModel bead is added
 			if (dataModel) dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);

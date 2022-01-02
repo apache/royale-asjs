@@ -66,7 +66,7 @@ package org.apache.royale.html.beads
 			for (var i:int=0; i < lists.length; i++)
 			{
 				var list:DataGridColumnList = lists[i] as DataGridColumnList;
-				var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
+				var listModel:ISelectionModel = list.model as ISelectionModel;
 				if (listModel.dataProvider != sharedModel.dataProvider)
 				{
 					listModel.dataProvider = sharedModel.dataProvider;
