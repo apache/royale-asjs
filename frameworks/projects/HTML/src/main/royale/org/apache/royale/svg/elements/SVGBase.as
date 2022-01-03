@@ -26,15 +26,15 @@ package org.apache.royale.svg.elements
     {
       super();
     }
-    override protected function needsView():Boolean
+    override protected function requiresView():Boolean
     {
       return false;
     }
-    override protected function needsController():Boolean
+    override protected function requiresController():Boolean
     {
       return false;
     }
-    override protected function needsLayout():Boolean
+    override protected function requiresLayout():Boolean
     {
       return false;
     }
