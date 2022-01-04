@@ -51,70 +51,156 @@ package flexUnitTests
         [Test(async,timeout="300")]
         public function testDebounceLong():void
         {
+            var foo:Foo = new Foo();
+            var thisDebounced:Function = debounceLong(foo.increment,30);
+            setTimeout(function():void{
+                thisDebounced(5);
+            },0);            
+            setTimeout(function():void{
+                thisDebounced(4);
+            },5);
+            setTimeout(function():void{
+                thisDebounced(3);
+            },10);
+            setTimeout(function():void{
+                thisDebounced(2);
+            },100);
+            setTimeout(function():void{
+                thisDebounced(1);
+            },110);
+            
             var value:Number = 0;
-            var foo = function(){
-                this.value = 0;
-                this.increment = function(val:Number){
-                    this.value+=val;
-                }
-            }
-            var fooObj = new foo();
-            var thisDebounced:Function = debounceLong(fooObj.increment,30,fooObj);
-            setTimeout(thisDebounced, 10,5);
-            setTimeout(thisDebounced, 10,4);
-            setTimeout(thisDebounced, 10,3);
-            setTimeout(thisDebounced, 10,2);
-            setTimeout(thisDebounced, 10,1);
-            function increment(val:Number){
+            function increment(val:Number):void{
                 value+=val;
+                trace(val);
             }
             var debounced:Function = debounceLong(increment,30);
-            setTimeout(debounced, 10,5);
-            setTimeout(debounced, 10,4);
-            setTimeout(debounced, 10,3);
-            setTimeout(debounced, 10,2);
-            setTimeout(debounced, 10,1);
+            setTimeout(function():void{
+                debounced(5);
+            },0);
+            setTimeout(function():void{
+                debounced(4);
+            },5);
+            setTimeout(function():void{
+                debounced(3);
+            },10);
+            setTimeout(function():void{
+                debounced(2);
+            },100);
+            setTimeout(function():void{
+                debounced(1);
+            },110);
             Async.delayCall(this, function():void
             {
-                assertTrue(fooObj.value == 1,"foo value should be incremented by 1");
-                assertTrue(value == 1,"Should be incremented by 1");
-            }, 100);
+                assertEquals(foo.value,4,"foo value should be incremented by 4")
+                assertEquals(value,4,"value should be incremented by 4")
+            }, 300);
         }
 
         [Test(async,timeout="300")]
         public function testDebounceShort():void
         {
-            var foo = function(){
-                this.value = 0;
-                this.increment = function(val:Number){
-                    this.value+=val;
-                }
-            }
-            var fooObj = new foo();
-            var thisDebounced:Function = debounceShort(fooObj.increment,30,fooObj);
-            setTimeout(thisDebounced, 10,5);
-            setTimeout(thisDebounced, 10,4);
-            setTimeout(thisDebounced, 10,3);
-            setTimeout(thisDebounced, 10,2);
-            setTimeout(thisDebounced, 10,1);
+            var foo:Foo = new Foo();
+            var thisDebounced:Function = debounceShort(foo.increment,30);
+            
+            setTimeout(function():void{
+                thisDebounced(5);
+            },0);
+            setTimeout(function():void{
+                thisDebounced(4);
+            },5);
+            setTimeout(function():void{
+                thisDebounced(3);
+            },10);
+            setTimeout(function():void{
+                thisDebounced(2);
+            },100);
+            setTimeout(function():void{
+                thisDebounced(1);
+            },110);
 
             var value:Number = 0;
-            function increment(val:Number){
+            function increment(val:Number):void{
                 value+=val;
             }
             var debounced:Function = debounceShort(increment,30);
-            setTimeout(debounced, 10,5);
-            setTimeout(debounced, 10,4);
-            setTimeout(debounced, 10,3);
-            setTimeout(debounced, 10,2);
-            setTimeout(debounced, 10,1);
+
+            setTimeout(function():void{
+                debounced(5);
+            },0);
+            setTimeout(function():void{
+                debounced(4);
+            },5);
+            setTimeout(function():void{
+                debounced(3);
+            },10);
+            setTimeout(function():void{
+                debounced(2);
+            },100);
+            setTimeout(function():void{
+                debounced(1);
+            },110);
             Async.delayCall(this, function():void
             {
-                assertTrue(fooObj.value > 1,"foo value should be greater than 1");
-                assertTrue(value > 1,"Should be greater than 1");
-            }, 100);
+                assertEquals(foo.value,7,"foo value should be 7")
+                assertEquals(value,7,"value should be 7")
+            }, 300);
+        }
+        [Test(async,timeout="300")]
+        public function testThrottle():void
+        {
+            var foo:Foo = new Foo();
+            var thisThrottled:Function = throttle(foo.increment,30);
+            setTimeout(function():void{
+                thisThrottled(5);
+            },0);
+            setTimeout(function():void{
+                thisThrottled(4);
+            },5);
+            setTimeout(function():void{
+                thisThrottled(3);
+            },10);
+            setTimeout(function():void{
+                thisThrottled(2);
+            },100);
+            setTimeout(function():void{
+                thisThrottled(1);
+            },110);
+            var value:Number = 0;
+            function increment(val:Number):void{
+                value+=val;
+            }
+            var throttled:Function = throttle(increment,30);
+            setTimeout(function():void{
+                throttled(5);
+            },0);
+            setTimeout(function():void{
+                throttled(4);
+            },5);
+            setTimeout(function():void{
+                throttled(3);
+            },10);
+            setTimeout(function():void{
+                throttled(2);
+            },100);
+            setTimeout(function():void{
+                throttled(1);
+            },110);
+            Async.delayCall(this, function():void
+            {
+                assertEquals(foo.value,7,"foo value should be 7");
+                assertEquals(value,7,"value should be 7");
+            }, 300);
         }
 
 
+    }
+}
+class Foo
+{
+    public var value:Number = 0;
+    public function increment(value:int):void{
+        this.value += value;
+        trace(this.value);
     }
 }

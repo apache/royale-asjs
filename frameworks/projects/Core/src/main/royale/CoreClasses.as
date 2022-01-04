@@ -381,6 +381,7 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.functional.debounceLong; debounceLong;
 	import org.apache.royale.utils.functional.debounceShort; debounceShort;
+	import org.apache.royale.utils.functional.throttle; throttle;
 
 	import org.apache.royale.core.TextLineMetrics; TextLineMetrics;
 	import org.apache.royale.utils.ClassSelectorList; ClassSelectorList;

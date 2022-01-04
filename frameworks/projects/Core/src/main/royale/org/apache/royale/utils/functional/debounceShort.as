@@ -32,15 +32,16 @@ package org.apache.royale.utils.functional
 	 * @productversion Royale 0.9.9
 	 * 
 	 */
-	public function debounceShort(method:Function, delay:Number,thisArg:Object=null):Function
+	public function debounceShort(method:Function, delay:Number):Function
 	{
 		var timeoutRef:*;
 		return function(...args):void
 		{
 			function callback():void
 			{
+				//Because of the way Royale binds closures, no this argument is needed.
+				method.apply(null,args);
 				timeoutRef = null;
-				method.apply(thisArg,args);
 			}
 			if(timeoutRef == null)
 			{

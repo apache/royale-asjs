@@ -23,30 +23,27 @@ package org.apache.royale.utils.functional
 		import flash.utils.clearTimeout;		
 	}
 	/**
-	 * Returns a debounced function to run after a delay.
-	 * If the function is invoked again within the delay period, the latest
-	 * invocation of the function will be used and the delay will be reset to then.
+	 * Limits the execution of a function to a maximum of once within the limit in ms.
+	 * It the limit has expired since the last call, the function is executed immediately.
+	 * Otherwise it is not executed at all.
+	 * 
 	 * 
    * @royalesuppressexport
 	 * @langversion 3.0
 	 * @productversion Royale 0.9.9
 	 * 
 	 */
-	public function debounceLong(method:Function, delay:Number):Function
+	public function throttle(method:Function, limit:Number):Function
 	{
-		var timeoutRef:*;
+		var timeStamp:Number = 0;
 		return function(...args):void
 		{
-			function callback():void
+			var currentTime:Number = new Date().getTime();
+			if(currentTime - timeStamp >= limit)
 			{
-				timeoutRef = null;
-				//Because of the way Royale binds closures, no this argument is needed.
+				timeStamp = currentTime;
 				method.apply(null,args);
 			}
-			if(timeoutRef)
-				clearTimeout(timeoutRef);
-				
-			timeoutRef = setTimeout(callback, delay);
 		}
 	}
 }
