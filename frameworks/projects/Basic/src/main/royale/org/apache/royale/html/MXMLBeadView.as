@@ -95,7 +95,7 @@ package org.apache.royale.html
          */
         public function get model():Object
         {
-            return _strand["model"];
+            return _strand.model;
         }
 
         /**
