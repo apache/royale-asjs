@@ -30,6 +30,7 @@ package org.apache.royale.html
 	import org.apache.royale.states.State;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IStrandWithModel;
 
     [DefaultProperty("mxmlContent")]
 
@@ -92,10 +93,11 @@ package org.apache.royale.html
         [Bindable("__NoChangeEvent__")]
         /**
          *  The model object.
+         * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
          */
         public function get model():Object
         {
-            return _strand.model;
+            return (_strand as IStrandWithModel).model;
         }
 
         /**
