@@ -24,8 +24,8 @@ package org.apache.royale.utils.functional
 	}
 	/**
 	 * Returns a debounced function to run after a delay.
-	 * If the function is invoked within the delay period,
-	 * the delay will be reset to start from the latest invocation of the function.
+	 * If the function is invoked again within the delay period, the latest
+	 * invocation of the function will be used and the delay will be reset to then.
 	 * 
    * @royalesuppressexport
 	 * @langversion 3.0
