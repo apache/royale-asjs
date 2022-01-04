@@ -45,6 +45,7 @@ package flexUnitTests
         public var sanitizerTest:SanitizeTest;
         public var eventsTest:EventsTest;
         public var objectUtilTests:ObjectUtilsTest;
+        public var functionelTests:FunctionalTests;
 
     }
 }

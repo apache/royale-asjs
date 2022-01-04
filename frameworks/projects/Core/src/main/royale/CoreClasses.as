@@ -379,6 +379,9 @@ internal class CoreClasses
 	
 	import org.apache.royale.utils.replaceBead; replaceBead;
 
+	import org.apache.royale.utils.functional.debounceLong; debounceLong;
+	import org.apache.royale.utils.functional.debounceShort; debounceShort;
+
 	import org.apache.royale.core.TextLineMetrics; TextLineMetrics;
 	import org.apache.royale.utils.ClassSelectorList; ClassSelectorList;
 	
