@@ -126,6 +126,26 @@ package flexUnitTests.language
         }
 
         [Test]
+        public function testScopeVariation():void
+        {
+            var e:String = 'test';
+            try{
+                throw new Error('blah')
+            } catch (e:Error) {
+                var s:String = 'string declaration';
+                //'e' inside the catch scope should refer to the Error instance
+                assertEquals(Error, e.constructor,'unexpected variable state');
+                //'e' inside the catch scope should refer to the Error instance
+                assertEquals('string declaration', s,'unexpected variable state');
+            }
+            //'e' outside the catch scope should refer to the externally declared String instance
+            assertEquals('test', e,'unexpected variable state');
+            //'s' outside the catch scope should refer to the internally declared String instance
+            assertEquals('string declaration', s,'unexpected variable state');
+        }
+
+
+        [Test]
         public function testMultiCatchA():void
         {
             try{
