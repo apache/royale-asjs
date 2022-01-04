@@ -31,7 +31,8 @@ import mx.controls.TabBar;
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
-
+import org.apache.royale.html.util.getModelByType;
+import org.apache.royale.core.ISelectionModel;
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -506,6 +507,17 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
         return tnView.contentArea.getElementAt(index);
     }
 
+    /**
+     * @private
+     * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+     */
+    override protected function commitSelectedIndex(newIndex:int):void
+    {
+        super.commitSelectedIndex(newIndex);
+
+        var tnView:TabNavigatorView = view as TabNavigatorView;
+            (tnView.tabBar as TabBar).selectedIndex = newIndex;
+    }
 }
 
 }
