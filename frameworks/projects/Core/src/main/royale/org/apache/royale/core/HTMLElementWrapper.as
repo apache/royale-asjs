@@ -42,6 +42,7 @@ package org.apache.royale.core
         import org.apache.royale.utils.loadBeadFromValuesManager;
         import org.apache.royale.debugging.assert;
     }
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 
     COMPILE::SWF
     public class HTMLElementWrapper extends Sprite implements IStrand, IEventDispatcher
@@ -125,8 +126,7 @@ package org.apache.royale.core
         {
             if (_model == null)
             {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+                _model = loadBeadFromValuesManager(IBeadModel,"iBeadModel",this) as IBeadModel;
             }
             return _model;
         }
