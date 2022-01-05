@@ -27,6 +27,7 @@ package flexUnitTests
     import org.apache.royale.utils.functional.*;
     import org.apache.royale.utils.functional.animateFunction;
     import org.apache.royale.test.asserts.assertTrue;
+    import org.apache.royale.test.asserts.assertEquals;
     
     public class FunctionalTests
     {		
@@ -225,6 +226,39 @@ package flexUnitTests
                 assertTrue(savedThisValue<3,"foo value should be 2");
                 assertTrue(savedValue<3,"value should be 2");
             }, 300);
+        }
+        public function testDelay():void
+        {
+            var foo:Foo = new Foo();
+            var delayedThis:Function = delayFunction(foo.increment,20);
+
+            delayedThis(1);
+
+            var firstThisValue:Number = foo.value;
+
+            var savedThisValue:Number;
+            setTimeout(function():void{
+                savedThisValue = foo.value;
+            },75);
+
+            var value:Number = 0;
+            function increment(val:Number):void{
+                value+=val;
+            }
+            var delayed:Function = delayFunction(increment,20);
+            delayed(1);
+            var firstValue:Number = value;
+            var savedValue:Number;
+            setTimeout(function():void{
+                savedValue = value;
+            },75);
+            Async.delayCall(this, function():void
+            {
+                assertEquals(firstThisValue,0,"foo value should be 0")
+                assertEquals(savedThisValue,1,"foo value should be 1")
+                assertEquals(firstValue,0,"value should be 0")
+                assertEquals(savedValue,1,"value should be 1")
+            }, 200);
         }
 
 
