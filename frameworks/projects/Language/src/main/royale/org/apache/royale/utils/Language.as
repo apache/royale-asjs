@@ -328,6 +328,12 @@ package org.apache.royale.utils
         
         /**
          * caches closures and returns the one closure
+         * 
+         * Note: It's important for each instance's methods to be different,
+         * but match when comparing two closure references of a single instance method
+         * to one another. That's what makes things like addEventListener and
+         * removeEventListener behave like you'd expect. That's how it works in Flash
+         * and why we have to using caching.
          *
          * @param fn The method on the instance.
          * @param object The instance.
