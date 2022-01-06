@@ -34,97 +34,13 @@ package org.apache.royale.utils.functional
 	 */
 	public function animateFunction(method:Function, fps:Number):Function
 	{
-		COMPILE::SWF
+		var animated:Animated = new Animated(method,fps);
+
+		return function(...args):Animated
 		{
-			var limit:Number = 1000/fps;
-			var timeStamp:Number = 0;
-			var timeoutRef:*;
-			var invocations:Array = [];
-			return function(...args):void
-			{
-				if(timeoutRef){
-					clearTimeout(timeoutRef);
-					timeoutRef = null;
-				}
-				invocations.push(args);
-				var currentTime:Number = new Date().getTime();
-				var timeDiff:Number = currentTime - timeStamp;
-				if(timeDiff >= limit)
-				{
-					if(timeStamp == 0)
-						timeStamp = currentTime;
-					else
-						timeStamp += limit;
-					method.apply(null,invocations.shift());
-				}
-				if(invocations.length && timeoutRef == null)
-				{
-					// currentTime = new Date().getTime();
-					timeDiff = currentTime - timeStamp + limit;
-					var nextInterval:Number = Math.max(timeDiff,0);
-					timeoutRef = setTimeout(callback, nextInterval);
-				}
-
-				function callback():void
-				{
-					timeoutRef = null;
-
-					if(!invocations.length)
-						return;
-					
-					var currentArgs:Array = invocations.shift();
-					method.apply(null,currentArgs);
-					timeStamp += limit;
-					var timeDiff:Number = new Date().getTime() - timeStamp + limit;
-					while(timeDiff < 0)
-					{
-						// catch up on the missing frames
-						method.apply(null,invocations.shift());
-						if(invocations.length == 0)
-						{
-							return;
-						}
-						timeDiff+=limit;
-					}
-					if(invocations.length)
-					{
-						timeoutRef = setTimeout(callback, timeDiff);
-					}
-				}
-			}
-
-		}
-
-		COMPILE::JS
-		{
-			var limit:Number = 1000/fps;
-			var lastTimeStamp:Number = 0;
-			var timeoutRef:*;
-			var invocations:Array = [];
-			return function(...args):void
-			{
-				invocations.push(args);
-				requestAnimationFrame(callback);
-				function callback(timeStamp:Number):void
-				{
-					if(invocations.length == 0)
-						return;
-
-					// we can't rely on getting time stamps ourselves,
-					// so hopefully this is not slower than our target rate...
-					if ( (timeStamp - lastTimeStamp) >= limit)
-					{
-						if(lastTimeStamp == 0)
-							lastTimeStamp = timeStamp;
-						else
-							lastTimeStamp += limit; // make sure we stick to the desired rate
-
-						method.apply(null,invocations.shift());
-					}
-					if(invocations.length)
-						requestAnimationFrame(callback);
-				}
-			}
+			animated.push(args);
+			animated.start();
+			return animated;
 		}
 	}
 }

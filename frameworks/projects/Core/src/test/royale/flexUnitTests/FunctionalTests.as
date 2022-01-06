@@ -206,7 +206,7 @@ package flexUnitTests
             var savedThisValue:Number;
             setTimeout(function():void{
                 savedThisValue = foo.value;
-            },50);
+            },75);
 
             var value:Number = 0;
             function increment(val:Number):void{
@@ -220,11 +220,26 @@ package flexUnitTests
 
             setTimeout(function():void{
                 savedValue = value;
-            },50);
+            },75);
+
+            var stoppedValue:Number = 0;
+            function incrementStopped(val:Number):void{
+                stoppedValue+=val;
+            }
+            var stopped:Function = animateFunction(incrementStopped,20);
+            for(i=0;i<30;i++){
+                var stoppedRef:Animated = stopped(1) as Animated;
+            }
+            setTimeout(function():void{
+                stoppedRef.stop();
+            },10);
+
+
             Async.delayCall(this, function():void
             {
-                assertTrue(savedThisValue<3,"foo value should be 2");
-                assertTrue(savedValue<3,"value should be 2");
+                assertEquals(savedThisValue,2,"foo value should be 2");
+                assertEquals(savedValue,2,"value should be 2");
+                assertEquals(stoppedValue,1,"value should be 1");
             }, 300);
         }
         public function testDelay():void
