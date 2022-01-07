@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.utils.functional
+package org.apache.royale.functional
 {
 
 	COMPILE::SWF

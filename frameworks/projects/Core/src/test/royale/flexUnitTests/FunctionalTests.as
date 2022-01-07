@@ -24,8 +24,8 @@ package flexUnitTests
 
     import org.apache.royale.test.asserts.*;
 	import org.apache.royale.test.async.*;
-    import org.apache.royale.utils.functional.*;
-    import org.apache.royale.utils.functional.animateFunction;
+    import org.apache.royale.functional.*;
+    import org.apache.royale.functional.decorator.*;
     import org.apache.royale.test.asserts.assertTrue;
     import org.apache.royale.test.asserts.assertEquals;
     

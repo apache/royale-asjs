@@ -16,37 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.utils.functional
+package org.apache.royale.functional.decorator
 {
 	COMPILE::SWF{
 		import flash.utils.setTimeout;		
 		import flash.utils.clearTimeout;		
 	}
+	import org.apache.royale.functional.Animated;
+
 	/**
 	 * Returns a debounced function to run after a delay.
-	 * If the function is invoked again within the delay period, the latest
-	 * invocation of the function will be used and the delay will be reset to then.
+	 * The first invocation of the function will be run after its delay.
+	 * Any invocations between the first invocation and the delay will be ignored.
 	 * 
    * @royalesuppressexport
 	 * @langversion 3.0
 	 * @productversion Royale 0.9.9
 	 * 
 	 */
-	public function debounceLong(method:Function, delay:Number):Function
+	public function animateFunction(method:Function, fps:Number):Function
 	{
-		var timeoutRef:*;
-		return function(...args):void
+		var animated:Animated = new Animated(method,fps);
+
+		return function(...args):Animated
 		{
-			function callback():void
-			{
-				timeoutRef = null;
-				//Because of the way Royale binds closures, no this argument is needed.
-				method.apply(null,args);
-			}
-			if(timeoutRef)
-				clearTimeout(timeoutRef);
-				
-			timeoutRef = setTimeout(callback, delay);
+			animated.push(args);
+			animated.start();
+			return animated;
 		}
 	}
 }
