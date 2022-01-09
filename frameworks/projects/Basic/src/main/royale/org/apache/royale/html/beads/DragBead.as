@@ -27,6 +27,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.geom.Rectangle;
+	COMPILE::JS
+	{
+		import org.apache.royale.events.utils.MouseEventConverter;
+	}
 	
 	/**
 	 *  @langversion 3.0
@@ -103,12 +107,25 @@ package org.apache.royale.html.beads
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
 			startingPoint = new Point(event.clientX, event.clientY);
-			_host.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
-			_host.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			COMPILE::JS
+			{
+				window.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+				window.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			}
+			COMPILE::SWF
+			{
+				_host.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+				_host.topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			}
 		}
 
 		protected function mouseMoveHandler(event:MouseEvent):void
 		{
+
+			COMPILE::JS
+			{
+				event = MouseEventConverter.convert(event);
+			}
 
 			var xDelta:Number = event.clientX - startingPoint.x;
 			var yDelta:Number = event.clientY - startingPoint.y;
@@ -130,8 +147,16 @@ package org.apache.royale.html.beads
 
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
-			_host.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-			_host.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			COMPILE::SWF
+			{
+				_host.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+				_host.topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			}
+			COMPILE::JS
+			{
+				window.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+				window.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
+			}
 		}
 
 	}
