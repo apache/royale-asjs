@@ -145,8 +145,8 @@ package flexUnitTests
             },110);
             Async.delayCall(this, function():void
             {
-                assertEquals(foo.value,7,"foo value should be 7")
-                assertEquals(value,7,"value should be 7")
+                assertTrue(foo.value > 6 && foo.value < 9, foo.value +": foo value should be 7");
+                assertTrue(value > 6 && value < 9, value + ": value should be 7");
             }, 300);
         }
         [Test(async,timeout="300")]
@@ -191,8 +191,8 @@ package flexUnitTests
             },110);
             Async.delayCall(this, function():void
             {
-                assertEquals(foo.value,7,"foo value should be 7");
-                assertEquals(value,7,"value should be 7");
+                assertTrue(foo.value > 6 && foo.value < 9, foo.value +": foo value should be 7");
+                assertTrue(value > 6 && value < 9, value + ": value should be 7");
             }, 300);
         }
         [Test(async,timeout="300")]
@@ -237,8 +237,8 @@ package flexUnitTests
 
             Async.delayCall(this, function():void
             {
-                assertEquals(savedThisValue,2,"foo value should be 2");
-                assertEquals(savedValue,2,"value should be 2");
+                assertTrue(savedThisValue > 1 && savedThisValue < 4,savedThisValue + ": foo value should be 2");
+                assertTrue(savedValue > 1 && savedValue < 4,savedValue + ": value should be 2");
                 assertEquals(stoppedValue,1,"value should be 1");
             }, 300);
         }
