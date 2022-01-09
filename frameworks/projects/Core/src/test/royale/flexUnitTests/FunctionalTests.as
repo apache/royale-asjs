@@ -95,8 +95,8 @@ package flexUnitTests
             },110);
             Async.delayCall(this, function():void
             {
-                assertEquals(foo.value,4,"foo value should be incremented by 4")
-                assertEquals(value,4,"value should be incremented by 4")
+                assertTrue(foo.value < 7,foo.value+": foo value should be incremented by 4");
+                assertTrue(value < 7,value+": value should be incremented by 4");
             }, 300);
         }
 
