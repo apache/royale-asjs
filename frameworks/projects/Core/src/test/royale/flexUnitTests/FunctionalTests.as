@@ -239,7 +239,7 @@ package flexUnitTests
             {
                 assertTrue(savedThisValue > 1 && savedThisValue < 4,savedThisValue + ": foo value should be 2");
                 assertTrue(savedValue > 1 && savedValue < 4,savedValue + ": value should be 2");
-                assertEquals(stoppedValue,1,"value should be 1");
+                assertTrue(stoppedValue < 4,stoppedValue+": value should be 1");
             }, 300);
         }
         public function testDelay():void
