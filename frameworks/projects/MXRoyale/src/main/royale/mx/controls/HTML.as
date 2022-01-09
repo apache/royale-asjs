@@ -20,11 +20,14 @@
 package mx.controls
 {
 
+COMPILE::SWF{
+    import org.apache.royale.utils.HTMLLoader;
+}
+
 import org.apache.royale.events.Event;
 import mx.events.FocusEvent;
 //import flash.events.HTMLUncaughtScriptExceptionEvent;
 import mx.events.MouseEvent;
-import org.apache.royale.utils.HTMLLoader;
 //import flash.html.HTMLHistoryItem;
 //import flash.html.HTMLHost;
 import org.apache.royale.net.URLRequest;
@@ -641,7 +644,6 @@ use namespace mx_internal;
 	COMPILE::SWF {
     private var _htmlLoaderFactory:IFactory = new ClassFactory(HTMLLoader);
 
-    [Bindable("htmlLoaderFactoryChanged")]
 	}
 
     /**
@@ -655,6 +657,7 @@ use namespace mx_internal;
      *  @productversion Flex 3
      */
 	COMPILE::SWF {
+        [Bindable("htmlLoaderFactoryChanged")]
 		public function get htmlLoaderFactory():IFactory
 		{
 			return _htmlLoaderFactory;
