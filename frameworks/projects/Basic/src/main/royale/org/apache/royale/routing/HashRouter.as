@@ -110,13 +110,11 @@ package org.apache.royale.routing
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-			loadBeadFromValuesManager(IPathRouteBead, "iPathRouteBead", this);
 			COMPILE::JS
 			{
 				window.addEventListener("hashchange", hashChangeHandler);
 			}
-
-			// wait until the app is initialized. Calling onInit async soves this problem
+			// wait until the app is initialized. Calling onInit async solves this problem
 			callLater(onInit);
 		}
 
@@ -136,6 +134,9 @@ package org.apache.royale.routing
 			for each (var bead:IBead in beads)
 			  addBead(bead);
 		  }
+			
+			loadBeadFromValuesManager(IPathRouteBead, "iPathRouteBead", this);
+
 		  // needed for binding in MXML
 		  dispatchEvent(new Event("initBindings"));
 
