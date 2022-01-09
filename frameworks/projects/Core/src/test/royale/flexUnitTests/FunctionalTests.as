@@ -24,9 +24,10 @@ package flexUnitTests
 
     import org.apache.royale.test.asserts.*;
 	import org.apache.royale.test.async.*;
-    import org.apache.royale.utils.functional.*;
-    import org.apache.royale.utils.functional.animateFunction;
+    import org.apache.royale.functional.*;
+    import org.apache.royale.functional.decorator.*;
     import org.apache.royale.test.asserts.assertTrue;
+    import org.apache.royale.test.asserts.assertEquals;
     
     public class FunctionalTests
     {		
@@ -94,8 +95,8 @@ package flexUnitTests
             },110);
             Async.delayCall(this, function():void
             {
-                assertEquals(foo.value,4,"foo value should be incremented by 4")
-                assertEquals(value,4,"value should be incremented by 4")
+                assertTrue(foo.value < 7,foo.value+": foo value should be incremented by 4");
+                assertTrue(value < 7,value+": value should be incremented by 4");
             }, 300);
         }
 
@@ -144,8 +145,8 @@ package flexUnitTests
             },110);
             Async.delayCall(this, function():void
             {
-                assertEquals(foo.value,7,"foo value should be 7")
-                assertEquals(value,7,"value should be 7")
+                assertTrue(foo.value > 6 && foo.value < 9, foo.value +": foo value should be 7");
+                assertTrue(value > 6 && value < 9, value + ": value should be 7");
             }, 300);
         }
         [Test(async,timeout="300")]
@@ -190,8 +191,8 @@ package flexUnitTests
             },110);
             Async.delayCall(this, function():void
             {
-                assertEquals(foo.value,7,"foo value should be 7");
-                assertEquals(value,7,"value should be 7");
+                assertTrue(foo.value > 6 && foo.value < 9, foo.value +": foo value should be 7");
+                assertTrue(value > 6 && value < 9, value + ": value should be 7");
             }, 300);
         }
         [Test(async,timeout="300")]
@@ -205,7 +206,7 @@ package flexUnitTests
             var savedThisValue:Number;
             setTimeout(function():void{
                 savedThisValue = foo.value;
-            },50);
+            },75);
 
             var value:Number = 0;
             function increment(val:Number):void{
@@ -219,12 +220,60 @@ package flexUnitTests
 
             setTimeout(function():void{
                 savedValue = value;
-            },50);
+            },75);
+
+            var stoppedValue:Number = 0;
+            function incrementStopped(val:Number):void{
+                stoppedValue+=val;
+            }
+            var stopped:Function = animateFunction(incrementStopped,20);
+            for(i=0;i<30;i++){
+                var stoppedRef:Animated = stopped(1) as Animated;
+            }
+            setTimeout(function():void{
+                stoppedRef.stop();
+            },10);
+
+
             Async.delayCall(this, function():void
             {
-                assertTrue(savedThisValue<3,"foo value should be 2");
-                assertTrue(savedValue<3,"value should be 2");
+                assertTrue(savedThisValue > 1 && savedThisValue < 4,savedThisValue + ": foo value should be 2");
+                assertTrue(savedValue > 1 && savedValue < 4,savedValue + ": value should be 2");
+                assertEquals(stoppedValue,1,"value should be 1");
             }, 300);
+        }
+        public function testDelay():void
+        {
+            var foo:Foo = new Foo();
+            var delayedThis:Function = delayFunction(foo.increment,20);
+
+            delayedThis(1);
+
+            var firstThisValue:Number = foo.value;
+
+            var savedThisValue:Number;
+            setTimeout(function():void{
+                savedThisValue = foo.value;
+            },75);
+
+            var value:Number = 0;
+            function increment(val:Number):void{
+                value+=val;
+            }
+            var delayed:Function = delayFunction(increment,20);
+            delayed(1);
+            var firstValue:Number = value;
+            var savedValue:Number;
+            setTimeout(function():void{
+                savedValue = value;
+            },75);
+            Async.delayCall(this, function():void
+            {
+                assertEquals(firstThisValue,0,"foo value should be 0")
+                assertEquals(savedThisValue,1,"foo value should be 1")
+                assertEquals(firstValue,0,"value should be 0")
+                assertEquals(savedValue,1,"value should be 1")
+            }, 200);
         }
 
 
