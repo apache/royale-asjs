@@ -72,11 +72,13 @@ public class DropDownListController implements IBead, IBeadController
     private function clickHandler(event:org.apache.royale.events.MouseEvent):void
     {
         var host:UIBase = _strand as UIBase;
-        var popup:UIComponent = viewBead.popUp as UIComponent;
+
         var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
+        var popup:UIComponent = viewBead.popUp as UIComponent;
         var selectionModel:ISelectionModel = host.model as ISelectionModel;
         var popUpModel:ISelectionModel = popup.model as ISelectionModel;
-        popup.width = host.width;
+        popup.width = NaN;
+        popup.setActualSize(host.width, popup.height);
         popUpModel.dataProvider = selectionModel.dataProvider;
         popUpModel.labelField = selectionModel.labelField;// adds to display list as well
         popUpModel.selectedIndex = selectionModel.selectedIndex;
