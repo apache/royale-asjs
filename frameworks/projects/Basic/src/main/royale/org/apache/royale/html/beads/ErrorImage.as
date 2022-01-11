@@ -23,6 +23,7 @@ package org.apache.royale.html.beads {
     import org.apache.royale.core.IImageModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
+    import org.apache.royale.html.util.getModelByType;
   
     /**
 	 *  The ErrorImage class is a bead that can be used to 
@@ -91,7 +92,7 @@ package org.apache.royale.html.beads {
         protected function get hostModel():IImageModel
         {    
             if(!_hostModel)
-                _hostModel = _strand.getBeadByType(IImageModel) as IImageModel;
+                _hostModel = getModelByType(_strand,IImageModel) as IImageModel;
             return _hostModel;
         }
 

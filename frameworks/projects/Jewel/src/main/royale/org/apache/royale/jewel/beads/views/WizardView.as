@@ -171,7 +171,7 @@ package org.apache.royale.jewel.beads.views
 
             wizard = value as Wizard;
 			
-			model = _strand.getBeadByType(WizardModel) as WizardModel;
+			model = wizard.model as WizardModel;
 			model.addEventListener("currentStepChange", handleStepChange);
 			model.addEventListener("showPreviousButtonChange", handleStepChange);
 			model.addEventListener("showNextButtonChange", handleStepChange);

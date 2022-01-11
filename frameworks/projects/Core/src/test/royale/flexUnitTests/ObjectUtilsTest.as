@@ -16,37 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package spark.components.beads
-{	
-	import spark.events.RendererExistenceEvent;
-	import org.apache.royale.utils.sendStrandEvent;
-	import org.apache.royale.html.beads.DataContainerView;
-	import org.apache.royale.core.IItemRenderer;
-	import mx.core.IVisualElement;
+package flexUnitTests
+{
+	import org.apache.royale.core.Strand;
+	import org.apache.royale.test.asserts.*;
+	import org.apache.royale.utils.object.classFromInstance;
 
-
-	/**
-	 *  The DataContainerView provides the visual elements for the DataContainer.
-	 *  
-	 *  @viewbead
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.8
-	 */
-	public class DataContainerView extends org.apache.royale.html.beads.DataContainerView
+	public class ObjectUtilsTest
 	{
-		public function DataContainerView()
+		[Before]
+		public function setUp():void
 		{
-			super();
 		}
 		
-		override protected function dispatchItemAdded(renderer:IItemRenderer):void
+		[After]
+		public function tearDown():void
 		{
-			super.dispatchItemAdded(renderer);
-		    var newEvent:RendererExistenceEvent = new RendererExistenceEvent(RendererExistenceEvent.RENDERER_ADD, false, false, renderer as IVisualElement);
-		    sendStrandEvent(_strand,newEvent);
 		}
-
+		
+		[BeforeClass]
+		public static function setUpBeforeClass():void
+		{
+		}
+		
+		[AfterClass]
+		public static function tearDownAfterClass():void
+		{
+		}
+		
+		[Test]
+		public function testClass():void
+		{
+			var strand:Strand = new Strand();
+			assertEquals(classFromInstance(strand), Strand, "Error finding class from instance.");
+		}
 	}
 }

@@ -21,12 +21,12 @@ package org.apache.royale.mobile.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IToggleButtonModel;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.svg.Rect;
 	import org.apache.royale.graphics.SolidColor;
 	import org.apache.royale.graphics.SolidColorStroke;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IUIBase;
 	
 	/**
 	 * The ToggleSwitchView creates the element used to display the ToggleSwitch
@@ -73,11 +73,13 @@ package org.apache.royale.mobile.beads
 		{
 			return _strand as IUIBase;
 		}
-		public function set host(value:IUIBase):void
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		private function getHost():UIBase
 		{
-			// not implemented; getter only.
+			return _strand as UIBase;
 		}
-		
 		private var _strand:IStrand;
 		
 		/**
@@ -90,18 +92,18 @@ package org.apache.royale.mobile.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			UIBase(_strand).addEventListener("sizeChanged", sizeChangedHandler);
-			UIBase(_strand).addEventListener("widthChanged", sizeChangedHandler);
-			UIBase(_strand).addEventListener("heightChanged", sizeChangedHandler);
+			host.addEventListener("sizeChanged", sizeChangedHandler);
+			host.addEventListener("widthChanged", sizeChangedHandler);
+			host.addEventListener("heightChanged", sizeChangedHandler);
 			
-			var model:IToggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
+			var model:IToggleButtonModel = getHost().model as IToggleButtonModel;
 			model.addEventListener("selectedChange", toggleChangedHandler);
 			
 			boundingBox = new Rect();
-			UIBase(host).addElement(boundingBox, false);
+			getHost().addElement(boundingBox, false);
 			
 			actualSwitch = new Rect();
-			UIBase(host).addElement(actualSwitch, false);
+			getHost().addElement(actualSwitch, false);
 			
 			layoutChromeElements();
 		}
@@ -135,7 +137,7 @@ package org.apache.royale.mobile.beads
 		 */
 		protected function sizeViewsToFitContentArea():void
 		{
-			var model:IToggleButtonModel = _strand.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
+			var model:IToggleButtonModel = getHost().model as IToggleButtonModel;
 			
 			boundingBox.x = 0;
 			boundingBox.y = 0;

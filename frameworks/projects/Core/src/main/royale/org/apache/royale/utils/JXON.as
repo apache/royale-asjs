@@ -19,14 +19,14 @@
 package org.apache.royale.utils
 {
 	/**
+	 * @royalesuppresspublicvarwarning
+	 * 
 	 * JXON is a lightweight class for parsing and using simple XML.
 	 * It gives access to children in the XML tree as an array of `children`.
 	 * Attributes are an object `attribute` with the attribute key/value pairs.
 	 * Namespaces are completely ignored.
 	 * If you need more functionality such as E4X and advanced filtering, use the XML and XMLList classes instead.
 	 * To parse XML, use JXON.parse(xmlStr) where xmlStr is a string of your XML. 
-     * 
-     * @royalesuppresspublicvarwarning
 	 */
 	public class JXON
 	{
@@ -37,7 +37,7 @@ package org.apache.royale.utils
 		/**
 		 * Static flag to ignore whitespace text nodes
 		 */
-		 public static var ignoreWhiteSpace:Boolean = true;
+		public static var ignoreWhiteSpace:Boolean = true;
 
 		/**
 		 * The tag name of the element

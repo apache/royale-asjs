@@ -47,6 +47,7 @@ use namespace mx_internal;
 import org.apache.royale.events.Event;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.html.supportClasses.DataGridColumn;
+import org.apache.royale.core.IHasLabelField;
     
 //--------------------------------------
 //  Styles
@@ -206,7 +207,7 @@ import org.apache.royale.html.supportClasses.DataGridColumn;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGridColumn // implements IIMESupport
+public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGridColumn implements IHasLabelField // IIMESupport
 {
     //--------------------------------------------------------------------------
     //

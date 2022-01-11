@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project>
+  <output>
+    <movie version="20"/>
+    <movie disabled="False"/>
+    <movie platform="Flash Player"/>
+    <movie background="#FFFFFF"/>
+    <movie height="600"/>
+    <movie fps="60"/>
+    <movie path="bin-debug/TabNavigatorExample.swf"/>
+    <movie input=""/>
+    <movie width="800"/>
+  </output>
+  &lt;!-- Other classes to be compiled into your SWF --&gt;
+  <jsOutput>
+    <option path=""/>
+  </jsOutput>
+  <classpaths>
+    <class path="src/main/royale"/>
+  </classpaths>
+  <moonshineResourcePaths></moonshineResourcePaths>
+  <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
+  <build>
+    <option benchmark="False"/>
+    <option showDeprecationWarnings="True"/>
+    <option accessible="False"/>
+    <option es="False"/>
+    <option additional="+configname=flex"/>
+    <option useNetwork="True"/>
+    <option loadConfig=""/>
+    <option useResourceBundleMetadata="True"/>
+    <option warnings="True"/>
+    <option showActionScriptWarnings="True"/>
+    <option linkReport=""/>
+    <option customSDK=""/>
+    <option showBindingWarnings="True"/>
+    <option optimize="False"/>
+    <option compilerConstants=""/>
+    <option antBuildPath="build/build.xml"/>
+    <option strict="True"/>
+    <option locale=""/>
+    <option sourceMap="False"/>
+    <option allowSourcePathOverlap="False"/>
+    <option staticLinkRSL="False"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
+    <option verboseStackTraces="False"/>
+  </build>
+  <mavenBuild>
+    <option dominoNotesProgram=""/>
+    <option commandLine=""/>
+    <option dominoNotesPlatform=""/>
+    <option settingsFilePath=""/>
+    <option mavenBuildPath="/Users/piotrzarzycki/Dev/apache/royale-sources/royale-asjs/examples/mxroyale/TabNavigatorExample"/>
+    <actions>
+      <action action="install" actionName="Build"/>
+      <action action="clean" actionName="Clean"/>
+      <action action="clean install" actionName="Clean and Build"/>
+      <action action="war:exploded" actionName="Exploded"/>
+    </actions>
+  </mavenBuild>
+  <includeLibraries></includeLibraries>
+  <libraryPaths></libraryPaths>
+  <externalLibraryPaths></externalLibraryPaths>
+  <rslPaths></rslPaths>
+  <intrinsics>
+    <element path="Library/AS3/frameworks/Flex4"/>
+    <element path="Library\AS3\frameworks\Flex4"/>
+  </intrinsics>
+  <library></library>
+  <modules/>
+  <compileTargets>
+    <compile path="src/main/royale/TabNavigatorExample.mxml"/>
+  </compileTargets>
+  <hiddenPaths></hiddenPaths>
+  <preBuildCommand>null</preBuildCommand>
+  <postBuildCommand alwaysRun="False">null</postBuildCommand>
+  <trustSVNCertificate>False</trustSVNCertificate>
+  <options>
+    <option isExportedToExistingSource="False"/>
+    <option isRoyale="True"/>
+    <option defaultBuildTargets=""/>
+    <option isDominoVisualEditor="False"/>
+    <option jdkType="default-java"/>
+    <option testMovie=""/>
+    <option showHiddenPaths="False"/>
+    <option visualEditorExportPath=""/>
+    <option isPrimeFacesVisualEditor="False"/>
+    <option testMovieCommand=""/>
+  </options>
+  <moonshineRunCustomization>
+    <option urlToLaunch=""/>
+    <option targetPlatform="5"/>
+    <option projectType="2"/>
+    <option webBrowser="Google Chrome"/>
+    <option deviceSimulator="null"/>
+    <option customUrlToLaunch=""/>
+    <option launchMethod="Simulator"/>
+    <option deviceConnectType="USB"/>
+    <deviceSimulator>Apple iPad</deviceSimulator>
+    <certAndroid>null</certAndroid>
+    <certIos>null</certIos>
+    <certIosProvisioning>null</certIosProvisioning>
+  </moonshineRunCustomization>
+</project>

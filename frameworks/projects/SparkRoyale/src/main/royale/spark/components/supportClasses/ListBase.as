@@ -40,6 +40,8 @@ import spark.events.IndexChangeEvent;
 import spark.events.ListEvent;
 import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.LayoutBase;*/
+
+import spark.components.SkinnableDataContainer;
 import spark.utils.LabelUtil;
 import mx.collections.IList;
 import mx.core.IFactory;
@@ -48,8 +50,6 @@ import mx.core.mx_internal;
 import org.apache.royale.html.beads.ItemRendererFunctionBead;
 import spark.components.DataGroup;
 import spark.components.SkinnableContainer;
-import spark.components.beads.SparkContainerView;
-import spark.layouts.VerticalLayout;
 
 import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IStrand;
@@ -57,6 +57,10 @@ import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.core.IContainer;
+import org.apache.royale.core.IParent;
+import org.apache.royale.events.ValueEvent;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;   //ListBase and List share selection properties that are mx_internal
 
@@ -195,7 +199,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class ListBase  extends SkinnableContainer
+public class ListBase  extends SkinnableDataContainer implements IContainer, IHasLabelField
 { //extends SkinnableDataContainer implements IDataProviderEnhance
     //include "../../core/Version.as";
 
@@ -269,7 +273,6 @@ public class ListBase  extends SkinnableContainer
     public function ListBase()
     {
         super();
-		layout = new VerticalLayout();
     }
     
     //--------------------------------------------------------------------------
@@ -473,143 +476,12 @@ public class ListBase  extends SkinnableContainer
         return _caretIndex;
     }
     
-    //----------------------------------
-    //  dataProvider copied from SkinnableDataContainer
-    //----------------------------------    
+
     
-    /**
-     *  @copy spark.components.DataGroup#dataProvider
-     *
-     *  @see #itemRenderer
-     *  @see #itemRendererFunction
-     *  @see mx.collections.IList
-     *  @see mx.collections.ArrayCollection
-     *  @see mx.collections.ArrayList
-     *  @see mx.collections.XMLListCollection
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     * 
-     *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkContainerView
-     */
-    [Bindable("dataProviderChanged")]
-    [Inspectable(category="Data")]
-    
-    public function get dataProvider():IList
-    {       
-        return ((view as SparkContainerView).contentView as DataGroup).dataProvider;
-    }
-    
-    /**
-     *  @private
-     *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkContainerView
-     */
-    public function set dataProvider(value:IList):void
-    {
-        if (isWidthSizedToContent() || isHeightSizedToContent())
-            ((view as SparkContainerView).contentView as DataGroup).addEventListener("itemsCreated", itemsCreatedHandler);
-        ((view as SparkContainerView).contentView as DataGroup).dataProvider = value;
-    }
-    
-    private function itemsCreatedHandler(event:Event):void
-    {
-        if (parent)
-        {
-            COMPILE::JS
-            {
-                // clear last width/height so elements size to content
-                element.style.width = "";
-                element.style.height = "";
-                ((view as SparkContainerView).contentView as DataGroup).element.style.width = "";
-                ((view as SparkContainerView).contentView as DataGroup).element.style.height = "";
-            }
-            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-        }
-    }
-    
-    //----------------------------------
-    //  itemRenderer copied from SkinnableDataContainer
-    //----------------------------------
-    
-    [Inspectable(category="Data")]
-    
-    /**
-     *  @copy spark.components.DataGroup#itemRenderer
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     * 
-     *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkContainerView
-     */
-    public function get itemRenderer():IFactory
-    {
-        return ((view as SparkContainerView).contentView as DataGroup).itemRenderer;
-    }
-    
-    /**
-     *  @private
-     *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkContainerView
-     */
-    public function set itemRenderer(value:IFactory):void
-    {
-        ((view as SparkContainerView).contentView as DataGroup).itemRenderer = value;
-        // the ItemRendererFactory was already put on the DataGroup's strand and
-        // determined which factory to use so we have to set it up later here.
-        var factory:ItemRendererClassFactory = ((view as SparkContainerView).contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
-        factory.createFunction = factory.createFromClass;
-        factory.itemRendererFactory = value;
-    }
 
 
-    //----------------------------------
-    //  itemRendererFunction
-    //----------------------------------
-    
-    [Inspectable(category="Data")]
-    
-    /**
-     *  @copy spark.components.DataGroup#itemRendererFunction
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Flex 4
-     */
-    public function get itemRendererFunction():Function
-    {
 
-	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
-        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
-	if (itemRendererFunctionBead)
-        {
-            return itemRendererFunctionBead.itemRendererFunction;
-        }
 
-        return null;
-    }
-    
-    /**
-     *  @private
-     */
-    public function set itemRendererFunction(value:Function):void
-    {
-	var contentView:IStrand = (view as SparkContainerView).contentView as IStrand;
-        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
-        if (!itemRendererFunctionBead)
-        {
-            itemRendererFunctionBead = new ItemRendererFunctionBead();
-            contentView.addBead(itemRendererFunctionBead);
-        }
-        itemRendererFunctionBead.itemRendererFunction = value;
-    }
 
     /**
      *  @private
@@ -728,7 +600,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function get labelField():String
     {
-         return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).labelField;
+         return ((getLayoutHost().contentView as DataGroup).model as ISelectionModel).labelField;
     } 
     
     /**
@@ -736,7 +608,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set labelField(value:String):void
     {
-        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).labelField = value;
+        ((getLayoutHost().contentView as DataGroup).model as ISelectionModel).labelField = value;
     } 
     
     //----------------------------------
@@ -984,7 +856,7 @@ public class ListBase  extends SkinnableContainer
        /*  if (_proposedSelectedIndex != NO_PROPOSED_SELECTION)
             return _proposedSelectedIndex; */
             
-        return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex;
+        return ((getLayoutHost().contentView as DataGroup).model as ISelectionModel).selectedIndex;
     }
     
     /**
@@ -992,7 +864,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set selectedIndex(value:int):void
     {
-        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex = value;
+        ((getLayoutHost().contentView as DataGroup).model as ISelectionModel).selectedIndex = value;
        /*  setSelectedIndex(value, false); */
     }
     
@@ -1083,7 +955,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function get selectedItem():*
     {
-        return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem;
+        return ((getLayoutHost().contentView as DataGroup).model as ISelectionModel).selectedItem;
         /* if (_pendingSelectedItem !== undefined)
             return _pendingSelectedItem;
             
@@ -1101,7 +973,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set selectedItem(value:*):void
     {
-        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedItem = value;
+        ((getLayoutHost().contentView as DataGroup).model as ISelectionModel).selectedItem = value;
       //  setSelectedItem(value, false);
     }
 
@@ -1434,20 +1306,20 @@ public class ListBase  extends SkinnableContainer
     
     /**
      *  Given a data item, return the correct text a renderer
-     *  should display while taking the <code>labelField</code> 
-     *  and <code>labelFunction</code> properties into account. 
+     *  should display while taking the <code>labelField</code>
+     *  and <code>labelFunction</code> properties into account.
      *
-     *  @param item A data item 
-     *  
-     *  @return String representing the text to display for the 
-     *  data item in the  renderer. 
-     *  
+     *  @param item A data item
+     *
+     *  @return String representing the text to display for the
+     *  data item in the  renderer.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function itemToLabel(item:Object):String
+    override public function itemToLabel(item:Object):String
     {
         return LabelUtil.itemToLabel(item, labelField, labelFunction);
     }
@@ -2256,32 +2128,50 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SparkContainerView
      */
     override public function addedToParent():void
     {
-        if (!getBeadByType(IBeadLayout))
-            addBead(new ListBaseLayout());
         super.addedToParent();
         if (requireSelection && selectedIndex == -1)
             selectedIndex = 0;
-		((view as SparkContainerView).contentView as DataGroup).addEventListener("change", redispatcher);
-		((view as SparkContainerView).contentView as DataGroup).addEventListener("itemClick", redispatcher);
-		((view as SparkContainerView).contentView as DataGroup).addEventListener("doubleClick", redispatcher);
+		(getLayoutHost().contentView as DataGroup).addEventListener("change", redispatcher);
+		(getLayoutHost().contentView as DataGroup).addEventListener("itemClick", redispatcher);
+		(getLayoutHost().contentView as DataGroup).addEventListener("doubleClick", redispatcher);
 		
-        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+        dispatchEvent(new Event("layoutNeeded"));
     }
     
-    override public function setActualSize(w:Number, h:Number):void
-    {
-        super.setActualSize(w, h);
-        ((view as SparkContainerView).contentView as DataGroup).setActualSize(w, h);
-    }
-
 	private function redispatcher(event:Event):void
 	{
 		dispatchEvent(new Event(event.type));
 	}
+
+    /*
+    * IContainer
+    */
+    
+    /**
+     *  @private
+     */
+    public function childrenAdded():void
+    {
+        dispatchEvent(new ValueEvent("childrenAdded"));
+    }
+    
+    /**
+     * @copy org.apache.royale.core.IContentViewHost#strandChildren
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get strandChildren():IParent
+    {
+        return this;
+    }
+
+
 }
 
 }

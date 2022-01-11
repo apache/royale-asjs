@@ -1533,11 +1533,16 @@ package
 			}
 			return namespaces;
 		}
-		
+		/**
+		 * This method is public to enable code optimizations for getting attributes
+		 */
 		public function getAttributeArray():Array
 		{
 			return _attributes ? _attributes : [];
 		}
+		/**
+		 * This method is public to enable code optimizations for getting children
+		 */
 		public function getChildrenArray():Array
 		{
 			return _children ? _children : [];
@@ -1890,7 +1895,7 @@ package
 		{
 			/*if(!_name)
 				_name = getQName("","","",false);*/
-			return _name;
+			return _name ? _name : null;
 		}
 		
 		/**

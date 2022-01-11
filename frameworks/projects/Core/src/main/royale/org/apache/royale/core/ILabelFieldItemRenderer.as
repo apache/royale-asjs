@@ -27,7 +27,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public interface ILabelFieldItemRenderer extends IIndexedItemRenderer
+	public interface ILabelFieldItemRenderer extends IIndexedItemRenderer, IHasLabelField
 	{
         /**
          *  The property on the data item that the item renderer
@@ -38,7 +38,6 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        function get labelField():String;
         function set labelField(value:String):void;        
 	}
 }

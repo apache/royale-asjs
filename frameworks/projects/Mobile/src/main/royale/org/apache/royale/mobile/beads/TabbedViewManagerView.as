@@ -63,12 +63,12 @@ package org.apache.royale.mobile.beads
 		
 		public function get tabBar():TabBar
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			return model.tabBar;
 		}
 		public function set tabBar(value:TabBar):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			model.tabBar = value;
 		}
 		
@@ -80,7 +80,7 @@ package org.apache.royale.mobile.beads
 		{
 			super.strand = value;
 			
-			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			
 			// TabbedViewManager always has a TabBar
 			var tbar:TabBar = new TabBar();
@@ -110,7 +110,7 @@ package org.apache.royale.mobile.beads
 		 */
 		protected function showViewByIndex(index:int):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			
 			if (_currentView != null) {
 				getHost().removeElement(_currentView);
@@ -145,7 +145,7 @@ package org.apache.royale.mobile.beads
 		private function handleButtonBarChange(event:Event):void
 		{
 			var newIndex:Number = tabBar.selectedIndex;
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			
 			// doing this will trigger the selectedIndexChanged event which will
 			// tell the strand to switch views

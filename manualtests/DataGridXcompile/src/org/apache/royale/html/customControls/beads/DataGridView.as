@@ -51,30 +51,36 @@ package org.apache.royale.html.customControls.beads
 		private var columns:Array;
 		
 		private var _strand:IStrand;
+
+    /**
+     * @royaleignorecoercion org.apache.royale.core.UIBase
+     * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
 //			background = new Shape();
 //			DisplayObjectContainer(_strand).addChild(background);
-			
+			var host:UIBase = value as UIBase;
 			var pm:IDataGridPresentationModel = _strand.getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
 			buttonBarModel = new ArraySelectionModel();
 			buttonBarModel.dataProvider = pm.columnLabels;
 			buttonBar = new ButtonBar();
 			buttonBar.addBead(buttonBarModel);
 			buttonBar.height = 20;
-			buttonBar.width = UIBase(_strand).width;
-			UIBase(_strand).addElement(buttonBar);
+			buttonBar.width = host.width;
+			host.addElement(buttonBar);
 			
 			columnContainer = new Container();
 			var layout:HorizontalLayout = new HorizontalLayout();
 			columnContainer.addBead(layout);
-			UIBase(_strand).addElement(columnContainer);
+			host.addElement(columnContainer);
 			
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-			var columnWidth:Number = UIBase(_strand).width / pm.columnLabels.length;
-			var columnHeight:Number = UIBase(_strand).height - buttonBar.height;
+			var sharedModel:IDataGridModel = host.model as IDataGridModel;
+			var columnWidth:Number = host.width / pm.columnLabels.length;
+			var columnHeight:Number = host.height - buttonBar.height;
 			
 			columns = new Array();
 			for(var i:int=0; i < pm.columnLabels.length; i++) {

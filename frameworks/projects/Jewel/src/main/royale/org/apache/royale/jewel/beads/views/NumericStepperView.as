@@ -32,6 +32,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Spinner;
     import org.apache.royale.jewel.TextInput;
+    import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 
@@ -95,7 +96,7 @@ package org.apache.royale.jewel.beads.views
 			(value as IParent).addElement(spinnerview.increment as IChild);
 			(value as IParent).addElement(spinnerview.decrement as IChild);
 			
-			var model:IRangeModel = _strand.getBeadByType(IRangeModel) as IRangeModel;
+			var model:IRangeModel = getModelByType(_strand,IRangeModel) as IRangeModel;
 			spinner.value = model.value;
 			input.text = String(model.value);
 

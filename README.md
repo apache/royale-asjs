@@ -262,4 +262,4 @@ Listing of `option-with-` profiles:
 
 In order to get started using Royale, you are invited to follow along with the [Quick Start Guide](https://github.com/apache/royale-asjs/wiki/Quick-Start).
 
-### Thanks for using [Apache Royale](https://royale.apache.org). Enjoy!
+### Thanks  for using [Apache Royale](https://royale.apache.org). Enjoy!

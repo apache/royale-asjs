@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
   import org.apache.royale.core.ISelectionModel;
   import org.apache.royale.events.IEventDispatcher;
   import org.apache.royale.core.Bead;
+  import org.apache.royale.html.util.getModelByType;
   
   /**
 	 *  The CollectionSelectedItemByField class is a specialty bead that can be used with
@@ -65,7 +66,7 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			_model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+      _model = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			listenOnStrand("selectionChanged", selectionChangedHandler);
 			updateHost();
 		}

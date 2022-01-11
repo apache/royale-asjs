@@ -18,12 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IChrome;
 	import org.apache.royale.core.ITitleBarModel;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -128,15 +124,6 @@ package org.apache.royale.html
 			ITitleBarModel(model).showCloseButton = value;
 		}
 		
-		/**
-		 * @private
-		 */
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
-		}
-        
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */

@@ -19,112 +19,148 @@
 
 package spark.components.beads
 {
-
-import spark.components.SkinnableContainer;
-import spark.components.supportClasses.GroupBase;
-import spark.layouts.BasicLayout;
-
-import org.apache.royale.core.IBead;
-import org.apache.royale.core.IContainer;
-import org.apache.royale.core.ILayoutChild;
-import org.apache.royale.core.IStrand;
-import org.apache.royale.core.UIBase;
-import org.apache.royale.html.beads.ContainerView;
-import org.apache.royale.events.Event;
-import org.apache.royale.events.IEventDispatcher;
-
-/**
- *  @private
- *  The SparkContainerView for emulation.
- */
-public class SparkContainerView extends ContainerView
-{
-	//--------------------------------------------------------------------------
-	//
-	//  Constructor
-	//
-	//--------------------------------------------------------------------------
-
+	import mx.core.LayoutElementUIComponentUtils;
+	import mx.core.UIComponent;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.ContainerView;
+	import spark.components.supportClasses.GroupBase;
+	import spark.core.ISparkContainer;
+	import spark.core.ISparkLayoutHost;
+	import spark.layouts.BasicLayout;
+	
 	/**
-	 *  Constructor.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @private
+	 *  The SparkContainerView for emulation.
 	 */
-	public function SparkContainerView()
+	public class SparkContainerView extends ContainerView implements ISparkLayoutHost
 	{
-		super();
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.6
+		 */
+		public function SparkContainerView()
+		{
+			super();
+		}
+		
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			prepareContentView();
+			prepareDisplayView();
+		}
+		
+		protected function prepareContentView():void
+		{
+			var host:ILayoutChild = _strand as ILayoutChild;
+			var g:GroupBase = contentView as GroupBase;
+			
+			if (!host || !g)
+				return;
+				
+			if (host == g)
+			{
+				if (g.layout == null)
+					g.layout = new BasicLayout();
+				return;
+			}
+
+			// only for the case where host.layout was set before view set
+			var hc:ISparkContainer = _strand as ISparkContainer;
+			if (hc.layout != null)
+				g.layout = hc.layout;
+
+			if (g.layout == null)
+				g.layout = new BasicLayout();
+		}
+
+		public function get displayView():GroupBase
+		{
+			return contentView as GroupBase;
+		}
+		
+		protected function prepareDisplayView():void
+		{
+			var host:ILayoutChild = _strand as ILayoutChild;
+			var g:GroupBase = displayView as GroupBase;
+
+			if (!host || !g || host == g)
+				return;
+
+			// Resize content to host, because 
+			// (a) ScrollingViewport sets content to 100% and
+			// (b) we don't yet have content reverse-proxing the explicit size functions 
+			//     (explicitXX, percentXX, isXXSizedToContent) back to the host.
+			// Layout asks target (content) for explicit sizes, sometimes.
+			//
+			LayoutElementUIComponentUtils.setSizeFromChild(g, host);
+		}
+		
+		/**
+		 *  Measure before layout.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		override public function beforeLayout():Boolean
+		{
+			if (_strand != displayView)
+			{
+				var host:UIComponent = _strand as UIComponent;
+				var g:GroupBase = displayView as GroupBase;
+
+				// Resize content to host, because 
+				// (a) ScrollingViewport sets content to 100% and
+				// (b) we don't yet have content reverse-proxing the explicit size functions 
+				//     (explicitXX, percentXX, isXXSizedToContent) back to the host.
+				// Layout asks target (content) for explicit sizes, sometimes.
+				//
+				LayoutElementUIComponentUtils.setSizeFromChild(g, host);
+				
+				if (g.isWidthSizedToContent() || g.isHeightSizedToContent())
+				{
+					g.layout.measure();
+				}
+			}
+			return true;
+		}
+		
+		/**
+		 *  Dispatch after layout.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		override public function afterLayout():void
+		{
+			if (_strand != displayView)
+			{
+				var host:UIComponent = _strand as UIComponent;
+				var g:GroupBase = displayView as GroupBase;
+
+				host.setActualSize(g.width, g.height);
+
+				if (g.isWidthSizedToContent() || g.isHeightSizedToContent())
+				{
+					// request re-run layout on the parent.  In theory, we should only
+					// end up in afterLayout if the content size changed.
+					if (host.parent)
+					{
+						(host.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));   
+					}
+				}
+			}
+		}
 	}
-
-    /**
-     */
-    override public function set strand(value:IStrand):void
-    {
-        super.strand = value;
-        prepareContentView();
-    }
-    
-    protected function prepareContentView():void
-    {
-        var host:SkinnableContainer = _strand as SkinnableContainer;
-        var g:GroupBase = (contentView as GroupBase);
-        if (host.layout != null)
-            g.layout = host.layout;
-        if (g.layout == null)
-            g.layout = new BasicLayout();
-        
-        if (!host.isWidthSizedToContent())
-            g.percentWidth = 100;
-        if (!host.isHeightSizedToContent())
-            g.percentHeight = 100;
-
-    }
-    
-    /**
-     *  Adjusts the size of the host after the layout has been run if needed
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     *  @royaleignorecoercion org.apache.royale.core.UIBase
-     */
-    override public function beforeLayout():Boolean
-    {
-        var host:SkinnableContainer = _strand as SkinnableContainer;
-        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
-        {
-            host.layout.measure();
-        }
-		return true;
-    }
-    
-    /**
-     *  Adjusts the size of the host after the layout has been run if needed
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     *  @royaleignorecoercion org.apache.royale.core.UIBase
-     */
-    override public function afterLayout():void
-    {
-        var host:SkinnableContainer = _strand as SkinnableContainer;
-        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
-        {
-            // request re-run layout on the parent.  In theory, we should only
-            // end up in afterLayout if the content size changed.
-            if (host.parent)
-            {
-                (host.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));   
-            }
-        }
-    }
-
-
-}
-
 }

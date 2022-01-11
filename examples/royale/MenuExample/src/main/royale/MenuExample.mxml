@@ -22,7 +22,7 @@
 				xmlns:local="*"
 				xmlns:models="models.*"
 				xmlns:js="library://ns.apache.org/royale/basic" 
-				>
+				xmlns:royale="main.royale.*">
 	
 	<js:valuesImpl>
 		<js:SimpleCSSValuesImpl />
@@ -31,6 +31,6 @@
 		<models:ProductsModel />
 	</js:model>-->
 	<js:initialView>
-		<local:MyInitialView />
+		<royale:MyInitialView />
 	</js:initialView>
 </js:Application>

@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ITextModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The TextButtonView class is the default view for
@@ -94,7 +95,7 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			textModel = value.getBeadByType(ITextModel) as ITextModel;
+			textModel = getModelByType(value,ITextModel) as ITextModel;
 			textModel.addEventListener("textChange", textChangeHandler);
 			textModel.addEventListener("htmlChange", htmlChangeHandler);
 			shape = new Shape();

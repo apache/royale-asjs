@@ -21,6 +21,8 @@ package org.apache.royale.events.utils
 COMPILE::JS
 {
     import org.apache.royale.conversions.createEventInit;
+    import goog.events.Event;
+    import org.apache.royale.events.getTargetWrapper;
     import window.Event;
 }
 
@@ -31,6 +33,8 @@ COMPILE::JS
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     *
+     *  @royalesupressexport
 	 */
     COMPILE::JS
 	public class EventUtils
@@ -57,5 +61,36 @@ COMPILE::JS
 
            return customEvent;
        }
+
+        /**
+         * A way to let a Royale Event 'hitch a ride' on a native browser event.
+         *  Encapsulates the tagging/untagging support in this Utils class
+         * @param nativeEvent the native event to tag with the Royale Event
+         * @param royaleEvent the Royale Event to accompany the native event (expected as a org.apache.royale.events.Event here)
+         * @return the native event passed it
+         */
+       public static function tagNativeEvent(nativeEvent:Object, royaleEvent:Object):Object{
+           nativeEvent['_RYL_ORIG'] = royaleEvent;
+           return nativeEvent;
+       }
+
+        /**
+         * A way to retrieve a RoyaleEvent from a native browser event,
+         * if present. Encapsulates the tagging/untagging support in this Utils class
+         * @param nativeEvent
+         * @return the resolved event instance
+         *
+         * @royaleignorecoercion goog.events.Event
+         */
+        public static function retrieveEvent(nativeEvent:Object):Object{
+            if (nativeEvent['_RYL_ORIG']) {
+                var rylEvt:goog.events.Event = nativeEvent['_RYL_ORIG'] as goog.events.Event;
+                //retrieve it with the currentTarget updated
+                rylEvt.currentTarget = getTargetWrapper(nativeEvent.currentTarget)
+                return rylEvt;
+            }
+            return nativeEvent;
+        }
+
     }
 }

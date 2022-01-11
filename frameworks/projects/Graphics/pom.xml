@@ -116,7 +116,7 @@
           <includeLookupOnly>true</includeLookupOnly>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>${project.compiler.options};-compiler.byte-array-embed-class=org.apache.royale.core.ByteArrayAsset</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-compiler.byte-array-embed-class=org.apache.royale.core.ByteArrayAsset;-js-vector-emulation-class=Array</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

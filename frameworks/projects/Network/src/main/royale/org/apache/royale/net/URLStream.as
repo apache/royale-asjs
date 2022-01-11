@@ -24,6 +24,7 @@ package org.apache.royale.net
 	import org.apache.royale.events.ProgressEvent;
 	import org.apache.royale.utils.BinaryData;
 	import org.apache.royale.utils.Endian;
+	import org.apache.royale.net.utils.encodeAsQueryString;
 
 	COMPILE::SWF
 	{
@@ -121,23 +122,45 @@ package org.apache.royale.net
 				xhr.responseType = "arraybuffer";
 				xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
 				xhr.addEventListener("progress", xhr_progress, false);
-				var contentTypeSet:Boolean = false;
+				var contentType:String;
 				for (var i:int = 0; i < urlRequest.requestHeaders.length; i++)
 				{
 					var header:org.apache.royale.net.URLRequestHeader = urlRequest.requestHeaders[i];
 					if (header.name.toLowerCase() == "content-type")
 					{
-						contentTypeSet = true;
+						contentType = header.value;
 					}
 					xhr.setRequestHeader(header.name, header.value);
 				}
-				if (!contentTypeSet && urlRequest.contentType)
+				if (!contentType && urlRequest.contentType)
 				{
+					contentType = urlRequest.contentType;
 					xhr.setRequestHeader("Content-type", urlRequest.contentType);
 				}
-				var requestData:Object = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : 
-					urlRequest.data is FormData ? urlRequest.data :
-					HTTPUtils.encodeUrlVariables(urlRequest.data);
+				var requestData:Object;
+				// For BinaryData, we're assuming the request is a binary one.
+				if(urlRequest.data is BinaryData){
+					requestData = (urlRequest.data as BinaryData).data;
+				} else if(contentType == HTTPHeader.APPLICATION_JSON){
+					// For JSON content type, we send either the string, stringified or nothing.
+					if(urlRequest.data is String){
+						requestData = urlRequest.data;
+					} else if(urlRequest.data){
+						requestData = JSON.stringify(urlRequest.data);
+					} else {
+						requestData = "";
+					}
+				} else if(urlRequest.data is FormData){
+					// FormData is supposed to be able to be passed into xhr
+					requestData = urlRequest.data;
+				}
+				// At this point it shouldn't matter what the content type is. If it's a string, just pass that.
+				// Otherwise the only reasonable thing to assume is it's application/x-www-form-urlencoded
+				else if(urlRequest.data is String){
+					requestData = urlRequest.data;
+				} else {
+					requestData = encodeAsQueryString(urlRequest.data);
+				}
 				send(requestData);
 			}
 			COMPILE::SWF 
@@ -162,7 +185,7 @@ package org.apache.royale.net
 				if (urlRequest.data)
 				{
 					req.data = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : 
-						new flash.net.URLVariables(HTTPUtils.encodeUrlVariables(urlRequest.data));
+						new flash.net.URLVariables(encodeAsQueryString(urlRequest.data));
 				}
 			   
 				req.method = urlRequest.method;

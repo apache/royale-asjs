@@ -34,6 +34,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.Button;
     import org.apache.royale.jewel.beads.controls.spinner.ISpinnerView;
+    import org.apache.royale.core.IStrandWithModel;
 
 	/**
 	 *  The SpinnerView class creates the visual elements of the org.apache.royale.jewel.Spinner
@@ -106,7 +107,7 @@ package org.apache.royale.jewel.beads.views
 
 				UIBase(_strand).addChild(_decrement);
 				UIBase(_strand).addChild(_increment);
-				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+				rangeModel = (_strand as IStrandWithModel).model as IRangeModel;
 			}
 			
 			listenOnStrand("widthChanged",sizeChangeHandler);

@@ -26,6 +26,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.VirtualDataContainerView;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	import org.apache.royale.html.util.getModelByType;
 		
 	/**
 	 *  The VirtualListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -59,7 +60,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
-			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			listModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			listModel.addEventListener("popUpCreated", itemsCreatedHandler);

@@ -300,8 +300,7 @@
             <!-- This is appended to the LICENSE file for binary packages-->
             <exclude>LICENSE.bin</exclude>
             <!-- READMEs don't have headers -->
-            <exclude>README.md</exclude>
-            <exclude>npm/README.md</exclude>
+            <exclude>**/README.md</exclude>
             <!-- RELEASE_NOTES don't have headers either -->
             <exclude>**/RELEASE_NOTES.md</exclude>
 

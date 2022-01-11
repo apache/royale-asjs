@@ -40,11 +40,11 @@ package org.apache.royale.utils.async
     {
       _status = "pending";
       pendingTasks = tasks.slice();
-      var task:AsyncTask = pendingTasks.shift();
+      var task:IAsyncTask = pendingTasks.shift();
       task.done(handleDone);
       task.run();
     }
-    private function handleDone(task:AsyncTask):void
+    private function handleDone(task:IAsyncTask):void
     {
       if(_status != "pending"){
         return;
@@ -66,7 +66,7 @@ package org.apache.royale.utils.async
 
       }
       if(pendingTasks.length){
-        var nextTask:AsyncTask = pendingTasks.shift();
+        var nextTask:IAsyncTask = pendingTasks.shift();
         nextTask.done(handleDone);
         nextTask.run(task);
       } else {

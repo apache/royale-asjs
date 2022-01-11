@@ -39,6 +39,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.ListView;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The ChartView class provides the visual elemental structure for a chart. This includes the
@@ -97,7 +98,7 @@ package org.apache.royale.charts.beads
 		{
 			super.beadsAddedHandler(event);
 			
-			dataModel = _strand.getBeadByType(IChartDataModel) as IChartDataModel;
+			dataModel = getModelByType(_strand,IChartDataModel) as IChartDataModel;
 			dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
 			var haxis:IHorizontalAxisBead = _strand.getBeadByType(IHorizontalAxisBead) as IHorizontalAxisBead;

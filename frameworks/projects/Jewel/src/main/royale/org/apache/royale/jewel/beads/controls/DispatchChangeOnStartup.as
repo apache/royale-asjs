@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The DispatchChangeOnStartup bead class is a specialty bead that can be used
@@ -79,14 +80,14 @@ package org.apache.royale.jewel.beads.controls
 		private function listenToModel(event:Event):void
 		{
 			IEventDispatcher(_strand).removeEventListener('beadsAdded', listenToModel);
-			const model:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			const model:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			if (model) {
 				IEventDispatcher(model).addEventListener('selectionChanged', onChange);
 			}
 		}
 
 		private function onChange(event:Event):void{
-			const model:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			const model:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			IEventDispatcher(model).removeEventListener('selectionChanged', onChange);
 			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
 

@@ -27,6 +27,7 @@ package org.apache.royale.mdl
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.core.CSSClassList;
     }
+    import org.apache.royale.core.IHasLabelField;
     
 	/**
 	 *  The Material Design Lite (MDL) tab bar component is a user interface element that allows
@@ -48,7 +49,7 @@ package org.apache.royale.mdl
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class TabBar extends org.apache.royale.html.List
+	public class TabBar extends org.apache.royale.html.List implements IHasLabelField
 	{
 		/**
 		 *  constructor.

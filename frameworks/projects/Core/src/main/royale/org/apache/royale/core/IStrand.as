@@ -64,6 +64,8 @@ package org.apache.royale.core
 
         /**
          *  Remove a bead from the strand.
+         *  The bead needs to clean itself up to avoid memory leaks.
+         *  removeBead only removes references to the bead in the Strand.
          *
          *  @param bead The bead (IBead instance) to be removed.
          * 

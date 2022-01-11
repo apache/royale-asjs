@@ -44,6 +44,7 @@ package org.apache.royale.flat.beads
 	import org.apache.royale.html.beads.IDropDownListView;
 	import org.apache.royale.utils.CSSUtils;
     import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.html.util.getModelByType;
     
     /**
      *  The DropDownListView class is the default view for
@@ -129,7 +130,7 @@ package org.apache.royale.flat.beads
 			super.strand = value;
 
             var b:Button = Button(value);
-            selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+            selectionModel = getModelByType(value,ISelectionModel) as ISelectionModel;
             selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
             selectionModel.addEventListener("dataProviderChanged", selectionChangeHandler);
 			shape = new Shape();

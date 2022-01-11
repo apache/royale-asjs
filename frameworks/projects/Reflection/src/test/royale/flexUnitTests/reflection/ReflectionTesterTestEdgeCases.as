@@ -74,6 +74,19 @@ package flexUnitTests.reflection
         public function testNull():void
         {
             var err:Boolean;
+
+            var noClass:Boolean = hasDefinitionWithName('nothing_to_see');
+            var hasClass:Boolean = hasDefinitionWithName('flexUnitTests.reflection.support.TestClass1');
+            assertFalse(noClass, 'hasDefinitionWithName for nothing_to_see should be false');
+
+            assertTrue(hasClass, 'hasDefinitionWithName for flexUnitTests.reflection.support.TestClass1 should be true')
+        }
+
+
+        [Test]
+        public function testHasDefinition():void
+        {
+            var err:Boolean;
             try{
                 var test:* = getDefinitionByName('null');
             } catch(e:Error) {

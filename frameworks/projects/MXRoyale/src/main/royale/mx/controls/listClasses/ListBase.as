@@ -59,6 +59,7 @@ import org.apache.royale.events.ValueEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.events.FlexEvent;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;
 
@@ -168,7 +169,8 @@ use namespace mx_internal;
 	*/
 	public class ListBase extends ScrollControlBase 
         implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, 
-                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel
+                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel,
+                    IHasLabelField
 	{  //extends UIComponent
 	
 	
@@ -1022,17 +1024,9 @@ use namespace mx_internal;
         public function get presentationModel():IBead
         {
             if (_presentationModel == null) {
-                var bead:IBead = getBeadByType(IListPresentationModel);
+                var bead:IBead = loadBeadFromValuesManager(IListPresentationModel,"iListPresentationModel",this);
                 if (bead)
                     _presentationModel = bead as IListPresentationModel;
-                else
-                {
-                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
-                    if (c) {
-                        _presentationModel = new c() as IListPresentationModel;
-                        addBead(_presentationModel as IBead);
-                    }
-                }
             }
             
             return _presentationModel;
@@ -1931,6 +1925,48 @@ use namespace mx_internal;
 	public function measureWidthOfItems(index:int = -1, count:int = 0):Number
     {
         return NaN;
+    }
+	
+	protected var collection:ICollectionView;
+	 
+	//----------------------------------
+    //  selectable
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the selectable property.
+     */
+    private var _selectable:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  A flag that indicates whether the list shows selected items
+     *  as selected.
+     *  If <code>true</code>, the control supports selection.
+     *  The Menu class, which subclasses ListBase, sets this property to
+     *  <code>false</code> by default, because it doesn't show the chosen
+     *  menu item as selected.
+     *
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get selectable():Boolean
+    {
+        return _selectable;
+    }
+
+    /**
+     *  @private
+     */
+    public function set selectable(value:Boolean):void
+    {
+        _selectable = value;
     }
     
 

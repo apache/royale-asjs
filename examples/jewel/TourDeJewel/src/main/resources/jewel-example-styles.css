@@ -132,3 +132,24 @@ j|IconButtonBar
     IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
 }
 
+.groupoptions {
+    background: white;
+    border-radius: 0.25rem;
+    border: 1px solid #d2dadf;
+    font-size: 1em;
+    font-weight: 400;
+    min-height: 52px;
+    min-width: 120px;
+    padding: 0;
+    position: relative;
+}
+
+.groupoptions-header {
+    padding: 12px 20px;
+}
+
+.groupoptions-content {
+    border-top: 1px solid #d2dadf;
+    margin-top: 0 !important;
+    padding: 12px 20px;
+}

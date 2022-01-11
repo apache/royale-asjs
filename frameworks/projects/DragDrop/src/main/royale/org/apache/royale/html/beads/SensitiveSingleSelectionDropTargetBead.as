@@ -39,6 +39,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.util.getModelByType;
 
 
 	/**
@@ -346,7 +347,7 @@ package org.apache.royale.html.beads
 				DragEvent.dragInitiator.acceptingDrop(_strand, "object");
 			}
 
-			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			var dataProviderModel:IDataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			if (dataProviderModel.dataProvider is Array) {
 				var dataArray:Array = dataProviderModel.dataProvider as Array;
 				dataArray.splice(calculatedTargetIndex, 0, dragSource);

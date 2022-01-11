@@ -97,6 +97,8 @@ package mx.controls
 
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.html.util.getModelByType;
 	
 	use namespace mx_internal;
 	
@@ -591,7 +593,7 @@ package mx.controls
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView
+	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView, IHasLabelField
 	{
 		// include "../core/Version.as";
 		
@@ -2823,17 +2825,9 @@ package mx.controls
         public function get presentationModel():IBead
         {
             if (_presentationModel == null) {
-                var bead:IBead = getBeadByType(IListPresentationModel);
-                if (bead)
-                    _presentationModel = bead as IListPresentationModel;
-                else
-                {
-                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
-                    if (c) {
-                        _presentationModel = new c() as IListPresentationModel;
-                        addBead(_presentationModel as IBead);
-                    }
-                }
+				var bead:IBead = loadBeadFromValuesManager(IListPresentationModel,"iListPresentationModel",this);
+				if (bead)
+					_presentationModel = bead as IListPresentationModel;
             }
             
             return _presentationModel;

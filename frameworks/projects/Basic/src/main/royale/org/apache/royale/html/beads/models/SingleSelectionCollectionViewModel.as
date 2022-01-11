@@ -23,6 +23,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IHasLabelField;
 
     /**
      *  The SingleSelectionCollectionViewModel class is a selection model for
@@ -34,7 +35,7 @@ package org.apache.royale.html.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-	public class SingleSelectionCollectionViewModel extends DispatcherBead implements ISelectionModel, IRollOverModel
+	public class SingleSelectionCollectionViewModel extends DispatcherBead implements ISelectionModel, IRollOverModel, IHasLabelField
 	{
         /**
          *  Constructor.

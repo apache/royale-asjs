@@ -66,7 +66,7 @@ package mx.controls.beads
         private var _view:org.apache.royale.html.beads.DataGridView;
         
         private var gridBase:ListBase;
-        
+        private var host:UIBase;
         /**                         	
          *  @copy org.apache.royale.core.IBead#strand
          *
@@ -78,7 +78,7 @@ package mx.controls.beads
         public function set strand(value:IStrand):void
         {
             _strand = value;
-            var host:UIBase = _strand as UIBase;
+            host = _strand as UIBase;
             _view = host.view as org.apache.royale.html.beads.DataGridView; // need to get its initComplete handler to run first
             
             _overlay = new CompoundGraphic();
@@ -137,7 +137,7 @@ package mx.controls.beads
             // Also set up a listener on the model to know when the dataProvider has
             // changed which might affect the number of rows/columns and thus the
             // grid lines.
-            var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+            var model:IBeadModel = host.model as IBeadModel;
             IEventDispatcher(model).addEventListener("dataProviderChanged", drawLines);
             
             // if the headerText gets changed, the overlay is removed, so re-apply it
@@ -166,7 +166,7 @@ package mx.controls.beads
          */
         protected function drawLines(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
             var columns:Array = sharedModel.columns;			
             var totalHeight:Number = _header.height;
             
@@ -239,7 +239,7 @@ package mx.controls.beads
          */
         private function mouseOverHandler(event:MouseEvent):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
             var columns:Array = sharedModel.columns;			
             var totalHeight:Number = _header.height;
             
@@ -353,7 +353,7 @@ package mx.controls.beads
             if (columnIndex == -1)
                 return;
             
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = host.model as IDataGridModel;
             var columns:Array = sharedModel.columns;
             var oldWidth:Number = columns[columnIndex].columnWidth;
             var deltaWidth:Number = lastX - startX;

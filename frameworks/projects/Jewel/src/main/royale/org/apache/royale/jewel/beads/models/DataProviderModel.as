@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.IHasLabelField;
 			
     /**
      *  The DataProviderModel class is a model for
@@ -32,7 +33,7 @@ package org.apache.royale.jewel.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class DataProviderModel extends EventDispatcher implements IDataProviderModel
+	public class DataProviderModel extends EventDispatcher implements IDataProviderModel, IHasLabelField
 	{
         /**
          *  Constructor.

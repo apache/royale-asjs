@@ -68,27 +68,9 @@ public class GroupView extends org.apache.royale.html.beads.GroupView
     override public function beforeLayout():Boolean
     {
         var host:GroupBase = _strand as GroupBase;
-        // some Groups have left/right but are still sized to content.
-        // the left/right create padding instead.  So instead of
-        // isWidthSizedToContent, we only check explicit
-        if (!(!isNaN(host.explicitWidth) && !isNaN(host.explicitHeight)))
+        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
         {
-			var lastMeasuredWidth:Number = host.measuredWidth;
-			var lastMeasuredHeight:Number = host.measuredHeight;
             host.layout.measure();
-			if (lastMeasuredWidth != host.measuredWidth || 
-				lastMeasuredHeight != host.measuredHeight)
-			{
-		        if (!(host.isWidthSizedToContent() || host.isHeightSizedToContent()))
-				{
-					// afterlayout is not going to run layout, but might
-					// need one if percentages are involved
-					if (!isNaN(host.percentWidth) || !isNaN(host.percentHeight))
-					{
-		                (host.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));   
-					}
-				}			
-			}
         }
 		return true;
     }

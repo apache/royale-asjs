@@ -57,14 +57,16 @@ package mx.controls.beads.layouts
 		public function AdvancedDataGridLayout()
 		{
         }
-        
+        /**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+         */
         override protected function setHeaderWidths(columnWidths:Array):void
         {
             var header:IUIBase = (uiHost.view as IDataGridView).header;
             // fancier DG's will filter invisible columns and only put visible columns
             // in the bbmodel, so do all layout based on the bbmodel, not the set
             // of columns that may contain invisible columns
-            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            var bbmodel:ButtonBarModel = (header as UIBase).model as ButtonBarModel;
             if (bbmodel.dataProvider && (bbmodel.dataProvider.length != columnWidths.length))
             {
                 // probably some grouped columns so recompute widths;

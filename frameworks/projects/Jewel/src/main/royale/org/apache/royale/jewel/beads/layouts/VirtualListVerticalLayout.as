@@ -39,6 +39,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+	import org.apache.royale.html.util.getModelByType;
         
 	/**
 	 *  The VirtualListVerticalLayout class is used for Jewel List that wants to use VirtualListView
@@ -70,7 +71,7 @@ package org.apache.royale.jewel.beads.layouts
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
-            dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataProviderModel = getModelByType(value,IDataProviderModel) as IDataProviderModel;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
             COMPILE::JS

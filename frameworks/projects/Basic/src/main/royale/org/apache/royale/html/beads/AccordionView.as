@@ -28,6 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.layouts.IOneFlexibleChildLayout;
 	import org.apache.royale.html.supportClasses.ICollapsible;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 * The AccordionView sets up the components for the Accordion component.
@@ -70,7 +71,9 @@ package org.apache.royale.html.beads
 		override protected function selectionChangeHandler(event:Event):void
 		{
 			super.selectionChangeHandler(event);
-			var model:ISelectionModel = loadBeadFromValuesManager(ISelectionModel, "iBeadModel", host) as ISelectionModel;
+      var model:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
+			if(!model)
+				model = loadBeadFromValuesManager(ISelectionModel, "iBeadModel", host) as ISelectionModel;
 			layout.flexibleChild = String(model.selectedIndex);
 		}
 		

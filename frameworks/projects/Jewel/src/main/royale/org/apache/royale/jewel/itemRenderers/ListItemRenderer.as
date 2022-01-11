@@ -83,7 +83,7 @@ package org.apache.royale.jewel.itemRenderers
 				{
 				if(MXMLDescriptor == null)
 				{
-					element.innerHTML = _text;
+					element.textContent = _text;
 				}
 				}
 				dispatchEvent(new Event('textChange'));

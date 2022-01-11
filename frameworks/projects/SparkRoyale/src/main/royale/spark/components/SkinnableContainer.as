@@ -37,7 +37,7 @@ import mx.core.mx_internal;
 import spark.components.supportClasses.SkinnableContainerBase;
 import spark.components.supportClasses.SkinnableComponent;
 import spark.components.supportClasses.GroupBase;
-import spark.components.beads.SkinnableContainerView;
+import spark.core.ISparkContainer;
 import spark.layouts.supportClasses.LayoutBase;
 import spark.layouts.BasicLayout;
 
@@ -52,7 +52,6 @@ import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.ILayoutHost;
-import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.ValueEvent;
@@ -368,8 +367,8 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost, ILayoutParent
-{// SkinnableContainerBase 
+public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost, ISparkContainer
+{
  //    implements IDeferredContentOwner, IVisualElementContainer
    // include "../core/Version.as";
     
@@ -409,20 +408,6 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
         typeNames = "SkinnableContainer";
     }
     
-    /**
-     * Returns the ILayoutHost which is its view. From ILayoutParent.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function getLayoutHost():ILayoutHost
-    {
-        return view as ILayoutHost;
-    }
-    
-
     //----------------------------------
     //  textDecoration
     //----------------------------------
@@ -660,14 +645,11 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
             ? contentGroup.layout 
             : contentGroupProperties.layout;
         */
-        //if (!_layout)
-        //    _layout = new BasicLayout();
         return _layout;
     }
     
     /**
      * @private
-     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
      * @royaleignorecoercion spark.components.supportClasses.GroupBase
      */
     public function set layout(value:LayoutBase):void
@@ -685,9 +667,9 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
         _layout = value;
         if (getBeadByType(IBeadView))
         {
-            ((view as SkinnableContainerView).contentView as GroupBase).layout = value;
+            (getLayoutHost().contentView as GroupBase).layout = value;
             if (parent)
-                ((view as SkinnableContainerView).contentView as GroupBase).dispatchEvent(new Event("layoutNeeded"));       
+                (getLayoutHost().contentView as GroupBase).dispatchEvent(new Event("layoutNeeded"));       
         }
     }
     
@@ -914,7 +896,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
     {
         if (skin)
         {
-            var skinDispatcher:IEventDispatcher = (view as SkinnableContainerView).contentView as IEventDispatcher;
+            var skinDispatcher:IEventDispatcher = getLayoutHost().contentView as IEventDispatcher;
             skinDispatcher.dispatchEvent(new ValueEvent("childrenAdded"));
         }
         dispatchEvent(new ValueEvent("childrenAdded"));
@@ -991,9 +973,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
         
         dispatchEvent(new Event("beadsAdded"));
         dispatchEvent(new Event("initComplete"));
-        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
-            (isWidthSizedToContent() || !isNaN(explicitWidth)))
-            dispatchEvent(new Event("layoutNeeded"));
+        dispatchEvent(new Event("layoutNeeded"));
     }
 
 
@@ -1200,21 +1180,21 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function createDeferredContent():void
-    {
+     public function createDeferredContent():void
+    {   //@todo similar fix as mx Container for creationPolicy NONE (at least)
         var children:Array =  this.MXMLDescriptor;
         if (children)
         {
-			creatingDeferredContent = true;
+			/*creatingDeferredContent = true;
             generateMXMLInstances(document, children);
 			creatingDeferredContent = false;
             mxmlContentCreated = true; // keep the code from recursing back into here.
             _deferredContentCreated = true; 
-            dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));
+            dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));*/
             return;
         }
         
-        if (!mxmlContentCreated)
+        /*if (!mxmlContentCreated)
         {
             mxmlContentCreated = true;
             
@@ -1225,11 +1205,11 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
                 _deferredContentCreated = true;
                 dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));
             }
-        }
+        }*/
     }
-
+    //@todo similar fix as mx for creationPolicy NONE (at least)
     private var _deferredContentCreated:Boolean;
-    */
+
     /**
      *  Contains <code>true</code> if deferred content has been created.
      *  
@@ -1238,10 +1218,10 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get deferredContentCreated():Boolean
+     public function get deferredContentCreated():Boolean
     {
         return _deferredContentCreated;
-    } */
+    }
 
     /**
      *  @private
@@ -1318,7 +1298,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
      {
          var contentView:IParent = getLayoutHost().contentView as IParent;
-         if (c == contentView)
+         if (c == contentView || c == skin)
          {
              super.addElement(c); // ContainerView uses addElement to add inner contentView
              if (c == skin)
@@ -1470,7 +1450,6 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      {
          return super.getElementAt(index);
      }
-
 }
 
 }

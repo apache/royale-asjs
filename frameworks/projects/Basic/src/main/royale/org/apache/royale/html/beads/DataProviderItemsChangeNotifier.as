@@ -22,9 +22,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.events.CollectionEvent;
-    import org.apache.royale.html.supportClasses.DataProviderNotifierBase;
+	import org.apache.royale.html.supportClasses.DataProviderNotifierBase;
+	import org.apache.royale.html.util.getModelByType;
 
-    /**
+	/**
 	 *  The DataProviderItemsChangeNotifier notifies listeners when to selection model's
 	 *  ArrayList dataProvider item has been added, removed or updated.
 	 *  
@@ -66,7 +67,7 @@ package org.apache.royale.html.beads
 			dataProvider = object[propertyName] as IArrayList;			
 			dataProvider.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
 			dataProvider.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
-            dataProvider.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
+			dataProvider.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 		}
 
 		/**
@@ -74,7 +75,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleItemAdded(event:CollectionEvent):void
 		{
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+      var selectionModel:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			selectionModel.dispatchEvent(event.cloneEvent() as CollectionEvent);
 		}
 		
@@ -83,17 +84,17 @@ package org.apache.royale.html.beads
 		 */
 		private function handleItemRemoved(event:CollectionEvent):void
 		{
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			var selectionModel:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			selectionModel.dispatchEvent(event.cloneEvent() as CollectionEvent);
 		}
 
-        /**
-         * @private
-         */
-        private function handleItemUpdated(event:CollectionEvent):void
-        {
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            selectionModel.dispatchEvent(event.cloneEvent() as CollectionEvent);
-        }
+		/**
+		 * @private
+		 */
+		private function handleItemUpdated(event:CollectionEvent):void
+		{
+			var selectionModel:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
+			selectionModel.dispatchEvent(event.cloneEvent() as CollectionEvent);
+		}
 	}
 }

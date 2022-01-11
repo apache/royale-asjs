@@ -54,6 +54,8 @@ import mx.managers.IFocusManagerComponent;
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
+import org.apache.royale.core.TextLineMetrics;
+import mx.core.IUITextField;
 
 /*
 import mx.events.ScrollEvent;
@@ -582,7 +584,7 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    protected var textField:IUITextField;
+   protected var textField:IUITextField;
 
     //----------------------------------
     //  verticalScrollPosition
@@ -2074,6 +2076,22 @@ public class TextArea extends ScrollControlBase
 //            verticalScrollPosition = _vScrollPosition;
     }
 
+    override public function getExplicitOrMeasuredWidth():Number
+    {
+        if (!isNaN(explicitWidth))
+            return explicitWidth;
+        measure()
+        return measuredWidth;
+    }
+
+    override public function getExplicitOrMeasuredHeight():Number
+    {
+        if (!isNaN(explicitHeight))
+            return explicitHeight;
+        measure()
+        return measuredHeight;
+    }
+
     /**
      *  @private
      */
@@ -2081,10 +2099,11 @@ public class TextArea extends ScrollControlBase
     {
         super.measure();
 
-//        measuredMinWidth = DEFAULT_MEASURED_MIN_WIDTH;
-//        measuredWidth = DEFAULT_MEASURED_WIDTH;
-//        // TextArea is minimum of two lines of text
-//        measuredMinHeight = measuredHeight = 2 * DEFAULT_MEASURED_MIN_HEIGHT;
+        measuredMinWidth = DEFAULT_MEASURED_MIN_WIDTH;
+        measuredWidth = DEFAULT_MEASURED_WIDTH;
+        // TextArea is minimum of two lines of text
+        measuredMinHeight = measuredHeight = 2 * DEFAULT_MEASURED_MIN_HEIGHT;
+
     }
 
     /**
@@ -2287,10 +2306,12 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function getLineMetrics(lineIndex:int):TextLineMetrics
-//    {
-//        return textField ? textField.getLineMetrics(lineIndex) : null;
-//    }
+    public function getLineMetrics(lineIndex:int):TextLineMetrics
+    {
+        trace("getLineMetrics in mx:TextArea is not implemented");
+		return null;
+		//return textField ? textField.getLineMetrics(lineIndex) : null;
+    }
 
     /**
      *  Selects the text in the range specified by the parameters.

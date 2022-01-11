@@ -294,7 +294,7 @@ public class TinyEditor extends UIComponent
         
 		COMPILE::JS
 		{
-			editorDiv.innerHTML = value;
+			editorDiv.textContent = value;
 		}
 		this.dispatchEvent(new Event('textChange'));		
 	}

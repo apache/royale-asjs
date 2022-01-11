@@ -26,6 +26,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.beads.models.ComboBoxPresentationModel;
 	import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
+	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.html.util.getModelByType;
 
 	//--------------------------------------
     //  Events
@@ -86,7 +88,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ComboBox extends StyledUIBase implements IComboBox, IItemRendererProvider
+	public class ComboBox extends StyledUIBase implements IComboBox, IItemRendererProvider, IHasLabelField
 	{
 		/**
 		 *  Constructor.
@@ -226,7 +228,7 @@ package org.apache.royale.jewel
 		 */
 		public function get presentationModel():IComboBoxPresentationModel
 		{
-			var presModel:IComboBoxPresentationModel = getBeadByType(IComboBoxPresentationModel) as IComboBoxPresentationModel;
+			var presModel:IComboBoxPresentationModel = getModelByType(this,IComboBoxPresentationModel) as IComboBoxPresentationModel;
 			if (presModel == null) {
 				presModel = new ComboBoxPresentationModel();
 				addBead(presModel);

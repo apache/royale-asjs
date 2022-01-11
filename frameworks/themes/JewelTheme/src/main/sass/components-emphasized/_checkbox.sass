@@ -20,3 +20,134 @@
 // Jewel CheckBox
 
 // CheckBox variables
+$checkbox-emphasized-svg-checked: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{$emphasized-color}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
+$checkbox-emphasized-svg-checked-disabled: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><polygon fill='#{darken($disabled-color, 15%)}' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/></svg>") no-repeat center center
+
+$checkbox-emphasized-svg-indeterminate: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><rect stroke-width='0' stroke='#FFFFFF' height='12' width='12' y='5' x='5' fill='#{$emphasized-color}' /></svg>") no-repeat center center
+$checkbox-emphasized-svg-indeterminate-disabled: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><rect stroke-width='0' stroke='#FFFFFF' height='12' width='12' y='5' x='5' fill='#{darken($disabled-color, 15%)}' /></svg>") no-repeat center center
+
+$checkbox-emphasized-svg-rejected: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><line stroke-width='4' stroke='#{$emphasized-color}' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /></svg>") no-repeat center center
+$checkbox-emphasized-svg-rejected-disabled: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><line stroke-width='4' stroke='#{darken($disabled-color, 15%)}' stroke-linecap='undefined' stroke-linejoin='undefined' y2='10.9375' x2='17' y1='11.0625' x1='5' fill='none' /></svg>") no-repeat center center
+
+.jewel.checkbox.emphasized
+    
+    // -- INPUT
+    input
+        
+        + span::before
+            @if $flat
+                background: lighten($default-color, 15%)
+                border: 1px solid $default-color
+            @else
+                background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+                border: 1px solid darken($default-color, 15%)
+
+        + span::after
+            background: $checkbox-emphasized-svg-checked
+        
+        &:checked + span::after, &:checked:active + span::after
+            background: $checkbox-emphasized-svg-checked
+        
+        &:indeterminate + span::after, &:indeterminate:active + span::after
+            background: $checkbox-emphasized-svg-indeterminate
+        
+        &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before, &:indeterminate:focus + span::before, &:indeterminate:active:focus + span::before
+            @if $flat
+                background: lighten($emphasized-color, 25%)
+                border: 1px solid $emphasized-color
+            @else
+                background: linear-gradient(lighten($emphasized-color, 30%), lighten($emphasized-color, 20%))
+                border: 1px solid darken($emphasized-color, 15%)
+
+        &[disabled]
+            & + span
+                color: $disabled-font-color
+
+            & + span::before
+                background: $disabled-color
+                @if $flat
+                    border: 1px solid $disabled-border-color
+                @else
+                    border: 1px solid $disabled-border-color// .094em
+
+        &:checked[disabled] + span::after
+            background: $checkbox-emphasized-svg-checked-disabled
+
+        &:indeterminate[disabled] + span::after
+            background: $checkbox-emphasized-svg-indeterminate-disabled
+
+    // -- LABEL
+
+    &.rejected
+
+        input
+        
+            &:indeterminate + span::after, &:indeterminate:active + span::after
+                background: $checkbox-emphasized-svg-rejected
+
+            &:indeterminate[disabled] + span::after
+                background: $checkbox-emphasized-svg-rejected-disabled
+
+// Jewel CheckBoxSwitch
+
+// CheckBoxSwitch variables
+
+.jewel.switch.emphasized
+
+    input
+        &:checked 
+            + .switch
+                @if $flat
+                    background: $emphasized-color
+                @else
+                    background: linear-gradient(lighten($emphasized-color, 0%), lighten($emphasized-color, 10%))
+                box-shadow: 0px 0px 0px 1px darken($emphasized-color, 5%)
+
+        &:focus
+            + .switch
+                box-shadow: 0px 0px 0px 1px darken($emphasized-color, 10%)
+
+        &:checked 
+            + .switch::before
+                @if $flat
+                    background: lighten($emphasized-color, 45%)
+                @else
+                    background: lighten($emphasized-color, 45%)
+
+        &[disabled]
+            &:checked 
+                + .switch
+                    @if $flat
+                        background: lighten($disabled-font-color, 10%)
+                    @else
+                        background: lighten($disabled-font-color, 10%)
+                    box-shadow: 0px 0px 0px 1px lighten($disabled-font-color, 5%)
+
+            & + .switch
+                @if $flat
+                    background: lighten($default-color, 10%)
+                @else
+                    background: lighten($default-color, 10%)
+                box-shadow: 0px 0px 0px 1px lighten($disabled-font-color, 15%)
+                
+            & + .switch::before
+                @if $flat
+                    background: lighten($default-color, 25%)
+                @else
+                    background: lighten($disabled-color, 10%)
+
+    .switch
+        @if $flat
+            background: linear-gradient(lighten($default-color, 0%), lighten($default-color, 0%))
+        @else
+            background: linear-gradient(lighten($default-color, 0%), lighten($default-color, 10%))
+        box-shadow: 0px 0px 0px 1px darken($default-color, 5%)
+
+        &::before
+            @if $flat
+                background: lighten($default-color, 45%)
+                box-shadow: none
+            @else
+                background: lighten($emphasized-color, 45%)
+                box-shadow: 1px 0px 1px 0px rgba(0, 0, 0, .1)
+

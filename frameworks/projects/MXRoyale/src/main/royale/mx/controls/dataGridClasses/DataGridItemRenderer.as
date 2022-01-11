@@ -360,7 +360,7 @@ public class DataGridItemRenderer extends StringItemRenderer
     {
         var listData:DataGridListData = this.listData as DataGridListData;
         var owner:DataGrid = listData.owner as DataGrid;
-        var dgModel:DataGridICollectionViewModel = owner.getBeadByType(DataGridICollectionViewModel) as DataGridICollectionViewModel;
+        var dgModel:DataGridICollectionViewModel = owner.model as DataGridICollectionViewModel;
         var column:DataGridColumn = dgModel.columns[listData.columnIndex];
 
         super.data = value;

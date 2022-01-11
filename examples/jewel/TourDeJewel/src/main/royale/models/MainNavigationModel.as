@@ -28,6 +28,7 @@ package models
             new NavigationLinkVO("Alert", "alert_panel", MaterialIconType.WEB_ASSET),
             new NavigationLinkVO("Button", "button_panel", MaterialIconType.CROP_7_5),
             new NavigationLinkVO("CheckBox", "checkbox_panel", MaterialIconType.CHECK_BOX),
+            new NavigationLinkVO("TriStateCheckBox", "tristatecheckbox_panel", MaterialIconType.INDETERMINATE_CHECK_BOX),
             new NavigationLinkVO("ComboBox", "combobox_panel", MaterialIconType.CREDIT_CARD),
             new NavigationLinkVO("Date Components", "datecomponents_panel", MaterialIconType.DATE_RANGE),
             new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),

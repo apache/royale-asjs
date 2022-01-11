@@ -25,6 +25,7 @@ package org.apache.royale.html.customControls.beads
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -41,16 +42,22 @@ package org.apache.royale.html.customControls.beads
 		
 		private var _strand:IStrand;
 		
+    /**
+     * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
+     * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+     * @royaleignorecoercion org.apache.royale.html.beads.IDropDownListView
+     */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			selectionModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+			selectionModel = (value as IStrandWithModel).model as ISelectionModel;
 			var listView:IListView = value.getBeadByType(IListView) as IListView;
 			dataGroup = listView.dataGroup;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
 			if (!itemRendererFactory)
 			{
+			// Harbs @1/3/22 Not sure this is right. It should probably use loadBeadFromValuesManager
+			// which first does a bead lookup in case it already exist
 				var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iItemRendererClassFactory");
 				_itemRendererFactory = (new c()) as IItemRendererClassFactory;
 				_strand.addBead(_itemRendererFactory);

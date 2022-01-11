@@ -50,7 +50,13 @@ import mx.events.PropertyChangeEvent;
 //import mx.managers.HistoryManager;
 //import mx.managers.IHistoryManagerClient;
 
+import mx.utils.RoyaleUtil;
+
 import org.apache.royale.core.IChild;
+
+import mx.events.ChildExistenceChangedEvent;
+import org.apache.royale.core.IUIBase;
+import mx.utils.RoyaleUtil;
 
 use namespace mx_internal;
 
@@ -353,6 +359,19 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
     //  Overridden properties
     //
     //--------------------------------------------------------------------------
+
+    //variation for emulation:
+    override public function invalidateProperties():void
+    {
+        var me:ViewStack = this;
+        if (RoyaleUtil.commitDeferred(commitProperties) && parent) {
+            //then force a view update after
+            RoyaleUtil.commitDeferred(function():void{
+                me.measure();
+                me.updateDisplayList(me.width, me.height);
+            })
+        }
+    }
 
     //----------------------------------
     //  autoLayout
@@ -950,6 +969,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
         super.updateDisplayList(unscaledWidth, unscaledHeight);
 
         var nChildren:int = numChildren;
+        if (!nChildren) return;
         var w:Number = contentWidth;
         var h:Number = contentHeight;
         var left:Number = contentX;
@@ -1259,16 +1279,14 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
         if (!selectedChild)
             return;
 
-        /*
         // Performance optimization: don't call createComponents if we know
         // that createComponents has already been called.
-        if (selectedChild && selectedChild.deferredContentCreated == false)
+        if (selectedChild && !selectedChild.deferredContentCreated)
         {
             if (initialized)  // Only listen if the ViewStack has already been initialized.
                 selectedChild.addEventListener(FlexEvent.CREATION_COMPLETE,childCreationCompleteHandler);
             selectedChild.createDeferredContent();
         }
-        */
 
         // Do the initial measurement/layout pass for the
         // newly-instantiated descendants.

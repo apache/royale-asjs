@@ -32,6 +32,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.IStrandWithModelView;
 	/**
 	 *  The DataGridColumnChangePropagator picks up the dataProviderChanged event
 	 *  and lets the data grid columns know about it.
@@ -57,30 +59,33 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		protected function finishSetup(e:Event):void
 		{
-			var model:IEventDispatcher = _strand.getBeadByType(IBeadModel) as IEventDispatcher;
+			var model:IEventDispatcher = (_strand as IStrandWithModel).model as IEventDispatcher;
 			model.addEventListener('dataProviderChanged', handleDataProviderChanged);
 		}
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
 		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
 		 */
 		protected function handleDataProviderChanged(e:Event):void
 		{
-			var dataGridView:IDataGridView = _strand.getBeadByType(IDataGridView) as IDataGridView;
+			var strandType:IStrandWithModelView = _strand as IStrandWithModelView;
+			var dataGridView:IDataGridView = strandType.view as IDataGridView;
 			var lists:Array = dataGridView.columnLists;
 			if (lists == null) return;
 			
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var sharedModel:IDataGridModel = strandType.model as IDataGridModel;
 			for (var i:int=0; i < lists.length; i++)
 			{
 				var list:DataGridColumnList = lists[i] as DataGridColumnList;
-				var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
+				var listModel:ISelectionModel = list.model as ISelectionModel;
 				listModel.dataProvider = sharedModel.dataProvider;
 			}
 		}

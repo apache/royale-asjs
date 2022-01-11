@@ -61,9 +61,11 @@ import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
 import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
 import mx.managers.IFocusManagerComponent;
 import spark.components.supportClasses.ListBase;
+import spark.layouts.VerticalLayout;
 import mx.core.mx_internal;
 import mx.core.UIComponent;
 use namespace mx_internal;
+
 [Event(name="dragComplete", type="mx.events.DragEvent")]
 //--------------------------------------
 //  Styles
@@ -424,7 +426,9 @@ public class List extends ListBase implements IFocusManagerComponent
     public function List()
     {
         super();
-
+        layout = new VerticalLayout();
+        VerticalLayout(layout).gap = 0;
+        
         typeNames += " List";
         
        /*  useVirtualLayout = true;

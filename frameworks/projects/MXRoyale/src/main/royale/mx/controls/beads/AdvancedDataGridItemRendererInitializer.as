@@ -76,7 +76,7 @@ import mx.controls.AdvancedDataGrid;
 
             if (!adgColumnList.grid) return;
 
-            var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
+            var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.model as DataGridColumnICollectionViewModel;
 			var adg:AdvancedDataGrid = (adgColumnList.grid as AdvancedDataGrid);
 			var depth:int = adg.getDepth(data);
 			var isOpen:Boolean = adg.isItemOpen(data);

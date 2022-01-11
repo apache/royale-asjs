@@ -22,6 +22,7 @@ package mx.controls
 
 
 import mx.core.UIComponent;
+import mx.core.IUIComponent;
 import mx.events.MouseEvent;
 import mx.core.ClassFactory;
 import mx.core.EdgeMetrics;
@@ -34,6 +35,8 @@ import mx.styles.ISimpleStyleClient;
 import mx.styles.StyleProxy;
 import mx.containers.Box;
 import mx.controls.NavBar;
+
+import org.apache.royale.events.IEventDispatcher;
 
 use namespace mx_internal;
 
@@ -316,7 +319,7 @@ public class LinkBar extends NavBar
     /**
      *  @private
      */
-  //  private static const SEPARATOR_NAME:String = "_separator";
+    private static const SEPARATOR_NAME:String = "_separator";
 
     //--------------------------------------------------------------------------
     //
@@ -555,10 +558,12 @@ public class LinkBar extends NavBar
 
     /**
      *  @private
+     *
+     *  @royaleignorecoercion Class
      */
-   /*  override protected function createNavItem(
+     override protected function createNavItem(
                                         label:String,
-                                        icon:Class = null):IFlexDisplayObject
+                                        icon:Class = null):IEventDispatcher
     {
         // Create the new LinkButton.
 
@@ -581,18 +586,20 @@ public class LinkBar extends NavBar
         newLink.addEventListener(MouseEvent.CLICK, clickHandler);
 
         // Create the new separator to the left of the LinkButton.
+        var separatorClass:Class = Class(getStyle("separatorSkin")); //@todo, need to support rawChildren working below first
+        if (separatorClass) {
+            //porting notes, this conditional clause is different to the original Flex implementation, allowing native browser styles to create 'separation'
+            var separator:IUIComponent = IUIComponent(new separatorClass());
 
-        var separatorClass:Class = Class(getStyle("separatorSkin"));
-        var separator:DisplayObject = DisplayObject(new separatorClass());
+            separator.name = SEPARATOR_NAME + (numChildren - 1);
+            if (separator is ISimpleStyleClient)
+                ISimpleStyleClient(separator).styleName = this;
+//@todo, need to support rawChildren working below:
+            rawChildren.addChild(separator);
+        }
 
-        separator.name = SEPARATOR_NAME + (numChildren - 1);
-        if (separator is ISimpleStyleClient)
-            ISimpleStyleClient(separator).styleName = this;
-
-        rawChildren.addChild(separator);
-        
         return newLink;
-    } */
+    }
 
     /**
      *  @private

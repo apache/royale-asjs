@@ -32,7 +32,7 @@ package org.apache.royale.utils.async
   [Event(name="complete", type="org.apache.royale.events.Event")]
   [Event(name="failed", type="org.apache.royale.events.Event")]
   [Event(name="done", type="org.apache.royale.events.Event")]
-  public abstract class AsyncTask extends EventDispatcher
+  public abstract class AsyncTask extends EventDispatcher implements IAsyncTask
   {
     public function AsyncTask()
     {
@@ -136,7 +136,7 @@ package org.apache.royale.utils.async
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.6
      */
-    public function done(callback:Function):AsyncTask{
+    public function done(callback:Function):IAsyncTask{
       if(!doneCallbacks){
         doneCallbacks = [];
       }

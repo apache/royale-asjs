@@ -45,6 +45,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
+	import org.apache.royale.core.IStrandWithModel;
 
 	/**
 	 *  The ComboBoxController class is responsible for listening to
@@ -84,11 +85,12 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.jewel.beads.controls.combobox.IComboBoxView
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			model = (_strand as IStrandWithModel).model as IComboBoxModel;
 			viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
 			if (viewBead) {
 				finishSetup();
@@ -266,7 +268,7 @@ package org.apache.royale.jewel.beads.controllers
 		private function changeHandler(event:Event):void
 		{
 			event.stopImmediatePropagation();
-			model.selectedItem = IComboBoxModel(list.getBeadByType(IComboBoxModel)).selectedItem;
+			model.selectedItem = (list.model as IComboBoxModel).selectedItem;
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
 		

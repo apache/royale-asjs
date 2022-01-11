@@ -243,6 +243,49 @@ package org.apache.royale.html.elements
 			}
 		}
 
+		/**
+		 * Convenience method for postMessage
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.9
+		 */
+		public function postMessage(message:Object, targetOrigin:String, transfer:Object = null):void
+		{
+			COMPILE::JS
+			{
+				transfer = transfer || undefined;
+				contentWindow.postMessage(message,targetOrigin,transfer);
+			}
+		}
+
+		/**
+		 * Convenience method to attach message listener
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.9
+		 */
+		public function addMessageListener(handler:Function):void
+		{
+			COMPILE::JS
+			{
+				contentWindow.addEventListener("message",handler);
+			}
+		}
+		
+		COMPILE::SWF
+		public function get contentWindow():Object
+		{
+			return null;			
+		}
+		/**
+		 * @royaleignorecoercion HTMLIFrameElement
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.9
+		 */
+		COMPILE::JS
+		public function get contentWindow():Window
+		{
+			return (element as HTMLIFrameElement).contentWindow;
+		}
+
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
