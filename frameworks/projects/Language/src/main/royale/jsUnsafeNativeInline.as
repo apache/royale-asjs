@@ -17,27 +17,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package {
-
-/**
- *  @private
- *  This class is used to link additional classes into Language.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class LanguageClasses
-{
-	COMPILE::JS
-	{
-	    import org.apache.royale.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
-		import isXMLName; isXMLName;
-		import jsUnsafeNativeInline;jsUnsafeNativeInline;
-	}
-	import org.apache.royale.language.string.match; match;
-	import org.apache.royale.language.string.search; search;
-	import org.apache.royale.language.iterator.arrayLike; arrayLike;
+    /**
+     * Caution - this is for advanced use only and will easily cause problems if used incorrectly.
+     * This specific static method has special treatment by the compiler.
+     * It should only ever be 'called' with a String literal as an argument.
+     * The String literal is then output by the compiler as-is, inline, as native javascript code.
+     *
+     * Example (not realistic):
+     * var f:Function = jsUnsafeNativeInline("function(a){console.log(a)}");
+     *
+     *  @langversion 3.0
+     *  @productversion Royale 0.9.9
+     */
+    public function jsUnsafeNativeInline(script:String):*{
+        throw new Error('This should never appear in code or execute');
+    }
+    
 }
-
-}
-
