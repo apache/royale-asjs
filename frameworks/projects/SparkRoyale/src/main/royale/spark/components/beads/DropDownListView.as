@@ -180,6 +180,9 @@ package spark.components.beads
     import spark.components.beads.DropDownListView;
 
     import org.apache.royale.core.LayoutBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+    import org.apache.royale.core.layout.EdgeData;
 
     // this layouts out the one Label/Button.
     class DropDownListLayout extends LayoutBase
@@ -194,7 +197,8 @@ package spark.components.beads
 			var h:Number = list.height;
 			if (list.isHeightSizedToContent())
 			    h = list.measuredHeight;
-            view.label.setActualSize(w, h);
+            var ed:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(list);
+            view.label.setActualSize(w - ed.right - ed.left, h - ed.top - ed.bottom);
 
             return false;
         }
