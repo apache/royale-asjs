@@ -165,6 +165,8 @@
      <component id="VRuleView" class="org.apache.royale.html.beads.VRuleView" />
      -->
 
+    <component id="HandleImageLoadErrors" class="org.apache.royale.html.beads.HandleImageLoadErrors"/>
+
     <component id="GetScrollbarWidth" class="org.apache.royale.html.beads.GetScrollbarWidth"/>
     <component id="ThrottleBead" class="org.apache.royale.html.beads.ThrottleBead"/>
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
