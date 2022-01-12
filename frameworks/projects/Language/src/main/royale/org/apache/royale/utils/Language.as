@@ -600,9 +600,17 @@ package org.apache.royale.utils
             //todo consider checking/using a fixed name reference to _synthType on goog.global as well - consider this for optimization in modules usage scenario
             if (!_synthType)
             {
-                var rtFunc:* = Function;
-                _synthType = rtFunc('return ' + 'function(b,c,d,e,n){var f=function(){var t=this;var a=Array.prototype.slice.call(arguments);a.push(t);t.type=f.type;t.value=f.construct.apply(t,a);return f.noWrap?t.value:t};f.type=b;f.toString=function(){return b};f.construct=c;f.checkIs=d;f.coerce=e;f.noWrap=!!n;var p=f.prototype;p.valueOf=function(){return this.value};p.constructor=f;f.constructor=arguments.callee;return f}')();
-              //_synthType = rtFunc('return ' + 'function(type,construct,check,coerce,noWrap){var f=function(){var t=this;var args=Array.prototype.slice.call(arguments);args.push(t);t.type=f.type;t.value=f.construct.apply(t,args);return f.noWrap?t.value:t};f.type=type;f.construct=construct;f.checkIs=check;f.coerce=coerce;f.noWrap=!!noWrap;f.prototype.valueOf=function(){return this.value};f.prototype.constructor=f;f.constructor=arguments.callee;return f}')();
+                //the following approach avoids the use of 'eval' and also of arguments.callee:
+                var synthConstructor:Class;
+                //synthConstructor = jsUnsafeNativeInline("function(type,construct,check,coerce,noWrap){var f=function(){var t=this;var args=Array.prototype.slice.call(arguments);args.push(t);t.type=f.type;t.value=f['construct'].apply(t,args);return f['noWrap']?t.value:t};f.type=type;f.toString=function(){return type};f['construct']=construct;f['checkIs']=check;f['coerce']=coerce;f['noWrap']=!!noWrap;f.prototype.valueOf=function(){return this.value};f.prototype.constructor=f;f.constructor=synthConstructor;return f}");
+                synthConstructor = jsUnsafeNativeInline("function(b,c,d,e,n){var f=function(){var t=this;var a=Array.prototype.slice.call(arguments);a.push(t);t.type=f.type;t.value=f['construct'].apply(t,a);return f['noWrap']?t.value:t};f.type=b;f.toString=function(){return b};f['construct']=c;f['checkIs']=d;f['coerce']=e;f['noWrap']=!!n;var p=f.prototype;p.valueOf=function(){return this.value};p.constructor=f;f.constructor=synthConstructor;return f}");
+                _synthType = synthConstructor;
+
+                //@todo remove the following comments after 0.9.9 release:
+                //previously (use of 'eval' inside Function which can be restricted via Content-Security-Policy, and arguments.callee which generates warnings/errors with Google closure compiler):
+                // var rtFunc:* = Function;
+                //_synthType = rtFunc('return ' + 'function(b,c,d,e,n){var f=function(){var t=this;var a=Array.prototype.slice.call(arguments);a.push(t);t.type=f.type;t.value=f.construct.apply(t,a);return f.noWrap?t.value:t};f.type=b;f.toString=function(){return b};f.construct=c;f.checkIs=d;f.coerce=e;f.noWrap=!!n;var p=f.prototype;p.valueOf=function(){return this.value};p.constructor=f;f.constructor=arguments.callee;return f}')();
+                //_synthType = rtFunc('return ' + 'function(type,construct,check,coerce,noWrap){var f=function(){var t=this;var args=Array.prototype.slice.call(arguments);args.push(t);t.type=f.type;t.value=f.construct.apply(t,args);return f.noWrap?t.value:t};f.type=type;f.construct=construct;f.checkIs=check;f.coerce=coerce;f.noWrap=!!noWrap;f.prototype.valueOf=function(){return this.value};f.prototype.constructor=f;f.constructor=arguments.callee;return f}')();
                 Object.defineProperties(_synthType,
                     {
                         '_types': {
