@@ -358,18 +358,7 @@ public class DataGridItemRenderer extends StringItemRenderer
      */
     override public function set data(value:Object):void
     {
-        var listData:DataGridListData = this.listData as DataGridListData;
-        var owner:DataGrid = listData.owner as DataGrid;
-        var dgModel:DataGridICollectionViewModel = owner.model as DataGridICollectionViewModel;
-        var column:DataGridColumn = dgModel.columns[listData.columnIndex];
-
-        super.data = value;
-        
-        if (column.labelFunction)
-        {
-            this.text = column.labelFunction(value, column);
-        }
-
+        super.data = value; //@todo add getter with [Bindable("dataChange")] ?
 		dispatchEvent(new FlexEvent("dataChange"));
     }
     
@@ -395,6 +384,20 @@ public class DataGridItemRenderer extends StringItemRenderer
         _listData = value;
     }
     
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: StringItemRenderer
+    //
+    //--------------------------------------------------------------------------
+
+    override protected function dataToString(value:Object):String
+    {
+        if (_listData) {
+            return _listData.label;
+        }
+
+        return super.dataToString(value);
+    }
 
 
     //--------------------------------------------------------------------------
