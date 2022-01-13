@@ -32,6 +32,7 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.jewel.supportClasses.datagrid.DataGridWidthDenominator;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
+    import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
@@ -97,7 +98,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			var view:IDataGridView = datagrid.view as IDataGridView
 			var header:IUIBase = view.header;
-			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var bbmodel:ButtonBarModel = getModelByType(header,ButtonBarModel) as ButtonBarModel;
 			bbmodel.buttonWidths = null;
 			header.dispatchEvent(new Event('headerLayoutReset'));
 			layout();
@@ -146,12 +147,12 @@ package org.apache.royale.jewel.beads.layouts
 			}
 
 			var view:IDataGridView = datagrid.view as IDataGridView
-			var presentationModel:IDataGridPresentationModel = datagrid.getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
+			var presentationModel:IDataGridPresentationModel = getModelByType(datagrid,IDataGridPresentationModel) as IDataGridPresentationModel;
 			var header:IUIBase = view.header;
             // fancier DG's will filter invisible columns and only put visible columns
             // in the bbmodel, so do all layout based on the bbmodel, not the set
             // of columns that may contain invisible columns
-            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            var bbmodel:ButtonBarModel = getModelByType(header,ButtonBarModel) as ButtonBarModel;
 			bbmodel.dataProvider.source = model.columns;
             var bblayout:DataGridColumnLayout = header.getBeadByType(DataGridColumnLayout) as DataGridColumnLayout;
 			var listArea:IUIBase = view.listArea;

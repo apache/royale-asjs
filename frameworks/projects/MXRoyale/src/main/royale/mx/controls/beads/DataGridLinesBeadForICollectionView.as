@@ -39,19 +39,26 @@ package mx.controls.beads
 		{
 			super();
 		}
-        
+        /**
+		 * @royaleignorecoercion mx.core.UIComponent
+         * 
+         */
+        protected function getHost():UIComponent
+        {
+            return _strand as UIComponent;
+        }
         override protected function handleInitComplete(event:Event):void
         {
             super.handleInitComplete(event);
             // column resizing
-            IEventDispatcher(_strand).addEventListener("layoutNeeded", drawLines);
-            IEventDispatcher(_strand).addEventListener("renderColumnsNeeded", drawLines);
+            getHost().addEventListener("layoutNeeded", drawLines);
+            getHost().addEventListener("renderColumnsNeeded", drawLines);
         }
 
 		
         override protected function getDataProviderLength():int
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = getHost().model as IDataGridModel;
             var arrayList:ICollectionView = sharedModel.dataProvider as ICollectionView;
             return arrayList ? arrayList.length : 0;            
         }
@@ -68,7 +75,7 @@ package mx.controls.beads
          */
         override protected function drawLines(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = getHost().model as IDataGridModel;
             var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
             var layoutParent:ILayoutHost = _area.getBeadByType(ILayoutHost) as ILayoutHost;
             var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
@@ -115,7 +122,7 @@ package mx.controls.beads
                 }
                 if (isNaN(ww))
 					ww = 0;
-                var bgColors:Array = (_strand as UIComponent).getStyle("alternatingItemColors");
+                var bgColors:Array = getHost().getStyle("alternatingItemColors");
                 var yy:Number = n * rowHeight;
                 
                 var bgFill0:SolidColor = new SolidColor();

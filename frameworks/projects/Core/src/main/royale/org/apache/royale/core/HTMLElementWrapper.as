@@ -39,7 +39,10 @@ package org.apache.royale.core
         import goog.DEBUG;
         import org.apache.royale.events.utils.EventUtils;
         import org.apache.royale.utils.sendStrandEvent;
+        import org.apache.royale.utils.loadBeadFromValuesManager;
+        import org.apache.royale.debugging.assert;
     }
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 
     COMPILE::SWF
     public class HTMLElementWrapper extends Sprite implements IStrand, IEventDispatcher
@@ -123,8 +126,7 @@ package org.apache.royale.core
         {
             if (_model == null)
             {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+                _model = loadBeadFromValuesManager(IBeadModel,"iBeadModel",this) as IBeadModel;
             }
             return _model;
         }
@@ -165,13 +167,8 @@ package org.apache.royale.core
         public function get model():Object
         {
             if (_model == null) 
-            {
-                // addbead will set _model
-                var m:Class = org.apache.royale.core.ValuesManager.valuesImpl.
-                        getValue(this, 'iBeadModel') as Class;
-                var b:IBeadModel = new m() as IBeadModel;
-                addBead(b);
-            }
+                _model = loadBeadFromValuesManager(IBeadModel, "iBeadModel", this) as IBeadModel;
+            
             return _model;
         }
         
@@ -184,30 +181,15 @@ package org.apache.royale.core
         {
             if (_model != value)
             {
-                if (value is IBead)
-                    addBead(value as IBead);
-                else
-                    _model = IBeadModel(value);
+                _model = value as IBeadModel;
 
+                if(value is IBead){
+                    addBead(_model);
+                }
                 sendStrandEvent(this,"modelChanged");
+
             }
         }
         
-		//--------------------------------------
-		//   Function
-		//--------------------------------------
-
-        /**
-         * @param bead The new bead.
-         * @royaleignorecoercion org.apache.royale.core.IBeadModel 
-         */
-		override public function addBead(bead:IBead):void
-		{
-    		if (bead is IBeadModel)
-			{
-				_model = bead as IBeadModel;
-			}
-	        super.addBead(bead);
-		}
 	}
 }

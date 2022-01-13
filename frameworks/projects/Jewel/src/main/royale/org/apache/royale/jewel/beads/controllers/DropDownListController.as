@@ -31,6 +31,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.DropDownListModel;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.views.DropDownListView;
+	import org.apache.royale.core.IStrandWithModel;
 
     /**
      *  The DropDownListController class is the controller for
@@ -89,11 +90,12 @@ package org.apache.royale.jewel.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+        * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
          */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            model = value.getBeadByType(DropDownListModel) as DropDownListModel;
+            model = (value as IStrandWithModel).model as DropDownListModel;
             IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
             if (model is IJewelSelectionModel) {

@@ -60,7 +60,7 @@ package org.apache.royale.html.beads
                     var vars:Array = query.split("&");
                     for (var i:int=0;i<vars.length;i++) {
                         var pair:Array = vars[i].split("=");
-                        urlVars[pair[0]] = decodeURIComponent(pair[1]);
+                        urlVars[pair[0]] = pair[1] ? decodeURIComponent(pair[1]) : "";
                     }
                 }
             }

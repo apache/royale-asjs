@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.util.getModelByType;
 	
     /**
      *  The CheckBoxView class is the default view for
@@ -109,7 +110,7 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
             
-			_toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
+      _toggleButtonModel = getModelByType(value,IToggleButtonModel) as IToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
 			_toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);

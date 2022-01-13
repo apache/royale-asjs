@@ -32,6 +32,7 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.IScrollBarView;
 	import org.apache.royale.html.beads.ScrollBarView;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The VScrollBarLayout class is a layout
@@ -83,7 +84,7 @@ package org.apache.royale.html.beads.layouts
 		public function layout():Boolean
 		{
             if (!sbModel)
-                sbModel = _strand.getBeadByType(IScrollBarModel) as IScrollBarModel
+                sbModel = getModelByType(_strand,IScrollBarModel) as IScrollBarModel
 					
 			var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(_strand as IUIBase);
                     

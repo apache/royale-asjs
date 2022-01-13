@@ -123,7 +123,11 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
     //  Overridden methods
     //
     //--------------------------------------------------------------------------
-
+    /**
+     * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+     * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+     * @royaleemitcoercion org.apache.royale.core.ILayoutChild
+     */
 	override public function layout():Boolean
 	{
 		// ignore other lifecycle layouts until the DP is set
@@ -132,7 +136,7 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
 		
         var contentView:ILayoutView = layoutView;
         
-        var model:ButtonBarModel = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
+        var model:ButtonBarModel = (_strand as IStrandWithModel).model as ButtonBarModel;
         if (model) {
             buttonWidths = model.buttonWidths;
         }

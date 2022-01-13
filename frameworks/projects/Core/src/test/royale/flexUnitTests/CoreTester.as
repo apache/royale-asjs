@@ -42,7 +42,10 @@ package flexUnitTests
         public var keyConverterTest:KeyConverterTest;
         public var keyboardEventConverterTest:KeyboardEventConverterTest;
         public var stringUtilsTest:StringUtilsTest;
+        public var sanitizerTest:SanitizeTest;
         public var eventsTest:EventsTest;
+        public var objectUtilTests:ObjectUtilsTest;
+        public var functionalTests:FunctionalTests;
 
     }
 }

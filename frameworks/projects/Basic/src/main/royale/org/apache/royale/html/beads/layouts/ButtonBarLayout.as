@@ -25,6 +25,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.supportClasses.UIItemRendererBase;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the button
@@ -83,7 +84,7 @@ package org.apache.royale.html.beads.layouts
 		{
 			var contentView:ILayoutView = layoutView;
 
-			var model:ButtonBarModel = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var model:ButtonBarModel = getModelByType(_strand,ButtonBarModel) as ButtonBarModel;
 			if (model) {
 				buttonWidths = model.buttonWidths;
 				_widthType = model.widthType;

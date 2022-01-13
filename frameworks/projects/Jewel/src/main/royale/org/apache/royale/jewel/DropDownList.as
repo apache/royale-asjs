@@ -33,6 +33,7 @@ package org.apache.royale.jewel
     import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
     import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     import org.apache.royale.core.IHasLabelField;
+    import org.apache.royale.html.util.getModelByType;
 
 
     //--------------------------------------
@@ -224,7 +225,7 @@ package org.apache.royale.jewel
 		 */
 		public function get presentationModel():IListPresentationModel
 		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			var presModel:IListPresentationModel = getModelByType(this,IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
 				presModel = new ListPresentationModel();
 				addBead(presModel);

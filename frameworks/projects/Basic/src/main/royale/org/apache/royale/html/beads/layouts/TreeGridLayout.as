@@ -36,6 +36,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.html.supportClasses.TreeGridColumn;
 	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 * The TreeGridLayout class provides the sizing and positioning for the sub-components
@@ -166,7 +167,7 @@ package org.apache.royale.html.beads.layouts
 				xpos += columnList.width;
 			}
 			
-			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var bbmodel:ButtonBarModel = getModelByType(header,ButtonBarModel) as ButtonBarModel;
 			bbmodel.buttonWidths = columnWidths;
 			header.dispatchEvent(new Event("layoutNeeded"));
 			

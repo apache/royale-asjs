@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.sendBeadEvent;
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.html.util.getModelByType;
 
 
     /**
@@ -94,8 +95,7 @@ package org.apache.royale.html.beads
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
-			_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			labelField = _dataProviderModel.labelField;
+			labelField = dataProviderModel.labelField;
 
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
@@ -157,7 +157,7 @@ package org.apache.royale.html.beads
 		public function get dataProviderModel():IDataProviderModel
 		{
 			if (_dataProviderModel == null) {
-				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+	      _dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			}
 			return _dataProviderModel;
 		}

@@ -26,6 +26,7 @@ package org.apache.royale.html.beads.controllers
     import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.IScrollBarView;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The ScrollBarMouseControllerBase class is the base class
@@ -91,7 +92,7 @@ package org.apache.royale.html.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			sbModel = value.getBeadByType(IScrollBarModel) as IScrollBarModel;
+			sbModel = getModelByType(value,IScrollBarModel) as IScrollBarModel;
 			sbView = value.getBeadByType(IScrollBarView) as IScrollBarView;
 			sbView.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
 			sbView.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);

@@ -1024,17 +1024,9 @@ use namespace mx_internal;
         public function get presentationModel():IBead
         {
             if (_presentationModel == null) {
-                var bead:IBead = getBeadByType(IListPresentationModel);
+                var bead:IBead = loadBeadFromValuesManager(IListPresentationModel,"iListPresentationModel",this);
                 if (bead)
                     _presentationModel = bead as IListPresentationModel;
-                else
-                {
-                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
-                    if (c) {
-                        _presentationModel = new c() as IListPresentationModel;
-                        addBead(_presentationModel as IBead);
-                    }
-                }
             }
             
             return _presentationModel;

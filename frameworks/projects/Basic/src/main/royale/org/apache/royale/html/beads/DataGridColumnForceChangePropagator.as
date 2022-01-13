@@ -32,6 +32,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.utils.sendBeadEvent;
+	import org.apache.royale.core.IStrandWithModel;
 	/**
 	 *  The DataGridColumnForceChangePropagator picks up the dataProviderChanged event
 	 *  and lets the data grid columns know about it, whether or not the data provider object was changed.
@@ -50,23 +51,31 @@ package org.apache.royale.html.beads
 		public function DataGridColumnForceChangePropagator()
 		{
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			var model:IEventDispatcher = value.getBeadByType(IBeadModel) as IEventDispatcher;
+			var model:IEventDispatcher = (value as IStrandWithModel).model as IEventDispatcher;
 			model.addEventListener('dataProviderChanged', handleDataProviderChanged);
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.DataGridColumnList
+		 */
 		protected function handleDataProviderChanged(e:Event):void
 		{
 			var dataGridView:IDataGridView = _strand.getBeadByType(IDataGridView) as IDataGridView;
 			var lists:Array = dataGridView.columnLists;
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var sharedModel:IDataGridModel = (_strand as IStrandWithModel).model as IDataGridModel;
 			for (var i:int=0; i < lists.length; i++)
 			{
 				var list:DataGridColumnList = lists[i] as DataGridColumnList;
-				var listModel:ISelectionModel = list.getBeadByType(IBeadModel) as ISelectionModel;
+				var listModel:ISelectionModel = list.model as ISelectionModel;
 				if (listModel.dataProvider != sharedModel.dataProvider)
 				{
 					listModel.dataProvider = sharedModel.dataProvider;

@@ -26,7 +26,18 @@ package org.apache.royale.svg.elements
     {
       super();
     }
-
+    override protected function requiresView():Boolean
+    {
+      return false;
+    }
+    override protected function requiresController():Boolean
+    {
+      return false;
+    }
+    override protected function requiresLayout():Boolean
+    {
+      return false;
+    }
     override public function get x():Number{
       return Number(element.getAttribute("x"));
     }

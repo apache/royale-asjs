@@ -39,6 +39,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -91,7 +92,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
-			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			listModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
@@ -284,7 +285,7 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.handleInitComplete(event);
 
-			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			listModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 		}

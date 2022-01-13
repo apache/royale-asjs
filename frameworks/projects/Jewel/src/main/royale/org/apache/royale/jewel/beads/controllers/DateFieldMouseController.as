@@ -31,6 +31,8 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -69,12 +71,13 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			model = (_strand as IStrandWithModel).model as IDateChooserModel;
 
 			viewBead = _strand.getBeadByType(DateFieldView) as DateFieldView;			
 			IEventDispatcher(viewBead.menuButton).addEventListener(MouseEvent.CLICK, clickHandler);
@@ -129,7 +132,7 @@ package org.apache.royale.jewel.beads.controllers
 			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
             
-			model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
+			model.selectedDate = (getModelByType(viewBead.popUp as IStrand,IDateChooserModel) as IDateChooserModel).selectedDate;
 
 			viewBead.popUpVisible = false;
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));

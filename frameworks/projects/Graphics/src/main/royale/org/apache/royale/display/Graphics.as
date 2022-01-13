@@ -51,7 +51,7 @@ package org.apache.royale.display
         private static var instanceMap:Dictionary;
 
         COMPILE::JS
-        private var suppressPathPointerEvents = true;
+        private var suppressPathPointerEvents:Boolean = true;
 
         COMPILE::JS
         public function setSuppressPathPointerEvents(value:Boolean):void{

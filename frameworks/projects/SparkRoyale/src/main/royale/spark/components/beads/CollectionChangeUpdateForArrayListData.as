@@ -28,6 +28,7 @@ package spark.components.beads
 	import org.apache.royale.utils.sendBeadEvent;
 	import mx.events.CollectionEvent;
 	import spark.components.DataGroup;
+	import org.apache.royale.html.util.getModelByType;
 
 
     /**
@@ -87,7 +88,7 @@ package spark.components.beads
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
 			var contentView : DataGroup = (_strand.getBeadByType(IViewport) as IViewport).contentView as DataGroup;
-			_dataProviderModel = contentView.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			_dataProviderModel = getModelByType(contentView,IDataProviderModel) as IDataProviderModel;
 			labelField = _dataProviderModel.labelField;
 
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
@@ -151,7 +152,7 @@ package spark.components.beads
 		{
 			if (_dataProviderModel == null) {
 				var contentView : DataGroup = (_strand.getBeadByType(IViewport) as IViewport).contentView as DataGroup;
-				_dataProviderModel = contentView.getBeadByType(IDataProviderModel) as IDataProviderModel;
+				_dataProviderModel = getModelByType(contentView,IDataProviderModel) as IDataProviderModel;
 			}
 			return _dataProviderModel;
 		}

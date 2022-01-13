@@ -67,7 +67,7 @@ package mx.controls.beads
 
             if (!dgColumnList.grid) return;
 
-            var dgColumnListModel:DataGridColumnICollectionViewModel = dgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
+            var dgColumnListModel:DataGridColumnICollectionViewModel = dgColumnList.model as DataGridColumnICollectionViewModel;
 			var dg:DataGrid = (dgColumnList.grid as DataGrid);
 
 			var dataField:String = dg.columns[dgColumnListModel.columnIndex].dataField;

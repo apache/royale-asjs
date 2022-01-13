@@ -36,6 +36,7 @@ package org.apache.royale.mdl.beads
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.html.util.getModelByType;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -97,7 +98,7 @@ package org.apache.royale.mdl.beads
         {
             IEventDispatcher(_strand).removeEventListener("initComplete",finishSetup);
 
-            dataProviderModel = _strand.getBeadByType(ITabModel) as ITabModel;
+            dataProviderModel = getModelByType(_strand,ITabModel) as ITabModel;
             var listView:IListView = _strand.getBeadByType(IListView) as IListView;
             dataGroup = listView.dataGroup;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);

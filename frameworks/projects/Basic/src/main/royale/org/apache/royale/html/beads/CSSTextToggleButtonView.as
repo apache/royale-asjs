@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IToggleButtonModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The CSSTextToggleButtonView class is the default view for
@@ -80,7 +81,7 @@ package org.apache.royale.html.beads
 		{
             super.strand = value;
             
-			toggleButtonModel = value.getBeadByType(IToggleButtonModel) as IToggleButtonModel;
+            toggleButtonModel = getModelByType(value,IToggleButtonModel) as IToggleButtonModel;
             toggleButtonModel.addEventListener("selectedChange", selectedChangeHandler);
 		}
 	

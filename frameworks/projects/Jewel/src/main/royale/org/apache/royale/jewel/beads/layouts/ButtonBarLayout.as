@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.models.ButtonBarModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The Jewel ButtonBarLayout class bead sizes and positions the button
@@ -73,7 +74,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			super.beadsAddedHandler();
 
-			model = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;
+			model = getModelByType(_strand,ButtonBarModel) as ButtonBarModel;
 			if (model) {
 				widthType = model.buttonWidths != null ? model.widthType : NaN;
 			}

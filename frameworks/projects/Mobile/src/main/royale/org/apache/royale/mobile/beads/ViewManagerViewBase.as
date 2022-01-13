@@ -72,12 +72,12 @@ package org.apache.royale.mobile.beads
 
 		public function get navigationBar():NavigationBar
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			return model.navigationBar;
 		}
 		public function set navigationBar(value:NavigationBar):void
 		{
-			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 			model.navigationBar = value;
 		}
 		
@@ -89,7 +89,7 @@ package org.apache.royale.mobile.beads
 		{
 			super.strand = value;
 			
-			var model:ViewManagerModel = value.getBeadByType(IBeadModel) as ViewManagerModel;
+			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 //			model.addEventListener("selectedIndexChanged", viewsChangedHandler);
 
 			if (model.navigationBarItems)
@@ -139,7 +139,7 @@ package org.apache.royale.mobile.beads
 //			var contentAreaY:Number = 0;
 //			var contentAreaHeight:Number = host.height;
 //			
-//			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+//			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 //			
 //			if (_navigationBar)
 //			{
@@ -163,7 +163,7 @@ package org.apache.royale.mobile.beads
 		
 		protected function sizeViewsToFitContentArea():void
 		{
-//			var model:ViewManagerModel = _strand.getBeadByType(IBeadModel) as ViewManagerModel;
+//			var model:ViewManagerModel = getHost().model as ViewManagerModel;
 //			
 //			var n:int = ViewManagerModel(model).views.length;
 //			if (n > 0) {

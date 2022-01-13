@@ -35,6 +35,7 @@ COMPILE::SWF
     import org.apache.royale.events.utils.MouseEventConverter;
 	import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	
     //--------------------------------------
     //  Events
@@ -108,14 +109,7 @@ COMPILE::SWF
         {
             if (_model == null) 
             {
-                // addbead will set _model
-                var m:Class = org.apache.royale.core.ValuesManager.valuesImpl.
-                    getValue(this, 'iBeadModel') as Class;
-                if (m)
-                {
-                    var b:IBeadModel = new m() as IBeadModel;
-                    addBead(b);
-                }
+                _model = loadBeadFromValuesManager(IBeadModel, "iBeadModel", this) as IBeadModel;
             }
             return _model;
         }

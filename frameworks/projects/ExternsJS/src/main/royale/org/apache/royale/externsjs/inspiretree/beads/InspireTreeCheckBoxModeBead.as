@@ -37,6 +37,8 @@ package org.apache.royale.externsjs.inspiretree.beads
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.externsjs.inspiretree.vos.ItemTreeNode;
     import org.apache.royale.events.ValueEvent;
+    import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.core.IStrandWithModel;
 	}
     COMPILE::JS
 	public class InspireTreeCheckBoxModeBead  extends Strand implements IBead
@@ -86,10 +88,13 @@ package org.apache.royale.externsjs.inspiretree.beads
 		}
 
 		private var _treeModel:InspireTreeModel;
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		private function get treeModel():InspireTreeModel{
 			if(_strand && !_treeModel)
 			{
-				_treeModel = _strand.getBeadByType(IBeadModel) as InspireTreeModel;
+				_treeModel = (_strand as IStrandWithModel).model as InspireTreeModel;
 			}
 			return _treeModel;
 		}
@@ -97,7 +102,6 @@ package org.apache.royale.externsjs.inspiretree.beads
 		private function init(event:Event):void
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", init);
-			//treeModel = _strand.getBeadByType(IBeadModel) as InspireTreeModel;
 			if(treeModel)
 			{
 				//treeModel.checkboxField = _checkboxField;
@@ -268,11 +272,13 @@ package org.apache.royale.externsjs.inspiretree.beads
 				fn_RevertSpecificNode(node.id, true);
 			}
 		}
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		public function fn_RevertSpecificNode(pNodeFilter:String, byID:Boolean):String
 		{
 			var idNodeParent:String;
-			var arOrg:Array = (_strand.getBeadByType(IBeadModel) as InspireTreeModel).dataProviderTree;
+			var arOrg:Array = ((_strand as IStrandWithModel).model as InspireTreeModel).dataProviderTree;
 			arOrg = completeTreeData(null,arOrg);
 			var lenar:int = arOrg.length;
 

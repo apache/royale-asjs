@@ -32,6 +32,7 @@ internal class LanguageClasses
 		import QName; QName;
 		import Namespace; Namespace;
 		import isXMLName; isXMLName;
+		import jsUnsafeNativeInline;jsUnsafeNativeInline;
 	}
 	import org.apache.royale.language.string.match; match;
 	import org.apache.royale.language.string.search; search;

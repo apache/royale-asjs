@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	COMPILE::JS
+	{
+		import goog.events;
+		import org.apache.royale.utils.URLUtils;
+	}
 	import org.apache.royale.core.CallLaterBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBinaryImageLoader;
@@ -28,12 +33,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
-    COMPILE::JS
-    {
-        import goog.events;
-        import org.apache.royale.utils.URLUtils;
-		import org.apache.royale.core.IBinaryImage;
-    }
+	import org.apache.royale.core.IBinaryImage;
+	import org.apache.royale.core.IStrandWithModel;
 	
 	
 	/**
@@ -61,17 +62,14 @@ package org.apache.royale.html.beads
         private var _objectURL:String;
         private var _strand:IStrand;
 		
-		private var _model:IBinaryImageModel;
 		/**
      * @royaleignorecoercion org.apache.royale.core.IBinaryImageModel
+     * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 * 
 		 */
 		private function get model():IBinaryImageModel
 		{
-			if(!_model)
-				_model = loadBeadFromValuesManager(IBinaryImageModel, "iBeadModel", _strand) as IBinaryImageModel;
-			
-			return _model;
+			return (_strand as IStrandWithModel).model as IBinaryImageModel;
 		}
 		
 		/**

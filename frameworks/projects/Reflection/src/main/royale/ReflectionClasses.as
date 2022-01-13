@@ -40,6 +40,7 @@ internal class ReflectionClasses
 	import org.apache.royale.reflection.getAliasByClass; getAliasByClass;
 	import org.apache.royale.reflection.getClassByAlias; getClassByAlias;
 	import org.apache.royale.reflection.getDefinitionByName; getDefinitionByName;
+	import org.apache.royale.reflection.hasDefinitionWithName; hasDefinitionWithName;
 	import org.apache.royale.reflection.getDynamicFields; getDynamicFields;
 	import org.apache.royale.reflection.isDynamicObject; isDynamicObject;
 	import org.apache.royale.reflection.getQualifiedClassName; getQualifiedClassName;

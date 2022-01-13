@@ -34,6 +34,8 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.getSelectionRenderBead;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.html.util.getModelByType;
+	import org.apache.royale.core.IStrandWithModelView;
 
 	/**
 	 *  The ListSingleSelectionMouseController class is a controller for
@@ -108,8 +110,9 @@ package org.apache.royale.html.beads.controllers
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			listView = value.getBeadByType(IListView) as IListView;
+			var strandType:IStrandWithModelView = value as IStrandWithModelView;
+      listModel = strandType.model as ISelectionModel;
+			listView = strandType.view as IListView;
 			listenOnStrand("itemAdded", handleItemAdded);
 			listenOnStrand("itemRemoved", handleItemRemoved);
 		}

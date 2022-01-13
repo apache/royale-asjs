@@ -46,7 +46,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
 	 */
-	public class GroupView extends BeadViewBase implements IBeadView, ILayoutHost
+	public class GroupView extends BeadViewBase implements ILayoutHost
 	{
 		/**
      	 *  The GroupView class is the default view for

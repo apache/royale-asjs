@@ -38,6 +38,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.beads.models.FormItemModel;
     import org.apache.royale.jewel.supportClasses.LayoutProxy;
     import org.apache.royale.jewel.HGroup;
+    import org.apache.royale.html.util.getModelByType;
 
 
     /**
@@ -120,7 +121,7 @@ package org.apache.royale.jewel.beads.views
 
             formItem = value as FormItem;
 
-            model = _strand.getBeadByType(FormItemModel) as FormItemModel;
+            model = getModelByType(_strand,FormItemModel) as FormItemModel;
 			model.addEventListener("textChange", textChangeHandler);
 			model.addEventListener("htmlChange", textChangeHandler);
             model.addEventListener("requiredChange", requiredChangeHandler);

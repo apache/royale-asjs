@@ -20,6 +20,7 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IColorModel;
 	import org.apache.royale.utils.CSSUtils;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The ColorPickerWithEmptyView overrides ColorPickerView methods to visibly indicate that a selection is empty
@@ -43,7 +44,7 @@ package org.apache.royale.html.beads
 		 */
 		override protected function colorChangeAction():void
 		{
-			var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
+      var model:IColorModel = getModelByType(_strand,IColorModel) as IColorModel;
 			var isEmpty:Boolean = isNaN(model.color);
 			COMPILE::JS 
 			{

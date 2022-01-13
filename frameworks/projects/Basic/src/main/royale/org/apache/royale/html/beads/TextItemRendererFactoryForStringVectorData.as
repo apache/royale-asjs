@@ -31,6 +31,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.core.DispatcherBead;
+	import org.apache.royale.html.util.getModelByType;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -80,7 +81,7 @@ package org.apache.royale.html.beads
 		
 		private function finishSetup(event:Event):void
 		{
-			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+            selectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			
 			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 

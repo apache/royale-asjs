@@ -25,6 +25,7 @@ package dataTable.mapper
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Label;
@@ -48,10 +49,12 @@ package dataTable.mapper
 			
 			IEventDispatcher(_strand).addEventListener("dataTableComplete", handleInitComplete);
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		private function handleInitComplete(event:Event):void
 		{
-			var model:DataTableModel = _strand.getBeadByType(IBeadModel) as DataTableModel;
+			var model:DataTableModel = (_strand as IStrandWithModel).model as DataTableModel;
 			if (model == null) return;
 			
 			var dp:ArrayList = model.dataProvider as ArrayList;

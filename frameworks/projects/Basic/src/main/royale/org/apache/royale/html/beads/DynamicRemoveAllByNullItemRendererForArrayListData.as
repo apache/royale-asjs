@@ -29,6 +29,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 * Handles the removal of all itemRenderers once data source is being set to null.
@@ -80,7 +83,6 @@ package org.apache.royale.html.beads
 		{
 			(_strand as IEventDispatcher).removeEventListener("initComplete", initComplete);
 			
-			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
 			
 			// invoke now in case "dataProviderChanged" has already been dispatched.
@@ -125,7 +127,7 @@ package org.apache.royale.html.beads
 		public function get dataProviderModel(): IDataProviderModel
 		{
 			if (_dataProviderModel == null && _strand != null) {
-				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+	      _dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			}
 			return _dataProviderModel;
 		}

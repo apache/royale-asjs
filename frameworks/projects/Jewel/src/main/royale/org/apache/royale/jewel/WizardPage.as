@@ -157,7 +157,7 @@ package org.apache.royale.jewel
 		public function addWizardListeners(wizard:Wizard):void
 		{
 			this.wizard = wizard;
-			model = wizard.getBeadByType(WizardModel) as WizardModel;
+			model = wizard.model as WizardModel;
 			if(model.activateEffect)
 			{
 				addClass("transitions");

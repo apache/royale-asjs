@@ -82,7 +82,7 @@ package org.apache.royale.jewel.beads.controllers
 			wizard = value as Wizard;
             wizard.addEventListener("initComplete", finishSetUp);
             
-            model = wizard.getBeadByType(WizardModel) as WizardModel;
+            model = wizard.model as WizardModel;
             model.addEventListener("currentStepChange", handleStepChange);
             
             view = wizard.getBeadByType(WizardView) as WizardView;

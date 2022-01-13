@@ -31,6 +31,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
     import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
     import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+    import org.apache.royale.html.util.getModelByType;
     
     /**
 	 * The ComboBoxPopUpView class is a view bead for the ComboBoxPopUp.
@@ -72,7 +73,7 @@ package org.apache.royale.jewel.beads.views
             _strand = value;
 
             // set model
-            var model:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            var model:IDataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
             list.model = model;
 
             // set rowHeight

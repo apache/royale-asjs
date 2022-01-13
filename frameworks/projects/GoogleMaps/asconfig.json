@@ -20,8 +20,8 @@
   "compilerOptions": {
       "debug": true,
       "targets": [
-          "SWF",
-          "JSRoyale"
+          "JSRoyale",
+          "SWF"
       ],
       "include-classes": [
           "GoogleMapsClasses",

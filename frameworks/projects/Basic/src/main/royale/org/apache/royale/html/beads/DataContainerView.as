@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
@@ -31,20 +27,16 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.Strand;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.ItemAddedEvent;
     import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.html.supportClasses.Border;
-	import org.apache.royale.html.supportClasses.DataGroup;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.
@@ -100,7 +92,8 @@ package org.apache.royale.html.beads
 		 */
 		protected function beadsAddedHandler(event:Event):void
 		{
-			dataModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
+
 			host.addEventListener("itemsCreated", itemsCreatedHandler);
 			// may be called before IDataProviderModel bead is added
 			if (dataModel) dataModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);

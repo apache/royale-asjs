@@ -44,6 +44,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox
@@ -140,7 +141,7 @@ package org.apache.royale.jewel.beads.views
 			parent.addElement(_textinput);
 			parent.addElement(_button);
 
-			model = host.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			model = getModelByType(value,IComboBoxModel) as IComboBoxModel;
 
 			if (model is IJewelSelectionModel) {
 				//do this here as well as in the controller,
@@ -275,7 +276,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function itemChangeAction(event:Event = null):void
 		{
-			var model:IComboBoxModel = host.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
 			_textinput.text = getLabelFromData(model, model.selectedItem);
 		}
 

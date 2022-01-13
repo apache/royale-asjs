@@ -32,6 +32,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.IDropDownListView;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The DropDownListController class is the controller for
@@ -80,7 +81,7 @@ package org.apache.royale.html.beads.controllers
         private function clickHandler(event:org.apache.royale.events.MouseEvent):void
         {
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+            var selectionModel:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             DisplayObject(viewBead.popUp).width = DisplayObject(_strand).width;
             popUpModel.dataProvider = selectionModel.dataProvider;
@@ -108,7 +109,7 @@ package org.apache.royale.html.beads.controllers
         {
             var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
             viewBead.popUpVisible = false;
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+            var selectionModel:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
             var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
             selectionModel.selectedIndex = popUpModel.selectedIndex;
 			sendStrandEvent(_strand,"change");

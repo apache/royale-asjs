@@ -30,6 +30,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.Event;
     import org.apache.royale.events.utils.MouseEventConverter;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
     //--------------------------------------
     //  Events
@@ -563,8 +564,7 @@ package org.apache.royale.core
         {
             if (_model == null)
             {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+                _model = loadBeadFromValuesManager(IBeadModel,"iBeadModel",this) as IBeadModel;
             }
             return _model;
         }

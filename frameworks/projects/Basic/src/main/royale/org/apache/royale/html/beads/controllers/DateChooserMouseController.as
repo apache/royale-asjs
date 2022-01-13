@@ -30,6 +30,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.IStrandWithModelView;
 	
 	/**
 	 *  The DateChooserMouseController class is responsible for listening to
@@ -56,7 +57,14 @@ package org.apache.royale.html.beads.controllers
 		}
 		
 		private var _strand:IStrand;
-		
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 */
+		private function get host():IStrandWithModelView
+		{
+			return _strand as IStrandWithModelView
+		}
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -71,7 +79,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			_strand = value;
 			
-			var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
+			var view:DateChooserView = host.view as DateChooserView;
 			view.prevMonthButton.addEventListener("click", prevMonthClickHandler);
 			view.nextMonthButton.addEventListener("click", nextMonthClickHandler);
 			
@@ -86,7 +94,7 @@ package org.apache.royale.html.beads.controllers
 		private function listHandler(event:Event):void
 		{
 			var list:DateChooserList = event.target as DateChooserList;
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;                     
+			var model:DateChooserModel = host.model as DateChooserModel;
 			model.selectedDate = list.selectedItem as Date;
 		}
 
@@ -98,7 +106,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			event.preventDefault();
             
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+			var model:DateChooserModel = host.model as DateChooserModel;
 			var month:Number = model.displayedMonth - 1;
 			var year:Number  = model.displayedYear;
 			if (month < 0) {
@@ -117,7 +125,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			event.preventDefault();
             
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+			var model:DateChooserModel = host.model as DateChooserModel;
 			var month:Number = model.displayedMonth + 1;
 			var year:Number  = model.displayedYear;
 			if (month >= 12) {

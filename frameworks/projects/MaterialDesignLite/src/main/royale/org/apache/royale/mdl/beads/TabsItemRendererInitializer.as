@@ -34,6 +34,7 @@ package org.apache.royale.mdl.beads
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
     import org.apache.royale.mdl.beads.models.ITabModel;
     import org.apache.royale.core.IHasLabelField;
+    import org.apache.royale.html.util.getModelByType;
     
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
@@ -82,9 +83,9 @@ package org.apache.royale.mdl.beads
 		{	
 			_strand = value;
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;            
-            dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
             _labelField = dataProviderModel.labelField;            
-            var model:ITabModel = _strand.getBeadByType(ITabModel) as ITabModel;
+            var model:ITabModel = getModelByType(_strand,ITabModel) as ITabModel;
             tabsIdField = model.tabIdField;
 		}
 		
