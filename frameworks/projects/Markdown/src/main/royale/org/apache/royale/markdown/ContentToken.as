@@ -18,18 +18,68 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.markdown
 {
+	/**
+	 * ContentToken represent plain text. It is usually used for the content of inline
+	 * structures. Most of them will be generated automatically by the inline
+	 * parser. They are also sometimes generated explicitly by the
+	 * inline parsing rules.
+	 * 
+	 * A text token has a `content` property containing the text it represents.
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.9
+	 */
 	public class ContentToken implements IToken
 	{
 		public function ContentToken()
 		{
 			
 		}
-		public function get type():String{
-			//TODO
-			return "";
+
+		private var _content:String = "";
+		/**
+		 * The raw text content
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.9
+		 */
+		public function get content():String
+		{
+			return _content;
 		}
-		public function get level():int{
-			return 0;
+
+		public function set content(value:String):void
+		{
+			_content = value;
+		}
+		private var _type:String = "";
+		/**
+		 *  The token type
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.9
+		 */
+		public function get type():String
+		{
+			return _type;
+		}
+
+		public function set type(value:String):void
+		{
+			_type = value;
+		}
+
+		private var _level:int = 0;
+		/**
+		 *  The level of nesting of the token
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.9
+		 */
+		public function get level():int
+		{
+			return _level;
+		}
+
+		public function set level(value:int):void
+		{
+			_level = value;
 		}
 	}
 }

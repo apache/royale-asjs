@@ -18,66 +18,52 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.markdown
 {
-	/**
-	 * Tag tokens are used to represent markdown syntax. Each tag token represents a
-	 * special markdown syntax in the original markdown source. They are usually used
-	 * for the open and close tokens. For example the "\`\`\`" at the begining of a
-	 * fenced block code, the start of an item list or the end of a emphasized part of
-	 * a line.
-	 * 
-	 * Tag tokens have a variety of types and each is associated to a rendering rule.
-	 * 
-	 */
-	public class TagToken implements IToken
-	{
 
-		/**
-		 * blockquote (open/close)
-		 * code
-		 * fence
-		 * heading (open/close)
-		 * hr
-		 * bullet_list (open/close)
-		 * list_item (open/close)
-		 * ordered_list (open/close)
-		 * paragraph (open/close)
-		 * link (open/close)
-		 * image
-		 * table (open/close)
-		 * thead (open/close)
-		 * tbody (open/close)
-		 * tr (open/close)
-		 * th (open/close)
-		 * td (open/close)
-		 * strong (open/close)
-		 * em (open/close)
-		 * del (open/close)
-		 * in (open/close)
-		 * mark (open/close)
-		 * sub (open/close)
-		 * hardbreak
-		 * softbreak
-		 * text (well, not really a tag...)
-		 * htmlblock (not tag)
-		 * htmltag (not tag -- what is this?)
-		 * abbr (open/close)
-		 * footnote_ref (is this a tag?)
-		 * footnote_block (open/close)
-		 * footnote (open/close)
-		 * footnote_anchor
-		 * dl (open/close)
-		 * dt (open/close)
-		 * dd (open/close)
-		 * 
-		 */
-		public function TagToken()
+	public class BlockToken implements IToken
+	{
+		public function BlockToken()
 		{
-			
+			lineData = [-1,-1];
+		}
+		private var lineData:Array;
+
+		public function get firstLine():int
+		{
+			return lineData[0] as int;
 		}
 
-		public var openTag:Boolean;
-		public var closeTag:Boolean;
+		public function set firstLine(value:int):void
+		{
+			lineData[0] = value;
+		}
 
+		public function get lastLine():int
+		{
+			return lineData[1];
+		}
+
+		public function set lastLine(value:int):void
+		{
+			lineData[1] = value;
+		}
+
+		public var children:Array;
+
+		private var _content:String;
+		/**
+		 * The raw text content
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.9
+		 */
+		public function get content():String
+		{
+			return _content;
+		}
+
+		public function set content(value:String):void
+		{
+			_content = value;
+		}
 		private var _type:String = "";
 		/**
 		 *  The token type

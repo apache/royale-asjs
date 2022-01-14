@@ -21,6 +21,8 @@ package org.apache.royale.markdown
 	public interface IToken
 	{
 		function get type():String;
+		function set type(value:String):void;
 		function get level():int;
+		function set level(value:int):void;
 	}
 }
