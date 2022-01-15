@@ -16,28 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package {
+package products {
 
-/**
- *  @private
- *  This class is used to link additional classes into Language.swc
- *  beyond those that are found by dependency analysis starting
- *  from the classes specified in manifest.xml.
- */
-internal class LanguageClasses
-{
-	COMPILE::JS
-	{
-	    import org.apache.royale.utils.Language; Language;
-		import QName; QName;
-		import Namespace; Namespace;
-		import isXMLName; isXMLName;
-		import jsUnsafeNativeInline;jsUnsafeNativeInline;
-	}
-	import org.apache.royale.language.string.match; match;
-	import org.apache.royale.language.string.search; search;
-	import org.apache.royale.language.iterator.arrayLike; arrayLike;
+    import mx.controls.dataGridClasses.DataGridColumn;
+
+    public function addRandomDGColumns(base:Array, max:int=3 , force:int=-1):void {
+
+        var rand:int = force == -1 ? 1 + uint(Math.random() * max) : force;
+        var col:DataGridColumn = new DataGridColumn('Market Share');
+        col.width = 120;
+        col.dataField = 'marketShare';
+        rand--;
+        base.push(col);
+        if (rand){
+            col = new DataGridColumn('Product Group');
+            col.width = 120;
+            col.dataField = 'productGroup';
+            base.push(col);
+            rand--;
+
+        }
+
+
+        if (rand){
+            col = new DataGridColumn('Budget');
+            col.width = 120;
+            col.dataField = 'budget';
+            base.push(col);
+            rand--;
+        }
+
+    }
+
 }
-
-}
-

@@ -31,6 +31,7 @@ import mx.controls.TabBar;
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.ValueEvent;
 import org.apache.royale.html.util.getModelByType;
 import org.apache.royale.core.ISelectionModel;
 //--------------------------------------
@@ -479,6 +480,8 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
     {
         var tnView:TabNavigatorView = view as TabNavigatorView;
         tnView.contentArea.removeElement(c, dispatchEvent);
+        if (dispatchEvent)
+                this.dispatchEvent(new ValueEvent('childrenRemoved', c));
     }
     
     /**

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:mx="library://ns.apache.org/royale/mx"
+				   xmlns:prod="products.*"
+                   width="100%" height="800"
+				   creationComplete="onInitialize()"
+                   layout="vertical" >
+	<!-- to do: layout="absolute" minWidth="955" minHeight="600" -->
+	<fx:Style>
+		@namespace "library://ns.apache.org/royale/mx";
+
+
+		Application {
+			horizontalGap: 50px;
+		}
+
+
+		.outline{
+			border-width: 1px;
+			border-style: solid;
+			border-color: black;
+		}
+
+
+	</fx:Style>
+	
+	<fx:Script>
+		<![CDATA[
+			import models.ProductsModel;
+
+			import mx.controls.DataGrid;
+			import mx.controls.dataGridClasses.DataGridColumn;
+
+			[Bindable]
+			public var multipleSelectionState:Boolean = true;
+
+			[Bindable]
+			public var columnCount:int = 3;
+
+			[Bindable]
+			public var productsModel:ProductsModel;
+			
+			private var dg:DataGrid;
+			
+			private function onInitialize():void{
+				productsModel = new ProductsModel();
+				
+				dg = new DataGrid();
+				dg.width = 200;
+				dg.setStyle("left", 10);
+				dg.setStyle("top", 10);
+				dg.setStyle("right", 10);
+				dg.setStyle("bottom", 10);
+
+				var dgCol:DataGridColumn = new DataGridColumn();
+					dgCol.width = 100;
+					dgCol.dataField = "title";
+					dgCol.showDataTips = true;
+				
+				var dgCol2:DataGridColumn = new DataGridColumn();
+					dgCol.width = 100;
+					dgCol.dataField = "detail";
+					
+				dg.columns = [dgCol, dgCol2];
+				
+				dg.dataProvider = productsModel.alternateProductList;
+				
+				this.dgContainer.addChild(dg);
+			}
+		]]>
+	</fx:Script>
+<mx:HBox>
+	<mx:VBox id="dgContainer">
+		<mx:Label text="mx:DataGrid"/>
+	</mx:VBox>
+</mx:HBox>
+
+</mx:Application>
