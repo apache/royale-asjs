@@ -31,6 +31,9 @@ package org.apache.royale.utils.array
 	 */
 	public function arraysMatch(first:Array,second:Array,deep:Boolean=false,level:int=0):Boolean
 	{
+		if(!first || !second)
+			return false;
+		
 		if(first.length != second.length)
 			return false;
 		
