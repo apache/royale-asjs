@@ -36,6 +36,7 @@ package mx.controls.beads
     import org.apache.royale.geom.Point;
     import org.apache.royale.utils.PointUtils;
     import mx.controls.DateField;
+    import org.apache.royale.html.util.getModelByType;
 	
     /**
      *  The NumericStepperView class overrides the Basic
@@ -112,7 +113,7 @@ package mx.controls.beads
                     {
                         _popUp.selectedDate = dateField.parseFunction(_textInput.text, dateField.formatString);
                     }
-                    var popUpModel:IDateChooserModelWithChangeCheck = _popUp.getBeadByType(IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
+                    var popUpModel:IDateChooserModelWithChangeCheck = getModelByType(_popUp,IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
                     popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());

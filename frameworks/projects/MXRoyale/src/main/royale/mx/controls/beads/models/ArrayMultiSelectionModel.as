@@ -23,6 +23,7 @@ package mx.controls.beads.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.IHasLabelField;
 	/**
 	 *  The ArrayMultiSelectionModel class is a selection model for
 	 *  a dataProvider that is an array. It assumes that items
@@ -36,7 +37,7 @@ package mx.controls.beads.models
 	 *  @productversion 0.9.7
 	 */
 
-	public class ArrayMultiSelectionModel extends EventDispatcher implements IMultiSelectionModel, IRollOverModel
+	public class ArrayMultiSelectionModel extends EventDispatcher implements IMultiSelectionModel, IRollOverModel, IHasLabelField
 	{
 		/**
 		 *  Constructor.

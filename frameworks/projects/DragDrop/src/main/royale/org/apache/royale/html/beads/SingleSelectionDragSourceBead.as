@@ -33,6 +33,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.controllers.DragMouseController;
 	import org.apache.royale.utils.getParentOrSelfByType;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 * The start event is dispatched when a DragStart event happens. The DragEvent.dragSource
@@ -285,7 +286,7 @@ package org.apache.royale.html.beads
 			dispatchEvent(newEvent);
 			if (newEvent.defaultPrevented) return;
 			
-			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			var dataProviderModel:IDataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			if (dataProviderModel is ISelectionModel) {
 				(dataProviderModel as ISelectionModel).selectedIndex = -1;
 			}

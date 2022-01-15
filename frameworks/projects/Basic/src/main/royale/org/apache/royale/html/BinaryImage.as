@@ -23,6 +23,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.IBinaryImageLoader;
 	import org.apache.royale.utils.BinaryData;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	
 	/**
@@ -58,12 +59,7 @@ package org.apache.royale.html
 		 */
 		override public function addedToParent():void
 		{
-			var c:Class = ValuesManager.valuesImpl.getValue(this, "iBinaryImageLoader");
-			if (c)
-			{
-				var loader:IBinaryImageLoader = (new c()) as IBinaryImageLoader;
-				addBead(loader);
-			}
+			loadBeadFromValuesManager(IBinaryImageLoader,"iBinaryImageLoader",this);
 			super.addedToParent();
 		}
 		

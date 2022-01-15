@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.models
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.core.IHasLabelField;
 
     /**
      *  The ArrayListSelectionModel class is a selection model for
@@ -39,7 +40,7 @@ package org.apache.royale.jewel.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class ArrayListSelectionModel implements IJewelSelectionModel, IRollOverModel
+	public class ArrayListSelectionModel implements IJewelSelectionModel, IRollOverModel, IHasLabelField
 	{
         /**
          *  Constructor.

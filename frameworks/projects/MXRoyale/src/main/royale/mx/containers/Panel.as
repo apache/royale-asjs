@@ -669,6 +669,17 @@ public class Panel extends Container
      */
     protected var titleBar:UIComponent;
 
+    /**
+     * PanelView coercion ignore because it is already typed-checked prior, below
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
+    override public function addedToParent():void
+    {
+        //support for subclass access, as per original Flex code
+        titleBar = view is PanelView ? PanelView(view).titleBar as UIComponent : null;
+        super.addedToParent();
+    }
+
     //----------------------------------
     //  title
     //----------------------------------
@@ -810,7 +821,8 @@ public class Panel extends Container
         var panelView:PanelView = view as PanelView;
         if (panelView.contentArea == this)
             return super.numElements;
-        return panelView.contentArea.numElements;
+        //likewise, contentArea may not be available yet during early phases, use null safety:
+        return panelView.contentArea ? panelView.contentArea.numElements : 0;
     }
     
     /**
@@ -1120,7 +1132,7 @@ public class Panel extends Container
      *  @private
      *  Storage for the titleIcon property.
      */ 
-    private var _titleIcon:Class;
+    private var _titleIcon:Object;
     
     /**
      *  @private
@@ -1128,7 +1140,7 @@ public class Panel extends Container
     private var _titleIconChanged:Boolean = false;
 
     [Bindable("titleIconChanged")]
-    [Inspectable(category="General", defaultValue="", format="EmbeddedFile")]
+ //   [Inspectable(category="General", defaultValue="", format="EmbeddedFile")]
 
     /**
      *  The icon displayed in the title bar.
@@ -1140,7 +1152,7 @@ public class Panel extends Container
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get titleIcon():Class
+    public function get titleIcon():Object
     {
         return _titleIcon;
     }
@@ -1148,8 +1160,9 @@ public class Panel extends Container
     /**
      *  @private
      */
-    public function set titleIcon(value:Class):void
+    public function set titleIcon(value:Object):void
     {
+        //@todo deal with string (url) for Royale instead of Class
         _titleIcon = value;
         _titleIconChanged = true;
         

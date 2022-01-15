@@ -21,6 +21,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
      *  The Strand class is the base class for non-display object
@@ -64,8 +65,7 @@ package org.apache.royale.core
 		{
             if (_model == null)
             {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+                _model = loadBeadFromValuesManager(IBeadModel,"iBeadModel",this) as IBeadModel;
             }
 			return _model;
 		}

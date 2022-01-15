@@ -34,6 +34,7 @@ internal class CoreClasses
 	import org.apache.royale.core.LayoutBase; LayoutBase;
 	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;
 	import org.apache.royale.core.ApplicationBase; ApplicationBase;
+	import org.apache.royale.core.ILabeledData; ILabeledData;
 	import org.apache.royale.core.IList; IList;
 	import org.apache.royale.core.IIcon; IIcon;
 	import org.apache.royale.core.ITextButton; ITextButton;
@@ -290,6 +291,8 @@ internal class CoreClasses
 	import org.apache.royale.core.IDataGridHeader; IDataGridHeader;
 	import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
 	import org.apache.royale.core.IDateChooserModelWithChangeCheck; IDateChooserModelWithChangeCheck;
+	import org.apache.royale.core.IHasDataField; IHasDataField;
+	import org.apache.royale.core.IHasLabelField; IHasLabelField;
 	import org.apache.royale.core.ParentDocumentBead; ParentDocumentBead;
 	import org.apache.royale.core.ItemRendererOwnerViewBead; ItemRendererOwnerViewBead;
 	import org.apache.royale.core.TransformBeadBase; TransformBeadBase;
@@ -316,6 +319,7 @@ internal class CoreClasses
 		import org.apache.royale.utils.js.loadJavascript; loadJavascript;
 		import org.apache.royale.utils.css.loadCSS; loadCSS;
 	}
+	import org.apache.royale.utils.object.classFromInstance; classFromInstance;
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
 	import org.apache.royale.debugging.assertType; assertType;
@@ -332,6 +336,9 @@ internal class CoreClasses
 	import org.apache.royale.utils.transformValueFromRange; transformValueFromRange;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
+	import org.apache.royale.utils.array.arraysMatch; arraysMatch;
+	
+	import org.apache.royale.utils.object.objectsMatch; objectsMatch;
 
 	import org.apache.royale.utils.string.Base64; org.apache.royale.utils.string.Base64;
 	import org.apache.royale.utils.Base64; org.apache.royale.utils.Base64;
@@ -342,6 +349,8 @@ internal class CoreClasses
 	import org.apache.royale.utils.string.trimRight; trimRight;
 	import org.apache.royale.utils.string.trimLeft; trimLeft;
 	import org.apache.royale.utils.string.cacheBust; cacheBust;
+	import org.apache.royale.utils.string.sanitizeHtml; sanitizeHtml;
+	import org.apache.royale.utils.string.sanitizeUrl; sanitizeUrl;
 
 	import org.apache.royale.utils.date.addDays; addDays;
 	import org.apache.royale.utils.date.addHours; addHours;
@@ -372,6 +381,12 @@ internal class CoreClasses
 	}
 	
 	import org.apache.royale.utils.replaceBead; replaceBead;
+
+	import org.apache.royale.functional.decorator.debounceLong; debounceLong;
+	import org.apache.royale.functional.decorator.debounceShort; debounceShort;
+	import org.apache.royale.functional.decorator.throttle; throttle;
+	import org.apache.royale.functional.decorator.animateFunction; animateFunction;
+	import org.apache.royale.functional.decorator.delayFunction; delayFunction;
 
 	import org.apache.royale.core.TextLineMetrics; TextLineMetrics;
 	import org.apache.royale.utils.ClassSelectorList; ClassSelectorList;

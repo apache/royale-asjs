@@ -21,6 +21,7 @@ package org.apache.royale.jewel.supportClasses.table
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.IHasDataField;
 	
 	/**
 	 *  TableColumn define a column for a Jewel Table component
@@ -31,7 +32,7 @@ package org.apache.royale.jewel.supportClasses.table
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TableColumn extends EventDispatcher implements ITableColumn
+	public class TableColumn extends EventDispatcher implements ITableColumn, IHasDataField
 	{
 		/**
 		 *  constructor.

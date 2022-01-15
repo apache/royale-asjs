@@ -33,6 +33,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.html.beads.ITableView;
 	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The TableCellSelectionMouseController class is a controller for
@@ -110,7 +111,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			_strand = value;
 
-			model = value.getBeadByType(ITableModel) as ITableModel;
+			model = getModelByType(value,ITableModel) as ITableModel;
 			view = value.getBeadByType(IBeadView) as ITableView;
 			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);

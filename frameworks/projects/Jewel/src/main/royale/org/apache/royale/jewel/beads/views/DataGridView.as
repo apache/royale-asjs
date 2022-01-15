@@ -261,7 +261,6 @@ package org.apache.royale.jewel.beads.views
         protected function configureColumnListPresentationModel(event:Event):void
         {
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
-            //var pm:DataGridColumnListPresentationModel = list.getBeadByType(IListPresentationModel) as DataGridColumnListPresentationModel; --> this line doesn't work
             var pm:DataGridColumnListPresentationModel = list.presentationModel as DataGridColumnListPresentationModel;
             pm.rowHeight = _presentationModel.rowHeight;
             pm.variableRowHeight = false;

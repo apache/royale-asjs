@@ -220,10 +220,12 @@
     <component id="ComboUpperCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboUpperCase"/>
     <component id="ComboLowerCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboLowerCase"/>
     <component id="ComboBoxDisabled" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"/>
+    <component id="ComboBoxReadOnly" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxReadOnly"/>
     <component id="ComboBoxTruncateText" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText"/>
     <component id="ComboBoxListCloseOnClick" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxListCloseOnClick" />
     <component id="TriStateCheckBoxLabelState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState"/>
-    <component id="TriStateCheckBoxStatesValues" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxStatesValues"/>
+    <component id="TriStateCheckBoxState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxState"/>
+    <component id="TriStateCheckBoxTooltipState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxTooltipState"/>
 
     <component id="LayoutChildren" class="org.apache.royale.jewel.beads.layouts.LayoutChildren"/>
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>

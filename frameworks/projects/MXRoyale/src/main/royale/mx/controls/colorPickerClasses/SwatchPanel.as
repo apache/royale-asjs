@@ -27,7 +27,7 @@ package mx.controls.colorPickerClasses
 	import org.apache.royale.geom.Rectangle;
 	import mx.collections.IList;
 	import mx.collections.ArrayList;
-	import mx.controls.ColorPicker;
+    import org.apache.royale.core.IHasLabelField;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -378,7 +378,7 @@ use namespace mx_internal;
 /**
  *  @private
  */
-public class SwatchPanel extends UIComponent implements IFocusManagerContainer
+public class SwatchPanel extends UIComponent implements IFocusManagerContainer, IHasLabelField
 {
     //include "../../core/Version.as";
     

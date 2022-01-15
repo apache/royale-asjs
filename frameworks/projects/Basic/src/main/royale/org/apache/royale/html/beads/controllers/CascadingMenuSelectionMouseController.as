@@ -35,6 +35,7 @@ package org.apache.royale.html.beads.controllers
 	COMPILE::JS {
 		import org.apache.royale.events.BrowserEvent;
 	}
+	import org.apache.royale.core.IStrandWithModel;
 
 	/**
 	 * The CascadingMenuSelectionMouseController does the same job as the MenuSelectionMouseController
@@ -72,12 +73,13 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
 			var node:Object = event.data;
 			
-			var model:ICascadingMenuModel = _strand.getBeadByType(IBeadModel) as ICascadingMenuModel;
+			var model:ICascadingMenuModel = (_strand as IStrandWithModel).model as ICascadingMenuModel;
 			
 			if (getHasMenu(node, model)) {
 				var c:Class = ValuesManager.valuesImpl.getValue(_strand, "iMenu");

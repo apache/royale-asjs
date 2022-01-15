@@ -24,6 +24,7 @@ package mx.controls.beads.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.IHasLabelField;
 
     /**
      *  The SingleSelectionIListViewModel class is a selection model for
@@ -35,7 +36,7 @@ package mx.controls.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-	public class SingleSelectionIListModel extends EventDispatcher implements ISelectionModel, IRollOverModel
+	public class SingleSelectionIListModel extends EventDispatcher implements ISelectionModel, IRollOverModel, IHasLabelField
 	{
         /**
          *  Constructor.

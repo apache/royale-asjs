@@ -324,7 +324,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    //public static const CONTENT_CREATION_COMPLETE:String = "contentCreationComplete";
+    public static const CONTENT_CREATION_COMPLETE:String = "contentCreationComplete";
 
     
     /**

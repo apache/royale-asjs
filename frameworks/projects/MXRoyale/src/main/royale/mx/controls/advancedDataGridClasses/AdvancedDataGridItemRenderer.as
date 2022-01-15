@@ -154,7 +154,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     {
         var treeListData:AdvancedDataGridListData = listData as AdvancedDataGridListData;
         var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
-        var adgModel:DataGridICollectionViewModel = owner.getBeadByType(DataGridICollectionViewModel) as DataGridICollectionViewModel;
+        var adgModel:DataGridICollectionViewModel = owner.model as DataGridICollectionViewModel;
         var column:DataGridColumn = adgModel.columns[treeListData.columnIndex];
 
         super.data = value;

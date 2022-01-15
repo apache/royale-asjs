@@ -23,6 +23,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.beads.models.TabBarPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The TabBar class is a List used for navigate other organized content
@@ -92,7 +93,7 @@ package org.apache.royale.jewel
 		 */
 		override public function get presentationModel():IBead
 		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			var presModel:IListPresentationModel = getModelByType(this,IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
 				presModel = new TabBarPresentationModel();
 				addBead(presModel);

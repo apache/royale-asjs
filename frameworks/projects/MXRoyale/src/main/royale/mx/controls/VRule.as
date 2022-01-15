@@ -199,7 +199,13 @@ public class VRule extends UIComponent
             "borderLeftStyle" : "solid",
             "borderLeftColor" : "#000"
         }
-        style = values;
+        var currentStyle:Object = style;
+        if (currentStyle) {
+            for (var field:String in values) {
+                currentStyle[field] = values[field];
+            }
+        } else currentStyle = values;
+        style = currentStyle;
         super.addedToParent();
     }
     //--------------------------------------------------------------------------

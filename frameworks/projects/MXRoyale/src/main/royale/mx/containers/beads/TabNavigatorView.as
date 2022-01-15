@@ -40,6 +40,7 @@ import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.ValueEvent;
 import org.apache.royale.html.beads.GroupView;
 import org.apache.royale.html.supportClasses.PanelLayoutProxy;
 
@@ -143,8 +144,9 @@ public class TabNavigatorView extends GroupView
         contentArea.percentHeight = 100;
         // try to listen for childrenAdded before ViewStackLayout listens for childrenAdded
         // so we can update the selection before the layout picks the visible child
-        (_strand as IEventDispatcher).addEventListener("childrenAdded", childrenAddedHandler);
-        contentArea.addEventListener("childrenAdded", childrenAddedHandler);
+        (_strand as IEventDispatcher).addEventListener("childrenAdded", childrenChangedHandler);
+        contentArea.addEventListener("childrenAdded", childrenChangedHandler);
+        contentArea.addEventListener("childrenRemoved", childrenChangedHandler);
         var vsl:ViewStackLayout = new ViewStackLayout();
         vsl.target = contentArea as UIComponent;
         vsl.model = tabBar.model as ISelectionModel;
@@ -152,35 +154,68 @@ public class TabNavigatorView extends GroupView
         if (contentArea.parent == null) {
             (_strand as IContainerBaseStrandChildrenHost).$addElement(contentArea as IChild);
         }
-        
+
         // Now give the TabNavigator its own layout
         var boxLayout:BoxLayout = new BoxLayout();
         boxLayout.direction = "vertical";
         _strand.addBead(boxLayout);
-        
+
     }
-    
+
     private var tabDP:Array = [];
-    
-    private function childrenAddedHandler(event:Event):void
+
+    private function childrenChangedHandler(event:Event):void
     {
+        var isRemoval:Boolean = event.type == 'childrenRemoved';
+        var child:INavigatorContent;
+        var removeIndex:int = -1;
+
+        var n:int;
+        var i:int;
+
+        if (isRemoval) {
+            child = ValueEvent(event).value as INavigatorContent;
+            if (child) {
+                tabDP = (tabBar as TabBar).dataProvider as Array;
+                n = tabDP.length;
+                for (i = 0; i < n; i++)
+                {
+                    var item:Object = tabDP[i];
+                    if (item.label == child.label) {
+                        removeIndex = i;
+                        break;
+                    }
+                }
+            }
+        }
         tabDP = [];
-        var n:int = contentArea.numElements;
-        for (var i:int = 0; i < n; i++)
+        n = contentArea.numElements;
+        for (i = 0; i < n; i++)
         {
-            var child:INavigatorContent = contentArea.getElementAt(i) as INavigatorContent;
+            child = contentArea.getElementAt(i) as INavigatorContent;
             tabDP.push({ label: child.label});
             // run this again if the label changes
-            child.addEventListener("labelChanged", childrenAddedHandler);
+            child.addEventListener("labelChanged", childrenChangedHandler);
         }
+        var oldIndex:int = (tabBar.model as ISelectionModel).selectedIndex;
         (tabBar as TabBar).dataProvider = tabDP;
-        if ((tabBar.model as ISelectionModel).selectedIndex == -1 && n > 0)
+
+        if (oldIndex == -1 && n > 0)
         {
             (tabBar.model as ISelectionModel).selectedIndex = 0;
             var tabNavigator:TabNavigator = _strand as TabNavigator;
             if (tabNavigator)
             {
                 tabNavigator.selectedIndex = 0;
+            }
+        } else {
+            if (removeIndex != -1 ) {
+                var tabNavigator:TabNavigator = _strand as TabNavigator;
+                if (removeIndex == tabDP.length) removeIndex--;
+                if (tabNavigator)
+                {
+                    tabNavigator.selectedIndex = removeIndex;
+                }
             }
         }
     }

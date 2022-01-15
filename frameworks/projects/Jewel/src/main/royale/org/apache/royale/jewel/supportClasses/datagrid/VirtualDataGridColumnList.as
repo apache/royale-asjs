@@ -24,6 +24,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
     import org.apache.royale.jewel.beads.models.DataGridColumnListPresentationModel;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+    import org.apache.royale.html.util.getModelByType;
     
     /**
      *  The VirtualDataGridColumnList class is the VirtualList class used internally
@@ -100,7 +101,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 */
 		override public function get presentationModel():IBead
 		{
-			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+			var presModel:IListPresentationModel = getModelByType(this,IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
 				presModel = new DataGridColumnListPresentationModel();
 				addBead(presModel);

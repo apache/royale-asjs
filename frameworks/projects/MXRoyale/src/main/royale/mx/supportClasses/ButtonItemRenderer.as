@@ -18,11 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.supportClasses
 {
-	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.SimpleCSSStylesWithFlex;
-	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IHasLabelField;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.events.ItemClickedEvent;
@@ -43,7 +39,7 @@ package mx.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.8
 	 */
-	public class ButtonItemRenderer extends Button implements ITextItemRenderer
+	public class ButtonItemRenderer extends Button implements ITextItemRenderer, IHasLabelField
 	{
 		public function ButtonItemRenderer()
 		{

@@ -36,6 +36,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.controllers.DropMouseController;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.util.getModelByType;
 
 
 	/**
@@ -344,7 +345,7 @@ package org.apache.royale.html.beads
 				DragEvent.dragInitiator.acceptingDrop(_strand, "object");
 			}
 
-			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
+			var dataProviderModel:IMultiSelectionModel = getModelByType(_strand,IMultiSelectionModel) as IMultiSelectionModel;
 			var myTargetIndex:int = calculatedTargetIndex > -1 ? calculatedTargetIndex : 0;
 			if (dataProviderModel.dataProvider is Array) {
 				var dataArray:Array = dataProviderModel.dataProvider as Array;

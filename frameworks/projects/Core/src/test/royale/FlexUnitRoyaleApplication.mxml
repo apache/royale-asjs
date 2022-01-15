@@ -40,6 +40,16 @@ limitations under the License.
             import org.apache.royale.test.listeners.BrowserConsoleListener;
             import org.apache.royale.test.Runtime;
 
+
+            private static var _instance:FlexUnitRoyaleApplication;
+            public static function getInstance():FlexUnitRoyaleApplication{
+                return _instance;
+            }
+
+            public function get eventsTestParent():Group{
+                return eventBubblingParent;
+            }
+
             //account for swf version variance in some test results due to fixed player bugs etc
             public function getSwfVersion():uint{
                 COMPILE::SWF{
@@ -71,6 +81,7 @@ limitations under the License.
             public function runTests():void
             {
                 Runtime.swfVersion = getSwfVersion();
+                _instance = this;
                 if (runLocal()) {
                     core.addListener(new BrowserConsoleListener());
                 } else{
@@ -94,5 +105,10 @@ limitations under the License.
         <!-- for such a simple app, we just set values to an empty array so it thinks it doesn't have any values -->
         <js:SimpleValuesImpl values="[]"/>
     </js:valuesImpl>
+    <js:initialView>
+        <js:View>
+            <js:Group id="eventBubblingParent" />
+        </js:View>
+    </js:initialView>
 
 </js:Application>

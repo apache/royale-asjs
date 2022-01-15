@@ -45,6 +45,7 @@ use namespace mx_internal;
 import spark.components.supportClasses.DropDownController;
 import org.apache.royale.geom.Point;
 import mx.core.UIComponent;
+import org.apache.royale.core.IHasLabelField;
 
 //--------------------------------------
 //  Styles
@@ -191,7 +192,7 @@ import mx.core.UIComponent;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class DropDownListBase extends List
+public class DropDownListBase extends List implements IHasLabelField
 {
     //include "../../core/Version.as";
  

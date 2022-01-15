@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-    import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.ILabelFieldItemRenderer;
     
     /**
@@ -30,7 +29,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface ITextItemRenderer extends IItemRenderer, ILabelFieldItemRenderer
+	public interface ITextItemRenderer extends ILabelFieldItemRenderer
 	{
         /**
          *  The text to be displayed in the item renderer.

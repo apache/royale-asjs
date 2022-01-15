@@ -40,6 +40,8 @@ import spark.events.IndexChangeEvent;
 import spark.events.ListEvent;
 import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.LayoutBase;*/
+
+import spark.components.SkinnableDataContainer;
 import spark.utils.LabelUtil;
 import mx.collections.IList;
 import mx.core.IFactory;
@@ -55,6 +57,10 @@ import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ItemRendererClassFactory;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.core.IContainer;
+import org.apache.royale.core.IParent;
+import org.apache.royale.events.ValueEvent;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;   //ListBase and List share selection properties that are mx_internal
 
@@ -193,7 +199,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class ListBase  extends SkinnableContainer
+public class ListBase  extends SkinnableDataContainer implements IContainer, IHasLabelField
 { //extends SkinnableDataContainer implements IDataProviderEnhance
     //include "../../core/Version.as";
 
@@ -470,121 +476,12 @@ public class ListBase  extends SkinnableContainer
         return _caretIndex;
     }
     
-    //----------------------------------
-    //  dataProvider copied from SkinnableDataContainer
-    //----------------------------------    
+
     
-    /**
-     *  @copy spark.components.DataGroup#dataProvider
-     *
-     *  @see #itemRenderer
-     *  @see #itemRendererFunction
-     *  @see mx.collections.IList
-     *  @see mx.collections.ArrayCollection
-     *  @see mx.collections.ArrayList
-     *  @see mx.collections.XMLListCollection
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     * 
-     *  @royaleignorecoercion spark.components.DataGroup
-     */
-    [Bindable("dataProviderChanged")]
-    [Inspectable(category="Data")]
-    
-    public function get dataProvider():IList
-    {       
-        return (getLayoutHost().contentView as DataGroup).dataProvider;
-    }
-    
-    /**
-     *  @private
-     *  @royaleignorecoercion spark.components.DataGroup
-     */
-    public function set dataProvider(value:IList):void
-    {
-        (getLayoutHost().contentView as DataGroup).dataProvider = value;
-    }
-    
-    //----------------------------------
-    //  itemRenderer copied from SkinnableDataContainer
-    //----------------------------------
-    
-    [Inspectable(category="Data")]
-    
-    /**
-     *  @copy spark.components.DataGroup#itemRenderer
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     * 
-     *  @royaleignorecoercion spark.components.DataGroup
-     */
-    public function get itemRenderer():IFactory
-    {
-        return (getLayoutHost().contentView as DataGroup).itemRenderer;
-    }
-    
-    /**
-     *  @private
-     *  @royaleignorecoercion spark.components.DataGroup
-     */
-    public function set itemRenderer(value:IFactory):void
-    {
-        (getLayoutHost().contentView as DataGroup).itemRenderer = value;
-        // the ItemRendererFactory was already put on the DataGroup's strand and
-        // determined which factory to use so we have to set it up later here.
-        var factory:ItemRendererClassFactory = (getLayoutHost().contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
-        factory.createFunction = factory.createFromClass;
-        factory.itemRendererFactory = value;
-    }
 
 
-    //----------------------------------
-    //  itemRendererFunction
-    //----------------------------------
-    
-    [Inspectable(category="Data")]
-    
-    /**
-     *  @copy spark.components.DataGroup#itemRendererFunction
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Flex 4
-     */
-    public function get itemRendererFunction():Function
-    {
 
-	var contentView:IStrand = getLayoutHost().contentView as IStrand;
-        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
-	if (itemRendererFunctionBead)
-        {
-            return itemRendererFunctionBead.itemRendererFunction;
-        }
 
-        return null;
-    }
-    
-    /**
-     *  @private
-     */
-    public function set itemRendererFunction(value:Function):void
-    {
-	var contentView:IStrand = getLayoutHost().contentView as IStrand;
-        var itemRendererFunctionBead:ItemRendererFunctionBead = contentView.getBeadByType(ItemRendererFunctionBead) as ItemRendererFunctionBead;
-        if (!itemRendererFunctionBead)
-        {
-            itemRendererFunctionBead = new ItemRendererFunctionBead();
-            contentView.addBead(itemRendererFunctionBead);
-        }
-        itemRendererFunctionBead.itemRendererFunction = value;
-    }
 
     /**
      *  @private
@@ -1409,20 +1306,20 @@ public class ListBase  extends SkinnableContainer
     
     /**
      *  Given a data item, return the correct text a renderer
-     *  should display while taking the <code>labelField</code> 
-     *  and <code>labelFunction</code> properties into account. 
+     *  should display while taking the <code>labelField</code>
+     *  and <code>labelFunction</code> properties into account.
      *
-     *  @param item A data item 
-     *  
-     *  @return String representing the text to display for the 
-     *  data item in the  renderer. 
-     *  
+     *  @param item A data item
+     *
+     *  @return String representing the text to display for the
+     *  data item in the  renderer.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function itemToLabel(item:Object):String
+    override public function itemToLabel(item:Object):String
     {
         return LabelUtil.itemToLabel(item, labelField, labelFunction);
     }
@@ -2248,6 +2145,33 @@ public class ListBase  extends SkinnableContainer
 	{
 		dispatchEvent(new Event(event.type));
 	}
+
+    /*
+    * IContainer
+    */
+    
+    /**
+     *  @private
+     */
+    public function childrenAdded():void
+    {
+        dispatchEvent(new ValueEvent("childrenAdded"));
+    }
+    
+    /**
+     * @copy org.apache.royale.core.IContentViewHost#strandChildren
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get strandChildren():IParent
+    {
+        return this;
+    }
+
+
 }
 
 }

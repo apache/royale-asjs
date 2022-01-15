@@ -27,6 +27,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable;
+	import org.apache.royale.core.IStrandWithModel;
 	
 	/**
 	 *  The DateChooserMouseController class is responsible for listening to
@@ -63,12 +64,13 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+			* @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
-            model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
+            model = (_strand as IStrandWithModel).model as DateChooserModel;
 			                   
             var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
 			view.previousButton.addEventListener(MouseEvent.CLICK, previousButtonClickHandler);

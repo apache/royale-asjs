@@ -22,6 +22,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.html.List;
+	import org.apache.royale.core.IHasDataField;
 
 	/**
 	 *  The DataGridColumn class is the collection of properties that describe
@@ -35,7 +36,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridColumn extends EventDispatcher implements IDataGridColumn
+	public class DataGridColumn extends EventDispatcher implements IDataGridColumn, IHasDataField
 	{
 		/**
 		 *  constructor.

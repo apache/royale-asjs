@@ -32,6 +32,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.html.beads.EasyDataProviderChangeNotifier;
 	import org.apache.royale.jewel.beads.views.DataGridView;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The DataGridSort bead class is a specialty bead that can be use with a Jewel DataGrid control
@@ -112,7 +113,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		{
 			if(event.type == CollectionEvent.COLLECTION_CHANGED)
 			{
-				var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+				var selectionModel:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 				selectionModel.dispatchEvent(event.cloneEvent() as Event);
 			} else
 			{

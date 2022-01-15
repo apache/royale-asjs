@@ -35,6 +35,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.beads.DataGridView;
 	import org.apache.royale.html.beads.models.DataGridPresentationModel;
 	import org.apache.royale.html.supportClasses.DataGridColumn;
+	import org.apache.royale.core.IStrandWithModelView;
 	
 	/**
 	 * The DataGridLinesBead is an add on bead for the DataGrid. This bead
@@ -113,6 +114,13 @@ package org.apache.royale.html.beads
 		protected var _area:UIBase;
 		
 		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 */
+		private function get typedStrand():IStrandWithModelView
+		{
+			return _strand as IStrandWithModelView
+		}
+		/**
 		 * Invoked when all of the beads have been added to the DataGrid. This
 		 * function seeks the Container that parents the lists that are the DataGrid's
 		 * columns. An overlay GraphicContainer is added to this Container so that the
@@ -122,6 +130,7 @@ package org.apache.royale.html.beads
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
 	     *  @productversion Royale 0.0
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleInitComplete(event:Event):void
 		{
@@ -134,20 +143,20 @@ package org.apache.royale.html.beads
             }
 
 			// Now set up listeners to handle changes in the size of the DataGrid.
-			IEventDispatcher(_strand).addEventListener("sizeChanged", drawLines);
-			IEventDispatcher(_strand).addEventListener("widthChanged", drawLines);
-			IEventDispatcher(_strand).addEventListener("heightChanged", drawLines);
+			host.addEventListener("sizeChanged", drawLines);
+			host.addEventListener("widthChanged", drawLines);
+			host.addEventListener("heightChanged", drawLines);
 			
 			// Also set up a listener on the model to know when the dataProvider has
 			// changed which might affect the number of rows/columns and thus the
 			// grid lines.
-			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
-			IEventDispatcher(model).addEventListener("dataProviderChanged", drawLines);
+			var model:IBeadModel = typedStrand.model as IBeadModel;
+			(model as IEventDispatcher).addEventListener("dataProviderChanged", drawLines);
 		}
 		
         protected function getDataProviderLength():int
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var sharedModel:IDataGridModel = typedStrand.model as IDataGridModel;
             var arrayList:ArrayList = sharedModel.dataProvider as ArrayList;
             return arrayList.length;            
         }
@@ -164,7 +173,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function drawLines(event:Event):void
 		{
-			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+			var sharedModel:IDataGridModel = typedStrand.model as IDataGridModel;
 			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
 			var layoutParent:ILayoutHost = _area.getBeadByType(ILayoutHost) as ILayoutHost;
 			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;

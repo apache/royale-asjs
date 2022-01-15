@@ -30,6 +30,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The ChartItemRendererFactory class implements IDataProviderItemRendererMapper
@@ -88,6 +89,7 @@ package org.apache.royale.charts.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -100,10 +102,19 @@ package org.apache.royale.charts.beads
 		{
 			return _strand;
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.html.IListView
+		 * @royaleignorecoercion Array
+		 * @royaleignorecoercion org.apache.royale.charts.core.IChart
+		 * @royaleignorecoercion org.apache.royale.charts.core.IChartSeries
+		 * @royaleignorecoercion org.apache.royale.charts.core.IChartItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * 
+		 */		
 		private function finishSetup(event:Event):void
 		{
-			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			selectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			
 			var dataGroup:IItemRendererOwnerView = listView.dataGroup;

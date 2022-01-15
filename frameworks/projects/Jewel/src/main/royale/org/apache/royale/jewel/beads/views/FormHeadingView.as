@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.jewel.FormHeading;
     import org.apache.royale.jewel.Label;
+    import org.apache.royale.html.util.getModelByType;
 
     /**
 	 *  The FormHeadingView class creates the visual elements of the org.apache.royale.jewel.FormHeading
@@ -86,7 +87,7 @@ package org.apache.royale.jewel.beads.views
 
             formHeading = value as FormHeading;
 
-            model = _strand.getBeadByType(ITextModel) as ITextModel;
+            model = getModelByType(_strand,ITextModel) as ITextModel;
 			model.addEventListener("textChange", textChangeHandler);
 			model.addEventListener("htmlChange", textChangeHandler);
 

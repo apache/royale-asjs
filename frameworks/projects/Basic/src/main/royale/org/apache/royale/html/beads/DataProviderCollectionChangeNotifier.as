@@ -23,6 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.collections.ArrayList;
     import org.apache.royale.html.supportClasses.DataProviderNotifierBase;
+    import org.apache.royale.html.util.getModelByType;
 
     /**
 	 *  The DataProviderCollectionChangeNotifier notifies listeners when a selection model's
@@ -62,8 +63,8 @@ package org.apache.royale.html.beads
 
 		private function handleCollectionChanged(event:Event):void
 		{
-            var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-            selectionModel.dispatchEvent(new Event("dataProviderChanged"));
+			var selectionModel:ISelectionModel = getModelByType(_strand,ISelectionModel) as ISelectionModel;
+			selectionModel.dispatchEvent(new Event("dataProviderChanged"));
 		}
 	}
 }

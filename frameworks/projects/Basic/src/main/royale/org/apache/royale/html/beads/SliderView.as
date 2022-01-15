@@ -39,6 +39,8 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.Button;
     import org.apache.royale.html.TextButton;
     import org.apache.royale.utils.sendStrandEvent;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.core.IStrandWithModel;
 	
 	/**
 	 *  The SliderView class creates the visual elements of the org.apache.royale.html.Slider 
@@ -76,17 +78,13 @@ package org.apache.royale.html.beads
 		 * 
 		 *  @royaleignorecoercion org.apache.royale.core.IParent
 		 *  @royaleignorecoercion org.apache.royale.core.IRangeModel
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			
-			var layout:IBeadLayout = _strand.getBeadByType(IBeadLayout) as IBeadLayout;
-			if (layout == null) {
-				var klass:Class = ValuesManager.valuesImpl.getValue(_strand, "iBeadLayout");
-				_strand.addBead(new klass() as IBead);
-			}
+			loadBeadFromValuesManager(IBeadLayout,"iBeadLayout",_strand);
 			
 			COMPILE::SWF {
 				var s:UIBase = UIBase(_strand);
@@ -116,7 +114,7 @@ package org.apache.royale.html.beads
 				(host as IParent).addElement(_thumb);
 			}
 			
-			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+			rangeModel = (_strand as IStrandWithModel).model as IRangeModel;
 
 			var rm:IEventDispatcher = rangeModel as IEventDispatcher;
 			

@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IValueToggleButtonModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The RadioButtonView class creates the visual elements of the org.apache.royale.html.RadioButton 
@@ -107,7 +108,7 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_toggleButtonModel = value.getBeadByType(IValueToggleButtonModel) as IValueToggleButtonModel;
+			_toggleButtonModel = getModelByType(value,IValueToggleButtonModel) as IValueToggleButtonModel;
 			_toggleButtonModel.addEventListener("textChange", textChangeHandler);
 			_toggleButtonModel.addEventListener("htmlChange", htmlChangeHandler);
 			_toggleButtonModel.addEventListener("selectedValueChange", selectedValueChangeHandler);

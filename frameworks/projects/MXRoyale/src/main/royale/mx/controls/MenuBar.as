@@ -61,6 +61,7 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.utils.loadBeadFromValuesManager;
+import org.apache.royale.core.IHasLabelField;
 
 use namespace mx_internal;
 
@@ -401,7 +402,7 @@ include "../styles/metadata/TextStyles.as"
  *  @productversion Royale 0.9.3
  *  @royalesuppresspublicvarwarning
  */
-public class MenuBar extends UIComponent implements IFocusManagerComponent, IContainer, ILayoutParent
+public class MenuBar extends UIComponent implements IFocusManagerComponent, IContainer, ILayoutParent, IHasLabelField
 {
     //include "../core/Version.as";
 

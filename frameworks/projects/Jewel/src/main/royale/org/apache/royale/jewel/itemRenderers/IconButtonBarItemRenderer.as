@@ -30,6 +30,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.jewel.IconButton;
 	import org.apache.royale.jewel.IconButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
+	import org.apache.royale.core.IHasLabelField;
 
 	/**
 	 *  The IconButtonBarItemRenderer class extends IconButton and turns it into an itemRenderer
@@ -40,7 +41,7 @@ package org.apache.royale.jewel.itemRenderers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
 	 */
-	public class IconButtonBarItemRenderer extends IconButton implements ITextItemRenderer, IOwnerViewItemRenderer
+	public class IconButtonBarItemRenderer extends IconButton implements ITextItemRenderer, IOwnerViewItemRenderer, IHasLabelField
 	{
 		public function IconButtonBarItemRenderer()
 		{

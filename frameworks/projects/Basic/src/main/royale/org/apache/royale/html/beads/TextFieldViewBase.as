@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.util.getModelByType;
 	
     /**
      *  The TextFieldViewBase class is the base class for
@@ -88,7 +89,7 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			_textModel = value.getBeadByType(ITextModel) as ITextModel;
+			_textModel = getModelByType(value,ITextModel) as ITextModel;
             _textModel.addEventListener("textChange", textChangeHandler);
             _textModel.addEventListener("htmlChange", htmlChangeHandler);
             IEventDispatcher(_strand).addEventListener("widthChanged", widthChangeHandler);

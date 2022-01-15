@@ -299,7 +299,7 @@
                 <exclude name="closure/goog/asserts/asserts.js"/>
                 <exclude name="closure/goog/base.js"/>
                 <exclude name="closure/goog/deps.js"/>
-                <exclude name="closure/goog/debug/debug.js"/>
+                <exclude name="closure/goog/debug/**"/>
                 <exclude name="closure/goog/debug/entrypointregistry.js"/>
                 <exclude name="closure/goog/debug/error.js"/>
                 <exclude name="closure/goog/debug/errorcontext.js"/>
@@ -326,6 +326,46 @@
                 <exclude name="closure/goog/useragent/useragent.js"/>
                 <!-- needed for node.js support -->
                 <exclude name="closure/goog/bootstrap/nodejs.js"/>
+                <!-- need dependencies for sanitizing html -->
+                <exclude name="closure/goog/html/**"/>
+                <exclude name="closure/goog/dom/**"/>
+                <exclude name="closure/goog/functions/**"/>
+                <exclude name="closure/goog/math/**"/>
+                <exclude name="closure/goog/useragent/**"/>
+                <exclude name="closure/goog/log/**"/>
+                <exclude name="closure/goog/i18n/bidi.js"/>
+                <exclude name="closure/goog/string/typedstring.js"/>
+                <exclude name="closure/goog/string/const.js"/>
+                <exclude name="closure/goog/string/internal.js"/>
+                <!-- <exclude name="closure/goog/html/legacyconversions.js"/>
+                <exclude name="closure/goog/html/safehtml.js"/>
+                <exclude name="closure/goog/html/safehtmlformatter.js"/>
+                <exclude name="closure/goog/html/safescript.js"/>
+                <exclude name="closure/goog/html/safestyle.js"/>
+                <exclude name="closure/goog/html/safestylesheet.js"/>
+                <exclude name="closure/goog/html/safeurl.js"/>
+                <exclude name="closure/goog/html/textextractor.js"/>
+                <exclude name="closure/goog/html/trustedresourceurl.js"/>
+                <exclude name="closure/goog/html/trustedtypes.js"/>
+                <exclude name="closure/goog/html/uncheckedconversions.js"/>
+                <exclude name="closure/goog/html/utils.js"/>
+                <exclude name="closure/goog/html/sanitizer/attributeallowlists.js"/>
+                <exclude name="closure/goog/html/sanitizer/csspropertysanitizer.js"/>
+                <exclude name="closure/goog/html/sanitizer/csssanitizer.js"/>
+                <exclude name="closure/goog/html/sanitizer/elementweakmap.js"/>
+                <exclude name="closure/goog/html/sanitizer/htmlsanitizer.js"/>
+                <exclude name="closure/goog/html/sanitizer/noclobber.js"/>
+                <exclude name="closure/goog/html/sanitizer/noclobber.js"/>
+                <exclude name="closure/goog/html/sanitizer/noclobber.js"/> -->
+                <exclude name="closure/goog/fs/url.js"/>
+                <!-- goog.provide('goog.html.SafeUrl');
+
+goog.require('goog.html.TrustedResourceUrl');
+goog.require('goog.i18n.bidi.Dir');
+goog.require('goog.i18n.bidi.DirectionalString');
+goog.require('goog.string.Const');
+goog.require('goog.string.TypedString');
+goog.require('goog.string.internal'); -->
             </fileset>
         </delete>
     </target>

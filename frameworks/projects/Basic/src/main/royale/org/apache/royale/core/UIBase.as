@@ -1130,32 +1130,6 @@ package org.apache.royale.core
 			return (this as IChild).parent as EventDispatcher;
 		}
 		
-        
-        /**
-         *  @copy org.apache.royale.core.IStrand#addBead()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.IBeadModel
-         *  @royaleignorecoercion org.apache.royale.core.IBeadView
-         */        
-		override public function addBead(bead:IBead):void
-		{
-            var isView:Boolean;
-			
-			super.addBead(bead);
-			if (this._model !== bead && bead is IBeadView) {
-				_view = bead as IBeadView;
-				isView = true
-			}
-			
-			if (isView) {
-				sendEvent(this,"viewChanged");
-			}
-		}
-		
         /**
          *  @copy org.apache.royale.core.IParent#addElement()
          * 
@@ -1412,12 +1386,37 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
+         *  @royaleignorecoercion org.apache.royale.core.IBeadView
+         * 
          */
         protected function loadBeads():void
         {
-			loadBeadFromValuesManager(IBeadModel, "iBeadModel", this);
-            loadBeadFromValuesManager(IBeadView, "iBeadView", this);
-			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
+            if(requiresView())
+            {
+                _view = loadBeadFromValuesManager(IBeadView, "iBeadView", this) as IBeadView;
+                sendEvent(this,"viewChanged");
+            }
+            
+            if(requiresController())
+                loadBeadFromValuesManager(IBeadController, "iBeadController", this);
+            
+        }
+        /**
+         * Subclasses can override this method to declare whether they require a view.
+         * Components which do not require a view can avoid searching for view beads
+         */
+        protected function requiresView():Boolean
+        {
+            return true;
+        }
+
+        /**
+         * Subclasses can override this method to declare whether they require a controller.
+         * Components which do not require a controller can avoid searching for controller beads
+         */
+        protected function requiresController():Boolean
+        {
+            return true;
         }
 
         private var _measurementBead:IMeasurementBead;

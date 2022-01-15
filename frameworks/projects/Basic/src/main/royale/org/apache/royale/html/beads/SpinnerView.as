@@ -34,10 +34,12 @@ COMPILE::SWF {
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Button;
 
-COMPILE::JS {
-	import org.apache.royale.html.beads.controllers.SpinnerMouseController;
-    import org.apache.royale.html.supportClasses.SpinnerButton;
-}
+	COMPILE::JS {
+		import org.apache.royale.html.beads.controllers.SpinnerMouseController;
+		import org.apache.royale.html.supportClasses.SpinnerButton;
+	}
+    import org.apache.royale.html.util.getModelByType;
+    import org.apache.royale.core.IStrandWithModel;
 
 	/**
 	 *  The SpinnerView class creates the visual elements of the org.apache.royale.html.Spinner
@@ -104,7 +106,7 @@ COMPILE::JS {
 
 				UIBase(_strand).$sprite_addChild(_decrement);
 				UIBase(_strand).$sprite_addChild(_increment);
-				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
+				rangeModel = (_strand as IStrandWithModel).model as IRangeModel;
 			}
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);

@@ -50,6 +50,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -184,7 +185,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function handleInitComplete(event:Event):void
 		{
-			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			model = getModelByType(_strand,IDateChooserModel) as IDateChooserModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
 			var mask:DateFieldMaskedTextInput = new DateFieldMaskedTextInput();
 			_textInput.addBead(mask);

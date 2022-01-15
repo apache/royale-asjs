@@ -54,6 +54,10 @@ import mx.utils.RoyaleUtil;
 
 import org.apache.royale.core.IChild;
 
+import mx.events.ChildExistenceChangedEvent;
+import org.apache.royale.core.IUIBase;
+import mx.utils.RoyaleUtil;
+
 use namespace mx_internal;
 
 //--------------------------------------
@@ -965,6 +969,7 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
         super.updateDisplayList(unscaledWidth, unscaledHeight);
 
         var nChildren:int = numChildren;
+        if (!nChildren) return;
         var w:Number = contentWidth;
         var h:Number = contentHeight;
         var left:Number = contentX;
@@ -1274,16 +1279,14 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
         if (!selectedChild)
             return;
 
-        /*
         // Performance optimization: don't call createComponents if we know
         // that createComponents has already been called.
-        if (selectedChild && selectedChild.deferredContentCreated == false)
+        if (selectedChild && !selectedChild.deferredContentCreated)
         {
             if (initialized)  // Only listen if the ViewStack has already been initialized.
                 selectedChild.addEventListener(FlexEvent.CREATION_COMPLETE,childCreationCompleteHandler);
             selectedChild.createDeferredContent();
         }
-        */
 
         // Do the initial measurement/layout pass for the
         // newly-instantiated descendants.

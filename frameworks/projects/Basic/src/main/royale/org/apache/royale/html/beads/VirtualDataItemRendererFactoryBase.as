@@ -36,6 +36,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendStrandEvent;
 	import org.apache.royale.core.DispatcherBead;
+	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.core.IHasDataField;
+	import org.apache.royale.html.util.getModelByType;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
@@ -51,7 +54,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class VirtualDataItemRendererFactoryBase extends DispatcherBead implements IDataProviderVirtualItemRendererMapper
+	public class VirtualDataItemRendererFactoryBase extends DispatcherBead implements IDataProviderVirtualItemRendererMapper, IHasDataField, IHasLabelField
 	{
         /**
          *  Constructor.
@@ -69,8 +72,32 @@ package org.apache.royale.html.beads
 		protected var dataProviderModel:IDataProviderModel;
 		protected var dataFieldProvider:DataFieldProviderBead;
 		
-		protected var labelField:String;
-        protected var dataField:String;
+		private var _labelField:String;
+        /**
+         * The label field
+         */
+		public function get labelField():String
+		{
+			return _labelField;
+		}
+
+		public function set labelField(value:String):void
+		{
+			_labelField = value;
+		}
+        private var _dataField:String;
+        /**
+         * The data field
+         */
+        public function get dataField():String
+        {
+        	return _dataField;
+        }
+
+        public function set dataField(value:String):void
+        {
+        	_dataField = value;
+        }
 
         protected var rendererMap:Object;
         
@@ -93,7 +120,7 @@ package org.apache.royale.html.beads
 		 */
 		private function finishSetup(event:Event):void
 		{			
-			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			labelField = dataProviderModel.labelField;
 

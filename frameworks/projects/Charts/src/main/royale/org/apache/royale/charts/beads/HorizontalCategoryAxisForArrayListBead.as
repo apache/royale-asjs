@@ -27,6 +27,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 *  The HorizontalCategoryAxisForArrayListBead displays a horizontal axis with
@@ -51,7 +52,7 @@ package org.apache.royale.charts.beads
 		 */
 		override protected function handleItemsCreated(event:Event):void
 		{
-			var model:ArrayListSelectionModel = strand.getBeadByType(ISelectionModel) as ArrayListSelectionModel;
+			var model:ArrayListSelectionModel = getModelByType(strand,ISelectionModel) as ArrayListSelectionModel;
 			var items:ArrayList;
 			if (model.dataProvider is ArrayList) items = model.dataProvider as ArrayList;
 			else return;

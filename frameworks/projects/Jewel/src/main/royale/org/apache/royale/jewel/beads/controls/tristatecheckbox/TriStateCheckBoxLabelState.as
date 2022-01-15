@@ -20,12 +20,11 @@ package org.apache.royale.jewel.beads.controls.tristatecheckbox
 {
 	COMPILE::JS
 	{
-	import org.apache.royale.jewel.TriStateCheckBox;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.TriStateCheckBox;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.TriStateCheckBox;
 	}
 
 	/**

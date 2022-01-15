@@ -98,7 +98,7 @@ package org.apache.royale.core
                 IEventDispatcher(_strand).addEventListener("heightChanged",handleSizeChange);                    
             }
 			
-            _model = value.getBeadByType(IImageModel) as IImageModel;
+            _model = (value as IStrandWithModel).model as IImageModel;
             _model.addEventListener("urlChanged",handleUrlChange);
 			handleUrlChange(null);
 		}

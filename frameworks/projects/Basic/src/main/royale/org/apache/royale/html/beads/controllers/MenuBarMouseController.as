@@ -35,6 +35,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.core.IStrandWithModel;
 
 	/**
 	 * The MenuBarMouseController handles mouse events for the MenuBar. While the menu bar is
@@ -105,6 +106,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.IFactory
 		 *  @royaleignorecoercion org.apache.royale.core.IMenuBarModel
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
      * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
@@ -118,7 +120,7 @@ package org.apache.royale.html.beads.controllers
 			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", _strand) as IFactory;
 			var menu:IMenu = menuFactory.newInstance() as IMenu;
 			
-			var model:IMenuBarModel = _strand.getBeadByType(IBeadModel) as IMenuBarModel;
+			var model:IMenuBarModel = (_strand as IStrandWithModel).model as IMenuBarModel;
 			
 			menu.dataProvider = getMenuDataProvider(event.data, model.submenuField);
 			menu.labelField = model.labelField;

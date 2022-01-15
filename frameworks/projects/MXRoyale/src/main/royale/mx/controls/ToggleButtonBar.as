@@ -44,6 +44,7 @@ import org.apache.royale.events.Event;
 import org.apache.royale.html.beads.models.ButtonBarModel;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.IHasLabelField;
 
 
 //--------------------------------------
@@ -202,7 +203,7 @@ import org.apache.royale.core.ILayoutHost;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayoutView
+public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayoutView, IHasLabelField
 {
   //  include "../core/Version.as";
 	

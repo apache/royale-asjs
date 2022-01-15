@@ -1,8 +1,13 @@
 {
     "config": "royale",
+    "type": "lib",
     "compilerOptions": {
+        
         "debug": true,
-        "js-output-type": "royale",
+        "targets":[
+            "SWF",
+            "JSRoyale"
+        ],
         "define": [
             {
                 "name": "COMPILE::SWF",

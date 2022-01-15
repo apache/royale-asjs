@@ -233,6 +233,7 @@
    <!--<component id="CurrencyFormatter" class="mx.formatters.CurrencyFormatter"/>-->
    <!--<component id="ZipCodeValidator" class="mx.validators.ZipCodeValidator"/>-->
    <component id="PrintDataGrid" class="mx.printing.PrintDataGrid"/>
+    <component id="HTML" class="mx.controls.HTML"/>
    
 
 </componentPackage>

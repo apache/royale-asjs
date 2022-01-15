@@ -36,6 +36,7 @@ package org.apache.royale.express.beads.layouts
 	import org.apache.royale.html.beads.IDrawingLayerBead;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.supportClasses.ScrollingViewport;
+	import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 * This DataGridLayout class sizes and positions all of the elements of the DataGrid
@@ -170,7 +171,7 @@ package org.apache.royale.express.beads.layouts
 				xpos += columnList.width;
 			}
 			
-			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var bbmodel:ButtonBarModel = getModelByType(header,ButtonBarModel) as ButtonBarModel;
 			bbmodel.buttonWidths = columnWidths;
 			
 			header.x = borderMetrics.left;

@@ -62,7 +62,7 @@ package org.apache.royale.mobile.beads
 
 		private function monthValue(model:RangeModelExtended, index:Number):String
 		{
-			var dayModel:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			var dayModel:IDateChooserModel = host.model as IDateChooserModel;
 			return String(dayModel.monthNames[index]);
 		}
 
@@ -75,7 +75,7 @@ package org.apache.royale.mobile.beads
 		{
 			return String(index);
 		}
-		
+		private var host:UIBase;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -89,8 +89,8 @@ package org.apache.royale.mobile.beads
 			super.strand = value;
 			_strand = value;
 
-			var host:UIBase = _strand as UIBase;
-			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			host = _strand as UIBase;
+			var model:IDateChooserModel = host.model as IDateChooserModel;
 			var today:Date = model.selectedDate;
 
 			var third:int = int(host.width/3.0)
@@ -161,7 +161,7 @@ package org.apache.royale.mobile.beads
 
 		private function handleStepperChange(event:Event):void
 		{
-			var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+			var model:IDateChooserModel = host.model as IDateChooserModel;
 
 			var newMonth:Number = _monthStepper.value;
 			var newDay:Number = _dayStepper.value;

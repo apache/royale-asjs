@@ -1383,6 +1383,10 @@ public class FormItem extends Container
      */
     internal function getPreferredLabelWidth():Number
     {
+        if (!labelObj)
+        {
+            return 0;
+        }
         if (!label || label == "")
             return 0;
 

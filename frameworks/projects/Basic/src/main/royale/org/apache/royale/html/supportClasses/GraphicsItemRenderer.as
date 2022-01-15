@@ -26,6 +26,8 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.svg.CompoundGraphic;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.utils.MXMLDataInterpreter;
+    import org.apache.royale.core.IHasDataField;
+    import org.apache.royale.core.IHasLabelField;
 	
 	/**
 	 *  The GraphicsItemRenderer provides a base class for itemRenderers that use graphics rather than
@@ -36,7 +38,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class GraphicsItemRenderer extends CompoundGraphic implements IItemRenderer
+	public class GraphicsItemRenderer extends CompoundGraphic implements IItemRenderer, IHasDataField, IHasLabelField
 	{
 		/**
 		 *  Constructor.

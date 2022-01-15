@@ -22,6 +22,7 @@ package flexUnitTests.xml
     
     import flexUnitTests.xml.support.QNameTest;    
     import org.apache.royale.test.asserts.*;
+    import org.apache.royale.test.asserts.assertStrictlyEquals;
     
    // import testshim.RoyaleUnitTestRunner;
     
@@ -297,7 +298,37 @@ package flexUnitTests.xml
             assertTrue(test6 == test1, 'unexpected equality result');
             
         }
-        
+        [Test]
+        public function testXMLWithNamespace():void{
+            var xml:XML = 
+                    <soap:Envelope xmlns:soap="http://www.w3.org/2001/12/soap-envelope"
+                        soap:encodingStyle="http://www.w3.org/2001/12/soap-encoding">
+
+                                    <soap:Body xmlns:wx = "http://example.com/weather">
+                            <wx:forecast>
+                                <wx:city>Quito</wx:city>
+                            </wx:forecast>
+                        </soap:Body>
+                    </soap:Envelope>;
+                    
+            assertEquals(xml.name().localName,"Envelope", "unexpected localName result");
+            assertEquals(xml.name().uri,"http://www.w3.org/2001/12/soap-envelope","unexpected uri result");
+        }
+
+        [Test]
+        public function testNameWithTextAndAttribute():void{
+            var xml:XML = 
+                    <foo x="15" y="22">
+                        text
+                    </foo>;
+                    
+            assertEquals(xml.name().localName,"foo");
+            assertEquals(xml.name().uri, "","unexpected uri result");
+            assertEquals(xml.children()[0],"text","unexpected text result");
+            assertStrictlyEquals(xml.children()[0].name(),null,"unexpected name to be null and not undefined");
+            assertEquals(xml.attributes()[0],15,"unexpected attribute result");
+            assertEquals(xml.attributes()[0].name(),"x","unexpected name result");
+        }        
        
     }
 }

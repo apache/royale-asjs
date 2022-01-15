@@ -25,6 +25,7 @@ import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.utils.LocaleUtils;
 import org.apache.royale.reflection.getDefinitionByName;
+import org.apache.royale.reflection.hasDefinitionWithName;
 /*
 import flash.events.FocusEvent;
 import flash.events.TimerEvent;
@@ -148,13 +149,21 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
 		// Falcon injects this property and it is always false
 		// We ignore missing bundles because Falcon doesn't
 		// generate fallback bundles like MXMLC;
-		if (!inFrame1)
-			ignoreMissingBundles = info && info.hasOwnProperty("isMXMLC");
-		
+        COMPILE::SWF{
+            if (!inFrame1)
+                ignoreMissingBundles = info && info.hasOwnProperty("isMXMLC"); //@todo check this is actually happening in swf builds
+        }
+
+        //in JSRoyale, was not currently seeing the 'isMXMLC property, even though it is 'Falcon' also:
+        COMPILE::JS {
+            if (!inFrame1)
+                ignoreMissingBundles = true;
+        }
+
         if (info)
             processInfo(info, false);
 
-        ignoreMissingBundles = info && info.hasOwnProperty("isMXMLC");
+        ignoreMissingBundles = true /* because Royale is 'always' falcon-like * /* was : info && info.hasOwnProperty("isMXMLC")*/;
         
         /*
         if (SystemManagerGlobals.topLevelSystemManagers.length)
@@ -382,16 +391,20 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
             resourceBundleClassName = packageName + "." + resourceBundleClassName;
                 
         // Find the bundle class by its name.
-        // We do a hasDefinition() check before calling getDefinition()
+        // We do a hasDefinitionWithName() check before calling getDefinition()
         // because getDefinition() will throw an RTE
         // if the class doesn't exist.
         var bundleClass:Class = null;
-        bundleClass = getDefinitionByName(resourceBundleClassName) as Class;
+        if (hasDefinitionWithName(resourceBundleClassName)) {
+            bundleClass = getDefinitionByName(resourceBundleClassName) as Class;
+        }
 
         if (!bundleClass)
         {
             resourceBundleClassName = bundleName;
-            bundleClass = getDefinitionByName(resourceBundleClassName) as Class;
+            if (hasDefinitionWithName(resourceBundleClassName)) {
+                bundleClass = getDefinitionByName(resourceBundleClassName) as Class;
+            }
         }
         
         // In case we linked against a Flex 2 SWC, look for the old
@@ -399,7 +412,9 @@ public class ResourceManagerImpl extends EventDispatcher implements IResourceMan
         if (!bundleClass)
         {
             resourceBundleClassName = bundleName + "_properties";
-            bundleClass = getDefinitionByName(resourceBundleClassName) as Class;
+            if (hasDefinitionWithName(resourceBundleClassName)) {
+                bundleClass = getDefinitionByName(resourceBundleClassName) as Class;
+            }
         }
         
         if (!bundleClass)

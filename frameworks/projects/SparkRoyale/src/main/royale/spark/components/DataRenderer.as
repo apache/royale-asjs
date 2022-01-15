@@ -27,6 +27,7 @@ import org.apache.royale.core.IItemRendererOwnerView;
 import org.apache.royale.core.ISelectableItemRenderer;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
+import org.apache.royale.core.IHasLabelField;
 
 //import org.apache.royale.events.EventDispatcher;
 /**
@@ -65,7 +66,7 @@ import org.apache.royale.events.Event;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class DataRenderer extends Group implements IDataRenderer
+public class DataRenderer extends Group implements IDataRenderer, IHasLabelField
 
 {
 

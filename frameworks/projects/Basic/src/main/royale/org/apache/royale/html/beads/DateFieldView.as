@@ -45,6 +45,8 @@ package org.apache.royale.html.beads
 		import org.apache.royale.html.beads.TextInputView;
 		import flash.text.TextFieldType;
 	}
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -146,12 +148,15 @@ package org.apache.royale.html.beads
 
 			getHost().addEventListener("initComplete",handleInitComplete);
 		}
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IBeadModel
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		private function handleInitComplete(event:Event):void
 		{
 			_textInput.height = _button.height;
 
-			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+			var model:IBeadModel = (_strand as IStrandWithModel).model as IBeadModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
 
@@ -206,9 +211,9 @@ package org.apache.royale.html.beads
                         _popUp = ValuesManager.valuesImpl.newInstance(_strand, "iPopUp") as IDateChooser;
                     }
 
-					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+					var model:IDateChooserModel = getModelByType(_strand,IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
-                    var popUpModel:IDateChooserModelWithChangeCheck = _popUp.getBeadByType(IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
+                    var popUpModel:IDateChooserModelWithChangeCheck = getModelByType(_popUp,IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
                     popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());

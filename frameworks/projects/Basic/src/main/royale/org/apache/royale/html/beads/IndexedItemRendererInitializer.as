@@ -26,6 +26,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.html.util.getModelByType;
 
 	/**
 	 *  The IndexedItemRendererInitializer class initializes item renderers
@@ -36,7 +38,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class IndexedItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class IndexedItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer, IHasLabelField
 	{
 		/**
 		 *  constructor.
@@ -51,7 +53,19 @@ package org.apache.royale.html.beads
 		}
 		
 		protected var dataProviderModel:IDataProviderModel;
-		protected var labelField:String;
+		private var _labelField:String;
+		/**
+		 * Label field
+		 */
+		public function get labelField():String
+		{
+			return _labelField;
+		}
+
+		public function set labelField(value:String):void
+		{
+			_labelField = value;
+		}
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -65,7 +79,7 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+      dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 			labelField = dataProviderModel.labelField;			
 		}
 		

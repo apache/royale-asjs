@@ -201,8 +201,8 @@ package org.apache.royale.collections
 		{
 			if (seeking == node) return depth;
 			
-			if (hdata.hasChildren(node)) {
-				var children:Array = hdata.getChildren(node) as Array;
+			var children:Array = hdata.getChildren(node) as Array;
+			if (children) {
 				var len:int = children.length;
 				for (var i:int=0; i < len; i++) {
 					var newDepth:int = godeep(seeking, children[i], depth+1)

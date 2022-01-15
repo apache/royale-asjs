@@ -33,6 +33,8 @@ package org.apache.royale.mdl.beads
 
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
     import org.apache.royale.mdl.beads.models.ITabModel;
+    import org.apache.royale.core.IHasLabelField;
+    import org.apache.royale.html.util.getModelByType;
     
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
@@ -43,7 +45,7 @@ package org.apache.royale.mdl.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TabsItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class TabsItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer, IHasLabelField
 	{
 		/**
 		 *  constructor.
@@ -59,7 +61,12 @@ package org.apache.royale.mdl.beads
 		
         protected var presentationModel:IListPresentationModel;
         protected var dataProviderModel:IDataProviderModel;
-        protected var labelField:String;
+        protected var _labelField:String;
+
+        public function get labelField():String
+        {
+        	return _labelField;
+        }
         protected var tabsIdField:String;
                 
 		/**
@@ -76,9 +83,9 @@ package org.apache.royale.mdl.beads
 		{	
 			_strand = value;
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;            
-            dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-            labelField = dataProviderModel.labelField;            
-            var model:ITabModel = _strand.getBeadByType(ITabModel) as ITabModel;
+            dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
+            _labelField = dataProviderModel.labelField;            
+            var model:ITabModel = getModelByType(_strand,ITabModel) as ITabModel;
             tabsIdField = model.tabIdField;
 		}
 		

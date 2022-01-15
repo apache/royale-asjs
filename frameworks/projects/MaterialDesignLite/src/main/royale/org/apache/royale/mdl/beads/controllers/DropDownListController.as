@@ -73,7 +73,7 @@ package org.apache.royale.mdl.beads.controllers
 
             var dropDownList:DropDownList = (value as DropDownList);
 
-            model = _strand.getBeadByType(IDropDownListModel) as DropDownListModel;
+            model = dropDownList.model as DropDownListModel;
 
 			COMPILE::JS
             {

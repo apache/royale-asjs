@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.utils
 {
-
+import mx.core.IUIComponent;
+import mx.core.IChildList;
 
 COMPILE::SWF{
 
@@ -33,6 +34,8 @@ COMPILE::SWF{
  * @playerversion Flash 10.2
  * @playerversion AIR 2.6
  * @productversion Royale 0.9.9
+ *
+ * @royalesuppressexport
  */
 public class RoyaleUtil
 {	
@@ -71,6 +74,18 @@ public class RoyaleUtil
     }
 
     private static var deferreds:Array = [];
+
+
+    COMPILE::JS
+    public static function childByName(parent:IChildList, name:String):IUIComponent{
+        var i:uint = 0;
+        var l:uint = parent.numChildren;
+        for (;i<l;i++) {
+            var child:IUIComponent = parent.getChildAt(i);
+            if (child && child.name == name) return child;
+        }
+        return null;
+    }
 
 }
 

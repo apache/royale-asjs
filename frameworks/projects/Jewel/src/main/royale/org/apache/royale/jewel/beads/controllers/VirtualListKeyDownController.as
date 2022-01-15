@@ -30,6 +30,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
 	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.events.utils.WhitespaceKeys;
+	import org.apache.royale.html.util.getModelByType;
 
     /**
      *  The Jewel ListSingleSelectionMouseController class is a controller for
@@ -98,7 +99,7 @@ package org.apache.royale.jewel.beads.controllers
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+			listModel = getModelByType(value,ISelectionModel) as ISelectionModel;
 			listView = value.getBeadByType(IListView) as IListView;
 
             listenOnStrand(KeyboardEvent.KEY_DOWN, keyDownEventHandler);

@@ -37,6 +37,7 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.html.supportClasses.IDataGridColumn;
     import org.apache.royale.core.Bead;
+    import org.apache.royale.html.util.getModelByType;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
@@ -106,7 +107,7 @@ package org.apache.royale.html.beads.layouts
 			// fancier DG's will filter invisible columns and only put visible columns
 			// in the bbmodel, so do all layout based on the bbmodel, not the set
 			// of columns that may contain invisible columns
-			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var bbmodel:ButtonBarModel = getModelByType(header,ButtonBarModel) as ButtonBarModel;
 			return bbmodel.dataProvider as Array;
 		}
 
@@ -120,7 +121,7 @@ package org.apache.royale.html.beads.layouts
 			// fancier DG's will filter invisible columns and only put visible columns
 			// in the bbmodel, so do all layout based on the bbmodel, not the set
 			// of columns that may contain invisible columns
-			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var bbmodel:ButtonBarModel = getModelByType(header,ButtonBarModel) as ButtonBarModel;
 			bbmodel.buttonWidths = columnWidths;
 		}
         

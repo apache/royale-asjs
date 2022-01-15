@@ -29,6 +29,7 @@ package org.apache.royale.html.supportClasses
 		import org.apache.royale.core.IBeadController;
 	}
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IHasDataField;
 
 	/**
 	 *  The DataItemRenderer class is the base class for most itemRenderers. This class
@@ -40,7 +41,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataItemRenderer extends UIItemRendererBase
+	public class DataItemRenderer extends UIItemRendererBase implements IHasDataField
 	{
 		/**
 		 *  constructor.

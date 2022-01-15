@@ -36,6 +36,9 @@ package org.apache.royale.externsjs.inspiretree.beads
     import org.apache.royale.externsjs.inspiretree.IInspireTree;
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.externsjs.inspiretree.vos.ItemTreeNode;
+    import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.core.IStrandWithModel;
 	}
 	/**
 	 * Deprecate - Use the combined bead "InspireTreeIconBead" instead.
@@ -83,10 +86,12 @@ package org.apache.royale.externsjs.inspiretree.beads
             _strand = value;			
 			(_strand as IEventDispatcher).addEventListener("onBeforeCreation", init);
 		} 
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		private function init(event:Event):void
 		{
-			if( (_strand.getBeadByType(IBeadModel) as InspireTreeModel).checkboxMode == false && _revertIcon)
+			if( ((_strand as IStrandWithModel).model as InspireTreeModel).checkboxMode == false && _revertIcon)
 				revertIcon = false;
 
 			if(revertIcon)
@@ -100,11 +105,14 @@ package org.apache.royale.externsjs.inspiretree.beads
 
 		private var _revertIcon:Boolean = false;
 		public function get revertIcon():Boolean{ return _revertIcon; }
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		public function set revertIcon(value:Boolean):void
 		{ 
 			if(_revertIcon != value)
 			{
-				if(value && (_strand.getBeadByType(IBeadModel) as InspireTreeModel).checkboxMode == false)
+				if(value && ((_strand as IStrandWithModel).model as InspireTreeModel).checkboxMode == false)
 					return;
 				_revertIcon = value; 
 				updateHost();
@@ -136,10 +144,13 @@ package org.apache.royale.externsjs.inspiretree.beads
 			}
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 */
 		public function fn_RevertSpecificNode(pNodeFilter:String, byID:Boolean):String
 		{ 	
 			var idNodeParent:String;
-			var arOrg:Array = (_strand.getBeadByType(IBeadModel) as InspireTreeModel).dataProviderTree;
+			var arOrg:Array = ((_strand as IStrandWithModel).model as InspireTreeModel).dataProviderTree;
 			var lenar:int = arOrg.length;
 
 			for (var idxnode:int=0; idxnode < lenar; idxnode++)

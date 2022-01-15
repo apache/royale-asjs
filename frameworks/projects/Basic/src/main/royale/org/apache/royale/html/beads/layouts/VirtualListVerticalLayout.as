@@ -42,6 +42,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.util.getModelByType;
 
         
 	/**
@@ -76,7 +77,7 @@ package org.apache.royale.html.beads.layouts
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
-            dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
+            dataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
             COMPILE::JS

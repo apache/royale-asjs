@@ -45,6 +45,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.html.util.getModelByType;
 
 
 	/**
@@ -279,7 +280,7 @@ package org.apache.royale.html.beads
 				trace("-- dropping after the last item");
 			}
 
-			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			var dataProviderModel:IDataProviderModel = getModelByType(_strand,IDataProviderModel) as IDataProviderModel;
 
 			var dragSource:Object;
 

@@ -41,6 +41,7 @@ package mx.controls.beads
 	import org.apache.royale.utils.CSSUtils;
     import org.apache.royale.utils.SolidBorderUtil;
     import org.apache.royale.utils.StringTrimmer;
+    import org.apache.royale.core.IStrandWithModel;
 
     /**
      *  The CSSTextButtonView class is the default view for
@@ -102,7 +103,7 @@ package mx.controls.beads
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			textModel = value.getBeadByType(ImageAndTextModel) as ImageAndTextModel;
+			textModel = (value as IStrandWithModel).model as ImageAndTextModel;
 			textModel.addEventListener("textChange", textChangeHandler);
 			textModel.addEventListener("htmlChange", htmlChangeHandler);
             textModel.addEventListener("imageChange", imageChangeHandler);

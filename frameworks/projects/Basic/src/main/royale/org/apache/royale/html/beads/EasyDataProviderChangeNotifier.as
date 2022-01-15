@@ -21,8 +21,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IStrandWithModel;
 
     /**
 	 *  The EasyDataProviderChangeNotifier is similar to DataProviderChangeNotifier
@@ -95,12 +95,12 @@ package org.apache.royale.html.beads
 		}
 		
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		private function get selectionModel():ISelectionModel
 		{
-			return (_strand as UIBase).model as ISelectionModel;
+			return (_strand as IStrandWithModel).model as ISelectionModel;
 		}
 		
 	}
