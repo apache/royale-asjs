@@ -27,18 +27,15 @@ package org.apache.royale.utils
      */
     public function callLater(fn:Function, args:Array = null, thisArg:Object = null):void
     {
-        var calls:Array = [ {thisArg: thisArg, fn: fn, args: args } ];
-        setTimeout(makeCalls, 0);
-        function makeCalls():void
+        COMPILE::SWF{
+            setTimeout(callback, 0);
+        }
+        COMPILE::JS{
+            requestAnimationFrame(callback);
+        }
+        function callback():void
         {
-            var list:Array = calls;
-            var n:int = list.length;
-            for (var i:int = 0; i < n; i++)
-            {
-                var call:Object = list.shift();
-                var fn:Function = call.fn;
-                fn.apply(call.thisArg, call.args);
-            }
+            fn.apply(thisArg,args);
         }
     }
 }
