@@ -18,11 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.markdown
 {
-	public class Paragraph implements IRule
+	public class Paragraph extends Rule
 	{
 		public function Paragraph()
 		{
 			
 		}
+
+		/**
+		 * parses the rule
+		 * @langversion 3.0
+		 * @productversion Royale 0.9.9		 * 
+		 */
+		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		{
+			throw new Error("Method not implemented.");
+		}
+		
 	}
 }

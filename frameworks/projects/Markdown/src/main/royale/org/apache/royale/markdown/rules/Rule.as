@@ -18,22 +18,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.markdown
 {
-	public class Lheading extends Rule
+	abstract public class Rule implements IRule
 	{
-		public function Lheading()
+		public function Rule()
 		{
 			
 		}
-
 		/**
 		 * parses the rule
 		 * @langversion 3.0
 		 * @productversion Royale 0.9.9		 * 
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		abstract public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean;
+
+		private var _enabled:Boolean;
+
+		/**
+		 * whether the rule is enabled
+		 * @langversion 3.0
+		 * @productversion Royale 0.9.9		 * 
+		 */
+		public function get enabled():Boolean
 		{
-			throw new Error("Method not implemented.");
+			return _enabled;
 		}
-				
+
+		public function set enabled(value:Boolean):void
+		{
+			_enabled = value;
+		}
+
 	}
 }

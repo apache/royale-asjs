@@ -20,6 +20,10 @@ package org.apache.royale.markdown
 {
 	public interface IRule
 	{
+		function parse(state:IState,silent:Boolean=false,startLine:int=-1,endLine:int=-1):Boolean;
+
+		function get enabled():Boolean;
+		function set enabled(value:Boolean):void;
 		
 	}
 }

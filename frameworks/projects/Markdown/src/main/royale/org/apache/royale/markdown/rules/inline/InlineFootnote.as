@@ -18,11 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.markdown
 {
-	public class InlineFootnote implements IRule
+	public class InlineFootnote extends Rule
 	{
 		public function InlineFootnote()
 		{
 			
 		}
+
+		/**
+		 * parses the rule
+		 * @langversion 3.0
+		 * @productversion Royale 0.9.9		 * 
+		 */
+		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		{
+			throw new Error("Method not implemented.");
+		}
+
 	}
 }

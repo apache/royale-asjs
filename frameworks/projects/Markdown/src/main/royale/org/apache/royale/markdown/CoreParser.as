@@ -22,8 +22,10 @@ package org.apache.royale.markdown
 	{
 		public function CoreParser()
 		{
-			
+			// rulesManager = new RulesManager();
 		}
+
+		// private var rulesManager:RulesManager;
 		public function process(state:CoreState):void{
 			
 		}
