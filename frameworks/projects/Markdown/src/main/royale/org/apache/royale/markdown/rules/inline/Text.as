@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Text extends Rule
 	{
-		public function Text()
+		private function Text()
 		{
 			
+		}
+
+		private static var _instance:Text;
+		public static function get():Text
+		{
+			if(!_instance)
+				_instance = new Text();
+			
+			return _instance;
 		}
 
 		/**

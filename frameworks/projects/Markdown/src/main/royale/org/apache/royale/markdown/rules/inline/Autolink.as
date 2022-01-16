@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Autolink extends Rule
 	{
-		public function Autolink()
+		private function Autolink()
 		{
 			
+		}
+
+		private static var _instance:Autolink;
+		public static function get():Autolink
+		{
+			if(!_instance)
+				_instance = new Autolink();
+			
+			return _instance;
 		}
 
 		/**

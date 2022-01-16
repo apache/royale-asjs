@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class References extends Rule
 	{
-		public function References()
+		private function References()
 		{
 			
+		}
+
+		private static var _instance:References;
+		public static function get():References
+		{
+			if(!_instance)
+				_instance = new References();
+			
+			return _instance;
 		}
 
 		/**

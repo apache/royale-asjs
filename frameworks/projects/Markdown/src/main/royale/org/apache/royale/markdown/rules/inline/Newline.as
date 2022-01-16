@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Newline extends Rule
 	{
-		public function Newline()
+		private function Newline()
 		{
 			
+		}
+
+		private static var _instance:Newline;
+		public static function get():Newline
+		{
+			if(!_instance)
+				_instance = new Newline();
+			
+			return _instance;
 		}
 
 		/**

@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Backticks extends Rule
 	{
-		public function Backticks()
+		private function Backticks()
 		{
 			
+		}
+
+		private static var _instance:Backticks;
+		public static function get():Backticks
+		{
+			if(!_instance)
+				_instance = new Backticks();
+			
+			return _instance;
 		}
 
 		/**

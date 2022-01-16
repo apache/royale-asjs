@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Footnote_tail extends Rule
 	{
-		public function Footnote_tail()
+		private function Footnote_tail()
 		{
 			
+		}
+
+		private static var _instance:Footnote_tail;
+		public static function get():Footnote_tail
+		{
+			if(!_instance)
+				_instance = new Footnote_tail();
+			
+			return _instance;
 		}
 
 		/**

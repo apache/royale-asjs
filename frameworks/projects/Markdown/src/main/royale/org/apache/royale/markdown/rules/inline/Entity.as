@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Entity extends Rule
 	{
-		public function Entity()
+		private function Entity()
 		{
 			
+		}
+
+		private static var _instance:Entity;
+		public static function get():Entity
+		{
+			if(!_instance)
+				_instance = new Entity();
+			
+			return _instance;
 		}
 
 		/**

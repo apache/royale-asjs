@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Abbr2 extends Rule
 	{
-		public function Abbr2()
+		private function Abbr2()
 		{
 			
+		}
+
+		private static var _instance:Abbr2;
+		public static function get():Abbr2
+		{
+			if(!_instance)
+				_instance = new Abbr2();
+			
+			return _instance;
 		}
 
 		/**

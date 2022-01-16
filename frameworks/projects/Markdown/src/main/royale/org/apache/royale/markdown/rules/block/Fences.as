@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Fences extends Rule
 	{
-		public function Fences()
+		private function Fences()
 		{
 			
+		}
+
+		private static var _instance:Fences;
+		public static function get():Fences
+		{
+			if(!_instance)
+				_instance = new Fences();
+			
+			return _instance;
 		}
 
 		/**

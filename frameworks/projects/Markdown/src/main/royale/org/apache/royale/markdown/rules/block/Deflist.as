@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Deflist extends Rule
 	{
-		public function Deflist()
+		private function Deflist()
 		{
 			
+		}
+
+		private static var _instance:Deflist;
+		public static function get():Deflist
+		{
+			if(!_instance)
+				_instance = new Deflist();
+			
+			return _instance;
 		}
 
 		/**

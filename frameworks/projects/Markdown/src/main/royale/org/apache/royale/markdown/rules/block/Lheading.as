@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Lheading extends Rule
 	{
-		public function Lheading()
+		private function Lheading()
 		{
 			
+		}
+
+		private static var _instance:Lheading;
+		public static function get():Lheading
+		{
+			if(!_instance)
+				_instance = new Lheading();
+			
+			return _instance;
 		}
 
 		/**

@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Table extends Rule
 	{
-		public function Table()
+		private function Table()
 		{
 			
+		}
+
+		private static var _instance:Table;
+		public static function get():Table
+		{
+			if(!_instance)
+				_instance = new Table();
+			
+			return _instance;
 		}
 
 		/**

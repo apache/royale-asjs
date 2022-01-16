@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class InlineFootnote extends Rule
 	{
-		public function InlineFootnote()
+		private function InlineFootnote()
 		{
 			
+		}
+
+		private static var _instance:InlineFootnote;
+		public static function get():InlineFootnote
+		{
+			if(!_instance)
+				_instance = new InlineFootnote();
+			
+			return _instance;
 		}
 
 		/**

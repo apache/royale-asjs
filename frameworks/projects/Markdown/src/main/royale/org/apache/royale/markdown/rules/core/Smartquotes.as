@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Smartquotes extends Rule
 	{
-		public function Smartquotes()
+		private function Smartquotes()
 		{
 			
+		}
+
+		private static var _instance:Smartquotes;
+		public static function get():Smartquotes
+		{
+			if(!_instance)
+				_instance = new Smartquotes();
+			
+			return _instance;
 		}
 
 		/**

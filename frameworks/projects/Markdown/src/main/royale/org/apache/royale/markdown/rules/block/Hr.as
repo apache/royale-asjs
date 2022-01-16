@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Hr extends Rule
 	{
-		public function Hr()
+		private function Hr()
 		{
 			
+		}
+
+		private static var _instance:Hr;
+		public static function get():Hr
+		{
+			if(!_instance)
+				_instance = new Hr();
+			
+			return _instance;
 		}
 
 		/**

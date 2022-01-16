@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Htmltag extends Rule
 	{
-		public function Htmltag()
+		private function Htmltag()
 		{
 			
+		}
+
+		private static var _instance:Htmltag;
+		public static function get():Htmltag
+		{
+			if(!_instance)
+				_instance = new Htmltag();
+			
+			return _instance;
 		}
 
 		/**

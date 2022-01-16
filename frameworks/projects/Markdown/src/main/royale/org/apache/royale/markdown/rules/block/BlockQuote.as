@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class BlockQuote extends Rule
 	{
-		public function BlockQuote()
+		private function BlockQuote()
 		{
 			
+		}
+
+		private static var _instance:BlockQuote;
+		public static function get():BlockQuote
+		{
+			if(!_instance)
+				_instance = new BlockQuote();
+			
+			return _instance;
 		}
 
 		/**

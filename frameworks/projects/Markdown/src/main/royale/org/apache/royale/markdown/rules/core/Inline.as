@@ -20,10 +20,20 @@ package org.apache.royale.markdown
 {
 	public class Inline extends Rule
 	{
-		public function Inline()
+		private function Inline()
 		{
 			
 		}
+
+		private static var _instance:Inline;
+		public static function get():Inline
+		{
+			if(!_instance)
+				_instance = new Inline();
+			
+			return _instance;
+		}
+
 
 		/**
 		 * parses the rule

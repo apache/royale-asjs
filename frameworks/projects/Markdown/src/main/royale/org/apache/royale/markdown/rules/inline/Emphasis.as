@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Emphasis extends Rule
 	{
-		public function Emphasis()
+		private function Emphasis()
 		{
 			
+		}
+
+		private static var _instance:Emphasis;
+		public static function get():Emphasis
+		{
+			if(!_instance)
+				_instance = new Emphasis();
+			
+			return _instance;
 		}
 
 		/**

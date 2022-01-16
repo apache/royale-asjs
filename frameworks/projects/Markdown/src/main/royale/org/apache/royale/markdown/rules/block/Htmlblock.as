@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Htmlblock extends Rule
 	{
-		public function Htmlblock()
+		private function Htmlblock()
 		{
 			
+		}
+
+		private static var _instance:Htmlblock;
+		public static function get():Htmlblock
+		{
+			if(!_instance)
+				_instance = new Htmlblock();
+			
+			return _instance;
 		}
 
 		/**

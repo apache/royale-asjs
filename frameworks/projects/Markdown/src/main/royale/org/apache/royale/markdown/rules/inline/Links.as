@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Links extends Rule
 	{
-		public function Links()
+		private function Links()
 		{
 			
+		}
+
+		private static var _instance:Links;
+		public static function get():Links
+		{
+			if(!_instance)
+				_instance = new Links();
+			
+			return _instance;
 		}
 
 		/**

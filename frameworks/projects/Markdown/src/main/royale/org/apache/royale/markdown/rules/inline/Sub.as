@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Sub extends Rule
 	{
-		public function Sub()
+		private function Sub()
 		{
 			
+		}
+
+		private static var _instance:Sub;
+		public static function get():Sub
+		{
+			if(!_instance)
+				_instance = new Sub();
+			
+			return _instance;
 		}
 
 		/**

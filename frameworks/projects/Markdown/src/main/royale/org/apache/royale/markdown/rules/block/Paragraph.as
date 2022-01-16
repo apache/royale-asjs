@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Paragraph extends Rule
 	{
-		public function Paragraph()
+		private function Paragraph()
 		{
 			
+		}
+
+		private static var _instance:Paragraph;
+		public static function get():Paragraph
+		{
+			if(!_instance)
+				_instance = new Paragraph();
+			
+			return _instance;
 		}
 
 		/**

@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Replacements extends Rule
 	{
-		public function Replacements()
+		private function Replacements()
 		{
 			
+		}
+
+		private static var _instance:Replacements;
+		public static function get():Replacements
+		{
+			if(!_instance)
+				_instance = new Replacements();
+			
+			return _instance;
 		}
 
 		/**

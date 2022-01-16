@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Del extends Rule
 	{
-		public function Del()
+		private function Del()
 		{
 			
+		}
+
+		private static var _instance:Del;
+		public static function get():Del
+		{
+			if(!_instance)
+				_instance = new Del();
+			
+			return _instance;
 		}
 
 		/**

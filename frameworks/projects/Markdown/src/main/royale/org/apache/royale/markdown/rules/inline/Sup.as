@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Sup extends Rule
 	{
-		public function Sup()
+		private function Sup()
 		{
 			
+		}
+
+		private static var _instance:Sup;
+		public static function get():Sup
+		{
+			if(!_instance)
+				_instance = new Sup();
+			
+			return _instance;
 		}
 
 		/**

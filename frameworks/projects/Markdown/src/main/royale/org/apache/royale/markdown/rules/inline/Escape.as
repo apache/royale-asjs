@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class Escape extends Rule
 	{
-		public function Escape()
+		private function Escape()
 		{
 			
+		}
+
+		private static var _instance:Escape;
+		public static function get():Escape
+		{
+			if(!_instance)
+				_instance = new Escape();
+			
+			return _instance;
 		}
 
 		/**

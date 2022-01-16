@@ -20,9 +20,18 @@ package org.apache.royale.markdown
 {
 	public class List extends Rule
 	{
-		public function List()
+		private function List()
 		{
 			
+		}
+
+		private static var _instance:List;
+		public static function get():List
+		{
+			if(!_instance)
+				_instance = new List();
+			
+			return _instance;
 		}
 
 		/**

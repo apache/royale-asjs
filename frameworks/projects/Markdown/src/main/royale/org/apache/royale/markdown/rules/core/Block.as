@@ -20,9 +20,17 @@ package org.apache.royale.markdown
 {
 	public class Block extends Rule
 	{
-		public function Block()
+		private function Block()
 		{
 			
+		}
+		private static var _instance:Block;
+		public static function get():Block
+		{
+			if(!_instance)
+				_instance = new Block();
+			
+			return _instance;
 		}
 
 		/**
