@@ -37,11 +37,77 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.BlockState
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+
+			// var marker, pos, max,
+			var state:BlockState = istate as BlockState;
+			var next:int = startLine + 1;
+
+			if (next >= endLine) { return false; }
+			if (state.tShift[next] < state.blkIndent) { return false; }
+
+			// Scan next line
+
+			if (state.tShift[next] - state.blkIndent > 3) { return false; }
+
+			var pos:int = state.bMarks[next] + state.tShift[next];
+			var max:int = state.eMarks[next];
+
+			if (pos >= max) { return false; }
+
+			var marker:Number = state.src.charCodeAt(pos);
+
+			if (marker !== 0x2D/* - */ && marker !== 0x3D/* = */) { return false; }
+
+			pos = state.skipChars(pos, marker);
+
+			pos = state.skipSpaces(pos);
+
+			if (pos < max) { return false; }
+
+			pos = state.bMarks[startLine] + state.tShift[startLine];
+
+			state.line = next + 1;
+			var token:BlockToken = new BlockToken('heading_open','');
+			token.numValue = marker === 0x3D/* = */ ? 1 : 2;
+			token.firstLine = startLine;
+			token.lastLine = state.line;
+			token.level = state.level;
+			state.tokens.push(token);
+			// state.tokens.push({
+			// 	type: 'heading_open',
+			// 	hLevel: marker === 0x3D/* = */ ? 1 : 2,
+			// 	lines: [ startLine, state.line ],
+			// 	level: state.level
+			// });
+			token = new BlockToken('inline',state.src.slice(pos, state.eMarks[startLine]).trim());
+			token.level = state.level + 1;
+			token.firstLine = startLine;
+			token.lastLine = state.line -1;
+			state.tokens.push(token);
+			// state.tokens.push({
+			// 	type: 'inline',
+			// 	content: state.src.slice(pos, state.eMarks[startLine]).trim(),
+			// 	level: state.level + 1,
+			// 	lines: [ startLine, state.line - 1 ],
+			// 	children: []
+			// });
+			var tToken:TagToken = new TagToken('heading_close');
+			tToken.numValue = marker === 0x3D/* = */ ? 1 : 2;
+			tToken.level = state.level;
+			// state.tokens.push({
+			// 	type: 'heading_close',
+			// 	hLevel: marker === 0x3D/* = */ ? 1 : 2,
+			// 	level: state.level
+			// });
+
+			return true;
+
+
 		}
 				
 	}

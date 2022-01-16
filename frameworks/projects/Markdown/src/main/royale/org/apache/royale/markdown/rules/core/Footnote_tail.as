@@ -37,11 +37,91 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.CoreState 
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+			var state:CoreState = istate as CoreState;
+			// var i, l, j, t, lastParagraph, list, tokens, current, currentLabel,
+			var level:int = 0;
+			var insideRef:Boolean = false;
+			var refTokens:Object = {};
+
+			if (!state.env.footnotes) { return false; }
+
+			state.tokens = state.tokens.filter(function(tok:Token):Boolean {
+				if (tok.type === 'footnote_reference_open') {
+					insideRef = true;
+					var current:Array = [];
+					var currentLabel:String = tok.data;
+					return false;
+				}
+				if (tok.type === 'footnote_reference_close') {
+					insideRef = false;
+					// prepend ':' to avoid conflict with Object.prototype members
+					refTokens[currentLabel] = current;
+					return false;
+				}
+				if (insideRef) { current.push(tok); }
+				return !insideRef;
+			});
+
+			if (!state.env.footnotes.list) { return false; }
+			var list:Array = state.env.footnotes.list;
+			var token:IToken = new TagToken('footnote_block_open');
+			token.level = level++;
+			state.tokens.push(token);
+			var len:int = list.length;
+			for (var i:int = 0; i < len; i++) {
+				token = new TagToken('footnote_open');
+				token.id = i;
+				token.level = level++;
+				state.tokens.push(token);
+
+				if (list[i].tokens) {
+					var tokens:Vector.<IToken> = new Vector.<IToken>();
+					token = new TagToken('paragraph_open');
+					token.level = level++;
+					tokens.push(token);
+					var blockToken:BlockToken = new BlockToken('inline',"");
+					blockToken.level = level;
+					blockToken.children = list[i].tokens
+					tokens.push(blockToken);
+					token = new TagToken('paragraph_close');
+					token.level = --level;
+					tokens.push(token);
+				} else if (list[i].label) {
+					tokens = refTokens[list[i].label];
+				}
+
+				state.tokens = state.tokens.concat(tokens);
+				if (state.tokens[state.tokens.length - 1].type === 'paragraph_close') {
+					var lastParagraph:IToken = state.tokens.pop();
+				} else {
+					lastParagraph = null;
+				}
+
+				var t:int = list[i].count > 0 ? list[i].count : 1;
+				for (var j:int = 0; j < t; j++) {
+					token = new TagToken("footnote_anchor");
+					token.id = i;
+					token.subId = j;
+					token.level = level;
+					state.tokens.push(token);
+				}
+
+				if (lastParagraph) {
+					state.tokens.push(lastParagraph);
+				}
+				token = new TagToken("footnote_close");
+				token.level = --level;
+				state.tokens.push(token);
+			}
+			token = new TagToken("footnote_block_close");
+			token.level = --level;
+			state.tokens.push(token);
+			return true;
 		}
 
 	}

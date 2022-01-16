@@ -28,7 +28,7 @@ package org.apache.royale.markdown
 	 * Tag tokens have a variety of types and each is associated to a rendering rule.
 	 * 
 	 */
-	public class TagToken implements IToken
+	public class TagToken extends Token
 	{
 
 		/**
@@ -70,44 +70,15 @@ package org.apache.royale.markdown
 		 * dd (open/close)
 		 * 
 		 */
-		public function TagToken()
+		public function TagToken(type:String,level:int=0)
 		{
-			
+			super(type);
+			this.level = level;
 		}
 
 		public var openTag:Boolean;
 		public var closeTag:Boolean;
 
-		private var _type:String = "";
-		/**
-		 *  The token type
-		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.9
-		 */
-		public function get type():String
-		{
-			return _type;
-		}
 
-		public function set type(value:String):void
-		{
-			_type = value;
-		}
-
-		private var _level:int = 0;
-		/**
-		 *  The level of nesting of the token
-		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.9
-		 */
-		public function get level():int
-		{
-			return _level;
-		}
-
-		public function set level(value:int):void
-		{
-			_level = value;
-		}
 	}
 }

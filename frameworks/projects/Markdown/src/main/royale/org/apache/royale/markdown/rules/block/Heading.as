@@ -37,11 +37,81 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.BlockState
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+
+			var state:BlockState = istate as BlockState
+			var pos:int = state.bMarks[startLine] + state.tShift[startLine];
+			var max:int = state.eMarks[startLine];
+
+			if (pos >= max) { return false; }
+
+			var ch:Number  = state.src.charCodeAt(pos);
+
+			if (ch !== 0x23/* # */ || pos >= max) { return false; }
+
+			// count heading level
+			var level:int = 1;
+			ch = state.src.charCodeAt(++pos);
+			while (ch === 0x23/* # */ && pos < max && level <= 6) {
+				level++;
+				ch = state.src.charCodeAt(++pos);
+			}
+
+			if (level > 6 || (pos < max && ch !== 0x20/* space */)) { return false; }
+
+			if (silent) { return true; }
+
+			// Let's cut tails like '    ###  ' from the end of string
+
+			max = state.skipCharsBack(max, 0x20, pos); // space
+			var tmp:int = state.skipCharsBack(max, 0x23, pos); // #
+			if (tmp > pos && state.src.charCodeAt(tmp - 1) === 0x20/* space */) {
+				max = tmp;
+			}
+
+			state.line = startLine + 1;
+			// var tToken:TagToken = new TagToken('heading_open');
+			var token:BlockToken = new BlockToken('heading_open','');
+			token.numValue = level;
+			token.firstLine = startLine;
+			token.lastLine = state.line;
+			level = state.level;
+			state.tokens.push(token);
+
+			// state.tokens.push({ type: 'heading_open',
+			// 	hLevel: level,
+			// 	lines: [ startLine, state.line ],
+			// 	level: state.level
+			// });
+
+			// only if header is not empty
+			if (pos < max) {
+				token = new BlockToken('inline',state.src.slice(pos, max).trim());
+				token.level = state.level + 1;
+				token.firstLine = startLine;
+				token.lastLine = state.line;
+				state.tokens.push(token);
+
+				// state.tokens.push({
+				// 	type: 'inline',
+				// 	content: state.src.slice(pos, max).trim(),
+				// 	level: state.level + 1,
+				// 	lines: [ startLine, state.line ],
+				// 	children: []
+				// });
+			}
+			var tToken:TagToken = new TagToken('heading_close');
+			tToken.numValue = level;
+			tToken.level = state.level;
+			state.tokens.push(tToken);
+			// state.tokens.push({ type: 'heading_close', hLevel: level, level: state.level });
+
+			return true;
+
 		}
 	
 	}

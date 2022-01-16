@@ -24,5 +24,64 @@ package org.apache.royale.markdown
 		{
 			
 		}
+		
+		public var rules:RulesManager;
+
+		/**
+		 * Skip a single token by running all rules in validation mode.
+		 *
+		 */
+		public function skipToken (state:InlineState):void
+		{
+			var pos:int = state.position;
+			var cachedPos:int = state.cacheGet(pos);
+			if (cachedPos > 0) {
+				state.position = cachedPos;
+				return;
+			}
+			// when on silent, the cache is set if a rule is found
+			if(rules.runInlineRules(state,true,pos))
+				return;
+
+			state.position++;
+			state.cacheSet(pos, state.position);
+		}
+
+		/**
+		 * Generate tokens for the given input range.
+		 *
+		 */
+
+		public function tokenize (state:InlineState):void{
+			var end:int = state.posMax;
+
+			while (state.position < end) {
+
+				// run all the rules.
+				var success:Boolean = rules.runInlineRules(state,true,0);
+				if (success) {
+					if (state.position >= end) { break; }
+					continue;
+				}
+
+				state.pending += state.src[state.position++];
+			}
+
+			if (state.pending) {
+				state.pushPending();
+			}
+		}
+
+		/**
+		 * Parse the given input string.
+		 *
+		 */
+
+		public function parse (str:String, options:MarkdownOptions, env:Environment, tokens:Vector.<IToken>):void{
+			rules = env.rules;
+			var state:InlineState = new InlineState(str, this, options, env, tokens);
+			this.tokenize(state);
+		}
+
 	}
 }

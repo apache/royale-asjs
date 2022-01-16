@@ -22,6 +22,12 @@ package org.apache.royale.markdown
 	{
 		private function Escape()
 		{
+			ESCAPED = [];
+			// for (var i:int = 0; i < 256; i++)
+			// 	ESCAPED.push(0);
+
+			'\\!"#$%&\'()*+,./:;<=>?@[]^_`{|}~-'
+  		.split('').forEach(function(ch:String):void { ESCAPED[ch.charCodeAt(0)] = 1; });
 			
 		}
 
@@ -33,15 +39,61 @@ package org.apache.royale.markdown
 			
 			return _instance;
 		}
+// Proceess escaped chars and hardbreaks
+
+		private var ESCAPED:Array;
+
 
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.InlineState
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+
+			// var ch
+			var state:InlineState = istate as InlineState;
+			var pos:int = state.position;
+			var max:int = state.posMax;
+
+			if (state.src.charCodeAt(pos) !== 0x5C/* \ */) { return false; }
+
+			pos++;
+
+			if (pos < max) {
+				var ch:Number = state.src.charCodeAt(pos);
+
+				if (ch < 256 && ESCAPED[ch]) {
+					if (!silent) { state.pending += state.src[pos]; }
+					state.position += 2;
+					return true;
+				}
+
+				if (ch == 0x0A) {
+					if (!silent) {
+						state.push(new TagToken('hardbreak',state.level));
+						// state.push({
+						// 	type: 'hardbreak',
+						// 	level: state.level
+						// });
+					}
+
+					pos++;
+					// skip leading whitespaces from next line
+					while (pos < max && state.src.charCodeAt(pos) === 0x20)
+						pos++;
+
+					state.position = pos;
+					return true;
+				}
+			}
+
+			if (!silent) { state.pending += '\\'; }
+			state.position++;
+			return true;
+
 		}
 
 	}

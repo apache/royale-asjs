@@ -22,7 +22,49 @@ package org.apache.royale.markdown
 	{
 		public function CoreState(parser:MarkdownParser,str:String,env:Environment)
 		{
+			this.src = str;
+			this.env = env;
+			this.options = parser.options;
+			tokens = new Vector.<IToken>();
+			this.inlineMode = false;
+
+			inlineParser = parser.inlineParser;
+			blockParser = parser.blockParser;
+			// this.renderer = parser.renderer;
+			// this.typographer = parser.typographer;
 			
+			rules = parser.rulesManager;
 		}
+		private var _tokens:Vector.<IToken>;
+
+		public function get tokens():Vector.<IToken>
+		{
+			return _tokens;
+		}
+
+		public function set tokens(value:Vector.<IToken>):void
+		{
+			_tokens = value;
+		}
+		public var inlineParser:InlineParser;
+		public var blockParser:BlockParser;
+		public var rules:RulesManager;
+		
+		private var _options:MarkdownOptions;
+
+		public function get options():MarkdownOptions
+		{
+			return _options;
+		}
+
+		public function set options(value:MarkdownOptions):void
+		{
+			_options = value;
+		}
+		public var inlineMode:Boolean;
+
+		public var src:String;
+		public var env:Environment;
+
 	}
 }

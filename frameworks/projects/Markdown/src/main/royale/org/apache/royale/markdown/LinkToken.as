@@ -18,23 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.markdown
 {
-	public interface IToken
+	/**
+	 * LinkTokens are for links and images
+	 * 
+	 * A text token has a `content` property containing the text it represents.
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.9
+	 */
+	public class LinkToken extends ContentToken
 	{
-		function get type():String;
-		function set type(value:String):void;
-		function get data():String;
-		function set data(value:String):void;
-		function get title():String;
-		function set title(value:String):void;
-		function get level():int;
-		function set level(value:int):void;
-		function get id():int;
-		function set id(value:int):void;
-		function get subId():int;
-		function set subId(value:int):void;
-		function get tight():Boolean;
-		function set tight(value:Boolean):void;
-		function get numValue():Number;
-		function set numValue(value:Number):void;
+		public function LinkToken(type:String,level:int=0)
+		{
+			super(type,'',level);
+		}
+
+		public var href:String;
+
 	}
 }

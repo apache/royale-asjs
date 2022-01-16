@@ -24,5 +24,10 @@ package org.apache.royale.markdown
 		{
 			
 		}
+		public var rules:RulesManager;
+		public var abbreviations:Object;
+		public var references:Object;
+		public var footnotes:Object;
+		public var abbrRegExp:RegExp;
 	}
 }

@@ -37,11 +37,71 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.InlineState
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+
+			var state:InlineState = istate as InlineState;
+			var pos:int = state.position;
+
+			if (state.src.charCodeAt(pos) !== 0x0A/* \n */)
+				return false;
+
+			var pmax:int = state.pending.length - 1;
+			var max:int = state.posMax;
+
+			// '  \n' -> hardbreak
+			// Lookup in pending chars is bad practice! Don't copy to other rules!
+			// Pending string is stored in concat mode, indexed lookups will cause
+			// convertion to flat mode.
+			if (!silent)
+			{
+				if (pmax >= 0 && state.pending.charCodeAt(pmax) === 0x20)
+				{
+					if (pmax >= 1 && state.pending.charCodeAt(pmax - 1) === 0x20)
+					{
+						// Strip out all trailing spaces on this line.
+						for (var i:int = pmax - 2; i >= 0; i--)
+						{
+							if (state.pending.charCodeAt(i) !== 0x20) {
+								state.pending = state.pending.substring(0, i + 1);
+								break;
+							}
+						}
+						state.push(new TagToken('hardbreak',state.level));
+						// state.push({
+						// 	type: 'hardbreak',
+						// 	level: state.level
+						// });
+					} else {
+						state.pending = state.pending.slice(0, -1);
+						state.push(new TagToken('softbreak',state.level));
+						// state.push({
+						// 	type: 'softbreak',
+						// 	level: state.level
+						// });
+					}
+
+				} else {
+					state.push(new TagToken('softbreak',state.level));
+					// state.push({
+					// 	type: 'softbreak',
+					// 	level: state.level
+					// });
+				}
+			}
+
+			pos++;
+
+			// skip heading spaces for next line
+			while (pos < max && state.src.charCodeAt(pos) === 0x20)
+				pos++;
+
+			state.position = pos;
+			return true;
+
 		}
 
 	}

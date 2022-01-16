@@ -38,11 +38,24 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9 
+		 * @royaleignorecoercion org.apache.royale.markdown.BlockToken 
+		 * @royaleignorecoercion org.apache.royale.markdown.CoreState 
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+			var state:CoreState = istate as CoreState;
+  		var tokens:Vector.<IToken> = state.tokens;
+
+			// Parse inlines
+			var len:int = tokens.length;
+			for (var i:int = 0; i < len; i++) {
+				var token:BlockToken = tokens[i] as BlockToken;
+				if (token.type === 'inline') {
+					state.inlineParser.parse(token.content, state.options, state.env, token.children);
+				}
+			}
+			return true;
 		}
 
 	}

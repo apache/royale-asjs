@@ -19,7 +19,11 @@
 package org.apache.royale.markdown
 {
 	public interface IState
-	{
-		
+	{		
+		function get tokens():Vector.<IToken>;
+		function set tokens(value:Vector.<IToken>):void;
+		function get options():MarkdownOptions;
+		function set options(value:MarkdownOptions):void;
+
 	}
 }

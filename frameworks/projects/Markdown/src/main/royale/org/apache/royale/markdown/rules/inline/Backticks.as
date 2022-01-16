@@ -37,12 +37,61 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.InlineState
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
-		}
 
+			// var start, max, marker, matchStart, matchEnd,
+			var state:InlineState = istate as InlineState;
+			var pos:int = state.position;
+			var ch:Number = state.src.charCodeAt(pos);
+
+			if (ch !== 0x60/* ` */) { return false; }
+
+			var start:int = pos;
+			pos++;
+			var max:int = state.posMax;
+
+			while (pos < max && state.src.charCodeAt(pos) === 0x60/* ` */) { pos++; }
+
+			var marker:String = state.src.slice(start, pos);
+			var matchEnd:int
+			var matchStart:int = matchEnd = pos;
+
+			while ((matchStart = state.src.indexOf('`', matchEnd)) !== -1) {
+				matchEnd = matchStart + 1;
+
+				while (matchEnd < max && state.src.charCodeAt(matchEnd) === 0x60/* ` */) { matchEnd++; }
+
+				if (matchEnd - matchStart === marker.length) {
+					if (!silent) {
+						var content:String = state.src.slice(pos, matchStart)
+																	.replace(LINE_END, ' ')
+																	.trim();
+						var token:ContentToken = new ContentToken('code',content);
+						token.level = state.level;
+						state.push(token);
+						// state.push({
+						// 	type: 'code',
+						// 	content: state.src.slice(pos, matchStart)
+						// 											.replace(/[ \n]+/g, ' ')
+						// 											.trim(),
+						// 	block: false,
+						// 	level: state.level
+						// });
+					}
+					state.position = matchEnd;
+					return true;
+				}
+			}
+
+			if (!silent) { state.pending += marker; }
+			state.position += marker.length;
+			return true;
+
+		}
+		private const LINE_END:RegExp = /[ \n]+/g;
 	}
 }

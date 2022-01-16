@@ -16,25 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.markdown
+package org.apache.royale.markdown.helpers
 {
-	public interface IToken
+	public class HRef
 	{
-		function get type():String;
-		function set type(value:String):void;
-		function get data():String;
-		function set data(value:String):void;
-		function get title():String;
-		function set title(value:String):void;
-		function get level():int;
-		function set level(value:int):void;
-		function get id():int;
-		function set id(value:int):void;
-		function get subId():int;
-		function set subId(value:int):void;
-		function get tight():Boolean;
-		function set tight(value:Boolean):void;
-		function get numValue():Number;
-		function set numValue(value:Number):void;
+		public function HRef(href:String,title:String)
+		{
+			this.href = href;
+			this.title = title;
+		}
+		public var title:String;
+		public var href:String;
 	}
+
 }

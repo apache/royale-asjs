@@ -36,11 +36,47 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.BlockState 
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+			var state:BlockState = istate as BlockState;
+
+			// var nextLine, last;
+
+			if (state.tShift[startLine] - state.blkIndent < 4) { return false; }
+			var nextLine:int;
+			var last:int = nextLine = startLine + 1;
+
+			while (nextLine < endLine) {
+				if (state.isEmpty(nextLine)) {
+					nextLine++;
+					continue;
+				}
+				if (state.tShift[nextLine] - state.blkIndent >= 4) {
+					nextLine++;
+					last = nextLine;
+					continue;
+				}
+				break;
+			}
+
+			state.line = nextLine;
+			var token:BlockToken =  new BlockToken("code",state.getLines(startLine, last, 4 + state.blkIndent, true));
+			token.firstLine = startLine;
+			token.lastLine = state.line;
+			token.level = state.level;
+			state.tokens.push(token);
+			// state.tokens.push({
+			// 	type: 'code',
+			// 	content: state.getLines(startLine, last, 4 + state.blkIndent, true),
+			// 	block: true,
+			// 	lines: [ startLine, state.line ],
+			// 	level: state.level
+			// });
+
+			return true;
 		}
 
 	}

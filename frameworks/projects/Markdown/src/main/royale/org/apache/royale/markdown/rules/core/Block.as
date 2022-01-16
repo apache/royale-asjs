@@ -38,9 +38,19 @@ package org.apache.royale.markdown
 		 * @langversion 3.0
 		 * @productversion Royale 0.9.9		 * 
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(iState:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+			var state:CoreState = iState as CoreState;
+			if (state.inlineMode) {
+				var token:BlockToken = new BlockToken("inline",state.src.replace(/\n/g, ' ').trim());
+				token.firstLine = 0;
+				token.lastLine = 1;
+				state.tokens.push(token);
+
+			} else {
+				state.blockParser.parse(state.src, state.options, state.env, state.tokens);
+			}
+			return true;
 		}
 
 	}

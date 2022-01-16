@@ -27,7 +27,7 @@ package org.apache.royale.markdown
 		 *  @langversion 3.0
 		 *  @productversion Royale 0.9.9
 		 */
-		public static function enableAll():void
+		public function enableAll():void
 		{
 			var coreRules:Array = ['block','abbr','references','inline','footnote_tail',
 				'abbr2','replacements','smartquotes'];
@@ -51,7 +51,7 @@ package org.apache.royale.markdown
 		 *  @langversion 3.0
 		 *  @productversion Royale 0.9.9
 		 */
-		public static function enableStandard():void
+		public function enableStandard():void
 		{
 			var coreRules:Array = ['block','references','inline','footnote_tail','abbr2','replacements','smartquotes'];
 			var blockRules:Array = ['code','fences','blockquote','hr','list','footnote',
@@ -74,7 +74,7 @@ package org.apache.royale.markdown
 		 *  @langversion 3.0
 		 *  @productversion Royale 0.9.9
 		 */
-		public static function enableCommonMark():void
+		public function enableCommonMark():void
 		{
 			var coreRules:Array = ['block','references','inline','abbr2'];
 			var blockRules:Array = ['code','fences','blockquote','hr','list','heading','htmlblock','paragraph'];
@@ -90,20 +90,20 @@ package org.apache.royale.markdown
 
 		}
 		
-		private static function checkCore(toCheck:Array):Boolean
+		private function checkCore(toCheck:Array):Boolean
 		{
 			return arraysMatch(toCheck,enabledCoreRules);
 		}
-		private static function checkBlock(toCheck:Array):Boolean
+		private function checkBlock(toCheck:Array):Boolean
 		{
 			return arraysMatch(toCheck,enabledBlockRules);
 		}
-		private static function checkInline(toCheck:Array):Boolean
+		private function checkInline(toCheck:Array):Boolean
 		{
 			return arraysMatch(toCheck,enabledInlineRules);
 		}
 
-		public static function disableRule(name:String):void
+		public function disableRule(name:String):void
 		{
 			if(enabledCoreRules.indexOf(name) != -1)
 			{
@@ -122,17 +122,17 @@ package org.apache.royale.markdown
 			}
 		}
 
-		private static var enabledCoreRules:Array;
-		private static var enabledBlockRules:Array;
-		private static var enabledInlineRules:Array;
+		private var enabledCoreRules:Array;
+		private var enabledBlockRules:Array;
+		private var enabledInlineRules:Array;
 
-		private static var coreRules:Vector.<IRule>;
-		private static var blockRules:Vector.<IRule>;
-		private static var inlineRules:Vector.<IRule>;
+		private var coreRules:Vector.<IRule>;
+		private var blockRules:Vector.<IRule>;
+		private var inlineRules:Vector.<IRule>;
 
-		private static var paragraphRules:Vector.<IRule>;
-		private static var blockquoteRules:Vector.<IRule>;
-		private static var listRules:Vector.<IRule>;
+		private var paragraphRules:Vector.<IRule>;
+		private var blockquoteRules:Vector.<IRule>;
+		private var listRules:Vector.<IRule>;
 		
 /**
  * 
@@ -181,8 +181,8 @@ Inline
  */
 		
 		
-		private static var initialized:Boolean = false;
-		private static function initialize():void
+		private var initialized:Boolean = false;
+		private function initialize():void
 		{
 			initialized = true;
 			coreRules = new Vector.<IRule>();
@@ -349,14 +349,14 @@ Inline
 				}
 			}
 		}
-		private static function getCoreRules():Vector.<IRule>
+		private function getCoreRules():Vector.<IRule>
 		{
 			if(!coreRules)
 				initialize();
 
 			return coreRules;
 		}
-		public static function runCoreRules(state:CoreState):void
+		public function runCoreRules(state:CoreState):void
 		{
 			if(!initialized)
 				initialize();
@@ -368,10 +368,87 @@ Inline
 			}
 		}
 
+		private function getBlockRules():Vector.<IRule>
+		{
+			if(!blockRules)
+				initialize();
+
+			return blockRules;
+		}
+		public function runBlockRules(state:BlockState,silent:Boolean,firstLine:int,lastLine:int):Boolean
+		{
+			var rules:Vector.<IRule> = getBlockRules();
+			for each(var rule:IRule in rules)
+			{
+				if(rule.parse(state,silent,firstLine,lastLine))
+					return true;
+			}
+			return false;
+		}
+
+		public function getInlineRules():Vector.<IRule>
+		{
+			if(!inlineRules)
+				initialize();
+
+			return inlineRules;
+		}
+		public function runInlineRules(state:InlineState,silent:Boolean,position:int):Boolean
+		{
+			var rules:Vector.<IRule> = getInlineRules();
+			for each(var rule:IRule in rules)
+			{
+				if(rule.parse(state,silent))
+				{
+					if(silent)
+						state.cacheSet(position, state.position);
+					
+					return true;
+				}
+			}
+			return false;
+		}
+
+		public function runBlockquotes(state:BlockState,firstLine:int,lastLine:int):Boolean
+		{
+			var rules:Vector.<IRule> = blockquoteRules;
+			for each(var rule:IRule in rules)
+			{
+			if (rule.parse(state,true, firstLine, lastLine))
+				return true;
+			}
+			return false;
+		}
+
+		public function runLists(state:BlockState,firstLine:int,lastLine:int):Boolean
+		{
+			var rules:Vector.<IRule> = listRules;
+			for each(var rule:IRule in rules)
+			{
+			if (rule.parse(state,true, firstLine, lastLine))
+				return true;
+			}
+			return false;
+		}
+
+		public function runParagraphs(state:BlockState,firstLine:int,lastLine:int):Boolean
+		{
+			var rules:Vector.<IRule> = paragraphRules;
+			for each(var rule:IRule in rules)
+			{
+			if (rule.parse(state,true, firstLine, lastLine))
+				return true;
+			}
+			return false;
+		}
+
+		public var options:MarkdownOptions;
 		/**
-		 * RulesManager is a static-only class
+		 * Each Parser needs a RulesManager which holds the current set of rules
 		 */
-		private function RulesManager(){}
+		public function RulesManager(){
+			options = new MarkdownOptions();
+		}
 
 	}
 }

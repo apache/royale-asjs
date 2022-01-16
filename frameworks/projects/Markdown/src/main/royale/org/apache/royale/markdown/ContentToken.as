@@ -28,11 +28,13 @@ package org.apache.royale.markdown
 	 *  @langversion 3.0
 	 *  @productversion Royale 0.9.9
 	 */
-	public class ContentToken implements IToken
+	public class ContentToken extends Token
 	{
-		public function ContentToken()
+		public function ContentToken(type:String,content:String,level:int=0)
 		{
-			
+			super(type);
+			_content = content;
+			this.level = level;
 		}
 
 		private var _content:String = "";
@@ -50,36 +52,6 @@ package org.apache.royale.markdown
 		{
 			_content = value;
 		}
-		private var _type:String = "";
-		/**
-		 *  The token type
-		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.9
-		 */
-		public function get type():String
-		{
-			return _type;
-		}
 
-		public function set type(value:String):void
-		{
-			_type = value;
-		}
-
-		private var _level:int = 0;
-		/**
-		 *  The level of nesting of the token
-		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.9
-		 */
-		public function get level():int
-		{
-			return _level;
-		}
-
-		public function set level(value:int):void
-		{
-			_level = value;
-		}
 	}
 }

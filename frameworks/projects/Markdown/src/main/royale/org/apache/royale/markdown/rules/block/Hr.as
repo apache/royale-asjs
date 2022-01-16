@@ -37,11 +37,57 @@ package org.apache.royale.markdown
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.BlockState
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+
+			// var marker, cnt, ch,
+			var state:BlockState = istate as BlockState;
+			var pos:int = state.bMarks[startLine];
+			var max:int = state.eMarks[startLine];
+
+			pos += state.tShift[startLine];
+
+			if (pos > max) { return false; }
+
+			var marker:Number = state.src.charCodeAt(pos++);
+
+			// Check hr marker
+			if (marker !== 0x2A/* * */ &&
+					marker !== 0x2D/* - */ &&
+					marker !== 0x5F/* _ */) {
+				return false;
+			}
+
+			// markers can be mixed with spaces, but there should be at least 3 one
+
+			var cnt:int = 1;
+			while (pos < max) {
+				var ch:Number = state.src.charCodeAt(pos++);
+				if (ch !== marker && ch !== 0x20/* space */) { return false; }
+				if (ch === marker) { cnt++; }
+			}
+
+			if (cnt < 3) { return false; }
+
+			if (silent) { return true; }
+
+			state.line = startLine + 1;
+			var token:BlockToken = new BlockToken('hr','');
+			token.firstLine = startLine;
+			token.lastLine = state.line;
+			token.level = state.level;
+			state.tokens.push(token);
+			// state.tokens.push({
+			// 	type: 'hr',
+			// 	lines: [ startLine, state.line ],
+			// 	level: state.level
+			// });
+
+			return true;
+
 		}
 		
 	}

@@ -18,23 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.markdown
 {
-	public interface IToken
+	/**
+	 * Holds optional customizations for rendering the markdown
+	 */
+	public class MarkdownOptions
 	{
-		function get type():String;
-		function set type(value:String):void;
-		function get data():String;
-		function set data(value:String):void;
-		function get title():String;
-		function set title(value:String):void;
-		function get level():int;
-		function set level(value:int):void;
-		function get id():int;
-		function set id(value:int):void;
-		function get subId():int;
-		function set subId(value:int):void;
-		function get tight():Boolean;
-		function set tight(value:Boolean):void;
-		function get numValue():Number;
-		function set numValue(value:Number):void;
+		public function MarkdownOptions()
+		{
+			
+		}
+		public var maxNesting:int = 20;
+		public var typographer:Boolean = false;
+		public var quotes:String = '“”‘’';
+    public var html:Boolean = false; // Enable HTML tags in source
+    public var xhtmlOut:Boolean = false; // Use '/' to close single tags (<br />)
+    public var breaks:Boolean = false; // Convert '\n' in paragraphs into <br>
+    public var langPrefix:String = 'language-'; // CSS language prefix for fenced blocks
+    public var linkTarget:String = ''; // set target to open link in
+
 	}
 }

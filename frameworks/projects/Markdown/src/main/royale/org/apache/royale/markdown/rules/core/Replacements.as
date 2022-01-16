@@ -34,15 +34,81 @@ package org.apache.royale.markdown
 			return _instance;
 		}
 
+		private const RARE_RE:RegExp = /\+-|\.\.|\?\?\?\?|!!!!|,,|--/;
+
+		private const SCOPED_ABBR_RE:RegExp = /\((c|tm|r|p)\)/ig;
+		private const SCOPED_ABBR:Object = {
+			'c': '©',
+			'r': '®',
+			'p': '§',
+			'tm': '™'
+		};
+
+		private function replaceScopedAbbr(str:String):String {
+			if (str.indexOf('(') < 0) { return str; }
+
+			return str.replace(SCOPED_ABBR_RE, function(match:String, name:String):String {
+				return SCOPED_ABBR[name.toLowerCase()];
+			});
+		}
+
+
 		/**
 		 * parses the rule
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.9		 * 
+		 * @productversion Royale 0.9.9
+		 * @royaleignorecoercion org.apache.royale.markdown.CoreState 
+		 * @royaleignorecoercion org.apache.royale.markdown.BlockToken 
+		 * @royaleignorecoercion org.apache.royale.markdown.ContentToken 
 		 */
-		override public function parse(state:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
+		override public function parse(istate:IState, silent:Boolean = false, startLine:int = -1, endLine:int = -1):Boolean
 		{
-			throw new Error("Method not implemented.");
+			var state:CoreState = istate as CoreState;
+			// var i, token, text, inlineTokens, blkIdx;
+
+			if (!state.options.typographer) { return false; }
+
+			for (var blkIdx:int = state.tokens.length - 1; blkIdx >= 0; blkIdx--) {
+
+				if (state.tokens[blkIdx].type !== 'inline') { continue; }
+
+				var inlineTokens:Vector.<IToken> = (state.tokens[blkIdx] as BlockToken).children;
+
+				for (var i:int = inlineTokens.length - 1; i >= 0; i--) {
+					var token:ContentToken = inlineTokens[i] as ContentToken;
+					if (token.type === 'text') {
+						var text:String = token.content;
+
+						text = replaceScopedAbbr(text);
+
+						if (RARE_RE.test(text)) {
+							text = text
+								.replace(PLUS_MINUS, '±')
+								// .., ..., ....... -> …
+								// but ?..... & !..... -> ?.. & !..
+								.replace(ELLIPSIS, '…').replace(/([?!])…/g, '$1..')
+								.replace(QUEST_EXCLAM, '$1$1$1').replace(DOUBLE_COMMA, ',')
+								// em-dash
+								.replace(M_DASH, '$1\u2014$2')
+								// en-dash
+								.replace(N_DASH, '$1\u2013$2')
+								.replace(N_DASH_2, '$1\u2013$2');
+						}
+
+						token.content = text;
+					}
+				}
+			}
+			return true;
+
 		}
+		private const PLUS_MINUS:RegExp = /\+-/g;
+		private const ELLIPSIS:RegExp = /\.{2,}/g;
+		private const QUEST_EXCLAM:RegExp = /([?!]){4,}/g;
+		private const DOUBLE_COMMA:RegExp = /,{2,}/g;
+		private const M_DASH:RegExp = /(^|[^-])---([^-]|$)/mg;
+		private const N_DASH:RegExp = /(^|\s)--(\s|$)/mg;
+		private const N_DASH_2:RegExp = /(^|[^-\s])--([^-\s]|$)/mg;
 
 	}
 }

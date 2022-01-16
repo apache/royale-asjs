@@ -16,25 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.markdown
+package org.apache.royale.markdown.helpers
 {
-	public interface IToken
-	{
-		function get type():String;
-		function set type(value:String):void;
-		function get data():String;
-		function set data(value:String):void;
-		function get title():String;
-		function set title(value:String):void;
-		function get level():int;
-		function set level(value:int):void;
-		function get id():int;
-		function set id(value:int):void;
-		function get subId():int;
-		function set subId(value:int):void;
-		function get tight():Boolean;
-		function set tight(value:Boolean):void;
-		function get numValue():Number;
-		function set numValue(value:Number):void;
-	}
+		import org.apache.royale.markdown.IToken;
+		import org.apache.royale.markdown.TagToken;
+		import org.apache.royale.markdown.ContentToken;
+
+	/**
+	 *  
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.9
+	 *  @royalesuppressexport
+	 */
+		public function wrappedInParagraph(first:IToken,second:IToken,third:IToken):Boolean
+		{
+				return first.type == 'paragraph_open' &&
+						second.type == 'inline' &&
+						third.type == 'paragraph_close';
+			
+		}
 }

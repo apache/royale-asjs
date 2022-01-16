@@ -16,25 +16,45 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.markdown
+package org.apache.royale.markdown.helpers
 {
-	public interface IToken
+	import org.apache.royale.markdown.InlineState;
+
+	/**
+	 *  
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.9
+	 *  @royalesuppressexport
+	 */
+	public function parseLinkTitle(state:InlineState, pos:int):Boolean
 	{
-		function get type():String;
-		function set type(value:String):void;
-		function get data():String;
-		function set data(value:String):void;
-		function get title():String;
-		function set title(value:String):void;
-		function get level():int;
-		function set level(value:int):void;
-		function get id():int;
-		function set id(value:int):void;
-		function get subId():int;
-		function set subId(value:int):void;
-		function get tight():Boolean;
-		function set tight(value:Boolean):void;
-		function get numValue():Number;
-		function set numValue(value:Number):void;
+		// var code,
+		var start:int = pos;
+		var max:int = state.posMax;
+		var marker:Number = state.src.charCodeAt(pos);
+
+		if (marker !== 0x22 /* " */ && marker !== 0x27 /* ' */ && marker !== 0x28 /* ( */) { return false; }
+
+		pos++;
+
+		// if opening marker is "(", switch it to closing marker ")"
+		if (marker === 0x28) { marker = 0x29; }
+
+		while (pos < max) {
+			var code:Number = state.src.charCodeAt(pos);
+			if (code === marker) {
+				state.position = pos + 1;
+				state.linkContent = unescapeMd(state.src.slice(start + 1, pos));
+				return true;
+			}
+			if (code === 0x5C /* \ */ && pos + 1 < max) {
+				pos += 2;
+				continue;
+			}
+
+			pos++;
+		}
+
+		return false;
 	}
 }

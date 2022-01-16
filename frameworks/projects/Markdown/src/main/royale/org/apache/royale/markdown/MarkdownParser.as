@@ -28,15 +28,25 @@ package org.apache.royale.markdown
 		{
 			inlineParser = new InlineParser();
 			blockParser  = new BlockParser();
-			coreParser   = new CoreParser();			
+			coreParser   = new CoreParser();
+			rulesManager = new RulesManager();
+
 		}
 
-		private var inlineParser:InlineParser;
-		private var blockParser:BlockParser;
-		private var coreParser:CoreParser;
+		public var inlineParser:InlineParser;
+		public var blockParser:BlockParser;
+		public var coreParser:CoreParser;
+		public var rulesManager:RulesManager;
 
-		public function parse (str:String, env:Environment):void {
+		public var options:MarkdownOptions;
+
+		public function parse (str:String, env:Environment=null):void {
+			if(!env)
+				env = new Environment();
+
+			env.rules = rulesManager;
 			var state:CoreState = new CoreState(this, str, env);
+			state.options = rulesManager.options;
 			coreParser.process(state);
 			// return state.tokens;
 		}
