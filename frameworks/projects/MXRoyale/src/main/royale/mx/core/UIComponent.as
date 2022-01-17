@@ -2783,13 +2783,17 @@ COMPILE::JS
                 var oldHeight:Object;
                 var oldTop:String;
                 var oldBottom:String;
+                var oldOverflow:String;
                 oldTop = this.positioner.style.top;
                 oldBottom = this.positioner.style.bottom;
                 oldHeight = this.positioner.style.height;
+                oldOverflow = this.positioner.style.overflow;
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
                     return 0; //this.positioner.style.top = "";
                 if (oldHeight.length)
                     this.positioner.style.height = "";
+                if (oldOverflow.length)
+                    this.positioner.style.overflow = "visible";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && _initialized && numChildren > 0)
                 {
@@ -2809,6 +2813,8 @@ COMPILE::JS
                 }
                 if (oldHeight.length)
                     this.positioner.style.height = oldHeight;
+                if (oldOverflow.length)
+                    this.positioner.style.height = oldOverflow;
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates width
                     this.positioner.style.top = oldTop;
                 if (!isNaN(percentHeight))
