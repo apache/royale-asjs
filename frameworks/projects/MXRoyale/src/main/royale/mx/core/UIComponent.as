@@ -2814,7 +2814,7 @@ COMPILE::JS
                 if (oldHeight.length)
                     this.positioner.style.height = oldHeight;
                 if (oldOverflow.length)
-                    this.positioner.style.height = oldOverflow;
+                    this.positioner.style.overflow = oldOverflow;
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates width
                     this.positioner.style.top = oldTop;
                 if (!isNaN(percentHeight))
