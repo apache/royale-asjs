@@ -1232,7 +1232,15 @@ package
 			list.targetObject = this;
 			return list;
 		}
-		
+
+		/**
+		 *
+		 * @param list
+		 * @return an XMLList representing the concatenation of this XML instance and either another XML instance or an XMLList
+		 *
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion XML
+		 */
 		public function concat(list:*):XMLList
 		{
 			if(list is XML)
@@ -1247,7 +1255,8 @@ package
 			var retVal:XMLList = new XMLList();
 			retVal.append(this);
 			var item:XML;
-			for each(item in list)
+
+			for each(item in (list as XMLList))
 				retVal.append(item);
 			
 			return retVal;
@@ -1416,6 +1425,12 @@ package
 		{
 			return [0];
 		}
+
+		/**
+		 *
+		 * @private
+		 * @royaleignorecoercion XML
+		 */
 		public function equals(xml:*):Boolean
 		{
 			/*
@@ -1442,27 +1457,27 @@ package
 			
 			if(!(xml is XML))
 				return false;
-			
-			if(xml.getNodeRef() != getNodeRef())
+			var typedXML:XML = xml as XML;
+			if(typedXML.getNodeRef() != getNodeRef())
 				return false;
 			
-			if(!name().equals(xml.name()))
+			if(!name().equals(typedXML.name()))
 				return false;
 			var selfAttrs:Array = getAttributeArray();
-			var xmlAttrs:Array = xml.getAttributeArray();
+			var xmlAttrs:Array = typedXML.getAttributeArray();
 			if(selfAttrs.length != xmlAttrs.length)
 				return false;
 			//length comparison should not be necessary because xml always has a length of 1
-			if(getValue() != xml.getValue())
+			if(getValue() != typedXML.getValue())
 				return false;
 			
 			for(i=0;i<selfAttrs.length;i++)
 			{
-				if(!xml.hasAttribute(selfAttrs[i]))
+				if(!typedXML.hasAttribute(selfAttrs[i]))
 					return false;
 			}
 			var selfChldrn:Array = getChildrenArray();
-			var xmlChildren:Array = xml.getChildrenArray();
+			var xmlChildren:Array = typedXML.getChildrenArray();
 			if(selfChldrn.length != xmlChildren.length)
 				return false;
 			
@@ -2103,7 +2118,7 @@ package
 		{
 			var list:XMLList = new XMLList();
 			list.append(this);
-			return list.plus(rightHand);
+			return list.concat(rightHand);
 		}
 		
 		private function xmlFromStringable(value:*):XML
@@ -2129,21 +2144,26 @@ package
 			normalize();
 			return this;
 		}
-		
+
+		/**
+		 *
+		 * @royaleignorecoercion XML
+		 * @royaleignorecoercion XMLList
+		 */
 		private function prependChildInternal(child:*):void
 		{
 			if(child is XMLList)
 			{
-				var len:int = child.length();
+				var len:int = (child as XMLList).length();
 				for(var i:int=0; i<len; i++)
 				{
-					prependChildInternal(child[0]);
+					prependChildInternal((child as XMLList)[0]);
 				}
 			}
 			else
 			{
 				assertType(child,XML,"Type must be XML");
-				child.setParent(this);
+				(child as XML).setParent(this);
 				getChildren().unshift(child);
 			}
 		}
@@ -2240,7 +2260,7 @@ package
 			var idx:int = getIndexOf(child);
 			if(idx < 0)
 				return false;
-			removed = _children.splice(idx,1);
+			/*removed =*/ _children.splice(idx,1);
 			child._parent = null;
 			xml$_notify("nodeRemoved", this, child, null);
 			return true;
@@ -2255,16 +2275,16 @@ package
 		{
 			var i:int;
 			var len:int;
-			name = toXMLName(name);
+			var qName:QName = toXMLName(name);
 			var child:XML;
 			var removedItem:Boolean = false;
-			if(name.isAttribute)
+			if(qName.isAttribute)
 			{
 				len = attributeLength() -1;
 				for(i=len;i>=0;i--)
 				{
 					child = _attributes[i] as XML;
-					if(name.matches(child.name()))
+					if(qName.matches(child.name()))
 					{
 						child = _attributes[i];
 						child._parent = null;
@@ -2281,11 +2301,12 @@ package
 			for(i=len;i>=0;i--)
 			{
 				child = _children[i] as XML;
-				if(child.getNodeRef() != ELEMENT){
+				if(child.getNodeRef() != ELEMENT && /* Not a wildcard removal */ qName.localName != '*'){
+					//skip this non-element child, unless we are removing via wildcard name selector
 					continue;
 				}
 				
-				if(name.matches(child.name()))
+				if(qName.matches(child.name()))
 				{
 					child = _children[i];
 					child._parent = null;
@@ -2493,25 +2514,25 @@ package
 			{
 				if((v as XML).getNodeRef() == ELEMENT && (v==this || isAncestor(v)) )
 					throw new TypeError("cannot assign parent xml as child");
-				v.setParent(this);
+				(v as XML).setParent(this);
 				if(_children[idx])
-					removeChild(_children[idx]);
-				insertChildAt(v,idx);
+					removeChild((_children[idx] as XML));
+				insertChildAt((v as XML),idx);
 			}
 			else if(v is XMLList)
 			{
 				len = (v as XMLList).length();
 				//6.
 				if(_children[idx])
-					_children[idx]._parent = null;
+					(_children[idx] as XML)._parent = null;
 				if (len)  {
-					v[0].setParent(this);
+					(v[0] as XML).setParent(this);
 					_children[idx] = v[0];
 					var listIdx:int = 1;
-					var chld:XML = v[0];
+					var chld:XML = (v[0] as XML);
 					while(listIdx < len)
 					{
-						chld = v[listIdx];
+						chld = v[listIdx] as XML;
 						insertChildAt(chld,idx+listIdx);
 						listIdx++;
 					}
@@ -2561,15 +2582,15 @@ package
 					var len:int = attributeLength();
 					for(i=0;i<len;i++)
 					{
-						if(_attributes[i].name().equals(attr.name()))
+						if((_attributes[i]as XML).name().equals(attr.name()))
 						{
 							var oldValue:String = _attributes[i].getValue();
-							_attributes[i].setValue(value);
-							xml$_notify("attributeChanged", this, attr.name().toString(), oldValue);
+							(_attributes[i]as XML).setValue(value);
+							xml$_notify("attributeChanged", this, (attr as XML).name().toString(), oldValue);
 							return value;
 						}
 					}
-					attr.setValue(value);
+					(attr as XML).setValue(value);
 					addChild(attr);
 				}
 				return value;
@@ -2595,10 +2616,10 @@ package
 				len = attributeLength();
 				for(i=0;i<len;i++)
 				{
-					if(_attributes[i].name().equals(attrXML.name()))
+					if((_attributes[i]as XML).name().equals(attrXML.name()))
 					{
-						var oldValueX:String = _attributes[i].getValue();
-						_attributes[i].setValue(value);
+						var oldValueX:String = (_attributes[i]as XML).getValue();
+						(_attributes[i]as XML).setValue(value);
 						xml$_notify("attributeChanged", this, attrXML.name().toString(), oldValueX);
 						return value;
 					}
@@ -3388,24 +3409,7 @@ package
 			
 			return strArr.join("");
 		}
-		
-		/**
-		 * Returns the XML object.
-		 *
-		 * @return
-		 *
-		 */
-		override public function valueOf():*
-		{
-			var str:String = this.toString();
-			if(str == "")
-				return str;
-			var num:Number = Number(str);
-			if("" + num == str){
-				return  num;
-			}
-			return str;
-		}
+
 		
 		////////////////////////////////////////////////////////////////
 		///

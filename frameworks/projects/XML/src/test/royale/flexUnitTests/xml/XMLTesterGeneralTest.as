@@ -1212,9 +1212,21 @@ package flexUnitTests.xml
             assertEquals(xml.toString(),'<root><baz name="baz2"/></root>',"the first baz element should have been removed.");
             xml = <root name="foo"><baz name="baz1"/><baz name="baz2"/></root>;
             delete xml.baz;
-            // delete xml.baz[0];
-            assertEquals(xml.toXMLString(),'<root name="foo"/>',"the first baz element should have been removed.");
-            XML.setSettings(XML.defaultSettings());
+            assertEquals(xml.toXMLString(),'<root name="foo"/>',"the baz elements should have been removed.");
+            xml = <root name="foo"><baz name="baz1"/><baz name="baz2"/></root>;
+            delete xml['baz'];
+            assertEquals(xml.toXMLString(),'<root name="foo"/>',"the baz elements should have been removed.");
+            xml = <root name="foo"><baz name="baz1"/><baz name="baz2"/><notBaz name="notbaz"/></root>;
+            delete xml.*;
+            assertEquals(xml.toXMLString(),'<root name="foo"/>',"all child elements should have been removed.");
+            xml = <root name="foo"><baz name="baz1"/><baz name="baz2"/><notBaz name="notbaz"/></root>;
+            delete xml['*'];
+            assertEquals(xml.toXMLString(),'<root name="foo"/>',"all child elements should have been removed.");
+            xml = <root>text<other/></root>;
+            delete xml.*;
+            assertEquals(xml.toXMLString(),'<root/>',"all child elements should have been removed.");
+
+               XML.setSettings(XML.defaultSettings());
         }
 
         [Test]
@@ -1414,5 +1426,23 @@ package flexUnitTests.xml
             var xml:XML = XML('<test 1="23"/>');
             assertEquals(xml.toXMLString(), '<test 1="23"/>', 'roundtripping with numeric attributes did not work');
         }*/
+
+
+        [Test]
+        public function testMixedAddition():void{
+            var xml:XML = <root>1</root>;
+            var num:uint = 9;
+
+            var val:uint = xml + num;
+
+            assertStrictlyEquals(val,19,'unexpected numeric addition result');
+
+            val = Number(xml) + num;
+
+            assertStrictlyEquals(val,10,'unexpected numeric addition result');
+
+            var obj:Object = xml + num;
+            assertStrictlyEquals(obj,"19",'unexpected untyped addition result');
+        }
     }
 }

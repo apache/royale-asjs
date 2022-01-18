@@ -243,5 +243,86 @@ package flexUnitTests.xml
             assertStrictlyEquals(alt[0], source, 'unexpected XMLList content strict equality');
 
         }
+
+
+        [Test]
+        public function testAddition():void{
+
+            var list:XMLList = new XMLList('<?xml version="1.0" encoding="utf-8"?><success>false</success><retryable>false</retryable><localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>');
+            assertEquals(list.length(), 3, 'unexpected parsing result for list content');
+            var something:XML = <something>something</something>;
+            var prepend:Object = something;
+            var origList:XMLList;
+            var newList:XMLList;
+
+            newList = XMLList(prepend) + list;
+
+
+
+
+            assertEquals(newList.toString(),
+                    '<something>something</something>\n' +
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>', 'unexpected list concatenation result');
+
+            var orig:XML = something;
+            var newList2:XMLList ;
+            newList2 = something + list;
+
+
+            assertStrictlyEquals(orig, something,'should be the same instance');
+
+            assertEquals(newList2.toString(),
+                    '<something>something</something>\n' +
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>', 'unexpected list concatenation result');
+
+            origList = list;
+
+            list += newList;
+
+            //in XMLList case, +=, to be explicit, does not append to the original instance, it creates a new instance
+            assertNotEquals(origList, list,'should be a new instance');
+
+            assertEquals(list.toString(),
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>\n' +
+                    '<something>something</something>\n' +
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>', 'unexpected list concatenation result');
+
+
+            var source:XML = <xml><child name="1"><item id="item1" category="unknown"/></child><child name="2"><item id="item2" category="unknown"/></child><child name="3"><item id="item3" category="unknown"/></child><child name="4"><item id="item4" category="unknown"/></child></xml>;
+
+
+            var itemIds:XMLList = source.child.item.@id;
+
+            var childList:XMLList = source.child;
+
+
+            var combined:XMLList = childList+itemIds;
+
+            assertEquals(combined.toString(),
+                    '<child name="1">\n' +
+                    '  <item id="item1" category="unknown"/>\n' +
+                    '</child>\n' +
+                    '<child name="2">\n' +
+                    '  <item id="item2" category="unknown"/>\n' +
+                    '</child>\n' +
+                    '<child name="3">\n' +
+                    '  <item id="item3" category="unknown"/>\n' +
+                    '</child>\n' +
+                    '<child name="4">\n' +
+                    '  <item id="item4" category="unknown"/>\n' +
+                    '</child>\n' +
+                    'item1\n' +
+                    'item2\n' +
+                    'item3\n' +
+                    'item4', 'unexpected list concatenation result');
+        }
     }
 }
