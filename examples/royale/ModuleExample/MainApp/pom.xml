@@ -42,7 +42,7 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <debug>false</debug>
-          <additionalCompilerOptions>-js-compiler-option=--variable_map_output_file gccvars.txt;-js-compiler-option+=--property_map_output_file gccprops.txt</additionalCompilerOptions>
+          <additionalCompilerOptions>-export-public-symbols=true;-externs-report=appexterns.js;-link-report=applinkreport.xml;-prevent-rename-object-keys=cssData,_bindings,ROYALE_CLASS_INFO,superClass_,qName</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
