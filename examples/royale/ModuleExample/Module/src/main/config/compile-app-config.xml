@@ -19,7 +19,7 @@
 <royale-config>
     <load-externs>../../../../MainApp/applinkreport-js.xml</load-externs>
     <js-compiler-option>
-        <option>--externs /Users/aharui/git/royale/ant/royale-asjs/examples/royale/ModuleExample/MainApp/appexterns.js</option>
+        <option>--externs ../../../../MainApp/appexterns.js</option>
     </js-compiler-option>
     <prevent-rename-object-keys>cssData,_bindings,ROYALE_CLASS_INFO,superClass_,qName</prevent-rename-object-keys>
 </royale-config>
