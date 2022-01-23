@@ -21,5 +21,11 @@
     <js-compiler-option>
         <option>--externs ../../../../MainApp/appexterns.js</option>
     </js-compiler-option>
-    <prevent-rename-object-keys>cssData,_bindings,ROYALE_CLASS_INFO,superClass_,qName</prevent-rename-object-keys>
+    <prevent-rename-object-keys>
+        <key>cssData</key>
+        <key>_bindings</key>
+        <key>ROYALE_CLASS_INFO</key>
+        <key>superClass_</key>
+        <key>qName</key>
+    </prevent-rename-object-keys>
 </royale-config>
