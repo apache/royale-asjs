@@ -583,10 +583,28 @@ package
 			return retVal;
 		}
 
+		/**
+		 *
+		 * @param list
+		 * @return
+		 *
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion XML
+		 */
 		public function equals(list:*):Boolean
 		{
+			if (list === undefined && _xmlArray.length == 0) return true;
+			if (list instanceof XMLList) {
+				var l:uint = _xmlArray.length;
+				if ((list as XMLList)._xmlArray.length != l) return false;
+
+				for (var i:uint=0;i<l;i++) {
+					if (!((_xmlArray[i] as XML).equals((list as XMLList)._xmlArray[i] as XML))) return false;
+				}
+				return true;
+			}
 			if(isSingle())
-				return _xmlArray[0].equals(list);
+				return (_xmlArray[0] as XML).equals(list);
 			/*
 				Overview
 				The XMLList type adds the internal [[Equals]] method to the internal properties defined by the Object type.

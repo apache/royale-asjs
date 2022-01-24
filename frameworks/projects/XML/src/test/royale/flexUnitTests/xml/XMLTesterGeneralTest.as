@@ -1444,5 +1444,142 @@ package flexUnitTests.xml
             var obj:Object = xml + num;
             assertStrictlyEquals(obj,"19",'unexpected untyped addition result');
         }
+
+        [Test]
+        public function testEquality():void{
+            var xmlInst:XML = <xml><child selected="false"/><child selected="true"/></xml>;
+
+            var list:XMLList = xmlInst.child;
+
+            var check:Boolean;
+
+            var trueVal:Boolean = true;
+            var falseVal:Boolean = false;
+
+            check = list[0].@selected == false;
+
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+            check = list[0].@selected != false;
+
+            assertFalse(check, 'unexpected boolean equality (non-strict)');
+
+            check = list[0].@selected == falseVal;
+
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+            check = list[0].@selected != falseVal;
+
+            assertFalse(check, 'unexpected boolean equality (non-strict)');
+
+
+            check = list[0].@selected === false
+
+            assertFalse(check, 'unexpected boolean inequality (strict)');
+
+            check = list[0].@selected !== false
+
+            assertTrue(check, 'unexpected boolean inequality (strict)');
+
+
+            check = list[0].@selected === falseVal
+
+            assertFalse(check, 'unexpected boolean inequality (strict)');
+
+            check = list[0].@selected !== falseVal
+
+            assertTrue(check, 'unexpected boolean inequality (strict)');
+
+            check = list[1].@selected == true;
+
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+            check = list[1].@selected != true;
+
+            assertFalse(check, 'unexpected boolean equality (non-strict)');
+
+            check = list[1].@selected == trueVal;
+
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+            check = list[1].@selected != trueVal;
+
+            assertFalse(check, 'unexpected boolean equality (non-strict)');
+
+            check = list[1].@selected === true;
+            assertFalse(check, 'unexpected boolean inequality (strict)');
+
+            check = list[1].@selected !== true;
+            assertTrue(check, 'unexpected boolean inequality (strict)');
+
+            check = list[1].@selected === trueVal;
+            assertFalse(check, 'unexpected boolean inequality (strict)');
+
+            check = list[1].@selected !== trueVal;
+            assertTrue(check, 'unexpected boolean inequality (strict)');
+
+            //do one check opposite, and assume all the rest will pass the same:
+            check =  false == list[0].@selected ;
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+            //check XML as oppossed to XMLList
+            var boolTest:XML = list[1].@selected[0];
+
+            check = boolTest == true;
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+            boolTest = list[0].@selected[0];
+            check = boolTest == false;
+            assertTrue(check, 'unexpected boolean inequality (non-strict)');
+
+            boolTest  = new XML('true');
+            check = boolTest == true;
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+            boolTest  = new XML('false');
+            check = boolTest == false;
+            assertTrue(check, 'unexpected boolean equality (non-strict)');
+
+
+
+            var valZero:uint = 0;
+            var valNum:Number = 5.25;
+
+            xmlInst = <xml><child idx="0" val="5.25"/><child idx="1" val="15.25"/></xml>;
+            list = xmlInst.child;
+            check = list[0].@idx == 0;
+
+            assertTrue(check, 'unexpected numeric equality (non-strict)');
+
+            check = list[0].@idx !== 0;
+
+            assertTrue(check, 'unexpected numeric inequality (strict)');
+
+            check = list[0].@val == 5.25;
+            assertTrue(check, 'unexpected numeric equality (non-strict)');
+
+            check = list[0].@val !== 5.25;
+
+            assertTrue(check, 'unexpected numeric inequality (strict)');
+
+            check = list[0].@idx == valZero;
+
+            assertTrue(check, 'unexpected numeric equality (non-strict)');
+
+            check = list[0].@idx !== valZero;
+
+            assertTrue(check, 'unexpected numeric inequality (strict)');
+
+            check = list[0].@val == valNum;
+            assertTrue(check, 'unexpected numeric equality (non-strict)');
+
+            check = list[0].@val !== valNum;
+
+            assertTrue(check, 'unexpected numeric inequality (strict)');
+
+
+
+
+        }
     }
 }

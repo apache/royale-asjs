@@ -1455,7 +1455,7 @@ package
 			var i:int;
 			if (xml == this) return true;
 			
-			if(!(xml is XML))
+			if(!(xml instanceof XML))
 				return false;
 			var typedXML:XML = xml as XML;
 			if(typedXML.getNodeRef() != getNodeRef())
