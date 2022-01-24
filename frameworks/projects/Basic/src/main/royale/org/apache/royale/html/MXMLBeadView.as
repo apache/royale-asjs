@@ -31,6 +31,7 @@ package org.apache.royale.html
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.utils.removeBeadFromBeads;
 
     [DefaultProperty("mxmlContent")]
 
@@ -306,7 +307,7 @@ package org.apache.royale.html
          */
         public function removeBead(value:IBead):IBead
         {
-            var n:int = _beads.length;
+           /* var n:int = _beads.length;
             for (var i:int = 0; i < n; i++)
             {
                 var bead:IBead = _beads[i];
@@ -316,7 +317,8 @@ package org.apache.royale.html
                     return bead;
                 }
             }
-            return null;
+            return null;*/
+            return removeBeadFromBeads(_beads,value, false);
         }
 
     }

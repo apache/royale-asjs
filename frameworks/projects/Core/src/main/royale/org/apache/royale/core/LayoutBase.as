@@ -84,16 +84,24 @@ package org.apache.royale.core
 		 */
 		override public function set strand(value:IStrand):void
 		{
+			if (value != _strand) {
+				if (_strand) setListeners(true);
+			}
 			_strand = value;
 			host = value as ILayoutChild;
-			listenOnStrand("widthChanged", handleSizeChange);
-			listenOnStrand("heightChanged", handleSizeChange);
-			listenOnStrand("sizeChanged", handleSizeChange);
+			if (value) {
+				setListeners();
+			}
+		}
 
-			listenOnStrand("childrenAdded", handleChildrenAdded);
-			listenOnStrand("initComplete", handleInitComplete);
-			listenOnStrand("layoutNeeded", handleLayoutNeeded);
+		protected function setListeners(off:Boolean=false):void{
+			listenOnStrand("widthChanged", handleSizeChange, false, off);
+			listenOnStrand("heightChanged", handleSizeChange, false, off);
+			listenOnStrand("sizeChanged", handleSizeChange, false, off);
 
+			listenOnStrand("childrenAdded", handleChildrenAdded, false, off);
+			listenOnStrand("initComplete", handleInitComplete, false, off);
+			listenOnStrand("layoutNeeded", handleLayoutNeeded, false, off);
 		}
 		
 		private var lastWidth:Number = -1;

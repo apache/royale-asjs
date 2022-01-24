@@ -41,7 +41,8 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.core.IHasLabelField;
-	
+	import org.apache.royale.utils.removeBeadFromBeads;
+
 	/**
 	 *  The TextFieldItemRenderer class provides a org.apache.royale.html.TextField as an itemRenderer.
 	 *
@@ -542,7 +543,7 @@ package org.apache.royale.html.supportClasses
 		 */
         public function removeBead(value:IBead):IBead	
         {
-            var n:int = _beads.length;
+            /*var n:int = _beads.length;
             for (var i:int = 0; i < n; i++)
             {
                 var bead:IBead = _beads[i];
@@ -552,7 +553,8 @@ package org.apache.royale.html.supportClasses
                     return bead;
                 }
             }
-            return null;
+            return null;*/
+			return removeBeadFromBeads(_beads,value, false)
         }
         
 		/**

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+    import org.apache.royale.utils.removeBeadFromBeads;
+
     COMPILE::SWF {
     import flash.display.DisplayObject;
     import flash.display.StageAlign;
@@ -480,7 +482,7 @@ package org.apache.royale.jewel
         COMPILE::SWF
         public function removeBead(value:IBead):IBead
         {
-            var n:int = _beads.length;
+            /*var n:int = _beads.length;
             for (var i:int = 0; i < n; i++)
             {
                 var bead:IBead = _beads[i];
@@ -490,7 +492,8 @@ package org.apache.royale.jewel
                     return bead;
                 }
             }
-            return null;
+            return null;*/
+            return removeBeadFromBeads(_beads, value, false);
         }
 
         /**

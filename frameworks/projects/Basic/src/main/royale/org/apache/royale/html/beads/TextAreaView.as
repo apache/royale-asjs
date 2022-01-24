@@ -33,6 +33,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.VScrollBar;
 	import org.apache.royale.html.beads.models.ScrollBarModel;
+	import org.apache.royale.utils.removeBeadFromBeads;
 
     /**
      *  The TextAreaView class is the default view for
@@ -248,7 +249,7 @@ package org.apache.royale.html.beads
          */
 		public function removeBead(value:IBead):IBead	
 		{
-			var n:int = _beads.length;
+			/*var n:int = _beads.length;
 			for (var i:int = 0; i < n; i++)
 			{
 				var bead:IBead = _beads[i];
@@ -258,7 +259,8 @@ package org.apache.royale.html.beads
 					return bead;
 				}
 			}
-			return null;
+			return null;*/
+			return removeBeadFromBeads(_beads, value, false);
 		}
 	}
 }

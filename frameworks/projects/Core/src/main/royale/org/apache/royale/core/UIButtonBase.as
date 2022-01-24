@@ -31,7 +31,8 @@ package org.apache.royale.core
     import org.apache.royale.events.utils.MouseEventConverter;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	
+	import org.apache.royale.utils.removeBeadFromBeads;
+
     //--------------------------------------
     //  Events
     //--------------------------------------
@@ -808,7 +809,7 @@ package org.apache.royale.core
          */
 		public function removeBead(value:IBead):IBead	
 		{
-			var n:int = strand.length;
+			/*var n:int = strand.length;
 			for (var i:int = 0; i < n; i++)
 			{
 				var bead:IBead = strand[i];
@@ -818,7 +819,8 @@ package org.apache.royale.core
 					return bead;
 				}
 			}
-			return null;
+			return null;*/
+			return removeBeadFromBeads(strand,value, false)
 		}
 		
         /**

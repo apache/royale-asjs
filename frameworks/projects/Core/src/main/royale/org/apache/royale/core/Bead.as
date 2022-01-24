@@ -65,10 +65,15 @@ package org.apache.royale.core
     /**
      * Helper function to attach event listener without the need for casting
      * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     *
      */
-    protected function listenOnStrand(eventType:String,handler:Function,capture:Boolean=false):void
+    protected function listenOnStrand(eventType:String,handler:Function,capture:Boolean=false,unListen:Boolean=false):void
     {
-      (_strand as IEventDispatcher).addEventListener(eventType, handler, capture);
+      if (unListen) {
+          (_strand as IEventDispatcher).removeEventListener(eventType, handler, capture);
+      }  else {
+          (_strand as IEventDispatcher).addEventListener(eventType, handler, capture);
+      }
     }
 
   }
