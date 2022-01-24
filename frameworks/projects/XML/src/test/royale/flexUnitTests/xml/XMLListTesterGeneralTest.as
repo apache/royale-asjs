@@ -243,5 +243,155 @@ package flexUnitTests.xml
             assertStrictlyEquals(alt[0], source, 'unexpected XMLList content strict equality');
 
         }
+
+
+        [Test]
+        public function testAddition():void{
+
+            var list:XMLList = new XMLList('<?xml version="1.0" encoding="utf-8"?><success>false</success><retryable>false</retryable><localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>');
+            assertEquals(list.length(), 3, 'unexpected parsing result for list content');
+            var something:XML = <something>something</something>;
+            var prepend:Object = something;
+            var origList:XMLList;
+            var newList:XMLList;
+
+            newList = XMLList(prepend) + list;
+
+
+
+
+            assertEquals(newList.toString(),
+                    '<something>something</something>\n' +
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>', 'unexpected list concatenation result');
+
+            var orig:XML = something;
+            var newList2:XMLList ;
+            newList2 = something + list;
+
+
+            assertStrictlyEquals(orig, something,'should be the same instance');
+
+            assertEquals(newList2.toString(),
+                    '<something>something</something>\n' +
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>', 'unexpected list concatenation result');
+
+            origList = list;
+
+            list += newList;
+
+            //in XMLList case, +=, to be explicit, does not append to the original instance, it creates a new instance
+            assertNotEquals(origList, list,'should be a new instance');
+
+            assertEquals(list.toString(),
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>\n' +
+                    '<something>something</something>\n' +
+                    '<success>false</success>\n' +
+                    '<retryable>false</retryable>\n' +
+                    '<localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>', 'unexpected list concatenation result');
+
+
+            var source:XML = <xml><child name="1"><item id="item1" category="unknown"/></child><child name="2"><item id="item2" category="unknown"/></child><child name="3"><item id="item3" category="unknown"/></child><child name="4"><item id="item4" category="unknown"/></child></xml>;
+
+
+            var itemIds:XMLList = source.child.item.@id;
+
+            var childList:XMLList = source.child;
+
+
+            var combined:XMLList = childList+itemIds;
+
+            //IE11 can have attribute order inverted
+            var firstPartA:String ='<child name="1">\n' +
+                    '  <item id="item1" category="unknown"/>\n' +
+                    '</child>\n' +
+                    '<child name="2">\n' +
+                    '  <item id="item2" category="unknown"/>\n' +
+                    '</child>\n' +
+                    '<child name="3">\n' +
+                    '  <item id="item3" category="unknown"/>\n' +
+                    '</child>\n' +
+                    '<child name="4">\n' +
+                    '  <item id="item4" category="unknown"/>\n' +
+                    '</child>\n'
+            var firstPartB:String ='<child name="1">\n' +
+                    '  <item category="unknown" id="item1"/>\n' +
+                    '</child>\n' +
+                    '<child name="2">\n' +
+                    '  <item category="unknown" id="item2"/>\n' +
+                    '</child>\n' +
+                    '<child name="3">\n' +
+                    '  <item category="unknown" id="item3"/>\n' +
+                    '</child>\n' +
+                    '<child name="4">\n' +
+                    '  <item category="unknown" id="item4"/>\n' +
+                    '</child>\n';
+
+            var lastPart:String = 'item1\n' +
+                    'item2\n' +
+                    'item3\n' +
+                    'item4';
+
+            var combinedString:String = combined.toString();
+            var mustBeExpected:Boolean = combinedString == (firstPartA + lastPart) || combinedString == (firstPartB + lastPart);
+
+            assertTrue(mustBeExpected, 'unexpected list concatenation result');
+
+            var test:Object = <xml>test</xml>;
+            var xmlInst:XML = <xml><child selected="false"/><child selected="true"/></xml>;
+
+            var check:XMLList = XMLList(test) + xmlInst.descendants().(@selected == 'true');
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="true"/>', 'unexpected XMLList addition result');
+
+            check = XMLList(test) + xmlInst.descendants().@selected;
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    'false\n' +'true', 'unexpected XMLList addition result');
+
+            check = XMLList(test) + xmlInst.child;
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="false"/>\n' +'<child selected="true"/>', 'unexpected XMLList addition result');
+
+
+            check = XMLList(test) + xmlInst.child[0];
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="false"/>' , 'unexpected XMLList addition result');
+
+            check = XMLList(test) + xmlInst.child.@['selected'];
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    'false\n' +'true' , 'unexpected XMLList addition result');
+
+            check = XMLList(test) + xmlInst['child'];
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="false"/>\n' +'<child selected="true"/>', 'unexpected XMLList addition result');
+
+            check = getList() + xmlInst['child'];
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="false"/>\n' +'<child selected="true"/>', 'unexpected XMLList addition result');
+
+
+            check = getList() + xmlInst['child'] + getList();
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="false"/>\n' +'<child selected="true"/>\n' + '<xml>test</xml>', 'unexpected XMLList addition result');
+
+            check = (getList() + xmlInst['child']) + getList();
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="false"/>\n' +'<child selected="true"/>\n' + '<xml>test</xml>', 'unexpected XMLList addition result');
+
+            check = getList() + (xmlInst['child'] + getList());
+            assertEquals(check.toString(), '<xml>test</xml>\n' +
+                    '<child selected="false"/>\n' +'<child selected="true"/>\n' + '<xml>test</xml>', 'unexpected XMLList addition result');
+
+        }
+
+        private function getList():XMLList{
+            var test:Object = <xml>test</xml>;
+            return  XMLList(test);
+        }
     }
 }

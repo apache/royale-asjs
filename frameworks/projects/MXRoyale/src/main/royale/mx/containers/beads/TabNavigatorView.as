@@ -200,17 +200,17 @@ public class TabNavigatorView extends GroupView
         var oldIndex:int = (tabBar.model as ISelectionModel).selectedIndex;
         (tabBar as TabBar).dataProvider = tabDP;
 
+        var tabNavigator:TabNavigator = _strand as TabNavigator;
         if (oldIndex == -1 && n > 0)
         {
             (tabBar.model as ISelectionModel).selectedIndex = 0;
-            var tabNavigator:TabNavigator = _strand as TabNavigator;
+           
             if (tabNavigator)
             {
                 tabNavigator.selectedIndex = 0;
             }
         } else {
             if (removeIndex != -1 ) {
-                var tabNavigator:TabNavigator = _strand as TabNavigator;
                 if (removeIndex == tabDP.length) removeIndex--;
                 if (tabNavigator)
                 {

@@ -1001,6 +1001,10 @@ public class ComboBox extends ComboBase
         _prompt = value;
         promptChanged = true;
         invalidateProperties();
+        if (textInput && value != null)
+        {
+            textInput.text = value;
+        }
     }
     
     //----------------------------------

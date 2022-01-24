@@ -50,22 +50,26 @@ package
         
         /**
          * @royaleignorecoercion String
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion XML
          */
 		private function parseExpression(expression:Object):void
 		{
 			if(expression is XMLList)
 			{
-				targetObject = expression.targetObject;
-				targetProperty = expression.targetProperty;
+				targetObject = (expression as XMLList).targetObject;
+				targetProperty = (expression as XMLList).targetProperty;
 
-				var len:int = expression.length();
+				var len:int = (expression as XMLList).length();
 				for(var i:int=0;i<len;i++){
-					this[i] = expression[i];
+					append(expression[i] as XML);
+					//this[i] = expression[i];
 				}
 			}
 			else if(expression is XML)
 			{
-				this[0] = expression;
+				//this[0] = expression;
+				append(expression as XML);
 			}
 			else 
             {
@@ -80,7 +84,8 @@ package
                 {
 					var item:XML = new XML(expression);
 					if (item.nodeKind() == 'text' && item.getValue() == '') return;
-    				this[0] = item;
+    				//this[0] = item;
+					append(item);
                 }
                 catch (e:Error)
                 {
@@ -97,7 +102,8 @@ package
                             var m:int = list.length();
                             for (var j:int = 0; j < m; j++)
                             {
-                                this[j] = list[j];
+                                //this[j] = list[j];
+								append(list[j] as XML);
                             }
                         }
                         catch (e2:Error)
@@ -314,19 +320,22 @@ package
 		 * Calls the attribute() method of each XML object and returns an XMLList object of the results.
 		 * 
 		 * @param attributeName
-		 * @return 
+		 * @return an XMLList of matching attributes
+		 *
+		 *
+		 * @royaleignorecoercion XML
 		 * 
 		 */
 		public function attribute(attributeName:*):XMLList
 		{
 			if(isSingle())
-				return _xmlArray[0].attribute(attributeName);
+				return (_xmlArray[0] as XML).attribute(attributeName);
 
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
-				var list:XMLList = _xmlArray[i].attribute(attributeName);
+				var list:XMLList = (_xmlArray[i] as XML).attribute(attributeName);
 				if(list.length())
 					retVal.concat(list);
 			}
@@ -439,24 +448,42 @@ package
 			}
 			return retVal;
 		}
+
+		/**
+		 *
+		 * @param list
+		 * @return this list concatenated with the contents of the list argument
+		 *
+		 * @private
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion XML
+		 */
 		
 		public function concat(list:*):XMLList
 		{
 			if(list is XML)
 			{
-				var newList:XMLList = new XMLList();
+				/*var newList:XMLList = new XMLList();
 				newList.append(list);
-				list = newList;
+				list = newList;*/
+				append (list as XML);
+			} else {
+				if(!(list is XMLList))
+					throw new TypeError("invalid type");
+				var otherListContents:Array = (list as XMLList)._xmlArray;
+				var l:uint = otherListContents.length;
+				for (var i:uint=0;i<l;i++) {
+					append(otherListContents[i] as XML);
+				}
 			}
-			if(!(list is XMLList))
-				throw new TypeError("invalid type");
 
-			var item:XML;
+
+			/*var item:XML;
 			//work-around for FLEX-35070
 			var len:int = list.length();
 			var i:int=0;
 			while(i<len)
-				append(list[i++]);
+				append(list[i++]);*/
 
 //			var xmlList:XMLList = list;
 //			for each(item in xmlList)
@@ -556,10 +583,28 @@ package
 			return retVal;
 		}
 
+		/**
+		 *
+		 * @param list
+		 * @return
+		 *
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion XML
+		 */
 		public function equals(list:*):Boolean
 		{
+			if (list === undefined && _xmlArray.length == 0) return true;
+			if (list instanceof XMLList) {
+				var l:uint = _xmlArray.length;
+				if ((list as XMLList)._xmlArray.length != l) return false;
+
+				for (var i:uint=0;i<l;i++) {
+					if (!((_xmlArray[i] as XML).equals((list as XMLList)._xmlArray[i] as XML))) return false;
+				}
+				return true;
+			}
 			if(isSingle())
-				return _xmlArray[0].equals(list);
+				return (_xmlArray[0] as XML).equals(list);
 			/*
 				Overview
 				The XMLList type adds the internal [[Equals]] method to the internal properties defined by the Object type.
@@ -768,7 +813,7 @@ package
 				Semantics
 				The production AdditiveExpression : AdditiveExpression + MultiplicativeExpression is evaluated as follows:
 				
-				1. Let a be the result of evalutating AdditiveExpression
+				1. Let a be the result of evaluating AdditiveExpression
 				2. Let left = GetValue(a)
 				3. Let m be the result of evaluating MultiplicativeExpression
 				4. Let right = GetValue(m)
@@ -801,9 +846,11 @@ package
 				return this.toString() + rightHand;
 			if(rightHand is Number && isNaN(rightHand))
 				return NaN;
-			if(isNaN(Number( this.toString() )) || isNaN(Number( rightHand.toString() )))
-				return this.toString() + rightHand.toString();
-			return Number(this.toString()) + rightHand;
+			var thisString:String = this.toString();
+			var rhsString:String = rightHand.toString();
+			if(isNaN(Number( thisString )) || isNaN(Number( rhsString )))
+				return thisString + rhsString;
+			return Number(thisString) + rightHand;
 		}
 		
 		/**
@@ -917,7 +964,7 @@ package
 						_xmlArray.splice(idx+i,0,child[i]);
 				}
 			}
-			// add indexes as necessary
+			// add indexes as necessary @todo check, should it be <= below:
 			while(idx++ < _xmlArray.length)
 			{
 				if(!this.hasOwnProperty(idx))
@@ -929,7 +976,7 @@ package
 		/**
 		 * @private
 		 * 
-		 * Internally used to store an associated XML or XMLList object which will be effected by operations
+		 * Internally used to store an associated XML or XMLList object which will be affected by operations
 		 */
 		public function set targetObject(value:*):void
 		{
@@ -974,10 +1021,10 @@ package
 				var xmlStr:String = "<";
 				if(_targetProperty is QName)
 				{
-					if(_targetProperty.prefix)
-						xmlStr += _targetProperty.prefix + "::";
+					if(QName(_targetProperty).prefix)
+						xmlStr += QName(_targetProperty).prefix + "::";
 
-					xmlStr += _targetProperty.localName + "/>";
+					xmlStr += QName(_targetProperty).localName + "/>";
 				}
 				else
 				{

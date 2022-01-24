@@ -336,6 +336,9 @@ internal class CoreClasses
 	import org.apache.royale.utils.transformValueFromRange; transformValueFromRange;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
+	import org.apache.royale.utils.array.arraysMatch; arraysMatch;
+	
+	import org.apache.royale.utils.object.objectsMatch; objectsMatch;
 
 	import org.apache.royale.utils.string.Base64; org.apache.royale.utils.string.Base64;
 	import org.apache.royale.utils.Base64; org.apache.royale.utils.Base64;

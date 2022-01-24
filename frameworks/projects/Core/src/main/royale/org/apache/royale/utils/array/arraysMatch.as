@@ -16,26 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.utils
+package org.apache.royale.utils.array
 {
-    COMPILE::SWF
-    {
-        import flash.utils.setTimeout;
-    }
-    /**
-     * @royalesuppressexport
-     */
-    public function callLater(fn:Function, args:Array = null, thisArg:Object = null):void
-    {
-        COMPILE::SWF{
-            setTimeout(callback, 0);
-        }
-        COMPILE::JS{
-            requestAnimationFrame(callback);
-        }
-        function callback():void
-        {
-            fn.apply(thisArg,args);
-        }
-    }
+
+	import org.apache.royale.utils.object.objectsMatch;
+
+	/**
+	 *  Checks that all items in an array match.
+	 *  If deep is true, it will recursively compare properties of all items.
+	 *  level is used to track the level of nesting to prevent an endless loop
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.9
+	 *  @royalesuppressexport
+	 */
+	public function arraysMatch(first:Array,second:Array,deep:Boolean=false,level:int=0):Boolean
+	{
+		if(!first || !second)
+			return false;
+		
+		if(first.length != second.length)
+			return false;
+		
+		var len:int = first.length;
+		for(var i:int=0; i<len; i++)
+		{
+			if(deep)
+			{
+				if(!objectsMatch(first[i], second[i], deep, level+1))
+					return false;
+
+			}
+			else if(first[i] !== second[i])
+				return false;
+
+		}
+		return true;
+	}
 }

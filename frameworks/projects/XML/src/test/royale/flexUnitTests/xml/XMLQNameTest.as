@@ -131,6 +131,9 @@ package flexUnitTests.xml
         [Test]
         public function testEquality():void{
             assertTrue(new QName('test') == new QName('test'), 'unexpected equality result');
+            assertFalse(new QName('test') == new QName('test2'), 'unexpected inequality result');
+            assertFalse(new QName('test') != new QName('test'), 'unexpected inequality result');
+            assertTrue(new QName('test') != new QName('test2'), 'unexpected inequality result');
             assertFalse(new QName('test') === new QName('test'), 'unexpected strict equality result');
         }
     
