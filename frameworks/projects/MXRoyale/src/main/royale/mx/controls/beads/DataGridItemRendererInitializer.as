@@ -22,6 +22,7 @@ package mx.controls.beads
 
 	import mx.controls.DataGrid;
 	import mx.controls.beads.models.DataGridColumnICollectionViewModel;
+	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.controls.dataGridClasses.DataGridColumnList;
 	import mx.controls.dataGridClasses.DataGridListData;
 	import mx.core.UIComponent;
@@ -55,6 +56,8 @@ package mx.controls.beads
 		/**
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+		 *
+		 *  @royaleignorecoercion mx.controls.dataGridClasses.DataGridColumn
 		 */
 		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
 		{
@@ -70,15 +73,18 @@ package mx.controls.beads
             var dgColumnListModel:DataGridColumnICollectionViewModel = dgColumnList.model as DataGridColumnICollectionViewModel;
 			var dg:DataGrid = (dgColumnList.grid as DataGrid);
 
-			var dataField:String = dg.columns[dgColumnListModel.columnIndex].dataField;
+			var dgColumn:DataGridColumn = dg.columns[dgColumnListModel.columnIndex] as DataGridColumn;
 			var text:String = "";
-			try {
-				text = data[dataField];
+
+			/*try {
+				text = dgColumn.labelFunction !=null ? dgColumn.labelFunction(data, dgColumn) : data[dgColumn.dataField];
 			} catch (e:Error)
 			{
-			}
+			}*/
+			text = dgColumn.itemToLabel(data);
+
 			// Set the listData with the depth of this item
-			var listData:DataGridListData = new DataGridListData(text, dataField, dgColumnListModel.columnIndex, "", (dgColumnList.grid as DataGrid), index);
+			var listData:DataGridListData = new DataGridListData(text, dgColumn.dataField, dgColumnListModel.columnIndex, "", dg, index);
 
 			(ir as IListDataItemRenderer).listData = listData;
         }
