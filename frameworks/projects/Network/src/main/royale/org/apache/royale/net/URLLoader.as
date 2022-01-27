@@ -369,6 +369,8 @@ package org.apache.royale.net
             } else {
                 bytesLoaded = 0;
                 bytesTotal = 0;
+                if (e.type == 'load')
+                    dispatchEvent(HTTPConstants.COMPLETE);
             }
         }
 
