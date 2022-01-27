@@ -261,7 +261,7 @@ package org.apache.royale.html
          */
         public var beads:Array;
 
-        private var _beads:Array;
+        private var _beads:Vector.<IBead>;;
 
         /**
          *  @copy org.apache.royale.core.IStrand#addBead()
@@ -274,7 +274,7 @@ package org.apache.royale.html
         public function addBead(bead:IBead):void
         {
             if (!_beads)
-                _beads = [];
+                _beads = new Vector.<IBead>();
             _beads.push(bead);
             bead.strand = this;
         }
