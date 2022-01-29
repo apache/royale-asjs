@@ -57,7 +57,18 @@ package org.apache.royale.jewel.beads.controls
         public function set phoneWidth(value:Number):void {
             _phoneWidth = value;
         }
-		
+
+		private var _phonePercentWidth:Number;
+        /**
+         * the percent width of this control in phones
+         */
+        public function get phonePercentWidth():Number {
+            return _phonePercentWidth;
+        }
+        public function set phonePercentWidth(value:Number):void {
+            _phonePercentWidth = value;
+        }
+
         private var _phoneHeight:Number;
         /**
          * the height of this control in phones
@@ -69,6 +80,17 @@ package org.apache.royale.jewel.beads.controls
             _phoneHeight = value;
         }
 		
+        private var _phonePercentHeight:Number;
+        /**
+         * the percent height of this control in phones
+         */
+        public function get phonePercentHeight():Number {
+            return _phonePercentHeight;
+        }
+        public function set phonePercentHeight(value:Number):void {
+            _phonePercentHeight = value;
+        }
+
         private var _tabletWidth:Number;
         /**
          * the width of this control in tablets
@@ -80,6 +102,17 @@ package org.apache.royale.jewel.beads.controls
             _tabletWidth = value;
         }
 		
+        private var _tabletPercentWidth:Number;
+        /**
+         * the percent width of this control in tablets
+         */
+        public function get tabletPercentWidth():Number {
+            return _tabletPercentWidth;
+        }
+        public function set tabletPercentWidth(value:Number):void {
+            _tabletPercentWidth = value;
+        }
+
         private var _tabletHeight:Number;
         /**
          * the height of this control in tablets
@@ -91,6 +124,17 @@ package org.apache.royale.jewel.beads.controls
             _tabletHeight = value;
         }
         
+        private var _tabletPercentHeight:Number;
+        /**
+         * the percent height of this control in tablets
+         */
+        public function get tabletPercentHeight():Number {
+            return _tabletPercentHeight;
+        }
+        public function set tabletPercentHeight(value:Number):void {
+            _tabletPercentHeight = value;
+        }
+
         private var _desktopWidth:Number;
         /**
          * the width of this control in desktops
@@ -102,6 +146,17 @@ package org.apache.royale.jewel.beads.controls
             _desktopWidth = value;
         }
 		
+        private var _desktopPercentWidth:Number;
+        /**
+         * the percent width of this control in desktops
+         */
+        public function get desktopPercentWidth():Number {
+            return _desktopPercentWidth;
+        }
+        public function set desktopPercentWidth(value:Number):void {
+            _desktopPercentWidth = value;
+        }
+
         private var _desktopHeight:Number;
         /**
          * the height of this control in desktops
@@ -113,6 +168,17 @@ package org.apache.royale.jewel.beads.controls
             _desktopHeight = value;
         }
         
+        private var _desktopPercentHeight:Number;
+        /**
+         * the percent height of this control in desktops
+         */
+        public function get desktopPercentHeight():Number {
+            return _desktopPercentHeight;
+        }
+        public function set desktopPercentHeight(value:Number):void {
+            _desktopPercentHeight = value;
+        }
+
         private var _widescreenWidth:Number;
         /**
          * the width of this control in widescreens
@@ -124,6 +190,17 @@ package org.apache.royale.jewel.beads.controls
             _widescreenWidth = value;
         }
 		
+        private var _widescreenPercentWidth:Number;
+        /**
+         * the percent width of this control in widescreens
+         */
+        public function get widescreenPercentWidth():Number {
+            return _widescreenPercentWidth;
+        }
+        public function set widescreenPercentWidth(value:Number):void {
+            _widescreenPercentWidth = value;
+        }
+
         private var _widescreenHeight:Number;
         /**
          * the height of this control in widescreens
@@ -133,6 +210,17 @@ package org.apache.royale.jewel.beads.controls
         }
         public function set widescreenHeight(value:Number):void {
             _widescreenHeight = value;
+        }
+
+        private var _widescreenPercentHeight:Number;
+        /**
+         * the percent height of this control in widescreens
+         */
+        public function get widescreenPercentHeight():Number {
+            return _widescreenPercentHeight;
+        }
+        public function set widescreenPercentHeight(value:Number):void {
+            _widescreenPercentHeight = value;
         }
 
         private var control:StyledUIBase;
@@ -180,6 +268,9 @@ package org.apache.royale.jewel.beads.controls
                 if(outerWidth == document.body.getBoundingClientRect().width)
                     return;
 
+                control.percentWidth = NaN;
+                control.percentHeight = NaN;
+
                 outerWidth = document.body.getBoundingClientRect().width;
                 
                 var responsiveFlag:Boolean = false;
@@ -195,6 +286,11 @@ package org.apache.royale.jewel.beads.controls
                             control.height = widescreenHeight;
                         responsiveFlag = true;
                     }
+                    else if(!isNaN(widescreenPercentWidth) || !isNaN(widescreenPercentHeight))
+                    {
+                        control.percentWidth = widescreenPercentWidth;
+                        control.percentHeight = widescreenPercentHeight;
+                    }
                 } 
                 else if(outerWidth < ResponsiveSizes.WIDESCREEN_BREAKPOINT && outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
                 {
@@ -206,6 +302,11 @@ package org.apache.royale.jewel.beads.controls
                         if(desktopHeight != originalHeight)
                             control.height = desktopHeight;
                         responsiveFlag = true;
+                    }
+                    else if(!isNaN(desktopPercentWidth) || !isNaN(desktopPercentHeight))
+                    {
+                        control.percentWidth = desktopPercentWidth;
+                        control.percentHeight = desktopPercentHeight;
                     }
                 }
                 else if(outerWidth < ResponsiveSizes.DESKTOP_BREAKPOINT && outerWidth > ResponsiveSizes.TABLET_BREAKPOINT)
@@ -219,6 +320,11 @@ package org.apache.royale.jewel.beads.controls
                             control.height = tabletHeight;
                         responsiveFlag = true;
                     }
+                    else if(!isNaN(tabletPercentWidth) || !isNaN(tabletPercentHeight))
+                    {
+                        control.percentWidth = tabletPercentWidth;
+                        control.percentHeight = tabletPercentHeight;
+                    }
                 }
                 else if(outerWidth < ResponsiveSizes.TABLET_BREAKPOINT && outerWidth > ResponsiveSizes.PHONE_BREAKPOINT)
                 {
@@ -230,6 +336,11 @@ package org.apache.royale.jewel.beads.controls
                         if(phoneHeight != originalHeight)
                             control.height = phoneHeight;
                         responsiveFlag = true;
+                    }
+                    else if(!isNaN(phonePercentWidth) || !isNaN(phonePercentHeight))
+                    {
+                        control.percentWidth = phonePercentWidth;
+                        control.percentHeight = phonePercentHeight;
                     }
                 }
 
