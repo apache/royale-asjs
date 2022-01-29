@@ -207,7 +207,7 @@ import org.apache.royale.core.IHasLabelField;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGridColumn implements IHasLabelField // IIMESupport
+public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGridColumn /*implements IHasLabelField */// IIMESupport
 {
     //--------------------------------------------------------------------------
     //
@@ -364,22 +364,29 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     //  labelFunction
     //----------------------------------
 
+    /**
+     *
+     * @param data
+     * @return stringified value of data
+     *
+     * @royaleignorecoercion XML
+     * @royaleignorecoercion String
+     *
+     */
     public function itemToLabel(data:Object):String
     {
         if (data == null)
             return " ";
         
-        /*
-        if (labelFunction != null)
-            return labelFunction(data);
-        */
-        
+        if (_labelFunction != null)
+            return _labelFunction(data, this);
+
         if (data is XML)
         {
             try
             {
-                if ((data as XML)[labelField].length() != 0)
-                    data = (data as XML)[labelField];
+                if ((data as XML)[dataField].length() != 0)
+                    data = (data as XML)[dataField];
                 //by popular demand, this is a default XML labelField
                 //else if (data.@label.length() != 0)
                 //  data = data.@label;
@@ -392,8 +399,8 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
         {
             try
             {
-                if (data[labelField] != null)
-                    data = data[labelField];
+                if (data[dataField] != null)
+                    data = data[dataField];
             }
             catch(e:Error)
             {
@@ -414,7 +421,8 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
         return " ";
     }
 
-    private var _labelField:String;
+    //DataGridColumn does not have 'labelField'
+   /* private var _labelField:String;
     public function get labelField():String
     {
         return _labelField;
@@ -423,7 +431,7 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     public function set labelField(value:String):void
     {
         _labelField = value;
-    }
+    }*/
 
     /**
      *  @private

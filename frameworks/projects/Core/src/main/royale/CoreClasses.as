@@ -330,6 +330,7 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.measureComponent; measureComponent;
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
+	import org.apache.royale.utils.removeBeadFromBeads;removeBeadFromBeads;
 	import org.apache.royale.utils.HSV; HSV;
 	import org.apache.royale.utils.rgbToHsv; rgbToHsv;
 	import org.apache.royale.utils.hsvToHex; hsvToHex;

@@ -355,11 +355,13 @@ COMPILE::JS{
          * @royaleignorecoercion mx.controls.listClasses.ListBase
          * @royaleignorecoercion mx.controls.dataGridClasses.DataGridColumnList
          * @royaleignorecoercion mx.controls.dataGridClasses.DataGridColumn
-         * @royaleignorecoercion org.apache.royale.core.UIBase;
+         * @royaleignorecoercion org.apache.royale.core.UIBase
+         * @royaleignorecoercion mx.controls.beads.models.DataGridColumnICollectionViewModel
          */
         override protected function onCreatedList(list:IDataGridColumnList, forColumn:IDataGridColumn):void{
             (list as DataGridColumnList).grid = _strand as ListBase;
             DataGridColumn(forColumn).list = list as UIBase;
+            ((list as DataGridColumnList).model as DataGridColumnICollectionViewModel).columnIndex = DataGridColumn(forColumn).colNum;
         }
 
         protected function preDestroyList(list:IDataGridColumnList):void{

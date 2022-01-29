@@ -39,6 +39,7 @@ package org.apache.royale.core
     
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.removeBeadFromBeads;
 
     COMPILE::SWF
     public class ElementWrapper extends EventDispatcher implements IStrand
@@ -114,7 +115,7 @@ package org.apache.royale.core
          */
         public function removeBead(bead:IBead):IBead
         {
-            var i:uint, n:uint, value:Object;
+            /*var i:uint, n:uint, value:Object;
             n = _beads.length;
             for (i = 0; i < n; i++)
             {
@@ -128,7 +129,8 @@ package org.apache.royale.core
                 }
             }
             
-            return null;
+            return null;*/
+            return removeBeadFromBeads(_beads,bead, true);
         }
         
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, priority:int = 0, weak:Boolean = false):void
@@ -305,7 +307,7 @@ package org.apache.royale.core
 		 */
 		public function removeBead(bead:IBead):IBead
 		{
-			var i:uint, n:uint, value:Object;
+			/*var i:uint, n:uint, value:Object;
 			n = _beads.length;
 			for (i = 0; i < n; i++)
 			{
@@ -318,7 +320,8 @@ package org.apache.royale.core
 				}
 			}
 
-			return null;
+			return null;*/
+            return removeBeadFromBeads(_beads,bead, false);
 		}
         
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void

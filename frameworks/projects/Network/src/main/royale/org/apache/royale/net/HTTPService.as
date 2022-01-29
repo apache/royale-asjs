@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net
 {
-    COMPILE::SWF
+import org.apache.royale.utils.removeBeadFromBeads;
+
+COMPILE::SWF
     {
         import flash.events.HTTPStatusEvent;
         import flash.events.IOErrorEvent;
@@ -496,7 +498,7 @@ package org.apache.royale.net
         COMPILE::SWF
 		public function removeBead(value:IBead):IBead	
 		{
-			var n:int = _beads.length;
+			/*var n:int = _beads.length;
 			for (var i:int = 0; i < n; i++)
 			{
 				var bead:IBead = _beads[i];
@@ -506,7 +508,8 @@ package org.apache.royale.net
 					return bead;
 				}
 			}
-			return null;
+			return null;*/
+            return removeBeadFromBeads(_beads,value, false);
 		}
 
         /**

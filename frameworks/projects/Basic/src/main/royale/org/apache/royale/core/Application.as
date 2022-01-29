@@ -24,6 +24,7 @@ package org.apache.royale.core
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.Timer;
+    import org.apache.royale.utils.removeBeadFromBeads;
     import org.apache.royale.utils.sendEvent;
 
     COMPILE::SWF {
@@ -460,7 +461,7 @@ package org.apache.royale.core
         COMPILE::SWF
         public function removeBead(value:IBead):IBead
         {
-            var n:int = _beads.length;
+           /* var n:int = _beads.length;
             for (var i:int = 0; i < n; i++)
             {
                 var bead:IBead = _beads[i];
@@ -470,7 +471,8 @@ package org.apache.royale.core
                     return bead;
                 }
             }
-            return null;
+            return null;*/
+            return removeBeadFromBeads(_beads,value,false);
         }
 
         /**

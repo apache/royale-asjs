@@ -20,6 +20,7 @@ package org.apache.royale.core
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.utils.removeBeadFromBeads;
 	import org.apache.royale.utils.sendStrandEvent;
 
     /**
@@ -131,7 +132,7 @@ package org.apache.royale.core
          */
 		public function removeBead(value:IBead):IBead	
 		{
-			var n:int = _beads.length;
+			/*var n:int = _beads.length;
 			for (var i:int = 0; i < n; i++)
 			{
 				var bead:IBead = _beads[i];
@@ -141,7 +142,8 @@ package org.apache.royale.core
 					return bead;
 				}
 			}
-			return null;
+			return null;*/
+			return removeBeadFromBeads(_beads,value, false);
 		}
 		        
 	}
