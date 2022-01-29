@@ -286,11 +286,12 @@ package org.apache.royale.jewel.beads.controls
                             control.height = widescreenHeight;
                         responsiveFlag = true;
                     }
-                    else if(!isNaN(widescreenPercentWidth) || !isNaN(widescreenPercentHeight))
-                    {
+                    
+                    if(!isNaN(widescreenPercentWidth))
                         control.percentWidth = widescreenPercentWidth;
+
+                    if(!isNaN(widescreenPercentHeight))
                         control.percentHeight = widescreenPercentHeight;
-                    }
                 } 
                 else if(outerWidth < ResponsiveSizes.WIDESCREEN_BREAKPOINT && outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
                 {
@@ -303,11 +304,12 @@ package org.apache.royale.jewel.beads.controls
                             control.height = desktopHeight;
                         responsiveFlag = true;
                     }
-                    else if(!isNaN(desktopPercentWidth) || !isNaN(desktopPercentHeight))
-                    {
+                    
+                    if(!isNaN(desktopPercentWidth))
                         control.percentWidth = desktopPercentWidth;
+
+                    if(!isNaN(desktopPercentHeight))
                         control.percentHeight = desktopPercentHeight;
-                    }
                 }
                 else if(outerWidth < ResponsiveSizes.DESKTOP_BREAKPOINT && outerWidth > ResponsiveSizes.TABLET_BREAKPOINT)
                 {
@@ -320,11 +322,12 @@ package org.apache.royale.jewel.beads.controls
                             control.height = tabletHeight;
                         responsiveFlag = true;
                     }
-                    else if(!isNaN(tabletPercentWidth) || !isNaN(tabletPercentHeight))
-                    {
+
+                    if(!isNaN(tabletPercentWidth))
                         control.percentWidth = tabletPercentWidth;
+
+                    if(!isNaN(tabletPercentHeight))
                         control.percentHeight = tabletPercentHeight;
-                    }
                 }
                 else if(outerWidth < ResponsiveSizes.TABLET_BREAKPOINT && outerWidth > ResponsiveSizes.PHONE_BREAKPOINT)
                 {
@@ -337,11 +340,12 @@ package org.apache.royale.jewel.beads.controls
                             control.height = phoneHeight;
                         responsiveFlag = true;
                     }
-                    else if(!isNaN(phonePercentWidth) || !isNaN(phonePercentHeight))
-                    {
+
+                    if(!isNaN(phonePercentWidth))
                         control.percentWidth = phonePercentWidth;
-                        control.percentHeight = phonePercentHeight;
-                    }
+
+                    if(!isNaN(phonePercentHeight))
+                        control.percentWidth = phonePercentWidth;
                 }
 
                 if(!responsiveFlag)
