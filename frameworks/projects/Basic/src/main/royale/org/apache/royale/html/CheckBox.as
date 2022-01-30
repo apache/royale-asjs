@@ -159,7 +159,9 @@ package org.apache.royale.html
 			_icon = new CheckBoxIcon();
             element.appendChild(_icon.element);
 
-            element.appendChild(document.createElement('span'));
+            var span:Element = document.createElement('span');
+            span.appendChild(document.createTextNode(''));
+            element.appendChild(span);
             //positioner.style.position = 'relative';
 			_icon.element.royale_wrapper = this;
 
@@ -170,12 +172,12 @@ package org.apache.royale.html
 
         public function get text():String
         {
-            return _label.childNodes.item(1).innerHTML;
+            return _label.childNodes.item(1).childNodes.item(0).nodeValue;
         }
 
         public function set text(value:String):void
         {
-            _label.childNodes.item(1).innerHTML = value;
+            _label.childNodes.item(1).childNodes.item(0).nodeValue = value;
         }
 
         /**
