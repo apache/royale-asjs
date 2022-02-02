@@ -243,9 +243,9 @@ package mx.controls.listClasses
 			if (!dp)
 				return;
 			
-			if (event.kind == CollectionEventKind.RESET)
+			if (event.kind == CollectionEventKind.RESET || event.kind == CollectionEventKind.REFRESH)
 			{
-	            super.dataProviderChangeHandler(event);            
+				super.dataProviderChangeHandler(event);            
 			}
 			else if (event.kind == CollectionEventKind.REMOVE)
 			{
