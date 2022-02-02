@@ -173,7 +173,8 @@ public class CheckBox extends Button implements IStrand, ISelectable
 	 */
 	override public function set selected(value:Boolean):void
 	{
-		IToggleButtonModel(model).selected = value;
+		//this is strange, but the base class needs to have its private flag set also
+		IToggleButtonModel(model).selected = super.selected = value;
 	}
 
 	private function internalMouseHandler(event:org.apache.royale.events.MouseEvent) : void
@@ -242,7 +243,8 @@ public class CheckBox extends Button implements IStrand, ISelectable
 
 	override public function set selected(value:Boolean):void
 	{
-	   (_icon.element as HTMLInputElement).checked = value;
+	   //this is strange, but the base class needs to have its private flag set also
+	   (_icon.element as HTMLInputElement).checked = super.selected = value;
 	}
 	
 	//----------------------------------

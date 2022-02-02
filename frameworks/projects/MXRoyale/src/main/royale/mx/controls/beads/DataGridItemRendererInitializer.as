@@ -25,10 +25,10 @@ package mx.controls.beads
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.controls.dataGridClasses.DataGridColumnList;
 	import mx.controls.dataGridClasses.DataGridListData;
+	import mx.controls.listClasses.BaseListData;
 	import mx.core.UIComponent;
 
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IListDataItemRenderer;
     
 	/**
 	 *  The DataGridItemRendererInitializer class initializes item renderers
@@ -53,25 +53,24 @@ package mx.controls.beads
 		{
 		}
 				
+
+
 		/**
-		 *  @private
-		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+		 *
 		 *
 		 *  @royaleignorecoercion mx.controls.dataGridClasses.DataGridColumn
+		 *  @royaleignorecoercion mx.controls.dataGridClasses.DataGridColumnList
+		 *  @royaleignorecoercion mx.controls.beads.models.DataGridColumnICollectionViewModel
+		 *
 		 */
-		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
-		{
-            if (!dataProviderModel)
-                return;
-            
-            super.initializeIndexedItemRenderer(ir, data, index);
-
-            var dgColumnList:DataGridColumnList = _strand as DataGridColumnList;
-
-            if (!dgColumnList.grid) return;
-
-            var dgColumnListModel:DataGridColumnICollectionViewModel = dgColumnList.model as DataGridColumnICollectionViewModel;
+		override protected function makeListData(data:Object, uid:String,
+												 rowNum:int):BaseListData
+		{	var dgColumnList:DataGridColumnList = _strand as DataGridColumnList;
 			var dg:DataGrid = (dgColumnList.grid as DataGrid);
+			if (data == null || !dgColumnList.grid) return null;
+
+			var dgColumnListModel:DataGridColumnICollectionViewModel = dgColumnList.model as DataGridColumnICollectionViewModel;
+
 
 			var dgColumn:DataGridColumn = dg.columns[dgColumnListModel.columnIndex] as DataGridColumn;
 			var text:String = "";
@@ -83,13 +82,10 @@ package mx.controls.beads
 			}*/
 			text = dgColumn.itemToLabel(data);
 
-			// Set the listData with the depth of this item
-			var listData:DataGridListData = new DataGridListData(text, dgColumn.dataField, dgColumnListModel.columnIndex, "", dg, index);
+			return new DataGridListData(text, dgColumn.dataField, dgColumnListModel.columnIndex, "", dg, rowNum);
+		}
 
-			(ir as IListDataItemRenderer).listData = listData;
-        }
-
-        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        /*override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
 			super.setupVisualsForItemRenderer(ir);
 			COMPILE::JS
@@ -100,7 +96,7 @@ package mx.controls.beads
 					(ir as UIComponent).element.style.position = 'relative';
 				}
 			}
-		}
+		}*/
 		        
 	}
 }

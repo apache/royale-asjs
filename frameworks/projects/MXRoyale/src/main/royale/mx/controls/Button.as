@@ -343,6 +343,11 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	//----------------------------------
 	
     private var labelSet:Boolean;
+	private var selectedSet:Boolean;
+
+
+
+
 	public function get label():String
 	{
 		return ITextModel(model).text;
@@ -493,10 +498,10 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
             newSelected = _data;
         }
 
-        if (newSelected !== undefined/* && !selectedSet*/)
+        if (newSelected !== undefined && !selectedSet)
         {
             selected = newSelected as Boolean;
-            //selectedSet = false;
+            selectedSet = false;
         }
         if (newLabel !== undefined && !labelSet)
         {
@@ -569,7 +574,39 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 */
 	public function set selected(value:Boolean):void
 	{
+		selectedSet = true;
 		_selected = value;
+	}
+
+
+	//----------------------------------
+	//  selectedField
+	//----------------------------------
+
+
+	private var _selectedField:String = null;
+
+	/**
+	 *  The name of the field in the <code>data</code> property which specifies
+	 *  the value of the Button control's <code>selected</code> property.
+	 *  You can set this property when you use the Button control in an item renderer.
+	 *  The default value is null, which means that the Button control does
+	 *  not set its selected state based on a property in the <code>data</code> property.
+	 *
+	 *  @default null
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Royale 0.9.9
+	 */
+	public function get selectedField():String
+	{
+		return _selectedField;
+	}
+	public function set selectedField(value:String):void
+	{
+		_selectedField = value;
 	}
 	
 	//----------------------------------

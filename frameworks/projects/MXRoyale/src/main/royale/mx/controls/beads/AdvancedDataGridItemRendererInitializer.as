@@ -19,7 +19,8 @@
 package mx.controls.beads
 {
 
-import mx.controls.AdvancedDataGrid;
+	import mx.controls.AdvancedDataGrid;
+	import mx.controls.listClasses.BaseListData;
 
 	import org.apache.royale.collections.TreeData;
     import org.apache.royale.core.Bead;
@@ -69,19 +70,36 @@ import mx.controls.AdvancedDataGrid;
 		{
             if (!dataProviderModel)
                 return;
-            
+			_tempIR = ir;
             super.initializeIndexedItemRenderer(ir, data, index);
-            
-            var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
+			_tempIR = null;
 
-            if (!adgColumnList.grid) return;
+        }
 
-            var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.model as DataGridColumnICollectionViewModel;
+
+		private var _tempIR:IIndexedItemRenderer;
+		/**
+		 *
+		 *
+		 *  @royaleignorecoercion mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList
+		 *  @royaleignorecoercion mx.controls.AdvancedDataGrid
+		 *  @royaleignorecoercion mx.controls.beads.models.DataGridColumnICollectionViewModel
+		 *  @royaleignorecoercion XML
+		 *
+		 */
+		override protected function makeListData(data:Object, uid:String,
+												 rowNum:int):BaseListData
+		{
+			var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
+
+			if (!adgColumnList.grid) return null;
+
+			var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.model as DataGridColumnICollectionViewModel;
 			var adg:AdvancedDataGrid = (adgColumnList.grid as AdvancedDataGrid);
 			var depth:int = adg.getDepth(data);
 			var isOpen:Boolean = adg.isItemOpen(data);
 			var hasChildren:Boolean = adg.hasChildren(data);
-            var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
+			var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
 
 			var dataField:String = adg.columns[adgColumnListModel.columnIndex].dataField;
 			var text:String = "";
@@ -94,17 +112,19 @@ import mx.controls.AdvancedDataGrid;
 			{
 			}
 			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData(text, dataField, adgColumnListModel.columnIndex, "", (adgColumnList.grid as AdvancedDataGrid), index);
+			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData(text, dataField, adgColumnListModel.columnIndex, uid, (adgColumnList.grid as AdvancedDataGrid), rowNum);
 			treeListData.depth = depth;
 			treeListData.open = isOpen;
 			treeListData.hasChildren = hasChildren;
-			
-			(ir as IListDataItemRenderer).listData = treeListData;
-            if (firstColumn && adg.groupLabelField)
-                (ir as ILabelFieldItemRenderer).labelField = adg.groupLabelField;
-        }
 
-        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+
+			if (firstColumn && adg.groupLabelField)
+				(_tempIR as ILabelFieldItemRenderer).labelField = adg.groupLabelField;
+
+			return treeListData;
+		}
+
+        /*override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
 			super.setupVisualsForItemRenderer(ir);
 			COMPILE::JS
@@ -115,7 +135,7 @@ import mx.controls.AdvancedDataGrid;
 					(ir as UIComponent).element.style.position = 'relative';
 				}
 			}
-		}
+		}*/
 		        
 	}
 }

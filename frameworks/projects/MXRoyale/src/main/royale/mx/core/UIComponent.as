@@ -5804,21 +5804,6 @@ COMPILE::JS
     }
 	[Inspectable(category="General")]
 
-	/*	  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get selectedField():Object
-    {
-        trace("selectedField not implemented");
-        return 0;
-    }
-    public function set selectedField(value:Object):void
-    {
-        trace("selectedField not implemented");
-    }
     
      private var _contentMouseX:Number;
      public function get contentMouseX():Number

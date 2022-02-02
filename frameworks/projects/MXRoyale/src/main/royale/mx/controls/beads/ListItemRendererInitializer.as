@@ -17,10 +17,17 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
-{	
-    
-    import org.apache.royale.core.Bead;
-    import org.apache.royale.core.IDataProviderModel;
+{
+
+	import mx.controls.listClasses.BaseListData;
+	import mx.controls.listClasses.IDropInListItemRenderer;
+	import mx.controls.listClasses.IListItemRenderer;
+	import mx.controls.listClasses.ListBase;
+	import mx.controls.listClasses.ListData;
+
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IOwnerViewItemRenderer;
     import org.apache.royale.core.IItemRendererOwnerView;
@@ -36,7 +43,10 @@ package mx.controls.beads
     import mx.controls.treeClasses.TreeListData;
 
 	import mx.core.UIComponent;
-    
+
+	import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+
 	/**
 	 *  The TreeItemRendererInitializer class initializes item renderers
      *  in tree classes.
@@ -61,6 +71,11 @@ package mx.controls.beads
 		}
 				
 		private var ownerView:IItemRendererOwnerView;
+
+
+		protected function getDefaultController():IBeadController{
+			return new ItemRendererMouseController();
+		}
 		
 		override public function set strand(value:IStrand):void
 		{	
@@ -71,25 +86,62 @@ package mx.controls.beads
 		/**
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+		 *
+		 *  @royalaignorecoercion mx.controls.listClasses.IDropInListItemRenderer
 		 */
 		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
 		{
             if (!dataProviderModel)
                 return;
 
-			if (ir is UIComponent) {
-				COMPILE::JS{
-					//we are using a UIComponent as a renderer, but it is too late to use .isAbsolute = false
-					//so swap it out here:
-					ir.element.style.position = 'relative';
-				}
+			if (!loadBeadFromValuesManager(IBeadController, 'iBeadController', ir)) {
+				ir.addBead(getDefaultController());
 			}
 
             super.initializeIndexedItemRenderer(ir, data, index);
             
 			if (ir is IOwnerViewItemRenderer)
 				(ir as IOwnerViewItemRenderer).itemRendererOwnerView = ownerView;
+
+			if (ir is IDropInListItemRenderer) {
+				(ir as IDropInListItemRenderer).listData = makeListData(data,'', index);
+			}
         }
+
+
+		/**
+		 *
+		 * @royaleignorecoercion mx.controls.listClasses.ListBase
+		 */
+		protected function makeListData(data:Object, uid:String,
+										rowNum:int):BaseListData
+		{
+			var listBaseOwner:ListBase = _strand as ListBase;
+			return new ListData(listBaseOwner.itemToLabel(data),null, labelField, uid, listBaseOwner, rowNum);
+		}
+
+
+		/**
+		 *
+		 * @royaleignorecoercion mx.core.UIComponent
+		 */
+		override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void{
+			super.setupVisualsForItemRenderer(ir);
+			adjustItemRendererForMX(ir);
+		}
+
+		protected function adjustItemRendererForMX(ir:IIndexedItemRenderer):void{
+			COMPILE::JS
+			{
+				if (ir is UIComponent)
+				{
+					(ir as UIComponent).isAbsolute = false;
+					//we are using a UIComponent as a renderer, but it is too late to rely on .isAbsolute = false
+					//so swap it out here:
+					(ir as UIComponent).element.style.position = 'relative';
+				}
+			}
+		}
         
 	}
 }

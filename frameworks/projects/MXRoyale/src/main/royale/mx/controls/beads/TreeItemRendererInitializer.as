@@ -17,23 +17,18 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
-{	
-    
+{
+
+	import mx.controls.listClasses.BaseListData;
+
 	import org.apache.royale.collections.ITreeData;
-    import org.apache.royale.core.Bead;
-    import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.IIndexedItemRendererInitializer;
-    import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IListDataItemRenderer;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.SimpleCSSStyles;
-    import org.apache.royale.core.UIBase;
     import mx.controls.treeClasses.TreeListData;
     import mx.controls.listClasses.ListBase;
-    
-	/**
+
+	import org.apache.royale.core.IBeadController;
+import org.apache.royale.core.IIndexedItemRenderer;
+
+/**
 	 *  The TreeItemRendererInitializer class initializes item renderers
      *  in tree classes.
 	 *  
@@ -55,33 +50,40 @@ package mx.controls.beads
 		public function TreeItemRendererInitializer()
 		{
 		}
-				
+
+
+		override protected function getDefaultController():IBeadController{
+			return new TreeItemRendererMouseController();
+		}
+
 		/**
-		 *  @private
-		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+		 *
+		 *  @royaleignorecoercion org.apache.royale.collections.ITreeData
+		 *
 		 */
-		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
+		override protected function makeListData(data:Object, uid:String,
+												 rowNum:int):BaseListData
 		{
-            if (!dataProviderModel)
-                return;
-            
-            super.initializeItemRenderer(ir, data, index);
-            
-            var treeData:ITreeData = dataProviderModel.dataProvider as ITreeData;
-            var depth:int = treeData.getDepth(data);
-            var isOpen:Boolean = treeData.isOpen(data);
-            var hasChildren:Boolean = treeData.hasChildren(data);
-            
-            // Set the listData with the depth of this item
-            var treeListData:TreeListData = new TreeListData("", "", _strand as ListBase);
-            treeListData.depth = depth;
-            treeListData.isOpen = isOpen;
-            treeListData.hasChildren = hasChildren;
-	    treeListData.item = data;
-            
-            (ir as IListDataItemRenderer).listData = treeListData;
-            
-        }
+			var treeData:ITreeData = dataProviderModel.dataProvider as ITreeData;
+			var depth:int = treeData.getDepth(data);
+			var isOpen:Boolean = treeData.isOpen(data);
+			var hasChildren:Boolean = treeData.hasChildren(data);
+
+			// Set the listData with the depth of this item
+			var treeListData:TreeListData = new TreeListData("", uid, _strand as ListBase);
+			treeListData.depth = depth;
+			treeListData.isOpen = isOpen;
+			treeListData.hasChildren = hasChildren;
+			treeListData.item = data;
+			
+			return treeListData;
+
+		}
+
+
+		override protected function adjustItemRendererForMX(ir:IIndexedItemRenderer):void{
+			//JS: do nothing, we want to keep isAbsolute = true for this component, so avoid the setting for 'relative' in the super
+		}
         
 	}
 }
