@@ -235,16 +235,24 @@ public class CheckBox extends Button implements IStrand, ISelectable
 		_label.childNodes.item(1).nodeValue = value;
 	}
 
+
+	/**
+	 * @royaleignorecoercion HTMLInputElement
+	 */
 	[Bindable("change")]
 	override public function get selected():Boolean
 	{
 		return (_icon.element as HTMLInputElement).checked;
 	}
 
+	/**
+	 * @royaleignorecoercion HTMLInputElement
+	 */
 	override public function set selected(value:Boolean):void
 	{
-	   //this is strange, but the base class needs to have its private flag set also
-	   (_icon.element as HTMLInputElement).checked = super.selected = value;
+	   //this is unusual, but the base class needs to have its private flag set also, and cannot (currently) do that inline (below) because of a transpiler issue.
+		super.selected = value;
+	   (_icon.element as HTMLInputElement).checked = /*doing this inline failed to work (transpiler issues) : super.selected =*/ value;
 	}
 	
 	//----------------------------------
