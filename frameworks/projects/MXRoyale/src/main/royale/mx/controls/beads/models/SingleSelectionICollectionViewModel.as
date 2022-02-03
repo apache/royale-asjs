@@ -324,6 +324,13 @@ package mx.controls.beads.models
 					dispatchEvent(new Event("selectedItemChanged"));
 					dispatchEvent(new Event("selectedIndexChanged"));
 				}
+			} else if (event.kind == CollectionEventKind.REFRESH)
+			{
+				if (_selectedIndex != -1)
+				{
+					// make sure sort changes selected item
+					selectedItem = getItemAt(_selectedIndex);
+				}
 			}
 		}
 	}
