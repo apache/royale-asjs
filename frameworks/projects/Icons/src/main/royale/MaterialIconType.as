@@ -1079,5 +1079,8 @@ package
 
         public static const PRINT_DISABLED:String = 'print_disabled';
         public static const MOBILE_SCREEN:String = 'mobile_screen';
+
+        public static const DEVICE_UNKNOWN:String = 'device_unknown';
+        public static const ON_DEVICE_TRAINING:String = 'on_device_training';
     }
 }
