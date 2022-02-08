@@ -319,14 +319,17 @@ public class RadioButton extends Button
      */
     override public function set selected(value:Boolean):void
     {
-        super.selected = value;
-        COMPILE::JS
+        if (this.selected != value)
         {
-            (rbicon.element as HTMLInputElement).checked = value;
+            super.selected = value;
+            COMPILE::JS
+            {
+                (rbicon.element as HTMLInputElement).checked = value;
+            }
+            if (group != null)
+                group.setSelection(this, false);
+            dispatchEvent(new Event("selectedChanged"));
         }
-        if (group != null)
-            group.setSelection(this, false);
-        dispatchEvent(new Event("selectedChanged"));
     }    
     
     //--------------------------------------------------------------------------
