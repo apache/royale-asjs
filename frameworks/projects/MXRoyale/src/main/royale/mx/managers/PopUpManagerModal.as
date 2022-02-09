@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.managers
 {
+  import org.apache.royale.core.IPopUpHost;
   import org.apache.royale.core.IUIBase;
   import org.apache.royale.core.IParent;
   import org.apache.royale.events.MouseEvent;
@@ -49,7 +50,7 @@ package mx.managers
      */
     public static function show(host:IUIBase, forPopup:IFlexDisplayObject):void
     {
-      var hostParent:IParent = host.parent;
+      var hostParent:IParent = host is IPopUpHost ? IPopUpHost(host).popUpParent : host.parent;
       var overlay:PopUpManagerModal = new PopUpManagerModal();
       COMPILE::SWF
       {
@@ -92,7 +93,7 @@ package mx.managers
 
     public static function remove(host:IUIBase, forPopup:IFlexDisplayObject):void
     {
-        var hostParent:IParent = host.parent;
+      var hostParent:IParent = host is IPopUpHost ? IPopUpHost(host).popUpParent : host.parent;
       var overlay:PopUpManagerModal ;
       COMPILE::SWF{
         overlay = overlaysByPopUp[forPopup];
