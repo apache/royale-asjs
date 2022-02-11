@@ -162,7 +162,9 @@ package org.apache.royale.utils.async
 		public static function execute(tasks:Array,callback:Function,failEarly:Boolean=false):void{
 			var task:CompoundAsyncTask = new CompoundAsyncTask(tasks);
 			task.failEarly = failEarly;
-      task.done(callback);
+      task.done(function():void{
+        callback(task);
+      });
 			task.run();
 		}    
   }

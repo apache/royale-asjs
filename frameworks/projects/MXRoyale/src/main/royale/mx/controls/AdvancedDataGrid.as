@@ -1314,6 +1314,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         if (value is IHierarchicalData)
         {
             _rootModel = value as IHierarchicalData;
+            // view is passed on to column lists and we want to make sure those realize it's a new instance
+            _hierarchicalCollectionView = new HierarchicalCollectionView();
         }
         else if (value is IHierarchicalCollectionView)
         {
