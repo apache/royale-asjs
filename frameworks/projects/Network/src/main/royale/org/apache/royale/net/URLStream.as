@@ -52,6 +52,25 @@ package org.apache.royale.net
 		{
 			protected var xhr:XMLHttpRequest;
 		}
+
+		COMPILE::JS
+		private static var _corsCredentialsChecker:Function;
+		COMPILE::JS
+		/**
+		 * Intended as global configuration of CORS withCredentials setting on requests
+		 * This method is not reflectable, is js-only and is eliminated via dead-code-elimination
+		 * in js-release builds if it is never used.
+		 * URLStream is used a service base in other service classes, so this provides
+		 * a 'low level' solution for a bead that can work at application level.
+		 * The 'checker' function parameter should be a function that takes a url as its single argument
+		 * and returns true or false depending on whether 'withCredentials' should be set for
+		 * that http request. Set it to null to always be false.
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public static function setCORSCredentialsChecker(checker:Function):void{
+			_corsCredentialsChecker = checker;
+		}
 			
 		COMPILE::SWF
 		{
@@ -117,6 +136,9 @@ package org.apache.royale.net
 			COMPILE::JS {
 				requestStatus = 0;
 				createXmlHttpRequest();
+				if (_corsCredentialsChecker != null) {
+					xhr.withCredentials = _corsCredentialsChecker( urlRequest.url);
+				}
 
 				xhr.open(urlRequest.method, urlRequest.url);
 				xhr.responseType = "arraybuffer";
