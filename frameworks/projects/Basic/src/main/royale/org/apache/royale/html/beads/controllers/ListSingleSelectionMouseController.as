@@ -106,6 +106,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 */
 		override public function set strand(value:IStrand):void
 		{
