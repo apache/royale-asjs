@@ -251,6 +251,21 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         }
     }
 
+    override protected function dataToString(value:Object):String
+    {
+        if (value is XML)
+        {
+            var xml:XML = value as XML;
+            return xml[labelField];
+        }
+        else if (value is XMLList)
+        {
+            var singlexml:XML = value.toXML();
+            return singlexml[labelField];
+        }
+        return super.dataToString(value);
+    }
+
 
     //----------------------------------
     //  styleName
