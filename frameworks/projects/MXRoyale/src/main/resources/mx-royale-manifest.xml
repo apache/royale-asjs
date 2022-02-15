@@ -234,6 +234,7 @@
    <!--<component id="ZipCodeValidator" class="mx.validators.ZipCodeValidator"/>-->
    <component id="PrintDataGrid" class="mx.printing.PrintDataGrid"/>
     <component id="HTML" class="mx.controls.HTML"/>
-   
+    <component id="HeaderRendererFactoryForArrayData" class="mx.controls.dataGridClasses.HeaderRendererFactoryForArrayData"/>
+    <component id="DataGridHeaderRenderer" class="mx.controls.dataGridClasses.DataGridHeaderRenderer"/>
 
 </componentPackage>

@@ -19,7 +19,6 @@
 
 package mx.controls.beads.layouts
 {
-    import mx.controls.dataGridClasses.DataGridHeaderRenderer;
 	import mx.core.EdgeMetrics;
 	import mx.core.UIComponent;
 	
@@ -148,7 +147,6 @@ public class DataGridHeaderLayout extends LayoutBase
         {	
             var ilc:ILayoutChild = contentView.getElementAt(i) as ILayoutChild;
             if (ilc == null || !ilc.visible) continue;
-            if (!(ilc is DataGridHeaderRenderer)) continue;
             
             COMPILE::SWF {
                 if (buttonWidths) {

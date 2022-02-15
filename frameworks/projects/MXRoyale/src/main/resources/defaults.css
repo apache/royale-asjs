@@ -82,6 +82,7 @@ Basic|DataGridColumnList {
 
 dg|DataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridHeaderRenderer");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.dataGridClasses.HeaderRendererFactoryForArrayData");
 	position: absolute;
 }
 
