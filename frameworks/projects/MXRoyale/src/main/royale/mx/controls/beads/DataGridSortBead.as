@@ -33,6 +33,8 @@ package mx.controls.beads
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.DataGridButtonBar;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IChild;
     
 	public class DataGridSortBead implements IBead
 	{
@@ -63,11 +65,24 @@ package mx.controls.beads
 		private function mouseClickHandler(event:MouseEvent):void
 		{
 			var dgView:DataGridView = dg.view as DataGridView;
-            var buttonBar:DataGridButtonBar = (dgView.header as DataGridButtonBar);
-            // probably down on one button and up on another button
-            // so the ButtonBar won't change selection
-            if (event.target == buttonBar) return;
-			var column:DataGridColumn = event.target.data as DataGridColumn;
+			var buttonBar:DataGridButtonBar = (dgView.header as DataGridButtonBar);
+			// probably down on one button and up on another button
+			// so the ButtonBar won't change selection
+			if (event.target == buttonBar) return;
+			var headerRenderer:IIndexedItemRenderer;
+			if ((event.target as IChild).parent == buttonBar)
+			{
+				headerRenderer = event.target as IIndexedItemRenderer;
+			} else
+			{
+				var child:IChild = event.target as IChild;
+				while (child.parent != buttonBar)
+				{
+					child = child.parent as IChild;
+				}
+				headerRenderer = child as IIndexedItemRenderer;
+			}
+			var column:DataGridColumn = headerRenderer.data as DataGridColumn;
 			if (column && !column.sortable) {
 				//ignore clicks on headers of columns that are not sortable
 				return;
