@@ -94,11 +94,11 @@ package org.apache.royale.utils.async
         return;
       }
       _status = "pending";
-      pendingTasks = [];
-      for(var i:int=0;i<tasks.length;i++){
-        var task:IAsyncTask = tasks[i];
+
+      pendingTasks = tasks.slice();
+
+      for each(var task:IAsyncTask in tasks){
         task.done(handleDone);
-        pendingTasks.push(task);
         task.run();
       }
     }
