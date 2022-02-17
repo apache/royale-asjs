@@ -16,7 +16,7 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-*, :after, :before {
+*, ::after, ::before {
   box-sizing: border-box; }
 
 html, body {
