@@ -1278,6 +1278,13 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
     }
 
     /**
+     * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+     */
+    override public function get columnCount():int{
+        return model ? IDataGridModel(model).columns.length : 0;
+    }
+
+    /**
      *  @private
      *  Storage for the draggableColumns property.
      */
