@@ -86,8 +86,8 @@ package mx.controls.beads
 		/**
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
-		 *
-		 *  @royalaignorecoercion mx.controls.listClasses.IDropInListItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IOwnerViewItemRenderer
+		 *  @royaleignorecoercion mx.controls.listClasses.IDropInListItemRenderer
 		 */
 		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
 		{
