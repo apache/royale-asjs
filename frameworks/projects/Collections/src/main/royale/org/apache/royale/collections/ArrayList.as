@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
-//
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
+//
 //  The ASF licenses this file to You under the Apache License, Version 2.0
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
@@ -68,15 +68,15 @@ package org.apache.royale.collections
 	 */
 	[Event(name="itemRemoved", type="org.apache.royale.events.CollectionEvent")]
 
-    /**
-     *  Dispatched when the collection has updated an item.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    [Event(name="allItemsRemoved", type="org.apache.royale.events.CollectionEvent")]
+	/**
+	 *  Dispatched when the collection has updated an item.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	[Event(name="allItemsRemoved", type="org.apache.royale.events.CollectionEvent")]
 
 	/**
 	 *  Dispatched when the collection has updated an item.
@@ -90,26 +90,26 @@ package org.apache.royale.collections
 
 
 	[DefaultProperty("source")]
-    /**
-     *  The ArrayList class provides an event-driven wrapper for the
+	/**
+	 *  The ArrayList class provides an event-driven wrapper for the
 	 *  standard Array. Events are dispatched when items are added, removed,
 	 *  or changed.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
 	public class ArrayList extends EventDispatcher implements IBead, ICollectionView, IArrayList, IExternalizable
 	{
-        /**
-         *  Constructor.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
+		/**
+		 *  Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
 		public function ArrayList(initialSource:Array=null)
 		{
 			super();
@@ -117,24 +117,24 @@ package org.apache.royale.collections
 			else _source = [];
 		}
 
-        private var _id:String;
+		private var _id:String;
 
-        /**
-         *  @copy org.apache.royale.core.UIBase#id
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
+		/**
+		 *  @copy org.apache.royale.core.UIBase#id
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
 		public function get id():String
 		{
 			return _id;
 		}
 
-        /**
-         *  @private
-         */
+		/**
+		 *  @private
+		 */
 		public function set id(value:String):void
 		{
 			if (_id != value)
@@ -144,32 +144,32 @@ package org.apache.royale.collections
 			}
 		}
 
-        private var _strand:IStrand;
+		private var _strand:IStrand;
 
-        /**
-         *  @copy org.apache.royale.core.UIBase#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function set strand(value:IStrand):void
-        {
-            _strand = value;
+		/**
+		 *  @copy org.apache.royale.core.UIBase#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
 			_source = new Array();
-        }
+		}
 
 		private var _source:Array;
 
-        /**
-         *  The array of raw data needing conversion.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
+		/**
+		 *  The array of raw data needing conversion.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
 		public function get source():Array
 		{
 			return _source;
@@ -193,29 +193,29 @@ package org.apache.royale.collections
 
 		/**
 		 * Returns a copy of the source array.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
 		 */
 		public function toArray():Array
 		{
 			return _source.concat();
 		}
 
-        /**
-         *  Fetches an item from the collection
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function getItemAt(index:int):Object
-        {
-            return _source[index];
-        }
+		/**
+		 *  Fetches an item from the collection
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		public function getItemAt(index:int):Object
+		{
+				return _source[index];
+		}
 
 		/**
 		 *  Fetches an item from the collection given an index.
@@ -299,8 +299,8 @@ package org.apache.royale.collections
 				oldItem = source[index];
 				source[index] = item;
 
-                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
-                collectionEvent.item = item;
+				var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
+				collectionEvent.item = item;
 				collectionEvent.index = index;
 				dispatchEvent(collectionEvent);
 			}
@@ -360,10 +360,10 @@ package org.apache.royale.collections
 				return null;
 			}
 
-            var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_REMOVED);
-            collectionEvent.item = removed;
+			var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_REMOVED);
+			collectionEvent.item = removed;
 			collectionEvent.index = index;
-            dispatchEvent(collectionEvent);
+			dispatchEvent(collectionEvent);
 
 			dispatchEvent(new Event("lengthChanged"));
 
@@ -382,10 +382,10 @@ package org.apache.royale.collections
 		{
 			if (length > 0)
 			{
-                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ALL_ITEMS_REMOVED);
-                collectionEvent.items = source.splice(0, length);
+				var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ALL_ITEMS_REMOVED);
+				collectionEvent.items = source.splice(0, length);
 				collectionEvent.index = -1;
-                dispatchEvent(collectionEvent);
+				dispatchEvent(collectionEvent);
 			}
 		}
 
@@ -402,10 +402,10 @@ package org.apache.royale.collections
 			var index:int = getItemIndex(item);
 			if (index >= 0)
 			{
-                var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
-                collectionEvent.item = item;
+				var collectionEvent:CollectionEvent = new CollectionEvent(CollectionEvent.ITEM_UPDATED);
+				collectionEvent.item = item;
 				collectionEvent.index = index;
-                dispatchEvent(collectionEvent);
+				dispatchEvent(collectionEvent);
 			}
 		}
 
