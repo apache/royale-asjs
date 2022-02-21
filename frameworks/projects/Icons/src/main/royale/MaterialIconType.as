@@ -1082,5 +1082,6 @@ package
 
         public static const DEVICE_UNKNOWN:String = 'device_unknown';
         public static const ON_DEVICE_TRAINING:String = 'on_device_training';
+        public static const PUNCH_CLOCK:String = 'punch_clock';
     }
 }
