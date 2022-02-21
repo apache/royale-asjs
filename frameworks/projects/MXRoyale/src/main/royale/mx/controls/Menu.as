@@ -1639,7 +1639,7 @@ package mx.controls
 			if (visible)
 				return;
 			
-			if (parentDisplayObject && (!parent /* || !parent.contains(parentDisplayObject)*/))
+			if (parentDisplayObject && (!this.parent /* || !parent.contains(parentDisplayObject)*/))
 			{
 				PopUpManager.addPopUp(this, parentDisplayObject, false);
 				//addEventListener(MenuEvent.MENU_HIDE, menuHideHandler, false, EventPriority.DEFAULT_HANDLER);
