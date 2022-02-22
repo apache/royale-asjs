@@ -149,7 +149,7 @@ package mx.controls.listClasses
 			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 			dataGroup.addItemRendererAt(ir, event.location);
 
-            var data:Object = event.items.pop();
+            var data:Object = event.items[0];//.pop();
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.location);
             ir.data = data;				
 			
@@ -223,7 +223,7 @@ package mx.controls.listClasses
 			// appearence or whatever.
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.location) as IIndexedItemRenderer;
 
-            var data:Object = event.items.pop();
+            var data:Object = event.items[0];//.pop();
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.location);
             ir.data = data;				
 		}
