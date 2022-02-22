@@ -57,6 +57,7 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.geom.Point;
 import org.apache.royale.utils.getSelectionRenderBead;
 import org.apache.royale.utils.PointUtils;
+import mx.supportClasses.IFoldable;
 
 //--------------------------------------
 //  Events
@@ -96,7 +97,7 @@ import org.apache.royale.utils.PointUtils;
  *  @productversion Royale 0.9.3
  */
 public class AdvancedDataGridItemRenderer extends StringItemRenderer
-                                  implements IDataRenderer,IDropInListItemRenderer,IListDataItemRenderer,IListItemRenderer
+                                  implements IDataRenderer,IDropInListItemRenderer,IListDataItemRenderer,IListItemRenderer,IFoldable
 {
  /* extends UITextField
                                   implements IDataRenderer,
@@ -175,6 +176,8 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             }
             
             indent += (treeListData.hasChildren ? (treeListData.open ? "▼" : "▶") : "") + extraSpace;
+            _canFold = treeListData.hasChildren && treeListData.open;
+            _canUnfold = treeListData.hasChildren && !treeListData.open;
         }
         
         if (column.labelFunction)
@@ -208,6 +211,18 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     public function set listData(value:Object):void
     {
         _listData = value;
+    }
+
+    private var _canFold:Boolean;
+    public function get canFold():Boolean
+    {
+        return _canFold;
+    }
+    
+    private var _canUnfold:Boolean;
+    public function get canUnfold():Boolean
+    {
+        return _canUnfold;
     }
     
 

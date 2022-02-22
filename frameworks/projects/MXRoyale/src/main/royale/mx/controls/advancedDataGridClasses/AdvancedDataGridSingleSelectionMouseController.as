@@ -29,6 +29,7 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
+	import mx.supportClasses.IFoldable;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -74,30 +75,31 @@ package mx.controls.advancedDataGridClasses
 		{
 			var node:Object = event.data;
 			
-            var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).grid as AdvancedDataGrid;
-            var hasChildren:Boolean = adg.hasChildren(node);
-            if (hasChildren)
-            {
-    			if (adg.isItemOpen(node)) {
-    				adg.closeNode(node);
-    			} else {
-    				adg.openNode(node);
-    			}
-            }
+			var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).grid as AdvancedDataGrid;
+			var hasChildren:Boolean = adg.hasChildren(node);
+			var foldableTarget:IFoldable = event.target as IFoldable;
+			if (hasChildren && (foldableTarget is IFoldable))
+			{
+				if (adg.isItemOpen(node) && foldableTarget.canFold) {
+					adg.closeNode(node);
+				} else if (foldableTarget.canUnfold) {
+					adg.openNode(node);
+				}
+			}
 
 			//avoid doing this (it breaks ctrl-click de-selection which is managed at the top level):
 			//was: reset the selection
 			//            ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
-            IEventDispatcher(_strand).dispatchEvent(new Event("change"));
-	    
-	    var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_CLICK);
-            newEvent.rowIndex = event.index;
-			var lists:Array = (adg.view as AdvancedDataGridView).columnLists;
-			for (var i:int = 0; i < lists.length; i++)
-				if (lists[i] == _strand) break;
-			newEvent.columnIndex = i;
-			newEvent.itemRenderer = event.currentTarget;
-            IEventDispatcher(_strand).dispatchEvent(newEvent);
+			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			
+			var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_CLICK);
+			newEvent.rowIndex = event.index;
+					var lists:Array = (adg.view as AdvancedDataGridView).columnLists;
+					for (var i:int = 0; i < lists.length; i++)
+						if (lists[i] == _strand) break;
+					newEvent.columnIndex = i;
+					newEvent.itemRenderer = event.currentTarget;
+			IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 	}
 }
