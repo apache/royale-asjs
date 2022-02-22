@@ -233,6 +233,7 @@ DataGrid
 	alternatingItemColors: #F7F7F7, #FFFFFF;
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
 	IDataGridPresentationModel: ClassReference("mx.controls.beads.models.DataGridPresentationModel");
+	IDataProviderNotifier: ClassReference("mx.controls.beads.DataProviderChangeNotifier");
 	IBeadView: ClassReference("mx.controls.beads.DataGridView");
 	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
