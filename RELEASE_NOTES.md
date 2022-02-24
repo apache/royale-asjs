@@ -19,6 +19,12 @@ Apache Royale 0.9.9
  -Basic
  - Improvements to DragBead's out of bounds behavior
 
+ -RoyaleUnit
+ - Fix coercion error in MetadataRunner when expecting an exception in a test, like [Test(expected="RangeError")]
+
+ -Reflection
+ - getQualifiedSuperclassName() can find the superclass of a Class object in JS, matching the behavior of SWF
+
  -Examples
  - Ace example running in Maven
 
