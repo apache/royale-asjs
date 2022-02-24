@@ -1,8 +1,26 @@
-Apache Royale 0.9.9 NIGHTLY
+Apache Royale 0.9.9
 ===================
 
 -MXRoyale
  - MXRoyale has been split 2 libs : MXRoyaleBase (mostly non-UI code) and MXRoyale (mostly UI code). Users of MXRoyale should see no immediate changes as the build of this swc remains the same.
+ - Listen to children's resize events to fix some layout issues
+ - Various fixes to measured sizes (ComboBox, and other UI components)
+ - Fixes to labels in item renderers not displaying correctly
+ - ComboBox prompt fixes
+ - ArrayCollection.refresh() updating lists
+ - Various fixes to labels in item renderers not showing correctly
+ - Add option to add custom header renderers to data grids
+ - Fix issues with Menu.show() when receiving non-null parent arguments
+ - Improve emulation of ADG's expand/collapse behavior
+
+ -SparkRoyale
+ - ComboBox sizing improvements
+ 
+ -Basic
+ - Improvements to DragBead's out of bounds behavior
+
+ -Examples
+ - Ace example running in Maven
 
 
 Apache Royale 0.9.8
@@ -88,7 +106,7 @@ Apache Royale 0.9.8
 - Collections
   - ArrayList.length now is bindable.
 
-- Maven Distribtuon:
+- Maven Distribution:
   The distributions built by Maven should now be equivalent to those of the Ant build.
   
 - Maven Archetypes:
