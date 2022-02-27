@@ -205,6 +205,7 @@ package
  		public static const CODEPEN:String = "codepen";
  		public static const CODIEPIE:String = "codiepie";
  		public static const COFFEE:String = "coffee";
+ 		public static const COINS:String = "coins";
  		public static const COG:String = "cog";
  		public static const COGS:String = "cogs";
  		public static const COLUMNS:String = "columns";
@@ -240,6 +241,7 @@ package
  		public static const DROPBOX:String = "dropbox";
  		public static const DRUPAL:String = "drupal";
  		public static const DUCK:String = "duck";
+ 		public static const DUMPSTER:String = "dumpster"; 		
  		public static const EDGE:String = "edge";
  		public static const EDIT:String = "edit";
  		public static const EERCAST:String = "eercast";
@@ -378,6 +380,7 @@ package
  		public static const HOURGLASS_END:String = "hourglass-end";
  		public static const HOURGLASS_HALF:String = "hourglass-half";
  		public static const HOURGLASS_START:String = "hourglass-start";
+ 		public static const HOUSE_DAMAGE:String = "house-damage";
  		public static const HOUSE_USER:String = "house-user";
  		public static const HOUZZ:String = "houzz";
  		public static const HTML5:String = "html5";
@@ -434,6 +437,7 @@ package
  		public static const LONG_ARROW_UP:String = "long-arrow-up";
  		public static const LOW_VISION:String = "low-vision";
  		public static const LUNGS_VIRUS:String = "lungs-virus";
+ 		public static const MAIL_BULK:String = "mail-bulk";
  		public static const MAGIC:String = "magic";
  		public static const MAGNET:String = "magnet";
  		public static const MALE:String = "male";
@@ -667,6 +671,7 @@ package
  		public static const TOGGLE_OFF:String = "toggle-off";
  		public static const TOGGLE_ON:String = "toggle-on";
  		public static const TOILET_PAPEL_SLASH:String = "toilet-paper-slash";
+ 		public static const TOOLBOX:String = "toolbox";
  		public static const TRADEMARK:String = "trademark";
  		public static const TRAIN:String = "train";
  		public static const TRANSGENDER:String = "transgender";
@@ -700,6 +705,7 @@ package
  		public static const USER_ASTRONAUT:String = "user-astronaut";
  		public static const USER_CIRCLE:String = "user-circle";
  		public static const USER_CLOCK:String = "user-clock";
+ 		public static const USER_COG:String = "user-cog"; 		
  		public static const USER_HARD_HAT:String = "user-hard-hat";
  		public static const USER_HEADSET:String = "user-headset";
  		public static const USER_LOCK:String = "user-lock";
@@ -731,6 +737,7 @@ package
  		public static const VOLUME_DOWN:String = "volume-down";
  		public static const VOLUME_OFF:String = "volume-off";
  		public static const VOLUME_UP:String = "volume-up";
+ 		public static const WALLET:String = "wallet";
  		public static const WEIBO:String = "weibo";
  		public static const WEIXIN:String = "weixin";
  		public static const WHATSAPP:String = "whatsapp";
