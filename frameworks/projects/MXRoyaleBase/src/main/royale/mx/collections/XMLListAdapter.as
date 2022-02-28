@@ -695,7 +695,12 @@ public class XMLListAdapter extends EventDispatcher implements IList, IXMLNotifi
 	            {
 	                prop = "@" + String(value);
 	                oldValue = detail;
-	                newValue = target[prop];
+                    COMPILE::SWF{
+                        newValue = target[prop];
+                    }
+                    COMPILE::JS{
+                        newValue = target.attribute(prop).toString();// was : target[prop];
+                    }
 	                break;
 	            }
 
