@@ -29,14 +29,14 @@ Apache Royale 0.9.9
  - Ace example running in Maven
  - Added Jewel TriStateCheckBox example in [Tour De Jewel](https://royale.apache.org/tourdejewel/)
 
-- Jewel:
+ -Jewel
   - Improved:
     - Added emphasized and secondary sass settings for Jewel CheckBox / Switch
   - New:
     - Added Jewel TriStateCheckBox and some associated beads: TriStateCheckBoxTooltipState, TriStateCheckBoxState
     - Added ComboBoxReadOnly bead
 
-- Icons:
+ -Icons
   - Icon constants have been added to MaterialIconType and FontAwesome5IconType
  
  
