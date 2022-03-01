@@ -53,6 +53,9 @@ package org.apache.royale.utils.async
         case "complete":
           completedTasks.push(task);
           break;
+        // what to do for "mixed?
+        // We're assuming this is "failed" and adding the result to the failed tasks.
+        case "mixed":
         case "failed":
           failedTasks.push(task);
           if(failEarly){
