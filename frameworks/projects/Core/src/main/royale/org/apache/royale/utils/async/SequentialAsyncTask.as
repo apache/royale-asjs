@@ -46,7 +46,7 @@ package org.apache.royale.utils.async
     }
     private function handleDone(task:IAsyncTask):void
     {
-      if(_status != "pending"){
+      if(_status != "pending" || _status == "canceled"){
         return;
       }
       switch(task.status){
@@ -56,6 +56,8 @@ package org.apache.royale.utils.async
         // what to do for "mixed?
         // We're assuming this is "failed" and adding the result to the failed tasks.
         case "mixed":
+				// canceled tasks are also added to failed tasks
+				case "canceled":
         case "failed":
           failedTasks.push(task);
           if(failEarly){
@@ -64,6 +66,7 @@ package org.apache.royale.utils.async
             return;
           }
           break;
+					return;
         default:// not sure why this would happen
           throw new Error("Unknown task status");
 
