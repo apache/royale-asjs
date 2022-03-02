@@ -1,3 +1,13 @@
+Apache Royale 0.9.9
+===================
+
+- Improvements/Additions in Basic/Jewel and Flex Emulation components
+- New compiler options for better release optimizations
+- Many other compiler improvements and bugfixes.
+
+- Dozens of bugs reported, investigated, and squashed. For details of
+  closed bug reports see https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed
+
 Apache Royale 0.9.8
 ===================
 
