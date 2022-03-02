@@ -46,7 +46,7 @@ package org.apache.royale.utils.async
     }
     private function handleDone(task:IAsyncTask):void
     {
-      if(_status != "pending" || _status == "canceled"){
+      if(_status != "pending"){
         return;
       }
       switch(task.status){
@@ -61,7 +61,7 @@ package org.apache.royale.utils.async
         case "failed":
           failedTasks.push(task);
           if(failEarly){
-            pendingTasks = [];
+            cancelTasks();
             fail();
             return;
           }

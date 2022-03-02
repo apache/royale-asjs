@@ -104,7 +104,7 @@ package org.apache.royale.utils.async
 		}
 		private function handleDone(task:IAsyncTask):void
 		{
-			if(_status != "pending" || _status == "canceled")
+			if(_status != "pending")
 			{
 				return;
 			}
