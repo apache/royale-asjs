@@ -468,6 +468,7 @@ package
  		public static const MOBILE:String = "mobile";
  		public static const MODX:String = "modx";
  		public static const MONEY:String = "money";
+ 		public static const MONEY_CHECK_EDIT:String = "money-check-edit";
  		public static const MOON:String = "moon";
  		public static const MOTORCYCLE:String = "motorcycle";
  		public static const MOUSE_POINTER:String = "mouse-pointer";
@@ -553,6 +554,7 @@ package
  		public static const RSS_SQUARE:String = "rss-square";
  		public static const RUB:String = "rub";
  		public static const SAFARI:String = "safari";
+ 		public static const SCANNER_IMAGE:String = "scanner-image";
  		public static const SCISSORS:String = "scissors";
  		public static const SCRIBD:String = "scribd";
  		public static const SEARCH:String = "search";
