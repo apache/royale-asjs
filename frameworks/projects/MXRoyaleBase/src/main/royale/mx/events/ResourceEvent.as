@@ -21,6 +21,7 @@ package mx.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 import mx.events.ProgressEvent;
 
 /**
@@ -214,7 +215,7 @@ public class ResourceEvent extends ProgressEvent
     /**
      *  @private
      */
-    override public function cloneEvent():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new ResourceEvent(type, bubbles, cancelable,
                                  bytesLoaded, bytesTotal, errorText);

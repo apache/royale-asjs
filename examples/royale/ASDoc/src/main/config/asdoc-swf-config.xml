@@ -74,6 +74,7 @@
           <path-element>${frameworks_dir}/projects/Jewel/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/JQuery/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/MaterialDesignLite/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/MXRoyaleBase/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Mobile/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Network/src/main/royale</path-element>
