@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.9-SNAPSHOT</version>
+    <version>0.9.10-SNAPSHOT</version>
   </parent>
 
   <artifactId>RoyaleStore_jquery</artifactId>
-  <version>0.9.9-SNAPSHOT</version>
+  <version>0.9.10-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: RoyaleStore_jquery</name>
@@ -57,42 +57,42 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>DragDrop</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Effects</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JQuery</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -114,35 +114,35 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>DragDrop</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Effects</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Formatters</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>JQuery</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
