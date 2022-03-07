@@ -494,6 +494,7 @@
                 <exclude name="royale-asjs/frameworks/libs/MaterialDesignLite.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Mobile.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/MXRoyale.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/MXRoyaleBase.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Network.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Reflection.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/RoyaleSite.swc"/>
@@ -529,6 +530,7 @@
                 <exclude name="royale-asjs/frameworks/js/libs/MaterialDesignLiteJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/MobileJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/MXRoyaleJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/MXRoyaleBaseJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/NetworkJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/ReflectionJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/RoyaleSiteJS.swc"/>
