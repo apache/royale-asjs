@@ -22,14 +22,14 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-maven-archetypes</artifactId>
-    <version>0.9.9</version>
+    <version>0.9.10-SNAPSHOT</version>
   </parent>
 
   <artifactId>royale-simple-application-archetype</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.10-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Apache Royale: Framework: Archetypes: Simple Royale Application</name>
   <description>Maven archetype for creating Royale Maven project for building a simple Royale application with both Flash and JavaScript output.</description>
 
-<properties><project.build.outputTimestamp>2022-03-07T07:42:55Z</project.build.outputTimestamp></properties></project>
+<properties /></project>
