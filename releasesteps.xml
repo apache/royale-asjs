@@ -1615,6 +1615,10 @@
             <param name="folderName" value="royale-asjs/frameworks/libs" />
             <param name="fileName" value="MXRoyale.swc"/>
         </antcall>
+	<antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="MXRoyaleBase.swc"/>
+        </antcall>
         <antcall target="compare-swf-swc">
             <param name="folderName" value="royale-asjs/frameworks/libs" />
             <param name="fileName" value="MaterialDesignLite.swc"/>
