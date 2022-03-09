@@ -23,8 +23,10 @@ package mx.events
 		
 	import org.apache.royale.events.Event;
 	import mx.controls.listClasses.IListItemRenderer;
-	
-	/**
+
+	import org.apache.royale.events.IRoyaleEvent;
+
+/**
 	 *  The TreeEvent class represents the event object passed to the event
 	 *  listener for events that are associated with activities
 	 *  in tree, such as when a tree branch opens or closes.
@@ -313,21 +315,20 @@ package mx.events
 		 *  @productversion Flex 3
 		 */
 		public var triggerEvent:Event;
-		
+
 		//--------------------------------------------------------------------------
 		//
 		//  Overridden methods: Event
 		//
 		//--------------------------------------------------------------------------
-		
+
 		/**
 		 *  @private
 		 */
-		COMPILE::SWF
-		override public function clone():Event
+		override public function cloneEvent():IRoyaleEvent
 		{
 			return new TreeEvent(type, bubbles, cancelable,
-				item, itemRenderer, triggerEvent);
+					item, itemRenderer, triggerEvent);
 		}
 	}
 	
