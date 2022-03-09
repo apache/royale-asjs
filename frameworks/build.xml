@@ -156,7 +156,7 @@
         <antcall target="Jewel"/>
         <antcall target="JewelTheme"/>
 		<antcall target="Icons"/>
-		<antcall target="ExternsJS"/>
+		<!-- <antcall target="ExternsJS"/> -->
     </target>
 
     <target name="test" description="Tests all SWCs">
@@ -261,7 +261,7 @@
         <ant dir="${basedir}/projects/Crux" target="clean"/>
         <ant dir="${basedir}/projects/Jewel" target="clean"/>
 		<ant dir="${basedir}/projects/Icons" target="clean"/>
-		<ant dir="${basedir}/projects/ExternsJS" target="clean"/>
+		<!-- <ant dir="${basedir}/projects/ExternsJS" target="clean"/> -->
         <ant dir="${basedir}/themes/JewelTheme" target="clean"/>
         <ant dir="${basedir}/fontsrc" target="clean"/>
 
@@ -565,19 +565,19 @@
     <target name="Icons" description="Clean build of Icons.swc">
         <ant dir="${basedir}/projects/Icons"/>
     </target>
-
+<!--
     <target name="ExternsJS" description="Clean build of ExternsJS.swc">
         <ant dir="${basedir}/projects/ExternsJS"/>
     </target>
-
+-->
     <target name="IconsTest" description="Test of Icons.swc">
         <ant dir="${basedir}/projects/Icons" target="test"/>
     </target>
-
+<!--
     <target name="ExternsJSTest" description="Test of ExternsJS.swc">
         <ant dir="${basedir}/projects/ExternsJS" target="test"/>
     </target>
-
+-->
     <target name="Jewel" description="Clean build of Jewel.swc">
         <ant dir="${basedir}/projects/Jewel"/>
     </target>
