@@ -85,6 +85,11 @@ package org.apache.royale.events
 					//console.log("created event from string ",event);
 				}
 				else if ("target" in event1) {
+					if (event1.target && 'cloneEvent' in event1) {
+						//we are re-dispatching, we need to clone the original:
+						event1 = event1.cloneEvent();
+					}
+
 					event1.target = _dispatcher;
 					//console.log("assigned target to event ",event);
 				}
