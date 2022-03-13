@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.9-SNAPSHOT</version>
+    <version>0.9.10-SNAPSHOT</version>
   </parent>
 
   <artifactId>examples-crux</artifactId>
-  <version>0.9.9-SNAPSHOT</version>
+  <version>0.9.10-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Examples: Crux ------------------------------------</name>
@@ -74,63 +74,63 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Crux</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>MXRoyaleBase</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -138,7 +138,7 @@
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>examples-tests</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.10-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -150,84 +150,84 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Language</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Crux</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>HTML</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Collections</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Binding</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Graphics</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Effects</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>MXRoyaleBase</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Reflection</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>0.9.9-SNAPSHOT</version>
+          <version>0.9.10-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
