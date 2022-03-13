@@ -45,7 +45,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</developerConnection>
     <url>https://github.com/apache/royale-asjs</url>
-    <tag>HEAD</tag>
+    <tag>release/0.9.9</tag>
   </scm>
 
   <properties>
