@@ -22,18 +22,18 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.9</version>
+    <version>0.9.10-SNAPSHOT</version>
   </parent>
 
   <artifactId>Fonts</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.10-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Apache Royale: Framework: Fonts</name>
 
   <properties>
     <flat-ui.version>2.2.2</flat-ui.version>
-  <project.build.outputTimestamp>2022-03-13T09:39:40Z</project.build.outputTimestamp></properties>
+  </properties>
 
   <build>
     <plugins>
