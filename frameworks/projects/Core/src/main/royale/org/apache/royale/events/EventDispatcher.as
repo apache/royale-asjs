@@ -58,6 +58,16 @@ package org.apache.royale.events
 		}
 	}
 
+	/**
+	 * This class extends goog.events.EventTarget to emulate the
+	 * flash.events.EventDispatcher functionality.
+	 *
+	 * @langversion 3.0
+	 * @playerversion Flash 10.2
+	 * @playerversion AIR 2.6
+	 * @productversion Royale 0.0
+	 *
+	 */
 	COMPILE::JS
 	public class EventDispatcher extends goog.events.EventTarget implements IEventDispatcher
 	{
@@ -72,7 +82,11 @@ package org.apache.royale.events
         {
             return goog.events.hasListener(this, type);
         }
-		
+
+		/**
+		 *
+		 * @royaleignorecoercion org.apache.royale.events.IRoyaleEvent
+		 */
 		override public function dispatchEvent(event1:Object):Boolean
 		{
 			//we get quite a few string events here, "initialize" etc
@@ -85,11 +99,10 @@ package org.apache.royale.events
 					//console.log("created event from string ",event);
 				}
 				else if ("target" in event1) {
-					if (event1.target && 'cloneEvent' in event1) {
+					if (event1.target && event1 is IRoyaleEvent) {
 						//we are re-dispatching, we need to clone the original:
-						event1 = event1.cloneEvent();
+						event1 = IRoyaleEvent(event1).cloneEvent();
 					}
-
 					event1.target = _dispatcher;
 					//console.log("assigned target to event ",event);
 				}
