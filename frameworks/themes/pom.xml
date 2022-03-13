@@ -22,18 +22,18 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.9-SNAPSHOT</version>
+    <version>0.9.9</version>
   </parent>
 
   <artifactId>themes</artifactId>
-  <version>0.9.9-SNAPSHOT</version>
+  <version>0.9.9</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Themes</name>
 
   <properties>
     <project.compiler.options>${repo.compiler.options};-js-default-initializers=false;-source-map=${source.map};-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false</project.compiler.options>
-  </properties>
+  <project.build.outputTimestamp>2022-03-13T09:39:40Z</project.build.outputTimestamp></properties>
 
   <modules>
     <module>Basic</module>
