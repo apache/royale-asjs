@@ -28,6 +28,7 @@ package mx.controls.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	
 	import mx.events.MenuEvent;
+	import org.apache.royale.core.UIBase;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -57,6 +58,16 @@ package mx.controls.beads.controllers
 				return super.getHasMenu(node, model)
 			}
 			return (node as XML).children().length() > 0;
+		}
+
+		override protected function removeMenu(menu:UIBase):void
+		{
+			super.removeMenu(menu);
+			// this fixes issues of menu not being re-added after removal in mx control
+			if (!menu.parent && menu.visible)
+			{
+				menu.visible = false;
+			}
 		}
 
 		override protected function selectedHandler(event:ItemClickedEvent):void
