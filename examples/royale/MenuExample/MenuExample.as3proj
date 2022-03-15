@@ -34,7 +34,7 @@
     <option path=""/>
   </jsOutput>
   <classpaths>
-    <class path="src"/>
+    <class path="src/main/royale"/>
   </classpaths>
   <moonshineResourcePaths></moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
