@@ -22,6 +22,10 @@ package mx.controls.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.ComboBoxView;
+    import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.html.util.getModelByType;
+    import org.apache.royale.html.util.getLabelFromXMLData;
+    import org.apache.royale.html.TextInput;
 	
     /**
      *  The ComboBoxView class.
@@ -61,6 +65,18 @@ package mx.controls.beads
             if (sendClose)
                 IEventDispatcher(_strand).dispatchEvent(new Event("close"));
         }
-		
+
+        override protected function itemChangeAction():void
+        {
+            var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
+            var selectedItem:Object = model.selectedItem;
+            if (selectedItem is XML)
+            {
+                (textInputField as TextInput).text = getLabelFromXMLData(model, selectedItem as XML);
+            } else
+            {
+                super.itemChangeAction();
+            }
+        }
 	}
 }

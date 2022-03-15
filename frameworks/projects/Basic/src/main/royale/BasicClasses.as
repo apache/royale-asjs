@@ -353,6 +353,7 @@ internal class BasicClasses
 
 
 	import org.apache.royale.html.util.getLabelFromData; getLabelFromData;
+	import org.apache.royale.html.util.getLabelFromXMLData; getLabelFromXMLData;
 	
 	COMPILE::JS
 	{

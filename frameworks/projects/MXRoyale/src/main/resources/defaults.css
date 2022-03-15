@@ -216,7 +216,12 @@ ComboBox
 	IBeadModel: ClassReference("mx.controls.beads.models.ComboBoxModel");
 	IBeadView: ClassReference("mx.controls.beads.ComboBoxView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
-	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ComboBoxList");
+	IPopUp: ClassReference("mx.supportClasses.ComboBoxList");
+}
+
+ComboBoxList
+{
+	IItemRenderer: ClassReference("mx.supportClasses.StringItemRenderer");
 }
 
 Container
