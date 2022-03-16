@@ -948,6 +948,7 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function set htmlText(value:String):void
     {
+        textSet = true;
 		COMPILE::SWF
 		{
 			ITextModel(model).html = value;
@@ -1347,6 +1348,7 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function set text(value:String):void
     {
+        textSet = true;
 		COMPILE::SWF
 		{
 			inSetter = true;
