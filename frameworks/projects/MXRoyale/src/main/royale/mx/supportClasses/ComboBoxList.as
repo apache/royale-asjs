@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!---
+
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -17,20 +17,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
--->
-<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:local="*"
-				xmlns:models="models.*"
-				xmlns:js="library://ns.apache.org/royale/basic"
-				>
-	
-	<js:valuesImpl>
-		<js:SimpleCSSValuesImpl />
-	</js:valuesImpl>
-	<!--<js:model>
-		<models:ProductsModel />
-	</js:model>-->
-	<js:initialView>
-		<local:MyInitialView />
-	</js:initialView>
-</js:Application>
+package mx.supportClasses
+{
+    import org.apache.royale.html.supportClasses.ComboBoxList;
+    
+    /**
+     *  The ComboBoxList class is the List class used internally
+     *  by ComboBox as the dropdown/popup.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.10
+     */
+	public class ComboBoxList extends org.apache.royale.html.supportClasses.ComboBoxList
+	{
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.10
+		 */
+		public function ComboBoxList()
+		{
+			super();
+		}
+	}
+}
