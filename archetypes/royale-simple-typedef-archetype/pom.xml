@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-maven-archetypes</artifactId>
-    <version>0.9.9</version>
+    <version>0.9.10-SNAPSHOT</version>
   </parent>
 
   <artifactId>royale-simple-typedef-archetype</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.10-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>Apache Royale: Framework: Archetypes: Simple Royale Typedef Library</name>
@@ -51,4 +51,4 @@
     </pluginManagement>
   </build>
 
-<properties><project.build.outputTimestamp>2022-03-17T08:05:21Z</project.build.outputTimestamp></properties></project>
+<properties /></project>

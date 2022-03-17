@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-mxroyale</artifactId>
-    <version>0.9.9</version>
+    <version>0.9.10-SNAPSHOT</version>
   </parent>
 
   <artifactId>HelloWorld-SparkRoyale</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.10-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: SparkRoyale: HelloWorld</name>
@@ -51,11 +51,11 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.9</version>
+      <version>0.9.10-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
     </dependency>
   </dependencies>
 
-<properties><project.build.outputTimestamp>2022-03-17T08:05:21Z</project.build.outputTimestamp></properties></project>
+<properties /></project>

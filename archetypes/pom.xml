@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.9</version>
+    <version>0.9.10-SNAPSHOT</version>
   </parent>
 
   <artifactId>royale-maven-archetypes</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.10-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Archetypes</name>
@@ -34,7 +34,7 @@
 
   <properties>
     <royale.framework.version>0.9.9-SNAPSHOT</royale.framework.version>
-  <project.build.outputTimestamp>2022-03-17T08:05:21Z</project.build.outputTimestamp></properties>
+  </properties>
   
   <modules>
     <module>royale-simple-application-archetype</module>
