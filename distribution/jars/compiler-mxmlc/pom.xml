@@ -22,13 +22,13 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.9</version>
+    <version>0.9.9-SNAPSHOT</version>
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-mxmlc</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.9-SNAPSHOT</version>
 
   <build>
     <plugins>
@@ -58,4 +58,4 @@
     </dependency>
   </dependencies>
 
-<properties><project.build.outputTimestamp>2022-03-13T09:39:40Z</project.build.outputTimestamp></properties></project>
+<properties /></project>

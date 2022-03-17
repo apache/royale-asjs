@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>BE0013_Dividing_an_Apache_Royale_application_with_modules</artifactId>
-    <version>0.9.9</version>
+    <version>0.9.9-SNAPSHOT</version>
   </parent>
 
   <artifactId>JewelModule</artifactId>
-  <version>0.9.9</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0013:  - JewelModule</name>
@@ -117,4 +117,4 @@
     </plugins>
   </build>
   
-<properties><project.build.outputTimestamp>2022-03-13T09:39:40Z</project.build.outputTimestamp></properties></project>
+<properties /></project>
