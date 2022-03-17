@@ -29,7 +29,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.9-SNAPSHOT</version>
+  <version>0.9.9</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -45,7 +45,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</developerConnection>
     <url>https://github.com/apache/royale-asjs</url>
-    <tag>release/0.9.9</tag>
+    <tag>org.apache.royale.framework-0.9.9-rc4</tag>
   </scm>
 
   <properties>
@@ -85,7 +85,7 @@
     <maven.wagon.http.retryHandler.class>standard</maven.wagon.http.retryHandler.class>
     <!-- Try at most 6 times to deploy every artifact -->
     <maven.wagon.http.retryHandler.count>6</maven.wagon.http.retryHandler.count>
-  </properties>
+  <project.build.outputTimestamp>2022-03-17T08:05:21Z</project.build.outputTimestamp></properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
