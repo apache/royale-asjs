@@ -68,8 +68,6 @@ package org.apache.royale.jewel.beads.controls.datagrid
             var dg:IDataGrid = value as IDataGrid;
 
             view = (dg as UIBase).view as DataGridView;
-            (view.header as DataGridButtonBar).style = "overflow: visible";
-            (view.listArea as DataGridListArea).style = "overflow: visible";
             view.header.addEventListener("headerLayout", headerLayoutHandler);
 		}
 
