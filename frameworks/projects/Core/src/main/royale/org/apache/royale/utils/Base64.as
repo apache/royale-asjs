@@ -90,8 +90,15 @@ package org.apache.royale.utils
 			var c2:int;  
 			var c3:int;  
 			var c4:int;  
-			var i:int = 0;  
-			var len:int = str.length;  
+			var i:int = 0;
+
+			var len:int = str.length;
+			//remove padding:
+			if (len && str.charAt(len-1) == '=') {
+				len--;
+				if (len && str.charAt(len-1) == '=') len--;
+				str = str.substr(0,len);
+			}
 			
 			var byteString:BinaryData = new BinaryData();  
 			byteString.writeUTFBytes(str);  

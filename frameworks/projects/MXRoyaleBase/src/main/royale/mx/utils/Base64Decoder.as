@@ -90,7 +90,6 @@ public class Base64Decoder
     public function decode(data:String):String
     {
         var bytes:BinaryData = Base64.decode(data);
-        bytes.readUTFBytes(bytes.length);
 		decodedString = bytes.readUTFBytes(bytes.length);
 		return decodedString;
     }
