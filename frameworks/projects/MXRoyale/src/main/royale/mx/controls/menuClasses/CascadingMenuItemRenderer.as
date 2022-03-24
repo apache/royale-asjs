@@ -56,7 +56,7 @@ package mx.controls.menuClasses
 		{
 			if (!(data is XML))
 			{
-				return super.getHasMenu();
+				return data.hasOwnProperty("children");
 			}
 			return (data as XML).children().length() > 0;
 		}
