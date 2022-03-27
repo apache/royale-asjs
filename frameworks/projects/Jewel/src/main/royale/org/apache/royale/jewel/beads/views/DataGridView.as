@@ -64,7 +64,7 @@ package org.apache.royale.jewel.beads.views
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public class DataGridView extends GroupView implements IBeadView, IDataGridView
+    public class DataGridView extends GroupView implements IBeadView, IDataGridView, IScrollToIndexView
     {
         /**
          *  constructor.
@@ -138,7 +138,46 @@ package org.apache.royale.jewel.beads.views
             }
         }
 
+		/**
+		 *  Ensures that the data provider item at the given index is visible.
+		 *  
+		 *  If the item is visible, the <code>verticalScrollPosition</code>
+		 *  property is left unchanged even if the item is not the first visible
+		 *  item. If the item is not currently visible, the 
+		 *  <code>verticalScrollPosition</code>
+		 *  property is changed make the item the first visible item, unless there
+		 *  aren't enough rows to do so because the 
+		 *  <code>verticalScrollPosition</code> value is limited by the 
+		 *  <code>maxVerticalScrollPosition</code> property.
+		 *
+		 *  @param index The index of the item in the data provider.
+		 *
+		 *  @return <code>true</code> if <code>verticalScrollPosition</code> changed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.7
+		 */
+		public function scrollToIndex(index:int):Boolean
+		{
+			COMPILE::JS {
+				if (index == -1) return false;
+			
+				var scrollArea:HTMLElement = listArea.element;
+				var oldScroll:Number = scrollArea.scrollTop;
 
+				var rowHeight:Number = _presentationModel.rowHeight;
+				var totalHeight:Number = sharedModel.dataProvider.length * rowHeight - scrollArea.clientHeight;
+            
+				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
+
+				return oldScroll != scrollArea.scrollTop;
+			}
+			COMPILE::SWF {
+ 				return false;
+			}
+		}
 
         /**
          * @private

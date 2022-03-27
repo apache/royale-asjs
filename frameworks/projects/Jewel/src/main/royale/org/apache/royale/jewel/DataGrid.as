@@ -28,6 +28,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.beads.models.DataGridPresentationModel;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	import org.apache.royale.html.util.getModelByType;
+	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
 	
 	/**
 	 *  The change event is dispatched whenever the datagrid's selection changes.
@@ -227,6 +228,23 @@ package org.apache.royale.jewel
 				addBead(presModel);
 			}
 			return presModel;
+		}
+
+		/**
+		 *  Ensures that the data provider item at the given index is visible.
+		 *  
+		 *  @param index The index of the item in the data provider.
+		 *
+		 *  @return <code>true</code> if the scroll changed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.7
+		 */
+		public function scrollToIndex(index:int):Boolean
+		{
+			return (view as IScrollToIndexView).scrollToIndex(index);
 		}
 
 		/**
