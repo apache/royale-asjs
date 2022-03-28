@@ -157,7 +157,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 9
 		 *  @playerversion AIR 1.1
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.10
 		 */
 		public function scrollToIndex(index:int):Boolean
 		{
