@@ -144,6 +144,8 @@ limitations under the License.
             {
                 currentNavOption = (event.target as Navigation).selectedItem as NavigationLinkVO;
                 currentNavOption = currentNavOption.selectedChild;
+                if( !currentNavOption )
+                    return;
                 
                 router.routeState.title = currentNavOption.label;
                 router.routeState.path = currentNavOption.hash;
