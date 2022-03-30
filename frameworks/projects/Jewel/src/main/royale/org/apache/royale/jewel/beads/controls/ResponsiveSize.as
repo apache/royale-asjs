@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 
@@ -226,6 +227,8 @@ package org.apache.royale.jewel.beads.controls
         private var control:StyledUIBase;
         private var originalWidth:Number = NaN;
         private var originalHeight:Number = NaN;
+        private var originalPercenWidth:Number = NaN;
+        private var originalPercenHeight:Number = NaN;
         
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -243,15 +246,18 @@ package org.apache.royale.jewel.beads.controls
                 originalWidth = control.width;
             if(control.height != 0)
                 originalHeight = control.height;
-            // trace("originalWidth",originalWidth)
-            // trace("originalHeight",originalHeight)
+            if(control.percentWidth != 0)
+                originalPercenWidth = control.percentWidth;
+            if(control.percentHeight != 0)
+                originalPercenHeight = control.percentHeight;
 
             COMPILE::JS
             {
             window.addEventListener('resize', resizeHandler, false);
             }
+            
             resizeHandler();
-		}
+        }
 
         /**
          * to check only width
@@ -265,17 +271,15 @@ package org.apache.royale.jewel.beads.controls
         {
             COMPILE::JS
             {
-                if(outerWidth == document.body.getBoundingClientRect().width)
+                var widthall:Number =  document.body.getBoundingClientRect().width;
+                if(outerWidth == widthall)
                     return;
 
-                control.percentWidth = NaN;
-                control.percentHeight = NaN;
-
-                outerWidth = document.body.getBoundingClientRect().width;
+                outerWidth = widthall;
                 
                 var responsiveFlag:Boolean = false;
 
-                if(outerWidth < ResponsiveSizes.FULL_BREAKPOINT && outerWidth > ResponsiveSizes.WIDESCREEN_BREAKPOINT)
+                if(outerWidth < ResponsiveSizes.FULL_BREAKPOINT && outerWidth >= ResponsiveSizes.WIDESCREEN_BREAKPOINT)
                 {
                     if(!isNaN(widescreenWidth) || !isNaN(widescreenHeight))
                     {
@@ -285,15 +289,19 @@ package org.apache.royale.jewel.beads.controls
                         if(widescreenHeight != originalHeight)
                             control.height = widescreenHeight;
                         responsiveFlag = true;
-                    }
                     
-                    if(!isNaN(widescreenPercentWidth))
-                        control.percentWidth = widescreenPercentWidth;
+                    }                    
+                    if( !isNaN(widescreenPercentWidth) || !isNaN(widescreenPercentHeight) )
+                    {
+                        if(widescreenPercentWidth != originalPercenWidth)
+                            control.percentWidth = widescreenPercentWidth;
+                        if(widescreenPercentHeight != originalPercenHeight)
+                            control.percentHeight = widescreenPercentHeight;
+                        responsiveFlag = true;
 
-                    if(!isNaN(widescreenPercentHeight))
-                        control.percentHeight = widescreenPercentHeight;
+                    }
                 } 
-                else if(outerWidth < ResponsiveSizes.WIDESCREEN_BREAKPOINT && outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
+                else if(outerWidth < ResponsiveSizes.WIDESCREEN_BREAKPOINT && outerWidth >= ResponsiveSizes.DESKTOP_BREAKPOINT)
                 {
                     if(!isNaN(desktopWidth) || !isNaN(desktopHeight))
                     {
@@ -303,15 +311,19 @@ package org.apache.royale.jewel.beads.controls
                         if(desktopHeight != originalHeight)
                             control.height = desktopHeight;
                         responsiveFlag = true;
-                    }
                     
-                    if(!isNaN(desktopPercentWidth))
-                        control.percentWidth = desktopPercentWidth;
+                    }
+                    if( !isNaN(desktopPercentWidth) || !isNaN(desktopPercentHeight) )
+                    {
+                        if(desktopPercentWidth != originalPercenWidth)
+                            control.percentWidth = desktopPercentWidth;
+                        if(desktopPercentHeight != originalPercenHeight)
+                            control.percentHeight = desktopPercentHeight;
+                        responsiveFlag = true;
 
-                    if(!isNaN(desktopPercentHeight))
-                        control.percentHeight = desktopPercentHeight;
+                    }
                 }
-                else if(outerWidth < ResponsiveSizes.DESKTOP_BREAKPOINT && outerWidth > ResponsiveSizes.TABLET_BREAKPOINT)
+                else if(outerWidth < ResponsiveSizes.DESKTOP_BREAKPOINT && outerWidth >= ResponsiveSizes.TABLET_BREAKPOINT)
                 {
                     if(!isNaN(tabletWidth) || !isNaN(tabletHeight))
                     {
@@ -321,15 +333,19 @@ package org.apache.royale.jewel.beads.controls
                         if(tabletHeight != originalHeight)
                             control.height = tabletHeight;
                         responsiveFlag = true;
+                    
                     }
+                    if( !isNaN(tabletPercentWidth) || !isNaN(tabletPercentHeight) )
+                    {
+                        if(tabletPercentWidth != originalPercenWidth)
+                            control.percentWidth = tabletPercentWidth;
+                        if(tabletPercentHeight != originalPercenHeight)
+                            control.percentHeight = tabletPercentHeight;
+                        responsiveFlag = true;
 
-                    if(!isNaN(tabletPercentWidth))
-                        control.percentWidth = tabletPercentWidth;
-
-                    if(!isNaN(tabletPercentHeight))
-                        control.percentHeight = tabletPercentHeight;
+                    }
                 }
-                else if(outerWidth < ResponsiveSizes.TABLET_BREAKPOINT && outerWidth > ResponsiveSizes.PHONE_BREAKPOINT)
+                else if(outerWidth < ResponsiveSizes.TABLET_BREAKPOINT && outerWidth >= ResponsiveSizes.PHONE_BREAKPOINT)
                 {
                     if(!isNaN(phoneWidth) || !isNaN(phoneHeight))
                     {
@@ -339,23 +355,36 @@ package org.apache.royale.jewel.beads.controls
                         if(phoneHeight != originalHeight)
                             control.height = phoneHeight;
                         responsiveFlag = true;
+                    
                     }
-
-                    if(!isNaN(phonePercentWidth))
-                        control.percentWidth = phonePercentWidth;
-
-                    if(!isNaN(phonePercentHeight))
-                        control.percentWidth = phonePercentWidth;
+                    if( !isNaN(phonePercentWidth) || !isNaN(phonePercentHeight) )
+                    {
+                        if(phonePercentWidth != originalPercenWidth)
+                            control.percentWidth = phonePercentWidth;
+                        if(phonePercentHeight != originalPercenHeight)
+                            control.percentHeight = phonePercentHeight;
+                        responsiveFlag = true;
+                    }
                 }
 
                 if(!responsiveFlag)
                 {
-                    // trace("use FULL size", originalWidth, originalHeight);
-                    if(control.width != originalWidth)
-                        control.width = originalWidth;
-                    
-                    if(control.height != originalHeight)
-                        control.height = originalHeight;
+                    if( !isNaN(originalHeight) || !isNaN(originalWidth) )
+                    {
+                        if(control.width != originalWidth)
+                            control.width = originalWidth;
+                        
+                        if(control.height != originalHeight)
+                            control.height = originalHeight;
+                    }
+                    if( !isNaN(originalPercenHeight) || !isNaN(originalPercenWidth) )
+                    {
+                        if(control.percentWidth != originalPercenWidth)
+                            control.percentWidth = originalPercenWidth;
+                        if(control.percentHeight != originalPercenHeight)
+                            control.percentHeight = originalPercenHeight;
+                    }
+
                 }
             }
         }
