@@ -84,7 +84,7 @@ package mx.controls.beads.models
 			}
 		}
 
-		private var _submenuField:String = "menu";
+		private var _submenuField:String = "children";
 		
 		/**
 		 * The field in the data object that identifies sub-menus. The default is "menu".
