@@ -87,7 +87,7 @@ package mx.controls.beads.models
 		private var _submenuField:String = "children";
 		
 		/**
-		 * The field in the data object that identifies sub-menus. The default is "menu".
+		 * The field in the data object that identifies sub-menus. The default is "children".
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
