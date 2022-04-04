@@ -23,6 +23,7 @@ package mx.controls.menuClasses
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer;
+	import mx.supportClasses.IFoldable;
 
 	/**
 	 *  The ListItemRenderer is the default renderer for mx.controls.List
@@ -33,7 +34,7 @@ package mx.controls.menuClasses
 	 *  @productversion Flex 3
 	 */
 
-	public class CascadingMenuItemRenderer extends org.apache.royale.html.supportClasses.CascadingMenuItemRenderer
+	public class CascadingMenuItemRenderer extends org.apache.royale.html.supportClasses.CascadingMenuItemRenderer implements IFoldable
 	{
 		public function CascadingMenuItemRenderer()
 		{
@@ -87,6 +88,17 @@ package mx.controls.menuClasses
 			}
 			var type:String = (data as XML).attribute("type").toString();
 			return type ? type : null;
+		}
+
+		private var _canFold:Boolean;
+		public function get canFold():Boolean
+		{
+			return _canFold;
+		}
+		
+		public function get canUnfold():Boolean
+		{
+			return getHasMenu();
 		}
 	}
 

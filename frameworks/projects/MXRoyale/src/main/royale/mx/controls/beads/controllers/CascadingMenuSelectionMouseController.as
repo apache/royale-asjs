@@ -30,6 +30,7 @@ package mx.controls.beads.controllers
 	import mx.events.MenuEvent;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
+	import mx.supportClasses.IFoldable;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -74,6 +75,10 @@ package mx.controls.beads.controllers
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
 			super.selectedHandler(event);
+			if (event.target is IFoldable && (event.target as IFoldable).canUnfold)
+			{
+				return; // this is not selection, but rather a folding action
+			}
 			var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
 			var data:Object = event.target.data;
 			menuEvent.item = data;
