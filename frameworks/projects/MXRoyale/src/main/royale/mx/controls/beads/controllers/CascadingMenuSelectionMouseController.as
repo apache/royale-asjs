@@ -29,6 +29,7 @@ package mx.controls.beads.controllers
 	
 	import mx.events.MenuEvent;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -119,6 +120,13 @@ package mx.controls.beads.controllers
 			}
 			return null;
 		}
+
+		override protected function getParentMenuBar():IEventDispatcher
+		{
+			var parentMenuBar:IEventDispatcher = (_strand as IMenu).parentMenuBar;
+			return parentMenuBar ? parentMenuBar : _strand as IEventDispatcher;
+		}
+
 	}
 
 }

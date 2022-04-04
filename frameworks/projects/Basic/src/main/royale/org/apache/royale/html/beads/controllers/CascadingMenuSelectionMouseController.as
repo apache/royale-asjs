@@ -36,6 +36,7 @@ package org.apache.royale.html.beads.controllers
 		import org.apache.royale.events.BrowserEvent;
 	}
 	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 * The CascadingMenuSelectionMouseController does the same job as the MenuSelectionMouseController
@@ -87,7 +88,7 @@ package org.apache.royale.html.beads.controllers
 				var menu:IMenu = new c() as IMenu;
 				menu.dataProvider = getSubMenuDataProvider(node, model);
 				menu.labelField = model.labelField;
-				menu.parentMenuBar = (_strand as IMenu).parentMenuBar;
+				menu.parentMenuBar = getParentMenuBar();
 				// selected item holds the currently open submenu data 
 				// check to see if that exists and hide it if it does
 				if (model.selectedItem)
@@ -109,6 +110,11 @@ package org.apache.royale.html.beads.controllers
 				super.selectedHandler(event);
 				hideOpenMenus();
 			}
+		}
+
+		protected function getParentMenuBar():IEventDispatcher
+		{
+			return (_strand as IMenu).parentMenuBar;
 		}
 
 		private function clearSubmenusOnSameLevel(menuToBeRemoved:UIBase, model:ISelectionModel):void
