@@ -169,7 +169,6 @@ package org.apache.royale.html.accessories
 			var xFactor:Number = 1;
 			var yFactor:Number = 1;
 			var pt:Point;
-			var relative:Boolean = _xPos > TOP &&  _yPos > TOP;
 
 			if (_xPos == LEFT) {
 				xFactor = Number.POSITIVE_INFINITY;
@@ -210,7 +209,6 @@ package org.apache.royale.html.accessories
 		{
 			(_strand as IEventDispatcher).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 
-			var comp:IUIBase = _strand as IUIBase;
 			if (tt) {
 				host.popUpParent.removeElement(tt);
 				tt = null;
