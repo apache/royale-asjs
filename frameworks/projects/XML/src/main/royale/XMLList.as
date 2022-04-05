@@ -40,6 +40,29 @@ package
 			if (val && val.constructor == XMLList) return val as XMLList;
 			else return new XMLList(val);
 		}
+
+		/**
+		 * Compiler-only method to support null-safe, non-strict equality checks between XMLList and
+		 * 'unknown' type
+		 *
+		 * @private
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion Object
+		 * @royalesuppressexport
+		 */
+		public static function mixedEquality(list:XMLList, other:*):Boolean{
+			if (list == null ) {
+				return other == null;
+			}
+			if (other === undefined) {
+				return list.isEmpty();
+			}
+			if (other instanceof XMLList) {
+				return list.equals(other as XMLList);
+			}
+			if (typeof other == 'boolean') other = ('' + other);//force a string comparison
+			return (list as Object) == other;
+		}
 		
 		public function XMLList(expression:Object = null)
 		{
@@ -1365,7 +1388,7 @@ package
 		override public function valueOf():*
 		{
 			if(isEmpty())
-				return "";
+				return undefined;
 			if(isSingle())
 				return _xmlArray[0].valueOf();
 

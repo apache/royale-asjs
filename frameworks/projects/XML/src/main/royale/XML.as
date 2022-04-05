@@ -196,7 +196,35 @@ package
 				else return ret;
 			} else return new XML(source);
 		}
-		
+
+		/**
+		 * Compiler-only method to support null-safe, non-strict equality checks between XML-ish types
+		 * (although both arguments are typed as XML, XMLList is also possible at runtime)
+		 *
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public static function equality(xml1:XML, xml2:XML):Boolean{
+			if (xml1 == null) return xml2 == null;
+			return xml2 != null ? xml1.equals(xml2) : false;
+		}
+
+		/**
+		 * Compiler-only method to support null-safe, non-strict equality checks between XML-ish known type
+		 * and an unknown type. Although the first argument is typed as XML, it handles runtime usage with XMLList type as well
+		 *
+		 * @private
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion XML
+		 * @royalesuppressexport
+		 */
+		public static function mixedEquality(xml1:XML, other:*):Boolean{
+			if (xml1 instanceof XMLList) return XMLList.mixedEquality(xml1 as XMLList, other);
+			if (xml1 == null) return other == null;
+			if (other instanceof XML) return xml1.equals((other as XML));
+			if (typeof other == 'boolean') other = ('' + other);//force a string comparison
+			return xml1 == other;
+		}
 		
 		private static const ELEMENT:String = "e";
 		private static const ATTRIBUTE:String = "a";
@@ -604,6 +632,10 @@ package
 			// _children = [];
 			if(xml != null)
 			{
+				if (xml instanceof XML) {
+					//js-only hack to return a copy from the constructor:
+					jsUnsafeNativeInline("return xml.copy()");
+				}
 				var xmlStr:String = "" + xml;
 				if(xmlStr.indexOf("<") == -1)
 				{
@@ -1453,38 +1485,44 @@ package
 				10. Return true
 			*/
 			var i:int;
-			if (xml == this) return true;
-			
-			if(!(xml instanceof XML))
+			if (xml === this) return true;
+			if (xml instanceof XMLList) {
+				if ((xml as XMLList).length() != 1) return false; //single
+				xml = (xml as XMLList)[0];
+			}
+			else if(!(xml instanceof XML))
 				return false;
 			var typedXML:XML = xml as XML;
 			if(typedXML.getNodeRef() != getNodeRef())
 				return false;
-			
-			if(!name().equals(typedXML.name()))
-				return false;
+			if (_name) {
+				if (!typedXML._name || !_name.equals(typedXML._name)) return false //3a,b,c, above
+			} else if (typedXML._name) {
+				return false; //4 above
+			}
 			var selfAttrs:Array = getAttributeArray();
 			var xmlAttrs:Array = typedXML.getAttributeArray();
 			if(selfAttrs.length != xmlAttrs.length)
-				return false;
-			//length comparison should not be necessary because xml always has a length of 1
+				return false; //5 above
+
+			var selfChldrn:Array = getChildrenArray();
+			var xmlChildren:Array = typedXML.getChildrenArray();
+			if(selfChldrn.length != xmlChildren.length)
+				return false; //6 above
+
 			if(getValue() != typedXML.getValue())
-				return false;
+				return false; //7 above
 			
 			for(i=0;i<selfAttrs.length;i++)
 			{
 				if(!typedXML.hasAttribute(selfAttrs[i]))
-					return false;
+					return false; //8 above (hasAttribute checks both name and value in this case)
 			}
-			var selfChldrn:Array = getChildrenArray();
-			var xmlChildren:Array = typedXML.getChildrenArray();
-			if(selfChldrn.length != xmlChildren.length)
-				return false;
 			
 			for(i=0;i<selfChldrn.length;i++)
 			{
 				if(!selfChldrn[i].equals(xmlChildren[i]))
-					return false;
+					return false;//9 above
 			}
 			return true;
 		}
@@ -3079,7 +3117,7 @@ package
 				{
 					var child:XML = _children[i];
 					var childKind:String = child.getNodeRef();
-					if(child.childKind == COMMENT || child.childKind == PROCESSING_INSTRUCTION)
+					if(childKind == COMMENT || childKind == PROCESSING_INSTRUCTION)
 						continue;
 					s = s + child.toString();
 				}

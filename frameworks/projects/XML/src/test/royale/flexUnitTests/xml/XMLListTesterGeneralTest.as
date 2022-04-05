@@ -393,5 +393,27 @@ package flexUnitTests.xml
             var test:Object = <xml>test</xml>;
             return  XMLList(test);
         }
+
+        [Test]
+        public function testEquality():void{
+            var node:XML = <type type="without name attribute"/>;
+
+            var list:XMLList = node.@name;
+            var Null:* = null;
+            var Undefined:* = undefined;
+//the above is just so the very last trace comparison below does not give warnings or errors in compiler, the earlier checks can also be done with the literal null/undefined
+
+            assertFalse(node.@name == "", 'unexpected equality with empty string for empty list');
+            assertFalse((node.@name == Null))//false
+            assertTrue((node.@name == Undefined))//true in flash (false in Royale)
+
+            //The following passes in flash, but fails in JS:
+            // assertFalse((list.valueOf() == Null))//false in flash (true in Royale)
+            assertFalse((list.valueOf() == ""))//false in flash (true in Royale)
+            assertTrue((list.valueOf() == Undefined))//true in flash (false in Royale)
+//conclusion: XMLList.valueOf should return undefined for empty list
+//but in JS, list.valueOf() == Null, because:
+            assertTrue((Null == Undefined))//true
+        }
     }
 }
