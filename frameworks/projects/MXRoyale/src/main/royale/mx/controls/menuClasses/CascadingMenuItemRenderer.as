@@ -26,6 +26,9 @@ package mx.controls.menuClasses
 	import mx.supportClasses.IFoldable;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IPopUpHostParent;
+	import mx.controls.Menu;
+	import org.apache.royale.html.beads.DisableBead;
+	import org.apache.royale.html.beads.DisabledAlphaBead;
 
 	/**
 	 *  The ListItemRenderer is the default renderer for mx.controls.List
@@ -43,9 +46,34 @@ package mx.controls.menuClasses
 			super();
 		}
 
+		/*
+		*  @private
+		*/
+		private var _enabled:Boolean;
+		private var _disableBead:DisableBead;
+		public function set enabled(value:Boolean):void
+		{
+			_enabled = value;
+			if (_disableBead == null) {
+				_disableBead = new DisableBead();
+				addBead(_disableBead);
+				addBead(new DisabledAlphaBead());
+			}
+			_disableBead.disabled = !_enabled;
+			COMPILE::JS
+			{
+			    element.style.cursor = value ? "pointer" : "auto";
+			}
+		}
+
 		override public function set data(value:Object):void
 		{
 			super.data = value;
+			if (parent && parent is Menu && (parent as Menu).dataDescriptor)
+			{
+				var desc:IMenuDataDescriptor = (parent as Menu).dataDescriptor;
+				enabled = desc.isEnabled(value);
+			}
 	/*        COMPILE::SWF
 			{
 				var edge:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this);
