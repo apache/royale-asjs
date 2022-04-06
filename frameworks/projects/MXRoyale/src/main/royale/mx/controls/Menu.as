@@ -99,6 +99,8 @@ package mx.controls
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IHasLabelField;
 	import org.apache.royale.html.util.getModelByType;
+	import org.apache.royale.core.IPopUpHostParent;
+	import org.apache.royale.core.IPopUpHost;
 	
 	use namespace mx_internal;
 	
@@ -593,7 +595,7 @@ package mx.controls
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView, IHasLabelField
+	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView, IHasLabelField, IPopUpHostParent
 	{
 		// include "../core/Version.as";
 		
@@ -680,7 +682,7 @@ package mx.controls
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public static function popUpMenu(menu:Menu, parent:UIComponent, mdp:Object):void
+		public static function popUpMenu(menu:Menu, parent:IUIBase, mdp:Object):void
 		{
 			menu.parentDisplayObject = parent ?
 				parent :
@@ -781,7 +783,7 @@ package mx.controls
 		 *  @private
 		 *  Where to add this menu on the display list.
 		 */
-		mx_internal var parentDisplayObject:UIComponent;
+		mx_internal var parentDisplayObject:IUIBase;
 		
 		/**
 		 *  @private
@@ -1624,8 +1626,8 @@ package mx.controls
 		 */
 		public function show(parent:IUIBase, xShow:Number = 0, yShow:Number = 0):void
 		{
-			if (parent is UIComponent)
-				parentDisplayObject = (parent as UIComponent);
+			if (parent is IUIBase)
+				parentDisplayObject = (parent as IUIBase);
 				
 			//this could be an empty menu so we'll return if it is
 			//if (collection && collection.length == 0)
@@ -3115,6 +3117,17 @@ package mx.controls
 			invalidateDisplayList();
 
 			dispatchEvent(new Event("iconFunctionChanged"));
+		    }
+
+		    private var _popUpHost:IPopUpHost;
+		    public function get popUpHost():IPopUpHost
+		    {
+			    return _popUpHost;
+		    }
+
+		    public function set popUpHost(value:IPopUpHost):void
+		    {
+			    _popUpHost = value;
 		    }
 		        
 	}

@@ -380,7 +380,7 @@ menu|MenuBarItemRenderer {
 }
 
 Menu {
-	IMenu: ClassReference("org.apache.royale.html.CascadingMenu");
+	IMenu: ClassReference("mx.controls.Menu");
 	IBeadModel: ClassReference("mx.controls.beads.models.CascadingMenuModel");
 	IBeadController: ClassReference("mx.controls.beads.controllers.CascadingMenuSelectionMouseController");
 	IItemRenderer: ClassReference("mx.controls.menuClasses.CascadingMenuItemRenderer");
