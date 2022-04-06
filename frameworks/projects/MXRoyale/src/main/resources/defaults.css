@@ -398,6 +398,7 @@ Menu {
 	border-style: solid;
 	border-color: #222222;
 	box-shadow: 2px 2px 5px gray;
+	cursor: auto;
 }
 MultiSelectionList
 {
