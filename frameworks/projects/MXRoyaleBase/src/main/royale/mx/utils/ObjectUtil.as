@@ -200,12 +200,30 @@ public class ObjectUtil
     }
 
     /**
+     * Helper to abstract some VM-level differences
+     * @param value
+     * @return true if the value argument has a 'uid' property
+     */
+    private static function isUIDObject(value:Object):Boolean{
+        var ret:Boolean = false;
+        COMPILE::JS{
+            //in JS, the getter/setter for 'uid' is not considered an 'own' property, in SWF, it is, so we check also in the prototype chain if needed
+            ret = (value && (value.hasOwnProperty("uid") || ("uid" in value.constructor.prototype)))
+        }
+        COMPILE::SWF{
+            ret = (value && value.hasOwnProperty("uid"));
+        }
+        return ret;
+    }
+
+    /**
      *  Recursive helper used by the public clone method.
      *  @private
      */
     private static function cloneInternal(result:Object, value:Object):void
     {
-        if (value && /*value.hasOwnProperty*/("uid" in value))
+
+        if (isUIDObject(value))
             result.uid = value.uid;
     
         var classInfo:Object = getClassInfo(value);
@@ -214,7 +232,7 @@ public class ObjectUtil
         {
             //@todo the following 'v = value[p]' will only be emulated safely in js by using reflection library:
             v = value[p];
-            if (v && /*v.hasOwnProperty*/("uid" in v))
+            if (isUIDObject(v))
                 cloneInternal(result[p], v);
         }
     }

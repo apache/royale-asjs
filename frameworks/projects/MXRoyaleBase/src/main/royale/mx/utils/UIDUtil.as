@@ -198,7 +198,11 @@ public class UIDUtil
                 IUID(item).uid = result;
             }
         }
-        else if ((item is IPropertyChangeNotifier) &&
+        //(GD) commented out the following 'else if' clause because I don't expect it should ever execute
+        // why: IPropertyChangeNotifier extends IUID, so any such item will have already passed the (item is IUID) check and caused previous code block to execute instead)
+        // therefore the (item is IPropertyChangeNotifier) check should always be false in 'else if' below
+        //@todo check this against Flex:
+        /*else if ((item is IPropertyChangeNotifier) &&
                  !(item is IUIComponent))
         {
             result = IPropertyChangeNotifier(item).uid;
@@ -207,7 +211,7 @@ public class UIDUtil
                 result = createUID();
                 IPropertyChangeNotifier(item).uid = result;
             }
-        }
+        }*/
         else if (item is String)
         {
             return item as String;
@@ -221,7 +225,7 @@ public class UIDUtil
                 if (item is XMLList && item.length == 1)
                     item = item[0];
 
-                /* LATER
+
                 if (item is XML)
                 {
                     // XML nodes carry their UID on the
@@ -255,7 +259,6 @@ public class UIDUtil
                 }
                 else
                 {
-                */
                     if ("mx_internal_uid" in item)
                         return item['mx_internal_uid']
 
@@ -283,7 +286,7 @@ public class UIDUtil
                             }
                         }
                     }
-                //}
+                }
             }
             catch(e:Error)
             {

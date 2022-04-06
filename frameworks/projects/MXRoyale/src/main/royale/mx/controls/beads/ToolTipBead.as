@@ -36,30 +36,9 @@ package mx.controls.beads
 		{
 			super();
 		}
-		
-		/**                         	
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-			IEventDispatcher(value).addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, false);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function mouseDownHandler(event:MouseEvent):void
-		{
-			super.rollOutHandler(event);
-		}
-        
+
         private var _isError:Boolean;
+
         public function get isError():Boolean
         {
             return _isError;    
@@ -72,6 +51,10 @@ package mx.controls.beads
         override protected function rollOverHandler(event:MouseEvent):void
         {
             super.rollOverHandler(event);
+
+			listenOnStrand(MouseEvent.MOUSE_DOWN, rollOutHandler);
+			listenOnStrand(MouseEvent.CLICK, rollOutHandler);
+
             COMPILE::JS
             {
                 if (tt)
@@ -81,6 +64,14 @@ package mx.controls.beads
                 }
             }
         }
+
+		override public function removeTip():void
+		{
+			super.removeTip();
+
+			listenOnStrand(MouseEvent.MOUSE_DOWN, rollOutHandler, false, true);
+			listenOnStrand(MouseEvent.CLICK, rollOutHandler, false, true);
+		}
 
 		COMPILE::JS
 		private function adjustInsideBoundsIfNecessary():void{ //could override determinePosition instead

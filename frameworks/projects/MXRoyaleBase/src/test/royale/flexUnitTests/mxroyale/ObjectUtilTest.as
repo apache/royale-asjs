@@ -21,8 +21,9 @@ package flexUnitTests.mxroyale
     
     
     import mx.utils.ObjectUtil;
-    
-    import org.apache.royale.test.asserts.*;
+import mx.utils.UIDUtil;
+
+import org.apache.royale.test.asserts.*;
     import flexUnitTests.mxroyale.support.*;
     //import testshim.RoyaleUnitTestRunner;
     
@@ -357,12 +358,44 @@ package flexUnitTests.mxroyale
         }
     
     
-        /*[Test]
+        [Test]
         public function testCloning():void{
-            var item:TestClass6 = new TestClass6();
-        
-            
-        }*/
+            var s:String = "myString";
+
+            var out:Object = ObjectUtil.clone(s);
+
+            assertStrictlyEquals(s, out, 'unexpected String clone result');
+
+            var obj:Object = { test:'test'};
+            var inJSON:String = JSON.stringify(obj);
+            out = ObjectUtil.clone(obj);
+            assertStrictlyEquals(inJSON, JSON.stringify(out), 'unexpected dyn Object clone result');
+
+            UIDUtil.getUID(obj);
+            out = ObjectUtil.clone(obj);
+            //field order variation means JSON is not a valid way to compare:
+            assertTrue(simpleObjectCheckFields(obj, out), 'unexpected dyn Object clone result');
+
+        }
+
+        private static function simpleObjectCheckFields(obj1:Object, obj2:Object):Boolean{
+            if (obj1) {
+                if (!obj2) return false;
+                if (obj1 is String || obj1 is Number || obj1 is Boolean) return obj1 === obj2;
+                var obj1Count:uint = 0;
+                for (var field:String in obj1) {
+                    if (obj1[field] !== obj2[field]) return false;
+                    obj1Count++;
+                }
+                for (field in obj1) {
+                    obj1Count--;
+                }
+                if (obj1Count != 0) return false //mismatched field count
+            } else {
+                if (obj2) return false;
+            }
+            return true;
+        }
         
     }
 }

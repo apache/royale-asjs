@@ -1577,9 +1577,82 @@ package flexUnitTests.xml
 
             assertTrue(check, 'unexpected numeric inequality (strict)');
 
+            //non-existent 'properties'
+
+            //non-existent attribute
+
+            check = list[0].@value == undefined;
+            assertTrue(check, 'unexpected undefined inequality (non-strict)');
+
+            check = list[0].@value != undefined;
+            assertFalse(check, 'unexpected undefined inequality (non-strict)');
+
+            check = list[0].@value === undefined;
+            assertFalse(check, 'unexpected undefined equality (strict)');
+
+            check = list[0].@value !== undefined;
+            assertTrue(check, 'unexpected undefined inequality (strict)');
+
+            check = list[0].@value == null;
+            assertFalse(check, 'unexpected null equality (non-strict)');
+
+            check = list[0].@value != null;
+            assertTrue(check, 'unexpected null equality (non-strict)');
+
+            check = list[0].@value == '';
+            assertFalse(check, 'unexpected undefined equality (strict)');
+
+            //non-existent child
+            check = xmlInst.notAChild == undefined;
+            assertTrue(check, 'unexpected undefined inequality (non-strict)');
+
+            check = xmlInst.notAChild != undefined;
+            assertFalse(check, 'unexpected undefined inequality (non-strict)');
+
+            check = xmlInst.notAChild === undefined;
+            assertFalse(check, 'unexpected undefined equality (strict)');
+
+            check = xmlInst.notAChild !== undefined;
+            assertTrue(check, 'unexpected undefined inequality (strict)');
+
+            check = xmlInst.notAChild == null;
+            assertFalse(check, 'unexpected null equality (non-strict)');
+
+            check = xmlInst.notAChild != null;
+            assertTrue(check, 'unexpected null equality (non-strict)');
+
+            check = xmlInst.notAChild == '';
+            assertFalse(check, 'unexpected undefined equality (strict)');
 
 
+        }
 
+        [Test]
+        public function testConstructorXMLArgument():void{
+
+            var xml1:XML = <test something="something"></test>;
+            var xml2:XML = <test something="something">something</test>;
+            var xml3:XML = <test something="something"><something/></test>;
+
+            var choice:XML = xml1;
+            var other:XML = new XML(choice);
+
+
+            assertTrue(choice == other, 'unexpected inequality');
+            assertFalse(choice != other, 'unexpected inequality');
+            assertFalse(choice === other, 'unexpected strict equality');
+
+            choice = xml2;
+            other = new XML(choice);
+            assertTrue(choice == other, 'unexpected inequality');
+            assertFalse(choice != other, 'unexpected inequality');
+            assertFalse(choice === other, 'unexpected strict equality');
+
+            choice = xml3;
+            other = new XML(choice);
+            assertTrue(choice == other, 'unexpected inequality');
+            assertFalse(choice != other, 'unexpected inequality');
+            assertFalse(choice === other, 'unexpected strict equality');
         }
     }
 }
