@@ -1518,7 +1518,22 @@ package mx.controls
 				me.label = (ListEvent(event).itemRenderer as ListItemRenderer).text;
 				return super.dispatchEvent(me);                     
 			}
-			
+			if (event is String && (event as String) == "change")
+			{
+				me = new MenuEvent(Event.CHANGE)
+				me.item = selectedItem;
+				var label:String;
+				if (me.item is XML)
+				{
+					label = me.item.attribute(labelField);
+				} else
+				{
+					label = me.item[labelField];
+				}
+				me.label = label;
+				me.index = selectedIndex;
+				return super.dispatchEvent(me);
+			}
 			// we'll let everything else go through
 			return super.dispatchEvent(event);
 		}
