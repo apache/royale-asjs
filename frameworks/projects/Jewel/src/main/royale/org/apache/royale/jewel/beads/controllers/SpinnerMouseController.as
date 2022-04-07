@@ -98,9 +98,11 @@ package org.apache.royale.jewel.beads.controllers
 			incrementButton.addEventListener(MouseEvent.CLICK, incrementClickHandler);
 			incrementButton.addEventListener(MouseEvent.MOUSE_DOWN, incrementMouseDownHandler);
 			incrementButton.addEventListener(MouseEvent.MOUSE_UP, incrementMouseUpHandlermouseUpHandler);
+			incrementButton.addEventListener(MouseEvent.MOUSE_OUT, cancelTimerMouseOutHandler);
 			decrementButton.addEventListener(MouseEvent.CLICK, decrementClickHandler);
 			decrementButton.addEventListener(MouseEvent.MOUSE_DOWN, decrementMouseDownHandler);
 			decrementButton.addEventListener(MouseEvent.MOUSE_UP, decrementMouseUpHandlermouseUpHandler);
+			decrementButton.addEventListener(MouseEvent.MOUSE_OUT, cancelTimerMouseOutHandler);
             }
 		}
 
@@ -147,6 +149,19 @@ package org.apache.royale.jewel.beads.controllers
 			timer.removeEventListener("timer", incOrDecFunc);
 			timer.stop();
 			timer = null;
+		}
+
+		/**
+		 * Cancel increment/decrement timers if still running when mouse moves away from buttons
+		 */
+		private function cancelTimerMouseOutHandler(event:MouseEvent):void
+		{
+			if (timer != null && timer.running)
+			{
+				timer.removeAllListeners();
+				timer.stop();
+				timer = null;
+			}
 		}
 
 		/**
