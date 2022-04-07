@@ -30,6 +30,10 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
 	import mx.supportClasses.IFoldable;
+	import mx.events.AdvancedDataGridEvent;
+	import org.apache.royale.core.IHasDataField;
+	import mx.controls.listClasses.IListItemRenderer;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -73,9 +77,13 @@ package mx.controls.advancedDataGridClasses
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
+			var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).grid as AdvancedDataGrid;
+			var lists:Array = (adg.view as AdvancedDataGridView).columnLists;
+			for (var i:int = 0; i < lists.length; i++)
+				if (lists[i] == _strand) break;
+
 			var node:Object = event.data;
 			
-			var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).grid as AdvancedDataGrid;
 			var hasChildren:Boolean = adg.hasChildren(node);
 			var foldableTarget:IFoldable = event.target as IFoldable;
 			if (hasChildren && (foldableTarget is IFoldable))
@@ -84,6 +92,17 @@ package mx.controls.advancedDataGridClasses
 					adg.closeNode(node);
 				} else if (foldableTarget.canUnfold) {
 					adg.openNode(node);
+					var adgEvent:AdvancedDataGridEvent = new AdvancedDataGridEvent(
+						AdvancedDataGridEvent.ITEM_OPEN,
+						false,
+						false,
+						i, 
+						(adg.columns[i] as IHasDataField).dataField,
+						event.index,
+						null,
+						event.target as IListItemRenderer
+						);
+					sendEvent(adg, adgEvent);
 				}
 			}
 
@@ -94,9 +113,6 @@ package mx.controls.advancedDataGridClasses
 			
 			var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_CLICK);
 			newEvent.rowIndex = event.index;
-					var lists:Array = (adg.view as AdvancedDataGridView).columnLists;
-					for (var i:int = 0; i < lists.length; i++)
-						if (lists[i] == _strand) break;
 					newEvent.columnIndex = i;
 					newEvent.itemRenderer = event.currentTarget;
 			IEventDispatcher(_strand).dispatchEvent(newEvent);

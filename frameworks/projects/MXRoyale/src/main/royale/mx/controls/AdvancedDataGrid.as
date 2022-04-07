@@ -126,7 +126,7 @@ use namespace mx_internal;
 *  @playerversion AIR 1.1
 *  @productversion Royale 0.9.4
 */
-//[Event(name="itemOpen", type="mx.events.AdvancedDataGridEvent")]
+[Event(name="itemOpen", type="mx.events.AdvancedDataGridEvent")]
 
 /**
 *  Dispatched when a tree branch open or close operation is initiated.
