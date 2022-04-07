@@ -21,7 +21,7 @@ limitations under the License.
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
-	xmlns:c="components.*" sourceCodeUrl="HeadingsAndText.mxml">
+	xmlns:c="components.*" sourceCodeUrl="ProgressLoaderPlayGround.mxml">
 	
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:beads>
