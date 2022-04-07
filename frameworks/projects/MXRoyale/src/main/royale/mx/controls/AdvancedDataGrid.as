@@ -10027,6 +10027,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         var sortField:SortField = new SortField();
         sortField.name = event.dataField;
         var column:DataGridColumn = columns[event.columnIndex] as DataGridColumn;
+        sortField.compareFunction = column.sortCompareFunction;
         if (oldSort && oldSort.fields[0].name == sortField.name)
             column.sortDescending = !column.sortDescending;
         sortField.descending = column.sortDescending;
