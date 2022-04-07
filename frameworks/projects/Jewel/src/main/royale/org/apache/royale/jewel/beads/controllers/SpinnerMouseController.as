@@ -158,7 +158,11 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			if (timer != null && timer.running)
 			{
-				timer.removeAllListeners();
+				//TODO removeAllListeners should probably not be used as it's a goog construct
+				COMPILE::JS
+				{
+					timer.removeAllListeners();
+				}
 				timer.stop();
 				timer = null;
 			}
