@@ -33,6 +33,9 @@ package mx.controls.beads.controllers
 	import mx.supportClasses.IFoldable;
 	import mx.controls.Menu;
 	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.html.beads.models.MenuModel;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -136,6 +139,22 @@ package mx.controls.beads.controllers
 		{
 			var parentMenuBar:IEventDispatcher = (_strand as IMenu).parentMenuBar;
 			return parentMenuBar ? parentMenuBar : _strand as IEventDispatcher;
+		}
+
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			if (!(value as IUIBase).visible)
+			{
+				removeClickOutHandler(value);
+				(value as IEventDispatcher).addEventListener('show', showHandler);
+			}
+		}
+
+		protected function showHandler(event:Event):void
+		{
+			MenuModel.menuList.push(event.target);
+			addClickOutHandler(event.target);
 		}
 
 	}

@@ -73,17 +73,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			_strand = value;
 			super.strand = value;
-						
-			// detect an up event on the background as a way to dismiss this menu
-			var host:IEventDispatcher = UIUtils.findPopUpHost(_strand as IUIBase) as IEventDispatcher;
-			host.addEventListener("hideMenus", handleHideMenus);
-			
-			COMPILE::SWF {
-				host.addEventListener(MouseEvent.MOUSE_UP, hideMenu_internal);
-			}
-			COMPILE::JS {
-				window.addEventListener('mouseup', hideMenu_internal, false);
-			}
+			addClickOutHandler(value);
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -208,6 +198,21 @@ package org.apache.royale.html.beads.controllers
 			COMPILE::JS {
 				window.removeEventListener('mouseup', hideMenu_internal, false);
 			}			
+		}
+		
+		protected function addClickOutHandler(menu:Object):void
+		{
+			// detect an up event on the background as a way to dismiss this menu
+			var host:IEventDispatcher = UIUtils.findPopUpHost(_strand as IUIBase) as IEventDispatcher;
+			host.addEventListener("hideMenus", handleHideMenus);
+			
+			COMPILE::SWF {
+				host.addEventListener(MouseEvent.MOUSE_UP, hideMenu_internal);
+			}
+			COMPILE::JS {
+				window.addEventListener('mouseup', hideMenu_internal, false);
+			}
+
 		}
 		
 		/**
