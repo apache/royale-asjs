@@ -150,7 +150,6 @@ package mx.controls.beads.controllers
 
 		protected function showHandler(event:Event):void
 		{
-			MenuModel.menuList.push(event.target);
 			addClickOutHandler(event.target);
 		}
 
