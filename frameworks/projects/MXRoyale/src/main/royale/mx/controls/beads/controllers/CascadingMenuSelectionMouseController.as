@@ -113,7 +113,7 @@ package mx.controls.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		override protected function getMenuWithDataProvider(menuList:Array, dp:Object):CascadingMenu
+		override protected function getMenuWithDataProvider(menuList:Array, dp:Object):IMenu
 		{
 			if (!(dp is XMLListCollection))
 			{
@@ -123,7 +123,7 @@ package mx.controls.beads.controllers
 			// go over open menus and return the one with the given data provider
 			for (var i:int = 0; i < menuList.length; i++)
 			{
-				var cascadingMenu:CascadingMenu = menuList[i] as CascadingMenu;
+				var cascadingMenu:IMenu = menuList[i] as IMenu;
 				if (cascadingMenu && (cascadingMenu.dataProvider as XMLListCollection).toXMLString() == xmlListCollection.toXMLString())
 				{
 					return cascadingMenu;

@@ -25,7 +25,6 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.ICascadingMenuModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ItemClickedEvent;
-	import org.apache.royale.html.CascadingMenu;
 	import org.apache.royale.html.Menu;
 	import org.apache.royale.html.beads.models.MenuModel;
 	import org.apache.royale.core.ISelectionModel;
@@ -96,10 +95,10 @@ package org.apache.royale.html.beads.controllers
 					var dp:Object = getSubMenuDataProvider(model.selectedItem, model);
 					if (dp)
 					{
-						var nextMenu:CascadingMenu = getMenuWithDataProvider(MenuModel.menuList, dp);
+						var nextMenu:IMenu = getMenuWithDataProvider(MenuModel.menuList, dp);
 						if (nextMenu)
 						{
-							clearSubmenusOnSameLevel(nextMenu, nextMenu.model as ISelectionModel);
+							clearSubmenusOnSameLevel(nextMenu as UIBase, (nextMenu as UIBase).model as ISelectionModel);
 						}
 					}
 				}
@@ -141,10 +140,10 @@ package org.apache.royale.html.beads.controllers
 					{
 						// though this is being called in a loop, performance shouldn't be a big issue as
 						// number of open nested menus is expected to be small
-						var nextMenu:CascadingMenu = getMenuWithDataProvider(menuList, dp);
+						var nextMenu:IMenu = getMenuWithDataProvider(menuList, dp);
 						if (nextMenu)
 						{
-							clearSubmenusOnSameLevel(nextMenu, nextMenu.model as ISelectionModel);
+							clearSubmenusOnSameLevel(nextMenu as UIBase, (nextMenu as UIBase).model as ISelectionModel);
 							break;
 						}
 					}
@@ -163,12 +162,12 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		protected function getMenuWithDataProvider(menuList:Array, dp:Object):CascadingMenu
+		protected function getMenuWithDataProvider(menuList:Array, dp:Object):IMenu
 		{
 			// go over open menus and return the one with the given data provider
 			for (var i:int = 0; i < menuList.length; i++)
 			{
-				var cascadingMenu:CascadingMenu = menuList[i] as CascadingMenu;
+				var cascadingMenu:IMenu = menuList[i] as IMenu;
 				if (cascadingMenu && cascadingMenu.dataProvider == dp)
 				{
 					return cascadingMenu;
