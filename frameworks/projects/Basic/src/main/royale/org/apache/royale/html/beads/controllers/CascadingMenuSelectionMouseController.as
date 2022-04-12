@@ -104,12 +104,17 @@ package org.apache.royale.html.beads.controllers
 					}
 				}
 				model.selectedItem = event.data;
-				menu.show(component, component.width, 0);
+				showSubMenu(menu, component);
 			}
 			else {
 				super.selectedHandler(event);
 				hideOpenMenus();
 			}
+		}
+
+		protected function showSubMenu(menu:IMenu, component:IUIBase):void
+		{
+			menu.show(component, component.width, 0);
 		}
 
 		protected function getParentMenuBar():IEventDispatcher

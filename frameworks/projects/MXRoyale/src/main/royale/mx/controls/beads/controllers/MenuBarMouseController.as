@@ -26,6 +26,8 @@ package mx.controls.beads.controllers
     import org.apache.royale.core.IStrandWithPresentationModel;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.html.beads.controllers.MenuBarMouseController;
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.utils.PointUtils;
 	
     /**
      *  MenuBar Mouse Controller
@@ -66,7 +68,8 @@ package mx.controls.beads.controllers
          */
 		override protected function showMenu(menu:IMenu, component:IUIBase):void
 		{
-            super.showMenu(menu, component);
+            var p:Point = PointUtils.localToGlobal(new Point(0, component.height), component);
+            menu.show(component, p.x, p.y);
             var swpm:IStrandWithPresentationModel = menu as IStrandWithPresentationModel;
             if (swpm)
             {

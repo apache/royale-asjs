@@ -31,11 +31,11 @@ package mx.controls.beads.controllers
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import mx.supportClasses.IFoldable;
-	import mx.controls.Menu;
-	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.html.beads.models.MenuModel;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.geom.Point;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -79,10 +79,6 @@ package mx.controls.beads.controllers
 
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
-			if (_strand is Menu && event.target is IPopUpHost)
-			{
-				(_strand as Menu).popUpHost = event.target as IPopUpHost;
-			}
 			super.selectedHandler(event);
 			if (event.target is IFoldable && (event.target as IFoldable).canUnfold)
 			{
@@ -156,6 +152,13 @@ package mx.controls.beads.controllers
 			MenuModel.menuList.push(event.target);
 			addClickOutHandler(event.target);
 		}
+
+		override protected function showSubMenu(menu:IMenu, component:IUIBase):void
+		{
+			var p:Point = PointUtils.localToGlobal(new Point(0, 0), component);
+			menu.show(component, p.x + component.width, p.y);
+		}
+
 
 	}
 

@@ -39,7 +39,7 @@ package mx.controls.menuClasses
 	 *  @productversion Flex 3
 	 */
 
-	public class CascadingMenuItemRenderer extends org.apache.royale.html.supportClasses.CascadingMenuItemRenderer implements IFoldable, IPopUpHost, IPopUpHostParent
+	public class CascadingMenuItemRenderer extends org.apache.royale.html.supportClasses.CascadingMenuItemRenderer implements IFoldable
 	{
 		public function CascadingMenuItemRenderer()
 		{
@@ -129,16 +129,6 @@ package mx.controls.menuClasses
 		public function get canUnfold():Boolean
 		{
 			return getHasMenu();
-		}
-
-		public function get popUpParent():IPopUpHostParent
-		{
-			return this;
-		}
-
-		public function get popUpHost():IPopUpHost
-		{
-			return this;
 		}
 	}
 
