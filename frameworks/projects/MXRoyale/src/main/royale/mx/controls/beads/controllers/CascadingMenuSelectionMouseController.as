@@ -30,6 +30,7 @@ package mx.controls.beads.controllers
 	import mx.events.MenuEvent;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
 	import mx.supportClasses.IFoldable;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
