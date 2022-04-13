@@ -37,6 +37,7 @@ package mx.controls.beads.controllers
 	import org.apache.royale.html.beads.models.MenuModel;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.geom.Point;
+	import mx.collections.ArrayCollection;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -115,21 +116,33 @@ package mx.controls.beads.controllers
 		 */
 		override protected function getMenuWithDataProvider(menuList:Array, dp:Object):IMenu
 		{
-			if (!(dp is XMLListCollection))
+			if (dp is XMLListCollection)
 			{
+				var xmlListCollection:XMLListCollection = dp as XMLListCollection;
+				// go over open menus and return the one with the given data provider
+				for (var i:int = 0; i < menuList.length; i++)
+				{
+					var cascadingMenu:IMenu = menuList[i] as IMenu;
+					if (cascadingMenu && (cascadingMenu.dataProvider as XMLListCollection).toXMLString() == xmlListCollection.toXMLString())
+					{
+						return cascadingMenu;
+					}
+				}
+				return null;
+			} else if (dp is Array)
+			{
+				for (i = 0; i < menuList.length; i++)
+				{
+					cascadingMenu = menuList[i] as IMenu;
+					if (dp == (cascadingMenu.dataProvider as ArrayCollection).source)
+					{
+						return cascadingMenu;
+					}
+				}
+				return null;
+			} else {
 				return super.getMenuWithDataProvider(menuList, dp);
 			}
-			var xmlListCollection:XMLListCollection = dp as XMLListCollection;
-			// go over open menus and return the one with the given data provider
-			for (var i:int = 0; i < menuList.length; i++)
-			{
-				var cascadingMenu:IMenu = menuList[i] as IMenu;
-				if (cascadingMenu && (cascadingMenu.dataProvider as XMLListCollection).toXMLString() == xmlListCollection.toXMLString())
-				{
-					return cascadingMenu;
-				}
-			}
-			return null;
 		}
 
 		override protected function getParentMenuBar():IEventDispatcher
