@@ -80,13 +80,10 @@ package mx.controls.advancedDataGridClasses
             //dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
             //dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             //dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-            
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            dataGroup.removeAllItemRenderers();                        
-            rendererMap = {};
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-            IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+
+			super.dataProviderChangeHandler(event);
+
+			sendStrandEvent(_strand, "itemsCreated");
         }
 
         private var cursor:IViewCursor;
@@ -106,6 +103,7 @@ package mx.controls.advancedDataGridClasses
         override public function getItemAt(index:int):Object
         {
             var delta:int = index - currentIndex;
+
             if (currentIndex == -1)
             {
                 cursor.seek(CursorBookmark.FIRST, index);                
