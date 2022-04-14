@@ -28,7 +28,8 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryBase;
-	
+	import org.apache.royale.utils.sendStrandEvent;
+
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a
      *  HierarchicalData object and creates an item renderer for every
