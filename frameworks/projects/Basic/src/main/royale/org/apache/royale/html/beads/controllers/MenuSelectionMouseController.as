@@ -189,7 +189,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			MenuModel.removeMenu(menu);
 			
-			var host:IEventDispatcher = UIUtils.findPopUpHost(menu as IUIBase) as IEventDispatcher;
+			var host:IEventDispatcher = (menu as IUIBase).topMostEventDispatcher;
 			host.removeEventListener("hideMenus", handleHideMenus);
 			
 			COMPILE::SWF {
@@ -203,7 +203,7 @@ package org.apache.royale.html.beads.controllers
 		protected function addClickOutHandler(menu:Object):void
 		{
 			// detect an up event on the background as a way to dismiss this menu
-			var host:IEventDispatcher = UIUtils.findPopUpHost(_strand as IUIBase) as IEventDispatcher;
+			var host:IEventDispatcher = (_strand as IUIBase).topMostEventDispatcher;
 			host.addEventListener("hideMenus", handleHideMenus);
 			
 			COMPILE::SWF {

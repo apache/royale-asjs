@@ -112,8 +112,7 @@ package org.apache.royale.html.beads.controllers
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
 			// close any previously open menus
-			var host:UIBase = UIUtils.findPopUpHost(_strand as IUIBase) as UIBase;
-			sendEvent(host,"hideMenus");
+			sendEvent((_strand as UIBase).topMostEventDispatcher,"hideMenus");
 			
 			var component:IUIBase = event.target as IUIBase;
 			
