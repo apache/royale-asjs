@@ -82,9 +82,8 @@ package mx.controls.advancedDataGridClasses
             //dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             //dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 
-			super.dataProviderChangeHandler(event);
-
 			sendStrandEvent(_strand, "itemsCreated");
+			super.dataProviderChangeHandler(event);
         }
 
         private var cursor:IViewCursor;
