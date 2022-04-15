@@ -28,7 +28,8 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryBase;
-	
+	import org.apache.royale.utils.sendStrandEvent;
+
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a
      *  HierarchicalData object and creates an item renderer for every
@@ -80,13 +81,9 @@ package mx.controls.advancedDataGridClasses
             //dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
             //dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             //dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-            
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            dataGroup.removeAllItemRenderers();                        
-            rendererMap = {};
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-            IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+
+			sendStrandEvent(_strand, "itemsCreated");
+			super.dataProviderChangeHandler(event);
         }
 
         private var cursor:IViewCursor;
@@ -106,6 +103,7 @@ package mx.controls.advancedDataGridClasses
         override public function getItemAt(index:int):Object
         {
             var delta:int = index - currentIndex;
+
             if (currentIndex == -1)
             {
                 cursor.seek(CursorBookmark.FIRST, index);                
