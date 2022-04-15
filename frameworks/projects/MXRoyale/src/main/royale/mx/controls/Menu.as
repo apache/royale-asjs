@@ -36,7 +36,6 @@ package mx.controls
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererProvider;
-	import org.apache.royale.html.beads.models.CascadingMenuModel;
 	import org.apache.royale.html.beads.models.MenuModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
@@ -99,8 +98,8 @@ package mx.controls
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IHasLabelField;
 	import org.apache.royale.html.util.getModelByType;
-	import org.apache.royale.core.IPopUpHostParent;
-	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.ICascadingMenuModel;
+	import org.apache.royale.core.IStrandWithPresentationModel;
 	
 	use namespace mx_internal;
 	
@@ -595,7 +594,7 @@ package mx.controls
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView, IHasLabelField, IPopUpHostParent
+	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu, IItemRendererProvider, ILayoutParent, ILayoutView, IHasLabelField, IStrandWithPresentationModel
 	{
 		// include "../core/Version.as";
 		
@@ -2983,12 +2982,12 @@ package mx.controls
 		 */
 		public function get submenuField():String
 		{
-			return (model as CascadingMenuModel).submenuField;
+			return (model as ICascadingMenuModel).submenuField;
 		}
 		
 		public function set submenuField(value:String):void
 		{
-			(model as CascadingMenuModel).submenuField = value;
+			(model as ICascadingMenuModel).submenuField = value;
 		}
 		
 		//labelFunction,iconField,iconFunction was in mx.controls.listClasses.ListBase in Flex because menu was extending list and then listBase,but in Royale Menu is direct extending UIComponent so i added that functions in Menu Class
@@ -3132,17 +3131,6 @@ package mx.controls
 			invalidateDisplayList();
 
 			dispatchEvent(new Event("iconFunctionChanged"));
-		    }
-
-		    private var _popUpHost:IPopUpHost;
-		    public function get popUpHost():IPopUpHost
-		    {
-			    return _popUpHost;
-		    }
-
-		    public function set popUpHost(value:IPopUpHost):void
-		    {
-			    _popUpHost = value;
 		    }
 		        
 	}

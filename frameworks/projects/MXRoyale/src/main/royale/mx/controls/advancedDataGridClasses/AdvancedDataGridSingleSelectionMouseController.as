@@ -102,6 +102,7 @@ package mx.controls.advancedDataGridClasses
 						null,
 						event.target as IListItemRenderer
 						);
+					adgEvent.item = node;
 					sendEvent(adg, adgEvent);
 				}
 			}

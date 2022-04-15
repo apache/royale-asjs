@@ -30,9 +30,14 @@ package mx.controls.beads.controllers
 	import mx.events.MenuEvent;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
 	import mx.supportClasses.IFoldable;
-	import mx.controls.Menu;
-	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.html.beads.models.MenuModel;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.geom.Point;
+	import mx.collections.ArrayCollection;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -76,10 +81,6 @@ package mx.controls.beads.controllers
 
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
-			if (_strand is Menu && event.target is IPopUpHost)
-			{
-				(_strand as Menu).popUpHost = event.target as IPopUpHost;
-			}
 			super.selectedHandler(event);
 			if (event.target is IFoldable && (event.target as IFoldable).canUnfold)
 			{
@@ -113,23 +114,35 @@ package mx.controls.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		override protected function getMenuWithDataProvider(menuList:Array, dp:Object):CascadingMenu
+		override protected function getMenuWithDataProvider(menuList:Array, dp:Object):IMenu
 		{
-			if (!(dp is XMLListCollection))
+			if (dp is XMLListCollection)
 			{
+				var xmlListCollection:XMLListCollection = dp as XMLListCollection;
+				// go over open menus and return the one with the given data provider
+				for (var i:int = 0; i < menuList.length; i++)
+				{
+					var cascadingMenu:IMenu = menuList[i] as IMenu;
+					if (cascadingMenu && (cascadingMenu.dataProvider as XMLListCollection).toXMLString() == xmlListCollection.toXMLString())
+					{
+						return cascadingMenu;
+					}
+				}
+				return null;
+			} else if (dp is Array)
+			{
+				for (i = 0; i < menuList.length; i++)
+				{
+					cascadingMenu = menuList[i] as IMenu;
+					if (dp == (cascadingMenu.dataProvider as ArrayCollection).source)
+					{
+						return cascadingMenu;
+					}
+				}
+				return null;
+			} else {
 				return super.getMenuWithDataProvider(menuList, dp);
 			}
-			var xmlListCollection:XMLListCollection = dp as XMLListCollection;
-			// go over open menus and return the one with the given data provider
-			for (var i:int = 0; i < menuList.length; i++)
-			{
-				var cascadingMenu:CascadingMenu = menuList[i] as CascadingMenu;
-				if (cascadingMenu && (cascadingMenu.dataProvider as XMLListCollection).toXMLString() == xmlListCollection.toXMLString())
-				{
-					return cascadingMenu;
-				}
-			}
-			return null;
 		}
 
 		override protected function getParentMenuBar():IEventDispatcher
@@ -137,6 +150,28 @@ package mx.controls.beads.controllers
 			var parentMenuBar:IEventDispatcher = (_strand as IMenu).parentMenuBar;
 			return parentMenuBar ? parentMenuBar : _strand as IEventDispatcher;
 		}
+
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			if (!(value as IUIBase).visible)
+			{
+				removeClickOutHandler(value);
+				(value as IEventDispatcher).addEventListener('show', showHandler);
+			}
+		}
+
+		protected function showHandler(event:Event):void
+		{
+			addClickOutHandler(event.target);
+		}
+
+		override protected function showSubMenu(menu:IMenu, component:IUIBase):void
+		{
+			var p:Point = PointUtils.localToGlobal(new Point(0, 0), component);
+			menu.show(component, p.x + component.width, p.y);
+		}
+
 
 	}
 

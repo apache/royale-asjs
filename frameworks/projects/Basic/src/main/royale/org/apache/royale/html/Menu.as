@@ -167,8 +167,7 @@ package org.apache.royale.html
 		public function hide():void
 		{		
 			// dispatch the "hideMenus" event to trigger any exposed menu to be hidden.
-			var host:IParent = UIUtils.findPopUpHost(this).popUpParent as IParent;
-			(host as IEventDispatcher).dispatchEvent(new Event("hideMenus"));
+			topMostEventDispatcher.dispatchEvent(new Event("hideMenus"));
 		}
 	}
 }
