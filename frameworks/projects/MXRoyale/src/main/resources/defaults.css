@@ -391,6 +391,8 @@ Menu {
 	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
 	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IListPresentationModel: ClassReference("org.apache.royale.html.beads.models.ListPresentationModel");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	
 	position: absolute;
 	background-color: white;
