@@ -21,6 +21,7 @@ package mx.rpc.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 import mx.messaging.messages.IMessage;
 import mx.rpc.AsyncToken;
 
@@ -97,8 +98,7 @@ public class InvokeEvent extends AbstractEvent
      * event type.
      * @private
      */
-    [SWFOverride(returns="flash.events.Event")]
-    override public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new InvokeEvent(type, bubbles, cancelable, token, message);
     }

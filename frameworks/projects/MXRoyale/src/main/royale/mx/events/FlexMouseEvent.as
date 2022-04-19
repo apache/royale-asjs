@@ -32,6 +32,8 @@ COMPILE::JS{
 }
 import mx.core.UIComponent;
 
+import org.apache.royale.events.IRoyaleEvent;
+
 /**
  *  The FlexMouseEvent class represents the event object passed to
  *  the event listener for Flex-specific mouse activity.
@@ -547,7 +549,7 @@ public class FlexMouseEvent extends org.apache.royale.events.MouseEvent
 	/**
 	 *  @private
 	 */
-	public function clone():Event
+	override public function cloneEvent():IRoyaleEvent
 	{
 		return new FlexMouseEvent(type, bubbles, cancelable, localX, localY,
 								  relatedObject, ctrlKey, altKey, shiftKey,

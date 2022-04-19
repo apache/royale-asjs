@@ -108,6 +108,7 @@ public class TextEvent extends org.apache.royale.events.Event
 							  
 	{
 		super(type, bubbles, cancelable);
+		_text = text;
 	}
 	
 	private var _text:String;
@@ -119,8 +120,20 @@ public class TextEvent extends org.apache.royale.events.Event
 	{
 		_text = value;
 	}
-	
 
+	//--------------------------------------------------------------------------
+	//
+	//  Overridden methods: Event
+	//
+	//--------------------------------------------------------------------------
+
+	/**
+	 *  @private
+	 */
+	override public function cloneEvent():IRoyaleEvent
+	{
+		return new TextEvent(type, bubbles, cancelable, _text);
+	}
 	
 }
 

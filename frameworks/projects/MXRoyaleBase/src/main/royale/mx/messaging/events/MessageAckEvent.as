@@ -21,6 +21,7 @@ package mx.messaging.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 import mx.messaging.events.MessageEvent;
 import mx.messaging.messages.AcknowledgeMessage;
 import mx.messaging.messages.IMessage;
@@ -215,8 +216,7 @@ public class MessageAckEvent extends MessageEvent
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    [SWFOverride(returns="flash.events.Event")]
-    override public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new MessageAckEvent(type, bubbles, cancelable, message as AcknowledgeMessage, correlation);
     }

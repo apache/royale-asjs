@@ -21,6 +21,7 @@ package mx.messaging.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 import mx.messaging.Channel;
 import mx.messaging.messages.ErrorMessage;
 
@@ -273,8 +274,7 @@ public class ChannelFaultEvent extends ChannelEvent
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    [SWFOverride(returns="flash.events.Event")]
-    override public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         var faultEvent:ChannelFaultEvent = new ChannelFaultEvent(type, bubbles, cancelable, channel, reconnecting, faultCode, faultString, faultDetail, rejected, connected);
         faultEvent.rootCause = rootCause;
