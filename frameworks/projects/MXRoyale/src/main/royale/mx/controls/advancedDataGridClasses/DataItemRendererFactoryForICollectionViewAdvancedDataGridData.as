@@ -22,6 +22,8 @@ package mx.controls.advancedDataGridClasses
 	import mx.collections.ICollectionView;
 	import mx.collections.IViewCursor;
 
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.Event;
@@ -44,7 +46,10 @@ package mx.controls.advancedDataGridClasses
      */
 	public class DataItemRendererFactoryForICollectionViewAdvancedDataGridData extends VirtualDataItemRendererFactoryBase
 	{
-        /**
+		private var cursor:IViewCursor;
+		private var currentIndex:int;
+
+		/**
          *  Constructor.
          *
          *  @langversion 3.0
@@ -72,24 +77,12 @@ package mx.controls.advancedDataGridClasses
             if (!dp)
                 return;
 
-            if (cursor) cursor.finalizeThis();
-            cursor = dp.createCursor();
-            currentIndex = (dp.length > 0) ? 0 : -1;
-            
-            // listen for individual items being added in the future.
-            //var dped:IEventDispatcher = dp as IEventDispatcher;
-            //dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-            //dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-            //dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+            resetCollectionCursor();
+            currentIndex = -1;
 
-			sendStrandEvent(_strand, "itemsCreated");
 			super.dataProviderChangeHandler(event);
         }
 
-        private var cursor:IViewCursor;
-        private var currentIndex:int;
-		
-        
         /**
          *  Get a item for a given index.
          *
@@ -123,5 +116,16 @@ package mx.controls.advancedDataGridClasses
             currentIndex = index;
 			return cursor.current;
         }
+
+		private function resetCollectionCursor():void
+		{
+			if (cursor)
+			{
+				cursor.finalizeThis();
+			}
+
+			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			cursor = dp.createCursor();
+		}
 	}
 }
