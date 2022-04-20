@@ -78,8 +78,9 @@ package mx.controls.advancedDataGridClasses
                 return;
 
             resetCollectionCursor();
-            currentIndex = -1;
+            currentIndex = (dp.length > 0) ? 0 : -1;
 
+			//sendStrandEvent(_strand, "itemsCreated");
 			super.dataProviderChangeHandler(event);
         }
 
