@@ -100,6 +100,10 @@ package mx.controls
 	import org.apache.royale.html.util.getModelByType;
 	import org.apache.royale.core.ICascadingMenuModel;
 	import org.apache.royale.core.IStrandWithPresentationModel;
+	COMPILE::SWF
+	{
+		import org.apache.royale.core.IItemRendererOwnerView;
+	}
 	
 	use namespace mx_internal;
 	
@@ -1706,7 +1710,22 @@ package mx.controls
 			// before we try to set the size for its mask
 			UIComponentGlobals.layoutManager.validateClient(this, true);
 			*/
-			setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+			COMPILE::JS
+			{
+				setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+			}
+			COMPILE::SWF
+			{
+				var ro:IItemRendererOwnerView = (this.view as IItemRendererOwnerView);
+				var mw:Number = 10;
+				var mh:Number = 10;
+				for (var i:int = 0; i < ro.numItemRenderers; i++)
+				{
+					mw += (ro.getItemRendererForIndex(i) as IUIBase).width;
+					mh += (ro.getItemRendererForIndex(i) as IUIBase).height;
+				}
+				setActualSize(mw, mh);
+			}
 			/*
 			cacheAsBitmap = true;
 			
