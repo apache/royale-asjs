@@ -103,6 +103,8 @@ package mx.controls
 	COMPILE::SWF
 	{
 		import org.apache.royale.core.IItemRendererOwnerView;
+		import org.apache.royale.core.IParent;
+		import org.apache.royale.utils.UIUtils;
 	}
 	
 	use namespace mx_internal;
@@ -1661,7 +1663,10 @@ package mx.controls
 			
 			if (parentDisplayObject && (!this.parent /* || !parent.contains(parentDisplayObject)*/))
 			{
-				PopUpManager.addPopUp(this, parentDisplayObject, false);
+				COMPILE::JS
+				{
+					PopUpManager.addPopUp(this, parentDisplayObject, false);
+				}
 				//addEventListener(MenuEvent.MENU_HIDE, menuHideHandler, false, EventPriority.DEFAULT_HANDLER);
 				MenuModel.menuList.push(this);
 			}
@@ -1725,7 +1730,10 @@ package mx.controls
 					mh += (ro.getItemRendererForIndex(i) as IUIBase).height;
 				}
 				setActualSize(mw, mh);
+				var host:IParent = UIUtils.findPopUpHost(parent).popUpParent as IParent;
+				host.addElement(this);
 			}
+
 			/*
 			cacheAsBitmap = true;
 			
