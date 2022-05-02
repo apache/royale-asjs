@@ -84,6 +84,7 @@ package mx.controls.beads.controllers
 			var data:Object = itemClickedEvent.target.data;
 			menuEvent.item = data;
 			var menu:IMenu = _strand as IMenu;
+			menuEvent.menu = menu;
 			var label:String;
 			if (data is XML)
 			{
