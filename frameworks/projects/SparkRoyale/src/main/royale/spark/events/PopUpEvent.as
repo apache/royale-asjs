@@ -22,6 +22,7 @@ package spark.events
 	
 	// import flash.events.Event;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IRoyaleEvent;
 	
 	/**
 	 *  The PopUpEvent class represents an event dispatched by the SkinnablePopUpContainer.
@@ -188,7 +189,7 @@ package spark.events
 		/**
 		 *  @private
 		 */
-		COMPILE::SWF { override } public function clone():Event
+		override public function cloneEvent():IRoyaleEvent
 		{
 			return new PopUpEvent(type, bubbles, cancelable, commit, data);
 		}

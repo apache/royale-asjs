@@ -110,8 +110,16 @@ package org.apache.royale.html.beads.controllers
 			var node:Object = event.data;
 			
 			list.model.selectedItem = node;
-			sendEvent(menuDispatcher,"change");
+			sendChangeEvent(menuDispatcher, event)
 			hideOpenMenus();
+		}
+
+		/**
+		 * private
+		 */
+		protected function sendChangeEvent(menuDispatcher:IEventDispatcher, itemClickedEvent:ItemClickedEvent):void
+		{
+			sendEvent(menuDispatcher,"change");
 		}
 		
 		/**

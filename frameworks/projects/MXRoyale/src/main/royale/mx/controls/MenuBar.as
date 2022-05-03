@@ -87,7 +87,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="change", type="mx.events.MenuEvent")]
+[Event(name="change", type="mx.events.MenuEvent")]
 
 /**
  *  Dispatched when the user selects an item in a pop-up submenu.

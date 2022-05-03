@@ -327,6 +327,7 @@ internal class CoreClasses
 	// import org.apache.royale.debugging.conditionalBreak; conditionalBreak;
 	import org.apache.royale.debugging.notNull; notNull;
 	import org.apache.royale.debugging.throwError; throwError;
+	import org.apache.royale.debugging.alreadyRecorded; alreadyRecorded;
 
 	import org.apache.royale.utils.measureComponent; measureComponent;
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;

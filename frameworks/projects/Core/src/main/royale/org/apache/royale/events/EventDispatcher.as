@@ -24,6 +24,9 @@ package org.apache.royale.events
 		import goog.events.Listener;
 		import goog.events.EventTarget;
 		import org.apache.royale.events.Event;
+
+		import org.apache.royale.debugging.alreadyRecorded;
+		import goog.DEBUG;
 	}
 
 	COMPILE::SWF
@@ -101,7 +104,21 @@ package org.apache.royale.events
 				else if ("target" in event1) {
 					if (event1.target && event1 is IRoyaleEvent) {
 						//we are re-dispatching, we need to clone the original:
+						if(goog.DEBUG)
+						{
+							var original:Object = event1;
+						}
 						event1 = IRoyaleEvent(event1).cloneEvent();
+						if(goog.DEBUG)
+						{
+							if (event1.constructor != original.constructor) {
+								var notAlreadyRecorded:Boolean = !alreadyRecorded(original.constructor);
+								if (notAlreadyRecorded) {
+									//this should help identify missing cloneEvent requirements:
+									console.warn(original.constructor.prototype.ROYALE_CLASS_INFO.names[0].qName + ' is missing a cloneEvent method override, this should be implemented, otherwise it is being cloned as :' + event1.constructor.prototype.ROYALE_CLASS_INFO.names[0].qName);
+								}
+							}
+						}
 					}
 					event1.target = _dispatcher;
 					//console.log("assigned target to event ",event);

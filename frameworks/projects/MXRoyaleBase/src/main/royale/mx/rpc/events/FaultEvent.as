@@ -21,7 +21,7 @@ package mx.rpc.events
 {
 
 import org.apache.royale.events.Event;
-
+import org.apache.royale.events.IRoyaleEvent;
 
 import mx.core.mx_internal;
 import mx.messaging.events.MessageFaultEvent;
@@ -183,8 +183,7 @@ public class FaultEvent extends AbstractEvent
      * event type.
      * @private
      */
-    [SWFOverride(returns="flash.events.Event")]
-    override public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new FaultEvent(type, bubbles, cancelable, fault, token, message);
     }

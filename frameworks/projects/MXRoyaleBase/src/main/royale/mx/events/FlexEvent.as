@@ -1457,6 +1457,20 @@ public class FlexEvent extends Event
         super(type, bubbles, cancelable);
     }
 
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: Event
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  @private
+     */
+    override public function cloneEvent():IRoyaleEvent
+    {
+        return new FlexEvent(type, bubbles, cancelable);
+    }
+
 }
 
 }

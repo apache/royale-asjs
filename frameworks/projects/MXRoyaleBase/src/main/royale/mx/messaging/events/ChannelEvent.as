@@ -21,6 +21,7 @@ package mx.messaging.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 import mx.messaging.Channel;
 
 /**
@@ -290,9 +291,7 @@ public class ChannelEvent extends Event
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    [SWFOverride(returns="flash.events.Event")]
-    COMPILE::SWF { override }
-    public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new ChannelEvent(type, bubbles, cancelable, channel, reconnecting, rejected, connected);
     }
