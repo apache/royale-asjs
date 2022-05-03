@@ -102,8 +102,10 @@ package mx.controls
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	COMPILE::SWF
 	{
+		import mx.managers.SystemManager;
 		import org.apache.royale.core.IItemRendererOwnerView;
 		import org.apache.royale.core.IParent;
+		import org.apache.royale.core.IChild;
 		import org.apache.royale.utils.UIUtils;
 	}
 	
@@ -1721,6 +1723,8 @@ package mx.controls
 			}
 			COMPILE::SWF
 			{
+				var sm:SystemManager = (FlexGlobals.topLevelApplication as IChild).parent as SystemManager;
+				sm.addChild(this);
 				var ro:IItemRendererOwnerView = (this.view as IItemRendererOwnerView);
 				var mw:Number = 10;
 				var mh:Number = 10;
@@ -1729,9 +1733,13 @@ package mx.controls
 					mw += (ro.getItemRendererForIndex(i) as IUIBase).width;
 					mh += (ro.getItemRendererForIndex(i) as IUIBase).height;
 				}
-				setActualSize(mw, mh);
-				var host:IParent = UIUtils.findPopUpHost(parent).popUpParent as IParent;
-				host.addElement(this);
+				width = mw;
+				height = mh;
+				// Position it
+				if (/*xShow !== null && */!isNaN(Number(xShow)))
+					x = Number(xShow);
+				if (/*yShow !== null && */!isNaN(Number(yShow)))
+					y = Number(yShow);
 			}
 
 			/*
