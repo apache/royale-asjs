@@ -3275,4 +3275,15 @@ j|ApplicationMainContent {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport"); }
 
+  .jewel.videoplayer.letterbox {
+    object-fit: contain;
+  }
+  .jewel.videoplayer.zoom {
+    object-fit: cover;
+  }
+  .jewel.videoplayer.stretch {
+    object-fit: fill;
+  }
+
+  
 /*# sourceMappingURL=defaults.css.map */

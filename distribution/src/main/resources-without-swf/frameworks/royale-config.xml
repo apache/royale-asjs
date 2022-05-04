@@ -123,6 +123,7 @@
          <path-element>libs/RoyaleUnit.swc</path-element>
          <path-element>libs/RoyaleUnitUI.swc</path-element>
          <path-element>libs/Storage.swc</path-element>
+         <path-element>libs/Media.swc</path-element>
          <path-element>libs/TLF.swc</path-element>
          <path-element>libs/Text.swc</path-element>
          <path-element>libs/XML.swc</path-element>
@@ -160,6 +161,7 @@
           <path-element>js/libs/RoyaleUnitJS.swc</path-element>
           <path-element>js/libs/RoyaleUnitUIJS.swc</path-element>
           <path-element>js/libs/StorageJS.swc</path-element>
+          <path-element>js/libs/MediaJS.swc</path-element>
           <path-element>js/libs/TLFJS.swc</path-element>
           <path-element>js/libs/TextJS.swc</path-element>
           <path-element>js/libs/XMLJS.swc</path-element>

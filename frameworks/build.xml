@@ -143,6 +143,8 @@
         <antcall target="Network"/>
         <antcall target="Storage"/>
 
+        <antcall target="Media"/>
+
         <antcall target="Text"/>
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
@@ -252,6 +254,7 @@
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
+        <ant dir="${basedir}/projects/Media" target="clean"/>
         <ant dir="${basedir}/projects/Text" target="clean"/>
         <ant dir="${basedir}/projects/TLF" target="clean"/>
         <ant dir="${basedir}/projects/RoyaleSite" target="clean"/>
@@ -500,6 +503,10 @@
 
     <target name="XML" description="Clean build of XML.swc">
         <ant dir="${basedir}/projects/XML"/>
+    </target>
+    
+    <target name="Media" description="Clean build of Media.swc">
+        <ant dir="${basedir}/projects/Media"/>
     </target>
 
     <target name="XMLTest" description="Test of XML.swc">

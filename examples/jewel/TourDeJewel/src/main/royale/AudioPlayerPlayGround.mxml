@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" 
+    xmlns:engine="org.apache.royale.text.engine.*" 
+    sourceCodeUrl="AudioPlayerPlayGround.mxml"
+    initComplete="ev_complete()">
+	
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:beads>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+		
+		<c:ExampleHeader title="Jewel AudioPlayer">
+			<c:description>
+				<![CDATA[<strong>Jewel AudioPlayer</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+                <j:CardHeader>
+                    <html:H3 text="Simple AudioPlayer" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+                    <j:Group>
+                        <j:beads><j:HorizontalFlowLayout /></j:beads>
+
+                        <j:Group height="50" width="500">
+                            <j:AudioPlayer id="ap" 
+                                src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_1OMB_MP3.mp3" 
+                                durationchange="{hs_ap_seek.maximum = ap.duration}"
+                                timeupdate="{hs_ap_seek.value = ap.currentTime}"
+                                progress="ev_ap_progress(event)" 
+                                width="100%" height="100%"
+                                controls="true"
+                                error="{lbl_error.text = ap.error.message;}"
+                                />
+                        </j:Group>
+
+                       <j:Spacer width="20"/>
+
+                        <j:VGroup width="500" gap="4">
+                            <j:Label text="Source URL"/>
+                            <j:HGroup width="100%" gap="2">
+                                <j:TextInput width="100%" id="ti_ap_source" text="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_1OMB_MP3.mp3"/>
+                                <j:Button text="Set" click="{lbl_error.text = '';ap.src = ti_ap_source.text;}" emphasis="secondary"/>
+                            </j:HGroup>
+                            <j:Label id="lbl_error" />
+
+                            <j:Label text="Controls"/>
+                            <j:HGroup width="100%" gap="10">
+                                <j:Button text="Play/pause" click="ev_ap_playpause(event)" emphasis="secondary"/>
+                                <j:ToggleButton id="tb_ap_controls" text="Show/Hide native controls" click="{ap.controls = tb_ap_controls.selected}" emphasis="primary" selected="true"/>
+                            </j:HGroup>
+
+                            <j:Spacer height="10"/>
+
+                            <j:Label text="Volume"/>
+                            <j:HSlider id="hs_ap_volume" width="100% " minimum="0" maximum="1" stepSize="0.01"  value="1" valueChange="{ap.volume = hs_ap_volume.value;}"/>
+                            
+                            <j:Label text="Play rate"/>
+                            <j:HGroup>
+                                <j:HSlider id="sl_rate" minimum="0" maximum="2" stepSize="0.1" value="1" valueChange="{ap.playbackRate = sl_rate.value; lbl_rate.text = sl_rate.value + 'x';}"/>
+                                <j:Label id="lbl_rate"/>
+                            </j:HGroup>
+
+                            <j:Label text="Seek"/>
+                            <j:HSlider id="hs_ap_seek" width="100% " minimum="0" maximum="0" stepSize="2"  valueChange="{ap.currentTime = hs_ap_seek.value;}"/>
+
+                            <j:Label text="Buffered times ranges (use seek to see change)"/>
+                            <j:TextArea id="ta_buffered" width="350" height="150"/>
+                        </j:VGroup>
+                        <j:VGroup width="500" gap="6">
+                            <j:Spacer height="10"/>
+                            <j:Label id="lbl_info" width="100%" multiline="true"/>
+                        </j:VGroup>
+                    </j:Group>    
+                </j:CardPrimaryContent>
+            </j:Card>
+        </j:GridCell>
+		
+	</j:Grid>
+
+    <fx:Script>
+        <![CDATA[
+
+
+            private function ev_complete():void{
+                lbl_info.text = "AudioPlayer is an audio player supporting all properties and methods from HTMLAudioElement. The 'autoPlay' or 'play' feature may be restric by browser policy, and generaly must be called in a user gesture event to be enabled.";
+            }
+
+            private function ev_ap_progress(e:Event):void {
+                var tr:TimeRanges = ap.buffered;
+                var str:String = "";
+                for (var i:int=0; i < tr.length; i++){
+                    str += "\ni:" + i + " - start:" + tr.start(i) + " - end: " + tr.end(i);
+                }
+
+                ta_buffered.text = str;
+            }
+
+
+
+            private function ev_ap_playpause(e:Event):void {
+                if (ap.paused == true){
+                    ap.play();
+                }else{
+                    ap.pause();
+                }
+            }
+
+            ]]>
+    </fx:Script>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

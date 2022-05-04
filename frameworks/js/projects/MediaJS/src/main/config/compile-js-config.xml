@@ -23,43 +23,25 @@
         
         <!-- build both SWF and JS. -->
         <targets>
+            <target>SWF</target>
             <target>JSRoyale</target>
         </targets>
         <strict-xml>true</strict-xml>
 
-        <external-library-path>
-            <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
-            <path-element>../../../../../libs/Binding.swc</path-element>
-            <path-element>../../../../../libs/Core.swc</path-element>
-            <path-element>../../../../../libs/Graphics.swc</path-element>
-            <path-element>../../../../../libs/Basic.swc</path-element>
-            <path-element>../../../../../libs/Collections.swc</path-element>
-            <path-element>../../../../../libs/HTML.swc</path-element>
-            <path-element>../../../../../libs/Formatters.swc</path-element>
-            <path-element>../../../../../libs/Media.swc</path-element>
-        </external-library-path>
-        
-        <allow-subclass-overrides>true</allow-subclass-overrides>
-        <mxml>
-            <children-as-data>true</children-as-data>
-            <imports>
-                <implicit-import>org.apache.royale.events.*</implicit-import>
-                <implicit-import>org.apache.royale.geom.*</implicit-import>
-                <implicit-import>org.apache.royale.core.ClassFactory</implicit-import>
-                <implicit-import>org.apache.royale.core.IFactory</implicit-import>
-            </imports>
-        </mxml>
+		<mxml>
+			<children-as-data>true</children-as-data>
+		</mxml>
 		<binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
 		<binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
 		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
 
         <define>
             <name>COMPILE::SWF</name>
-            <value>true</value>
+            <value>false</value>
         </define>
         <define>
             <name>COMPILE::JS</name>
-            <value>false</value>
+            <value>true</value>
         </define>
 
         <keep-as3-metadata>
@@ -72,21 +54,22 @@
 	  
         <locale/>
         
-        <library-path/>
-
+        <external-library-path append="true">
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
+            <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
+            <path-element>../../../../../libs/NetworkJS.swc</path-element>
+        </external-library-path>
+        
         <namespaces>
             <namespace>
-                <uri>library://ns.apache.org/royale/jewel</uri>
-                <manifest>../resources/jewel-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/royale/jewel</uri>
-                <manifest>../resources/jewel-as-manifest.xml</manifest>
+                <uri>library://ns.apache.org/royale/media</uri>
+                <manifest>../../../../../../projects/Media/src/main/resources/media-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
         <source-path>
-            <path-element>../royale</path-element>
+            <path-element>../../../../../../projects/Media/src/main/royale</path-element>
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
@@ -94,20 +77,22 @@
     
     <include-file>
         <name>defaults.css</name>
-        <path>../resources/defaults.css</path>
+        <path>../../../../../../projects/Media/src/main/resources/defaults.css</path>
     </include-file>
-
-    <include-lookup-only>true</include-lookup-only>
     
     <include-classes>
-        <class>JewelClasses</class>
+        <class>MediaClasses</class>
     </include-classes>
     
     <include-namespaces>
-        <uri>library://ns.apache.org/royale/jewel</uri>
+        <uri>library://ns.apache.org/royale/media</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
+
+    <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
+    <js-resolve-uncertain>false</js-resolve-uncertain>
+    <js-vector-index-checks>false</js-vector-index-checks>
         
-    <target-player>${playerglobal.version}</target-player>
-	
 
 </royale-config>

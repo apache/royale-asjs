@@ -502,6 +502,7 @@
                 <exclude name="royale-asjs/frameworks/libs/RoyaleUnitUI.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/SparkRoyale.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Storage.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Media.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/TLF.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Text.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/XML.swc"/>
@@ -538,6 +539,7 @@
                 <exclude name="royale-asjs/frameworks/js/libs/RoyaleUnitUIJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/SparkRoyaleJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/StorageJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/MediaJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TLFJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TextJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/XMLJS.swc"/>

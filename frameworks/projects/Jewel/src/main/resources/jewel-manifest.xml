@@ -166,6 +166,7 @@
 
     <component id="Divider" class="org.apache.royale.jewel.Divider"/>
 
+
     <component id="Image" class="org.apache.royale.jewel.Image"/>
     <component id="ImageIcon" class="org.apache.royale.jewel.ImageIcon"/>
 	<component id="BinaryImage" class="org.apache.royale.jewel.BinaryImage"/>
@@ -285,6 +286,9 @@
     <component id="WizardEvent" class="org.apache.royale.jewel.events.WizardEvent"/>
 
     <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
+
+    <component id="AudioPlayer" class="org.apache.royale.jewel.AudioPlayer"/>
+    <component id="VideoPlayer" class="org.apache.royale.jewel.VideoPlayer"/>
 
     <!-- Deprecated - - - to remove -->
 

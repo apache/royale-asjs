@@ -154,6 +154,7 @@
         <ant dir="${basedir}/projects/ReflectionJS" target="clean"/>
         <ant dir="${basedir}/projects/RoyaleUnitJS" target="clean"/>
         <ant dir="${basedir}/projects/StorageJS" target="clean"/>
+        <ant dir="${basedir}/projects/MediaJS" target="clean"/>
         <ant dir="${basedir}/projects/TextJS" target="clean"/>
         <ant dir="${basedir}/projects/TLFJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
@@ -256,6 +257,10 @@
 
     <target name="Storage" description="Clean build of StorageJS.swc">
         <ant dir="${basedir}/projects/StorageJS"/>
+    </target>
+
+    <target name="Media" description="Clean build of MediaJS.swc">
+        <ant dir="${basedir}/projects/MediaJS"/>
     </target>
 
     <target name="XML" description="Clean build of XMLJS.swc">
