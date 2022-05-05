@@ -52,13 +52,15 @@ package org.apache.royale.jewel
 		//letterbox
 		//zoom
 		//strech
-		COMPILE::JS
+		[Inspectable(category="General",enumeration="letterbox,zoom,strech")]
 		public function set scaleMode(value:String):void
 		{
-			if (_scaleMode == value) return;
+			COMPILE::JS{
+				if (_scaleMode == value) return;
 
-			replaceClass(_scaleMode,value);
-			_scaleMode = value;
+				replaceClass(_scaleMode,value);
+				_scaleMode = value;
+			}
 		}
 
 		COMPILE::JS

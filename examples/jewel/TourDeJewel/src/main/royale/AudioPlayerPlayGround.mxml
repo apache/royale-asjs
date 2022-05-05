@@ -53,6 +53,8 @@ limitations under the License.
                                 durationchange="{hs_ap_seek.maximum = ap.duration}"
                                 timeupdate="{hs_ap_seek.value = ap.currentTime}"
                                 progress="ev_ap_progress(event)" 
+                                volumechange="{if (hs_ap_volume.value != ap.volume) hs_ap_volume.value = ap.volume }"
+                                ratechange="{if (hs_rate.value != ap.playbackRate) hs_rate.value = ap.playbackRate }"
                                 width="100%" height="100%"
                                 controls="true"
                                 error="{lbl_error.text = ap.error.message;}"
@@ -78,11 +80,14 @@ limitations under the License.
                             <j:Spacer height="10"/>
 
                             <j:Label text="Volume"/>
-                            <j:HSlider id="hs_ap_volume" width="100% " minimum="0" maximum="1" stepSize="0.01"  value="1" valueChange="{ap.volume = hs_ap_volume.value;}"/>
+                            <j:HGroup width="100%" gap="10" itemsVerticalAlign="itemsCenter">
+                                <j:HSlider id="hs_ap_volume" width="100% " minimum="0" maximum="1" stepSize="0.01"  value="1" valueChange="{ap.volume = hs_ap_volume.value;}"/>
+                                <j:CheckBox id="cb_mute" text="Mute" change="{ap.muted = cb_mute.selected}"/>
+                            </j:HGroup>
                             
                             <j:Label text="Play rate"/>
                             <j:HGroup>
-                                <j:HSlider id="sl_rate" minimum="0" maximum="2" stepSize="0.1" value="1" valueChange="{ap.playbackRate = sl_rate.value; lbl_rate.text = sl_rate.value + 'x';}"/>
+                                <j:HSlider id="hs_rate" minimum="0" maximum="2" stepSize="0.1" value="1" valueChange="{ap.playbackRate = hs_rate.value; lbl_rate.text = hs_rate.value + 'x';}"/>
                                 <j:Label id="lbl_rate"/>
                             </j:HGroup>
 

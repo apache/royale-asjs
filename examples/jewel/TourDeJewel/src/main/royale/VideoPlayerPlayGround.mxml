@@ -61,6 +61,8 @@ limitations under the License.
                                     durationchange="{hs_vp_seek.maximum = vp.duration}"
                                     timeupdate="{hs_vp_seek.value = vp.currentTime}"
                                     progress="ev_vp_progress(event)" 
+                                    volumechange="{if (hs_vp_volume.value != vp.volume) hs_vp_volume.value = vp.volume }"
+                                    ratechange="{if (hs_rate.value != vp.playbackRate) hs_rate.value = vp.playbackRate }"
                                     width="100%" height="100%"
                                     controls="true"
                                     error="{lbl_error.text = vp.error.message}"
@@ -103,11 +105,14 @@ limitations under the License.
                             </j:HGroup>
                             
                             <j:Label text="Volume"/>
-                            <j:HSlider id="hs_vp_volume" width="100% " minimum="0" maximum="1" stepSize="0.01"  value="1" valueChange="{vp.volume = hs_vp_volume.value;}"/>
-                            
+                            <j:HGroup width="100%" gap="10" itemsVerticalAlign="itemsCenter">
+                                <j:HSlider id="hs_vp_volume" width="100% " minimum="0" maximum="1" stepSize="0.01"  value="1" valueChange="{vp.volume = hs_vp_volume.value;}"/>
+                                <j:CheckBox id="cb_mute" text="Mute" change="{vp.muted = cb_mute.selected}"/>
+                            </j:HGroup>
+                          
                             <j:Label text="Play rate"/>
                             <j:HGroup>
-                                <j:HSlider id="sl_rate" minimum="0" maximum="2" stepSize="0.1" value="1" valueChange="{vp.playbackRate = sl_rate.value; lbl_rate.text = sl_rate.value + 'x';}"/>
+                                <j:HSlider id="hs_rate" minimum="0" maximum="2" stepSize="0.1" value="1" valueChange="{vp.playbackRate = hs_rate.value; lbl_rate.text = hs_rate.value + 'x';}"/>
                                 <j:Label id="lbl_rate"/>
                             </j:HGroup>
 
