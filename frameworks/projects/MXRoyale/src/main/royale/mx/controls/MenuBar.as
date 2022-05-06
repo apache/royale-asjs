@@ -699,36 +699,6 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
      */
     public function set dataProvider(value:Object):void
     {
-       if (value is Array)
-            {
-                value = new ArrayCollection(value as Array);
-            }
-            else if (value is ICollectionView)
-            {
-                value = ICollectionView(value);
-            }
-            else if (value is IList)
-            {
-                value = new ListCollectionView(IList(value));
-            }
-            else if (value is XMLList)
-            {
-                value = new XMLListCollection(value as XMLList);
-            }
-            else if (value is XML)
-            {
-                var xl:XMLList = new XMLList();
-                xl += value;
-                value = new XMLListCollection(xl);
-            }
-            else
-            {
-                // convert it to an array containing this one item
-                var tmp:Array = [];
-                if (value != null)
-                    tmp.push(value);
-                value = new ArrayCollection(tmp);
-            }
             (model as ISelectionModel).dataProvider = value;
             
             commitProperties();
@@ -755,10 +725,10 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get hasRoot():Boolean
+     public function get hasRoot():Boolean
     {
-        return _hasRoot;
-    } */
+        return (model as MenuBarModel).hasRoot;
+    }
 
     //----------------------------------
     //  iconField

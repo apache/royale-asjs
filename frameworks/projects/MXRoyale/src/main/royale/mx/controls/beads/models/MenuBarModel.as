@@ -18,13 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads.models
 {
-    import mx.controls.MenuBar;
-    
-    import org.apache.royale.core.IMenu;
+    import mx.collections.ArrayCollection;
+    import mx.collections.ICollectionView;
+    import mx.collections.XMLListCollection;
+    import mx.events.CollectionEvent;
+    import mx.events.CollectionEventKind;
+
     import org.apache.royale.core.IMenuBarModel;
-    import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.Event;
-    import org.apache.royale.html.beads.models.ArraySelectionModel;
+    import org.apache.royale.events.IEventDispatcher;
 	
     /**
      *  MenuBar Mouse Controller
@@ -34,7 +36,7 @@ package mx.controls.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class MenuBarModel extends ArraySelectionModel implements IMenuBarModel
+	public class MenuBarModel extends SingleSelectionICollectionViewModel implements IMenuBarModel
 	{
         /**
          *  Constructor.
@@ -46,11 +48,9 @@ package mx.controls.beads.models
          */
 		public function MenuBarModel()
 		{
-            labelField = "label";
-            submenuField = "children";
 		}
 		
-        private var _submenuField:String = "menu";
+        private var _submenuField:String = "children";
         
         /**
          * The field in the data object that identifies sub-menus. The default is "menu". This
@@ -89,17 +89,71 @@ package mx.controls.beads.models
         {
             _showRoot = value;
         }
-        
-        override public function get dataProvider():Object
-        {
-            var dp:Object = super.dataProvider;
-            
-            if (!showRoot && dp != null)
+
+
+        protected var _hasRoot:Boolean;
+        public function get hasRoot():Boolean{
+            return _hasRoot;
+        }
+
+
+        protected var _rootModel:ICollectionView;
+
+
+        override public function set dataProvider(value:Object):void{
+            if (_rootModel)
             {
-                return dp.getItemAt(0).children; // TODO: needs to use descriptor
+                _rootModel.removeEventListener(CollectionEvent.COLLECTION_CHANGE,
+                        collectionChangeHandler);
             }
-            
-            return dp;
+            _hasRoot = false;
+            // handle strings and xml
+            if (typeof(value)=="string")
+                value = new XML(value);
+            /*else if (value is XMLNode)
+                value = new XML(XMLNode(value).toString());*/
+            else if (value is XMLList)
+                value = new XMLListCollection(value as XMLList);
+
+            if (value is XML)
+            {
+                _hasRoot = true;
+                var xl:XMLList = new XMLList();
+                xl += value;
+                _rootModel = new XMLListCollection(xl);
+            }
+            //if already a collection dont make new one
+            else if (value is ICollectionView)
+            {
+                _rootModel = ICollectionView(value);
+                if (_rootModel.length == 1)
+                    _hasRoot = true;
+            }
+            else if (value is Array)
+            {
+                _rootModel = new ArrayCollection(value as Array);
+            }
+            //all other types get wrapped in an ArrayCollection
+            else if (value is Object)
+            {
+                _hasRoot = true;
+                // convert to an array containing this one item
+                var tmp:Array = [];
+                tmp.push(value);
+                _rootModel = new ArrayCollection(tmp);
+            }
+            else
+            {
+                _rootModel = new ArrayCollection();
+            }
+
+            _rootModel.addEventListener(CollectionEvent.COLLECTION_CHANGE,
+                    collectionChangeHandler, false/*, 0, true*/);
+            super.dataProvider = _rootModel;
+            var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
+            event.kind = CollectionEventKind.RESET;
+            collectionChangeHandler(event);
+            /*IEventDispatcher(_strand).*/dispatchEvent(event);
         }
 	}
 }
