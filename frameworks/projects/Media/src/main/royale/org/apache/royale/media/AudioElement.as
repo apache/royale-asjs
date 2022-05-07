@@ -27,6 +27,19 @@ package org.apache.royale.media
 		import org.apache.royale.html.util.addElementToWrapper;
     }
 
+
+	/**
+     *  The AudioElement class provides access to the properties of audio elements,
+	 *  as well as methods to manipulate them.
+	 * 
+	 *  Some of the more commonly used properties of the audio element include src,
+	 *  currentTime, duration, paused, muted, and volume
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 0.0
+     *  @playerversion AIR 0.0
+     *  @productversion Royale 0.0
+     */
 	public class AudioElement extends MediaElement
 	{
 

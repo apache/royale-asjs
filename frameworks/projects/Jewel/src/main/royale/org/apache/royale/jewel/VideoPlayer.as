@@ -27,20 +27,28 @@ package org.apache.royale.jewel
 	import org.apache.royale.html.util.addElementToWrapper;
     }
 
+	/**
+	 *  VideoPlayer let you to play video with segments progressive download.
+	 *  You can also seek to an unloaded part and change playback rate
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 0.0
+	 *  @playerversion AIR 0.0
+	 *  @productversion Royale 0.0
+	 */
 	public class VideoPlayer extends VideoElement 
 	{
 
 		
-
 		private var _scaleMode:String;
 
 		/**
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @playerversion Flash 0.0
+		 *  @playerversion AIR 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function VideoPlayer()
 		{
@@ -49,9 +57,19 @@ package org.apache.royale.jewel
 		}
 
 
-		//letterbox
-		//zoom
-		//strech
+		/**
+		 *  The scaleMode method set different ways of sizing the video content.
+		 *  You can set scaleMode to "stretch", "letterbox", or "zoom"
+		 * 
+		 *  letterbox : will shrink or enlarge the video to fit in parent container keeping video aspect ratio
+		 *  zoom : will enlarge the video to fit all the parent container keeping aspect ratio (loosing partial video areas if video ratio is different from parent ratio)
+		 *  stretch : will shrink or enlarge the video to fill all the parent container (loosing video radio if video ratio is different from parent ratio)
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 0.0
+		 *  @playerversion AIR 0.0
+		 *  @productversion Royale 0.0
+		 */
 		[Inspectable(category="General",enumeration="letterbox,zoom,strech")]
 		public function set scaleMode(value:String):void
 		{
@@ -72,23 +90,11 @@ package org.apache.royale.jewel
 
 
         
-		COMPILE::JS
-		public function showNativeControl(value:Boolean):void
+/*		COMPILE::JS
+		public function showJewelControl(value:Boolean):void
 		{
-		/*	if (value == true){
-				if (element.hasAttribute("controls") == false) {
-					element.setAttribute("controls","controls")   
-				}
-			}
-			else{
-				if (element.hasAttribute("controls")) {
-					element.removeAttribute("controls")   
-				} else {
-					element.setAttribute("controls","controls")   
-				}
-			}*/
 		}
-
+*/
         
 	}
 }

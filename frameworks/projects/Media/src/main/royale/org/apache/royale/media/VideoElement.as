@@ -27,6 +27,40 @@ package org.apache.royale.media
 		import org.apache.royale.html.util.addElementToWrapper;
     }
 
+
+	/**
+     *  Dispatched when the VideoElement enters picture-in-picture mode successfully.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 0.0
+     *  @playerversion AIR 0.0
+     *  @productversion Royale 0.0
+     */
+	[Event(name="enterpictureinpicture", type="org.apache.royale.events.Event")]
+
+	/**
+     *  Dispatched when the VideoElement leaves picture-in-picture mode successfully.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 0.0
+     *  @playerversion AIR 0.0
+     *  @productversion Royale 0.0
+     */
+	[Event(name="leavepictureinpicture", type="org.apache.royale.events.Event")]
+
+	/**
+     *  VideoElement provides special properties and methods for manipulating video objects.
+	 *  It also inherits properties and methods of MediaElement.
+	 * 
+	 *  The list of supported media formats varies from one browser to the other. You should either
+	 *  provide your video in a single format that all the relevant browsers supports, or provide
+	 *  multiple video sources in enough different formats that all the browsers you need to support are covered.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 0.0
+     *  @playerversion AIR 0.0
+     *  @productversion Royale 0.0
+     */
 	public class VideoElement extends MediaElement
 	{
 
@@ -66,6 +100,9 @@ package org.apache.royale.media
 			element.addEventListener("volumechange",handleEvent);
 			element.addEventListener("waiting",handleEvent);
 			element.addEventListener("error",handleEvent);
+
+			element.addEventListener("enterpictureinpicture",handleEvent);
+			element.addEventListener("leavepictureinpicture",handleEvent);
 			
             return element;
         }
@@ -88,6 +125,8 @@ package org.apache.royale.media
 			return (element as HTMLVideoElement).videoWidth;
 		}
 
+		
+		
 		/*COMPILE::JS
 		public function set disablePictureInPicture(value:Boolean):void
 		{
@@ -101,7 +140,23 @@ package org.apache.royale.media
 			return(element as HTMLVideoElement).disablePictureInPicture;
 		}*/
 
+		/**
+		 *  request full screen
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 0.0
+		 *  @playerversion AIR 0.0
+		 *  @productversion Royale 0.0
+		 */
+		public function requestFullscreen():void
+		{
+	        COMPILE::JS{(element as HTMLVideoElement).requestFullscreen();}
+		}
 
+		/*public function requestPictureInPicture():void
+		{
+	        COMPILE::JS{(element as HTMLVideoElement).requestPictureInPicture();}
+		}*/
 
 
 	}

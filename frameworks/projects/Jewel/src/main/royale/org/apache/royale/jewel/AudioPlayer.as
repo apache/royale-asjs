@@ -21,6 +21,15 @@ package org.apache.royale.jewel
 	import org.apache.royale.media.AudioElement;
 
 
+	/**
+	 *  AudioPlayer let you to play audio with segments progressive download.
+	 *  You can also seek to an unloaded part and change playback rate.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 0.0
+	 *  @playerversion AIR 0.0
+	 *  @productversion Royale 0.0
+	 */
 	public class AudioPlayer extends AudioElement 
 	{
 
@@ -29,9 +38,9 @@ package org.apache.royale.jewel
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @playerversion Flash 0.0
+		 *  @playerversion AIR 0.0
+		 *  @productversion Royale 0.0
 		 */
 		public function AudioPlayer()
 		{
@@ -40,23 +49,11 @@ package org.apache.royale.jewel
 		}
 	
         
-		COMPILE::JS
-		public function showNativeControl(value:Boolean):void
+/*		COMPILE::JS
+		public function showJewelControl(value:Boolean):void
 		{
-		/*	if (value == true){
-				if (element.hasAttribute("controls") == false) {
-					element.setAttribute("controls","controls")   
-				}
-			}
-			else{
-				if (element.hasAttribute("controls")) {
-					element.removeAttribute("controls")   
-				} else {
-					element.setAttribute("controls","controls")   
-				}
-			}*/
 		}
-
+*/
         
 	}
 }
