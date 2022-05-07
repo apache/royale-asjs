@@ -56,7 +56,6 @@ limitations under the License.
                         <j:Group height="500" width="500">
                             <j:Group id="grp" height="500" width="500" className="video_container">
                                 <j:VideoPlayer id="vp" 
-                                    src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" 
                                     scaleMode="letterbox" 
                                     durationchange="{hs_vp_seek.maximum = vp.duration}"
                                     timeupdate="{hs_vp_seek.value = vp.currentTime}"
@@ -84,6 +83,7 @@ limitations under the License.
                             <j:HGroup width="100%" gap="10">
                                 <j:Button text="Play/pause" click="ev_vp_playpause(event)" emphasis="secondary"/>
                                 <j:ToggleButton id="tb_vp_controls" text="Show/Hide native controls" click="{vp.controls = tb_vp_controls.selected;}" emphasis="primary" selected="true"/>
+                                <j:Button click="{vp.requestFullscreen()}" emphasis="primary" text="FullScreen"/>
                             </j:HGroup>
 
                             <j:Label text="Scale mode"/>
@@ -161,6 +161,9 @@ limitations under the License.
 
 
             private function ev_vp_playpause(e:Event):void {
+                if (vp.currentSrc == ""){
+                    vp.src = ti_vp_source.text;
+                }
                 if (vp.paused == true){
                     vp.play();
                 }else{
