@@ -49,7 +49,6 @@ limitations under the License.
 
                         <j:Group height="50" width="500">
                             <j:AudioPlayer id="ap" 
-                                src="https://freetestdata.com/wp-content/uploads/2021/09/Free_Test_Data_1OMB_MP3.mp3" 
                                 durationchange="{hs_ap_seek.maximum = ap.duration}"
                                 timeupdate="{hs_ap_seek.value = ap.currentTime}"
                                 progress="ev_ap_progress(event)" 
@@ -129,6 +128,9 @@ limitations under the License.
 
 
             private function ev_ap_playpause(e:Event):void {
+                if (ap.currentSrc == ""){
+                    ap.src = ti_ap_source.text;
+                }
                 if (ap.paused == true){
                     ap.play();
                 }else{
