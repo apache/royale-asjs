@@ -49,6 +49,7 @@
             <path-element>../../../../../js/libs/LanguageJS.swc</path-element>
             <path-element>../../../../../js/libs/ReflectionJS.swc</path-element>
             <path-element>../../../../../js/libs/RoyaleUnitJS.swc</path-element>
+            <path-element>../../../../../js/libs/XMLJS.swc</path-element>
         </js-library-path>
 
         <allow-subclass-overrides>true</allow-subclass-overrides>
