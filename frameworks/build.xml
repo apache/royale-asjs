@@ -123,6 +123,7 @@
         <antcall target="Reflection"/>
         <antcall target="RoyaleUnit"/>
         <antcall target="Collections"/>
+        <antcall target="XML"/>
         <antcall target="Basic"/>
         <antcall target="RoyaleUnitUI"/>
 
@@ -138,8 +139,7 @@
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
-        
-        <antcall target="XML"/>
+
         <antcall target="Network"/>
         <antcall target="Storage"/>
 

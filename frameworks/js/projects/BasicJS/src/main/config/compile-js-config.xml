@@ -60,6 +60,7 @@
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../libs/CollectionsJS.swc</path-element>
+            <path-element>../../../../../libs/XMLJS.swc</path-element>
         </external-library-path>
         
         <namespaces>
