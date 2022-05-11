@@ -55,6 +55,7 @@ package mx.controls.sliderClasses
     import mx.core.IToolTip;
     import org.apache.royale.utils.UIUtils;
     import org.apache.royale.core.IUIBase;
+    import org.apache.royale.utils.PointUtils;
 
     use namespace mx_internal;
 
@@ -1960,10 +1961,6 @@ package mx.controls.sliderClasses
 
             // Layout the thumbs' y positions.
             var thO:Number = getStyle("thumbOffset");
-            if (isNaN(thO))
-            {
-                thO = 0;
-            }
             var tY:Number = track.y +
                             (track.height - firstThumb.getExplicitOrMeasuredHeight()) / 2 + thO;
 
@@ -2210,10 +2207,6 @@ package mx.controls.sliderClasses
                 }
 
                 var labOffset:Number = getStyle("labelOffset");
-                if (isNaN(labOffset))
-                {
-                    labOffset = -11;
-                }
                 labelY = labOffset - (labOffset > 0 ? 0 : labelSize);
 
                 upperBound = Math.min(upperBound, labelY);
@@ -2224,14 +2217,6 @@ package mx.controls.sliderClasses
             {
                 var tLen:Number = getStyle("tickLength");
                 var tiO:Number = getStyle("tickOffset");
-                if (isNaN(tLen))
-                {
-                    tLen = 4;
-                }
-                if (isNaN(tiO))
-                {
-                    tiO = -6;
-                }
 
                 upperBound = Math.min(upperBound, tiO - tLen);
                 lowerBound = Math.max(lowerBound, tiO);
@@ -2240,10 +2225,6 @@ package mx.controls.sliderClasses
             if (thumbs.numChildren > 0)
             {
                 var thO:Number = getStyle("thumbOffset");
-                if (isNaN(thO))
-                {
-                    thO = 0;
-                }
                 thumbY = (track.height - SliderThumb(thumbs.getChildAt(0)).getExplicitOrMeasuredHeight()) / 2 +
                         thO;
 
@@ -2263,27 +2244,11 @@ package mx.controls.sliderClasses
             {
                 var g:Graphics = ticks.graphics;
                 var tLength:Number = getStyle("tickLength");
-                if (isNaN(tLength))
-                {
-                    tLength = 4;
-                }
                 var tOffset:Number = getStyle("tickOffset");
-                if (isNaN(tOffset))
-                {
-                    tOffset = -6;
-                }
                 var tickWidth:Number = getStyle("tickThickness");
-                if (isNaN(tickWidth))
-                {
-                    tickWidth = 1;
-                }
                 var xOffset:Number = tickWidth / 2;
                 var xPos:Number;
                 var tColor:Number = getStyle("tickColor");
-                if (isNaN(tColor))
-                {
-                    tColor = 0;
-                }
                 
                 var usePositions:Boolean = _tickValues && _tickValues.length > 0 ? true : false;
                 var positionIndex:int = 0;
@@ -2360,10 +2325,6 @@ package mx.controls.sliderClasses
                     else
                     {
                         var labelOff:Number = getStyle("labelOffset");
-                        if (isNaN(labelOff))
-                        {
-                            labelOff = -11;
-                        }
 
                         labelPos = curLabel.getExplicitOrMeasuredHeight() / 2;
 
@@ -2595,7 +2556,8 @@ package mx.controls.sliderClasses
             
             var o:Point = new Point(relX, relY);
             var r:Point = localToGlobal(o);
-            r = (dataTip.parent as UIComponent).globalToLocal(r);
+            //r = (dataTip.parent as UIComponent).globalToLocal(r);
+            r = PointUtils.globalToLocal(r, dataTip.parent);
 
             dataTip.x = r.x < 0 ? 0 : r.x;
             dataTip.y = r.y < 0 ? 0 : r.y;
@@ -2952,10 +2914,6 @@ package mx.controls.sliderClasses
                     xM = getXFromValue(getValueFromX(xM));
 
                 var duration:Number = getStyle("slideDuration");
-                if (isNaN(duration))
-                {
-                    duration = 300;
-                }
                 var t:Tween = new Tween(thumb, thumb.xPosition, xM, duration);
                 t.duration = duration;
 

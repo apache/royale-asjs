@@ -535,6 +535,30 @@ TabNavigator
 	background-color: #FFFFFF;
 }
 
+Slider
+{
+	dataTipOffset: 16;
+	dataTipPrecision: 2;
+	labelOffset: -10;
+	showTrackHighlight: false;
+	slideDuration: 300;
+/*	thumbDisabledSkin: null
+	thumbDownSkin: null */
+	thumbOffset: 0;
+/*	thumbOverSkin: null */
+/*	thumbUpSkin: null */
+	tickColor: #6F7777;
+	tickOffset: -6;
+	tickThickness: 1;
+}
+
+HSlider
+{
+	dataTipPlacement: "top";
+	tickLength: 4;
+}
+
+
 .TabNavigatorContent
 {
 	border: 1px solid #333333
