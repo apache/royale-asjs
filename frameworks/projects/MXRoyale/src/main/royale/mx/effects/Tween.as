@@ -68,6 +68,10 @@ public class Tween extends org.apache.royale.effects.Tween
                           endFunction:Function = null)
     {
 		super();
+    this.listener = listener;
+    this.startValue = Number(startValue);
+    this.endValue = Number(endValue);
+    this.duration = duration;
     }
 
    
