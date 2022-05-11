@@ -1548,7 +1548,7 @@ package mx.controls.sliderClasses
             if (!trackHitArea)
             {
                 trackHitArea = new UIComponent();
-                trackHitArea.percentWidth = 90;
+                trackHitArea.percentWidth = 100;
                 trackHitArea.percentHeight = 100;
                 innerSlider.addChild(trackHitArea); // trackHitArea should always be on top
                 
