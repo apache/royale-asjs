@@ -21,15 +21,14 @@ package org.apache.royale.html.util
 
     import org.apache.royale.core.IHasLabelField;
     import org.apache.royale.core.IHasDataField;
-    import org.apache.royale.core.ILabeledData;
-    import org.apache.royale.core.IHasImage;
 
     /**
      *  Utility function to get a label string from an XML value object
      *  It will use the following logic flow:
      *  First it tries a `labelField`
      *  Then the `dataField`
-     *  If both of those fail, it tries a `label` property
+     *  If both of those fail, it tries a `label` attribute
+     *  if that fails, it tries a <label>labelHere</label> child
      *  If all else fails, it just converts the object to a string
      * 
 	 *  @langversion 3.0
@@ -38,43 +37,56 @@ package org.apache.royale.html.util
 	 *  @productversion Royale 0.9.10
      *  @royaleignorecoercion org.apache.royale.core.IHasLabelField
      *  @royaleignorecoercion org.apache.royale.core.IHasDataField
-     *  @royaleignorecoercion org.apache.royale.core.ILabeledData
+     *  @royaleignorecoercion XML
      */
     public function getLabelFromXMLData(obj:Object, data:Object):String
     {
         var result:String;
-        var getLabelFromLabelField:Function = function(labelField:String, data:Object):String
-        {
-            if (labelField.charAt(0) == '@')
-            {
-                return data.attribute(labelField.split("@")[1]) as String;
-            }
-            return data.child(labelField).toString();
-        }
+
         if (obj is IHasLabelField && (obj as IHasLabelField).labelField)
         {
-            result = getLabelFromLabelField((obj as IHasLabelField).labelField, data);
-            if (result != null)
-            {
-                return result;
-            }
+            //if the result is null in this case, we should return "";
+            result = getLabelFromLabelField((obj as IHasLabelField).labelField, data as XML, "");
+            return result;
         } 
             
         if (obj is IHasDataField && (obj as IHasDataField).dataField)
         {
-            result = getLabelFromLabelField((obj as IHasDataField).dataField, data);
-            if (result != null)
-            {
-                return result;
-            }
+            //if the result is null in this case, we should return "";
+            result = getLabelFromLabelField((obj as IHasDataField).dataField, data as XML, "");
+            return result;
         }
 
-        var label:String = getLabelFromLabelField("label", data);
-        if(label != null)
+        result = getLabelFromLabelField("@label", data as XML);
+        if(result != null)
         {
-            return label;
+            return result;
+        }
+
+        result = getLabelFromLabelField("label", data as XML);
+        if(result != null)
+        {
+            return result;
         }
         return "" + data;
     }
 
+}
+
+/**
+ *
+ * @private
+ * @royaleignorecoercion XMLList
+ */
+function getLabelFromLabelField(labelField:String, data:XML, defaultVal:String = null):String
+{
+    var xmlList:XMLList ;
+    if (labelField.charAt(0) == '@')
+    {
+        xmlList =  data.attribute(labelField.substr(1));
+    }
+    else {
+        xmlList = data.child(labelField);
+    }
+    return xmlList.length() ? xmlList.toString() : defaultVal;
 }
