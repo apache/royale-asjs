@@ -102,6 +102,13 @@
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>XML</artifactId>
+      <version>0.9.10-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
   </dependencies>
 
   <profiles>
