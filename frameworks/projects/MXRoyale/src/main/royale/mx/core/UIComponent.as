@@ -4503,7 +4503,7 @@ COMPILE::JS
      */
     COMPILE::SWF
     {
-        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent")]
+        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent:mx.events.FocusEvent")]
         override public function dispatchEvent(event:Event):Boolean {
             //trap the layout requests and ignore them if we have deferred layout
             if (event.type == "layoutNeeded") {

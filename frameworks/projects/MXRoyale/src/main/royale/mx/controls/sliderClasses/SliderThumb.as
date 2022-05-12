@@ -29,6 +29,10 @@ package mx.controls.sliderClasses
 	import mx.core.mx_internal;
 	import mx.events.SliderEvent;
 	import mx.controls.sliderClasses.SliderDirection;
+
+	COMPILE::SWF{
+		import flash.events.Event;
+	}
 	
 	use namespace mx_internal;
 	
@@ -204,6 +208,7 @@ package mx.controls.sliderClasses
 		 *  @private
 		 */
 		//porting notes, omitted, missing @todo review:
+		[SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent")]
 		protected function buttonReleased(event:Event):void
 		{
 			if (enabled)
