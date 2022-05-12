@@ -214,7 +214,14 @@ package mx.controls.sliderClasses
 				// in case we go offscreen
 				stage.removeEventListener(MouseEvent.MOUSE_MOVE, 
 								stage_mouseMoveHandler);
-				stage.removeEventListener(MouseEvent.MOUSE_UP, buttonReleased);
+				COMPILE::SWF
+				{
+					stage.removeEventListener(MouseEvent.MOUSE_UP, buttonReleased);
+				}
+				COMPILE::JS
+				{
+					window.removeEventListener(MouseEvent.MOUSE_UP, buttonReleased);
+				}
 							
 				Slider(owner).onThumbRelease(this);
 			}
@@ -363,7 +370,14 @@ package mx.controls.sliderClasses
 				systemManager.addEventListener(
 					MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
 
-				stage.addEventListener(MouseEvent.MOUSE_UP, buttonReleased);
+				COMPILE::SWF
+				{
+					stage.addEventListener(MouseEvent.MOUSE_UP, buttonReleased);
+				}
+				COMPILE::JS
+				{
+					window.addEventListener(MouseEvent.MOUSE_UP, buttonReleased);
+				}
 							
 				// in case we go offscreen
 				stage.addEventListener(MouseEvent.MOUSE_MOVE, 
