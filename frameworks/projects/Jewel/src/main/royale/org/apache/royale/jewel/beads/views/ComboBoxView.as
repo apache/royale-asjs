@@ -212,7 +212,17 @@ package org.apache.royale.jewel.beads.views
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
 
 					//popup width needs to be set before position inside bounding client to work ok
+                    COMPILE::JS
+                    {
+					if (isNaN((host as ComboBox).percentWidth))
+						_list.width = host.width;
+					else
+						_list.width = host.element.offsetWidth;
+                    }
+                    COMPILE::SWF
+                    {
 					_list.width = host.width;
+                    }                    
 
                     COMPILE::JS
                     {
