@@ -558,6 +558,12 @@ HSlider
 	tickLength: 4;
 }
 
+VSlider
+{
+	dataTipPlacement: "left";
+	tickLength: 4;
+}
+
 
 .TabNavigatorContent
 {
