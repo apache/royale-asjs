@@ -21,6 +21,8 @@ package mx.controls.beads.models
     import mx.collections.ArrayCollection;
     import mx.collections.ICollectionView;
     import mx.collections.XMLListCollection;
+    import mx.controls.MenuBar;
+    import mx.controls.menuClasses.IMenuDataDescriptor;
     import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
 
@@ -71,6 +73,14 @@ package mx.controls.beads.models
             dispatchEvent(new Event("submenuFieldChanged"));
         }
 
+
+        public function get dataDescriptor():IMenuDataDescriptor
+        {
+            return MenuBar(_strand).dataDescriptor;
+        }
+
+
+
         private var _showRoot:Boolean = true;
 		
         /**
@@ -87,7 +97,14 @@ package mx.controls.beads.models
 		}
         public function set showRoot(value:Boolean):void
         {
-            _showRoot = value;
+            if (_showRoot != value) {
+                _showRoot = value;
+                if (_rootModel) {
+
+                }
+            }
+
+
         }
 
 

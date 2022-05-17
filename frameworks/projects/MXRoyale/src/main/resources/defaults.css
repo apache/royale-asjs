@@ -362,7 +362,7 @@ MenuBar {
 	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");			
 	IBeadController: ClassReference("mx.controls.beads.controllers.MenuBarMouseController");
 	IMenuFactory: ClassReference("mx.controls.menuClasses.CascadingMenuFactory");
-	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.menuClasses.MenuDataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");

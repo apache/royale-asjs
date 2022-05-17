@@ -16,13 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.controls.listClasses
+package mx.controls.menuClasses
 {
     import mx.collections.ArrayCollection;
     import mx.collections.ICollectionView;
     import mx.collections.IViewCursor;
 	import mx.events.CollectionEvent;
 	import mx.events.CollectionEventKind;
+
+	import mx.controls.beads.models.MenuBarModel;
     
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadModel;
@@ -60,7 +62,7 @@ package mx.controls.listClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataItemRendererFactoryForICollectionViewData extends DataItemRendererFactoryBase
+	public class MenuDataItemRendererFactoryForICollectionViewData extends DataItemRendererFactoryBase
 	{
         /**
          *  Constructor.
@@ -70,7 +72,7 @@ package mx.controls.listClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function DataItemRendererFactoryForICollectionViewData()
+		public function MenuDataItemRendererFactoryForICollectionViewData()
 		{
 			super();
 		}
@@ -87,27 +89,36 @@ package mx.controls.listClasses
         {
             if (!dataProviderModel)
                 return;
-			var dped:IEventDispatcher = dp as IEventDispatcher;
-            dp = dataProviderModel.dataProvider as ICollectionView;
-            if (!dp)
-            {
-              /*  // temporary until descriptor is used in MenuBarModel
-                var obj:Object = dataProviderModel.dataProvider;
-                if (obj is Array)
-                {
-                    dp = new ArrayCollection(obj as Array);
-                }
-                else*/
-                    return;
-            }
-            
-            // listen for individual items being added in the future.
+			var menuBarModel:MenuBarModel =MenuBarModel(dataProviderModel);
+			if (dp) {
+				//First remove if it's already added
+				dp.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			}
+            dp = menuBarModel.dataProvider as ICollectionView;
 
-			//First remove if it's already added to previous dp instance
-			if (dped) dped.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			if (dp) {
+				if (menuBarModel.hasRoot && !menuBarModel.showRoot) {
+					//this corresponds roughly to part of the code inside commitProperties in the original Flex MenuBar code:
+					var rootItem:* = dp.createCursor().current;
+					var tmpCollection:ICollectionView;
+					if (rootItem != null &&
+							menuBarModel.dataDescriptor.isBranch(rootItem, dp) &&
+							menuBarModel.dataDescriptor.hasChildren(rootItem, dp))
+					{
+						// then get rootItem children
+						tmpCollection =
+								menuBarModel.dataDescriptor.getChildren(rootItem, dp);
 
-			dped = dp as IEventDispatcher; // get latest
-			dped.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+						dp = tmpCollection;
+					}
+					//not part of the original Flex code, but should we not do this? (it is a root node with no children - i.e. should it not be an empty menubar? ) :
+					/*else {
+						dp = new ArrayCollection();
+					}*/
+				}
+
+				dp.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			}
             
             super.dataProviderChangeHandler(event);            
         }
@@ -118,6 +129,7 @@ package mx.controls.listClasses
         // assumes will be called in a loop, not random access
         override protected function get dataProviderLength():int
         {
+			if (!dp) return 0;
             cursor = dp.createCursor();
             return dp.length;
         }
