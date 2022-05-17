@@ -2167,9 +2167,6 @@ package mx.controls.sliderClasses
             if (!ticks)
             {
                 ticks = new UIComponent();
-                ticks.percentWidth = 100;
-                ticks.percentHeight = 100;
-
                 innerSlider.addChild(ticks);
             }
         }
@@ -2255,6 +2252,13 @@ package mx.controls.sliderClasses
                 var val:Number = usePositions ? _tickValues[positionIndex++] : minimum;
                 
                 g.clear();
+                COMPILE::JS
+                {
+                    // clear sets width and height according to containing element, but these values can be skewed because of rotation
+                    var svg:Element = ticks.element.getElementsByTagName('svg')[0] as Element;
+                    svg.removeAttribute("width");
+                    svg.removeAttribute("height");
+                }
                 
                 if (_tickInterval > 0 || usePositions)
                 {
