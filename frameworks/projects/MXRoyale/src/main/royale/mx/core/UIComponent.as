@@ -1204,8 +1204,7 @@ public class UIComponent extends UIBase
 	{
 	   	_rotation = value;
         element.style.transform = computeTransformString();
-        element.style["transform-origin-x"] = "0px";
-        element.style["transform-origin-y"] = "0px";
+        element.style["transform-origin"] = "0 0";
 	}
 	
     COMPILE::JS
