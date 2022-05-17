@@ -152,12 +152,14 @@ public class XMLNotifier
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
+     *  @royaleignorecoercion XMLList
      */
     public function watchXML(xml:Object, notifiable:IXMLNotifiable, uid:String = null):void
     {
         if ((xml is XMLList) && xml.length() > 1)
         {
-            for each(var item:Object in xml)
+            for each(var item:Object in (xml as XMLList))
             {
                 watchXML(item, notifiable, uid);
             }
@@ -201,12 +203,14 @@ public class XMLNotifier
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
+     *  @royaleignorecoercion XMLList
      */
     public function unwatchXML(xml:Object, notifiable:IXMLNotifiable):void
     {
         if ((xml is XMLList) && xml.length() > 1)
         {
-            for each(var item:Object in xml)
+            for each(var item:Object in (xml as XMLList))
             {
                 unwatchXML(item, notifiable);
             }
