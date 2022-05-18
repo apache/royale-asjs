@@ -2898,7 +2898,9 @@ package mx.controls.sliderClasses
                 //this is a mouse event
                 keyInteraction = false;
                 var pt:Point = new Point(event.localX, event.localY);
-                var xM:Number = pt.x;
+                // Porting notes: xM transformation is necessary for rotated slider, not sure if this is a Royale bug in event.localX
+                var isHorizontal:Boolean = _direction == SliderDirection.HORIZONTAL;
+                var xM:Number = isHorizontal ? pt.x : (event.target as IUIBase).width - pt.y;
                 var minIndex:Number = 0;
                 var minDistance:Number = 10000000;
 
