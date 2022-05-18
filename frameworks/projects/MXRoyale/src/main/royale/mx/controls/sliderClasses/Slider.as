@@ -1537,8 +1537,6 @@ package mx.controls.sliderClasses
             {
                 innerSlider = new UIComponent();
                 UIComponent(innerSlider).tabChildren = true;
-                innerSlider.percentWidth = 100;
-                innerSlider.percentHeight = 100;
                 addChild(innerSlider);
             }
 
@@ -1548,8 +1546,6 @@ package mx.controls.sliderClasses
             if (!trackHitArea)
             {
                 trackHitArea = new UIComponent();
-                trackHitArea.percentWidth = 100;
-                trackHitArea.percentHeight = 100;
                 innerSlider.addChild(trackHitArea); // trackHitArea should always be on top
                 
                 trackHitArea.addEventListener(MouseEvent.MOUSE_DOWN,
@@ -1959,7 +1955,11 @@ package mx.controls.sliderClasses
             track.move(Math.round(trackLeftOffset), Math.round(trackY));
             track.setActualSize((isHorizontal ? unscaledWidth: unscaledHeight) - (trackLeftOffset * 2), track.height);
 
-            // Layout the thumbs' y positions.
+            // Not sure why this is not needed in flash... TODO
+            trackHitArea.move(track.x, track.y);
+            trackHitArea.setActualSize(track.width, track.height);
+
+                // Layout the thumbs' y positions.
             var thO:Number = getStyle("thumbOffset");
             var tY:Number = track.y +
                             (track.height - firstThumb.getExplicitOrMeasuredHeight()) / 2 + thO;
