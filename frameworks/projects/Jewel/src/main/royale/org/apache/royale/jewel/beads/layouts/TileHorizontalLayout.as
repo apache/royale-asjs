@@ -29,6 +29,8 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.OSUtils;
+	import org.apache.royale.utils.observeElementSize;
 
 	/**
 	 *  The TileHorizontalLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -74,6 +76,16 @@ package org.apache.royale.jewel.beads.layouts
 
 			hostComponent.replaceClass("tile");
 			hostComponent.dispatchEvent(new Event("layoutNeeded"));
+			
+			COMPILE::JS{
+				//OSUtils.getOS() == OSUtils.MAC_OS || OSUtils.getOS() == OSUtils.IOS_OS ??
+    			var isMac:Boolean = OSUtils.getOS() == OSUtils.MAC_OS;
+				if(!isMac)
+					observeElementSize(hostComponent.element, observedChangeSize);
+				else
+					// TODO - To be tested (scroll - mouseenter - ...?)
+                	hostComponent.element.addEventListener('mouseenter', observedChangeSize);                
+            }
 		}
 
 		private var _columnCount:int = -1;
@@ -267,6 +279,15 @@ package org.apache.royale.jewel.beads.layouts
             }
 		}
 
+		private var _oldScrollWidth:Number;
+		private function observedChangeSize(event:Event):void
+		{
+			COMPILE::JS{
+			    if(_oldScrollWidth != hostComponent.element.scrollWidth)
+				    updateLayout();
+            }
+		}
+
 		private function updateLayout():void
 		{
 			layout();
@@ -429,7 +450,13 @@ package org.apache.royale.jewel.beads.layouts
 				// trace("  -- calculate useWidth & useHeight");
 				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				var adjustedHostWidth:Number = Math.floor(host.width - borderMetrics.left - borderMetrics.right);
+				if (hostComponent.containsClass("scroll")){
+                    //Reserve some room for VScrollbar
+					_oldScrollWidth = hostComponent.element.scrollWidth;
+                    adjustedHostWidth -= _oldScrollWidth;
+				}
 				// trace(" - adjustedWidth", adjustedHostWidth);
+				
 				var adjustedHostHeight:Number = Math.floor(host.height - borderMetrics.top - borderMetrics.bottom);
 				// trace(" - adjustedHeight", adjustedHostHeight);
 
