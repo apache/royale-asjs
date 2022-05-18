@@ -18,14 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-	COMPILE::JS
-	{
-	import org.apache.royale.core.HTMLElementWrapper;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.jewel.beads.views.ComboBoxView;
-	}
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.jewel.beads.controls.ReadOnly;
+	import org.apache.royale.jewel.beads.controls.InputAndButtonControlReadOnly;
 	
 	/**
 	 *  The ComboBoxReadOnly bead class is a specialty ReadOnly bead that can be used to lock a Jewel ComboBox.
@@ -37,7 +30,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ComboBoxReadOnly extends ReadOnly
+	public class ComboBoxReadOnly extends InputAndButtonControlReadOnly
 	{
 		/**
 		 *  constructor.
@@ -50,44 +43,6 @@ package org.apache.royale.jewel.beads.controls.combobox
 		public function ComboBoxReadOnly()
 		{
 		}
-
-		COMPILE::JS
-		protected var lastTextInputElementTabVal:String = null;
-		COMPILE::JS
-		protected var lastButtonElementTabVal:String = null;
-
-		override protected function updateHost():void
-		{
-			COMPILE::JS
-			{
-			var view:ComboBoxView = (_strand as UIBase).view as ComboBoxView;
-
-			if (view) {
-				var pos:HTMLElement = (_strand as IUIBase).positioner;
-				
-				if(!initialized)
-				{
-					initialized = true;
-					lastElementTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
-					lastTextInputElementTabVal = view.textinput.element.getAttribute("tabindex");
-					lastButtonElementTabVal = view.button.element.getAttribute("tabindex");
-				}
-				
-                if(readOnly) {
-					setReadOnlyAndTabIndex(pos, true);
-					setReadOnlyAndTabIndex(view.textinput.positioner, true);
-					setReadOnlyAndTabIndex(view.textinput.element);
-					setReadOnlyAndTabIndex(view.button.positioner, true);
-					setReadOnlyAndTabIndex(view.button.element);
-				} else {
-					removeReadOnlyAndTabIndex(pos, true);
-					removeReadOnlyAndTabIndex(view.textinput.positioner, true);
-					removeReadOnlyAndTabIndex(view.textinput.element, false, lastTextInputElementTabVal);
-					removeReadOnlyAndTabIndex(view.button.positioner, true);
-					removeReadOnlyAndTabIndex(view.button.element, false, lastButtonElementTabVal);
-				}
-            }
-			}
-		}
+		
 	}
 }

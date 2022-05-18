@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.jewel.beads.views.IInputAndButtonView;
     
 	/**
 	 *  The IComboBoxView interface provides the protocol for any bead that
@@ -29,28 +29,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public interface IComboBoxView extends IBeadView
-	{
-		/**
-		 *  The sub-component used for the input area of the ComboBox.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function get textinput():Object;
-		
-		/**
-		 *  The sub-component used for the button to activate the pop-up.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		function get button():Object;
-		
+	public interface IComboBoxView extends IInputAndButtonView
+	{		
 		/**
 		 *  The component housing the selection list. The main component must be a placeholder
 		 *  that support responsiveness and holds a subcomponent that parents the list or other possible
