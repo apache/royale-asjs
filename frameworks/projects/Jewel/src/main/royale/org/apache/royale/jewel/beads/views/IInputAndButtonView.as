@@ -16,32 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.datefield
+package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.jewel.beads.controls.InputAndButtonControlDisabled;
-
+    import org.apache.royale.core.IBeadView;
+    
 	/**
-	 *  The DateFieldDisabled bead class is a specialty bead that can be used to disable a Jewel DateField control.
-	 *  This disables all the internal native controls.
-	 *
+	 *  The IInputAndButtonView interface provides the protocol for any bead that
+	 *  creates the visual parts for a control containing a input and a button.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.6
+	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldDisabled extends InputAndButtonControlDisabled
+	public interface IInputAndButtonView extends IBeadView
 	{
 		/**
-		 *  constructor.
+		 *  The sub-component used for the input area of the Control.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
+		 *  @productversion Royale 0.9.4
 		 */
-		public function DateFieldDisabled()
-		{
-		}
+		function get textinput():Object;
 		
+		/**
+		 *  The sub-component used for the button to activate the pop-up.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		function get button():Object;
 	}
 }

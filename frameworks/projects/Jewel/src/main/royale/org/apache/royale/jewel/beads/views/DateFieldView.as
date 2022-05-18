@@ -29,7 +29,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	}
 	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.jewel.beads.views.IInputAndButtonView;
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateFormatter;
 	import org.apache.royale.core.IFormatter;
@@ -63,7 +63,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldView extends BeadViewBase implements IBeadView
+	public class DateFieldView extends BeadViewBase implements IInputAndButtonView
 	{
 		/**
 		 *  constructor.
@@ -88,7 +88,14 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get menuButton():Button
+		public function get button():Object
+		{
+			return _button;
+		}
+		/**
+		 * deprecated
+		 */
+		public function get menuButton():Object
 		{
 			return _button;
 		}
@@ -101,7 +108,14 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get textInput():TextInput
+		public function get textinput():Object
+		{
+			return _textInput;
+		}
+		/**
+		 * deprecated
+		 */
+		public function get textInput():Object
 		{
 			return _textInput;
 		}
