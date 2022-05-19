@@ -86,6 +86,12 @@ package mx.controls.sliderClasses
 	
 		/**
 		 *  @private
+		 *  original x-position
+		 */
+		private var originalXPosition:Number;
+		
+		/**
+		 *  @private
 		 *  x-position offset.
 		 */
 		private var xOffset:Number;
@@ -370,7 +376,9 @@ package mx.controls.sliderClasses
 			{
 				// Store where the mouse is positioned
 				// relative to the thumb when first pressed.
-				xOffset = event.localX; 
+				var isHorizontal:Boolean = Slider(owner).direction == SliderDirection.HORIZONTAL;
+				xOffset = isHorizontal ? event.stageX : event.stageY; 
+				originalXPosition = xPosition;
 				
 				systemManager.addEventListener(
 					MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
@@ -409,10 +417,11 @@ package mx.controls.sliderClasses
 			if (enabled)
 			{
 				var pt:Point = new Point(event.stageX, event.stageY);
-				pt = Slider(owner).innerSlider.globalToLocal(pt);
 				
 				// Place the thumb in the correct position.
-				moveXPos(pt.x - xOffset + width / 2, false, true);
+				var isHorizontal:Boolean = Slider(owner).direction == SliderDirection.HORIZONTAL;
+				var movement:Number = isHorizontal ? pt.x - xOffset : xOffset - pt.y;
+				moveXPos(originalXPosition + movement, false, true);
 				
 				// Callback to the Slider to handle tooltips and update its value.
 				Slider(owner).onThumbMove(this);
