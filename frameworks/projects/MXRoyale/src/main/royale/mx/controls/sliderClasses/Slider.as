@@ -1531,6 +1531,9 @@ package mx.controls.sliderClasses
          */
         override protected function createChildren():void
         {
+            COMPILE::JS{
+                element.style.overflow='hidden'; //because of over-sized nested SVG rendering
+            }
             super.createChildren();
 
             if (!innerSlider)
