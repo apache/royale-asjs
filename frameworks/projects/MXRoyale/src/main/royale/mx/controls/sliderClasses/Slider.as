@@ -2325,7 +2325,10 @@ package mx.controls.sliderClasses
                         if (i == 0)
                             labelPos = Math.min(labelPos, availSpace / (numLabels > Number(1) ? Number(2) : Number(1)));
                         else if (i == (numLabels - 1))
+                        {
                             labelPos = Math.max(labelPos, curLabel.getExplicitOrMeasuredWidth() - availSpace / 2);
+                            labelPos++; // seems to be necessary to avoid overflow (rounding issue?)
+                        }
 
                         curLabel.move(left - labelPos,yPos);
                     }
