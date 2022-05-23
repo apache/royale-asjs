@@ -595,6 +595,12 @@ package mx.controls.sliderClasses
             updateDisplayList(w, h);
         }
         
+        override public function get measuredWidth():Number
+        {
+            measure();
+            return measuredMinWidth;
+        }
+
         override public function get measuredHeight():Number
         {
             measure();
@@ -1531,9 +1537,6 @@ package mx.controls.sliderClasses
          */
         override protected function createChildren():void
         {
-            COMPILE::JS{
-                element.style.overflow='hidden'; //because of over-sized nested SVG rendering
-            }
             super.createChildren();
 
             if (!innerSlider)
@@ -1977,20 +1980,21 @@ package mx.controls.sliderClasses
                                     currentThumb.getExplicitOrMeasuredHeight());
             }
 
-            var g:Graphics = trackHitArea.graphics;
+            // Porting notes: we've left out this rect as it was causing some sizing issues
+            // var g:Graphics = trackHitArea.graphics;
 
-            var tLength:Number = 0
-            if (_tickInterval > 0 || (_tickValues && _tickValues.length > 0))
-                tLength = getStyle("tickLength");
-            g.clear();      
-            g.beginFill(0,0);
-            var fullThumbHeight:Number = firstThumb.getExplicitOrMeasuredHeight();
-            var halfThumbHeight:Number = (!fullThumbHeight) ? 0 : (fullThumbHeight / 2);
-            g.drawRect(track.x, 
-                    track.y - halfThumbHeight - tLength, 
-                    track.width, 
-                    track.height + fullThumbHeight + tLength);
-            g.endFill();
+            // var tLength:Number = 0
+            // if (_tickInterval > 0 || (_tickValues && _tickValues.length > 0))
+            //     tLength = getStyle("tickLength");
+            // g.clear();      
+            // g.beginFill(0,0);
+            // var fullThumbHeight:Number = firstThumb.getExplicitOrMeasuredHeight();
+            // var halfThumbHeight:Number = (!fullThumbHeight) ? 0 : (fullThumbHeight / 2);
+            // g.drawRect(track.x, 
+            //         track.y - halfThumbHeight - tLength, 
+            //         track.width, 
+            //         track.height + fullThumbHeight + tLength);
+            // g.endFill();
 
             if (_direction != SliderDirection.HORIZONTAL)
                 innerSlider.y = unscaledHeight;
@@ -2254,15 +2258,12 @@ package mx.controls.sliderClasses
                 var positionIndex:int = 0;
                 var val:Number = usePositions ? _tickValues[positionIndex++] : minimum;
                 
+                var isHorizontal:Boolean = (direction == SliderDirection.HORIZONTAL);
+                ticks.y = Math.round(track.y + tOffset - tLength);
+                ticks.height = isHorizontal ? height - ticks.y : width - ticks.y;
+                ticks.width = isHorizontal ? width : height;
                 g.clear();
-                COMPILE::JS
-                {
-                    // clear sets width and height according to containing element, but these values can be skewed because of rotation
-                    var svg:Element = ticks.element.getElementsByTagName('svg')[0] as Element;
-                    svg.removeAttribute("width");
-                    svg.removeAttribute("height");
-                }
-                
+
                 if (_tickInterval > 0 || usePositions)
                 {
                     g.lineStyle(tickWidth,tColor,100);
@@ -2285,7 +2286,6 @@ package mx.controls.sliderClasses
                         g.endStroke();
                     }
 
-                    ticks.y = Math.round(track.y + tOffset - tLength);
                 }
             }
         }
