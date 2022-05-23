@@ -2105,6 +2105,13 @@ package mx.controls.sliderClasses
                 thumb.thumbIndex = i;
                 thumb.visible = true;
                 thumb.enabled = enabled;
+                // default styles
+                thumb.height = 16;
+                thumb.width = 16;
+                COMPILE::JS
+                {
+                    thumb.element.style.borderRadius = "50%";
+                }
     //porting notes, removed this missing assignments, @todo review:
             /* thumb.upSkinName = "thumbUpSkin";
                 thumb.downSkinName = "thumbDownSkin";
