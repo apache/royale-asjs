@@ -772,6 +772,18 @@ public class Label extends UIComponent
 		super.addedToParent();
 		model.addEventListener("textChange", repeaterListener);
 		model.addEventListener("htmlChange", repeaterListener);
+		//@todo check the following for swf:
+		//truncateToFit = _truncateToFit;
+	}
+
+	/**
+	 *  @private
+	 */
+	COMPILE::JS
+	override public function addedToParent():void
+	{
+		super.addedToParent();
+		truncateToFit = _truncateToFit;
 	}
 
 	/**
@@ -916,11 +928,6 @@ public class Label extends UIComponent
         _truncateToFit = value;
     }
 
-    override public function addedToParent():void
-    {
-        super.addedToParent();
-        truncateToFit = _truncateToFit;
-    }
 
 
     //--------------------------------------------------------------------------
