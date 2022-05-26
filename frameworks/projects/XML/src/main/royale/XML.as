@@ -2464,6 +2464,8 @@ package
 		 * @param value
 		 * @return
 		 *
+		 * @royaleignorecoercion XML
+		 *
 		 */
 		public function replace(propertyName:Object, value:*):*
 		{
@@ -2502,8 +2504,30 @@ package
 				replaceChildAt(idx, value);
 				return this; //to step 4 above
 			}
-			//@todo step 5+ above...
-			return null;
+			var n:QName = toXMLName(propertyName); //step 5 above
+			var i:int = -1; // step 6, using -1 instead of undefined
+			var k:uint = childrenLength() - 1;
+			var replaceChild:XML = null;
+			for (;k > -1;k--) { //step 7
+				var childK:XML = (_children[k] as XML);
+				if ( //step 7a
+					((n.localName == "*" ) || ((childK.getNodeRef() == ELEMENT) && (childK.localName() == n.localName)))
+						&& ((n.uri == null) || ((childK.getNodeRef() == ELEMENT) && (childK.name().uri == n.uri)))
+				){
+					if (i != -1) {
+						deleteChildAt(i); //step 7a.i
+						xml$_notify("nodeRemoved", this, replaceChild, null);
+					}
+					i = k;//step 7a.ii
+					replaceChild = childK;
+				}
+			}
+			if (i == -1) return this; //step 8, using -1 instead of undefined
+			_internalSuppressNotify = true;
+			replaceChildAt(i, value);
+			_internalSuppressNotify = false;
+			xml$_notify( "nodeChanged" , this, _children[i], replaceChild);
+			return this;
 		}
 		
 		/**
@@ -2869,6 +2893,7 @@ package
 					childIdx = chldrn[0].childIndex();
 				
 				len = chldrn.length() -1;
+				var origFirstChild:XML = null;
 				_internalSuppressNotify = true;
 				for (i= len; i >= 0;  i--)
 				{
@@ -2883,6 +2908,8 @@ package
 						_internalSuppressNotify = false;
 						xml$_notify("nodeRemoved", this, chldrn[i], null);
 						_internalSuppressNotify = true;
+					} else {
+						origFirstChild = chldrn[i];
 					}
 				}
 				_internalSuppressNotify = false;
@@ -2908,7 +2935,11 @@ package
 				}
 				_internalSuppressNotify = false;
 				// legacy behavior is to send first child only, but with post-everything-added "this"
-				if (len > 0) xml$_notify("nodeAdded", this, firstChild, null);
+				//if (len > 0) xml$_notify("nodeAdded", this, firstChild, null);
+
+				if (len > 0) {
+					xml$_notify(origFirstChild ? "nodeChanged" : "nodeAdded", this, firstChild, origFirstChild);
+				}
 			}
 			
 			return this;
