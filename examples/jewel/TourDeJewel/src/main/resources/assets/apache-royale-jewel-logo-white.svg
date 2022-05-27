@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 230 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g>
+        <path d="M74.504,161.569C74.504,162.951 74.327,164.356 73.974,165.783C73.621,167.21 73.129,168.593 72.497,169.931C71.866,171.268 71.107,172.519 70.222,173.683C69.337,174.846 68.362,175.861 67.298,176.726L65.001,175.339C65.597,174.523 66.119,173.598 66.567,172.564C67.015,171.529 67.388,170.455 67.686,169.341C67.984,168.227 68.208,167.108 68.357,165.985C68.506,164.861 68.581,163.792 68.581,162.777L68.581,146.829L74.504,146.829L74.504,161.569Z" style="fill:rgb(254,255,254);fill-rule:nonzero;"/>
+        <path d="M94.688,168.312L79.263,168.312L79.263,146.829L94.688,146.829L94.688,149.574L85.185,149.574L85.185,156.213L92.525,156.213L92.525,158.943L85.185,158.943L85.185,165.567L94.688,165.567L94.688,168.312Z" style="fill:rgb(254,255,254);fill-rule:nonzero;"/>
+        <path d="M107.847,168.312L102.431,168.312L96.792,146.829L102.834,146.829L106.399,162.076L109.562,146.829L114.993,146.829L118.454,162.464L122.347,146.829L126.002,146.829L119.752,168.312L114.321,168.312L111.293,154.587L107.847,168.312Z" style="fill:rgb(254,255,254);fill-rule:nonzero;"/>
+        <path d="M144.472,168.312L129.046,168.312L129.046,146.829L144.472,146.829L144.472,149.574L134.968,149.574L134.968,156.213L142.308,156.213L142.308,158.943L134.968,158.943L134.968,165.567L144.472,165.567L144.472,168.312Z" style="fill:rgb(254,255,254);fill-rule:nonzero;"/>
+        <path d="M163.567,168.312L148.141,168.312L148.141,146.829L154.064,146.829L154.064,165.582L163.567,165.582L163.567,168.312Z" style="fill:rgb(254,255,254);fill-rule:nonzero;"/>
+    </g>
+    <g>
+        <path d="M115.101,139.018L44.011,41.286L93.015,9.103L137.133,8.982L185.989,41.338L115.101,139.018ZM64.89,44.946L99.829,21.877L129.748,21.883L164.791,44.998L114.695,113.46L64.89,44.946Z" style="fill:rgb(254,255,254);"/>
+    </g>
+</svg>
