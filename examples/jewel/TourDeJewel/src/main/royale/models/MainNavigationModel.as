@@ -46,7 +46,9 @@ package models
             new NavigationLinkVO("Snackbar", "snackbar_panel", MaterialIconType.VIDEO_LABEL),
             new NavigationLinkVO("Text", "text_panel", MaterialIconType.SUBJECT),
             new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS),
-			new NavigationLinkVO("List with ArrayListView", "advanced_list_panel", MaterialIconType.LIST_ALT)
+			new NavigationLinkVO("List with ArrayListView", "advanced_list_panel", MaterialIconType.LIST_ALT),
+            new NavigationLinkVO("VideoPlayer", "videoplayer_panel", MaterialIconType.VIDEO_LIBRARY),
+            new NavigationLinkVO("AudioPlayer", "audioplayer_panel", MaterialIconType.AUDIOTRACK)
             // new NavigationLinkVO("Menu", "menus_panel"),
             // new NavigationLinkVO("Loading", "loading_panel")
         ]);
