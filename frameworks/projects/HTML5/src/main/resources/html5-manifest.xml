@@ -26,5 +26,8 @@
 	<component id="ComboBox" class="org.apache.royale.html5.ComboBox" />
 	<component id="TransformBead" class="org.apache.royale.html5.TransformBead" />
 	<component id="DateField" class="org.apache.royale.html5.DateField" />
+	<component id="MediaElement" class="org.apache.royale.html5.MediaElement" />
+	<component id="VideoElement" class="org.apache.royale.html5.VideoElement" />
+	<component id="AudioElement" class="org.apache.royale.html5.AudioElement" />
 
 </componentPackage>

@@ -288,6 +288,9 @@
 
     <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
 
+    <component id="AudioPlayer" class="org.apache.royale.jewel.AudioPlayer"/>
+    <component id="VideoPlayer" class="org.apache.royale.jewel.VideoPlayer"/>
+    
     <!-- Deprecated - - - to remove -->
 
     <component id="Paddings" class="org.apache.royale.html.beads.layouts.Paddings" lookupOnly="true"/>

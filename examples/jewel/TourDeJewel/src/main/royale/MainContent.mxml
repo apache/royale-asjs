@@ -388,6 +388,8 @@ limitations under the License.
         <local:AdvancedListPlayGround name="advanced_list_panel"/>
         <local:VirtualListsPlayGround name="virtual_lists_panel"/>
         <local:ProgressLoaderPlayGround name="progressloader_panel"/>
+        <local:VideoPlayerPlayGround name="videoplayer_panel"/>
+        <local:AudioPlayerPlayGround name="audioplayer_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->
