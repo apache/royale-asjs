@@ -62,6 +62,7 @@
             <path-element>../../../../../libs/CollectionsJS.swc</path-element>
             <path-element>../../../../../libs/BasicJS.swc</path-element>
             <path-element>../../../../../libs/HTMLJS.swc</path-element>
+            <path-element>../../../../../libs/HTML5JS.swc</path-element>
             <path-element>../../../../../libs/FormattersJS.swc</path-element>
         </external-library-path>
         
