@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.html5.VideoElement;
 	import org.apache.royale.core.StyledUIBase;
 
     COMPILE::JS
     {
+	import org.apache.royale.html5.VideoElement;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
@@ -36,6 +36,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 0.0
 	 *  @productversion Royale 0.0
 	 */
+    COMPILE::JS
 	public class VideoPlayer extends VideoElement 
 	{
 
@@ -73,15 +74,12 @@ package org.apache.royale.jewel
 		[Inspectable(category="General",enumeration="letterbox,zoom,strech")]
 		public function set scaleMode(value:String):void
 		{
-			COMPILE::JS{
-				if (_scaleMode == value) return;
+			if (_scaleMode == value) return;
 
-				replaceClass(_scaleMode,value);
-				_scaleMode = value;
-			}
+			replaceClass(_scaleMode,value);
+			_scaleMode = value;
 		}
 
-		COMPILE::JS
 		public function get scaleMode():String
 		{
 			return _scaleMode;
@@ -97,4 +95,6 @@ package org.apache.royale.jewel
 */
         
 	}
+    COMPILE::SWF
+	public class VideoPlayer {}
 }

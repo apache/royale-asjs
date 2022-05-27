@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.html5.AudioElement;
+	COMPILE::JS{		
+		import org.apache.royale.html5.AudioElement;
+	}
 
 
 	/**
@@ -30,6 +32,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 0.0
 	 *  @productversion Royale 0.0
 	 */
+	COMPILE::JS
 	public class AudioPlayer extends AudioElement 
 	{
 
@@ -56,4 +59,7 @@ package org.apache.royale.jewel
 */
         
 	}
+
+	COMPILE::SWF	
+	public class AudioPlayer{}
 }
