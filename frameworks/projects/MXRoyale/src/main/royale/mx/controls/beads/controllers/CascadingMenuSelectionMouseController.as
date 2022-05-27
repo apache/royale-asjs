@@ -79,17 +79,12 @@ package mx.controls.beads.controllers
 			}
 		}
 
-		override protected function selectedHandler(event:ItemClickedEvent):void
+		private function populateMenuEvent(menuEvent:MenuEvent, itemClickedEvent:ItemClickedEvent):void
 		{
-			super.selectedHandler(event);
-			if (event.target is IFoldable && (event.target as IFoldable).canUnfold)
-			{
-				return; // this is not selection, but rather a folding action
-			}
-			var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
-			var data:Object = event.target.data;
+			var data:Object = itemClickedEvent.target.data;
 			menuEvent.item = data;
 			var menu:IMenu = _strand as IMenu;
+			menuEvent.menu = menu;
 			var label:String;
 			if (data is XML)
 			{
@@ -100,7 +95,18 @@ package mx.controls.beads.controllers
 				label = data[menu.labelField];
 			}
 			menuEvent.label = label;
-			menuEvent.index = event.index;
+			menuEvent.index = itemClickedEvent.index;
+		}
+
+		override protected function selectedHandler(event:ItemClickedEvent):void
+		{
+			super.selectedHandler(event);
+			if (event.target is IFoldable && (event.target as IFoldable).canUnfold)
+			{
+				return; // this is not selection, but rather a folding action
+			}
+			var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
+			populateMenuEvent(menuEvent, event);
 			findMenuDispatcher().dispatchEvent(menuEvent);
 		}
 
@@ -143,6 +149,13 @@ package mx.controls.beads.controllers
 			} else {
 				return super.getMenuWithDataProvider(menuList, dp);
 			}
+		}
+
+		override protected function sendChangeEvent(menuDispatcer:IEventDispatcher, itemClickedEvent:ItemClickedEvent):void
+		{
+			var menuEvent:MenuEvent = new MenuEvent(Event.CHANGE);
+			populateMenuEvent(menuEvent, itemClickedEvent);
+			menuDispatcer.dispatchEvent(menuEvent);
 		}
 
 		override protected function getParentMenuBar():IEventDispatcher

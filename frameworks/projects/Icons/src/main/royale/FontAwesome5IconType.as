@@ -279,6 +279,7 @@ package
  		public static const FILE:String = "file";
  		public static const FILE_ARCHIVE:String = "file-archive";
  		public static const FILE_AUDIO:String = "file-audio";
+ 		public static const FILE_CERTIFICATE:String = "file-certificate";
  		public static const FILE_CODE:String = "file-code";
  		public static const FILE_EXCEL:String = "file-excel";
  		public static const FILE_IMAGE:String = "file-image";

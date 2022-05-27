@@ -1204,8 +1204,7 @@ public class UIComponent extends UIBase
 	{
 	   	_rotation = value;
         element.style.transform = computeTransformString();
-        element.style["transform-origin-x"] = "0px";
-        element.style["transform-origin-y"] = "0px";
+        element.style["transform-origin"] = "0 0";
 	}
 	
     COMPILE::JS
@@ -4503,7 +4502,7 @@ COMPILE::JS
      */
     COMPILE::SWF
     {
-        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent")]
+        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent:mx.events.FocusEvent")]
         override public function dispatchEvent(event:Event):Boolean {
             //trap the layout requests and ignore them if we have deferred layout
             if (event.type == "layoutNeeded") {

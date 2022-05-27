@@ -21,6 +21,7 @@ package mx.messaging.events
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 import mx.messaging.messages.IMessage;
 import mx.core.mx_internal;
 
@@ -221,9 +222,7 @@ public class MessageEvent extends Event
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    [SWFOverride(returns="flash.events.Event")]
-    COMPILE::SWF { override }
-    public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new MessageEvent(type, bubbles, cancelable, message);
     }

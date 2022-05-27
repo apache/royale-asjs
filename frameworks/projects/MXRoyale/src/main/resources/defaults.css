@@ -362,7 +362,7 @@ MenuBar {
 	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");			
 	IBeadController: ClassReference("mx.controls.beads.controllers.MenuBarMouseController");
 	IMenuFactory: ClassReference("mx.controls.menuClasses.CascadingMenuFactory");
-	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.menuClasses.MenuDataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
@@ -391,6 +391,8 @@ Menu {
 	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
 	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IListPresentationModel: ClassReference("org.apache.royale.html.beads.models.ListPresentationModel");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	
 	position: absolute;
 	background-color: white;
@@ -532,6 +534,36 @@ TabNavigator
 	verticalGap: 0;	
 	background-color: #FFFFFF;
 }
+
+Slider
+{
+	dataTipOffset: 16;
+	dataTipPrecision: 2;
+	labelOffset: -10;
+	showTrackHighlight: false;
+	slideDuration: 300;
+/*	thumbDisabledSkin: null
+	thumbDownSkin: null */
+	thumbOffset: 0;
+/*	thumbOverSkin: null */
+/*	thumbUpSkin: null */
+	tickColor: #6F7777;
+	tickOffset: -6;
+	tickThickness: 1;
+}
+
+HSlider
+{
+	dataTipPlacement: "top";
+	tickLength: 4;
+}
+
+VSlider
+{
+	dataTipPlacement: "left";
+	tickLength: 4;
+}
+
 
 .TabNavigatorContent
 {

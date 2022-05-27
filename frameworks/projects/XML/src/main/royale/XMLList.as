@@ -618,11 +618,14 @@ package
 		{
 			if (list === undefined && _xmlArray.length == 0) return true;
 			if (list instanceof XMLList) {
-				var l:uint = _xmlArray.length;
-				if ((list as XMLList)._xmlArray.length != l) return false;
+				if (list !== this) {
+					var l:uint = _xmlArray.length;
+					var other:Array = (list as XMLList)._xmlArray;
+					if (other.length != l) return false;
 
-				for (var i:uint=0;i<l;i++) {
-					if (!((_xmlArray[i] as XML).equals((list as XMLList)._xmlArray[i] as XML))) return false;
+					for (var i:uint=0;i<l;i++) {
+						if (!((_xmlArray[i] as XML).equals(other[i] as XML))) return false;
+					}
 				}
 				return true;
 			}

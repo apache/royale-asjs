@@ -16,32 +16,43 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.datefield
+package org.apache.royale.debugging
 {
-	import org.apache.royale.jewel.beads.controls.InputAndButtonControlDisabled;
 
-	/**
-	 *  The DateFieldDisabled bead class is a specialty bead that can be used to disable a Jewel DateField control.
-	 *  This disables all the internal native controls.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.6
-	 */
-	public class DateFieldDisabled extends InputAndButtonControlDisabled
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
-		 */
-		public function DateFieldDisabled()
-		{
-		}
-		
-	}
+    /**
+     * If this method has been called with forObject previously, this method returns true, otherwise if this is the first time,
+     * it returns false
+     */
+    public function alreadyRecorded(forObject:Object):Boolean
+    {
+        var recorded:Boolean = true;
+        COMPILE::SWF
+        {
+             if (!map[forObject])  {
+                 map[forObject] = true;
+                 recorded = false;
+             }
+        }
+        COMPILE::JS
+        {
+           if (!map.has(forObject)) {
+               map.set(forObject, true);
+               recorded = false;
+           }
+        }
+
+        return recorded;
+    }
 }
+
+COMPILE::SWF{
+    import flash.utils.Dictionary;
+}
+
+
+COMPILE::JS
+var map:WeakMap = new WeakMap();
+
+
+COMPILE::SWF
+var map:Dictionary = new Dictionary(true)

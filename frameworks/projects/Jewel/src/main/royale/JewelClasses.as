@@ -64,6 +64,7 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.beads.controllers.WizardController; WizardController;
 
         import org.apache.royale.jewel.beads.views.PopUpView; PopUpView;
+        import org.apache.royale.jewel.beads.views.IInputAndButtonView; IInputAndButtonView;
         import org.apache.royale.jewel.beads.views.ImageView; ImageView;
         import org.apache.royale.jewel.beads.views.SpinnerView; SpinnerView;
         import org.apache.royale.jewel.beads.views.NumericStepperView; NumericStepperView;

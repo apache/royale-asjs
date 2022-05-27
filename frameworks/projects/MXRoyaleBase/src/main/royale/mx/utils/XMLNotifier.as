@@ -20,13 +20,9 @@
 package mx.utils
 {
 
-//import org.apache.royale.utils.ObjectMap;
+import org.apache.royale.utils.ObjectMap;
 import mx.core.mx_internal;
 import mx.utils.IXMLNotifiable;
-
-COMPILE::SWF{
-    import flash.utils.Dictionary;
-}
 
 use namespace mx_internal;
 
@@ -102,32 +98,13 @@ public class XMLNotifier
             {
                 callee = notificationFunction;
             }
-            //var xmlWatchers:ObjectMap = callee["watched"];
-
-            COMPILE::SWF{
-                var xmlWatchers:Dictionary = callee["watched"];
-                for (var notifiable:Object in xmlWatchers) {
+            var xmlWatchers:ObjectMap = callee["watched"];
+            if (xmlWatchers != null)
+            {
+                xmlWatchers.forEach( function(truevalue:Object,notifiable:Object,map:Object):void {
                     IXMLNotifiable(notifiable).xmlNotification(currentTarget, ty, tar, value, detail);
-                }
+                } );
             }
-
-            COMPILE::JS{
-                var xmlWatchers:Map = callee["watched"];
-                if (xmlWatchers != null)
-                {
-                    var collected:Array = [];
-                    //note, if we don't collect these first and try to iterate directly, then there can be the case that iterating is infinite if the function caLL also somehow affects the xmlWatchers Map:
-                    xmlWatchers.forEach( function(truevalue:Object,notifiable:Object,map:Object):void {
-                        collected.push(notifiable);
-                    } );
-
-                    while(collected.length){
-                        IXMLNotifiable(collected.shift()).xmlNotification(currentTarget, ty, tar, value, detail);
-                    }
-                }
-            }
-
-
         }
 
         return notificationFunction;
@@ -175,12 +152,14 @@ public class XMLNotifier
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
+     *  @royaleignorecoercion XMLList
      */
     public function watchXML(xml:Object, notifiable:IXMLNotifiable, uid:String = null):void
     {
         if ((xml is XMLList) && xml.length() > 1)
         {
-            for each(var item:Object in xml)
+            for each(var item:Object in (xml as XMLList))
             {
                 watchXML(item, notifiable, uid);
             }
@@ -204,25 +183,13 @@ public class XMLNotifier
             }
 
             // Watch lists are maintained on the notification function.
-            if (watcherFunction["watched"] == undefined) {
-               // watcherFunction["watched"] = xmlWatchers = new ObjectMap(true,true);
-                COMPILE::SWF{
-                    var xmlWatchers:Dictionary = watcherFunction["watched"] = new Dictionary();
-                }
-
-                COMPILE::JS{
-                    var xmlWatchers:Map= watcherFunction["watched"] = new Map();
-                }
-            }
+            var xmlWatchers:ObjectMap;
+            if (watcherFunction["watched"] == undefined)
+                watcherFunction["watched"] = xmlWatchers = new ObjectMap(true,true);
             else
                 xmlWatchers = watcherFunction["watched"];
 
-            COMPILE::SWF{
-                xmlWatchers[notifiable]=true;
-            }
-            COMPILE::JS{
-                xmlWatchers.set(notifiable, true);
-            }
+            xmlWatchers.set(notifiable, true);
         }
     }
 
@@ -236,12 +203,14 @@ public class XMLNotifier
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
+     *  @royaleignorecoercion XMLList
      */
     public function unwatchXML(xml:Object, notifiable:IXMLNotifiable):void
     {
         if ((xml is XMLList) && xml.length() > 1)
         {
-            for each(var item:Object in xml)
+            for each(var item:Object in (xml as XMLList))
             {
                 unwatchXML(item, notifiable);
             }
@@ -258,24 +227,12 @@ public class XMLNotifier
             if (!(watcherFunction is Function))
                 return;
 
-            COMPILE::SWF{
-                var xmlWatchers:Dictionary;
-            }
-
-            COMPILE::JS{
-                var xmlWatchers:Map;
-            }
+            var xmlWatchers:ObjectMap;
 
             if (watcherFunction["watched"] != undefined)
             {
                 xmlWatchers = watcherFunction["watched"];
-                COMPILE::SWF{
-                    delete xmlWatchers[notifiable];
-                }
-                COMPILE::JS{
-                    xmlWatchers.delete(notifiable);
-                }
-
+                xmlWatchers.delete(notifiable);
             }           
         }
     }

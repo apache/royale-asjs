@@ -54,7 +54,7 @@ package mx.controls.beads.models
 		{
 		}
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -140,7 +140,7 @@ package mx.controls.beads.models
         
 		private var _selectedIndex:int = -1;
 		private var _rollOverIndex:int = -1;
-		private var _labelField:String = null;
+		private var _labelField:String = 'label'; //this is the mx default
 
         /**
          *  @copy org.apache.royale.core.ISelectionModel#labelField

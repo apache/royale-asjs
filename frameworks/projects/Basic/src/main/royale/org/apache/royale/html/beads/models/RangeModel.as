@@ -186,6 +186,7 @@ package org.apache.royale.html.beads.models
 		
 		public function set value(newValue:Number):void
 		{
+			if (isNaN(newValue)) newValue = 0; //we don't want NaN in the model/UI etc, this is consistent with how Flex did it in the NumericStepper
 			if (newValue != _value)
 			{
 				// value must lie within the boundaries of minimum & maximum

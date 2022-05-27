@@ -181,6 +181,7 @@
     <component id="PasswordInputRemovableBead" class="org.apache.royale.html.accessories.PasswordInputRemovableBead" />
     <component id="TextPromptBead" class="org.apache.royale.html.accessories.TextPromptBead" />
     <component id="EllipsisOverflow" class="org.apache.royale.html.beads.EllipsisOverflow" />
+    <component id="ReversibleEllipsisOverflow" class="org.apache.royale.html.beads.ReversibleEllipsisOverflow" />
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />

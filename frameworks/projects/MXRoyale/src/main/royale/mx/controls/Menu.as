@@ -100,6 +100,14 @@ package mx.controls
 	import org.apache.royale.html.util.getModelByType;
 	import org.apache.royale.core.ICascadingMenuModel;
 	import org.apache.royale.core.IStrandWithPresentationModel;
+	COMPILE::SWF
+	{
+		import mx.managers.SystemManager;
+		import org.apache.royale.core.IItemRendererOwnerView;
+		import org.apache.royale.core.IParent;
+		import org.apache.royale.core.IChild;
+		import org.apache.royale.utils.UIUtils;
+	}
 	
 	use namespace mx_internal;
 	
@@ -1657,7 +1665,10 @@ package mx.controls
 			
 			if (parentDisplayObject && (!this.parent /* || !parent.contains(parentDisplayObject)*/))
 			{
-				PopUpManager.addPopUp(this, parentDisplayObject, false);
+				COMPILE::JS
+				{
+					PopUpManager.addPopUp(this, parentDisplayObject, false);
+				}
 				//addEventListener(MenuEvent.MENU_HIDE, menuHideHandler, false, EventPriority.DEFAULT_HANDLER);
 				MenuModel.menuList.push(this);
 			}
@@ -1706,7 +1717,31 @@ package mx.controls
 			// before we try to set the size for its mask
 			UIComponentGlobals.layoutManager.validateClient(this, true);
 			*/
-			setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+			COMPILE::JS
+			{
+				setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+			}
+			COMPILE::SWF
+			{
+				var sm:SystemManager = (FlexGlobals.topLevelApplication as IChild).parent as SystemManager;
+				sm.addChild(this);
+				var ro:IItemRendererOwnerView = (this.view as IItemRendererOwnerView);
+				var mw:Number = 10;
+				var mh:Number = 10;
+				for (var i:int = 0; i < ro.numItemRenderers; i++)
+				{
+					mw += (ro.getItemRendererForIndex(i) as IUIBase).width;
+					mh += (ro.getItemRendererForIndex(i) as IUIBase).height;
+				}
+				width = mw;
+				height = mh;
+				// Position it
+				if (/*xShow !== null && */!isNaN(Number(xShow)))
+					x = Number(xShow);
+				if (/*yShow !== null && */!isNaN(Number(yShow)))
+					y = Number(yShow);
+			}
+
 			/*
 			cacheAsBitmap = true;
 			

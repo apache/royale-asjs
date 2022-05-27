@@ -57,8 +57,6 @@ package org.apache.royale.html.beads
 		{
 			_strand = value;
 			super.strand = value;
-			
-			host.addEventListener("beadsAdded", beadsAddedHandler);
 		}
 		
         /**

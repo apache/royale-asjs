@@ -224,6 +224,7 @@
 
     <component id="DownloadButton" class="mx.controls.DownloadButton"/>
     <component id="HSlider" class="mx.controls.HSlider"/>
+    <component id="VSlider" class="mx.controls.VSlider"/>
     <component id="Slider" class="mx.controls.sliderClasses.Slider"/>
     <component id="HorizontalList" class="mx.controls.HorizontalList"/>
     <component id="AddChild" class="mx.states.AddChild"/>

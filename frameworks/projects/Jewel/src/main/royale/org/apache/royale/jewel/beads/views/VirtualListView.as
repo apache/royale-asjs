@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	COMPILE::JS
+    {
+	import org.apache.royale.core.IStyledUIBase;
+	}
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IRollOverModel;
@@ -27,6 +32,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.VirtualDataContainerView;
 	import org.apache.royale.utils.getSelectionRenderBead;
 	import org.apache.royale.html.util.getModelByType;
+    import org.apache.royale.events.utils.NavigationKeys;
+	import org.apache.royale.events.KeyboardEvent;
 		
 	/**
 	 *  The VirtualListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -50,6 +57,51 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.10
+		 */
+		override public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			super.strand = value;
+
+			COMPILE::JS
+    		{
+			(_strand as IStyledUIBase).addEventListener(KeyboardEvent.KEY_UP, handleKeyUp);
+			}
+		}
+		
+		private function handleKeyUp(event:KeyboardEvent):void
+        {
+            if (event.key == NavigationKeys.LEFT || event.key == NavigationKeys.UP)
+                navigate(false);
+            else if (event.key == NavigationKeys.RIGHT || event.key == NavigationKeys.DOWN)
+                navigate(true);
+        }
+        
+		/**
+		 * @private
+		 * Navigate to next or previous index position by code
+		 */
+        private function navigate(next:Boolean):void
+        {            
+            var selectionBead:ISelectableItemRenderer;
+			var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex + (next ? 1 : -1));
+			if (ir) 
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = false;
+			}
+			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex + (next ? 1 : -1)) as IItemRenderer;
+            ir.dispatchEvent(new Event("click"));
+        }
+        
 		protected var listModel:ISelectionModel;
 
 		protected var lastSelectedIndex:int = -1;

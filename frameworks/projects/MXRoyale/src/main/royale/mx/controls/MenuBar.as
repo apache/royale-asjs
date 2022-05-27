@@ -48,6 +48,9 @@ import mx.managers.IFocusManagerComponent;
 import mx.styles.ISimpleStyleClient;
 import mx.styles.StyleProxy;
 import mx.controls.beads.models.MenuBarModel;
+import mx.controls.treeClasses.DefaultDataDescriptor;
+import mx.controls.menuClasses.IMenuDataDescriptor;
+
 
 import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IContainer;
@@ -87,7 +90,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="change", type="mx.events.MenuEvent")]
+[Event(name="change", type="mx.events.MenuEvent")]
 
 /**
  *  Dispatched when the user selects an item in a pop-up submenu.
@@ -528,6 +531,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
     //--------------------------------------------------------------------------
     //
     //  Overridden properties
+    //  Overridden properties
     //
     //--------------------------------------------------------------------------
     
@@ -605,10 +609,10 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
     /**
      *  @private
      */
-    /* mx_internal var _dataDescriptor:IMenuDataDescriptor =
+     mx_internal var _dataDescriptor:IMenuDataDescriptor =
         new DefaultDataDescriptor();
 
-    [Inspectable(category="Data")] */
+    [Inspectable(category="Data")]
 
     /**
      *  The object that accesses and manipulates data in the data provider. 
@@ -640,21 +644,21 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public function get dataDescriptor():IMenuDataDescriptor
+     public function get dataDescriptor():IMenuDataDescriptor
     {
         return IMenuDataDescriptor(_dataDescriptor);
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  public function set dataDescriptor(value:IMenuDataDescriptor):void
+     public function set dataDescriptor(value:IMenuDataDescriptor):void
     {
         _dataDescriptor = value;
         
         //force all the menus to be re-created with the new dataDescriptor
         menus = [];
-    } */
+    }
     
     //----------------------------------
     //  dataProvider
@@ -699,36 +703,6 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
      */
     public function set dataProvider(value:Object):void
     {
-       if (value is Array)
-            {
-                value = new ArrayCollection(value as Array);
-            }
-            else if (value is ICollectionView)
-            {
-                value = ICollectionView(value);
-            }
-            else if (value is IList)
-            {
-                value = new ListCollectionView(IList(value));
-            }
-            else if (value is XMLList)
-            {
-                value = new XMLListCollection(value as XMLList);
-            }
-            else if (value is XML)
-            {
-                var xl:XMLList = new XMLList();
-                xl += value;
-                value = new XMLListCollection(xl);
-            }
-            else
-            {
-                // convert it to an array containing this one item
-                var tmp:Array = [];
-                if (value != null)
-                    tmp.push(value);
-                value = new ArrayCollection(tmp);
-            }
             (model as ISelectionModel).dataProvider = value;
             
             commitProperties();
@@ -755,10 +729,10 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public function get hasRoot():Boolean
+     public function get hasRoot():Boolean
     {
-        return _hasRoot;
-    } */
+        return (model as MenuBarModel).hasRoot;
+    }
 
     //----------------------------------
     //  iconField

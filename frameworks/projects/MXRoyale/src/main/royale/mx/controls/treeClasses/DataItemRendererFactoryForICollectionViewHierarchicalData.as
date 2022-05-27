@@ -24,6 +24,7 @@ package mx.controls.treeClasses
     import mx.collections.ListCollectionView;
     import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
+    import mx.events.PropertyChangeEvent;
 	
 	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
@@ -133,6 +134,19 @@ package mx.controls.treeClasses
                     removeEvent.item = event.items[0];
                     removeEvent.index = event.location;
                     itemRemovedHandler(removeEvent);
+                }
+                else if (event.kind == CollectionEventKind.UPDATE)
+                {
+                    var propertyChangeEvents:Array = event.items;
+                    var index:int;
+                    for each(var propertyChangeEvent:PropertyChangeEvent in propertyChangeEvents) {
+                        var data:Object = propertyChangeEvent.source;
+                        index = HierarchicalCollectionView(dp).getItemIndex(data);
+                        var updateEvent:org.apache.royale.events.CollectionEvent = new org.apache.royale.events.CollectionEvent(org.apache.royale.events.CollectionEvent.ITEM_UPDATED);
+                        updateEvent.item = data;
+                        updateEvent.index = index;
+                        this.itemUpdatedHandler(updateEvent);
+                    }
                 }
             }
         }

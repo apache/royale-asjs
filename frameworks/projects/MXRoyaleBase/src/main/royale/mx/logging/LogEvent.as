@@ -21,6 +21,7 @@ package mx.logging
 {
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IRoyaleEvent;
 
 /**
  *  Represents the log information for a single logging event.
@@ -222,9 +223,7 @@ public class LogEvent extends Event
     /**
 	 *  @private
      */
-    [SWFOverride(returns="flash.events.Event")]
-    COMPILE::SWF { override }
-    public function clone():Event
+    override public function cloneEvent():IRoyaleEvent
     {
         return new LogEvent(message, /*type,*/ level);
     }

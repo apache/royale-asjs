@@ -38,6 +38,7 @@ package flexUnitTests.xml
         public function setUp():void
         {
             settings = XML.settings();
+            XML.setSettings(XML.defaultSettings());
         }
         
         [After]
@@ -56,25 +57,79 @@ package flexUnitTests.xml
         {
         }
 
+        /**
+         *
+         * dev use for creating expected tracking sequences ([SWF] output as a reference)
+         */
+        private static function consoleOut(message:String, type:String = 'log', ...args):void
+        {
+            args.unshift(message + '\n');
+            COMPILE::JS {
+                args.unshift('[JS]');
+                console[type].apply(console, args);
+            }
+            COMPILE::SWF{
+                import flash.external.ExternalInterface;
+
+                if (ExternalInterface.available)
+                {
+                    try
+                    {
+                        args.unshift('[SWF]');
+                        const method:String = 'console.' + type + '.apply';
+                        ExternalInterface.call(method, null, args);
+                    } catch (e:Error)
+                    {
+                    }
+                }
+            }
+        }
+
+        /**
+         *
+         * dev use for creating expected tracking sequences ([SWF] output as a reference)
+         */
+        private function expectify(array:Array, message:String = null):String{
+            array = array.slice();
+            var l:uint = array.length;
+            for (var i:uint = 0; i<l;i++) {
+                var s:String =array[i];
+                s= "'" + s.split('\\n').join('\\\\n') + "'";
+                array[i] = s;
+            }
+            var out:String = '[\n'+array.join(',\n')+'\n]';
+            if (message) {
+                consoleOut(message);
+            }
+            consoleOut(out)
+            return out;
+        }
+
 
         private function isExpected(expected:Array):Boolean{
             if (!tracking) return false;
             if (expected.length != tracking.length) {
+                consoleOut('mismatch in length ');
+                consoleOut('expected len:'+expected.length);
+                consoleOut('got      len:'+tracking.length);
                 return false;
             }
             for (var i:uint=0;i<expected.length;i++){
                 if (expected[i] != tracking[i]) {
+                    consoleOut('mismatch at '+i);
+                    consoleOut('expected:'+expected[i]);
+                    consoleOut('got     :'+tracking[i]);
                     return false;
                 }
             }
             return true;
         }
 
-        private var tracking:Array;
 
-        public function trackChanges(currentTarget:Object, command:String, target:Object, value:Object, detail:Object, callee:Function = null):void{
+        private var tracking:Array;
+        private function trackChanges(currentTarget:Object, command:String, target:Object, value:Object, detail:Object):void{
             var trackingRecord:String=
-            "[ command="+command+", currentTarget="+currentTarget+", target="+target+", value="+value+", detail="+detail;
+                    "[ command="+command+", currentTarget="+currentTarget+", target="+target+", value="+stringifyValue(value)+", detail="+stringifyValue(detail);
             trackingRecord = trackingRecord.split('\n').join('\\n');
             const targetType:String = target!=null ? getQualifiedClassName(target) : '{'+target+'}';
             const targetIsCurrentTarget:String = (target === currentTarget) + '';
@@ -83,9 +138,45 @@ package flexUnitTests.xml
             tracking.push(trackingRecord)
         }
 
-        private function setNotifier(value:XML):void{
-            tracking=[];
+        private function stringifyValue(value:Object):String{
+            var ret:String;
+            if (value is XML) {
+                var xml:XML = XML(value);
+                var nodeKind:String = xml.nodeKind();
+                switch(nodeKind) {
+                    case 'element' :
+                        var val:String = xml.toXMLString();
+                        ret = '['+nodeKind+': '+val+']';
+                        break
+                    case 'attribute':
+                        ret =  '['+nodeKind+':'+xml.name()+'="'+xml.text()+'"]';
+                        break;
+                    case 'text':
+                        ret =  '['+nodeKind+':"'+xml.text().toString()+'"]';
+                        break;
+                    default:
+                        ret = '['+nodeKind+':{not stringified}]';
+                        break;
+                }
+            } else {
+                ret = value +'';
+            }
+            return ret;
+        }
+
+
+        private function setNotifier(value:XML, reset:Boolean=true):void{
+            if (reset) {
+                tracking=[];
+            }
             value.setNotification(trackChanges);
+        }
+
+        private function setChildrenNotifiers(value:Object):void{
+            var children:XMLList = value is XML ? XML(value).children() : value as XMLList;
+            for each(var child:XML in children) {
+                setNotifier(child, false);
+            }
         }
 
 
@@ -114,8 +205,10 @@ package flexUnitTests.xml
 
             var expected:Array = [
                 '[ command=textSet, currentTarget=test, target=test, value=test, detail=null, targetType=XML, targetIsCurrent:false, valueType=String]',
-                '[ command=nodeAdded, currentTarget=test, target=test, value=test, detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
+                '[ command=nodeAdded, currentTarget=test, target=test, value=[text:""], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
             ]
+
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
             
         }
@@ -126,9 +219,11 @@ package flexUnitTests.xml
             var xml:XML = <xml/>;
             setNotifier(xml);
             xml.appendChild(<test/>);
+
             var expected:Array = [
-                '[ command=nodeAdded, currentTarget=<xml>\\n  <test/>\\n</xml>, target=<xml>\\n  <test/>\\n</xml>, value=, detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
+                '[ command=nodeAdded, currentTarget=<xml>\\n  <test/>\\n</xml>, target=<xml>\\n  <test/>\\n</xml>, value=[element: <test/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
 
         }
@@ -146,15 +241,15 @@ package flexUnitTests.xml
             delete children[0];
 
             var expected:Array = [
-                '[ command=nodeRemoved, currentTarget=, target=, value=, detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
+                '[ command=nodeRemoved, currentTarget=, target=, value=[element: <child/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
 
         }
 
 
         [Test]
-        [Ignore] //ignored, because not yet working in JS
         public function testReplaceNode():void
         {
             var xml:XML = <xml><child1/><child2/></xml>;
@@ -164,11 +259,28 @@ package flexUnitTests.xml
 
             xml.replace('child1',childX);
 
-
             var expected:Array = [
-                '[ command=nodeChanged, currentTarget=<xml>\\n  <childX/>\\n  <child2/>\\n</xml>, target=<xml>\\n  <childX/>\\n  <child2/>\\n</xml>, value=, detail=, targetType=XML, targetIsCurrent:true, valueType=XML]'
+                '[ command=nodeChanged, currentTarget=<xml>\\n  <childX/>\\n  <child2/>\\n</xml>, target=<xml>\\n  <childX/>\\n  <child2/>\\n</xml>, value=[element: <childX/>], detail=[element: <child1/>], targetType=XML, targetIsCurrent:true, valueType=XML]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
+
+
+            xml = <xml><childA/><childB/><childA/><childB/><childA/><childB/></xml>;
+            childX = <childX/>;
+
+            setNotifier(xml);
+
+            xml.replace('childB',childX);
+
+            expected = [
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <childA/>\\n  <childB/>\\n  <childA/>\\n  <childB/>\\n  <childA/>\\n</xml>, target=<xml>\\n  <childA/>\\n  <childB/>\\n  <childA/>\\n  <childB/>\\n  <childA/>\\n</xml>, value=[element: <childB/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <childA/>\\n  <childB/>\\n  <childA/>\\n  <childA/>\\n</xml>, target=<xml>\\n  <childA/>\\n  <childB/>\\n  <childA/>\\n  <childA/>\\n</xml>, value=[element: <childB/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeChanged, currentTarget=<xml>\\n  <childA/>\\n  <childX/>\\n  <childA/>\\n  <childA/>\\n</xml>, target=<xml>\\n  <childA/>\\n  <childX/>\\n  <childA/>\\n  <childA/>\\n</xml>, value=[element: <childX/>], detail=[element: <childB/>], targetType=XML, targetIsCurrent:true, valueType=XML]'
+            ]
+           // expectify(tracking, 'testReplaceNode')
+            assertTrue(isExpected(expected), 'unexpected XML notifications');
+
         }
 
 
@@ -183,6 +295,7 @@ package flexUnitTests.xml
             var expected:Array = [
                 '[ command=namespaceSet, currentTarget=, target=, value=testuri, detail=null, targetType=XML, targetIsCurrent:true, valueType=Namespace]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
 
         }
@@ -196,9 +309,11 @@ package flexUnitTests.xml
 
             xml.@att = "testAtt";
 
+
             var expected:Array = [
                 '[ command=attributeAdded, currentTarget=, target=, value=att, detail=testAtt, targetType=XML, targetIsCurrent:true, valueType=String]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
             var att:XML = xml.@att[0];
             xml = <xml/>;
@@ -206,14 +321,15 @@ package flexUnitTests.xml
             xml.appendChild(att);
 
             expected = [
-                '[ command=textSet, currentTarget=testAtt, target=testAtt, value=testAtt, detail=null, targetType=XML, targetIsCurrent:false, valueType=String]' ,
-                '[ command=nodeAdded, currentTarget=testAtt, target=testAtt, value=testAtt, detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
+                '[ command=textSet, currentTarget=testAtt, target=testAtt, value=testAtt, detail=null, targetType=XML, targetIsCurrent:false, valueType=String]',
+                '[ command=nodeAdded, currentTarget=testAtt, target=testAtt, value=[text:""], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
             ]
+
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
             //reset the tracking:
             setNotifier(xml);
             xml.@something = att;
-
 
             expected = [
                 '[ command=attributeAdded, currentTarget=testAtt, target=testAtt, value=something, detail=testAtt, targetType=XML, targetIsCurrent:true, valueType=String]'
@@ -234,6 +350,7 @@ package flexUnitTests.xml
             var expected:Array = [
                 '[ command=attributeRemoved, currentTarget=, target=, value=test, detail=testAtt, targetType=XML, targetIsCurrent:true, valueType=String]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
 
 
@@ -243,6 +360,7 @@ package flexUnitTests.xml
             var attributes:XMLList = xml.attributes();
             delete attributes[0];
             //expect the same (ignore namespace)
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
 
         }
@@ -253,15 +371,13 @@ package flexUnitTests.xml
             var xml:XML = new XML('<xml test="testAtt"/>')
             setNotifier(xml);
 
-
             xml.@test = 'testAtt2';
-
 
             var expected:Array = [
                 '[ command=attributeChanged, currentTarget=, target=, value=test, detail=testAtt, targetType=XML, targetIsCurrent:true, valueType=String]'
             ]
-            assertTrue(isExpected(expected), 'unexpected XML notifications');
 
+            assertTrue(isExpected(expected), 'unexpected XML notifications');
 
         }
 
@@ -278,18 +394,84 @@ package flexUnitTests.xml
             var expected:Array = [
                 '[ command=nameSet, currentTarget=, target=, value=test, detail=xml, targetType=XML, targetIsCurrent:true, valueType=QName]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
 
             setNotifier(xml);
             xml.setName('test2');
+
             expected = [
                 '[ command=nameSet, currentTarget=, target=, value=test2, detail=test, targetType=XML, targetIsCurrent:true, valueType=String]'
             ]
+
             assertTrue(isExpected(expected), 'unexpected XML notifications');
         }
 
 
+        [Test]
+        public function testSetChildren():void
+        {
+            var xml:XML = <xml><one/><two/><three/></xml>;
 
-        
+            setNotifier(xml);
+            var alternateChildren:XMLList = XMLList("<childOne/><childTwo/><childThree/>");
+
+            xml.setChildren(alternateChildren);
+
+
+            var expected:Array = [
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <one/>\\n  <two/>\\n</xml>, target=<xml>\\n  <one/>\\n  <two/>\\n</xml>, value=[element: <three/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <one/>\\n</xml>, target=<xml>\\n  <one/>\\n</xml>, value=[element: <two/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeChanged, currentTarget=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, target=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, value=[element: <childOne/>], detail=[element: <one/>], targetType=XML, targetIsCurrent:true, valueType=XML]'
+            ]
+            assertTrue(isExpected(expected), 'unexpected XML notifications');
+
+            setNotifier(xml);
+            alternateChildren = new XMLList();
+            xml.setChildren(alternateChildren);
+
+            expected = [
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <childOne/>\\n  <childTwo/>\\n</xml>, target=<xml>\\n  <childOne/>\\n  <childTwo/>\\n</xml>, value=[element: <childThree/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <childOne/>\\n</xml>, target=<xml>\\n  <childOne/>\\n</xml>, value=[element: <childTwo/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
+            ]
+            assertTrue(isExpected(expected), 'unexpected XML notifications');
+            xml = <xml/>;
+            setNotifier(xml);
+            alternateChildren = XMLList("<childOne/><childTwo/><childThree/>");
+            xml.setChildren(alternateChildren);
+            expected = [
+                '[ command=nodeAdded, currentTarget=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, target=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, value=[element: <childOne/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]'
+            ]
+            assertTrue(isExpected(expected), 'unexpected XML notifications');
+            xml = <xml><one>some text</one></xml>;
+            setNotifier(xml);
+            alternateChildren = XMLList("<childOne/><childTwo/><childThree/>");
+            xml.setChildren(alternateChildren);
+            expected = [
+                '[ command=nodeChanged, currentTarget=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, target=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, value=[element: <childOne/>], detail=[element: <one>some text</one>], targetType=XML, targetIsCurrent:true, valueType=XML]'
+            ]
+            assertTrue(isExpected(expected), 'unexpected XML notifications');
+
+            //check what the children do (if anything)
+            xml = <xml><one/><two/><three/></xml>;
+            setNotifier(xml);
+            alternateChildren = XMLList("<childOne/><childTwo/><childThree/>");
+            xml.setChildren(alternateChildren);
+            xml.setChildren(alternateChildren);
+            expected = [
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <one/>\\n  <two/>\\n</xml>, target=<xml>\\n  <one/>\\n  <two/>\\n</xml>, value=[element: <three/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <one/>\\n</xml>, target=<xml>\\n  <one/>\\n</xml>, value=[element: <two/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeChanged, currentTarget=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, target=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, value=[element: <childOne/>], detail=[element: <one/>], targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <childOne/>\\n  <childTwo/>\\n</xml>, target=<xml>\\n  <childOne/>\\n  <childTwo/>\\n</xml>, value=[element: <childThree/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeRemoved, currentTarget=<xml>\\n  <childOne/>\\n</xml>, target=<xml>\\n  <childOne/>\\n</xml>, value=[element: <childTwo/>], detail=null, targetType=XML, targetIsCurrent:true, valueType=XML]',
+                '[ command=nodeChanged, currentTarget=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, target=<xml>\\n  <childOne/>\\n  <childTwo/>\\n  <childThree/>\\n</xml>, value=[element: <childOne/>], detail=[element: <childOne/>], targetType=XML, targetIsCurrent:true, valueType=XML]'
+            ]
+
+            assertTrue(isExpected(expected), 'unexpected XML notifications');
+
+
+        }
+
+
     }
 }
