@@ -24,7 +24,7 @@ package org.apache.royale.file.beads
 	import org.apache.royale.file.IFileModel;
 import org.apache.royale.net.URLRequest;
 
-/**
+	/**
 	 *  The FileLoaderAndUploader is a compound bead that allows you
 	 *  to load a file and upload it in one operation.
 	 *  
