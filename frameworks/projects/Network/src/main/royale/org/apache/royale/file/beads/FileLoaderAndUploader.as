@@ -22,8 +22,9 @@ package org.apache.royale.file.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.file.FileProxy;
 	import org.apache.royale.file.IFileModel;
+import org.apache.royale.net.URLRequest;
 
-	/**
+/**
 	 *  The FileLoaderAndUploader is a compound bead that allows you
 	 *  to load a file and upload it in one operation.
 	 *  
@@ -69,6 +70,18 @@ package org.apache.royale.file.beads
 				value.addBead(_uploader);
 			}
 		}
+
+
+
+		private var _referenceRequest:URLRequest = null;
+		public function set referenceRequest(value:URLRequest):void{
+			_referenceRequest = value;
+		}
+
+		private var _uploadDataFieldName:String = "Filedata";
+		public function set uploadDataFieldName(value:String):void{
+			_uploadDataFieldName = value;
+		}
 		
 		/**
 		 *  Upload a file to the specified url. If file hasn't been loaded already it will be.
@@ -89,6 +102,8 @@ package org.apache.royale.file.beads
 				_loader.load();
 			} else
 			{
+				_uploader.referenceRequest = _referenceRequest;
+				_uploader.uploadDataFieldName = _uploadDataFieldName;
 				_uploader.upload(url);
 			}
 		}
@@ -104,6 +119,8 @@ package org.apache.royale.file.beads
 		private function blobChangedHandler(e:Event):void
 		{
 			(_strand as FileProxy).model.removeEventListener('blobChanged', blobChangedHandler);
+			_uploader.referenceRequest = _referenceRequest;
+			_uploader.uploadDataFieldName = _uploadDataFieldName;
 			_uploader.upload(_url);
 		}
 		

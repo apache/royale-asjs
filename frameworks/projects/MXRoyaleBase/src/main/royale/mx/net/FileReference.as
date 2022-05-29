@@ -114,6 +114,8 @@ package mx.net
 
 	  public function upload(request:URLRequest, uploadDataFieldName:String = "Filedata", testUpload:Boolean = false):void
 	  {
+		  _uploader.referenceRequest = request;
+		  _uploader.uploadDataFieldName = uploadDataFieldName;
 		  _uploader.upload(request.url);
 	  }
 

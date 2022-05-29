@@ -24,6 +24,8 @@ import org.apache.royale.file.beads.FileUploader;
 import org.apache.royale.file.IFileModel;
 import mx.events.DataEvent;
 
+import org.apache.royale.net.URLRequestHeader;
+
 /**
  *  This class does uploads using FormData in JS
  *  
@@ -69,10 +71,25 @@ public class FileUploaderUsingFormData extends FileUploader
 			xhr.open("POST", url);
 			xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
 			xhr.addEventListener("progress", xhr_progress, false);
+
+			if (_referenceRequest) {
+				var contentType:String;
+				for (var i:int = 0; i < _referenceRequest.requestHeaders.length; i++)
+				{
+					var header:URLRequestHeader = _referenceRequest.requestHeaders[i];
+					if (header.name.toLowerCase() == "content-type")
+					{
+						contentType = header.value;
+						continue;//ignore the contentType, it will be set to multipart by using FormData below
+					}
+					xhr.setRequestHeader(header.name, header.value);
+				}
+			}
+			var dataFieldName:String = _uploadDataFieldName;
 			
 			var formData:FormData = new FormData();
-			formData.append("Filename", (host.model as IFileModel).name);
-			formData.append("Filedata", (host.model as IFileModel).fileReference);
+			formData.append("filename", (host.model as IFileModel).name); //this should *not* be 'Filename' , it should be 'filename' (from flash as3 docs)
+			formData.append(dataFieldName, (host.model as IFileModel).fileReference);
 			xhr.send(formData);
 		}
 	}
