@@ -25,12 +25,12 @@ package mx.net
  import mx.utils.ByteArray;
  import org.apache.royale.file.beads.FileLoader;
  import org.apache.royale.file.beads.FileModel;
- import org.apache.royale.file.beads.FileLoaderAndUploader;
  import org.apache.royale.events.Event;
  import org.apache.royale.net.URLRequest;
  import org.apache.royale.file.beads.FileUploader;
  import mx.net.beads.FileUploaderUsingFormData;
  import mx.net.supportClasses.ByteArrayFileLoader;
+ import mx.net.beads.FileLoaderAndUploader;
 
    public class FileReference extends FileProxy
    {
@@ -114,6 +114,8 @@ package mx.net
 
 	  public function upload(request:URLRequest, uploadDataFieldName:String = "Filedata", testUpload:Boolean = false):void
 	  {
+		  _uploader.referenceRequest = request;
+		  _uploader.uploadDataFieldName = uploadDataFieldName;
 		  _uploader.upload(request.url);
 	  }
 
