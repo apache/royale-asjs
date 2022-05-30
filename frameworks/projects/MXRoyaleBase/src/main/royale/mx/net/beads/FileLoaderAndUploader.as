@@ -15,13 +15,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.file.beads
+package mx.net.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.file.FileProxy;
 	import org.apache.royale.file.IFileModel;
+	import org.apache.royale.file.beads.FileLoader;
+	import org.apache.royale.net.URLRequest;
 
 	/**
 	 *  The FileLoaderAndUploader is a compound bead that allows you
@@ -32,7 +34,7 @@ package org.apache.royale.file.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.10
 	 */
 	public class FileLoaderAndUploader implements IBead
 	{
@@ -45,13 +47,64 @@ package org.apache.royale.file.beads
 			super();
 		}
 		
+
+		private var _referenceRequest:URLRequest = null;
+		public function set referenceRequest(value:URLRequest):void{
+			_referenceRequest = value;
+		}
+
+		private var _uploadDataFieldName:String = "Filedata";
+		public function set uploadDataFieldName(value:String):void{
+			_uploadDataFieldName = value;
+		}
+		
+		/**
+		 *  Upload a file to the specified url. If file hasn't been loaded already it will be.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.10
+		 */
+		
+		public function upload(url:String):void
+		{
+			var fileModel:IFileModel = (_strand as FileProxy).model as IFileModel;
+			if (fileModel.size <= 0)
+			{
+				_url = url;
+				(_strand as FileProxy).model.addEventListener("blobChanged", blobChangedHandler);
+				_loader.load();
+			} else
+			{
+				_uploader.referenceRequest = _referenceRequest;
+				_uploader.uploadDataFieldName = _uploadDataFieldName;
+				_uploader.upload(url);
+			}
+		}
+		
+		private function blobChangedHandler(e:Event):void
+		{
+			(_strand as FileProxy).model.removeEventListener('blobChanged', blobChangedHandler);
+			_uploader.referenceRequest = _referenceRequest;
+			_uploader.uploadDataFieldName = _uploadDataFieldName;
+			_uploader.upload(_url);
+		}
+		
+		/**
+		 * @private
+		 */
+		public function cancel():void
+		{
+			_uploader.cancel();
+		}
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.10
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -68,43 +121,6 @@ package org.apache.royale.file.beads
 				_uploader = new FileUploader();
 				value.addBead(_uploader);
 			}
-		}
-		
-		/**
-		 *  Upload a file to the specified url. If file hasn't been loaded already it will be.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		
-		public function upload(url:String):void
-		{
-			var fileModel:IFileModel = (_strand as FileProxy).model as IFileModel;
-			if (fileModel.size <= 0)
-			{
-				_url = url;
-				(_strand as FileProxy).model.addEventListener("blobChanged", blobChangedHandler);
-				_loader.load();
-			} else
-			{
-				_uploader.upload(url);
-			}
-		}
-		
-		/**
-		 * @private
-		 */
-		public function cancel():void
-		{
-			_uploader.cancel();
-		}
-
-		private function blobChangedHandler(e:Event):void
-		{
-			(_strand as FileProxy).model.removeEventListener('blobChanged', blobChangedHandler);
-			_uploader.upload(_url);
 		}
 		
 	}

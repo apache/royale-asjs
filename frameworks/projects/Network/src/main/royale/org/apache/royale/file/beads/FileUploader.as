@@ -63,16 +63,6 @@ package org.apache.royale.file.beads
 	{
 		private var _strand:IStrand;
 		private var _contentType:String;
-
-		protected var _referenceRequest:URLRequest;
-		public function set referenceRequest(value:URLRequest):void{
-			_referenceRequest = value;
-		}
-
-		protected var _uploadDataFieldName:String = "Filedata";
-		public function set uploadDataFieldName(value:String):void{
-			_uploadDataFieldName = value;
-		}
 		
 		/**
 		 *  Upload a file to the specified url.
@@ -97,10 +87,6 @@ package org.apache.royale.file.beads
 			req.method = "POST";
 			req.data = (host.model as IFileModel).blob;
 			req.url = url;
-			if (_referenceRequest) {
-				req.requestHeaders = _referenceRequest.requestHeaders;
-			}
-
 			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
 			binaryUploader.load(req);
 		}

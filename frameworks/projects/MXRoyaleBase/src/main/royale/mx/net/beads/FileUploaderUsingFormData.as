@@ -20,7 +20,6 @@
 package mx.net.beads
 {
 import org.apache.royale.events.DetailEvent;
-import org.apache.royale.file.beads.FileUploader;
 import org.apache.royale.file.IFileModel;
 import mx.events.DataEvent;
 
