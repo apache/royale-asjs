@@ -19,17 +19,18 @@
 package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.IBeadView;
-    
+    import org.apache.royale.core.IStyledUIBase;
+    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	/**
-	 *  The IInputAndButtonView interface provides the protocol for any bead that
-	 *  creates the visual parts for a control containing a input and a button.
+	 *  The IViewWithTextInputAndButton interface provides the protocol for any bead that
+	 *  creates the visual parts for a control containing a text area and a button.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public interface IInputAndButtonView extends IBeadView
+	public interface IViewWithTextInputAndButton extends IBeadView
 	{
 		/**
 		 *  The sub-component used for the input area of the Control.
@@ -39,7 +40,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function get textinput():Object;
+		function get textinput():TextInputBase;
 		
 		/**
 		 *  The sub-component used for the button to activate the pop-up.
@@ -49,6 +50,6 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function get button():Object;
+		function get button():IStyledUIBase;
 	}
 }

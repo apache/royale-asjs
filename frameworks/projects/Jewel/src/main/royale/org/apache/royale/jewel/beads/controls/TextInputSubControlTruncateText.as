@@ -16,25 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.datefield
+package org.apache.royale.jewel.beads.controls
 {
-	COMPILE::SWF
-	{
-	import flash.utils.setTimeout;
-    }
-	import org.apache.royale.jewel.beads.controls.TextInputSubControlTextPrompt;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.beads.controls.textinput.TruncateText;
+	import org.apache.royale.html.beads.IComboBoxView;
+	import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
 	
 	/**
-	 *  The DateFieldTextPrompt class is a specialty bead that can be used with
-	 *  any DateField control. The bead places a string into the sub TextInput component
-	 *  when there is no value associated with the text property.
+	 *  The TextInputSubControlTruncateText bead class is a generic TruncateText bead that can be used to 
+	 *  Jewel control that implements the IViewWithTextInputAndButton interface.
+	 *  The bead truncate the text when no space is available using "..."
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldTextPrompt extends TextInputSubControlTextPrompt
+	public class TextInputSubControlTruncateText implements IBead
 	{
 		/**
 		 *  constructor.
@@ -44,8 +46,21 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function DateFieldTextPrompt()
+		public function TextInputSubControlTruncateText()
 		{
+		}
+
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function set strand(value:IStrand):void
+		{
+			(((value as StyledUIBase).view as IViewWithTextInputAndButton).textinput as IStyledUIBase).addBead(new TruncateText());
 		}
 	}
 }
