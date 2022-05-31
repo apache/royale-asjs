@@ -37,6 +37,7 @@ import mx.core.UIComponent;
 import mx.events.FlexEvent;
 import mx.core.IUITextField;
 import org.apache.royale.html.beads.ReversibleEllipsisOverflow;
+import org.apache.royale.html.beads.OverflowTooltipNeeded;
 
 /*
 import mx.core.UITextField;
@@ -53,6 +54,7 @@ COMPILE::JS
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.binding.ItemRendererDataBinding;
+import org.apache.royale.events.ValueEvent;
 
 //--------------------------------------
 //  Events
@@ -918,6 +920,11 @@ public class Label extends UIComponent
         {
             _truncationBead = new ReversibleEllipsisOverflow();
             addBead(_truncationBead);
+            if (!toolTip) // if no tooltip is given we will need to detect truncation and display one
+            {
+                addBead(new OverflowTooltipNeeded());
+            }
+            addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, tooltipNeededListener);
         } else if (_truncationBead && _truncateToFit && !value)
         {
             _truncationBead.revert();
@@ -926,6 +933,11 @@ public class Label extends UIComponent
             _truncationBead.apply();
         }
         _truncateToFit = value;
+    }
+    
+    private function tooltipNeededListener(event:ValueEvent):void
+    {
+        toolTip = event.value ? text : "";
     }
 
 
