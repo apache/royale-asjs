@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IStyledUIBase;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	/**
 	 *  The IViewWithTextInputAndButton interface provides the protocol for any bead that
@@ -50,6 +50,6 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function get button():IStyledUIBase;
+		function get button():IUIBase;
 	}
 }

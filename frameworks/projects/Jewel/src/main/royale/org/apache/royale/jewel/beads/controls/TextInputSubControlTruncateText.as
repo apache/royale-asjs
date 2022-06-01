@@ -20,10 +20,9 @@ package org.apache.royale.jewel.beads.controls
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.beads.controls.textinput.TruncateText;
-	import org.apache.royale.html.beads.IComboBoxView;
 	import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
 	
 	/**
@@ -60,7 +59,7 @@ package org.apache.royale.jewel.beads.controls
 		 */
 		public function set strand(value:IStrand):void
 		{
-			(((value as StyledUIBase).view as IViewWithTextInputAndButton).textinput as IStyledUIBase).addBead(new TruncateText());
+			(((value as StyledUIBase).view as IViewWithTextInputAndButton).textinput as IUIBase).addBead(new TruncateText());
 		}
 	}
 }

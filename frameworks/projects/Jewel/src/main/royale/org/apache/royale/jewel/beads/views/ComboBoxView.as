@@ -33,7 +33,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUp;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.util.getLabelFromData;
@@ -46,8 +46,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
     import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.UIUtils;
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox
 	 *  component. The job of the view bead is to put together the parts of the ComboBox such as the TextInput
@@ -93,7 +93,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get button():IStyledUIBase
+		public function get button():IUIBase
 		{
 			return _button;
 		}

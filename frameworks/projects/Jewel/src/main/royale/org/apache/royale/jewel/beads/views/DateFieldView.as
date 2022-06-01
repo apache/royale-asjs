@@ -29,14 +29,15 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	}
 	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateFormatter;
 	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IPopUp;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.html.util.getModelByType;
@@ -47,15 +48,13 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.DateField;
 	import org.apache.royale.jewel.Table;
 	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
 	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
     import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.sendStrandEvent;
-	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
-	import org.apache.royale.core.IPopUp;
-	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -93,14 +92,14 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get button():IStyledUIBase
+		public function get button():IUIBase
 		{
-			return _button as IStyledUIBase;
+			return _button as IUIBase;
 		}
 		/**
 		 * deprecated
 		 */
-		public function get menuButton():IStyledUIBase
+		public function get menuButton():IUIBase
 		{
 			return _button;
 		}
