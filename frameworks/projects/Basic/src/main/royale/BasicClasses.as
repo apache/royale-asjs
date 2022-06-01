@@ -358,6 +358,7 @@ internal class BasicClasses
 	COMPILE::JS
 	{
 		import org.apache.royale.html.util.DialogPolyfill; DialogPolyfill;
+		import org.apache.royale.html.beads.OverflowTooltipNeeded; OverflowTooltipNeeded;
 	}
 }
 

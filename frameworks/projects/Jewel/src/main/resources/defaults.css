@@ -16,10 +16,7 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -469,24 +466,6 @@ j|VirtualComboBoxPopUp {
       width: 100%; }
   .jewel.datagrid span:empty:before {
     content: "\200b"; }
-
-.first.jewel.list::-webkit-scrollbar {
-    display: none;
-}
-
-.first.jewel.list {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.middle.jewel.list::-webkit-scrollbar {
-    display: none;
-}
-
-.middle.jewel.list {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 
 j|DataGrid {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
@@ -2656,6 +2635,13 @@ j|SectionContent {
 j|ScrollableSectionContent {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"); }
+
+.jewel.videoplayer.letterbox {
+  object-fit: contain; }
+.jewel.videoplayer.zoom {
+  object-fit: cover; }
+.jewel.videoplayer.stretch {
+  object-fit: fill; }
 
 .jewel.slider {
   position: relative;

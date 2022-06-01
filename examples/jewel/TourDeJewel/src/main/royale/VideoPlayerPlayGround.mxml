@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" 
+    xmlns:engine="org.apache.royale.text.engine.*" 
+    sourceCodeUrl="VideoPlayerPlayGround.mxml"
+    initComplete="ev_complete()">
+	
+    <fx:Style>
+        @namespace "http://www.w3.org/1999/xhtml";
+        .video_container.jewel.group {
+            border: dashed #3CADF1;
+        }
+    </fx:Style>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:beads>
+			<js:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+		
+		<c:ExampleHeader title="Jewel VideoPlayer">
+			<c:description>
+				<![CDATA[<strong>Jewel VideoPlayer</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+                <j:CardHeader>
+                    <html:H3 text="Simple VideoPlayer" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+                    <j:Group>
+                        <j:beads><j:HorizontalFlowLayout /></j:beads>
+
+                        <j:Group height="500" width="500">
+                            <j:Group id="grp" height="500" width="500" className="video_container">
+                                <j:VideoPlayer id="vp" 
+                                    scaleMode="letterbox" 
+                                    durationchange="{hs_vp_seek.maximum = vp.duration}"
+                                    timeupdate="{hs_vp_seek.value = vp.currentTime}"
+                                    progress="ev_vp_progress(event)" 
+                                    volumechange="{if (hs_vp_volume.value != vp.volume) hs_vp_volume.value = vp.volume }"
+                                    ratechange="{if (hs_rate.value != vp.playbackRate) hs_rate.value = vp.playbackRate }"
+                                    width="100%" height="100%"
+                                    controls="true"
+                                    error="{lbl_error.text = vp.error.message}"
+                                    />
+                            </j:Group>
+                        </j:Group>
+
+                       <j:Spacer width="20"/>
+
+                        <j:VGroup width="500" gap="4">
+                            <j:Label text="Source URL"/>
+                            <j:HGroup width="100%" gap="2">
+                                <j:TextInput width="100%" id="ti_vp_source" text="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"/>
+                                <j:Button text="Set" click="{lbl_error.text = '';vp.src = ti_vp_source.text;}" emphasis="secondary"/>
+                            </j:HGroup>
+                            <j:Label id="lbl_error" />
+
+                            <j:Label text="Controls"/>
+                            <j:HGroup width="100%" gap="10">
+                                <j:Button text="Play/pause" click="ev_vp_playpause(event)" emphasis="secondary"/>
+                                <j:ToggleButton id="tb_vp_controls" text="Show/Hide native controls" click="{vp.controls = tb_vp_controls.selected;}" emphasis="primary" selected="true"/>
+                                <j:Button click="{vp.requestFullscreen()}" emphasis="primary" text="FullScreen"/>
+                            </j:HGroup>
+
+                            <j:Label text="Scale mode"/>
+                            <j:ToggleButtonBar localId="tbb_scales"  change="ev_tbb_scales_change()"
+					            selectedIndex="0"
+					            emphasis="primary" width="100%"
+                                dataProvider="{new ArrayList(['letterbox','zoom','stretch'])}" >
+                                <j:beads>
+		            				<j:ButtonBarLayout gap="3" />
+        			    		</j:beads>
+                            </j:ToggleButtonBar>
+
+                            <j:Spacer height="10"/>
+
+                            <j:Label text="Container width/height"/>
+                            <j:HGroup width="100%">
+                                <j:HSlider id="hs_vp_width" width="100%" minimum="200" maximum="500" value="500" stepSize="2" valueChange="{grp.width = hs_vp_width.value;}"/>
+                                <j:HSlider id="hs_vp_height" width="100% " minimum="200" maximum="500" value="500" stepSize="2" valueChange="{grp.height = hs_vp_height.value;}"/>
+                            </j:HGroup>
+                            
+                            <j:Label text="Volume"/>
+                            <j:HGroup width="100%" gap="10" itemsVerticalAlign="itemsCenter">
+                                <j:HSlider id="hs_vp_volume" width="100% " minimum="0" maximum="1" stepSize="0.01"  value="1" valueChange="{vp.volume = hs_vp_volume.value;}"/>
+                                <j:CheckBox id="cb_mute" text="Mute" change="{vp.muted = cb_mute.selected}"/>
+                            </j:HGroup>
+                          
+                            <j:Label text="Play rate"/>
+                            <j:HGroup>
+                                <j:HSlider id="hs_rate" minimum="0" maximum="2" stepSize="0.1" value="1" valueChange="{vp.playbackRate = hs_rate.value; lbl_rate.text = hs_rate.value + 'x';}"/>
+                                <j:Label id="lbl_rate"/>
+                            </j:HGroup>
+
+                            <j:Label text="Seek"/>
+                            <j:HSlider id="hs_vp_seek" width="100% " minimum="0" maximum="0" stepSize="2"  valueChange="{vp.currentTime = hs_vp_seek.value;}"/>
+
+                            <j:Label text="Buffered times ranges (use seek to see change)"/>
+                            <j:TextArea id="ta_buffered" width="350" height="150"/>
+                        </j:VGroup>
+                        <j:VGroup width="500" gap="6">
+                            <j:Spacer height="10"/>
+                            <j:Label id="lbl_info" width="100%" multiline="true"/>
+                        </j:VGroup>
+                    </j:Group>    
+                </j:CardPrimaryContent>
+            </j:Card>
+        </j:GridCell>
+		
+	</j:Grid>
+
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.collections.ArrayList;
+
+            private var _scaleModesData:ArrayList = new ArrayList([
+                "letterbox","zoom","stretch"
+            ]);
+
+            private function ev_complete():void{
+                lbl_info.text = "VideoPlayer is a video player supporting all properties and methods from HTMLVideoElement. The 'autoPlay' or 'play' feature may be restric by browser policy, and generaly must be called in a user gesture event to be enabled.";
+                tbb_scales.dataProvider = _scaleModesData;
+            }
+
+            private function ev_tbb_scales_change():void {
+                vp.scaleMode = String(tbb_scales.selectedItem);
+            }
+            private function ev_vp_progress(e:Event):void {
+                var tr:TimeRanges = vp.buffered;
+                var str:String = "";
+                for (var i:int=0; i < tr.length; i++){
+                    str += "\ni:" + i + " - start:" + tr.start(i) + " - end: " + tr.end(i);
+                }
+
+                ta_buffered.text = str;
+            }
+
+
+            private function ev_vp_playpause(e:Event):void {
+                if (vp.currentSrc == ""){
+                    vp.src = ti_vp_source.text;
+                }
+                if (vp.paused == true){
+                    vp.play();
+                }else{
+                    vp.pause();
+                }
+            }
+
+            ]]>
+    </fx:Script>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

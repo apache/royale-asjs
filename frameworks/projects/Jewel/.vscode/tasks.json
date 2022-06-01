@@ -68,7 +68,7 @@
             "command": "asconfigc",
             "windows": {
                 "args": [
-                    "--sdk=C:\\Apache\\royale-asjs"
+                    "--sdk=${env:ROYALE_HOME}"
                 ]
             },
             "osx": {

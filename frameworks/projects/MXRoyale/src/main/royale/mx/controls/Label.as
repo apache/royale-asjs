@@ -36,6 +36,11 @@ import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
 import mx.core.IUITextField;
+import org.apache.royale.html.beads.ReversibleEllipsisOverflow;
+COMPILE::JS
+{
+    import org.apache.royale.html.beads.OverflowTooltipNeeded;
+}
 
 /*
 import mx.core.UITextField;
@@ -52,6 +57,7 @@ COMPILE::JS
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.binding.ItemRendererDataBinding;
+import org.apache.royale.events.ValueEvent;
 
 //--------------------------------------
 //  Events
@@ -771,6 +777,18 @@ public class Label extends UIComponent
 		super.addedToParent();
 		model.addEventListener("textChange", repeaterListener);
 		model.addEventListener("htmlChange", repeaterListener);
+		//@todo check the following for swf:
+		//truncateToFit = _truncateToFit;
+	}
+
+	/**
+	 *  @private
+	 */
+	COMPILE::JS
+	override public function addedToParent():void
+	{
+		super.addedToParent();
+		truncateToFit = _truncateToFit;
 	}
 
 	/**
@@ -790,25 +808,7 @@ public class Label extends UIComponent
 		return element;
 	}
 	
-    //----------------------------------
-    //  truncateToFit
-    //----------------------------------
-
-    /**
-     *  If this propery is <code>true</code>, and the Label control size is
-     *  smaller than its text, the text of the 
-     *  Label control is truncated using 
-     *  a localizable string, such as <code>"..."</code>.
-     *  If this property is <code>false</code>, text that does not fit is clipped.
-     * 
-     *  @default true
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public var truncateToFit:Boolean = true;
+    private var _truncationBead:ReversibleEllipsisOverflow;
 	
 	
 	//----------------------------------
@@ -893,7 +893,61 @@ public class Label extends UIComponent
         return _textWidth;
     }
 
-	
+    //----------------------------------
+    //  truncateToFit
+    //----------------------------------
+
+    /**
+     *  If this propery is <code>true</code>, and the Label control size is
+     *  smaller than its text, the text of the 
+     *  Label control is truncated using 
+     *  a localizable string, such as <code>"..."</code>.
+     *  If this property is <code>false</code>, text that does not fit is clipped.
+     * 
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    private var _truncateToFit:Boolean = true;
+    public function get truncateToFit():Boolean
+    {
+        return _truncateToFit;
+    }
+
+    public function set truncateToFit(value:Boolean):void
+    {
+        if (value && !_truncationBead && initialized)
+        {
+            _truncationBead = new ReversibleEllipsisOverflow();
+            addBead(_truncationBead);
+            COMPILE::JS
+            {
+                if (!toolTip) // if no tooltip is given we will need to detect truncation and display one
+                {
+                    addBead(new OverflowTooltipNeeded());
+                }
+                addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, tooltipNeededListener);
+            }
+        } else if (_truncationBead && _truncateToFit && !value)
+        {
+            _truncationBead.revert();
+        } else if (_truncationBead && !_truncateToFit && value)
+        {
+            _truncationBead.apply();
+        }
+        _truncateToFit = value;
+    }
+    
+    COMPILE::JS
+    private function tooltipNeededListener(event:ValueEvent):void
+    {
+        toolTip = event.value ? text : "";
+    }
+
+
 
     //--------------------------------------------------------------------------
     //
