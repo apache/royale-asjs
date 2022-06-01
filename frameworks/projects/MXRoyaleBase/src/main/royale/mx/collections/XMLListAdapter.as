@@ -655,6 +655,14 @@ public class XMLListAdapter extends EventDispatcher implements IList, IXMLNotifi
 				new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
 	        updateEvent.kind = CollectionEventKind.UPDATE;
 	        updateEvent.items.push(event);
+            for (var i:int = 0; i < source.length(); i++)
+            {
+                if (source[i] == event.source)
+                {
+                    updateEvent.location = i;
+                    break;
+                }
+            }
 	        dispatchEvent(updateEvent);
 	    }
     }
