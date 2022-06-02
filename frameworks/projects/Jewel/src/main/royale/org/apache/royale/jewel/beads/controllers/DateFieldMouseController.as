@@ -33,6 +33,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.views.DateFieldView;
 	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.html.util.getModelByType;
+	import org.apache.royale.core.UIBase;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -103,7 +104,7 @@ package org.apache.royale.jewel.beads.controllers
             // t.start();
 
 			// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-			table = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).table;
+			table = ((viewBead.popUp as UIBase).getBeadByType(DateChooserView) as DateChooserView).table;
 
 			IEventDispatcher(table).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);

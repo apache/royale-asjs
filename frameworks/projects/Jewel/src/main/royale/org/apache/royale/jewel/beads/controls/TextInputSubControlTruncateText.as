@@ -16,39 +16,50 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.views
+package org.apache.royale.jewel.beads.controls
 {
-    import org.apache.royale.core.IBeadView;
-    
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.beads.controls.textinput.TruncateText;
+	import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
+	
 	/**
-	 *  The IInputAndButtonView interface provides the protocol for any bead that
-	 *  creates the visual parts for a control containing a input and a button.
+	 *  The TextInputSubControlTruncateText bead class is a generic TruncateText bead that can be used to 
+	 *  Jewel control that implements the IViewWithTextInputAndButton interface.
+	 *  The bead truncate the text when no space is available using "..."
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public interface IInputAndButtonView extends IBeadView
+	public class TextInputSubControlTruncateText implements IBead
 	{
 		/**
-		 *  The sub-component used for the input area of the Control.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function get textinput():Object;
-		
+		public function TextInputSubControlTruncateText()
+		{
+		}
+
 		/**
-		 *  The sub-component used for the button to activate the pop-up.
-		 *
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
-		function get button():Object;
+		public function set strand(value:IStrand):void
+		{
+			(((value as StyledUIBase).view as IViewWithTextInputAndButton).textinput as IUIBase).addBead(new TruncateText());
+		}
 	}
 }

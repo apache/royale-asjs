@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-    import org.apache.royale.jewel.beads.views.IInputAndButtonView;
+    import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
+    import org.apache.royale.core.IPopUp;
     
 	/**
 	 *  The IComboBoxView interface provides the protocol for any bead that
@@ -29,7 +30,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public interface IComboBoxView extends IInputAndButtonView
+	public interface IComboBoxView extends IViewWithTextInputAndButton
 	{		
 		/**
 		 *  The component housing the selection list. The main component must be a placeholder
@@ -41,7 +42,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function get popup():Object;
+		function get popup():IPopUp;
 		
 		/**
 		 *  Determines whether or not the pop-up with the selection list is visible or not.

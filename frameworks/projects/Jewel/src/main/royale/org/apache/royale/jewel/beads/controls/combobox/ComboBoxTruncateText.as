@@ -18,11 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStyledUIBase;
-	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.jewel.beads.controls.textinput.TruncateText;
+	import org.apache.royale.jewel.beads.controls.TextInputSubControlTruncateText;
 	
 	/**
 	 *  The ComboBoxTruncateText class is a specialty bead that can be used with
@@ -34,7 +30,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ComboBoxTruncateText implements IBead
+	public class ComboBoxTruncateText extends TextInputSubControlTruncateText
 	{
 		/**
 		 *  constructor.
@@ -46,19 +42,6 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 */
 		public function ComboBoxTruncateText()
 		{
-		}
-
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function set strand(value:IStrand):void
-		{
-			(((value as StyledUIBase).view as IComboBoxView).textinput as IStyledUIBase).addBead(new TruncateText());
 		}
 	}
 }

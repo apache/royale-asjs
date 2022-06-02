@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
+	import org.apache.royale.jewel.beads.controls.TextInputSubControlTextPrompt;
 	
 	/**
 	 *  The ComboBoxTextPrompt class is a specialty bead that can be used with
@@ -32,7 +33,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ComboBoxTextPrompt extends TextPrompt
+	public class ComboBoxTextPrompt extends TextInputSubControlTextPrompt
 	{
 		/**
 		 *  constructor.
@@ -44,20 +45,6 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 */
 		public function ComboBoxTextPrompt()
 		{
-		}
-
-		/**
-         *  @copy org.apache.royale.jewel.beads.controls.textinput.TextPrompt#updatePromptText()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-		COMPILE::JS
-		override protected function updatePromptText():void
-		{
-			((_strand as UIBase).view as IComboBoxView).textinput.input.placeholder = prompt;
 		}
 	}
 }

@@ -16,25 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.datefield
-{
-	COMPILE::SWF
+package org.apache.royale.jewel.beads.controls
+{	COMPILE::SWF
 	{
 	import flash.utils.setTimeout;
     }
-	import org.apache.royale.jewel.beads.controls.TextInputSubControlTextPrompt;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
+	import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
 	
 	/**
-	 *  The DateFieldTextPrompt class is a specialty bead that can be used with
-	 *  any DateField control. The bead places a string into the sub TextInput component
-	 *  when there is no value associated with the text property.
+	 *  The InputControlTextPrompt bead class is a generic TextPrompt bead that can be used to 
+	 *  Jewel control that implements the IViewWithTextInputAndButton interface.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldTextPrompt extends TextInputSubControlTextPrompt
+	public class TextInputSubControlTextPrompt extends TextPrompt
 	{
 		/**
 		 *  constructor.
@@ -44,8 +44,22 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function DateFieldTextPrompt()
+		public function TextInputSubControlTextPrompt()
 		{
+		}
+
+		/**
+         *  @copy org.apache.royale.jewel.beads.controls.textinput.TextPrompt#updatePromptText()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		COMPILE::JS
+		override protected function updatePromptText():void
+		{
+			((_strand as UIBase).view as IViewWithTextInputAndButton).textinput.input.placeholder = prompt;
 		}
 	}
 }

@@ -16,36 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.datefield
+package org.apache.royale.jewel.beads.views
 {
-	COMPILE::SWF
-	{
-	import flash.utils.setTimeout;
-    }
-	import org.apache.royale.jewel.beads.controls.TextInputSubControlTextPrompt;
-	
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	/**
-	 *  The DateFieldTextPrompt class is a specialty bead that can be used with
-	 *  any DateField control. The bead places a string into the sub TextInput component
-	 *  when there is no value associated with the text property.
+	 *  The IViewWithTextInputAndButton interface provides the protocol for any bead that
+	 *  creates the visual parts for a control containing a text area and a button.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldTextPrompt extends TextInputSubControlTextPrompt
+	public interface IViewWithTextInputAndButton extends IBeadView
 	{
 		/**
-		 *  constructor.
+		 *  The sub-component used for the input area of the Control.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function DateFieldTextPrompt()
-		{
-		}
+		function get textinput():TextInputBase;
+		
+		/**
+		 *  The sub-component used for the button to activate the pop-up.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		function get button():IUIBase;
 	}
 }

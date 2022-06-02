@@ -22,21 +22,21 @@ package org.apache.royale.jewel.beads.controls
 	{
 	import org.apache.royale.core.HTMLElementWrapper;
 	import org.apache.royale.core.UIBase;
-    import org.apache.royale.jewel.beads.views.IInputAndButtonView;
 	}
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.jewel.beads.controls.ReadOnly;
+	import org.apache.royale.jewel.beads.controls.Disabled;
+    import org.apache.royale.jewel.beads.views.IViewWithTextInputAndButton;
 	
 	/**
-	 *  The InputAndButtonControlReadOnly bead class is a generic ReadOnly bead that can be used to lock a 
-	 *  Jewel control that implements the IInputAndButtonView interface.
-	 * 
+	 *  The TextInputAndButtonControlDisabled bead class is a generic Disabled bead that can be used to disable a 
+	 *  Jewel control that implements the IViewWithTextInputAndButton interface.
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class InputAndButtonControlReadOnly extends ReadOnly
+	public class TextInputAndButtonControlDisabled extends Disabled
 	{
 		/**
 		 *  constructor.
@@ -44,9 +44,9 @@ package org.apache.royale.jewel.beads.controls
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.9
+		 *  @productversion Royale 0.9.6
 		 */
-		public function InputAndButtonControlReadOnly()
+		public function TextInputAndButtonControlDisabled()
 		{
 		}
 
@@ -59,7 +59,7 @@ package org.apache.royale.jewel.beads.controls
 		{
 			COMPILE::JS
 			{
-			var view:IInputAndButtonView = (_strand as UIBase).view as IInputAndButtonView;
+			var view:IViewWithTextInputAndButton = (_strand as UIBase).view as IViewWithTextInputAndButton;
 
 			if (view) {
 				var pos:HTMLElement = (_strand as IUIBase).positioner;
@@ -72,18 +72,18 @@ package org.apache.royale.jewel.beads.controls
 					lastButtonElementTabVal = view.button.element.getAttribute("tabindex");
 				}
 				
-                if(readOnly) {
-					setReadOnlyAndTabIndex(pos, true);
-					setReadOnlyAndTabIndex(view.textinput.positioner, true);
-					setReadOnlyAndTabIndex(view.textinput.element);
-					setReadOnlyAndTabIndex(view.button.positioner, true);
-					setReadOnlyAndTabIndex(view.button.element);
+                if(disabled) {
+					setDisableAndTabIndex(pos, true);
+					setDisableAndTabIndex(view.textinput.positioner, true);
+					setDisableAndTabIndex(view.textinput.element);
+					setDisableAndTabIndex(view.button.positioner, true);
+					setDisableAndTabIndex(view.button.element);
 				} else {
-					removeReadOnlyAndTabIndex(pos, true);
-					removeReadOnlyAndTabIndex(view.textinput.positioner, true);
-					removeReadOnlyAndTabIndex(view.textinput.element, false, lastTextInputElementTabVal);
-					removeReadOnlyAndTabIndex(view.button.positioner, true);
-					removeReadOnlyAndTabIndex(view.button.element, false, lastButtonElementTabVal);
+					removeDisableAndTabIndex(pos, true);
+					removeDisableAndTabIndex(view.textinput.positioner, true);
+					removeDisableAndTabIndex(view.textinput.element, false, lastTextInputElementTabVal);
+					removeDisableAndTabIndex(view.button.positioner, true);
+					removeDisableAndTabIndex(view.button.element, false, lastButtonElementTabVal);
 				}
             }
 			}
