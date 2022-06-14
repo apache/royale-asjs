@@ -522,6 +522,7 @@ package
  		public static const PLUS_CIRCLE:String = "plus-circle";
  		public static const PLUS_SQUARE:String = "plus-square";
  		public static const PODCAST:String = "podcast";
+ 		public static const PORTRAIT:String = "portrait";
  		public static const POWER_OFF:String = "power-off";
  		public static const PRINT:String = "print";
  		public static const PRODUCT_HUNT:String = "product-hunt";
@@ -743,6 +744,7 @@ package
  		public static const WALLET:String = "wallet";
  		public static const WEIBO:String = "weibo";
  		public static const WEIXIN:String = "weixin";
+ 		public static const WEIGHT:String = "weight";
  		public static const WHATSAPP:String = "whatsapp";
  		public static const WHEELCHAIR:String = "wheelchair";
  		public static const WHEELCHAIR_ALT:String = "wheelchair-alt";
