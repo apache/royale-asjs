@@ -525,7 +525,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
         if (node is XML)
         {
             enabled = node.@enabled;
-            if (enabled[0] == false)
+            if (String(enabled[0]) == "false")
                 return false;
         }
         else if (node is Object)
