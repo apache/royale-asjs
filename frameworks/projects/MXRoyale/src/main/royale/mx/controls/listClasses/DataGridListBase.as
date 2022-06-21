@@ -2549,53 +2549,19 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      */
     //public var menuSelectionMode:Boolean = false;
 
-    //----------------------------------
-    //  selectable
-    //----------------------------------
-
     /**
      *  @private
-     *  Storage for the selectable property.
-     */
-    private var _selectable:Boolean = true;
-
-    [Inspectable(defaultValue="true")]
-
-    /**
-     *  A flag that indicates whether the list shows selected items
-     *  as selected.
-     *  If <code>true</code>, the control supports selection.
-     *
-     *  @default true
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-    override public function get selectable():Boolean
-    {
-        return _selectable;
-    }
-
-    /**
-     *  @private
-     */
-    override public function set selectable(value:Boolean):void
-    {
-        _selectable = value;
-    }
-
-    /**
-     *  @private
-     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
      */
     override public function set selectedIndex(value:int):void
     {   
         if (collection)
             value = Math.min(collection.length - 1, value);
-        clearSelected();
-        super.selectedIndex = value;
+        if (allowMultipleSelection) {
+            commitSelectedIndices(value>=0? [value]:[])
+        } else {
+            clearSelected();
+            super.selectedIndex = value;
+        }
     }
     
     //----------------------------------
@@ -5513,6 +5479,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
             indices.shift();
 
             var data:Object = collectionIterator.current;
+            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
             if (firstTime)
             {
                 (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
@@ -5523,7 +5490,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
 				anchorBookmark = collectionIterator.bookmark;
                 firstTime = false;
             }
-            addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
+            //addSelectionData(itemToUID(data), new ListBaseSelectionData(data, index, false));
             // trace("uid = " + itemToUID(data));
         }
 

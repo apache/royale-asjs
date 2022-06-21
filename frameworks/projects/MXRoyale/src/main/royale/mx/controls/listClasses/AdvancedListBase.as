@@ -2503,56 +2503,21 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      */
     //public var menuSelectionMode:Boolean = false;
 
-    //----------------------------------
-    //  selectable
-    //----------------------------------
+
 
     /**
      *  @private
-     *  Storage for the selectable property.
-     */
-    private var _selectable:Boolean = true;
-
-    [Inspectable(defaultValue="true")]
-
-    /**
-     *  A flag that indicates whether the list shows selected items
-     *  as selected.
-     *  If <code>true</code>, the control supports selection.
-     *
-     *  @default true
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
-     */
-    override public function get selectable():Boolean
-    {
-        return _selectable;
-    }
-
-    /**
-     *  @private
-     */
-    override public function set selectable(value:Boolean):void
-    {
-        _selectable = value;
-    }
-
-    /**
-     *  @private
-     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
      */
     override public function set selectedIndex(value:int):void
     {   
         if (collection)
             value = Math.min(collection.length - 1, value);
-        clearSelected();
 		if (allowMultipleSelection)
-			commitSelectedIndices([value]);
-		else
-	        super.selectedIndex = value;
+			commitSelectedIndices(value>=0? [value]:[]);
+		else {
+            clearSelected();
+            super.selectedIndex = value;
+        }
     }
     
     //----------------------------------
