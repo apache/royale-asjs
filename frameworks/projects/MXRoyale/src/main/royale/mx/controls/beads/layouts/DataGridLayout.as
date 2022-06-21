@@ -228,6 +228,7 @@ package mx.controls.beads.layouts
                         else
                             columnDef.columnWidth = proportionateShare;
                     }                
+                    columnDef.columnWidth -= vScrollbarWidth;
                 }
                 else if (totalWidths > 0)
                 {
@@ -238,7 +239,7 @@ package mx.controls.beads.layouts
                         columnDef = view.visibleColumns[i] as DataGridColumn;
                         columnDef.columnWidth = columnDef.width * factor;
                     }
-
+                    columnDef.columnWidth -= vScrollbarWidth;
                 }
             }
             
