@@ -51,7 +51,6 @@ package org.apache.royale.html.beads
 		private var _oldOverflow:String;
 		private var _oldTextOverflow:String;
 		private var _oldDisplay:String;
-		private var _oldWhiteSpace:String;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -86,11 +85,9 @@ package org.apache.royale.html.beads
 				_oldOverflow = style.overflow;
 				_oldTextOverflow = style.textOverflow;
 				_oldDisplay = style.display;
-				_oldWhiteSpace = style.whiteSpace;
 				style.overflow = "hidden";
 				style.textOverflow = "ellipsis";
 				style.display = "block";
-				style.whiteSpace = "nowrap";
 			}
 
 		}
@@ -112,7 +109,6 @@ package org.apache.royale.html.beads
 				style.overflow = _oldOverflow;
 				style.textOverflow = _oldTextOverflow;
 				style.display = _oldDisplay;
-				style.whiteSpace = _oldWhiteSpace;
 			}
 		}
 
