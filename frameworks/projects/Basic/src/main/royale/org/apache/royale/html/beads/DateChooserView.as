@@ -254,6 +254,7 @@ package org.apache.royale.html.beads
 		private function handleModelChange(event:Event):void
 		{
 			updateDisplay();
+			getHost().dispatchEvent(new Event("monthChanged"));
 		}
 	}
 }
