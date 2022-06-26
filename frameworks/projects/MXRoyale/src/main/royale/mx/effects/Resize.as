@@ -52,7 +52,7 @@ public class Resize extends org.apache.royale.effects.Resize
      */
     public function Resize(target:IUIBase = null)
     {
-        super(IUIBase);
+        super(target);
 
 		
     }
