@@ -70,6 +70,7 @@
 	<component id="DateValidator" 						class="mx.validators.DateValidator"/>
 	<component id="EmailValidator" 						class="mx.validators.EmailValidator"/>
 	<component id="ZipCodeValidator" 					class="mx.validators.ZipCodeValidator"/>
+	<component id="CursorManagerImpl" 					class="mx.managers.CursorManagerImpl"/>
 
 
 </componentPackage>
