@@ -3233,7 +3233,7 @@ package
 		 *
 		 * @royaleignorecoercion XML
 		 */
-		private function _toXMLString(indentLevel:int=0,ancestors:Array=null):String
+		protected function _toXMLString(indentLevel:int=0,ancestors:Array=null):String
 		{
 			/*
 				Given an XML object x and an optional argument AncestorNamespaces and an optional argument IndentLevel, ToXMLString converts it to an XML encoded string s by taking the following steps:
@@ -3459,7 +3459,7 @@ package
 				//
 				if(XML.prettyPrinting && indentChildren)
 					strArr.push("\n");
-				strArr.push(XML(_children[i])._toXMLString(nextIndentLevel,declarations.concat(ancestors)));
+				strArr.push((_children[i] as XML)._toXMLString(nextIndentLevel,ancestors.concat(declarations)));
 			}
 			if(XML.prettyPrinting && indentChildren)
 			{
