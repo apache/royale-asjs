@@ -115,6 +115,7 @@ import mx.styles.CSSStyleDeclaration;
 import org.apache.royale.utils.ClassSelectorList;
 import mx.display.NativeMenu;
 import mx.binding.BindingManager;
+import mx.managers.CursorManager;
 
 /**
  *  Set a different class for click events so that
@@ -2115,11 +2116,7 @@ public class UIComponent extends UIBase
      */
     public function get cursorManager():ICursorManager
     {
-        // TODO
-        trace("cursorManager not implemented");
-
-        return null;
-        //return CursorManager.getInstance();
+        return CursorManager.getInstance() as ICursorManager;
     }
 
     //----------------------------------

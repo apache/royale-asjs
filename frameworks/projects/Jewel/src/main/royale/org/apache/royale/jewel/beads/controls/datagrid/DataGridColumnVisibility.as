@@ -20,14 +20,11 @@ package org.apache.royale.jewel.beads.controls.datagrid
 {
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
-    import org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea;
-    import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList;
-    import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnWidth;
+    import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
     import org.apache.royale.jewel.itemRenderers.DatagridHeaderRenderer;
     import org.apache.royale.jewel.beads.views.DataGridView;
@@ -70,9 +67,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
         {
             for (var i:int = 0; i < view.columnLists.length; i++)
             {
-                var display:String = ((view.columnLists[i] as DataGridColumnList).columnInfo as DataGridColumn).visible ? "block" : "none";
+                var display:String = ((view.columnLists[i] as IDataGridColumnList).columnInfo as DataGridColumn).visible ? "block" : "none";
                 ((view.header as DataGridButtonBar).getElementAt(i) as DatagridHeaderRenderer).style = "display: " + display;
-                (view.columnLists[i] as DataGridColumnList).style = "display: " + display;
+                view.columnLists[i].style = "display: " + display;
             }
         }
 	}

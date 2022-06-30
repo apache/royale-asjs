@@ -31,9 +31,9 @@ public interface ICursorManager
 {
 	function get currentCursorID():int;
 	function set currentCursorID(value:int):void;
-    function get currentCursorXOffset():Number
+	function get currentCursorXOffset():Number
 	function set currentCursorXOffset(value:Number):void;
-    function get currentCursorYOffset():Number
+	function get currentCursorYOffset():Number
 	function set currentCursorYOffset(value:Number):void;
 
 	function showCursor():void;

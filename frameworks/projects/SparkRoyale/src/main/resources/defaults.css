@@ -35,6 +35,10 @@ global {
  * -------------------------------------------------------
  */
 
+Application
+{
+	ICursorManager: ClassReference("mx.managers.CursorManagerImpl");
+}
 
 Button
 {

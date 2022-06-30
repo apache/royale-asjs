@@ -116,6 +116,7 @@ adg|AdvancedDataGridHeaderRenderer {
 Application
 {
 	IBeadLayout: ClassReference("mx.containers.beads.ApplicationLayout");
+	ICursorManager: ClassReference("mx.managers.CursorManagerImpl");
 }
 
 AdvancedDataGrid
