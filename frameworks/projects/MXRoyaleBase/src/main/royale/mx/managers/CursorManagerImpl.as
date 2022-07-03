@@ -30,8 +30,8 @@ package mx.managers
 // import flash.events.EventDispatcher;
 // import flash.events.IEventDispatcher;
 // import flash.events.IOErrorEvent;
-// import flash.events.MouseEvent;
-// import flash.events.ProgressEvent;
+import org.apache.royale.events.MouseEvent;
+import mx.events.ProgressEvent;
 // import flash.geom.Point;
 // import flash.system.ApplicationDomain;
 // import flash.text.TextField;
