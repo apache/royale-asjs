@@ -530,6 +530,11 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
         cursorList.splice(0);
         
         showCurrentCursor();
+
+        COMPILE::JS
+        {
+            document.body.style.cursor = "auto";
+        }
     }
 
     private var _strand:IStrand;
@@ -556,7 +561,7 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     {
 	COMPILE::JS
 	{
-		(_strand as IRenderedObject).element.style.cursor = "wait";
+		document.body.style.cursor = "wait";
 	}
         // if (hasEventListener("setBusyCursor"))
     	// 	if (!dispatchEvent(new Event("setBusyCursor", false, true)))
@@ -588,7 +593,7 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     {
 	COMPILE::JS
 	{
-		(_strand as IRenderedObject).element.style.cursor = "auto";
+		document.body.style.cursor = "auto";
 	}
         // if (hasEventListener("removeBusyCursor"))
     	// 	if (!dispatchEvent(new Event("removeBusyCursor", false, true)))
