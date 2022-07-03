@@ -168,6 +168,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.MultiSelectionTreeModel; MultiSelectionTreeModel;
 	import org.apache.royale.html.beads.models.MenuModel; MenuModel;
 	import org.apache.royale.html.beads.models.RangeModel; RangeModel;
+	import org.apache.royale.html.beads.models.DeferredRangeModel; DeferredRangeModel;
 	import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
 	import org.apache.royale.html.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.royale.html.beads.models.ViewportModel; ViewportModel;
