@@ -45,7 +45,6 @@ Application
 {
 	padding: 0px;
 	margin: 0px;
-	ICursorManager: ClassReference("mx.managers.CursorManagerImpl");
 }
 
 ButtonBar
