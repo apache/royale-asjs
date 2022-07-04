@@ -16,38 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-package mx.managers
+package org.apache.royale.core
 {
-
-import mx.core.IUIComponent;
-
-[ExcludeClass]
-
-/**
- *  @private
- */
-public interface ICursorManager
-{
-	function get currentCursorID():int;
-	function set currentCursorID(value:int):void;
-	function get currentCursorXOffset():Number
-	function set currentCursorXOffset(value:Number):void;
-	function get currentCursorYOffset():Number
-	function set currentCursorYOffset(value:Number):void;
-
-	function showCursor():void;
-	function hideCursor():void;
-	function setCursor(cursorClass:Class, priority:int = 2,
-			xOffset:Number = 0, yOffset:Number = 0):int;
-	function removeCursor(cursorID:int):void;
-	function removeAllCursors():void;
-	function setBusyCursor():void;
-	function removeBusyCursor():void; 
-
-	function registerToUseBusyCursor(source:Object):void;
-	function unRegisterToUseBusyCursor(source:Object):void;
+    /**
+     *  The IDeferredModel interface describes the minimum set of properties
+     *  available for models that cache their values until TLC's content
+     *  creation is being deferred.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.10
+     */
+	public interface IDeferredModel extends IBeadModel
+	{
+        /**
+         *  Whether or not model population is deferred
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.10
+         */
+		function set deferred(value:Boolean):void;
+    }
 }
-
-}
-

@@ -116,6 +116,7 @@ adg|AdvancedDataGridHeaderRenderer {
 Application
 {
 	IBeadLayout: ClassReference("mx.containers.beads.ApplicationLayout");
+	ICursorManager: ClassReference("mx.managers.CursorManagerImpl");
 }
 
 AdvancedDataGrid
@@ -462,8 +463,9 @@ MenuBarItemRenderer
 
 NumericStepper
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DeferredRangeModel");
 	IBeadView: ClassReference("mx.controls.beads.NumericStepperView");
+	IBeadController: ClassReference("mx.controls.beads.NumericStepperController");
 }
 
 Panel

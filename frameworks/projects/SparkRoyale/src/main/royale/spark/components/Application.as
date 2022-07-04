@@ -66,6 +66,7 @@ import mx.core.FlexGlobals;
 import mx.core.IUIComponent;
 import mx.events.utils.MouseEventConverter;
 import mx.managers.ISystemManager;
+import mx.managers.ICursorManager;
 
 COMPILE::JS {
     import org.apache.royale.core.ElementWrapper;
@@ -87,6 +88,7 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.reflection.beads.ClassAliasBead;
 import spark.core.ISparkLayoutHost;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 
 use namespace mx_internal; 
 
@@ -330,6 +332,7 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         {
             ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter.convert;
         }
+        loadBeadFromValuesManager(ICursorManager, "iCursorManager", FlexGlobals.topLevelApplication as IStrand);
     }
 
     

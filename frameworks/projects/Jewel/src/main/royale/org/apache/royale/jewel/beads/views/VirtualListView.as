@@ -142,7 +142,11 @@ package org.apache.royale.jewel.beads.views
 			if (contentView.numElements == 0)
 				return null;
 			
-			var firstIndex:int = (contentView.getElementAt(firstElementIndex) as IIndexedItemRenderer).index;
+            var itemRenderer:IIndexedItemRenderer = contentView.getElementAt(firstElementIndex) as IIndexedItemRenderer;
+            if (itemRenderer == null)
+                return null;
+
+			var firstIndex:int = itemRenderer.index;
 			
 			if (index < firstIndex) 
 				return null;

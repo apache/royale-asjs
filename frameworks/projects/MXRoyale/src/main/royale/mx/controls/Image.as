@@ -43,6 +43,7 @@ import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.events.HTTPStatusEvent;
+import mx.events.IOErrorEvent;
 
 /*
 
@@ -52,6 +53,22 @@ use namespace mx_internal;
 //--------------------------------------
 //  Events
 //--------------------------------------
+
+
+/**
+ *  Dispatched when content loading is complete.
+ *
+ *  <p>This event is dispatched regardless of whether the load was triggered
+ *  by an autoload or an explicit call to the <code>load()</code> method.</p>
+ *
+ *  @eventType flash.events.Event.COMPLETE
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.10
+ */
+[Event(name="complete", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when the <code>data</code> property changes.
@@ -82,6 +99,20 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 [Event(name="httpStatus", type="mx.events.HTTPStatusEvent")]
+
+
+/**
+ *  Dispatched when an input/output error occurs.
+ *  @see mx.events.IOErrorEvent
+ *
+ *  @eventType flash.events.IOErrorEvent.IO_ERROR
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.10
+ */
+[Event(name="ioError", type="mx.events.IOErrorEvent")]
 //--------------------------------------
 //  Other metadata
 //--------------------------------------
@@ -479,6 +510,7 @@ public class Image extends UIComponent
 		if (_imgElement.src != binaryDataAsString) {
 			isContentLoaded = false;
 			_imgElement.addEventListener("load", handleImageLoaded);
+			_imgElement.addEventListener("error", handleImageError);
 			_imgElement.src = binaryDataAsString;
 		}
 	}
@@ -487,6 +519,12 @@ public class Image extends UIComponent
 	public function get complete():Boolean
 	{
 		return _imgElement.complete;
+	}
+
+	COMPILE::JS
+	private function handleImageError(event:BrowserEvent):void
+	{
+		dispatchEvent(new IOErrorEvent(IOErrorEvent.IO_ERROR))
 	}
 
 	COMPILE::JS

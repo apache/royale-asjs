@@ -144,6 +144,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IParentIUIBase; IParentIUIBase;
 	import org.apache.royale.core.IPopUp; IPopUp;
 	import org.apache.royale.core.IRangeModel; IRangeModel;
+	import org.apache.royale.core.IDeferredModel; IDeferredModel;
 	import org.apache.royale.core.IState; IState;
 	import org.apache.royale.core.ISWFApplication; ISWFApplication;
 	import org.apache.royale.core.ITransformModel; ITransformModel;

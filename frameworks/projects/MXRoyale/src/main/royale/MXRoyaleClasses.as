@@ -283,6 +283,7 @@ internal class MXRoyaleClasses
     import mx.controls.beads.ComboBoxView; ComboBoxView;
 	import mx.controls.beads.controllers.RadioButtonMouseController; RadioButtonMouseController;
     import mx.controls.beads.NumericStepperView; NumericStepperView;
+    import mx.controls.beads.NumericStepperController; NumericStepperController;
     import mx.controls.beads.DateFieldView; DateFieldView;
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
     import mx.controls.beads.controllers.MenuBarMouseController; MenuBarMouseController;
