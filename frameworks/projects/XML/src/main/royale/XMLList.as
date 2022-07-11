@@ -63,6 +63,16 @@ package
 			if (typeof other == 'boolean') other = ('' + other);//force a string comparison
 			return (list as Object) == other;
 		}
+
+		/**
+		 * Compiler-only method to stringification, which avoids valueOf calls.
+		 *
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public static function coerce_string(list:XMLList):String{
+			return list !== null ? String(list) : null;
+		}
 		
 		public function XMLList(expression:Object = null)
 		{
