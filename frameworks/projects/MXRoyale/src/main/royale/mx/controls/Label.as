@@ -58,6 +58,7 @@ import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.binding.ItemRendererDataBinding;
 import org.apache.royale.events.ValueEvent;
+import mx.controls.beads.ToolTipBead;
 
 //--------------------------------------
 //  Events
@@ -929,7 +930,7 @@ public class Label extends UIComponent
                 {
                     addBead(new OverflowTooltipNeeded());
                 }
-                addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, tooltipNeededListener);
+                addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, truncationToolTipNeededListener);
             }
         } else if (_truncationBead && _truncateToFit && !value)
         {
@@ -942,12 +943,22 @@ public class Label extends UIComponent
     }
     
     COMPILE::JS
-    private function tooltipNeededListener(event:ValueEvent):void
+    private function truncationToolTipNeededListener(event:ValueEvent):void
     {
-        toolTip = event.value ? text : "";
+        if (toolTip)
+        {
+            return;
+        }
+        if (!_toolTipBead)
+        {
+            _toolTipBead = new ToolTipBead();
+            addBead(_toolTipBead);
+        }
+        if (event.value)
+        {
+            _toolTipBead.toolTip = text;
+        }
     }
-
-
 
     //--------------------------------------------------------------------------
     //

@@ -3825,7 +3825,7 @@ COMPILE::JS
      */
     private var _toolTip:String;
 	
-	private var _toolTipBead: ToolTipBead;
+	protected var _toolTipBead: ToolTipBead;
 	private var _disableBead: DisableBead;
 
     [Bindable("toolTipChanged")]
