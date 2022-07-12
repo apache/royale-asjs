@@ -307,7 +307,11 @@ package flexUnitTests.xml
             assertTrue( outString.length == expected.length, 'unexpected toString result');
         }
         
-        
+        [Test]
+        public function emptyStringify():void{
+            var xml:XML = <Foo><Baz/></Foo>;
+            assertEquals("" + xml.Baz.text(), "","An empty node should return an empty string");
+        }
         [Test]
         public function testCDATA():void{
             var script:XML = <script>   <![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]>  </script>;

@@ -63,6 +63,16 @@ package
 			if (typeof other == 'boolean') other = ('' + other);//force a string comparison
 			return (list as Object) == other;
 		}
+
+		/**
+		 * Compiler-only method to stringification, which avoids valueOf calls.
+		 *
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public static function coerce_string(list:XMLList):String{
+			return list !== null ? String(list) : null;
+		}
 		
 		public function XMLList(expression:Object = null)
 		{
@@ -394,8 +404,14 @@ package
 		 */
 		public function child(propertyName:Object):XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].child(propertyName);
+
 			var retVal:XMLList = new XMLList();
 			retVal.targetProperty = propertyName.toString();
+			if(isEmpty())
+				retVal.targetObject = this;
+
 			var propNum:Number = parseInt(propertyName,10);
 			if(propNum.toString() == propertyName)
 			{
@@ -406,12 +422,6 @@ package
 				}
 				return retVal;
 			}
-			if(isEmpty())
-			{
-				retVal.targetObject = this;
-			}
-			if(isSingle())
-				return _xmlArray[0].child(propertyName);
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
 			{
@@ -1295,6 +1305,9 @@ package
 		 */
 		public function text():XMLList
 		{
+			if(isSingle())
+				return _xmlArray[0].text();
+
 			var retVal:XMLList = new XMLList();
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
@@ -1384,14 +1397,24 @@ package
 		
 		/**
 		 * Returns the XMLList object.
-		 * 
-		 * @return 
+		 * @royaleignorecoercion XML
+		 * @royaleignorecoercion QName
 		 * 
 		 */
 		override public function valueOf():*
 		{
 			if(isEmpty())
-				return undefined;
+			{
+				var target:XML = targetObject;
+				if(!target)
+					return undefined;
+				// return undefined for undefined children and attributes
+				var targetProp:QName = targetProperty;
+				if(targetProp)
+					return undefined;
+				// If there's no target property, valueOf on the target XML should be called
+				return target.valueOf();
+			}
 			if(isSingle())
 				return _xmlArray[0].valueOf();
 

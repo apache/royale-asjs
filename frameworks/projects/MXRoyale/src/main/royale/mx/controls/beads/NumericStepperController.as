@@ -23,6 +23,7 @@ package mx.controls.beads
     import org.apache.royale.core.IBeadController;
     import org.apache.royale.events.IEventDispatcher;
     import mx.events.FlexEvent;
+    import org.apache.royale.events.Event;
 	
     /**
      *  The NumericStepperController class takes control of some lifecycle issues.
@@ -46,7 +47,9 @@ package mx.controls.beads
 		protected function strandInitialized(event:FlexEvent):void
 		{
 			var model:IDeferredModel = (event.target as IStrand).getBeadByType(IDeferredModel) as IDeferredModel;
+            (event.target as IEventDispatcher).dispatchEvent(new Event("deferredModelInitializing"));
 			model.deferred = false;
+            (event.target as IEventDispatcher).dispatchEvent(new Event("deferredModelInitialized"));
 		}
 	}
 }
