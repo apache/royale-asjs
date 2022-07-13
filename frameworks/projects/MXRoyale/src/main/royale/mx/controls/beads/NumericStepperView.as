@@ -24,6 +24,8 @@ package mx.controls.beads
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.html.beads.NumericStepperView;
     import org.apache.royale.events.Event;
+    import mx.events.FocusEvent;
+    import org.apache.royale.events.IEventDispatcher;
 	
     /**
      *  The NumericStepperView class overrides the Basic
@@ -64,6 +66,7 @@ package mx.controls.beads
 		 */
 		override protected function inputChangeHandler(event:Event) : void
 		{
+            var isTextInputEmpty:Boolean = input.text == "";
 			var signAndNumber:Array = input.text.split("-");
 			var newValue:Number = Number(signAndNumber.length == 2 ? signAndNumber[1] : signAndNumber[0]);
 			var sign:int = signAndNumber.length == 2 ? -1 : 1;
@@ -74,7 +77,18 @@ package mx.controls.beads
 			else {
 				input.text = String(spinner.value);
 			}
+            if (isTextInputEmpty)
+            {
+                input.text = ""; // We want to allow user to type a new value regardless of above constraints
+                (_strand as IEventDispatcher).addEventListener(FocusEvent.FOCUS_OUT, focusOutHandler);
+            }
 		}
+
+        private function focusOutHandler(event:FocusEvent):void
+        {
+			input.text = "" + spinner.value;
+            (_strand as IEventDispatcher).removeEventListener(FocusEvent.FOCUS_OUT, focusOutHandler);
+        }
 
 	}
 
