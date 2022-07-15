@@ -57,6 +57,7 @@ package mx.controls.beads
 		 */
 		private function mouseClickHandler(event:MouseEvent):void
 		{
+			if (!adg.sortableColumns) return; //bail early
             var buttonBar:DataGridButtonBar = ((adg.view as DataGridView).header as DataGridButtonBar);
             // probably down on one button and up on another button
             // so the ButtonBar won't change selection
