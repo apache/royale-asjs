@@ -26,6 +26,9 @@ package mx.controls.beads
 	import org.apache.royale.html.util.getModelByType;
     import org.apache.royale.html.util.getLabelFromXMLData;
     import org.apache.royale.html.TextInput;
+    import org.apache.royale.core.IStrand;
+    import mx.controls.ComboBase;
+    import org.apache.royale.core.IRenderedObject;
 	
     /**
      *  The ComboBoxView class.
@@ -64,6 +67,27 @@ package mx.controls.beads
             super.popUpVisible = value;
             if (sendClose)
                 IEventDispatcher(_strand).dispatchEvent(new Event("close"));
+        }
+        
+        override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+            (value as IEventDispatcher).addEventListener("editableChanged", syncEditable);
+			syncEditable();
+		}
+
+        protected function syncEditable(event:Event=null):void
+        {
+            COMPILE::JS
+            {
+                if ((_strand as ComboBase).editable)
+                {
+                    (textInputField as IRenderedObject).element.removeAttribute("readonly");
+                } else
+                {
+                    (textInputField as IRenderedObject).element.setAttribute("readonly", true);
+                }
+            }
         }
 
         override protected function itemChangeAction():void

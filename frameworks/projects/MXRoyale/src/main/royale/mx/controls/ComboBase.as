@@ -573,10 +573,10 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
+    private var _editable:Boolean;
     public function get editable():Boolean
     {
-        trace("ComboBox.editable not implemented");
-        return true;
+        return _editable;
     }
 
     /**
@@ -584,7 +584,11 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set editable(value:Boolean):void
     {
-        trace("ComboBox.editable not implemented");
+        if (value != _editable)
+        {
+            _editable = value;
+            dispatchEvent(new Event("editableChanged"));
+        }
     }
 
 
