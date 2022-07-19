@@ -35,6 +35,8 @@ import mx.effects.Tween;
 import org.apache.royale.geom.Rectangle;
 import org.apache.royale.geom.Point;
 import org.apache.royale.core.IUIBase;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.html.beads.DisableBead;
 import mx.managers.ISystemManager;
 import mx.events.FlexMouseEvent;
 import mx.core.UIComponentGlobals;
@@ -96,6 +98,10 @@ import mx.managers.ISystemManager;
 import mx.managers.PopUpManager;
 import mx.styles.CSSStyleDeclaration;
 import mx.utils.MatrixUtil;
+import org.apache.royale.express.TextInput;
+import org.apache.royale.core.IContentView;
+import org.apache.royale.html.TextInput;
+import org.apache.royale.core.IStrand;
 
 use namespace mx_internal;
 */
@@ -706,6 +712,33 @@ public class ComboBox extends ComboBase
     {
         (model as ISelectionModel).labelField = value;
     }
+
+
+    private var _editable:Boolean;
+    private var _inputDisableBead:DisableBead;
+    override public function get editable():Boolean
+    {
+        return _editable;
+    }
+
+    override public function set editable(value:Boolean):void
+    {
+        _editable = value;
+        if (_inputDisableBead)
+        {
+            _inputDisableBead.disabled = !value;
+        }
+    }
+
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        var ti:IStrand =  (view as IComboBoxView).textInputField as IStrand;
+        _inputDisableBead = new DisableBead();
+        _inputDisableBead.disabled = !_editable;
+        ti.addBead(_inputDisableBead);
+    }
+    
     
     //--------------------------------------------------------------------------
     //
