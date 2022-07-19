@@ -115,6 +115,8 @@
     
     <path id="lib.path">
       <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+    </path>
+    <path id="royaleunit.lib.path">
       <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="royaleUnitTasks.jar"/>
     </path>
 
@@ -200,7 +202,7 @@
 
         <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
-        <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
+        <taskdef resource="royaleUnitTasks.tasks" classpathref="royaleunit.lib.path"/>
 
         <mkdir dir="${report.dir}" />
         <royaleunit
