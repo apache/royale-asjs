@@ -303,6 +303,7 @@ package
  		public static const FLICKR:String = "flickr";
  		public static const FLOPPY:String = "floppy";
  		public static const FOLDER:String = "folder";
+ 		public static const FOLDER_TREE:String = "folder-tree";
  		public static const FOLDERPEN:String = "folderpen";
  		public static const FOLDERS:String = "folders";
  		public static const FONT:String = "font";
@@ -405,6 +406,7 @@ package
  		public static const JPY:String = "jpy";
  		public static const JSFIDDLE:String = "jsfiddle";
  		public static const KEY:String = "key";
+ 		public static const KEYCDN:String = "keycdn";
  		public static const KEYBOARD:String = "keyboard";
  		public static const KRW:String = "krw";
  		public static const LANGUAGE:String = "language";
@@ -721,6 +723,7 @@ package
  		public static const USER_TIMES:String = "user-times";
  		public static const USER_UNLOCK:String = "user-unlock";
  		public static const USERS:String = "users";
+ 		public static const USERS_CLASS:String = "users-class";
  		public static const USERS_CROWN:String = "users-crown";
  		public static const USERS_SLASH:String = "users-slash";
  		public static const VENUS:String = "venus";
