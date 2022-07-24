@@ -66,19 +66,19 @@ package org.apache.royale.html.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-            
-            var color:uint;
-            if (!isNaN(uint(data)))
-            {
-                color = uint(data);
-            } else if (dataField)
-            {
-                color = uint(data[dataField]);
-            } else
-            {
-                color = 0x000000;
-            }
-            backgroundBead.backgroundColor = color;
+			var color:uint;
+			if (!isNaN(uint(data)))
+			{
+				color = uint(data);
+			} else if (dataField)
+			{
+				color = uint(data[dataField]);
+			} else
+			{
+				color = 0x000000;
+			}
+			backgroundBead.backgroundColor = color;
+			backgroundBead.updateRenderer();
 		}
 	}
 }
