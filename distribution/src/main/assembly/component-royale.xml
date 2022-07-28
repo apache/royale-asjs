@@ -117,10 +117,23 @@
         </dependencySet>
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
-            <outputDirectory>js/lib</outputDirectory>
+            <outputDirectory>js/lib/royaleunit</outputDirectory>
             <outputFileNameMapping>java-websocket.jar</outputFileNameMapping>
             <includes>
                 <include>org.java-websocket:Java-WebSocket:jar</include>
+            </includes>
+        </dependencySet>
+        <dependencySet>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputDirectory>js/lib/royaleunit</outputDirectory>
+            <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
+            <includes>
+                <include>*:dom4j:*</include>
+                <include>*:gson:jar</include>
+                <include>*:slf4j-api:*</include>
+                <include>com.microsoft.playwright:playwright:jar</include>
+                <include>com.microsoft.playwright:driver:jar</include>
+                <include>com.microsoft.playwright:driver-bundle:jar</include>
             </includes>
         </dependencySet>
         <dependencySet>
