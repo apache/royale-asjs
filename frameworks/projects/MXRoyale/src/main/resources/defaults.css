@@ -324,6 +324,11 @@ containerBeads|PanelInternalContainer
 	IBeadView: ClassReference("mx.containers.beads.PanelInternalContainerView");
 }
 
+HRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
+}
+
 Image
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
@@ -664,6 +669,11 @@ ViewStack
 {
 	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+}
+
+VRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
 }
 
 charts|ChartBase
