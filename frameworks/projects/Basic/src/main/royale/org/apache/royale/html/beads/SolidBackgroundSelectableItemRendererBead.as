@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.utils.CSSUtils;
 
 	/**
 	 *  UnselectableElement bead prevents from text selection of html element
@@ -68,13 +69,9 @@ package org.apache.royale.html.beads
             }
             COMPILE::JS
             {
+                super.updateRenderer();
                 var element:HTMLElement = (_strand as IUIBase).element;
-                if (selected)
-                    element.style.backgroundColor = '#9C9C9C';
-                else if (hovered)
-                    element.style.backgroundColor = '#ECECEC';
-                else
-                    element.style.backgroundColor = 'transparent';
+                element.style.backgroundColor = CSSUtils.attributeFromColor(useColor);
             }
         }
         

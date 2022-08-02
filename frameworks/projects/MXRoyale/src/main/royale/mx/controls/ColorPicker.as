@@ -23,6 +23,8 @@ package mx.controls
     import org.apache.royale.core.IColorModel;
 	//import mx.controls.ComboBase;
     import mx.core.UIComponent;
+    import mx.controls.colorPickerClasses.WebSafePalette;
+    import org.apache.royale.core.ISelectionModel;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -34,7 +36,6 @@ import flash.geom.Rectangle;
 import flash.ui.Keyboard;
 import flash.utils.getTimer;
 import mx.controls.colorPickerClasses.SwatchPanel;
-import mx.controls.colorPickerClasses.WebSafePalette;
 import mx.core.LayoutDirection;
 import mx.core.UIComponent;
 import mx.core.UIComponentGlobals;
@@ -502,8 +503,8 @@ public class ColorPicker extends UIComponent //ComboBase
         super();
 
         typeNames = "ColorPicker";
-        //if (!isModelInited)
-        //    loadDefaultPalette();
+        if (!isModelInited)
+           loadDefaultPalette();
 
         // Make editable false so that focus doesn't go
         // to the comboBase's textInput which is not used by CP
@@ -555,7 +556,7 @@ public class ColorPicker extends UIComponent //ComboBase
     /**
      *  @private
      */
-    //private var isModelInited:Boolean = false;
+    private var isModelInited:Boolean = false;
 
     /**
      *  @private
@@ -689,6 +690,46 @@ public class ColorPicker extends UIComponent //ComboBase
     {
         (model as IColorModel).color = uint(value);
     }
+
+    /**
+     *  @private
+     *  Load Default Palette
+     */
+    private function loadDefaultPalette():void
+    {
+        // Initialize default swatch list
+        if (!dataProvider || dataProvider.length < 1)
+        {
+            var wsp:WebSafePalette = new WebSafePalette();
+            dataProvider = wsp.getList();
+        }
+    }
+    //----------------------------------
+    //  dataProvider
+    //----------------------------------
+
+    [Bindable("collectionChange")]
+    [Inspectable(category="Data")]
+
+    /**
+     *  @private
+     *  The dataProvider for the ColorPicker control.
+     *  The default dataProvider is an Array that includes all
+     *  the web-safe colors.
+     *
+     *  @helpid 4929
+     */
+    public function set dataProvider(value:Object):void
+    {
+        (model as ISelectionModel).dataProvider = value;
+        isModelInited = true;
+    }
+
+    public function get dataProvider():Object
+    {
+        return (model as ISelectionModel).dataProvider;
+    }
+
 }
 
 } 

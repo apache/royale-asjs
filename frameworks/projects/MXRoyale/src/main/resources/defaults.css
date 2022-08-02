@@ -206,10 +206,16 @@ CheckBox
 
 ColorPicker
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListColorSelectionModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.ColorPickerView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
-	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ColorPickerPopUp");
+	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ColorPickerPopUpWithPalette");
+}
+
+Basic|ColorPalette
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListSelectionModel");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayList");
 }
 
 ComboBox
@@ -316,6 +322,11 @@ containerBeads|FormItemContainer
 containerBeads|PanelInternalContainer
 {
 	IBeadView: ClassReference("mx.containers.beads.PanelInternalContainerView");
+}
+
+HRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
 }
 
 Image
@@ -658,6 +669,11 @@ ViewStack
 {
 	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+}
+
+VRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
 }
 
 charts|ChartBase
