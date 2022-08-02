@@ -493,7 +493,7 @@ Panel .TitleBar
 PanelTitleBar
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.TitleBarView");
+	IBeadView: ClassReference("mx.controls.beads.TitleBarView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
 	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TitleBarMeasurementBead");
 	background-color: #E2E2E2;
