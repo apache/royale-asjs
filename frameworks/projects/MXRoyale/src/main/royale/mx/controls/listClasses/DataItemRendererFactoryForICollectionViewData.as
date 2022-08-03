@@ -23,6 +23,7 @@ package mx.controls.listClasses
     import mx.collections.IViewCursor;
 	import mx.events.CollectionEvent;
 	import mx.events.CollectionEventKind;
+	import mx.events.PropertyChangeEvent;
     
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadModel;
@@ -225,7 +226,7 @@ package mx.controls.listClasses
 			// appearence or whatever.
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.location) as IIndexedItemRenderer;
 
-            var data:Object = event.items[0];//.pop();
+            var data:Object = (event.items[0] as PropertyChangeEvent).source;//.pop();
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.location);
             ir.data = data;				
 		}
