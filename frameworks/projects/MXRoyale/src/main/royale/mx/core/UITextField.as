@@ -765,6 +765,8 @@ public class UITextField  extends UIComponent implements IUITextField
              }
              COMPILE::JS
              {
+                 //bindings can sometimes set this to undefined at runtime, which should be coerced to null
+                 if (typeof value == 'undefined') value = null;
                  _text = value;
                  this.element.innerText = value;
                  this.dispatchEvent('textChange');
