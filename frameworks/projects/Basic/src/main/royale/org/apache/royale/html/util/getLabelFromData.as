@@ -65,9 +65,17 @@ package org.apache.royale.html.util
         }
 
         var label:String = data["label"];
-        if(label != null){
+        if(label != null)
+        {
             return label;
         }
+
+        if (obj is IHasLabelField && (obj as IHasLabelField).labelField &&
+                (data[(obj as IHasLabelField).labelField] == null || data[(obj as IHasLabelField).labelField] == undefined))
+        {
+            return "";
+        }
+
         return "" + data;
 
     }
