@@ -50,31 +50,23 @@ package org.apache.royale.html.util
         if (data is String) return "" + data;
         if(!data) return "";
         if(data is ILabeledData) return (data as ILabeledData).label;
-        if (obj is IHasLabelField &&
-            (obj as IHasLabelField).labelField &&
-            data[(obj as IHasLabelField).labelField] != null)
+        if (obj is IHasLabelField && (obj as IHasLabelField).labelField)
         {
-            return "" + data[(obj as IHasLabelField).labelField];
+            return data[(obj as IHasLabelField).labelField] == null ?
+                "" :
+                "" + data[(obj as IHasLabelField).labelField];
         } 
-            
-        if (obj is IHasDataField &&
-            (obj as IHasDataField).dataField &&
-            data[(obj as IHasDataField).dataField] != null)
+
+        if (obj is IHasDataField && (obj as IHasDataField).dataField)
         {
-            return "" + data[(obj as IHasDataField).dataField];
+            return data[(obj as IHasDataField).dataField] == null ?
+                "" :
+                "" + data[(obj as IHasDataField).dataField];
         }
 
         var label:String = data["label"];
         if(label != null)
-        {
             return label;
-        }
-
-        if (obj is IHasLabelField && (obj as IHasLabelField).labelField &&
-                (data[(obj as IHasLabelField).labelField] == null || data[(obj as IHasLabelField).labelField] == undefined))
-        {
-            return "";
-        }
 
         return "" + data;
 
