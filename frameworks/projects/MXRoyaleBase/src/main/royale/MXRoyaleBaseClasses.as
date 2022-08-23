@@ -288,6 +288,7 @@ internal class MXRoyaleBaseClasses
 	import mx.validators.StringValidator;StringValidator;
 	import mx.validators.ValidationResult;ValidationResult;
 	import mx.validators.Validator;Validator;
+	import mx.core.DragSource; DragSource;
 
 
 

@@ -30,19 +30,24 @@ import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModule;
 import mx.core.IFlexModuleFactory;
 import mx.core.IUIComponent;
-import mx.core.LayoutDirection;
-import mx.core.UIComponentGlobals;
-import mx.core.mx_internal;
+import org.apache.royale.events.MouseEvent;
+
+// import mx.core.LayoutDirection;
+// import mx.core.UIComponentGlobals;
+// import mx.core.mx_internal;
 // import mx.events.DragEvent;
-import mx.styles.CSSStyleDeclaration;
-import mx.styles.IStyleManager2;
-import mx.styles.StyleManager;
+// import mx.styles.CSSStyleDeclaration;
+// import mx.styles.IStyleManager2;
+// import mx.styles.StyleManager;
 import org.apache.royale.core.IBead;
 import org.apache.royale.html.beads.controllers.DragMouseController;
-import org.apache.royale.html.beads.DragDropListView;
+// import org.apache.royale.html.beads.DragDropListView;
 import org.apache.royale.events.DragEvent;
 import org.apache.royale.html.beads.controllers.DropMouseController;
-import org.apache.royale.html.accessories.RestrictTextInputBead;
+import org.apache.royale.core.UIBase;
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.core.Lookalike;
+// im`port org.apache.royale.html.accessories.RestrictTextInputBead;
 
 // use namespace mx_internal;
 
@@ -156,7 +161,7 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	 *  @private
 	 *  Object being dragged around.
 	 */
-	public var dragProxy:DragProxy;
+	// public var dragProxy:DragProxy;
 
 	/**
 	 *  @private
@@ -380,6 +385,31 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 		}
 		(dragInitiator as IStrand).addBead(dragController);
 		dragController.addEventListener("dragMove", dragMoveHandler)
+		dragController.addEventListener("dragStart", dragStartHandler)
+		_dragSource = dragSource;
+		_lookAlike = createDragImage(dragInitiator);
+	}
+
+	private var _lookAlike:UIBase;
+	protected function createDragImage(dragInitiator:IUIBase):UIBase
+	{
+		var dragImage:UIBase = new Lookalike(dragInitiator);
+		dragImage.className = "DragImage";
+		dragImage.width = dragInitiator.width;
+		dragImage.height = dragInitiator.height;
+		COMPILE::JS 
+		{
+			dragImage.element.style.position = 'absolute';
+			dragImage.element.style.cursor = 'pointer';
+		}
+		return dragImage;
+	}
+
+	private var _dragSource:DragSource;
+	private function dragStartHandler(event:DragEvent):void
+	{
+		DragEvent.dragSource = _dragSource;
+		DragMouseController.dragImage = _lookAlike;
 	}
 
 	private function dragMoveHandler(event:DragEvent):void
@@ -417,13 +447,13 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	 */
 	public function acceptDragDrop(target:IUIComponent):void
 	{
-		// trace("-->acceptDragDrop for DragManagerImpl", sm, target);
+	// 	// trace("-->acceptDragDrop for DragManagerImpl", sm, target);
 
-		if (dragProxy)
-			dragProxy.target = target as DisplayObject;
+	// 	if (dragProxy)
+	// 		dragProxy.target = target as DisplayObject;
 
-        if (hasEventListener("acceptDragDrop"))
-    		dispatchEvent(new Request("acceptDragDrop", false, false, target));
+        // if (hasEventListener("acceptDragDrop"))
+    	// 	dispatchEvent(new Request("acceptDragDrop", false, false, target));
 
 	}
 	
@@ -441,17 +471,17 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	 */
 	public function showFeedback(feedback:String):void
 	{
-		// trace("-->showFeedback for DragManagerImpl", sm, feedback);
-		if (dragProxy)
-		{
-			if (feedback == DragManager.MOVE && !dragProxy.allowMove)
-				feedback = DragManager.COPY;
+	// 	// trace("-->showFeedback for DragManagerImpl", sm, feedback);
+	// 	if (dragProxy)
+	// 	{
+	// 		if (feedback == DragManager.MOVE && !dragProxy.allowMove)
+	// 			feedback = DragManager.COPY;
 
-			dragProxy.action = feedback;
-		}
+	// 		dragProxy.action = feedback;
+	// 	}
 
-        if (hasEventListener("showFeedback"))
-    		dispatchEvent(new Request("showFeedback", false, false, feedback));
+        // if (hasEventListener("showFeedback"))
+    	// 	dispatchEvent(new Request("showFeedback", false, false, feedback));
 
 	}
 	
@@ -469,17 +499,18 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	 */
 	public function getFeedback():String
 	{
-        if (hasEventListener("getFeedback"))
-        {
-		    var request:Request = new Request("getFeedback", false, true);
-		    if (!dispatchEvent(request))
-		    {
-			    return request.value as String;
-		    }
-        }
+        // if (hasEventListener("getFeedback"))
+        // {
+	// 	    var request:Request = new Request("getFeedback", false, true);
+	// 	    if (!dispatchEvent(request))
+	// 	    {
+	// 		    return request.value as String;
+	// 	    }
+        // }
 
-		// trace("<--getFeedback for DragManagerImpl", sm);
-		return dragProxy ? dragProxy.action : DragManager.NONE;
+	// 	// trace("<--getFeedback for DragManagerImpl", sm);
+	// 	return dragProxy ? dragProxy.action : DragManager.NONE;
+	return null;
 	}
 	
 	/**
@@ -487,43 +518,43 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	 */
 	public function endDrag():void
 	{
-        var e:Event;
-        if (hasEventListener("endDrag"))
-        {
-            e = new Event("endDrag", false, true);
-        }
+        // var e:Event;
+        // if (hasEventListener("endDrag"))
+        // {
+        //     e = new Event("endDrag", false, true);
+        // }
         
-		if (!e || dispatchEvent(e))
-		{
-			if (dragProxy)
-			{
-				sm.popUpChildren.removeChild(dragProxy);	
+	// 	if (!e || dispatchEvent(e))
+	// 	{
+	// 		if (dragProxy)
+	// 		{
+	// 			sm.popUpChildren.removeChild(dragProxy);	
 				
-                if (dragProxy.numChildren > 0)
-				    dragProxy.removeChildAt(0);	// The drag image is the only child
-				dragProxy = null;
-			}
-		}
+        //         if (dragProxy.numChildren > 0)
+	// 			    dragProxy.removeChildAt(0);	// The drag image is the only child
+	// 			dragProxy = null;
+	// 		}
+	// 	}
 
-		dragInitiator = null;
-		bDoingDrag = false;
+	// 	dragInitiator = null;
+	// 	bDoingDrag = false;
 
 	}
 
-    /**
-     *  @private
-     */
-    static private function getStyleManager(dragInitiator:IUIComponent):IStyleManager2
-    {
-        // If the dragInitiator has a styleManager, use that one.
-        // In a situation where a main application that loads a module with drag initiator,
-        // the main application may not link in the DragManager and appropriate styles.
-        // We want to use the styles of the module of the dragInitiator. See SDK-24324.
-        if (dragInitiator is IFlexModule)
-            return StyleManager.getStyleManager(IFlexModule(dragInitiator).moduleFactory);
+//     /**
+//      *  @private
+//      */
+//     static private function getStyleManager(dragInitiator:IUIComponent):IStyleManager2
+//     {
+//         // If the dragInitiator has a styleManager, use that one.
+//         // In a situation where a main application that loads a module with drag initiator,
+//         // the main application may not link in the DragManager and appropriate styles.
+//         // We want to use the styles of the module of the dragInitiator. See SDK-24324.
+//         if (dragInitiator is IFlexModule)
+//             return StyleManager.getStyleManager(IFlexModule(dragInitiator).moduleFactory);
         
-        return StyleManager.getStyleManager(sm as IFlexModuleFactory);
-    }
+//         return StyleManager.getStyleManager(sm as IFlexModuleFactory);
+//     }
 
 	//--------------------------------------------------------------------------
 	//
@@ -534,18 +565,18 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	/**
 	 *  @private
 	 */
-	private function sm_mouseDownHandler(event:MouseEvent):void
-	{
-		mouseIsDown = true;
-	}
+	// private function sm_mouseDownHandler(event:MouseEvent):void
+	// {
+	// 	mouseIsDown = true;
+	// }
 	
 	/**
 	 *  @private
 	 */
-	private function sm_mouseUpHandler(event:MouseEvent):void
-	{
-		mouseIsDown = false;
-	}
+	// private function sm_mouseUpHandler(event:MouseEvent):void
+	// {
+	// 	mouseIsDown = false;
+	// }
 
 	private var _strand:IStrand;
 	public function set strand(value:IStrand):void

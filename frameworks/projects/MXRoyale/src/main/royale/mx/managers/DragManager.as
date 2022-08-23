@@ -231,8 +231,8 @@ public class DragManager
             imageAlpha:Number = 0.5,
             allowMove:Boolean = true):void
     {
-      /*   impl.doDrag(dragInitiator, dragSource, mouseEvent, dragImage, xOffset,
-                yOffset, imageAlpha, allowMove); */
+            impl.doDrag(dragInitiator, dragSource, mouseEvent, dragImage, xOffset,
+                yOffset, imageAlpha, allowMove);
     }
     
 
@@ -254,7 +254,7 @@ public class DragManager
      */
     public static function acceptDragDrop(target:IUIComponent):void
     {
-       /*  impl.acceptDragDrop(target); */
+        impl.acceptDragDrop(target);
     }
     
     /**
@@ -271,9 +271,7 @@ public class DragManager
      */
     public static function showFeedback(feedback:String):void
     {
-	/*        
-	impl.showFeedback(feedback);
-	*/    
+        impl.showFeedback(feedback);
 	}
         
     /**

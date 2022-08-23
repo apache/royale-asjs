@@ -21,7 +21,7 @@
 package mx.managers
 {
 
-import flash.events.MouseEvent;
+import org.apache.royale.events.MouseEvent;
 
 import mx.core.DragSource;
 import mx.core.IFlexDisplayObject;
