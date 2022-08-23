@@ -38,6 +38,7 @@ global {
 Application
 {
 	ICursorManager: ClassReference("mx.managers.CursorManagerImpl");
+	IDragManager: ClassReference("mx.managers.DragManagerImpl");
 }
 
 Button

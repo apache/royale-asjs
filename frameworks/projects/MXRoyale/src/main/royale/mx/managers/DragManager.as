@@ -27,6 +27,8 @@ package mx.managers
 import mx.core.DragSource;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
+import mx.core.FlexGlobals;
+import org.apache.royale.core.IStrand;
 //import mx.core.Singleton;
 import mx.core.mx_internal;
 //import mx.managers.dragClasses.DragProxy;
@@ -120,7 +122,31 @@ public class DragManager
     public static const LINK:String = "link";
     
    
+    /**
+     *  @private
+     *  Storage for the impl getter.
+     *  This gets initialized on first access,
+     *  not at static initialization time, in order to ensure
+     *  that the Singleton registry has already been initialized.
+     */
+    private static var _impl:IDragManager;
+    
+    /**
+     *  @private
+     *  The singleton instance of DragManagerImpl which was
+     *  registered as implementing the IDragManager interface.
+     */
+     private static function get impl():IDragManager
+    {
+        if (!_impl)
+        {
+            // _impl = IDragManager(
+            //     getInstance("mx.managers::IDragManager"));
+            _impl = (FlexGlobals.topLevelApplication as IStrand).getBeadByType(IDragManager) as IDragManager;
+        }
 
+        return _impl;
+    } 
     //--------------------------------------------------------------------------
     //
     //  Class properties

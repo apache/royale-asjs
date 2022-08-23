@@ -172,6 +172,7 @@ internal class MXRoyaleBaseClasses
 	import mx.managers.CursorManager;CursorManager;
 	import mx.managers.CursorManagerPriority;CursorManagerPriority;
 	import mx.managers.ICursorManager;ICursorManager;
+	import mx.managers.IDragManager;IDragManager;
 	import mx.managers.ISystemManager;ISystemManager;
 	import mx.managers.SystemManagerGlobals;SystemManagerGlobals;
 
