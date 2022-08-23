@@ -289,6 +289,8 @@ internal class MXRoyaleBaseClasses
 	import mx.validators.ValidationResult;ValidationResult;
 	import mx.validators.Validator;Validator;
 	import mx.core.DragSource; DragSource;
+	import mx.events.DragEvent; DragEvent;
+	import mx.events.MouseEvent; MouseEvent;
 
 
 

@@ -180,7 +180,6 @@ internal class MXRoyaleClasses
 	/*import mx.events.IndexChangedEvent; IndexChangedEvent;*/
 	import mx.events.ItemClickEvent; ItemClickEvent;
 	import mx.events.ModuleEvent; ModuleEvent;
-	import mx.events.MouseEvent; MouseEvent;
 	import mx.managers.SystemManager; SystemManager;
 	import mx.filters.BitmapFilter; BitmapFilter;
 	import mx.filters.ColorMatrixFilter; ColorMatrixFilter;
@@ -230,7 +229,6 @@ internal class MXRoyaleClasses
 	/*import mx.net.SharedObject; SharedObject;
 	import mx.net.SharedObjectJSON; SharedObjectJSON;*/
 	import mx.modules.ModuleManager; ModuleManager;
-	import mx.events.DragEvent; DragEvent;
 	/*import mx.formatters.DateBase; DateBase;*/
 	/*import mx.core.Keyboard; Keyboard;*/
 	import mx.core.UIComponentGlobals; UIComponentGlobals;

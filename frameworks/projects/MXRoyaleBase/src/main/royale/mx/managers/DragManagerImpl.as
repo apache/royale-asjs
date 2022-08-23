@@ -47,6 +47,7 @@ import org.apache.royale.html.beads.controllers.DropMouseController;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.Lookalike;
+import mx.managers.beads.DragManagerImplDropBead;
 // im`port org.apache.royale.html.accessories.RestrictTextInputBead;
 
 // use namespace mx_internal;
@@ -384,6 +385,7 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 			dragController = new DragMouseController();
 		}
 		(dragInitiator as IStrand).addBead(dragController);
+		this.dragInitiator = dragInitiator;
 		dragController.addEventListener("dragMove", dragMoveHandler)
 		dragController.addEventListener("dragStart", dragStartHandler)
 		_dragSource = dragSource;
@@ -422,11 +424,11 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 		if (relatedObject.hasEventListener(DragEvent.DRAG_ENTER) || relatedObject.hasEventListener(DragEvent.DRAG_EXIT) || relatedObject.hasEventListener(DragEvent.DRAG_OVER) || relatedObject.hasEventListener(DragEvent.DRAG_DROP))
 		{
 			var relatedStrand:IStrand = relatedObject as IStrand;
-			var dropController:DropMouseController = relatedStrand.getBeadByType(DropMouseController) as DropMouseController;
-			if (!dropController)
+			var dmDropBead:DragManagerImplDropBead = relatedStrand.getBeadByType(DropMouseController) as DragManagerImplDropBead;
+			if (!dmDropBead)
 			{
-				dropController = new DropMouseController();
-				relatedStrand.addBead(dropController);
+				dmDropBead = new DragManagerImplDropBead(dragInitiator);
+				relatedStrand.addBead(dmDropBead);
 			}
 		}
 	}
