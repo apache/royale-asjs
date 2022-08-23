@@ -127,7 +127,7 @@ package org.apache.royale.jewel.beads.controllers
 			if(event.key === WhitespaceKeys.TAB)
 				return;
 			
-			event.preventDefault();
+			// event.preventDefault();
 
 			// var index:int = listModel.selectedIndex;
 

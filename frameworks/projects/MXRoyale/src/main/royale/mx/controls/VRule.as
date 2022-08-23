@@ -179,26 +179,51 @@ public class VRule extends UIComponent
         super();
     }
 
-    private var _strokeWidth:int = 1;
+   // private var _strokeWidth:int = 2;
     public function get strokeWidth():int
     {
-        return _strokeWidth;
+        return uint(getStyle('strokeWidth'));
     }
     public function set strokeWidth(value:int):void
     {
-        _strokeWidth = value;
+        //_strokeWidth = value;
+        setStyle('strokeWidth', value);
+        if (parent) {
+            updateStyle();
+        }
+    }
+
+  //  private var _strokeColor:uint = 0xC4CCCC;
+    public function get strokeColor():uint
+    {
+        return uint(getStyle('strokeColor'));
+    }
+    public function set strokeColor(value:uint):void
+    {
+        setStyle('strokeColor', value);
+        if (parent) {
+            updateStyle();
+        }
     }
     
     override public function addedToParent():void
     {
+        updateStyle()
+        super.addedToParent();
+    }
+
+
+
+    private function updateStyle():void{
         var values:Object = {
             styleList : { "borderLeftStyle" : 1,
-                          "borderLeftWidth" : 1,
-                          "borderLeftColor" : 1 },
+                "borderLeftWidth" : 1,
+                "borderLeftColor" : 1 },
             "borderLeftWidth" : strokeWidth.toString() + "px",
             "borderLeftStyle" : "solid",
-            "borderLeftColor" : "#000"
+            "borderLeftColor" : "#" +('00000' +strokeColor.toString(16)).substr(-6)
         }
+
         var currentStyle:Object = style;
         if (currentStyle) {
             for (var field:String in values) {
@@ -206,7 +231,6 @@ public class VRule extends UIComponent
             }
         } else currentStyle = values;
         style = currentStyle;
-        super.addedToParent();
     }
     //--------------------------------------------------------------------------
     //

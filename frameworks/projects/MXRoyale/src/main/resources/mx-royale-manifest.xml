@@ -153,6 +153,7 @@
         <component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
 	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
         <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
+        <component id="TitleBarTitle" class="mx.controls.beads.TitleBarTitle" />
         <component id="Accordion" class="mx.containers.Accordion" />
 	<!--<component id="PhoneFormatter" class="mx.formatters.PhoneFormatter"/>-->
 

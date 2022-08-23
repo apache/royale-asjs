@@ -5751,6 +5751,15 @@ public class DataGridListBase extends ListBase /* extends UIComponent
     {
         var tmp:Array = [];
 
+        //the following is a temporary workaround until multiple selection emulation is more widely supported for regular mx List, etc. (planned to be added in August 2022) :
+        if (!allowMultipleSelection) {
+            var tmpIdx:int = selectedIndex;
+            if (tmpIdx != -1) {
+                tmp[0] = useDataField ? selectedItem : tmpIdx;
+            }
+            return tmp;
+        }
+        
         var curSelectionData:ListBaseSelectionData = firstSelectionData;
         while (curSelectionData != null)
         {

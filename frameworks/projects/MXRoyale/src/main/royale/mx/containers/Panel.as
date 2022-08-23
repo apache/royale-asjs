@@ -64,6 +64,7 @@ import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
 import mx.core.UIComponent;
 import mx.core.IUITextField;
+import mx.controls.beads.TitleBarView;
 
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
@@ -677,6 +678,7 @@ public class Panel extends Container
     {
         //support for subclass access, as per original Flex code
         titleBar = view is PanelView ? PanelView(view).titleBar as UIComponent : null;
+        titleTextField = titleBar ? (titleBar.view as TitleBarView).titleLabel as IUITextField : null;
         super.addedToParent();
     }
 

@@ -175,22 +175,85 @@ public class HRule extends UIComponent
         super();
     }
 
+   // private var _strokeWidth:int = 2;
+    public function get strokeWidth():int
+    {
+        return uint(getStyle('strokeWidth'));
+    }
+    public function set strokeWidth(value:int):void
+    {
+        //_strokeWidth = value;
+        setStyle('strokeWidth', value);
+        if (parent) {
+            updateStyle();
+        }
+    }
+
+  //  private var _strokeColor:uint = 0xC4CCCC;
+    public function get strokeColor():uint
+    {
+        return uint(getStyle('strokeColor'));
+    }
+    public function set strokeColor(value:uint):void
+    {
+        setStyle('strokeColor', value);
+        if (parent) {
+            updateStyle();
+        }
+    }
+
+    override public function addedToParent():void
+    {
+        updateStyle()
+        super.addedToParent();
+    }
+
+
+
+    private function updateStyle():void{
+        var values:Object = {
+            styleList : { "borderTopStyle" : 1,
+                "borderTopWidth" : 1,
+                "borderTopColor" : 1 },
+            "borderTopWidth" : strokeWidth.toString() + "px",
+            "borderTopStyle" : "solid",
+            "borderTopColor" : "#" +('00000' +strokeColor.toString(16)).substr(-6)
+        }
+
+        var currentStyle:Object = style;
+        if (currentStyle) {
+            for (var field:String in values) {
+                currentStyle[field] = values[field];
+            }
+        } else currentStyle = values;
+        style = currentStyle;
+    }
     //--------------------------------------------------------------------------
     //
-    //  Overridden methods: UIComponent
+    //  Overridden methods
     //
     //--------------------------------------------------------------------------
+
+    override public function get measuredWidth():Number
+    {
+        return DEFAULT_PREFERRED_WIDTH;
+    }
+    override public function get measuredHeight():Number
+    {
+        return strokeWidth;
+    }
+
 
     /**
      *  @private
      */
-    override protected function measure():void
+    /*override protected function measure():void
     {
         super.measure();
 
         measuredWidth = DEFAULT_PREFERRED_WIDTH;
         measuredHeight = getStyle("strokeWidth");
-    }
+    }*/
     
     /**
      *  @private

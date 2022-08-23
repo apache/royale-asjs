@@ -325,6 +325,11 @@ containerBeads|PanelInternalContainer
 	IBeadView: ClassReference("mx.containers.beads.PanelInternalContainerView");
 }
 
+HRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
+}
+
 Image
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
@@ -500,7 +505,7 @@ Panel .TitleBar
 PanelTitleBar
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.TitleBarView");
+	IBeadView: ClassReference("mx.controls.beads.TitleBarView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
 	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TitleBarMeasurementBead");
 	background-color: #E2E2E2;
@@ -665,6 +670,11 @@ ViewStack
 {
 	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+}
+
+VRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
 }
 
 charts|ChartBase
