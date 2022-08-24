@@ -424,7 +424,7 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 		if (relatedObject.hasEventListener(DragEvent.DRAG_ENTER) || relatedObject.hasEventListener(DragEvent.DRAG_EXIT) || relatedObject.hasEventListener(DragEvent.DRAG_OVER) || relatedObject.hasEventListener(DragEvent.DRAG_DROP))
 		{
 			var relatedStrand:IStrand = relatedObject as IStrand;
-			var dmDropBead:DragManagerImplDropBead = relatedStrand.getBeadByType(DropMouseController) as DragManagerImplDropBead;
+			var dmDropBead:DragManagerImplDropBead = relatedStrand.getBeadByType(DragManagerImplDropBead) as DragManagerImplDropBead;
 			if (!dmDropBead)
 			{
 				dmDropBead = new DragManagerImplDropBead(dragInitiator);
