@@ -383,8 +383,10 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 		if (!dragController)
 		{
 			dragController = new DragMouseController();
+			(dragInitiator as IStrand).addBead(dragController);
+			// Give controller a chance to react to this event
+			(dragInitiator as IEventDispatcher).dispatchEvent(mouseEvent);
 		}
-		(dragInitiator as IStrand).addBead(dragController);
 		this.dragInitiator = dragInitiator;
 		dragController.addEventListener("dragMove", dragMoveHandler)
 		dragController.addEventListener("dragStart", dragStartHandler)
