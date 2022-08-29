@@ -4080,7 +4080,14 @@ COMPILE::JS
     { override }
     public function getChildByName(name:String):IUIComponent
     {
-        trace("getChildByName not implemented");
+        for (var i:int = 0; i < numChildren; i++)
+        {
+            var child:IUIComponent = getChildAt(i);
+            if (child.name == name)
+            {
+                return child;
+            }
+        }
         return null;
     }
 
