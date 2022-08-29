@@ -21,7 +21,7 @@ package mx.containers
 {
 
 	import org.apache.royale.events.CloseEvent;
-	import org.apache.royale.html.beads.DragBead;
+	import mx.controls.beads.DragBead;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.core.IPanelModel;
 	import mx.core.UIComponent;
