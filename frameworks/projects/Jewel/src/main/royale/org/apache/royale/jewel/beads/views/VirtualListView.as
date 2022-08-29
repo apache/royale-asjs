@@ -150,7 +150,8 @@ package org.apache.royale.jewel.beads.views
 			
 			if (index < firstIndex) 
 				return null;
-			if (index >= (firstIndex + contentView.numElements))
+			//if (index >= (firstIndex + contentView.numElements))
+            if (index >= (firstIndex + contentView.numElements - firstElementIndex) ) 
 				return null;
 			
 			return contentView.getElementAt(index - firstIndex + firstElementIndex) as IItemRenderer;			
