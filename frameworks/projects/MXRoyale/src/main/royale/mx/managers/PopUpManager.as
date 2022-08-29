@@ -204,9 +204,12 @@ public class PopUpManager
             PopUpManagerModal.show(popUpHost as IUIBase, window);
             modalWindows.push(window);
         }
-        if (popUpHost is IUIComponent)
+        if (popUpHost is UIComponent)
         {
             (window as IUIComponent).systemManager = (popUpHost as UIComponent).systemManager;
+        }
+        if (window is IUIComponent)
+        {
             (window as IUIComponent).isPopUp = true;
         }
         if (window is IFocusManagerContainer)
