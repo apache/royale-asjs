@@ -1159,7 +1159,10 @@ public class UIComponent extends UIBase
 		public function get graphics():Graphics
 		{
             if (_graphics == null)
+            {
                 _graphics = new mx.display.Graphics(this);
+                _graphics.clear();
+            }
 			return _graphics;
 		}
 
@@ -1167,7 +1170,10 @@ public class UIComponent extends UIBase
         public function get royalegraphics():mx.display.Graphics
         {
             if (_graphics == null)
+            {
                 _graphics = new mx.display.Graphics(this);
+                _graphics.clear();
+            }
             return _graphics;
         }            
             
