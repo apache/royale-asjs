@@ -22,6 +22,7 @@ package mx.managers
 
 import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.Event;
 import org.apache.royale.core.IStrand;
 
 
