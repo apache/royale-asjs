@@ -433,6 +433,9 @@ internal class MXRoyaleClasses
 	import mx.containers.accordionClasses.AccordionHeader; AccordionHeader;
 	/*import mx.net.FileReferenceList; FileReferenceList;*/
 	import mx.controls.beads.ProgressBarView; ProgressBarView;
+
+
+	import mx.controls.SimpleTextHighlighter;SimpleTextHighlighter;
 }
 
 }
