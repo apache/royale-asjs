@@ -523,6 +523,7 @@ package org.apache.royale.html
             _textContainer.onblur = onLostFocus;
             //for JS the parentRef is the parent span
             _parentRef = _textContainer;
+            _textContainer.style.font = 'inherit';
             element.appendChild(_textContainer);
             _textContainer.contentEditable = "true";
             goog.events.listen(_textContainer, 'input', textChangeHandler);

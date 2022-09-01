@@ -162,7 +162,8 @@ COMPILE::JS{
             COMPILE::JS{
                 if (!_span) {
                     _span = document.createElement('span') as HTMLSpanElement;
-                    element = (_span as WrappedHTMLElement)
+                    _span.style.font = 'inherit';
+                    element = (_span as WrappedHTMLElement);
                     element.royale_wrapper = this;
                     _span.className = 'HighlightTextSpan';
                     var c:String = className;
