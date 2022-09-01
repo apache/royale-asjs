@@ -303,6 +303,8 @@
     <component id="BrowserRouter" class="org.apache.royale.routing.BrowserRouter"/>
 
     <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
+
+    <component id="SimpleTextHighlighter" class="org.apache.royale.html.SimpleTextHighlighter"/>
 	
 	<component id="CollectionSelectedItemByField" class="org.apache.royale.html.beads.CollectionSelectedItemByField"/>	
     <component id="ErrorImage" class="org.apache.royale.html.beads.ErrorImage"/>

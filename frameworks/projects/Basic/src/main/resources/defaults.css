@@ -544,6 +544,8 @@ TableCell
 	/* use browser default style */
 }
 
+
+
 MultiSelectionTree
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.MultiSelectionTreeModel");
@@ -826,6 +828,23 @@ global
 {
 	effectTimerInterval: 10;
 }
+
+
+.SimpleTextHighlighter {
+	border: 1px #808080 solid;
+	white-space: pre-wrap;
+	overflow-y: auto;
+}
+
+.SimpleTextHighlighter *:focus-visible {
+	outline: none;
+}
+
+.HighlightTextSpan {
+	background-color: #00ffff;
+	border-radius: 2px;
+}
+
 
 @media -royale-swf
 {
