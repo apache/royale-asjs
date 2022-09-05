@@ -141,9 +141,8 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
             contentArea.percentHeight = 100;
         
         // Now give the Panel its own layout
-        var boxLayout:BoxLayout = new BoxLayout();
-        boxLayout.direction = "vertical";
-        _strand.addBead(boxLayout);
+        var panelLayout:PanelLayout = new PanelLayout();
+        _strand.addBead(panelLayout);
     }
 
 	/**
@@ -165,4 +164,28 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
 
 }
 
+}
+
+import mx.core.UIComponent;
+import mx.containers.Panel;
+import org.apache.royale.core.LayoutBase;
+
+class PanelLayout extends LayoutBase
+{
+    override public function layout():Boolean
+    {
+        var panel:Panel = host as Panel;
+        var titleBar:UIComponent = panel.$getElementAt(0) as UIComponent;
+        var content:UIComponent = panel.$getElementAt(1) as UIComponent;
+        var w:Number = panel.width;
+        var h:Number = panel.height;
+        if (panel.isWidthSizedToContent())
+            w = content.width + 2;
+        if (panel.isHeightSizedToContent())
+            h = content.height + 2 + titleBar.getExplicitOrMeasuredHeight();
+        titleBar.setActualSize(w - 2, titleBar.getExplicitOrMeasuredHeight());
+        content.setActualSize(w - 2, h - titleBar.height - 2 - 1);
+        content.move(0, titleBar.height + 1);
+        return false;
+    }
 }
