@@ -177,7 +177,7 @@ class PanelLayout extends LayoutBase
         var panel:Panel = host as Panel;
         var titleBar:UIComponent = panel.$getElementAt(0) as UIComponent;
         var content:UIComponent = panel.$getElementAt(1) as UIComponent;
-        var controlBar:UIComponent = panel.numElements > 2 ? panel.$getElementAt(2) as UIComponent : null;
+        var controlBar:UIComponent = panel.$numElements > 2 ? panel.$getElementAt(2) as UIComponent : null;
         var w:Number = panel.width;
         var h:Number = panel.height;
         if (panel.isWidthSizedToContent())
