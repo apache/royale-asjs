@@ -81,9 +81,10 @@ import mx.controls.listClasses.ListBase;
 import org.apache.royale.html.beads.DataGridDrawingLayerBead;
 import mx.controls.beads.SingleSelectionDropTargetBead;
 import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
-import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
+import mx.controls.beads.SingleSelectionDragSourceBead;
 import org.apache.royale.html.beads.SingleSelectionDragImageBead;
 import org.apache.royale.utils.getOrAddBeadByType;
+import org.apache.royale.core.DropType;
 
 //[IconFile("List.png")]
 
@@ -359,6 +360,8 @@ public class List extends ListBase // implements IIMESupport
      */
     override protected function setDragMoveEnabled():void
     {
+        var dragSourceBead:SingleSelectionDragSourceBead = getOrAddBeadByType(SingleSelectionDragSourceBead, this) as SingleSelectionDragSourceBead;
+        dragSourceBead.dragType = dragMoveEnabled ? DropType.MOVE : DropType.COPY;
     }
 
     /**
