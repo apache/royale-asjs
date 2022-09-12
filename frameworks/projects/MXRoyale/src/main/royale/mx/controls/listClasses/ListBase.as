@@ -179,6 +179,27 @@ use namespace mx_internal;
 	{
 	   return null;
 	}
+
+    /**
+     *  @private
+     */
+    protected function setDropEnabled():void
+    {
+    }
+
+    /**
+     *  @private
+     */
+    protected function setDragMoveEnabled():void
+    {
+    }
+
+    /**
+     *  @private
+     */
+    protected function setDragEnabled():void
+    {
+    }
         //----------------------------------
         //  dragEnabled
         //----------------------------------
@@ -215,6 +236,10 @@ use namespace mx_internal;
         public function set dragEnabled(value:Boolean):void
         {
             _dragEnabled = value;
+            if (value)
+            {
+                setDragEnabled();
+            }
         }
         
         //----------------------------------
@@ -257,6 +282,10 @@ use namespace mx_internal;
         public function set dragMoveEnabled(value:Boolean):void
         {
             _dragMoveEnabled = value;
+            if (value)
+            {
+                setDragMoveEnabled();
+            }
         }
         
 	
@@ -424,6 +453,10 @@ use namespace mx_internal;
         public function set dropEnabled(value:Boolean):void
         {
             _dropEnabled = value;
+            if (value)
+            {
+                setDropEnabled();
+            }
         }
         
         //----------------------------------

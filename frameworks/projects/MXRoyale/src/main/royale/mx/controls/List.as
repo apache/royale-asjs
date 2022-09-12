@@ -78,6 +78,12 @@ use namespace mx_internal;
     
 import mx.core.ClassFactory;
 import mx.controls.listClasses.ListBase;
+import org.apache.royale.html.beads.DataGridDrawingLayerBead;
+import mx.controls.beads.SingleSelectionDropTargetBead;
+import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
+import org.apache.royale.html.beads.SingleSelectionDragSourceBead;
+import org.apache.royale.html.beads.SingleSelectionDragImageBead;
+import org.apache.royale.utils.getOrAddBeadByType;
 
 //[IconFile("List.png")]
 
@@ -338,6 +344,31 @@ public class List extends ListBase // implements IIMESupport
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  @private
+     */
+    override protected function setDropEnabled():void
+    {
+        getOrAddBeadByType(DataGridDrawingLayerBead, this);
+        getOrAddBeadByType(SingleSelectionDropTargetBead, this);
+        getOrAddBeadByType(SingleSelectionDropIndicatorBead, this);
+    }
+
+    /**
+     *  @private
+     */
+    override protected function setDragMoveEnabled():void
+    {
+    }
+
+    /**
+     *  @private
+     */
+    override protected function setDragEnabled():void
+    {
+        getOrAddBeadByType(SingleSelectionDragSourceBead, this);
+        getOrAddBeadByType(SingleSelectionDragImageBead, this);
+    }
     [Inspectable(category="Data", defaultValue="undefined")]
 
     /**
