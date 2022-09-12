@@ -111,6 +111,13 @@ import org.apache.royale.core.IDataGridModel;
 import org.apache.royale.html.beads.IDataGridView;
 import org.apache.royale.core.IDataGridPresentationModel;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.html.beads.DataGridDrawingLayerBead;
+import mx.controls.beads.SingleSelectionDropTargetBead;
+import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
+import mx.controls.beads.SingleSelectionDragSourceBead;
+import org.apache.royale.utils.getOrAddBeadByType;
+import org.apache.royale.core.DropType;
+import org.apache.royale.html.beads.SingleSelectionDragImageBead;
 
 //--------------------------------------
 //  Events
@@ -1411,6 +1418,33 @@ public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid/
      */
     override protected function getHorizontalScrollElement():HTMLElement{
         return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
+    }
+    /**
+     *  @private
+     */
+    override protected function setDropEnabled():void
+    {
+        getOrAddBeadByType(DataGridDrawingLayerBead, this);
+        getOrAddBeadByType(SingleSelectionDropTargetBead, this);
+        getOrAddBeadByType(SingleSelectionDropIndicatorBead, this);
+    }
+
+    /**
+     *  @private
+     */
+    override protected function setDragMoveEnabled():void
+    {
+        var dragSourceBead:SingleSelectionDragSourceBead = getOrAddBeadByType(SingleSelectionDragSourceBead, this) as SingleSelectionDragSourceBead;
+        dragSourceBead.dragType = dragMoveEnabled ? DropType.MOVE : DropType.COPY;
+    }
+
+    /**
+     *  @private
+     */
+    override protected function setDragEnabled():void
+    {
+        getOrAddBeadByType(SingleSelectionDragSourceBead, this);
+        getOrAddBeadByType(SingleSelectionDragImageBead, this);
     }
 }
 
