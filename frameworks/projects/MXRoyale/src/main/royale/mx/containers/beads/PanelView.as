@@ -185,12 +185,13 @@ class PanelLayout extends LayoutBase
         if (panel.isHeightSizedToContent())
             h = content.height + 2 + titleBar.getExplicitOrMeasuredHeight();
         titleBar.setActualSize(w - 2, titleBar.getExplicitOrMeasuredHeight());
-        var contentHeight:Number = h - titleBar.height - 4 - (controlBar ? controlBar.height : 0);
+        var contentHeight:Number = h - titleBar.height - 4 - (controlBar ? controlBar.getExplicitOrMeasuredHeight() : 0);
         content.setActualSize(w - 2, contentHeight);
         content.move(0, titleBar.height + 1);
         if (controlBar)
         {
             controlBar.move(0, titleBar.height + 1 + contentHeight + 1);
+            controlBar.setActualSize(w-2, controlBar.getExplicitOrMeasuredHeight());
         }
         return false;
     }
