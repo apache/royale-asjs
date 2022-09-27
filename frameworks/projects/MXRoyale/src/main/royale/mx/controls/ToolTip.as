@@ -118,7 +118,7 @@ public class ToolTip extends Label implements IToolTip//, IFontContextComponent
     public function ToolTip()
     {
         super();
-
+        typeNames = 'ToolTip ' + typeNames;
         // InteractiveObject variables.
         // Make the ToolTip invisible to the mouse so that it doesn't
         // interfere with the ToolTipManager's mouse-tracking.
