@@ -136,9 +136,15 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
             
         var panel:ILayoutChild = host as ILayoutChild;
         if (!panel.isWidthSizedToContent())
+        {
             contentArea.percentWidth = 100;
+            (contentArea as UIComponent).minWidth = 1;
+        }
         if (!panel.isHeightSizedToContent())
+        {
             contentArea.percentHeight = 100;
+            (contentArea as UIComponent).minHeight = 1;
+        }
         
         // Now give the Panel its own layout
         var panelLayout:PanelLayout = new PanelLayout();
