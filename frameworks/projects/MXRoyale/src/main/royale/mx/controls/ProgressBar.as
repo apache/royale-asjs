@@ -519,7 +519,7 @@ public class ProgressBar extends UIComponent //implements IFontContextComponent
 //                 value :
 //                 resourceManager.getString(
 //                     "controls", "label");
-		_label = value ? value : 'LOADING %3%%'; //text literal used here as default is en_US controls.label property from Flex
+		_label = value != null ? value : 'LOADING %3%%'; //text literal used here as default is en_US controls.label property from Flex
 
 		COMPILE::JS 
 		{
