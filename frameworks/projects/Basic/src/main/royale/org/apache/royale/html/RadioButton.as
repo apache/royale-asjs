@@ -113,6 +113,7 @@ package org.apache.royale.html
 			IValueToggleButtonModel(model).text = value;
 		}
 
+        [Bindable("change")]
 		/**
 		 *  Whether or not the RadioButton instance is selected. Setting this property
 		 *  causes the currently selected RadioButton in the same group to lose the
@@ -297,6 +298,7 @@ package org.apache.royale.html
 		/**
 		 * @royaleignorecoercion HTMLInputElement
 		 */
+        [Bindable("change")]
         public function get selected():Boolean
         {
             return (icon.element as HTMLInputElement).checked;
