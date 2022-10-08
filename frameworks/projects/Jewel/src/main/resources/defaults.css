@@ -587,6 +587,28 @@ j|DateChooser {
       transition: transform 0.4s 0ms, opacity 0.4s 0ms;
       opacity: 1; }
 
+.first.jewel.list::-webkit-scrollbar
+{
+    display: none;
+}
+
+.first.jewel.list
+{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.middle.jewel.list::-webkit-scrollbar
+{
+    display: none;
+}
+
+.middle.jewel.list
+{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 @media (max-width: 768px) {
   .datechooser-popup .jewel.table {
     width: calc(100% - 20px); } }
