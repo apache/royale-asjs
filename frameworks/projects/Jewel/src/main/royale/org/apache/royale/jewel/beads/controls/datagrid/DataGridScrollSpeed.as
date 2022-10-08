@@ -76,6 +76,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
 		{
             private function handleMouseWheel(e:MouseEvent):void
             {
+                if (e.deltaY == 0)
+                    return;
+
                 e.preventDefault();
 
                 var container:Element = e.currentTarget as Element;
