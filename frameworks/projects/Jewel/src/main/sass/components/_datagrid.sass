@@ -58,14 +58,11 @@
         content: "@@ZERO_WIDTH_SPACE"
         //content: "\200b" <-- this does not survive sass compilation, so instead using a token for replacement in a post-sass processing step above
 
-.first.jewel.list, .middle.jewel.list {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+    .first.jewel.list, .middle.jewel.list
+        &::-webkit-scrollbar
+        display: none;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
 
 j|DataGrid
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView")
