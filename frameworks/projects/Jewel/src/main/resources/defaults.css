@@ -466,6 +466,11 @@ j|VirtualComboBoxPopUp {
       width: 100%; }
   .jewel.datagrid span:empty:before {
     content: "\200b"; }
+  .jewel.datagrid .first.jewel.list, .jewel.datagrid .middle.jewel.list {
+    -ms-overflow-style: none;
+    scrollbar-width: none; }
+    .jewel.datagrid .first.jewel.list::-webkit-scrollbar, .jewel.datagrid .middle.jewel.list::-webkit-scrollbar {
+      display: none; }
 
 j|DataGrid {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
@@ -586,28 +591,6 @@ j|DateChooser {
       transform: translate(-50%, -100%);
       transition: transform 0.4s 0ms, opacity 0.4s 0ms;
       opacity: 1; }
-
-.first.jewel.list::-webkit-scrollbar
-{
-    display: none;
-}
-
-.first.jewel.list
-{
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.middle.jewel.list::-webkit-scrollbar
-{
-    display: none;
-}
-
-.middle.jewel.list
-{
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 
 @media (max-width: 768px) {
   .datechooser-popup .jewel.table {

@@ -59,10 +59,12 @@
         //content: "\200b" <-- this does not survive sass compilation, so instead using a token for replacement in a post-sass processing step above
 
     .first.jewel.list, .middle.jewel.list
+        -ms-overflow-style: none
+        scrollbar-width: none
+
         &::-webkit-scrollbar
-        display: none;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+            display: none
+
 
 j|DataGrid
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView")
