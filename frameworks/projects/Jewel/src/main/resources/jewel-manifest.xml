@@ -101,6 +101,7 @@
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
     <component id="DataContainer" class="org.apache.royale.jewel.DataContainer" />
     <component id="ToolTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel" />
+    <component id="SectionContentVisibility" class="org.apache.royale.jewel.beads.controls.tabbar.SectionContentVisibility"/>
 
     <component id="Form" class="org.apache.royale.jewel.Form"/>
     <component id="FormItem" class="org.apache.royale.jewel.FormItem"/>
