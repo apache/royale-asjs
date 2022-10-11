@@ -79,17 +79,17 @@ package org.apache.royale.jewel.beads.controllers
 
 			rangeModel = UIBase(value).model as IRangeModel;
 
-            COMPILE::SWF
-            {
+			COMPILE::SWF
+			{
 			var spinnerBead:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
 			spinnerBead.decrement.addEventListener(MouseEvent.CLICK, decrementClickHandler);
 			spinnerBead.decrement.addEventListener("buttonRepeat", decrementClickHandler);
 			spinnerBead.increment.addEventListener(MouseEvent.CLICK, incrementClickHandler);
 			spinnerBead.increment.addEventListener("buttonRepeat", incrementClickHandler);
-            }
+			}
 
-            COMPILE::JS
-            {
+			COMPILE::JS
+			{
 			var view:ISpinnerView = value.getBeadByType(ISpinnerView) as ISpinnerView;
 
 			var incrementButton:Button = view.increment;
@@ -103,7 +103,7 @@ package org.apache.royale.jewel.beads.controllers
 			decrementButton.addEventListener(MouseEvent.MOUSE_DOWN, decrementMouseDownHandler);
 			decrementButton.addEventListener(MouseEvent.MOUSE_UP, decrementMouseUpHandlermouseUpHandler);
 			decrementButton.addEventListener(MouseEvent.MOUSE_OUT, cancelTimerMouseOutHandler);
-            }
+			}
 		}
 
 		private var mouseDown:Boolean = false;
@@ -123,18 +123,20 @@ package org.apache.royale.jewel.beads.controllers
 				if (timer.delay > 150)
 				{
 					var newdelay:Number = timer.delay/2;
-					removeTimer(incOrDecFunc);
 					createTimer(incOrDecFunc, newdelay)
 				}
 			}
 		}
 
+		private var currentFunc:Function;
 		/**
 		 * Create the timer each time needed depending on function to listen and delay
 		 * @private
 		 */
 		private function createTimer(incOrDecFunc:Function, delay:Number):void
 		{
+			removeTimer();
+			currentFunc = incOrDecFunc;
 			timer = new Timer(delay, 0);
 			timer.addEventListener("timer", incOrDecFunc);
 			timer.start();
@@ -144,9 +146,12 @@ package org.apache.royale.jewel.beads.controllers
 		 * Remove the timer each time needed depending on function to listen
 		 * @private
 		 */
-		private function removeTimer(incOrDecFunc:Function):void
+		private function removeTimer():void
 		{
-			timer.removeEventListener("timer", incOrDecFunc);
+			if(!timer || !currentFunc)
+				return;
+			
+			timer.removeEventListener("timer", currentFunc);
 			timer.stop();
 			timer = null;
 		}
@@ -156,16 +161,7 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		private function cancelTimerMouseOutHandler(event:MouseEvent):void
 		{
-			if (timer != null && timer.running)
-			{
-				//TODO removeAllListeners should probably not be used as it's a goog construct
-				COMPILE::JS
-				{
-					timer.removeAllListeners();
-				}
-				timer.stop();
-				timer = null;
-			}
+			removeTimer();
 		}
 
 		/**
@@ -192,7 +188,7 @@ package org.apache.royale.jewel.beads.controllers
 				return;
 			}
 			mouseDown = false;
-			removeTimer(incrementClickHandler);
+			removeTimer();
 		}
 		/**
 		 * Increment mouse click handler
@@ -231,7 +227,7 @@ package org.apache.royale.jewel.beads.controllers
 				return;
 			}
 			mouseDown = false;
-			removeTimer(decrementClickHandler);
+			removeTimer();
 		}
 		/**
 		 * Decrement mouse click handler
