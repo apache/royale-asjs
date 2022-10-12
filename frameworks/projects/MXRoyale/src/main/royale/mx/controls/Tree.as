@@ -80,6 +80,15 @@ import mx.managers.ISystemManager;
 use namespace mx_internal;
 
 import org.apache.royale.events.Event;
+import org.apache.royale.html.beads.DataGridDrawingLayerBead;
+import mx.controls.beads.TreeSingleSelectionDragSourceBead;
+import org.apache.royale.utils.getOrAddBeadByType;
+import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
+import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
+import org.apache.royale.html.beads.SingleSelectionDragImageBead;
+import mx.controls.beads.XMLTreeSingleSelectionDragSourceBead;
+import mx.controls.beads.TreeSingleSelectionDropTargetBead;
+import mx.controls.beads.XMLTreeSingleSelectionDropTargetBead;
 
 //--------------------------------------
 //  Events
@@ -3720,6 +3729,28 @@ public class Tree extends List
 		if (bFinishArrowKeySelection && selectedItem === proposedSelectedItem)
 			finishArrowKeySelection();
 	} */
+
+    /**
+     *  @private
+     */
+    override protected function setDropEnabled():void
+    {
+        getOrAddBeadByType(DataGridDrawingLayerBead, this);
+        getOrAddBeadByType(TreeSingleSelectionDropTargetBead, this);
+        getOrAddBeadByType(XMLTreeSingleSelectionDropTargetBead, this);
+        getOrAddBeadByType(SingleSelectionDropIndicatorBead, this);
+    }
+
+    /**
+     *  @private
+     */
+    override protected function setDragEnabled():void
+    {
+        // getOrAddBeadByType(TreeSingleSelectionDragSourceBead, this);
+        getOrAddBeadByType(TreeSingleSelectionDragSourceBead, this);
+        getOrAddBeadByType(XMLTreeSingleSelectionDragSourceBead, this);
+        getOrAddBeadByType(SingleSelectionDragImageBead, this);
+    }
 }
 
 }
