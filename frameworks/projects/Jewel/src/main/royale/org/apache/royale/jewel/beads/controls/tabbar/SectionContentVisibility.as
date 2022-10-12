@@ -22,7 +22,7 @@ package org.apache.royale.jewel.beads.controls.tabbar
     import org.apache.royale.core.IStrand;
     import org.apache.royale.jewel.SectionContent;
     import org.apache.royale.jewel.TabBarContent;
-    import org.apache.royale.jewel.TabBar;
+    import org.apache.royale.core.UIBase;
     import org.apache.royale.core.IBead;
 
 	/**
@@ -85,7 +85,7 @@ package org.apache.royale.jewel.beads.controls.tabbar
 
             COMPILE::JS
     		{
-                var styleDeclaration:CSSStyleDeclaration = (tabBar.parent.getElementAt(0) as TabBar).getElementAt(tabBar.getElementIndex(sectionContent)).element.style;
+                var styleDeclaration:CSSStyleDeclaration = (tabBar.parent.getElementAt(0) as UIBase).getElementAt(tabBar.getElementIndex(sectionContent)).element.style;
                 if (visible)
                     styleDeclaration.removeProperty("display");
                 else
