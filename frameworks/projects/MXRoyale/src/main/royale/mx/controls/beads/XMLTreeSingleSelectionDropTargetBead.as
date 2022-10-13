@@ -57,15 +57,6 @@ package mx.controls.beads
 		private var _draggedXML:XML;
 
 		/**
-		 * The type of drag and drop operation: move or copy.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.10
-		 */
-
-		/**
 		 * @private
 		 */
 		public function set strand(value:IStrand):void

@@ -25,9 +25,6 @@ package mx.controls.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ValueEvent;
 	import mx.core.IDataRenderer;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.html.util.getModelByType;
-	import mx.controls.Tree;
 	import org.apache.royale.core.IStrandWithModel;
 
 	/**
@@ -57,15 +54,6 @@ package mx.controls.beads
 
 		private var _strand:IStrand;
 		private var _draggedXML:XML;
-
-		/**
-		 * The type of drag and drop operation: move or copy.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.10
-		 */
 
 		/**
 		 * @private
