@@ -333,8 +333,8 @@ package mx.controls.beads
 				if (child is IIndexedItemRenderer)
 				{
 					startHere = child;
-					child = child.parent as IChild;
 				}
+				child = child.parent as IChild;
 			}
 
 			if (DragEvent.dragInitiator) {
