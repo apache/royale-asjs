@@ -24,6 +24,7 @@ package mx.controls.beads
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.utils.getOrAddBeadByType;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.ItemRendererOwnerViewBead;
 	import org.apache.royale.core.IParent;
@@ -153,8 +154,7 @@ package mx.controls.beads
 		{
 			_strand = value;
 
-			_dropController = new DropMouseController();
-			_strand.addBead(_dropController);
+			_dropController = getOrAddBeadByType(DropMouseController, value) as DropMouseController;
 
 			_dropController.addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
 			_dropController.addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
