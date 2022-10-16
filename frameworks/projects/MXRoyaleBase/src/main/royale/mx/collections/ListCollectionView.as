@@ -949,7 +949,7 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
         if (name is QName)
             name = name.localName;
         
-        return proxy_getProperty(name as String);
+        return proxy_getProperty(name +'');
     }
     COMPILE::JS
     override public function getProperty(name:String):*
@@ -967,19 +967,17 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
 		{
 		}
 		
-        /*
         if (isNaN(n))
 		{
-			var message:String = resourceManager.getString(
-				"collections", "unknownProperty", [ name ]);
-			throw new Error(message);
+			/*var message:String = resourceManager.getString(
+				"collections", "unknownProperty", [ name ]);*/ //en_US = Unknown Property: '{0}'.
+            throw new Error("Unknown Property: '"+name+"'");
 		}
         else
         {
-        */
 			// If caller passed in a number such as 5.5, it will be floored.
             return getItemAt(int(n));
-        //}
+        }
     }
     
     /**
@@ -991,12 +989,12 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
     {
         if (name is QName)
             name = name.localName;
-        proxy_setProperty(name as String, value);
+        proxy_setProperty(name + '', value);
     }
     COMPILE::JS
     override public function setProperty(name:String, value:*):void
     {
-        proxy_setProperty(name as String, value);
+        proxy_setProperty(name /*as String*/, value);
     }
     
     private function proxy_setProperty(name:String, value:*):void
@@ -1004,25 +1002,23 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
 		
 		try
 		{
-			var n:Number = parseInt(String(name));
+			var n:Number = parseInt(name);
 		}
 		catch(e:Error) // localName was not a number
 		{
 		}
 		
-        /*
 		if (isNaN(n))
 		{
-			var message:String = resourceManager.getString(
-				"collections", "unknownProperty", [ name ]);
-			throw new Error(message);
+			/*var message:String = resourceManager.getString(
+				"collections", "unknownProperty", [ name ]);*/ //en_US = Unknown Property: '{0}'.
+			throw new Error("Unknown Property: '"+name+"'");
 		}
 		else
 		{
-        */
 			// If caller passed in a number such as 5.5, it will be floored.
 			setItemAt(value, int(n));
-		//}
+		}
     }
     
     /**
@@ -1038,12 +1034,12 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
         if (name is QName)
             name = name.localName;
         
-        return proxy_hasProperty(name as String);
+        return proxy_hasProperty(name +'');
     }
     COMPILE::JS
     override public function hasProperty(name:String):Boolean
     {
-        return proxy_hasProperty(name as String);
+        return proxy_hasProperty(name );
     }
     
     private function proxy_hasProperty(name:String):Boolean
@@ -1052,7 +1048,7 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
         try
         {
             // If caller passed in a number such as 5.5, it will be floored.
-            var n:Number = parseInt(String(name));
+            var n:Number = parseInt(name);
             if (!isNaN(n))
                 index = int(n);
         }
