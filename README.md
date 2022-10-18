@@ -1,5 +1,5 @@
 # Apache Royale&trade;
-[![Build Status](https://builds.apache.org/job/Royale-asjs/lastSuccessfulBuild/badge/icon)](https://builds.apache.org/job/Royale-asjs/)
+[![Build Status](https://builds.apache.org/job/Royale/job/Royale-asjs/lastSuccessfulBuild/badge/icon)](https://builds.apache.org/job/Royale-asjs/)
 
 The Apache Royale project is developing a next-generation of the Apache Flex&trade; SDK: . Royale has the goal of allowing applications developed in MXML and ActionScript to not only run in the Flash/AIR runtimes, but also to run natively in the browser without Flash, on mobile devices as a PhoneGap/Cordova application, and in embedded JS environments such as Chromium Embedded Framework. Royale has the potential to allow your MXML and ActionScript code to run in even more places than Flash currently does.
 
