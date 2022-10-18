@@ -184,6 +184,7 @@ or for both JS and SWF output:
 
 ```bash
 sudo npm install @apache-royale/royale-js-swf -g
+```
 
 - Windows
 ```bash
