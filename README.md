@@ -33,7 +33,7 @@ Before building Royale you must install the following software and set the corre
 
 Royale requires Java SDK 1.8 or greater to be installed on your computer. For more information on installing the Java SDK, see:
 
-<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
+<https://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
 - **Environment variable**
 
@@ -59,7 +59,7 @@ The Royale Ant build requires Ant 1.8 or greater to be installed on your compute
 
 For more information on installing Ant, see:
 
-<http://ant.apache.org/>
+<https://ant.apache.org/>
 
 - **Environment variable**
 
