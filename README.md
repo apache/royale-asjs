@@ -83,13 +83,13 @@ For more information on installing Ant, see:
 
 ### *playerglobal.swc*
 
-The Adobe Flash Player *playerglobal.swc* (version 11.1) can be downloaded from:
+The Adobe Flash Player *playerglobal.swc* (version 32.0) can be downloaded from:
 
-<http://fpdownload.macromedia.com/get/flashplayer/installers/archive/playerglobal/playerglobal11_1.swc>
+<https://fpdownload.macromedia.com/get/flashplayer/updaters/32/playerglobal32_0.swc>
 
 First, create the following directory structure:
 
-*[root directory]/player/11.1/*
+*[root directory]/player/32.0/*
 
 Next, rename the downloaded SWC to '*playerglobal.swc*' and place it in the above directory.
 
@@ -97,16 +97,16 @@ Next, rename the downloaded SWC to '*playerglobal.swc*' and place it in the abov
 
   Set **PLAYERGLOBAL_HOME** environment variable to the absolute path of the player directory, not including the version subdirectory (i.e. '*[root directory]/player*').
 
-Other, more recent versions of Adobe Flash Player *playerglobal.swc* can be downloaded from http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]\_[version.minor].swc (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>). These versions can be used with Royale, but not all have been fully tested.
-
 
 ### Flash Player Content Debugger
 
-The Flash Player Content Debugger can be found here:
+The Adobe Flash Player Content Debugger can be found here:
 
-<http://www.adobe.com/support/flashplayer/downloads.html>
+Windows: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flashplayer_32_sa_debug.exe>
 
-This version of Royale was certified for use with Flash Player 11.1, and is compatible with version 10.2 and up. It has been tested with version 16.0 on Windows and Mac. It has been compiled, but not fully tested, with other Flash Player versions. It has not been fully tested on Linux.
+Mac: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flashplayer_32_sa_debug.dmg>
+
+This version of Royale was certified for use with Flash Player 32.0, and is compatible with version 10.2 and up. It has been compiled, but not fully tested, with other Flash Player versions. It has not been fully tested on Linux.
 
 - **Environment variable**
 
@@ -118,13 +118,11 @@ This version of Royale was certified for use with Flash Player 11.1, and is comp
 
 ### Adobe AIR Integration Kit (optional, for SWF output only)
 
-This version of Apache Royale was certified for use with Adobe AIR 16 and is compatible with version 3.1 and up. The Adobe AIR integration kit can be downloaded from:
+This version of Apache Royale was certified for use with Adobe AIR 32.0 and is compatible with version 3.1 and up. The Adobe AIR integration kit can be downloaded from:
 
-Windows: <http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip>
+Windows: <https://airdownload.adobe.com/air/win/download/32.0/AdobeAIRSDK.zip>
 
-Mac: <http://airdownload.adobe.com/air/mac/download/16.0/AdobeAIRSDK.tbz2>
-
-Linux: <http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRSDK.tbz2>
+Mac: <https://airdownload.adobe.com/air/mac/download/32.0/AdobeAIRSDK.dmg>
 
 After you download the AIR SDK, unzip it and place it in a directory of your choice.
 
