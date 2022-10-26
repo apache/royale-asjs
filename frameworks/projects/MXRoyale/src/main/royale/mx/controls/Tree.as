@@ -89,6 +89,9 @@ import org.apache.royale.html.beads.SingleSelectionDragImageBead;
 import mx.controls.beads.XMLTreeSingleSelectionDragSourceBead;
 import mx.controls.beads.TreeSingleSelectionDropTargetBead;
 import mx.controls.beads.XMLTreeSingleSelectionDropTargetBead;
+import org.apache.royale.html.beads.MultiSelectionTreeDragSourceBead;
+import org.apache.royale.html.beads.MultiSelectionDragImageBead;
+import org.apache.royale.html.beads.SensitiveMultiSelectionDropTargetBead;
 
 //--------------------------------------
 //  Events
@@ -3736,8 +3739,7 @@ public class Tree extends List
     override protected function setDropEnabled():void
     {
         getOrAddBeadByType(DataGridDrawingLayerBead, this);
-        getOrAddBeadByType(TreeSingleSelectionDropTargetBead, this);
-        getOrAddBeadByType(XMLTreeSingleSelectionDropTargetBead, this);
+        getOrAddBeadByType(SensitiveMultiSelectionDropTargetBead, this);
         getOrAddBeadByType(SingleSelectionDropIndicatorBead, this);
     }
 
@@ -3747,9 +3749,8 @@ public class Tree extends List
     override protected function setDragEnabled():void
     {
         // getOrAddBeadByType(TreeSingleSelectionDragSourceBead, this);
-        getOrAddBeadByType(TreeSingleSelectionDragSourceBead, this);
-        getOrAddBeadByType(XMLTreeSingleSelectionDragSourceBead, this);
-        getOrAddBeadByType(SingleSelectionDragImageBead, this);
+        getOrAddBeadByType(MultiSelectionTreeDragSourceBead, this);
+        getOrAddBeadByType(MultiSelectionDragImageBead, this);
     }
 }
 
