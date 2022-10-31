@@ -44,6 +44,7 @@ package org.apache.royale.html.beads
 	COMPILE::JS
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.supportClasses.OverflowViewport;
 	}
 
 
@@ -113,6 +114,7 @@ package org.apache.royale.html.beads
 			{
 				dragImage.addBead(new HorizontalLayout())
 			}
+			dragImage.addBead(new OverflowViewport); // make sure inner elements are visible even if outer size is not correct
 			var itemRendererOwnerView:IItemRendererOwnerView = (_strand.getBeadByType(IBeadView) as IListView).dataGroup as IItemRendererOwnerView;
 			var selectedIndices:Array = model.selectedIndices;
 			for (var i:int = 0; i < selectedIndices.length; i++)
