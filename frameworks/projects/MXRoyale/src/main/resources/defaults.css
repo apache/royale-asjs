@@ -210,7 +210,7 @@ ColorPicker
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListColorSelectionModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.ColorPickerView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
-	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ColorPickerPopUpWithPalette");
+	IPopUp: ClassReference("mx.controls.beads.ColorPickerPopUp");
 }
 
 Basic|ColorPalette

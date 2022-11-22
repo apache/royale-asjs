@@ -242,6 +242,8 @@
     <component id="DataGridHeaderRenderer" class="mx.controls.dataGridClasses.DataGridHeaderRenderer"/>
     <component id="CascadingMenuFactory" class="mx.controls.menuClasses.CascadingMenuFactory"/>
 
+    <!-- ColorPicker-->
+	<component id="ColorPickerPopUp" class="mx.controls.beads.ColorPickerPopUp" />
     <!-- new/experimental -->
     <component id="SimpleTextHighlighter" class="mx.controls.SimpleTextHighlighter" />
 </componentPackage>
