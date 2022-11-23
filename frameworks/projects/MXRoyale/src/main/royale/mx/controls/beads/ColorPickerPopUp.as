@@ -56,7 +56,7 @@ package mx.controls.beads
 			colorPalette = new ColorPalette();
 			var colorPaletteLayout:TileLayout = loadBeadFromValuesManager(TileLayout, "iBeadLayout", colorPalette) as TileLayout;
 			colorPaletteLayout.rowHeight = colorPaletteLayout.columnWidth = 12;
-			colorPalette.width =  200;
+			colorPalette.width =  240;
 		}
 		
 		override public function set model(value:Object):void

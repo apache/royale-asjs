@@ -627,8 +627,8 @@ public class ColorPicker extends UIComponent //ComboBase
     //  selectedColor
     //----------------------------------
 
-    //[Bindable("change")]
-    //[Bindable("valueCommit")]
+    [Bindable("change")]
+    [Bindable("valueCommit")]
     //[Inspectable(category="General", defaultValue="0", format="Color")]
 
     /**
