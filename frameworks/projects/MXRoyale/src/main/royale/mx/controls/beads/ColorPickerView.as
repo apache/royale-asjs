@@ -44,6 +44,8 @@ package mx.controls.beads
 	import org.apache.royale.core.IColorModel;
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.html.util.getModelByType;
+    import mx.events.ColorPickerEvent;
+    import org.apache.royale.html.beads.IComboBoxView;
 	
 	/**
 	 *  The ColorPickerView class creates the visual elements of the org.apache.royale.html.ColorPicker 
@@ -221,6 +223,7 @@ package mx.controls.beads
 		protected function handleColorChange(event:Event):void
 		{
 			colorChangeAction();
+			(_strand as IEventDispatcher).dispatchEvent(new ColorPickerEvent("change"));
 		}
 		
 		/**

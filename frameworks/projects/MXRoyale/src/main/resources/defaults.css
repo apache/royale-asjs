@@ -208,7 +208,7 @@ CheckBox
 ColorPicker
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListColorSelectionModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.ColorPickerView");
+	IBeadView: ClassReference("mx.controls.beads.ColorPickerView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
 	IPopUp: ClassReference("mx.controls.beads.ColorPickerPopUp");
 }
