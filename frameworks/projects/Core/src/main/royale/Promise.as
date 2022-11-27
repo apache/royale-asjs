@@ -272,6 +272,11 @@ package
 			//TODO implement catch
 			return null;
 		}
+		
+		public function finally(onFinally:Function):IThenable
+		{
+			throw new Error("Method not implemented.");
+		}
 
 	}
 }
