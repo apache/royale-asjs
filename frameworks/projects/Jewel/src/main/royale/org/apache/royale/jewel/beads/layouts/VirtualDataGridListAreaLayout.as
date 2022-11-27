@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.layouts
 {
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.jewel.Container;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
@@ -34,6 +35,8 @@ package org.apache.royale.jewel.beads.layouts
 	 */
 	public class VirtualDataGridListAreaLayout extends VirtualListVerticalLayout
 	{
+        private var isAreaFocus:Boolean;
+
 		/**
 		 *  Constructor.
 		 *
@@ -48,6 +51,17 @@ package org.apache.royale.jewel.beads.layouts
 			super();
 		}
 
+        override public function set strand(value:IStrand):void
+        {
+            super.strand = value;
+
+            COMPILE::JS
+            {
+                host.element.addEventListener("mouseover", function():void { isAreaFocus = true });
+                host.element.addEventListener("mouseleave", function():void { isAreaFocus = false });
+            }
+        }
+
         private function getListArea():Container
         {
             var datagrid:IDataGrid = (host as IDataGridColumnList).datagrid;
@@ -58,6 +72,12 @@ package org.apache.royale.jewel.beads.layouts
         override protected function scrollHandler(e:Event):void
         {
             super.scrollHandler(e);
+
+            //this is not ideal, but avoids that the other VirtualDataGrid columns
+            //also try to do scrollTop to all columns again in a loop, that causes a performance issue
+            //and a strang behaviour on the first column that started the process
+            if (!isAreaFocus)
+                return;
 
             var listArea:Container = getListArea();
 
