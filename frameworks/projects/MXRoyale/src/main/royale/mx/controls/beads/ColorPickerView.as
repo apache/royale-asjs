@@ -216,6 +216,8 @@ package mx.controls.beads
 		{
 			sizeChangeAction();
 		}
+
+		public var programmaticChange:Boolean = false;
 		
 		/**
 		 * @private
@@ -223,7 +225,8 @@ package mx.controls.beads
 		protected function handleColorChange(event:Event):void
 		{
 			colorChangeAction();
-			(_strand as IEventDispatcher).dispatchEvent(new ColorPickerEvent("change"));
+			//'change' events should only be from User-initiated changes
+			if (!programmaticChange) (_strand as IEventDispatcher).dispatchEvent(new ColorPickerEvent("change"));
 		}
 		
 		/**

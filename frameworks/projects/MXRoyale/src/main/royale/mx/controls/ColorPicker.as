@@ -19,12 +19,14 @@
 
 package mx.controls
 {
-	import org.apache.royale.events.Event;
+    import org.apache.royale.events.Event;
     import org.apache.royale.core.IColorModel;
 	//import mx.controls.ComboBase;
     import mx.core.UIComponent;
     import mx.controls.colorPickerClasses.WebSafePalette;
+    import mx.controls.beads.ColorPickerView;
     import org.apache.royale.core.ISelectionModel;
+    import mx.events.FlexEvent;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -665,20 +667,25 @@ public class ColorPicker extends UIComponent //ComboBase
         else
         {
             indexFlag = false;
-        }
+        } */
         if (value != selectedColor)
         {
-            _selectedColor = value;
+            //selectedColor = value;
 
             //updateColor(value);
 
             //if (dropdownSwatch)
             //    dropdownSwatch.selectedColor = value;
+            //quick fix: avoid dispatch of 'change' events from ColorPickerView, which should only be from user-initiated changes:
+            (view as ColorPickerView).programmaticChange = true;
+            (model as IColorModel).color = value;
+            //reset the flag so user-initiated changes will dispatch subsequent changes:
+            (view as ColorPickerView).programmaticChange = false;
+            //programmatic changes dispatch 'valueCommit' as they do in Flex, to ensure bindings work for them also:
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
         }
 
         //dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-        */
-        (model as IColorModel).color = value;
     }
     
     public function get selectedItem():Object
