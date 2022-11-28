@@ -27,6 +27,7 @@ package mx.controls
     import mx.controls.beads.ColorPickerView;
     import org.apache.royale.core.ISelectionModel;
     import mx.events.FlexEvent;
+    import mx.controls.beads.HideComboPopupOnMouseDownBead;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -503,6 +504,7 @@ public class ColorPicker extends UIComponent //ComboBase
     public function ColorPicker()
     {
         super();
+        addBead(new HideComboPopupOnMouseDownBead());
 
         typeNames = "ColorPicker";
         if (!isModelInited)
