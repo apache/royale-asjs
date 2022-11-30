@@ -188,7 +188,7 @@ package mx.controls.beads
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value && !list.visible) {
-      	var model:IColorModel = getModelByType(_strand,IColorModel) as IColorModel;
+				var model:IColorModel = getModelByType(_strand,IColorModel) as IColorModel;
 				(list as IColorPickerPopUp).model = model;
 				list.visible = true;
 				
@@ -227,6 +227,7 @@ package mx.controls.beads
 			colorChangeAction();
 			//'change' events should only be from User-initiated changes
 			if (!programmaticChange) (_strand as IEventDispatcher).dispatchEvent(new ColorPickerEvent("change"));
+			popUpVisible = false;
 		}
 		
 		/**
