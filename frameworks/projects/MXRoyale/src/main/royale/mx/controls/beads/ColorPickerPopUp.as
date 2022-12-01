@@ -33,7 +33,7 @@ package mx.controls.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.CSSUtils;
 	import org.apache.royale.html.beads.DispatchInputFinishedBead;
-	import org.apache.royale.html.accessories.RestrictTextInputBead;
+	import org.apache.royale.html.accessories.RestrictToColorTextInputBead;
 	import org.apache.royale.core.IStrandWithModel;
 
 	/**
@@ -108,8 +108,7 @@ package mx.controls.beads
 		{
 			host = value;
 			textInput.addEventListener("change", changeHandler);
-			var restrictBead:RestrictTextInputBead = new RestrictTextInputBead();
-			restrictBead.restrict = "aAbBcCdDeEfF0123456789";
+			var restrictBead:RestrictToColorTextInputBead = new RestrictToColorTextInputBead();
 			textInput.addBead(restrictBead);
 			textInput.addBead(new DispatchInputFinishedBead());
 			textInput.addEventListener(DispatchInputFinishedBead.INPUT_FINISHED, inputFinishedHandler)
