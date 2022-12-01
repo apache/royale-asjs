@@ -244,6 +244,7 @@
 
     <!-- ColorPicker-->
 	<component id="ColorPickerPopUp" class="mx.controls.beads.ColorPickerPopUp" />
+	<component id="ListView" class="mx.controls.beads.ListView" />
     <!-- new/experimental -->
     <component id="SimpleTextHighlighter" class="mx.controls.SimpleTextHighlighter" />
 </componentPackage>

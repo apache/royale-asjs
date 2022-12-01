@@ -226,8 +226,11 @@ package mx.controls.beads
 		{
 			colorChangeAction();
 			//'change' events should only be from User-initiated changes
-			if (!programmaticChange) (_strand as IEventDispatcher).dispatchEvent(new ColorPickerEvent("change"));
-			popUpVisible = false;
+			if (!programmaticChange)
+			{
+				(_strand as IEventDispatcher).dispatchEvent(new ColorPickerEvent("change"));
+				popUpVisible = false;
+			}
 		}
 		
 		/**

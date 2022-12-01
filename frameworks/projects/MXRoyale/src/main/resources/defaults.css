@@ -217,6 +217,7 @@ Basic|ColorPalette
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListSelectionModel");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayList");
+	IBeadView: ClassReference("mx.controls.beads.ListView");
 }
 
 ComboBox
