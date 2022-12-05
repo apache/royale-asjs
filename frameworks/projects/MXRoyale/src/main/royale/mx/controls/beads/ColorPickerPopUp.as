@@ -116,7 +116,7 @@ package mx.controls.beads
 
 		protected function changeHandler(event:Event):void
 		{
-			var color:uint = CSSUtils.toColorWithAlpha("#" + textInput.text);
+			var color:uint = Number("0x" + textInput.text);
 			COMPILE::JS
 			{
 				selectedColorDisplay.element.style.backgroundColor = CSSUtils.attributeFromColor(color);
@@ -125,7 +125,7 @@ package mx.controls.beads
 
 		protected function inputFinishedHandler(event:Event):void
 		{
-			var color:uint = CSSUtils.toColorWithAlpha("#" + textInput.text);
+			var color:uint = Number("0x" + textInput.text);
 			((host as IStrandWithModel).model as IColorModel).color = color;
 		}
 		
