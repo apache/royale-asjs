@@ -28,6 +28,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
     import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.collections.ICollectionView;
     import org.apache.royale.jewel.itemRenderers.EditableDataGridItemRenderer;
+    import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
+    import org.apache.royale.jewel.VirtualDataGrid;
+    import org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList;
 
 	/**
 	 *  The DataGridNavigateItems bead class is a specialty bead that can be use with a Jewel DataGrid and VirtualDataGrid control
@@ -69,14 +72,18 @@ package org.apache.royale.jewel.beads.controls.datagrid
             if (event.key == KEY_ENTER || event.key == KEY_TAB)
             {
                 var selectedColumnList:UIBase = (event.target as UIBase).parent as UIBase;
-                while (!(selectedColumnList is DataGridColumnList))
+                while (!(selectedColumnList is IDataGridColumnList))
                 {
                     selectedColumnList = selectedColumnList.parent as UIBase;
                 }
 
                 var dataGridView:DataGridView = ((dataGrid as DataGrid).view as DataGridView);
                 var selectedColumnIndex:int = dataGridView.columnLists.indexOf(selectedColumnList);
-                var dataGridItemRenderer:EditableDataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).getElementAt((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
+                var dataGridItemRenderer:EditableDataGridItemRenderer;
+                if (dataGrid is VirtualDataGrid)
+                    dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).getElementAt((dataGrid as VirtualDataGrid).selectedIndex + 1) as EditableDataGridItemRenderer;
+                else
+                    dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).getElementAt((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
                 var dataProviderSize:int = ((dataGrid as DataGrid).dataProvider as ICollectionView).length;
 
                 dataGridItemRenderer.endEditMode();
@@ -99,7 +106,10 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	    		{
                     setTimeout(function():void
                     {
-                        dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).getElementAt((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
+                        if (dataGrid is VirtualDataGrid)
+                            dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).getElementAt((dataGrid as VirtualDataGrid).selectedIndex + 1) as EditableDataGridItemRenderer;
+                        else
+                            dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).getElementAt((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
                         dataGridItemRenderer.goToEditMode();
 				    }, 1);
                 }

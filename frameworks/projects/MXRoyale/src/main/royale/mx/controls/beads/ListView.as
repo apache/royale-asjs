@@ -39,7 +39,6 @@ package mx.controls.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.10
 	 */
-	COMPILE::JS
 	public class ListView extends org.apache.royale.html.beads.ListView
 	{
 		override protected function selectionChangeHandler(event:Event):void
