@@ -19,7 +19,6 @@
 package mx.controls.beads
 {
 	import org.apache.royale.core.IColorModel;
-	import org.apache.royale.core.IColorSpectrumModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -35,6 +34,7 @@ package mx.controls.beads
 	import org.apache.royale.html.beads.DispatchInputFinishedBead;
 	import org.apache.royale.html.accessories.RestrictToColorTextInputBead;
 	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.ControlBar;
 
 	/**
 	 *  The ColorPickerPopUp class is used in ColorPicker. It contains a set of controls for picking a color.
@@ -49,6 +49,7 @@ package mx.controls.beads
 	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp, IBead
 	{
 		protected var colorPalette:ColorPalette;
+		protected var controlBar:Group;
 		protected var textInput:TextInput;
 		protected var selectedColorDisplay:Group;
 		protected var host:IStrand;
@@ -64,13 +65,14 @@ package mx.controls.beads
 		{
 			super();
 			colorPalette = new ColorPalette();
+			controlBar = new ControlBar();
 			var colorPaletteLayout:TileLayout = loadBeadFromValuesManager(TileLayout, "iBeadLayout", colorPalette) as TileLayout;
 			selectedColorDisplay = new Group();
 			(selectedColorDisplay as IStyleableObject).className = "ColorPickerDisplayedColor";			
 			var irDim:int = 11;
 			var margin:int = 2;
 			colorPaletteLayout.rowHeight = colorPaletteLayout.columnWidth = irDim;
-			colorPalette.width =  irDim * 20;
+			colorPalette.width = controlBar.width = irDim * 20;
 			selectedColorDisplay.width = irDim * 4;
 			textInput = new TextInput();
 			textInput.width = 62;
@@ -78,11 +80,14 @@ package mx.controls.beads
 			selectedColorDisplay.y = textInput.y = margin;
 			selectedColorDisplay.height = textInput.height = 24;
 			colorPalette.y = selectedColorDisplay.height + margin * 2;
+			controlBar.addElement(selectedColorDisplay);
+			controlBar.addElement(textInput);
 			COMPILE::JS
 			{
 				selectedColorDisplay.element.style.position = "absolute";
 				textInput.element.style.position = "absolute";
 				colorPalette.element.style.position = "absolute";
+				controlBar.element.style.backgroundColor = "#e6e6e6";
 			}
 		}
 		
@@ -90,18 +95,20 @@ package mx.controls.beads
 		{
 			super.model = value;
 			colorPalette.model = value;
-			if (getElementIndex(selectedColorDisplay) < 0)
+			if (getElementIndex(controlBar) < 0)
 			{
-				addElement(selectedColorDisplay);
-			}
-			if (getElementIndex(textInput) < 0)
-			{
-				addElement(textInput);
+				addElement(controlBar);
 			}
 			if (getElementIndex(colorPalette) < 0)
 			{
 				addElement(colorPalette);
 			}
+			var colorAsAttr:String = CSSUtils.attributeFromColor((value as IColorModel).color);
+			COMPILE::JS
+			{
+				selectedColorDisplay.element.style.backgroundColor = colorAsAttr;
+			}
+			textInput.text = colorAsAttr.slice(1);
 		}
 		
 		public function set strand(value:IStrand):void
