@@ -29,8 +29,6 @@ package mx.controls.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.html.Group;
-	import org.apache.royale.html.TextButton;
 	COMPILE::JS 
 	{
 		import org.apache.royale.utils.CSSUtils;
@@ -46,6 +44,8 @@ package mx.controls.beads
     import org.apache.royale.html.util.getModelByType;
     import mx.events.ColorPickerEvent;
     import org.apache.royale.html.beads.IComboBoxView;
+    import mx.core.UIComponent;
+    import mx.skins.ColorPickerSkin;
 	
 	/**
 	 *  The ColorPickerView class creates the visual elements of the org.apache.royale.html.ColorPicker 
@@ -82,7 +82,7 @@ package mx.controls.beads
 			return selectedColorDisplay;
 		}
 		
-		private var button:TextButton;
+		private var button:UIComponent;
 		
 		/**
 		 *  The Button component of the ComboBox.
@@ -127,15 +127,8 @@ package mx.controls.beads
 			
 			var host:UIBase = value as UIBase;
 			
-			selectedColorDisplay = new Group();
-			(selectedColorDisplay as IStyleableObject).className = "ColorPickerDisplayedColor";			
-			
-			button = new TextButton();
-			button.style = {
-				"padding": 0,
-				"margin": 0
-			};
-			button.text = '\u25BC';
+			selectedColorDisplay = button = new ColorPickerSkin();
+			button.name = (_strand as UIComponent).enabled ? "upSkin" : "disabledSkin";
 			
 			if (isNaN(host.width)) selectedColorDisplay.width = 25;
 			
@@ -150,7 +143,7 @@ package mx.controls.beads
 			host.addElement(selectedColorDisplay);
 			host.addElement(button);
 			
-            loadBeadFromValuesManager(IPopUp, "iPopUp", _strand);
+			loadBeadFromValuesManager(IPopUp, "iPopUp", _strand);
 			list = _strand.getBeadByType(IColorPickerPopUp) as IUIBase;
 			list.visible = false;
 			
@@ -263,10 +256,7 @@ package mx.controls.beads
 				selectedColorDisplay.width = host.width - 20;
 			}
 
-			button.x = selectedColorDisplay.width;
-			button.y = 0;
-			button.width = 20;
-			button.height = selectedColorDisplay.height;
+			button.setActualSize(20, selectedColorDisplay.height);
 			
 			COMPILE::JS {
 				selectedColorDisplay.element.style.position = "absolute";

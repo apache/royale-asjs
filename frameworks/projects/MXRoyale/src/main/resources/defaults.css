@@ -1149,4 +1149,10 @@ charts|DataTip
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
 	}
 
+	ColorPickerSkin
+	{
+		iconColor: #111111;
+		disabledIconColor: #999999;
+	}
+
 }
