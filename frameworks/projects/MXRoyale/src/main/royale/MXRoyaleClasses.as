@@ -437,6 +437,7 @@ internal class MXRoyaleClasses
 
 	import mx.controls.SimpleTextHighlighter;SimpleTextHighlighter;
 	import mx.controls.beads.ColorPickerView; ColorPickerView;
+	import mx.controls.beads.ColorPickerController; ColorPickerController;
 }
 
 }

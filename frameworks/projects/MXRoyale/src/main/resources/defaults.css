@@ -209,7 +209,7 @@ ColorPicker
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListColorSelectionModel");
 	IBeadView: ClassReference("mx.controls.beads.ColorPickerView");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
+	IBeadController: ClassReference("mx.controls.beads.ColorPickerController");
 	IPopUp: ClassReference("mx.controls.beads.ColorPickerPopUp");
 }
 
@@ -1149,10 +1149,5 @@ charts|DataTip
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
 	}
 
-	ColorPickerSkin
-	{
-		iconColor: #111111;
-		disabledIconColor: #999999;
-	}
 
 }

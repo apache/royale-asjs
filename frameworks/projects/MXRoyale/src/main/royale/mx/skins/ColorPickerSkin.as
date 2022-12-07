@@ -114,7 +114,6 @@ public class ColorPickerSkin extends UIComponent
         var arrowY:Number = (h - arrowHeight - bevelSize);
 
         graphics.clear();
-	graphics.lineStyle(1);
         
         if (name == "upSkin" || name == "overSkin")
         {
@@ -222,8 +221,12 @@ public class ColorPickerSkin extends UIComponent
 
     override public function set name(value:String):void
     {
+	var change:Boolean = value != name;
 	super.name = value;
-	updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+	if (change)
+	{
+		// updateDisplayList(width, height); // uncomment when we figure out why this messes with mouse event handlers
+	}
     }
 
     //--------------------------------------------------------------------------

@@ -121,6 +121,16 @@ package mx.controls.beads
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
+		private function handleDisableChange(event:Event=null):void
+		{
+			button.name = (_strand as UIComponent).enabled ? "upSkin" : "disabledSkin";
+		}
+
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
@@ -128,7 +138,8 @@ package mx.controls.beads
 			var host:UIBase = value as UIBase;
 			
 			selectedColorDisplay = button = new ColorPickerSkin();
-			button.name = (_strand as UIComponent).enabled ? "upSkin" : "disabledSkin";
+			button.addEventListener("disabledChange", handleDisableChange)
+			handleDisableChange();
 			
 			if (isNaN(host.width)) selectedColorDisplay.width = 25;
 			
