@@ -84,78 +84,95 @@ package org.apache.royale.test.bdd
 		 */
 		function get null():IExpect;
 
+		//-- language chains
+
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get to():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get be():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get been():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get is():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get that():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get which():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get and():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get has():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get have():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get with():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get at():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get of():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get same():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get but():IExpect;
 
 		/**
-		 * Chainable getters to improve readability without altering the assertion.
+		 * Chainable getter to improve readability without altering the
+		 * assertion.
 		 */
 		function get does():IExpect;
 	}
