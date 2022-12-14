@@ -352,6 +352,7 @@ package tests
 			Assert.assertEquals(false, 1);
 		}
 
+		[Test]
 		public function testAssertEqualsWithFalseAnd0():void
 		{
 			Assert.assertEquals(false, 0);
@@ -405,6 +406,7 @@ package tests
 			Assert.assertEquals(null, 1);
 		}
 
+		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testAssertEqualsWithNullAnd0():void
 		{
 			Assert.assertEquals(null, 0);
@@ -458,6 +460,7 @@ package tests
 			Assert.assertEquals(undefined, 1);
 		}
 
+		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testAssertEqualsWithUndefinedAnd0():void
 		{
 			Assert.assertEquals(undefined, 0);
