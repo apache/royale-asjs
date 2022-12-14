@@ -29,5 +29,6 @@ package tests
 		public var runNotifierTests:RunNotifierTests;
 		public var asyncTests:AsyncTests;
 		public var expectedTests:ExpectedTests;
+		public var assertTests:AssertTests;
 	}
 }
