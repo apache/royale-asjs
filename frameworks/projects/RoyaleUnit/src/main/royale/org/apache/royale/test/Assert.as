@@ -44,6 +44,13 @@ package org.apache.royale.test
 		/**
 		 * Asserts that the provided values are loosely equal (equivalent to
 		 * the <code>==</code> operator).
+		 * 
+		 * <p>Note: Type coercion may occur. For a strict comparison, without
+		 * type coercion, use
+		 * <code>assertStrictlyEquals(actual, expected, message)</code>
+		 * instead.</p>
+		 * 
+		 * @see Assert.assertStrictlyEquals()
 		 */
 		public static function assertEquals(actual:*, expected:*, message:String = null):void
 		{
@@ -53,6 +60,13 @@ package org.apache.royale.test
 		/**
 		 * Asserts that the provided values are not loosely equal (equivalent to
 		 * the <code>!=</code> operator).
+		 * 
+		 * <p>Note: Type coercion may occur. For a strict comparison, without
+		 * type coercion, use
+		 * <code>assertNotStrictlyEquals(actual, expected, message)</code>
+		 * instead.</p>
+		 * 
+		 * @see Assert.assertNotStrictlyEquals()
 		 */
 		public static function assertNotEquals(actual:*, expected:*, message:String = null):void
 		{
@@ -62,6 +76,11 @@ package org.apache.royale.test
 		/**
 		 * Asserts that the provided value is true (equivalent to testing the
 		 * value in an <code>if(value)</code> statement).
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will pass for any
+		 * value that is considered <em>truthy</em>. For strict comparison to
+		 * true, without type coercion, use
+		 * <code>assertStrictlyEquals(value, true, message)</code> instead.</p>
 		 */
 		public static function assertTrue(value:*, message:String = null):void
 		{
@@ -71,6 +90,11 @@ package org.apache.royale.test
 		/**
 		 * Asserts that the provided value is true (equivalent to testing the
 		 * value in an <code>if(!value)</code> statement).
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will pass for any
+		 * value that is considered <em>falsy</em>. For strict comparison to
+		 * false, without type coercion, use
+		 * <code>assertStrictlyEquals(value, false, message)</code> instead.</p>
 		 */
 		public static function assertFalse(value:*, message:String = null):void
 		{
@@ -78,7 +102,13 @@ package org.apache.royale.test
 		}
 
 		/**
-		 * Asserts that the provided value is null.
+		 * Asserts that the provided value is null (equivalent to testing the
+		 * value in an <code>if(value == null)</code> statement).
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will pass for any
+		 * value that is considered <em>nullish</em>. For strict comparison to
+		 * null, without type coercion, use
+		 * <code>assertStrictlyEquals(value, null, message)</code> instead.</p>
 		 */
 		public static function assertNull(actual:*, message:String = null):void
 		{
@@ -86,7 +116,13 @@ package org.apache.royale.test
 		}
 
 		/**
-		 * Asserts that the provided value is not null.
+		 * Asserts that the provided value is not null (equivalent to testing
+		 * the value in an <code>if(value != null)</code> statement).
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will fail for any
+		 * value that is considered <em>nullish</em>. For strict comparison to
+		 * null, without type coercion, use
+		 * <code>assertNotStrictlyEquals(value, null, message)</code> instead.</p>
 		 */
 		public static function assertNotNull(actual:*, message:String = null):void
 		{
@@ -103,6 +139,11 @@ package org.apache.royale.test
 
 		/**
 		 * Fails if the condition is true.
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will fail for any
+		 * value that is considered <em>truthy</em>. For strict comparison to
+		 * true, without type coercion, use
+		 * <code>failStrictlyEquals(value, true, message)</code> instead.</p>
 		 */
 		public static function failTrue(condition:*, message:String = null):void
 		{
@@ -114,6 +155,11 @@ package org.apache.royale.test
 
 		/**
 		 * Fails if the condition is false.
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will fail for any
+		 * value that is considered <em>falsy</em>. For strict comparison to
+		 * false, without type coercion, use
+		 * <code>failStrictlyEquals(value, false, message)</code> instead.</p>
 		 */
 		public static function failFalse(condition:*, message:String = null):void
 		{
@@ -125,6 +171,13 @@ package org.apache.royale.test
 
 		/**
 		 * Fails if the values are loosely equal.
+		 * 
+		 * <p>Note: Type coercion may occur. For a strict comparison without
+		 * type coercion, use
+		 * <code>failStrictlyEquals(actual, expected, message)</code>
+		 * instead.</p>
+		 * 
+		 * @see Assert.failStrictlyEquals()
 		 */
 		public static function failEquals(actual:*, expected:*, message:String = null):void
 		{
@@ -136,6 +189,13 @@ package org.apache.royale.test
 
 		/**
 		 * Fails if the values are not loosely equal.
+		 * 
+		 * <p>Note: Type coercion may occur. For a strict comparison without
+		 * type coercion, use
+		 * <code>failNotStrictlyEquals(actual, expected, message)</code>
+		 * instead.</p>
+		 * 
+		 * @see Assert.failNotStrictlyEquals()
 		 */
 		public static function failNotEquals(actual:*, expected:*, message:String = null):void
 		{
@@ -169,6 +229,11 @@ package org.apache.royale.test
 
 		/**
 		 * Fails if the value is null.
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will fail for any
+		 * value that is considered <em>nullish</em>. For strict comparison
+		 * to null, without type coercion, use
+		 * <code>failStrictlyEquals(value, null, message)</code> instead.</p>
 		 */
 		public static function failNull(object:*, message:String = null):void
 		{
@@ -180,6 +245,11 @@ package org.apache.royale.test
 
 		/**
 		 * Fails if the value is not null.
+		 * 
+		 * <p>Note: Type coercion may occur. The assertion will pass for any
+		 * value that is considered <em>nullish</em>. For strict comparison
+		 * to null, without type coercion, use
+		 * <code>failNotStrictlyEquals(value, null, message)</code> instead.</p>
 		 */
 		public static function failNotNull(object:*, message:String = null):void
 		{
