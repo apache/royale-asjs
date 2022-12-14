@@ -1,3 +1,9 @@
+Apache Royale 0.9.10
+====================
+
+- RoyaleUnit
+  - Added BDD-style expect() method for natural language assertions
+
 Apache Royale 0.9.9
 ===================
 

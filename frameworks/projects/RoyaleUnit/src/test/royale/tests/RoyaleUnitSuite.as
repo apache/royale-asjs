@@ -30,5 +30,6 @@ package tests
 		public var asyncTests:AsyncTests;
 		public var expectedTests:ExpectedTests;
 		public var assertTests:AssertTests;
+		public var expectBDDTests:ExpectBDDTests;
 	}
 }
