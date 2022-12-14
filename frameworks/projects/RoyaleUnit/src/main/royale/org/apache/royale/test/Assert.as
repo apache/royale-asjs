@@ -88,7 +88,7 @@ package org.apache.royale.test
 		}
 
 		/**
-		 * Asserts that the provided value is true (equivalent to testing the
+		 * Asserts that the provided value is false (equivalent to testing the
 		 * value in an <code>if(!value)</code> statement).
 		 * 
 		 * <p>Note: Type coercion may occur. The assertion will pass for any
