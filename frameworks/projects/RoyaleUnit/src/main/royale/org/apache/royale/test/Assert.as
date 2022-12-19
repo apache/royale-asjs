@@ -142,6 +142,28 @@ package org.apache.royale.test
 		}
 
 		/**
+		 * Asserts that the provided value is between a minimum and maximum
+		 * value (inclusive). Equivalent to testing the
+		 * value in an <code>if(value >= minimum && value <= maximum)</code>
+		 * statement.
+		 */
+		public static function assertWithin(actual:Number, minimum:Number, maximum:Number, message:String = null):void
+		{
+			failNotWithin(actual, minimum, maximum, message);
+		}
+
+		/**
+		 * Asserts that the provided value is not between a minimum and maximum
+		 * value (inclusive). Equivalent to testing the
+		 * value in an <code>if(value < minimum || value > maximum)</code>
+		 * statement.
+		 */
+		public static function assertNotWithin(actual:Number, minimum:Number, maximum:Number, message:String = null):void
+		{
+			failWithin(actual, minimum, maximum, message);
+		}
+
+		/**
 		 * Fails.
 		 */
 		public static function fail(message:String = "", sourceError:Error = null):void
@@ -279,6 +301,30 @@ package org.apache.royale.test
 			if (isNaN(actual))
 			{
 				failWithUserMessage("expected not NaN: <" + actual + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is between a minimum and maximum value
+		 * (inclusive).
+		 */
+		public static function failWithin(actual:Number, minimum:Number, maximum:Number, message:String = null):void
+		{
+			if (actual >= minimum && actual <= maximum)
+			{
+				failWithUserMessage("expected not between <" + minimum + "> and <" + maximum + "> but was <" + actual + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is not between a minimum and maximum
+		 * value (inclusive).
+		 */
+		public static function failNotWithin(actual:Number, minimum:Number, maximum:Number, message:String = null):void
+		{
+			if (actual < minimum || actual > maximum)
+			{
+				failWithUserMessage("expected between <" + minimum + "> and <" + maximum + "> but was <" + actual + ">", message);
 			}
 		}
 

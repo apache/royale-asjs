@@ -56,6 +56,16 @@ package org.apache.royale.test.bdd
 		function strictlyEquals(value:*, message:String = null):IExpect;
 
 		/**
+		 * Asserts that the provided value is between a minimum and maximum
+		 * value (inclusive). Equivalent to testing the
+		 * value in an <code>if(value >= minimum && value <= maximum)</code>
+		 * statement.
+		 * 
+		 * @see Assert#assertWithin
+		 */
+		function within(minimum:Number, maximum:Number, message:String = null):IExpect;
+
+		/**
 		 * Negates all assertions that follow in the chain.
 		 */
 		function get not():IExpect;

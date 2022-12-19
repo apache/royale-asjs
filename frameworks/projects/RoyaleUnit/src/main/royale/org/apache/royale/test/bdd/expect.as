@@ -76,6 +76,19 @@ class Expect implements IExpect
 		return strictlyEqual(value, message);
 	}
 
+	public function within(minimum:Number, maximum:Number, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.assertNotWithin(_value, minimum, maximum, message);
+		}
+		else
+		{
+			Assert.assertWithin(_value, minimum, maximum, message);
+		}
+		return this;
+	}
+
 	public function get not():IExpect
 	{
 		_not = !_not;

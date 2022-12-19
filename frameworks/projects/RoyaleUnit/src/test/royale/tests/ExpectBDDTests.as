@@ -1175,7 +1175,7 @@ package tests
 		}
 
 		[Test]
-		
+
 		public function testExpectStringWithNaNGetter():void
 		{
 			expect("royale").is.NaN;
@@ -1589,6 +1589,36 @@ package tests
 		public function testExpectObjectWithNotAndNullGetter():void
 		{
 			expect({}).is.not.null;
+		}
+
+		[Test]
+		public function testExpectWithinBetween():void
+		{
+			expect(0).is.within(-1, 1);
+		}
+
+		[Test]
+		public function testExpectWithinMinimum():void
+		{
+			expect(-1).is.within(-1, 1);
+		}
+
+		[Test]
+		public function testExpectWithinMaximum():void
+		{
+			expect(1).is.within(-1, 1);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectWithinOutsideMinimum():void
+		{
+			expect(-1.0001).is.within(-1, 1);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectWithinOutsideMaximum():void
+		{
+			expect(-1.0001).is.within(-1, 1);
 		}
 	}
 }

@@ -811,6 +811,36 @@ package tests
 			Assert.assertNaN(value);
 		}
 
+		[Test]
+		public function testAssertWithinBetween():void
+		{
+			Assert.assertWithin(0, -1, 1);
+		}
+
+		[Test]
+		public function testAssertWithinMinimum():void
+		{
+			Assert.assertWithin(-1, -1, 1);
+		}
+
+		[Test]
+		public function testAssertWithinMaximum():void
+		{
+			Assert.assertWithin(-1, -1, 1);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertWithinOutsideMinimum():void
+		{
+			Assert.assertWithin(-1.0001, -1, 1);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertWithinOutsideMaximum():void
+		{
+			Assert.assertWithin(1.0001, -1, 1);
+		}
+
 		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testFail():void
 		{
