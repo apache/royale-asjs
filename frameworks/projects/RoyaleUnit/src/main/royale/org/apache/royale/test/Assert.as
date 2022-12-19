@@ -204,6 +204,24 @@ package org.apache.royale.test
 		}
 
 		/**
+		 * Asserts that the provided value is of a type. Equivalent to testing
+		 * the value in an <code>if(value is type)</code> statement.
+		 */
+		public static function assertType(actual:*, type:Class, message:String = null):void
+		{
+			failNotType(actual, type, message);
+		}
+
+		/**
+		 * Asserts that the provided value is not of a type. Equivalent to
+		 * testing the value in an <code>if(!(value is type))</code> statement.
+		 */
+		public static function assertNotType(actual:*, type:Class, message:String = null):void
+		{
+			failType(actual, type, message);
+		}
+
+		/**
 		 * Fails.
 		 */
 		public static function fail(message:String = "", sourceError:Error = null):void
@@ -410,6 +428,28 @@ package org.apache.royale.test
 			if (actual >= other)
 			{
 				failWithUserMessage("expected less than <" + other + "> but was <" + actual + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is of a type.
+		 */
+		public static function failType(actual:*, type:Class, message:String = null):void
+		{
+			if (actual is type)
+			{
+				failWithUserMessage("expected <" + actual + "> to not be of type <" + type + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is not of a type.
+		 */
+		public static function failNotType(actual:*, type:Class, message:String = null):void
+		{
+			if (!(actual is type))
+			{
+				failWithUserMessage("expected <" + actual + "> to be of type <" + type + ">", message);
 			}
 		}
 

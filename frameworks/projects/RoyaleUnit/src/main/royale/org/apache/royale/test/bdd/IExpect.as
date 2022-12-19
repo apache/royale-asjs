@@ -137,6 +137,14 @@ package org.apache.royale.test.bdd
 		function gte(other:Number, message:String = null):IExpect;
 
 		/**
+		 * Asserts that the provided value is of a type. Equivalent to testing
+		 * the value in an <code>if(value is type)</code> statement.
+		 * 
+		 * @see Assert#assertType
+		 */
+		function type(type:Class, message:String = null):IExpect;
+
+		/**
 		 * Negates all assertions that follow in the chain.
 		 */
 		function get not():IExpect;

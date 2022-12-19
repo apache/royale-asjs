@@ -913,6 +913,48 @@ package tests
 			Assert.assertGreaterThanOrEqual(1, 0);
 		}
 
+		[Test]
+		public function testAssertTypeMatch():void
+		{
+			var obj:AssertTypeClass = new AssertTypeClass();
+			Assert.assertType(obj, AssertTypeClass);
+		}
+
+		[Test]
+		public function testAssertTypeMatchSubClass():void
+		{
+			var obj:AssertTypeSubClass = new AssertTypeSubClass();
+			Assert.assertType(obj, AssertTypeClass);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertTypeMismatch():void
+		{
+			var obj:AssertTypeClass = new AssertTypeClass();
+			Assert.assertType(obj, AssertTypeSubClass);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNotTypeMatch():void
+		{
+			var obj:AssertTypeClass = new AssertTypeClass();
+			Assert.assertNotType(obj, AssertTypeClass);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNotTypeMatchSubClass():void
+		{
+			var obj:AssertTypeSubClass = new AssertTypeSubClass();
+			Assert.assertNotType(obj, AssertTypeClass);
+		}
+
+		[Test]
+		public function testAssertNotTypeMismatch():void
+		{
+			var obj:AssertTypeClass = new AssertTypeClass();
+			Assert.assertNotType(obj, AssertTypeSubClass);
+		}
+
 		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testFail():void
 		{
@@ -1225,3 +1267,6 @@ package tests
 		}
 	}
 }
+
+class AssertTypeClass {}
+class AssertTypeSubClass extends AssertTypeClass {}

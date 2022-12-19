@@ -1692,5 +1692,51 @@ package tests
 		{
 			expect(1).greaterThanOrEqual(0);
 		}
+
+		[Test]
+		public function testExpectTypeMatch():void
+		{
+			var obj:ExpectTypeClass = new ExpectTypeClass();
+			expect(obj).is.type(ExpectTypeClass);
+		}
+
+		[Test]
+		public function testExpectTypeMatchSubClass():void
+		{
+			var obj:ExpectTypeSubClass = new ExpectTypeSubClass();
+			expect(obj).is.type(ExpectTypeClass);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectTypeMismatch():void
+		{
+			var obj:ExpectTypeClass = new ExpectTypeClass();
+			expect(obj).is.type(ExpectTypeSubClass);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNotTypeMatch():void
+		{
+			var obj:ExpectTypeClass = new ExpectTypeClass();
+			expect(obj).is.not.type(ExpectTypeClass);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNotTypeMatchSubClass():void
+		{
+			var obj:ExpectTypeSubClass = new ExpectTypeSubClass();
+			expect(obj).is.not.type(ExpectTypeClass);
+		}
+
+		[Test]
+		public function testExpectNotTypeMismatch():void
+		{
+			var obj:ExpectTypeClass = new ExpectTypeClass();
+			expect(obj).is.not.type(ExpectTypeSubClass);
+		}
 	}
 }
+
+
+class ExpectTypeClass {}
+class ExpectTypeSubClass extends ExpectTypeClass {}

@@ -166,6 +166,19 @@ class Expect implements IExpect
 		return greaterThanOrEqual(other, message);
 	}
 
+	public function type(type:Class, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.assertNotType(_value, type, message);
+		}
+		else
+		{
+			Assert.assertType(_value, type, message);
+		}
+		return this;
+	}
+
 	public function get not():IExpect
 	{
 		_not = !_not;
