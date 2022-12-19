@@ -1758,6 +1758,41 @@ package tests
 		{
 			expect("123abc").not.to.match(/^[a-z]{3}\d{3}$/);
 		}
+
+		[Test]
+		public function testExpectThrowsNoType():void
+		{
+			expect(function():void
+			{
+				throw new Error("I'm an error")
+			}).throws();
+		}
+
+		[Test]
+		public function testAssertThrowsMatchingType():void
+		{
+			expect(function():void
+			{
+				throw new RangeError("I'm a RangeError")
+			}).throws(RangeError);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertThrowsWrongType():void
+		{
+			expect(function():void
+			{
+				throw new Error("I'm an error")
+			}).throws(RangeError);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertThrowsWithoutThrow():void
+		{
+			expect(function():void
+			{
+			}).throws();
+		}
 	}
 }
 

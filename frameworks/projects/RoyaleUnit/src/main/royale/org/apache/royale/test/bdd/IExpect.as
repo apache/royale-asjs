@@ -182,6 +182,20 @@ package org.apache.royale.test.bdd
 		function match(regExp:RegExp, message:String = null):IExpect;
 
 		/**
+		 * Asserts that the provided function throws.
+		 * 
+		 * @see Assert#assertThrows
+		 */
+		function throw(type:Class = null, message:String = null):IExpect;
+
+		/**
+		 * Alias for <code>throw()</code>.
+		 * 
+		 * @see #throw
+		 */
+		function throws(type:Class = null, message:String = null):IExpect;
+
+		/**
 		 * Negates all assertions that follow in the chain.
 		 */
 		function get not():IExpect;

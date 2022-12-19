@@ -212,6 +212,24 @@ class Expect implements IExpect
 		return this;
 	}
 
+	public function throw(type:Class = null, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.failThrows(_value, type, message);
+		}
+		else
+		{
+			Assert.assertThrows(_value, type, message);
+		}
+		return this;
+	}
+
+	public function throws(type:Class = null, message:String = null):IExpect
+	{
+		return this.throw(type, message);
+	}
+
 	public function get not():IExpect
 	{
 		_not = !_not;

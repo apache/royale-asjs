@@ -242,6 +242,28 @@ package org.apache.royale.test
 		}
 
 		/**
+		 * Asserts that the provided function throws.
+		 * 
+		 * <p>Equivalent to <code>[Test(expected="RangeError")]</code></p>
+		 */
+		public static function assertThrows(fn:Function, type:Class = null, message:String = null):void
+		{
+			try
+			{
+				fn();
+			}
+			catch(e:*)
+			{
+				if (type != null)
+				{
+					assertType(e, type, message);
+				}
+				return;
+			}
+			fail("expected function to throw");
+		}
+
+		/**
 		 * Fails.
 		 */
 		public static function fail(message:String = "", sourceError:Error = null):void
@@ -492,6 +514,26 @@ package org.apache.royale.test
 			if (!regExp.test(actual))
 			{
 				failWithUserMessage("expected <" + actual + "> not to match regular expression <" + regExp + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided function throws.
+		 */
+		public static function failThrows(fn:Function, type:Class = null, message:String = null):void
+		{
+			try
+			{
+				fn();
+			}
+			catch(e:*)
+			{
+				if (type != null && e is type)
+				{
+					fail("expected function not to throw type <" + type + ">");
+					return;
+				}
+				fail("expected function not to throw");
 			}
 		}
 

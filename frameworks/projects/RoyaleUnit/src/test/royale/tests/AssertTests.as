@@ -979,6 +979,41 @@ package tests
 			Assert.assertNotMatch("123abc", /^[a-z]{3}\d{3}$/);
 		}
 
+		[Test]
+		public function testAssertThrowsNoType():void
+		{
+			Assert.assertThrows(function():void
+			{
+				throw new Error("I'm an error")
+			});
+		}
+
+		[Test]
+		public function testAssertThrowsMatchingType():void
+		{
+			Assert.assertThrows(function():void
+			{
+				throw new RangeError("I'm a RangeError")
+			}, RangeError);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertThrowsWrongType():void
+		{
+			Assert.assertThrows(function():void
+			{
+				throw new Error("I'm an error")
+			}, RangeError);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertThrowsWithoutThrow():void
+		{
+			Assert.assertThrows(function():void
+			{
+			});
+		}
+
 		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testFail():void
 		{
