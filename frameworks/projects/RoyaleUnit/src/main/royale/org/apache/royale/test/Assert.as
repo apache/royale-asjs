@@ -222,6 +222,26 @@ package org.apache.royale.test
 		}
 
 		/**
+		 * Asserts that the provided value matches a regular expression.
+		 * Equivalent to testing the value in an
+		 * <code>if(regExp.test(value))</code> statement.
+		 */
+		public static function assertMatch(actual:String, regExp:RegExp, message:String = null):void
+		{
+			failNotMatch(actual, regExp, message);
+		}
+
+		/**
+		 * Asserts that the provided value does not match a regular expression.
+		 * Equivalent to testing the value in an
+		 * <code>if(!regExp.test(value))</code> statement.
+		 */
+		public static function assertNotMatch(actual:String, regExp:RegExp, message:String = null):void
+		{
+			failMatch(actual, regExp, message);
+		}
+
+		/**
 		 * Fails.
 		 */
 		public static function fail(message:String = "", sourceError:Error = null):void
@@ -450,6 +470,28 @@ package org.apache.royale.test
 			if (!(actual is type))
 			{
 				failWithUserMessage("expected <" + actual + "> to be of type <" + type + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value matches a regular expression.
+		 */
+		public static function failMatch(actual:String, regExp:RegExp, message:String = null):void
+		{
+			if (regExp.test(actual))
+			{
+				failWithUserMessage("expected <" + actual + "> to match regular expression <" + regExp + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value does not match a regular expression.
+		 */
+		public static function failNotMatch(actual:String, regExp:RegExp, message:String = null):void
+		{
+			if (!regExp.test(actual))
+			{
+				failWithUserMessage("expected <" + actual + "> not to match regular expression <" + regExp + ">", message);
 			}
 		}
 

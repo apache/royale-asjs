@@ -116,11 +116,25 @@ package org.apache.royale.test.bdd
 		function lt(other:Number, message:String = null):IExpect;
 
 		/**
+		 * Alias for <code>lessThan()</code>.
+		 * 
+		 * @see #lessThan
+		 */
+		function below(other:Number, message:String = null):IExpect;
+
+		/**
 		 * Alias for <code>greaterThan()</code>.
 		 * 
 		 * @see #greaterThan
 		 */
 		function gt(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Alias for <code>greaterThan()</code>.
+		 * 
+		 * @see #greaterThan
+		 */
+		function above(other:Number, message:String = null):IExpect;
 
 		/**
 		 * Alias for <code>lessThanOrEqual()</code>.
@@ -130,11 +144,25 @@ package org.apache.royale.test.bdd
 		function lte(other:Number, message:String = null):IExpect;
 
 		/**
+		 * Alias for <code>lessThanOrEqual()</code>.
+		 * 
+		 * @see #lessThanOrEqual
+		 */
+		function most(other:Number, message:String = null):IExpect;
+
+		/**
 		 * Alias for <code>greaterThanOrEqual()</code>.
 		 * 
 		 * @see #greaterThanOrEqual
 		 */
 		function gte(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Alias for <code>greaterThanOrEqual()</code>.
+		 * 
+		 * @see #greaterThanOrEqual
+		 */
+		function least(other:Number, message:String = null):IExpect;
 
 		/**
 		 * Asserts that the provided value is of a type. Equivalent to testing
@@ -143,6 +171,15 @@ package org.apache.royale.test.bdd
 		 * @see Assert#assertType
 		 */
 		function type(type:Class, message:String = null):IExpect;
+
+		/**
+		 * Asserts that the provided value matches a regular expression.
+		 * Equivalent to testing the value in an
+		 * <code>if(regExp.test(value))</code> statement.
+		 * 
+		 * @see Assert#assertMatch
+		 */
+		function match(regExp:RegExp, message:String = null):IExpect;
 
 		/**
 		 * Negates all assertions that follow in the chain.

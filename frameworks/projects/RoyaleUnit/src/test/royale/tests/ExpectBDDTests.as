@@ -1734,6 +1734,30 @@ package tests
 			var obj:ExpectTypeClass = new ExpectTypeClass();
 			expect(obj).is.not.type(ExpectTypeSubClass);
 		}
+
+		[Test]
+		public function testExpectMatchSuccess():void
+		{
+			expect("abc123").to.match(/^[a-z]{3}\d{3}$/);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectMatchFailure():void
+		{
+			expect("123abc").to.match(/^[a-z]{3}\d{3}$/);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectNotMatchSuccess():void
+		{
+			expect("abc123").not.to.match(/^[a-z]{3}\d{3}$/);
+		}
+
+		[Test]
+		public function testExpectNotMatchFailure():void
+		{
+			expect("123abc").not.to.match(/^[a-z]{3}\d{3}$/);
+		}
 	}
 }
 

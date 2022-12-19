@@ -955,6 +955,30 @@ package tests
 			Assert.assertNotType(obj, AssertTypeSubClass);
 		}
 
+		[Test]
+		public function testAssertMatchSuccess():void
+		{
+			Assert.assertMatch("abc123", /^[a-z]{3}\d{3}$/);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertMatchFailure():void
+		{
+			Assert.assertMatch("123abc", /^[a-z]{3}\d{3}$/);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNotMatchSuccess():void
+		{
+			Assert.assertNotMatch("abc123", /^[a-z]{3}\d{3}$/);
+		}
+
+		[Test]
+		public function testAssertNotMatchFailure():void
+		{
+			Assert.assertNotMatch("123abc", /^[a-z]{3}\d{3}$/);
+		}
+
 		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testFail():void
 		{

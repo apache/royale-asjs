@@ -151,7 +151,17 @@ class Expect implements IExpect
 		return lessThan(other, message);
 	}
 
+	public function below(other:Number, message:String = null):IExpect
+	{
+		return lessThan(other, message);
+	}
+
 	public function lte(other:Number, message:String = null):IExpect
+	{
+		return lessThanOrEqual(other, message);
+	}
+
+	public function most(other:Number, message:String = null):IExpect
 	{
 		return lessThanOrEqual(other, message);
 	}
@@ -161,7 +171,17 @@ class Expect implements IExpect
 		return greaterThan(other, message);
 	}
 
+	public function above(other:Number, message:String = null):IExpect
+	{
+		return greaterThan(other, message);
+	}
+
 	public function gte(other:Number, message:String = null):IExpect
+	{
+		return greaterThanOrEqual(other, message);
+	}
+
+	public function least(other:Number, message:String = null):IExpect
 	{
 		return greaterThanOrEqual(other, message);
 	}
@@ -175,6 +195,19 @@ class Expect implements IExpect
 		else
 		{
 			Assert.assertType(_value, type, message);
+		}
+		return this;
+	}
+
+	public function match(regExp:RegExp, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.assertNotMatch(_value, regExp, message);
+		}
+		else
+		{
+			Assert.assertMatch(_value, regExp, message);
 		}
 		return this;
 	}
