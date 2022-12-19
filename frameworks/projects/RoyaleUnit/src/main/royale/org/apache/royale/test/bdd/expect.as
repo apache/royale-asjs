@@ -58,6 +58,11 @@ class Expect implements IExpect
 		return equal(value, message);
 	}
 
+	public function eq(value:*, message:String = null):IExpect
+	{
+		return equal(value, message);
+	}
+
 	public function strictlyEqual(value:*, message:String = null):IExpect
 	{
 		if (_not)

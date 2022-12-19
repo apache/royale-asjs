@@ -41,6 +41,13 @@ package org.apache.royale.test.bdd
 		function equals(value:*, message:String = null):IExpect;
 
 		/**
+		 * Alias for <code>equal()</code>.
+		 * 
+		 * @see #equal
+		 */
+		function eq(value:*, message:String = null):IExpect;
+
+		/**
 		 * Asserts that the provided values are strictly equal (equivalent to
 		 * the <code>===</code> operator).
 		 * 
