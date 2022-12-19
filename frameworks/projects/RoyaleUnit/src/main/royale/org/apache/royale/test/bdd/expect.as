@@ -121,6 +121,19 @@ class Expect implements IExpect
 		return this;
 	}
 
+	public function get NaN():IExpect
+	{
+		if (_not)
+		{
+			Assert.failNaN(_value);
+		}
+		else
+		{
+			Assert.assertNaN(_value);
+		}
+		return this;
+	}
+
 	public function get to():IExpect
 	{
 		return this;

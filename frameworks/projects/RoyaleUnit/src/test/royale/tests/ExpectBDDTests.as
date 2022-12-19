@@ -40,6 +40,12 @@ package tests
 			expect(true).is.null;
 		}
 
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectTrueWithNaNGetter():void
+		{
+			expect(true).is.NaN;
+		}
+
 		[Test]
 		public function testExpectTrueWithEqualsTrue():void
 		{
@@ -194,6 +200,12 @@ package tests
 		public function testExpectFalseWithNullGetter():void
 		{
 			expect(false).is.null;
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectFalseWithNaNGetter():void
+		{
+			expect(false).is.NaN;
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
@@ -353,6 +365,12 @@ package tests
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectNullWithNaNGetter():void
+		{
+			expect(null).is.NaN;
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testExpectNullWithEqualsTrue():void
 		{
 			expect(null).equals(true);
@@ -506,6 +524,12 @@ package tests
 		public function testExpectUndefinedWithNullGetter():void
 		{
 			expect(undefined).is.null;
+		}
+
+		[Test]
+		public function testExpectUndefinedWithNaNGetter():void
+		{
+			expect(undefined).is.NaN;
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
@@ -665,6 +689,12 @@ package tests
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpect0WithNaNGetter():void
+		{
+			expect(0).is.NaN;
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testExpect0WithEqualsTrue():void
 		{
 			expect(0).equals(true);
@@ -818,6 +848,12 @@ package tests
 		public function testExpect1WithNullGetter():void
 		{
 			expect(1).is.null;
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpect1WithNaNGetter():void
+		{
+			expect(1).is.NaN;
 		}
 
 		[Test]
@@ -976,6 +1012,12 @@ package tests
 			expect(NaN).is.null;
 		}
 
+		[Test]
+		public function testExpectNaNWithNaNGetter():void
+		{
+			expect(NaN).is.NaN;
+		}
+
 		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testExpectNaNWithEqualsTrue():void
 		{
@@ -1130,6 +1172,13 @@ package tests
 		public function testExpectStringWithNullGetter():void
 		{
 			expect("royale").is.null;
+		}
+
+		[Test]
+		
+		public function testExpectStringWithNaNGetter():void
+		{
+			expect("royale").is.NaN;
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
@@ -1289,6 +1338,12 @@ package tests
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectEmptyStringWithNaNGetter():void
+		{
+			expect("").is.NaN;
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testExpectEmptyStringWithEqualsTrue():void
 		{
 			expect("").equals(true);
@@ -1442,6 +1497,12 @@ package tests
 		public function testExpectObjectWithNullGetter():void
 		{
 			expect({}).is.null;
+		}
+
+		[Test]
+		public function testExpectObjectWithNaNGetter():void
+		{
+			expect({}).is.NaN;
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]

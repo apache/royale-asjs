@@ -747,6 +747,71 @@ package tests
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNaNWith0():void
+		{
+			Assert.assertNaN(0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNaNWith1():void
+		{
+			Assert.assertNaN(1);
+		}
+
+		[Test]
+		public function testAssertNaNWithNaN():void
+		{
+			Assert.assertNaN(NaN);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNaNWithNull():void
+		{
+			Assert.assertNaN(null);
+		}
+
+		[Test]
+		public function testAssertNaNWithObject():void
+		{
+			var value:* = {};
+			Assert.assertNaN(value);
+		}
+
+		[Test]
+		public function testAssertNaNWithUndefined():void
+		{
+			Assert.assertNaN(undefined);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNaNWithTrue():void
+		{
+			var value:* = true;
+			Assert.assertNaN(value);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNaNWithFalse():void
+		{
+			var value:* = false;
+			Assert.assertNaN(value);
+		}
+
+		[Test]
+		public function testAssertNaNWithString():void
+		{
+			var value:* = "royale";
+			Assert.assertNaN(value);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertNaNWithEmptyString():void
+		{
+			var value:* = "";
+			Assert.assertNaN(value);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testFail():void
 		{
 			Assert.fail();
@@ -990,6 +1055,71 @@ package tests
 		public function testFailNotNullWithEmptyString():void
 		{
 			Assert.failNotNull("");
+		}
+
+		[Test]
+		public function testFailNaNWith0():void
+		{
+			Assert.failNaN(0);
+		}
+
+		[Test]
+		public function testFailNaNWith1():void
+		{
+			Assert.failNaN(1);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testFailNaNWithNaN():void
+		{
+			Assert.failNaN(NaN);
+		}
+
+		[Test]
+		public function testFailNaNWithNull():void
+		{
+			Assert.failNaN(null);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testFailNaNWithObject():void
+		{
+			var value:* = {};
+			Assert.failNaN(value);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testFailNaNWithUndefined():void
+		{
+			Assert.failNaN(undefined);
+		}
+
+		[Test]
+		public function testFailNaNWithTrue():void
+		{
+			var value:* = true;
+			Assert.failNaN(value);
+		}
+
+		[Test]
+		public function testFailNaNWithFalse():void
+		{
+			var value:* = false;
+			Assert.failNaN(value);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testFailNaNWithString():void
+		{
+			var value:* = "royale";
+			Assert.failNaN(value);
+		}
+
+		[Test]
+		public function testFailNaNWithEmptyString():void
+		{
+			var value:* = "";
+			Assert.failNaN(value);
 		}
 	}
 }

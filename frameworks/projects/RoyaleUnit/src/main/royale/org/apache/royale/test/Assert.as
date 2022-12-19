@@ -130,6 +130,18 @@ package org.apache.royale.test
 		}
 
 		/**
+		 * Asserts that the provided value is NaN (equivalent to testing the
+		 * value in an <code>if(isNaN(value))</code> statement).
+		 */
+		public static function assertNaN(actual:Number, message:String = null):void
+		{
+			if (!isNaN(actual))
+			{
+				failWithUserMessage("expected NaN but was <" + actual + ">", message);
+			}
+		}
+
+		/**
 		 * Fails.
 		 */
 		public static function fail(message:String = "", sourceError:Error = null):void
@@ -256,6 +268,17 @@ package org.apache.royale.test
 			if(object != null)
 			{
 				failWithUserMessage("expected null: <" + object + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the value is NaN.
+		 */
+		public static function failNaN(actual:Number, message:String = null):void
+		{
+			if (isNaN(actual))
+			{
+				failWithUserMessage("expected not NaN: <" + actual + ">", message);
 			}
 		}
 

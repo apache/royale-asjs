@@ -77,6 +77,14 @@ package org.apache.royale.test.bdd
 		function get false():IExpect;
 
 		/**
+		 * Asserts that the provided value is NaN (equivalent to testing the
+		 * value in an <code>if(isNaN(value))</code> statement).
+		 * 
+		 * @see Assert#assertNaN
+		 */
+		function get NaN():IExpect;
+
+		/**
 		 * Asserts that the provided value is null (equivalent to testing the
 		 * value in an <code>if(value == null)</code> statement).
 		 * 
