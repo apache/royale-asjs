@@ -66,6 +66,70 @@ package org.apache.royale.test.bdd
 		function within(minimum:Number, maximum:Number, message:String = null):IExpect;
 
 		/**
+		 * Asserts that the provided value is less than another value.
+		 * Equivalent to testing the value in an <code>if(value < other)</code>
+		 * statement.
+		 * 
+		 * @see Assert#assertLessThan
+		 */
+		function lessThan(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Asserts that the provided value is less or equal to than another
+		 * value. Equivalent to testing the value in an
+		 * <code>if(value <= other)</code> statement.
+		 * 
+		 * @see Assert#assertLessThanOrEqual
+		 */
+		function lessThanOrEqual(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Asserts that the provided value is greater than another value.
+		 * Equivalent to testing the value in an <code>if(value > other)</code>
+		 * statement.
+		 * 
+		 * @see Assert#assertGreaterThan
+		 */
+		function greaterThan(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Asserts that the provided value is greater than or equal to another
+		 * value. Equivalent to testing the value in an
+		 * <code>if(value >= other)</code> statement.
+		 * 
+		 * @see Assert#assertGreaterThanOrEqual
+		 */
+		function greaterThanOrEqual(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Alias for <code>lessThan()</code>.
+		 * 
+		 * @see #lessThan
+		 */
+		function lt(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Alias for <code>greaterThan()</code>.
+		 * 
+		 * @see #greaterThan
+		 */
+		function gt(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Alias for <code>lessThanOrEqual()</code>.
+		 * 
+		 * @see #lessThanOrEqual
+		 */
+		function lte(other:Number, message:String = null):IExpect;
+
+		/**
+		 * Alias for <code>greaterThanOrEqual()</code>.
+		 * 
+		 * @see #greaterThanOrEqual
+		 */
+		function gte(other:Number, message:String = null):IExpect;
+
+		/**
 		 * Negates all assertions that follow in the chain.
 		 */
 		function get not():IExpect;

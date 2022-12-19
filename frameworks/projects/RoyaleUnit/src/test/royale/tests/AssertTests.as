@@ -842,6 +842,78 @@ package tests
 		}
 
 		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertLessThanMatch():void
+		{
+			Assert.assertLessThan(0, 0);
+		}
+
+		[Test]
+		public function testAssertLessThanLess():void
+		{
+			Assert.assertLessThan(-1, 0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertLessThanGreater():void
+		{
+			Assert.assertLessThan(1, 0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertGreaterThanMatch():void
+		{
+			Assert.assertGreaterThan(0, 0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertGreaterThanLess():void
+		{
+			Assert.assertGreaterThan(-1, 0);
+		}
+
+		[Test]
+		public function testAssertGreaterThanGreater():void
+		{
+			Assert.assertGreaterThan(1, 0);
+		}
+
+		[Test]
+		public function testAssertLessThanOrEqualMatch():void
+		{
+			Assert.assertLessThanOrEqual(0, 0);
+		}
+
+		[Test]
+		public function testAssertLessThanOrEqualLess():void
+		{
+			Assert.assertLessThanOrEqual(-1, 0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertLessThanOrEqualGreater():void
+		{
+			Assert.assertLessThanOrEqual(1, 0);
+		}
+
+		[Test]
+		public function testAssertGreaterThanOrEqualMatch():void
+		{
+			Assert.assertGreaterThanOrEqual(0, 0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testAssertGreaterThanOrEqualLess():void
+		{
+			Assert.assertGreaterThanOrEqual(-1, 0);
+		}
+
+		[Test]
+		public function testAssertGreaterThanOrEqualGreater():void
+		{
+			Assert.assertGreaterThanOrEqual(1, 0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
 		public function testFail():void
 		{
 			Assert.fail();

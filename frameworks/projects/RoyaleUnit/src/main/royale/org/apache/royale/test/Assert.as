@@ -164,6 +164,46 @@ package org.apache.royale.test
 		}
 
 		/**
+		 * Asserts that the provided value is less than another value.
+		 * Equivalent to testing the value in an <code>if(value < other)</code>
+		 * statement.
+		 */
+		public static function assertLessThan(actual:Number, other:Number, message:String = null):void
+		{
+			failGreaterThanOrEqual(actual, other, message);
+		}
+
+		/**
+		 * Asserts that the provided value is greater than another value.
+		 * Equivalent to testing the value in an <code>if(value > other)</code>
+		 * statement.
+		 */
+		public static function assertGreaterThan(actual:Number, other:Number, message:String = null):void
+		{
+			failLessThanOrEqual(actual, other, message);
+		}
+
+		/**
+		 * Asserts that the provided value is less or equal to than another
+		 * value. Equivalent to testing the value in an
+		 * <code>if(value <= other)</code> statement.
+		 */
+		public static function assertLessThanOrEqual(actual:Number, other:Number, message:String = null):void
+		{
+			failGreaterThan(actual, other, message);
+		}
+
+		/**
+		 * Asserts that the provided value is greater than or equal to another
+		 * value. Equivalent to testing the value in an
+		 * <code>if(value >= other)</code> statement.
+		 */
+		public static function assertGreaterThanOrEqual(actual:Number, other:Number, message:String = null):void
+		{
+			failLessThan(actual, other, message);
+		}
+
+		/**
 		 * Fails.
 		 */
 		public static function fail(message:String = "", sourceError:Error = null):void
@@ -325,6 +365,51 @@ package org.apache.royale.test
 			if (actual < minimum || actual > maximum)
 			{
 				failWithUserMessage("expected between <" + minimum + "> and <" + maximum + "> but was <" + actual + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is less than another value.
+		 */
+		public static function failLessThan(actual:Number, other:Number, message:String = null):void
+		{
+			if (actual < other)
+			{
+				failWithUserMessage("expected greater than or equal to <" + other + "> but was <" + actual + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is greater than another value.
+		 */
+		public static function failGreaterThan(actual:Number, other:Number, message:String = null):void
+		{
+			if (actual > other)
+			{
+				failWithUserMessage("expected less than or equal to <" + other + "> but was <" + actual + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is less than or equal to another value.
+		 */
+		public static function failLessThanOrEqual(actual:Number, other:Number, message:String = null):void
+		{
+			if (actual <= other)
+			{
+				failWithUserMessage("expected greater than <" + other + "> but was <" + actual + ">", message);
+			}
+		}
+
+		/**
+		 * Fails if the provided value is greater than or equal to another
+		 * value.
+		 */
+		public static function failGreaterThanOrEqual(actual:Number, other:Number, message:String = null):void
+		{
+			if (actual >= other)
+			{
+				failWithUserMessage("expected less than <" + other + "> but was <" + actual + ">", message);
 			}
 		}
 

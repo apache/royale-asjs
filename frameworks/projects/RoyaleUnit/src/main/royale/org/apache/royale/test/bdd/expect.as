@@ -89,6 +89,78 @@ class Expect implements IExpect
 		return this;
 	}
 
+	public function lessThan(other:Number, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.failLessThan(_value, other, message);
+		}
+		else
+		{
+			Assert.assertLessThan(_value, other, message);
+		}
+		return this;
+	}
+
+	public function greaterThan(other:Number, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.failGreaterThan(_value, other, message);
+		}
+		else
+		{
+			Assert.assertGreaterThan(_value, other, message);
+		}
+		return this;
+	}
+
+	public function lessThanOrEqual(other:Number, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.failLessThanOrEqual(_value, other, message);
+		}
+		else
+		{
+			Assert.assertLessThanOrEqual(_value, other, message);
+		}
+		return this;
+	}
+
+	public function greaterThanOrEqual(other:Number, message:String = null):IExpect
+	{
+		if (_not)
+		{
+			Assert.failGreaterThanOrEqual(_value, other, message);
+		}
+		else
+		{
+			Assert.assertGreaterThanOrEqual(_value, other, message);
+		}
+		return this;
+	}
+
+	public function lt(other:Number, message:String = null):IExpect
+	{
+		return lessThan(other, message);
+	}
+
+	public function lte(other:Number, message:String = null):IExpect
+	{
+		return lessThanOrEqual(other, message);
+	}
+
+	public function gt(other:Number, message:String = null):IExpect
+	{
+		return greaterThan(other, message);
+	}
+
+	public function gte(other:Number, message:String = null):IExpect
+	{
+		return greaterThanOrEqual(other, message);
+	}
+
 	public function get not():IExpect
 	{
 		_not = !_not;

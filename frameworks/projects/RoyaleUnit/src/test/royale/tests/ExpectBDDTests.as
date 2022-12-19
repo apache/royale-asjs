@@ -1620,5 +1620,77 @@ package tests
 		{
 			expect(-1.0001).is.within(-1, 1);
 		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectLessThanMatch():void
+		{
+			expect(0).lessThan(0);
+		}
+
+		[Test]
+		public function testExpectLessThanLess():void
+		{
+			expect(-1).lessThan(0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectLessThanGreater():void
+		{
+			expect(1).lessThan(0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectGreaterThanMatch():void
+		{
+			expect(0).greaterThan(0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectGreaterThanLess():void
+		{
+			expect(-1).greaterThan(0);
+		}
+
+		[Test]
+		public function testExpectGreaterThanGreater():void
+		{
+			expect(1).greaterThan(0);
+		}
+
+		[Test]
+		public function testExpectLessThanOrEqualMatch():void
+		{
+			expect(0).lessThanOrEqual(0);
+		}
+
+		[Test]
+		public function testExpectLessThanOrEqualLess():void
+		{
+			expect(-1).lessThanOrEqual(0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectLessThanOrEqualGreater():void
+		{
+			expect(1).lessThanOrEqual(0);
+		}
+
+		[Test]
+		public function testExpectGreaterThanOrEqualMatch():void
+		{
+			expect(0).greaterThanOrEqual(0);
+		}
+
+		[Test(expected="org.apache.royale.test.AssertionError")]
+		public function testExpectGreaterThanOrEqualLess():void
+		{
+			expect(-1).greaterThanOrEqual(0);
+		}
+
+		[Test]
+		public function testExpectGreaterThanOrEqualGreater():void
+		{
+			expect(1).greaterThanOrEqual(0);
+		}
 	}
 }
