@@ -114,7 +114,7 @@ import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
 import mx.display.NativeMenu;
-import mx.binding.BindingManager;
+import mx.binding.BindingManager2;
 import mx.managers.CursorManager;
 
 /**
@@ -961,7 +961,7 @@ public class UIComponent extends UIBase
     public function executeBindings(recurse:Boolean = false):void
     {
 	   var bindingsHost:Object = descriptor && descriptor.document ? descriptor.document : parentMxmlDocument;
-       BindingManager.executeBindings(bindingsHost, id, this);
+       BindingManager2.executeBindings(bindingsHost, id, this);
 	   //recurse = false;
 	   //trace("UIComponent.executeBindings is not implemented");
 	   

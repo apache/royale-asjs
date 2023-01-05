@@ -31,7 +31,7 @@ internal class MXRoyaleBaseClasses
 
 	import mx.binding.BindabilityInfo; BindabilityInfo;
 	import mx.binding.Binding; Binding;
-	import mx.binding.BindingManager; BindingManager;
+	import mx.binding.BindingManager2; BindingManager2;
 	import mx.binding.IBindingClient; IBindingClient;
 	import mx.binding.utils.ChangeWatcher; ChangeWatcher;
 	import mx.binding.utils.BindingUtils; BindingUtils;
