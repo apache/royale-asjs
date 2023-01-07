@@ -1244,3 +1244,36 @@ svg|BinaryImage
 	IBeadView:  ClassReference("org.apache.royale.svg.beads.ImageView");
 	IBinaryImageLoader: ClassReference("org.apache.royale.html.beads.BinaryImageLoader");
 }
+
+/* Context Menu */
+
+.context-menu
+{
+    position: fixed;
+    z-index: 10000;
+    width: 150px;
+    background: #1b1a1a;
+    border-radius: 5px;
+    transform: scale(0);
+    transform-origin: top left;
+}
+
+.context-menu.visible
+{
+    transform: scale(1);
+    transition: transform 200ms ease-in-out;
+}
+
+.context-menu .item
+{
+    padding: 8px 10px;
+    font-size: 12px;
+    color: #eee;
+    cursor: pointer;
+    border-radius: inherit;
+}
+
+.context-menu .item:hover
+{
+    background: #343434;
+}

@@ -312,4 +312,5 @@
     <component id="LabelFunction" class="org.apache.royale.html.beads.LabelFunction"/>
 
     <component id="FocusEvents" class="org.apache.royale.html.beads.FocusEvents"/>
+    <component id="ContextMenu" class="org.apache.royale.html.beads.ContextMenu"/>
 </componentPackage>
