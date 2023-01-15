@@ -31,6 +31,8 @@ package org.apache.royale.jewel.beads.controls.datagrid
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     import org.apache.royale.jewel.VirtualDataGrid;
     import org.apache.royale.jewel.supportClasses.datagrid.VirtualDataGridColumnList;
+    import org.apache.royale.jewel.beads.views.VirtualListView;
+    import org.apache.royale.jewel.beads.views.ListView;
 
 	/**
 	 *  The DataGridNavigateItems bead class is a specialty bead that can be use with a Jewel DataGrid and VirtualDataGrid control
@@ -81,9 +83,9 @@ package org.apache.royale.jewel.beads.controls.datagrid
                 var selectedColumnIndex:int = dataGridView.columnLists.indexOf(selectedColumnList);
                 var dataGridItemRenderer:EditableDataGridItemRenderer;
                 if (dataGrid is VirtualDataGrid)
-                    dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).getElementAt((dataGrid as VirtualDataGrid).selectedIndex + 1) as EditableDataGridItemRenderer;
+                    dataGridItemRenderer = ((dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).view as VirtualListView).getItemRendererForIndex((dataGrid as VirtualDataGrid).selectedIndex) as EditableDataGridItemRenderer;
                 else
-                    dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).getElementAt((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
+                    dataGridItemRenderer = ((dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).view as ListView).getItemRendererForIndex((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
                 var dataProviderSize:int = ((dataGrid as DataGrid).dataProvider as ICollectionView).length;
 
                 dataGridItemRenderer.endEditMode();
@@ -102,17 +104,12 @@ package org.apache.royale.jewel.beads.controls.datagrid
                         selectedColumnIndex++;
                 }
 
-    			COMPILE::JS
-	    		{
-                    setTimeout(function():void
-                    {
-                        if (dataGrid is VirtualDataGrid)
-                            dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).getElementAt((dataGrid as VirtualDataGrid).selectedIndex + 1) as EditableDataGridItemRenderer;
-                        else
-                            dataGridItemRenderer = (dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).getElementAt((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
-                        dataGridItemRenderer.goToEditMode();
-				    }, 1);
-                }
+                if (dataGrid is VirtualDataGrid)
+                    dataGridItemRenderer = ((dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).view as VirtualListView).getItemRendererForIndex((dataGrid as VirtualDataGrid).selectedIndex) as EditableDataGridItemRenderer;
+                else
+                    dataGridItemRenderer = ((dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).view as ListView).getItemRendererForIndex((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
+
+                dataGridItemRenderer.goToEditMode();
             }
         }
     }
