@@ -3,6 +3,7 @@ Apache Royale 0.9.10
 
 - RoyaleUnit
   - Added BDD-style expect() method for natural language assertions
+  - Added a number of new asserts, including checks for NaN, less than, greater than, less or equal, greater or equal, within range, is of type, throws exception, and matches regular expression.
 
 Apache Royale 0.9.9
 ===================
