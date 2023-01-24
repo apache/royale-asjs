@@ -506,7 +506,7 @@
                 <dependency>
                   <groupId>org.apache.maven.scm</groupId>
                   <artifactId>maven-scm-provider-jgit</artifactId>
-                  <version>1.11.3-SNAPSHOT</version>
+                  <version>1.11.4-SNAPSHOT</version>
                 </dependency>
               </dependencies>
             </plugin>
