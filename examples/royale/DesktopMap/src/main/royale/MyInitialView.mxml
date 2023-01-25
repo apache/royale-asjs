@@ -148,7 +148,7 @@ limitations under the License.
 			<js:TextButton text="Clear" click="clearSearchResults()" />
 		</js:Group>
 		
-		<google:Map id="map" className="Map" token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
+		<google:Map id="map" className="Map" token="" /> <!-- insert your token here -->
 		
 		<js:Group className="LocationGroup">
 			<js:beads>

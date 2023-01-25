@@ -67,7 +67,7 @@ limitations under the License.
             		<js:Label id="label" text="" width="75%" />
             	</js:HContainer>
             	<google:Map id="map" width="100%" height="600" 
-                        token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" />
+                        token="" /> <!-- insert your token here -->
             </js:VContainer>
         </js:View>
     </mjs:initialView>
