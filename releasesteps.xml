@@ -181,7 +181,7 @@
         unless="artifact.folder.found"/>
     </target>
     <target name="download-artifacts" if="artifactfolder">
-        <get src="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/Royale_Release_Step_011/lastSuccessfulBuild/artifact/*zip*/archive.zip" dest="${artifactfolder}/archive.zip" />
+        <get src="http://apacheroyale.francecentral.cloudapp.azure.com:8080/job/Royale_Release_Step_011/lastSuccessfulBuild/artifact/*zip*/archive.zip" dest="${artifactfolder}/archive.zip" />
     </target>
     <target name="unzip-artifacts" if="artifactfolder">
         <mkdir dir="${artifactfolder}/artifacts" />
@@ -1177,7 +1177,7 @@
     </target>
     
     <target name="download-ant-artifacts" if="artifactfolder">
-        <get src="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/Royale_Release_Step_013/lastSuccessfulBuild/artifact/artifacts/royale-asjs/out/*zip*/out.zip" dest="${artifactfolder}/archive.zip" />
+        <get src="http://apacheroyale.francecentral.cloudapp.azure.com:8080/job/Royale_Release_Step_013/lastSuccessfulBuild/artifact/artifacts/royale-asjs/out/*zip*/out.zip" dest="${artifactfolder}/archive.zip" />
     </target>
     <target name="unzip-ant-artifacts" if="artifactfolder">
         <mkdir dir="${artifactfolder}/artifacts" />
