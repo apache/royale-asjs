@@ -21,7 +21,7 @@
     "compilerOptions": {
         "debug": false,
         "targets": ["JSRoyale","SWF"],
-        "external-library-path": ["../../../frameworks/projects/GoogleMaps/target/GoogleMaps-0.9.9-SNAPSHOT-js.swc",
+        "external-library-path": ["../../../frameworks/projects/GoogleMaps/target/GoogleMaps-0.9.11-SNAPSHOT-js.swc"],
         "source-map": true
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
