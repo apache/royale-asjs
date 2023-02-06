@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>themes</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.10</version>
   </parent>
 
   <artifactId>Jewel-Dark-NoFlat-Secondary-Sapphire-Theme</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.10</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Themes: Jewel-Dark-NoFlat-Secondary-Sapphire-Theme</name>
@@ -55,4 +55,4 @@
     </plugins>
   </build>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2023-02-06T16:33:50Z</project.build.outputTimestamp></properties></project>

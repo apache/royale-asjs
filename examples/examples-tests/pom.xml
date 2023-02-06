@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.10</version>
   </parent>
 
   <artifactId>examples-tests</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.10</version>
 
   <name>Apache Royale: Examples: Example-Tests ---------------------------</name>
 
@@ -42,4 +42,4 @@
     </dependency>
   </dependencies>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2023-02-06T16:33:50Z</project.build.outputTimestamp></properties></project>
