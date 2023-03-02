@@ -128,6 +128,7 @@
     <component id="TableAlternateRowColor" class="org.apache.royale.jewel.beads.controls.table.TableAlternateRowColor"/>
 
     <component id="HorizontalListScroll" class="org.apache.royale.jewel.beads.controls.list.HorizontalListScroll"/>
+    <component id="ListAutoSelectFirstIndex" class="org.apache.royale.jewel.beads.controls.list.ListAutoSelectFirstIndex"/>
     <component id="VirtualListView" class="org.apache.royale.jewel.beads.views.VirtualListView"/>
 
     <component id="ButtonBarModel" class="org.apache.royale.jewel.beads.models.ButtonBarModel"/>
