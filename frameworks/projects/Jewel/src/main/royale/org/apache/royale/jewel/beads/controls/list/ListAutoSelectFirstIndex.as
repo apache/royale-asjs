@@ -61,6 +61,12 @@ package org.apache.royale.jewel.beads.controls.list
 		{
 			_strand = value as List;
             _strand.addEventListener("dataProviderChanged", dataProviderChangedHandler);
+
+            if (_strand.dataProvider != null && _strand.dataProvider.length > 0)
+            {
+                _strand.selectedIndex = 0;
+                _strand.dispatchEvent(new Event("change"));
+            }
 		}
 
         private function dataProviderChangedHandler(event:Event):void
