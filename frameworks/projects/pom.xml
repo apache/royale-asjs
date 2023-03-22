@@ -35,6 +35,7 @@
         -js-default-initializers=false;
         -source-map=${source.map};
         -source-map-source-root=/frameworks/projects/${project.artifactId}/src/main/royale/
+        -swf-debugfile-alias=/org/apache/royale/${project.version}/frameworks/projects/${project.artifactId}/src/main/royale
         -js-complex-implicit-coercions=false;
         -js-vector-index-checks=false;
         -js-resolve-uncertain=false;
