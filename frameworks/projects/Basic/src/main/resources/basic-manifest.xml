@@ -86,6 +86,7 @@
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
     <component id="ArrayMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayMultiSelectionModel"/>
+    <component id="ArrayListMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayListMultiSelectionModel"/>
     <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
     <component id="ArrayListColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayListColorSelectionModel"/>
     <component id="MultiSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.MultiSelectionCollectionViewModel"/>
