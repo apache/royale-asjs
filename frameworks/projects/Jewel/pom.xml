@@ -189,42 +189,6 @@
 
   <profiles>
     <profile>
-      <id>platform-windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>nl.geodienstencentrum.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>generate-css-using-sass</id>
-                <goals>
-                  <goal>update-stylesheets</goal>
-                </goals>
-                <phase>generate-resources</phase>
-                <configuration>
-                  <sassOptions>
-                    <!-- on windows it is typical to have autoCRLF=true,
-                    so we don't want to overwrite
-                    the CRLF newlines with unix newlines (which is true by default)
-                    locally, because that will change git status of the css file
-                    on windows
-                    -->
-                    <unix_newlines>false</unix_newlines>
-                  </sassOptions>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>option-with-swf</id>
       <dependencies>
         <dependency>
