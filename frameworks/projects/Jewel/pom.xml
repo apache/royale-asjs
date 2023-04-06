@@ -64,10 +64,7 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <!-- <additionalCompilerOptions>
-            -source-map=true;
-            -source-map-source-root=/frameworks/projects/Jewel/src/main/royale/
-          </additionalCompilerOptions> -->
+          <additionalCompilerOptions>${project.compiler.options}</additionalCompilerOptions>
         </configuration>
       </plugin>
       <plugin>
