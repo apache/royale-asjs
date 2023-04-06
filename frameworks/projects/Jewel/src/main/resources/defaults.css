@@ -1,19 +1,19 @@
 /**
- *  Licensed to the Apache Software Foundation (ASF) under one or more
- *  contributor license agreements.  See the NOTICE file distributed with
- *  this work for additional information regarding copyright ownership.
- *  The ASF licenses this file to You under the Apache License, Version 2.0
- *  (the "License"); you may not use this file except in compliance with
- *  the License.  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
+ * *  Licensed to the Apache Software Foundation (ASF) under one or more
+ * *  contributor license agreements.  See the NOTICE file distributed with
+ * *  this work for additional information regarding copyright ownership.
+ * *  The ASF licenses this file to You under the Apache License, Version 2.0
+ * *  (the "License"); you may not use this file except in compliance with
+ * *  the License.  You may obtain a copy of the License at
+ * *
+ * *      http://www.apache.org/licenses/LICENSE-2.0
+ * *
+ * *  Unless required by applicable law or agreed to in writing, software
+ * *  distributed under the License is distributed on an "AS IS" BASIS,
+ * *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * *  See the License for the specific language governing permissions and
+ * *  limitations under the License.
+ * */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
 *, *:before, *:after {
@@ -181,7 +181,6 @@ hr {
   bottom: 0;
   height: 50px;
 }
-
 @media all and (-ms-high-contrast: none) {
   .jewel.alert {
     display: table;
@@ -651,7 +650,6 @@ j|VirtualDataGridColumnList {
   content: " ";
   position: absolute;
 }
-
 j|DateChooser {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateChooserView");
@@ -1023,7 +1021,6 @@ j|FormItem {
   border-style: none;
   padding: 0px;
 }
-
 j|ImageButton {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ImageModel");
 }
@@ -3362,7 +3359,6 @@ j|Label {
   .visible-phone {
     display: flex !important;
   }
-
   .hidden-phone {
     display: none !important;
   }
@@ -3371,7 +3367,6 @@ j|Label {
   .visible-tablet {
     display: flex !important;
   }
-
   .hidden-tablet {
     display: none !important;
   }
@@ -3380,7 +3375,6 @@ j|Label {
   .visible-desktop {
     display: flex !important;
   }
-
   .hidden-desktop {
     display: none !important;
   }
@@ -3389,7 +3383,6 @@ j|Label {
   .visible-widescreen {
     display: flex !important;
   }
-
   .hidden-widescreen {
     display: none !important;
   }
@@ -3823,7 +3816,6 @@ j|HSlider {
   z-index: 40;
   justify-content: center;
 }
-
 .jewel.snackbar-content {
   max-width: 568px;
   min-width: 288px;
@@ -4042,7 +4034,6 @@ j|Table {
 .jewel.tableitem.selectable {
   cursor: pointer;
 }
-
 .empty-cell {
   pointer-events: none;
 }
@@ -4090,8 +4081,8 @@ j|TableRow {
   overflow: hidden;
 }
 .jewel.textinput::before {
-  top: calc(50% - 100%);
-  left: calc(50% - 100%);
+  top: -50%;
+  left: -50%;
   width: 200%;
   height: 200%;
   z-index: 1;
@@ -4249,7 +4240,6 @@ j|TitleBar {
   left: 50%;
   border-top: 0;
 }
-
 .jewel.topappbar {
   display: inline-flex;
   flex: 1 1 auto;

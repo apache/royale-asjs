@@ -59,18 +59,23 @@
           </additionalCompilerOptions>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>nl.geodienstencentrum.maven</groupId>
-        <artifactId>sass-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>generate-css-using-sass</id>
-            <goals>
-                <goal>update-stylesheets</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+        <plugin>
+          <groupId>io.github.cleydyr</groupId>
+          <artifactId>dart-sass-maven-plugin</artifactId>
+          <configuration>
+            <inputFolder>${dollar}{basedir}/src/main/sass</inputFolder>
+            <outputFolder>${dollar}{basedir}/src/main/resources</outputFolder>
+          </configuration>
+          <executions>
+            <execution>
+              <id>generate-css-using-sass</id>
+              <phase>generate-resources</phase>
+              <goals>
+                <goal>compile-sass</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
 
       <!-- copy module files from Module target folder to Application target folder-->
       <plugin>

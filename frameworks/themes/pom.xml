@@ -219,54 +219,22 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>nl.geodienstencentrum.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <version>3.7.2</version>
+            <groupId>io.github.cleydyr</groupId>
+            <artifactId>dart-sass-maven-plugin</artifactId>
+            <version>0.3.0</version>
             <configuration>
-              <resources>
-                <!-- Depends on JewelTheme SASS framework files-->
-                <resource>
-                  <source>
-                    <directory>${basedir}/src/main/sass</directory>
-                    <includes>
-                      <include>defaults.sass</include>
-                    </includes>
-                  </source>
-                  <destination>${basedir}/src/main/resources</destination>
-                </resource>
-              </resources>
+              <inputFolder>${basedir}/src/main/sass</inputFolder>
+              <outputFolder>${basedir}/src/main/resources</outputFolder>
             </configuration>
             <executions>
               <execution>
                 <id>generate-css-using-sass</id>
+                <phase>generate-resources</phase>
                 <goals>
-                  <goal>update-stylesheets</goal>
+                  <goal>compile-sass</goal>
                 </goals>
               </execution>
             </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <!--
-      This is a self-activating profile that causes the sass plugin
-      to not be executed if there is no src/main/sass directory.
-    -->
-    <profile>
-      <id>_skip-sass-compilation</id>
-      <activation>
-        <file>
-          <missing>src/main/sass</missing>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>nl.geodienstencentrum.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <configuration>
-              <skip>true</skip>
-            </configuration>
           </plugin>
         </plugins>
       </build>
