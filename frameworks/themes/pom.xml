@@ -213,32 +213,4 @@
     </dependency>
   </dependencies>
 
-  <profiles>
-    <profile>
-      <id>option-with-sass-compile</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>io.github.cleydyr</groupId>
-            <artifactId>dart-sass-maven-plugin</artifactId>
-            <version>0.3.0</version>
-            <configuration>
-              <inputFolder>${basedir}/src/main/sass</inputFolder>
-              <outputFolder>${basedir}/src/main/resources</outputFolder>
-            </configuration>
-            <executions>
-              <execution>
-                <id>generate-css-using-sass</id>
-                <phase>generate-resources</phase>
-                <goals>
-                  <goal>compile-sass</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
 </project>

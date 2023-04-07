@@ -88,6 +88,30 @@
 
   <profiles>
     <profile>
+      <id>option-with-sass-compile</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.github.cleydyr</groupId>
+            <artifactId>dart-sass-maven-plugin</artifactId>
+            <configuration>
+              <inputFolder>src/main/sass</inputFolder>
+              <outputFolder>src/main/resources</outputFolder>
+            </configuration>
+            <executions>
+              <execution>
+                <id>generate-css-using-sass</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>compile-sass</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>option-with-swf</id>
       <dependencies>
         <dependency>
@@ -107,5 +131,4 @@
       </dependencies>
     </profile>
   </profiles>
-
-<properties /></project>
+</project>
