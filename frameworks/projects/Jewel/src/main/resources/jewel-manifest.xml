@@ -222,6 +222,7 @@
     <component id="MaxNumberCharacters" class="org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters"/>
     <component id="Restrict" class="org.apache.royale.jewel.beads.controls.textinput.Restrict"/>
     <component id="UpperCase" class="org.apache.royale.jewel.beads.controls.textinput.UpperCase"/>
+    <component id="AutoScroll" class="org.apache.royale.jewel.beads.controls.textinput.AutoScroll"/>
     <component id="SearchFilterForList" class="org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList"/>
     <component id="LowerCase" class="org.apache.royale.jewel.beads.controls.textinput.LowerCase"/>
     <component id="TruncateText" class="org.apache.royale.jewel.beads.controls.textinput.TruncateText"/>
