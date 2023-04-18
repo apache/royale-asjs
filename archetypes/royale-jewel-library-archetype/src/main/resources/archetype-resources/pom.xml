@@ -37,7 +37,7 @@
 
   <properties>
     <compiler.debug>true</compiler.debug>
-    <royale.framework.version>0.9.11-SNAPSHOT</royale.framework.version>
+    <royale.framework.version>0.9.9-SNAPSHOT</royale.framework.version>
     <compiler.output-dir-debug>${dollar}{basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
     <compiler.output-dir-release>${dollar}{basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
   </properties>

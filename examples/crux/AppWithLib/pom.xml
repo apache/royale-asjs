@@ -25,11 +25,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-crux</artifactId>
-    <version>0.9.11-SNAPSHOT</version>
+    <version>0.9.9-SNAPSHOT</version>
   </parent>
 
   <artifactId>AppWithLib</artifactId>
-  <version>0.9.11-SNAPSHOT</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <properties>
@@ -42,7 +42,7 @@
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
-        <version>0.9.11-SNAPSHOT</version>
+        <version>0.9.9-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <mainClass>AppWithLib.mxml</mainClass>
@@ -63,7 +63,7 @@
           <dependency>
             <groupId>org.apache.royale.compiler</groupId>
             <artifactId>compiler-jx</artifactId>
-            <version>0.9.11-SNAPSHOT</version>
+            <version>0.9.9-SNAPSHOT</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -92,7 +92,7 @@
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>SampleLib</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -100,7 +100,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -108,7 +108,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -116,7 +116,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -124,7 +124,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JewelTheme</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -133,7 +133,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Icons</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -141,7 +141,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Crux</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -150,7 +150,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -158,7 +158,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>

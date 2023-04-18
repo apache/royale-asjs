@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-blog</artifactId>
-    <version>0.9.11-SNAPSHOT</version>
+    <version>0.9.9-SNAPSHOT</version>
   </parent>
 
   <artifactId>BE0015_Using_Jewel_TileHorizontalLayout</artifactId>
-  <version>0.9.11-SNAPSHOT</version>
+  <version>0.9.9-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0015: Using Jewel TileHorizontalLayout</name>
@@ -54,14 +54,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Icons</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -69,7 +69,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JewelTheme</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.9-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -83,14 +83,14 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>0.9.11-SNAPSHOT</version>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Icons</artifactId>
-          <version>0.9.11-SNAPSHOT</version>
+          <version>0.9.9-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>

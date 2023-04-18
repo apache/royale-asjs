@@ -44,7 +44,7 @@ Note: At this time some parts of the example only can be build with maven, we'll
 2. Build SampleAmfWebApp with maven using "mvn clean install". This generates the Java Web App with AMF support and will overlay the RemoteObjectAMFTest client compiled in the previous step
 (this project)
 
-3. Launch SampleAmfWebApp in the embedded Jetty web server with "java -jar target/SampleAmfWebApp-0.9.11-SNAPSHOT-exec.war". You should be in root SampleAmfWebApp folder. Notice: that SNAPSHOT number is just an example and can be different
+3. Launch SampleAmfWebApp in the embedded Jetty web server with "java -jar target/SampleAmfWebApp-0.9.7-SNAPSHOT-exec.war". You should be in root SampleAmfWebApp folder. Notice: that SNAPSHOT number is just an example and can be different
 
 4. In a browser launch "http://localhost:8080" and try the examples.
 

@@ -32,7 +32,7 @@
   
   <properties>
     <compiler.output-dir>${basedir}/target/javascript/bin/js-debug</compiler.output-dir>
-    <royale.framework.version>0.9.11-SNAPSHOT</royale.framework.version>
+    <royale.framework.version>0.9.10-SNAPSHOT</royale.framework.version>
   </properties>
   <name>Apache Royale: ManualTests</name>
 

@@ -88,8 +88,8 @@
             <jvmarg value="-Xnoagent" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8763,server=y,suspend=y" />
              -->
-            <!--<arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.11-SNAPSHOT-js.swc:defaults.css" />
-            <arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.11-SNAPSHOT-swf.swc:defaults.css" />
+            <!--<arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css" />
+            <arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-swf.swc:defaults.css" />
             <arg value="-compiler.exclude-defaults-css-files=MXRoyaleJS.swc:defaults.css" />-->
            <!-- <arg value="-debug" />-->
             <arg value="-compiler.targets=JSRoyale" />
