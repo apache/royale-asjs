@@ -101,6 +101,9 @@ package org.apache.royale.html.beads.models
 					_selectedIndices = indices;
 					syncItemsAndIndices();
 				}
+			} else if (!_dataProvider)
+			{
+				selectedIndices = null;
 			}
 			dispatchEvent(new Event("dataProviderChanged"));
 		}
