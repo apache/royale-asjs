@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.controls.list
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.11
+	 *  @productversion Royale 0.9.10
 	 */
 	public class ListAutoSelectFirstIndex implements IBead
 	{
@@ -41,7 +41,7 @@ package org.apache.royale.jewel.beads.controls.list
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.11
+		 *  @productversion Royale 0.9.10
 		 */
 		public function ListAutoSelectFirstIndex()
 		{
@@ -55,7 +55,7 @@ package org.apache.royale.jewel.beads.controls.list
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.11
+		 *  @productversion Royale 0.9.10
 		 */
 		public function set strand(value:IStrand):void
 		{
