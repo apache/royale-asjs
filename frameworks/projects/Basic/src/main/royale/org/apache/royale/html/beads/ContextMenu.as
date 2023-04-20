@@ -44,6 +44,9 @@ package org.apache.royale.html.beads
         private var menu:UIBase;
 
         public static const SHOW:String = "show";
+        
+        public var offsetX:int = 0;
+        public var offsetY:int = 0;
 
         public function set content(value:Array):void
         {
@@ -75,7 +78,7 @@ package org.apache.royale.html.beads
                 {
                     event.preventDefault();
 
-                    var normalized:Array = normalizePosition(event.clientX, event.clientY);
+                    var normalized:Array = normalizePosition(event.clientX - offsetX, event.clientY - offsetY);
 
                     var contextMenus:NodeList = document.querySelectorAll('.context-menu');
                     contextMenus.forEach(function(element:Element):void
