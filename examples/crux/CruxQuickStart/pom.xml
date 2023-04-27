@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-crux</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.10</version>
   </parent>
 
   <artifactId>CruxQuickStart</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.10</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Crux: CruxQuickStart</name>
@@ -57,14 +57,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JewelTheme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -84,7 +84,7 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.10</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -92,4 +92,4 @@
     </profile>
   </profiles>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2023-04-27T12:40:05Z</project.build.outputTimestamp></properties></project>

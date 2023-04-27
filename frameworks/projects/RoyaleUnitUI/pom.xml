@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.10</version>
   </parent>
 
   <artifactId>RoyaleUnitUI</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.10</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: RoyaleUnitUI</name>
@@ -53,42 +53,42 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Reflection</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>RoyaleUnit</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.10</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -101,42 +101,42 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Collections</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.10</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Binding</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.10</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.10</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.10</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Reflection</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.10</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>RoyaleUnit</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.10</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -144,4 +144,4 @@
     </profile>
   </profiles>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2023-04-27T12:40:05Z</project.build.outputTimestamp></properties></project>
