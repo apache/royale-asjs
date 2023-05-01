@@ -199,6 +199,7 @@
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
     <component id="ClippingViewport" class="org.apache.royale.html.supportClasses.Viewport" lookupOnly="true" />
     <component id="OverflowViewport" class="org.apache.royale.html.supportClasses.OverflowViewport" />
+    <component id="InfiniteScroller" class="org.apache.royale.html.beads.InfiniteScroller" />
     <component id="InfiniteVScroller" class="org.apache.royale.html.beads.InfiniteVScroller" />
 
     <component id="ArrayListSelectionModel" class="org.apache.royale.html.beads.models.ArrayListSelectionModel" />
