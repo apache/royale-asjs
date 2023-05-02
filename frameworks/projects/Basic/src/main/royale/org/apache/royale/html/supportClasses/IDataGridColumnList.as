@@ -46,7 +46,6 @@ package org.apache.royale.html.supportClasses
 		function get labelField():String;
         function set labelField(value:String):void;
 
-        function set dataProvider(value:Object):void;
         function get selectedIndex():int;
         function set selectedIndex(value:int):void;
         function set id(value:String):void;
