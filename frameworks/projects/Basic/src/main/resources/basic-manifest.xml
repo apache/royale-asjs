@@ -235,6 +235,8 @@
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
     <component id="VirtualDataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData" />
     <component id="CollectionChangeUpdateForArrayListData" class="org.apache.royale.html.beads.CollectionChangeUpdateForArrayListData" />
+    
+    <component id="SmoothDataLoader" class="org.apache.royale.html.beads.SmoothDataLoader" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser"/>
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
