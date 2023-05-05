@@ -106,6 +106,8 @@ Windows: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flashpla
 
 Mac: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flashplayer_32_sa_debug.dmg>
 
+Linux: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux_debug.x86_64.tar.gz>
+
 This version of Royale was certified for use with Flash Player 32.0, and is compatible with version 10.2 and up. It has been compiled, but not fully tested, with other Flash Player versions. It has not been fully tested on Linux.
 
 - **Environment variable**
