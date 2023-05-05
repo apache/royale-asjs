@@ -1012,7 +1012,7 @@ npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc$
 \n\
 The full package with SWF support can be installed via:\n\
 \n\
-npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz -g\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz -g --foreground-scripts\n\
 \n\
 Maven artifacts are staged here:\n\
 https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}\n\

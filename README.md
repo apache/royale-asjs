@@ -185,7 +185,7 @@ sudo npm install @apache-royale/royale-js -g
 or for both JS and SWF output:
 
 ```bash
-sudo npm install @apache-royale/royale-js-swf -g
+sudo npm install @apache-royale/royale-js-swf -g --foreground-scripts
 ```
 
 - Windows
@@ -194,7 +194,7 @@ npm install @apache-royale/royale-js -g
 ```
 or for both JS and SWF output:
 ```bash
-npm install @apache-royale/royale-js-swf -g
+npm install @apache-royale/royale-js-swf -g --foreground-scripts
 ```
 
 ### Maven

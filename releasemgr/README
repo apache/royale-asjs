@@ -186,7 +186,7 @@ On Mac:
 
 or for both JS and SWF output:
 
-  sudo npm install @apache-royale/royale-js-swf -g
+  sudo npm install @apache-royale/royale-js-swf -g --foreground-scripts
 
 On Windows:
 
@@ -194,7 +194,7 @@ On Windows:
 
 or for both JS and SWF output:
 
-  npm install @apache-royale/royale-js-swf -g
+  npm install @apache-royale/royale-js-swf -g --foreground-scripts
 
 
 Using Royale
