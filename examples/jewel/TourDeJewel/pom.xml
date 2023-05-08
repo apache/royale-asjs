@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-jewel</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.11-SNAPSHOT</version>
   </parent>
 
   <artifactId>TourDeJewel</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Jewel: TourDeJewel</name>
@@ -968,28 +968,28 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Icons</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JewelTheme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -999,7 +999,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1007,7 +1007,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1015,7 +1015,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1023,7 +1023,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1031,7 +1031,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1039,7 +1039,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1047,7 +1047,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1055,7 +1055,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1063,7 +1063,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1071,7 +1071,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1079,7 +1079,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1087,7 +1087,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1095,7 +1095,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1103,7 +1103,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1111,7 +1111,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1119,7 +1119,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1127,7 +1127,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1135,7 +1135,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1143,7 +1143,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1151,7 +1151,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1159,7 +1159,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1167,7 +1167,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1175,7 +1175,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1183,7 +1183,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Primary-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1191,7 +1191,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1199,7 +1199,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1207,7 +1207,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1215,7 +1215,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1223,7 +1223,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1231,7 +1231,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1239,7 +1239,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1247,7 +1247,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1255,7 +1255,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1263,7 +1263,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1271,7 +1271,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1279,7 +1279,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Secondary-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1287,7 +1287,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1295,7 +1295,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1303,7 +1303,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1311,7 +1311,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1319,7 +1319,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1327,7 +1327,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1335,7 +1335,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1343,7 +1343,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1351,7 +1351,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1359,7 +1359,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1367,7 +1367,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1375,7 +1375,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Emphasized-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1383,7 +1383,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1391,7 +1391,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1399,7 +1399,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1407,7 +1407,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1415,7 +1415,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1423,7 +1423,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1431,7 +1431,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1439,7 +1439,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1447,7 +1447,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1455,7 +1455,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1463,7 +1463,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1471,7 +1471,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Primary-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1479,7 +1479,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1487,7 +1487,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1495,7 +1495,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1503,7 +1503,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1511,7 +1511,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1519,7 +1519,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1527,7 +1527,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1535,7 +1535,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1543,7 +1543,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1551,7 +1551,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1559,7 +1559,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1567,7 +1567,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-Flat-Secondary-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1575,7 +1575,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1583,7 +1583,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1591,7 +1591,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1599,7 +1599,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1607,7 +1607,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1615,7 +1615,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1623,7 +1623,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1631,7 +1631,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1639,7 +1639,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1647,7 +1647,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1655,7 +1655,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1663,7 +1663,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1671,7 +1671,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1679,7 +1679,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1687,7 +1687,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1695,7 +1695,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1703,7 +1703,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1711,7 +1711,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1719,7 +1719,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1727,7 +1727,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1735,7 +1735,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1743,7 +1743,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1751,7 +1751,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1759,7 +1759,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1767,7 +1767,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Amethyst-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1775,7 +1775,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Blue-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1783,7 +1783,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Emerald-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1791,7 +1791,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Green-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1799,7 +1799,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Orange-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1807,7 +1807,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Red-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1815,7 +1815,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Sapphire-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1823,7 +1823,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Sunflower-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1831,7 +1831,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Topaz-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1839,7 +1839,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Turquoise-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1847,7 +1847,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Violet-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1855,7 +1855,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Yellow-Theme</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
       <scope>provided</scope>
@@ -1869,35 +1869,35 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Formatters</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Icons</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>HTML</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
