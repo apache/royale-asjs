@@ -20,17 +20,14 @@ package org.apache.royale.core
 {
 	import org.apache.royale.events.IEventDispatcher;
 
-	public interface IMenu extends IEventDispatcher
+	public interface IMenu extends IEventDispatcher, IHasDataProvider
 	{
 		function get labelField():String;
 		function set labelField(value:String):void;
 		
 		function get submenuField():String;
 		function set submenuField(value:String):void;
-		
-		function get dataProvider():Object;
-		function set dataProvider(value:Object):void;
-		
+				
 		function get selectedItem():Object;
 		function set selectedItem(value:Object):void;
 		

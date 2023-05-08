@@ -18,28 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	public interface IHasDataProvider
+	{
 	/**
-	 *  The IDataGridHeader is a marker interface that defines the header
-	 *  component part in a DataGrid. 
-	 *  
+	 *  The set of data used for displaying in the component.
+	 *  The dataProvider can be a simple 
+	 *  array or vector if the set of choices is not
+	 *  going to be modified (except by wholesale
+	 *  replacement of the dataProvider).  To use
+	 *  different kinds of data sets, you may need to
+	 *  provide an alternate "mapping" bead that
+	 *  iterates the dataProvider, generates item
+	 *  renderers and assigns a data item to the
+	 *  item renderers.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.8
+	 *  @productversion Royale 0.0
 	 */
-	public interface IDataGridHeader extends IUIBase, IStrandWithModel, IHasDataProvider
-	{
-		
-		/**
-         *  The property on the data item that the item renderer
-         *  should renderer.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		function get labelField():String;
-		function set labelField(value:String):void;
+		function get dataProvider():Object;
+		function set dataProvider(value:Object):void;
 	}
 }

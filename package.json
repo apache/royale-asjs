@@ -38,11 +38,11 @@
     "externc": "./royale-asjs/js/bin/externcnpm"
   },
   "org_apache_royale": {
-    "flash_player_global_url": "http://fpdownload.macromedia.com/get/flashplayer/installers/archive/playerglobal/",
-    "flash_player_global_file_name": "playerglobal25_0.swc",
-    "adobe_air_url": "http://airdownload.adobe.com/air/win/download/25.0/",
+    "flash_player_global_url": "https://fpdownload.macromedia.com/get/flashplayer/updaters/32/",
+    "flash_player_global_file_name": "playerglobal32_0.swc",
+    "adobe_air_url": "https://airdownload.adobe.com/air/win/download/32.0/",
     "adobe_air_file_name": "AdobeAIRSDK.zip",
-    "player_version": "25.0",
+    "player_version": "32.0",
     "swf_version": "36",
     "flatui_url": "https://github.com/designmodo/Flat-UI/archive/",
     "flatui_file_name": "2.2.2.zip"

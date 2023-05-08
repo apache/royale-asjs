@@ -199,6 +199,7 @@
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
     <component id="ClippingViewport" class="org.apache.royale.html.supportClasses.Viewport" lookupOnly="true" />
     <component id="OverflowViewport" class="org.apache.royale.html.supportClasses.OverflowViewport" />
+    <component id="InfiniteScroller" class="org.apache.royale.html.beads.InfiniteScroller" />
     <component id="InfiniteVScroller" class="org.apache.royale.html.beads.InfiniteVScroller" />
 
     <component id="ArrayListSelectionModel" class="org.apache.royale.html.beads.models.ArrayListSelectionModel" />
@@ -234,6 +235,8 @@
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
     <component id="VirtualDataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData" />
     <component id="CollectionChangeUpdateForArrayListData" class="org.apache.royale.html.beads.CollectionChangeUpdateForArrayListData" />
+    
+    <component id="SmoothDataLoader" class="org.apache.royale.html.beads.SmoothDataLoader" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser"/>
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
