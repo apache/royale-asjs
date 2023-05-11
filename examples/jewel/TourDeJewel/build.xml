@@ -19,7 +19,7 @@
 -->
 
 
-<project name="TourDeJewel" default="main" basedir="." xmlns:unless="ant:unless" >
+<project name="TourDeJewel" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="App" />
     
@@ -41,331 +41,113 @@
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin/js-debug/assets/themes" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Blue-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Emerald-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Emerald-Theme"/>
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Green-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Green-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Orange-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Red-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Red-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Topaz-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Violet-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Violet-Theme"/>
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Violet-Theme" />
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Emphasized-Yellow-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Emphasized-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Amethyst-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Blue-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Emerald-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Green-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Green-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Orange-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Red-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Red-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Sapphire-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Sunflower-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Topaz-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Turquoise-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Violet-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Primary-Yellow-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Primary-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Amethyst-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Blue-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Emerald-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Green-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Green-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Orange-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Red-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Red-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Sapphire-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Sunflower-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Topaz-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Turquoise-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Violet-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Dark-NoFlat-Secondary-Yellow-Theme" />
-	<antcall target="build.Jewel-Dark-NoFlat-Secondary-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Amethyst-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Blue-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Emerald-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Green-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Green-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Orange-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Red-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Red-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Sapphire-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Sunflower-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Topaz-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Turquoise-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Violet-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Emphasized-Yellow-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Emphasized-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Amethyst-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Blue-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Emerald-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Green-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Green-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Orange-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Red-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Red-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Sapphire-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Sunflower-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Topaz-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Turquoise-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Violet-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Primary-Yellow-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Primary-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Amethyst-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Blue-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Emerald-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Green-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Green-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Orange-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Red-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Red-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Sapphire-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Sunflower-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Topaz-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Turquoise-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Violet-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Light-Flat-Secondary-Yellow-Theme" />
-	<antcall target="build.Jewel-Light-Flat-Secondary-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Amethyst-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Blue-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Emerald-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Green-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Green-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Orange-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Red-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Sapphire-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Sunflower-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Topaz-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Turquoise-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Violet-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Emphasized-Yellow-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Emphasized-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Amethyst-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Blue-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Emerald-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Green-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Green-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Orange-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Red-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Red-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Sapphire-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Sunflower-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Topaz-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Turquoise-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Violet-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Primary-Yellow-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Primary-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Yellow-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Amethyst-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Amethyst-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Amethyst-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Amethyst-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Blue-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Blue-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Blue-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Blue-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Emerald-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Emerald-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Emerald-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Emerald-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Green-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Green-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Green-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Green-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Green-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Orange-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Orange-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Orange-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Orange-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Orange-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Red-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Red-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Red-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Red-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Red-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Sapphire-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Sapphire-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Sapphire-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Sapphire-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Sapphire-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Sunflower-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Sunflower-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Sunflower-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Sunflower-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Sunflower-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Topaz-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Topaz-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Turquoise-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Turquoise-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Turquoise-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Turquoise-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Turquoise-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Violet-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Violet-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Violet-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Violet-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Violet-Theme/target/classes/defaults.css" />
-	<available file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Yellow-Theme/target/classes/defaults.css" property="available.Jewel-Light-NoFlat-Secondary-Yellow-Theme" />
-	<antcall target="build.Jewel-Light-NoFlat-Secondary-Yellow-Theme"/>
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Yellow-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Yellow-Theme/target/classes/defaults.css" />
 
         <mkdir dir="${basedir}/bin/js-release/assets" />
@@ -383,328 +165,13 @@
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
 
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Blue-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Emerald-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Green-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Orange-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Red-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Topaz-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Violet-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Emphasized-Yellow-Theme" unless="available.Jewel-Dark-NoFlat-Emphasized-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Amethyst-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Blue-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Emerald-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Green-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Orange-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Red-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Sapphire-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Sunflower-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Topaz-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Turquoise-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Violet-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Primary-Yellow-Theme" unless="available.Jewel-Dark-NoFlat-Primary-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Primary-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Amethyst-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Blue-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Emerald-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Green-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Orange-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Red-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Sapphire-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Sunflower-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Topaz-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Turquoise-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Violet-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Dark-NoFlat-Secondary-Yellow-Theme" unless="available.Jewel-Dark-NoFlat-Secondary-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Secondary-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Amethyst-Theme" unless="available.Jewel-Light-Flat-Emphasized-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Blue-Theme" unless="available.Jewel-Light-Flat-Emphasized-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Emerald-Theme" unless="available.Jewel-Light-Flat-Emphasized-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Green-Theme" unless="available.Jewel-Light-Flat-Emphasized-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Orange-Theme" unless="available.Jewel-Light-Flat-Emphasized-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Red-Theme" unless="available.Jewel-Light-Flat-Emphasized-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Sapphire-Theme" unless="available.Jewel-Light-Flat-Emphasized-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Sunflower-Theme" unless="available.Jewel-Light-Flat-Emphasized-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Topaz-Theme" unless="available.Jewel-Light-Flat-Emphasized-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Turquoise-Theme" unless="available.Jewel-Light-Flat-Emphasized-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Violet-Theme" unless="available.Jewel-Light-Flat-Emphasized-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Emphasized-Yellow-Theme" unless="available.Jewel-Light-Flat-Emphasized-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Emphasized-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Amethyst-Theme" unless="available.Jewel-Light-Flat-Primary-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Blue-Theme" unless="available.Jewel-Light-Flat-Primary-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Emerald-Theme" unless="available.Jewel-Light-Flat-Primary-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Green-Theme" unless="available.Jewel-Light-Flat-Primary-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Orange-Theme" unless="available.Jewel-Light-Flat-Primary-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Red-Theme" unless="available.Jewel-Light-Flat-Primary-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Sapphire-Theme" unless="available.Jewel-Light-Flat-Primary-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Sunflower-Theme" unless="available.Jewel-Light-Flat-Primary-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Topaz-Theme" unless="available.Jewel-Light-Flat-Primary-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Turquoise-Theme" unless="available.Jewel-Light-Flat-Primary-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Violet-Theme" unless="available.Jewel-Light-Flat-Primary-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Primary-Yellow-Theme" unless="available.Jewel-Light-Flat-Primary-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Primary-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Amethyst-Theme" unless="available.Jewel-Light-Flat-Secondary-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Blue-Theme" unless="available.Jewel-Light-Flat-Secondary-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Emerald-Theme" unless="available.Jewel-Light-Flat-Secondary-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Green-Theme" unless="available.Jewel-Light-Flat-Secondary-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Orange-Theme" unless="available.Jewel-Light-Flat-Secondary-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Red-Theme" unless="available.Jewel-Light-Flat-Secondary-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Sapphire-Theme" unless="available.Jewel-Light-Flat-Secondary-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Sunflower-Theme" unless="available.Jewel-Light-Flat-Secondary-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Topaz-Theme" unless="available.Jewel-Light-Flat-Secondary-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Turquoise-Theme" unless="available.Jewel-Light-Flat-Secondary-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Violet-Theme" unless="available.Jewel-Light-Flat-Secondary-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-Flat-Secondary-Yellow-Theme" unless="available.Jewel-Light-Flat-Secondary-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-Flat-Secondary-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Amethyst-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Blue-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Emerald-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Green-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Orange-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Red-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Sapphire-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Sunflower-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Topaz-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Turquoise-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Violet-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Emphasized-Yellow-Theme" unless="available.Jewel-Light-NoFlat-Emphasized-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Amethyst-Theme" unless="available.Jewel-Light-NoFlat-Primary-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Blue-Theme" unless="available.Jewel-Light-NoFlat-Primary-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Emerald-Theme" unless="available.Jewel-Light-NoFlat-Primary-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Green-Theme" unless="available.Jewel-Light-NoFlat-Primary-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Orange-Theme" unless="available.Jewel-Light-NoFlat-Primary-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Red-Theme" unless="available.Jewel-Light-NoFlat-Primary-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Sapphire-Theme" unless="available.Jewel-Light-NoFlat-Primary-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Sunflower-Theme" unless="available.Jewel-Light-NoFlat-Primary-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Topaz-Theme" unless="available.Jewel-Light-NoFlat-Primary-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Turquoise-Theme" unless="available.Jewel-Light-NoFlat-Primary-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Violet-Theme" unless="available.Jewel-Light-NoFlat-Primary-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Primary-Yellow-Theme" unless="available.Jewel-Light-NoFlat-Primary-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Yellow-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Amethyst-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Amethyst-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Amethyst-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Blue-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Blue-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Blue-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Emerald-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Emerald-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Emerald-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Green-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Green-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Green-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Orange-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Orange-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Orange-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Red-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Red-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Red-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Sapphire-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Sapphire-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Sapphire-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Sunflower-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Sunflower-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Sunflower-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Topaz-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Topaz-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Turquoise-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Turquoise-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Turquoise-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Violet-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Violet-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Violet-Theme/build.xml"/>
-	</target>
-	<target name="build.Jewel-Light-NoFlat-Secondary-Yellow-Theme" unless="available.Jewel-Light-NoFlat-Secondary-Yellow-Theme">
-		<ant antfile="${basedir}/../../../frameworks/themes/Jewel-Light-NoFlat-Secondary-Yellow-Theme/build.xml"/>
-	</target>
+    <target name="examine" depends="build_example.get.browser">
+        <property name="which" value="debug" />
+        <echo message="See various team members."/>
+        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
+            <arg value="${basedir}/bin/js-${which}/index.html"/>
+        </exec>
+    </target>
+
+
 </project>
