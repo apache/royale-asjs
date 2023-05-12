@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.10</version>
+    <version>0.9.11-SNAPSHOT</version>
   </parent>
 
   <artifactId>DragDrop</artifactId>
-  <version>0.9.10</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: DragDrop</name>
@@ -60,28 +60,28 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.10</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.10</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.10</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.10</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -94,28 +94,28 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.10</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.10</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Collections</artifactId>
-          <version>0.9.10</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Graphics</artifactId>
-          <version>0.9.10</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -123,4 +123,4 @@
     </profile>
   </profiles>
 
-<properties><project.build.outputTimestamp>2023-05-12T06:29:03Z</project.build.outputTimestamp></properties></project>
+<properties /></project>

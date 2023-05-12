@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.10</version>
+    <version>0.9.11-SNAPSHOT</version>
   </parent>
 
   <artifactId>examples-node</artifactId>
-  <version>0.9.10</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Examples: NodeJS ----------------------------------</name>
@@ -59,4 +59,4 @@
     </dependency>
   </dependencies>
 
-<properties><project.build.outputTimestamp>2023-05-12T06:29:03Z</project.build.outputTimestamp></properties></project>
+<properties /></project>
