@@ -41,6 +41,11 @@
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin/js-debug/assets/themes" />
+        <!-- <copy todir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" failonerror="false">
+            <fileset dir="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme/target/classes">
+                <include name="defaults.css" />
+            </fileset>
+        </copy> -->
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme/target/classes/defaults.css" />
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Blue-Theme/target/classes/defaults.css" />
         <copy toDir="${basedir}/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme" file="${basedir}/../../../frameworks/themes/Jewel-Dark-NoFlat-Emphasized-Emerald-Theme/target/classes/defaults.css" />
