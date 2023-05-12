@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>ModuleExample</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.10</version>
   </parent>
 
   <artifactId>Module</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.10</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: ModuleExample: Module</name>
@@ -117,4 +117,4 @@
     </plugins>
   </build>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2023-05-12T06:29:03Z</project.build.outputTimestamp></properties></project>
