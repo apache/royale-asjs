@@ -105,11 +105,17 @@ package org.apache.royale.jewel.beads.controls.datagrid
                 }
 
                 if (dataGrid is VirtualDataGrid)
-                    dataGridItemRenderer = ((dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).view as VirtualListView).getItemRendererForIndex((dataGrid as VirtualDataGrid).selectedIndex) as EditableDataGridItemRenderer;
+                    dataGridItemRenderer = ((dataGridView.columnLists[selectedColumnIndex] as VirtualDataGridColumnList).view as VirtualListView).getItemRendererForIndex((dataGrid as VirtualDataGrid).selectedIndex + (event.key == KEY_ENTER ? 1 : 0)) as EditableDataGridItemRenderer;
                 else
                     dataGridItemRenderer = ((dataGridView.columnLists[selectedColumnIndex] as DataGridColumnList).view as ListView).getItemRendererForIndex((dataGrid as DataGrid).selectedIndex) as EditableDataGridItemRenderer;
-
-                dataGridItemRenderer.goToEditMode();
+                    
+                COMPILE::JS
+                {
+                    setTimeout(function():void
+                    {
+                        dataGridItemRenderer.goToEditMode();
+                    }, 1);
+                }
             }
         }
     }
