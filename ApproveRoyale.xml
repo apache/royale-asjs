@@ -572,10 +572,12 @@
                 <exclude name="royale-asjs/js/lib/jsc.jar"/>
                 <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
                 <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
-                <exclude name="royale-asjs/js/lib/java-websocket.jar"/>
                 <exclude name="royale-asjs/js/lib/dom4j.jar"/>
                 <exclude name="royale-asjs/js/lib/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/js/lib/slf4j-api.jar"/>
+                <exclude name="royale-asjs/js/lib/royaleunit/java-websocket.jar"/>
+                <exclude name="royale-asjs/js/lib/royaleunit/dom4j.jar"/>
+                <exclude name="royale-asjs/js/lib/royaleunit/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/lib/adt.jar"/>
                 <exclude name="royale-asjs/lib/compc.jar"/>
                 <exclude name="royale-asjs/lib/compiler-asc.jar"/>
