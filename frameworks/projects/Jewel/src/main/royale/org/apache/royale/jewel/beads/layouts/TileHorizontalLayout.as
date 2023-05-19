@@ -122,7 +122,14 @@ package org.apache.royale.jewel.beads.layouts
 			return dispatcher.dispatchEvent(event);
 		}
 
+		COMPILE::SWF
+		public function willTrigger(type:String):Boolean
+		{
+			return false;
+		}
+
 		//IEventDispatcher (shared)
+
 		public function hasEventListener(type:String):Boolean
 		{
 			return dispatcher.hasEventListener(type);
@@ -138,12 +145,12 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.8
  		 */
-		override public function beadsAddedHandler(event:Event = null):void
+		override public function beadsAddedHandler(event:org.apache.royale.events.Event = null):void
 		{
 			super.beadsAddedHandler();
 
 			hostComponent.replaceClass("tile");
-			hostComponent.dispatchEvent(new Event("layoutNeeded"));
+			hostComponent.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));
 			
 			COMPILE::JS{
 				//OSUtils.getOS() == OSUtils.MAC_OS || OSUtils.getOS() == OSUtils.IOS_OS ??
@@ -348,7 +355,7 @@ package org.apache.royale.jewel.beads.layouts
 		}
 
 		private var _oldScrollWidth:Number;
-		private function observedChangeSize(event:Event):void
+		private function observedChangeSize(event:org.apache.royale.events.Event):void
 		{
 			COMPILE::JS{
 			    if(_oldScrollWidth != hostComponent.element.scrollWidth)
@@ -591,7 +598,7 @@ package org.apache.royale.jewel.beads.layouts
 					else
 						child.positioner.style.marginRight = null;
 					
-					child.dispatchEvent(new Event('sizeChanged'));
+					child.dispatchEvent(new org.apache.royale.events.Event('sizeChanged'));
 				}
 				return true;
 			}

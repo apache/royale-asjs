@@ -126,6 +126,12 @@ package org.apache.royale.jewel.beads.layouts
 			return dispatcher.dispatchEvent(event);
 		}
 
+		COMPILE::SWF
+		public function willTrigger(type:String):Boolean
+		{
+			return false;
+		}
+
 		//IEventDispatcher (shared)
 		public function hasEventListener(type:String):Boolean
 		{
@@ -142,12 +148,12 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.8
  		 */
-		override public function beadsAddedHandler(event:Event = null):void
+		override public function beadsAddedHandler(event:org.apache.royale.events.Event = null):void
 		{
 			super.beadsAddedHandler();
 
 			hostComponent.replaceClass("tile");
-			hostComponent.dispatchEvent(new Event("layoutNeeded"));
+			hostComponent.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));
 		}
 
 		private var _columnCount:int = -1;
@@ -543,7 +549,7 @@ package org.apache.royale.jewel.beads.layouts
 					// else
 					// 	child.positioner.style.marginRight = null;
 					
-					child.dispatchEvent(new Event('sizeChanged'));
+					child.dispatchEvent(new org.apache.royale.events.Event('sizeChanged'));
 				}
 				return true;
 			}
