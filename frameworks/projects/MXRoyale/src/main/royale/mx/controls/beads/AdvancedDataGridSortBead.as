@@ -19,6 +19,7 @@
 package mx.controls.beads
 {
 	import mx.controls.AdvancedDataGrid;
+	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 	import mx.controls.beads.DataGridView;
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.events.AdvancedDataGridEvent;
@@ -69,9 +70,9 @@ package mx.controls.beads
 			}
             var adgEvent:AdvancedDataGridEvent = new AdvancedDataGridEvent(AdvancedDataGridEvent.SORT);
             adgEvent.columnIndex = buttonBar.selectedIndex;
-            var selectedColumn = this.mx_controls_beads_AdvancedDataGridSortBead_adg.columns[adgEvent.columnIndex];
+            var selectedColumn:AdvancedDataGridColumn = this.mx_controls_beads_AdvancedDataGridSortBead_adg.columns[adgEvent.columnIndex];
             if(selectedColumn.sortable) {
-               	adgEvent.dataField = org.apache.royale.utils.Language.string(selectedColumn.dataField);
+               	adgEvent.dataField = selectedColumn.dataField;
     		this.mx_controls_beads_AdvancedDataGridSortBead_adg.dispatchEvent(adgEvent);
             }
 		
