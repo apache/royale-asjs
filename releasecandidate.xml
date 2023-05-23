@@ -1233,6 +1233,91 @@ ${my.name}
             <regexp pattern="royale.framework.version&gt;.*&lt;"/>
             <substitution expression="royale.framework.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
         </replaceregexp>
+	<replaceregexp file="${asjs}/archetypes/royale-jewel-library-archetype/src/main/resources/archetype-resources/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.framework.version&gt;.*SHOTSNAPSHOT&lt;"/>
+            <substitution expression="royale.framework.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/amf/SampleAmfWebApp/pom-royale-basic.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/amf/SampleAmfWebApp/pom-royale-jewel.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/amf/SampleAmfWebApp/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/blog/BE0015_Using_Jewel_TileHorizontalLayout/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/blog/BE0016_Live_Editing_DataGrid/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/blog/BE0016_Using_ComboBox/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/crux/AppWithLib/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/crux/CruxGitHubCommitLogViewer/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/crux/SampleLib/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/examples-integrationtests/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/jewel/royale-website/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/mxroyale/DataGridInlineExample/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/mxroyale/FileReference/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/mxroyale/TabNavigatorExample/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/Ace/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/ColorPickerExample/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/FileProxy/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/RemoteObjectAMFTestBasic/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/testsuite/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/LocalesExemple/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="add" />
             <arg value="." />
