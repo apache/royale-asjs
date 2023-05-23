@@ -73,7 +73,7 @@ package mx.controls.beads
             var selectedColumn:AdvancedDataGridColumn = adg.columns[adgEvent.columnIndex];
             if(selectedColumn.sortable) {
                	adgEvent.dataField = selectedColumn.dataField;
-    		this.mx_controls_beads_AdvancedDataGridSortBead_adg.dispatchEvent(adgEvent);
+    		adg.dispatchEvent(adgEvent);
             }
 		
 		}
