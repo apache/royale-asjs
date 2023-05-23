@@ -37,7 +37,7 @@
     <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
     <!-- In Release mode we only want to copy assets folder content to assets destination folder, the rest is managed by compiler -->
     <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
-    <royale.framework.version>0.9.10-SNAPSHOT</royale.framework.version>
+    <royale.framework.version>0.9.11-SNAPSHOT</royale.framework.version>
   </properties>
 
   <modules>
