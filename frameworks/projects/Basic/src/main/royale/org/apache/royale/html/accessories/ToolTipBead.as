@@ -156,6 +156,10 @@ package org.apache.royale.html.accessories
 			tt.x = pt.x;
 			tt.y = pt.y;
 			host.popUpParent.addElement(tt, false); // don't trigger a layout
+			
+			// Display de tooltip on several rows if too long
+			tt.element.style.maxWidth = "300px";
+			tt.element.style.whiteSpace = "pre-wrap";
 		}
 
 		/**
