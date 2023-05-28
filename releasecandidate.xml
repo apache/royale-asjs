@@ -1113,7 +1113,7 @@ ${my.name}
         <!-- this is intended to merge the tag to master because it should have the right versions in it -->
         <antcall target="merge_rc_to_master" />
         <antcall target="get_head_of_rc_branches" />
-		<!-- <antcall target="release.npm" /> --> <!-- TODO fix and uncomment -->
+	<antcall target="release.npm" />
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
         <antcall target="release.maven.staging.repo" />
@@ -1469,8 +1469,8 @@ ${my.name}
 
     <target name="release.npm" depends="check-name-and-svn,check-royale-asjs,use_release_branch,checkout-release-branch">
         <input
-        message="To publish the npm artifacts, enter the npm password from the private@ list"
-        addproperty="npm.password"/>
+        message="To publish the npm artifacts, enter the npm token from the private@ list"
+        addproperty="npm.token"/>
         
         <available file="${svn.dist.release}"
         type="dir"
@@ -1486,15 +1486,15 @@ ${my.name}
             <arg value="publish.js" />
             <arg value="--type=js-only" />
             <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js.tar.gz" />
-            <arg value="--username=apache-royale-owner" />
-            <arg value="--password=${npm.password}" />
+	    <arg value="--username=apache-royale-owner" /> <!-- TODO this is probably not required -->
+            <arg value="--token=${npm.token}" />
         </exec>
         <exec executable="${node}" dir="${asjs}/npm/release-scripts" failonerror="true">
             <arg value="publish.js" />
             <arg value="--type=js-swf" />
             <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz" />
             <arg value="--username=apache-royale-owner" />
-            <arg value="--password=${npm.password}" />
+            <arg value="--token=${npm.token}" />
         </exec>
     </target>
 
