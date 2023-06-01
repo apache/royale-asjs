@@ -37,6 +37,7 @@ package mx.controls.beads
     import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer;
 	import mx.core.UIComponent;
     
 	/**
@@ -119,7 +120,7 @@ package mx.controls.beads
 
 
 			if (firstColumn && adg.groupLabelField)
-				(_tempIR as ILabelFieldItemRenderer).labelField = adg.groupLabelField;
+				(_tempIR as AdvancedDataGridItemRenderer).labelField = adg.groupLabelField;
 
 			return treeListData;
 		}
