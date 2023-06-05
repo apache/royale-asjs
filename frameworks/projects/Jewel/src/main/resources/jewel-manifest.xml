@@ -232,6 +232,7 @@
     <component id="ComboBoxReadOnly" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxReadOnly"/>
     <component id="ComboBoxTruncateText" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText"/>
     <component id="ComboBoxListCloseOnClick" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxListCloseOnClick" />
+    <component id="ComboBoxListWidth" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxListWidth" />
     <component id="TriStateCheckBoxLabelState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxLabelState"/>
     <component id="TriStateCheckBoxState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxState"/>
     <component id="TriStateCheckBoxTooltipState" class="org.apache.royale.jewel.beads.controls.tristatecheckbox.TriStateCheckBoxTooltipState"/>
