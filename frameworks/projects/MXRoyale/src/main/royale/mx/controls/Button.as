@@ -391,6 +391,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 			addBead(_toolTipBead);
 		}
 		_toolTipBead.toolTip = value;
+		dispatchEvent(new Event("toolTipChanged"));
 	}
 	
 	override public function get toolTip():String
