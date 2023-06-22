@@ -179,8 +179,11 @@ internal class MXRoyaleBaseClasses
 
 
 	import mx.messaging.messages.HTTPRequestMessage; HTTPRequestMessage;
+	import mx.messaging.channels.AMFChannel; AMFChannel;
 	import mx.messaging.channels.DirectHTTPChannel; DirectHTTPChannel;
 	import mx.messaging.channels.HTTPChannel; HTTPChannel;
+	import mx.messaging.channels.SecureHTTPChannel; SecureHTTPChannel;
+	import mx.messaging.channels.SecureAMFChannel; SecureAMFChannel;
 	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
 	import mx.messaging.messages.AcknowledgeMessage; AcknowledgeMessage;
 	import mx.messaging.messages.AsyncMessage; AsyncMessage;
