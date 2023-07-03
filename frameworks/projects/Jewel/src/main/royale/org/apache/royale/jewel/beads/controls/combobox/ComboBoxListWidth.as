@@ -22,9 +22,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.ComboBox;
-	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
-	import org.apache.royale.jewel.beads.views.ComboBoxView;
+	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
+	import org.apache.royale.core.IStrandWithModelView;
 	
 	/**
 	 *  The ComboBoxListWidth class is a specialty bead that can be used with
@@ -82,7 +82,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		private function popUpOpenedHandler(event:Event):void
 		{
 			if (width > 0)
-	            (((_strand.view as ComboBoxView).popup as ComboBoxPopUp).view as ComboBoxPopUpView).list.width = width;
+	            (((_strand.view as IComboBoxView).popup as IStrandWithModelView).view as ComboBoxPopUpView).list.width = width;
 		}
 	}
 }
