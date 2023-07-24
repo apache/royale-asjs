@@ -577,8 +577,8 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  If length is omitted or is zero, all bytes are read following the current position to the end
      *  of this BinaryData. If offset is also omitted, it defaults to zero.
      *
-     *  @param {BinaryData} bytes The destination BinaryData to write bytes into from the current position
-     *  @param {uint} offset The optional offset value of the starting bytes to write inside destination
+     *  @param {BinaryData} destination The destination BinaryData to write bytes into from the current position
+     *  @param {uint} writeOffset The optional offset value of the starting bytes to write inside destination
      *  @param {uint} length The optional length value of the bytes to read
      *
      *  @langversion 3.0
@@ -586,19 +586,19 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function readBinaryData(bytes:BinaryData, offset:uint = 0, length:uint = 0):void
+    public function readBinaryData(destination:BinaryData, writeOffset:uint = 0, length:uint = 0):void
     {
-		if (!bytes) throw new TypeError('Error #2007: Parameter bytes must be non-null.');
-        if (bytes == this) throw new Error('Parameter bytes must be another instance.');
+		if (!destination) throw new TypeError('Error #2007: Parameter destination must be non-null.');
+        if (destination == this) throw new Error('Parameter destination must be another instance.');
         COMPILE::SWF
         {
-            ba.readBytes(bytes.ba,offset,length);
+            ba.readBytes(destination.ba,writeOffset,length);
         }
 
         COMPILE::JS
         {
 			if (length == 0) length = _len - _position ;
-            bytes.mergeInToArrayBuffer(offset,new Uint8Array(ba, _position, length));
+            destination.mergeInToArrayBuffer(writeOffset,new Uint8Array(ba, _position, length));
 			_position+=length;
         }
     }
