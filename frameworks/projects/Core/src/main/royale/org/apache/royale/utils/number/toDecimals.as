@@ -41,6 +41,10 @@ package org.apache.royale.utils.number
 	 *  trace(MathUtil.round(314159, -3)) // 314000
 	 *  trace(MathUtil.round(314159, -4)) // 310000
 	 *  </pre>
+	 * 
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.10
+	 * 
 	 */
 	public function toDecimals(value:Number, precision:int = 0):Number
 	{
