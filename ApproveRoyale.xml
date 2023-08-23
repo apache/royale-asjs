@@ -208,11 +208,6 @@
             </fileset>
         </copy>
     </target>
-    
-    <target name="test" >
-		<echo>${rat.report}.bin.txt</echo>
-		<replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="" byline="true"/>
-    </target>
 	
     <target name="write-out-jars-list" >
         <delete file="jars.txt" />
