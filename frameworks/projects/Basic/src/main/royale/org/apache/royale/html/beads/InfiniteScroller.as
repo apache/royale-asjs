@@ -144,8 +144,7 @@ package org.apache.royale.html.beads
 			pendingObserve = false;
 			if(!observer){
 				var element:HTMLElement = scrollContainer? scrollContainer.element : host.element;
-				//TODO add IntersectionObserver to typedefs
-				observer = new window["IntersectionObserver"](handleItemIntersection, {
+				observer = new IntersectionObserver(handleItemIntersection, {
 					root: element,
 					rootMargin: isNaN(margin) ? "0px" : margin + "px",
 					threshold: threshold
