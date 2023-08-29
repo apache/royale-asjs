@@ -106,6 +106,9 @@ package org.apache.royale.utils.async
 		 */
 		public function getLoader():URLBinaryLoader
 		{
+			if(!loader)
+				loader = createLoader();
+
 			return loader;
 		}
 		/**
