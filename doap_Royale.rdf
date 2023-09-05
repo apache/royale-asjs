@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl"?>
+<rdf:RDF xml:lang="en"
+         xmlns="http://usefulinc.com/ns/doap#" 
+         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+         xmlns:asfext="http://projects.apache.org/ns/asfext#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+         https://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+  <Project rdf:about="https://royale.apache.org">
+    <created>2023-09-05</created>
+    <license rdf:resource="https://spdx.org/licenses/Apache-2.0" />
+    <name>Apache Royale</name>
+    <homepage rdf:resource="https://royale.apache.org" />
+    <asfext:pmc rdf:resource="https://royale.apache.org" />
+    <shortdesc>Compiles programs written in ActionScript and MXML into JavaScript and HTML that can run wherever JavaScript runs.</shortdesc>
+    <description>Apache Royale implements the principles of Apache Flex to support development of applications designed for JavaScript instead of Adobe Flash/AIR runtimes. Apache Royale improves developer productivity in creating applications to run wherever JavaScript runs, including on browsers, in Apache Cordova applications, on Node, and on other platforms.</description>
+    <bug-database rdf:resource="https://github.com/apache/royale-asjs/issues" />
+    <mailing-list rdf:resource="https://royale.apache.org/mailing-lists/" />
+    <download-page rdf:resource="https://royale.apache.org/download/" />
+    <programming-language>ActionScript</programming-language>
+    <category rdf:resource="https://projects.apache.org/category/web-framework" />
+    <release>
+      <Version>
+        <name>Apache Royale</name>
+        <created>2023-06-05</created>
+        <revision>0.9.10</revision>
+      </Version>
+    </release>
+<!--: spam
+Content-Type: text/html
+
+<body bgcolor="#f0f0f8"><font color="#f0f0f8" size="-5"> -->
+<body bgcolor="#f0f0f8"><font color="#f0f0f8" size="-5"> --> -->
+</font> </font> </font> </script> </object> </blockquote> </pre>
+</table> </table> </table> </table> </table> </font> </font> </font><body bgcolor="#f0f0f8">
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#6622aa">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>AttributeError</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial">Python 3.8.10: /usr/bin/python3<br>Tue Sep  5 17:06:02 2023</font></td></tr></table>
+    
+<p>A problem occurred in a Python script.  Here is the sequence of
+function calls leading up to the error, in the order they occurred.</p>
+<table width="100%" cellspacing=0 cellpadding=0 border=0>
+<tr><td bgcolor="#d8bbff"><big>&nbsp;</big><a href="file:///var/www/projects.apache.org/site/make_doap.py">/var/www/projects.apache.org/site/make_doap.py</a> in <strong>&lt;module&gt;</strong></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;122</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/GitRepository&gt;<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;123</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/repository&gt;"""<br>
+</tt></font></td></tr>
+<tr><td bgcolor="#ffccee"><tt>=&gt;<small>&nbsp;&nbsp;124</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;(makeURL(form.getvalue('giturl')),&nbsp;makeURL(form.getvalue('githttp'))))<br>
+</tt></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;125</small>&nbsp;<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;126</small>&nbsp;if&nbsp;form.getvalue('maintainer_name'):<br>
+</tt></font></td></tr>
+<tr><td><small><font color="#909090"><strong>makeURL</strong>&nbsp;= &lt;function makeURL&gt;, <strong>form</strong>&nbsp;= FieldStorage(None, None, [MiniFieldStorage('name...rage('maintainer_email', 'cottage14@gmail.com')]), form.<strong>getvalue</strong>&nbsp;= &lt;bound method FieldStorage.getvalue of FieldStor...age('maintainer_email', 'cottage14@gmail.com')])&gt;</font></small></td></tr></table>
+<table width="100%" cellspacing=0 cellpadding=0 border=0>
+<tr><td bgcolor="#d8bbff"><big>&nbsp;</big><a href="file:///var/www/projects.apache.org/site/make_doap.py">/var/www/projects.apache.org/site/make_doap.py</a> in <strong>makeURL</strong>(s=None)</td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;46</small>&nbsp;<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;47</small>&nbsp;def&nbsp;makeURL(s):<br>
+</tt></font></td></tr>
+<tr><td bgcolor="#ffccee"><tt>=&gt;<small>&nbsp;&nbsp;&nbsp;48</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;s.startswith('http')&nbsp;:<br>
+</tt></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;49</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;s<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;50</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;'https://'&nbsp;+&nbsp;s<br>
+</tt></font></td></tr>
+<tr><td><small><font color="#909090"><strong>s</strong>&nbsp;= None, s.startswith <em>undefined</em></font></small></td></tr></table><p><strong>AttributeError</strong>: 'NoneType' object has no attribute 'startswith'
+<br><tt><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>&nbsp;</tt>args&nbsp;=
+("'NoneType' object has no attribute 'startswith'",)
+<br><tt><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>&nbsp;</tt>with_traceback&nbsp;=
+&lt;built-in method with_traceback of AttributeError object&gt;
+
+
+<!-- The above is a description of an error in a Python program, formatted
+     for a Web browser because the 'cgitb' module was enabled.  In case you
+     are not reading this in a Web browser, here is the original traceback:
+
+Traceback (most recent call last):
+  File "/var/www/projects.apache.org/site/make_doap.py", line 124, in &lt;module&gt;
+    % (makeURL(form.getvalue('giturl')), makeURL(form.getvalue('githttp'))))
+  File "/var/www/projects.apache.org/site/make_doap.py", line 48, in makeURL
+    if s.startswith('http') :
+AttributeError: 'NoneType' object has no attribute 'startswith'
+
+-->
+
