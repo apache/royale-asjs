@@ -32,7 +32,7 @@ package mx.display
 
 		
 	COMPILE::SWF
-	public class Bitmap extends flash.display.DisplayObject
+	public class Bitmap extends flash.display.Bitmap
 	{
 		public function Bitmap(bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
 		{
