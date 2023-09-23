@@ -1012,7 +1012,7 @@ npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc$
 \n\
 The full package with SWF support can be installed via:\n\
 \n\
-npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz -g\n\
+npm install https://dist.apache.org/repos/dist/dev/royale/${release.version}/rc{rc}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz -g --foreground-scripts\n\
 \n\
 Maven artifacts are staged here:\n\
 https://repository.apache.org/content/repositories/orgapacheroyale-${maven.staging.folder.number}\n\
@@ -1113,7 +1113,7 @@ ${my.name}
         <!-- this is intended to merge the tag to master because it should have the right versions in it -->
         <antcall target="merge_rc_to_master" />
         <antcall target="get_head_of_rc_branches" />
-        <antcall target="release.npm" />
+	<antcall target="release.npm" />
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
         <antcall target="release.maven.staging.repo" />
@@ -1233,6 +1233,91 @@ ${my.name}
             <regexp pattern="royale.framework.version&gt;.*&lt;"/>
             <substitution expression="royale.framework.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
         </replaceregexp>
+	<replaceregexp file="${asjs}/archetypes/royale-jewel-library-archetype/src/main/resources/archetype-resources/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="royale.framework.version&gt;.*SHOTSNAPSHOT&lt;"/>
+            <substitution expression="royale.framework.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/amf/SampleAmfWebApp/pom-royale-basic.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/amf/SampleAmfWebApp/pom-royale-jewel.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/amf/SampleAmfWebApp/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/blog/BE0015_Using_Jewel_TileHorizontalLayout/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/blog/BE0016_Live_Editing_DataGrid/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/blog/BE0016_Using_ComboBox/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/crux/AppWithLib/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/crux/CruxGitHubCommitLogViewer/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/crux/SampleLib/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/examples-integrationtests/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/jewel/royale-website/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/mxroyale/DataGridInlineExample/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/mxroyale/FileReference/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/mxroyale/TabNavigatorExample/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/Ace/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/ColorPickerExample/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/FileProxy/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/RemoteObjectAMFTestBasic/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/testsuite/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+	<replaceregexp file="${asjs}/examples/royale/LocalesExemple/pom.xml" byline="true" encoding="UTF-8">
+            <regexp pattern="version&gt;.*SNAPSHOT&lt;"/>
+            <substitution expression="version&gt;${new.release.version}-SNAPSHOT&lt;"/>
+        </replaceregexp>
+
         <exec executable="${git}" dir="${asjs}" failonerror="true" >
             <arg value="add" />
             <arg value="." />
@@ -1384,8 +1469,8 @@ ${my.name}
 
     <target name="release.npm" depends="check-name-and-svn,check-royale-asjs,use_release_branch,checkout-release-branch">
         <input
-        message="To publish the npm artifacts, enter the npm password from the private@ list"
-        addproperty="npm.password"/>
+        message="To publish the npm artifacts, enter the npm token from the private@ list"
+        addproperty="npm.token"/>
         
         <available file="${svn.dist.release}"
         type="dir"
@@ -1401,15 +1486,15 @@ ${my.name}
             <arg value="publish.js" />
             <arg value="--type=js-only" />
             <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js.tar.gz" />
-            <arg value="--username=apache-royale-owner" />
-            <arg value="--password=${npm.password}" />
+	    <arg value="--username=apache-royale-owner" /> <!-- TODO this is probably not required -->
+            <arg value="--token=${npm.token}" />
         </exec>
         <exec executable="${node}" dir="${asjs}/npm/release-scripts" failonerror="true">
             <arg value="publish.js" />
             <arg value="--type=js-swf" />
             <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz" />
             <arg value="--username=apache-royale-owner" />
-            <arg value="--password=${npm.password}" />
+            <arg value="--token=${npm.token}" />
         </exec>
     </target>
 

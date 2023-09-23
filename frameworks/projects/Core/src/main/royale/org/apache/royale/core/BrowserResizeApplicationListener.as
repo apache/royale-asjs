@@ -54,6 +54,27 @@ COMPILE::JS
 		}
 		
         private var app:IInitialViewApplication;
+
+        private var _enableScroll:Boolean = true;
+        /**
+         * If enableScroll is true, the application will be set to overflow:auto
+         * if false, the application will default to what is otherwise set.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.10
+         * 
+         */
+        public function get enableScroll():Boolean
+        {
+        	return _enableScroll;
+        }
+
+        public function set enableScroll(value:Boolean):void
+        {
+        	_enableScroll = value;
+        }
         
         private var _minHeight:Number;
         
@@ -129,7 +150,8 @@ COMPILE::JS
                     document.body.style.minWidth = this.minWidth + 'px';
                 if (!isNaN(this.minHeight))
                     document.body.style.minHeight = this.minHeight + 'px';
-                document.body.style.overflow = 'auto';
+                if (enableScroll)
+                    document.body.style.overflow = 'auto';
             }
         }
         

@@ -303,6 +303,7 @@ package
  		public static const FLICKR:String = "flickr";
  		public static const FLOPPY:String = "floppy";
  		public static const FOLDER:String = "folder";
+ 		public static const FOLDER_TREE:String = "folder-tree";
  		public static const FOLDERPEN:String = "folderpen";
  		public static const FOLDERS:String = "folders";
  		public static const FONT:String = "font";
@@ -405,6 +406,7 @@ package
  		public static const JPY:String = "jpy";
  		public static const JSFIDDLE:String = "jsfiddle";
  		public static const KEY:String = "key";
+ 		public static const KEYCDN:String = "keycdn";
  		public static const KEYBOARD:String = "keyboard";
  		public static const KRW:String = "krw";
  		public static const LANGUAGE:String = "language";
@@ -522,6 +524,7 @@ package
  		public static const PLUS_CIRCLE:String = "plus-circle";
  		public static const PLUS_SQUARE:String = "plus-square";
  		public static const PODCAST:String = "podcast";
+ 		public static const PORTRAIT:String = "portrait";
  		public static const POWER_OFF:String = "power-off";
  		public static const PRINT:String = "print";
  		public static const PRODUCT_HUNT:String = "product-hunt";
@@ -720,6 +723,7 @@ package
  		public static const USER_TIMES:String = "user-times";
  		public static const USER_UNLOCK:String = "user-unlock";
  		public static const USERS:String = "users";
+ 		public static const USERS_CLASS:String = "users-class";
  		public static const USERS_CROWN:String = "users-crown";
  		public static const USERS_SLASH:String = "users-slash";
  		public static const VENUS:String = "venus";
@@ -743,6 +747,7 @@ package
  		public static const WALLET:String = "wallet";
  		public static const WEIBO:String = "weibo";
  		public static const WEIXIN:String = "weixin";
+ 		public static const WEIGHT:String = "weight";
  		public static const WHATSAPP:String = "whatsapp";
  		public static const WHEELCHAIR:String = "wheelchair";
  		public static const WHEELCHAIR_ALT:String = "wheelchair-alt";

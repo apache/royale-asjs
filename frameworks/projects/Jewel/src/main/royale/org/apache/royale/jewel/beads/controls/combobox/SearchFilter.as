@@ -26,6 +26,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.jewel.List;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IStrandWithModelView;
+    import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 
 	/**
 	 *  The SearchFilter bead class is a specialty bead that can be used with
@@ -110,7 +112,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 		protected function popUpOpenedHandler():void {
 			// fill "list" with the internal list in the combobox popup
-			list = comboView.popup.view.list;
+			list = ((comboView.popup as IStrandWithModelView).view as ComboBoxPopUpView).list;
 		}
 
 		protected function popUpClosedHandler():void {

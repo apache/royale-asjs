@@ -85,7 +85,9 @@
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />
             <arg line="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
-            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}&quot;" />
+            <arg line="-source-map=true"/>
+            <arg line="-source-map-source-root=/frameworks/projects/HTML5/src/main/royale/"/>
+            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}/frameworks/projects/HTML5/src/main/royale&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />

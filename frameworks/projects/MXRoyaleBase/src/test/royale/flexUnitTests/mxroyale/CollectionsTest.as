@@ -107,6 +107,57 @@ package flexUnitTests.mxroyale
             assertEquals(testOut.toString(), expected.toString(), 'unexpected results from for-each iteration');
 
         }
+
+        [Test]
+        public function testProxyAccess():void{
+            var obj1:Object = {'data':'Object 1'};
+            var obj2:Object = {'data':'Object 2'};
+
+            var ac:ArrayCollection = new ArrayCollection([obj1,obj2]);
+
+            assertEquals(ac[0], obj1, 'unexpected value from proxy access into ListCollectionView');
+
+            assertEquals(ac[1], obj2, 'unexpected value from proxy access into ListCollectionView');
+
+            var val:Object;
+            var err:Boolean;
+            try {
+                val = ac['fail'];
+            } catch(e:Error) {
+                err = true;
+            }
+
+            assertTrue(err, 'unexpected non-error state ListCollectionView')
+
+        }
+
+        [Test]
+        public function testProxyAssign():void{
+            var obj1:Object = {'data':'Object 1'};
+            var obj2:Object = {'data':'Object 2'};
+
+            var ac:ArrayCollection = new ArrayCollection([obj1.data,obj2.data]);
+
+            assertEquals(ac[0], obj1.data, 'unexpected value from proxy access into ListCollectionView');
+
+            assertEquals(ac[1], obj2.data, 'unexpected value from proxy access into ListCollectionView');
+
+            ac[0] = obj1;
+            ac[1] = obj2;
+
+            assertEquals(ac[0], obj1, 'unexpected value from proxy access following proxy assign in ListCollectionView');
+
+            assertEquals(ac[1], obj2, 'unexpected value from proxy access following proxy assign in ListCollectionView');
+
+            var err:Boolean;
+            try {
+                ac['fail'] = obj1;
+            } catch(e:Error) {
+                err = true;
+            }
+
+            assertTrue(err, 'unexpected non-error state ListCollectionView')
+        }
         
     }
 }

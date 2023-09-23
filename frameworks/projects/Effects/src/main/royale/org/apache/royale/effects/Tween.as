@@ -197,6 +197,15 @@ public class Tween extends Effect
 
     /**
      *  @private
+     */
+    private static function defaultEasingFunction(t:Number, b:Number,
+                                                  c:Number, d:Number):Number
+    {
+        return c / 2 * (Math.sin(Math.PI * (t / d - 0.5)) + 1) + b;
+    }
+
+    /**
+     *  @private
      *  @royaleignorecoercion org.apache.royale.core.IEffectTimer
      */
     private static function addTween(tween:Tween):void
@@ -570,19 +579,10 @@ public class Tween extends Effect
 
         if (_invertValues)
             currentTime = duration - currentTime;
-
-        return userEquation(currentTime, startValue,
+        const eq:Function = userEquation || (userEquation = defaultEasingFunction);
+        return eq(currentTime, startValue,
                 endValue - startValue,
                 duration);
-    }
-
-    /**
-     *  @private
-     */
-    private function defaultEasingFunction(t:Number, b:Number,
-                                           c:Number, d:Number):Number
-    {
-        return c / 2 * (Math.sin(Math.PI * (t / d - 0.5)) + 1) + b;
     }
 
     /**
@@ -676,8 +676,6 @@ public class Tween extends Effect
     override public function play():void
     {
         if (uid == 0) {
-            if (userEquation == null)
-                userEquation = defaultEasingFunction;
             Tween.addTween(this);
         }
     }

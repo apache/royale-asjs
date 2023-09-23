@@ -106,6 +106,9 @@ package org.apache.royale.utils.async
 		 */
 		public function getLoader():URLBinaryLoader
 		{
+			if(!loader)
+				loader = createLoader();
+
 			return loader;
 		}
 		/**
@@ -136,6 +139,16 @@ package org.apache.royale.utils.async
 		{
 			fail();
 		}
-
+		public static function execute(url:String, callback:Function, method:String = HTTPConstants.GET, parameters:Object = null, contentType:String = HTTPConstants.FORM_URL_ENCODED, requestHeaders:Array = null):void
+		{
+			var task:HttpRequestTask = new HttpRequestTask();
+			task.url = url;
+			task.contentType = contentType;
+			task.method = method;
+			task.requestHeaders = requestHeaders;
+			task.parameters = parameters;
+			task.done(callback);
+			task.run();
+		}
 	}
 }

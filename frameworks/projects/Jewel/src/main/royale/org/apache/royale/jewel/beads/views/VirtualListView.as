@@ -99,7 +99,8 @@ package org.apache.royale.jewel.beads.views
 					selectionBead.selected = false;
 			}
 			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex + (next ? 1 : -1)) as IItemRenderer;
-            ir.dispatchEvent(new Event("click"));
+			if (ir) 
+            	ir.dispatchEvent(new Event("click"));
         }
         
 		protected var listModel:ISelectionModel;
@@ -142,11 +143,16 @@ package org.apache.royale.jewel.beads.views
 			if (contentView.numElements == 0)
 				return null;
 			
-			var firstIndex:int = (contentView.getElementAt(firstElementIndex) as IIndexedItemRenderer).index;
+            var itemRenderer:IIndexedItemRenderer = contentView.getElementAt(firstElementIndex) as IIndexedItemRenderer;
+            if (itemRenderer == null)
+                return null;
+
+			var firstIndex:int = itemRenderer.index;
 			
 			if (index < firstIndex) 
 				return null;
-			if (index >= (firstIndex + contentView.numElements))
+			//if (index >= (firstIndex + contentView.numElements))
+            if (index >= (firstIndex + contentView.numElements - firstElementIndex) ) 
 				return null;
 			
 			return contentView.getElementAt(index - firstIndex + firstElementIndex) as IItemRenderer;			

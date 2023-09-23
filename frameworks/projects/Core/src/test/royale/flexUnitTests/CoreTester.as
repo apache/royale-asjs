@@ -46,6 +46,7 @@ package flexUnitTests
         public var eventsTest:EventsTest;
         public var objectUtilTests:ObjectUtilsTest;
         public var functionalTests:FunctionalTests;
+        public var taskTests:TaskTests;
 
     }
 }

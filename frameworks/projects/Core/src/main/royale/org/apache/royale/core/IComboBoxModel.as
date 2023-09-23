@@ -30,7 +30,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IComboBoxModel extends IEventDispatcher, IBeadModel
+	public interface IComboBoxModel extends IEventDispatcher, IBeadModel, IHasDataProvider
 	{
         // TODO: should extend ITextModel
         /**
@@ -54,27 +54,7 @@ package org.apache.royale.core
          */
 		function get html():String;
 		function set html(value:String):void;
-		
-        /**
-         *  The set of choices displayed in the ComboBox's
-         *  dropdown.  The dataProvider can be a simple 
-         *  array or vector if the set of choices is not
-         *  going to be modified (except by wholesale
-         *  replacement of the dataProvider).  To use
-         *  different kinds of data sets, you may need to
-         *  provide an alternate "mapping" bead that
-         *  iterates the dataProvider, generates item
-         *  renderers and assigns a data item to the
-         *  item renderers.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		function get dataProvider():Object;
-		function set dataProvider(value:Object):void;
-		
+				
         /**
          *  The index of the selected item in the
          *  dataProvider.  Values less than 0 can

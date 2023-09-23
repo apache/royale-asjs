@@ -37,6 +37,7 @@ internal class BasicClasses
 	import org.apache.royale.html.ToolTip; ToolTip;
 	import org.apache.royale.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
 	import org.apache.royale.html.accessories.RestrictTextInputBead; RestrictTextInputBead;
+	import org.apache.royale.html.accessories.RestrictToColorTextInputBead; RestrictToColorTextInputBead;
 	import org.apache.royale.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.royale.html.accessories.PasswordInputRemovableBead; PasswordInputRemovableBead;
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
@@ -168,6 +169,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.MultiSelectionTreeModel; MultiSelectionTreeModel;
 	import org.apache.royale.html.beads.models.MenuModel; MenuModel;
 	import org.apache.royale.html.beads.models.RangeModel; RangeModel;
+	import org.apache.royale.html.beads.models.DeferredRangeModel; DeferredRangeModel;
 	import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
 	import org.apache.royale.html.beads.models.ComboBoxModel; ComboBoxModel;
 	import org.apache.royale.html.beads.models.ViewportModel; ViewportModel;
@@ -358,7 +360,10 @@ internal class BasicClasses
 	COMPILE::JS
 	{
 		import org.apache.royale.html.util.DialogPolyfill; DialogPolyfill;
+		import org.apache.royale.html.beads.OverflowTooltipNeeded; OverflowTooltipNeeded;
 	}
+
+	import org.apache.royale.html.SimpleTextHighlighter; SimpleTextHighlighter;
 }
 
 }

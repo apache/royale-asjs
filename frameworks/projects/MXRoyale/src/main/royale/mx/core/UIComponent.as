@@ -114,7 +114,8 @@ import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
 import mx.display.NativeMenu;
-import mx.binding.BindingManager;
+import mx.binding.BindingManager2;
+import mx.managers.CursorManager;
 
 /**
  *  Set a different class for click events so that
@@ -960,7 +961,7 @@ public class UIComponent extends UIBase
     public function executeBindings(recurse:Boolean = false):void
     {
 	   var bindingsHost:Object = descriptor && descriptor.document ? descriptor.document : parentMxmlDocument;
-       BindingManager.executeBindings(bindingsHost, id, this);
+       BindingManager2.executeBindings(bindingsHost, id, this);
 	   //recurse = false;
 	   //trace("UIComponent.executeBindings is not implemented");
 	   
@@ -1158,7 +1159,10 @@ public class UIComponent extends UIBase
 		public function get graphics():Graphics
 		{
             if (_graphics == null)
+            {
                 _graphics = new mx.display.Graphics(this);
+                _graphics.clear();
+            }
 			return _graphics;
 		}
 
@@ -1166,7 +1170,10 @@ public class UIComponent extends UIBase
         public function get royalegraphics():mx.display.Graphics
         {
             if (_graphics == null)
+            {
                 _graphics = new mx.display.Graphics(this);
+                _graphics.clear();
+            }
             return _graphics;
         }            
             
@@ -2115,11 +2122,7 @@ public class UIComponent extends UIBase
      */
     public function get cursorManager():ICursorManager
     {
-        // TODO
-        trace("cursorManager not implemented");
-
-        return null;
-        //return CursorManager.getInstance();
+        return CursorManager.getInstance() as ICursorManager;
     }
 
     //----------------------------------
@@ -3828,7 +3831,7 @@ COMPILE::JS
      */
     private var _toolTip:String;
 	
-	private var _toolTipBead: ToolTipBead;
+	protected var _toolTipBead: ToolTipBead;
 	private var _disableBead: DisableBead;
 
     [Bindable("toolTipChanged")]
@@ -4083,7 +4086,14 @@ COMPILE::JS
     { override }
     public function getChildByName(name:String):IUIComponent
     {
-        trace("getChildByName not implemented");
+        for (var i:int = 0; i < numChildren; i++)
+        {
+            var child:IUIComponent = getChildAt(i);
+            if (child.name == name)
+            {
+                return child;
+            }
+        }
         return null;
     }
 

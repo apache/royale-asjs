@@ -415,5 +415,97 @@ package flexUnitTests.xml
 //but in JS, list.valueOf() == Null, because:
             assertTrue((Null == Undefined))//true
         }
+
+        [Test]
+        public function testListCoercion():void{
+            var node:XML = <type type="without name attribute"><val>2</val></type>;
+
+            var emptyList:XMLList = node.@name;
+            var typeList:XMLList = node.@type;
+            var someValList:XMLList;
+            var nullList:XMLList = null;
+
+            var str:String = emptyList;
+            assertTrue(str == '');
+
+            str = nullList;
+            assertTrue(str === null);
+
+            str = 'test'+emptyList;
+            assertTrue(str == 'test');
+
+            str = 'list '+typeList+emptyList;
+            assertTrue(str == 'list without name attribute');
+
+            str = typeList+emptyList + ' is how I would describe that node';
+            assertTrue(str == 'without name attribute is how I would describe that node');
+
+            var n:Number = Number(emptyList);
+            assertTrue(n == 0);
+
+            n = Number(nullList);
+            assertTrue(n == 0);
+
+            n = 1+emptyList;
+            assertTrue(n == 1);
+
+            var b:Boolean = Boolean(emptyList);
+            assertTrue(b === true);
+
+            b = emptyList || false;
+            assertTrue(b === true);
+
+            //non-empty coercion example
+            someValList = node.val;
+            n = 1+someValList; // this should be string concatenation ultimately coerced to Number
+            assertTrue(n === 12);
+
+            n = 1+nullList; // this should be string concatenation ultimately coerced to Number
+            assertTrue(n === 1);
+
+            //check again with inline lists
+            str = node.@name;
+            assertTrue(str == '');
+
+            str = 'test'+node.@name;
+            assertTrue(str == 'test');
+
+            str = 'list '+node.@type+node.@name;
+            assertTrue(str == 'list without name attribute');
+
+            str = node.@type + node.@name + ' is how I would describe that node';
+            assertTrue(str == 'without name attribute is how I would describe that node');
+
+            n = Number(node.@name);
+            assertTrue(n == 0);
+
+            n = 1 + node.@name;
+            assertTrue(n == 1);
+
+            n = 1+node.val;
+            assertTrue(n === 12);
+
+            //tests with non-XMLish member access
+            var thing:TestClassLocal = new TestClassLocal();
+            str = thing.myXMLList;
+            assertTrue(str === null);
+
+            thing.myXMLList = new XMLList();
+            str = thing.myXMLList;
+            assertTrue(str == '');
+
+            str = thing.myXMLList.notAChild;
+            assertTrue(str == '');
+            privateRef = thing;
+
+            var inst:XMLListTesterGeneralTest  = this;
+            str = inst.privateRef.myXMLList.notAChild;
+            assertTrue(str == '');
+        }
+        private var privateRef:TestClassLocal;
     }
+}
+class TestClassLocal {
+
+    public var myXMLList:XMLList;
 }

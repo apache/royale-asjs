@@ -1494,8 +1494,16 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
     override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var index:int = getElementIndex(c);
+        //the following is a quick fix for now, the selectedIndex is only "corrected" in childRemoveHandler, so temporarily set it to invalid for intermediate listeners
+        if (index <= selectedIndex) {
+            var repair:Boolean = true;
+             _selectedIndex = -1;
+        }
         super.removeElement(c, dispatchEvent);
         internalDispatchEvent(CollectionEventKind.REMOVE, c, index);
+        if (repair) {
+            _selectedIndex = index;
+        }
         childRemoveHandler(c as IUIComponent, index);
     }
 

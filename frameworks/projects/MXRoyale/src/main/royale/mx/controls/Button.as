@@ -385,14 +385,13 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 */
 	override public function set toolTip(value:String):void
 	{
-		super.toolTip = value;
-		
 		_toolTipBead = getBeadByType(ToolTipBead) as ToolTipBead;
 		if (_toolTipBead == null) {
 			_toolTipBead = new ToolTipBead();
 			addBead(_toolTipBead);
 		}
 		_toolTipBead.toolTip = value;
+		dispatchEvent(new Event("toolTipChanged"));
 	}
 	
 	override public function get toolTip():String

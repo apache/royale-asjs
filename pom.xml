@@ -29,7 +29,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -55,8 +55,8 @@
     <maven.version>3.5.4</maven.version>
 
     <royale.build-tools.version>1.2.1</royale.build-tools.version>
-    <project.royale.compiler.version>0.9.10-SNAPSHOT</project.royale.compiler.version>
-    <royale.typedefs.version>0.9.10-SNAPSHOT</royale.typedefs.version>
+    <project.royale.compiler.version>0.9.11-SNAPSHOT</project.royale.compiler.version>
+    <royale.typedefs.version>0.9.11-SNAPSHOT</royale.typedefs.version>
 
     <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>
@@ -64,8 +64,8 @@
     <repo.compiler.options />
 
     <flex.version>4.15.0</flex.version>
-    <flash.version>20.0</flash.version>
-    <air.version>20.0</air.version>
+    <flash.version>32.0</flash.version>
+    <air.version>32.0</air.version>
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
     <swf.version>31</swf.version>
     <source.map>true</source.map>
@@ -190,9 +190,9 @@
         </plugin>
 
         <plugin>
-          <groupId>nl.geodienstencentrum.maven</groupId>
-          <artifactId>sass-maven-plugin</artifactId>
-          <version>3.7.2</version>
+          <groupId>io.github.cleydyr</groupId>
+          <artifactId>dart-sass-maven-plugin</artifactId>
+          <version>0.3.0</version>
         </plugin>
 
         <plugin>
@@ -506,7 +506,7 @@
                 <dependency>
                   <groupId>org.apache.maven.scm</groupId>
                   <artifactId>maven-scm-provider-jgit</artifactId>
-                  <version>1.11.3-SNAPSHOT</version>
+                  <version>1.11.4-SNAPSHOT</version>
                 </dependency>
               </dependencies>
             </plugin>

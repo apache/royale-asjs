@@ -203,8 +203,8 @@ limitations under the License.
 		</js:Group>
 		
 		<google:Map id="map" className="MainMap"
-					token="AIzaSyDkQgg2iojLCYeuW6hK7DkuAHD-SwJJhdE" 
-					ready="onMapReady()"/>
+					token=""  
+					ready="onMapReady()"/> <!-- insert your token here -->
 		
 		<js:Group className="InnerBox">
 			<js:beads>

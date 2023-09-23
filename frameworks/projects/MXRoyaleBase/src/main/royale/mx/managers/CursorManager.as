@@ -24,6 +24,8 @@ import mx.core.IUIComponent;
 /* import mx.core.Singleton;
  */
  import mx.core.mx_internal;
+ import mx.core.FlexGlobals;
+ import org.apache.royale.core.IStrand;
 
 //--------------------------------------
 //  Styles
@@ -107,8 +109,8 @@ public class CursorManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public static const NO_CURSOR:int = 0;
-     */
+    public static const NO_CURSOR:int = 0;
+     /*
     //--------------------------------------------------------------------------
     //
     //  Class variables
@@ -139,8 +141,9 @@ public class CursorManager
     {
         if (!_impl)
         {
-            _impl = ICursorManager(
-                getInstance("mx.managers::ICursorManager"));
+            // _impl = ICursorManager(
+            //     getInstance("mx.managers::ICursorManager"));
+            _impl = (FlexGlobals.topLevelApplication as IStrand).getBeadByType(ICursorManager) as ICursorManager;
         }
 
         return _impl;
@@ -156,17 +159,18 @@ public class CursorManager
 	 *  This method should not be called at static initialization time,
 	 *  because the factory class may not have called registerClass() yet.
      */
-	 public static function getInstance(interfaceName:String):Object
+	 public static function getInstance(interfaceName:String=null):Object
     {
-	    var classMap:Object = {};
+	    // var classMap:Object = {};
 
-        var c:Class = classMap[interfaceName];
-		if (!c)
-		{
-			throw new Error("No class registered for interface '" +
-							interfaceName + "'.");
-		}
-		return c["getInstance"]();
+        // var c:Class = classMap[interfaceName];
+		// if (!c)
+		// {
+		// 	throw new Error("No class registered for interface '" +
+		// 					interfaceName + "'.");
+		// }
+		// return c["getInstance"]();
+        return impl;
     }
 	
     /**
@@ -408,11 +412,7 @@ public class CursorManager
      */
     public static function setBusyCursor():void 
     {
-        COMPILE::JS
-        {
-            document.body.style.cursor = "wait";        
-        }
-        // impl.setBusyCursor();
+        impl.setBusyCursor();
     }
 
     /**
@@ -429,11 +429,7 @@ public class CursorManager
      */
     public static function removeBusyCursor():void 
     {
-        COMPILE::JS
-        {
-            document.body.style.cursor = "auto";        
-        }
-        //impl.removeBusyCursor();
+        impl.removeBusyCursor();
     }
             
     

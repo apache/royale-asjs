@@ -10,6 +10,8 @@ amxmlc
 amxmlc.bat
 asformat
 asformat.bat
+aslint
+aslint.bat
 compc
 compc.bat
 fdb

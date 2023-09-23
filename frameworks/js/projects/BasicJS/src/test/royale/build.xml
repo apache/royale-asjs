@@ -30,65 +30,9 @@
     <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
     <property name="target.name" value="BasicJS-${release.version}.swc" />
 
-    <!--
-        Windows browser:
-            try chrome first because it's the most popular browser
-            otherwise, try to fall back to firefox
-            DON'T use internet explorer! it cannot run scripts in local pages
-    -->
-    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe">
-        <and>
-            <os family="windows"/>
-            <available file="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe"/>
-        </and>
-    </condition>
-    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe">
-        <and>
-            <os family="windows"/>
-            <available file="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe"/>
-        </and>
-    </condition>
-    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe">
-        <and>
-            <os family="windows"/>
-            <available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe"/>
-        </and>
-    </condition>
-    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe">
-        <and>
-            <os family="windows"/>
-            <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"/>
-        </and>
-    </condition>
-
-    <!--
-        macOS browser:
-            try chrome first because it's the most popular browser
-            otherwise, try to fall back to firefox
-            DON'T use safari! it asks the user to confirm opening local pages
-    -->
-    <condition property="royaleunit.browser" value="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome">
-        <and>
-            <os family="mac"/>
-            <available file="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"/>
-        </and>
-    </condition>
-    <condition property="royaleunit.browser" value="/Applications/Firefox.app/Contents/MacOS/firefox">
-        <and>
-            <os family="mac"/>
-            <available file="/Applications/Firefox.app/Contents/MacOS/firefox"/>
-        </and>
-    </condition>
-
-    <!--
-        Linux/Unix browser
-    -->
-    <condition property="royaleunit.browser" value="/usr/bin/firefox">
-        <and>
-            <os family="unix"/>
-            <available file="/usr/bin/firefox"/>
-        </and>
-    </condition>
+    <!-- if not set already, default to an empty string to use Playwright -->
+    <property name="royaleunit.browser" value=""/>
+    <property name="royaleunit.browser.args" value=""/>
 
     <property name="report.dir" value="${basedir}/out" />
 
@@ -110,6 +54,8 @@
     
     <path id="lib.path">
       <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+    </path>
+    <path id="royaleunit.lib.path">
       <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="royaleUnitTasks.jar"/>
     </path>
 
@@ -155,18 +101,21 @@
             if the royaleunit.browser property was provided manually,
             check if the file actually exists
         -->
-        <condition property="royaleunit.browser.exists">
-            <and>
-                <isset property="royaleunit.browser" />
-                <available file="${royaleunit.browser}" type="file" />
-            </and>
+        <condition property="royaleunit.browser.valid">
+            <or>
+                <!-- allow an empty string because it'll use Playwright in that case -->
+                <equals arg1="${royaleunit.browser}" arg2="" />
+                <and>
+                    <isset property="royaleunit.browser" />
+                    <available file="${royaleunit.browser}" type="file" />
+                </and>
+            </or>
         </condition>
-        
-        <fail unless="royaleunit.browser.exists" message="Invalid royaleunit.browser path: &quot;${royaleunit.browser}&quot;. To skip RoyaleUnit tests, use -Dskip-tests." />
+        <fail unless="royaleunit.browser.valid" message="Invalid royaleunit.browser path: &quot;${royaleunit.browser}&quot;. To skip RoyaleUnit tests, use -Dskip-tests." />
     </target>
 
     <target name="test" depends="check-royaleunit-browser"
-            if="royaleunit.browser.exists" unless="skip-tests"
+            unless="skip-tests"
             xmlns:if="ant:if" xmlns:unless="ant:unless">
 
         <macrodef name="debug.test">
@@ -178,6 +127,7 @@
                             player="html"
                             swf="${basedir}/target/bin/js-debug/index.html"
                             command="${royaleunit.browser}"
+                            commandArgs="${royaleunit.browser.args}"
                             workingDir="${basedir}"
                             toDir="${report.dir}"
                             haltonfailure="false"
@@ -195,13 +145,14 @@
 
         <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
-        <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
+        <taskdef resource="royaleUnitTasks.tasks" classpathref="royaleunit.lib.path"/>
 
         <mkdir dir="${report.dir}" />
         <royaleunit
                 player="html"
                 swf="${basedir}/target/bin/js-release/index.html"
                 command="${royaleunit.browser}"
+                commandArgs="${royaleunit.browser.args}"
                 workingDir="${basedir}"
                 toDir="${report.dir}"
                 haltonfailure="false"

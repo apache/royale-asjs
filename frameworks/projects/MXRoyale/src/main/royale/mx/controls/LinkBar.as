@@ -23,11 +23,15 @@ package mx.controls
 
 import mx.core.UIComponent;
 import mx.core.IUIComponent;
+import mx.events.ChildExistenceChangedEvent;
 import mx.events.MouseEvent;
 import mx.core.ClassFactory;
 import mx.core.EdgeMetrics;
 import mx.core.IFlexDisplayObject;
 import mx.core.mx_internal;
+
+import org.apache.royale.core.IUIBase;
+
 //import mx.events.ChildExistenceChangedEvent;
 import mx.events.FlexEvent;
 import mx.events.ItemClickEvent;
@@ -338,12 +342,11 @@ public class LinkBar extends NavBar
     public function LinkBar()
     {
         super();
-
-        /* navItemFactory = new ClassFactory(LinkButton);
-
+        this.typeNames += ' LinkBar';
+        navItemFactory = new ClassFactory(LinkButton);
         addEventListener(MouseEvent.CLICK, defaultClickHandler);
         addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, 
-                         childRemoveHandler); */
+                         childRemoveHandler);
     }
 
 	
@@ -600,11 +603,11 @@ public class LinkBar extends NavBar
 
         return newLink;
     }
-
+//DELTA
     /**
      *  @private
      */
-    /* override protected function hiliteSelectedNavItem(index:int):void
+     override protected function hiliteSelectedNavItem(index:int):void
     {
         var child:Button;
 
@@ -625,11 +628,11 @@ public class LinkBar extends NavBar
             child.enabled = false;
         }
     }
- */
+//DELTA
     /**
      *  @private
      */
-  /*   override protected function resetNavItems():void
+     override protected function resetNavItems():void
     {
         // Reset the index values and selection state.
         var n:int = numChildren;
@@ -641,21 +644,20 @@ public class LinkBar extends NavBar
 
         invalidateDisplayList();
     }
- */
     //--------------------------------------------------------------------------
     //
     //  Event handlers
     //
     //--------------------------------------------------------------------------
-
+//DELTA
     /**
      *  @private
      */
-   /*  private function childRemoveHandler(event:ChildExistenceChangedEvent):void
+     private function childRemoveHandler(event:ChildExistenceChangedEvent):void
     {
-        var child:DisplayObject = event.relatedObject;
+        var child:UIComponent = event.relatedObject;
         var index:int = getChildIndex(child);
-        var separator:DisplayObject =
+        /*var separator:DisplayObject =
             rawChildren.getChildByName(SEPARATOR_NAME + index);
         rawChildren.removeChild(separator);
 
@@ -665,20 +667,19 @@ public class LinkBar extends NavBar
         {
             rawChildren.getChildByName(SEPARATOR_NAME + (i + 1)).name =
                 SEPARATOR_NAME + i;
-        }
+        }*/
     
-    } */
+    }
 
     /**
      *  @private
      */
-  /*   private function defaultClickHandler(event:MouseEvent):void
+     private function defaultClickHandler(event:MouseEvent):void
     {
         // We do not want to propagate a MouseEvent.CLICK event up.
         if (!(event is ItemClickEvent))
             event.stopImmediatePropagation();
     }
-     */
     //--------------------------------------------------------------------------
     //
     //  Overridden event handlers: NavBar
@@ -688,7 +689,7 @@ public class LinkBar extends NavBar
     /**
      *  @private
      */
-    /* override protected function clickHandler(event:MouseEvent):void
+     override protected function clickHandler(event:MouseEvent):void
     {
         var index:int = getChildIndex(Button(event.currentTarget));
 
@@ -702,7 +703,7 @@ public class LinkBar extends NavBar
         }
         
         super.clickHandler(event);
-    } */
+    }
     
 }
 

@@ -19,6 +19,7 @@
 package mx.controls.listClasses
 {
 
+import org.apache.royale.utils.getOrAddBeadByType;
 import mx.collections.ArrayCollection;
 import mx.collections.ICollectionView;
 import mx.collections.IList;
@@ -60,6 +61,11 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.events.FlexEvent;
 import org.apache.royale.core.IHasLabelField;
+import org.apache.royale.html.beads.controllers.DropMouseController;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.utils.sendStrandEvent;
+import mx.core.DragSource;
+import org.apache.royale.events.DragEvent;
 
 use namespace mx_internal;
 
@@ -179,6 +185,27 @@ use namespace mx_internal;
 	{
 	   return null;
 	}
+
+    /**
+     *  @private
+     */
+    protected function setDropEnabled():void
+    {
+    }
+
+    /**
+     *  @private
+     */
+    protected function setDragMoveEnabled():void
+    {
+    }
+
+    /**
+     *  @private
+     */
+    protected function setDragEnabled():void
+    {
+    }
         //----------------------------------
         //  dragEnabled
         //----------------------------------
@@ -215,6 +242,10 @@ use namespace mx_internal;
         public function set dragEnabled(value:Boolean):void
         {
             _dragEnabled = value;
+            if (value)
+            {
+                setDragEnabled();
+            }
         }
         
         //----------------------------------
@@ -257,6 +288,10 @@ use namespace mx_internal;
         public function set dragMoveEnabled(value:Boolean):void
         {
             _dragMoveEnabled = value;
+            if (value)
+            {
+                setDragMoveEnabled();
+            }
         }
         
 	
@@ -424,6 +459,10 @@ use namespace mx_internal;
         public function set dropEnabled(value:Boolean):void
         {
             _dropEnabled = value;
+            if (value)
+            {
+                setDropEnabled();
+            }
         }
         
         //----------------------------------
@@ -922,9 +961,23 @@ use namespace mx_internal;
             // were made; these are just defaults extracted from CSS.
             loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", this);
             loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", this);
+            // Make sure list based components dispatch drop events to potential listeners
+            var dropMouseController:IEventDispatcher = getOrAddBeadByType(DropMouseController, this) as IEventDispatcher;
+			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_ENTER, handleDropControllerEvent);
+			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_EXIT, handleDropControllerEvent);
+			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_OVER, handleDropControllerEvent);
+			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_DROP, handleDropControllerEvent);
             
             dispatchEvent(new Event("initComplete"));
         }
+
+
+		private function handleDropControllerEvent(event:org.apache.royale.events.DragEvent):void
+		{
+            var dragInitiator:IUIComponent; // TODO...
+			var dragEvent:mx.events.DragEvent = new mx.events.DragEvent(event.type, false, true, dragInitiator, org.apache.royale.events.DragEvent.dragSource as DragSource);
+			dispatchEvent(dragEvent);
+		}
         
         /*
         * IItemRendererProvider
@@ -1134,7 +1187,7 @@ use namespace mx_internal;
         *  @playerversion AIR 1.1
         *  @productversion Flex 3
         */
-       public function hideDropFeedback(event:DragEvent):void
+       public function hideDropFeedback(event:mx.events.DragEvent):void
        {
            //To Do
            trace("hideDropFeedback is not implemented");

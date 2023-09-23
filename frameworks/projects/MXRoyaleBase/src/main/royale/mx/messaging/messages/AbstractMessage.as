@@ -527,13 +527,27 @@ public class AbstractMessage implements IMessage
             {
                 if ((flags & CLIENT_ID_BYTES_FLAG) != 0)
                 {
-                    clientIdBytes = input.readObject() as BinaryData;
+                    COMPILE::SWF
+                    {
+                        clientIdBytes = new BinaryData(input.readObject() as flash.utils.ByteArray);
+                    }
+                    COMPILE::JS
+                    {
+                        clientIdBytes = input.readObject() as BinaryData;
+                    }
                     clientId = RPCUIDUtil.fromBinary(clientIdBytes);
                 }
         
                 if ((flags & MESSAGE_ID_BYTES_FLAG) != 0)
                 {
-                    messageIdBytes = input.readObject() as BinaryData;
+                    COMPILE::SWF
+                    {
+                        messageIdBytes = new BinaryData(input.readObject() as flash.utils.ByteArray);
+                    }
+                    COMPILE::JS
+                    {
+                        messageIdBytes = input.readObject() as BinaryData;
+                    }
                     messageId = RPCUIDUtil.fromBinary(messageIdBytes);
                 }
 

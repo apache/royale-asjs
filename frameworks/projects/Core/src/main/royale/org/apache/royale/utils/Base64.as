@@ -40,6 +40,13 @@ package org.apache.royale.utils
 	public class Base64  
 	{  
 		
+		/**
+		 * Encodes a base64 string from a BinaryData.
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.10
+		 */
 		public static function encode(data:BinaryData):String  
 		{  
 			var out:BinaryData = new BinaryData();  
@@ -82,8 +89,27 @@ package org.apache.royale.utils
 			}  
 			
 			return out.readUTFBytes(out.length);  
-		}  
-		
+		}
+		/**
+		 * Encodes a base64 string from a String.
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.10
+		 */
+		public static function encodeFromString(data:String):String
+		{
+			var bytes:BinaryData = new BinaryData();
+			bytes.writeUTFBytes(data);
+			return encode(bytes);
+		}
+		/**
+		 * Decode a base64 encoded string to a BinaryData.
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.10
+		 */
 		public static function decode(str:String):BinaryData  
 		{  
 			var c1:int;  
@@ -149,7 +175,19 @@ package org.apache.royale.utils
 			byteString.position = 0;
 			return byteString;  
 		}  
-		
+		/**
+		 * Decodes a Base64 encoded string to a String.
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.10
+		 */
+		public static function decodeToString(str:String):String
+		{
+			var bytes:BinaryData = decode(str);
+			return bytes.readUTFBytes(bytes.length);
+		}
+
 		public static function InitEncoreChar():Vector.<int>  
 		{  
 			var encodeChars:Vector.<int> = new Vector.<int>(64, true);  
@@ -188,14 +226,14 @@ package org.apache.royale.utils
 			
 			return decodeChars;  
 		}  
-        private static var _encodeChars:Vector.<int>;
+		private static var _encodeChars:Vector.<int>;
 		private static function get encodeChars():Vector.<int>{
 			if(!_encodeChars){
 				_encodeChars = InitEncoreChar();
 			}
 			return _encodeChars;
 		}
-        private static var _decodeChars:Vector.<int>;
+		private static var _decodeChars:Vector.<int>;
 		private static function get decodeChars():Vector.<int>{
 			if(!_decodeChars){
 				_decodeChars = InitDecodeChar();

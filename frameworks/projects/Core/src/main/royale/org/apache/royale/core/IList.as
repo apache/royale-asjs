@@ -31,7 +31,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IList extends IItemRendererProvider
+	public interface IList extends IItemRendererProvider, IHasDataProvider
 	{
 		
 	}

@@ -144,6 +144,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IParentIUIBase; IParentIUIBase;
 	import org.apache.royale.core.IPopUp; IPopUp;
 	import org.apache.royale.core.IRangeModel; IRangeModel;
+	import org.apache.royale.core.IDeferredModel; IDeferredModel;
 	import org.apache.royale.core.IState; IState;
 	import org.apache.royale.core.ISWFApplication; ISWFApplication;
 	import org.apache.royale.core.ITransformModel; ITransformModel;
@@ -331,6 +332,7 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.measureComponent; measureComponent;
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
+	import org.apache.royale.utils.getOrAddBeadByType; getOrAddBeadByType;
 	import org.apache.royale.utils.removeBeadFromBeads;removeBeadFromBeads;
 	import org.apache.royale.utils.HSV; HSV;
 	import org.apache.royale.utils.rgbToHsv; rgbToHsv;
@@ -363,6 +365,7 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.number.pinValue; pinValue;
 	import org.apache.royale.utils.number.getPercent; getPercent;
+	import org.apache.royale.utils.number.toDecimals; toDecimals;
 
 	import org.apache.royale.utils.event.hasPlatformModifier; hasPlatformModifier;
 	import org.apache.royale.utils.sendEvent; sendEvent;
@@ -371,6 +374,9 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.async.CompoundAsyncTask; CompoundAsyncTask;
 	import org.apache.royale.utils.async.SequentialAsyncTask; SequentialAsyncTask;
+	import org.apache.royale.utils.async.PromiseTask; PromiseTask;
+	import org.apache.royale.utils.async.taskToPromise; taskToPromise;
+	import org.apache.royale.utils.async.promiseToTask; promiseToTask;
 
 	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
 

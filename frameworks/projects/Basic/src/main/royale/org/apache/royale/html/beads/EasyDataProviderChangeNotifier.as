@@ -68,13 +68,13 @@ package org.apache.royale.html.beads
 				if (!dataProvider && !changeEventName)
 					selectionModel.addEventListener("dataProviderChanged", setFirstDataProvider);
 				
-			} else
+			}
+			else
 			{
 				if(dataProvider == selectionModel.dataProvider)
 					return;
 				detachEventListeners();
 				setDataProvider();
-				attachEventListeners();
 			}
 		}
 		
@@ -91,7 +91,9 @@ package org.apache.royale.html.beads
 		{
 			dataProvider = selectionModel.dataProvider as IArrayList;
 			if(dataProvider)
+			{
 				attachEventListeners();
+			}
 		}
 		
 		/**

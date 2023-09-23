@@ -52,9 +52,43 @@ public class Resize extends org.apache.royale.effects.Resize
      */
     public function Resize(target:IUIBase = null)
     {
-        super(IUIBase);
+        super(target);
+    }
 
-		
+    private var _originalHeightBy:Number;
+    private var _originalWidthBy:Number;
+    private var _started:Boolean;
+    /**
+     *  @private
+     *  Store values that might change by parent class
+     */
+    override public function play():void
+    {
+        if (_started)
+        {
+            resetValues();
+        } else 
+        {
+            _originalHeightBy = heightBy;
+            _originalWidthBy = widthBy;
+            _started = true;
+        }
+        super.play();
+    }
+
+    override public function onTweenEnd(value:Number):void
+    {
+        super.onTweenEnd(value);
+        resetValues();
+        _started = false;
+    }
+
+    private function resetValues():void
+    {
+        // These public properties may have been internally changed by parent class
+        // TODO refactor mx effects to use mx tween
+        heightBy = _originalHeightBy;
+        widthBy = _originalWidthBy;
     }
    
 }

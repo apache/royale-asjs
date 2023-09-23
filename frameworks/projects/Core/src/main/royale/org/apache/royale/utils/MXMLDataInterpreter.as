@@ -120,6 +120,50 @@ public class MXMLDataInterpreter
                 else
                     comp[name] = value;
             }
+
+            m = data[i++]; // num styles
+            for (j = 0; j < m; j++)
+            {
+                name = data[i++];
+                simple = data[i++];
+                value = data[i++];
+                if (simple == null)
+                    value = generateMXMLArray(document, null, value as Array);
+                else if (simple == false)
+                    value = generateMXMLObject(document, value as Array);
+                comp.setStyle(name, value);
+            }
+
+            COMPILE::SWF
+            {
+                m = data[i++]; // num effects
+                for (j = 0; j < m; j++)
+                {
+                    name = data[i++];
+                    simple = data[i++];
+                    value = data[i++];
+                    if (simple == null)
+                        value = generateMXMLArray(document, null, value as Array);
+                    else if (simple == false)
+                        value = generateMXMLObject(document, value as Array);
+                    comp.setStyle(name, value);
+                }
+            }
+
+            m = data[i++]; // num events
+            for (j = 0; j < m; j++)
+            {
+                name = data[i++];
+                value = data[i++];
+                COMPILE::SWF
+                {
+                    comp.addEventListener(name, value);
+                }
+                COMPILE::JS
+                {
+                    comp.addEventListener(name, goog.bind(value as Function, document));
+                }
+            }
             if (id)
                 document[id] = comp;
 

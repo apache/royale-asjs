@@ -110,6 +110,8 @@ package
         public static const EXTENSION:String = 'extension';
 
         public static const FACE:String = 'face';
+        public static const SUPPORT_AGENT:String = 'support_agent';
+        public static const ENGINEERING:String = 'engineering';
         public static const FAVORITE:String = 'favorite';
         public static const FAVORITE_BORDER:String = 'favorite_border';
         public static const FEEDBACK:String = 'feedback';

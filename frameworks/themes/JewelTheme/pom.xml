@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>themes</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.11-SNAPSHOT</version>
   </parent>
 
   <artifactId>JewelTheme</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Themes: JewelTheme</name>
@@ -73,14 +73,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -88,24 +88,47 @@
 
   <profiles>
     <profile>
+      <id>option-with-sass-compile</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>io.github.cleydyr</groupId>
+            <artifactId>dart-sass-maven-plugin</artifactId>
+            <configuration>
+              <inputFolder>src/main/sass</inputFolder>
+              <outputFolder>src/main/resources</outputFolder>
+            </configuration>
+            <executions>
+              <execution>
+                <id>generate-css-using-sass</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>compile-sass</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
       <id>option-with-swf</id>
       <dependencies>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Language</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
       </dependencies>
     </profile>
   </profiles>
-
 <properties /></project>

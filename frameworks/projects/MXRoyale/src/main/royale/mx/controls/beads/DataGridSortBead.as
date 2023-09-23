@@ -64,6 +64,7 @@ package mx.controls.beads
 		 */
 		private function mouseClickHandler(event:MouseEvent):void
 		{
+			if (!dg.sortableColumns) return; //bail early
 			var dgView:DataGridView = dg.view as DataGridView;
 			var buttonBar:DataGridButtonBar = (dgView.header as DataGridButtonBar);
 			// probably down on one button and up on another button

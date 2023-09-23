@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.11-SNAPSHOT</version>
   </parent>
 
   <artifactId>Jewel</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Jewel</name>
@@ -64,35 +64,24 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <!-- <additionalCompilerOptions>
-            -source-map=true;
-            -source-map-source-root=/frameworks/projects/Jewel/src/main/royale/
-          </additionalCompilerOptions> -->
+          <additionalCompilerOptions>${project.compiler.options}</additionalCompilerOptions>
         </configuration>
       </plugin>
       <plugin>
-        <groupId>nl.geodienstencentrum.maven</groupId>
-        <artifactId>sass-maven-plugin</artifactId>
+        <groupId>io.github.cleydyr</groupId>
+        <artifactId>dart-sass-maven-plugin</artifactId>
+        <version>0.3.0</version>
         <configuration>
-          <resources>
-              <resource>
-                  <source>
-                      <directory>${basedir}/src/main/sass</directory>
-                      <includes>
-                          <include>**/*.sass</include>
-                      </includes>
-                  </source>
-                  <destination>${basedir}/src/main/resources</destination>
-              </resource>
-          </resources>
+          <inputFolder>${basedir}/src/main/sass</inputFolder>
+          <outputFolder>${basedir}/src/main/resources</outputFolder>
         </configuration>
         <executions>
           <execution>
-              <id>generate-css-using-sass</id>
-              <goals>
-                  <goal>update-stylesheets</goal>
-              </goals>
+            <id>generate-css-using-sass</id>
             <phase>generate-resources</phase>
+            <goals>
+              <goal>compile-sass</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
@@ -132,49 +121,56 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>HTML5</artifactId>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.9.10-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -182,90 +178,61 @@
 
   <profiles>
     <profile>
-      <id>platform-windows</id>
-      <activation>
-        <os>
-          <family>windows</family>
-        </os>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>nl.geodienstencentrum.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>generate-css-using-sass</id>
-                <goals>
-                  <goal>update-stylesheets</goal>
-                </goals>
-                <phase>generate-resources</phase>
-                <configuration>
-                  <sassOptions>
-                    <!-- on windows it is typical to have autoCRLF=true,
-                    so we don't want to overwrite
-                    the CRLF newlines with unix newlines (which is true by default)
-                    locally, because that will change git status of the css file
-                    on windows
-                    -->
-                    <unix_newlines>false</unix_newlines>
-                  </sassOptions>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>option-with-swf</id>
       <dependencies>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Binding</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Graphics</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Collections</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>HTML</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>HTML5</artifactId>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Formatters</artifactId>
-          <version>0.9.10-SNAPSHOT</version>
+          <version>0.9.11-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>

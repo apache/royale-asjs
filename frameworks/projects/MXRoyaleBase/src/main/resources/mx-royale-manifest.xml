@@ -51,6 +51,7 @@
 	<component id="AMFChannel" 							class="mx.messaging.channels.AMFChannel" />
 	<component id="ChannelSet" 							class="mx.messaging.ChannelSet" />
 	<component id="Consumer" 							class="mx.messaging.Consumer" />
+	<component id="Producer" 							class="mx.messaging.Producer" />
 
 	<!-- rpc -->
 	<component id="AsyncToken" 							class="mx.rpc.AsyncToken" />
@@ -70,6 +71,8 @@
 	<component id="DateValidator" 						class="mx.validators.DateValidator"/>
 	<component id="EmailValidator" 						class="mx.validators.EmailValidator"/>
 	<component id="ZipCodeValidator" 					class="mx.validators.ZipCodeValidator"/>
+	<component id="CursorManagerImpl" 					class="mx.managers.CursorManagerImpl"/>
+	<component id="DragManagerImpl" 					class="mx.managers.DragManagerImpl"/>
 
 
 </componentPackage>

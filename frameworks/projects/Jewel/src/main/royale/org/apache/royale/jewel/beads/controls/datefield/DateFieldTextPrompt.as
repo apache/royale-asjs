@@ -22,9 +22,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 	{
 	import flash.utils.setTimeout;
     }
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
-	import org.apache.royale.jewel.beads.views.DateFieldView;
+	import org.apache.royale.jewel.beads.controls.TextInputSubControlTextPrompt;
 	
 	/**
 	 *  The DateFieldTextPrompt class is a specialty bead that can be used with
@@ -36,7 +34,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldTextPrompt extends TextPrompt
+	public class DateFieldTextPrompt extends TextInputSubControlTextPrompt
 	{
 		/**
 		 *  constructor.
@@ -48,20 +46,6 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 */
 		public function DateFieldTextPrompt()
 		{
-		}
-
-		/**
-         *  @copy org.apache.royale.jewel.beads.controls.textinput.TextPrompt#updatePromptText()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-		COMPILE::JS
-		override protected function updatePromptText():void
-		{
-			((_strand as UIBase).view as DateFieldView).textInput.input.placeholder = prompt;
 		}
 	}
 }

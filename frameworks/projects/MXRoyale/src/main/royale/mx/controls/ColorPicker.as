@@ -19,10 +19,15 @@
 
 package mx.controls
 {
-	import org.apache.royale.events.Event;
+    import org.apache.royale.events.Event;
     import org.apache.royale.core.IColorModel;
 	//import mx.controls.ComboBase;
     import mx.core.UIComponent;
+    import mx.controls.colorPickerClasses.WebSafePalette;
+    import mx.controls.beads.ColorPickerView;
+    import org.apache.royale.core.ISelectionModel;
+    import mx.events.FlexEvent;
+    import mx.controls.beads.HideComboPopupOnMouseDownBead;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -34,7 +39,6 @@ import flash.geom.Rectangle;
 import flash.ui.Keyboard;
 import flash.utils.getTimer;
 import mx.controls.colorPickerClasses.SwatchPanel;
-import mx.controls.colorPickerClasses.WebSafePalette;
 import mx.core.LayoutDirection;
 import mx.core.UIComponent;
 import mx.core.UIComponentGlobals;
@@ -500,10 +504,11 @@ public class ColorPicker extends UIComponent //ComboBase
     public function ColorPicker()
     {
         super();
+        addBead(new HideComboPopupOnMouseDownBead());
 
         typeNames = "ColorPicker";
-        //if (!isModelInited)
-        //    loadDefaultPalette();
+        if (!isModelInited)
+           loadDefaultPalette();
 
         // Make editable false so that focus doesn't go
         // to the comboBase's textInput which is not used by CP
@@ -555,7 +560,7 @@ public class ColorPicker extends UIComponent //ComboBase
     /**
      *  @private
      */
-    //private var isModelInited:Boolean = false;
+    private var isModelInited:Boolean = false;
 
     /**
      *  @private
@@ -626,8 +631,8 @@ public class ColorPicker extends UIComponent //ComboBase
     //  selectedColor
     //----------------------------------
 
-    //[Bindable("change")]
-    //[Bindable("valueCommit")]
+    [Bindable("change")]
+    [Bindable("valueCommit")]
     //[Inspectable(category="General", defaultValue="0", format="Color")]
 
     /**
@@ -664,20 +669,25 @@ public class ColorPicker extends UIComponent //ComboBase
         else
         {
             indexFlag = false;
-        }
+        } */
         if (value != selectedColor)
         {
-            _selectedColor = value;
+            //selectedColor = value;
 
             //updateColor(value);
 
             //if (dropdownSwatch)
             //    dropdownSwatch.selectedColor = value;
+            //quick fix: avoid dispatch of 'change' events from ColorPickerView, which should only be from user-initiated changes:
+            (view as ColorPickerView).programmaticChange = true;
+            (model as IColorModel).color = value;
+            //reset the flag so user-initiated changes will dispatch subsequent changes:
+            (view as ColorPickerView).programmaticChange = false;
+            //programmatic changes dispatch 'valueCommit' as they do in Flex, to ensure bindings work for them also:
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
         }
 
         //dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-        */
-        (model as IColorModel).color = value;
     }
     
     public function get selectedItem():Object
@@ -689,6 +699,46 @@ public class ColorPicker extends UIComponent //ComboBase
     {
         (model as IColorModel).color = uint(value);
     }
+
+    /**
+     *  @private
+     *  Load Default Palette
+     */
+    private function loadDefaultPalette():void
+    {
+        // Initialize default swatch list
+        if (!dataProvider || dataProvider.length < 1)
+        {
+            var wsp:WebSafePalette = new WebSafePalette();
+            dataProvider = wsp.getList();
+        }
+    }
+    //----------------------------------
+    //  dataProvider
+    //----------------------------------
+
+    [Bindable("collectionChange")]
+    [Inspectable(category="Data")]
+
+    /**
+     *  @private
+     *  The dataProvider for the ColorPicker control.
+     *  The default dataProvider is an Array that includes all
+     *  the web-safe colors.
+     *
+     *  @helpid 4929
+     */
+    public function set dataProvider(value:Object):void
+    {
+        (model as ISelectionModel).dataProvider = value;
+        isModelInited = true;
+    }
+
+    public function get dataProvider():Object
+    {
+        return (model as ISelectionModel).dataProvider;
+    }
+
 }
 
 } 

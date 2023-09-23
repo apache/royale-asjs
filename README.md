@@ -1,7 +1,7 @@
 # Apache Royale&trade;
-[![Build Status](https://builds.apache.org/job/Royale-asjs/lastSuccessfulBuild/badge/icon)](https://builds.apache.org/job/Royale-asjs/)
+[![Build Status](https://builds.apache.org/job/Royale/job/Royale-asjs/lastSuccessfulBuild/badge/icon)](https://builds.apache.org/job/Royale-asjs/)
 
-The Apache Royale project is developing a next-generation of the Apache Flex&trade; SDK: . Royale has the goal of allowing applications developed in MXML and ActionScript to not only run in the Flash/AIR runtimes, but also to run natively in the browser without Flash, on mobile devices as a PhoneGap/Cordova application, and in embedded JS environments such as Chromium Embedded Framework. Royale has the potential to allow your MXML and ActionScript code to run in even more places than Flash currently does.
+The [Apache Royale](https://royale.apache.org/) project is developing a next-generation of the Apache Flex&trade; SDK. Royale has the goal of allowing applications developed in MXML and ActionScript to not only run in the Flash/AIR runtimes, but also to run natively in the browser without Flash, on mobile devices as a PhoneGap/Cordova application, and in embedded JS environments such as Chromium Embedded Framework. Royale has the potential to allow your MXML and ActionScript code to run in even more places than Flash currently does.
 
 For detailed information about using Royale, visit:
 
@@ -33,7 +33,7 @@ Before building Royale you must install the following software and set the corre
 
 Royale requires Java SDK 1.8 or greater to be installed on your computer. For more information on installing the Java SDK, see:
 
-<http://www.oracle.com/technetwork/java/javase/downloads/index.html>
+<https://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
 - **Environment variable**
 
@@ -59,7 +59,7 @@ The Royale Ant build requires Ant 1.8 or greater to be installed on your compute
 
 For more information on installing Ant, see:
 
-<http://ant.apache.org/>
+<https://ant.apache.org/>
 
 - **Environment variable**
 
@@ -83,13 +83,13 @@ For more information on installing Ant, see:
 
 ### *playerglobal.swc*
 
-The Adobe Flash Player *playerglobal.swc* (version 11.1) can be downloaded from:
+The Adobe Flash Player *playerglobal.swc* (version 32.0) can be downloaded from:
 
-<http://fpdownload.macromedia.com/get/flashplayer/installers/archive/playerglobal/playerglobal11_1.swc>
+<https://fpdownload.macromedia.com/get/flashplayer/updaters/32/playerglobal32_0.swc>
 
 First, create the following directory structure:
 
-*[root directory]/player/11.1/*
+*[root directory]/player/32.0/*
 
 Next, rename the downloaded SWC to '*playerglobal.swc*' and place it in the above directory.
 
@@ -97,16 +97,18 @@ Next, rename the downloaded SWC to '*playerglobal.swc*' and place it in the abov
 
   Set **PLAYERGLOBAL_HOME** environment variable to the absolute path of the player directory, not including the version subdirectory (i.e. '*[root directory]/player*').
 
-Other, more recent versions of Adobe Flash Player *playerglobal.swc* can be downloaded from http://<i></i>download.macromedia.com/get/flashplayer/updaters/[version.major]/playerglobal[version.major]\_[version.minor].swc (e.g. <http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>). These versions can be used with Royale, but not all have been fully tested.
-
 
 ### Flash Player Content Debugger
 
-The Flash Player Content Debugger can be found here:
+The Adobe Flash Player Content Debugger can be found here:
 
-<http://www.adobe.com/support/flashplayer/downloads.html>
+Windows: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flashplayer_32_sa_debug.exe>
 
-This version of Royale was certified for use with Flash Player 11.1, and is compatible with version 10.2 and up. It has been tested with version 16.0 on Windows and Mac. It has been compiled, but not fully tested, with other Flash Player versions. It has not been fully tested on Linux.
+Mac: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flashplayer_32_sa_debug.dmg>
+
+Linux: <https://fpdownload.macromedia.com/pub/flashplayer/updaters/32/flash_player_sa_linux_debug.x86_64.tar.gz>
+
+This version of Royale was certified for use with Flash Player 32.0, and is compatible with version 10.2 and up. It has been compiled, but not fully tested, with other Flash Player versions. It has not been fully tested on Linux.
 
 - **Environment variable**
 
@@ -118,13 +120,11 @@ This version of Royale was certified for use with Flash Player 11.1, and is comp
 
 ### Adobe AIR Integration Kit (optional, for SWF output only)
 
-This version of Apache Royale was certified for use with Adobe AIR 16 and is compatible with version 3.1 and up. The Adobe AIR integration kit can be downloaded from:
+This version of Apache Royale was certified for use with Adobe AIR 32.0 and is compatible with version 3.1 and up. The Adobe AIR integration kit can be downloaded from:
 
-Windows: <http://airdownload.adobe.com/air/win/download/16.0/AdobeAIRSDK.zip>
+Windows: <https://airdownload.adobe.com/air/win/download/32.0/AdobeAIRSDK.zip>
 
-Mac: <http://airdownload.adobe.com/air/mac/download/16.0/AdobeAIRSDK.tbz2>
-
-Linux: <http://airdownload.adobe.com/air/lin/download/2.6/AdobeAIRSDK.tbz2>
+Mac: <https://airdownload.adobe.com/air/mac/download/32.0/AdobeAIRSDK.dmg>
 
 After you download the AIR SDK, unzip it and place it in a directory of your choice.
 
@@ -185,7 +185,8 @@ sudo npm install @apache-royale/royale-js -g
 or for both JS and SWF output:
 
 ```bash
-sudo npm install @apache-royale/royale-js-swf -g
+sudo npm install @apache-royale/royale-js-swf -g --foreground-scripts
+```
 
 - Windows
 ```bash
@@ -193,7 +194,7 @@ npm install @apache-royale/royale-js -g
 ```
 or for both JS and SWF output:
 ```bash
-npm install @apache-royale/royale-js-swf -g
+npm install @apache-royale/royale-js-swf -g --foreground-scripts
 ```
 
 ### Maven

@@ -519,11 +519,11 @@ public class ProgressBar extends UIComponent //implements IFontContextComponent
 //                 value :
 //                 resourceManager.getString(
 //                     "controls", "label");
-		_label = value;
+		_label = value != null ? value : 'LOADING %3%%'; //text literal used here as default is en_US controls.label property from Flex
 
 		COMPILE::JS 
 		{
-			(view as ProgressBarView).text = value;
+			(view as ProgressBarView).text = getFullLabelText();
 		}
 		
         invalidateDisplayList();
@@ -982,6 +982,10 @@ public class ProgressBar extends UIComponent //implements IFontContextComponent
             }
 
             //invalidateDisplayList();
+            COMPILE::JS
+            {
+                (view as ProgressBarView).text = getFullLabelText();
+            }
         }
     }
 
@@ -1068,77 +1072,78 @@ public class ProgressBar extends UIComponent //implements IFontContextComponent
     /**
      *  @private
      */
-//    private function getFullLabelText():String
-//    {
-//        var current:Number = Math.max(_value /* - _minimum */,0);
-//        var total:Number = Math.max(_maximum /* - _minimum */,0);
-//        var labelText:String = label;
-//
-//        if (labelText)
-//        {
-//            if (_indeterminate)
-//            {
-//                labelText = labelText.replace("%1", String(Math.floor(current / _conversion)));
-//                labelText = labelText.replace("%2", "??");
-//                labelText = labelText.replace("%3", "");
-//                labelText = labelText.replace("%%", "");
-//            }
-//            else
-//            {
-//                labelText = labelText.replace("%1", String(Math.floor(current / _conversion)));
-//                labelText = labelText.replace("%2", String(Math.floor(total / _conversion)));
-//                labelText = labelText.replace("%3", String(Math.floor(percentComplete)));
-//                labelText = labelText.replace("%%", "%");
-//            }
-//        }
-//
-//        return labelText;
-//    }
+    private function getFullLabelText():String
+    {
+        var current:Number = Math.max(_value /* - _minimum */,0);
+        var total:Number = Math.max(_maximum /* - _minimum */,0);
+        var labelText:String = label;
+
+        if (labelText)
+        {
+            if (_indeterminate)
+            {
+                labelText = labelText.replace("%1", String(Math.floor(current / _conversion)));
+                labelText = labelText.replace("%2", "??");
+                labelText = labelText.replace("%3", "");
+                labelText = labelText.replace("%%", "");
+            }
+            else
+            {
+                labelText = labelText.replace("%1", String(Math.floor(current / _conversion)));
+                labelText = labelText.replace("%2", String(Math.floor(total / _conversion)));
+                labelText = labelText.replace("%3", String(Math.floor(percentComplete)));
+                labelText = labelText.replace("%%", "%");
+            }
+        }
+
+        return labelText;
+    }
 
     /**
      *  @private
      *  Make a good guess at the largest size of the label based on which placeholders are present
+     *  ...used for measurement, @todo:
      */
-//    private function predictLabelText():String
-//    {
-//        // The label will be null if there are no resources.
-//        if (label == null)
-//            return "";
-//        
-//        var labelText:String = label;
-//    
-//        var largestValue:Number;
-//        if (_maximum != 0)
-//            largestValue = _maximum;
-//        else
-//            largestValue = 100000;
-//
-//        if (labelText)
-//        {
-//            if (_indeterminate)
-//            {
-//                labelText = labelText.replace("%1", String(Math.floor(largestValue / _conversion)));
-//                labelText = labelText.replace("%2", "??");
-//                labelText = labelText.replace("%3", "");
-//                labelText = labelText.replace("%%", "");
-//            }
-//            else
-//            {
-//                labelText = labelText.replace("%1", String(Math.floor(largestValue / _conversion)));
-//                labelText = labelText.replace("%2", String(Math.floor(largestValue / _conversion)));
-//                labelText = labelText.replace("%3", "100");
-//                labelText = labelText.replace("%%", "%");
-//            }
-//        }
-//
-//        var actualText:String = getFullLabelText();
-//
-//        // Return the longer of the two strings
-//        if (labelText.length > actualText.length)
-//            return labelText;
-//        else
-//            return actualText;
-//    }
+    /*private function predictLabelText():String
+    {
+       //  The label will be null if there are no resources.
+        if (label == null)
+            return "";
+
+        var labelText:String = label;
+
+        var largestValue:Number;
+        if (_maximum != 0)
+            largestValue = _maximum;
+        else
+            largestValue = 100000;
+
+        if (labelText)
+        {
+            if (_indeterminate)
+            {
+                labelText = labelText.replace("%1", String(Math.floor(largestValue / _conversion)));
+                labelText = labelText.replace("%2", "??");
+                labelText = labelText.replace("%3", "");
+                labelText = labelText.replace("%%", "");
+            }
+            else
+            {
+                labelText = labelText.replace("%1", String(Math.floor(largestValue / _conversion)));
+                labelText = labelText.replace("%2", String(Math.floor(largestValue / _conversion)));
+                labelText = labelText.replace("%3", "100");
+                labelText = labelText.replace("%%", "%");
+            }
+        }
+
+        var actualText:String = getFullLabelText();
+
+     //    Return the longer of the two strings
+        if (labelText.length > actualText.length)
+            return labelText;
+        else
+            return actualText;
+    }*/
 
     /**
      *  @private

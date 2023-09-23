@@ -21,20 +21,17 @@ var npm = require('npm');
 var fs = require('fs');
 var args = require('yargs').argv;
 
+var token = args.token;
 var username = args.username;
-var password = args.password;
 var pathToTarball = args.pathToTarball;
 var type = args.type;
 var npmURL = 'https://registry.npmjs.org';
 var tag = args.tag || 'latest';
-var auth = {username: username, password:password, email: 'dev@royale.apache.org', tag: tag};
+var auth = {token: token, username: username, tag: tag};
 var addUserParams = {auth:auth};
 
-if (!username) {
-    throw new Error('Username is required as an argument --username');
-}
-if (!password) {
-    throw new Error('Password is required as an argument --password');
+if (!token) {
+    throw new Error('Token is required as an argument --token');
 }
 if (!pathToTarball) {
     throw new Error('Path to tarball is required as an argument --pathToTarball');
@@ -46,10 +43,10 @@ if (!type) {
 try {
 	var RegClient = require('npm-registry-client');
 	var client = new RegClient();
-	client.adduser(npmURL, addUserParams, function(error) {
-		    if (error)
-			    throw new Error(error);
-	});
+	//client.adduser(npmURL, addUserParams, function(error) {
+		    //if (error)
+			    //throw new Error(error);
+	//});
 	/*
     npm.load(null,function(loadError) {
         if (loadError) {

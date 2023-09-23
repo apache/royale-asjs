@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-	import org.apache.royale.jewel.beads.controls.InputAndButtonControlDisabled;
+	import org.apache.royale.jewel.beads.controls.TextInputAndButtonControlDisabled;
 	
 	/**
 	 *  The ComboBoxDisabled bead class is a specialty bead that can be used to disable a Jewel ComboBox.
@@ -28,7 +28,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ComboBoxDisabled extends InputAndButtonControlDisabled
+	public class ComboBoxDisabled extends TextInputAndButtonControlDisabled
 	{
 		/**
 		 *  constructor.

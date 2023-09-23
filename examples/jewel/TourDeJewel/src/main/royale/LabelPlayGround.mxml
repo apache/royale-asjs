@@ -71,8 +71,10 @@ limitations under the License.
 				<j:Label text="This is a multiline label with more text that wraps if container has set a width" multiline="true"/>
 
 				<j:Label>
-					<j:html><![CDATA[<p>This is <strong><font size='16'>{a_string}</font></strong><br>using inline <u>HTML</u></p>]]></j:html>
+					<j:html><![CDATA[<p>This is <strong><font size='16'>a Label</font></strong><br>using inline <u>HTML</u></p>]]></j:html>
 				</j:Label>
+
+				<j:Label html="&lt;p&gt;This is &lt;strong&gt;&lt;font size='16'&gt;{a_string}&lt;/font&gt;&lt;/strong&gt;&lt;br&gt;using inline &lt;u&gt;HTML&lt;/u&gt; with binding&lt;/p&gt;"/>
 			</j:Card>
         </j:GridCell>
 	</j:Grid>

@@ -116,6 +116,8 @@ adg|AdvancedDataGridHeaderRenderer {
 Application
 {
 	IBeadLayout: ClassReference("mx.containers.beads.ApplicationLayout");
+	ICursorManager: ClassReference("mx.managers.CursorManagerImpl");
+	IDragManager: ClassReference("mx.managers.DragManagerImpl");
 }
 
 AdvancedDataGrid
@@ -205,10 +207,17 @@ CheckBox
 
 ColorPicker
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.ColorPickerView");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
-	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ColorPickerPopUp");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListColorSelectionModel");
+	IBeadView: ClassReference("mx.controls.beads.ColorPickerView");
+	IBeadController: ClassReference("mx.controls.beads.ColorPickerController");
+	IPopUp: ClassReference("mx.controls.beads.ColorPickerPopUp");
+}
+
+Basic|ColorPalette
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayListSelectionModel");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayList");
+	IBeadView: ClassReference("mx.controls.beads.ListView");
 }
 
 ComboBox
@@ -315,6 +324,11 @@ containerBeads|FormItemContainer
 containerBeads|PanelInternalContainer
 {
 	IBeadView: ClassReference("mx.containers.beads.PanelInternalContainerView");
+}
+
+HRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
 }
 
 Image
@@ -462,8 +476,9 @@ MenuBarItemRenderer
 
 NumericStepper
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DeferredRangeModel");
 	IBeadView: ClassReference("mx.controls.beads.NumericStepperView");
+	IBeadController: ClassReference("mx.controls.beads.NumericStepperController");
 }
 
 Panel
@@ -491,7 +506,7 @@ Panel .TitleBar
 PanelTitleBar
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TitleBarModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.TitleBarView");
+	IBeadView: ClassReference("mx.controls.beads.TitleBarView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout");
 	iMeasurementBead: ClassReference("org.apache.royale.html.beads.TitleBarMeasurementBead");
 	background-color: #E2E2E2;
@@ -656,6 +671,11 @@ ViewStack
 {
 	IBeadLayout: ClassReference("mx.containers.beads.BoxLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+}
+
+VRule {
+	stroke-width: 2px;
+	stroke-color: #C4CCCC
 }
 
 charts|ChartBase
@@ -1128,5 +1148,6 @@ charts|DataTip
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
 	}
+
 
 }

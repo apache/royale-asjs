@@ -22,17 +22,26 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.10-SNAPSHOT</version>
+    <version>0.9.11-SNAPSHOT</version>
   </parent>
 
   <artifactId>themes</artifactId>
-  <version>0.9.10-SNAPSHOT</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Themes</name>
 
   <properties>
-    <project.compiler.options>${repo.compiler.options};-js-default-initializers=false;-source-map=${source.map};-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false</project.compiler.options>
+    <project.compiler.options>
+      ${repo.compiler.options};
+      -js-default-initializers=false;
+      -source-map=${source.map};
+      -source-map-source-root=/frameworks/themes/${project.artifactId}/src/main/royale/
+      -swf-debugfile-alias=/org/apache/royale/${project.version}/frameworks/themes/${project.artifactId}/src/main/royale
+      -js-complex-implicit-coercions=false;
+      -js-vector-index-checks=false;
+      -js-resolve-uncertain=false
+    </project.compiler.options>
   </properties>
 
   <modules>
@@ -203,65 +212,5 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
-
-  <profiles>
-    <profile>
-      <id>option-with-sass-compile</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>nl.geodienstencentrum.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <version>3.7.2</version>
-            <configuration>
-              <resources>
-                <!-- Depends on JewelTheme SASS framework files-->
-                <resource>
-                  <source>
-                    <directory>${basedir}/src/main/sass</directory>
-                    <includes>
-                      <include>defaults.sass</include>
-                    </includes>
-                  </source>
-                  <destination>${basedir}/src/main/resources</destination>
-                </resource>
-              </resources>
-            </configuration>
-            <executions>
-              <execution>
-                <id>generate-css-using-sass</id>
-                <goals>
-                  <goal>update-stylesheets</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <!--
-      This is a self-activating profile that causes the sass plugin
-      to not be executed if there is no src/main/sass directory.
-    -->
-    <profile>
-      <id>_skip-sass-compilation</id>
-      <activation>
-        <file>
-          <missing>src/main/sass</missing>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>nl.geodienstencentrum.maven</groupId>
-            <artifactId>sass-maven-plugin</artifactId>
-            <configuration>
-              <skip>true</skip>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
 </project>

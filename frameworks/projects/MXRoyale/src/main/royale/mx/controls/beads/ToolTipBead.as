@@ -61,6 +61,8 @@ package mx.controls.beads
                 {
                     tt.element.style.color = isError ? "#ff0000" : "#000";
 					adjustInsideBoundsIfNecessary();
+		    tt.element.style.maxWidth = "300px";
+		    tt.element.style.whiteSpace = "pre-wrap";
                 }
             }
         }

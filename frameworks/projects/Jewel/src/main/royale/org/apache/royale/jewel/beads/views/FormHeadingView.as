@@ -89,7 +89,7 @@ package org.apache.royale.jewel.beads.views
 
             model = getModelByType(_strand,ITextModel) as ITextModel;
 			model.addEventListener("textChange", textChangeHandler);
-			model.addEventListener("htmlChange", textChangeHandler);
+			model.addEventListener("htmlChange", htmlChangeHandler);
 
 			if (spacerLabel == null) {
 				spacerLabel = createLabel("");
@@ -133,6 +133,14 @@ package org.apache.royale.jewel.beads.views
 		public function textChangeHandler(event:Event):void
 		{
 			headingLabel.text = model.text;
+		}
+
+		/**
+		 * 
+		 */
+		public function htmlChangeHandler(event:Event):void
+		{
+			headingLabel.html = model.html;
 		}
     }
 }

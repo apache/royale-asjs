@@ -20,15 +20,18 @@ package org.apache.royale.jewel.beads.layouts
 {
 	COMPILE::SWF
 	{
-	import org.apache.royale.core.IUIBase;
+		import org.apache.royale.core.IUIBase;
+		import flash.events.Event;
 	}
+
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
-	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 *  The TileVerticalLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -46,7 +49,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-	public class TileVerticalLayout extends SimpleVerticalLayout implements ILayoutStyleProperties
+	public class TileVerticalLayout extends SimpleVerticalLayout implements IEventDispatcher
 	{
 		/**
 		 *  constructor.
@@ -62,7 +65,79 @@ package org.apache.royale.jewel.beads.layouts
 		}
 
 		public static const LAYOUT_TYPE_NAMES:String = "layout vertical tile";
-		
+
+		private var _dispatcher:IEventDispatcher;
+
+		/**
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.11
+		 */
+		public function get dispatcher():IEventDispatcher
+		{
+			if (!_dispatcher)
+			{
+				_dispatcher = new EventDispatcher(this) as IEventDispatcher;
+			}
+
+			return _dispatcher;
+		}
+
+		public function set dispatcher(value:IEventDispatcher):void
+		{
+			_dispatcher = value;
+		}
+
+		//IEventDispatcher JS
+		COMPILE::JS
+		public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+		{
+			dispatcher.addEventListener(type, handler, opt_capture, opt_handlerScope);
+		}
+
+		COMPILE::JS
+		public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+		{
+			dispatcher.removeEventListener(type, handler, opt_capture, opt_handlerScope);
+		}
+
+		COMPILE::JS
+		public function dispatchEvent(event:Object):Boolean
+		{
+			return dispatcher.dispatchEvent(event);
+		}
+
+		//IEventDispatcher SWF
+		COMPILE::SWF
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+		{
+			dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		}
+		COMPILE::SWF
+		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void
+		{
+			dispatcher.removeEventListener(type, listener, useCapture);
+		}
+
+		COMPILE::SWF
+		public function dispatchEvent(event:flash.events.Event):Boolean
+		{
+			return dispatcher.dispatchEvent(event);
+		}
+
+		COMPILE::SWF
+		public function willTrigger(type:String):Boolean
+		{
+			return false;
+		}
+
+		//IEventDispatcher (shared)
+		public function hasEventListener(type:String):Boolean
+		{
+			return dispatcher.hasEventListener(type);
+		}
+
 		/**
 		 *  Add class selectors when the component is addedToParent
 		 *  Otherwise component will not get the class selectors when 
@@ -73,12 +148,12 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.8
  		 */
-		override public function beadsAddedHandler(event:Event = null):void
+		override public function beadsAddedHandler(event:org.apache.royale.events.Event = null):void
 		{
 			super.beadsAddedHandler();
 
 			hostComponent.replaceClass("tile");
-			hostComponent.dispatchEvent(new Event("layoutNeeded"));
+			hostComponent.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));
 		}
 
 		private var _columnCount:int = -1;
@@ -474,7 +549,7 @@ package org.apache.royale.jewel.beads.layouts
 					// else
 					// 	child.positioner.style.marginRight = null;
 					
-					child.dispatchEvent(new Event('sizeChanged'));
+					child.dispatchEvent(new org.apache.royale.events.Event('sizeChanged'));
 				}
 				return true;
 			}

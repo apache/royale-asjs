@@ -180,7 +180,6 @@ internal class MXRoyaleClasses
 	/*import mx.events.IndexChangedEvent; IndexChangedEvent;*/
 	import mx.events.ItemClickEvent; ItemClickEvent;
 	import mx.events.ModuleEvent; ModuleEvent;
-	import mx.events.MouseEvent; MouseEvent;
 	import mx.managers.SystemManager; SystemManager;
 	import mx.filters.BitmapFilter; BitmapFilter;
 	import mx.filters.ColorMatrixFilter; ColorMatrixFilter;
@@ -230,7 +229,6 @@ internal class MXRoyaleClasses
 	/*import mx.net.SharedObject; SharedObject;
 	import mx.net.SharedObjectJSON; SharedObjectJSON;*/
 	import mx.modules.ModuleManager; ModuleManager;
-	import mx.events.DragEvent; DragEvent;
 	/*import mx.formatters.DateBase; DateBase;*/
 	/*import mx.core.Keyboard; Keyboard;*/
 	import mx.core.UIComponentGlobals; UIComponentGlobals;
@@ -283,6 +281,7 @@ internal class MXRoyaleClasses
     import mx.controls.beads.ComboBoxView; ComboBoxView;
 	import mx.controls.beads.controllers.RadioButtonMouseController; RadioButtonMouseController;
     import mx.controls.beads.NumericStepperView; NumericStepperView;
+    import mx.controls.beads.NumericStepperController; NumericStepperController;
     import mx.controls.beads.DateFieldView; DateFieldView;
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
     import mx.controls.beads.controllers.MenuBarMouseController; MenuBarMouseController;
@@ -434,6 +433,11 @@ internal class MXRoyaleClasses
 	import mx.containers.accordionClasses.AccordionHeader; AccordionHeader;
 	/*import mx.net.FileReferenceList; FileReferenceList;*/
 	import mx.controls.beads.ProgressBarView; ProgressBarView;
+
+
+	import mx.controls.SimpleTextHighlighter;SimpleTextHighlighter;
+	import mx.controls.beads.ColorPickerView; ColorPickerView;
+	import mx.controls.beads.ColorPickerController; ColorPickerController;
 }
 
 }

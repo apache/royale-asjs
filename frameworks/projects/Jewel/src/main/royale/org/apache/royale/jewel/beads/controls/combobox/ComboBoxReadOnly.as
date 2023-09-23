@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-	import org.apache.royale.jewel.beads.controls.InputAndButtonControlReadOnly;
+	import org.apache.royale.jewel.beads.controls.TextInputAndButtonControlReadOnly;
 	
 	/**
 	 *  The ComboBoxReadOnly bead class is a specialty ReadOnly bead that can be used to lock a Jewel ComboBox.
@@ -30,7 +30,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ComboBoxReadOnly extends InputAndButtonControlReadOnly
+	public class ComboBoxReadOnly extends TextInputAndButtonControlReadOnly
 	{
 		/**
 		 *  constructor.

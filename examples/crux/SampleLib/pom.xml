@@ -25,16 +25,16 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-crux</artifactId>
-    <version>0.9.9-SNAPSHOT</version>
+    <version>0.9.11-SNAPSHOT</version>
   </parent>
 
   <artifactId>SampleLib</artifactId>
-  <version>0.9.9-SNAPSHOT</version>
+  <version>0.9.11-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <properties>
     <!-- <compiler.debug>true</compiler.debug>
-    <royale.framework.version>0.9.9-SNAPSHOT</royale.framework.version> -->
+    <royale.framework.version>0.9.11-SNAPSHOT</royale.framework.version> -->
     <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
     <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
   </properties>
@@ -91,7 +91,7 @@
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
-        <version>0.9.9-SNAPSHOT</version>
+        <version>0.9.11-SNAPSHOT</version>
         <extensions>true</extensions>
         <configuration>
           <targets>JSRoyale</targets>
@@ -140,34 +140,25 @@
           <dependency>
             <groupId>org.apache.royale.compiler</groupId>
             <artifactId>compiler-jx</artifactId>
-            <version>0.9.9-SNAPSHOT</version>
+            <version>0.9.11-SNAPSHOT</version>
           </dependency>
         </dependencies>
       </plugin>
       <plugin>
-        <groupId>nl.geodienstencentrum.maven</groupId>
-        <artifactId>sass-maven-plugin</artifactId>
-        <version>3.7.2</version>
+        <groupId>io.github.cleydyr</groupId>
+        <artifactId>dart-sass-maven-plugin</artifactId>
+        <version>0.3.0</version>
         <configuration>
-          <resources>
-            <resource>
-              <source>
-                <directory>${basedir}/src/main/sass</directory>
-                <includes>
-                  <include>**/*.sass</include>
-                </includes>
-              </source>
-              <destination>${basedir}/src/main/resources</destination>
-            </resource>
-          </resources>
+          <inputFolder>${basedir}/src/main/sass</inputFolder>
+          <outputFolder>${basedir}/src/main/resources</outputFolder>
         </configuration>
         <executions>
           <execution>
             <id>generate-css-using-sass</id>
-            <goals>
-                <goal>update-stylesheets</goal>
-            </goals>
             <phase>generate-resources</phase>
+            <goals>
+              <goal>compile-sass</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
@@ -208,7 +199,7 @@
     <dependency>
       <groupId>com.adobe.air.framework</groupId>
       <artifactId>airglobal</artifactId>
-      <version>20.0</version>
+      <version>32.0</version>
       <type>swc</type>
       <scope>provided</scope>
     </dependency>
@@ -216,7 +207,7 @@
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-gcl</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>typedefs</classifier>
     </dependency>
@@ -225,7 +216,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Crux</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -233,7 +224,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -241,7 +232,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -249,7 +240,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -257,7 +248,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Icons</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -266,7 +257,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -274,7 +265,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.9-SNAPSHOT</version>
+      <version>0.9.11-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -299,7 +290,7 @@
         <!-- <dependency>
           <groupId>com.adobe.flash.framework</groupId>
           <artifactId>playerglobal</artifactId>
-          <version>20.0</version>
+          <version>32.0</version>
           <type>swc</type>
           <scope>provided</scope>
         </dependency> -->

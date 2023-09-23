@@ -156,7 +156,7 @@ public class NavBar extends Box implements IHasLabelField
     public function NavBar()
     {
         super();
-
+        this.typeNames += ' NavBar';
         direction = BoxDirection.HORIZONTAL;
 		showInAutomationHierarchy = true;
     }

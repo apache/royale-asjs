@@ -16,7 +16,7 @@ To install these packages, users need to run the following commands:
 
 ```
 npm install @apache-royale/royale-js -g
-npm install @apache-royale/royale-js-swf -g
+npm install @apache-royale/royale-js-swf -g --foreground-scripts
 ```
 
 **Automated installs**

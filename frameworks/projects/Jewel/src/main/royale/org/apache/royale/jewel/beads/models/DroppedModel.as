@@ -16,39 +16,44 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.views
+package org.apache.royale.jewel.beads.models
 {
-    import org.apache.royale.core.IBeadView;
-    
+	import org.apache.royale.utils.BinaryData;
+
 	/**
-	 *  The IInputAndButtonView interface provides the protocol for any bead that
-	 *  creates the visual parts for a control containing a input and a button.
-	 *  
+	 *  The DroppedModel class defines the data associated with an DropZone task
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.10
 	 */
-	public interface IInputAndButtonView extends IBeadView
+	public class DroppedModel
 	{
 		/**
-		 *  The sub-component used for the input area of the Control.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.10
 		 */
-		function get textinput():Object;
+		public function DroppedModel(fileName:String, fileData:BinaryData)
+		{
+			super();
+
+            this.fileName = fileName;
+            this.fileData = fileData;
+		}
 		
 		/**
-		 *  The sub-component used for the button to activate the pop-up.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 * @royalesuppresspublicvarwarning
 		 */
-		function get button():Object;
+		public var fileName:String;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var fileData:BinaryData;
 	}
 }

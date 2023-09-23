@@ -31,7 +31,7 @@ internal class MXRoyaleBaseClasses
 
 	import mx.binding.BindabilityInfo; BindabilityInfo;
 	import mx.binding.Binding; Binding;
-	import mx.binding.BindingManager; BindingManager;
+	import mx.binding.BindingManager2; BindingManager2;
 	import mx.binding.IBindingClient; IBindingClient;
 	import mx.binding.utils.ChangeWatcher; ChangeWatcher;
 	import mx.binding.utils.BindingUtils; BindingUtils;
@@ -172,14 +172,18 @@ internal class MXRoyaleBaseClasses
 	import mx.managers.CursorManager;CursorManager;
 	import mx.managers.CursorManagerPriority;CursorManagerPriority;
 	import mx.managers.ICursorManager;ICursorManager;
+	import mx.managers.IDragManager;IDragManager;
 	import mx.managers.ISystemManager;ISystemManager;
 	import mx.managers.SystemManagerGlobals;SystemManagerGlobals;
 
 
 
 	import mx.messaging.messages.HTTPRequestMessage; HTTPRequestMessage;
+	import mx.messaging.channels.AMFChannel; AMFChannel;
 	import mx.messaging.channels.DirectHTTPChannel; DirectHTTPChannel;
 	import mx.messaging.channels.HTTPChannel; HTTPChannel;
+	import mx.messaging.channels.SecureHTTPChannel; SecureHTTPChannel;
+	import mx.messaging.channels.SecureAMFChannel; SecureAMFChannel;
 	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
 	import mx.messaging.messages.AcknowledgeMessage; AcknowledgeMessage;
 	import mx.messaging.messages.AsyncMessage; AsyncMessage;
@@ -287,6 +291,9 @@ internal class MXRoyaleBaseClasses
 	import mx.validators.StringValidator;StringValidator;
 	import mx.validators.ValidationResult;ValidationResult;
 	import mx.validators.Validator;Validator;
+	import mx.core.DragSource; DragSource;
+	import mx.events.DragEvent; DragEvent;
+	import mx.events.MouseEvent; MouseEvent;
 
 
 

@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.jewel.Group;
+	import org.apache.royale.core.IPopUp;
 
 	/**
 	 * The change event is dispatched when the selectedDate is changed.
@@ -35,7 +36,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DateChooser extends Group
+	public class DateChooser extends Group implements IPopUp
 	{
 		/**
 		 *  constructor.

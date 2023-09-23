@@ -136,14 +136,19 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
             
         var panel:ILayoutChild = host as ILayoutChild;
         if (!panel.isWidthSizedToContent())
+        {
             contentArea.percentWidth = 100;
+            (contentArea as UIComponent).minWidth = 1;
+        }
         if (!panel.isHeightSizedToContent())
+        {
             contentArea.percentHeight = 100;
+            (contentArea as UIComponent).minHeight = 1;
+        }
         
         // Now give the Panel its own layout
-        var boxLayout:BoxLayout = new BoxLayout();
-        boxLayout.direction = "vertical";
-        _strand.addBead(boxLayout);
+        var panelLayout:PanelLayout = new PanelLayout();
+        _strand.addBead(panelLayout);
     }
 
 	/**
@@ -165,4 +170,35 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
 
 }
 
+}
+
+import mx.core.UIComponent;
+import mx.containers.Panel;
+import org.apache.royale.core.LayoutBase;
+
+class PanelLayout extends LayoutBase
+{
+    override public function layout():Boolean
+    {
+        var panel:Panel = host as Panel;
+        var titleBar:UIComponent = panel.$getElementAt(0) as UIComponent;
+        var content:UIComponent = panel.$getElementAt(1) as UIComponent;
+        var controlBar:UIComponent = panel.$numElements > 2 ? panel.$getElementAt(2) as UIComponent : null;
+        var w:Number = panel.width;
+        var h:Number = panel.height;
+        if (panel.isWidthSizedToContent())
+            w = content.width + 2;
+        if (panel.isHeightSizedToContent())
+            h = content.height + 2 + titleBar.getExplicitOrMeasuredHeight();
+        titleBar.setActualSize(w - 2, titleBar.getExplicitOrMeasuredHeight());
+        var contentHeight:Number = h - titleBar.height - 4 - (controlBar ? controlBar.getExplicitOrMeasuredHeight() : 0);
+        content.setActualSize(w - 2, contentHeight);
+        content.move(0, titleBar.height + 1);
+        if (controlBar)
+        {
+            controlBar.move(0, titleBar.height + 1 + contentHeight + 1);
+            controlBar.setActualSize(w-2, controlBar.getExplicitOrMeasuredHeight());
+        }
+        return false;
+    }
 }

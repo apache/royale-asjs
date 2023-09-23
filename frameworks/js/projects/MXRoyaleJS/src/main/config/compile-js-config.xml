@@ -70,6 +70,7 @@
 	          <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
             <path-element>../../../../../libs/XMLJS.swc</path-element>
+            <path-element>../../../../../libs/DragDropJS.swc</path-element>
         </external-library-path>
         
         <namespaces>

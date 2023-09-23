@@ -65,6 +65,9 @@ import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
 import mx.events.FlexEvent;
+import mx.managers.ICursorManager;
+import mx.managers.IDragManager;
+
 
 COMPILE::JS {
     import org.apache.royale.core.ElementWrapper;
@@ -316,6 +319,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		this.valuesImpl = new AllCSSValuesImpl();
 		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
         addBead(new ClassAliasBead());
+        loadBeadFromValuesManager(ICursorManager, "iCursorManager", FlexGlobals.topLevelApplication as IStrand);
+        loadBeadFromValuesManager(IDragManager, "iDragManager", FlexGlobals.topLevelApplication as IStrand);
 
         instanceParent = this;
         

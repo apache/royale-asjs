@@ -352,5 +352,61 @@ package org.apache.royale.icons
             _pulse = value;
             toggleClass('fa-pulse', _pulse);
         }
+
+        protected var _stackLevel:int;
+        /**
+         *  To stack multiple icons, you use the fa-stack class in the main HTML element of the 2 icons you want to stack. 
+         *  Then you add the fa-stack-1x class for the regular size icon and the fa-stack-2x class for the larger icon.
+         * 
+         *  Icon stacking level: 
+         *  1 - Base icon.
+         *  2 - Top icon.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.10
+         */
+        public function get stackLevel():int
+        {
+            return _stackLevel;
+        }
+		public function set stackLevel(value:int):void
+        {
+            if(value == 1 || value == 2)
+            {
+                if(_stackLevel!=0)
+                {
+                    removeClass('fa-stack-' + String(_stackLevel) + 'x');
+                    if(_stackLevel == 1)
+                        removeClass('fa-inverse');
+                }
+                _stackLevel = value;
+                addClass('fa-stack-' + String(value) + 'x');
+
+                _inverse? inverse=true: inverse=false;
+            }
+        }
+        
+        protected var _inverse:Boolean;
+        /**
+         *  It will add a dazzling appearance effect to the icon with fa-stack-1x.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.10
+         */
+        public function get inverse():Boolean
+        {
+            return _inverse;
+        }
+        public function set inverse(value:Boolean):void
+        {
+            _inverse = value;
+            removeClass('fa-inverse');
+            if(value && _stackLevel == 1)
+                addClass('fa-inverse');
+        }
     }
 }

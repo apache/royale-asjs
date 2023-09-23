@@ -32,8 +32,10 @@
             selenium (2.32.0) - Apache 2.0
 	-->
 	
-    <property name="selenium3.version" value="3.141.59"/>
-    <property name="selenium3.jar.download.url" value="https://bit.ly/2zm3ZzF"/>
+    <property name="selenium3.minor.version" value="141"/>
+    <property name="selenium3.patch.version" value="59"/>
+    <property name="selenium3.version" value="3.${selenium3.minor.version}.${selenium3.patch.version}"/>
+    <property name="selenium3.jar.download.url" value="https://selenium-release.storage.googleapis.com/3.${selenium3.minor.version}/selenium-java-${selenium3.version}.zip"/>
     <property name="selenium3.jar.name" value="client-combined-${selenium3.version}"/>
 	
     <!-- 

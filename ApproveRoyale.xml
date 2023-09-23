@@ -122,7 +122,7 @@
     unless="release.version"/>
 
     <condition property="package.url.path"
-        value="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/royale-asjs/lastSuccessfulBuild/artifact/out">
+        value="http://apacheroyale.francecentral.cloudapp.azure.com:8080/job/royale-asjs/lastSuccessfulBuild/artifact/out">
         <not>
             <isset property="rc" />
         </not>
@@ -208,17 +208,12 @@
             </fileset>
         </copy>
     </target>
-    
-    <target name="test" >
-		<echo>${rat.report}.bin.txt</echo>
-		<replaceregexp file="${rat.report}.bin.txt" match="..AL.*" replace="" byline="true"/>
-    </target>
 	
     <target name="write-out-jars-list" >
         <delete file="jars.txt" />
         <!-- this is a comma-delimited, no spaces, no-line-breaks list used to decide which jars
          to skip in the rat-check of the binaries and which jars to examine before approval -->
-        <property name="jars-list" value="lib/compc.jar,lib/compiler.jar,lib/compiler-asc.jar,lib/compiler-common.jar,lib/compiler-compc.jar,lib/compiler-mxmlc.jar,lib/compiler-optimizer.jar,lib/compiler-swfdump.jar,lib/swfutils.jar,lib/fdb.jar,lib/flex-compiler-oem.jar,js/lib/asdoc.jar,js/lib/compiler-royaleTasks.jar,js/lib/royaleUnitTasks.jar,js/lib/compc.jar,js/lib/externc.jar,js/lib/jsc.jar,js/lib/mxmlc.jar"/>
+        <property name="jars-list" value="lib/compc.jar,lib/compiler.jar,lib/compiler-asc.jar,lib/compiler-common.jar,lib/compiler-compc.jar,lib/compiler-mxmlc.jar,lib/compiler-optimizer.jar,lib/compiler-swfdump.jar,lib/formatter.jar,lib/linter.jar,lib/swfutils.jar,lib/fdb.jar,lib/flex-compiler-oem.jar,js/lib/asdoc.jar,js/lib/compiler-playerglobalc.jar,js/lib/compiler-royaleTasks.jar,js/lib/royaleUnitTasks.jar,js/lib/compc.jar,js/lib/externc.jar,js/lib/jsc.jar,js/lib/mxmlc.jar"/>
         <echo file="${basedir}/jars.txt" message="${jars-list}"/>
         <echo file="${basedir}/jarexcludes.txt" message="${jars-list}"/>
         <replaceregexp file="${basedir}/jarexcludes.txt" match="," flags="g" replace="${line.separator}" />
@@ -572,10 +567,12 @@
                 <exclude name="royale-asjs/js/lib/jsc.jar"/>
                 <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
                 <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
-                <exclude name="royale-asjs/js/lib/java-websocket.jar"/>
                 <exclude name="royale-asjs/js/lib/dom4j.jar"/>
                 <exclude name="royale-asjs/js/lib/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/js/lib/slf4j-api.jar"/>
+                <exclude name="royale-asjs/js/lib/royaleunit/java-websocket.jar"/>
+                <exclude name="royale-asjs/js/lib/royaleunit/dom4j.jar"/>
+                <exclude name="royale-asjs/js/lib/royaleunit/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/lib/adt.jar"/>
                 <exclude name="royale-asjs/lib/compc.jar"/>
                 <exclude name="royale-asjs/lib/compiler-asc.jar"/>
@@ -880,9 +877,9 @@
     <target name="get.compiler.nightly" if="compiler.nightly">
         <property name="kit.jx.prefix" value="apache.royale-compilerjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
+        <get src="http://apacheroyale.francecentral.cloudapp.azure.com:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.sha512"
+        <get src="http://apacheroyale.francecentral.cloudapp.azure.com:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.sha512"
              dest="${basedir}/${binary.jx.kit}.zip.sha512" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext=".sha512"/>
         <condition property="CompilerSHA-512Invalid">

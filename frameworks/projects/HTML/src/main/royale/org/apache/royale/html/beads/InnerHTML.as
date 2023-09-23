@@ -25,7 +25,7 @@ package org.apache.royale.html.beads
     [DefaultProperty("text")]
 
 	/**
-	 *  The InnerText bead class adds innetHTML text to a html tag.
+	 *  The InnerText bead class adds innerHTML text to a html tag.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

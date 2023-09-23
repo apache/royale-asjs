@@ -752,6 +752,7 @@ package org.apache.royale.utils
          * This could be used to create and return a default Vector instance
          *
          * @royaleignorecoercion Array
+         * @royalesuppressresolveuncertain
          * no export (allow dead code elimination if never used):
          */
         public static function Vector(size:int = 0, baseType:String = null, fixed:Boolean = false):*
@@ -933,6 +934,7 @@ class VectorSupport {
     
     /**
      * @royaleignorecoercion Function
+     * @royalesuppressresolveuncertain
      */
     public static function arrayVector(arr:Array, size:int, basetype:String,fixed:Boolean , tag:Object, construct:Boolean = true):Array
     {
@@ -962,6 +964,7 @@ class VectorSupport {
     /**
      * @royalesuppressclosure
      * @royalesuppresscompleximplicitcoercion true
+     * @royalesuppressresolveuncertain
      */    
     public static function tagVectorArray(array:Array, elementType:String, fixed:Boolean, inst:Object):Array
     {
@@ -1018,10 +1021,11 @@ class VectorSupport {
     
     /**
      * Fills the array from a start point (defaults to zero) to its end with the specified value
+     * @royaleignorecoercion Array
      */
     private static function array_fill(arr:Array, value:Object, start:uint):Array{
         if (arr['fill']) {
-            return arr['fill'](value, start);
+            return arr['fill'](value, start) as Array;
         } else {
             //IE11 support
             var i:uint = start>>>0;
@@ -1195,6 +1199,7 @@ class VectorSupport {
     //fixed-length vector-like array overrides
     /**
      * @royaleignorecoercion Array
+     * @royalesuppressresolveuncertain
      */
     public function push(v:*):* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;
@@ -1205,6 +1210,7 @@ class VectorSupport {
     }
     /**
      * @royaleignorecoercion Array
+     * @royalesuppressresolveuncertain
      */
     public function unshift(v:*):* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;

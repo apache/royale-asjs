@@ -86,7 +86,9 @@
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
     <component id="ArrayMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayMultiSelectionModel"/>
+    <component id="ArrayListMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayListMultiSelectionModel"/>
     <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
+    <component id="ArrayListColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayListColorSelectionModel"/>
     <component id="MultiSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.MultiSelectionCollectionViewModel"/>
     <component id="MultiSelectionTreeModel" class="org.apache.royale.html.beads.models.MultiSelectionTreeModel"/>
     <component id="SingleSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel"/>
@@ -197,6 +199,7 @@
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
     <component id="ClippingViewport" class="org.apache.royale.html.supportClasses.Viewport" lookupOnly="true" />
     <component id="OverflowViewport" class="org.apache.royale.html.supportClasses.OverflowViewport" />
+    <component id="InfiniteScroller" class="org.apache.royale.html.beads.InfiniteScroller" />
     <component id="InfiniteVScroller" class="org.apache.royale.html.beads.InfiniteVScroller" />
 
     <component id="ArrayListSelectionModel" class="org.apache.royale.html.beads.models.ArrayListSelectionModel" />
@@ -232,6 +235,8 @@
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
     <component id="VirtualDataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData" />
     <component id="CollectionChangeUpdateForArrayListData" class="org.apache.royale.html.beads.CollectionChangeUpdateForArrayListData" />
+    
+    <component id="SmoothDataLoader" class="org.apache.royale.html.beads.SmoothDataLoader" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser"/>
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
@@ -302,6 +307,8 @@
     <component id="BrowserRouter" class="org.apache.royale.routing.BrowserRouter"/>
 
     <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
+
+    <component id="SimpleTextHighlighter" class="org.apache.royale.html.SimpleTextHighlighter"/>
 	
 	<component id="CollectionSelectedItemByField" class="org.apache.royale.html.beads.CollectionSelectedItemByField"/>	
     <component id="ErrorImage" class="org.apache.royale.html.beads.ErrorImage"/>
@@ -309,4 +316,5 @@
     <component id="LabelFunction" class="org.apache.royale.html.beads.LabelFunction"/>
 
     <component id="FocusEvents" class="org.apache.royale.html.beads.FocusEvents"/>
+    <component id="ContextMenu" class="org.apache.royale.html.beads.ContextMenu"/>
 </componentPackage>

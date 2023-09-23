@@ -197,7 +197,14 @@ public class AsyncMessage extends AbstractMessage implements ISmallMessage
 
                 if ((flags & CORRELATION_ID_BYTES_FLAG) != 0)
                 {
-                    correlationIdBytes = input.readObject() as BinaryData;
+                    COMPILE::SWF
+                    {
+                        correlationIdBytes = new BinaryData(input.readObject() as flash.utils.ByteArray);
+                    }
+                    COMPILE::JS
+                    {
+                        correlationIdBytes = input.readObject() as BinaryData;
+                    }
                     correlationId = RPCUIDUtil.fromBinary(correlationIdBytes);
                 }
 

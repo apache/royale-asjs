@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.datefield
 {
-	import org.apache.royale.jewel.beads.controls.InputAndButtonControlDisabled;
+	import org.apache.royale.jewel.beads.controls.TextInputAndButtonControlDisabled;
 
 	/**
 	 *  The DateFieldDisabled bead class is a specialty bead that can be used to disable a Jewel DateField control.
@@ -29,7 +29,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class DateFieldDisabled extends InputAndButtonControlDisabled
+	public class DateFieldDisabled extends TextInputAndButtonControlDisabled
 	{
 		/**
 		 *  constructor.

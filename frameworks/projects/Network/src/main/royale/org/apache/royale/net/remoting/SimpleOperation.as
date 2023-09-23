@@ -80,7 +80,8 @@ package org.apache.royale.net.remoting
             
         private function destinationFaultHandler(param:Object):void
         {
-            trace("destination fault handler", param);            
+            trace("destination fault handler", param);
+            _ro.faultHandler(param);
         }
     }
 }

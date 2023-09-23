@@ -29,15 +29,18 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	}
 	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.jewel.beads.views.IInputAndButtonView;
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateFormatter;
 	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IPopUp;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.util.getModelByType;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Button;
@@ -45,12 +48,13 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.DateField;
 	import org.apache.royale.jewel.Table;
 	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
 	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
-	import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.utils.sendStrandEvent;
-	import org.apache.royale.html.util.getModelByType;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -63,7 +67,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DateFieldView extends BeadViewBase implements IInputAndButtonView
+	public class DateFieldView extends BeadViewBase implements IComboBoxView
 	{
 		/**
 		 *  constructor.
@@ -88,14 +92,14 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get button():Object
+		public function get button():IUIBase
 		{
-			return _button;
+			return _button as IUIBase;
 		}
 		/**
 		 * deprecated
 		 */
-		public function get menuButton():Object
+		public function get menuButton():IUIBase
 		{
 			return _button;
 		}
@@ -108,14 +112,14 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get textinput():Object
+		public function get textinput():TextInputBase
 		{
 			return _textInput;
 		}
 		/**
 		 * deprecated
 		 */
-		public function get textInput():Object
+		public function get textInput():TextInputBase
 		{
 			return _textInput;
 		}
@@ -231,7 +235,14 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get popUp():DateChooser
+		public function get popup():IPopUp
+		{
+			return _popUp;
+		}
+		/**
+		 * deprecated
+		 */
+		public function get popUp():IPopUp
 		{
 			return _popUp;
 		}
@@ -280,8 +291,7 @@ package org.apache.royale.jewel.beads.views
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
 					host.popUpParent.addElement(_popUp);
 					// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-					table = (popUp.view as DateChooserView).table;
-
+					table = ((popUp as IStrandWithModelView).view as DateChooserView).table
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					
 					COMPILE::JS

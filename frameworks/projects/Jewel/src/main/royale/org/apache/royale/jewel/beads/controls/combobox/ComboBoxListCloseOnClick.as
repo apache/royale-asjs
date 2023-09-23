@@ -25,7 +25,9 @@ package org.apache.royale.jewel.beads.controls.combobox
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.jewel.ComboBox;
     import org.apache.royale.jewel.List;
-    import org.apache.royale.jewel.beads.views.ComboBoxView;
+    import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+    import org.apache.royale.core.IStrandWithModelView;
+    import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 
     /**
 	 *  The ComboBoxListCloseOnClick bead class is a specialty bead that can be used with
@@ -54,14 +56,14 @@ package org.apache.royale.jewel.beads.controls.combobox
         }
 
         private var _list:List;
-        private var comboView:ComboBoxView;
+        private var comboView:IComboBoxView;
         
         public override function set strand(value:IStrand):void
 		{
             super.strand = value;
 
             var comboBox:ComboBox = (value as ComboBox);
-            comboView = (comboBox.view as ComboBoxView);
+            comboView = (comboBox.view as IComboBoxView);
             var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(comboView.host, "iItemRenderer") as Class;
             // Checking that the bead is applied to a Jewel ComboBox and has a custom item renderer assigned
             if (comboView && (comboBox.itemRenderer || itemRendererClass != null)){
@@ -71,7 +73,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		}
 
         protected function popUpOpenedHandler():void {
-			list = comboView.popup.view.list;
+			list = ((comboView.popup as IStrandWithModelView).view as ComboBoxPopUpView).list;
 		}
 
 		protected function popUpClosedHandler():void {
