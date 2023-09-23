@@ -36,7 +36,7 @@ package mx.display
 	{
 		public function Bitmap(bitmapData:BitmapData = null, pixelSnapping:String = "auto", smoothing:Boolean = false)
 		{
-			super();
+			super(bitmapData, pixelSnapping,smoothing);
 		}
 	}
 
