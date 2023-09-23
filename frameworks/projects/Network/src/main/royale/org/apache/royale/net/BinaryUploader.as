@@ -574,7 +574,7 @@ COMPILE::SWF
                             url += '?' + _binaryData.data;
                         }
                     } else {
-                        binaryData = _binaryData.data.toString();
+                        binaryData = _binaryData.toString();
                     }
                 }
                 
