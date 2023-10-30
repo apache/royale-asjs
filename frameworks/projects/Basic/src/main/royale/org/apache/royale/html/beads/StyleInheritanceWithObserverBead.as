@@ -79,7 +79,8 @@ package org.apache.royale.html.beads
 				for (var i:int = 0; i < addedElements.length; i++)
 				{
 					var addedElement:WrappedHTMLElement = addedElements[i] as WrappedHTMLElement;
-					addedElement.style[styleName] = 'inherit';
+					if(addedElement.nodeType === Node.ELEMENT_NODE)
+						addedElement.style[styleName] = 'inherit';
 				}
 			}
 		}
