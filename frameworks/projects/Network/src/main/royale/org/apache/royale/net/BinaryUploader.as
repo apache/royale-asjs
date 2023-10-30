@@ -565,18 +565,7 @@ COMPILE::SWF
                 
                 url = _url;
                 
-                var binaryData:String = null;
-                if (_binaryData != null) {
-                    if (_method == HTTPConstants.GET) {
-                        if (url.indexOf('?') != -1) {
-                            url += _binaryData.data;
-                        } else {
-                            url += '?' + _binaryData.data;
-                        }
-                    } else {
-                        binaryData = _binaryData.data.toString();
-                    }
-                }
+                
                 
                 element.open(_method, _url, true);
                 element.timeout = _timeout;
@@ -595,15 +584,26 @@ COMPILE::SWF
                 }
                 
                 if (_method != HTTPConstants.GET &&
-                    !sawContentType && binaryData) {
+                    !sawContentType && _binaryData) {
                     element.setRequestHeader(
                         HTTPHeader.CONTENT_TYPE, _contentType);
                 }
                 
-                if (binaryData) {
-                    element.setRequestHeader(HTTPHeader.CONTENT_LENGTH, binaryData.length.toString());
-                    element.setRequestHeader(HTTPHeader.CONNECTION, 'close');
-                    element.send(binaryData);
+                if (_binaryData) {
+                    //element.setRequestHeader(HTTPHeader.CONTENT_LENGTH, binaryData.length.toString()); // seem useless and generate error
+                    //element.setRequestHeader(HTTPHeader.CONNECTION, 'close'); // seem useless and generate error
+                    
+                    if (_method == HTTPConstants.GET) {
+                        if (url.indexOf('?') != -1) {
+                            url += _binaryData.toString();
+                        } else {
+                            url += '?' + _binaryData.toString();
+                        }
+                        element.send();
+                    } else {
+                        element.send(_binaryData.array);
+                    }
+                    
                 } else {
                     element.send();
                 }
