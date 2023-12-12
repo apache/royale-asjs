@@ -67,6 +67,7 @@
                 <include>*:commons-lang3:jar</include><!-- Why is this needed? -->
                 <include>*:flex-tool-api:jar</include>
                 <include>*:guava:jar</include>
+                <include>*:failureaccess:jar</include>
                 <include>*:lzma-sdk-4j:jar</include>
             </includes>
         </dependencySet>
@@ -95,6 +96,7 @@
                 <include>*:dom4j:*</include>
                 <include>*:flex-tool-api:*</include>
                 <include>*:guava:*</include>
+                <include>*:failureaccess:*</include>
                 <include>*:jsc:*</include>
                 <include>*:slf4j-api:*</include>
             </includes>

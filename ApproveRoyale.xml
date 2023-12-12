@@ -564,6 +564,7 @@
                 <exclude name="royale-asjs/js/lib/externc.jar"/>
                 <exclude name="royale-asjs/js/lib/flex-tool-api.jar"/>
                 <exclude name="royale-asjs/js/lib/guava.jar"/>
+                <exclude name="royale-asjs/js/lib/failureaccess.jar"/>
                 <exclude name="royale-asjs/js/lib/jsc.jar"/>
                 <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
                 <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
@@ -597,6 +598,7 @@
                 <exclude name="royale-asjs/lib/external/commons-lang3-3.4.jar"/>
                 <exclude name="royale-asjs/lib/external/flex-tool-api.jar"/>
                 <exclude name="royale-asjs/lib/external/guava.jar"/>
+                <exclude name="royale-asjs/lib/external/failureaccess.jar"/>
                 <exclude name="royale-asjs/lib/external/jburg.jar"/>
                 <exclude name="royale-asjs/lib/external/jflex.jar"/>
                 <exclude name="royale-asjs/lib/external/junit-4.10.jar"/>
