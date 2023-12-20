@@ -245,6 +245,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList; DataItemRendererFactoryForArrayList;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData; DataItemRendererFactoryForHierarchicalData;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView; DataItemRendererFactoryForCollectionView;
+	import org.apache.royale.html.beads.ReusableDataItemRendererFactoryForCollectionView; ReusableDataItemRendererFactoryForCollectionView;
 	import org.apache.royale.html.supportClasses.DataGroup; DataGroup;
 	import org.apache.royale.html.supportClasses.Border; Border;
 	import org.apache.royale.html.supportClasses.Viewport; Viewport;

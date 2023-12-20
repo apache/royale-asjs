@@ -18,60 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.events.CollectionEvent;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.events.CollectionEvent;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.utils.sendStrandEvent;
-	
 	/**
-	 * This class creates itemRenderer instances from the data contained within an ICollectionView
+	 * The ReusableDataItemRendererFactoryForCollectionView class will save removed itemRenderers
+	 * and reuse them when new item renderers are needed. This is useful for large collections
+	 * where creating new item renderers can be expensive. Using this class can drastically
+	 * reduce rendering time at the expense of preventing the unused item renderers from being
+	 * garbage collected.
+	 * 
+	 * In an unscientific test, using this class reduced rendering time by about a factor of 100 in some cases.
+	 * 
+	 * Item renderers must be able to be reused. Resetting the data property must properly reset the state and
+	 * clean any event listeners from the old state.
 	 */
-	public class DataItemRendererFactoryForCollectionView extends DataItemRendererFactoryBase
+	public class ReusableDataItemRendererFactoryForCollectionView extends DataItemRendererFactoryForCollectionView
 	{
-		public function DataItemRendererFactoryForCollectionView(target:Object = null)
+		public function ReusableDataItemRendererFactoryForCollectionView(target:Object = null)
 		{
 			super(target);
 		}
-		
-		/**
-		 * the dataProvider as a dispatcher
-		 */
-		protected var dped:IEventDispatcher;
 
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		override protected function dataProviderChangeHandler(event:Event):void
-		{
-			super.dataProviderChangeHandler(event);
-			
-			if(dped)
-			{
-				dped.removeEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-				dped.removeEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-				dped.removeEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-				dped = null;
-			}
-			
-			if (!dataProviderModel.dataProvider)
-				return;
-			
-			// listen for individual items being added in the future.
-			dped = dataProviderModel.dataProvider as IEventDispatcher;
-			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-		}
-		
+		private var _unusedRenderers:Array = [];
+
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
@@ -81,14 +54,19 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		protected function itemAddedHandler(event:CollectionEvent):void
+		override protected function itemAddedHandler(event:CollectionEvent):void
 		{
 			if(!dataProviderExist)
 				return;
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
-			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+			var ir:IIndexedItemRenderer;
+			if(_unusedRenderers.length > 0)
+				ir = _unusedRenderers.pop();
+
+			else
+				ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 
 			var data:Object = event.item;
 			dataGroup.addItemRendererAt(ir, event.index);
@@ -109,7 +87,8 @@ package org.apache.royale.html.beads
 			}
 			
 			sendStrandEvent(_strand,"itemsCreated");
-			sendStrandEvent(_strand,"layoutNeeded");
+			// The itemsCreated handler sends layoutNeeded, so no need to do it here.
+			// sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -120,7 +99,7 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		protected function itemRemovedHandler(event:CollectionEvent):void
+		override protected function itemRemovedHandler(event:CollectionEvent):void
 		{
 			if(!dataProviderExist)
 				return;
@@ -131,7 +110,7 @@ package org.apache.royale.html.beads
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 			if (!ir) return; // may have already been cleaned up, possibly when a tree node closes
 			dataGroup.removeItemRenderer(ir);
-			
+			_unusedRenderers.push(ir);
 			// adjust the itemRenderers' index to adjust for the shift
 			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
@@ -148,40 +127,6 @@ package org.apache.royale.html.beads
 
 			sendStrandEvent(_strand,"layoutNeeded");
 		}
-		
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
-		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 */
-		protected function itemUpdatedHandler(event:CollectionEvent):void
-		{
-			if(!dataProviderExist)
-				return;
-
-			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererOwnerView = view.dataGroup;
-			
-			// update the given renderer with (possibly) new information so it can change its
-			// appearence or whatever.
-			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
-
-			var data:Object = event.item;
-			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-			ir.data = data;
-		}
-
-		override protected function get dataProviderLength():int
-		{
-			return dataProviderModel.dataProvider.length;
-		}
-		
-		override protected function getItemAt(i:int):Object
-		{
-			return dataProviderModel.dataProvider.getItemAt(i);
-		}
+				
 	}
 }

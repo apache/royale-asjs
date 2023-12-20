@@ -228,6 +228,7 @@
     <component id="DynamicUpdateItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicUpdateItemRendererForArrayListData"/>
     <component id="DataItemRendererFactoryForHierarchicalData" class="org.apache.royale.html.beads.DataItemRendererFactoryForHierarchicalData" />
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView" />
+    <component id="ReusableDataItemRendererFactoryForCollectionView" class="org.apache.royale.html.beads.ReusableDataItemRendererFactoryForCollectionView" />
     <component id="SelectionDataItemRendererFactoryForCollectionView" class="org.apache.royale.html.beads.SelectionDataItemRendererFactoryForCollectionView" />
     <component id="DynamicRemoveAllItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllItemRendererForArrayListData" />
     <component id="DynamicRemoveAllByNullItemRendererForArrayListData" class="org.apache.royale.html.beads.DynamicRemoveAllByNullItemRendererForArrayListData" />
