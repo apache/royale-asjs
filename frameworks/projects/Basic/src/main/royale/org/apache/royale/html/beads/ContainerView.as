@@ -39,6 +39,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.debugging.assert;
 
 	/**
 	 * This class creates and manages the contents of a Container. On the ActionScript
@@ -99,7 +100,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
-		 *  @royaleemitcoercion org.apache.royale.core.ILayoutView
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutView
 		 */
 		override public function get contentView():ILayoutView
 		{
@@ -151,8 +152,14 @@ package org.apache.royale.html.beads
 			if(!_viewport)
 				_viewport = loadBeadFromValuesManager(IViewport, "iViewport", _strand) as IViewport;
 
-			if (_viewport) {
+			if (_viewport)
+			{
+				assert(_viewport.contentView is ILayoutView,"The viewport is expected to be an ILayoutView");
 				addViewport();
+			}
+			else
+			{
+				assert(host is ILayoutView,"When there's no viewport, the host must be an ILayoutView");
 			}
 		}
 
