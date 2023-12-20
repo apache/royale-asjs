@@ -271,7 +271,26 @@ package org.apache.royale.collections
 		
 		public function getDepth(node:Object):int
 		{
-			return _flatList.getDepth(node);
+			var depth:int = godeep(node, source, 0);
+			return depth;
+		}
+		/**
+		 * @private
+		 */
+		private function godeep(seeking:Object, node:Object, depth:int):int
+		{
+			if (seeking == node) return depth;
+			
+			var children:Array = getChildren(node) as Array;
+			if (children) {
+				var len:int = children.length;
+				for (var i:int=0; i < len; i++) {
+					var newDepth:int = godeep(seeking, children[i], depth+1)
+					if (newDepth > 0) return newDepth;
+				}
+			}
+			
+			return -1;
 		}
 
 	}

@@ -59,7 +59,7 @@ package org.apache.royale.collections
 		
 		public function hasChildren(node:Object):Boolean
 		{
-			return _flatList.hasChildren(node);
+			return _hierarchicalData.hasChildren(node);
 		}
 		
 		public function isOpen(node:Object):Boolean
@@ -79,7 +79,7 @@ package org.apache.royale.collections
 		
 		public function getDepth(node:Object):int
 		{
-			return _flatList.getDepth(node);
+			return _hierarchicalData.getDepth(node);
 		}
 		
 		// ICollectionData

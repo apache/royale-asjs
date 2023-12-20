@@ -114,6 +114,16 @@ public interface IHierarchicalData extends IEventDispatcher
      *  @productversion Royale 0.0
      */
     function getRoot():Object;
+
+    /**
+     * Returns the depth of the node with the root being zero.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    function getDepth(node:Object):int;
 }
 
 }

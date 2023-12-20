@@ -186,36 +186,19 @@ package org.apache.royale.collections
 		
 		/**
 		 * Returns the depth of the node with the root being zero.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+		 * 
+		 * Returning the depth from the HierachicalData allows for optimization in client code.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
 		 */
 		public function getDepth(node:Object):int
 		{
-			var depth:int = godeep(node, hdata.getRoot(), 0);
-			return depth;
+			return hdata.getDepth(node);
 		}
-		
-		/**
-		 * @private
-		 */
-		private function godeep(seeking:Object, node:Object, depth:int):int
-		{
-			if (seeking == node) return depth;
-			
-			var children:Array = hdata.getChildren(node) as Array;
-			if (children) {
-				var len:int = children.length;
-				for (var i:int=0; i < len; i++) {
-					var newDepth:int = godeep(seeking, children[i], depth+1)
-					if (newDepth > 0) return newDepth;
-				}
-			}
-			
-			return -1;
-		}
+
 		/**
 		 * When adding items from outside FlattenedList, it needs to be added to the data structure as well.
 		 * @royaleignorecoercion Array
@@ -242,17 +225,13 @@ package org.apache.royale.collections
 			var topLevel:Array = hdata.getChildren(hdata.getRoot()) as Array;
 			var upperIdx:int = topLevel.length - 1;
 			if (index > 0 && index < upperIdx)
-			{
 				topLevel.splice(index, 1);
-			}
+
 			else if (index == upperIdx)
-			{
 				topLevel.pop();
-			}
+
 			else if (index == 0)
-			{
 				topLevel.shift();
-			}
 			
 			return super.removeItemAt(index);
 		}
