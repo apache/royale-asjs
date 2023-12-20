@@ -17,25 +17,25 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
-{	
+{
     
-    import org.apache.royale.collections.TreeData;
-    import org.apache.royale.core.Bead;
-    import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.IIndexedItemRendererInitializer;
-    import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IItemRendererOwnerView;
-    import org.apache.royale.core.IListDataItemRenderer;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.SimpleCSSStyles;
-    import org.apache.royale.core.UIBase;
-    import org.apache.royale.html.supportClasses.TreeListData;
-    
+	import org.apache.royale.collections.TreeData;
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
+	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IListDataItemRenderer;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.SimpleCSSStyles;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.supportClasses.TreeListData;
+	
 	/**
 	 *  The TreeItemRendererInitializer class initializes item renderers
-     *  in tree classes.
+	 *  in tree classes.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -62,25 +62,35 @@ package org.apache.royale.html.beads
 		 */
 		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
 		{
-            if (!dataProviderModel)
-                return;
-            
-            super.initializeIndexedItemRenderer(ir, data, index);
-            
-            var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
-            var depth:int = treeData.getDepth(data);
-            var isOpen:Boolean = treeData.isOpen(data);
-            var hasChildren:Boolean = treeData.hasChildren(data);
-            
-            // Set the listData with the depth of this item
-            var treeListData:TreeListData = new TreeListData();
-            treeListData.depth = depth;
-            treeListData.isOpen = isOpen;
-            treeListData.hasChildren = hasChildren;
-            
-            (ir as IListDataItemRenderer).listData = treeListData;
-            
-        }
-        
+			if (!dataProviderModel)
+				return;
+			/**
+			 * For the vast majority of cases,
+			 * there is no need to reinitialize the whole item renderer on an update.
+			 * Just updating the index and nothing else can save a lot of computation.
+			 * This is especially true for calculating node depth which can be expensive
+			 * for large data sets where the calculation is not optimized in subclasses.
+			 */
+			if(ir.data == data)
+			{
+				ir.index = index;
+				return;
+			}
+			
+			super.initializeIndexedItemRenderer(ir, data, index);
+			
+			var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
+			var depth:int = treeData.getDepth(data);
+			var isOpen:Boolean = treeData.isOpen(data);
+			var hasChildren:Boolean = treeData.hasChildren(data);
+			
+			// Set the listData with the depth of this item
+			var treeListData:TreeListData = new TreeListData();
+			treeListData.depth = depth;
+			treeListData.isOpen = isOpen;
+			treeListData.hasChildren = hasChildren;
+			
+			(ir as IListDataItemRenderer).listData = treeListData;
+		}
 	}
 }

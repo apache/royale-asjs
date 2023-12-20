@@ -40,7 +40,7 @@ package org.apache.royale.collections
      */
 	public class FlattenedList extends ArrayList
 	{
-		public var hdata:HierarchicalData;
+		public var hdata:IHierarchicalData;
 		public var openNodes:Array;
 		
         /**
@@ -51,7 +51,7 @@ package org.apache.royale.collections
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function FlattenedList(hdata:HierarchicalData)
+		public function FlattenedList(hdata:IHierarchicalData)
 		{
 			super();
 			this.hdata = hdata;
@@ -162,10 +162,12 @@ package org.apache.royale.collections
 				openNodes.splice(i, 1);
 				var arr:Array = [];
 				addChildren(node, arr);
-				i = getItemIndex(node) + 1;
-				while (arr.length) {
-					super.removeItemAt(i);
-					arr.shift();
+				// removing them backwards should improve performance in most cases
+				i = getItemIndex(node) + arr.length;
+				var len:int = arr.length;
+				for(var idx:int = 0; idx < len; idx++)
+				{
+					super.removeItemAt(i--);
 				}
 			}
 			updateNode(node);
@@ -214,10 +216,11 @@ package org.apache.royale.collections
 		}
 		/**
 		 * When adding items from outside FlattenedList, it needs to be added to the data structure as well.
+		 * @royaleignorecoercion Array
 		 */
 		override public function addItemAt(item:Object, index:int):void{
 			super.addItemAt(item,index);
-			var topLevel:Array = hdata.source.children;
+			var topLevel:Array = hdata.getChildren(hdata.getRoot()) as Array;
 			var len:int = topLevel.length;
 			if (index < len && index > 0)
 				topLevel.splice(index, 0, item);
@@ -229,8 +232,12 @@ package org.apache.royale.collections
 				topLevel.unshift(item);
 		}
 
+		/**
+		 * When removing items from outside FlattenedList, it needs to be added to the data structure as well.
+		 * @royaleignorecoercion Array
+		 */
 		override public function removeItemAt(index:int):Object{
-			var topLevel:Array = hdata.source.children;
+			var topLevel:Array = hdata.getChildren(hdata.getRoot()) as Array;
 			var upperIdx:int = topLevel.length - 1;
 			if (index > 0 && index < upperIdx)
 			{
