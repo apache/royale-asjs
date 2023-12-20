@@ -23,34 +23,34 @@ package org.apache.royale.collections
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.collections.parsers.IInputParser;
-    import org.apache.royale.collections.converters.IItemConverter;
-    
-    
-    /**
-     *  The FlattenedList class takes a HierarchicalData object and "flattens" it
+	import org.apache.royale.collections.parsers.IInputParser;
+	import org.apache.royale.collections.converters.IItemConverter;
+	
+	
+	/**
+	 *  The FlattenedList class takes a HierarchicalData object and "flattens" it
 	 *  using all of the open members.
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     * 
-     *  @royalesuppresspublicvarwarning
-     */
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 * 
+	 *  @royalesuppresspublicvarwarning
+	 */
 	public class FlattenedList extends ArrayList
 	{
 		public var hdata:IHierarchicalData;
 		public var openNodes:Array;
 		
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
 		public function FlattenedList(hdata:IHierarchicalData)
 		{
 			super();
@@ -61,11 +61,11 @@ package org.apache.royale.collections
 		
 		/**
 		 * Resets the list so that only the top root node is open.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
 		 */
 		public function reset():void
 		{
@@ -92,11 +92,11 @@ package org.apache.royale.collections
 		
 		/**
 		 * Returns true if the node has children nodes.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
 		 */
 		public function hasChildren(node:Object):Boolean
 		{
@@ -105,11 +105,11 @@ package org.apache.royale.collections
 		
 		/**
 		 * Returns true if the node is currently open.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
 		 */
 		public function isOpen(node:Object):Boolean
 		{
@@ -118,11 +118,11 @@ package org.apache.royale.collections
 		
 		/**
 		 * Opens the given node. The array data now contains more elements.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
 		 */
 		public function openNode(node:Object):void
 		{
@@ -148,10 +148,11 @@ package org.apache.royale.collections
 		 */
 		public function closeNode(node:Object):void
 		{
+			var hasChildren:Boolean = hdata.hasChildren(node);
 			var i:int = openNodes.indexOf(node);
 			if (i != -1) {
 				
-				if (hdata.hasChildren(node)) {
+				if (hasChildren) {
 					var children:Array = hdata.getChildren(node) as Array;
 					var n:int = children.length;
 					for (var j:int=0; j < n; j++) {
@@ -170,7 +171,8 @@ package org.apache.royale.collections
 					super.removeItemAt(i--);
 				}
 			}
-			updateNode(node);
+			if(hasChildren)
+				updateNode(node);
 		}
 		
 		/**
