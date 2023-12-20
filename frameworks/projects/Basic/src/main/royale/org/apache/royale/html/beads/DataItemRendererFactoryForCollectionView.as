@@ -77,6 +77,8 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		protected function itemAddedHandler(event:CollectionEvent):void
 		{
@@ -114,6 +116,8 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		protected function itemRemovedHandler(event:CollectionEvent):void
 		{
@@ -148,6 +152,8 @@ package org.apache.royale.html.beads
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		protected function itemUpdatedHandler(event:CollectionEvent):void
 		{
