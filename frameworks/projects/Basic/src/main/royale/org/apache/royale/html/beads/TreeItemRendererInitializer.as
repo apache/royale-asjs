@@ -64,18 +64,6 @@ package org.apache.royale.html.beads
 		{
 			if (!dataProviderModel)
 				return;
-			/**
-			 * For the vast majority of cases,
-			 * there is no need to reinitialize the whole item renderer on an update.
-			 * Just updating the index and nothing else can save a lot of computation.
-			 * This is especially true for calculating node depth which can be expensive
-			 * for large data sets where the calculation is not optimized in subclasses.
-			 */
-			if(ir.data == data)
-			{
-				ir.index = index;
-				return;
-			}
 			
 			super.initializeIndexedItemRenderer(ir, data, index);
 			
