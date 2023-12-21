@@ -17,14 +17,13 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net
-{    
-    
-    import org.apache.royale.events.DetailEvent;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.ProgressEvent;
-    import org.apache.royale.utils.BinaryData;
-    import org.apache.royale.utils.Endian;
+{
 
+	import org.apache.royale.events.DetailEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ProgressEvent;
+	import org.apache.royale.utils.BinaryData;
+	import org.apache.royale.utils.Endian;
 
 	/**
 	 *  The URLBinaryLoader class is a relatively low-level class designed to get
@@ -35,9 +34,8 @@ package org.apache.royale.net
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.7.0
 	 */
-   public class URLBinaryLoader extends URLLoaderBase
-    {
-        
+	public class URLBinaryLoader extends URLLoaderBase
+	{
 	   /**
 		*  The binary result of the request.
 		*  
@@ -45,13 +43,13 @@ package org.apache.royale.net
 		*  @playerversion Flash 10.2
 		*  @playerversion AIR 2.6
 		*  @productversion Royale 0.7.0
-        * 
-        *  @royalesuppresspublicvarwarning
-		*/        
+		* 
+		*  @royalesuppresspublicvarwarning
+		*/
         public var data:BinaryData;
 
-        private var _endian:String = Endian.BIG_ENDIAN;
-        
+		private var _endian:String = Endian.BIG_ENDIAN;
+
 		/**
 		 *  Indicates the byte order for the data.
 		 *  
@@ -59,19 +57,18 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
-		 */        
-        public function get endian():String
-        {
-            return _endian;
-        }
-        public function set endian(value:String):void
-        {
-            _endian = value;
-        }
+		 */
+		public function get endian():String
+		{
+			return _endian;
+		}
+		public function set endian(value:String):void
+		{
+			_endian = value;
+		}
 
+		protected var stream:URLStream;
 
-        protected var stream:URLStream;
-        
 		/**
 		 *  The number of bytes loaded so far.
 		 *  
@@ -79,11 +76,11 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
-         * 
-         *  @royalesuppresspublicvarwarning
-		 */        
-        public var bytesLoaded:uint = 0;
-        
+		 * 
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var bytesLoaded:uint = 0;
+
 		/**
 		 *  The total number of bytes (if available).
 		 *  
@@ -91,63 +88,63 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
-         * 
-         *  @royalesuppresspublicvarwarning
-		 */        
-        public var bytesTotal:uint = 0;
-        
-        public function URLBinaryLoader()
-        {
-            super();
-            createStream();
-        }
-        protected function createStream():void
-        {
-            stream = new URLStream();
-        }
-        private function progressFunction(stream:URLStream):void
-        {
-            bytesLoaded = stream.bytesLoaded;
-            bytesTotal = stream.bytesTotal;
-            dispatchEvent(new ProgressEvent("progress",false,false,bytesLoaded,bytesTotal));
-            if(onProgress)
-                onProgress(this);
-        }
-        
-        private function statusFunction(stream:URLStream):void
-        {
-            requestStatus = stream.requestStatus;
-            dispatchEvent(new DetailEvent("httpStatus",false,false,""+requestStatus));
-            if(onStatus)
-                onStatus(this);
-        }
-        
-        private function errorFunction(stream:URLStream):void
-        {
-			data = stream.response;
-            dispatchEvent(new DetailEvent("communicationError",false,false,""+requestStatus));
-            if(onError)
-                onError(this);
-            cleanupCallbacks();
-        }
-        
-        private function completeFunction(stream:URLStream):void
-        {
-			data = stream.response;
-            dispatchEvent(new org.apache.royale.events.Event("complete"));
-            if(onComplete)
-                onComplete(this);
-            cleanupCallbacks();
-        }
-        
-        protected function setupCallbacks():void
-        {
-            stream.onProgress = progressFunction;
+		 * 
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var bytesTotal:uint = 0;
+		
+		public function URLBinaryLoader()
+		{
+			super();
+			createStream();
+		}
+		protected function createStream():void
+		{
+			stream = new URLStream();
+		}
+		private function progressFunction(stream:URLStream):void
+		{
+			bytesLoaded = stream.bytesLoaded;
+			bytesTotal = stream.bytesTotal;
+			dispatchEvent(new ProgressEvent("progress",false,false,bytesLoaded,bytesTotal));
+			if(onProgress)
+				onProgress(this);
+		}
 
-            stream.onStatus = statusFunction;
-            stream.onError = errorFunction;
-            stream.onComplete = completeFunction;
-        }
+		private function statusFunction(stream:URLStream):void
+		{
+			requestStatus = stream.requestStatus;
+			dispatchEvent(new DetailEvent("httpStatus",false,false,""+requestStatus));
+			if(onStatus)
+				onStatus(this);
+		}
+
+		private function errorFunction(stream:URLStream):void
+		{
+			data = stream.response;
+			dispatchEvent(new DetailEvent("communicationError",false,false,""+requestStatus));
+			if(onError)
+				onError(this);
+			cleanupCallbacks();
+		}
+
+		private function completeFunction(stream:URLStream):void
+		{
+			data = stream.response;
+			dispatchEvent(new org.apache.royale.events.Event("complete"));
+			if(onComplete)
+				onComplete(this);
+			cleanupCallbacks();
+		}
+
+		protected function setupCallbacks():void
+		{
+			stream.onProgress = progressFunction;
+
+			stream.onStatus = statusFunction;
+			stream.onError = errorFunction;
+			stream.onComplete = completeFunction;
+		}
 		/**
 		 *  Makes the URL request.
 		 *  
@@ -155,13 +152,13 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
-		 */        
-        public function load(request:URLRequest):void
-        {
-            setupCallbacks();
-            stream.load(request);
-        }
-        
+		 */
+		public function load(request:URLRequest):void
+		{
+			setupCallbacks();
+			stream.load(request);
+		}
+		
 		/**
 		 *  Cancels the URL request.
 		 *  
@@ -169,13 +166,26 @@ package org.apache.royale.net
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.7.0
-		 */        
-        public function close():void
-        {
-            stream.close();
-            cleanupCallbacks();
+		 */
+		public function close():void
+		{
+			stream.close();
+			cleanupCallbacks();
 			//TODO do we need a callback for canceling?
-        }
-    }
+		}
+		/**
+		 * Returns the string value of a specific response header.
+		 * The header name is case-insensitive.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.11
+		 */
+		public function getResponseHeader(name:String):String
+		{
+			return stream.getResponseHeader(name);
+		}
+	}
 }
 

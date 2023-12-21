@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net
-{   
+{
 	import org.apache.royale.events.DetailEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
@@ -221,6 +221,34 @@ package org.apache.royale.net
 			}
 		}
 
+		/**
+		 * Returns the string value of a specific response header.
+		 * The header name is case-insensitive.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.11
+		 */
+		public function getResponseHeader(header:String):String
+		{
+			COMPILE::SWF
+			{
+				if(flash_headers)
+				{
+					for each(var h:flash.net.URLRequestHeader in flash_headers)
+					{
+						if(h.name.toLowerCase() == header.toLowerCase())
+							return h.value;
+					}
+				}
+				return null;
+			}
+			COMPILE::JS
+			{
+				return xhr.getResponseHeader(header);
+			}
+		}
 		COMPILE::JS
 		protected function createXmlHttpRequest():void
 		{
@@ -248,8 +276,14 @@ package org.apache.royale.net
 		COMPILE::SWF
 		private function flash_status(event:HTTPStatusEvent):void
 		{
+			if(event.responseHeaders)
+				flash_headers = event.responseHeaders;
+			
 			setStatus(event.status);
 		}
+
+		COMPILE::SWF
+		private var flash_headers:Array;
 
 		/**
 		 *  IO error occurred (Flash only).
@@ -562,6 +596,6 @@ package org.apache.royale.net
 			onStatus = callback;
 			return this;
 		}
-}
+	}
 }
 
