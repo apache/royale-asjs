@@ -200,17 +200,16 @@ package org.apache.royale.graphics
                                                     topLeftRadius:Number, topRightRadius:Number, 
                                                     bottomLeftRadius:Number, bottomRightRadius:Number):void
         {
-            var b:Array = [];
             var xw:Number = x + width;
             var yh:Number = y + height;
             
-            // Make sure none of the radius values are greater than w/h.
+            // Make sure none of the radius values are exceeding the minimum of w/2 and h/2
             // These are all inlined to avoid function calling overhead
-            var minSize:Number = width < height ? width * 2 : height * 2;
-            topLeftRadius = topLeftRadius < minSize ? topLeftRadius : minSize;
-            topRightRadius = topRightRadius < minSize ? topRightRadius : minSize;
-            bottomLeftRadius = bottomLeftRadius < minSize ? bottomLeftRadius : minSize;
-            bottomRightRadius = bottomRightRadius < minSize ? bottomRightRadius : minSize;
+            var maxSize:Number = width < height ? width * 0.5 : height * 0.5;
+            topLeftRadius = topLeftRadius <= maxSize ? topLeftRadius : maxSize;
+            topRightRadius = topRightRadius <= maxSize ? topRightRadius : maxSize;
+            bottomLeftRadius = bottomLeftRadius <= maxSize ? bottomLeftRadius : maxSize;
+            bottomRightRadius = bottomRightRadius <= maxSize ? bottomRightRadius : maxSize;
             
             // Math.sin and Math,tan values for optimal performance.
             // Math.rad = Math.PI / 180 = 0.0174532925199433
@@ -221,33 +220,43 @@ package org.apache.royale.graphics
             // 1.0 - 0.707106781186547 = 0.292893218813453 and
             // 1.0 - 0.414213562373095 = 0.585786437626905
             
-            // bottom-right corner
-            var a:Number = bottomRightRadius * 0.292893218813453;       // radius - anchor pt;
-            var s:Number = bottomRightRadius * 0.585786437626905;   // radius - control pt;
+            var a:Number;   // radius - anchor pt;
+            var s:Number;   // radius - control pt;
             commands.push(new MoveTo(xw, yh - bottomRightRadius));
-            commands.push(new QuadraticCurve(xw, yh - s, xw - a, yh - a));
-            commands.push(new QuadraticCurve(xw - s, yh, xw - bottomRightRadius, yh));
+            if (bottomRightRadius) {
+                // bottom-right corner
+                a = bottomRightRadius * 0.292893218813453;
+                s = bottomRightRadius * 0.585786437626905;
+                commands.push(new QuadraticCurve(xw, yh - s, xw - a, yh - a));
+                commands.push(new QuadraticCurve(xw - s, yh, xw - bottomRightRadius, yh));
+            }
             
-            // bottom-left corner
-            a = bottomLeftRadius * 0.292893218813453;
-            s = bottomLeftRadius * 0.585786437626905;
             commands.push(new LineTo(x + bottomLeftRadius, yh));
-            commands.push(new QuadraticCurve(x + s, yh, x + a, yh - a));
-            commands.push(new QuadraticCurve(x, yh - s, x, yh - bottomLeftRadius));
+            if (bottomLeftRadius) {
+                // bottom-left corner
+                a = bottomLeftRadius * 0.292893218813453;
+                s = bottomLeftRadius * 0.585786437626905;
+                commands.push(new QuadraticCurve(x + s, yh, x + a, yh - a));
+                commands.push(new QuadraticCurve(x, yh - s, x, yh - bottomLeftRadius));
+            }
             
-            // top-left corner
-            a = topLeftRadius * 0.292893218813453;
-            s = topLeftRadius * 0.585786437626905;
             commands.push(new LineTo(x, y + topLeftRadius));
-            commands.push(new QuadraticCurve(x, y + s, x + a, y + a));
-            commands.push(new QuadraticCurve(x + s, y, x + topLeftRadius, y));
+            if (topLeftRadius) {
+                // top-left corner
+                a = topLeftRadius * 0.292893218813453;
+                s = topLeftRadius * 0.585786437626905;
+                commands.push(new QuadraticCurve(x, y + s, x + a, y + a));
+                commands.push(new QuadraticCurve(x + s, y, x + topLeftRadius, y));
+            }
             
-            // top-right corner
-            a = topRightRadius * 0.292893218813453;
-            s = topRightRadius * 0.585786437626905;
             commands.push(new LineTo(xw - topRightRadius, y));
-            commands.push(new QuadraticCurve(xw - s, y, xw - a, y + a));
-            commands.push(new QuadraticCurve(xw, y + s, xw, y + topRightRadius));
+            if (topRightRadius) {
+                // top-right corner
+                a = topRightRadius * 0.292893218813453;
+                s = topRightRadius * 0.585786437626905;
+                commands.push(new QuadraticCurve(xw - s, y, xw - a, y + a));
+                commands.push(new QuadraticCurve(xw, y + s, xw, y + topRightRadius));
+            }
             commands.push(new LineTo(xw, yh - bottomRightRadius));
         }
         /**
