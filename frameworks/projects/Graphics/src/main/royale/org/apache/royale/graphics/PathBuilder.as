@@ -206,10 +206,12 @@ package org.apache.royale.graphics
             // Make sure none of the radius values are exceeding the minimum of w/2 and h/2
             // These are all inlined to avoid function calling overhead
             var maxSize:Number = width < height ? width * 0.5 : height * 0.5;
-            topLeftRadius = topLeftRadius <= maxSize ? topLeftRadius : maxSize;
-            topRightRadius = topRightRadius <= maxSize ? topRightRadius : maxSize;
-            bottomLeftRadius = bottomLeftRadius <= maxSize ? bottomLeftRadius : maxSize;
-            bottomRightRadius = bottomRightRadius <= maxSize ? bottomRightRadius : maxSize;
+            //behavior below
+            //if any radius is greater than its max size, then it is set to max size. If it is less than zero, it is set to zero
+            topLeftRadius = topLeftRadius <= maxSize ? (topLeftRadius < 0 ? 0 : topLeftRadius) : maxSize;
+            topRightRadius = topRightRadius <= maxSize ? (topRightRadius < 0 ? 0 : topRightRadius) : maxSize;
+            bottomLeftRadius = bottomLeftRadius <= maxSize ? (bottomLeftRadius < 0 ? 0 : bottomLeftRadius) : maxSize;
+            bottomRightRadius = bottomRightRadius <= maxSize ? (bottomRightRadius < 0 ? 0 : bottomRightRadius) : maxSize;
             
             // Math.sin and Math,tan values for optimal performance.
             // Math.rad = Math.PI / 180 = 0.0174532925199433
