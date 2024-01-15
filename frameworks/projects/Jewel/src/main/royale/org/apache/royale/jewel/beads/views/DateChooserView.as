@@ -158,11 +158,9 @@ package org.apache.royale.jewel.beads.views
 			_viewSelector.className = "viewSelector";
 			
 			_previousButton = new Button();
-			_previousButton.text = "<";
 			_previousButton.className = "previousButton";
 			
 			_nextButton = new Button();
-			_nextButton.text = ">";
 			_nextButton.className = "nextButton";
 
 			_table = new DateChooserTable();

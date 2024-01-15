@@ -153,7 +153,6 @@ package org.apache.royale.jewel.beads.views
 			COMPILE::JS {
                 _button.element.setAttribute('tabindex', -1);
 			}
-			_button.text = "&darr;";
 			getHost().addElement(_button);
 
 			COMPILE::SWF {
