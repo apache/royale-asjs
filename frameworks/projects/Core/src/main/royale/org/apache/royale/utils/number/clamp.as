@@ -19,9 +19,29 @@
 package org.apache.royale.utils.number
 {
 	/**
-	 * Takes a numerator and denominator and returns the fraction described as a percent.
+	 *  Returns the value constrained to the range defined by the minimum and maximum values.
+	 * 
+	 *  @param value The number to constrain.
+	 *  @param min The minimum value.
+	 *  @param max The maximum value.
+	 *  @return The value constrained to the range defined by the minimum and maximum values.
+	 * 
+	 *  @example
+	 *  <pre>
+	 *  var value:Number = 5;
+	 *  var min:Number = 0;
+	 *  var max:Number = 10;
+	 *  trace(clamp(value, min, max)); // 5
+	 *  value = -5;
+	 *  trace(clamp(value, min, max)); // 0
+	 *  value = 15;
+	 *  trace(clamp(value, min, max)); // 10
+	 *  </pre>
 	 */
-	public function getPercent(numerator:Number,denominator:Number):Number{
-		return clamp((numerator / denominator) * 100,0,100);
+	public function clamp(value:Number, min:Number, max:Number):Number
+	{
+		if(value < min) return min;
+		if(value > max) return max;
+		return value;
 	}
 }
