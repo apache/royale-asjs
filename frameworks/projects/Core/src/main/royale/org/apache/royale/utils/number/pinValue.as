@@ -22,7 +22,7 @@ package org.apache.royale.utils.number
 	 * Pins the specified value between a specified maximum and minimum bounds.
 	 * If the value is outside the bounds, the minimum or maximum is returned.
 	 */
-	[Deprecated(replacement="org.apache.royale.utils.math.clamp", since="0.9.11")]
+	[Deprecated(replacement="org.apache.royale.utils.number.clamp", since="0.9.11")]
 	public function pinValue(value:Number, minimum:Number, maximum:Number):Number
 	{
 		return Math.min(Math.max(value, minimum), maximum);						
