@@ -195,8 +195,7 @@ package org.apache.royale.core
             var converter:Function = converterMap[nativeEvent.constructor.name];
             if (converter)
                 e = converter(nativeEvent,eventObject);
-            else
-            {
+            if (!e) {
                 e = EventUtils.retrieveEvent(nativeEvent) as IBrowserEvent;
                 if (e == nativeEvent) {
                     e = new org.apache.royale.events.BrowserEvent();

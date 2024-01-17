@@ -71,7 +71,7 @@ package org.apache.royale.events
         public static const DOUBLE_CLICK:String = "doubleClick";
         public static const WHEEL:String = "mouseWheel";
         public static const CONTEXT_MENU:String = "contextMenu"
-		public static const MOUSE_WHEEL:String = "mouseWheel";
+        public static const MOUSE_WHEEL:String = "mouseWheel";
         
         /**
          *  Constructor.
@@ -182,7 +182,7 @@ package org.apache.royale.events
          */
         public function set deltaX(value:int):void
         {
-        
+            
         }
         
         /**
@@ -285,7 +285,7 @@ package org.apache.royale.events
         public static const DOUBLE_CLICK:String = "dblclick";
         public static const WHEEL:String = "wheel";
         public static const CONTEXT_MENU:String = "contextMenu"
-		public static const MOUSE_WHEEL:String = "mouseWheel";
+        public static const MOUSE_WHEEL:String = "mouseWheel";
         
         /**
          *  Constructor.
@@ -343,56 +343,56 @@ package org.apache.royale.events
         
         public var relatedObject:Object;
         private var _ctrlKey:Boolean;
-
+        
         public function get ctrlKey():Boolean
         {
-        	return wrappedEvent ? wrappedEvent.ctrlKey : _ctrlKey;
+            return wrappedEvent ? wrappedEvent.ctrlKey : _ctrlKey;
         }
-
+        
         public function set ctrlKey(value:Boolean):void
         {
             if(wrappedEvent)
                 wrappedEvent.ctrlKey = value;
-            else 
+            else
                 _ctrlKey = value;
         }
         private var _altKey:Boolean;
-
+        
         public function get altKey():Boolean
         {
-        	return wrappedEvent ? wrappedEvent.altKey : _altKey;
+            return wrappedEvent ? wrappedEvent.altKey : _altKey;
         }
-
+        
         public function set altKey(value:Boolean):void
         {
             if(wrappedEvent)wrappedEvent.altKey = value;
             else _altKey = value;
         }
         private var _shiftKey:Boolean;
-
+        
         public function get shiftKey():Boolean
         {
-        	return wrappedEvent ? wrappedEvent.shiftKey : _shiftKey;
+            return wrappedEvent ? wrappedEvent.shiftKey : _shiftKey;
         }
-
+        
         public function set shiftKey(value:Boolean):void
         {
             if(wrappedEvent)wrappedEvent.shiftKey = value;
             else _shiftKey = value;
         }
         private var _metaKey:Boolean;
-
+        
         public function get metaKey():Boolean
         {
             return wrappedEvent ? wrappedEvent.metaKey : _metaKey;
         }
-
+        
         public function set metaKey(value:Boolean):void
         {
             if(wrappedEvent)wrappedEvent.metaKey = value;
             else _metaKey = value;
         }
-
+        
         private var _buttons:int = -1;
         public function get buttonDown():Boolean
         {
@@ -834,6 +834,7 @@ package org.apache.royale.events
         public static function setupConverter():Boolean
         {
             ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter.convert;
+            ElementWrapper.converterMap["PointerEvent"] = MouseEventConverter.pointerEventFilter;
             _useNativeConstructor = typeof window.MouseEvent == 'function';
             return true;
         }

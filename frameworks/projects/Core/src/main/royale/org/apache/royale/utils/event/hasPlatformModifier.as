@@ -33,7 +33,7 @@ package org.apache.royale.utils.event
       return isMac ? (event as MouseEvent).metaKey : (event as MouseEvent).ctrlKey;
     } else if(event is KeyboardEvent){
       return isMac ? (event as KeyboardEvent).metaKey : (event as KeyboardEvent).ctrlKey;
-    } else if(event.constructor.name == "MouseEvent" || event.constructor.name == "KeyboardEvent"){
+    } else if(event.constructor.name == "MouseEvent" || event.constructor.name == "KeyboardEvent" || event.constructor.name == "PointerEvent"){
       return isMac ? event.metaKey : event.ctrlKey;
     }
     return false;

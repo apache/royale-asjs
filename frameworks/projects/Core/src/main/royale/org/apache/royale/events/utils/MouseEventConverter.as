@@ -22,6 +22,7 @@ package org.apache.royale.events.utils
         import flash.events.Event;
         import flash.events.IEventDispatcher;
         import flash.events.MouseEvent;
+        import org.apache.royale.events.utils.IHandlesOriginalEvent;
     }
     COMPILE::JS
     {
@@ -30,7 +31,6 @@ package org.apache.royale.events.utils
     }
     
     import org.apache.royale.events.MouseEvent;
-    import org.apache.royale.events.utils.IHandlesOriginalEvent;
     
 	/**
 	 *  Mouse events conversion.
@@ -198,6 +198,21 @@ package org.apache.royale.events.utils
             event.wrapEvent(browserEvent);
             return event;
         }
+        
+        /**
+         * filter for MouseEvents represented by PointerEvents ('click' is known to be on in recent browser/OS combos)
+         * @param nativeEvent the native browser event
+         * @param browserEvent the google BrowserEvent representation
+         * @return null if not converted, otherwise a Royale MouseEvent
+         *
+         * @royaleignorecoercion org.apache.royale.events.IBrowserEvent
+         */
+        public static function pointerEventFilter(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):Object
+        {
+            //convert native PointerEvents of type 'click' to Royale MouseEvents, otherwise return null:
+            return (nativeEvent.type == 'click') ? convert(nativeEvent, browserEvent) : null;
+        }
+        
     }
 
 }
