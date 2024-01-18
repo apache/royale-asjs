@@ -33,10 +33,16 @@ package org.apache.royale.utils.event
       return isMac ? (event as MouseEvent).metaKey : (event as MouseEvent).ctrlKey;
     } else if(event is KeyboardEvent){
       return isMac ? (event as KeyboardEvent).metaKey : (event as KeyboardEvent).ctrlKey;
-    } else if(event.constructor.name == "MouseEvent" || event.constructor.name == "KeyboardEvent" || event.constructor.name == "PointerEvent"){
-      return isMac ? event.metaKey : event.ctrlKey;
+    } else {
+      switch(event.constructor.name){
+        case "MouseEvent":
+        case "KeyboardEvent":
+        case "PointerEvent":
+          return isMac ? event.metaKey : event.ctrlKey;
+        default:
+          return false;
+      }
     }
-    return false;
   }
 
   COMPILE::SWF
