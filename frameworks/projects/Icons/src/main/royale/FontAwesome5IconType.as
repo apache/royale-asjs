@@ -553,6 +553,7 @@ package
  		public static const REPLY_ALL:String = "reply-all";
  		public static const RETWEET:String = "retweet";
  		public static const ROAD:String = "road";
+ 		public static const ROUTE:String = "route";
  		public static const ROCKET:String = "rocket";
  		public static const RSS:String = "rss";
  		public static const RSS_SQUARE:String = "rss-square";
