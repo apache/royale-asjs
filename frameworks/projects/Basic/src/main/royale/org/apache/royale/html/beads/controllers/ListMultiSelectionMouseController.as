@@ -135,6 +135,7 @@ package org.apache.royale.html.beads.controllers
 			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
 
+		private var initialSelection:int;
 		protected function selectedHandler(event:MultiSelectionItemClickedEvent):void
 		{
 			var selectedIndices:Array = [];
@@ -142,6 +143,7 @@ package org.apache.royale.html.beads.controllers
 			if (!(event.ctrlKey || event.shiftKey) || !listModel.selectedIndices || listModel.selectedIndices.length == 0)
 			{
 				newIndices = [event.index];
+				initialSelection = event.index;
 			} else if (event.ctrlKey)
 			{
 				// concat is so we have a new instance, avoiding code that might presume no change was made according to instance
@@ -156,14 +158,21 @@ package org.apache.royale.html.beads.controllers
 				}
 			} else if (event.shiftKey)
 			{
+				if(listModel.selectedIndices.includes(initialSelection) == -1){
+					initialSelection = listModel.selectedIndices[0];
+				}
 				newIndices = [];
-				var min:int = getMin(listModel.selectedIndices);
-				var max:int = getMax(listModel.selectedIndices);
-				var from:int = Math.min(min, event.index);
-				var to:int = event.index > min ? event.index : min;
-				while (from <= to)
-				{
-					newIndices.push(from++);
+				var min:int = 0;
+				var max:int = 0;
+				if(initialSelection < event.index){
+					min = initialSelection;
+					max = event.index;
+				} else {
+					min = event.index;
+					max = initialSelection;
+				}
+				while (min <= max) {
+					newIndices.push(min++);
 				}
 			}
 			if (!arraysMatch(listModel.selectedIndices, newIndices))
