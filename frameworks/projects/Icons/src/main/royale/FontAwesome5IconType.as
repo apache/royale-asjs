@@ -679,6 +679,7 @@ package
  		public static const TOGGLE_ON:String = "toggle-on";
  		public static const TOILET_PAPEL_SLASH:String = "toilet-paper-slash";
  		public static const TOOLBOX:String = "toolbox";
+ 		public static const TOOLS:String = "tools";
  		public static const TRADEMARK:String = "trademark";
  		public static const TRAIN:String = "train";
  		public static const TRANSGENDER:String = "transgender";
