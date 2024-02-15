@@ -52,7 +52,7 @@
 
     <property name="debug" value="true"/>
     <property name="strict" value="true"/>
-    <property name="javac.src" value="1.8"/>
+    <property name="javac.src" value="11"/>
     
     <property name="kit.prefix" value="apache-royale-${release.version}"/>
     <property name="source.kit" value="${kit.prefix}-src"/>
