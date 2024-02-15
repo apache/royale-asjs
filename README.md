@@ -31,13 +31,13 @@ Before building Royale you must install the following software and set the corre
 
 ### Java
 
-Royale requires Java SDK 1.8 or greater to be installed on your computer. For more information on installing the Java SDK, see:
+Royale requires Java JDK 11 or greater to be installed on your computer. For more information on installing the Java JDK, see:
 
 <https://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
 - **Environment variable**
 
-  Set the **JAVA_HOME** environment variable to the Java SDK installation path.
+  Set the **JAVA_HOME** environment variable to the Java JDK installation path.
 
 - **PATH**
 

@@ -40,11 +40,11 @@ Each folder has its own README, RELEASE_NOTES, LICENSE and NOTICE with informati
 Building Royale
 ===============
 
-Royale requires Java SDK 1.8 or greater to be installed on your computer. For more information on installing the Java SDK, see:
+Royale requires Java JDK 11 or greater to be installed on your computer. For more information on installing the Java JDK, see:
 
     <http://www.oracle.com/technetwork/java/javase/downloads/index.html>
 
-Set the JAVA_HOME environment variable to the Java SDK installation path.
+Set the JAVA_HOME environment variable to the Java JDK installation path.
 
 Add the bin directory of **JAVA_HOME** to the PATH.
 
