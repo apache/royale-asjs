@@ -834,6 +834,7 @@ package org.apache.royale.events
         public static function setupConverter():Boolean
         {
             ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter.convert;
+            ElementWrapper.converterMap["WheelEvent"] = MouseEventConverter.convert;
             ElementWrapper.converterMap["PointerEvent"] = MouseEventConverter.pointerEventFilter;
             _useNativeConstructor = typeof window.MouseEvent == 'function';
             return true;
