@@ -690,6 +690,7 @@ package
  		public static const TRIPADVISOR:String = "tripadvisor";
  		public static const TROPHY:String = "trophy";
  		public static const TRUCK:String = "truck";
+ 		public static const TRUCK_LOADING:String = "truck-loading";
  		public static const TRY:String = "try";
  		public static const TTY:String = "tty";
  		public static const TUMBLR:String = "tumblr";
