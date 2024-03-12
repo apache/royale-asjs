@@ -1,3 +1,13 @@
+Apache Royale 0.9.11
+====================
+
+- MXRoyaleBase
+  - Added missing `mx.messaging.Producer` to MXML manifest.
+  - Ensure that `SecureHTTPChannel`, `AMFChannel`, and `SecureAMFChannel` are included in SWC.
+
+- Fixed broken download locations for _playerglobal.swc_ and Adobe AIR SDK in _InstallAdobeSDKs.xml_ script.
+- Compiler and command line tools now require Java 11 or newer to run.
+
 Apache Royale 0.9.10
 ====================
 
