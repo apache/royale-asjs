@@ -251,6 +251,7 @@ package
  		public static const EMPIRE:String = "empire";
  		public static const ENVELOPE:String = "envelope";
  		public static const ENVELOPE_SQUARE:String = "envelope-square";
+ 		public static const ENVELOPE_OPEN_TEXT:String = "envelope-open-text";
  		public static const ENVELOPEPEN:String = "envelopepen";
  		public static const ENVIRA:String = "envira";
  		public static const ERASER:String = "eraser";
