@@ -194,6 +194,7 @@ package
  		public static const CIRCLE_NOTCH:String = "circle-notch";
  		public static const CIRCLE_THIN:String = "circle-thin";
  		public static const CLIPBOARD:String = "clipboard";
+ 		public static const CLIPBOARD_CHECK:String = "clipboard-check"; 		
  		public static const CLOCK:String = "clock";
  		public static const CLONE:String = "clone";
  		public static const CLOUD:String = "cloud";
