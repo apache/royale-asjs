@@ -336,6 +336,10 @@ package flexUnitTests.xml
             ]
             assertTrue(isExpected(expected), 'unexpected XML notifications');
 
+
+            setNotifier(xml);
+            xml.appendChild(att);
+
         }
 
 

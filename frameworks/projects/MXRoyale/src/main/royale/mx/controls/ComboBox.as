@@ -881,6 +881,11 @@ public class ComboBox extends ComboBase
     //
     //--------------------------------------------------------------------------
 
+
+    override protected function shouldDeselect(dp:Object):Boolean{
+        return prompt || !dp || !dp.length;
+    }
+
     /**
      *  Returns a string representing the <code>item</code> parameter.
      *  
@@ -958,8 +963,7 @@ public class ComboBox extends ComboBase
 
         return " ";
     }
-    
-    mx.controls.ComboBox
+
 	
     //----------------------------------
     //  prompt

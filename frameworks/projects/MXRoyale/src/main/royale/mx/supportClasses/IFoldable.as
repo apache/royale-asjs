@@ -22,5 +22,6 @@ package mx.supportClasses
 	{
 		function get canFold():Boolean;
 		function get canUnfold():Boolean;
+		function isFoldInitiator(check:Object):Boolean;
 	}
 }

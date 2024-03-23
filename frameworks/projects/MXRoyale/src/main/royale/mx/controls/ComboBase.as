@@ -471,6 +471,12 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
       return null;	
 	}
 
+
+    protected function shouldDeselect(dp:Object):Boolean{
+        return !dp || !dp.length;
+    }
+
+
     //----------------------------------
     //  dataProvider
     //----------------------------------
@@ -543,8 +549,10 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
             value = new ArrayCollection(tmp);
         }
         IComboBoxModel(model).dataProvider = value;
-        if (value && IComboBoxModel(model).selectedIndex == -1)
-            IComboBoxModel(model).selectedIndex = 0;
+        /*if (value && IComboBoxModel(model).selectedIndex == -1)
+            IComboBoxModel(model).selectedIndex = 0;*/
+        if (shouldDeselect(value)) IComboBoxModel(model).selectedIndex = -1
+            else IComboBoxModel(model).selectedIndex = 0;
     }
 
     //----------------------------------

@@ -91,15 +91,21 @@ package mx.controls.beads.models
          */
 		public function set dataProvider(value:Object):void
 		{
-            if (value == _dataProvider) return;
-
-            _dataProvider = value as ICollectionView;
-            if (_dataProvider)
-			{
-                _cursor = _dataProvider.createCursor();
-				dataProvider.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			var dp:ICollectionView = _dataProvider;
+            if (value == dp) return;
+			if (dp) {
+				dp.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+				if (_cursor) {
+					_cursor.finalizeThis();
+				}
 			}
-			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
+            dp =_dataProvider = value as ICollectionView;
+            if (dp)
+			{
+                _cursor = dp.createCursor();
+				dp.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			}
+			if(!dp || _selectedIndex >= _dataProvider.length)
 				_selectedIndex = -1;
             
 			_selectedItem = _selectedIndex == -1 ? null : getItemAt(_selectedIndex);
@@ -252,17 +258,22 @@ package mx.controls.beads.models
             if (value == _selectedItem) return;
 
 			_selectedItem = value;
-			var n:int = _dataProvider.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				if (getItemAt(i) == value)
+			var siChange:Boolean;
+			if (_dataProvider) {
+				var n:int = _dataProvider.length;
+				for (var i:int = 0; i < n; i++)
 				{
-					_selectedIndex = i;
-					break;
+					if (getItemAt(i) == value)
+					{
+						if (_selectedIndex != i) siChange = true;
+						_selectedIndex = i;
+						break;
+					}
 				}
 			}
+
 			dispatchEvent(new Event("selectedItemChanged"));
-			dispatchEvent(new Event("selectedIndexChanged"));
+			if (siChange) dispatchEvent(new Event("selectedIndexChanged"));
 		}
 
 		private var _selectedString:String;

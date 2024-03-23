@@ -100,7 +100,7 @@ package org.apache.royale.crux.processors
 					if( injectTag.required )
 						throw new Error( "InjectionProcessorError: bean not found: " + injectTag.source);
 					else
-						trace("InjectProcessor could not fulfill {0} tag on {1}", injectTag.asTag, bean);
+						tracer("InjectProcessor could not fulfill {0} tag on {1}", injectTag.asTag, bean);
 					
 					// bail
 					return;
@@ -140,7 +140,7 @@ package org.apache.royale.crux.processors
 				}
 			}
 			
-			trace("InjectProcessor set up "+metadataTag.toString()+" on " + bean.toString());
+			tracer("InjectProcessor set up "+metadataTag.toString()+" on " + bean.toString());
 		}
 		
 		/**
@@ -273,7 +273,7 @@ package org.apache.royale.crux.processors
 					throw new Error("InjectProcessor Error: bean of type " + targetType.toString() + " not found!" );
 				}
 				else {
-					trace( "Bean of type "+ targetType.toString()+" not found, injection queues have been removed!" );
+					tracer( "Bean of type "+ targetType.toString()+" not found, injection queues have been removed!" );
 				}
 				
 			}
@@ -308,7 +308,7 @@ package org.apache.royale.crux.processors
 				if (property) {
 					property.sourceDefinition.setValue(destObject, value);
 				} else {
-					trace('unexpected branch in \'setDestinationValue\'');
+					tracer('unexpected branch in \'setDestinationValue\'');
 					destObject[ destPropName ] = value;
 				}
 			}
@@ -404,7 +404,7 @@ package org.apache.royale.crux.processors
 			}
 			catch( error:ReferenceError )
 			{
-				trace('todo ReferenceError caught', error)
+				tracer('todo ReferenceError caught', error)
 			}
 			
 		}

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.utils
 {
+
+import mx.core.IUIComponent;
 import mx.core.IUIComponent;
 import mx.core.IChildList;
 
@@ -86,6 +88,17 @@ public class RoyaleUtil
         }
         return null;
     }
+
+
+    COMPILE::JS
+    public static function linkEventEnhancer(base:IUIComponent):void{
+
+    }
+
+   // COMPILE::JS
+    //private static function onClickLinkCheck(event:Mou)
+
+
 
 }
 

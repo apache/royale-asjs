@@ -5759,7 +5759,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
             }
             return tmp;
         }
-        
+
         var curSelectionData:ListBaseSelectionData = firstSelectionData;
         while (curSelectionData != null)
         {

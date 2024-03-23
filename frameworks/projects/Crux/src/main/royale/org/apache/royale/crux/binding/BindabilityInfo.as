@@ -136,7 +136,7 @@ public class BindabilityInfo
 
 			if (numChildren == 0)
 			{
-				trace("warning: no describeType entry for '" +
+				tracer("warning: no describeType entry for '" +
 					  childName + "' on non-dynamic type '" +
 					  typeDefinition.name + "'");
 			}
@@ -144,7 +144,7 @@ public class BindabilityInfo
 			{
 				if (numChildren > 1)
 				{
-					trace("warning: multiple describeType entries for '" +
+					tracer("warning: multiple describeType entries for '" +
 						  childName + "' on type '" + typeDefinition.name +
 						  "':\n" + accessorsAndMethods);
 				}
@@ -232,7 +232,7 @@ public class BindabilityInfo
 								eventListObj[ValueChangeEvent.VALUE_CHANGE] = true;
 							}
 							 else {
-								trace("warning: unconverted change events metadata in class '" +
+								tracer("warning: unconverted change events metadata in class '" +
 										typeDefinition.name + "'", metaItem);
 							}
 							

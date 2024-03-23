@@ -109,7 +109,7 @@ package org.apache.royale.crux.reflection
 					var defNames:Array = metaDef.retrieveMetaDataByName(defName);
 					if (defNames.length) {
 						if (defNames.length > 1) {
-							trace('unexpected - more than one metadata with the same name');
+							tracer('unexpected - more than one metadata with the same name');
 						}
 						var metaDataDef:MetaDataDefinition = defNames[0];
 						var host:IMetadataHost = getMetadataHost( metaDef );

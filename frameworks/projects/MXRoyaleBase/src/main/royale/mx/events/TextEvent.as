@@ -44,8 +44,10 @@ public class TextEvent extends flash.events.TextEvent
             return s;
         }
 		
-    public static const TEXT_INPUT : String = platformConstant("textInput"); 
-		
+    public static const TEXT_INPUT : String = platformConstant("textInput");
+
+	public static const LINK : String = platformConstant(flash.events.TextEvent.LINK);
+
 	public function TextEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, text:String = "")
     {
         super(type, bubbles, cancelable);
@@ -71,10 +73,11 @@ public class TextEvent extends org.apache.royale.events.Event
         {
             return s;
         }
-		
-    public static const TEXT_INPUT : String = platformConstant("textInput"); 
-		
-		
+
+	public static const TEXT_INPUT : String = platformConstant("textInput");
+
+	public static const LINK : String = platformConstant("link");
+
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants

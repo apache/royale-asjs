@@ -87,7 +87,7 @@ package org.apache.royale.crux.processors
 			if (property) {
 				property.sourceDefinition.setValue(bean.source, dispatcher);
 			} else {
-				trace('unexpected branch in \'DispatcherProcessor\'');
+				tracer('unexpected branch in \'DispatcherProcessor\'');
 				bean.source[ metadataTag.host.name ] = dispatcher;
 			}
 		}
@@ -101,7 +101,7 @@ package org.apache.royale.crux.processors
 			if (property) {
 				property.sourceDefinition.setValue(bean.source, null);
 			} else {
-				trace('unexpected branch in \'DispatcherProcessor\'');
+				tracer('unexpected branch in \'DispatcherProcessor\'');
 				bean.source[ metadataTag.host.name ] = null;
 			}
 		}

@@ -1173,12 +1173,19 @@ package
 			var i:int;
 			var len:int;
 			var list:XMLList = new XMLList();
-			if(parseInt(propertyName,10).toString() == propertyName)
+			var propNum:Number = parseInt(propertyName,10);
+			if(propNum.toString() == propertyName)
 			{
-				if(propertyName != "0")
-					return null;
-				list.append(this);
-				list.targetObject = this;
+				//@todo fixme, this is wrong, it should return a list of that child index content, not the self reference
+				/*if(propertyName != "0")
+					return null;*/
+				if(propNum >= 0 && propNum < _children.length)
+				{
+					list.append(_children[propNum]);
+					list.targetObject = this;
+				}
+				/*list.append(this);
+				list.targetObject = this;*/
 				return list;
 			}
 			//support MultiQName for multiple use namespace directives:
@@ -1418,6 +1425,7 @@ package
 					list.concat(child.descendants(name));
 				}
 			}
+			list.targetObject = this;
 			return list;
 		}
 		

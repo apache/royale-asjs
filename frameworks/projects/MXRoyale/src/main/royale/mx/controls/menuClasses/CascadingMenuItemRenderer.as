@@ -130,6 +130,10 @@ package mx.controls.menuClasses
 		{
 			return getHasMenu();
 		}
+
+		public function isFoldInitiator(check:Object):Boolean{
+			return true; //tbd
+		}
 	}
 
 }

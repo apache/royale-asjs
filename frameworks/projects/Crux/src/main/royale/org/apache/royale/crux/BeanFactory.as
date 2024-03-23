@@ -428,7 +428,7 @@ package org.apache.royale.crux
 			{
 				case BeanEvent.ADD_BEAN:
 					if( existingBean )
-						trace("{0} already exists as a bean. Ignoring ADD_BEAN request.", event.source.toString());// logger.warn( "{0} already exists as a bean. Ignoring ADD_BEAN request.", event.source.toString() );
+						tracer("{0} already exists as a bean. Ignoring ADD_BEAN request.", event.source.toString());// logger.warn( "{0} already exists as a bean. Ignoring ADD_BEAN request.", event.source.toString() );
 					else
 						addBean( constructBean(event.source, event.beanName));
 					break;
@@ -436,7 +436,7 @@ package org.apache.royale.crux
 				case BeanEvent.SET_UP_BEAN:
 					if( existingBean )
 						if( existingBean.initialized )
-							trace("{0} is already set up as a bean. Ignoring SET_UP_BEAN request.", event.source.toString());// logger.warn( "{0} is already set up as a bean. Ignoring SET_UP_BEAN request.", event.source.toString() );
+							tracer("{0} is already set up as a bean. Ignoring SET_UP_BEAN request.", event.source.toString());// logger.warn( "{0} is already set up as a bean. Ignoring SET_UP_BEAN request.", event.source.toString() );
 						else
 							setUpBean( existingBean );
 					else
@@ -454,7 +454,7 @@ package org.apache.royale.crux
 					if( existingBean )
 						removeBean( existingBean );
 					else
-						trace("Could not find bean with {0} as its source. Ignoring REMOVE_BEAN request.", event.source.toString());//logger.warn( "Could not find bean with {0} as its source. Ignoring REMOVE_BEAN request.", event.source.toString() );
+						tracer("Could not find bean with {0} as its source. Ignoring REMOVE_BEAN request.", event.source.toString());//logger.warn( "Could not find bean with {0} as its source. Ignoring REMOVE_BEAN request.", event.source.toString() );
 					break;
 			}
 		}
@@ -515,7 +515,7 @@ package org.apache.royale.crux
 		protected function setUpEventHandlerSysMgr( event:Event ):void
 		{
 
-			trace('todo setUpEventHandlerSysMgr')
+			tracer('todo setUpEventHandlerSysMgr')
 			// make sure the view is not a descendant of the main dispatcher
 			// if it's not, it is a popup, so we pass it along for processing
 			// if( !Sprite( crux.dispatcher ).contains( DisplayObject( event.target ) ) )

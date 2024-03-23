@@ -104,13 +104,13 @@ package org.apache.royale.crux.beads
                 host = value as UIBase;
                 if (_activeInstance) {
                     //assume it will always be that the active instance 'contains' this one...
-                    trace('[IGNORING] there is already an active instance of JSStageEvents at ', _activeInstance.host);
+                    tracer('[IGNORING] there is already an active instance of JSStageEvents at ', _activeInstance.host);
                 } else {
                     _activeInstance = this;
                     if (!_dispatcher) _dispatcher = value as IEventDispatcher;
                     var observer:MutationObserver = new MutationObserver(mutationDetected);
                     observer.observe((value as ElementWrapper).element, {'childList': true, 'subtree': true});
-                    trace('Activating JSStageEvents')
+                    tracer('Activating JSStageEvents')
                 }
             }
         }

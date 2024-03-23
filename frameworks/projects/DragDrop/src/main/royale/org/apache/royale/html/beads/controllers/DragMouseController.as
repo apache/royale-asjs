@@ -332,21 +332,25 @@ package org.apache.royale.html.beads.controllers
             }
             else
             {
-            	host = UIUtils.findPopUpHost(_strand as IUIBase);
-                if (host == null) return;
+                var drag_image:IUIBase = dragImage;
+                if (drag_image) {
+                    host = UIUtils.findPopUpHost(_strand as IUIBase);
+                    if (host == null) return;
 //                trace("DRAG-MOUSE: sending dragMove via " + event.target.toString()+" == "+dragImageOffsetX);
-                dragEvent = DragEvent.createDragEvent("dragMove", event);
-                pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
-                dragImage.x = pt.x + dragImageOffsetX;
-                dragImage.y = pt.y + dragImageOffsetY;
-				COMPILE::SWF {
-					dragEvent.relatedObject = event.target as InteractiveObject;
-				}
-				COMPILE::JS {
-					dragEvent.relatedObject = event.target;
-				}
-                DragEvent.dispatchDragEvent(dragEvent, event.target);
-				dispatchEvent(dragEvent);
+                    dragEvent = DragEvent.createDragEvent("dragMove", event);
+                    pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
+                    drag_image.x = pt.x + dragImageOffsetX;
+                    drag_image.y = pt.y + dragImageOffsetY;
+                    COMPILE::SWF {
+                        dragEvent.relatedObject = event.target as InteractiveObject;
+                    }
+                    COMPILE::JS {
+                        dragEvent.relatedObject = event.target;
+                    }
+                    DragEvent.dispatchDragEvent(dragEvent, event.target);
+                    dispatchEvent(dragEvent);
+                }
+
             }
         }
 

@@ -75,7 +75,7 @@ package org.apache.royale.crux
 
 		public function toString():String
 		{
-			return "Bean{ source: " + source + ", name: " + name + " }";
+			return "Bean{ source: " + (this.typeDescriptor? this.typeDescriptor.className : source) + ", name: " + name + " }";
 		}
     }
 }

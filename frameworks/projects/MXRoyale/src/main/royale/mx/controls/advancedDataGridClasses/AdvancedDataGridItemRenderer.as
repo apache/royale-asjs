@@ -224,8 +224,10 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     {
         return _canUnfold;
     }
-    
 
+    public function isFoldInitiator(check:Object):Boolean{
+        return true; //tbd
+    }
 
     //--------------------------------------------------------------------------
     //

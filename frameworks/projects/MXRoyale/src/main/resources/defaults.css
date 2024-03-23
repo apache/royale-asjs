@@ -84,11 +84,15 @@ dg|DataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridHeaderRenderer");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.dataGridClasses.HeaderRendererFactoryForArrayData");
 	position: absolute;
+	height: unset;
+	min-height: unset;
 }
 
 adg|AdvancedDataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer");
 	position: absolute;
+	height: unset;
+	min-height: unset;
 }
 
 dg|DataGridHeaderRenderer{

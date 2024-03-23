@@ -69,8 +69,8 @@ public class FileUploaderUsingFormData extends FileUploader
 			xhr = new XMLHttpRequest();
 			xhr.open("POST", url);
 			xhr.addEventListener("readystatechange", xhr_onreadystatechange,false);
-			xhr.addEventListener("progress", xhr_progress, false);
-
+			//xhr.upload.addEventListener("progress", xhr_progress, false);
+			trackUpload();
 			if (_referenceRequest) {
 				var contentType:String;
 				for (var i:int = 0; i < _referenceRequest.requestHeaders.length; i++)
@@ -93,16 +93,29 @@ public class FileUploaderUsingFormData extends FileUploader
 		}
 	}
 
+	COMPILE::JS
+	private function trackUpload():void{
+		var xhr:XMLHttpRequest = this.xhr;
+		var handler:Function = xhr_upload;
+		xhr.upload.addEventListener('loadstart', handler);
+		xhr.upload.addEventListener('load', handler);
+		xhr.upload.addEventListener('loadend', handler);
+		xhr.upload.addEventListener('progress', handler);
+		xhr.upload.addEventListener('error', handler);
+		xhr.upload.addEventListener('abort', handler);
+	}
+
+
 	/**
-	 *  Download is progressing (JS only).
+	 *  Upload is progressing (JS only).
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.7.0
+	 *  @productversion Royale 0.9.10
 	 */
 	COMPILE::JS
-	private function xhr_progress(error:Object):void
+	private function xhr_upload(event:Object):void
 	{
 		/*
 		var progEv:ProgressEvent = new ProgressEvent(ProgressEvent.PROGRESS);
@@ -113,6 +126,8 @@ public class FileUploaderUsingFormData extends FileUploader
 		if(onProgress)
 			onProgress(this);
 		*/
+
+		trace('xhr_upload:',event);
 	}
 
 	/**

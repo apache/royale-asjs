@@ -475,6 +475,28 @@ package flexUnitTests.xml
                     '<test>undefined</test>', 'testReplace 3 result is bad');
 
         }
+        [Test]
+        public function testXMLChildNumeric():void{
+            var node:XML = <node></node>;
+
+            var child1:XML = <child1/>;
+            var child2:XML = <child2/>
+
+
+            node.appendChild(child1);
+            node.appendChild(child2);
+
+
+            var query:Object = node.child(0);
+            assertFalse( query is XML, 'numeric child result should be an XMLlist');
+            assertTrue( query is XMLList, 'numeric child result should be an XMLlist');
+            assertTrue( (query as XMLList).length()==1, 'numeric child result should be an XMLlist');
+            assertTrue( query[0] === child1 ,'numeric child result should still be an XMLlist');
+            query = node.child(1);
+            assertTrue( (query as XMLList).length()==1, 'numeric child result should be an XMLlist');
+            assertTrue( query[0] === child2 ,'numeric child result should be an XMLlist');
+        }
+
         
         
         [Test]
