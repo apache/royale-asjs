@@ -31,6 +31,7 @@ package
         MaterialIconType;
         FontAwesome4IconType;
         FontAwesome5IconType;
+        FontAwesome6IconType;
     }
 
 }

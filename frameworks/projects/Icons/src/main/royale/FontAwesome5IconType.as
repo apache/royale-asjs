@@ -19,7 +19,7 @@
 package
 {
     /**
-     *  The FontAwesome4IconType class list all possible icons
+     *  The FontAwesome5IconType class list all possible icons
 	 *  for Font Awesome version 5
      *  found in https://fontawesome.com/ to use with the 
      *  FontAwesomeIcon class.
