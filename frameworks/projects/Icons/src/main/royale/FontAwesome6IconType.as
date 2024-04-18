@@ -49,9 +49,9 @@ package
  		public static const N2:String = "2";
  		public static const N3:String = "3";
  		public static const N4:String = "4";
- 		public static const 42_GROUP:String = "42-group";
+ 		public static const INNOSOFT_42_GROUP:String = "42-group";
  		public static const N5:String = "5";
- 		public static const 500PX:String = "500px";
+ 		public static const F500PX:String = "500px";
  		public static const N6:String = "6";
  		public static const N7:String = "7";
  		public static const N8:String = "8";
