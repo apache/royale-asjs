@@ -335,7 +335,6 @@ package
 		public static const BRAIN_ARROW_CURVED_RIGHT:String = 'brain-arrow-curved-right';
 		public static const BRAIN_CIRCUIT:String = 'brain-circuit';
 		public static const BRAKE_WARNING:String = 'brake-warning';
-		public static const BRANDS {:String = 'brands {';
 		public static const BREAD_LOAF:String = 'bread-loaf';
 		public static const BREAD_SLICE_BUTTER:String = 'bread-slice-butter';
 		public static const BRIDGE_SUSPENSION:String = 'bridge-suspension';
@@ -2021,8 +2020,6 @@ package
 		public static const SQUARE_Z:String = 'square-z';
 		public static const SQUID:String = 'squid';
 		public static const SQUIRREL:String = 'squirrel';
-		public static const SR_ONLY {:String = 'sr-only {';
-		public static const SR_ONLY_FOCUSABLE:NOT(:FOCUS) {:String = 'sr-only-focusable:not(:focus) {';
 		public static const STAFF:String = 'staff';
 		public static const STANDARD_DEFINITION:String = 'standard-definition';
 		public static const STAR_CHRISTMAS:String = 'star-christmas';
