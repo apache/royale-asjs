@@ -27,7 +27,7 @@ package
      *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.10
+	 *  @productversion Royale 0.9.11
      */
     public class FontAwesome6IconType
     {
@@ -37,25 +37,25 @@ package
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.10
+		 *  @productversion Royale 0.9.11
 		 */
 		public function FontAwesome6IconType()
 		{
 			super();
 		}
 		
-		public static const D0:String = '0';
-		public static const D1:String = '1';
-		public static const D2:String = '2';
-		public static const D3:String = '3';
-		public static const D4:String = '4';
-		public static const INNOSOFT_42_GROUP:String = '42-group';
-		public static const D5:String = '5';
-		public static const F500PX:String = '500px';
-		public static const D6:String = '6';
-		public static const D7:String = '7';
-		public static const D8:String = '8';
-		public static const D9:String = '9';
+		public static const _0:String = '0';
+		public static const _1:String = '1';
+		public static const _2:String = '2';
+		public static const _3:String = '3';
+		public static const _4:String = '4';
+		public static const _42_GROUP:String = '42-group';
+		public static const _5:String = '5';
+		public static const _500PX:String = '500px';
+		public static const _6:String = '6';
+		public static const _7:String = '7';
+		public static const _8:String = '8';
+		public static const _9:String = '9';
 		public static const A:String = 'a';
 		public static const ACCESSIBLE_ICON:String = 'accessible-icon';
 		public static const ACCUSOFT:String = 'accusoft';

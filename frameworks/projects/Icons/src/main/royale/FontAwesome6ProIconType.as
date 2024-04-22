@@ -28,7 +28,7 @@ package
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.10
+     *  @productversion Royale 0.9.11
      */
     public class FontAwesome6ProIconType
     {
@@ -38,14 +38,14 @@ package
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.10
+		 *  @productversion Royale 0.9.11
 		 */
 		public function FontAwesome6ProIconType()
 		{
 			super();
 		}
 
-		public static const A360_DEGREES:String = '360-degrees';
+		public static const _360_DEGREES:String = '360-degrees';
 		public static const ABACUS:String = 'abacus';
 		public static const ACCENT_GRAVE:String = 'accent-grave';
 		public static const ACORN:String = 'acorn';

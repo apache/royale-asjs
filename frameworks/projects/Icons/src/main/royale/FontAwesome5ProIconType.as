@@ -28,7 +28,7 @@ package
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.10
+     *  @productversion Royale 0.9.11
      */
     public class FontAwesome5ProIconType
     {
@@ -38,7 +38,7 @@ package
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.10
+		 *  @productversion Royale 0.9.11
 		 */
 		public function FontAwesome5ProIconType()
 		{
