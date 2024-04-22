@@ -50,7 +50,7 @@ package
         public static const ACCOUNT_BALANCE_WALLET:String = 'account_balance_wallet';
         public static const ACCOUNT_BOX:String = 'account_box';
         public static const ACCOUNT_CIRCLE:String = 'account_circle';
-        public static const ADD_SHOPING_CART:String = 'add_shopping_cart';
+        public static const ADD_SHOPPING_CART:String = 'add_shopping_cart';
         public static const ALARM:String = 'alarm';
         public static const ALARM_ADD:String = 'alarm_add';
 
@@ -83,7 +83,7 @@ package
         public static const CARD_TRAVEL:String = 'card_travel';
         public static const CHANGE_HISTORY:String = 'change_history';
         public static const CHECK_CIRCLE:String = 'check_circle';
-        public static const CHORME_READER_MODE:String = 'chrome_reader_mode';
+        public static const CHROME_READER_MODE:String = 'chrome_reader_mode';
         public static const CLASS:String = 'class';
         public static const CODE:String = 'code';
 
@@ -200,7 +200,7 @@ package
         public static const RESTORE_PAGE:String = 'restore_page';
 
         public static const ROOM:String = 'room';
-        public static const ROUND_CORNER:String = 'rounded_corner';
+        public static const ROUNDED_CORNER:String = 'rounded_corner';
         public static const ROWING:String = 'rowing';
         public static const SCHEDULE:String = 'schedule';
         public static const SEARCH:String = 'search';
@@ -246,7 +246,7 @@ package
         public static const THEATERS:String = 'theaters';
         public static const THUMB_DOWN:String = 'thumb_down';
         public static const THUMB_UP:String = 'thumb_up';
-        public static const THUMB_UP_DOWN:String = 'thumbs_up_down';
+        public static const THUMBS_UP_DOWN:String = 'thumbs_up_down';
         public static const TIMELINE:String = 'timeline';
         public static const TOC:String = 'toc';
         public static const TODAY:String = 'today';
@@ -280,7 +280,7 @@ package
         public static const WATCH_LATER:String = 'watch_later';
         public static const WORK:String = 'work';
         public static const YOUTUBE_SEARCHED_FOR:String = 'youtube_searched_for';
-        public static const ZOMM_IN:String = 'zoom_in';
+        public static const ZOOM_IN:String = 'zoom_in';
         public static const ZOOM_OUT:String = 'zoom_out';
         public static const ADD_ALERT:String = 'add_alert';
         public static const ERROR:String = 'error';
@@ -300,8 +300,8 @@ package
 
         public static const FAST_FORWARD:String = 'fast_forward';
         public static const FAST_REWIND:String = 'fast_rewind';
-        public static const FEATURE_PLAY_LIST:String = 'featured_play_list';
-        public static const FEATURE_VIDEO:String = 'featured_video';
+        public static const FEATURED_PLAY_LIST:String = 'featured_play_list';
+        public static const FEATURED_VIDEO:String = 'featured_video';
         public static const FIBER_DVR:String = 'fiber_dvr';
         public static const FIBER_MANUAL_RECORD:String = 'fiber_manual_record';
         public static const FIBER_NEW:String = 'fiber_new';
@@ -320,7 +320,7 @@ package
         public static const LIBRARY_MUSIC:String = 'library_music';
         public static const LOOP:String = 'loop';
 
-        public static const MIC_:String = 'mic';
+        public static const MIC:String = 'mic';
         public static const MIC_NONE:String = 'mic_none';
         public static const MIC_OFF:String = 'mic_off';
         public static const MOVIE:String = 'movie';
@@ -511,7 +511,7 @@ package
         public static const NETWORK_WIFI:String = 'network_wifi';
         public static const NFC:String = 'nfc';
         public static const SCREEN_LOCK_LANDSCAPE:String = 'screen_lock_landscape';
-        public static const SCREEN_LOCK_PORTRAIT:String = 'screen_lock_portraitXXX';
+        public static const SCREEN_LOCK_PORTRAIT:String = 'screen_lock_portrait';
         public static const SCREEN_LOCK_ROTATION:String = 'screen_lock_rotation';
         public static const SCREEN_ROTATION:String = 'screen_rotation';
         public static const SD_STORAGE:String = 'sd_storage';
@@ -1024,7 +1024,7 @@ package
         public static const ROOM_SERVICE:String = 'room_service';
         public static const RV_HOOKUP:String = 'rv_hookup';
 
-        public static const SMOKING_ROOMS:String = 'smoke_free';
+        public static const SMOKE_FREE:String = 'smoke_free';
         public static const SPA:String = 'spa';
         public static const CAKE:String = 'cake';
         public static const DOMAIN:String = 'domain';
@@ -1080,7 +1080,7 @@ package
         public static const WORK_OFF:String = 'work_off';
 
         public static const PRINT_DISABLED:String = 'print_disabled';
-        public static const MOBILE_SCREEN:String = 'mobile_screen';
+        public static const MOBILE_SCREEN_SHARE:String = 'mobile_screen_share';
 
         public static const DEVICE_UNKNOWN:String = 'device_unknown';
         public static const ON_DEVICE_TRAINING:String = 'on_device_training';
