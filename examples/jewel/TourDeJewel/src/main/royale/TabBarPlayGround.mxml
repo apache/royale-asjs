@@ -52,14 +52,14 @@ limitations under the License.
 				tabBarData = new ArrayList([
 					new TabBarButtonVO("Other Tab 1", "tab1", MaterialIconType.MORE),
 					new TabBarButtonVO("Other Tab 2", "tab2", MaterialIconType.PAGES),
-					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOMM_IN)
+					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOOM_IN)
 				]);
 			}
 
 			private var _tabBarDataOptional:ArrayList = new ArrayList([
 					new TabBarButtonVO("Other Tab 1", "tab1", MaterialIconType.MORE),
 					new TabBarButtonVO("Other Tab 2", "tab2", MaterialIconType.PAGES),
-					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOMM_IN)
+					new TabBarButtonVO("Other Tab 3", "tab3", MaterialIconType.ZOOM_IN)
 				]);
 
 			[Bindable]
