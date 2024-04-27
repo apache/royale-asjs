@@ -96,12 +96,16 @@ limitations under the License.
 		
 		private function loadDataProvider(datagrid:DataGrid):void
 		{
-			datagrid.dataProvider = new ArrayList([
+			var arl:ArrayList = new ArrayList([
 				new Product("rz302","New",80,105,"assets/smallyellowrect.jpg"),
 				new Product("dh442","Records",10,340,"assets/smallredrect.jpg"),
 				new Product("ps222","to show!",35,190,"assets/smallorangerect.jpg"),
 				new Product("ps102",":-)",44,200,"assets/smallbluerect.jpg"),
 			]);
+			if(datagrid == dg2)
+				datagrid.dataProvider = new ArrayListView(arl);
+			else
+				datagrid.dataProvider = arl;
 		}
 
 		private function clearBindedDataProvider(datagrid:DataGrid):void
