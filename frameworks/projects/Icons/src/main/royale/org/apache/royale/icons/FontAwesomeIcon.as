@@ -55,7 +55,7 @@ package org.apache.royale.icons
          *   var link = document.createElement("link");
          *   link.setAttribute("rel", "stylesheet");
          *   link.setAttribute("type", "text/css");
-         *   link.setAttribute("href", "https://pro.fontawesome.com/releases/v5.13.0/css/all.css");
+         *   link.setAttribute("href", "https://pro.fontawesome.com/releases/v5.15.4/css/all.css");
          *   document.head.appendChild(link);
 	     *  </inject_script>
          *

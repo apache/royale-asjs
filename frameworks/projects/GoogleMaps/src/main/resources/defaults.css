@@ -24,6 +24,3 @@ g|Map
     IBeadView: ClassReference("org.apache.royale.maps.google.beads.GoogleMapView");
 	IBeadModel: ClassReference("org.apache.royale.maps.google.models.MapModel");
 }
-
-
-}

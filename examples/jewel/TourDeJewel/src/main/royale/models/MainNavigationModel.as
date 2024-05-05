@@ -65,7 +65,7 @@ package models
             new NavigationLinkVO("DataGrid", "datagrid_panel", MaterialIconType.VIEW_LIST),
             new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_COMFY),
             new NavigationLinkVO("TabBar", "tabbar_panel", MaterialIconType.TAB),
-            new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.CHORME_READER_MODE),
+            new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.CHROME_READER_MODE),
             new NavigationLinkVO("Wizard", "wizards_panel", MaterialIconType.MOVIE_FILTER)
             // new NavigationLinkVO("Tabs", "tabs_panel")
         ]);
