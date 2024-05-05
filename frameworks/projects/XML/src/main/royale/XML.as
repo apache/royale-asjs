@@ -1177,15 +1177,18 @@ package
 			if(propNum.toString() == propertyName)
 			{
 				//@todo fixme, this is wrong, it should return a list of that child index content, not the self reference
-				/*if(propertyName != "0")
-					return null;*/
-				if(propNum >= 0 && propNum < _children.length)
+				//before making this change, verify with unit tests...
+				/*if(propNum >= 0 && propNum < _children.length)
 				{
 					list.append(_children[propNum]);
 					list.targetObject = this;
-				}
-				/*list.append(this);
-				list.targetObject = this;*/
+				}*/
+				//temp original restored
+				if(propertyName != "0")
+					return null;
+				list.append(this);
+				list.targetObject = this;
+				//end temp original restored
 				return list;
 			}
 			//support MultiQName for multiple use namespace directives:
