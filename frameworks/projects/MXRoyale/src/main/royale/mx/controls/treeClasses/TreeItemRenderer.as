@@ -115,8 +115,13 @@ public class TreeItemRenderer extends UIComponent
         if (numChildren == 0)
         {
             label = new Label();
+            //Fix for label truncation
+            label.height = 15;
             addChild(label);
             disclosureIcon = new Label();
+            disclosureIcon.truncateToFit = false;
+            disclosureIcon.textAlign = 'right';
+            disclosureIcon.x = 0; //force initial left placement of disclosureIcon
             addChild(disclosureIcon);
         }
     }
@@ -242,31 +247,44 @@ public class TreeItemRenderer extends UIComponent
     {
         _data = value;
         var treeListData:mx.controls.treeClasses.TreeListData = listData as mx.controls.treeClasses.TreeListData;
-
-        if ((treeListData.owner as Tree).labelFunction)
-            text = (treeListData.owner as Tree).labelFunction(data);
-        else
-            text = dataToString(value);
+        var tree:Tree = treeListData.owner as Tree;
+        if (tree) {
+            if (tree.labelFunction ) {
+                text = tree.labelFunction(data);
+            } else {
+               if (tree.labelField) {
+                   _labelField = tree.labelField
+               }
+               text = dataToString(value);
+            }
+        } else text = dataToString(value);
 
         var isBranch : Boolean = (treeListData.owner as Tree).dataDescriptor.isBranch(data);
-        
-        var indentSpace:String = "    ";
-        var extraSpace:String = " ";
-        
+       // var extraSpace:String ;
+        var indentWidth:uint= 14;
+        var indentW:uint = indentWidth;
+       /* COMPILE::SWF {
+            extraSpace = " ";
+        }
         COMPILE::JS {
-            indentSpace = "\u00a0\u00a0\u00a0\u00a0";
             extraSpace = "\u00a0";
-        }
-            
-            var indent:String = "";
+        }*/
+        var disclosureIconText:String =(isBranch || treeListData.hasChildren ? (treeListData.isOpen ? getDisclosureOpen() : getDisclosureClosed()) : "");
         for (var i:int=0; i < treeListData.depth - 1; i++) {
-            indent += indentSpace;
+            indentW +=indentWidth;
         }
-        
-        indent += (isBranch || treeListData.hasChildren ? (treeListData.isOpen ? "▼" : "▶") : "") + extraSpace;
-        
-        disclosureIcon.text = indent;
 
+        disclosureIcon.text = disclosureIconText;
+        disclosureIcon.width = indentW;
+
+    }
+
+    public function getDisclosureOpen():String{
+        return "▼";
+    }
+
+    public function getDisclosureClosed():String{
+        return "▶";
     }
     
     protected function dataToString(value:Object):String
@@ -337,12 +355,14 @@ public class TreeItemRenderer extends UIComponent
     {
         updateDisplayList(width, height);
     }
+
+    protected var hGap:uint = 2;
    
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
-        label.x = disclosureIcon.width;
-        label.y = 2;
-        disclosureIcon.y = 2;
+        label.x = disclosureIcon.width + hGap;
+        label.y = Math.max(0,(unscaledHeight - label.height)*.5);
+        disclosureIcon.y = Math.max(0,(unscaledHeight - disclosureIcon.height)*.5);
     }
 
     public function set text(value:String):void

@@ -120,13 +120,13 @@ public class MouseEvent extends org.apache.royale.events.MouseEvent
 	 */
     COMPILE::SWF
 	public function MouseEvent(type:String, bubbles:Boolean = false,
-							  cancelable:Boolean = false,
-                              localX:Number = NaN, localY:Number = NaN,
-                              relatedObject:Object = null,
-                              ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
-                              buttonDown:Boolean = false, delta:int = 0,
-                              commandKey:Boolean = false, controlKey:Boolean = false,
-                              clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
+                               cancelable:Boolean = false,
+                               localX:Number = NaN, localY:Number = NaN,
+                               relatedObject:Object = null,
+                               ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
+                               buttonDown:Boolean = false, delta:int = 0,
+                               commandKey:Boolean = false, controlKey:Boolean = false,
+                               clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
 	{
 		super(type, bubbles, cancelable, localX, localY, relatedObject,
                 ctrlKey, altKey, shiftKey, buttonDown, delta, commandKey, controlKey,

@@ -40,11 +40,11 @@ COMPILE::SWF
 public class KeyboardEvent extends flash.events.KeyboardEvent
 {
 
-	public function KeyboardEvent(type:String, bubbles:Boolean = true, cancelable:Boolean = false, 
-	charCodeValue:uint = 0, keyCodeValue:uint = 0, keyLocationValue:uint = 0, 
-	ctrlKeyValue:Boolean = false, altKeyValue:Boolean = false, 
-	shiftKeyValue:Boolean = false, 
-	controlKeyValue:Boolean = false, commandKeyValue:Boolean = false)
+	public function KeyboardEvent(type:String, bubbles:Boolean = true, cancelable:Boolean = false,
+                                  charCodeValue:uint = 0, keyCodeValue:uint = 0, keyLocationValue:uint = 0,
+                                  ctrlKeyValue:Boolean = false, altKeyValue:Boolean = false,
+                                  shiftKeyValue:Boolean = false,
+                                  controlKeyValue:Boolean = false, commandKeyValue:Boolean = false)
     {
         super(type, bubbles, cancelable);
 		charCode = charCodeValue;
@@ -181,9 +181,16 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 	
 	public function get charCode():uint
 	{
-		if (code == "Enter")
+		var str:String = key;
+		if (str.length == 1){
+			return str.charCodeAt(0);
+		}
+		//@todo... testing across browsers
+		return this.keyCode;
+
+		/*if (code == "Enter")
 			return 13;
-		return code.charCodeAt();
+		return code.charCodeAt();*/
 	}
 	
 	public var _keyLocationVal:uint = 0;

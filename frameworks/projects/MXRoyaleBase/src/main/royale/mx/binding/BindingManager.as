@@ -29,7 +29,7 @@ use namespace mx_internal;
 /**
  *  @private
  */
-public class BindingManager2
+public class BindingManager
 {
     //include "../core/Version.as";
 
@@ -266,7 +266,7 @@ public class BindingManager2
 	 *  BindingManager has only static methods.
 	 *  We don't create instances of BindingManager.
 	 */
-	public function BindingManager2()
+	public function BindingManager()
 	{
 		super();
 	}

@@ -19,7 +19,6 @@
 package org.apache.royale.html.beads.controllers
 {
 	COMPILE::SWF {
-	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
 	}
 	COMPILE::JS {
@@ -36,6 +35,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.getSelectionRenderBead;
 	import org.apache.royale.utils.sendEvent;
 
@@ -66,6 +66,40 @@ package org.apache.royale.html.beads.controllers
 		
 		private var renderer:IIndexedItemRenderer;
 		private var _strand:IStrand;
+
+		//default behavior, allow overrides
+		protected function get setDownState():Boolean{
+			return true;
+		}
+
+
+		//utility methods to avoid duplicated code:
+		/**
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
+		 */
+		COMPILE::JS
+		protected function getTarget(event:org.apache.royale.events.Event):IIndexedItemRenderer{
+			return event.currentTarget as IIndexedItemRenderer;
+		}
+
+
+		//utility methods to avoid duplicated code:
+		/**
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
+		 */
+		COMPILE::SWF
+		protected function getTarget(event:org.apache.royale.events.MouseEvent):IIndexedItemRenderer{
+			return event.currentTarget as IIndexedItemRenderer;
+		}
+		
+		protected function sendICE(target:IIndexedItemRenderer, eventType:String, details:Boolean):void{
+			var newEvent:ItemClickedEvent = new ItemClickedEvent(eventType);
+			if (details) {
+				newEvent.data = target.data;
+				newEvent.index = target.index;
+			}
+			sendEvent(target,newEvent);
+		}
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -106,7 +140,7 @@ package org.apache.royale.html.beads.controllers
 		COMPILE::SWF
 		protected function rollOverHandler(event:MouseEvent):void
 		{
-			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+			var target:IIndexedItemRenderer = getTarget(event);
 			if (target)
 			{
 				sendEvent(target,new Event("itemRollOver",true));
@@ -114,14 +148,15 @@ package org.apache.royale.html.beads.controllers
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
+		 * 
+		 * @royaleignorecoercion org.apache.royale.events.Event
 		 */
 		COMPILE::JS
 		protected function handleMouseOver(event:BrowserEvent):void
 		{
-			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+			var target:IIndexedItemRenderer = getTarget(event as org.apache.royale.events.Event);
 			if (target) {
-				sendEvent(target,new Event("itemRollOver",true));
+				sendEvent(target,new org.apache.royale.events.Event("itemRollOver",true));
 			}
 		}
 		
@@ -131,7 +166,7 @@ package org.apache.royale.html.beads.controllers
 		COMPILE::SWF
 		protected function rollOutHandler(event:MouseEvent):void
 		{
-			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+			var target:IIndexedItemRenderer = getTarget(event);
 			if (target)
 			{
 				sendEvent(target,new Event("itemRollOut",true));
@@ -139,15 +174,15 @@ package org.apache.royale.html.beads.controllers
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.Event
 		 */
 		COMPILE::JS
 		protected function handleMouseOut(event:BrowserEvent):void
 		{
-			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+			var target:IIndexedItemRenderer = getTarget(event as org.apache.royale.events.Event);
 			if (target)
 			{
-				sendEvent(target,new Event("itemRollOut",true));
+				sendEvent(target,new org.apache.royale.events.Event("itemRollOut",true));
 			}
 		}
 
@@ -157,40 +192,49 @@ package org.apache.royale.html.beads.controllers
 		COMPILE::SWF
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
-			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+			var target:IIndexedItemRenderer = getTarget(event);
 			if (target)
 			{
+				if (setDownState) {
 					var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
 					if (selectionBead)
 						selectionBead.down = true;
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
+				}
+
+				sendICE(target, "itemMouseDown", true);
+				/*var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
 				newEvent.index = target.index;
-				sendEvent(target,newEvent);
+				sendEvent(target,newEvent);*/
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 		}
 		
 		/**
 		 * @private
-		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
+		 * @royaleignorecoercion org.apache.royale.events.Event
 		 */
 		COMPILE::JS
 		protected function handleMouseDown(event:BrowserEvent):void
 		{
-			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+			var target:IIndexedItemRenderer = getTarget(event as org.apache.royale.events.Event);
 			if (target)
 			{
-				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
-				if (selectionBead)
-				{
-					selectionBead.down = true;
-					//selectionBead.hovered = false;
+				if (setDownState) {
+					var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+					if (selectionBead)
+					{
+						selectionBead.down = true;
+						//selectionBead.hovered = false;
+					}
 				}
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
+
+
+				sendICE(target, "itemMouseDown", true);
+				/*var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
 				newEvent.index = target.index;
-				sendEvent(target,newEvent);
+				sendEvent(target,newEvent);*/
 			}
 		}
 		
@@ -204,12 +248,15 @@ package org.apache.royale.html.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{				
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+				/*var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
-				newEvent.index = target.index;
+				newEvent.index = target.index;*/
 				
 				target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-				sendEvent(target,newEvent);
+
+				sendICE(target, "itemClicked", true);
+				
+				//sendEvent(target,newEvent);
 			}			
 		}
 		
@@ -223,11 +270,12 @@ package org.apache.royale.html.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+				/*var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
-				sendEvent(target,newEvent);
+				sendEvent(target,newEvent);*/
+				sendICE(target, "itemClicked", true);
 			}
 		}
 
@@ -241,12 +289,14 @@ package org.apache.royale.html.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseUp");
+				/*var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseUp");
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
-				sendEvent(target,newEvent);
+				sendEvent(target,newEvent);*/
+				sendICE(target, "itemMouseUp", true);
 			}
+			
 		}
 
 	}

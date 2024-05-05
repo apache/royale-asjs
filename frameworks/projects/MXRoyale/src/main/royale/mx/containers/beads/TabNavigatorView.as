@@ -43,6 +43,8 @@ import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.ValueEvent;
 import org.apache.royale.html.beads.GroupView;
 import org.apache.royale.html.supportClasses.PanelLayoutProxy;
+    
+import org.apache.royale.events.Event;
 
 
 /**
@@ -140,8 +142,8 @@ public class TabNavigatorView extends GroupView
         if (tabBar.parent == null) {
             (_strand as IContainerBaseStrandChildrenHost).$addElement(tabBar);
         }
-        contentArea.percentWidth = 100;
-        contentArea.percentHeight = 100;
+      //  contentArea.percentWidth = 100;
+      //  contentArea.percentHeight = 100;
         // try to listen for childrenAdded before ViewStackLayout listens for childrenAdded
         // so we can update the selection before the layout picks the visible child
         (_strand as IEventDispatcher).addEventListener("childrenAdded", childrenChangedHandler);
@@ -156,9 +158,13 @@ public class TabNavigatorView extends GroupView
         }
 
         // Now give the TabNavigator its own layout
-        var boxLayout:BoxLayout = new BoxLayout();
+       /* var boxLayout:BoxLayout = new BoxLayout();
         boxLayout.direction = "vertical";
-        _strand.addBead(boxLayout);
+        _strand.addBead(boxLayout);*/
+
+        var layout:TabNavigatorLayout = new TabNavigatorLayout();
+        layout.tabNavView = this;
+        _strand.addBead(layout);
 
     }
 
@@ -211,10 +217,18 @@ public class TabNavigatorView extends GroupView
             }
         } else {
             if (removeIndex != -1 ) {
+                //@todo check to see what Flex does in this case, trying the following:
                 if (removeIndex == tabDP.length) removeIndex--;
                 if (tabNavigator)
                 {
-                    tabNavigator.selectedIndex = removeIndex;
+                    if (oldIndex == removeIndex) {
+                        //select 0 ?
+                        tabNavigator.selectedIndex = 0;
+                    } else {
+                        if (removeIndex < oldIndex) {
+                            tabNavigator.selectedIndex = oldIndex-1;
+                        }
+                    }
                 }
             }
         }
@@ -248,4 +262,37 @@ public class TabNavigatorView extends GroupView
 
 }
 
+}
+
+
+import mx.containers.TabNavigator;
+import mx.containers.beads.TabNavigatorView;
+import mx.core.Container;
+import mx.core.UIComponent;
+
+import org.apache.royale.core.LayoutBase;
+
+class TabNavigatorLayout extends LayoutBase
+{
+
+    public var tabNavView:TabNavigatorView;
+
+    override public function layout():Boolean
+    {
+        var tabNavigator:TabNavigator = host as TabNavigator;
+        var tabBar:UIComponent = /*panel.$getElementAt(0)*/tabNavView.tabBar as UIComponent;
+        var content:Container = /*panel.$getElementAt(1)*/tabNavView.contentArea as Container;
+
+        var w:Number = tabNavigator.width;
+        var h:Number = tabNavigator.height;
+        if (tabNavigator.isWidthSizedToContent())
+            w = content.width + 2;
+        if (tabNavigator.isHeightSizedToContent())
+            h = content.height + 2 + tabBar.getExplicitOrMeasuredHeight();
+        tabBar.setActualSize(w - 2, tabBar.getExplicitOrMeasuredHeight());
+        var contentHeight:Number = h - tabBar.height - 4 ;
+        content.setActualSize(w - 2, contentHeight);
+        content.move(0, tabBar.height + 1);
+        return false;
+    }
 }

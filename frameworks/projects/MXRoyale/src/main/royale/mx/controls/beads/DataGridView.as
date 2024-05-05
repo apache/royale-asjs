@@ -111,8 +111,12 @@ COMPILE::JS{
             IEventDispatcher(host.model).addEventListener("columnsChanged", columnsChanged);
             var listBaseHost:ListBase = host as ListBase;
             if (listBaseHost) {
-                if (!isNaN(listBaseHost.rowHeight))
-                    header.height = listBaseHost.rowHeight;
+                var headerHeight:Number;
+                if ('headerHeight' in listBaseHost) {
+                    headerHeight = listBaseHost['headerHeight'];
+                } else headerHeight = listBaseHost.rowHeight;
+                if (!isNaN(headerHeight))
+                    header.height = headerHeight;
                 else
                     header.height = (listBaseHost.presentationModel as IListPresentationModel).rowHeight;
             }
@@ -362,6 +366,11 @@ COMPILE::JS{
             (list as DataGridColumnList).grid = _strand as ListBase;
             DataGridColumn(forColumn).list = list as UIBase;
             ((list as DataGridColumnList).model as DataGridColumnICollectionViewModel).columnIndex = DataGridColumn(forColumn).colNum;
+
+            COMPILE::JS{
+                var textAlign:String = DataGridColumn(forColumn).textAlign as String;
+                if (textAlign) (list as DataGridColumnList).element.style.textAlign = textAlign;
+            }
         }
 
         protected function preDestroyList(list:IDataGridColumnList):void{

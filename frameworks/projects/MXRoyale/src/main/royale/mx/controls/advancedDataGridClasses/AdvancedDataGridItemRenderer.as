@@ -158,7 +158,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         var adgModel:DataGridICollectionViewModel = owner.model as DataGridICollectionViewModel;
         var column:DataGridColumn = adgModel.columns[treeListData.columnIndex];
 
-        super.data = value;
+    //    super.data = value;
 
         var indentSpace:String = "    ";
         var extraSpace:String = " ";
@@ -179,7 +179,9 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             _canFold = treeListData.hasChildren && treeListData.open;
             _canUnfold = treeListData.hasChildren && !treeListData.open;
         }
-        
+        //the following will update the text getter with default values
+        super.data = value;
+        //the following will update the text with custom values
         if (column.labelFunction)
         {
             this.text = column.labelFunction(value, column);
@@ -270,15 +272,18 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
 
     override protected function dataToString(value:Object):String
     {
+        if (this._listData) {
+            return _listData.label;
+        }
         if (value is XML)
         {
             var xml:XML = value as XML;
-            return xml[labelField];
+            return (xml[labelField]).toString();
         }
         else if (value is XMLList)
         {
             var singlexml:XML = value.toXML();
-            return singlexml[labelField];
+            return (singlexml[labelField]).toString();
         }
         return super.dataToString(value);
     }
@@ -1280,6 +1285,16 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     {
         trace("mouseX not implemented");
         return 0;
+    }
+    
+    
+    public function set measuredHeight(value:Number):void
+    {
+        trace('trying to set measured height on ',this, value)
+    }
+    public function set measuredWidth(value:Number):void
+    {
+        trace('trying to set measured width on ',this, value)
     }
 
 }

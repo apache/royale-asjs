@@ -72,7 +72,9 @@ package mx.controls.menuClasses
 			if (parent && parent is Menu && (parent as Menu).dataDescriptor)
 			{
 				var desc:IMenuDataDescriptor = (parent as Menu).dataDescriptor;
-				enabled = desc.isEnabled(value);
+				//make sure that "separators" are not 'enabled' as well:
+				var configureEnabled:Boolean = (getType() != 'separator') && desc.isEnabled(value)
+				enabled = configureEnabled;
 			}
 	/*        COMPILE::SWF
 			{
@@ -130,7 +132,7 @@ package mx.controls.menuClasses
 		{
 			return getHasMenu();
 		}
-
+		
 		public function isFoldInitiator(check:Object):Boolean{
 			return true; //tbd
 		}

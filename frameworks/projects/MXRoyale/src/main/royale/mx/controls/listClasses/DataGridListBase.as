@@ -590,7 +590,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
         if (collection)
             collection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
 
-        if (value is Array) value = new ArrayCollection(value as Array);
+        if (value is Array || value == null) value = new ArrayCollection(value as Array);
         collection = value as ICollectionView;
         if (collection)
 		{
@@ -677,7 +677,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected */ public var collection:ICollectionView;
+    /* protected */ //public var collection:ICollectionView;
 
     /**
      *  The main IViewCursor instance used to fetch items from the
@@ -3870,10 +3870,22 @@ public class DataGridListBase extends ListBase /* extends UIComponent
         }
         */
 
-        var target:IUIBase = event.target as IUIBase;
+       /* var target:IUIBase = event.target as IUIBase;
         do {
             if (target is IItemRenderer)
                 return target as IItemRenderer;
+            target = (target as IChild).parent as IUIBase;
+            if (target == this)
+                return null;
+        } while (target);*/
+
+        var target:IUIBase = event.target as IUIBase;
+        do {
+            if (target is IItemRenderer) {
+                if (IItemRenderer(target).parent is DataGridColumnList) {
+                    return IItemRenderer(target)
+                }
+            }
             target = (target as IChild).parent as IUIBase;
             if (target == this)
                 return null;
@@ -5091,7 +5103,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
+    override protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
                                                  ctrlKey:Boolean):void
     {
 		// For Keyboard.LEFT and Keyboard.RIGHT and maybe Keyboard.UP and Keyboard.DOWN,
@@ -5120,7 +5132,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
+    override protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
                                                ctrlKey:Boolean):void
     {
         var newVerticalScrollPosition:Number;
@@ -5292,7 +5304,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected function finishKeySelection():void
+    override protected function finishKeySelection():void
     {
         var uid:String;
         var rowCount:int = layout.lastVisibleIndex = layout.firstVisibleIndex; //listItems.length;
@@ -5838,7 +5850,7 @@ public class DataGridListBase extends ListBase /* extends UIComponent
 		{
 			var listArea:IUIBase = (view as DataGridView).listArea;
 			var element:HTMLElement = listArea.element;
-			var max:Number = Math.max(0, dataProvider.length * rowHeight - element.clientHeight);
+			var max:Number = !dataProvider ? 0 : Math.max(0, dataProvider.length * rowHeight - element.clientHeight);
 			var yy:Number = Math.min(index * rowHeight, max);
 			element.scrollTop = yy;
 		}

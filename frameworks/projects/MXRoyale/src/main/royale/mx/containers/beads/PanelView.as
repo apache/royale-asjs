@@ -129,6 +129,14 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
             contentArea.addBead(layoutObject);            
         
     }
+
+    private var _controlBar:UIComponent;
+    public function get controlBar():UIComponent{
+        return _controlBar;
+    }
+    public function setControlBar(value:UIComponent):void{
+        _controlBar = value;
+    }
     
     override protected function setupLayout():void
     {
@@ -148,6 +156,7 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
         
         // Now give the Panel its own layout
         var panelLayout:PanelLayout = new PanelLayout();
+        panelLayout.panelView = this;
         _strand.addBead(panelLayout);
     }
 
@@ -172,18 +181,22 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
 
 }
 
+import mx.containers.beads.PanelView;
 import mx.core.UIComponent;
 import mx.containers.Panel;
 import org.apache.royale.core.LayoutBase;
 
 class PanelLayout extends LayoutBase
 {
+
+    public var panelView:PanelView;
+
     override public function layout():Boolean
     {
         var panel:Panel = host as Panel;
-        var titleBar:UIComponent = panel.$getElementAt(0) as UIComponent;
-        var content:UIComponent = panel.$getElementAt(1) as UIComponent;
-        var controlBar:UIComponent = panel.$numElements > 2 ? panel.$getElementAt(2) as UIComponent : null;
+        var titleBar:UIComponent = /*panel.$getElementAt(0)*/panelView.titleBar as UIComponent;
+        var content:UIComponent = /*panel.$getElementAt(1)*/panelView.contentArea as UIComponent;
+        var controlBar:UIComponent = panelView.controlBar //panel.$numElements > 2 ? panel.$getElementAt(2) as UIComponent : null;
         var w:Number = panel.width;
         var h:Number = panel.height;
         if (panel.isWidthSizedToContent())

@@ -19,6 +19,11 @@
 
 package mx.controls
 {
+import mx.core.Keyboard;
+
+import org.apache.royale.core.UIBase;
+import mx.events.KeyboardEvent;
+
 COMPILE::SWF
 {
     import flash.display.InteractiveObject;    
@@ -427,17 +432,17 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
     {
        _contentBackgroundColor = value;
     }
-    
-    /**
+    /*
+    /!**
      *  @private
-     */
+     *!/
     private var enabledChanged:Boolean = false;
 
     [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
 
-    /**
+    /!**
      *  @private
-     */
+     *!/
     override public function get enabled():Boolean
     {
         return _enabled;
@@ -454,7 +459,7 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
 	_disableBead.disabled = !value;
 
 	dispatchEvent(new org.apache.royale.events.Event("enabledChanged"));
-    }
+    }*/
 
     //--------------------------------------------------------------------------
     //
@@ -468,10 +473,30 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
 	
     public function get value():Object
 	{
-      return null;	
+      if (_editable) return text;
+        var item:Object = selectedItem;
+
+        if (item == null || typeof(item) != 'object') {
+            return item;
+        }
+
+        if (item is XML) {
+            //royale extra check for XML
+            var xml:XML = XML(item);
+            if (xml.data.length()) {
+                return xml.data.toString()
+            } else return xml.label.toString();
+        }
+
+        //note the explicit comparison with null is important, because otherwise when
+        //the data is zero, the label will be returned.
+        return item.data != null ? item.data : item.label;
 	}
 
-
+    
+    /**
+     * @private
+     */
     protected function shouldDeselect(dp:Object):Boolean{
         return !dp || !dp.length;
     }
@@ -548,11 +573,13 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
                 tmp.push(value);
             value = new ArrayCollection(tmp);
         }
+        collection = value as ICollectionView;
         IComboBoxModel(model).dataProvider = value;
-        /*if (value && IComboBoxModel(model).selectedIndex == -1)
+        //@todo investigate further, this was preventing the prompt from displaying:
+       /* if (value && IComboBoxModel(model).selectedIndex == -1)
             IComboBoxModel(model).selectedIndex = 0;*/
         if (shouldDeselect(value)) IComboBoxModel(model).selectedIndex = -1
-            else IComboBoxModel(model).selectedIndex = 0;
+         else IComboBoxModel(model).selectedIndex = 0;
     }
 
     //----------------------------------
@@ -835,11 +862,38 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
     {
         super.addedToParent();
         textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
+        textInput.addEventListener(KeyboardEvent.KEY_DOWN/*'keydown'*/, textInput_enterHandler);
     }
 
     protected function textInput_changeHandler(event:Event):void
     {
+
         // override this
+        if (selectedIndex != -1) {
+            //(Royale) this can trigger a reset of the textInput content, so we will do a workaround for that in here
+            var text:String = textInput.text;
+            COMPILE::JS{
+                var inputEl:HTMLInputElement = textInput.element as HTMLInputElement;
+                var selStart:uint = inputEl.selectionStart;
+                var selEnd:uint = inputEl.selectionEnd;
+                var selDir:String = Object(inputEl).selectionDirection;
+            }
+
+            selectedIndex = -1;
+            textInput.text = text;
+            COMPILE::JS{
+                inputEl.setSelectionRange(selStart, selEnd, selDir);
+            }
+        }
+    }
+
+    protected function textInput_enterHandler(event:KeyboardEvent):void
+    {
+        // override this
+        if (event.charCode == Keyboard.ENTER) {
+            trace('enter!')
+            dispatchEvent(new FlexEvent(FlexEvent.ENTER));
+        }
     }
 
     
@@ -889,6 +943,11 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
         }
         else
             super.setFocus();
+    }
+
+
+    override protected function isOurFocus(target:UIBase):Boolean{
+        return target == textInput || super.isOurFocus(target)
     }
 	
 	protected function downArrowButton_buttonDownHandler(event:FlexEvent):void

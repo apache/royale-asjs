@@ -502,13 +502,13 @@ public class SkinnableTextBase extends SkinnableComponent
     {
     }
     
-    public function get textDecoration():String
+    /*public function get textDecoration():String
     {
 	return null;
     }
     public function set textDecoration(val:String):void
     {
-    }
+    }*/
     
     public function get textAlignLast():String
     {

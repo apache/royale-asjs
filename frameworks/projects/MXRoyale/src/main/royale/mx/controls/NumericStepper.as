@@ -517,10 +517,13 @@ public class NumericStepper extends UIComponent
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.controls.beads.NumericStepperView
      */
     public function set value(value:Number):void
     {
+        (view as NumericStepperView).programmaticChange = true;
         IRangeModel(model).value = value;
+        (view as NumericStepperView).programmaticChange = false;
     }
 
     //--------------------------------------------------------------------------
@@ -674,6 +677,23 @@ public class NumericStepper extends UIComponent
 		_measuredHeight = 21;
 		_measuredWidth = 55; // FF is 55, Chrome 54
 	}
+
+
+    COMPILE::JS
+    override public function get measuredWidth():Number{
+        if (isNaN(_measuredWidth) || _measuredWidth </*=*/ 0) {
+            return width
+        }
+        return _measuredWidth;
+    }
+
+    COMPILE::JS
+    override public function get measuredHeight():Number{
+        if (isNaN(_measuredHeight) || _measuredHeight </*=*/ 0) {
+           return height;
+        }
+        return _measuredHeight;
+    }
 }
 
 }

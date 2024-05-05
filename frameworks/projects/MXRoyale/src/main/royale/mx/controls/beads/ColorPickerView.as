@@ -58,7 +58,7 @@ package mx.controls.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ColorPickerView extends BeadViewBase implements IComboBoxView
+	public class ColorPickerView extends BeadViewBase implements org.apache.royale.html.beads.IComboBoxView
 	{
 		public function ColorPickerView()
 		{

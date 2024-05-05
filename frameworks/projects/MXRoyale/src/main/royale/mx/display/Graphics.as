@@ -92,7 +92,11 @@ package mx.display
                 svg.setAttribute("width", displayObject.width.toString() + "px");
                 svg.setAttribute("height", displayObject.height.toString() + "px");
                 svg.style.position = "absolute";
-                element.appendChild(svg);
+                svg.style.pointerEvents = 'none';
+                if (element.firstElementChild) {
+                    element.insertBefore(svg, element.firstElementChild)
+                }
+                else element.appendChild(svg);
             }
         }
         
@@ -509,7 +513,24 @@ package mx.display
 	public function beginBitmapFill(bitmap:BitmapData, matrix:Matrix = null, repeat:Boolean = true, smooth:Boolean = false):void
 		{
 		}
-			
+
+        /**
+         * a support for js-only access to the last renderered svg element.
+         * This can be used for low-level native svg variations (e.g stroke-dasharray)
+         *
+         * example :
+         * instance.graphics.lastRenderedElement.style.setProperty('stroke-dasharray', dashLength.toString())
+         *
+         * @royaleignorecoercion SVGElement
+         */
+        COMPILE::JS
+        public function get lastRenderedElement():SVGElement{
+            var element:SVGElement;
+            if (svg) {
+                element = svg.lastElementChild as SVGElement;
+            }
+            return element;
+        }
 
 	}
 	

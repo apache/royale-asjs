@@ -19,6 +19,9 @@
 
 package mx.controls
 {
+import mx.printing.FlexPrintJobScaleType;
+import mx.utils.RoyaleUtil;
+
 COMPILE::JS {
 	import goog.events;
 	import org.apache.royale.core.WrappedHTMLElement;
@@ -54,8 +57,6 @@ import mx.managers.IFocusManagerComponent;
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
-import org.apache.royale.core.TextLineMetrics;
-import mx.core.IUITextField;
 
 /*
 import mx.events.ScrollEvent;
@@ -127,7 +128,9 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="link", type="flash.events.TextEvent")]
+//@todo unify this to mx.events.TextEvent (instead of flash.events.TextEvent) in flash
+[Event(name="link", type="mx.events.TextEvent")]
+
 
 /**
  *  Dispatched when the user types, deletes, or pastes text into the control.
@@ -312,14 +315,40 @@ public class TextArea extends ScrollControlBase
 	
 	/**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     * @royaleignorecoercion HTMLTextAreaElement
 	 */
 	COMPILE::JS
 	override protected function createElement():WrappedHTMLElement
 	{
-		addElementToWrapper(this,'textarea');
-		goog.events.listen(element, 'input', textChangeHandler);
+		addElementToWrapper(this,'div');
+        _ta = document.createElement('textarea') as HTMLTextAreaElement;
+        (_ta as WrappedHTMLElement).royale_wrapper = this;
+        _ta.style.width = '100%';
+        //instead of '100%' height, the following seems necessary for Firefox:
+        _ta.style.height = 'calc(100% - 0.01px)';
+        _ta.style.border = 'none';
+        _ta.style.font = 'inherit';
+        _ta.style.textAlign = 'inherit';
+        _ta.style.textDecoration = 'inherit';
+        _ta.className = 'mxTextArea';
+        element.appendChild(_ta);
+		goog.events.listen(_ta, 'input', textChangeHandler);
+        element.style.overflow = 'hidden';
 		return element;
 	}
+
+    COMPILE::JS
+    private var _ta:HTMLTextAreaElement;
+
+    COMPILE::JS
+    override protected function getHorizontalScrollElement():HTMLElement{
+        return _ta;
+    }
+
+    COMPILE::JS
+    override protected function getVerticalScrollElement():HTMLElement{
+        return _ta;
+    }
 
     //----------------------------------
     //  accessibilityProperties
@@ -365,7 +394,7 @@ public class TextArea extends ScrollControlBase
         enabledChanged = true;
 
 		COMPILE::JS {
-			element["disabled"] = !value;
+            _ta["disabled"] = !value;
 		}
 //        if (verticalScrollBar)
 //            verticalScrollBar.enabled = value;
@@ -584,7 +613,7 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   protected var textField:IUITextField;
+//    protected var textField:IUITextField;
 
     //----------------------------------
     //  verticalScrollPosition
@@ -910,7 +939,7 @@ public class TextArea extends ScrollControlBase
         editableChanged = true;
 		
 		COMPILE::JS {
-			element["readOnly"] = !value;
+            _ta["readOnly"] = !value;
 		}
 
         //invalidateProperties();
@@ -1153,7 +1182,7 @@ public class TextArea extends ScrollControlBase
 		}
 		COMPILE::JS
 		{
-			return (element as HTMLInputElement).value;
+			return _ta.value;
 		}
     }
 
@@ -1168,8 +1197,12 @@ public class TextArea extends ScrollControlBase
 		}
 		COMPILE::JS
 		{
-			(element as HTMLInputElement).value = value;
+            _ta.value = value;
 			dispatchEvent(new Event('htmlTextChanged'));
+            if (value && !linkListening) {
+                linkListening = true;
+                RoyaleUtil.linkEventEnhancer(this);
+            }
 		}
 //        textSet = true;
 //
@@ -1205,6 +1238,9 @@ public class TextArea extends ScrollControlBase
 //        // after the TextField determines the 'text' based on the
 //        // 'htmlText'; this event will trigger any bindings to 'text'.
     }
+
+    COMPILE::JS
+    private var linkListening:Boolean;
 
     //----------------------------------
     //  imeMode
@@ -1377,7 +1413,7 @@ public class TextArea extends ScrollControlBase
         maxCharsChanged = true;
 		
 		COMPILE::JS {
-			element["maxLength"] = value;
+            _ta["maxLength"] = value;
 		}
 
         //invalidateProperties();
@@ -1548,7 +1584,7 @@ public class TextArea extends ScrollControlBase
     {
         COMPILE::JS
         {
-            return (element as HTMLTextAreaElement).selectionStart;
+            return _ta.selectionStart;
         }
         COMPILE::SWF
         {
@@ -1563,7 +1599,7 @@ public class TextArea extends ScrollControlBase
     {
         COMPILE::JS
         {
-            (element as HTMLTextAreaElement).selectionStart = value;
+            _ta.selectionStart = value;
         }
     }
 
@@ -1603,7 +1639,7 @@ public class TextArea extends ScrollControlBase
     {
         COMPILE::JS
         {
-            return (element as HTMLTextAreaElement).selectionEnd;
+            return _ta.selectionEnd;
         }
         COMPILE::SWF
         {
@@ -1618,7 +1654,7 @@ public class TextArea extends ScrollControlBase
     {
         COMPILE::JS
         {
-            (element as HTMLTextAreaElement).selectionEnd = value;                
+            _ta.selectionEnd = value;
         }
     }
 
@@ -1744,7 +1780,7 @@ public class TextArea extends ScrollControlBase
 		}
 		COMPILE::JS
 		{
-			return (element as HTMLInputElement).value;
+			return (_ta as HTMLInputElement).value;
 		}
     }
 
@@ -1762,7 +1798,7 @@ public class TextArea extends ScrollControlBase
 		}
 		COMPILE::JS
 		{
-			(element as HTMLTextAreaElement).value = value;
+            _ta.value = value;
             verticalScrollSize = CSSUtils.toNumber(getComputedStyle(element).lineHeight.toString(), width);
             if (verticalScrollPosition)
                 element.scrollTop = verticalScrollPosition * verticalScrollSize;
@@ -2076,22 +2112,6 @@ public class TextArea extends ScrollControlBase
 //            verticalScrollPosition = _vScrollPosition;
     }
 
-    override public function getExplicitOrMeasuredWidth():Number
-    {
-        if (!isNaN(explicitWidth))
-            return explicitWidth;
-        measure()
-        return measuredWidth;
-    }
-
-    override public function getExplicitOrMeasuredHeight():Number
-    {
-        if (!isNaN(explicitHeight))
-            return explicitHeight;
-        measure()
-        return measuredHeight;
-    }
-
     /**
      *  @private
      */
@@ -2099,11 +2119,10 @@ public class TextArea extends ScrollControlBase
     {
         super.measure();
 
-        measuredMinWidth = DEFAULT_MEASURED_MIN_WIDTH;
-        measuredWidth = DEFAULT_MEASURED_WIDTH;
-        // TextArea is minimum of two lines of text
-        measuredMinHeight = measuredHeight = 2 * DEFAULT_MEASURED_MIN_HEIGHT;
-
+//        measuredMinWidth = DEFAULT_MEASURED_MIN_WIDTH;
+//        measuredWidth = DEFAULT_MEASURED_WIDTH;
+//        // TextArea is minimum of two lines of text
+//        measuredMinHeight = measuredHeight = 2 * DEFAULT_MEASURED_MIN_HEIGHT;
     }
 
     /**
@@ -2180,6 +2199,13 @@ public class TextArea extends ScrollControlBase
     {
         var textView:TextAreaView = view as TextAreaView;
         textView.textField.stage.focus = textView.textField
+    }
+
+
+    COMPILE::JS
+    override public function setFocus():void
+    {
+        _ta.focus();
     }
 
     /**
@@ -2306,12 +2332,10 @@ public class TextArea extends ScrollControlBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function getLineMetrics(lineIndex:int):TextLineMetrics
-    {
-        trace("getLineMetrics in mx:TextArea is not implemented");
-		return null;
-		//return textField ? textField.getLineMetrics(lineIndex) : null;
-    }
+//    public function getLineMetrics(lineIndex:int):TextLineMetrics
+//    {
+//        return textField ? textField.getLineMetrics(lineIndex) : null;
+//    }
 
     /**
      *  Selects the text in the range specified by the parameters.
@@ -2343,8 +2367,9 @@ public class TextArea extends ScrollControlBase
     {
         COMPILE::JS
         {
-            selectionBeginIndex = beginIndex;
-            selectionEndIndex = endIndex;
+            //selectionBeginIndex = beginIndex;
+            //selectionEndIndex = endIndex;
+            _ta.setSelectionRange(beginIndex, endIndex);
         }
     }
 

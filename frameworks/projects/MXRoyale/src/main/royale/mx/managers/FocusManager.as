@@ -19,6 +19,12 @@
 
 package mx.managers
 {
+import mx.controls.Button;
+import mx.core.IFlexDisplayObject;
+
+
+
+
 
 COMPILE::SWF
 {
@@ -34,6 +40,18 @@ import flash.system.Capabilities;
 import flash.system.IME;
 import flash.text.TextField;
 import flash.ui.Keyboard;
+}
+
+COMPILE::JS
+{
+
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
+    import mx.events.KeyboardEvent;
+    import mx.events.FocusEvent;
+    import mx.core.Keyboard;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.core.WrappedHTMLElement;
 }
 
 //import mx.core.IButton;
@@ -361,16 +379,21 @@ public class FocusManager extends EventDispatcher implements IFocusManager
     //  defaultButton
     //----------------------------------
 
+    //----------------------------------
+    //  defaultButton
+    //----------------------------------
+
+
     /**
      *  @private
      *  The current default button.
      */
-    //private var defButton:IButton;
+    private var defButton:IUIComponent;
 
     /**
      *  @private
      */
-    //private var _defaultButton:IButton;
+    private var _defaultButton:IUIComponent;
 
     /**
      *  @inheritDoc
@@ -380,25 +403,26 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    //public function get defaultButton():IButton
-    //{
-	//	return _defaultButton;
-    //}
+    public function get defaultButton():IUIComponent
+    {
+		return _defaultButton;
+    }
 
     /**
      *  @private
      *  We don't type the value as Button for dependency reasons
-    public function set defaultButton(value:IButton):void
+     *  **/
+    public function set defaultButton(value:IUIComponent):void
     {
-		var button:IButton = value ? IButton(value) : null;
+		var button:IUIComponent = value ? IUIComponent(value) : null;
 
         if (button != _defaultButton)
         {
-            if (_defaultButton)
+            /*if (_defaultButton)
                 _defaultButton.emphasized = false;
             
             if (defButton)  
-                defButton.emphasized = false;
+                defButton.emphasized = false;*/
             
             _defaultButton = button;
             
@@ -406,12 +430,12 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             {
             	defButton = button;
             
-           		if (button)
-                	button.emphasized = true;
+           		/*if (button)
+                	button.emphasized = true;*/
         	}
     	}
     }
-     */
+
 
     //----------------------------------
     //  defaultButtonEnabled
@@ -421,7 +445,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @private
      *  Storage for the defaultButtonEnabled property.
      */
-    //private var _defaultButtonEnabled:Boolean = true;
+    private var _defaultButtonEnabled:Boolean = true;
 
     /**
      *  @inheritDoc
@@ -430,14 +454,16 @@ public class FocusManager extends EventDispatcher implements IFocusManager
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  */
     public function get defaultButtonEnabled():Boolean
     {
         return _defaultButtonEnabled;
     }
-     */
+
     
     /**
      *  @private
+     *  */
     public function set defaultButtonEnabled(value:Boolean):void
     {
         _defaultButtonEnabled = value;
@@ -445,10 +471,10 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         // Synchronize with the new value. We ensure that our 
         // default button is de-emphasized if defaultButtonEnabled
         // is false.
-        if (defButton)
-            defButton.emphasized = value;
+        /*if (defButton)
+            defButton.emphasized = value;*/
     }
-     */
+
     
     //----------------------------------
     //  focusPane
@@ -653,17 +679,17 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             /*
             if (_defaultButton)
             {
-                if (target is IButton && target != _defaultButton 
+                if (target is IButton && target != _defaultButton
                     && !(target is IToggleButton))
                     _defaultButton.emphasized = false;
                 else if (_defaultButtonEnabled)
                     _defaultButton.emphasized = true;
             }
             */
-            
+
             // trace("FM " + this + " setting last focus " + target);
             _lastFocus = findFocusManagerComponent(InteractiveObject(target));
-            
+
             /*
 			if (Capabilities.hasIME)
             {
@@ -678,7 +704,7 @@ public class FocusManager extends EventDispatcher implements IFocusManager
                     IME.enabled = usesIME;
             }
             */
-            
+
             /*
 			// handle default button here
 			// we can't check for Button because of cross-versioning so
@@ -2354,15 +2380,101 @@ public class FocusManager extends EventDispatcher implements IFocusManager
         super();
         
         form = container;
-        form.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownCaptureHandler, true); 
+        form.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownCaptureHandler, true);
+        form.addEventListener(KeyboardEvent.KEY_DOWN, defaultButtonKeyHandler);
     }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Variables
+    //
+    //--------------------------------------------------------------------------
+
+    private var LARGE_TAB_INDEX:int = 99999;
+
+    mx_internal var calculateCandidates:Boolean = true;
+
+    /**
+     * @private
+     *
+     * True if this focus manager is a popup, false if it is a main application.
+     *
+     */
+    mx_internal var popup:Boolean;
+
+    /**
+     * @private
+     *
+     * True if this focus manager will try to enable/disable the IME based on
+     * whether the focused control uses IME.  Leaving this as a backdoor just in case.
+     *
+     */
+    mx_internal var IMEEnabled:Boolean;
+
+    /**
+     *  @private
+     *  We track whether we've been last activated or saw a TAB
+     *  This is used in browser tab management
+     */
+    mx_internal var lastAction:String;
+
+    /**
+     *  @private
+     *  Tab management changes based on whether were in a browser or not
+     *  This value is also affected by whether you are a modal dialog or not
+     */
+    public var browserMode:Boolean;
+
+    /**
+     *  @private
+     *  Activation changes depending on whether we're running in AIR or not
+     */
+    public var desktopMode:Boolean;
+
+    /**
+     *  @private
+     *  Tab management changes based on whether were in a browser or not
+     *  If non-null, this is the object that will
+     *  lose focus to the browser
+     */
+   // private var browserFocusComponent:InteractiveObject;
+
+    /**
+     *  @private
+     *  Total set of all objects that can receive focus
+     *  but might be disabled or invisible.
+     */
+    mx_internal var focusableObjects:Array;
+
+    /**
+     *  @private
+     *  Filtered set of objects that can receive focus right now.
+     */
+    private var focusableCandidates:Array;
+
+    /**
+     *  @private
+     */
+    private var activated:Boolean;
+    /**
+     *  @private
+     */
+    private var windowActivated:Boolean;
+
+    /**
+     * 	@private
+     *
+     * 	true if focus was changed to one of focusable objects. False if focus passed to
+     * 	the browser.
+     */
+    mx_internal var focusChanged:Boolean;
     
     private var form:IFocusManagerContainer;
     
     private function mouseDownCaptureHandler(event:MouseEvent):void
     {
         var target:Object = event.target;
-        if (target is UIComponent)
+        if (target is UIComponent && UIComponent(target).focusEnabled)
             target["element"].focus();
     }
 	public function getNextFocusManagerComponent(
@@ -2370,12 +2482,15 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 	{
        return null;
 	}
-	
-	
-	private var _getFocus:IFocusManagerComponent;
-        public function getFocus():IFocusManagerComponent
+
+
+    /**
+     *
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
+    public function getFocus():IFocusManagerComponent
     {
-                  return _getFocus;
+               //   return _getFocus;
        //var stage:Stage = Sprite(form)./*systemManager.*/stage;
         
         /* if (!stage)
@@ -2394,6 +2509,25 @@ public class FocusManager extends EventDispatcher implements IFocusManager
             return _lastFocus;
         
         return findFocusManagerComponent(o); */
+
+        var o:UIBase ;
+        COMPILE::JS{
+           o = (document.activeElement as WrappedHTMLElement).royale_wrapper as UIBase;
+        }
+        COMPILE::SWF{
+            //@todo check this, not sure if this will work or not
+            var stage:Stage = Sprite(form)./*systemManager.*/stage;
+            
+             if (!stage)
+                return null;
+                
+             o = stage.focus as UIBase();
+        }
+    
+        if ((!o && _lastFocus) /*|| (o is TextField && o.parent == stage)*/)
+        return _lastFocus;
+
+        return findFocusManagerComponent(o);
     }
 
     public function setFocus(o:IFocusManagerComponent):void
@@ -2480,9 +2614,424 @@ public class FocusManager extends EventDispatcher implements IFocusManager
 	
 	}
 	
-	public function activate():void
+	/*public function activate():void
     {
 		trace("IFocusManager.activate in FocusManager is not implemented");
+    }*/
+
+    public function activate():void
+    {
+        // we can get a double activation if we're popping up and becoming visible
+        // like the second time a menu appears
+        if (activated)
+        {
+            // trace("FocusManager is already active " + this);
+            return;
+        }
+
+        // trace("FocusManager activating = " + this._form.systemManager.loaderInfo.url);
+        // trace("FocusManager activating " + this);
+
+        // listen for focus changes, use weak references for the stage
+        // form.systemManager can be null if the form is created in a sandbox and
+        // added as a child to the root system manager.
+        var sm:ISystemManager = form.systemManager;
+        if (sm)
+        {
+            /*
+			if (sm.isTopLevelRoot())
+			{
+		        sm.stage.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, mouseFocusChangeHandler, false, 0, true);
+		        sm.stage.addEventListener(FocusEvent.KEY_FOCUS_CHANGE, keyFocusChangeHandler, false, 0, true);
+	    	    sm.stage.addEventListener(Event.ACTIVATE, activateHandler, false, 0, true);
+	        	sm.stage.addEventListener(Event.DEACTIVATE, deactivateHandler, false, 0, true);
+	  		}
+	  		else
+	  		{
+            */
+        //    sm.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, mouseFocusChangeHandler, false, 0, true);
+        //    sm.addEventListener(FocusEvent.KEY_FOCUS_CHANGE, keyFocusChangeHandler, false, 0, true);
+        //    sm.addEventListener(Event.ACTIVATE, activateHandler, false, 0, true);
+         //   sm.addEventListener(Event.DEACTIVATE, deactivateHandler, false, 0, true);
+            //}
+        }
+
+        form.addEventListener(FocusEvent.FOCUS_IN, focusInHandler, true);
+        form.addEventListener(FocusEvent.FOCUS_OUT, focusOutHandler, true);
+    //    form.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+      //  form.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownCaptureHandler, true);
+        form.addEventListener(KeyboardEvent.KEY_DOWN, defaultButtonKeyHandler);
+     //   form.addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler, true);
+        /*if (sm)
+        {
+            // AIR Window events, but don't want to link in AIREvent
+            // use capture phase because these get sent by the main Window
+            // and we might be managing a popup in that window
+            sm.addEventListener("windowActivate", activateWindowHandler, true, 0, true);
+            sm.addEventListener("windowDeactivate", deactivateWindowHandler, true, 0, true);
+        }*/
+
+        activated = true;
+        dispatchEvent(new FlexEvent(FlexEvent.FLEX_WINDOW_ACTIVATE));
+
+        // Restore focus to the last control that had it if there was one.
+        if (_lastFocus)
+            setFocus(_lastFocus);
+
+        if (hasEventListener("activateFM"))
+            dispatchEvent(new Event("activateFM"));
+
+    }
+
+    /**
+     *  The SystemManager activates and deactivates a FocusManager
+     *  if more than one IFocusManagerContainer is visible at the same time.
+     *  If the mouse is clicked in an IFocusManagerContainer with a deactivated
+     *  FocusManager, the SystemManager will call
+     *  the <code>activate()</code> method on that FocusManager.
+     *  The FocusManager that was activated will have its <code>deactivate()</code> method
+     *  called prior to the activation of another FocusManager.
+     *
+     *  <p>The FocusManager removes event handlers that allow it to monitor
+     *  focus related keyboard and mouse activity.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function deactivate():void
+    {
+        // trace("FocusManager deactivating " + this);
+        // trace("FocusManager deactivating = " + this._form.systemManager.loaderInfo.url);
+
+        // listen for focus changes
+        var sm:ISystemManager = form.systemManager;
+        if (sm)
+        {
+            /*
+			if (sm.isTopLevelRoot())
+			{
+		        sm.stage.removeEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, mouseFocusChangeHandler);
+		        sm.stage.removeEventListener(FocusEvent.KEY_FOCUS_CHANGE, keyFocusChangeHandler);
+	    	    sm.stage.removeEventListener(Event.ACTIVATE, activateHandler);
+	        	sm.stage.removeEventListener(Event.DEACTIVATE, deactivateHandler);
+	  		}
+	  		else
+	  		{
+            */
+          /*  sm.removeEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, mouseFocusChangeHandler);
+            sm.removeEventListener(FocusEvent.KEY_FOCUS_CHANGE, keyFocusChangeHandler);
+            sm.removeEventListener(Event.ACTIVATE, activateHandler);
+            sm.removeEventListener(Event.DEACTIVATE, deactivateHandler);*/
+            //}
+        }
+
+        form.removeEventListener(FocusEvent.FOCUS_IN, focusInHandler, true);
+        form.removeEventListener(FocusEvent.FOCUS_OUT, focusOutHandler, true);
+     //   form.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+        form.removeEventListener(MouseEvent.MOUSE_DOWN, mouseDownCaptureHandler, true);
+        form.removeEventListener(KeyboardEvent.KEY_DOWN, defaultButtonKeyHandler);
+        // stop listening for default button in Capture phase
+       // form.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler, true);
+
+        activated = false;
+        dispatchEvent(new FlexEvent(FlexEvent.FLEX_WINDOW_DEACTIVATE));
+
+        if (hasEventListener("deactivateFM"))
+            dispatchEvent(new Event("deactivateFM"));
+    }
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function findFocusManagerComponent(
+            o:UIBase):IFocusManagerComponent
+    {
+        return findFocusManagerComponent2(o) as IFocusManagerComponent;
+    }
+
+
+    /**
+     * @private
+     *
+     * This version of the method differs from the old one to support SWFLoader
+     * being in the focusableObjects list but not being a component that
+     * gets focus. SWFLoader is in the list of focusable objects so
+     * focus may be passed over a bridge to the components on the other
+     * side of the bridge.
+     */
+    private function findFocusManagerComponent2(
+            o:UIBase):UIBase
+
+    {
+        try
+        {
+            while (o)
+            {
+                if ((o is IFocusManagerComponent && IFocusManagerComponent(o).focusEnabled) /*||
+	            	 o is ISWFLoader*/)
+                    return o;
+
+                o = o.parent as UIBase;
+            }
+        }
+        catch (error:/*Security*/Error)
+        {
+            // can happen in a loaded child swf
+            // trace("findFocusManagerComponent: handling security error");
+        }
+
+        // tab was set somewhere else
+        return null;
+    }
+
+
+    private function isParent(p:IUIBase, o:IUIBase):Boolean
+    {
+        if (p == o)
+            return false;
+
+        //if (p is IRawChildrenContainer)
+        //    return IRawChildrenContainer(p).rawChildren.contains(o);
+
+        return p.element.contains(o.element);
+    }
+
+    /**
+     *  @private
+     */
+    private function focusInHandler(event:FocusEvent):void
+    {
+        var target:UIBase = UIBase(event.target);
+        // trace("FocusManager focusInHandler in  = " + this._form.systemManager.loaderInfo.url);
+        // trace("FM " + this + " focusInHandler " + target);
+
+        // dispatch cancelable FocusIn to see if Marshal Plan mixin wants it
+        if (hasEventListener(FocusEvent.FOCUS_IN))
+            if (!dispatchEvent(new FocusEvent(FocusEvent.FOCUS_IN, false, true, target)))
+                return;
+
+        if (isParent(IUIBase(form), target))
+        {
+            if (_defaultButton)
+            {
+                /*if (target is IButton && target != _defaultButton
+                    && !(target is IToggleButton))
+                    _defaultButton.emphasized = false;
+                else if (_defaultButtonEnabled)
+                    _defaultButton.emphasized = true;*/
+            }
+
+            // trace("FM " + this + " setting last focus " + target);
+            _lastFocus = findFocusManagerComponent(target);
+
+            /*
+			if (Capabilities.hasIME)
+            {
+                var usesIME:Boolean;
+                if (_lastFocus is IIMESupport)
+                {
+                    var imeFocus:IIMESupport = IIMESupport(_lastFocus);
+                    if (imeFocus.enableIME)
+                        usesIME = true;
+                }
+                if (IMEEnabled)
+                    IME.enabled = usesIME;
+            }
+            */
+
+            /*
+			// handle default button here
+			// we can't check for Button because of cross-versioning so
+			// for now we just check for an emphasized property
+			*/
+            if (_lastFocus is /*IButton*/Button /*&& !(_lastFocus is IToggleButton)*/)
+			{
+                defButton = _lastFocus as /*IButton*/Button;
+			}
+			else
+			{
+				// restore the default button to be the original one
+				if (defButton && defButton != _defaultButton)
+					defButton = _defaultButton;
+			}
+
+        }
+    }
+
+    /**
+     *  @private  Useful for debugging
+     */
+    private function focusOutHandler(event:FocusEvent):void
+    {
+        var target:IUIBase = IUIBase(event.target);
+        // trace("FocusManager focusOutHandler in  = " + this._form.systemManager.loaderInfo.url);
+         trace("FM " , this , " focusOutHandler " , target);
+    }
+
+
+    /**
+     *  @private
+     *  Watch for ENTER key.
+     *
+     *  **/
+     private function defaultButtonKeyHandler(event:KeyboardEvent):void
+     {
+        var sm:ISystemManager = form.systemManager;
+        if (hasEventListener("defaultButtonKeyHandler"))
+    		if (!dispatchEvent(new FocusEvent("defaultButtonKeyHandler", false, true)))
+	    		return;
+
+        if (defaultButtonEnabled && event.keyCode == Keyboard.ENTER &&
+			defButton && defButton.enabled)
+        {
+            sendDefaultButtonEvent();
+    	}
+    }
+
+    /**
+     *  Call this method to make the system
+     *  think the Enter key was pressed and the defaultButton was clicked
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     *
+     *  **/
+     mx_internal function sendDefaultButtonEvent():void
+     {
+        // trace("FocusManager.sendDefaultButtonEvent " + defButton);
+        defButton.dispatchEvent(new MouseEvent("click"));
+    }
+
+    //----------------------------------
+    //  _lastFocus
+    //----------------------------------
+
+    /**
+     *  @private
+     *  the object that last had focus
+     */
+    private var _lastFocus:IFocusManagerComponent;
+
+
+    /**
+     * 	@private
+     */
+    mx_internal function get lastFocus():IFocusManagerComponent
+    {
+        return _lastFocus;
+    }
+
+    /**
+     * 	@private
+     */
+    mx_internal function set lastFocus(value:IFocusManagerComponent):void
+    {
+        _lastFocus = value;
+    }
+
+    //----------------------------------
+    //  defaultButton
+    //----------------------------------
+
+
+    /**
+     *  @private
+     *  The current default button.
+     */
+    private var defButton:IUIComponent;
+
+    /**
+     *  @private
+     */
+    private var _defaultButton:IUIComponent;
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get defaultButton():IUIComponent
+    {
+        return _defaultButton;
+    }
+
+    /**
+     *  @private
+     *  We don't type the value as Button for dependency reasons
+     *  **/
+    public function set defaultButton(value:IUIComponent):void
+    {
+        var button:IUIComponent = value ? IUIComponent(value) : null;
+
+        if (button != _defaultButton)
+        {
+            /*if (_defaultButton)
+                _defaultButton.emphasized = false;
+
+            if (defButton)
+                defButton.emphasized = false;*/
+
+            _defaultButton = button;
+
+            if (defButton != _lastFocus || _lastFocus == _defaultButton)
+            {
+                defButton = button;
+
+                /*if (button)
+                 button.emphasized = true;*/
+            }
+        }
+    }
+
+
+    //----------------------------------
+    //  defaultButtonEnabled
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the defaultButtonEnabled property.
+     */
+    private var _defaultButtonEnabled:Boolean = true;
+
+    /**
+     *  @inheritDoc
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     *  */
+    public function get defaultButtonEnabled():Boolean
+    {
+        return _defaultButtonEnabled;
+    }
+
+
+    /**
+     *  @private
+     *  */
+    public function set defaultButtonEnabled(value:Boolean):void
+    {
+        _defaultButtonEnabled = value;
+
+        // Synchronize with the new value. We ensure that our
+        // default button is de-emphasized if defaultButtonEnabled
+        // is false.
+        /*if (defButton)
+            defButton.emphasized = value;*/
     }
     
 }

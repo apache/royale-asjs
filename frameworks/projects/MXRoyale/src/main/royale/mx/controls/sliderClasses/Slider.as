@@ -2950,7 +2950,12 @@ package mx.controls.sliderClasses
          */
         protected function thumb_focusInHandler(event:FocusEvent):void
         {
-            dispatchEvent(event);
+            COMPILE::JS{
+                dispatchEvent(event);
+            }
+            COMPILE::SWF{
+                trace('thumb_focusInHandler needs work')
+            }
         }
 
         /**
@@ -2958,7 +2963,12 @@ package mx.controls.sliderClasses
          */
         protected function thumb_focusOutHandler(event:FocusEvent):void
         {
-            dispatchEvent(event);
+            COMPILE::JS{
+                dispatchEvent(event);
+            }
+            COMPILE::SWF{
+                trace('thumb_focusOutHandler needs work')
+            }
         }
 
         /**

@@ -50,13 +50,21 @@ import mx.events.ToolTipEvent;
 import mx.managers.ISystemManager;
 
 import org.apache.royale.core.IChild;
+import org.apache.royale.core.IIndexedItemRenderer;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ItemClickedEvent;
 import org.apache.royale.events.MouseEvent;
+import org.apache.royale.events.ValueEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
 import org.apache.royale.html.DataGridButtonBar;
+
+import org.apache.royale.html.beads.ReversibleEllipsisOverflow;
+    
+COMPILE::JS{
+    import org.apache.royale.html.beads.OverflowTooltipNeeded;
+}
 
 use namespace mx_internal;
 
@@ -173,7 +181,29 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
       
 {
    // include "../../core/Version.as";
-    
+
+
+    /* utility methods to 'upgrade' other emulation instances with the events support*/
+    public static function processRendererForEvents(renderer:IIndexedItemRenderer):void{
+        if (!renderer.hasEventListener('click')) {
+            renderer.addEventListener('click', onRendererClick);
+        }
+    }
+
+    protected static function onRendererClick(event:MouseEvent):void{
+        var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+        if (renderer) {
+            dispatchItemClicked(renderer, renderer.index, renderer.data)
+        }
+    }
+
+    protected static function dispatchItemClicked(fromRenderer:IIndexedItemRenderer,index:uint,data:Object):void{
+        var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+        newEvent.index = index;
+        newEvent.data = data;
+        fromRenderer.dispatchEvent(newEvent);
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -205,10 +235,11 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
      */
     protected function handleClickEvent(event:MouseEvent):void
     {
-        var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+        /*var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
         newEvent.index = index;
         newEvent.data = data;
-        dispatchEvent(newEvent);
+        dispatchEvent(newEvent);*/
+        dispatchItemClicked(this,index,data);
     }
     
     //--------------------------------------------------------------------------
@@ -435,8 +466,10 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         grid      = AdvancedDataGrid(_listData.owner);
 
         invalidateProperties();
-    } 
+    }
 
+
+    private var _originalWhiteSpace:String;
     //--------------------------------------------------------------------------
     //
     //  Overridden methods: UIComponent
@@ -453,7 +486,21 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         if (!label)
         {
             label = IUITextField(createInFontContext(UITextField));
+            label.addBead(new ReversibleEllipsisOverflow())
+            
+            COMPILE::JS{
+                label.addBead(new OverflowTooltipNeeded());
+                
+                label.addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, tooltipNeededListener);
+            }
+            
             addChild(IUIComponent(label));
+            
+            COMPILE::JS{
+                _originalWhiteSpace = label.element.style.whiteSpace;
+                label.element.style.whiteSpace = "nowrap";
+            }
+
         }
 
         if (!background)
@@ -461,7 +508,17 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
             background = new UIComponent();
             addChild(background);
         }
-    } 
+    }
+
+    private function tooltipNeededListener(event:ValueEvent):void
+    {
+        var needed:Boolean = event.value;
+        if (needed) {
+            toolTip = label.text;
+        } else {
+            toolTip = null;
+        }
+    }
     
     private var childHeaders:DataGridButtonBar;
 
@@ -520,7 +577,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         }
         if (partsSeparatorSkin)
             partsSeparatorSkin.visible = !(_data is AdvancedDataGridColumnGroup);
-
+        toolTip = null;
         if (_data != null)
         {
             var lbl:String = listData.label ? listData.label : " ";
@@ -543,7 +600,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
 
             if (_data is AdvancedDataGridColumn)
             {
-                var column:AdvancedDataGridColumn =
+                /*var column:AdvancedDataGridColumn =
                     _data as AdvancedDataGridColumn;
                     
                 var dataTips:Boolean = grid.showDataTips;
@@ -567,7 +624,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
                 else
                 {
                     toolTip = null;
-                }
+                }*/
                 if (data is AdvancedDataGridColumnGroup)
                 {
                     var adgcg:AdvancedDataGridColumnGroup = data as AdvancedDataGridColumnGroup;
@@ -961,7 +1018,9 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
     protected function toolTipShowHandler(event:ToolTipEvent):void
     {
         var toolTip:IToolTip = event.toolTip;
-		var xPos:int = IUIComponent(systemManager).mouseX + 11;
+
+        //@todo consider code to reposition ToolTip
+		/*var xPos:int = IUIComponent(systemManager).mouseX + 11;
         var yPos:int = IUIComponent(systemManager).mouseY + 22;
         // Calculate global position of label.
         var pt:Point = new Point(xPos, yPos);
@@ -973,7 +1032,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         var screen:Rectangle = toolTip.screen;
         var screenRight:Number = screen.x + screen.width;
         if (toolTip.x + toolTip.width > screenRight)
-            toolTip.move(screenRight - toolTip.width, toolTip.y);
+            toolTip.move(screenRight - toolTip.width, toolTip.y);*/
 
     } 
 

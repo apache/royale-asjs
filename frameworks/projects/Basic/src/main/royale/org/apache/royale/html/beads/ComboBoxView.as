@@ -150,7 +150,8 @@ package org.apache.royale.html.beads
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			
 			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
-			
+			IEventDispatcher(_strand).addEventListener("widthChanged", handleSizeChange);
+			IEventDispatcher(_strand).addEventListener("heightChanged", handleSizeChange);
 			// set initial value and positions using default sizes
 			itemChangeAction();
 			sizeChangeAction();
@@ -177,35 +178,46 @@ package org.apache.royale.html.beads
 		 */
 		public function set popUpVisible(value:Boolean):void
 		{
-			if (value && !list.visible) {
-      var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
-				list.model = model;
-				list.width = input.width;
-				list.height = 200;
-				list.visible = true;
-				
-				var origin:Point = new Point(0, button.y+button.height);
-				var relocated:Point = PointUtils.localToGlobal(origin,_strand);
-				list.x = relocated.x
-				list.y = relocated.y;
-				COMPILE::JS {
-					list.element.style.position = "absolute";
+			if (value) {
+				if (!list.visible) {
+					var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
+					list.model = model;
+					list.width = input.width;
+					list.height = 200;
+					list.visible = true;
+
+					var origin:Point = new Point(0, button.y+button.height);
+					var relocated:Point = PointUtils.localToGlobal(origin,_strand);
+					list.x = relocated.x
+					list.y = relocated.y;
+					COMPILE::JS {
+						list.element.style.position = "absolute";
+					}
+
+					var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+					popupHost.popUpParent.addElement(list);
 				}
-				
-				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-				popupHost.popUpParent.addElement(list);
 			}
 			else if (list.visible) {
 				UIUtils.removePopUp(list);
 				list.visible = false;
 			}
 		}
-		
+
+		private var ignore:uint=0;
 		/**
 		 * @private
 		 */
 		protected function handleSizeChange(event:Event):void
 		{
+			if (ignore) {
+				//sizeChanged occurs, it will result in subsequent widthChanged and heightChanged events, which can be ignored:
+				ignore--;
+				return;
+			}
+			if (event.type == 'sizeChanged') {
+				ignore = 2;
+			}
 			sizeChangeAction();
 		}
 		

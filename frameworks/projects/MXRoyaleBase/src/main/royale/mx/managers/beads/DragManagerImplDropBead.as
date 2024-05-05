@@ -22,7 +22,9 @@ package mx.managers.beads
 	// import org.apache.royale.core.DropType;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	// import org.apache.royale.core.IChild;
+	import org.apache.royale.reflection.getQualifiedClassName;
+
+// import org.apache.royale.core.IChild;
 	// import org.apache.royale.core.IDataProviderModel;
 	// import org.apache.royale.core.IItemRenderer;
 	// import org.apache.royale.core.ItemRendererOwnerViewBead;
@@ -80,7 +82,62 @@ package mx.managers.beads
 		private var _dropIndicator:UIBase;
 		private var lastItemVisited:Object;
 		private var indicatorVisible:Boolean = false;
-		private var _dragInitiator:IUIComponent;
+		private static var _dragInitiator:IUIComponent;
+		public static function set dragInitiator(value:IUIComponent):void{
+			dragTarget = null;
+			_dragInitiator = value;
+		}
+
+		private var _handled:Boolean;
+		private var _track:Boolean;
+		public function handleCreationEvent(event:org.apache.royale.events.DragEvent):Boolean{
+			_handled = false;
+			_track = true;
+			switch(event.type) {
+				case org.apache.royale.events.DragEvent.DRAG_ENTER:
+					handleDragEnter(event);
+					break;
+				case org.apache.royale.events.DragEvent.DRAG_EXIT:
+					handleDragExit(event);
+					break;
+				case org.apache.royale.events.DragEvent.DRAG_OVER:
+					handleDragOver(event);
+					break;
+				case org.apache.royale.events.DragEvent.DRAG_DROP:
+					handleDragDrop(event);
+					break;
+				default:
+					trace('unknown creation event ', event.type)
+					break;
+
+			}
+			var ret:Boolean = _handled;
+			_handled = false;
+			_track = false;
+			return ret;
+		}
+
+
+		private static var dragAcceptTarget:IUIComponent;
+		public static function set dragTarget(value:IUIComponent):void{
+			if (!_dragInitiator) value = null;
+			/*if (dragAcceptTarget && value != dragAcceptTarget) {
+				sendDragEvent(mx.events.DragEvent.DRAG_EXIT, dragAcceptTarget);
+			}*/
+			dragAcceptTarget = value;
+		}
+
+		private static function sendDragEvent(type:String, strand:IStrand, derivedFrom:org.apache.royale.events.DragEvent):void
+		{
+			//var dragEvent:mx.events.DragEvent = new mx.events.DragEvent(type, false, true, _dragInitiator, org.apache.royale.events.DragEvent.dragSource as DragSource);
+			var dragEvent:mx.events.DragEvent = mx.events.DragEvent.createMxDragEventFromRoyaleDragEvent(type,derivedFrom,false, true, null);
+
+			dragEvent.dragInitiator = _dragInitiator;
+
+
+			sendStrandEvent(strand, dragEvent);
+		}
+
 
 		private var _strand:IStrand;
 
@@ -92,10 +149,9 @@ package mx.managers.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function DragManagerImplDropBead(dragInitiator:IUIComponent)
+		public function DragManagerImplDropBead()
 		{
 			super();
-			_dragInitiator = dragInitiator;
 		}
 		/**
 		 * @private
@@ -180,6 +236,7 @@ package mx.managers.beads
 		 */
 		private function handleDragEnter(event:org.apache.royale.events.DragEvent):void
 		{
+			trace(getQualifiedClassName(_strand),"received DragEnter via: "+getQualifiedClassName(event.relatedObject),'acceptTarget:'+(dragAcceptTarget ? getQualifiedClassName(dragAcceptTarget):dragAcceptTarget) );
 			// //trace("SingleSelectionDropTargetBead received DragEnter via: "+event.relatedObject.toString());
 			// var newEvent:Event = new Event("enter", false, true);
 			// dispatchEvent(newEvent);
@@ -216,7 +273,21 @@ package mx.managers.beads
 			// 		indicatorParent.addElement(di);
 			// 	}
 			// }
-			sendDragEvent(mx.events.DragEvent.DRAG_ENTER);
+			var oldTarget:IUIComponent = dragAcceptTarget;
+			if (event.relatedObject == _strand && _strand != oldTarget) {
+				if (_track) {
+					_handled = true;
+				}
+				sendDragEvent(mx.events.DragEvent.DRAG_ENTER, _strand, event);
+			}
+
+
+			if (dragAcceptTarget == _strand && oldTarget && oldTarget != _strand) {
+				sendDragEvent(mx.events.DragEvent.DRAG_EXIT, oldTarget, event);
+				if (dragAcceptTarget == oldTarget)
+					dragAcceptTarget = null;
+			}
+
 		}
 
 		/**
@@ -224,6 +295,7 @@ package mx.managers.beads
 		 */
 		private function handleDragExit(event:org.apache.royale.events.DragEvent):void
 		{
+		//	trace(_strand['id'],"received DragExit via: "+event.relatedObject['id'], 'acceptTarget:'+(dragAcceptTarget ? dragAcceptTarget['id']:dragAcceptTarget));
 			// //trace("SingleSelectionDropTargetBead received DragExit via: "+event.relatedObject.toString());
 			// var dragEvent:DragEvent = new DragEvent()
 			// sendStrandEvent(_strand, new Dra
@@ -234,7 +306,15 @@ package mx.managers.beads
 			// 	}
 			// 	indicatorVisible = false;
 			// }
-			sendDragEvent(mx.events.DragEvent.DRAG_EXIT);
+			if (dragAcceptTarget == _strand) {
+				if (_track) {
+					_handled = true;
+				}
+				sendDragEvent(mx.events.DragEvent.DRAG_EXIT, _strand, event);
+				if (dragAcceptTarget == _strand)
+					dragAcceptTarget = null;
+			}
+
 		}
 
 		/**
@@ -243,6 +323,7 @@ package mx.managers.beads
 		 */
 		private function handleDragOver(event:org.apache.royale.events.DragEvent):void
 		{
+		//	trace(_strand['id'],"received DragOver via: "+event.relatedObject['id'], 'acceptTarget:'+(dragAcceptTarget ? dragAcceptTarget['id']:dragAcceptTarget));
 			//trace("SingleSelectionDropTargetBead received DragOver via: "+event.relatedObject.toString());
 			// var newEvent:Event = new Event("over", false, true);
 			// dispatchEvent(newEvent);
@@ -263,7 +344,30 @@ package mx.managers.beads
 			// else if (lastItemVisited && _dropIndicator != null && indicatorParent) {
 			// 	displayDropIndicator(lastItemVisited as IUIBase);
 			// }
-			sendDragEvent(mx.events.DragEvent.DRAG_OVER);
+			if (dragAcceptTarget == _strand) {
+				if (_track) {
+					_handled = true;
+				}
+				sendDragEvent(mx.events.DragEvent.DRAG_OVER, _strand, event);
+			}
+			else {
+				/*if ((_strand as IUIComponent).contains(dragAcceptTarget))*/
+				if (!dragAcceptTarget || !(event.relatedObject == dragAcceptTarget || dragAcceptTarget/*(_strand as IUIComponent).contains(dragAcceptTarget)*/)) {
+					var oldTarget:IUIComponent = dragAcceptTarget;
+
+					if (_track) {
+						_handled = true;
+					}
+					sendDragEvent(mx.events.DragEvent.DRAG_ENTER, _strand, event);
+
+					if (dragAcceptTarget == _strand && oldTarget) {
+						sendDragEvent(mx.events.DragEvent.DRAG_EXIT, oldTarget, event);
+						if (dragAcceptTarget == oldTarget)
+							dragAcceptTarget = null;
+					}
+
+				}
+			}
 		}
 
 		/**
@@ -271,6 +375,8 @@ package mx.managers.beads
 		 */
 		private function handleDragDrop(event:org.apache.royale.events.DragEvent):void
 		{
+		//	trace(_strand['id'],"received DragDrop via: "+event.relatedObject['id'], 'acceptTarget:'+(dragAcceptTarget ? dragAcceptTarget['id']:dragAcceptTarget));
+
 			// //trace("SingleSelectionDropTargetBead received DragDrop via: "+event.relatedObject.toString());
 
 			// handleDragExit(event);
@@ -348,14 +454,16 @@ package mx.managers.beads
 			// // is this event necessary? isn't "complete" enough?
 			// sendStrandEvent(_strand,"dragDropAccepted");
 			// sendEvent(this,"complete");
-			sendDragEvent(mx.events.DragEvent.DRAG_DROP);
+			if (dragAcceptTarget == _strand) {
+				if (_track) {
+					_handled = true;
+				}
+				sendDragEvent(mx.events.DragEvent.DRAG_DROP, _strand, event);
+			}
+
 		}
 
-		private function sendDragEvent(type:String):void
-		{
-			var dragEvent:mx.events.DragEvent = new mx.events.DragEvent(type, false, true, _dragInitiator, org.apache.royale.events.DragEvent.dragSource as DragSource);
-			sendStrandEvent(_strand, dragEvent);
-		}
+
 
 
 		// COMPILE::SWF

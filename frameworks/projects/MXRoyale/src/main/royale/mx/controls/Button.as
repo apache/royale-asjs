@@ -19,6 +19,8 @@
 
 package mx.controls
 {
+import mx.controls.beads.DisableBead;
+
 COMPILE::JS
 {
 	import org.apache.royale.core.WrappedHTMLElement;
@@ -38,7 +40,7 @@ import org.apache.royale.binding.DataBindingBase;
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.html.accessories.ToolTipBead;
+import mx.controls.beads.ToolTipBead;
 import org.apache.royale.html.beads.models.ImageAndTextModel;
 
 /*
@@ -57,7 +59,7 @@ use namespace mx_internal;
 
 /**
  *  Dispatched when the user clicks on a button.
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 10.2
  *  @playerversion AIR 2.6
@@ -251,17 +253,26 @@ use namespace mx_internal;
  */
 public class Button extends UIComponent implements IDataRenderer, IListItemRenderer, IDropInListItemRenderer
 {
-	
+
 	public function Button()
 	{
 		super();
 		typeNames = "Button";
 	}
-	
+
+	override public function addedToParent():void{
+		super.addedToParent();
+		COMPILE::JS{
+			if (_toggle) {
+				applyToggle();
+			}
+		}
+	}
+
 	// ------------------------------------------------
 	//  locale
 	// ------------------------------------------------
-	
+
 	public function get locale():String
 	{
 		return "en";
@@ -269,23 +280,35 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	public function set locale(value:String):void
 	{
 	}
-	
+
 	// ------------------------------------------------
 	//  textDecoration
 	// ------------------------------------------------
-	
-	public function get textDecoration():String
+
+	/*public function get textDecoration():String
 	{
-		return "none";
+		var val:String;
+		COMPILE::SWF{
+			val = 'none';
+		}
+		COMPILE::JS{
+			val = this.element.style.textDecoration;
+			val = (val == 'underline') ? val : 'none';
+		}
+		return val;
 	}
 	public function set textDecoration(value:String):void
 	{
-	}
-	
+		COMPILE::JS{
+			value = (value == 'underline') ? value : 'none';
+			this.element.style.textDecoration = value;
+		}
+	}*/
+
 	// ------------------------------------------------
 	//  icon
 	// ------------------------------------------------
-	
+
 	/**
 	 *  The URL of an icon to use in the button
 	 *
@@ -298,7 +321,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		return ImageAndTextModel(model).image;
 	}
-	
+
 	/**
 	 *  @private
 	 */
@@ -309,11 +332,79 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 			setInnerHTML();
 		}
 	}
-	
+
+	private var _fixedIconWidth:uint = 0;
+	/**
+	 * New to Royale
+	 * Setting to constrain the icon width
+	 * @param value 0 if natural size, otherwise positive integer
+	 * to constrain
+	 */
+	public function set fixedIconWidth(value:uint):void{
+		_fixedIconWidth = value;
+		if (icon) {
+			COMPILE::JS {
+				configureBGSize();
+			}
+		}
+	}
+
+	public function get fixedIconWidth():uint{
+		return _fixedIconWidth;
+	}
+
+
+
+	private var _fixedIconHeight:uint = 0;
+	/**
+	 * New to Royale
+	 * Setting to constrain the icon height
+	 * @param value 0 if natural size, otherwise positive integer
+	 * to constrain
+	 */
+	public function set fixedIconHeight(value:uint):void{
+		_fixedIconHeight = value;
+		if (icon) {
+			COMPILE::JS {
+				configureBGSize();
+			}
+		}
+	}
+
+	public function get fixedIconHeight():uint{
+		return _fixedIconHeight;
+	}
+
+	private var _hGap:Number;
+	public function set horizontalGap(value:Number):void{
+		_hGap = value;
+	}
+
+	public function get horizontalGap():Number{
+		var value:Number = _hGap;
+		if (isNaN(value)) {
+			value = Number(getStyle('horizontalGap'));
+		}
+		return isNaN(value) ? 2 : value;
+	}
+
+	private var _vGap:Number;
+	public function set verticalGap(value:Number):void{
+		_vGap = value;
+	}
+
+	public function get verticalGap():Number{
+		var value:Number = _vGap;
+		if (isNaN(value)) {
+			value = Number(getStyle('verticalGap'));
+		}
+		return isNaN(value) ? 2 : value;
+	}
+
 	// ------------------------------------------------
 	//  disabledIcon
 	// ------------------------------------------------
-	
+
 	/**
 	 *  The URL of an disabledIcon to use in the button
 	 *
@@ -326,22 +417,22 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		return null;
 	}
-	
+
 	/**
 	 *  @private
 	 */
 	public function set disabledIcon(value:String):void
 	{
-		
+
 	}
-	
-	
-	
-	
+
+
+
+
 	//----------------------------------
 	//  label
 	//----------------------------------
-	
+
     private var labelSet:Boolean;
 	private var selectedSet:Boolean;
 
@@ -352,70 +443,102 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		return ITextModel(model).text;
 	}
-	
+
 	/**
 	 *  @private
 	 */
 	public function set label(value:String):void
 	{
+		if (!_ttListening) {
+			addEventListener(mx.events.MouseEvent.MOUSE_OVER,checkTooltipNeeded)
+			_ttListening = true;
+		}
 		labelSet = true;
 		ITextModel(model).text = value;
 		COMPILE::JS {
 			setInnerHTML();
 		}
-		if (parent)
-			(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+		invalidateSize();
+		/*if (parent)
+			(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));*/
+
 	}
 
+	private var _ttListening:Boolean;
+	protected function checkTooltipNeeded(event:mx.events.MouseEvent):void
+	{
+		if (toolTip)
+		{
+			return;
+		}
+		var needed:Boolean;
+		COMPILE::JS {
+			needed = ( element.offsetWidth < element.scrollWidth)
+		}
 
-	
+		if (needed)
+		{
+			if (!_toolTipBead)
+			{
+				_toolTipBead = new ToolTipBead();
+				addBead(_toolTipBead);
+			}
+			_toolTipBead.toolTip = label;
+		} else {
+			if (_toolTipBead) {
+				_toolTipBead.toolTip = null;
+			}
+		}
+	}
+
 	//----------------------------------
 	//  toolTip
 	//----------------------------------
-	
-	/**
-	 *  @private
-	 */	
-	private var _toolTipBead:ToolTipBead;
-	
-	[Inspectable(category="General", defaultValue="null")]
-	
+
 	/**
 	 *  @private
 	 */
+	//private var _toolTipBead:ToolTipBead;
+
+	/*[Inspectable(category="General", defaultValue="null")]
+
+	/!**
+	 *  @private
+	 *!/
 	override public function set toolTip(value:String):void
 	{
+		super.toolTip = value;
+
 		_toolTipBead = getBeadByType(ToolTipBead) as ToolTipBead;
 		if (_toolTipBead == null) {
 			_toolTipBead = new ToolTipBead();
 			addBead(_toolTipBead);
 		}
 		_toolTipBead.toolTip = value;
-		dispatchEvent(new Event("toolTipChanged"));
 	}
-	
+
 	override public function get toolTip():String
 	{
 		if (_toolTipBead) {
 			return _toolTipBead.toolTip;
 		}
 		return null;
-	}
-	
-	
+	}*/
+
+
 	//----------------------------------
 	//  data
 	//----------------------------------
-	
+
 	/**
 	 *  @private
 	 *  Storage for the data property;
 	 */
 	private var _data:Object;
-	
+
 	[Bindable("dataChange")]
 	[Inspectable(environment="none")]
-	
+
 	/**
 	 *  The <code>data</code> property lets you pass a value
 	 *  to the component when you use it as an item renderer or item editor.
@@ -440,7 +563,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		return _data;
 	}
-	
+
 	private var bindingAdded:Boolean;
 
 	/**
@@ -461,8 +584,8 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 			bindingAdded = true;
 		}
 	}
-	
-	
+
+
 	/**
 	 *  @private
 	 */
@@ -475,10 +598,10 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		{
 			addBindingSupport(ItemRendererDataBinding, true);
 		}
-		
+
         _data = value;
 
-        if (_listData && _listData is DataGridListData && 
+        if (_listData && _listData is DataGridListData &&
             DataGridListData(_listData).dataField !=null)
         {
             newSelected = _data[DataGridListData(_listData).dataField];
@@ -510,20 +633,20 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
 	}
-	
+
 	//-----------------------------------
 	//  listData
 	//-----------------------------------
-	
+
 	/**
 	 *  @private
 	 *  Storage for the listData property.
 	 */
 	private var _listData:Object;
-	
+
 	[Bindable("dataChange")]
 	[Inspectable(environment="none")]
-	
+
 	/**
 	 *  When a component is used as a drop-in item renderer or drop-in
 	 *  item editor, Flex initializes the <code>listData</code> property
@@ -548,7 +671,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		return _listData;
 	}
-	
+
 	/**
 	 *  @private
 	 */
@@ -556,25 +679,33 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		_listData = value;
 	}
-	
+
 	//----------------------------------
 	//  selected
 	//----------------------------------
-	
+
 	private var _selected:Boolean = false;
-	
+
 	public function get selected():Boolean
 	{
 		return _selected;
 	}
-	
+
 	/**
 	 *  @private
 	 */
 	public function set selected(value:Boolean):void
 	{
 		selectedSet = true;
-		_selected = value;
+		if (_selected != value) {
+			_selected = value;
+			COMPILE::JS{
+				if (parent) {
+					applyToggle();
+				}
+			}
+		}
+		dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 	}
 
 
@@ -607,11 +738,11 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		_selectedField = value;
 	}
-	
+
 	//----------------------------------
 	//  labelPlacement
 	//----------------------------------
-	
+
 	/**
 	 *  @private
 	 *  Storage for labelPlacement property.
@@ -619,10 +750,10 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	//private var _labelPlacement:String = "right";//ButtonLabelPlacement.RIGHT;
 	private var _labelPlacement:String = ButtonLabelPlacement.RIGHT;
 
-	
+
 	[Bindable("labelPlacementChanged")]
 	[Inspectable(category="General", enumeration="left,right,top,bottom", defaultValue="right")]
-	
+
 	/**
 	 *  Orientation of the label in relation to a specified icon.
 	 *  Valid MXML values are <code>right</code>, <code>left</code>,
@@ -646,7 +777,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	{
 		return _labelPlacement;
 	}
-	
+
 	/**
 	 *  @private
 	 */
@@ -710,14 +841,60 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 */
 	public function set toggle(value:Boolean):void
 	{
-		_toggle = value; // TBD: store in model
-		dispatchEvent(new Event("toggleChanged"));
+		if (_toggle != value) {
+			_toggle = value; // TBD: store in model
+			if (!value) {
+
+				_selected = false;
+				selectedSet = false;
+			}
+			COMPILE::JS{
+				if (parent) {
+					applyToggle();
+				}
+				if (value) {
+					element.addEventListener('click',onToggle, true);
+				} else {
+					element.removeEventListener('click',onToggle, true);
+				}
+			}
+			dispatchEvent(new Event("toggleChanged"));
+		}
 	}
-	
+
+	COMPILE::JS
+	protected function onToggle(e:BrowserEvent):void{
+		_selected = !_selected;
+		applyToggle();
+		dispatchEvent(new org.apache.royale.events.Event('change'));
+		dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+	}
 	//----------------------------------
 	//  internal
 	//----------------------------------
-	
+
+	/**
+	 * @private
+	 * @royalesuppressexport
+	 */
+	COMPILE::JS
+	protected function applyToggle():void
+	{
+		//note : no support for IE:
+		var classList:Object = this.element.classList;
+		if (classList){
+			if (_toggle) {
+				classList.add('toggle');
+				if (_selected)
+					classList.add('selected');
+				else classList.remove('selected');
+			} else {
+				classList.remove('toggle');
+				classList.remove('selected');
+			}
+		}
+	}
+
 	/**
 	 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 	 */
@@ -729,33 +906,57 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		
 		return element;
 	}
+
+	COMPILE::JS
+	private var _span:HTMLSpanElement;
 	
 	/**
 	 * @royaleignorecoercion HTMLImageElement
+	 * @royaleignorecoercion HTMLSpanElement
 	 */
 	COMPILE::JS
 	protected function setInnerHTML():void
 	{
 		var label:String = ITextModel(model).text;
 		if (label != null) {
-			element.textContent = label;
+			if (!_span) {
+				_span =  document.createElement("span") as HTMLSpanElement;
+				element.appendChild(_span);
+			}
+			_span.textContent = label;
 		}
 		var icon:String = ImageAndTextModel(model).image;
 		if (icon != null) {
-			element.style.background = "url('"+icon+"') no-repeat 2px center";
-			
-			// since the load of a CSS background-image cannot be detected, a standard technique
-			// is to create a dummy <img> and load the same image and listen for that to
-			// complete. This element is never added to the DOM.
-			var dummyImage:HTMLImageElement = document.createElement('img') as HTMLImageElement;
-			dummyImage.addEventListener("load", handleImageLoaded2);
-			dummyImage.src = icon;
+			//avoid doing this, because it interferes with usage of other things like native css :hov state for background-color, for example
+			//element.style.background = "url('"+icon+"') no-repeat 2px center";
+			//instead use this, more explicit approach:
+			element.style.backgroundImage = "url('"+icon+"')";
+			element.style.backgroundRepeat = "no-repeat";
+			var paddingLeft:Number = Number(this.paddingLeft);
+			//@todo add support for labelPlacement, for now only assuming 'RIGHT'  (no LEFT, TOP, BOTTOM)
+			element.style.backgroundPosition = paddingLeft + "px center";
+
+			element.style["text-indent"] = String(paddingLeft + _fixedIconWidth + horizontalGap)+"px";
+
+			if (!_fixedIconWidth || !_fixedIconHeight) {
+				// since the load of a CSS background-image cannot be detected, a standard technique
+				// is to create a dummy <img> and load the same image and listen for that to
+				// complete. This element is never added to the DOM.
+				var dummyImage:HTMLImageElement = document.createElement('img') as HTMLImageElement;
+				dummyImage.addEventListener("load", handleImageLoaded2);
+				dummyImage.src = icon;
+			}
 		}
 		
 		measuredWidth = Number.NaN;
 		measuredHeight = Number.NaN;
 	}
-	
+
+	COMPILE::JS
+	private function configureBGSize():void{
+		element.style.backgroundSize = (_fixedIconWidth ? _fixedIconWidth+'px ' : 'auto ') + (_fixedIconHeight ? _fixedIconHeight+'px' :'auto');
+	}
+
 	/**
 	 * 
 	 * @royaleignorecoercion HTMLImageElement
@@ -764,15 +965,71 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	private function handleImageLoaded2(event:BrowserEvent):void
 	{
 		var img:HTMLImageElement = event.target as HTMLImageElement;
-		element.style["text-indent"] = String(img.naturalWidth+4)+"px";
-		
-		this.height = Math.max(img.naturalHeight, element.offsetHeight);
+		//@todo add support for labelPlacement, for now only assuming 'RIGHT' (no LEFT, TOP, BOTTOM)
+		var paddingLeft:Number = Number(this.paddingLeft);
+
+		var hOffset:uint = _fixedIconWidth ? _fixedIconWidth : img.naturalWidth;
+		configureBGSize();
+		element.style["text-indent"] = String(paddingLeft + hOffset + horizontalGap)+"px";
+
+		if (this.isHeightSizedToContent() ) {
+			if (!_fixedIconHeight)
+				this.setHeight( Math.max(img.naturalHeight, element.offsetHeight));
+		}
+
 		
 		measuredWidth = Number.NaN;
 		measuredHeight = Number.NaN;
 		
 		var newEvent:Event = new Event("layoutNeeded",true);
 		dispatchEvent(newEvent);
+	}
+
+	//--------------------------------------------------------------------------
+	//
+	//  Royale-specific overrides
+	//
+	//--------------------------------------------------------------------------
+	COMPILE::JS
+	override public function get measuredWidth():Number{
+		if (isNaN(_measuredWidth) || _measuredWidth </*=*/ 0) {
+			var oldHeight:Object = this.positioner.style.height;
+			if (this.isHeightSizedToContent()) {
+				//do we need to respect newlines and set whitespace?
+				if (oldHeight.length) this.positioner.style.height = '';
+			}
+			var oldPosition:String = this.positioner.style.position;
+			this.positioner.style.position = 'fixed';
+			var superWidth:Number = super.measuredWidth;
+			this.positioner.style.position = oldPosition ? oldPosition : '';
+			if (oldHeight.length) this.positioner.style.height = oldHeight;
+			return superWidth ? superWidth + 1 : 0; //round up by 1 pixel
+		}
+		return _measuredWidth;
+	}
+
+	COMPILE::JS
+	override public function get measuredHeight():Number{
+		if (isNaN(_measuredHeight) || _measuredHeight </*=*/ 0) {
+			var oldWidth:Object = this.positioner.style.width;
+			if (this.isWidthSizedToContent()) {
+				//do we need to respect newlines and set whitespace?
+				if (oldWidth.length) this.positioner.style.width = '';
+			}
+			var oldPosition:String = this.positioner.style.position;
+			this.positioner.style.position = 'fixed';
+			var superHeight:Number = super.measuredHeight;
+			this.positioner.style.position = oldPosition ? oldPosition : '';
+			if (oldWidth.length) this.positioner.style.width = oldWidth;
+			return superHeight ? superHeight + 1 : 0; //round up by 1 pixel
+		}
+		return _measuredHeight;
+	}
+
+
+	override protected function configureDisableBead(inst:DisableBead):void{
+		//@todo, the following works for regular buttons, but we also need to somehow support the buttons with native background image....
+		//inst.setComposedContent([element],[]);
 	}
 	
 }

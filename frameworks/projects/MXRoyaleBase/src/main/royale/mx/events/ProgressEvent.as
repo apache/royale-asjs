@@ -39,8 +39,8 @@ package mx.events
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function ProgressEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, 
-										 current:Number = NaN, total:Number = NaN)
+		public function ProgressEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false,
+                                      current:Number = NaN, total:Number = NaN)
 		{
     		super(type, bubbles, cancelable, current, total);
 		}
@@ -55,19 +55,19 @@ package mx.events
 		public static const STANDARD_OUTPUT_DATA:String = "standardOutputData";
 		 
 		 public function get bytesTotal():Number{
-		    return null;
+		    return total;
 		 }
 		 
-                 public function set bytesTotal(value:Number):void{
-	         }
+		 public function set bytesTotal(value:Number):void{
+		 }
 		 
 		 
 		
 		 public function get bytesLoaded():Number{
-		     return null;
+		     return current;
 		 }
 		 
 		 public function set bytesLoaded(value:Number):void{
-		}
+		 }
 	}
 }

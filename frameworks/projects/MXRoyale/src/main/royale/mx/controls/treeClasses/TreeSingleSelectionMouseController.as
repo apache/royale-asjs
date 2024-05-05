@@ -106,7 +106,7 @@ package mx.controls.treeClasses
 
 		override protected function expandedHandler(event:ItemClickedEvent):void
 		{
-			var treeData:ITreeData = listModel.dataProvider as ITreeData;
+			var treeData:org.apache.royale.collections.ITreeData = listModel.dataProvider as org.apache.royale.collections.ITreeData;
 			if (treeData == null) return;
 			
 			var node:Object = event.data;

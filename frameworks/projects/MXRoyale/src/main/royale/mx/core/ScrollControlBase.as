@@ -1487,14 +1487,14 @@ public class ScrollControlBase extends UIComponent
 //		return horizontalScrollBar;
 //	}
 
-	public function get textDecoration():String
+	/*public function get textDecoration():String
 	{
 		return "none";
 	}
 	public function set textDecoration(value:String):void
 	{
 
-	}
+	}*/
     
     COMPILE::JS
     override public function addedToParent():void

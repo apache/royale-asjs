@@ -412,7 +412,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
     //  textDecoration
     //----------------------------------
 	
-    public function get textDecoration():String 
+   /* public function get textDecoration():String
      {
 	return "";
      }
@@ -420,7 +420,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
     public function set textDecoration(val:String):void
      {
 	
-     }
+     }*/
 	
 	
         public function get blockProgression():String 

@@ -19,6 +19,8 @@
 
 package mx.controls
 {
+import mx.controls.beads.DisableBead;
+
 COMPILE::JS
 {
     import window.Text;
@@ -231,6 +233,13 @@ public class RadioButton extends Button
 
     private var clickHandlers:Vector.<Function>;
     private var _initialized:Boolean;
+
+
+    override protected function configureDisableBead(inst:DisableBead):void{
+        COMPILE::JS{
+            inst.setComposedContent([rbicon.element],[textNode]);
+        }
+    }
     
     /**
      * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -307,13 +316,31 @@ public class RadioButton extends Button
     COMPILE::JS
     override public function set label(value:String):void
     {
-        textNode.innerText = value;
-        if (this.parent is ILayoutChild && (this.parent as ILayoutChild).isWidthSizedToContent())
-        {
-            (this.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        if (value != textNode.innerText) {
+            textNode.innerText = value;
+            /*if (this.parent is ILayoutChild && (this.parent as ILayoutChild).isWidthSizedToContent())
+           {
+               (this.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+           }*/
+            invalidateSize()
         }
     }
-    
+    /**
+     * @royaleignorecoercion HTMLInputElement
+     */
+    override public function get selected():Boolean
+    {
+        COMPILE::JS
+        {
+            if (_groupName) {
+                var sel:Boolean = (rbicon.element as HTMLInputElement).checked;
+                if (super.selected != sel) super.selected = sel;
+                return sel;
+            }
+        }
+        return super.selected;
+    }
+
     /**
      * @royaleignorecoercion HTMLInputElement
      */
@@ -528,18 +555,18 @@ public class RadioButton extends Button
         return g;
     }
 
-    override public function get measuredWidth():Number
+    /*override public function get measuredWidth():Number
     {
-		COMPILE::JS
+		/!*COMPILE::JS
 		{
 			var ww:Number = rbicon.element.offsetWidth + textNode.offsetWidth + 8;
 			return ww;
-		}
+		}*!/
         // on Safari, we seem to come up one pixel short sometimes
         // causing the label to appear on another line if the
         // width is set the the measuredWidth.  Probably a fractional error.
         return super.measuredWidth + 1;
-    }
+    }*/
 
 }
 

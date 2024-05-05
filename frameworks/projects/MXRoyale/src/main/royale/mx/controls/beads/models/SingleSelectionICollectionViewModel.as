@@ -21,10 +21,13 @@ package mx.controls.beads.models
 	import mx.collections.ICollectionView;
 	import mx.collections.IViewCursor;
     import mx.collections.CursorBookmark;
-    import mx.events.CollectionEvent;
+import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.listClasses.ListBase;
+import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
-	
-	import org.apache.royale.core.IRollOverModel;
+import mx.events.ListEvent;
+
+import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -197,6 +200,8 @@ package mx.controls.beads.models
 			if (value == -1 || dataProvider == null)
 			{
 				_selectedItem = null;
+				//if we don't do this, then it can mess up getItemAt iteration:
+				lastIndex = -1;
 			}
 			else
 			{
@@ -256,24 +261,223 @@ package mx.controls.beads.models
 		public function set selectedItem(value:Object):void
 		{
             if (value == _selectedItem) return;
-
+			var wasNull:Boolean = _selectedItem == null;
 			_selectedItem = value;
 			var siChange:Boolean;
+			var found:Boolean;
+
 			if (_dataProvider) {
 				var n:int = _dataProvider.length;
 				for (var i:int = 0; i < n; i++)
 				{
 					if (getItemAt(i) == value)
 					{
+						found = true;
+
 						if (_selectedIndex != i) siChange = true;
 						_selectedIndex = i;
 						break;
 					}
+
+				}
+			}
+			
+			if (!found) {
+				if (_selectedIndex != -1) {
+					_selectedIndex = -1;
+					siChange = true;
+				}
+				_selectedItem = null;
+			}
+
+			if (!wasNull || !(wasNull && _selectedItem == null)) dispatchEvent(new Event("selectedItemChanged"));
+			if (siChange) dispatchEvent(new Event("selectedIndexChanged"));
+		}
+
+
+		public function findString(str:String):Boolean
+		{
+			var collection:ICollectionView = _dataProvider;
+			var iterator:IViewCursor = _cursor;
+			if (!collection || collection.length == 0)
+				return false;
+
+			var cursorPos:CursorBookmark;
+
+			cursorPos = iterator.bookmark;
+
+			var stopIndex:int = selectedIndex;
+			var i:int = stopIndex + 1;  // start at next
+
+			if (selectedIndex == -1)
+			{
+				try
+				{
+					iterator.seek(CursorBookmark.FIRST, 0);
+				}
+				catch(e1:/*ItemPending*/Error)
+				{
+					/*e1.addResponder(new ItemResponder(
+							findPendingResultHandler, findPendingFailureHandler,
+							new ListBaseFindPending(str, cursorPos,
+									CursorBookmark.FIRST, 0, 0, collection.length)));
+
+					iteratorValid = false;*/
+					return false;
+				}
+				stopIndex = collection.length;
+				i = 0;
+			}
+			else
+			{
+				try
+				{
+					iterator.seek(CursorBookmark.FIRST, stopIndex);
+				}
+				catch(e2:/*ItemPending*/Error)
+				{
+					/*if (anchorIndex == collection.length - 1)
+					{
+						e2.addResponder(new ItemResponder(
+								findPendingResultHandler, findPendingFailureHandler,
+								new ListBaseFindPending(str, cursorPos,
+										CursorBookmark.FIRST, 0, 0, collection.length)));
+					}
+					else
+					{
+						e2.addResponder(new ItemResponder(
+								findPendingResultHandler, findPendingFailureHandler,
+								new ListBaseFindPending(str, cursorPos,
+										anchorBookmark, 1, anchorIndex + 1, anchorIndex)));
+					}
+
+					iteratorValid = false;*/
+					return false;
+				}
+
+				var bMovedNext:Boolean = false;
+
+				// If we ran off the end, go back to beginning.
+				try
+				{
+					bMovedNext = iterator.moveNext();
+				}
+				catch(e3:/*ItemPending*/Error)
+				{
+					// Assume we don't fault unless there is more data.
+					/*e3.addResponder(new ItemResponder(
+							findPendingResultHandler, findPendingFailureHandler,
+							new ListBaseFindPending(str, cursorPos,
+									anchorBookmark, 1, anchorIndex + 1, anchorIndex)));
+
+					iteratorValid = false;*/
+					return false;
+				}
+
+				if (!bMovedNext)
+				{
+					try
+					{
+						iterator.seek(CursorBookmark.FIRST, 0);
+					}
+					catch(e4:/*ItemPending*/Error)
+					{
+						/*e4.addResponder(new ItemResponder(
+								findPendingResultHandler, findPendingFailureHandler,
+								new ListBaseFindPending(str, cursorPos,
+										CursorBookmark.FIRST, 0, 0, collection.length)));
+
+						iteratorValid = false;*/
+						return false;
+					}
+
+					stopIndex = collection.length;
+					i = 0;
 				}
 			}
 
-			dispatchEvent(new Event("selectedItemChanged"));
-			if (siChange) dispatchEvent(new Event("selectedIndexChanged"));
+			return findStringLoop(str, cursorPos, i, stopIndex);
+		}
+
+		/**
+		 *  @private
+		 */
+		private function findStringLoop(str:String, cursorPos:CursorBookmark,
+										i:int, stopIndex:int):Boolean
+		{
+			var collection:ICollectionView = _dataProvider;
+			var iterator:IViewCursor = _cursor;
+			var listBase:ListBase = ListBase(_strand);
+			var itemToLabel:Function = listBase.itemToLabel;
+			// Search from the current index.
+			// Jump back to beginning if we hit the end.
+			for (i; i != stopIndex; i++)
+			{
+				var itmStr:String = itemToLabel(iterator.current);
+
+				itmStr = itmStr.substring(0, str.length);
+				if (str == itmStr || str.toUpperCase() == itmStr.toUpperCase())
+				{
+					iterator.seek(cursorPos, 0);
+					listBase.scrollToIndex(i);
+
+					//was commitSelectedIndex(i);
+					//now:
+					selectedIndex =i;
+
+					var item:IListItemRenderer = listBase.itemToItemRenderer(iterator.current)//listBase.indexToItemRenderer(i);
+					//var pt:Point = itemRendererToIndices(item);
+					var evt:ListEvent = new ListEvent(ListEvent.CHANGE);
+					evt.itemRenderer = item;
+					/*if (pt)
+					{
+						evt.columnIndex = pt.x;
+						evt.rowIndex = pt.y;
+					}*/
+					dispatchEvent(evt);
+					return true;
+				}
+
+				try
+				{
+					var more:Boolean = iterator.moveNext();
+				}
+				catch(e1:/*ItemPending*/Error)
+				{
+					/*e1.addResponder(new ItemResponder(
+							findPendingResultHandler, findPendingFailureHandler,
+							new ListBaseFindPending(str, cursorPos,
+									CursorBookmark.CURRENT, 1, i + 1, stopIndex)));
+
+					iteratorValid = false;*/
+					return false;
+				}
+
+				// Start from beginning if we hit the end
+				if (!more && stopIndex != collection.length)
+				{
+					i = -1;
+					try
+					{
+						iterator.seek(CursorBookmark.FIRST, 0);
+					}
+					catch(e2:/*ItemPending*/Error)
+                    {
+                        /*e2.addResponder(new ItemResponder(
+                                findPendingResultHandler, findPendingFailureHandler,
+                                new ListBaseFindPending(str, cursorPos,
+                                        CursorBookmark.FIRST, 0, 0, stopIndex)));
+
+                        iteratorValid = false;*/
+                        return false;
+                    }
+				}
+			}
+
+			iterator.seek(cursorPos, 0);
+			//iteratorValid = true;
+
+			return false;
 		}
 
 		private var _selectedString:String;

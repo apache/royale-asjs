@@ -24,6 +24,8 @@ import org.apache.royale.utils.ObjectMap;
 import mx.core.mx_internal;
 import mx.utils.IXMLNotifiable;
 
+import org.apache.royale.reflection.getQualifiedClassName;
+import mx.collections.XMLListAdapter;
 use namespace mx_internal;
 
 /**
@@ -101,9 +103,22 @@ public class XMLNotifier
             var xmlWatchers:ObjectMap = callee["watched"];
             if (xmlWatchers != null)
             {
+               // trace('!notification!')
+                var deferred:Array = [];
                 xmlWatchers.forEach( function(truevalue:Object,notifiable:Object,map:Object):void {
-                    IXMLNotifiable(notifiable).xmlNotification(currentTarget, ty, tar, value, detail);
+                    /*var add:String = '';
+                    if (notifiable is XMLListAdapter) {
+                        add = ' (inst '+XMLListAdapter(notifiable).inst+')';
+                    }
+                    trace('notifying '+getQualifiedClassName(notifiable)+ add + ":" +currentTarget, ty, tar, value, detail)
+*/
+                    //IXMLNotifiable(notifiable).xmlNotification(currentTarget, ty, tar, value, detail);
+                    deferred.push(notifiable);
                 } );
+
+                while (deferred.length) {
+                    IXMLNotifiable(deferred.pop()).xmlNotification(currentTarget, ty, tar, value, detail);
+                }
             }
         }
 
@@ -189,7 +204,10 @@ public class XMLNotifier
             else
                 xmlWatchers = watcherFunction["watched"];
 
-            xmlWatchers.set(notifiable, true);
+            if (!xmlWatchers.has(notifiable)) {
+                xmlWatchers.set(notifiable, true);
+            }
+
         }
     }
 

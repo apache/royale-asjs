@@ -210,6 +210,13 @@ package org.apache.royale.html.beads.controllers
             DragMouseController.instanceNumber += 100;
 		}
 
+        public function manualEventHandler(event:MouseEvent):void{
+            //we might need to support all MouseEvents? But Mouse Up seems not quite right?
+            if (event.type == MouseEvent.MOUSE_DOWN || event.type == MouseEvent.MOUSE_MOVE) {
+                dragMouseDownHandler(event);
+            }
+        }
+
 		public function get strand():IStrand
 		{
 			return _strand;

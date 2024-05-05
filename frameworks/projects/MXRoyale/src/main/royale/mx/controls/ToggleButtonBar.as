@@ -314,6 +314,7 @@ public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayo
      */
     public function set dataProvider(value:Object):void
     {
+        this.measuredWidth = NaN;
         (model as ISelectionModel).dataProvider = value;
     }
 
@@ -483,9 +484,9 @@ public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayo
     
     override public function get measuredWidth():Number
     {
-        if (dataProvider)
+        if (dataProvider && buttonWidth)
             return buttonWidth * dataProvider.length;
-        return 0;
+        return super.measuredWidth;
     }
     
     override public function get measuredHeight():Number

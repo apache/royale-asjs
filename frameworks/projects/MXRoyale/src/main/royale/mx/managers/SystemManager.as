@@ -3782,6 +3782,11 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
 	}
 
 
+    public function get systemManager():ISystemManager{
+        return this;
+    }
+
+
 }
 
 }

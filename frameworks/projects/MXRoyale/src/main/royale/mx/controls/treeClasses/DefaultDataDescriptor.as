@@ -78,6 +78,17 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
      */
     private var ChildCollectionCache:CollectionCache = new CollectionCache();
 
+    private var _assumeChildrenValid:Boolean;
+    /**
+     *  @private
+     *  Royale-only addition to the original Flex interface.
+     *  This is used to optimize the getChildren requests, avoiding the overhead of assigning new source value
+     *  to the underlying children collection
+     */
+    public function set assumeChildrenValid(value:Boolean):void{
+        _assumeChildrenValid = value;
+    }
+
     /**
      *  Provides access to a node's children. Returns a collection
      *  of children if they exist. If the node is an Object, the method
@@ -150,7 +161,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
         else if (children is XMLList)
         {
             var oldXMLCollection:XMLListCollection = ChildCollectionCache.fetch(node) as XMLListCollection;
-            if (!oldXMLCollection)
+            if (COMPILE::SWF && !oldXMLCollection)
             {
                 // double check since XML as dictionary keys is inconsistent
                 for each (var p:* in ChildCollectionCache.keys)
@@ -171,10 +182,11 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
             else
             {
                 childrenCollection = oldXMLCollection;
-                
-                //We don't want to send a RESET type of collectionChange event in this case. 
-                XMLListCollection(childrenCollection).dispatchResetEvent = false; 
-                XMLListCollection(childrenCollection).source = children;
+                if (!_assumeChildrenValid) { //avoid this completely if we have explicitly
+                    //We don't want to send a RESET type of collectionChange event in this case.
+                    XMLListCollection(childrenCollection).dispatchResetEvent = false;
+                    XMLListCollection(childrenCollection).source = children;
+                }
             }
         }
         else
@@ -249,7 +261,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
             
         if (node is XML)
         {
-            var childList:XMLList = node.children();
+            var childList:XMLList = (node as XML).children();
             //accessing non-required e4x attributes is quirky
             //but we know we'll at least get an XMLList
             var branchFlag:XMLList = node.@isBranch;
@@ -525,7 +537,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
         if (node is XML)
         {
             enabled = node.@enabled;
-            if (String(enabled[0]) == "false")
+            if (XML(enabled[0]) == false)
                 return false;
         }
         else if (node is Object)
@@ -594,7 +606,7 @@ public class DefaultDataDescriptor implements ITreeDataDescriptor2 , IMenuDataDe
         if (node is XML)
         {
             var toggled:* = node.@toggled;
-            if (toggled[0] == true)
+            if (XML(toggled[0]) == true)
                 return true;
         }
         else if (node is Object)
@@ -773,9 +785,12 @@ class CollectionCache
 {
     COMPILE::SWF
     private var cache:Dictionary = new Dictionary(true);
+
+    private static var idx:uint = 0;
     
     // use Object.defineProperty some day to block iteration of this property?
-    private var propName:String = "__CollectionCache__";
+    COMPILE::JS
+    private var propName:String = "__CollectionCache__" + (idx++);
     
     public function fetch(obj:Object):Object
     {

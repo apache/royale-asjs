@@ -20,11 +20,14 @@ package mx.controls.beads
 {
 
 	import mx.controls.AdvancedDataGrid;
+import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+import mx.controls.beads.controllers.ADGItemRendererMouseController;
 	import mx.controls.listClasses.BaseListData;
 
 	import org.apache.royale.collections.TreeData;
     import org.apache.royale.core.Bead;
-    import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IIndexedItemRendererInitializer;
     import org.apache.royale.core.IItemRenderer;
@@ -60,6 +63,10 @@ package mx.controls.beads
 		 */
 		public function AdvancedDataGridItemRendererInitializer()
 		{
+		}
+
+		override protected function getDefaultController():IBeadController{
+			return new ADGItemRendererMouseController();
 		}
 				
 		/**
@@ -100,14 +107,20 @@ package mx.controls.beads
 			var isOpen:Boolean = adg.isItemOpen(data);
 			var hasChildren:Boolean = adg.hasChildren(data);
 			var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
-
-			var dataField:String = adg.columns[adgColumnListModel.columnIndex].dataField;
+			var activeColumn:AdvancedDataGridColumn = adg.columns[adgColumnListModel.columnIndex];
+			var useLabelFunc:Boolean = activeColumn.labelFunction != null;
+			var dataField:String = !useLabelFunc && firstColumn && adg.groupLabelField ? adg.groupLabelField : activeColumn.dataField;
 			var text:String = "";
 			try {
-				if (data is XML)
-					text = (data as XML)[dataField];
-				else
-					text = data[dataField];
+				if (useLabelFunc) {
+					text = activeColumn.labelFunction(data, activeColumn)
+				} else {
+					if (data is XML)
+						text = ((data as XML)[dataField]).toString();
+					else
+						text = data[dataField];
+				}
+
 			} catch (e:Error)
 			{
 			}
@@ -116,10 +129,13 @@ package mx.controls.beads
 			treeListData.depth = depth;
 			treeListData.open = isOpen;
 			treeListData.hasChildren = hasChildren;
+			//item member is a reference to the data:
+			treeListData.item = data;
 
-
-			if (firstColumn && adg.groupLabelField)
+			if (firstColumn && adg.groupLabelField) {
 				(_tempIR as ILabelFieldItemRenderer).labelField = adg.groupLabelField;
+			}
+
 
 			return treeListData;
 		}

@@ -86,12 +86,12 @@ package org.apache.royale.core
 		{
 			if (value != _strand) {
 				if (_strand) setListeners(true);
+				_strand = value;
+				if (value) {
+					setListeners();
+				}
 			}
-			_strand = value;
 			host = value as ILayoutChild;
-			if (value) {
-				setListeners();
-			}
 		}
 
 		protected function setListeners(off:Boolean=false):void{
@@ -106,6 +106,9 @@ package org.apache.royale.core
 		
 		private var lastWidth:Number = -1;
 		private var lastHeight:Number = -1;
+
+
+		private var ignoreHostCount:int = 0;
 		
 		/**
 		 * Changes in size to the host strand are handled (by default) by running the
@@ -119,6 +122,11 @@ package org.apache.royale.core
 		 */
 		protected function handleSizeChange(event:Event):void
 		{
+			if (ignoreHostCount) {
+				ignoreHostCount--;
+				return;
+			}
+			if (event.type == 'sizeChanged') ignoreHostCount = 2; //ignore next 2 widthChanged/heightChanged events
 			if (host.width == lastWidth &&
 				host.height == lastHeight) return;
 			performLayout();

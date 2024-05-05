@@ -21,6 +21,7 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IToolTip;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IToolTipBead;
 	import org.apache.royale.events.IEventDispatcher;
@@ -62,7 +63,7 @@ package org.apache.royale.html.accessories
 		public static const MIDDLE:int = 10004;
 
 		private var _toolTip:String;
-		protected var tt:ToolTip;
+		protected var tt:IToolTip;
 		protected var host:IPopUpHost;
 		private var _xPos:int = RIGHT;
 		private var _yPos:int = BOTTOM;
@@ -82,6 +83,13 @@ package org.apache.royale.html.accessories
 		public function set toolTip(value:String):void
 		{
 			_toolTip = value;
+			if (tt)  {
+				if (value == null || value == '') {
+					removeTip();
+				} else {
+					tt.text  = value;
+				}
+			}
 		}
 
 		/**
@@ -150,12 +158,20 @@ package org.apache.royale.html.accessories
 			if (tt)
 				host.popUpParent.removeElement(tt);
 
-			tt = new ToolTip();
+			tt = createToolTip();
 			tt.text = toolTip;
 			var pt:Point = determinePosition(event, event.target);
 			tt.x = pt.x;
 			tt.y = pt.y;
 			host.popUpParent.addElement(tt, false); // don't trigger a layout
+		}
+
+		/**
+		 * allow overriding of ToolTip implementations
+		 * @return the IToolTip instance
+		 */
+		protected function createToolTip():IToolTip{
+			return new ToolTip()
 		}
 
 		/**

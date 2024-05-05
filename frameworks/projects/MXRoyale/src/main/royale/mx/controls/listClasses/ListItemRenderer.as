@@ -19,6 +19,7 @@
 
 package mx.controls.listClasses
 {
+import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.ListEvent;
 
@@ -57,7 +58,7 @@ COMPILE::SWF
  *  @productversion Flex 3
  */
 
-public class ListItemRenderer extends UIComponent implements IListItemRenderer, IIndexedItemRenderer, ILabelFieldItemRenderer, IOwnerViewItemRenderer
+public class ListItemRenderer extends UIComponent implements IListItemRenderer, IDataRenderer, IDropInListItemRenderer, IIndexedItemRenderer, ILabelFieldItemRenderer, IOwnerViewItemRenderer
 {
     public function ListItemRenderer()
     {
@@ -98,19 +99,6 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
         super.addedToParent();
         $sprite_addChild(textField);
         adjustSize();
-    }
-
-    /**
-     * @private
-     */
-    COMPILE::SWF
-    public function adjustSize():void
-    {
-        var cy:Number = height/2;
-
-        textField.x = 0;
-        textField.y = cy - textField.height/2;
-        textField.width = width;
     }
     
     private var _rowIndex:int;
@@ -245,6 +233,9 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
 
         protected function dataToString(value:Object):String
         {
+            if (this._listData) {
+                return _listData.label;
+            }
             if (value is XML)
             {
                 var xml:XML = value as XML;
@@ -331,6 +322,30 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
     public function set updateCompletePendingFlag(value:Boolean):void
     {
     	throw new Error("Method not implemented.");
+    }
+
+    /**
+     *  This function is called whenever the itemRenderer changes size. Sub-classes should override
+     *  this method an handle the size change.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function adjustSize():void
+    {
+        updateDisplayList(width, height);
+    }
+
+    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void{
+        COMPILE::SWF{
+            var cy:Number = unscaledHeight/2;
+
+            textField.x = 0;
+            textField.y = cy - textField.height/2;
+            textField.width = unscaledWidth;
+        }
     }
 }
 

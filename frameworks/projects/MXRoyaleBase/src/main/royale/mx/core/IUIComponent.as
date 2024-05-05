@@ -274,6 +274,54 @@ public interface IUIComponent extends IFlexDisplayObject, IChild, IUIBase, IChil
      *  @productversion Flex 3
      */
     function get maxWidth():Number;
+    
+    
+    
+    //----------------------------------
+    //  measuredHeight
+    //----------------------------------
+    
+    /**
+     *  The measured height of this object.
+     *
+     *  <p>This is typically hard-coded for graphical skins
+     *  because this number is simply the number of pixels in the graphic.
+     *  For code skins, it can also be hard-coded
+     *  if you expect to be drawn at a certain size.
+     *  If your size can change based on properties, you may want
+     *  to also be an ILayoutManagerClient so a <code>measure()</code>
+     *  method will be called at an appropriate time,
+     *  giving you an opportunity to compute a <code>measuredHeight</code>.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function set measuredHeight(value:Number):void;
+    
+    //----------------------------------
+    //  measuredWidth
+    //----------------------------------
+    
+    /**
+     *  The measured width of this object.
+     *
+     *  <p>This is typically hard-coded for graphical skins
+     *  because this number is simply the number of pixels in the graphic.
+     *  For code skins, it can also be hard-coded
+     *  if you expect to be drawn at a certain size.
+     *  If your size can change based on properties, you may want
+     *  to also be an ILayoutManagerClient so a <code>measure()</code>
+     *  method will be called at an appropriate time,
+     *  giving you an opportunity to compute a <code>measuredHeight</code>.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    function set measuredWidth(value:Number):void;
 
     //----------------------------------
     //  measuredMinHeight

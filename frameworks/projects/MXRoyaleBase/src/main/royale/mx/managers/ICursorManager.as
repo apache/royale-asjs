@@ -38,7 +38,7 @@ public interface ICursorManager
 
 	function showCursor():void;
 	function hideCursor():void;
-	function setCursor(cursorClass:Class, priority:int = 2,
+	function setCursor(cursorClass:Object, priority:int = 2,
 			xOffset:Number = 0, yOffset:Number = 0):int;
 	function removeCursor(cursorID:int):void;
 	function removeAllCursors():void;

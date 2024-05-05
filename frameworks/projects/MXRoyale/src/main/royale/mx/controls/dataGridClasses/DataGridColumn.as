@@ -401,6 +401,9 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
             {
                 if (data[dataField] != null)
                     data = data[dataField];
+                else if (dataField in data) {
+                    data = '';
+                }
             }
             catch(e:Error)
             {
@@ -519,6 +522,7 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     {
         // otherwise, just store the size
         _width = value;
+        explicitWidth = value;
     }
     
     //----------------------------------
@@ -561,15 +565,16 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
         _minWidth = value;
     }
 
-
+    private var _textAlign:Object = 'left';
     public function get textAlign():Object
     {
-        trace("DataGridColumn::textAlign not implemented");
-        return 0;
+    //    trace("DataGridColumn::textAlign not implemented");
+        return _textAlign;
     }
     public function set textAlign(value:Object):void
     {
-        trace("DataGridColumn::textAlign not implemented");
+    //    trace("DataGridColumn::textAlign not implemented");
+        _textAlign = value;
     }
 
     /**

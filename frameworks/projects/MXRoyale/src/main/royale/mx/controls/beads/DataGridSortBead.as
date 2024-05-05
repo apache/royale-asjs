@@ -21,7 +21,8 @@ package mx.controls.beads
 	import mx.controls.DataGrid;
 	import mx.controls.beads.DataGridView;
 	import mx.controls.dataGridClasses.DataGridColumn;
-	import mx.events.DataGridEvent;
+import mx.controls.listClasses.IListItemRenderer;
+import mx.events.DataGridEvent;
 	import mx.collections.ICollectionView;
 	import mx.collections.ISort;
 	import mx.collections.Sort;
@@ -86,6 +87,19 @@ package mx.controls.beads
 			var column:DataGridColumn = headerRenderer.data as DataGridColumn;
 			if (column && !column.sortable) {
 				//ignore clicks on headers of columns that are not sortable
+				return;
+			}
+
+			var dgEvent:DataGridEvent = new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, true);
+			dgEvent.columnIndex = dg.columns.indexOf(column);
+			dgEvent.dataField = column.dataField;
+			dgEvent.itemRenderer = headerRenderer as IListItemRenderer;
+			dg.dispatchEvent(dgEvent);
+			if (dgEvent.isDefaultPrevented()) {
+				//set the selected Index to -1, to avoid default behavior
+				(dgView.header as DataGridButtonBar).model.selectedIndex = -1;
+				// force redraw of column headers, just in case
+				(dgView.header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
 				return;
 			}
 			var collection:ICollectionView = dg.dataProvider as ICollectionView;

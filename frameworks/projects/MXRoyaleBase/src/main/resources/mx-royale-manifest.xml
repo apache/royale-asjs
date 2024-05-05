@@ -72,7 +72,7 @@
 	<component id="EmailValidator" 						class="mx.validators.EmailValidator"/>
 	<component id="ZipCodeValidator" 					class="mx.validators.ZipCodeValidator"/>
 	<component id="CursorManagerImpl" 					class="mx.managers.CursorManagerImpl"/>
-	<component id="DragManagerImpl" 					class="mx.managers.DragManagerImpl"/>
+	
 
 
 </componentPackage>

@@ -93,6 +93,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IAlertModel; IAlertModel;
 	import org.apache.royale.core.IBead; IBead;
 	import org.apache.royale.core.IToolTipBead; IToolTipBead;
+	import org.apache.royale.core.IToolTip; IToolTip;
 	import org.apache.royale.core.IBeadController; IBeadController;
 	import org.apache.royale.core.IBeadLayout; IBeadLayout;
 	import org.apache.royale.core.IBeadTransform; IBeadTransform;

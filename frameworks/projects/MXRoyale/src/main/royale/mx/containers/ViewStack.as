@@ -1008,10 +1008,12 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
 
             COMPILE::JS
             {
-		child.setIncludeInLayout(true); // Add current child to layout
+		        child.setIncludeInLayout(true); // Add current child to layout
                 // must set visible=true otherwise child has display:none
                 // and measurements of its children will not be correct
-                child.setVisible(true);
+                //child.setVisible(true);
+                //child.setVisible in royale does not dispatch SHOW/HIDE events, use the setter instead:
+                child.visible = true;
             }
             // Don't send events for the size/move. The set visible below
             if (child.width != newWidth || child.height != newHeight)
@@ -1231,8 +1233,8 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
             var currentChild:UIComponent = UIComponent(getChildAt(lastIndex));
 
             currentChild.setIncludeInLayout(false); // Remove current child from layout
-            currentChild.setVisible(false); // Hide the current child
-
+           // currentChild.setVisible(false); // Hide the current child
+            currentChild.visible = false;
             /*
             if (currentChild.getStyle("hideEffect"))
             {
@@ -1618,13 +1620,13 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
      */
     public function getItemIndex(item:Object):int
     {
-		if (isValidChild(item as ROYALE::DISPLAYOBJECT))
+		if (isValidChild(item as IUIComponent/*ROYALE::DISPLAYOBJECT*/))
         	return getChildIndex(item as IUIComponent);
 		else
 			return -1;
     }
 	
-	private function isValidChild(child:ROYALE::DISPLAYOBJECT):Boolean {
+	private function isValidChild(child:IUIComponent/*ROYALE::DISPLAYOBJECT*/):Boolean {
 		for (var i:int = 0; i < numChildren; i++)
 		{
 			if (getChildAt(i) == child)

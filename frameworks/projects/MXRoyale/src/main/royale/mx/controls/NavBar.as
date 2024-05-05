@@ -20,6 +20,7 @@
 package mx.controls
 {
 
+import mx.core.IUIComponent;
 import mx.core.UIComponent;
 import org.apache.royale.events.Event;
 import mx.events.KeyboardEvent;
@@ -1244,9 +1245,7 @@ public class NavBar extends Box implements IHasLabelField
 
         var newChild:INavigatorContent = INavigatorContent(event.relatedObject);
         var item:Button = Button(createNavItem(itemToLabel(newChild), newChild.icon));
-       // var index:int = newChild.parent.getChildIndex(UIComponent(newChild));
-	   //for now replaced
-	   var index:int = 1;
+        var index:int = IUIComponent(newChild.parent).getChildIndex(UIComponent(newChild));
         setChildIndex(item, index);
 
         if (newChild.toolTip)

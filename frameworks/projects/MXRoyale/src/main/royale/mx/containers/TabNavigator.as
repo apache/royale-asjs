@@ -28,6 +28,8 @@ import mx.core.EdgeMetrics;
 import mx.managers.IFocusManagerComponent;
 import mx.controls.TabBar;
 
+import mx.core.mx_internal;
+
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
@@ -444,6 +446,7 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
     {
         var tnView:TabNavigatorView = view as TabNavigatorView;
         tnView.contentArea.addElement(c, dispatchEvent);
+        (c as UIComponent).mx_internal::_parent = this;
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
@@ -457,6 +460,7 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
     {
         var tnView:TabNavigatorView = view as TabNavigatorView;
         tnView.contentArea.addElementAt(c, index, dispatchEvent);
+        (c as UIComponent).mx_internal::_parent = this;
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
@@ -480,6 +484,7 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
     {
         var tnView:TabNavigatorView = view as TabNavigatorView;
         tnView.contentArea.removeElement(c, dispatchEvent);
+        (c as UIComponent).mx_internal::_parent = null;
         if (dispatchEvent)
                 this.dispatchEvent(new ValueEvent('childrenRemoved', c));
     }
@@ -520,6 +525,26 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
 
         var tnView:TabNavigatorView = view as TabNavigatorView;
             (tnView.tabBar as TabBar).selectedIndex = newIndex;
+    }
+
+    //(GD) something like this seems necessary to avoid issues with layout in base class (ViewStack):
+    override protected function get contentHeight():Number
+    {
+        var borderWidth:uint;
+        COMPILE::JS{
+            borderWidth = Math.ceil(parseFloat(getComputedStyle((view as TabNavigatorView).contentArea.element).borderWidth)*2);
+        }
+        return super.contentHeight - ((view as TabNavigatorView).tabBar as UIComponent).height - borderWidth;
+    }
+
+
+    override protected function get contentWidth():Number
+    {
+        var borderWidth:uint;
+        COMPILE::JS{
+            borderWidth = Math.ceil(parseFloat(getComputedStyle((view as TabNavigatorView).contentArea.element).borderWidth)*2);
+        }
+        return super.contentWidth - borderWidth;
     }
 }
 

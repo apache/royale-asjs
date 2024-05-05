@@ -24,7 +24,8 @@ import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.Event;
 import org.apache.royale.core.IStrand;
-
+import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.utils.UIUtils;
 
 import mx.core.DragSource;
 import mx.core.IFlexDisplayObject;
@@ -33,13 +34,7 @@ import mx.core.IFlexModuleFactory;
 import mx.core.IUIComponent;
 import org.apache.royale.events.MouseEvent;
 
-// import mx.core.LayoutDirection;
-// import mx.core.UIComponentGlobals;
-// import mx.core.mx_internal;
-// import mx.events.DragEvent;
-// import mx.styles.CSSStyleDeclaration;
-// import mx.styles.IStyleManager2;
-// import mx.styles.StyleManager;
+
 import org.apache.royale.core.IBead;
 import org.apache.royale.html.beads.controllers.DragMouseController;
 // import org.apache.royale.html.beads.DragDropListView;
@@ -49,7 +44,9 @@ import org.apache.royale.core.UIBase;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.Lookalike;
 import mx.managers.beads.DragManagerImplDropBead;
-// im`port org.apache.royale.html.accessories.RestrictTextInputBead;
+
+import mx.managers.dragClasses.DragProxy;
+
 
 // use namespace mx_internal;
 
@@ -163,7 +160,7 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	 *  @private
 	 *  Object being dragged around.
 	 */
-	// public var dragProxy:DragProxy;
+	 public var dragProxy:DragProxy;
 
 	/**
 	 *  @private
@@ -257,16 +254,16 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	// 	if (bDoingDrag)
 	// 		return;
 		
-	// 	// Can't do a drag if the mouse isn't down
-	// 	if (!(mouseEvent.type == MouseEvent.MOUSE_DOWN ||
-	// 		  mouseEvent.type == MouseEvent.CLICK ||
-	// 		  mouseIsDown ||
-	// 		  mouseEvent.buttonDown))
-	// 	{
-	// 		return;
-	// 	}    
+	 	// Can't do a drag if the mouse isn't down
+	 	if (!(mouseEvent.type == MouseEvent.MOUSE_DOWN ||
+	 		  mouseEvent.type == MouseEvent.CLICK ||
+	 		  mouseIsDown ||
+	 		  mouseEvent.buttonDown))
+	 	{
+	 		return;
+	 	}
 			
-	// 	bDoingDrag = true;
+	 	bDoingDrag = true;
 
         if (hasEventListener("doDrag"))
     		dispatchEvent(new Event("doDrag"));
@@ -386,13 +383,41 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 			dragController = new DragMouseController();
 			(dragInitiator as IStrand).addBead(dragController);
 			// Give controller a chance to react to this event
-			(dragInitiator as IEventDispatcher).dispatchEvent(mouseEvent);
+			//(dragInitiator as IEventDispatcher).dispatchEvent(mouseEvent);
+			dragController.manualEventHandler(mouseEvent);
+		}
+		else {
+			if(!mouseEvent.isDefaultPrevented()/*.propagationStopped_*/) {
+				dragController.manualEventHandler(mouseEvent)
+			}
 		}
 		this.dragInitiator = dragInitiator;
+		DragManagerImplDropBead.dragInitiator = dragInitiator;
 		dragController.addEventListener("dragMove", dragMoveHandler)
 		dragController.addEventListener("dragStart", dragStartHandler)
 		_dragSource = dragSource;
-		_lookAlike = createDragImage(dragInitiator);
+		var flexDisplayObj:UIBase = dragImage as UIBase;
+		COMPILE::JS
+		{
+			if (flexDisplayObj) {
+				flexDisplayObj.element.style.position = 'absolute';
+				//dragImage.element.style.cursor = 'pointer';
+				flexDisplayObj.element.style.pointerEvents = 'none';
+			}
+		}
+		_lookAlike = flexDisplayObj ? flexDisplayObj : createDragImage(dragInitiator);
+		_lookAlike.x = 0; //+xOffset;
+		_lookAlike.y = 0; // +yOffset;
+		var originalAlpha:Number = _lookAlike.alpha;
+		_lookAlike.alpha = imageAlpha * originalAlpha;
+		dragProxy = new DragProxy(dragInitiator, dragSource);
+		dragProxy.setActualSize(_lookAlike.width, _lookAlike.height)
+		dragProxy.allowMove = allowMove;
+		dragProxy.addElement(_lookAlike);
+		dragProxy.xOffset = xOffset;
+		dragProxy.yOffset = yOffset;
+		showFeedback( DragManager.NONE);
+
 	}
 
 	private var _lookAlike:UIBase;
@@ -405,7 +430,8 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 		COMPILE::JS 
 		{
 			dragImage.element.style.position = 'absolute';
-			dragImage.element.style.cursor = 'pointer';
+			//dragImage.element.style.cursor = 'pointer';
+			dragImage.element.style.pointerEvents = 'none';
 		}
 		return dragImage;
 	}
@@ -414,24 +440,54 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	private function dragStartHandler(event:DragEvent):void
 	{
 		DragEvent.dragSource = _dragSource;
-		DragMouseController.dragImage = _lookAlike;
+		DragMouseController.dragImage = dragProxy//_lookAlike;
+		DragMouseController.dragImageOffsetX = dragProxy.xOffset;
+		DragMouseController.dragImageOffsetY = dragProxy.yOffset;
+	}
+
+	private function checkFound(itemOrParentChain:IUIBase,event:DragEvent):Boolean{
+		var found:Boolean;
+		if (itemOrParentChain.hasEventListener(DragEvent.DRAG_ENTER) || itemOrParentChain.hasEventListener(DragEvent.DRAG_EXIT) || itemOrParentChain.hasEventListener(DragEvent.DRAG_OVER) || itemOrParentChain.hasEventListener(DragEvent.DRAG_DROP))
+		{
+			//var relatedStrand:IStrand = relatedObject as IStrand;
+			var dmDropBead:DragManagerImplDropBead = itemOrParentChain.getBeadByType(DragManagerImplDropBead) as DragManagerImplDropBead;
+			if (!dmDropBead)
+			{
+				dmDropBead = new DragManagerImplDropBead();
+				itemOrParentChain.addBead(dmDropBead);
+
+				found = dmDropBead.handleCreationEvent(event);
+			} else found = true;
+		}
+		return found;
 	}
 
 	private function dragMoveHandler(event:DragEvent):void
 	{
-		var relatedObject:IEventDispatcher = event.relatedObject as IEventDispatcher;
+		var relatedObject:IUIBase = event.relatedObject as IUIBase;
 		if (!relatedObject)
 		{
 			return;
 		}
-		if (relatedObject.hasEventListener(DragEvent.DRAG_ENTER) || relatedObject.hasEventListener(DragEvent.DRAG_EXIT) || relatedObject.hasEventListener(DragEvent.DRAG_OVER) || relatedObject.hasEventListener(DragEvent.DRAG_DROP))
+		//var relatedParent:IUIComponent;
+		var found:Boolean = checkFound(relatedObject,event);
+		/*if (relatedObject.hasEventListener(DragEvent.DRAG_ENTER) || relatedObject.hasEventListener(DragEvent.DRAG_EXIT) || relatedObject.hasEventListener(DragEvent.DRAG_OVER) || relatedObject.hasEventListener(DragEvent.DRAG_DROP))
 		{
 			var relatedStrand:IStrand = relatedObject as IStrand;
 			var dmDropBead:DragManagerImplDropBead = relatedStrand.getBeadByType(DragManagerImplDropBead) as DragManagerImplDropBead;
 			if (!dmDropBead)
 			{
-				dmDropBead = new DragManagerImplDropBead(dragInitiator);
+				dmDropBead = new DragManagerImplDropBead();
 				relatedStrand.addBead(dmDropBead);
+
+				found = dmDropBead.handleCreationEvent(event);
+			} else found = true;
+		} */
+		if (!found) {
+			var relatedParent:IUIBase = relatedObject.parent as IUIBase;
+			while (relatedParent) {
+				if (checkFound(relatedParent,event)) break;
+				relatedParent = relatedParent.parent as IUIBase;
 			}
 		}
 	}
@@ -460,6 +516,8 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
         // if (hasEventListener("acceptDragDrop"))
     	// 	dispatchEvent(new Request("acceptDragDrop", false, false, target));
 
+		DragManagerImplDropBead.dragTarget = target;
+		showFeedback( DragManager.MOVE);
 	}
 	
 	/**
@@ -477,13 +535,15 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	public function showFeedback(feedback:String):void
 	{
 	// 	// trace("-->showFeedback for DragManagerImpl", sm, feedback);
-	// 	if (dragProxy)
-	// 	{
-	// 		if (feedback == DragManager.MOVE && !dragProxy.allowMove)
-	// 			feedback = DragManager.COPY;
+	 	if (dragProxy)
+	 	{
+	 		if (feedback == DragManager.MOVE && !dragProxy.allowMove)
+	 			feedback = DragManager.COPY;
 
-	// 		dragProxy.action = feedback;
-	// 	}
+	 		dragProxy.action = feedback;
+			//porting change, added:
+			dragProxy.showFeedback();
+	 	}
 
         // if (hasEventListener("showFeedback"))
     	// 	dispatchEvent(new Request("showFeedback", false, false, feedback));
@@ -515,7 +575,7 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 
 	// 	// trace("<--getFeedback for DragManagerImpl", sm);
 	// 	return dragProxy ? dragProxy.action : DragManager.NONE;
-	return null;
+		return dragProxy ? dragProxy.action : DragManager.NONE;
 	}
 	
 	/**
@@ -523,27 +583,41 @@ public class DragManagerImpl extends EventDispatcher implements IDragManager, IB
 	 */
 	public function endDrag():void
 	{
-        // var e:Event;
-        // if (hasEventListener("endDrag"))
-        // {
-        //     e = new Event("endDrag", false, true);
-        // }
+         var e:Event;
+         if (hasEventListener("endDrag"))
+         {
+             e = new Event("endDrag", false, true);
+         }
         
-	// 	if (!e || dispatchEvent(e))
-	// 	{
-	// 		if (dragProxy)
-	// 		{
-	// 			sm.popUpChildren.removeChild(dragProxy);	
-				
-        //         if (dragProxy.numChildren > 0)
-	// 			    dragProxy.removeChildAt(0);	// The drag image is the only child
-	// 			dragProxy = null;
-	// 		}
-	// 	}
+	 	if (!e || dispatchEvent(e))
+	 	{
+	 		if (dragProxy)
+	 		{
+	 			//sm.popUpChildren.removeChild(dragProxy);
+				var host:IPopUpHost = UIUtils.findPopUpHost(dragInitiator);
+				host.popUpParent.removeElement(dragProxy);
+                // if (dragProxy.numChildren > 0)
+	 			   // dragProxy.removeChildAt(0);	// The drag image is the only child
+				if (_lookAlike) {
+					dragProxy.removeElement(_lookAlike)
+				}
 
-	// 	dragInitiator = null;
+				dragProxy = null;
+
+	 		}
+	 	}
+
+	 	dragInitiator = null;
 	// 	bDoingDrag = false;
+		DragManagerImplDropBead.dragInitiator = null;
+		DragManagerImplDropBead.dragTarget = null;
+		_lookAlike = null;
+		DragMouseController.dragImage = null;
+		//cannot do the following (match flex behavior, where dragSource still persists on dragEnter events)
+		//_dragSource = null;
+		//DragEvent.dragSource = _dragSource;
 
+		//trace('endDrag');
 	}
 
 //     /**

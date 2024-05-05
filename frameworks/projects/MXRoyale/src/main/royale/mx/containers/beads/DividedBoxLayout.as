@@ -22,7 +22,8 @@ package mx.containers.beads
 	
 	import mx.containers.BoxDirection;
 	import mx.containers.DividedBox;
-	import mx.containers.utilityClasses.Flex;
+import mx.containers.dividedBoxClasses.BoxDivider;
+import mx.containers.utilityClasses.Flex;
 	import mx.controls.Image;
 	import mx.core.Container;
 	import mx.core.EdgeMetrics;
@@ -82,9 +83,17 @@ package mx.containers.beads
 			_strand = value;
             dividedBox = _strand as DividedBox;
 			super.strand = value;
-			
 		}
-		
+
+        private var _dividerLayer:UIComponent;
+
+        public function get dividerLayer():UIComponent{
+            return _dividerLayer;
+        }
+		public function set dividerLayer(value:UIComponent):void{
+            _dividerLayer = value;
+        }
+
 		//--------------------------------------------------------------------------
 		//
 		//  Overridden methods
@@ -95,9 +104,122 @@ package mx.containers.beads
 		override public function layout():Boolean
 		{
             preLayoutAdjustment();
-            return super.layout();
+            var val:Boolean =  super.layout();
             postLayoutAdjustment();
+
+            var dividerLayer:UIComponent = _dividerLayer;
+
+            if (dividerLayer)  {
+                var vm:EdgeMetrics = dividedBox.viewMetricsAndPadding;
+
+                dividerLayer.x = vm.left;
+                dividerLayer.y = vm.top;
+
+                var prevChild:IUIComponent = null;
+                var dividerIndex:int = 0;
+                var n:uint = dividedBox.numChildren;
+                var child:UIComponent;
+                for (var i:uint = 0; i < n; i++)
+                {
+                    child = UIComponent(dividedBox.getChildAt(i));
+                    if (child.includeInLayout)
+                    {
+                        if (prevChild)
+                        {
+                            layoutDivider(dividerIndex, dividedBox.width/*unscaledWidth*/, dividedBox.height/*unscaledHeight*/, prevChild, child);
+                            dividerIndex++;
+                        }
+                        prevChild = child;
+                    }
+                }
+            }
+            return val;
 		}
+
+
+        private function layoutDivider(i:int,
+                                       unscaledWidth:Number,
+                                       unscaledHeight:Number,
+                                       prevChild:IUIComponent,
+                                       nextChild:IUIComponent):void
+        {
+            // The mouse-over thickness of the divider is normally determined
+            // by the dividerAffordance style, and the visible thickness is
+            // normally determined by the dividerThickness style, assuming that
+            // the relationship thickness <= affordance <= gap applies. But if
+            // one of the other five orderings applies, here is a table of what
+            // happens:
+            //
+            //  divider    divider    horizontalGap/  dividerWidth/  visible width/
+            // Thickness  Affordance  verticalGap     dividerHeight  visible height
+            //
+            //    4           6             8               6              4
+            //    4           8             6               6              4
+            //    6           4             8               6              6
+            //    6           8             4               4              4
+            //    8           4             6               6              6
+            //    8           6             4               4              4
+
+            var divider:BoxDivider = BoxDivider(dividedBox.getDividerAt(i));
+if (!divider) return;
+            var vm:EdgeMetrics = dividedBox.viewMetricsAndPadding;
+
+            var verticalGap:Number = dividedBox.getStyle("verticalGap");
+            var horizontalGap:Number = dividedBox.getStyle("horizontalGap");
+
+            var thickness:Number = divider.getStyle("dividerThickness") || 6;
+            var affordance:Number = divider.getStyle("dividerAffordance") || 10;
+
+            if (dividedBox.isVertical())
+            {
+                var dividerHeight:Number = affordance;
+                    // dividerHeight is the mouse-over height,
+                    // not necessarily the visible height.
+
+                // The specified affordance should be greater than the thickness.
+                // But if it isn't, use the thickness instead to determine the
+                // divider height.
+                if (dividerHeight < thickness)
+                    dividerHeight = thickness;
+
+                // Don't let the divider overlap the children.
+                if (dividerHeight > verticalGap)
+                    dividerHeight = verticalGap;
+
+                divider.setActualSize(unscaledWidth - vm.left - vm.right, dividerHeight);
+
+                divider.move(vm.left,
+                             Math.round((prevChild.y + prevChild.height +
+                                        nextChild.y - dividerHeight) / 2));
+            }
+            else
+            {
+                var dividerWidth:Number = affordance;
+                    // dividerWidth is the mouse-over width,
+                    // not necessarily the visible width.
+
+                // The specified affordance should be greater than the thickness.
+                // But if it isn't, use the thickness instead to determine the
+                // divider width.
+                if (dividerWidth < thickness)
+                    dividerWidth = thickness;
+
+                // Don't let the divider overlap the children.
+                if (dividerWidth > horizontalGap)
+                    dividerWidth = horizontalGap;
+
+                divider.setActualSize(dividerWidth, unscaledHeight - vm.top - vm.bottom);
+
+                divider.move(Math.round((prevChild.x + prevChild.width +
+                                        nextChild.x - dividerWidth) / 2),
+                             vm.top);
+
+
+            }
+
+            divider.invalidateDisplayList();
+
+        }
         
         /**
          *  @private

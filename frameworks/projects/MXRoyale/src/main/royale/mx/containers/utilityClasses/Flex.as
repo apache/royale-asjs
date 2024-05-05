@@ -21,6 +21,8 @@ package mx.containers.utilityClasses
 {
 
 import mx.core.IUIComponent;
+import mx.core.UIComponent;
+
 import org.apache.royale.core.ILayoutView;
 
 [ExcludeClass]
@@ -36,6 +38,20 @@ public class Flex
 	//  Class methods
 	//
 	//--------------------------------------------------------------------------
+
+
+	private static function invalidateChildMeasurement(child:UIComponent, width:Boolean):void{
+		//GD: this is a hack for now, but seems necessary for % dimensions. Needs more investigation
+		if (child){
+			if (width){
+				child.measuredMinWidth =  0;
+				child.measuredWidth = NaN;
+			} else {
+				child.measuredMinHeight = 0;
+				child.measuredHeight = NaN;
+			}
+		}
+	}
 
 	/**
 	 *  This function sets the width of each child
@@ -62,6 +78,8 @@ public class Flex
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
+	 *
+	 *  @royaleignorecoercion mx.core.UIComponent
 	 */
 	public static function flexChildWidthsProportionally(
 								parent:ILayoutView,
@@ -85,13 +103,21 @@ public class Flex
 		for (i = 0; i < n; i++)
 		{
 			child = IUIComponent(parent.getElementAt(i));
+			//this seemed necessary, (Greg)
+		//	invalidateChildMeasurement(child as UIComponent);
+			var uic:UIComponent = child as UIComponent;
 
 			var percentWidth:Number = child.percentWidth;
 			var percentHeight:Number = child.percentHeight;
 			var height:Number;
-			
-			if (!isNaN(percentHeight) && child.includeInLayout)
+
+			if (uic != null  && child.includeInLayout && !isNaN(Number(uic.top)) && !isNaN(Number(uic.bottom)))
 			{
+				height = h - Number(uic.top) - Number(uic.bottom);
+			}
+			else if (!isNaN(percentHeight) && child.includeInLayout)
+			{
+				invalidateChildMeasurement(child as UIComponent, false);
 				height = Math.max(child.minHeight,
 					Math.min(child.maxHeight,
 					((percentHeight >= 100) ? h : h * percentHeight / 100)));
@@ -103,6 +129,7 @@ public class Flex
 			
 			if (!isNaN(percentWidth) && child.includeInLayout)
 			{
+				invalidateChildMeasurement(child as UIComponent, true);
 				totalPercentWidth += percentWidth;
 
 				childInfo = new FlexChildInfo();
@@ -193,6 +220,8 @@ public class Flex
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
+	 *
+	 * @royaleignorecoercion mx.core.UIComponent
 	 */
 	public static function flexChildHeightsProportionally(
 								parent:ILayoutView,
@@ -216,12 +245,19 @@ public class Flex
 		for (i = 0; i < n; i++)
 		{
 			child = IUIComponent(parent.getElementAt(i));
-
+			//matching the change on the horizontal method, (Greg)
+		//	invalidateChildMeasurement(child as UIComponent);
 			var percentWidth:Number = child.percentWidth;
+			var uic:UIComponent = child as UIComponent;
+
 			var percentHeight:Number = child.percentHeight;
 			var width:Number;
-			
-			if (!isNaN(percentWidth) && child.includeInLayout)
+
+			if (uic != null  && child.includeInLayout && !isNaN(Number(uic.left)) && !isNaN(Number(uic.right)))
+			{
+				width = w - Number(uic.left) - Number(uic.right);
+			}
+			else if (!isNaN(percentWidth) && child.includeInLayout)
 			{
 				width = Math.max(child.minWidth,
 					Math.min(child.maxWidth,

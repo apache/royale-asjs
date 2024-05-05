@@ -146,6 +146,7 @@ package org.apache.royale.html.beads
 			monthButtonsContainer.style.flexGrow = 0;
 			COMPILE::JS {
 				monthButtonsContainer.element.style["flex-grow"] = "0";
+				monthButtonsContainer.element.style["flex-shrink"] = "0";
 			}
 			
 			_prevMonthButton = new DateHeaderButton();
@@ -195,6 +196,7 @@ package org.apache.royale.html.beads
 			dayNamesContainer.style.flexGrow = 0;
 			COMPILE::JS {
 				dayNamesContainer.element.style["flex-grow"] = "0";
+				dayNamesContainer.element.style["flex-shrink"] = "0";
 				dayNamesContainer.element.style["align-items"] = "center";
 			}
 			COMPILE::SWF {
@@ -211,10 +213,11 @@ package org.apache.royale.html.beads
 			daysContainer.style.flexGrow = 1;
 			COMPILE::JS {
 				daysContainer.element.style["flex-grow"] = "1";
+				daysContainer.rowHeight = 20;
 			}
-			COMPILE::SWF {
+		//	COMPILE::SWF {
 				daysContainer.percentWidth = 100;
-			}
+		//	}
 			getHost().addElement(daysContainer, false);
 			
 			

@@ -64,7 +64,9 @@ import mx.containers.beads.models.PanelModel;
 import mx.core.Container;
 import mx.core.UIComponent;
 import mx.core.IUITextField;
+import mx.core.IUIComponent;
 import mx.controls.beads.TitleBarView;
+import mx.utils.RoyaleUtil;
 
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
@@ -72,7 +74,7 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
 import mx.core.ContainerLayout;
 import mx.core.mx_internal;
-
+import mx.core.EdgeMetrics;
 
 use namespace mx_internal;
 
@@ -556,11 +558,42 @@ public class Panel extends Container
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  @private
+     */
+    private var inCreateComponentsFromDescriptors:Boolean;
+
     //--------------------------------------------------------------------------
     //
     //  Overridden properties
     //
     //--------------------------------------------------------------------------
+
+    //----------------------------------
+    //  enabled
+    //----------------------------------
+
+    [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
+
+    /**
+     *  @private
+     */
+    override public function set enabled(value:Boolean):void
+    {
+        super.enabled = value;
+
+        if (titleTextField)
+            titleTextField.enabled = value;
+
+        /*if (statusTextField)
+            statusTextField.enabled = value;*/
+
+        if (controlBar)
+            controlBar.enabled = value;
+
+       /* if (closeButton)
+            closeButton.enabled = value;*/
+    }
 
 
     //--------------------------------------------------------------------------
@@ -568,6 +601,46 @@ public class Panel extends Container
     //  Properties
     //
     //--------------------------------------------------------------------------
+
+
+    //----------------------------------
+    //  controlBar
+    //----------------------------------
+
+    /**
+     *  A reference to this Panel container's control bar, if any.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected var controlBar:IUIComponent;
+
+    /**
+     *  Proxy to the controlBar property which is protected and can't be accessed externally
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    mx_internal function get _controlBar():IUIComponent
+    {
+        return controlBar;
+    }
+
+    /**
+     *  @private
+     *  Some other components which use a Panel as an internal
+     *  subcomponent need access to the control bar,
+     *  but can't access the controlBar var because it is protected
+     *  and therefore available only to subclasses.
+     */
+    /*mx_internal function getControlBar():IUIComponent
+    {
+        return controlBar;
+    }*/
 
         
     //----------------------------------
@@ -618,7 +691,7 @@ public class Panel extends Container
      *  @private
      *  Storage for the status property.
      */
-    private var _status:String = "";
+  //  private var _status:String = "";
     
     /**
      *  @private
@@ -640,7 +713,7 @@ public class Panel extends Container
      */
     public function get status():String
     {
-        return _status;
+        return (model as PanelModel).status;
     }
     
     /**
@@ -648,12 +721,12 @@ public class Panel extends Container
      */
     public function set status(value:String):void
     {
-        _status = value;
-        //_statusChanged = true;
-        
-        //invalidateProperties();
-        
-        dispatchEvent(new Event("statusChanged"));
+        if (value == null) value = '';
+        if ((model as PanelModel).status != value) {
+            (model as PanelModel).status = value;
+            dispatchEvent(new Event("statusChanged"));
+        }
+
     }
 
     //----------------------------------
@@ -680,6 +753,15 @@ public class Panel extends Container
         titleBar = view is PanelView ? PanelView(view).titleBar as UIComponent : null;
         titleTextField = titleBar ? (titleBar.view as TitleBarView).titleLabel as IUITextField : null;
         super.addedToParent();
+    }
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
+    override protected function dispatchUpdateComplete():void{
+        //after stateChangeComplete, force a layout:
+        layoutNeeded();
+        super.dispatchUpdateComplete();
     }
 
     //----------------------------------
@@ -803,9 +885,14 @@ public class Panel extends Container
     override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
-        if (panelView.contentArea == this)
+        if (c == panelView.controlBar) {
             super.removeElement(c, dispatchEvent);
-        panelView.contentArea.removeElement(c, dispatchEvent);
+            setControlBar(null);
+        } else {
+            if (panelView.contentArea == this)
+                super.removeElement(c, dispatchEvent);
+            else panelView.contentArea.removeElement(c, dispatchEvent);
+        }
     }
     
     /**
@@ -1006,7 +1093,8 @@ public class Panel extends Container
             if (panelView.contentArea == this)
                 return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
-            contentView.percentWidth = 100;
+            if (contentView.percentWidth != 100)
+                contentView.percentWidth = 100;
         }
     }
     
@@ -1023,7 +1111,8 @@ public class Panel extends Container
             if (panelView.contentArea == this)
                 return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
-            contentView.percentWidth = 100;
+            if (contentView.percentWidth != 100)
+                contentView.percentWidth = 100;
         }
     }
 
@@ -1040,7 +1129,8 @@ public class Panel extends Container
             if (panelView.contentArea == this)
                 return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
-            contentView.percentHeight = 100;
+            if (contentView.percentHeight != 100)
+                contentView.percentHeight = 100;
         }
     }
     
@@ -1057,7 +1147,8 @@ public class Panel extends Container
             if (panelView.contentArea == this)
                 return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
-            contentView.percentHeight = 100;
+            if (contentView.percentHeight != 100)
+                contentView.percentHeight = 100;
         }
     }
 	
@@ -1078,11 +1169,13 @@ public class Panel extends Container
      */
     override public function childrenAdded():void
     {
+        if (inCreateComponentsFromDescriptors) return
         var panelView:PanelView = view as PanelView;
-        var contentView:UIComponent = panelView.contentArea as UIComponent;
+      //  var contentView:UIComponent = panelView.contentArea as UIComponent;
         panelView.contentArea.dispatchEvent(new ValueEvent("childrenAdded"));
         super.childrenAdded();
     }
+
     
     //----------------------------------
     //  titleTextField
@@ -1173,9 +1266,351 @@ public class Panel extends Container
         
         dispatchEvent(new Event("titleIconChanged"));
     }
-    
+
+    override protected function layoutChrome(unscaledWidth:Number,
+                                             unscaledHeight:Number):void
+    {
+        super.layoutChrome(unscaledWidth, unscaledHeight);
+
+        // Special case for the default borderSkin to inset the chrome content
+        // by the borderThickness when borderStyle is "solid", "inset" or "outset".
+        // We use getQualifiedClassName to avoid bringing in a dependency on
+        // mx.skins.halo.PanelSkin.
+        var em:EdgeMetrics = EdgeMetrics.EMPTY;
+        var bt:Number = getStyle("borderThickness");
+        if (/*getQualifiedClassName(border) == "mx.skins.halo::PanelSkin" &&*/
+                getStyle("borderStyle") != "default" && bt)
+        {
+            em = new EdgeMetrics(bt, bt, bt, bt);
+        }
+
+        // Remove the borderThickness from the border metrics,
+        // since the header and control bar overlap any solid border.
+        var bm:EdgeMetrics = em;
+
+        var x:Number = bm.left;
+        var y:Number = bm.top;
+
+        /*var headerHeight:Number = getHeaderHeight();
+        if (headerHeight > 0 && height >= headerHeight)
+        {
+            var titleBarWidth:Number = unscaledWidth - bm.left - bm.right;
+
+            showTitleBar(true);
+            titleBar.mouseChildren = true;
+            titleBar.mouseEnabled = true;
+
+            // Draw an invisible rect in the tileBar. This ensures we
+            // will get clicks, even if the background is transparent
+            // and there is no title.
+            var g:Graphics = titleBar.graphics;
+            g.clear();
+            g.beginFill(0xFFFFFF, 0);
+            g.drawRect(0, 0, titleBarWidth, headerHeight);
+            g.endFill();
+
+            // Also draw an invisible unfilled rect whose height
+            // is the height of the entire Panel, not just the headerHeight.
+            // This is for accessibility; the titlebar of the Panel
+            // has an AccessibilityImplementation (see PanelAccImpl)
+            // which makes it act like a grouping (ROLE_SYSTEM_GROUPING)
+            // for the controls inside the panel.
+            // Drawing this rect makes the accLocation rect of the grouping
+            // enclose the controls inside the grouping,
+            // even though it is a sibling of them, not their parent.
+            // (This is because the Player doesn't support Sprites
+            // with AccessibilityImplementations inside other Sprites
+            // with AccessibilityImplementations; the accessible objects
+            // in a Flash SWF are a flat list, not a hierarchy.)
+            // This rectangle must be unfilled because the titleBar is
+            // actually on top of the content area and would otherwise
+            // block mouse events to the controls in the Panel.
+            g.lineStyle(0, 0x000000, 0);
+            g.drawRect(0, 0, titleBarWidth, unscaledHeight);
+
+            // Position the titleBar.
+            titleBar.move(x, y);
+            titleBar.setActualSize(titleBarWidth, headerHeight);
+
+            // Position the titleBarBackground within the titleBar.
+            if (titleBarBackground)
+            {
+                titleBarBackground.move(0, 0);
+                IFlexDisplayObject(titleBarBackground).setActualSize(
+                        titleBarWidth, headerHeight);
+            }
+
+            // Set the close button next to the upper-right corner,
+            // offset by the border thickness.
+            closeButton.visible = _showCloseButton;
+            if (_showCloseButton)
+            {
+                closeButton.setActualSize(
+                        closeButton.getExplicitOrMeasuredWidth(),
+                        closeButton.getExplicitOrMeasuredHeight());
+
+                closeButton.move(
+                        unscaledWidth - x - bm.right - 10 -
+                        closeButton.getExplicitOrMeasuredWidth(),
+                        (headerHeight -
+                                closeButton.getExplicitOrMeasuredHeight()) / 2);
+            }
+
+            var leftOffset:Number = 10;
+            var rightOffset:Number = 10;
+            var h:Number;
+            var offset:Number;
+
+            // Set the position of the title icon.
+            if (titleIconObject)
+            {
+                h = titleIconObject.height;
+                offset = (headerHeight - h) / 2;
+                titleIconObject.move(leftOffset, offset);
+                leftOffset += titleIconObject.width + 4;
+            }
+
+            // Set the position of the title text.
+            h = titleTextField.getUITextFormat().measureText(titleTextField.text).height;
+            offset = (headerHeight - h) / 2;
+
+            var borderWidth:Number = bm.left + bm.right;
+            titleTextField.move(leftOffset, offset - 1);
+            titleTextField.setActualSize(Math.max(0,
+                            unscaledWidth - leftOffset -
+                            rightOffset - borderWidth),
+                    h + UITextField.TEXT_HEIGHT_PADDING);
+
+            // Set the position of the status text.
+            h = statusTextField.text != "" ? statusTextField.getUITextFormat().measureText(statusTextField.text).height : 0;
+            offset = (headerHeight - h) / 2;
+            var statusX:Number = unscaledWidth - rightOffset - 4 -
+                    borderWidth - statusTextField.textWidth;
+            if (_showCloseButton)
+                statusX -= (closeButton.getExplicitOrMeasuredWidth() + 4);
+            statusTextField.move(statusX, offset - 1);
+            statusTextField.setActualSize(
+                    statusTextField.textWidth + 8,
+                    statusTextField.textHeight + UITextField.TEXT_HEIGHT_PADDING);
+
+            // Make sure the status text isn't too long.
+            // We do simple clipping here.
+            var minX:Number = titleTextField.x + titleTextField.textWidth + 8;
+            if (statusTextField.x < minX)
+            {
+                // Show as much as we can.
+                statusTextField.width = Math.max(statusTextField.width -
+                        (minX - statusTextField.x), 0);
+                statusTextField.x = minX;
+            }
+        }
+        else
+        {
+            if (titleBar)
+            {
+                showTitleBar(false);
+                titleBar.mouseChildren = false;
+                titleBar.mouseEnabled = false;
+            }
+        }*/
+
+        if (controlBar)
+        {
+            var cx:Number = controlBar.x;
+            var cy:Number = controlBar.y;
+            var cw:Number = controlBar.width;
+            var ch:Number = controlBar.height;
+
+            controlBar.setActualSize(
+                    unscaledWidth - (bm.left + bm.right),
+                    controlBar.getExplicitOrMeasuredHeight());
+
+            controlBar.move(
+                    bm.left,
+                    unscaledHeight - bm.bottom -
+                    controlBar.getExplicitOrMeasuredHeight());
+
+            if (controlBar.includeInLayout)
+                    // Hide the control bar if it is spilling out.
+                controlBar.visible = controlBar.y >= bm.top;
+
+            // If the control bar's position or size changed, redraw.  This
+            // fixes a refresh bug (when the control bar vacates some space,
+            // the new space appears blank).
+            if (cx != controlBar.x ||
+                    cy != controlBar.y ||
+                    cw != controlBar.width ||
+                    ch != controlBar.height)
+            {
+                invalidateDisplayList();
+            }
+        }
+    }
+
+    override protected function createChildren():void
+    {
+        inCreateComponentsFromDescriptors = true;
+        super.createChildren();
+        if (numChildren == 0)
+        {
+            setControlBar(null);
+            inCreateComponentsFromDescriptors = false;
+            return;
+        }
+
+        processControlBar();
+        inCreateComponentsFromDescriptors = false;
+        childrenAdded();
+    }
+
+    protected function processControlBar():void{
+        // If the last content child is a ControlBar, change it
+        // from being a content child to a chrome child;
+        // i.e., move it to the rawChildren collection.
+        var n:uint = numChildren;
+
+        var lastChild:UIComponent = n ? (getChildAt(n - 1)) as UIComponent : null;
+        if (lastChild is ControlBar)
+        {
+            var oldChildDocument:Object = lastChild.mxmlDocument;
+
+            /* if (contentPane)
+             {
+                 contentPane.removeChild(lastChild);
+             }
+             else
+             {
+                 super.removeChild(lastChild);
+             }*/
+            removeElement(lastChild)
+
+            // Restore the original document. Otherwise, when we re-add the child when the Panel is
+            // a custom component, the child will use the custom component as the document instead of
+            // using the document in which the child was declared.
+            lastChild.mxmlDocument = oldChildDocument;
+            super.addElement(lastChild);
+            setControlBar(lastChild);
+        }
+        else
+        {
+            setControlBar(null);
+        }
+    }
+
+    /**
+     *  @private
+     */
+    override public function getChildIndex(child:IUIComponent):int
+    {
+        // This override of getChildIndex() fixes a bug #116637.
+        // The FocusManager incorrectly calls this function for the controlBar
+        // with isContentAPI as true.  But it's really our fault, because we
+        // first add the controlBar as a child (so it gets into the
+        // FocusManager's list of focusable objects) and then abduct it.  This,
+        // in combination with the contentPane, leads to a runtime error.
+        // Simply returning numChildren (meaning "after last child") is
+        // harmless and resolves the issue.
+        if (controlBar && child == controlBar)
+            return numChildren;
+        else
+            return super.getChildIndex(child);
+    }
 
 
+    /**
+     *  @private
+     */
+    private function setControlBar(newControlBar:UIComponent):void
+    {
+        if (newControlBar == controlBar)
+            return;
+
+        controlBar = newControlBar;
+        (view as PanelView).setControlBar(newControlBar);
+        // If roundedBottomCorners is set locally, don't auto-set
+        // it when the controlbar is added/removed.
+        /*if (!checkedForAutoSetRoundedCorners)
+        {
+            checkedForAutoSetRoundedCorners = true;
+            autoSetRoundedCorners = styleDeclaration ?
+                    styleDeclaration.getStyle("roundedBottomCorners") === undefined :
+                    true;
+        }
+
+        if (autoSetRoundedCorners)
+            setStyle("roundedBottomCorners", controlBar != null);*/
+
+      /*  var controlBarStyleName:String = getStyle("controlBarStyleName");
+
+        if (controlBarStyleName && controlBar is ISimpleStyleClient)
+            ISimpleStyleClient(controlBar).styleName = controlBarStyleName;*/
+
+        if (controlBar)
+            controlBar.enabled = enabled;
+      /*  if (controlBar is IAutomationObject)
+            IAutomationObject(controlBar).showInAutomationHierarchy = false;*/
+
+        //invalidateViewMetricsAndPadding();
+        layoutNeeded(); // Porting notes: otherwise layout will not re-run in Royale
+        invalidateSize();
+        invalidateDisplayList();
+    }
+
+
+    /**
+     *  Calculates the default mininum and maximum sizes
+     *  of the Panel container.
+     *  For more information
+     *  about the <code>measure()</code> method, see the <code>
+     *  UIComponent.measure()</code> method.
+     *
+     *  <p>The <code>measure()</code> method first calls
+     *  <code>VBox.measure()</code> method, and then ensures that the
+     *  <code>measuredWidth</code> and
+     *  <code>measuredMinWidth</code> properties are wide enough
+     *  to display the title and the ControlBar.</p>
+     *
+     *  @see mx.core.UIComponent#measure()
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+   /* override protected function measure():void
+    {
+        super.measure();
+
+        layoutObject.measure();
+
+        var textSize:Rectangle = measureHeaderText();
+        var textWidth:Number = textSize.width;
+        var textHeight:Number = textSize.height;
+
+        var bm:EdgeMetrics = EdgeMetrics.EMPTY;
+        textWidth += bm.left + bm.right;
+
+        var offset:Number = 5;
+        textWidth += offset * 2;
+
+        if (titleIconObject)
+            textWidth += titleIconObject.width;
+
+        if (closeButton)
+            textWidth += closeButton.getExplicitOrMeasuredWidth() + 6;
+
+        measuredMinWidth = Math.max(textWidth, measuredMinWidth);
+        measuredWidth = Math.max(textWidth, measuredWidth);
+
+        if (controlBar && controlBar.includeInLayout)
+        {
+            var controlWidth:Number = controlBar.getExplicitOrMeasuredWidth() +
+                    bm.left + bm.right;
+
+            measuredWidth =
+                    Math.max(measuredWidth, controlWidth);
+        }
+    }*/
 }
 
 }

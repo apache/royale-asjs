@@ -22,6 +22,8 @@ package mx.controls.listClasses
 {
 import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
 
+import org.apache.royale.html.supportClasses.DataGridColumnList;
+
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
 import flash.display.Shape;
@@ -563,19 +565,26 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      */
     override public function set dataProvider(value:Object):void
     {
-        if (collection)
+        if (collection) {
             collection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+            if (iterator) iterator.finalizeThis();
+            if (collectionIterator) collectionIterator.finalizeThis();
+        }
 
         collection = value as ICollectionView;
-        if (collection)
-		{
-        		collection.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
-	        iterator = collection.createCursor();
-	        collectionIterator = collection.createCursor(); //IViewCursor(collection);
-		}
+
         clearSelectionData();
         (model as ISelectionModel).selectedIndex = -1;
         super.dataProvider = value;
+        if (!collection) {
+            collection = dataProvider as ICollectionView;
+        }
+        if (collection)
+        {
+            collection.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+            iterator = collection.createCursor();
+            collectionIterator = collection.createCursor(); //IViewCursor(collection);
+        }
 
     }
 
@@ -640,7 +649,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-     /* protected */ public var collection:ICollectionView;
+     /* protected */ //public var collection:ICollectionView;
 
     /**
      *  The main IViewCursor instance used to fetch items from the
@@ -3795,6 +3804,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
 
     /**
      *  @private
+     *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
      */
     mx_internal function mouseEventToItemRendererOrEditor(
                                 event:MouseEvent):IItemRenderer
@@ -3849,8 +3859,11 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
 
         var target:IUIBase = event.target as IUIBase;
         do {
-            if (target is IItemRenderer)
-                return target as IItemRenderer;
+            if (target is IItemRenderer) {
+                if (IItemRenderer(target).parent is AdvancedDataGridColumnList) {
+                    return IItemRenderer(target)
+                }
+            }
             target = (target as IChild).parent as IUIBase;
             if (target == this)
                 return null;
@@ -5069,7 +5082,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
+    override protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
                                                  ctrlKey:Boolean):void
     {
 		// For Keyboard.LEFT and Keyboard.RIGHT and maybe Keyboard.UP and Keyboard.DOWN,
@@ -5098,7 +5111,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
+    override protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
                                                ctrlKey:Boolean):void
     {
         var newVerticalScrollPosition:Number;
@@ -5270,7 +5283,7 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    protected function finishKeySelection():void
+    override protected function finishKeySelection():void
     {
         var uid:String;
         var rowCount:int = layout.lastVisibleIndex = layout.firstVisibleIndex; //listItems.length;
@@ -5729,11 +5742,9 @@ public class AdvancedListBase extends ListBase implements IFocusManagerComponent
     {
         var tmp:Array = [];
 
-        //the following is a temporary workaround until multiple selection emulation is more widely supported for regular mx List, etc. (planned to be added in August 2022) :
         if (!allowMultipleSelection) {
-            var tmpIdx:int = selectedIndex;
-            if (tmpIdx != -1) {
-                tmp[0] = useDataField ? selectedItem : tmpIdx;
+            if (selectedIndex != -1) {
+                tmp[0] = useDataField ? selectedItem : selectedIndex;
             }
             return tmp;
         }

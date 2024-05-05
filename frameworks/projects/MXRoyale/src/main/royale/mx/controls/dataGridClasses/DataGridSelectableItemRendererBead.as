@@ -91,10 +91,11 @@ public class DataGridSelectableItemRendererBead extends SelectableItemRendererBe
         }
         textSelectedColor = owner.getStyle("textSelectedColor");
         textRollOverColor = owner.getStyle("textRollOverColor");
-        backgroundColor = ((listData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
+        //backgroundColor = ((listData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[1];
+        backgroundColor = bgColors[1];
         COMPILE::JS {
             if (selected)
-                ir.element.style.backgroundColor = '#9C9C9C';
+                ir.element.style.backgroundColor = '#A8C6EE';
             else
                 ir.element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
         }
@@ -107,12 +108,12 @@ public class DataGridSelectableItemRendererBead extends SelectableItemRendererBe
         {
             if (selected)
             {
-                ir.element.style.backgroundColor = '#9C9C9C';
+                ir.element.style.backgroundColor = '#A8C6EE';
                 ir.element.style.color = textSelectedColor;
             }
             else if (hovered)
             {
-                ir.element.style.backgroundColor = '#ECECEC';
+                ir.element.style.backgroundColor = '#D4E5FC';
                 ir.element.style.color = textRollOverColor;
             }
             else

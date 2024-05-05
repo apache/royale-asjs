@@ -18,12 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.dataGridClasses
 {
+	import mx.controls.listClasses.IDropInListItemRenderer;
+	import mx.core.IUIComponent;
+
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -38,7 +43,8 @@ package mx.controls.dataGridClasses
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.html.util.getModelByType;
 	import org.apache.royale.core.IChild;
-	import mx.controls.DataGrid;
+	import org.apache.royale.html.DataGridButtonBar;
+//	import mx.controls.DataGrid;
 	import mx.controls.dataGridClasses.DataGridColumn;
 	import mx.core.IFactory;
 	import mx.core.UIComponent;
@@ -88,6 +94,21 @@ package mx.controls.dataGridClasses
 		{
 			_strand = value;
 			listenOnStrand("initComplete",finishSetup);
+		}
+
+		private var _listDataClass:Class;
+		public function setListDataClass(c:Class):void{
+			_listDataClass = c;
+		}
+
+		/**
+		 *
+		 * @royaleignorecoercion mx.controls.dataGridClasses.DataGridListData
+		 */
+		private function makeListData(text:String, dataField:String, columnIndex:int,uid:String, owner:IUIComponent,rowIndex:int=0):DataGridListData{
+			var c:Class = _listDataClass || DataGridListData;
+
+			return new c(text,dataField,columnIndex, uid, owner,rowIndex) as DataGridListData;
 		}
 
 		/**
@@ -149,28 +170,37 @@ package mx.controls.dataGridClasses
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 *
+		 *
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
 				return;
-
+			var buttonBar:org.apache.royale.html.DataGridButtonBar  = _strand as org.apache.royale.html.DataGridButtonBar;
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+
+			const selIndex:int = buttonBar.selectedIndex;
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 
 			dataGroup.removeAllItemRenderers();
-
+			var owner:IUIComponent = ((_strand as IChild).parent as IUIComponent);
+			var model:Object = IStrandWithModel(owner).model;
+			var columns:Array = IDataGridModel(model).columns
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
 
 				var ir:IIndexedItemRenderer = null;
-				var owner:DataGrid = ((_strand as IChild).parent as DataGrid);
-				var columns:Array = owner.columns;
+				var col:DataGridColumn = null;
 				if (columns)
 				{
-					var headFactory:IFactory =  (columns[i] as DataGridColumn).headerRenderer;
+					col = columns[i] as DataGridColumn
+					var headFactory:IFactory =  col.headerRenderer;
 					if (headFactory)
 					{
 						ir = headFactory.newInstance() as IIndexedItemRenderer;
@@ -186,11 +216,25 @@ package mx.controls.dataGridClasses
 				}
 				var tf:ILabelFieldItemRenderer = ir as ILabelFieldItemRenderer;
 				ir.index = i;
+				if (ir is IDropInListItemRenderer) {
+					if (col) {
+						IDropInListItemRenderer(ir).listData = makeListData(col.headerText != null ? col.headerText:col.dataField, col.dataField,i, null, owner,0)
+					}
+				}
+				if (!(ir is DataGridHeaderRenderer)) {
+					//support drop-ins
+					DataGridHeaderRenderer.processRendererForEvents(ir);
+				}
 				dataGroup.addItemRenderer(ir, false);
 				if (tf && selectionModel.labelField) {
 					tf.labelField = selectionModel.labelField;
 				}
 				ir.data = dp[i];
+				COMPILE::JS{
+					if (selIndex == i) {
+						ir.element.classList.add(col.sortDescending ? 'sort-descending' : 'sort-ascending')
+					}
+				}
 
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 				newEvent.itemRenderer = ir;

@@ -39,7 +39,8 @@ import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.accessories.PasswordInputBead;
 import org.apache.royale.html.accessories.RestrictTextInputBead;
-import org.apache.royale.html.beads.DisableBead;
+//import org.apache.royale.html.beads.DisableBead;
+import mx.controls.beads.DisableBead;
 
 COMPILE::SWF {
 	import org.apache.royale.html.beads.TextInputView;
@@ -367,8 +368,11 @@ public class TextInput extends UIComponent implements ITextInput
 //             IInvalidating(border).invalidateDisplayList();
 		
 		if (_disableBead == null) {
-			_disableBead = new DisableBead();
-			addBead(_disableBead);
+            _disableBead = getBeadByType(DisableBead) as DisableBead;
+            if (!_disableBead) {
+                _disableBead = new DisableBead();
+                addBead(_disableBead);
+            }
 		}
 		
 		_disableBead.disabled = !value;
@@ -1667,11 +1671,21 @@ public class TextInput extends UIComponent implements ITextInput
 		element.setAttribute('type', 'text');
 		
 		//attach input handler to dispatch royale change event when user write in textinput
-		//goog.events.listen(element, 'change', killChangeHandler);
-		goog.events.listen(element, 'input', textChangeHandler);
+		goog.events.listen(element, 'change', killChangeHandler); //stop the native change event which bubbles and can mess with other components in parent hierarchy
+		goog.events.listen(element, 'input', textChangeHandler); // this will dispatch a Royale change Event instead
         goog.events.listen(element, 'keypress', enterEventHandler);
 		return element;
 	}
+
+    /**
+     *
+     * @private
+     */
+    COMPILE::JS
+    protected function killChangeHandler(browserEvent:Event):void{
+        //this can stop change event handlers running on enclosing components (e.g. TabNavigator) via native browser event bubbling
+        browserEvent.stopPropagation();
+    }
 	
 	private var inSetter:Boolean;
 

@@ -57,6 +57,16 @@ public interface ITreeDataDescriptor
     function getChildren(node:Object, model:Object = null):ICollectionView;
 
     /**
+     *  @private
+     *  Royale-only addition to the original Flex interface.
+     *  This is used to optimize the getChildren requests, avoiding the overhead of assigning new source value
+     *  to the underlying children collection
+     *  setter only. Should be used to delimit the use of the DataDescriptor for (usually) small sections of code.
+     *  In particular this is used by renderer-related code, which should only be querying the content, not updating its internal state.
+     */
+    function set assumeChildrenValid(value:Boolean):void
+
+    /**
      *  Tests for the existence of children in a non-terminating node.
      *  
      *  @param node The current node.

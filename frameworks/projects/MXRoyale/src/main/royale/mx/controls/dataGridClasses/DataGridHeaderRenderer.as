@@ -21,6 +21,18 @@ package mx.controls.dataGridClasses
 {
 import mx.controls.advancedDataGridClasses.*;
 import mx.controls.listClasses.ListBase;
+import mx.core.UITextField;
+import mx.managers.SystemManager;
+
+import org.apache.royale.core.IIndexedItemRenderer;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.ValueEvent;
+
+import org.apache.royale.html.beads.ReversibleEllipsisOverflow;
+    
+COMPILE::JS{
+    import org.apache.royale.html.beads.OverflowTooltipNeeded;
+}
 
 /* import flash.display.DisplayObject;
 import flash.display.Sprite;
@@ -176,6 +188,28 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
       
 {
    // include "../../core/Version.as";
+
+
+    /* utility methods to 'upgrade' other emulation instances with the events support*/
+    public static function processRendererForEvents(renderer:IIndexedItemRenderer):void{
+        if (!renderer.hasEventListener('click')) {
+            renderer.addEventListener('click', onRendererClick);
+        }
+    }
+
+    protected static function onRendererClick(event:MouseEvent):void{
+        var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+        if (renderer) {
+            dispatchItemClicked(renderer, renderer.index, renderer.data)
+        }
+    }
+
+    protected static function dispatchItemClicked(fromRenderer:IIndexedItemRenderer,index:uint,data:Object):void{
+        var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+        newEvent.index = index;
+        newEvent.data = data;
+        fromRenderer.dispatchEvent(newEvent);
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -202,16 +236,19 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         addEventListener(ToolTipEvent.TOOL_TIP_SHOW, toolTipShowHandler); 
         addEventListener('click',handleClickEvent);
     }
-    
+
+
+
     /**
      * @private
      */
     protected function handleClickEvent(event:MouseEvent):void
     {
-        var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+        /*var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
         newEvent.index = index;
         newEvent.data = data;
-        dispatchEvent(newEvent);
+        dispatchEvent(newEvent);*/
+        dispatchItemClicked(this,index,data);
     }
     
     //--------------------------------------------------------------------------
@@ -353,11 +390,16 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         var dg:UIComponent = col.owner;
         if (index == ((dg.view as DataGridView).header as DataGridButtonBar).selectedIndex)
         {
-            label += " " + (col.sortDescending ? "▼" : "▲");
+            COMPILE::SWF
+            {
+                label += " " + (col.sortDescending ? "▼" : "▲");
+            }
+            //we are now achieving the above with styling in JS, via the rendererfactory
         }
         
         return label;
     }
+
 
     //----------------------------------
     //  sortItemRenderer
@@ -438,8 +480,9 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         grid = ListBase(DataGridListData(_listData).owner);
 
         invalidateProperties();
-    } 
+    }
 
+    private var _originalWhiteSpace:String;
     //--------------------------------------------------------------------------
     //
     //  Overridden methods: UIComponent
@@ -456,7 +499,18 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         if (!label)
         {
             label = IUITextField(createInFontContext(UITextField));
+            label.addBead(new ReversibleEllipsisOverflow())
+            COMPILE::JS{
+                label.addBead(new OverflowTooltipNeeded());
+                
+                label.addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, tooltipNeededListener);
+            }
+            
             addChild(IUIComponent(label));
+            COMPILE::JS{
+                _originalWhiteSpace = label.element.style.whiteSpace;
+                label.element.style.whiteSpace = "nowrap";
+            }
         }
 
         if (!background)
@@ -464,12 +518,22 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
             background = new UIComponent();
             addChild(background);
         }
-    } 
+    }
+
+    private function tooltipNeededListener(event:ValueEvent):void
+    {
+        var needed:Boolean = event.value;
+        if (needed) {
+            toolTip = label.text;
+        } else {
+            toolTip = null;
+        }
+    }
     
   //  private var childHeaders:DataGridButtonBar;
 
     private var usingHTML:Boolean;
-    
+   // private var _toolTip:String = null;
     /**
      *  @private
      *  Apply the data and listData.
@@ -514,10 +578,12 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
        // processVariations(grid);
         if (partsSeparatorSkin)
             partsSeparatorSkin.visible = true;
-
+        toolTip = null;
         if (_data != null)
         {
             var lbl:String = listData.label ? listData.label : " ";
+
+
             if (lbl.indexOf("&nbsp;") >= 0)
             {
                 label.htmlText = lbl;
@@ -535,7 +601,7 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
             // else
             //     label.wordWrap = grid.wordWrap;
 
-            if (_data is DataGridColumn)
+            /*if (_data is DataGridColumn)
             {
                 var column:DataGridColumn =
                     _data as DataGridColumn;
@@ -547,29 +613,30 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
                     dataTips = false;
                 if (dataTips)
                 {
-                    // if (label.textWidth > label.width 
-                    //     || column.dataTipFunction || column.dataTipField 
-                    //     || grid.dataTipFunction || grid.dataTipField)
-                    // {
-                    //     toolTip = column.itemToDataTip(_data);
-                    // }
-                    // else
-                    // {
-                    //     toolTip = null;
-                    // }
+                    _toolTip = column.itemToDataTip(_data);
+                    /!*if (label.textWidth > label.width
+                        || column.dataTipFunction || column.dataTipField
+                        || grid.dataTipFunction || grid.dataTipField)
+                    {
+                        toolTip = column.itemToDataTip(_data);
+                    }
+                    else
+                    {
+                        toolTip = null;
+                    }*!/
                 }
                 else
                 {
                     toolTip = null;
                 }
-                /*if (data is AdvancedDataGridColumnGroup)
+                /!*if (data is AdvancedDataGridColumnGroup)
                 {
                     var adgcg:AdvancedDataGridColumnGroup = data as AdvancedDataGridColumnGroup;
                     childHeaders = new AdvancedDataGridButtonBar();
                     childHeaders.dataProvider = adgcg.children;
                     addElement(childHeaders);                    
-                }*/
-             }
+                }*!/
+             }*/
         }
         else
         {
@@ -596,9 +663,32 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
             partsSeparatorSkin.visible = !(_data is AdvancedDataGridColumnGroup);
     }*/
 
+    private function getLabelMetrics():TextLineMetrics{
+        var lineMetrics:TextLineMetrics;
+        COMPILE::SWF{
+            lineMetrics = measureText(usingHTML ? label.htmlText : label.text);
+        }
+
+        COMPILE::JS{
+            UIComponent(label).measuredWidth = NaN;
+            UIComponent(label).measuredHeight = NaN;
+            lineMetrics = new TextLineMetrics();
+            var eW:Number = label.explicitWidth;
+            var eH:Number = label.explicitHeight;
+            label.explicitWidth = NaN;
+            label.explicitHeight = NaN;
+            lineMetrics.width = label.getExplicitOrMeasuredWidth();
+            lineMetrics.height = label.getExplicitOrMeasuredHeight();
+            label.explicitWidth = eW;
+            label.explicitHeight = eH;
+
+        }
+        return lineMetrics;
+    }
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.managers.SystemManager;
      */
     override protected function measure():void
     {
@@ -647,8 +737,10 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         }
         else
         {
-            var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText : label.text);
+            var lineMetrics:TextLineMetrics = getLabelMetrics();
+
             labelWidth  = lineMetrics.width + UITextField.TEXT_WIDTH_PADDING;
+
             labelHeight = lineMetrics.height + UITextField.TEXT_HEIGHT_PADDING;
             w = labelWidth + horizontalGap
                            + (partsSeparatorSkin ? partsSeparatorSkin.width : 0)
@@ -703,16 +795,8 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
             horizontalGap = 0;
 
         // Adjust to given width
-	COMPILE::JS
-	{
-		var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText: label.text);
-	}
-	COMPILE::SWF
-	{
-		var lineMetrics:TextLineMetrics = new TextLineMetrics();
-		lineMetrics.width = label.width;
-		lineMetrics.height = label.height;
-	}
+        var lineMetrics:TextLineMetrics = getLabelMetrics();
+
         var labelWidth:Number  = lineMetrics.width + UITextField.TEXT_WIDTH_PADDING;
         var maxLabelWidth:int = unscaledWidth - sortItemRendererWidth
                                 - horizontalGap - paddingLeft - paddingRight;
@@ -956,7 +1040,8 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
     protected function toolTipShowHandler(event:ToolTipEvent):void
     {
         var toolTip:IToolTip = event.toolTip;
-		var xPos:int = IUIComponent(systemManager).mouseX + 11;
+        //@todo consider code to reposition ToolTip
+		/*var xPos:int = IUIComponent(systemManager).mouseX + 11;
         var yPos:int = IUIComponent(systemManager).mouseY + 22;
         // Calculate global position of label.
         var pt:Point = new Point(xPos, yPos);
@@ -968,7 +1053,7 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         var screen:Rectangle = toolTip.screen;
         var screenRight:Number = screen.x + screen.width;
         if (toolTip.x + toolTip.width > screenRight)
-            toolTip.move(screenRight - toolTip.width, toolTip.y);
+            toolTip.move(screenRight - toolTip.width, toolTip.y);*/
 
     } 
 

@@ -18,18 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+    import mx.controls.ComboBox;
+    import mx.controls.listClasses.ListBase;
+    import mx.events.DropdownEvent;
+
+    import org.apache.royale.core.IComboBoxModel;
     import org.apache.royale.core.UIBase;
+    import org.apache.royale.html.util.getModelByType;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.ComboBoxView;
-    import org.apache.royale.core.IComboBoxModel;
-	import org.apache.royale.html.util.getModelByType;
-    import org.apache.royale.html.util.getLabelFromXMLData;
+
     import org.apache.royale.html.TextInput;
+    import org.apache.royale.html.TextButton;
+
+    import mx.core.UIComponent;
+
     import org.apache.royale.core.IStrand;
     import mx.controls.ComboBase;
     import org.apache.royale.core.IRenderedObject;
-	
     /**
      *  The ComboBoxView class.
      * 
@@ -38,7 +45,7 @@ package mx.controls.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ComboBoxView extends org.apache.royale.html.beads.ComboBoxView
+	public class ComboBoxView extends org.apache.royale.html.beads.ComboBoxView implements IComboBoxView
 	{
         /**
          *  Constructor.
@@ -52,6 +59,43 @@ package mx.controls.beads
 		{
         }
 
+        override protected function sizeChangeAction():void
+        {
+            var host:UIBase = UIBase(_strand);
+
+            var input:TextInput = textInputField as TextInput;
+            var button:TextButton = popupButton as TextButton;
+
+            input.x = 0;
+            input.y = 0;
+            if (host.isWidthSizedToContent()) {
+                input.width = UIComponent.DEFAULT_MEASURED_WIDTH - 20;
+            } else {
+                input.width = host.width - 20;
+            }
+
+            button.x = input.width;
+            button.y = 0;
+            button.width = 20;
+
+
+            COMPILE::JS {
+                input.element.style.position = "absolute";
+                button.element.style.position = "absolute";
+            }
+
+            if (host.isHeightSizedToContent()) {
+                host.height = input.height = UIComponent.DEFAULT_MEASURED_HEIGHT;
+            } else {
+                input.height = host.height;
+            }
+            button.height = input.height;
+
+            if (host.isWidthSizedToContent()) {
+                host.width = input.width + button.width;
+            }
+        }
+
         /**
          * The content area of the panel.
          *
@@ -63,18 +107,29 @@ package mx.controls.beads
          */
         override public function set popUpVisible(value:Boolean):void
         {
-            var sendClose:Boolean = !value && list.visible;
-            super.popUpVisible = value;
-            if (sendClose)
-                IEventDispatcher(_strand).dispatchEvent(new Event("close"));
+           // var sendClose:Boolean = !value && list.visible;
+            if (popUpVisible == value) return;
+            setPopupVisible(value)
+            /*if (sendClose)
+                IEventDispatcher(_strand).dispatchEvent(new Event("close"));*/
+
+            var cbdEvent:DropdownEvent =
+                    new DropdownEvent(value ? DropdownEvent.OPEN : DropdownEvent.CLOSE);
+            cbdEvent.triggerEvent = null;
+            IEventDispatcher(_strand).dispatchEvent(cbdEvent);
         }
-        
+
+
+        public function setPopupVisible(value:Boolean):void{
+            super.popUpVisible = value;
+        }
+
         override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
+        {
+            super.strand = value;
             (value as IEventDispatcher).addEventListener("editableChanged", syncEditable);
-			syncEditable();
-		}
+            syncEditable();
+        }
 
         protected function syncEditable(event:Event=null):void
         {
@@ -90,17 +145,20 @@ package mx.controls.beads
             }
         }
 
+        /**
+         * @private
+         * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
+         * @royaleignorecoercion mx.controls.ComboBox
+         */
         override protected function itemChangeAction():void
         {
             var model:IComboBoxModel = getModelByType(_strand,IComboBoxModel) as IComboBoxModel;
-            var selectedItem:Object = model.selectedItem;
-            if (selectedItem is XML)
-            {
-                (textInputField as TextInput).text = getLabelFromXMLData(model, selectedItem as XML);
-            } else
-            {
-                super.itemChangeAction();
-            }
+            textInputField.text = ComboBox(_strand).itemToLabel(model.selectedItem);
         }
+
+        public function get editable():Boolean {
+            return ComboBox(_strand).editable;
+        }
+		
 	}
 }

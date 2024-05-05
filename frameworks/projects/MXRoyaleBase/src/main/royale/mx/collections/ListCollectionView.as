@@ -1621,9 +1621,10 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
             var updateEvent:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
             updateEvent.kind = CollectionEventKind.UPDATE;
             updateEvent.items = eventItems;
-            for (i = 0; i < list.length; i++)
+            //don't use list, because it doesn't take into account sort or filter:
+            for (i = 0; i < /*list.*/length; i++)
             {
-                if (list.getItemAt(i) == (eventItems[0] as PropertyChangeEvent).source)
+                if (/*list.*/getItemAt(i) == (eventItems[0] as PropertyChangeEvent).source)
                 {
                     updateEvent.location = i;
                     break;

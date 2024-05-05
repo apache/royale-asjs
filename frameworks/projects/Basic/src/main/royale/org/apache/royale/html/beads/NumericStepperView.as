@@ -85,7 +85,8 @@ package org.apache.royale.html.beads
 			// add an input field
 			input = new TextInput();
 			input.className = "NumericStepperInput";
-			input.typeNames = "NumericStepperInput";
+			//avoid double 'class':
+			//input.typeNames = "NumericStepperInput";
 			(value as IParent).addElement(input);
 			COMPILE::JS
 			{
@@ -147,38 +148,82 @@ package org.apache.royale.html.beads
 			}
 					
 		}
-		
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 */
-		private function sizeChangeHandler(event:Event) : void
-		{
-			// first reads
-			var widthToContent:Boolean = (event == null) && (_strand as UIBase).isWidthSizedToContent();
-			var inputWidth:Number = input.width;
-			var inputHeight:Number = input.height;
-			var strandWidth:Number;
-			if (!widthToContent)
-			{
-				strandWidth = (_strand as UIBase).width;
-			}
+
+		protected function getDefaultWidth():Number{
+			return 0;
+		}
+
+		//allow subclasses to specify a default height
+		protected function getDefaultHeight():Number{
+			return 0;
+		}
+
+		//allow subclasses to specify a default height
+		protected function adjustSpinnerWidth(inputHeight:Number):void{
 			COMPILE::JS
 			{
 				spinner.height = inputHeight;
 				spinner.width = inputHeight/2;
 			}
-			
-			input.x = 0;
-			input.y = 0;
+		}
+
+		protected function adjustSize(widthToContent:Boolean,heightToContent:Boolean):void{
+			var inputWidth:Number = input.width;
+			var inputHeight:Number = input.height;
+			var strandWidth:Number;
+			adjustSpinnerWidth(inputHeight);
 			if (!widthToContent)
+			{
+				strandWidth = (_strand as UIBase).width;
 				input.width = strandWidth - spinner.width - 2;
-			
+			}
+
 			COMPILE::SWF
 			{
-				spinner.x = inputWidth;
+				spinner.x = inputWidth; //GD - shouldn't this instead be : input.width ?
 				spinner.y = 0;
 			}
+		}
+		
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		protected function sizeChangeHandler(event:Event) : void
+		{
+
+			var widthToContent:Boolean = (_strand as UIBase).isWidthSizedToContent();
+			var heightToContent:Boolean = (_strand as UIBase).isHeightSizedToContent();
+			var inputWidth:Number;
+			var inputHeight:Number;
+			input.x = 0;
+			input.y = 0;
+			if (event == null) {
+				// first reads
+
+				if (heightToContent) {
+					inputHeight = getDefaultHeight();
+
+				} else {
+					inputHeight = (_strand as UIBase).height;
+				}
+				if (inputHeight) {
+					input.height = inputHeight;
+					adjustSpinnerWidth(inputHeight);
+				}
+
+				if (widthToContent) {
+					inputWidth = getDefaultWidth();
+				} else {
+					inputWidth = (_strand as UIBase).width;
+				}
+				if (inputWidth) {
+					input.width = inputWidth - spinner.width - 2;
+				}
+			} else {
+				adjustSize(widthToContent, heightToContent);
+			}
+
 		}
 		
 		/**
@@ -213,7 +258,7 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
-		private function modelChangeHandler( event:Event ) : void
+		protected function modelChangeHandler( event:Event ) : void
 		{
 			var n:Number = IRangeModel(UIBase(_strand).model).value;
 			input.text = String(IRangeModel(UIBase(_strand).model).value);

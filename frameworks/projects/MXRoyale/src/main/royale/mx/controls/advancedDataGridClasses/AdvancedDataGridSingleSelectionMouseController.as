@@ -20,7 +20,8 @@ package mx.controls.advancedDataGridClasses
 {
 	import mx.controls.AdvancedDataGrid;
 	import mx.controls.beads.AdvancedDataGridView;
-	import mx.events.ListEvent;
+import mx.events.ADGItemClickedEvent;
+import mx.events.ListEvent;
 	
 	import org.apache.royale.collections.ITreeData;
 	import org.apache.royale.core.ISelectionModel;
@@ -74,6 +75,8 @@ package mx.controls.advancedDataGridClasses
 
 		/**
 		 * @private
+		 *
+		 * @royaleignorecoercion mx.events.ADGItemClickedEvent
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
@@ -86,24 +89,30 @@ package mx.controls.advancedDataGridClasses
 			
 			var hasChildren:Boolean = adg.hasChildren(node);
 			var foldableTarget:IFoldable = event.target as IFoldable;
-			if (hasChildren && (foldableTarget is IFoldable))
+			if (hasChildren && (foldableTarget /*is IFoldable*/))
 			{
-				if (adg.isItemOpen(node) && foldableTarget.canFold) {
-					adg.closeNode(node);
-				} else if (foldableTarget.canUnfold) {
-					adg.openNode(node);
-					var adgEvent:AdvancedDataGridEvent = new AdvancedDataGridEvent(
-						AdvancedDataGridEvent.ITEM_OPEN,
-						false,
-						false,
-						i, 
-						(adg.columns[i] as IHasDataField).dataField,
-						event.index,
-						null,
-						event.target as IListItemRenderer
+				var fold:Boolean = true;
+				if (event is ADGItemClickedEvent) {
+					fold = foldableTarget.isFoldInitiator((event as ADGItemClickedEvent).originalDispatcher);
+				}
+				if (fold) {
+					if (adg.isItemOpen(node) && foldableTarget.canFold) {
+						adg.closeNode(node);
+					} else if (foldableTarget.canUnfold) {
+						adg.openNode(node);
+						var adgEvent:AdvancedDataGridEvent = new AdvancedDataGridEvent(
+								AdvancedDataGridEvent.ITEM_OPEN,
+								false,
+								false,
+								i,
+								(adg.columns[i] as IHasDataField).dataField,
+								event.index,
+								null,
+								event.target as IListItemRenderer
 						);
-					adgEvent.item = node;
-					sendEvent(adg, adgEvent);
+						adgEvent.item = node;
+						sendEvent(adg, adgEvent);
+					}
 				}
 			}
 

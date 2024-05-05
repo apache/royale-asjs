@@ -70,26 +70,29 @@ package mx.net.beads
 		public function upload(url:String):void
 		{
 			var fileModel:IFileModel = (_strand as FileProxy).model as IFileModel;
-			if (fileModel.size <= 0)
+			/*if (fileModel.size <= 0)
 			{
 				_url = url;
 				(_strand as FileProxy).model.addEventListener("blobChanged", blobChangedHandler);
 				_loader.load();
 			} else
-			{
+			{*/
+			if (fileModel.fileReference) {
 				_uploader.referenceRequest = _referenceRequest;
 				_uploader.uploadDataFieldName = _uploadDataFieldName;
 				_uploader.upload(url);
 			}
+
+			//}
 		}
 		
-		private function blobChangedHandler(e:Event):void
+		/*private function blobChangedHandler(e:Event):void
 		{
 			(_strand as FileProxy).model.removeEventListener('blobChanged', blobChangedHandler);
 			_uploader.referenceRequest = _referenceRequest;
 			_uploader.uploadDataFieldName = _uploadDataFieldName;
 			_uploader.upload(_url);
-		}
+		}*/
 		
 		/**
 		 * @private
@@ -98,6 +101,7 @@ package mx.net.beads
 		{
 			_uploader.cancel();
 		}
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  

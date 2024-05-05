@@ -101,7 +101,7 @@ public class Binding
         hasHadValue = false;
         uiComponentWatcher = -1;
 
-        BindingManager2.addBinding(document, destString, this);
+        BindingManager.addBinding(document, destString, this);
     }
 
  	//--------------------------------------------------------------------------
@@ -295,7 +295,7 @@ public class Binding
             //if the element does not exist : avoid exception as it's heavy on memory allocations
             if (element == null) {
                 destFuncFailed = true;
-                if (BindingManager2.debugDestinationStrings[destString])
+                if (BindingManager.debugDestinationStrings[destString])
                 {
                     trace("Binding: destString = " + destString + ", error = 1009");
                 }
@@ -429,12 +429,12 @@ public class Binding
         {
 			if (error is ItemPendingError) {
 	            //(error as ItemPendingError).addResponder(new EvalBindingResponder(this, object));
-	            if (BindingManager2.debugDestinationStrings[destString])
+	            if (BindingManager.debugDestinationStrings[destString])
 	            {
 	                trace("Binding: destString = " + destString + ", error = " + error);
 	            }
 			} else if (error is RangeError) {
-	            if (BindingManager2.debugDestinationStrings[destString])
+	            if (BindingManager.debugDestinationStrings[destString])
 	            {
 	                trace("Binding: destString = " + destString + ", error = " + error);
 	            }
@@ -461,7 +461,7 @@ public class Binding
 				}
 	            else
 	            {
-	                if (BindingManager2.debugDestinationStrings[destString])
+	                if (BindingManager.debugDestinationStrings[destString])
 	                {
 	                    trace("Binding: destString = " + destString + ", error = " + error);
 	                }
@@ -500,7 +500,7 @@ public class Binding
         destFuncFailed = false;
         var value:Object = wrapFunctionCall(document, srcFunc);
 
-        if (BindingManager2.debugDestinationStrings[destString])
+        if (BindingManager.debugDestinationStrings[destString])
         {
             trace("Binding: destString = " + destString + ", srcFunc result = " + value);
         }

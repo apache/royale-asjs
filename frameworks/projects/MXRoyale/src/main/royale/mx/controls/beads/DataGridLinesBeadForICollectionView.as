@@ -97,7 +97,10 @@ package mx.controls.beads
             _overlay.fill = lineFill;
             COMPILE::JS
             {
-                _overlay.element.style.position = "absolute";        
+                _overlay.element.style.position = "absolute";
+                //the following can avoid scrollbars appearing unnecessarily:
+                _overlay.element.style.width = "100%";
+                _overlay.element.style.height = "100%";
             }
             
             var i:int;
@@ -130,7 +133,9 @@ package mx.controls.beads
                 var bgFill1:SolidColor = new SolidColor();
                 bgFill1.color = bgColors[1];
                 for (i=n; yy < contentView.height; i++, yy += rowHeight) {
-                    _overlay.fill = (i % 2 == 1) ? bgFill1 : bgFill0;
+                    //monkey patch hack for removing alternating colors:
+                   // _overlay.fill = (i % 2 == 1) ? bgFill1 : bgFill0;
+                    _overlay.fill = bgFill1;
                     _overlay.drawRect(0, yy, ww, rowHeight);
                 }                
             }

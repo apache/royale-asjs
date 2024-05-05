@@ -169,7 +169,7 @@ public class Text extends Label
 		typeNames = "Text";
 
 //        selectable = true;
-//        truncateToFit = false;
+       truncateToFit = false;
 //
 //        addEventListener(FlexEvent.UPDATE_COMPLETE, updateCompleteHandler);
     }
@@ -282,7 +282,7 @@ public class Text extends Label
 	{
 		super.createElement();
 		
-		element.style.whiteSpace = "normal";
+		element.style.whiteSpace = "pre-wrap";
 		
 		return element;
 	}
@@ -539,6 +539,14 @@ public class Text extends Label
 //    {
 //        lastUnscaledWidth = NaN;
 //    }
+
+
+    //--------------------------------------------------------------------------
+    //
+    //  Royale-specific overrides
+    //
+    //--------------------------------------------------------------------------
+    
 }
 
 }

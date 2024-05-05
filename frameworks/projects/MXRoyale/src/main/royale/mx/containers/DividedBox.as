@@ -33,8 +33,27 @@ import mx.core.IInvalidating;
 */
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.DividedBoxLayout;
+import mx.containers.dividedBoxClasses.BoxDivider;
+import mx.core.IFlexDisplayObject;
+import mx.core.IInvalidating;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
+import mx.core.mx_internal;
+import mx.events.ChildExistenceChangedEvent;
+import mx.events.DividerEvent;
+import mx.events.MouseEvent;
+import mx.managers.CursorManager;
+import mx.managers.SystemManager;
+import mx.utils.RoyaleUtil;
+
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.IUIBase;
+	
+	
+	
+import org.apache.royale.events.Event;
+import org.apache.royale.geom.Point;
+	
 
 /*
 import mx.core.mx_internal;
@@ -82,6 +101,7 @@ use namespace mx_internal;
  *  @productversion Flex 3
  */
 //[Event(name="dividerPress", type="mx.events.DividerEvent")]
+use namespace mx_internal;
 
 /**
  *  Dispatched when the user releases a divider.
@@ -218,9 +238,9 @@ public class DividedBox extends Box
 	{
 		super();
 
-//        addEventListener(ChildExistenceChangedEvent.CHILD_ADD, childAddHandler);
-//		addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE, 
-//						 childRemoveHandler);
+        addEventListener(ChildExistenceChangedEvent.CHILD_ADD, childAddHandler);
+		addEventListener(ChildExistenceChangedEvent.CHILD_REMOVE,
+						 childRemoveHandler);
 	}
     
     override protected function createLayout():void
@@ -243,7 +263,7 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-	//mx_internal var activeDivider:BoxDivider;
+	mx_internal var activeDivider:BoxDivider;
 	
 	/**
 	 *  @private
@@ -289,7 +309,7 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-	//private var cursorID:int = CursorManager.NO_CURSOR;
+	private var cursorID:int = CursorManager.NO_CURSOR;
 
 	/**
 	 *  @private
@@ -327,8 +347,8 @@ public class DividedBox extends Box
     /**
      *  @private
      */
-//    override public function set moduleFactory(moduleFactory:IFlexModuleFactory):void
-//    {
+ //   override public function set moduleFactory(moduleFactory:IFlexModuleFactory):void
+ //   {
 //        super.moduleFactory = moduleFactory;
 //        
 //        styleManager.registerSizeInvalidatingStyle("dividerAffordance");
@@ -355,11 +375,11 @@ public class DividedBox extends Box
 			super.direction = value;
 
 			// Need to invalidate all our dividers
-//			if (dividerLayer)
-//			{
-//				for (var i:int = 0; i < dividerLayer.numChildren; i++)
-//					getDividerAt(i).invalidateDisplayList();
-//			}
+			if (dividerLayer)
+			{
+				for (var i:int = 0; i < dividerLayer.numChildren; i++)
+					getDividerAt(i).invalidateDisplayList();
+			}
 		}
 	}
 
@@ -377,7 +397,7 @@ public class DividedBox extends Box
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-//	protected var dividerClass:Class = BoxDivider;
+	protected var dividerClass:Class = BoxDivider;
 
 	//----------------------------------
 	//  liveDragging
@@ -397,7 +417,7 @@ public class DividedBox extends Box
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-//	public var liveDragging:Boolean = false;
+	public var liveDragging:Boolean = false;
 
     //----------------------------------
     //	numDividers
@@ -416,15 +436,15 @@ public class DividedBox extends Box
 	 */
 	public function get numDividers():int
 	{
-//		if (dividerLayer)
-//           	if (!liveDragging && activeDivider)
-//           		return dividerLayer.numChildren-1;
-//           	else
-//				return dividerLayer.numChildren;
-//		else 
-//			return 0;
-		trace("numDividers not implemented");
-		return 0;
+		if (dividerLayer)
+           	if (!liveDragging && activeDivider)
+           		return dividerLayer.numChildren-1;
+           	else
+				return dividerLayer.numChildren;
+		else
+			return 0;
+		/*trace("numDividers not implemented");
+		return 0;*/
 	}
 
     //----------------------------------
@@ -650,19 +670,19 @@ public class DividedBox extends Box
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-//	public function getDividerAt(i:int):BoxDivider
-//	{
-//		if (dividerLayer) {
-//			// Check whether this is a valid divider index.
-//			if (i < 0 || i >= dividerLayer.numChildren)
-//				return null;
-//			else
-//				return BoxDivider(dividerLayer.getChildAt(i));
-//		}
-//		else {
-//			return null;
-//		}
-//	}
+	public function getDividerAt(i:int):BoxDivider
+	{
+		if (dividerLayer) {
+			// Check whether this is a valid divider index.
+			if (i < 0 || i >= dividerLayer.numChildren)
+				return null;
+			else
+				return BoxDivider(dividerLayer.getChildAt(i));
+		}
+		else {
+			return null;
+		}
+	}
 
 	/**
 	 *  Move a specific divider a given number of pixels.
@@ -682,74 +702,84 @@ public class DividedBox extends Box
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-//	public function moveDivider(i:int, amt:Number):void
-//	{
-//		// Check whether this is a valid divider index.
-//		if (i < 0 || i >= numDividers)
-//			return;
-//
-//		// Make sure the user is not currently dragging.
-//		if (activeDividerIndex >= 0)
-//			return;
-//
-//		// We have to first hit the children if we haven't
-//		// yet done so since the first movement .
-//
-//		// Mimic a divider moving.
-//		activeDividerIndex = i;
-//
-//		// Store away child sizes,
-//		// then determine the limits on our movement.
-//		cacheChildSizes();
-//		computeMinAndMaxDelta();
-//		dragDelta = limitDelta(amt);
-//
-//		// Now update the children sizes accordingly.
-//		adjustChildSizes();
-//
-//		invalidateSize();
-//		invalidateDisplayList();
-//
-//		// Reset the divider tracking stuff.
-//		resetDividerTracking();
-//	}
+	public function moveDivider(i:int, amt:Number):void
+	{
+		// Check whether this is a valid divider index.
+		if (i < 0 || i >= numDividers)
+			return;
+
+		// Make sure the user is not currently dragging.
+		if (activeDividerIndex >= 0)
+			return;
+
+		// We have to first hit the children if we haven't
+		// yet done so since the first movement .
+
+		// Mimic a divider moving.
+		activeDividerIndex = i;
+
+		// Store away child sizes,
+		// then determine the limits on our movement.
+		cacheChildSizes();
+		computeMinAndMaxDelta();
+		dragDelta = limitDelta(amt);
+
+		// Now update the children sizes accordingly.
+		adjustChildSizes();
+
+		invalidateSize();
+		invalidateDisplayList();
+
+		// Reset the divider tracking stuff.
+		resetDividerTracking();
+	}
 
 	/**
 	 *  @private
 	 */
-//	private function createDivider(i:int):BoxDivider
-//	{
-//		// Create separate layer for holding divider objects.
-//		if (!dividerLayer)
-//		{
-//			dividerLayer = UIComponent(rawChildren.addChild(new UIComponent()));
-//		}
+	private function createDivider(i:int):BoxDivider
+	{
+		// Create separate layer for holding divider objects.
+		if (!dividerLayer)
+		{
+			ignoreChild = true;
+			var dividerContainer:UIComponent = new UIComponent();
+			dividerContainer.typeNames = 'DividerHolder';
+			//dividerLayer = new UIComponent();
+
+			/*UIComponent(rawChildren.*//*addChild(new UIComponent()) as UIComponent*//*)*/;
+			addChild(dividerContainer);
+			dividerLayer = dividerContainer;
+			DividedBoxLayout(this.layoutObject).dividerLayer = dividerContainer;
+			//dividerLayer.typeNames = 'DividerHolder';
+			ignoreChild = false;
+		}
 //
-//		var divider:BoxDivider = BoxDivider(new dividerClass());
-//		dividerLayer.addChild(divider);
-//		
-//		// if we are creating the active divider bring the divider layer 
-//		// to the top most so that users can see the divider line over 
-//		// the other children
-//		if (i == PROXY_DIVIDER_INDEX)
-//		{
-//			rawChildren.setChildIndex(dividerLayer, 
-//										  rawChildren.numChildren-1);
-//		}
-//		
-//		// Tell BoxDivider to use DividedBox's styles,
-//		// unless we are sliding the divider; in that case,
-//		// use the styles of the divider we are sliding.
-//		var basedOn:IFlexDisplayObject = (i == PROXY_DIVIDER_INDEX) ?
-//										 getDividerAt(activeDividerIndex) :
-//										 this;
-//		
-//		divider.styleName = basedOn;
-//		
-//		divider.owner = this;
-//		
-//		return divider;
-//	}
+		var divider:BoxDivider = BoxDivider(new dividerClass());
+		dividerLayer.addChild(divider);
+
+		// if we are creating the active divider bring the divider layer
+		// to the top most so that users can see the divider line over
+		// the other children
+		if (i == PROXY_DIVIDER_INDEX)
+		{
+			rawChildren.setChildIndex(dividerLayer,
+										  rawChildren.numChildren-1);
+		}
+
+		// Tell BoxDivider to use DividedBox's styles,
+		// unless we are sliding the divider; in that case,
+		// use the styles of the divider we are sliding.
+		var basedOn:IFlexDisplayObject = (i == PROXY_DIVIDER_INDEX) ?
+										 getDividerAt(activeDividerIndex) :
+										 this;
+
+		divider.styleName = basedOn;
+
+		divider.owner = this;
+
+		return divider;
+	}
 
 	/**
 	 *  @private
@@ -838,188 +868,233 @@ public class DividedBox extends Box
 	/**
 	 *  @private
 	 */
-//	mx_internal function changeCursor(divider:BoxDivider):void
-//	{
-//		if (cursorID == CursorManager.NO_CURSOR)
-//		{
-//			// If a cursor skin has been set for the specified BoxDivider,
-//			// use it. Otherwise, use the cursor skin for the DividedBox.
-//			var cursorClass:Class = isVertical() ?
-//									getStyle("verticalDividerCursor") as Class :
-//									getStyle("horizontalDividerCursor") as Class;
-//
-//			cursorID = cursorManager.setCursor(cursorClass,
-//											   CursorManagerPriority.HIGH, 0, 0);
-//		}
-//	}
+	mx_internal function changeCursor(divider:BoxDivider):void
+	{
+		if (cursorID == CursorManager.NO_CURSOR)
+		{
+			// If a cursor skin has been set for the specified BoxDivider,
+			// use it. Otherwise, use the cursor skin for the DividedBox.
+			var cursorClass:Class = isVertical() ?
+									getStyle("verticalDividerCursor") as Class :
+									getStyle("horizontalDividerCursor") as Class;
+
+			cursorID = cursorManager.setCursor(cursorClass,
+											   1/*CursorManagerPriority.HIGH*/, 0, 0);
+
+			COMPILE::JS{
+				if (isVertical()) {
+					(systemManager as SystemManager).element.style.cursor = 'ns-resize';
+				} else {
+					(systemManager as SystemManager).element.style.cursor = 'ew-resize';
+				}
+			}
+		}
+	}
 
 	/**
 	 *  @private
 	 */
-//	mx_internal function restoreCursor():void
-//	{
-//		if (cursorID != CursorManager.NO_CURSOR)
-//		{
-//			cursorManager.removeCursor(cursorID);
-//			cursorID = CursorManager.NO_CURSOR;
-//		}
-//	}
+	mx_internal function restoreCursor():void
+	{
+		if (cursorID != CursorManager.NO_CURSOR)
+		{
+			cursorManager.removeCursor(cursorID);
+			cursorID = CursorManager.NO_CURSOR;
+			COMPILE::JS{
+				(systemManager as SystemManager).element.style.cursor = '';
+			}
+		}
+	}
 
 	/**
 	 *  @private
 	 */
-//	mx_internal function getDividerIndex(divider:BoxDivider):int
-//	{
-//		var n:int = numChildren;
-//		for (var i:int = 0; i < n - 1; i++)
-//		{
-//			if (getDividerAt(i) == divider)
-//				return i;
-//		}
-//		return -1;
-//	}
+	mx_internal function getDividerIndex(divider:BoxDivider):int
+	{
+		var n:int = numChildren;
+		for (var i:int = 0; i < n - 1; i++)
+		{
+			if (getDividerAt(i) == divider)
+				return i;
+		}
+		return -1;
+	}
 
 	/**
 	 *  @private
 	 */
-//	private function getMousePosition(event:MouseEvent):Number
-//	{
+	private function getMousePosition(event:MouseEvent):Number
+	{
 //        var point:Point = new Point(event.stageX, event.stageY);
 //        point = globalToLocal(point);
-//		return isVertical() ? point.y : point.x;
-//	}
+	//	return isVertical() ? point.y : point.x;
+//@todo figure this out
+
+		COMPILE::JS{
+			return isVertical() ? (event.clientY - m.m42)/m.d : (event.clientX - m.m41)/m.a;
+		}
+		COMPILE::SWF{
+			var point:Point = new Point(event.stageX, event.stageY);
+	        point = globalToLocal(point);
+			return isVertical() ? point.y : point.x;
+		}
+	}
+
+	COMPILE::JS
+	private var m:Object;
 
 	/**
 	 *  @private
+	 *
+	 *  @royaleignorecoercion Element
 	 */
-//	mx_internal function startDividerDrag(divider:BoxDivider,
-//                                          trigger:MouseEvent):void
-//	{
-//		// Make sure the user is not currently dragging.
-//		if (activeDividerIndex >= 0)
-//			return;
-//		
-//		activeDividerIndex = getDividerIndex(divider);
-//
-//		var event:DividerEvent = 
-//            new DividerEvent(DividerEvent.DIVIDER_PRESS);
-//		event.dividerIndex = activeDividerIndex;
-//		dispatchEvent(event);
-//
-//		if (liveDragging)
-//			activeDivider = divider;
-//		else
-//		{
-//			activeDivider = createDivider(PROXY_DIVIDER_INDEX);
-//			activeDivider.visible = false;
-//			activeDivider.state = DividerState.DOWN;
-//			activeDivider.setActualSize(divider.width, divider.height);
-//			activeDivider.move(divider.x, divider.y);
-//			activeDivider.visible = true;
-//			divider.state = DividerState.UP;
-//		}
-//
-//		if (isVertical())
-//			activeDividerStartPosition = activeDivider.y;
-//		else
-//			activeDividerStartPosition = activeDivider.x;
-//
-//        dragStartPosition = getMousePosition(trigger);
-//		dragDelta = 0;
-//
-//		cacheChildSizes();
-//		adjustChildSizes();
-//
-//		computeMinAndMaxDelta();
-//
-//		systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
-//		systemManager.deployMouseShields(true);
-//	}
+	mx_internal function startDividerDrag(divider:BoxDivider,
+                                          trigger:MouseEvent):void
+	{
+		// Make sure the user is not currently dragging.
+		if (activeDividerIndex >= 0)
+			return;
+
+		activeDividerIndex = getDividerIndex(divider);
+
+		COMPILE::JS{
+			/*var p:Element = (systemManager as IUIBase).element as Element;
+			var c:Element = this.element as Element;
+			var mm:Object = jsUnsafeNativeInline("new DOMMatrixReadOnly()");
+			while(c != p) {
+				var ts:String = getComputedStyle(c).transform;
+				var cur:Object = jsUnsafeNativeInline("new DOMMatrixReadOnly(ts)");
+				mm = mm.multiply(cur);
+				c = c.parentNode as Element;
+			}
+			m = mm;*/
+			m = RoyaleUtil.getNativeMatrixBetween(systemManager as IUIBase, this);
+		}
+
+		var event:DividerEvent =
+            new DividerEvent(DividerEvent.DIVIDER_PRESS);
+		event.dividerIndex = activeDividerIndex;
+		dispatchEvent(event);
+
+		if (liveDragging)
+			activeDivider = divider;
+		else
+		{
+			activeDivider = createDivider(PROXY_DIVIDER_INDEX);
+			activeDivider.visible = false;
+			activeDivider.state = 'down';//DividerState.DOWN;
+			activeDivider.setActualSize(divider.width, divider.height);
+			activeDivider.move(divider.x, divider.y);
+			activeDivider.visible = true;
+			divider.state = 'up';//DividerState.UP;
+		}
+
+		if (isVertical())
+			activeDividerStartPosition = activeDivider.y;
+		else
+			activeDividerStartPosition = activeDivider.x;
+
+        dragStartPosition = getMousePosition(trigger);
+		dragDelta = 0;
+
+		cacheChildSizes();
+		adjustChildSizes();
+
+		computeMinAndMaxDelta();
+
+	//	systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+	//	systemManager.deployMouseShields(true);
+
+		systemManager.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+		//systemManager.deployMouseShields(true);
+	}
 
 	/**
 	 *  @private
 	 *  Store away some important information about
 	 *  each child for us to use while we move the divider.
 	 */
-//	private function cacheSizes():void
-//	{
-//		oldChildSizes = []; // empty array
-//
-//		var vertical:Boolean = isVertical();
-//		
-//		var smallest:Number = Number.MAX_VALUE; // use a big number
-//		
-//		var n:int = numChildren;
-//		for (var i:int = 0; i < n; i++)
-//		{
-//			var child:IUIComponent = getLayoutChildAt(i);
-//            if (!child.includeInLayout)
-//                continue;
-//		
-//			var sz:Number = vertical ? child.height : child.width;
-//
-//			var mx:Number = vertical ? child.maxHeight : child.maxWidth;
-//			
-//			var umn:Number = vertical ?
-//							 child.explicitMinHeight :
-//							 child.explicitMinWidth; // avoid measured values
-//			
-//			// A NaN min means 0.
-//			var mn:Number = (isNaN(umn)) ? 0 : umn;
-//			
-//			// Compute these for later use.
-//			var dMin:Number = Math.max(0, sz - mn);
-//			var dMax:Number = Math.max(0, mx - sz);
-//
-//			if (sz > 0 && sz < smallest)
-//				smallest = sz;
-//
-//			oldChildSizes.push(new ChildSizeInfo(sz, mn, mx, dMin, dMax));
-//		}
-//
-//		// Remember the smallest child size we saw.
-//		oldChildSizes.push(new ChildSizeInfo((smallest == Number.MAX_VALUE) ? 1 : smallest));
-//	}
+	private function cacheSizes():void
+	{
+		oldChildSizes = []; // empty array
+
+		var vertical:Boolean = isVertical();
+
+		var smallest:Number = Number.MAX_VALUE; // use a big number
+
+		var n:int = numChildren;
+		for (var i:int = 0; i < n; i++)
+		{
+			var child:IUIComponent = getLayoutChildAt(i);
+            if (!child.includeInLayout)
+                continue;
+
+			var sz:Number = vertical ? child.height : child.width;
+
+			var max:Number = vertical ? child.maxHeight : child.maxWidth;
+
+			var umn:Number = vertical ?
+							 child.explicitMinHeight :
+							 child.explicitMinWidth; // avoid measured values
+
+			// A NaN min means 0.
+			var mn:Number = (isNaN(umn)) ? 0 : umn;
+
+			// Compute these for later use.
+			var dMin:Number = Math.max(0, sz - mn);
+			var dMax:Number = Math.max(0, max - sz);
+
+			if (sz > 0 && sz < smallest)
+				smallest = sz;
+
+			oldChildSizes.push(new ChildSizeInfo(sz, mn, max, dMin, dMax));
+		}
+
+		// Remember the smallest child size we saw.
+		oldChildSizes.push(new ChildSizeInfo((smallest == Number.MAX_VALUE) ? 1 : smallest));
+	}
 
 	/**
 	 *  @private
 	 */
-//	private function cacheChildSizes():void
-//	{
-//		oldChildSizes = []; // clear or store
-//		
-//		cacheSizes();
-//	}
+	private function cacheChildSizes():void
+	{
+		oldChildSizes = []; // clear or store
+
+		cacheSizes();
+	}
 
 	/**
 	 *  @private
 	 */
-//	private function mouseMoveHandler(event:MouseEvent):void
-//	{
-//		dragDelta = limitDelta(getMousePosition(event) - dragStartPosition);
-//
-//		var dividerEvent:DividerEvent = 
-//            new DividerEvent(DividerEvent.DIVIDER_DRAG);
-//		dividerEvent.dividerIndex = activeDividerIndex;
-//		dividerEvent.delta = dragDelta;
-//		dispatchEvent(dividerEvent);
-//
-//		if (liveDragging)
-//		{
-//			adjustChildSizes();
-//
-//			invalidateDisplayList();
-//			
-//			updateDisplayList(unscaledWidth, unscaledHeight);
-//		}
-//		else
-//		{
-//			if (isVertical())
-//				activeDivider.move(0, activeDividerStartPosition + dragDelta);
-//			else
-//				activeDivider.move(activeDividerStartPosition + dragDelta, 0);
-//		}
-//	}
+	private function mouseMoveHandler(event:MouseEvent):void
+	{
+		dragDelta = limitDelta(getMousePosition(event) - dragStartPosition);
+
+
+
+		var dividerEvent:DividerEvent =
+            new DividerEvent(DividerEvent.DIVIDER_DRAG);
+		dividerEvent.dividerIndex = activeDividerIndex;
+		dividerEvent.delta = dragDelta;
+		dispatchEvent(dividerEvent);
+
+		if (liveDragging)
+		{
+			adjustChildSizes();
+
+			invalidateDisplayList();
+
+			updateDisplayList(unscaledWidth, unscaledHeight);
+		}
+		else
+		{
+			if (isVertical())
+				activeDivider.move(0, activeDividerStartPosition + dragDelta);
+			else
+				activeDivider.move(activeDividerStartPosition + dragDelta, 0);
+		}
+	}
 
 	/**
 	 *  @private
@@ -1027,52 +1102,55 @@ public class DividedBox extends Box
 	 *  @param trigger May be null if the event is not a MouseEvent but
 	 *  a mouse event from another sandbox.
 	 */
-//	mx_internal function stopDividerDrag(divider:BoxDivider,
-//                                         trigger:MouseEvent):void
-//	{
-//	    if (trigger)
-//		  dragDelta = limitDelta(getMousePosition(trigger) - dragStartPosition);
-//
-//		var event:DividerEvent = 
-//            new DividerEvent(DividerEvent.DIVIDER_RELEASE);
-//		event.dividerIndex = activeDividerIndex;
-//		event.delta = dragDelta;
-//        dispatchEvent(event);
-//
-//        if (!liveDragging)
-//		{
-//			if (dragDelta == 0)
-//				getDividerAt(activeDividerIndex).state = DividerState.OVER;
-//
-//			if (activeDivider)
-//				dividerLayer.removeChild(activeDivider);
-//			activeDivider = null;
-//			
-//			adjustChildSizes();
-//
-//			invalidateSize();
-//			invalidateDisplayList();
-//		}
-//
-//		resetDividerTracking();
-//		systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
-//        systemManager.deployMouseShields(false);
-//	}
+	mx_internal function stopDividerDrag(divider:BoxDivider,
+                                         trigger:MouseEvent):void
+	{
+	    if (trigger)
+		  dragDelta = limitDelta(getMousePosition(trigger) - dragStartPosition);
+
+		var event:DividerEvent =
+            new DividerEvent(DividerEvent.DIVIDER_RELEASE);
+		event.dividerIndex = activeDividerIndex;
+		event.delta = dragDelta;
+        dispatchEvent(event);
+
+       if (!liveDragging)
+		{
+			if (dragDelta == 0)
+				getDividerAt(activeDividerIndex).state = 'over';//DividerState.OVER;
+
+			if (activeDivider)
+				dividerLayer.removeChild(activeDivider);
+			activeDivider = null;
+
+			adjustChildSizes();
+
+			invalidateSize();
+			invalidateDisplayList();
+		}
+
+		resetDividerTracking();
+	//	systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+    //    systemManager.deployMouseShields(false);
+
+		systemManager.removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+		//systemManager.deployMouseShields(false);
+	}
 
 	/**
 	 *  @private
 	 */
-//	private function resetDividerTracking():void
-//	{
-// 		activeDivider = null;
-//		activeDividerIndex = -1;
-//		activeDividerStartPosition = NaN;
-//		dragStartPosition = NaN;
-//		dragDelta = NaN;
-//		oldChildSizes = null;
-//		minDelta = NaN;
-//		maxDelta = NaN;
-//	}
+	private function resetDividerTracking():void
+	{
+ 		activeDivider = null;
+		activeDividerIndex = -1;
+		activeDividerStartPosition = NaN;
+		dragStartPosition = NaN;
+		dragDelta = NaN;
+		oldChildSizes = null;
+		minDelta = NaN;
+		maxDelta = NaN;
+	}
 
 	/**
 	 *  @private
@@ -1085,85 +1163,85 @@ public class DividedBox extends Box
  	 *  divider will move.  In this way dividers will
 	 *  cascade.
   	 */
-//	private function computeAllowableMovement(at:int):void
-//	{
-//		// We break the computation into two loops, 
-//		// so that we can calc min and max travel
-//		// independently as one would move the divider
-//		// either up or down.
-//		var deltaMinAbove:Number = 0;
-//		var deltaMaxAbove:Number = 0;
-//		var deltaMinBelow:Number = 0;
-//		var deltaMaxBelow:Number = 0;
-//		
-//        var n:int = numLayoutChildren;
-//		var i:int;
-//		var child:ChildSizeInfo;
-//
-//		if (at < 0)
-//			return;
-//			
-//        for (i = at; i >= 0; i--)
-//		{	
-//			child = ChildSizeInfo(oldChildSizes[i]);
-//			
-//			deltaMinAbove += (dontCoalesceDividers && deltaMinAbove) ?
-//							 0 : child.deltaMin;
-//			
-//			deltaMaxAbove += (dontCoalesceDividers && deltaMaxAbove) ?
-//							 0 : child.deltaMax;
-//		}
-//
-//		for (i = at + 1; i < n; i++)
-//		{
-//			child = ChildSizeInfo(oldChildSizes[i]);
-//			
-//			deltaMinBelow += (dontCoalesceDividers && deltaMinBelow) ?
-//							 0 : child.deltaMin;
-//			
-//			deltaMaxBelow += (dontCoalesceDividers && deltaMaxBelow) ?
-//							 0 : child.deltaMax;
-//		}
-//
-//		// Now the maximum movement we can have if
-//		// the divider is moved up is equal to the 
-//		// smaller of how much we can shrink all
-//		// components above our divider or the 
-//		// maximum of how much the components below
-//		// our divider can grow. Similarly for the 
-//		// divider moving in the opposite direction.
-//		var deltaUp:Number = Math.min(deltaMinAbove, deltaMaxBelow);
-//		var deltaDn:Number = Math.min(deltaMinBelow, deltaMaxAbove);
-//
-//		// deltaUp needs to be in -ve in order for our 
-//		// update logic to work
-//		minDelta = -deltaUp;
-//		maxDelta = deltaDn;
-//	}
+	private function computeAllowableMovement(at:int):void
+	{
+		// We break the computation into two loops,
+		// so that we can calc min and max travel
+		// independently as one would move the divider
+		// either up or down.
+		var deltaMinAbove:Number = 0;
+		var deltaMaxAbove:Number = 0;
+		var deltaMinBelow:Number = 0;
+		var deltaMaxBelow:Number = 0;
+
+        var n:int = numLayoutChildren;
+		var i:int;
+		var child:ChildSizeInfo;
+
+		if (at < 0)
+			return;
+
+        for (i = at; i >= 0; i--)
+		{
+			child = ChildSizeInfo(oldChildSizes[i]);
+
+			deltaMinAbove += (dontCoalesceDividers && deltaMinAbove) ?
+							 0 : child.deltaMin;
+
+			deltaMaxAbove += (dontCoalesceDividers && deltaMaxAbove) ?
+							 0 : child.deltaMax;
+		}
+
+		for (i = at + 1; i < n; i++)
+		{
+			child = ChildSizeInfo(oldChildSizes[i]);
+
+			deltaMinBelow += (dontCoalesceDividers && deltaMinBelow) ?
+							 0 : child.deltaMin;
+
+			deltaMaxBelow += (dontCoalesceDividers && deltaMaxBelow) ?
+							 0 : child.deltaMax;
+		}
+
+		// Now the maximum movement we can have if
+		// the divider is moved up is equal to the
+		// smaller of how much we can shrink all
+		// components above our divider or the
+		// maximum of how much the components below
+		// our divider can grow. Similarly for the
+		// divider moving in the opposite direction.
+		var deltaUp:Number = Math.min(deltaMinAbove, deltaMaxBelow);
+		var deltaDn:Number = Math.min(deltaMinBelow, deltaMaxAbove);
+
+		// deltaUp needs to be in -ve in order for our
+		// update logic to work
+		minDelta = -deltaUp;
+		maxDelta = deltaDn;
+	}
 
 	/**
 	 *  @private
   	 */
-//	private function computeMinAndMaxDelta():void
-//	{
-//		computeAllowableMovement(activeDividerIndex);
-//	}
+	private function computeMinAndMaxDelta():void
+	{
+		computeAllowableMovement(activeDividerIndex);
+	}
 
 	/**
 	 *  @private
   	 */
-//	private function limitDelta(delta:Number):Number
-//	{
-//		if (delta < minDelta)
-//			delta = minDelta;
-//		else if (delta > maxDelta)
-//			delta = maxDelta;
-//
-//		// Make sure it is not fractional,
-//		// otherwise we lose pixels. (Bug 87339)
-//		delta = Math.round(delta);
-//		return delta;
-//	}
+	private function limitDelta(delta:Number):Number
+	{
+		if (delta < minDelta)
+			delta = minDelta;
+		else if (delta > maxDelta)
+			delta = maxDelta;
+
+		// Make sure it is not fractional,
+		// otherwise we lose pixels. (Bug 87339)
+		delta = Math.round(delta);
+		return delta;
+	}
 
 	/**
 	 *  @private
@@ -1176,112 +1254,112 @@ public class DividedBox extends Box
 	 *  in one direction we are shrinking and 
      *  in the other we are growing.
 	 */
-//	private function distributeDelta():void
-//	{
-//		// if there is no movement of divider we need not
-//		// do any child resizing.
-//		if (!dragDelta)
-//			return;
-//
-//		var vertical:Boolean = isVertical();
-//        var n:int = numLayoutChildren;
-//		var k:int = activeDividerIndex;
-//		var smallest:Number = oldChildSizes[n].size -
-//			Math.abs(dragDelta); // smallest possible child size
-//		
-//		if (smallest <= 0 || isNaN(smallest))
-//			smallest = 1;
-//
-//		var i:int;
-//		var size:ChildSizeInfo;
-//		var move:Number;
-//		var newSize:Number;
-//		var child:IUIComponent;
-//		var childSize:Number;
-//		
-//        // Find the index of the child before the active divider
-//        var activeDividerChildIndex:int = -1;
-//        var dividerIndex:int = -1;
-//        while (dividerIndex < activeDividerIndex)
-//        {
-//            if (UIComponent(getChildAt(++activeDividerChildIndex)).includeInLayout)
-//                ++dividerIndex;
-//        }
-//
-//		// Distribute space starting from the center and 
-//		// moving upwards.
-//        var curChildIndex:int = activeDividerChildIndex;
-//		var amt:Number = dragDelta;
-//        for (i = k; i >= 0; i--)
-//		{
-//			// If dragDelta -ve  => shrink upper components
-//			// otherwise grow them.
-//			size = ChildSizeInfo(oldChildSizes[i]);
-//			move = (amt < 0) ?
-//				   -Math.min(-amt, size.deltaMin) :
-//				   Math.min(amt, size.deltaMax);
-//
-//			// Adjust the component and reduce the remaining delta
-//			newSize = size.size + move;
-//			amt -= move;
-//
-//            // Find the previous child included in the layout
-//            do
-//            {
-//                 child = IUIComponent(getChildAt(curChildIndex--));
-//            }
-//            while (!child.includeInLayout);
-//
-//			// Adjust the child size.
-//			childSize = (newSize / smallest) * 100;
-//			
-//			if (vertical)
-//				child.percentHeight = childSize;
-//			else
-//				child.percentWidth = childSize;
-//
-//			// Force a re-measure.
-//			if (child is IInvalidating)
-//				IInvalidating(child).invalidateSize();
-//		}
-//
-//		// assert(amt == 0)
-//
-//		// Now do the same distribution but moving downwards.
-//        curChildIndex = activeDividerChildIndex + 1;
-//		amt = dragDelta;
-//		for (i = k + 1; i < n; i++)
-//		{
-//			// If dragDelta -ve  => grow lower components
-//			// otherwise shrink them.
-//			size = ChildSizeInfo(oldChildSizes[i]);
-//			move = (amt < 0) ?
-//				   Math.min(-amt, size.deltaMax) :
-//				   -Math.min(amt, size.deltaMin);
-//
-//			// Adjust the component and reduce the remaining delta.
-//			newSize = size.size + move;
-//			amt += move;
-//
-//            // Find the next child included in the layout
-//            do
-//            {
-//                 child = IUIComponent(getChildAt(curChildIndex++));
-//            }
-//            while (!child.includeInLayout);
-//
-//			childSize = (newSize / smallest) * 100;
-//			
-//			if (vertical)
-//				child.percentHeight = childSize;
-//			else
-//				child.percentWidth = childSize;
-//
-//			// Force a re-measure.
-//			if (child is IInvalidating)
-//				IInvalidating(child).invalidateSize();
-//		}
-//	}
+	private function distributeDelta():void
+	{
+		// if there is no movement of divider we need not
+		// do any child resizing.
+		if (!dragDelta)
+			return;
+
+		var vertical:Boolean = isVertical();
+        var n:int = numLayoutChildren;
+		var k:int = activeDividerIndex;
+		var smallest:Number = oldChildSizes[n].size -
+			Math.abs(dragDelta); // smallest possible child size
+
+		if (smallest <= 0 || isNaN(smallest))
+			smallest = 1;
+
+		var i:int;
+		var size:ChildSizeInfo;
+		var move:Number;
+		var newSize:Number;
+		var child:IUIComponent;
+		var childSize:Number;
+
+        // Find the index of the child before the active divider
+        var activeDividerChildIndex:int = -1;
+        var dividerIndex:int = -1;
+        while (dividerIndex < activeDividerIndex)
+        {
+            if (UIComponent(getChildAt(++activeDividerChildIndex)).includeInLayout)
+                ++dividerIndex;
+        }
+
+		// Distribute space starting from the center and
+		// moving upwards.
+        var curChildIndex:int = activeDividerChildIndex;
+		var amt:Number = dragDelta;
+        for (i = k; i >= 0; i--)
+		{
+			// If dragDelta -ve  => shrink upper components
+			// otherwise grow them.
+			size = ChildSizeInfo(oldChildSizes[i]);
+			move = (amt < 0) ?
+				   -Math.min(-amt, size.deltaMin) :
+				   Math.min(amt, size.deltaMax);
+
+			// Adjust the component and reduce the remaining delta
+			newSize = size.size + move;
+			amt -= move;
+
+            // Find the previous child included in the layout
+            do
+            {
+                 child = IUIComponent(getChildAt(curChildIndex--));
+            }
+            while (!child.includeInLayout);
+
+			// Adjust the child size.
+			childSize = (newSize / smallest) * 100;
+
+			if (vertical)
+				child.percentHeight = childSize;
+			else
+				child.percentWidth = childSize;
+
+			// Force a re-measure.
+			if (child is IInvalidating)
+				IInvalidating(child).invalidateSize();
+		}
+
+		// assert(amt == 0)
+
+		// Now do the same distribution but moving downwards.
+        curChildIndex = activeDividerChildIndex + 1;
+		amt = dragDelta;
+		for (i = k + 1; i < n; i++)
+		{
+			// If dragDelta -ve  => grow lower components
+			// otherwise shrink them.
+			size = ChildSizeInfo(oldChildSizes[i]);
+			move = (amt < 0) ?
+				   Math.min(-amt, size.deltaMax) :
+				   -Math.min(amt, size.deltaMin);
+
+			// Adjust the component and reduce the remaining delta.
+			newSize = size.size + move;
+			amt += move;
+
+            // Find the next child included in the layout
+            do
+            {
+                 child = IUIComponent(getChildAt(curChildIndex++));
+            }
+            while (!child.includeInLayout);
+
+			childSize = (newSize / smallest) * 100;
+
+			if (vertical)
+				child.percentHeight = childSize;
+			else
+				child.percentWidth = childSize;
+
+			// Force a re-measure.
+			if (child is IInvalidating)
+				IInvalidating(child).invalidateSize();
+		}
+	}
 
 	/**
 	 *  @private
@@ -1293,10 +1371,10 @@ public class DividedBox extends Box
      *  in the DividedBox in this case, the dividers above 
      *  and below the fixed component move in unison.
 	 */
-//	private function adjustChildSizes():void
-//	{
-//		distributeDelta();
-//	}
+	private function adjustChildSizes():void
+	{
+		distributeDelta();
+	}
 
 	/**
 	 *  @private
@@ -1312,145 +1390,145 @@ public class DividedBox extends Box
 	 *  percentages evenly across all % components.
 	 * 
 	 */
-//	private function preLayoutAdjustment():void
-//	{
-//		// Calculate the total %
-//		var vertical:Boolean = isVertical();
-//		
-//		var totalPerc:Number = 0;
-//		var percCount:Number = 0;
-//		
-//		var n:int = numChildren;
-//		var i:int;
-//		var child:IUIComponent;
-//		var perc:Number;
-//
-//		for (i = 0; i < n; i++)
-//		{
-//			child = getLayoutChildAt(i);
-//
-//			if (!child.includeInLayout)
-//				continue;
-//
-//			// Clear out measured min/max
-//			// so super.layout() doesn't use them.
-//			child.measuredMinWidth = 0; 
-//			child.measuredMinHeight = 0;
-//
-//			perc = vertical ? child.percentHeight : child.percentWidth;
-//			
-//			if (!isNaN(perc))
-//			{
-//				totalPerc += perc;
-//				percCount++;
-//			}
-//		}
-//
-//        // during preLayoutAdjustment, we make some changes to the children's
-//        // widths and heights.  We keep track of the original values in postLayoutChanges
-//        // so we can later go back and reset them so another layout pass is working 
-//        // with the correct values rather than these modified values.
-//        postLayoutChanges = [];
-//        var changeObject:Object;
-//
-//		// No flexible children, so we make the last one 100%.
-//		if (totalPerc == 0 && percCount == 0)
-//		{
-//            // Everyone is fixed and we can give 100% to the last
-//            // included in layout one without concern.
-//            for (i = n-1; i >= 0; i--)
-//			{
-//                child = UIComponent(getChildAt(i));
-//				if (child.includeInLayout)
-//				{
-//                    // create a changeObject to keep track of the original values 
-//                    // that this child had for width and height
-//                    changeObject = {child: child};
-//					if (vertical)
-//                    {
-//                        // we know there's no percentHeight originally
-//                        if (child.explicitHeight)
-//                            changeObject.explicitHeight = child.explicitHeight;
-//                        else 
-//                            changeObject.percentHeight = NaN;
-//                        
-//						child.percentHeight = 100;
-//                    }
-//					else
-//                    {
-//                        // we know there's no percentWidth originally
-//                        if (child.explicitWidth)
-//                            changeObject.explicitWidth = child.explicitWidth;
-//                        else if (child.percentWidth)
-//                            changeObject.percentWidth = NaN;
-//                        
-//						child.percentWidth = 100;
-//                    }
-//                    postLayoutChanges.push(changeObject);
-//                    break;
-//				}
-//			}
-//		}
-//		else if (totalPerc < 100)
-//		{
-//			// We have some %s but they don't total to 100, so lets
-//			// distribute the delta across all of them and in the
-//			// meantime normalize all %s to unscaledHeight/Width.
-//			// The normalization takes care of the case where any one
-//			// of the components hits a min/max limit on their size,
-//			// which could result in the others filling less than 100%.
-//			var delta:Number = Math.ceil((100 - totalPerc) / percCount);
-//			for (i = 0; i < n; i++)
-//			{
-//				child = getLayoutChildAt(i);
-//
-//				if (!child.includeInLayout)
-//					continue;
-//				
-//                changeObject = {child: child};
-//
-//				if (vertical)
-//				{
-//					perc = child.percentHeight;
-//					if (!isNaN(perc))
-//                    {
-//                        changeObject.percentHeight = child.percentHeight;
-//                        postLayoutChanges.push(changeObject);
-//                        
-//						child.percentHeight = (perc + delta) * unscaledHeight;
-//				}
-//				}
-//				else
-//				{
-//					perc = child.percentWidth;
-//					if (!isNaN(perc))
-//                    {
-//                        changeObject.percentWidth = child.percentWidth;
-//                        postLayoutChanges.push(changeObject);
-//                        
-//						child.percentWidth = (perc + delta) * unscaledWidth;
-//				}
-//			}
-//		}
-//        }
-//
-//		// OK after all this magic we still can't guarantee that the space is
-//		// entirely filled. For example, all percent components hit their max
-//		// values. In this case, the layout will include empty space at the end,
-//		// and once the divider is touched, the non-percent based components
-//		// will be converted into percent based ones and fill the remaining
-//		// space. It seems to me that this scenario is highly unlikely.
-//		// Thus I've choosen the route of stretching the percent based
-//		// components and not touching the explicitly sized or default
-//		// sized ones.
-//		//
-//		// Another option would be to stretch the default sized components
-//		// either in addition to the percent based ones or instead of.
-//		// This seemed a  little odd to me as the user never indicated
-//		// that these components are to be stretched initially, so in the end
-//		// I choose to tweak the components that the user has indicated
-//		// as being stretchable. 
-//	}
+	private function preLayoutAdjustment():void
+	{
+		// Calculate the total %
+		var vertical:Boolean = isVertical();
+
+		var totalPerc:Number = 0;
+		var percCount:Number = 0;
+
+		var n:int = numChildren;
+		var i:int;
+		var child:IUIComponent;
+		var perc:Number;
+
+		for (i = 0; i < n; i++)
+		{
+			child = getLayoutChildAt(i);
+
+			if (!child.includeInLayout)
+				continue;
+
+			// Clear out measured min/max
+			// so super.layout() doesn't use them.
+			child.measuredMinWidth = 0;
+			child.measuredMinHeight = 0;
+
+			perc = vertical ? child.percentHeight : child.percentWidth;
+
+			if (!isNaN(perc))
+			{
+				totalPerc += perc;
+				percCount++;
+			}
+		}
+
+        // during preLayoutAdjustment, we make some changes to the children's
+        // widths and heights.  We keep track of the original values in postLayoutChanges
+        // so we can later go back and reset them so another layout pass is working
+        // with the correct values rather than these modified values.
+        postLayoutChanges = [];
+        var changeObject:Object;
+
+		// No flexible children, so we make the last one 100%.
+		if (totalPerc == 0 && percCount == 0)
+		{
+            // Everyone is fixed and we can give 100% to the last
+            // included in layout one without concern.
+            for (i = n-1; i >= 0; i--)
+			{
+                child = UIComponent(getChildAt(i));
+				if (child.includeInLayout)
+				{
+                    // create a changeObject to keep track of the original values
+                    // that this child had for width and height
+                    changeObject = {child: child};
+					if (vertical)
+                    {
+                        // we know there's no percentHeight originally
+                        if (child.explicitHeight)
+                            changeObject.explicitHeight = child.explicitHeight;
+                        else
+                            changeObject.percentHeight = NaN;
+
+						child.percentHeight = 100;
+                    }
+					else
+                    {
+                        // we know there's no percentWidth originally
+                        if (child.explicitWidth)
+                            changeObject.explicitWidth = child.explicitWidth;
+                        else if (child.percentWidth)
+                            changeObject.percentWidth = NaN;
+
+						child.percentWidth = 100;
+                    }
+                    postLayoutChanges.push(changeObject);
+                    break;
+				}
+			}
+		}
+		else if (totalPerc < 100)
+		{
+			// We have some %s but they don't total to 100, so lets
+			// distribute the delta across all of them and in the
+			// meantime normalize all %s to unscaledHeight/Width.
+			// The normalization takes care of the case where any one
+			// of the components hits a min/max limit on their size,
+			// which could result in the others filling less than 100%.
+			var delta:Number = Math.ceil((100 - totalPerc) / percCount);
+			for (i = 0; i < n; i++)
+			{
+				child = getLayoutChildAt(i);
+
+				if (!child.includeInLayout)
+					continue;
+
+                changeObject = {child: child};
+
+				if (vertical)
+				{
+					perc = child.percentHeight;
+					if (!isNaN(perc))
+                    {
+                        changeObject.percentHeight = child.percentHeight;
+                        postLayoutChanges.push(changeObject);
+
+						child.percentHeight = (perc + delta) * unscaledHeight;
+				}
+				}
+				else
+				{
+					perc = child.percentWidth;
+					if (!isNaN(perc))
+                    {
+                        changeObject.percentWidth = child.percentWidth;
+                        postLayoutChanges.push(changeObject);
+
+						child.percentWidth = (perc + delta) * unscaledWidth;
+				}
+			}
+		}
+        }
+
+		// OK after all this magic we still can't guarantee that the space is
+		// entirely filled. For example, all percent components hit their max
+		// values. In this case, the layout will include empty space at the end,
+		// and once the divider is touched, the non-percent based components
+		// will be converted into percent based ones and fill the remaining
+		// space. It seems to me that this scenario is highly unlikely.
+		// Thus I've choosen the route of stretching the percent based
+		// components and not touching the explicitly sized or default
+		// sized ones.
+		//
+		// Another option would be to stretch the default sized components
+		// either in addition to the percent based ones or instead of.
+		// This seemed a  little odd to me as the user never indicated
+		// that these components are to be stretched initially, so in the end
+		// I choose to tweak the components that the user has indicated
+		// as being stretchable.
+	}
 
     /**
      *  @private
@@ -1459,7 +1537,7 @@ public class DividedBox extends Box
      *  so we can later go back and reset them so another layout pass is working 
      *  with the correct values rather than these modified values.
      */ 
-//    private var postLayoutChanges:Array;
+    private var postLayoutChanges:Array;
     
     /**
      *  @private
@@ -1468,29 +1546,29 @@ public class DividedBox extends Box
      *  postLayoutAdjustment() will reset the child's width or height
      *  back to what it was.
      */
-//    private function postLayoutAdjustment():void
-//    {
-//        // each object has a child property and may have a set of width/height 
-//        // properties that it would like to be set
-//        var len:int = postLayoutChanges.length;
-//        for (var i:int = 0; i < len; i++)
-//        {
-//            var changeObject:Object = postLayoutChanges[i];
-//            
-//            if (changeObject.percentWidth !== undefined)
-//                changeObject.child.percentWidth = changeObject.percentWidth;
-//            
-//            if (changeObject.percentHeight !== undefined)
-//                changeObject.child.percentHeight = changeObject.percentHeight;
-//            
-//            if (changeObject.explicitWidth !== undefined)
-//                changeObject.child.explicitWidth = changeObject.explicitWidth;
-//            
-//            if (changeObject.explicitHeight !== undefined)
-//                changeObject.child.explicitHeight = changeObject.explicitHeight;
-//        }
-//        postLayoutChanges = null;
-//    }
+    private function postLayoutAdjustment():void
+    {
+        // each object has a child property and may have a set of width/height
+        // properties that it would like to be set
+        var len:int = postLayoutChanges.length;
+        for (var i:int = 0; i < len; i++)
+        {
+            var changeObject:Object = postLayoutChanges[i];
+
+            if (changeObject.percentWidth !== undefined)
+                changeObject.child.percentWidth = changeObject.percentWidth;
+
+            if (changeObject.percentHeight !== undefined)
+                changeObject.child.percentHeight = changeObject.percentHeight;
+
+            if (changeObject.explicitWidth !== undefined)
+                changeObject.child.explicitWidth = changeObject.explicitWidth;
+
+            if (changeObject.explicitHeight !== undefined)
+                changeObject.child.explicitHeight = changeObject.explicitHeight;
+        }
+        postLayoutChanges = null;
+    }
 
 	//--------------------------------------------------------------------------
 	//
@@ -1498,170 +1576,239 @@ public class DividedBox extends Box
 	//
 	//--------------------------------------------------------------------------
 
+	private var ignoreChild:Boolean;
 	/**
 	 *  @private
 	 */
-//	private function childAddHandler(event:ChildExistenceChangedEvent):void
-//	{
-//		var child:DisplayObject = event.relatedObject;
-//
-//		child.addEventListener("includeInLayoutChanged",
-//                               child_includeInLayoutChangedHandler);
-//
-//        if (!IUIComponent(child).includeInLayout)
-//          return;
-//			
-//        numLayoutChildren++;
-//			
-//        if (numLayoutChildren > 1)
-//            createDivider(numLayoutChildren - 2);
-//			
-//		// Clear the cached values so that we do another 
-//		// measurement pass.
-//		dbMinWidth = NaN;
-//		dbMinHeight = NaN;
-//		dbPreferredWidth = NaN;
-//		dbPreferredHeight = NaN;
-//	}
+	private function childAddHandler(event:ChildExistenceChangedEvent):void
+	{
+		if (ignoreChild) return;
+		var child:IUIComponent/*DisplayObject*/ = event.relatedObject;
+
+		child.addEventListener("includeInLayoutChanged",
+                               child_includeInLayoutChangedHandler);
+
+        if (!IUIComponent(child).includeInLayout)
+          return;
+
+        numLayoutChildren++;
+
+        if (numLayoutChildren > 1)
+            createDivider(numLayoutChildren - 2);
+
+		// Clear the cached values so that we do another
+		// measurement pass.
+		dbMinWidth = NaN;
+		dbMinHeight = NaN;
+		dbPreferredWidth = NaN;
+		dbPreferredHeight = NaN;
+	}
 
 	/**
 	 *  @private
 	 */
-//	private function childRemoveHandler(event:ChildExistenceChangedEvent):void
-//	{
-//		var child:DisplayObject = event.relatedObject;
-//		
-//        child.removeEventListener("includeInLayoutChanged",
-//                                  child_includeInLayoutChangedHandler);
-//
-//        if (!IUIComponent(child).includeInLayout)
-//          return;
-//
-//			numLayoutChildren--;
-//	
-//		if (numLayoutChildren > 0)
-//			dividerLayer.removeChild(getDividerAt(numLayoutChildren - 1));
-//
-//		// Clear the cached values so that we do another 
-//		// measurement pass.
-//		dbMinWidth = NaN;
-//		dbMinHeight = NaN;
-//		dbPreferredWidth = NaN;
-//		dbPreferredHeight = NaN;
-//		invalidateSize();
-//	}
+	private function childRemoveHandler(event:ChildExistenceChangedEvent):void
+	{
+		var child:IUIComponent/*DisplayObject*/ = event.relatedObject;
+
+        child.removeEventListener("includeInLayoutChanged",
+                                  child_includeInLayoutChangedHandler);
+
+        if (!IUIComponent(child).includeInLayout)
+          return;
+
+			numLayoutChildren--;
+
+		if (numLayoutChildren > 0)
+			dividerLayer.removeChild(getDividerAt(numLayoutChildren - 1));
+
+		// Clear the cached values so that we do another
+		// measurement pass.
+		dbMinWidth = NaN;
+		dbMinHeight = NaN;
+		dbPreferredWidth = NaN;
+		dbPreferredHeight = NaN;
+		invalidateSize();
+	}
 	
 	/**
 	 *  @private
 	 *  When a child's includeInLayout changes, we either remove or add a
 	 *  divider.
 	 */
-//	private function child_includeInLayoutChangedHandler(event:Event):void
-//	{
-//		var child:UIComponent = UIComponent(event.target);
-//
-//		if (child.includeInLayout && ++numLayoutChildren > 1)
-//			createDivider(numLayoutChildren - 2);
-//
-//		else if (!child.includeInLayout && --numLayoutChildren > 0)
-//			dividerLayer.removeChild(getDividerAt(numLayoutChildren - 1));
-//
-//        // Clear the cached values so that we do another
-//        // measurement pass.
-//        dbMinWidth = NaN;
-//        dbMinHeight = NaN;
-//        dbPreferredWidth = NaN;
-//        dbPreferredHeight = NaN;
-//        invalidateSize();
-//	}
+	private function child_includeInLayoutChangedHandler(event:Event):void
+	{
+		var child:UIComponent = UIComponent(event.target);
+
+		if (child.includeInLayout && ++numLayoutChildren > 1)
+			createDivider(numLayoutChildren - 2);
+
+		else if (!child.includeInLayout && --numLayoutChildren > 0)
+			dividerLayer.removeChild(getDividerAt(numLayoutChildren - 1));
+
+        // Clear the cached values so that we do another
+        // measurement pass.
+        dbMinWidth = NaN;
+        dbMinHeight = NaN;
+        dbPreferredWidth = NaN;
+        dbPreferredHeight = NaN;
+        invalidateSize();
+	}
+
+
+	/**
+	 * @private
+	 * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+	 */
+	override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+	{
+		if (dividerLayer) {
+			addElementAt(c, super.numElements - 1, dispatchEvent);
+		} else {
+			super.addElement(c,dispatchEvent);
+		}
+	}
+
+	/**
+	 * @private
+	 * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+	 */
+	override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+	{
+		if (dividerLayer) {
+			//if ()
+		}
+
+		super.addElementAt(c,index,dispatchEvent)
+	}
+
+	/**
+	 * @private
+	 * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+	 */
+	override public function getElementIndex(c:IChild):int
+	{
+		return super.getElementIndex(c)
+	}
+
+	/**
+	 * @private
+	 * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+	 */
+	override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+	{
+		super.removeElement(c, dispatchEvent)
+	}
+
+	/**
+	 * @private
+	 * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+	 */
+	override public function get numElements():int
+	{
+		if (dividerLayer) {
+			return super.numElements - 1;
+		} else {
+			return super.numElements;
+		}
+	}
+
+	/**
+	 * @private
+	 * @royaleignorecoercion org.apache.royale.html.beads.TabNavigatorView
+	 */
+	override public function getElementAt(index:int):IChild
+	{
+		return super.getElementAt(index)
+	}
 	
 }
 
 }
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//  Helper class: ChildSizeInfo
-//
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+ // Helper class: ChildSizeInfo
+
+//////////////////////////////////////////////////////////////////////////////
 
 /**
  *  @private
  */
-//class ChildSizeInfo
-//{
-//	//--------------------------------------------------------------------------
-//	//
-//	//  Constructor
-//	//
-//	//--------------------------------------------------------------------------
-//	
-//	/**
-//	 *  @private
-//	 */
-//	public function ChildSizeInfo(size:Number,
-//								  min:Number = 0, max:Number = 0,
-//								  deltaMin:Number = 0, deltaMax:Number = 0)
-//	{
-//		super();
-//
-//		this.size = size;
-//		this.min = min;
-//		this.max = max;
-//		this.deltaMin = deltaMin;
-//		this.deltaMax = deltaMax;
-//	}
-//
-//	//--------------------------------------------------------------------------
-//	//
-//	//  Properties
-//	//
-//	//--------------------------------------------------------------------------
-//
-//	//----------------------------------
-//	//  deltaMin
-//	//----------------------------------
-//
-//	/**
-//	 *  @private
-//	 */
-//	public var deltaMin:Number;
-//
-//	//----------------------------------
-//	//  deltaMax
-//	//----------------------------------
-//
-//	/**
-//	 *  @private
-//	 */
-//	public var deltaMax:Number;
-//
-//	//----------------------------------
-//	//  min
-//	//----------------------------------
-//
-//	/**
-//	 *  @private
-//	 */
-//	public var min:Number;
-//
-//	//----------------------------------
-//	//  max
-//	//----------------------------------
-//
-//	/**
-//	 *  @private
-//	 */
-//	public var max:Number;
-//
-//	//----------------------------------
-//	//  size
-//	//----------------------------------
-//
-//	/**
-//	 *  @private
-//	 */
-//	public var size:Number;
-//}
+class ChildSizeInfo
+{
+	//--------------------------------------------------------------------------
+	//
+	//  Constructor
+	//
+	//--------------------------------------------------------------------------
+
+	/**
+	 *  @private
+	 */
+	public function ChildSizeInfo(size:Number,
+								  min:Number = 0, max:Number = 0,
+								  deltaMin:Number = 0, deltaMax:Number = 0)
+	{
+		super();
+
+		this.size = size;
+		this.min = min;
+		this.max = max;
+		this.deltaMin = deltaMin;
+		this.deltaMax = deltaMax;
+	}
+
+	//--------------------------------------------------------------------------
+	//
+	//  Properties
+	//
+	//--------------------------------------------------------------------------
+
+	//----------------------------------
+	//  deltaMin
+	//----------------------------------
+
+	/**
+	 *  @private
+	 */
+	public var deltaMin:Number;
+
+	//----------------------------------
+	//  deltaMax
+	//----------------------------------
+
+	/**
+	 *  @private
+	 */
+	public var deltaMax:Number;
+
+	//----------------------------------
+	//  min
+	//----------------------------------
+
+	/**
+	 *  @private
+	 */
+	public var min:Number;
+
+	//----------------------------------
+	//  max
+	//----------------------------------
+
+	/**
+	 *  @private
+	 */
+	public var max:Number;
+
+	//----------------------------------
+	//  size
+	//----------------------------------
+
+	/**
+	 *  @private
+	 */
+	public var size:Number;
+}
 
 

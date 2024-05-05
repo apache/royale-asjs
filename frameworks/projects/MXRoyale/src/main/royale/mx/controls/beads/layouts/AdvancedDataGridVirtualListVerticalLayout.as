@@ -349,6 +349,11 @@ package mx.controls.beads.layouts
 							(ir as IUIBase).width = hostWidth;
                             visibleIndexes.push(i);
                         }
+                        else {
+ //DELTA                    //update the width if it changed.
+                            ir  = factory.getItemRendererForIndex(i, i - startIndex);
+                            (ir as IUIBase).width = hostWidth;
+                        }
                     }
                     visibleIndexes = visibleIndexes.sort(numberSort);
                     inLayout = false;

@@ -71,6 +71,7 @@ package mx.controls.listClasses
 		public function DataItemRendererFactoryForIListData()
 		{
 			super();
+            resetOnRemove = true;
 		}
         
         /**

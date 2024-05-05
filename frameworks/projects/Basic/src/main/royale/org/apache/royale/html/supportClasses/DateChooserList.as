@@ -24,15 +24,21 @@ package org.apache.royale.html.supportClasses
 	
 	public class DateChooserList extends List
 	{
+		private var _layout:TileLayout;
 		public function DateChooserList()
 		{
 			super();
 			
 			addBead(new Viewport());
 			
-			var tileLayout:TileLayout = new TileLayout();
+			var tileLayout:TileLayout = _layout = new TileLayout();
 			tileLayout.numColumns = 7;
 			addBead(tileLayout);
+		}
+
+		override public function set rowHeight(value:Number):void{
+			super.rowHeight = value;
+			_layout.rowHeight = value;
 		}
 	}
 }

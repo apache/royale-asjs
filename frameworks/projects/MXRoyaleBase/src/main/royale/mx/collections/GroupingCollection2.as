@@ -1268,7 +1268,9 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         }
         
         flatCursor.seek(currentPosition);
-        
+//@todo review the following line, GD added a hack-fix :
+        newCollection.source.length = 0;
+    //-----------end of hack-fix ---
         while(!flatCursor.afterLast && currentPosition != CursorBookmark.LAST)
         {
             currentData = flatCursor.current;

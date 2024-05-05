@@ -22,6 +22,7 @@ package mx.net.beads
 import org.apache.royale.events.DetailEvent;
 import org.apache.royale.file.IFileModel;
 import mx.events.DataEvent;
+import mx.events.ProgressEvent;
 
 import org.apache.royale.net.URLRequestHeader;
 
@@ -93,6 +94,7 @@ public class FileUploaderUsingFormData extends FileUploader
 		}
 	}
 
+
 	COMPILE::JS
 	private function trackUpload():void{
 		var xhr:XMLHttpRequest = this.xhr;
@@ -106,6 +108,23 @@ public class FileUploaderUsingFormData extends FileUploader
 	}
 
 
+
+	override public function cancel():void
+	{
+		// TODO maybe save a reference to binaryUploader
+		//binaryUploader.close();
+		COMPILE::JS
+		{
+			if (xhr) {
+				_canceled = true;
+				xhr.abort();
+			}
+		}
+
+	}
+
+	private var _canceled:Boolean;
+
 	/**
 	 *  Upload is progressing (JS only).
 	 *
@@ -117,17 +136,25 @@ public class FileUploaderUsingFormData extends FileUploader
 	COMPILE::JS
 	private function xhr_upload(event:Object):void
 	{
-		/*
 		var progEv:ProgressEvent = new ProgressEvent(ProgressEvent.PROGRESS);
-		progEv.current = bytesLoaded = error.loaded;
+
+		/*progEv.current = bytesLoaded = error.loaded;
 		progEv.total = bytesTotal = error.total;
 		
 		dispatchEvent(progEv);
 		if(onProgress)
-			onProgress(this);
-		*/
+			onProgress(this);*/
+		
 
 		trace('xhr_upload:',event);
+
+		progEv.current = event.loaded;
+		progEv.total = event.total;
+		host.dispatchEvent(progEv);
+		//dispatchEvent(progEv);
+		/*if(onProgress)
+			onProgress(this);*/
+
 	}
 
 	/**
@@ -147,8 +174,13 @@ public class FileUploaderUsingFormData extends FileUploader
 			return;
 		if(xhr.status == 0)
 		{
-			//Error. We don't know if there's a network error or a CORS error so there's no detail
-			host.dispatchEvent(new DetailEvent("communicationError"));
+			if (!_canceled)
+				//Error. We don't know if there's a network error or a CORS error so there's no detail
+				host.dispatchEvent(new DetailEvent("communicationError"));
+			else {
+				//restore state, there is no cancel event etc here, just simply 'stop'
+				_canceled = false;
+			}
 		}
 		else if(xhr.status < 200)
 		{

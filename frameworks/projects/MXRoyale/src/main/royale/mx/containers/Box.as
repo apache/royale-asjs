@@ -216,6 +216,134 @@ public class Box extends Container
     //
     //--------------------------------------------------------------------------
 
+    /**
+     *  Calculates the default sizes and minimum and maximum values of the Box
+     *  container.
+     *
+     *  <p>If the Box container's <code>direction</code> property is set to
+     *  <code>BoxDirection.HORIZONTAL</code>, its <code>measuredWidth</code>
+     *  property is equal to the sum of default widths of all of its children,
+     *  plus the thickness of the borders, plus the left and right padding,
+     *  plus the horizontal gap between each child.
+     *  The value of the <code>measuredHeight</code> property is the maximum of
+     *  all the children's default heights, plus room for the borders and
+     *  padding.
+     *  If the Box container's <code>direction</code> property is set to
+     *  <code>BoxDirection.VERTICAL</code>, these two values are reversed.</p>
+     *
+     *  <p>The Box container's <code>minWidth</code> and <code>minHeight</code>
+     *  properties are calculated similarly, by combining the minimum widths
+     *  and minimum heights of the children.
+     *  If the child's <code>width</code> property is a percentage value,  the
+     *  Box container's minimum width is equal to the value of the child's
+     *  <code>minWidth</code> property.
+     *  If the child's <code>width</code> is unset or  set to a fixed value,
+     *  the child refuses to grow or shrink, so the Box container's minimum
+     *  width is equal to the value of the child's <code>explicitWidth</code>
+     *  property.
+     *  The child's minimum height is calculated similarly.</p>
+     *
+     *  <p>The Box container's <code>maxWidth</code> and
+     *  <code>maxHeight</code> properties are not calculated.
+     *  The Box container is assumed to have an infinite maximum width and
+     *  height.</p>
+     *
+     *  <p>All of the values described previously are the <i>measured</i>
+     *  widths and heights of the Box container.
+     *  The user can override the measured values by explicitly supplying
+     *  a value for the following properties:</p>
+     *
+     *  <ul>
+     *    <li><code>width</code></li>
+     *    <li><code>height</code></li>
+     *    <li><code>minWidth</code></li>
+     *    <li><code>minHeight</code></li>
+     *    <li><code>maxWidth</code></li>
+     *    <li><code>maxHeight</code></li>
+     *  </ul>
+     *
+     *  <p>You should not call the <code>measure()</code> method directly.
+     *  The Flex LayoutManager calls it at the appropriate time.
+     *  At application startup, the Flex LayoutManager attempts to measure
+     *  all components from the children to the parents before setting them
+     *  to their final sizes.</p>
+     *
+     *  <p>This is an advanced method for use in subclassing.
+     *  If you override this method, your implementation must call
+     *  the <code>super.measure()</code> method, or set the
+     *  <code>measuredHeight</code> and
+     *  <code>measuredWidth</code> properties.
+     *  You may also optionally set the following properties:</p>
+     *
+     *  <ul>
+     *    <li><code>measuredMinWidth</code></li>
+     *    <li><code>measuredMinHeight</code></li>
+     *  </ul>
+     *
+     *  <p>These properties correspond to the layout properties listed
+     *  previously and, therefore, are not separately documented.</p>
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override protected function measure():void
+    {
+        super.measure();
+
+        layoutObject.measure();
+    }
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  The default width of the component, in pixels.
+     *  This value is set by the <code>measure()</code> method.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get measuredWidth():Number
+    {
+        COMPILE::SWF {
+            return super.measuredWidth;
+        }
+        COMPILE::JS {
+            if (isNaN(_measuredWidth) || _measuredWidth </*=*/ 0) {
+                measure();
+            }
+            return super.measuredWidth
+        }
+    }
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  The default height of the component, in pixels.
+     *  This value is set by the <code>measure()</code> method.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get measuredHeight():Number
+    {
+        COMPILE::SWF {
+            return super.measuredHeight;
+        }
+        COMPILE::JS {
+            if (isNaN(_measuredHeight) || _measuredHeight </*=*/ 0) {
+                measure();
+            }
+            return super.measuredHeight;
+        }
+    }
+
+
 	override public function addedToParent():void
 	{
 		// set the layout bead based on the direction
@@ -310,7 +438,7 @@ public class Box extends Container
 	/**
 	 * @private
 	 */
-	protected function isVertical():Boolean
+	public function isVertical():Boolean
 	{
 		return _direction == BoxDirection.VERTICAL;
 	}

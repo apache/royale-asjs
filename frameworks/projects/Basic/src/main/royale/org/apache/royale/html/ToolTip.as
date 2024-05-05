@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	COMPILE::SWF
+import org.apache.royale.core.IToolTip;
+
+COMPILE::SWF
 	{
 		import flash.display.InteractiveObject;
 	}
@@ -44,7 +46,7 @@ package org.apache.royale.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */    
-    public class ToolTip extends Label
+    public class ToolTip extends Label implements IToolTip
 	{
         /**
          *  Constructor.

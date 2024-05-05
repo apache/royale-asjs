@@ -32,6 +32,14 @@ import flash.ui.Keyboard;
 import flash.utils.clearInterval;
 import flash.utils.getTimer;
 import flash.xml.XMLNode; */
+import org.apache.royale.utils.getOrAddBeadByType;
+import org.apache.royale.html.beads.DataGridDrawingLayerBead;
+import org.apache.royale.html.beads.SingleSelectionDragImageBead;
+import mx.controls.beads.XMLTreeSingleSelectionDragSourceBead;
+import mx.controls.beads.TreeSingleSelectionDragSourceBead;
+import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
+import mx.controls.beads.XMLTreeSingleSelectionDropTargetBead;
+import mx.controls.beads.TreeSingleSelectionDropTargetBead;
 import mx.collections.ArrayCollection;
 import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
@@ -80,15 +88,6 @@ import mx.managers.ISystemManager;
 use namespace mx_internal;
 
 import org.apache.royale.events.Event;
-import org.apache.royale.html.beads.DataGridDrawingLayerBead;
-import mx.controls.beads.TreeSingleSelectionDragSourceBead;
-import org.apache.royale.utils.getOrAddBeadByType;
-import org.apache.royale.html.beads.SingleSelectionDropTargetBead;
-import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
-import org.apache.royale.html.beads.SingleSelectionDragImageBead;
-import mx.controls.beads.XMLTreeSingleSelectionDragSourceBead;
-import mx.controls.beads.TreeSingleSelectionDropTargetBead;
-import mx.controls.beads.XMLTreeSingleSelectionDropTargetBead;
 
 //--------------------------------------
 //  Events
@@ -1196,6 +1195,8 @@ public class Tree extends List
         
         if (dataProviderChanged/* || showRootChanged || openItemsChanged*/)
         {
+            //porting notes, the model can retain selection from the previous dataProvider, clear it here, @todo investigate lower level fix
+            selectedIndex = -1;
             var tmpCollection:ICollectionView;
             //reset flags 
             
@@ -1776,7 +1777,16 @@ public class Tree extends List
                               dispatchEvent:Boolean = false,    
                               cause:Event = null):void
     {
-        trace("Tree:getItemIndex not implemented");
+        trace("Tree:expandItem WIP");
+
+        if (wrappedCollection) {
+            var hcv:HierarchicalCollectionView = HierarchicalCollectionView(wrappedCollection);
+            if (open) {
+                hcv.openNode(item)
+            } else {
+                hcv.closeNode(item)
+            }
+        }
     /*
         //if the iterator is null, that indicates we have not been 
         //validated yet, so we will not continue. 
@@ -3729,7 +3739,6 @@ public class Tree extends List
 		if (bFinishArrowKeySelection && selectedItem === proposedSelectedItem)
 			finishArrowKeySelection();
 	} */
-
     /**
      *  @private
      */
@@ -3746,7 +3755,6 @@ public class Tree extends List
      */
     override protected function setDragEnabled():void
     {
-        // getOrAddBeadByType(TreeSingleSelectionDragSourceBead, this);
         getOrAddBeadByType(TreeSingleSelectionDragSourceBead, this);
         getOrAddBeadByType(XMLTreeSingleSelectionDragSourceBead, this);
         getOrAddBeadByType(SingleSelectionDragImageBead, this);

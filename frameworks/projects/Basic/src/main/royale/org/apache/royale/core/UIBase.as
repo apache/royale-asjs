@@ -328,9 +328,13 @@ package org.apache.royale.core
 			}
 			COMPILE::JS {
 				this._percentWidth = value;
-				this.positioner.style.width = value.toString() + '%';
-				if (!isNaN(value))
+				if (!isNaN(value)) {
+					this.positioner.style.width = value.toString() + '%';
 					this._explicitWidth = NaN;
+				} else if ((this.positioner.style.width+'').indexOf('%') != -1) {
+					this.positioner.style.width = '';
+				}
+
 			}
 			
 			sendEvent(this,"percentWidthChanged");
@@ -372,9 +376,13 @@ package org.apache.royale.core
 				
 			COMPILE::JS {
 				this._percentHeight = value;
-				this.positioner.style.height = value.toString() + '%';
-				if (!isNaN(value))
+
+				if (!isNaN(value)) {
+					this.positioner.style.height = value.toString() + '%';
 					this._explicitHeight = NaN;
+				} else if ((this.positioner.style.height+'').indexOf('%') != -1) {
+					this.positioner.style.height = '';
+				}
 			}
 			
 			sendEvent(this,"percentHeightChanged");
@@ -635,8 +643,8 @@ package org.apache.royale.core
                 {
                     this.positioner.style.width = newWidth.toString() + 'px';        
                 }
-                if (!noEvent && !heightChanged) 
-                    sendEvent(this,"widthChanged");
+                /*if (!noEvent && !heightChanged)
+                    sendEvent(this,"widthChanged");*/
             }
             if (heightChanged)
             {
@@ -645,11 +653,19 @@ package org.apache.royale.core
                 {
                     this.positioner.style.height = newHeight.toString() + 'px';        
                 }
-                if (!noEvent && !widthChanged)
-                    sendEvent(this,"heightChanged");
-            }            
-			if (widthChanged && heightChanged)
-	            sendEvent(this,"sizeChanged");
+                /*if (!noEvent && !widthChanged)
+                    sendEvent(this,"heightChanged");*/
+            }
+
+			if (!noEvent) {
+				if (widthChanged && heightChanged)
+					sendEvent(this,"sizeChanged");
+				//we still need to send the individual events, because that is for bindings to work.
+				//but if we listen to all three, then the sizeChanged listener could set local state to ignore the next heightChanged/widthChanged events (e.g. mx Layouts)
+				if (heightChanged) sendEvent(this,"heightChanged");
+				if (widthChanged) sendEvent(this,"widthChanged");
+			}
+
         }
         
         /**

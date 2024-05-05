@@ -475,13 +475,13 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
     {
     }
     
-    public function get textDecoration():String
+    /*public function get textDecoration():String
     {
 	return null;
     }
     public function set textDecoration(val:String):void
     {
-    }
+    }*/
     
    private var _direction:String = "LTR";
 

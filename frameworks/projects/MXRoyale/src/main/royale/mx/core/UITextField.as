@@ -727,8 +727,8 @@ public class UITextField  extends UIComponent implements IUITextField
      //----------------------------------
      
           
-     COMPILE::JS
-     private var _text:String = "";
+  //   COMPILE::JS
+  //   private var _text:String = "";
      
      [Bindable("textChange")]
      /**
@@ -747,7 +747,8 @@ public class UITextField  extends UIComponent implements IUITextField
              }
              COMPILE::JS
              {
-                 return _text;
+                 //return _text;
+                 return this.element.textContent;
              }
      }
      
@@ -767,8 +768,8 @@ public class UITextField  extends UIComponent implements IUITextField
              {
                  //bindings can sometimes set this to undefined at runtime, which should be coerced to null
                  if (typeof value == 'undefined') value = null;
-                 _text = value;
-                 this.element.innerText = value;
+                 //_text = value;
+                 this.element.textContent = value;
                  this.dispatchEvent('textChange');
              }
              
@@ -1585,10 +1586,10 @@ public class UITextField  extends UIComponent implements IUITextField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    override public function get measuredHeight():Number
+    /*override public function get measuredHeight():Number
     {
     	return super.measuredHeight;
-       /*  validateNow();
+       /!*  validateNow();
         
         // If we use device fonts, then the unscaled height is 
         // textHeight * scaleX / scaleY
@@ -1598,8 +1599,8 @@ public class UITextField  extends UIComponent implements IUITextField
 
         const m:Matrix = transform.concatenatedMatrix;
         
-        return Math.abs((textHeight * m.a / m.d)) + TEXT_HEIGHT_PADDING; */
-    }
+        return Math.abs((textHeight * m.a / m.d)) + TEXT_HEIGHT_PADDING; *!/
+    }*/
 
     //----------------------------------
     //  measuredMinHeight
@@ -1661,10 +1662,10 @@ public class UITextField  extends UIComponent implements IUITextField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    override public function get measuredWidth():Number
+    /*override public function get measuredWidth():Number
     {
 	    return super.measuredWidth;
-       /*  validateNow();
+       /!*  validateNow();
         
         // If we use device fonts, then the unscaled width is 
         // textWidth * scaleX / scaleY
@@ -1674,8 +1675,8 @@ public class UITextField  extends UIComponent implements IUITextField
 
         const m:Matrix = transform.concatenatedMatrix;      
         
-        return Math.abs((textWidth * m.a / m.d)) + TEXT_WIDTH_PADDING; */
-    }
+        return Math.abs((textWidth * m.a / m.d)) + TEXT_WIDTH_PADDING; *!/
+    }*/
 
     //----------------------------------
     //  minHeight
@@ -3060,6 +3061,50 @@ public class UITextField  extends UIComponent implements IUITextField
 	 override public function set backgroundColor(value:Object):void {
 		_backgroundColor = value as uint;
 	 }
+
+
+    COMPILE::JS
+    override public function get measuredWidth():Number{
+        if (isNaN(_measuredWidth) || _measuredWidth </*=*/ 0) {
+            var oldHeight:Object = this.positioner.style.height;
+            if (this.isHeightSizedToContent()) {
+                //do we need to respect newlines and set whitespace?
+                if (oldHeight.length) this.positioner.style.height = '';
+            }
+            var oldRight:String = this.positioner.style.right;
+            if (oldRight.length) this.positioner.style.right = '';
+            var oldPosition:String = this.positioner.style.position;
+            this.positioner.style.position = 'fixed';
+            var superWidth:Number = super.measuredWidth;
+            this.positioner.style.position = oldPosition ? oldPosition : '';
+            if (oldRight.length) this.positioner.style.right = oldRight;
+            if (oldHeight.length) this.positioner.style.height = oldHeight;
+            return superWidth ? superWidth + 1 : 0; //round up by 1 pixel
+        }
+        return _measuredWidth;
+    }
+
+
+    COMPILE::JS
+    override public function get measuredHeight():Number{
+        if (isNaN(_measuredHeight) || _measuredHeight </*=*/ 0) {
+            var oldWidth:Object = this.positioner.style.width;
+            if (this.isWidthSizedToContent()) {
+                //do we need to respect newlines and set whitespace?
+                if (oldWidth.length) this.positioner.style.width = '';
+            }
+            var oldBottom:String = this.positioner.style.bottom;
+            if (oldBottom.length) this.positioner.style.bottom = '';
+            var oldPosition:String = this.positioner.style.position;
+            this.positioner.style.position = 'fixed';
+            var superHeight:Number = super.measuredHeight;
+            this.positioner.style.position = oldPosition ? oldPosition : '';
+            if (oldBottom.length) this.positioner.style.bottom = oldBottom;
+            if (oldWidth.length) this.positioner.style.width = oldWidth;
+            return superHeight ? superHeight + 1 : 0; //round up by 1 pixel
+        }
+        return _measuredHeight;
+    }
 }
 
 }

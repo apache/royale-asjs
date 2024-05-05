@@ -29,6 +29,8 @@ import flash.text.StyleSheet;
 import flash.text.TextFormat;
 import flash.text.TextLineMetrics;
 */
+
+import mx.controls.beads.ToolTipBead;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
@@ -36,11 +38,11 @@ import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
 import mx.core.IUITextField;
+import mx.events.MouseEvent;
+import mx.utils.RoyaleUtil;
 import org.apache.royale.html.beads.ReversibleEllipsisOverflow;
-COMPILE::JS
-{
-    import org.apache.royale.html.beads.OverflowTooltipNeeded;
-}
+
+import org.apache.royale.events.ValueEvent;
 
 /*
 import mx.core.UITextField;
@@ -53,12 +55,11 @@ COMPILE::JS
 	import window.Text;
     import org.apache.royale.html.util.addElementToWrapper;
     import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.beads.OverflowTooltipNeeded;
 }
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.binding.ItemRendererDataBinding;
-import org.apache.royale.events.ValueEvent;
-import mx.controls.beads.ToolTipBead;
 
 //--------------------------------------
 //  Events
@@ -80,6 +81,28 @@ import mx.controls.beads.ToolTipBead;
  *  @productversion Flex 3
  */
 [Event(name="dataChange", type="mx.events.FlexEvent")]
+
+/**
+ *  Dispatched when a user clicks a hyperlink in text defined by the
+ *  <code>htmlText</code> property, where the URL begins with <code>"event:"</code>.
+ *  The remainder of the URL after
+ *  <code>"event:"</code> is placed in the text property of the <code>link</code> event object.
+ *
+ *  <p>When you handle the <code>link</code> event, the hyperlink is not automatically executed;
+ *  you need to execute the hyperlink from within your event handler.
+ *  You typically use the <code>navigateToURL()</code> method to execute the hyperlink.
+ *  This allows you to modify the hyperlink, or even prohibit it from occurring,
+ *  in your application. </p>
+ *
+ *  @eventType flash.events.TextEvent.LINK
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+//@todo unify this to mx.events.TextEvent (instead of flash.events.TextEvent) in flash
+[Event(name="link", type="mx.events.TextEvent")]
 
 /**
  *  Dispatched when the user clicks on a Label.
@@ -698,9 +721,19 @@ public class Label extends UIComponent
 		{
 			this.element.innerHTML = value;
 			this.dispatchEvent('textChange');
+            if (value && !linkListening) {
+                linkListening = true;
+                RoyaleUtil.linkEventEnhancer(this);
+            }
 		}
 		invalidateSize();
 	}
+
+    private var _truncationBead:ReversibleEllipsisOverflow;
+
+    COMPILE::JS
+    private var linkListening:Boolean;
+
 
     //----------------------------------
     //  text
@@ -734,6 +767,7 @@ public class Label extends UIComponent
 		}
 	}
 
+    private var _originalTruncateValue:Boolean;
 	/**
 	 *  @private
 	 */
@@ -750,6 +784,18 @@ public class Label extends UIComponent
 		{
 			if (textNode)
 			{
+                // figure out if we need to supress truncation based on newlines existence
+                var hadNewLines:Boolean = _text && _text.indexOf("\n") > -1;
+                var hasNewLines:Boolean = value && value.indexOf("\n") > -1;
+                if (hasNewLines && !hadNewLines)
+                {
+                    _originalTruncateValue = _truncateToFit;
+                    truncateToFit = false;
+                } else if (hadNewLines && !hasNewLines)
+                {
+                    truncateToFit = _originalTruncateValue;
+                }
+                // set text
 				_text = value;
 				textNode.nodeValue = value;
 				this.dispatchEvent('textChange');
@@ -772,25 +818,7 @@ public class Label extends UIComponent
 	/**
 	 *  @private
 	 */
-	COMPILE::SWF
-	override public function addedToParent():void
-	{
-		super.addedToParent();
-		model.addEventListener("textChange", repeaterListener);
-		model.addEventListener("htmlChange", repeaterListener);
-		//@todo check the following for swf:
-		//truncateToFit = _truncateToFit;
-	}
-
-	/**
-	 *  @private
-	 */
-	COMPILE::JS
-	override public function addedToParent():void
-	{
-		super.addedToParent();
-		truncateToFit = _truncateToFit;
-	}
+	
 
 	/**
 	 * @royaleignorecoercion window.Text
@@ -803,14 +831,98 @@ public class Label extends UIComponent
 		textNode = document.createTextNode(_text) as window.Text;
 		element.appendChild(textNode);
 
-		element.style.whiteSpace = "nowrap";
+		element.style.whiteSpace = "pre";
 		element.style.display = "inline-block";
 
 		return element;
 	}
 	
-    private var _truncationBead:ReversibleEllipsisOverflow;
-	
+    //----------------------------------
+    //  truncateToFit
+    //----------------------------------
+
+    /**
+     *  If this propery is <code>true</code>, and the Label control size is
+     *  smaller than its text, the text of the 
+     *  Label control is truncated using 
+     *  a localizable string, such as <code>"..."</code>.
+     *  If this property is <code>false</code>, text that does not fit is clipped.
+     * 
+     *  @default true
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    private var _truncateToFit:Boolean = true;
+    public function get truncateToFit():Boolean
+    {
+        return _truncateToFit;
+    }
+
+    private var _originalWhiteSpace:String;
+    
+    COMPILE::JS
+    public function set truncateToFit(value:Boolean):void
+    {
+        if (value && !_truncationBead && initialized)
+        {
+            _truncationBead = new ReversibleEllipsisOverflow();
+            addBead(_truncationBead);
+            if (!toolTip) // if no tooltip is given we will need to detect truncation and display one
+            {
+                addBead(new OverflowTooltipNeeded());
+            }
+            addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, tooltipNeededListener);
+            
+            _originalWhiteSpace = element.style.whiteSpace;
+            element.style.whiteSpace = "nowrap";
+        } else if (_truncationBead && _truncateToFit && !value)
+        {
+            _truncationBead.revert();
+            element.style.whiteSpace = _originalWhiteSpace;
+        } else if (_truncationBead && !_truncateToFit && value)
+        {
+            _truncationBead.apply();
+            element.style.whiteSpace = "nowrap";
+        }
+        _truncateToFit = value;
+    }
+    
+    COMPILE::SWF
+    public function set truncateToFit(value:Boolean):void
+    {
+        //@todo not sure about any of this for swf...
+        if (value && !_truncationBead && initialized)
+        {
+            _truncationBead = new ReversibleEllipsisOverflow();
+            addBead(_truncationBead);
+        } else if (_truncationBead && _truncateToFit && !value)
+        {
+            _truncationBead.revert();
+        } else if (_truncationBead && !_truncateToFit && value)
+        {
+            _truncationBead.apply();
+        }
+        _truncateToFit = value;
+    }
+    
+    COMPILE::JS
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        truncateToFit = _truncateToFit;
+    }
+    
+    COMPILE::SWF
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        truncateToFit = _truncateToFit;
+        model.addEventListener("textChange", repeaterListener);
+        model.addEventListener("htmlChange", repeaterListener);
+    }
 	
 	//----------------------------------
     //  textField
@@ -894,71 +1006,7 @@ public class Label extends UIComponent
         return _textWidth;
     }
 
-    //----------------------------------
-    //  truncateToFit
-    //----------------------------------
-
-    /**
-     *  If this propery is <code>true</code>, and the Label control size is
-     *  smaller than its text, the text of the 
-     *  Label control is truncated using 
-     *  a localizable string, such as <code>"..."</code>.
-     *  If this property is <code>false</code>, text that does not fit is clipped.
-     * 
-     *  @default true
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    private var _truncateToFit:Boolean = true;
-    public function get truncateToFit():Boolean
-    {
-        return _truncateToFit;
-    }
-
-    public function set truncateToFit(value:Boolean):void
-    {
-        if (value && !_truncationBead && initialized)
-        {
-            _truncationBead = new ReversibleEllipsisOverflow();
-            addBead(_truncationBead);
-            COMPILE::JS
-            {
-                if (!toolTip) // if no tooltip is given we will need to detect truncation and display one
-                {
-                    addBead(new OverflowTooltipNeeded());
-                }
-                addEventListener(OverflowTooltipNeeded.TOOL_TIP_NEEDED, truncationToolTipNeededListener);
-            }
-        } else if (_truncationBead && _truncateToFit && !value)
-        {
-            _truncationBead.revert();
-        } else if (_truncationBead && !_truncateToFit && value)
-        {
-            _truncationBead.apply();
-        }
-        _truncateToFit = value;
-    }
-    
-    COMPILE::JS
-    private function truncationToolTipNeededListener(event:ValueEvent):void
-    {
-        if (toolTip)
-        {
-            return;
-        }
-        if (!_toolTipBead)
-        {
-            _toolTipBead = new ToolTipBead();
-            addBead(_toolTipBead);
-        }
-        if (event.value)
-        {
-            _toolTipBead.toolTip = text;
-        }
-    }
+	
 
     //--------------------------------------------------------------------------
     //
@@ -975,6 +1023,91 @@ public class Label extends UIComponent
     //--------------------------------------------------------------------------
 
 
+
+
+
+	//--------------------------------------------------------------------------
+	//
+	//  Royale-specific overrides
+	//
+	//--------------------------------------------------------------------------
+
+	COMPILE::JS
+	override public function get measuredWidth():Number{
+		if (isNaN(_measuredWidth) || _measuredWidth </*=*/ 0) {
+			var oldHeight:Object = this.positioner.style.height;
+			if (this.isHeightSizedToContent()) {
+				//do we need to respect newlines and set whitespace?
+				if (oldHeight.length) this.positioner.style.height = '';
+			}
+            var oldRight:String = this.positioner.style.right;
+            if (oldRight.length) this.positioner.style.right = '';
+			var oldPosition:String = this.positioner.style.position;
+			this.positioner.style.position = 'fixed';
+            var oldPaddingLeft:Object = this.positioner.style.paddingLeft;
+            var oldPaddingRight:Object = this.positioner.style.paddingRight;
+            this.positioner.style.paddingLeft = this.positioner.style.paddingRight = '0';
+			var superWidth:Number = super.measuredWidth;
+			this.positioner.style.position = oldPosition ? oldPosition : '';
+            this.positioner.style.paddingLeft = oldPaddingLeft;
+            this.positioner.style.paddingRight = oldPaddingRight;
+            if (oldRight.length) this.positioner.style.right = oldRight;
+			if (oldHeight.length) this.positioner.style.height = oldHeight;
+			return superWidth ? superWidth + 1 : 0; //round up by 1 pixel
+		}
+		return _measuredWidth;
+	}
+
+    private function tooltipNeededListener(event:ValueEvent):void
+    {
+        //porting notes: this is a monkey patch form Yishay. to fix the Tooltip issue
+          if (toolTip)
+        {
+            return;
+        }
+        var onDemand:Boolean;
+        if (!_toolTipBead)
+        {
+            _toolTipBead = new ToolTipBead();
+            addBead(_toolTipBead);
+            onDemand = true
+        }
+        if (event.value)
+        {
+            _toolTipBead.toolTip = text;
+            if (onDemand) {
+                //fake a mouseover event for the bead to respond immediately
+                //not sure if this is really the best way, but is the easiest for now...
+                dispatchEvent(new mx.events.MouseEvent(mx.events.MouseEvent.MOUSE_OVER))
+            }
+        }
+    }
+
+	COMPILE::JS
+	override public function get measuredHeight():Number{
+		if (isNaN(_measuredHeight) || _measuredHeight </*=*/ 0) {
+			var oldWidth:Object = this.positioner.style.width;
+			if (this.isWidthSizedToContent()) {
+				//do we need to respect newlines and set whitespace?
+				if (oldWidth.length) this.positioner.style.width = '';
+			}
+            var oldBottom:String = this.positioner.style.bottom;
+            if (oldBottom.length) this.positioner.style.bottom = '';
+			var oldPosition:String = this.positioner.style.position;
+			this.positioner.style.position = 'fixed';
+            var oldPaddingTop:Object = this.positioner.style.paddingTop;
+            var oldPaddingBottom:Object = this.positioner.style.paddingBottom;
+            this.positioner.style.paddingTop = this.positioner.style.paddingBottom = '0';
+			var superHeight:Number = super.measuredHeight;
+			this.positioner.style.position = oldPosition ? oldPosition : '';
+            this.positioner.style.paddingTop = oldPaddingTop;
+            this.positioner.style.paddingBottom = oldPaddingBottom;
+            if (oldBottom.length) this.positioner.style.bottom = oldBottom;
+			if (oldWidth.length) this.positioner.style.width = oldWidth;
+			return superHeight ? superHeight + 1 : 0; //round up by 1 pixel
+		}
+		return _measuredHeight;
+	}
 }
 
 }

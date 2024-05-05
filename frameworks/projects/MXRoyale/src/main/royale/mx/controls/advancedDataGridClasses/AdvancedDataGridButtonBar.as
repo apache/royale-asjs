@@ -20,8 +20,10 @@
 package mx.controls.advancedDataGridClasses
 {
 
-    import mx.containers.beads.AdvancedDataGridHeaderLayout;
-    
+    import mx.controls.dataGridClasses.HeaderRendererFactoryForArrayData;
+
+    import org.apache.royale.core.IBead;
+
     import org.apache.royale.html.DataGridButtonBar;
 
     /**
@@ -41,6 +43,18 @@ package mx.controls.advancedDataGridClasses
             typeNames += " AdvancedDataGridButtonBar";
 
         }
+
+        /**
+         *
+         * @royaleignorecoercion mx.controls.dataGridClasses.HeaderRendererFactoryForArrayData
+         */
+        override public function addBead(bead:IBead):void{
+            super.addBead(bead);
+            if (bead is HeaderRendererFactoryForArrayData) {
+                HeaderRendererFactoryForArrayData(bead).setListDataClass(AdvancedDataGridListData);
+            }
+        }
+
         
     }
 

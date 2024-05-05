@@ -204,13 +204,16 @@ public class PopUpManager
             PopUpManagerModal.show(popUpHost as IUIBase, window);
             modalWindows.push(window);
         }
-        if (popUpHost is UIComponent)
-        {
-            (window as IUIComponent).systemManager = (popUpHost as UIComponent).systemManager;
+        if (popUpHost is UIComponent) {
+            (window as UIComponent).systemManager = (popUpHost as UIComponent).systemManager;
+
         }
         if (window is IUIComponent)
         {
             (window as IUIComponent).isPopUp = true;
+        }
+        else if (popUpHost is ISystemManager) { //variation for Royale:
+            (window as UIComponent).systemManager = (popUpHost as ISystemManager);
         }
         if (window is IFocusManagerContainer)
         {
@@ -219,7 +222,12 @@ public class PopUpManager
                 // Popups get their own focus loop
                 IFocusManagerContainer(window).focusManager =
                     new FocusManager(IFocusManagerContainer(window), true);
+
 			}
+
+            // manual activation (because 'ADDED' and "REMOVED" events not working
+            IFocusManagerContainer(window).focusManager.activate();
+
         }
         popUpHost.popUpParent.addElement(window as IUIComponent);
     }
@@ -243,6 +251,7 @@ public class PopUpManager
     public static function centerPopUp(popUp:IFlexDisplayObject):void
     {
         UIUtils.center(popUp as IUIBase, (popUp.parent as IPopUpHostParent).popUpHost as IUIBase);
+        popUp.y = Math.max(popUp.y,0);
     }
 	
     private static var modalWindows:Array = [];
@@ -262,12 +271,23 @@ public class PopUpManager
     {
 		if (popUp && popUp.parent)
 		{
+            if (popUp is IFocusManagerContainer)
+            {
+                if (IFocusManagerContainer(popUp).focusManager)
+                {
+                    // manual deactivation (because 'ADDED' and "REMOVED" events not working
+                    IFocusManagerContainer(popUp).focusManager.deactivate();
+                }
+            }
 	        var popUpHost:IUIBase = (popUp.parent as IPopUpHostParent).popUpHost as IUIBase;
 			UIUtils.removePopUp(popUp as IChild);
             var modalIndex:int = modalWindows.indexOf(popUp);
             if (modalIndex != -1) {
                 PopUpManagerModal.remove(popUpHost, popUp);
                 modalWindows.splice(modalIndex,1);
+            }
+            if (popUp is UIComponent) { //Royale variation
+                (popUp as UIComponent).systemManager = null;
             }
 		}
     }

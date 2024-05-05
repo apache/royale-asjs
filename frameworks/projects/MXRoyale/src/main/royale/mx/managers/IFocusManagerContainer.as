@@ -80,12 +80,12 @@ public interface IFocusManagerContainer extends IEventDispatcher
      *  @productversion Flex 3
      *  @default null
      */
-    //function get defaultButton():IFlexDisplayObject;
+    function get defaultButton():IFlexDisplayObject;
     
     /**
      *  @private
      */
-    //function set defaultButton(value:IFlexDisplayObject):void;
+    function set defaultButton(value:IFlexDisplayObject):void;
     
     //----------------------------------
     //  systemManager

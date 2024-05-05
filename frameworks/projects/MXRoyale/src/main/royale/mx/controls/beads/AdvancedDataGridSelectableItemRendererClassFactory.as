@@ -17,8 +17,10 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
-{	
-    import org.apache.royale.core.IItemRenderer;   
+{
+import mx.controls.beads.controllers.ADGItemRendererMouseController;
+
+import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.SelectableItemRendererClassFactory;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
@@ -50,10 +52,13 @@ package mx.controls.beads
         override public function createItemRenderer():IItemRenderer
         {
             var ir:IItemRenderer = super.createItemRenderer();
-			ir["outerDocument"] = (_strand as AdvancedDataGridColumnList).grid.parentMxmlDocument;
+			var adgcl:AdvancedDataGridColumnList = (_strand as AdvancedDataGridColumnList);
+			ir["outerDocument"] = adgcl.grid.parentMxmlDocument;
+			//systemManager getter fails through the non-UIComponent hierarchy (the columnLists), explicitly set it here:
+			ir["systemManager"] = adgcl.grid.systemManager;
 			if (ir.getBeadByType(IBeadController) == null) {
 				//add a default mouse controller for DropInRenderers that may not have a mousecontroller
-				ir.addBead(new ItemRendererMouseController());
+				ir.addBead(new ADGItemRendererMouseController());
 			}
 			return ir;
         }		        

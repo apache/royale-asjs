@@ -19,7 +19,9 @@
 
 package mx.containers
 {
-	import org.apache.royale.events.Event;
+import mx.containers.beads.CanvasLayout;
+
+import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 
 /*
@@ -125,7 +127,15 @@ public class Canvas extends Container implements IConstraintLayout
         super();
 		typeNames = "Canvas";
 
-        //layoutObject.target = this;
+        // For Flex compatibility, the BoxLayout is immediately created and added
+        // rather than being loaded from a style
+        createLayout();
+        addBead(_layout);
+    }
+
+    protected function createLayout():void
+    {
+        _layout = new CanvasLayout();
     }
 
     //--------------------------------------------------------------------------
@@ -133,11 +143,16 @@ public class Canvas extends Container implements IConstraintLayout
     //  Variables
     //
     //--------------------------------------------------------------------------
+    protected var _layout:CanvasLayout;
 
     /**
      *  @private
      */
-    //private var layoutObject:CanvasLayout = new CanvasLayout();
+
+    protected function get layoutObject():CanvasLayout
+    {
+        return _layout;
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -323,12 +338,61 @@ public class Canvas extends Container implements IConstraintLayout
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    override protected function measure():void
-//    {
-//        super.measure();
-//
-//        layoutObject.measure();
-//    }
+    override protected function measure():void
+    {
+        super.measure();
+
+        layoutObject.measure();
+    }
+
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  The default width of the component, in pixels.
+     *  This value is set by the <code>measure()</code> method.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get measuredWidth():Number
+    {
+        COMPILE::SWF {
+           return super.measuredWidth;
+        }
+        COMPILE::JS {
+            if (isNaN(_measuredWidth) || _measuredWidth </*=*/ 0) {
+                measure();
+            }
+            return super.measuredWidth
+        }
+    }
+
+    [Inspectable(environment="none")]
+
+    /**
+     *  The default height of the component, in pixels.
+     *  This value is set by the <code>measure()</code> method.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get measuredHeight():Number
+    {
+        COMPILE::SWF {
+            return super.measuredHeight;
+        }
+        COMPILE::JS {
+            if (isNaN(_measuredHeight) || _measuredHeight </*=*/ 0) {
+                measure();
+            }
+            return super.measuredHeight;
+        }
+    }
     
     /**
      *  Sets the size of each child of the container.

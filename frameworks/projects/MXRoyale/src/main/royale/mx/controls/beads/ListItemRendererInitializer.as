@@ -44,7 +44,7 @@ package mx.controls.beads
 
 	import mx.core.UIComponent;
 
-	import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
+	import mx.controls.beads.controllers.ItemRendererMouseController;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -129,7 +129,10 @@ package mx.controls.beads
 			super.setupVisualsForItemRenderer(ir);
 			adjustItemRendererForMX(ir);
 		}
-
+		/**
+		 *
+		 * @royaleignorecoercion mx.core.UIComponent
+		 */
 		protected function adjustItemRendererForMX(ir:IIndexedItemRenderer):void{
 			COMPILE::JS
 			{
@@ -139,6 +142,12 @@ package mx.controls.beads
 					//we are using a UIComponent as a renderer, but it is too late to rely on .isAbsolute = false
 					//so swap it out here:
 					(ir as UIComponent).element.style.position = 'relative';
+					//instead of percentWidth - use actual width, which will trigger layout:
+					if (ir.parent) {
+						//(ir as UIComponent).setWidth((ir.parent as UIComponent).width);
+						//we need to avoid the borders:
+						(ir as UIComponent).setWidth((ir.parent as UIComponent).element.clientWidth);
+					}
 				}
 			}
 		}

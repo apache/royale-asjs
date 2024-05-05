@@ -21,7 +21,7 @@ package mx.controls.beads
     import org.apache.royale.core.IItemRenderer;   
     import org.apache.royale.core.SelectableItemRendererClassFactory;
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.html.beads.controllers.ItemRendererMouseController;
+	import mx.controls.beads.controllers.ItemRendererMouseController;
     import mx.controls.dataGridClasses.DataGridColumnList;
 
 	/**

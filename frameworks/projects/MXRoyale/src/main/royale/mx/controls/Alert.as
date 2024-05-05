@@ -26,8 +26,9 @@ package mx.controls
     import mx.events.FlexEvent;
     import mx.managers.ISystemManager;
     import mx.managers.PopUpManager;
-    
-    import org.apache.royale.core.IAlertModel;
+import mx.resources.IResourceManager;
+
+import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IChild;
     import org.apache.royale.events.CloseEvent;
     import org.apache.royale.events.Event;
@@ -294,6 +295,9 @@ public class Alert extends Panel
      *  @royalesuppresspublicvarwarning
      */
     public static var buttonWidth:Number = 65;
+
+
+    public static var labelResourceBundle:String = 'controls';
     
     //----------------------------------
     //  cancelLabel
@@ -307,7 +311,7 @@ public class Alert extends Panel
     /**
      *  @private
      */
-    //private static var cancelLabelOverride:String;
+    private static var cancelLabelOverride:String;
 
     //[Inspectable(category="General")]
 
@@ -323,13 +327,12 @@ public class Alert extends Panel
 	 */
 	public static function set cancelLabel(value:String):void
 	{
-		/*cancelLabelOverride = value;
+		cancelLabelOverride = value;
 		
 		_cancelLabel = value != null ?
-			value :
-			resourceManager.getString(
-				"controls", "cancelLabel");
-		*/
+			value : "";
+			/*resourceManager.getString(
+				"controls", "cancelLabel");*/
 	}
     
 	//----------------------------------
@@ -391,7 +394,7 @@ public class Alert extends Panel
     /**
      *  @private
      */
-    //private static var okLabelOverride:String;
+    private static var okLabelOverride:String;
 
     //[Inspectable(category="General")]
 	
@@ -407,14 +410,12 @@ public class Alert extends Panel
 	 */
 	public static function set okLabel(value:String):void
 	{
-		/*
 		okLabelOverride = value;
 		
 		_okLabel = value != null ?
-			value :
-			resourceManager.getString(
-				"controls", "okLabel");
-		*/
+			value : ""
+			/*resourceManager.getString(
+				"controls", "okLabel");*/
 	}
 	
    //----------------------------------
@@ -571,6 +572,8 @@ public class Alert extends Panel
         
         alert.text = text;
         alert.title = title;
+
+
         //alert.iconClass = iconClass;
             
         // Setting a module factory allows the correct embedded font to be found.
@@ -791,10 +794,33 @@ public class Alert extends Panel
     {
         $uibase_addChild(c as IUIComponent);
     }
+
+    protected function configureButtonLabels():void{
+        var alertModel:IAlertModel = IAlertModel(model);
+        var resourceManager:IResourceManager = this.resourceManager;
+        if (alertModel ) {
+            var label:String = yesLabel;
+            if (!label && resourceManager) label = resourceManager.getString(labelResourceBundle, "yesLabel");
+            if (label) alertModel.yesLabel = label;
+            label = noLabel;
+            if (!label && resourceManager) label = resourceManager.getString(labelResourceBundle, "noLabel");
+            if (label) alertModel.noLabel = label;
+            label = cancelLabel;
+            if (!label && resourceManager) label = resourceManager.getString(labelResourceBundle, "cancelLabel");
+            if (label) alertModel.cancelLabel = label;
+            label = okLabel;
+            if (!label && resourceManager) label = resourceManager.getString(labelResourceBundle, "okLabel");
+            if (label) alertModel.okLabel = label;
+        }
+    }
     
     override public function addedToParent():void
     {
+        //variation note this is a way to incorporate locale variants in the Yes/no/cancel/OK labels:
+        configureButtonLabels();
+        //the above needs to be done before the following super call:
         super.addedToParent();
+
         COMPILE::JS
         {
             // make the buttons the same width

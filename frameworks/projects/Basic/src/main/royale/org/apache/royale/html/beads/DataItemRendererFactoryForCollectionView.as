@@ -33,6 +33,12 @@ package org.apache.royale.html.beads
 	 */
 	public class DataItemRendererFactoryForCollectionView extends DataItemRendererFactoryBase
 	{
+		//resetOnRemove = true can support 'clean-up' in data setters in some renderers, because it automatically sets them to null after removal
+		//but it can be problematic if data setters were not configured to handle null values being set, or perhaps any changes in data value, generally.
+		//so it is false by default, ensuring compatibility with existing codebases
+		protected var resetOnRemove:Boolean;
+		
+		
 		public function DataItemRendererFactoryForCollectionView(target:Object = null)
 		{
 			super(target);
@@ -42,6 +48,10 @@ package org.apache.royale.html.beads
 		 * the dataProvider as a dispatcher
 		 */
 		protected var dped:IEventDispatcher;
+		/**
+		 * a way to ensure avoidance of layout for certain local methods from subclasses
+		 */
+		protected var avoidLayout:Boolean;
 
 		/**
 		 * @private
@@ -93,23 +103,27 @@ package org.apache.royale.html.beads
 			var data:Object = event.item;
 			dataGroup.addItemRendererAt(ir, event.index);
 			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-			ir.data = data;
+
+			setRendererData(ir, data);
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = dataGroup.numItemRenderers;
-			for (var i:int = event.index; i < n; i++)
-			{
-				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
-				ir.index = i;
-				
-				// could let the IR know its index has been changed (eg, it might change its
-				// UI based on the index). Instead (PAYG), allow another bead to detect
-				// this event and do this as not every IR will need to be updated.
-				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
-				//if (ubase) ubase.updateRenderer()
+			if (!avoidLayout) {
+				var n:int = dataGroup.numItemRenderers;
+				for (var i:int = event.index; i < n; i++)
+				{
+					ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
+					ir.index = i;
+
+					// could let the IR know its index has been changed (eg, it might change its
+					// UI based on the index). Instead (PAYG), allow another bead to detect
+					// this event and do this as not every IR will need to be updated.
+					//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
+					//if (ubase) ubase.updateRenderer()
+				}
+
+			//	sendStrandEvent(_strand,"itemsCreated");
+				sendStrandEvent(_strand,"layoutNeeded");
 			}
-			
-			sendStrandEvent(_strand,"itemsCreated");
-			sendStrandEvent(_strand,"layoutNeeded");
+
 		}
 		
 		/**
@@ -131,22 +145,25 @@ package org.apache.royale.html.beads
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 			if (!ir) return; // may have already been cleaned up, possibly when a tree node closes
 			dataGroup.removeItemRenderer(ir);
-			
+			//resetOnRemove = true can support 'clean-up' on data setters in some renderers, but can be problematic if data setters were not configured to handle null values, or changes in data value.
+			//so it is false by default for greater compatibility with existing codebases
+			if (resetOnRemove) setRendererData(ir, null);
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = dataGroup.numItemRenderers;
-			for (var i:int = event.index; i < n; i++)
-			{
-				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
-				ir.index = i;
-				
-				// could let the IR know its index has been changed (eg, it might change its
-				// UI based on the index). Instead (PAYG), allow another bead to detect
-				// this event and do this as not every IR will need to be updated.
-				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
-				//if (ubase) ubase.updateRenderer()
-			}
+			if (!avoidLayout) {
+				var n:int = dataGroup.numItemRenderers;
+				for (var i:int = event.index; i < n; i++)
+				{
+					ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
+					ir.index = i;
 
-			sendStrandEvent(_strand,"layoutNeeded");
+					// could let the IR know its index has been changed (eg, it might change its
+					// UI based on the index). Instead (PAYG), allow another bead to detect
+					// this event and do this as not every IR will need to be updated.
+					//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
+					//if (ubase) ubase.updateRenderer()
+				}
+				sendStrandEvent(_strand,"layoutNeeded");
+			}
 		}
 		
 		/**
@@ -166,12 +183,13 @@ package org.apache.royale.html.beads
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
 			// update the given renderer with (possibly) new information so it can change its
-			// appearence or whatever.
+			// appearance or whatever.
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 
 			var data:Object = event.item;
 			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-			ir.data = data;
+			
+			setRendererData(ir, data);
 		}
 
 		override protected function get dataProviderLength():int

@@ -21,6 +21,7 @@ package mx.core
 {
 
 import org.apache.royale.geom.Rectangle;
+import org.apache.royale.core.IToolTip;
 
 /**
  *  The IToolTip interface defines the API that tooltip-like components
@@ -35,7 +36,7 @@ import org.apache.royale.geom.Rectangle;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public interface IToolTip extends IUIComponent
+public interface IToolTip extends IUIComponent, org.apache.royale.core.IToolTip
 {
 	//--------------------------------------------------------------------------
 	//
@@ -61,21 +62,21 @@ public interface IToolTip extends IUIComponent
 	//----------------------------------
 	//  text
 	//----------------------------------
-
-	/**
+/*
+	/!**
 	 *  The text that appears in the tooltip.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
-	 */
+	 *!/
 	function get text():String;
 	
-	/**
+	/!**
 	 *  @private
-	 */
-	function set text(value:String):void;
+	 *!/
+	function set text(value:String):void;*/
 }
 
 }

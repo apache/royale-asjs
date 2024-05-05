@@ -54,12 +54,40 @@ package mx.controls.listClasses
 			super();
 		}
 
+		private var _listBase:ListBase;
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			_listBase = value as ListBase;
+		}
+
+		override protected function rolloverHandler(event:Event):void
+		{
+			var listBase:ListBase = _listBase;
+			if (!listBase || listBase.useRollOver) {
+				super.rolloverHandler(event)
+			}
+		}
+
+		override protected function rolloutHandler(event:Event):void
+		{
+			var listBase:ListBase = _listBase;
+			if (!listBase || listBase.useRollOver) {
+				super.rolloutHandler(event)
+			}
+		}
+
 		/**
 		 * @private
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
-			super.selectedHandler(event);	    
+			var listBase:ListBase = _listBase;
+			if (!listBase || listBase.selectable) {
+				// default selection behavior if it is selectable
+				super.selectedHandler(event)
+			}
+			//but send item click regardless? @todo check Flex behaviors
 		    var newEvent:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK);
             newEvent.index = event.index;
             IEventDispatcher(_strand).dispatchEvent(newEvent);

@@ -1439,6 +1439,16 @@ public class DataGridItemRenderer extends StringItemRenderer
         trace("mouseX not implemented");
         return 0;
     }
+    
+    
+    public function set measuredHeight(value:Number):void
+    {
+        trace('trying to set measured height on ',this, value)
+    }
+    public function set measuredWidth(value:Number):void
+    {
+        trace('trying to set measured width on ',this, value)
+    }
 
 }
 

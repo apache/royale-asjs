@@ -22,30 +22,55 @@ package mx.containers.beads
 
 import mx.core.Container;
 
-/**
- *  @private
- *  The PanelInternalContainer is used to apply a custom view to Panel's internal container.
- */
-public class PanelInternalContainer extends Container
-{
-	//--------------------------------------------------------------------------
-	//
-	//  Constructor
-	//
-	//--------------------------------------------------------------------------
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.events.Event;
 
 	/**
-	 *  Constructor.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @private
+	 *  The PanelInternalContainer is used to apply a custom view to Panel's internal container.
 	 */
-	public function PanelInternalContainer()
+	public class PanelInternalContainer extends Container
 	{
-		super();
+		//--------------------------------------------------------------------------
+		//
+		//  Constructor
+		//
+		//--------------------------------------------------------------------------
+
+		/**
+		 *  Constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function PanelInternalContainer()
+		{
+			super();
+			isPassThru = true;//this is a royale-specific approach, not part of original Flex approach
+		}
+
+
+
+		/**
+		 * PanelView coercion ignore because it is already typed-checked prior, below
+		 * @royaleignorecoercion org.apache.royale.events.EventDispatcher
+		 */
+		override public function addedToParent():void
+		{
+			EventDispatcher(parent).addEventListener('layoutNeeded', onParentLayout);
+			super.addedToParent();
+		}
+
+		protected function onParentLayout(event:Event):void{
+			//run this internal container layout also
+			layoutNeeded();
+		}
+
+		override public function get minWidth():Number{
+			return parent ? Container(parent).minWidth : 0;
+		}
 	}
-}
 
 }

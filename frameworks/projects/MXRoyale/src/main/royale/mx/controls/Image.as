@@ -247,7 +247,7 @@ public class Image extends UIComponent
 	override public function addedToParent():void
 	{
 		super.addedToParent();
-		trace("Image.addedToParent called: "+getExplicitOrMeasuredWidth()+" x "+getExplicitOrMeasuredHeight());
+	//	trace("Image.addedToParent called: "+getExplicitOrMeasuredWidth()+" x "+getExplicitOrMeasuredHeight());
 	}
 
 	//----------------------------------
@@ -542,9 +542,11 @@ public class Image extends UIComponent
 		// setActualSize(w, h);
 		updateDisplayList(w, h);
 		dispatchEvent(new Event("complete"));
+		if (this.isWidthSizedToContent() || this.isHeightSizedToContent()) {
+			var newEvent:Event = new Event("layoutNeeded",true);
+			dispatchEvent(newEvent);
+		}
 
-		var newEvent:Event = new Event("layoutNeeded",true);
-		dispatchEvent(newEvent);
 	}
 
 	//----------------------------------
@@ -729,9 +731,10 @@ public class Image extends UIComponent
 				doSmoothBitmapContent();
 				smoothBitmapContentChanged = false;
 			}*/
-
-			var newEvent:Event = new Event("layoutNeeded",true);
-			dispatchEvent(newEvent);
+			if (this.isWidthSizedToContent() || this.isHeightSizedToContent()) {
+				var newEvent:Event = new Event("layoutNeeded",true);
+				dispatchEvent(newEvent);
+			}
 		}
 
 		/*if (brokenImage && !brokenImageBorder)
@@ -1029,7 +1032,22 @@ public class Image extends UIComponent
         
        // loadContent(_source);
     }
-	
+
+
+	override public function setWidth(value:Number, noEvent:Boolean= false):void{
+		super.setWidth(value, noEvent);
+		if (isContentLoaded && height) updateDisplayList(value, height)
+	}
+
+	override public function setHeight(value:Number, noEvent:Boolean= false):void{
+		super.setHeight(value, noEvent);
+		if (isContentLoaded && width) updateDisplayList(width, value);
+	}
+
+	override public function setWidthAndHeight(newWidth:Number,newHeight:Number, noEvent:Boolean= false):void{
+		super.setWidthAndHeight(newWidth, newHeight, noEvent);
+		if (isContentLoaded) updateDisplayList(newWidth, newHeight);
+	}
 
 }
 

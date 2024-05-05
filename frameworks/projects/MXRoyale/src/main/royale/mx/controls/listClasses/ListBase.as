@@ -19,20 +19,25 @@
 package mx.controls.listClasses
 {
 
-import org.apache.royale.utils.getOrAddBeadByType;
 import mx.collections.ArrayCollection;
 import mx.collections.ICollectionView;
 import mx.collections.IList;
 import mx.collections.ListCollectionView;
 import mx.collections.XMLListCollection;
+import mx.controls.beads.ListView;
+import mx.controls.beads.models.SingleSelectionICollectionViewModel;
 import mx.core.EdgeMetrics;
 import mx.core.IUIComponent;
+import mx.core.Keyboard;
 import mx.core.ScrollControlBase;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.DragEvent;
+import mx.events.KeyboardEvent;
+import mx.events.MouseEvent;
+import mx.managers.IFocusManagerComponent;
 import mx.utils.UIDUtil;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
@@ -54,18 +59,15 @@ import org.apache.royale.core.IListPresentationModel;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.IStrandWithPresentationModel;
+import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.events.FlexEvent;
-import org.apache.royale.core.IHasLabelField;
-import org.apache.royale.html.beads.controllers.DropMouseController;
-import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.utils.sendStrandEvent;
-import mx.core.DragSource;
-import org.apache.royale.events.DragEvent;
+
+import org.apache.royale.core.IItemRendererClassFactory;
 
 use namespace mx_internal;
 
@@ -163,7 +165,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.8
  */
-[Style(name="useRollOver", type="Boolean", inherit="no")]
+//[Style(name="useRollOver", type="Boolean", inherit="no")]
 
     /**
      *  
@@ -175,8 +177,7 @@ use namespace mx_internal;
 	*/
 	public class ListBase extends ScrollControlBase 
         implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, 
-                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel,
-                    IHasLabelField
+                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel, IFocusManagerComponent
 	{  //extends UIComponent
 	
 	
@@ -185,27 +186,6 @@ use namespace mx_internal;
 	{
 	   return null;
 	}
-
-    /**
-     *  @private
-     */
-    protected function setDropEnabled():void
-    {
-    }
-
-    /**
-     *  @private
-     */
-    protected function setDragMoveEnabled():void
-    {
-    }
-
-    /**
-     *  @private
-     */
-    protected function setDragEnabled():void
-    {
-    }
         //----------------------------------
         //  dragEnabled
         //----------------------------------
@@ -236,7 +216,7 @@ use namespace mx_internal;
             return _dragEnabled;
         }
         
-        /**
+         /**
          *  @private
          */
         public function set dragEnabled(value:Boolean):void
@@ -282,7 +262,7 @@ use namespace mx_internal;
             return _dragMoveEnabled;
         }
         
-        /**
+          /**
          *  @private
          */
         public function set dragMoveEnabled(value:Boolean):void
@@ -332,6 +312,9 @@ use namespace mx_internal;
         {
             _menuSelectionMode = value;
         }
+
+
+        public var collection:ICollectionView;
 	
         //----------------------------------
         //  dataProvider
@@ -408,9 +391,12 @@ use namespace mx_internal;
                     tmp.push(value);
                 value = new ArrayCollection(tmp);
             }
+            collection = value as ICollectionView;
             (model as ISelectionModel).dataProvider = value;
+
         }
-        
+
+
         
         //----------------------------------
         //  dropEnabled
@@ -463,6 +449,27 @@ use namespace mx_internal;
             {
                 setDropEnabled();
             }
+        }
+
+         /**
+         *  @private
+         */
+        protected function setDropEnabled():void
+        {
+        }
+    
+        /**
+         *  @private
+         */
+        protected function setDragMoveEnabled():void
+        {
+        }
+    
+        /**
+         *  @private
+         */
+        protected function setDragEnabled():void
+        {
         }
         
         //----------------------------------
@@ -604,7 +611,7 @@ use namespace mx_internal;
     {
         // TODO
         trace("selectedIndices not implemented");
-        return null;
+        return selectedIndex != -1 ? [selectedIndex] : [];
     }
     
     /**
@@ -665,7 +672,7 @@ use namespace mx_internal;
     {
         // TODO
         trace("selectedItems not implemented");
-        return null;
+        return selectedItem != null ? [selectedItem] : [];
     }
     
     /**
@@ -936,8 +943,13 @@ use namespace mx_internal;
 		{
 			super();            
 			rowHeight = 22; //match Flex?
+            COMPILE::JS{
+                //ensure focus and keyboard events work
+                element.setAttribute('tabindex', '0');
+            }
 		}
-        
+
+
         private var _DCinitialized:Boolean = true;
         
         /**
@@ -961,23 +973,9 @@ use namespace mx_internal;
             // were made; these are just defaults extracted from CSS.
             loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", this);
             loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", this);
-            // Make sure list based components dispatch drop events to potential listeners
-            var dropMouseController:IEventDispatcher = getOrAddBeadByType(DropMouseController, this) as IEventDispatcher;
-			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_ENTER, handleDropControllerEvent);
-			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_EXIT, handleDropControllerEvent);
-			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_OVER, handleDropControllerEvent);
-			dropMouseController.addEventListener(org.apache.royale.events.DragEvent.DRAG_DROP, handleDropControllerEvent);
             
             dispatchEvent(new Event("initComplete"));
         }
-
-
-		private function handleDropControllerEvent(event:org.apache.royale.events.DragEvent):void
-		{
-            var dragInitiator:IUIComponent; // TODO...
-			var dragEvent:mx.events.DragEvent = new mx.events.DragEvent(event.type, false, true, dragInitiator, org.apache.royale.events.DragEvent.dragSource as DragSource);
-			dispatchEvent(dragEvent);
-		}
         
         /*
         * IItemRendererProvider
@@ -999,7 +997,15 @@ use namespace mx_internal;
         }
         public function set itemRenderer(value:IFactory):void
         {
-            _itemRenderer = value;
+            if (value != _itemRenderer) {
+                _itemRenderer = value;
+
+                var rendererFactory:IBead = getBeadByType(IItemRendererClassFactory);
+                if (rendererFactory) {
+                    rendererFactory.strand = this;
+                    //force re-render ?
+                }
+            }
         }
         
         private var _strandChildren:ContainerBaseStrandChildren;
@@ -1033,7 +1039,16 @@ use namespace mx_internal;
         public function scrollToIndex(index:int):Boolean
         {
 
-            trace("ListBase:scrollToIndex not implemented");
+           // trace("ListBase:scrollToIndex not implemented");
+
+            COMPILE::JS
+            {
+                var listArea:IUIBase = this;
+                var element:HTMLElement = listArea.element;
+                var max:Number = Math.max(0, dataProvider.length * rowHeight - element.clientHeight);
+                var yy:Number = Math.min(index * rowHeight, max);
+                element.scrollTop = yy;
+            }
 			return false;
         }
         
@@ -1077,9 +1092,17 @@ use namespace mx_internal;
         public function get presentationModel():IBead
         {
             if (_presentationModel == null) {
-                var bead:IBead = loadBeadFromValuesManager(IListPresentationModel,"iListPresentationModel",this);
+                var bead:IBead = getBeadByType(IListPresentationModel);
                 if (bead)
                     _presentationModel = bead as IListPresentationModel;
+                else
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
+                    if (c) {
+                        _presentationModel = new c() as IListPresentationModel;
+                        addBead(_presentationModel as IBead);
+                    }
+                }
             }
             
             return _presentationModel;
@@ -1187,7 +1210,7 @@ use namespace mx_internal;
         *  @playerversion AIR 1.1
         *  @productversion Flex 3
         */
-       public function hideDropFeedback(event:mx.events.DragEvent):void
+       public function hideDropFeedback(event:DragEvent):void
        {
            //To Do
            trace("hideDropFeedback is not implemented");
@@ -1645,23 +1668,25 @@ use namespace mx_internal;
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
+         *
+         *
+         *  @royaleignorecoercion XML
          */
         public function itemToLabel(data:Object):String
         {
             if (data == null)
                 return " ";
             
-            /*
             if (labelFunction != null)
                 return labelFunction(data);
-            */
-            
+
             if (data is XML)
             {
                 try
                 {
-                    if ((data as XML)[labelField].length() != 0)
-                        data = (data as XML)[labelField];
+                    var xmlList:XMLList = (data as XML)[labelField];
+                    if (xmlList.length() != 0)
+                        data = xmlList;
                     //by popular demand, this is a default XML labelField
                     //else if (data.@label.length() != 0)
                     //  data = data.@label;
@@ -1979,10 +2004,8 @@ use namespace mx_internal;
     {
         return NaN;
     }
-	
-	protected var collection:ICollectionView;
-	 
-	//----------------------------------
+
+    //----------------------------------
     //  selectable
     //----------------------------------
 
@@ -1998,16 +2021,13 @@ use namespace mx_internal;
      *  A flag that indicates whether the list shows selected items
      *  as selected.
      *  If <code>true</code>, the control supports selection.
-     *  The Menu class, which subclasses ListBase, sets this property to
-     *  <code>false</code> by default, because it doesn't show the chosen
-     *  menu item as selected.
      *
      *  @default true
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Flex 3
+     *  @productversion Royale 0.9.4
      */
     public function get selectable():Boolean
     {
@@ -2021,7 +2041,713 @@ use namespace mx_internal;
     {
         _selectable = value;
     }
-    
+
+
+    //----------------------------------
+    //  useRollOver
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the selectable property.
+     */
+    private var _useRollOver:Boolean = true;
+
+    [Inspectable(defaultValue="true")]
+
+    /**
+     *  A flag that controls whether items are highlighted as the mouse rolls
+     *  over them.
+     *  If <code>true</code>, rows are highlighted as the mouse rolls over them.
+     *  If <code>false</code>, rows are highlighted only when selected.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.8
+     */
+    public function get useRollOver():Boolean
+    {
+        return _useRollOver;
+    }
+
+    /**
+     *  @private
+     */
+    public function set useRollOver(value:Boolean):void
+    {
+        _useRollOver = value;
+    }
+
+
+    /**
+     *  Tries to find the next item in the data provider that
+     *  starts with the character in the <code>eventCode</code> parameter.
+     *  You can override this to do fancier typeahead lookups. The search
+     *  starts at the <code>selectedIndex</code> location; if it reaches
+     *  the end of the data provider it starts over from the beginning.
+     *
+     *  @param eventCode The key that was pressed on the keyboard.
+     *  @return <code>true</code> if a match was found.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function findKey(eventCode:int):Boolean
+    {
+        var tmpCode:int = eventCode;
+
+        return tmpCode >= 33 &&
+                tmpCode <= 126 &&
+                findString(String.fromCharCode(tmpCode));
+    }
+
+    /**
+     *  Finds an item in the list based on a String,
+     *  and moves the selection to it. The search
+     *  starts at the <code>selectedIndex</code> location; if it reaches
+     *  the end of the data provider it starts over from the beginning.
+     *
+     *  <p>For a DataGrid control, by default this method searches
+     *  the first column in the control.
+     *  To search a different column, set the <code>sort</code> property
+     *  of the collection used to populate the control to the specific field
+     *  or fields that you want to search.
+     *  Each field corresponds to a single column of the control.</p>
+     *
+     *  @param str The String to match.
+     *
+     *  @return <code>true</code> if a match is found.
+     *
+     *  @see mx.collections.ListCollectionView
+     *  @see mx.collections.ArrayCollection
+     *  @see mx.collections.XMLListCollection
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function findString(str:String):Boolean
+    {
+        var model:SingleSelectionICollectionViewModel = this.model as SingleSelectionICollectionViewModel;
+        if (!model) return false;
+        return model.findString(str);
+        /*if (!collection || collection.length == 0)
+            return false;
+
+        var cursorPos:CursorBookmark;
+        cursorPos = iterator.bookmark;
+
+        var stopIndex:int = selectedIndex;
+        var i:int = stopIndex + 1;  // start at next
+
+        if (selectedIndex == -1)
+        {
+            try
+            {
+                iterator.seek(CursorBookmark.FIRST, 0);
+            }
+            catch(e1:ItemPendingError)
+            {
+                e1.addResponder(new ItemResponder(
+                        findPendingResultHandler, findPendingFailureHandler,
+                        new ListBaseFindPending(str, cursorPos,
+                                CursorBookmark.FIRST, 0, 0, collection.length)));
+
+                iteratorValid = false;
+                return false;
+            }
+            stopIndex = collection.length;
+            i = 0;
+        }
+        else
+        {
+            try
+            {
+                iterator.seek(CursorBookmark.FIRST, stopIndex);
+            }
+            catch(e2:ItemPendingError)
+            {
+                if (anchorIndex == collection.length - 1)
+                {
+                    e2.addResponder(new ItemResponder(
+                            findPendingResultHandler, findPendingFailureHandler,
+                            new ListBaseFindPending(str, cursorPos,
+                                    CursorBookmark.FIRST, 0, 0, collection.length)));
+                }
+                else
+                {
+                    e2.addResponder(new ItemResponder(
+                            findPendingResultHandler, findPendingFailureHandler,
+                            new ListBaseFindPending(str, cursorPos,
+                                    anchorBookmark, 1, anchorIndex + 1, anchorIndex)));
+                }
+
+                iteratorValid = false;
+                return false;
+            }
+
+            var bMovedNext:Boolean = false;
+
+            // If we ran off the end, go back to beginning.
+            try
+            {
+                bMovedNext = iterator.moveNext();
+            }
+            catch(e3:ItemPendingError)
+            {
+                // Assume we don't fault unless there is more data.
+                e3.addResponder(new ItemResponder(
+                        findPendingResultHandler, findPendingFailureHandler,
+                        new ListBaseFindPending(str, cursorPos,
+                                anchorBookmark, 1, anchorIndex + 1, anchorIndex)));
+
+                iteratorValid = false;
+                return false;
+            }
+
+            if (!bMovedNext)
+            {
+                try
+                {
+                    iterator.seek(CursorBookmark.FIRST, 0);
+                }
+                catch(e4:ItemPendingError)
+                {
+                    e4.addResponder(new ItemResponder(
+                            findPendingResultHandler, findPendingFailureHandler,
+                            new ListBaseFindPending(str, cursorPos,
+                                    CursorBookmark.FIRST, 0, 0, collection.length)));
+
+                    iteratorValid = false;
+                    return false;
+                }
+
+                stopIndex = collection.length;
+                i = 0;
+            }
+        }
+
+        return findStringLoop(str, cursorPos, i, stopIndex);*/
+    }
+
+    /**
+     *  @private
+     */
+    /*private function findStringLoop(str:String, cursorPos:CursorBookmark,
+                                    i:int, stopIndex:int):Boolean
+    {
+        // Search from the current index.
+        // Jump back to beginning if we hit the end.
+        for (i; i != stopIndex; i++)
+        {
+            var itmStr:String = itemToLabel(iterator.current);
+
+            itmStr = itmStr.substring(0, str.length);
+            if (str == itmStr || str.toUpperCase() == itmStr.toUpperCase())
+            {
+                iterator.seek(cursorPos, 0);
+                scrollToIndex(i);
+                commitSelectedIndex(i);
+                var item:IListItemRenderer = indexToItemRenderer(i);
+                var pt:Point = itemRendererToIndices(item);
+                var evt:ListEvent = new ListEvent(ListEvent.CHANGE);
+                evt.itemRenderer = item;
+                if (pt)
+                {
+                    evt.columnIndex = pt.x;
+                    evt.rowIndex = pt.y;
+                }
+                dispatchEvent(evt);
+                return true;
+            }
+
+            try
+            {
+                var more:Boolean = iterator.moveNext();
+            }
+            catch(e1:ItemPendingError)
+            {
+                e1.addResponder(new ItemResponder(
+                        findPendingResultHandler, findPendingFailureHandler,
+                        new ListBaseFindPending(str, cursorPos,
+                                CursorBookmark.CURRENT, 1, i + 1, stopIndex)));
+
+                iteratorValid = false;
+                return false;
+            }
+
+            // Start from beginning if we hit the end
+            if (!more && stopIndex != collection.length)
+            {
+                i = -1;
+                try
+                {
+                    iterator.seek(CursorBookmark.FIRST, 0);
+                }
+                /!*catch(e2:ItemPendingError)
+                {
+                    e2.addResponder(new ItemResponder(
+                            findPendingResultHandler, findPendingFailureHandler,
+                            new ListBaseFindPending(str, cursorPos,
+                                    CursorBookmark.FIRST, 0, 0, stopIndex)));
+
+                    iteratorValid = false;
+                    return false;
+                }*!/
+            }
+        }
+
+        iterator.seek(cursorPos, 0);
+        iteratorValid = true;
+
+        return false;
+    }*/
+
+    /**
+     *  Moves the selection in a horizontal direction in response
+     *  to the user selecting items using the left arrow or right arrow
+     *  keys and modifiers such as the Shift and Ctrl keys. This method
+     *  might change the <code>horizontalScrollPosition</code>,
+     *  <code>verticalScrollPosition</code>, and <code>caretIndex</code>
+     *  properties, and call the <code>finishKeySelection()</code> method
+     *  to update the selection.
+     *
+     *  <p>Not implemented in ListBase because the default list
+     *  is single column and therefore does not scroll horizontally.</p>
+     *
+     *  @param code The key that was pressed (for example, <code>Keyboard.LEFT</code>).
+     *  @param shiftKey <code>true</code> if the Shift key was held down when
+     *  the keyboard key was pressed.
+     *  @param ctrlKey <code>true</code> if the Ctrl key was held down when
+     *  the keyboard key was pressed.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
+                                                 ctrlKey:Boolean):void
+    {
+        // For Keyboard.LEFT and Keyboard.RIGHT and maybe Keyboard.UP and Keyboard.DOWN,
+        // need to account for layoutDirection="rtl".
+
+        return;
+    }
+
+    /**
+     *  Moves the selection in a vertical direction in response
+     *  to the user selecting items using the up arrow or down arrow
+     *  Keys and modifiers such as the Shift and Ctrl keys. This method
+     *  might change the <code>horizontalScrollPosition</code>,
+     *  <code>verticalScrollPosition</code>, and <code>caretIndex</code>
+     *  properties, and call the <code>finishKeySelection()</code> method
+     *  to update the selection.
+     *
+     *  @param code The key that was pressed (for example, <code>Keyboard.DOWN</code>).
+     *  @param shiftKey <code>true</code> if the Shift key was held down when
+     *  the keyboard key was pressed.
+     *  @param ctrlKey <code>true</code> if the Ctrl key was held down when
+     *  the keyboard key was pressed.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
+                                               ctrlKey:Boolean):void
+    {
+        //this is temporary until multi-select is refactored into 'ListBase'
+
+        var originalIndex:int = selectedIndex;
+        switch (code)
+        {
+            case Keyboard.UP:
+            {
+                if (originalIndex > 0)
+                    selectedIndex --;
+                break;
+            }
+
+            case Keyboard.DOWN:
+            {
+                if (originalIndex < collection.length -1) {
+                    selectedIndex++;
+                }
+
+                break;
+            }
+
+            case Keyboard.PAGE_UP:
+            {
+                // for now, saw as Keyboard.UP
+                if (originalIndex > 0)
+                    selectedIndex --;
+                break;
+            }
+
+            case Keyboard.PAGE_DOWN:
+            {
+                // For now, same as Keyboard.DOWN
+                if (originalIndex < collection.length -1) {
+                    selectedIndex++;
+                }
+
+                break;
+            }
+
+            case Keyboard.HOME:
+            {
+                if (originalIndex > 0)
+                {
+                    selectedIndex = 0;
+                }
+                break;
+            }
+
+            case Keyboard.END:
+            {
+                if (originalIndex < collection.length - 1)
+                {
+                    selectedIndex = collection.length - 1;
+                }
+                break;
+            }
+        }
+
+        if (originalIndex != selectedIndex) {
+            scrollToIndex(selectedIndex);
+        }
+
+        /*var newVerticalScrollPosition:Number;
+        var listItem:IListItemRenderer;
+        var uid:String;
+        var len:int;
+        var bSelChanged:Boolean = false;
+
+        showCaret = true;
+
+        var rowCount:int = listItems.length;
+        var onscreenRowCount:int = listItems.length - offscreenExtraRowsTop - offscreenExtraRowsBottom;
+        var partialRow:int = (rowInfo[rowCount - offscreenExtraRowsBottom - 1].y +
+                rowInfo[rowCount - offscreenExtraRowsBottom - 1].height >
+                listContent.heightExcludingOffsets - listContent.topOffset) ? 1 : 0;
+        var bUpdateVerticalScrollPosition:Boolean = false;
+        bSelectItem = false;
+
+        switch (code)
+        {
+            case Keyboard.UP:
+            {
+                if (caretIndex > 0)
+                {
+                    caretIndex--;
+                    bUpdateVerticalScrollPosition = true;
+                    bSelectItem = true;
+                }
+                break;
+            }
+
+            case Keyboard.DOWN:
+            {
+                if (caretIndex < collection.length - 1)
+                {
+                    caretIndex++;
+                    bUpdateVerticalScrollPosition = true;
+                    bSelectItem = true;
+                }
+                else if ((caretIndex == collection.length - 1) && partialRow)
+                {
+                    if (verticalScrollPosition < maxVerticalScrollPosition)
+                        newVerticalScrollPosition = verticalScrollPosition + 1;
+                }
+                break;
+            }
+
+            case Keyboard.PAGE_UP:
+            {
+                // if the caret is on-screen, but not at the top row
+                // just move the caret to the top row
+                if (caretIndex > verticalScrollPosition &&
+                        caretIndex < verticalScrollPosition + onscreenRowCount)
+                {
+                    caretIndex = verticalScrollPosition;
+                }
+                else
+                {
+                    // paging up is really hard because we don't know how many
+                    // rows to move because of variable row height.  We would have
+                    // to double-buffer a previous screen in order to get this exact
+                    // so we just guess for now based on current rowCount
+                    caretIndex = Math.max(caretIndex - Math.max(onscreenRowCount - partialRow, 1), 0);
+                    newVerticalScrollPosition = Math.max(caretIndex, 0)
+                }
+                bSelectItem = true;
+                break;
+            }
+
+            case Keyboard.PAGE_DOWN:
+            {
+                // if the caret is on-screen, but not at the bottom row
+                // just move the caret to the bottom row (not partial row)
+                if (caretIndex >= verticalScrollPosition &&
+                        caretIndex < verticalScrollPosition + onscreenRowCount - partialRow - 1)
+                {
+                }
+                else
+                {
+                    // With edge case involving very large rows
+                    // make sure we move forward.
+                    if ((caretIndex == verticalScrollPosition) &&
+                            (onscreenRowCount - partialRow <= 1))
+                        caretIndex++;
+                    newVerticalScrollPosition = Math.max(Math.min(caretIndex, maxVerticalScrollPosition), 0);
+                }
+                bSelectItem = true;
+                break;
+            }
+
+            case Keyboard.HOME:
+            {
+                if (caretIndex > 0)
+                {
+                    caretIndex = 0;
+                    bSelectItem = true;
+                    newVerticalScrollPosition = 0;
+                }
+                break;
+            }
+
+            case Keyboard.END:
+            {
+                if (caretIndex < collection.length - 1)
+                {
+                    caretIndex = collection.length - 1;
+                    bSelectItem = true;
+                    newVerticalScrollPosition = maxVerticalScrollPosition;
+                }
+                break;
+            }
+        }
+
+        if (bUpdateVerticalScrollPosition)
+        {
+            if (caretIndex >= verticalScrollPosition + onscreenRowCount - partialRow)
+            {
+                if (onscreenRowCount - partialRow == 0)
+                    newVerticalScrollPosition = Math.min(maxVerticalScrollPosition, caretIndex);
+                else
+                    newVerticalScrollPosition = Math.min(maxVerticalScrollPosition, caretIndex - onscreenRowCount + partialRow + 1);
+            }
+            else if (caretIndex < verticalScrollPosition)
+                newVerticalScrollPosition = Math.max(caretIndex, 0);
+        }
+
+        if (!isNaN(newVerticalScrollPosition))
+        {
+            if (verticalScrollPosition != newVerticalScrollPosition)
+            {
+                var se:ScrollEvent = new ScrollEvent(ScrollEvent.SCROLL);
+                se.detail = ScrollEventDetail.THUMB_POSITION;
+                se.direction = ScrollEventDirection.VERTICAL;
+                se.delta = newVerticalScrollPosition - verticalScrollPosition;
+                se.position = newVerticalScrollPosition;
+                verticalScrollPosition = newVerticalScrollPosition;
+                dispatchEvent(se);
+            }
+
+            // bail if we page faulted
+            if (!iteratorValid)
+            {
+                keySelectionPending = true;
+                return;
+            }
+        }
+
+        bShiftKey = shiftKey;
+        bCtrlKey = ctrlKey;
+
+        lastKey = code;
+*/
+        finishKeySelection();
+    }
+
+    /**
+     *  Sets selected items based on the <code>caretIndex</code> and
+     *  <code>anchorIndex</code> properties.
+     *  Called by the keyboard selection handlers
+     *  and by the <code>updateDisplayList()</code> method in case the
+     *  keyboard selection handler received a page fault while scrolling to get more items.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function finishKeySelection():void
+    {
+        /*var uid:String;
+        var rowCount:int = listItems.length;
+        var onscreenRowCount:int = listItems.length - offscreenExtraRowsTop - offscreenExtraRowsBottom;
+        var partialRow:int = (rowInfo[rowCount - offscreenExtraRowsBottom - 1].y +
+                rowInfo[rowCount - offscreenExtraRowsBottom - 1].height >
+                listContent.heightExcludingOffsets - listContent.topOffset) ? 1 : 0;
+
+        if (lastKey == Keyboard.PAGE_DOWN)
+        {
+            // set caret to last full row of new screen
+            // partial rows take what you can get
+            if (onscreenRowCount - partialRow == 0)
+            {
+                caretIndex = Math.min(verticalScrollPosition + onscreenRowCount - partialRow,
+                        collection.length - 1);
+            }
+            else
+            {
+                caretIndex = Math.min(verticalScrollPosition + onscreenRowCount - partialRow - 1,
+                        collection.length - 1);
+            }
+        }
+
+        var listItem:IListItemRenderer;
+        var bSelChanged:Boolean = false;
+
+        if (bSelectItem && caretIndex - verticalScrollPosition >= 0)
+        {
+            if (caretIndex - verticalScrollPosition > Math.max(onscreenRowCount - partialRow - 1,0))
+            {
+                // If we've tried to jump to the end of the list but find that
+                // maxVerticalScrollPosition was off...try again.
+                if ((lastKey == Keyboard.END) && (maxVerticalScrollPosition > verticalScrollPosition))
+                {
+                    caretIndex = caretIndex - 1;
+                    moveSelectionVertically(lastKey,bShiftKey,bCtrlKey);
+                    return;
+                }
+                caretIndex = onscreenRowCount - partialRow - 1 + verticalScrollPosition;
+            }
+
+            listItem = listItems[caretIndex - verticalScrollPosition + offscreenExtraRowsTop][0];
+            if (listItem)
+            {
+                uid = itemToUID(listItem.data);
+
+                listItem = UIDToItemRenderer(uid);
+                if (!bCtrlKey || lastKey == Keyboard.SPACE)
+                {
+                    selectItem(listItem, bShiftKey, bCtrlKey);
+                    bSelChanged = true;
+                }
+                if (bCtrlKey)
+                {
+                    drawItem(listItem, selectedData[uid] != null, uid == highlightUID, true);
+                }
+            }
+        }
+
+        if (bSelChanged)
+        {
+            var pt:Point = itemRendererToIndices(listItem);
+            var evt:ListEvent = new ListEvent(ListEvent.CHANGE);
+            if (pt)
+            {
+                evt.columnIndex = pt.x;
+                evt.rowIndex = pt.y;
+            }
+            evt.itemRenderer = listItem;
+            dispatchEvent(evt);
+        }*/
+    }
+
+
+    override protected function keyDownHandler(event:KeyboardEvent):void{
+        if (!selectable)
+                return;
+        if (!dataProvider || dataProvider.length==0)
+                return;
+
+        switch (event.keyCode)
+        {
+            case Keyboard.UP:
+            case Keyboard.DOWN:
+            {
+            //    trace('up or down')
+                moveSelectionVertically(
+                        event.keyCode, event.shiftKey, event.ctrlKey);
+                event.stopPropagation();
+                //@todo review... added this for browser
+                COMPILE::JS{
+                    event.preventDefault();
+                }
+                break;
+            }
+
+            case Keyboard.LEFT:
+            case Keyboard.RIGHT:
+            {
+             //   trace('LEFT or RIGHT')
+                moveSelectionHorizontally(
+                        event.keyCode, event.shiftKey, event.ctrlKey);
+                event.stopPropagation();
+                //@todo review... added this for browser
+                COMPILE::JS{
+                    event.preventDefault();
+                }
+                break;
+            }
+
+            case Keyboard.END:
+            case Keyboard.HOME:
+            case Keyboard.PAGE_UP:
+            case Keyboard.PAGE_DOWN:
+            {
+            //    trace('OTHER ')
+                moveSelectionVertically(
+                        event.keyCode, event.shiftKey, event.ctrlKey);
+                event.stopPropagation();
+                break;
+            }
+
+            case Keyboard.SPACE:
+            {
+
+                /*if (caretIndex != -1 && ((caretIndex - verticalScrollPosition) >= 0) &&
+                        ((caretIndex - verticalScrollPosition) < listItems.length))
+                {
+                    var li:IListItemRenderer =
+                            listItems[caretIndex - verticalScrollPosition][0];
+                    if (selectItem(li, event.shiftKey, event.ctrlKey))
+                    {
+                        var pt:Point = itemRendererToIndices(li);
+                        var evt:ListEvent = new ListEvent(ListEvent.CHANGE);
+                        if (pt)
+                        {
+                            evt.columnIndex = pt.x;
+                            evt.rowIndex = pt.y;
+                        }
+                        evt.itemRenderer = li;
+                        dispatchEvent(evt);
+                    }
+                }*/
+                //@todo ?
+                break;
+            }
+
+            default:
+            {
+                if (findKey(event.charCode))
+                    event.stopPropagation();
+           //     trace(event.charCode)
+            }
+        }
+    }
 
     }
 }

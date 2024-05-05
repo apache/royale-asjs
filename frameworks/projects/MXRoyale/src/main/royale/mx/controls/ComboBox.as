@@ -20,11 +20,21 @@
 package mx.controls
 {
 import mx.controls.beads.HideComboPopupOnMouseDownBead;
+import mx.controls.beads.controllers.ComboBoxController;
 import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.listClasses.BaseListData;
+import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.events.DropdownEvent;
+import mx.events.ListEvent;
+
+import org.apache.royale.core.IItemRendererProvider;
+import org.apache.royale.utils.getOrAddBeadByType;
+
 //import mx.controls.listClasses.ListData;
 import mx.events.FlexEvent;
 import mx.core.IFactory;
+
+import mx.controls.beads.ComboBoxView;
 
 import org.apache.royale.html.beads.IComboBoxView;
 import org.apache.royale.core.ISelectionModel;
@@ -43,6 +53,8 @@ import mx.core.LayoutDirection;
 import mx.events.SandboxMouseEvent;
 import mx.events.MouseEvent;
 import mx.core.ClassFactory;
+
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 
@@ -657,8 +669,8 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ComboBox extends ComboBase
-                      /*implements IDataRenderer, IDropInListItemRenderer,
+public class ComboBox extends ComboBase implements IItemRendererProvider, IDropInListItemRenderer
+                      /*implements IDataRenderer,
                       IListItemRenderer*/
 {
     //--------------------------------------------------------------------------
@@ -678,6 +690,7 @@ public class ComboBox extends ComboBase
     public function ComboBox()
     {
         super();
+        this.typeNames = 'ComboBox'; //@todo consider prefixing everything with 'mx '
         if((model as ISelectionModel).labelField == null) 
 			labelField =  "label";
         addBead(new HideComboPopupOnMouseDownBead());
@@ -688,6 +701,41 @@ public class ComboBox extends ComboBase
         // setting selectionChanged, which causes the text in an editable
         // ComboBox to be lost.
         //dataProvider = new ArrayCollection();
+
+    }
+
+    /**
+     *  @private
+     *  Event that is causing the dropDown to open or close.
+     */
+    private var triggerEvent:Event;
+
+    override public function addedToParent():void
+    {
+
+
+        /*if (isNaN(explicitHeight)) {
+            if ((comboView.textInputField as IUIBase).height == 0) {
+                (comboView.textInputField as IUIBase).height = DEFAULT_MEASURED_HEIGHT
+            }
+            if ((comboView.popupButton as IUIBase).height == 0) {
+                (comboView.textInputField as IUIBase).height = DEFAULT_MEASURED_HEIGHT
+            }
+        }*/
+
+        super.addedToParent();
+        var comboView:IComboBoxView = view as IComboBoxView;
+        _dropdown = comboView.popUp as ListBase;
+        if (_dropdown){
+            _dropdown.addEventListener('change',dropdown_ChangeHandler);
+            _dropdown.itemRenderer = _itemRenderer;
+            _dropdown.rowCount = _rowCount;
+            _dropdown.owner = this;
+            _dropdown.labelFunction = labelFunction;
+            _dropdown.labelField = labelField;
+        }
+        //the ItemRendererController can displace the ComboBoxController from being added
+        getOrAddBeadByType(ComboBoxController, this);
 
     }
 
@@ -705,6 +753,66 @@ public class ComboBox extends ComboBase
     public function set labelField(value:String):void
     {
         (model as ISelectionModel).labelField = value;
+        if (_dropdown) _dropdown.labelField = value;
+    }
+
+    //----------------------------------
+    //  labelFunction
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the labelFunction property.
+     */
+    private var _labelFunction:Function;
+
+    /**
+     *  @private
+     */
+    //private var labelFunctionChanged:Boolean;
+
+    [Bindable("labelFunctionChanged")]
+    [Inspectable(category="Data")]
+
+    /**
+     *  User-supplied function to run on each item to determine its label.
+     *  By default the control uses a property named <code>label</code>
+     *  on each <code>dataProvider</code> item to determine its label.
+     *  However, some data sets do not have a <code>label</code> property,
+     *  or do not have another property that can be used for displaying
+     *  as a label.
+     *  <p>An example is a data set that has <code>lastName</code> and
+     *  <code>firstName</code> fields but you want to display full names.
+     *  You use <code>labelFunction</code> to specify a callback function
+     *  that uses the appropriate fields and return a displayable String.</p>
+     *
+     *  <p>The labelFunction takes a single argument which is the item
+     *  in the dataProvider and returns a String:</p>
+     *  <pre>
+     *  myLabelFunction(item:Object):String
+     *  </pre>
+     *
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get labelFunction():Function
+    {
+        return _labelFunction;
+    }
+
+    /**
+     *  @private
+     */
+    public function set labelFunction(value:Function):void
+    {
+        _labelFunction = value;
+        //labelFunctionChanged = true;
+
+        if (_dropdown) _dropdown.labelFunction = value;
+        dispatchEvent(new Event("labelFunctionChanged"));
     }
     
     //--------------------------------------------------------------------------
@@ -724,9 +832,9 @@ public class ComboBox extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get dropdown():Object // was ListBase
+    public function get dropdown():ListBase // was ListBase
     {
-        return (view as IComboBoxView).popUp;
+        return (view as IComboBoxView).popUp as ListBase;
     }
     
 
@@ -885,7 +993,7 @@ public class ComboBox extends ComboBase
     override protected function shouldDeselect(dp:Object):Boolean{
         return prompt || !dp || !dp.length;
     }
-
+    
     /**
      *  Returns a string representing the <code>item</code> parameter.
      *  
@@ -922,12 +1030,10 @@ public class ComboBox extends ComboBase
         if (item == null)
             return "";
 
-        /*
         if (labelFunction != null)
             return labelFunction(item);
-        */
-        
-        if (typeof(item) == "object")
+
+        if (typeof(item) == "object" && !(item instanceof XML ))
         {
             try
             {
@@ -938,12 +1044,14 @@ public class ComboBox extends ComboBase
             {
             }
         }
-        else if (typeof(item) == "xml")
+        else if (item is XML)
         {
+            var xml:XML = XML(item);
             try
             {
-                if (item[labelField].length() != 0)
-                    item = item[labelField];
+                var xmlList:XMLList = xml[labelField];
+                if (xmlList.length() != 0)
+                    item = xmlList;
             }
             catch(e:Error)
             {
@@ -1005,9 +1113,10 @@ public class ComboBox extends ComboBase
         _prompt = value;
         promptChanged = true;
         invalidateProperties();
-        if (textInput && value != null)
+        if (textInput && value != null && selectedIndex == -1)
         {
             textInput.text = value;
+           // implicitSelectedIndex = false;
         }
     }
     
@@ -1093,7 +1202,7 @@ public class ComboBox extends ComboBase
      */
     public function get rowCount():int
     {
-        return Math.max(1, Math.min(collection.length, _rowCount));
+        return collection ? Math.max(1, Math.min(collection.length, _rowCount)) : _rowCount;
     }
 
     /**
@@ -1147,9 +1256,9 @@ public class ComboBox extends ComboBase
 
             displayDropdown(false, trigger);
 
-        /*    dispatchChangeEvent(new Event("dummy"),
+            dispatchChangeEvent(null,
                     _selectedIndexOnDropdown,
-                    selectedIndex); */
+                    selectedIndex);
         }
     }
 	
@@ -1169,7 +1278,7 @@ public class ComboBox extends ComboBase
 	/**
      *  @private
      */
-    private var inTween:Boolean = false;
+    //private var inTween:Boolean = false;
 	
 	
 	private function displayDropdown(show:Boolean, trigger:Event = null, playEffect:Boolean = true):void
@@ -1177,7 +1286,7 @@ public class ComboBox extends ComboBase
         if (!initialized || show == _showingDropdown)
             return;
 
-        if (inTween && tween)
+        /*if (inTween && tween)
             tween.endTween();
 
         // Subclasses may extend to do pre-processing
@@ -1191,11 +1300,11 @@ public class ComboBox extends ComboBase
         var easingFunction:Function;
 
         var point:Point = new Point(0, unscaledHeight);
-        point = localToGlobal(point);
+        point = localToGlobal(point);*/
         
         //var sm:ISystemManager = systemManager.topLevelSystemManager;
         //var screen:Rectangle = sm.getVisibleApplicationRect(null, true);
-
+        var comboView:ComboBoxView = view as ComboBoxView;
         //opening the dropdown 
         if (show)
         {
@@ -1205,21 +1314,23 @@ public class ComboBox extends ComboBase
 
             getDropdown();
 
-            _dropdown.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, dropdown_mouseOutsideHandler);
+            /*_dropdown.addEventListener(FlexMouseEvent.MOUSE_DOWN_OUTSIDE, dropdown_mouseOutsideHandler);
             _dropdown.addEventListener(FlexMouseEvent.MOUSE_WHEEL_OUTSIDE, dropdown_mouseOutsideHandler);
             _dropdown.addEventListener(SandboxMouseEvent.MOUSE_DOWN_SOMEWHERE, dropdown_mouseOutsideHandler);
-            _dropdown.addEventListener(SandboxMouseEvent.MOUSE_WHEEL_SOMEWHERE, dropdown_mouseOutsideHandler);
-            
-            if (_dropdown.parent == null)  // was popped up then closed
+            _dropdown.addEventListener(SandboxMouseEvent.MOUSE_WHEEL_SOMEWHERE, dropdown_mouseOutsideHandler);*/
+            _dropdown.rowCount = rowCount;
+            /*if (_dropdown.parent == null)  // was popped up then closed
                 PopUpManager.addPopUp(_dropdown, this);
             else {
                // PopUpManager.bringToFront(_dropdown);
-			}
+			}*/
+
+
 
             // if we donot have enough space in the bottom display the dropdown
             // at the top. But if the space there is also less than required
             // display it below.
-            if (point.y + _dropdown.height > screen.bottom &&
+            /*if (point.y + _dropdown.height > screen.bottom &&
                 point.y > screen.top + _dropdown.height)
             {
                 // Dropdown will go below the bottom of the stage
@@ -1232,15 +1343,15 @@ public class ComboBox extends ComboBase
             {
                 initY = _dropdown.height;
                 tweenUp = false;
-            }
+            }*/
         
             //point = _dropdown.parent.globalToLocal(point);
             
             // If the combobox's layout is mirrored then the the dropdown's 
             // will be too.  That also means that (stage coordinate) point.x is 
             // currently the right edge of the dropdown.  Fix that:
-            if (layoutDirection == LayoutDirection.RTL)
-                point.x -= _dropdown.width;
+            /*if (layoutDirection == LayoutDirection.RTL)
+                point.x -= _dropdown.width;*/
 
             var sel:int = _dropdown.selectedIndex;
             if (sel == -1)
@@ -1253,68 +1364,96 @@ public class ComboBox extends ComboBase
             pos = Math.min(Math.max(pos, 0), _dropdown.maxVerticalScrollPosition);
             _dropdown.verticalScrollPosition = pos;
 
-            if (_dropdown.x != point.x || _dropdown.y != point.y)
-                _dropdown.move(point.x, point.y);
+            /*if (_dropdown.x != point.x || _dropdown.y != point.y)
+                _dropdown.move(point.x, point.y);*/
 
          /*   _dropdown.scrollRect = new Rectangle(0, initY,
                     _dropdown.width, _dropdown.height); */
 
-            if (!_dropdown.visible)
-                _dropdown.visible = true;
+           /* if (!_dropdown.visible)
+                _dropdown.visible = true;*/
 
+           // comboView.popUpVisible = true;
+            comboView.setPopupVisible(true) ;
             // Make sure we don't remove the dropdown at the end of the tween
             //bRemoveDropdown = false;
             
             // Set up the tween and relevant variables. 
             _showingDropdown = show;
-            duration = getStyle("openDuration");
+            /*duration = getStyle("openDuration");
             endY = 0;
-            easingFunction = getStyle("openEasingFunction") as Function;
+            easingFunction = getStyle("openEasingFunction") as Function;*/
         }
         
         // closing the dropdown 
         else if (_dropdown)
         {
             // Set up the tween and relevant variables. 
-            endY = (point.y + _dropdown.height > screen.bottom || tweenUp
+            /*endY = (point.y + _dropdown.height > screen.bottom || tweenUp
                                ? -_dropdown.height
-                               : _dropdown.height);
+                               : _dropdown.height);*/
             _showingDropdown = show;
-            initY = 0;
+            /*initY = 0;
             duration = getStyle("closeDuration");
-            easingFunction = getStyle("closeEasingFunction") as Function;
+            easingFunction = getStyle("closeEasingFunction") as Function;*/
             
            // _dropdown.resetDragScrolling();
+            comboView.setPopupVisible(false) ;
         }
         
-        inTween = true;
+        //inTween = true;
         // only force validation if we're about to show
         // or closing with effect.  Otherwise, if the iterator
         // is out of sync in the dropdown, we'll get an RTE
         // when closing
-        if (playEffect || show) {
+        /*if (playEffect || show) {
 				//UIComponentGlobals.layoutManager.validateNow();
-			}
+			}*/
         
         // Block all layout, responses from web service, and other background
         // processing until the tween finishes executing.
         //UIComponent.suspendBackgroundProcessing();
         
         // Disable the dropdown during the tween.
-        if (_dropdown)
-            _dropdown.enabled = false;
+        /*if (_dropdown)
+            _dropdown.enabled = false;*/
         
-        duration = Math.max(1, duration);
+        /*duration = Math.max(1, duration);
         if (!playEffect) 
             duration = 1;
         tween = new Tween(this, initY, endY, duration);
         
         if (easingFunction != null && tween)
-            tween.easingFunction = easingFunction;
+            tween.easingFunction = easingFunction;*/
             
-        //triggerEvent = trigger;
+        triggerEvent = trigger;
+
+        //emulation state : avoiding tweens for now, the following should normally happen in onTweenEnd :
+        var cbdEvent:DropdownEvent =
+                new DropdownEvent(_showingDropdown ? DropdownEvent.OPEN : DropdownEvent.CLOSE);
+        cbdEvent.triggerEvent = triggerEvent;
+        dispatchEvent(cbdEvent);
     }
-	
+
+
+   // private var implicitSelectedIndex:Boolean = false;
+
+
+    override public function set dataProvider(value:Object):void{
+        super.dataProvider = value;
+        value = dataProvider;
+        if (!prompt) {
+            if (value && value.length) {
+                selectedIndex = 0;
+               // implicitSelectedIndex = true;
+            } else {
+                selectedIndex = -1;
+               // implicitSelectedIndex = true;
+            }
+        } else {
+            selectedIndex = -1;
+        }
+    }
 	
 	//----------------------------------
     //  selectedIndex
@@ -1350,7 +1489,7 @@ public class ComboBox extends ComboBase
            // selectionChanged = true;
 		}
             
-        //implicitSelectedIndex = false;
+       // implicitSelectedIndex = false;
         invalidateDisplayList();
 
         // value committed event needs the text to be set
@@ -1363,6 +1502,13 @@ public class ComboBox extends ComboBase
         // [Matt] setting the text of the textInput should take care of this now
         // Send a valueCommit event, which is used by the data model
         //dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+        if (_showingDropdown) _dropdown.selectedIndex = value;
+    }
+
+    override public function set selectedItem(value:Object):void
+    {
+        super.selectedItem = value;
+        if (_showingDropdown) _dropdown.selectedItem = value;
     }
 	
 	private var _showingDropdown:Boolean = false;
@@ -1446,6 +1592,25 @@ public class ComboBox extends ComboBase
         _dropdown.scaleY = m.d; */
         
         return _dropdown;
+    }
+
+    private function dispatchChangeEvent(oldEvent:Event, prevValue:int, newValue:int):void{
+        if (prevValue != newValue) {
+            var newEvent:Event = oldEvent is ListEvent ? oldEvent : new ListEvent('change');
+            dispatchEvent(newEvent);
+        }
+    }
+
+    private function dropdown_ChangeHandler(event:Event):void{
+        //var prevValue:int = selectedIndex;
+        var prevValue:int = _selectedIndexOnDropdown;
+        if (_dropdown) selectedIndex = _dropdown.selectedIndex;
+        if (!_showingDropdown){
+            dispatchChangeEvent(event, prevValue,selectedIndex);
+        } else {
+            close();
+        }
+
     }
 	
 	private function dropdown_mouseOutsideHandler(event:Event):void
@@ -1564,8 +1729,17 @@ public class ComboBox extends ComboBase
         return Math.max((comboView.textInputField as IUIBase).height, (comboView.popupButton as IUIBase).height);
     }
 
+    //optimization:
+    override public function get measuredWidth():Number
+    {
+        if (isNaN(_measuredWidth)) {
+            var comboView:ComboBoxView = view as ComboBoxView;
+            return (comboView.popupButton as IUIBase).x + (comboView.popupButton as IUIBase).width;
+        } else return _measuredWidth;
+    }
+
     // Make sure Basic components scale correctly in height
-    override public function set explicitHeight(value:Number):void
+    /*override public function set explicitHeight(value:Number):void
     {
         super.explicitHeight = value;
         var comboView:IComboBoxView = view as IComboBoxView;
@@ -1573,7 +1747,20 @@ public class ComboBox extends ComboBase
         (comboView.popupButton as IUIBase).height = value;
     }
 
+    override public function setActualSize(w:Number, h:Number):void{
+        var comboView:IComboBoxView = view as IComboBoxView;
+       // (comboView.textInputField as IUIBase).width = w - (comboView.popupButton as IUIBase).width;
+        (comboView.textInputField as IUIBase).height = h;
+        (comboView.popupButton as IUIBase).height = h;
+        super.setActualSize(w,h)
+    }
 
+    override public function setHeight(h:Number, noEvent:Boolean = false):void{
+        var comboView:IComboBoxView = view as IComboBoxView;
+        (comboView.textInputField as IUIBase).height = h;
+        (comboView.popupButton as IUIBase).height = h;
+        super.setHeight(h, noEvent);
+    }*/
 
 
 }

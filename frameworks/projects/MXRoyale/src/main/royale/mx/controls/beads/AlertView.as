@@ -18,14 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
-    import org.apache.royale.core.IAlertModel;
+import mx.events.CloseEvent;
+
+import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.html.TitleBar;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.graphics.IEllipse;
+import org.apache.royale.html.TitleBar;
     import org.apache.royale.html.beads.AlertView;
-	
-    /**
+import org.apache.royale.utils.sendEvent;
+
+/**
      *  The AlertView class.
      * 
      *  @langversion 3.0
@@ -45,6 +50,20 @@ package mx.controls.beads
          */
 		public function AlertView()
 		{
+        }
+
+
+        public function retrieveContentByName(name:String):Object{
+            var ret:Object;
+            switch (name) {
+                case "yesButton": ret = yesButton; break;
+                case "noButton": ret = noButton; break;
+                case "cancelButton": ret = cancelButton; break;
+                case "okButton": ret = okButton; break;
+                case "controlBar"  : ret =  controlBar; break;
+                default : ret = null;
+            }
+            return ret;
         }
 
         override public function set strand(value:IStrand):void
@@ -72,6 +91,18 @@ package mx.controls.beads
         public function get contentArea():UIBase
         {
             return _strand as UIBase;
+        }
+
+        override public function dispatchCloseEvent(buttonFlag:uint):void {
+            var closeEvent:CloseEvent = new CloseEvent(CloseEvent.CLOSE,false, false, buttonFlag);
+            if (hasEventListener(CloseEvent.CLOSE)) {
+                //provide some way to cancel the default behavior of the close event, by listening directly to the view
+                //and either performing some activity before the popup is removed by the controller,
+                //or preventing the default dispatch of the CloseEvent from the Alert instance itself
+                dispatchEvent(closeEvent);
+                if (closeEvent.isDefaultPrevented()) return;
+            }
+            sendEvent(_strand as IEventDispatcher, closeEvent)
         }
 		
 	}

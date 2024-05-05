@@ -19,17 +19,22 @@
 package mx.controls.beads
 {	
     import mx.core.UIComponent;
-    
-    import org.apache.royale.core.IStrand;
+import mx.events.FlexEvent;
+import mx.events.NumericStepperEvent;
+
+import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
-    import org.apache.royale.html.beads.NumericStepperView;
+import org.apache.royale.events.ValueChangeEvent;
+import org.apache.royale.html.beads.NumericStepperView;
     import org.apache.royale.events.Event;
-    import mx.events.FocusEvent;
     import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.UIBase;
+import org.apache.royale.utils.sendStrandEvent;
+    import mx.events.FocusEvent;
     import org.apache.royale.html.beads.DispatchInputFinishedBead;
     import org.apache.royale.html.accessories.RestrictTextInputBead;
-	
-    /**
+
+/**
      *  The NumericStepperView class overrides the Basic
      *  NumericStepperView and sets default sizes to better 
      *  emulate Flex.
@@ -43,7 +48,7 @@ package mx.controls.beads
      */
 	public class NumericStepperView extends org.apache.royale.html.beads.NumericStepperView
 	{
-        override public function set strand(value:IStrand):void
+       /* override public function set strand(value:IStrand):void
         {
             super.strand = value;
             COMPILE::SWF
@@ -55,18 +60,93 @@ package mx.controls.beads
                 input.width = 44; // should be same as SWF after we adjust defaults for spinner
                 (value as UIComponent).measuredWidth = 60;
             }
-            input.addBead(new DispatchInputFinishedBead());
-            var restrictBead:RestrictTextInputBead = new RestrictTextInputBead();
-            restrictBead.restrict = "0-9\\-\\.\\,";
-            input.addBead(restrictBead);
-            input.addEventListener(DispatchInputFinishedBead.INPUT_FINISHED, syncTextAndSpinner);
-        }
+        }*/
 
 		public function getInput():IUIBase
 		{
 			return input;
 		}
 
+		override protected function getDefaultWidth():Number{
+			COMPILE::SWF
+			{
+				//input.width = 41;
+				return 41 + UIComponent.DEFAULT_MEASURED_HEIGHT -3;
+			}
+			COMPILE::JS
+			{
+				//input.width = 44; // should be same as SWF after we adjust defaults for spinner
+				(_strand as UIComponent).measuredWidth = 60;
+				return 41 + UIComponent.DEFAULT_MEASURED_HEIGHT - 3;
+			}
+
+		}
+
+		//allow subclasses to specify a default height
+		override protected function getDefaultHeight():Number{
+			return UIComponent.DEFAULT_MEASURED_HEIGHT;
+		}
+
+		//allow subclasses to specify a default height
+		override protected function adjustSpinnerWidth(inputHeight:Number):void{
+			COMPILE::JS
+			{
+				//unset some Basic styles:
+				spinner.positioner.style.verticalAlign = '';
+				spinner.positioner.style.position = 'absolute';
+				spinner.setWidthAndHeight(UIComponent.DEFAULT_MEASURED_HEIGHT -3, inputHeight);
+			}
+		}
+
+		override public function set strand(value:IStrand):void
+		{
+
+			super.strand = value;
+            (value as IEventDispatcher).addEventListener("deferredModelInitializing", handleDeferredModelInitializing);
+            (value as IEventDispatcher).addEventListener("deferredModelInitialized", handleDeferredModelInitialized);
+            input.addBead(new DispatchInputFinishedBead());
+            var restrictBead:RestrictTextInputBead = new RestrictTextInputBead();
+            restrictBead.restrict = "0-9\\-\\.\\,";
+            input.addBead(restrictBead);
+            input.addEventListener(DispatchInputFinishedBead.INPUT_FINISHED, syncTextAndSpinner);
+		}
+
+		override protected function adjustSize(widthToContent:Boolean,heightToContent:Boolean):void{
+
+			var strandWidth:Number = (_strand as UIBase).width;
+			var strandHeight:Number = (_strand as UIBase).height;
+			input.height = strandHeight;
+			adjustSpinnerWidth(strandHeight);
+			input.width = strandWidth - spinner.width - 2;
+
+		/*	COMPILE::SWF
+			{*/
+				spinner.x = input.width;
+				spinner.y = 0;
+			/*}*/
+
+		}
+
+
+		public var programmaticChange:Boolean;
+
+		/**
+		 * @private
+		 */
+		override protected function modelChangeHandler( event:Event ) : void
+		{
+			super.modelChangeHandler(event);
+			if (event.type == 'valueChange' && !_deferredModelInitializing) {
+				if (!programmaticChange) {
+					var vce:ValueChangeEvent = event as ValueChangeEvent;
+					var nse:NumericStepperEvent = new NumericStepperEvent(NumericStepperEvent.CHANGE, false, false, Number(vce.newValue),event);
+					sendStrandEvent(_strand,nse)
+				}
+				//always send valueCommit
+				var valueCommit:FlexEvent = new FlexEvent(FlexEvent.VALUE_COMMIT);
+				sendStrandEvent(_strand,valueCommit)
+			}
+		}
 
 		/**
 		 * @private
@@ -89,7 +169,15 @@ package mx.controls.beads
 			}
         }
 
+        private var _deferredModelInitializing:Boolean;
+        private function handleDeferredModelInitializing(event:Event):void
+        {
+            _deferredModelInitializing = true;
+        }
+
+        private function handleDeferredModelInitialized(event:Event):void
+        {
+            _deferredModelInitializing = false;
+        }
 	}
-
-
 }

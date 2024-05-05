@@ -24,6 +24,7 @@ package org.apache.royale.html
         import org.apache.royale.html.util.addElementToWrapper;
     }
 
+//NOTE THIS IS AN INTENTIONAL, POTENTIALLY LONGER-TERM, MONKEYPATCH. IT IS NOT SUITABLE FOR INTEGRATION INTO ROYALE SDK AS-IS
     /**
      *  The CloseButton class is Button that displays an X
      *  and is commonly used in a Panel's TitleBar.
@@ -48,6 +49,19 @@ package org.apache.royale.html
 			super();
             typeNames = "Button CloseButton";
 		}
+
+
+        /**
+         * allow for override in subclasses
+         *
+         * @royalesuppressexport
+         */
+        COMPILE::JS
+        protected function getImgSrc():String{
+            // return 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBvbHlnb24gcG9pbnRzPSI2MCA2LjIyIDUzLjc4IDAgMzAgMjMuNzcgNi4yMiAwIDAgNi4yMiAyMy43OCAzMCAwIDUzLjc4IDYuMjIgNjAgMzAgMzYuMjMgNTMuNzggNjAgNjAgNTMuNzggMzYuMjIgMzAgNjAgNi4yMiIvPjwvc3ZnPg==';
+            return 'Assets/flex_assets/CloseButtonUp.svg';
+        }
+
         /**
          * @royaleignorecoercion HTMLImageElement
          */
@@ -58,11 +72,7 @@ package org.apache.royale.html
             element.setAttribute('type', 'button');
             element.style.lineHeight = "0";
             element.style.padding = "0";
-			var data:String = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBvbHlnb24gcG9pbnRzPSI2MCA2LjIyIDUzLjc4IDAgMzAgMjMuNzcgNi4yMiAwIDAgNi4yMiAyMy43OCAzMCAwIDUzLjc4IDYuMjIgNjAgMzAgMzYuMjMgNTMuNzggNjAgNjAgNTMuNzggMzYuMjIgMzAgNjAgNi4yMiIvPjwvc3ZnPg==';
-            var img:HTMLImageElement = document.createElement("img") as HTMLImageElement;
-            img.style.cssText = 'height:60%;width:60%';
-            img.src = data;
-            element.appendChild(img);
+            //we are going to skip the image content in favor of css styling....
             return element;
         }
 	}

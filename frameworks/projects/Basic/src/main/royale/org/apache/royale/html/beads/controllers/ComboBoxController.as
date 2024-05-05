@@ -78,7 +78,7 @@ package org.apache.royale.html.beads.controllers
 			(viewBead.popUp as IEventDispatcher).addEventListener("change", handleListChange);
 		}
 		
-		private function handleListChange(event:Event):void
+		protected function handleListChange(event:Event):void
 		{
 			viewBead.popUpVisible = false;
 			

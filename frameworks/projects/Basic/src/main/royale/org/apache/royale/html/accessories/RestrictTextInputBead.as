@@ -87,6 +87,50 @@ package org.apache.royale.html.accessories
 		}
 		
 		private var _restrict:String;
+		COMPILE::JS
+		private var _restrictProcessed:Array;
+
+		COMPILE::JS
+		private function regexTest(val:String):String{
+			var result:String = val;
+			var passes:uint;
+			var passed:Boolean = true;
+			var lastPass:uint;
+			if (_restrictProcessed) {
+				for each(var regexp:RegExp in _restrictProcessed) {
+					passed = false;
+					if (!regexp.test(result)) {
+						var check:String = val.toUpperCase();
+						if (check != val) {
+							if (regexp.test(check)) {
+								result = check;
+								passed = true;
+							}
+						} else {
+							check = val.toLowerCase();
+							if (check != val && regexp.test(check))  {
+								result = check;
+								passed = true;
+							}
+						}
+					} else {
+						passed = true;
+					}
+
+					if (passed) {
+						passes++;
+						lastPass = _restrictProcessed.indexOf(regexp);
+					}
+					if (!result) trace('failed:'+regexp.source);
+				}
+			}
+
+			if (!passes || passes <  _restrictProcessed.length/2) {
+				result = '';
+			}
+
+			return result;
+		}
 		
 		/**
 		 *  The characters allowed or denied.  Uses flash.text.TextField.restrict syntax
@@ -104,6 +148,40 @@ package org.apache.royale.html.accessories
 		{
 			if (_restrict != value) {
 				_restrict = value;
+
+				COMPILE::JS{
+					if (value) {
+						_restrictProcessed = [];
+						var processedString:String = '';
+						var l:uint = value.length;
+						var escaped:Boolean;
+						var inverted:Boolean = l && value.charAt(0) == '^';
+
+						for (var i:uint=0;i<l;i++) {
+							var char:String = value.charAt(i);
+							if (char == '\\') {
+								escaped = !escaped
+							} else {
+								if (char == ']' && !escaped) {
+									//escape it
+									processedString += '\\';
+								}
+								if(i > 0 && char == '^' && !escaped) {
+									_restrictProcessed.push(new RegExp("[" + processedString + "]"));
+									processedString = '';
+									inverted = !inverted;
+									if (!inverted) continue;
+								}
+								escaped = false;
+							}
+							processedString += char;
+						}
+						if (processedString) {
+							_restrictProcessed.push(new RegExp("[" + processedString + "]"));
+						}
+
+					} else _restrictProcessed = null;
+				}
 			}
 		}
 		
@@ -124,24 +202,59 @@ package org.apache.royale.html.accessories
 				// throw new Error("RestrictTextInputBead requires strand to have an ITextFieldView bead");
 			}
 		}
-				
+		COMPILE::JS
+		private var beforeChange:String;
+
+		COMPILE::JS
+		private var beforeSelectBegin:int=-1;
+
+		COMPILE::JS
+		private var beforeSelectEnd:int=-1;
+
+		/**
+		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+		 */
 		COMPILE::JS
 		private function validateKeypress(event:BrowserEvent):void
 		{
 			var code:int = event.charCode;
-			
+
 			var key:String = String.fromCharCode(code);
-			
-			if (restrict)
+			var prevent:Boolean = _restrict == ''; //empty string is 'restrict all', null is 'allow all'
+			if (!prevent && _restrictProcessed)
 			{
-				var regex:RegExp = new RegExp("[" + restrict + "]");
-				if (!regex.test(key)) {
-					event["returnValue"] = false;
-					if (event.preventDefault) event.preventDefault();
-					return;
+				//var regex:RegExp = _restrictProcessed;//new RegExp("[" + restrict + "]");
+				if (!regexTest(key)) {
+					/*var altKey:String = caseVariationCheck(/!*regex,*!/key);
+					if (!altKey) {*/
+						prevent = true;
+					//}
 				}
 			}
+
+			if (prevent) {
+				event["returnValue"] = false;
+				if (event.preventDefault) event.preventDefault();
+			} else {
+				beforeChange = ((_strand as IRenderedObject).element as HTMLInputElement).value;
+				beforeSelectBegin = ((_strand as IRenderedObject).element as HTMLInputElement).selectionStart
+				beforeSelectEnd = ((_strand as IRenderedObject).element as HTMLInputElement).selectionEnd
+			}
 		}
+
+
+		/*COMPILE::JS
+		private function caseVariationCheck(/!*regex:RegExp, *!/inputChar:String):String{
+			var check:String = inputChar.toUpperCase();
+			if (check != inputChar) {
+				if (regexTest(check)) return check;
+			} else {
+				check = inputChar.toLowerCase();
+				if (check != inputChar && regexTest(check)) return check;
+			}
+			return '';
+		}*/
         
 		/**
 		 *  @royaleignorecoercion HTMLInputElement 
@@ -149,30 +262,81 @@ package org.apache.royale.html.accessories
 		 */
 		COMPILE::JS
 		private function validateInput(event:BrowserEvent):void
-		{            
+		{
+			//note this does not discriminate between text that may have been entered under more lenient restrictions previously, or which
+			//was set programatically. 'data' below should only apply to the current 'batch' of text being inserted through user interaction.
+			//@todo figure out the above.
 			var host:IRenderedObject = _strand as IRenderedObject;
-			var data:String = (host.element as HTMLInputElement).value;
-			
-			if (restrict && data != null && data.length > 0)
+			var latest:String = (host.element as HTMLInputElement).value;
+			var data:String;
+			var out:String = '';
+			var i:int;
+			var n:int;
+			var post:String = '';
+			var sel:uint = (host.element as HTMLInputElement).selectionEnd;
+
+			if (beforeChange && latest) {
+				n=beforeChange.length;
+				var n2:int = latest.length;
+				var diff:int = n2 -n;
+				for (i=0;i<n;i++) {
+					 if (beforeChange.charCodeAt(i) !=latest.charCodeAt(i)) {
+						 break;
+					 }
+				}
+				out = beforeChange.substr(0,i);
+				if (diff > 0) {
+					data = latest.substr(i, diff);
+					post = latest.substr(i+diff);
+					//sel = i+diff;
+				} else {
+					//@todo needs more work here for when a range is overtyped with less chars
+					/*for (var ii:uint=0;ii<n-i;ii--) {
+						if (beforeChange.charCodeAt(ii) !=latest.charCodeAt(ii)) {
+							break;
+						}
+					}*/
+					data = latest.substr(i);
+				}
+
+			} else data = latest;
+			beforeChange = null;
+			//var data:String = (host.element as HTMLInputElement).value;
+			var blocked:Boolean = _restrict == '';
+
+			if (!blocked && _restrictProcessed && data != null && data.length > 0)
 			{
-				var regex:RegExp = new RegExp("[" + restrict + "]");
-				var out:String = "";
-				var n:int = data.length;
-				var blocked:Boolean = false;
-				for (var i:int = 0; i < n; i++)
+				//var regex:RegExp = _restrictProcessed;//new RegExp("[" + restrict + "]");
+
+				n = data.length;
+
+				for (i = 0; i < n; i++)
 				{
 					var key:String = data.charAt(i);
-					if (regex.test(key)) {
+					var result:String = regexTest(key);
+					if (result!=key) {
+						blocked = true;
+					}
+					out += result;
+					/*if (regexTest(key)) {
 						out += key;
 					}
-					else
+					else {
+						key = caseVariationCheck(/!*regex,*!/key);
+						if (key) {
+							out += key;
+						}
 						blocked = true;
+					}*/
 				}
-				if (blocked) 
-				{
-					event["returnValue"] = false;
-					if (event.preventDefault) event.preventDefault();
-					(host.element as HTMLInputElement).value = out;                    
+			}
+			if (blocked)
+			{
+				event["returnValue"] = false;
+				if (event.preventDefault) event.preventDefault();
+				(host.element as HTMLInputElement).value = out + post;
+				if (sel) {
+					(host.element as HTMLInputElement).setSelectionRange(sel,sel);
 				}
 			}
 		}

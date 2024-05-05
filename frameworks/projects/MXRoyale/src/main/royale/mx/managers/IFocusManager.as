@@ -20,6 +20,9 @@
 package mx.managers
 {
 
+import mx.core.IFlexDisplayObject;
+import mx.core.IUIComponent;
+
 import org.apache.royale.events.IEventDispatcher;
 
 /**
@@ -42,6 +45,12 @@ public interface IFocusManager extends IEventDispatcher
     //
     //--------------------------------------------------------------------------
 
+	function get defaultButton():IUIComponent;
+	function set defaultButton(value:IUIComponent):void;
+
+	function get defaultButtonEnabled():Boolean;
+	function set defaultButtonEnabled(value:Boolean):void;
+
 
     //--------------------------------------------------------------------------
     //
@@ -52,7 +61,9 @@ public interface IFocusManager extends IEventDispatcher
     function getFocus():IFocusManagerComponent;
 	function setFocus(o:IFocusManagerComponent):void;
 	function activate():void;
-	//function deactivate():void;
+	function deactivate():void;
+
+
 
 }
 

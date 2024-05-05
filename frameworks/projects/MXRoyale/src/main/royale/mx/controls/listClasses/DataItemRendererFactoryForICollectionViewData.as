@@ -88,26 +88,24 @@ package mx.controls.listClasses
         {
             if (!dataProviderModel)
                 return;
-			var dped:IEventDispatcher = dp as IEventDispatcher;
             dp = dataProviderModel.dataProvider as ICollectionView;
             if (!dp)
             {
-              /*  // temporary until descriptor is used in MenuBarModel
+                // temporary until descriptor is used in MenuBarModel
                 var obj:Object = dataProviderModel.dataProvider;
                 if (obj is Array)
                 {
                     dp = new ArrayCollection(obj as Array);
                 }
-                else*/
+                else
                     return;
             }
             
             // listen for individual items being added in the future.
+            var dped:IEventDispatcher = dp as IEventDispatcher;
+			//First remove if it's already added
+			dped.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
 
-			//First remove if it's already added to previous dp instance
-			if (dped) dped.removeEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
-
-			dped = dp as IEventDispatcher; // get latest
 			dped.addEventListener(mx.events.CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
             
             super.dataProviderChangeHandler(event);            

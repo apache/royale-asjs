@@ -23,6 +23,8 @@ package mx.containers.beads.models
 import mx.core.ContainerLayout;
 
 import org.apache.royale.html.beads.models.PanelModel;
+import org.apache.royale.events.Event;    
+    
 
 /**
  *  @private
@@ -101,6 +103,27 @@ public class PanelModel extends org.apache.royale.html.beads.models.PanelModel
     public function set paddingRight(value:String):void
     {
         _paddingRight = value;
+    }
+
+    private var _status:String = '';
+    public function get status():String
+    {
+        return _status;
+    }
+
+    /**
+     *  @private
+     */
+    public function set status(value:String):void
+    {
+        _status = value;
+        dispatchEvent(new Event("statusChanged"));
+    }
+
+
+    public function get statusStyleName():String
+    {
+        return null;
     }
     
 }

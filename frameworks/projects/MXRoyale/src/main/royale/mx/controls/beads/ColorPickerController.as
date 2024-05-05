@@ -44,7 +44,7 @@ package mx.controls.beads
 		{
 			super.finishSetup(event);
 			if (viewBead == null) {
-				viewBead = _strand.getBeadByType(IComboBoxView) as IComboBoxView;
+				viewBead = _strand.getBeadByType(org.apache.royale.html.beads.IComboBoxView) as org.apache.royale.html.beads.IComboBoxView;
 			}
 			(viewBead.popupButton as IEventDispatcher).addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 			(viewBead.popupButton as IEventDispatcher).addEventListener(MouseEvent.MOUSE_UP, handleMouseUp);

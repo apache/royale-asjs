@@ -19,21 +19,27 @@
 
 package mx.controls
 {
-    /* import flash.display.DisplayObject;
-    import flash.display.Graphics;
-    import flash.display.Shape;
-    import flash.display.Sprite;
-    import flash.events.Event;
-    import flash.events.KeyboardEvent;
-    import flash.events.MouseEvent;
-    import flash.geom.Point;
-    import flash.geom.Rectangle;
-    import flash.ui.Keyboard;
-    import flash.utils.Dictionary;
-    import flash.utils.describeType;
-    import flash.utils.getDefinitionByName;
-    import flash.utils.getQualifiedClassName;
+import mx.events.DragEvent;
+
+/* import flash.display.DisplayObject;
+import flash.display.Graphics;
+import flash.display.Shape;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.events.KeyboardEvent;
+import flash.events.MouseEvent;
+import flash.geom.Point;
+import flash.geom.Rectangle;
+import flash.ui.Keyboard;
+import flash.utils.Dictionary;
+import flash.utils.describeType;
+import flash.utils.getDefinitionByName;
+import flash.utils.getQualifiedClassName;
 */
+
+    COMPILE::SWF{
+        import flash.utils.setTimeout;
+    }
     import mx.collections.ArrayCollection;
     import mx.collections.CursorBookmark;
     import mx.collections.HierarchicalCollectionView;
@@ -80,6 +86,14 @@ package mx.controls
     import mx.managers.IFocusManager;
 	import mx.managers.IFocusManagerComponent;
 	import mx.utils.UIDUtil;
+    import org.apache.royale.utils.getOrAddBeadByType;
+    import org.apache.royale.html.beads.DataGridDrawingLayerBead;
+    import mx.controls.dataGridClasses.SingleSelectionDragImageBead;
+    import mx.controls.beads.XMLTreeSingleSelectionDragSourceBead;
+    import mx.controls.beads.TreeSingleSelectionDragSourceBead;
+    import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead;
+    import mx.controls.beads.XMLTreeSingleSelectionDropTargetBead;
+    import mx.controls.beads.TreeSingleSelectionDropTargetBead;
 
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IChild;
@@ -103,6 +117,20 @@ use namespace mx_internal;
 //--------------------------------------
 //  Events
 //--------------------------------------
+
+//From AdvancedDataGridEx
+/**
+ *  Dispatched when sorting is to be performed on the AdvancedDataGrid control.
+ *
+ *  @eventType mx.events.AdvancedDataGridEvent.SORT
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.4
+ */
+[Event(name="sort", type="mx.events.AdvancedDataGridEvent")]
+
 
 /**
 *  Dispatched when a branch of the navigation tree is closed or collapsed.
@@ -228,6 +256,37 @@ use namespace mx_internal;
  *  @productversion Royale 0.9.4
  */
 [Event(name="itemEditBegin", type="mx.events.AdvancedDataGridEvent")]
+
+
+/**
+ *  Dispatched when an item renderer gets focus, which can occur if the user
+ *  clicks on an item in the AdvancedDataGrid control or navigates to the item using
+ *  a keyboard.  Only dispatched if the item is editable.
+ *
+ *  @eventType mx.events.AdvancedDataGridEvent.ITEM_FOCUS_IN
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="itemFocusIn", type="mx.events.AdvancedDataGridEvent")]
+
+/**
+ *  Dispatched when an item renderer loses focus, which can occur if the user
+ *  clicks another item in the AdvancedDataGrid control or clicks outside the control,
+ *  or uses the keyboard to navigate to another item in the DataGrid control
+ *  or outside the control.
+ *  Only dispatched if the item is editable.
+ *
+ *  @eventType mx.events.AdvancedDataGridEvent.ITEM_FOCUS_OUT
+ *
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
+ */
+[Event(name="itemFocusOut", type="mx.events.AdvancedDataGridEvent")]
 
 //--------------------------------------
 //  Styles
@@ -2109,9 +2168,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *  Indicates that disclosure icons will be shown or not.
      */
-    /* private var _displayDisclosureIcon:Boolean = true;
+     private var _displayDisclosureIcon:Boolean = true;
 
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     /**
      *  Controls the creation and visibility of disclosure icons
      *  in the navigation tree.
@@ -2124,12 +2183,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get displayDisclosureIcon():Boolean
+     public function get displayDisclosureIcon():Boolean
     {
         return _displayDisclosureIcon;
-    } */
+    }
 
-    /* public function set displayDisclosureIcon(value:Boolean):void
+     public function set displayDisclosureIcon(value:Boolean):void
     {
         if (value != _displayDisclosureIcon)
         {
@@ -2138,7 +2197,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             itemsSizeChanged = true;
             invalidateDisplayList();
         }
-    } */
+    }
     
     //----------------------------------
     //  displayItemsExpanded
@@ -3173,14 +3232,14 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 
             super.columns = _columnsValue;
         }
-
+*/
         if (displayItemsExpandedChanged)
         {
             // if displayItemsExpanded is set to true, then expand all the items.
             if (displayItemsExpanded)
                 expandAll();
         }
-        */
+
         
         super.commitProperties();
         
@@ -4502,12 +4561,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @return True if a branch, false if not.
      *
      */
-    /* protected function isBranch(item:Object):Boolean
+     protected function isBranch(item:Object):Boolean
     {
         if (_rootModel && item != null)
             return _rootModel.canHaveChildren(item);
         return false;
-    } */
+    }
 
     /**
      *  @private
@@ -4756,7 +4815,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                                dispatchEvent:Boolean = false,    
                                cause:Event = null):void
     {
-        trace("AdvancedDataGrid::expandItem is not implemented");
+        trace("AdvancedDataGrid::expandItem WIP");
+        if (collection is HierarchicalCollectionView) {
+            openNode(item);
+        }
+
         //if the iterator is null, that indicates we have not been 
         //validated yet, so we will not continue. 
         /*if (iterator == null)
@@ -6142,25 +6205,27 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
      public function expandAll():void
     {
-        trace("AdvancedDataGrid::expandAll is not implemented");
-        /*if (dataProvider is IHierarchicalCollectionView && iterator)
+       // trace("AdvancedDataGrid::expandAll is not implemented");
+        if (dataProvider is IHierarchicalCollectionView && iterator)
         {
             // move to the first item
             iterator.seek(CursorBookmark.FIRST);
             while(!iterator.afterLast)
             {
                 var item:Object = iterator.current;
-                // open the item if its a branch item and its not already open
+                // open the item if it's a branch item and it's not already open
                 if (isBranch(item) && !isItemOpen(item))
                 {
-                    IHierarchicalCollectionView(collection).openNode(item); // open node
+                    //IHierarchicalCollectionView(collection).openNode(item); // open node
                     
                     // dispatch ITEM_OPEN event
-                    var itemRenderer:IListItemRenderer = visibleData[itemToUID(item)];
+                    /*var itemRenderer:IListItemRenderer = visibleData[itemToUID(item)];
                     dispatchAdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_OPEN,
                                                   item,
                                                   itemRenderer,
-                                                  null);
+                                                  null);*/
+                    openNode(item)
+
                 }
                 iterator.moveNext();
             }
@@ -6168,7 +6233,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             invalidateDisplayList();
             // seek to the correct position
             iterator.seek(CursorBookmark.FIRST, verticalScrollPosition);
-        }*/
+        }
     } 
 
     /**
@@ -6181,8 +6246,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
      public function collapseAll():void
     {
-        trace("AdvancedDataGrid::collapseAll is not implemented");
-        /*if (dataProvider is IHierarchicalCollectionView && iterator)
+      //  trace("AdvancedDataGrid::collapseAll is not implemented");
+        if (dataProvider is IHierarchicalCollectionView && iterator)
         {
             // clear the selected items
             clearSelected();
@@ -6190,9 +6255,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             //dispatch events
             for each (var item:* in IHierarchicalCollectionView(collection).openNodes)
             {
-                dispatchAdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_CLOSE,
+                /*dispatchAdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_CLOSE,
                                               item,
-                                              visibleData[itemToUID(item)]);
+                                              visibleData[itemToUID(item)]);*/
+
+                closeNode(item)
             }
             
             var oldValue:int = verticalScrollPosition;
@@ -6205,7 +6272,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                     oldValue >= collection.length ? collection.length - 1 : oldValue;
                     
             iterator.seek(CursorBookmark.FIRST, verticalScrollPosition);
-        }*/
+        }
     } 
     
     /**
@@ -8628,8 +8695,30 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 }
             }
         }*/
+        var ce:CollectionEvent = event as CollectionEvent;
+        if (ce) {
+            //at the moment UPDATE will be handled at the renderer level
+            if (ce.kind != CollectionEventKind.UPDATE) {
+                if (!deferredDelay) {
+                    deferredDelay = true;
+                    setTimeout(deferredViewUpdate, 0);
+                }
+            }
+        }
     }
-    
+
+    private var deferredDelay:Boolean;
+    protected function deferredViewUpdate():void{
+        deferredDelay = false;
+        // sent from strand to notify DataGridView to completely refresh renderers
+        var event:CollectionEvent = new CollectionEvent(
+                CollectionEvent.COLLECTION_CHANGE,
+                false,
+                true,
+                CollectionEventKind.REFRESH);
+        dispatchEvent(event);
+    }
+
     /**
      *  @private
      */
@@ -10391,6 +10480,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 verticalScrollPosition = rowIndex - actualLockedRows;
             else
             {
+                //porting notes, added this because Royale has 'undefined'/NaN default here, not currently implemented
+                var maxVerticalScrollPosition:Number = this.maxVerticalScrollPosition || 0;
                 // variable row heights means that we can't know how far to scroll sometimes so we loop
                 // until we get it right
                 while (rowIndex > lastRowIndex ||
@@ -10434,6 +10525,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             }
             else
             {
+                //porting notes, added this because Royale has 'undefined'/NaN default here, not currently implemented
+                var maxHorizontalScrollPosition:Number = this.maxHorizontalScrollPosition || 0;
                 while (colIndex > lastColIndex ||
                        (colIndex == lastColIndex && colIndex > horizontalScrollPosition + lockedColumnCount &&
                         partialCol))
@@ -10550,7 +10643,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 colIndex = i;
                 break;
             }
-			xx += visibleColumns[i].width;
+            //@todo review, was:
+            // xx += visibleColumns[i].width;
+            //changed to :
+            var num:Number = isNaN(visibleColumns[i].columnWidth) ? visibleColumns[i].width : visibleColumns[i].columnWidth;
+            xx += num;
         }
         if (i == visibleColumns.length)
 		{
@@ -10636,10 +10733,15 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
               Math.min(rowData.height + dh, listContent.height - listContent.y - itemEditorInstance.y));
             */
 
+            var vertOffset:uint = 0;
+            COMPILE::JS {
+                vertOffset = listContent.element.scrollTop;
+                vertOffset = vertOffset < listContent.y ? vertOffset + listContent.y : vertOffset;
+            }
             // To support column spanning:
             itemEditorInstance.setActualSize(editedItemRenderer.width + dw,
-                                             Math.min(rowData.height + dh,
-                                                      listContent.height - listContent.y - itemEditorInstance.y));
+                                 Math.min(rowData.height + dh,
+                                          listContent.height /*- listContent.y*/ + vertOffset -itemEditorInstance.y));
 
             IEventDispatcher(itemEditorInstance).addEventListener(FocusEvent.FOCUS_OUT, itemEditorFocusOutHandler);
             // Commenting to show the item (with disclosure icon) behind the item editor
@@ -10835,8 +10937,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 				deferFocus();
 				
 				// must call removeChild() so FocusManager.lastFocus becomes null
-				if (itemEditorInstance)
-               		itemEditorInstance.parent.removeElement(itemEditorInstance as IChild);
+				if (itemEditorInstance) {
+                    itemEditorInstance.dispatchEvent(new org.apache.royale.events.Event('destroyItemEditor'));
+                    itemEditorInstance.parent.removeElement(itemEditorInstance as IChild);
+                }
+
 
                 // we are not setting the item renderer's visibility to false while creating an editor,
                 // then why set its visibility to true
@@ -11155,7 +11260,16 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                     if (!(newData is int))
                         newData = Number(newData);
                 }
-                if (data[property] != newData)
+                if (data is XML) {
+
+                    var xml:XML = XML(data);
+                    var existing:XMLList = xml[property];
+                    if (existing != String(newData)) {
+                        bChanged = true;
+                        xml[property] = newData;
+                    }
+                }
+                else if (data[property] != newData)
                 {
                     bChanged = true;
                     data[property] = newData;
@@ -11218,7 +11332,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     protected function addRendererToContentArea(item:IListItemRenderer, column:AdvancedDataGridColumn):void
     {
 		var listContent:IParent = (view as AdvancedDataGridView).listArea as IParent;
-		if (item.parent != listContent)
+		//the column list is not UIComponent so the dynamic lookup for systemManager fails, this works around that:
+        item.systemManager = this.systemManager;
+        if (item.parent != listContent)
 			listContent.addElement(item as IChild);
 		COMPILE::JS
 		{
@@ -11398,6 +11514,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 
 	private function getProps(data:Object):Array
 	{
+        if (data is XML) return []; //no point to proceed if its XML
 		var typeDef:TypeDefinition = describeType(data);
 		if (typeDef)
 			return typeDef.variables;
@@ -11445,6 +11562,53 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         return view is IDataGridView && IDataGridView(view).listArea ? IDataGridView(view).listArea.element : null;
     }
 
+    /**
+     *  @private
+     */
+    override protected function setDropEnabled():void
+    {
+        getOrAddBeadByType(DataGridDrawingLayerBead, this);
+        configureDropListeners(getOrAddBeadByType(TreeSingleSelectionDropTargetBead, this) as IEventDispatcher);
+        getOrAddBeadByType(XMLTreeSingleSelectionDropTargetBead, this);
+        getOrAddBeadByType(SingleSelectionDropIndicatorBead, this);
+    }
+
+    private function configureDropListeners(dispatcherBead:IEventDispatcher):void{
+       // dispatcherBead.addEventListener('enter', _dispatchDragEvent);
+       // dispatcherBead.addEventListener('over', _dispatchDragEvent)
+    }
+
+    private function _dispatchDragEvent(original:Event):void{
+        var local:DragEvent
+        switch(original.type) {
+            case 'enter':
+                local = new DragEvent(DragEvent.DRAG_ENTER);
+                break;
+            case 'over':
+                local = new DragEvent(DragEvent.DRAG_OVER);
+                break;
+            default:
+                trace('AdvancedDataGrid, unhandled drag event', original);
+                break;
+        }
+
+        if (local) {
+            dispatchEvent(local);
+            if (local.isDefaultPrevented()) {
+                original.preventDefault();
+            }
+        }
+    }
+
+    /**
+     *  @private
+     */
+    override protected function setDragEnabled():void
+    {
+        getOrAddBeadByType(TreeSingleSelectionDragSourceBead, this);
+        getOrAddBeadByType(XMLTreeSingleSelectionDragSourceBead, this);
+        getOrAddBeadByType(SingleSelectionDragImageBead, this);
+    }
 }
 
 }

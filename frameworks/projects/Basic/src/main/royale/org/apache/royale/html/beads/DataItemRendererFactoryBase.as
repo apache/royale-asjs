@@ -94,6 +94,11 @@ package org.apache.royale.html.beads
 			return true;
 		}
 
+
+		protected function setRendererData(ir:IIndexedItemRenderer, data:Object):void{
+			ir.data = data;
+		}
+
 		/**
 		 *  create all item renderers
 		 *  
@@ -110,7 +115,8 @@ package org.apache.royale.html.beads
 				dataGroup.addItemRenderer(ir, false);
 				var data:Object = getItemAt(i);
 				(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, i);
-				ir.data = data;				
+				//ir.data = data;
+				setRendererData(ir,data);
 			}
 		}
 

@@ -30,13 +30,19 @@ package mx.managers
 // import flash.events.EventDispatcher;
 // import flash.events.IEventDispatcher;
 // import flash.events.IOErrorEvent;
+
 import org.apache.royale.events.MouseEvent;
 import mx.events.ProgressEvent;
+
+COMPILE::SWF{
+    import flash.ui.Mouse;
+}
+
 // import flash.geom.Point;
 // import flash.system.ApplicationDomain;
 // import flash.text.TextField;
 // import flash.text.TextFieldType;
-// import flash.ui.Mouse;
+//
 // import mx.core.EventPriority;
 // import mx.core.FlexGlobals;
 // import mx.core.FlexSprite;
@@ -72,6 +78,12 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     //  Class variables
     //
     //--------------------------------------------------------------------------
+
+    COMPILE::JS
+    private var topElement:HTMLElement;
+
+    COMPILE::JS
+    private var cssRule:CSSRule;
 
     /**
      *  @private
@@ -132,8 +144,83 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
 		
 			}
 		}
+
+        COMPILE::JS{
+            init();
+        }
     }
 
+
+    COMPILE::JS
+    private function init():void{
+        topElement = document.body;
+
+        var selectorText:String = 'body.cursor, body.cursor *';
+        var initialStyle:String = '';
+
+        if (document.styleSheets && document.styleSheets.length) {
+            var l:uint = document.styleSheets.length;
+            var resolvedSheet:CSSStyleSheet;
+            for (var i:int=0;i< l;i++) {
+                var sheet:CSSStyleSheet = document.styleSheets[i] as CSSStyleSheet;
+                if (sheet.disabled) continue;
+                var media:Object = sheet.media;
+                var mediaString:String;
+                var media_type:String = typeof media;
+                if (media_type == 'object') {
+                    mediaString = media.mediaText;
+                }
+                else if (media_type == 'string'){
+                    mediaString = '' + media;
+                }
+                if (mediaString != null) {
+                    if (mediaString == '' || mediaString.indexOf('screen') != -1) {
+                        resolvedSheet = sheet;
+                    }
+                }
+                if (resolvedSheet) break;
+            }
+
+        }
+        if (!resolvedSheet) {
+            var styleSheetEl:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
+            styleSheetEl.type = 'text/css';
+            document.head.appendChild(styleSheetEl);
+            l = document.styleSheets.length;
+            for (i=0;i<l;i++) {
+                sheet = document.styleSheets[i] as CSSStyleSheet;
+                if (sheet.disabled) continue;
+                resolvedSheet = sheet;
+                break;
+            }
+            media = resolvedSheet.media;
+            media_type = typeof media;
+        }
+        if (media_type) {
+            var collection:Object = media_type == 'string' ? resolvedSheet['rules'] : resolvedSheet['cssRules'];
+            l = collection ? collection.length : 0;
+            for (i=0;i<l;i++){
+                var rule:CSSStyleRule = collection[i] as CSSStyleRule;
+                if (rule.selectorText && rule.selectorText.toLowerCase() == selectorText) {
+                    rule.style.cssText = initialStyle;
+                    cssRule = rule;
+                    topElement.classList.add('cursor');
+                    return;
+                }
+            }
+            if (media_type == 'string') {
+                resolvedSheet['addRule'](selectorText, initialStyle);
+                cssRule = resolvedSheet['rules'][l];
+            } else {
+                resolvedSheet.insertRule(selectorText +'{'+initialStyle+"}",l);
+                cssRule = resolvedSheet.cssRules[l];
+            }
+            if (cssRule){
+                topElement.classList.add('cursor');
+            }
+        }
+
+    }
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -159,6 +246,13 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
      *  @private
      */
     mx_internal var initialized:Boolean = false;
+
+    /**
+     *  @private
+     */
+    COMPILE::JS
+    public var currentCursorStyle:String = 'auto';
+
     
     /**
      *  @private
@@ -423,10 +517,13 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function setCursor(cursorClass:Class, priority:int = 2,
+    public function setCursor(cursorClass:Object/*Class*/, priority:int = 2,
                                      xOffset:Number = 0,
                                      yOffset:Number = 0):int 
     {
+        trace('setCursor called', arguments);
+
+
         // if (hasEventListener("setCursor"))
         // {
 	// 	    var event:Request = new Request("setCursor", false, true);
@@ -438,7 +535,8 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
         // }
 
         var cursorID:int = nextCursorID++;
-        
+        //@todo WIP:
+        /*
         // Create a new CursorQueueItem.
         var item:CursorQueueItem = new CursorQueueItem();
         item.cursorID = cursorID;
@@ -458,7 +556,7 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
         cursorList.sort(priorityCompare);
 
         // Determine which cursor to display
-        showCurrentCursor();
+        showCurrentCursor();*/
         
         return cursorID;
     }
@@ -533,7 +631,11 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
 
         COMPILE::JS
         {
-            document.body.style.cursor = "auto";
+           // document.body.style.cursor = "auto";
+            if (cssRule) {
+                cssRule.style.removeProperty('cursor');
+               // cssRule.style.cursor = "auto";
+            }
         }
     }
 
@@ -561,7 +663,12 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     {
 	COMPILE::JS
 	{
-		document.body.style.cursor = "wait";
+		//document.body.style.cursor = "wait";
+
+        if (cssRule) {
+            //cssRule.style.cursor = "wait";
+            cssRule.style.setProperty('cursor', 'wait');
+        }
 	}
         // if (hasEventListener("setBusyCursor"))
     	// 	if (!dispatchEvent(new Event("setBusyCursor", false, true)))
@@ -593,7 +700,11 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     {
 	COMPILE::JS
 	{
-		document.body.style.cursor = "auto";
+		//document.body.style.cursor = "auto";
+        if (cssRule) {
+            cssRule.style.removeProperty('cursor');
+           // cssRule.style.cursor = "auto";
+        }
 	}
         // if (hasEventListener("removeBusyCursor"))
     	// 	if (!dispatchEvent(new Event("removeBusyCursor", false, true)))
@@ -610,136 +721,183 @@ public class CursorManagerImpl extends EventDispatcher implements ICursorManager
     private function showCurrentCursor():void 
     {
         // // if there are custom cursors...
-        // if (cursorList.length > 0)
-        // {
-        //     if (!initialized)
-        //     {
-	// 			initialized = true;
+         if (cursorList.length > 0)
+         {
+             if (!initialized)
+             {
+	 			initialized = true;
 
-        //         var e:Event;
-        //         if (hasEventListener("initialize"))
-        //         {
-        //             e = new Event("initialize", false, true);
-        //         }
-	// 			if (!e || dispatchEvent(e))
-	// 			{
-	// 				// The first time a cursor is requested of the CursorManager,
-	// 				// create a Sprite to hold the cursor symbol
-	// 				cursorHolder = new FlexSprite();
-	// 				cursorHolder.name = "cursorHolder";
-	// 				cursorHolder.mouseEnabled = false;
-	// 				cursorHolder.mouseChildren = false;
-        //        		systemManager.cursorChildren.addChild(cursorHolder);
-	// 			}
-        //     }
+                 var e:Event;
+                 if (hasEventListener("initialize"))
+                 {
+                     e = new Event("initialize", false, true);
+                 }
+	 			if (!e || dispatchEvent(e))
+	 			{
+	 				// The first time a cursor is requested of the CursorManager,
+	 				// create a Sprite to hold the cursor symbol
+	 				/*cursorHolder = new FlexSprite();
+	 				cursorHolder.name = "cursorHolder";
+	 				cursorHolder.mouseEnabled = false;
+	 				cursorHolder.mouseChildren = false;
+                		systemManager.cursorChildren.addChild(cursorHolder);*/
+	 			}
+             }
 
-        //     // Get the top most cursor.
-        //     var item:CursorQueueItem = cursorList[0];
+             // Get the top most cursor.
+             var item:CursorQueueItem = cursorList[0];
                 
-        //     // If the system cursor was being displayed, hide it.
-        //     if (currentCursorID == CursorManager.NO_CURSOR)
-        //         Mouse.hide();
+             // If the system cursor was being displayed, hide it.
+             if (currentCursorID == CursorManager.NO_CURSOR) {
+                 COMPILE::JS {
+                     cssRule.style.cursor = 'none';
+                 }
+                 COMPILE::SWF{
+                     Mouse.hide();
+                 }
+             }
+
+
+
+
+
 			
         //     // If the current cursor has changed...
-        //     if (item.cursorID != currentCursorID)
-        //     {
-        //         if (cursorHolder.numChildren > 0)
-        //             cursorHolder.removeChildAt(0);
-                
-        //         currentCursor = new item.cursorClass(); 
-                
-        //         if (currentCursor)
-        //         {
-        //             if (currentCursor is InteractiveObject)
-        //                 InteractiveObject(currentCursor).mouseEnabled = false;
-        //             if (currentCursor is DisplayObjectContainer)
-        //                 DisplayObjectContainer(currentCursor).mouseChildren = false;
-        //             cursorHolder.addChild(currentCursor);
-                    
-        //             addContextMenuHandlers();
+             if (item.cursorID != currentCursorID) {
 
-	// 				var pt:Point;
-        //             // make sure systemManager is not other implementation of ISystemManager
-        //             if (systemManager is SystemManager)
-        //             {
-	// 					pt = new Point(SystemManager(systemManager).mouseX + item.x, SystemManager(systemManager).mouseY + item.y);
-	// 					pt = SystemManager(systemManager).localToGlobal(pt);
-	// 					pt = cursorHolder.parent.globalToLocal(pt);
-        //             	cursorHolder.x = pt.x;
-        //             	cursorHolder.y = pt.y;
-        //             }
-        //             // WindowedSystemManager
-        //             else if (systemManager is DisplayObject)
-        //             {
-	// 					pt = new Point(DisplayObject(systemManager).mouseX + item.x, DisplayObject(systemManager).mouseY + item.y);
-	// 					pt = DisplayObject(systemManager).localToGlobal(pt);
-	// 					pt = cursorHolder.parent.globalToLocal(pt);
-        //             	cursorHolder.x = DisplayObject(systemManager).mouseX + item.x;
-        //             	cursorHolder.y = DisplayObject(systemManager).mouseY + item.y;
-        //             }
-        //             // otherwise
-        //             else
-        //             {
-        //             	cursorHolder.x = item.x;
-        //             	cursorHolder.y = item.y;
-        //             }
+                 /*COMPILE::SWF{
+                     //         if (cursorHolder.numChildren > 0)
+                     //             cursorHolder.removeChildAt(0);
 
-        //             var e2:Event;
-        //             if (hasEventListener("addMouseMoveListener"))
-        //                 e2 = new Event("addMouseMoveListener", false, true);
-	// 				if (!e2 || dispatchEvent(e2))
-	// 					systemManager.stage.addEventListener(MouseEvent.MOUSE_MOVE,
-        //                                            mouseMoveHandler,true,EventPriority.CURSOR_MANAGEMENT);
-                    
-        //             var e3:Event;
-        //             if (hasEventListener("addMouseOutListener"))
-        //                 e3 = new Event("addMouseOutListener", false, true);
-	// 				if (!e3 || dispatchEvent(e3))
-	// 					systemManager.stage.addEventListener(MouseEvent.MOUSE_OUT,
-        //                                            mouseOutHandler,true,EventPriority.CURSOR_MANAGEMENT);
-                    
-        //         }
-            	
-        //         currentCursorID = item.cursorID;
-        //         currentCursorXOffset = item.x;
-        //         currentCursorYOffset = item.y;
-        //     }
-        // }
+                     //         currentCursor = new item.cursorClass();
+
+                     //         if (currentCursor)
+                     //         {
+                     //             if (currentCursor is InteractiveObject)
+                     //                 InteractiveObject(currentCursor).mouseEnabled = false;
+                     //             if (currentCursor is DisplayObjectContainer)
+                     //                 DisplayObjectContainer(currentCursor).mouseChildren = false;
+                     //             cursorHolder.addChild(currentCursor);
+
+                     //             addContextMenuHandlers();
+
+                     // 				var pt:Point;
+                     //             // make sure systemManager is not other implementation of ISystemManager
+                     //             if (systemManager is SystemManager)
+                     //             {
+                     // 					pt = new Point(SystemManager(systemManager).mouseX + item.x, SystemManager(systemManager).mouseY + item.y);
+                     // 					pt = SystemManager(systemManager).localToGlobal(pt);
+                     // 					pt = cursorHolder.parent.globalToLocal(pt);
+                     //             	cursorHolder.x = pt.x;
+                     //             	cursorHolder.y = pt.y;
+                     //             }
+                     //             // WindowedSystemManager
+                     //             else if (systemManager is DisplayObject)
+                     //             {
+                     // 					pt = new Point(DisplayObject(systemManager).mouseX + item.x, DisplayObject(systemManager).mouseY + item.y);
+                     // 					pt = DisplayObject(systemManager).localToGlobal(pt);
+                     // 					pt = cursorHolder.parent.globalToLocal(pt);
+                     //             	cursorHolder.x = DisplayObject(systemManager).mouseX + item.x;
+                     //             	cursorHolder.y = DisplayObject(systemManager).mouseY + item.y;
+                     //             }
+                     //             // otherwise
+                     //             else
+                     //             {
+                     //             	cursorHolder.x = item.x;
+                     //             	cursorHolder.y = item.y;
+                     //             }
+
+                     //             var e2:Event;
+                     //             if (hasEventListener("addMouseMoveListener"))
+                     //                 e2 = new Event("addMouseMoveListener", false, true);
+                     // 				if (!e2 || dispatchEvent(e2))
+                     // 					systemManager.stage.addEventListener(MouseEvent.MOUSE_MOVE,
+                     //                                            mouseMoveHandler,true,EventPriority.CURSOR_MANAGEMENT);
+
+                     //             var e3:Event;
+                     //             if (hasEventListener("addMouseOutListener"))
+                     //                 e3 = new Event("addMouseOutListener", false, true);
+                     // 				if (!e3 || dispatchEvent(e3))
+                     // 					systemManager.stage.addEventListener(MouseEvent.MOUSE_OUT,
+                     //                                            mouseOutHandler,true,EventPriority.CURSOR_MANAGEMENT);
+
+                     //         }
+
+                     //         currentCursorID = item.cursorID;
+                     //         currentCursorXOffset = item.x;
+                     //         currentCursorYOffset = item.y;
+                     //     }
+                 }*/
+
+                 COMPILE::JS {
+                     currentCursorStyle = item.cursorClass + '';
+                     if (currentCursorStyle) {
+                         cssRule.style.cursor = currentCursorStyle;
+                         currentCursorID = item.cursorID;
+                         currentCursorXOffset = item.x;
+                         currentCursorYOffset = item.y;
+                     }
+                 }
+
+             }
+         }
+         else
+         {
+
+             showCustomCursor = false;
+             if (currentCursorID != CursorManager.NO_CURSOR)
+             {
+                 currentCursorID = CursorManager.NO_CURSOR;
+                 currentCursorXOffset = 0;
+                 currentCursorYOffset = 0;
+
+                 /*COMPILE::SWF {
+                     //         // There is no cursor in the cursor list to display,
+                     //         // so cleanup and restore the system cursor.
+
+                     //         var e4:Event;
+                     //         if (hasEventListener("removeMouseMoveListener"))
+                     //             e4 = new Event("removeMouseMoveListener", false, true)
+                     // 			if (!e4 || dispatchEvent(e4))
+                     //         {
+                     //        		systemManager.stage.removeEventListener(MouseEvent.MOUSE_MOVE,
+                     //                                   mouseMoveHandler,true);
+                     //         }
+
+                     //         var e5:Event;
+                     //         if (hasEventListener("removeMouseMoveListener"))
+                     //             e5 = new Event("removeMouseOutListener", false, true)
+                     // 			if (!e5 || dispatchEvent(e5))
+                     //         {
+                     //        		systemManager.stage.removeEventListener(MouseEvent.MOUSE_OUT,
+                     //                                   mouseOutHandler,true);
+                     //         }
+
+                     //         cursorHolder.removeChild(currentCursor);
+
+                     // 			removeContextMenuHandlers();
+                     // 	    }
+                     //     Mouse.show();
+
+                 }*/
+
+
+                 COMPILE::JS {
+
+                     if (cssRule) {
+                         cssRule.style.removeProperty('cursor');
+                         // cssRule.style.cursor = "auto";
+                     }
+
+
+                 }
+             }
+
+
+         }
         // else
         // {
-        //     showCustomCursor = false;
 
-        //     if (currentCursorID != CursorManager.NO_CURSOR)
-        //     {
-        //         // There is no cursor in the cursor list to display,
-        //         // so cleanup and restore the system cursor.
-        //         currentCursorID = CursorManager.NO_CURSOR;
-        //         currentCursorXOffset = 0;
-        //         currentCursorYOffset = 0;
-
-        //         var e4:Event;
-        //         if (hasEventListener("removeMouseMoveListener"))
-        //             e4 = new Event("removeMouseMoveListener", false, true)
-	// 			if (!e4 || dispatchEvent(e4))
-        //         {
-        //        		systemManager.stage.removeEventListener(MouseEvent.MOUSE_MOVE,
-        //                                   mouseMoveHandler,true);
-        //         }
-
-        //         var e5:Event;
-        //         if (hasEventListener("removeMouseMoveListener"))
-        //             e5 = new Event("removeMouseOutListener", false, true)
-	// 			if (!e5 || dispatchEvent(e5))
-        //         {
-        //        		systemManager.stage.removeEventListener(MouseEvent.MOUSE_OUT,
-        //                                   mouseOutHandler,true);
-        //         }
-
-        //         cursorHolder.removeChild(currentCursor);
-                
-	// 			removeContextMenuHandlers();
-	// 	    }
-        //     Mouse.show();
         // }
     }
     
@@ -1032,7 +1190,7 @@ class CursorQueueItem
     /**
      *  @private
      */
-    public var cursorClass:Class = null;
+    public var cursorClass:Object = null;
 
     /**
      *  @private

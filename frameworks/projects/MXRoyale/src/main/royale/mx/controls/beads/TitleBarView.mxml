@@ -31,16 +31,55 @@ limitations under the License.
 				  
     <fx:Script>
         <![CDATA[
-            import org.apache.royale.html.TitleBar;
-            import org.apache.royale.core.ITitleBarModel;
-            import org.apache.royale.core.UIBase;
-            import org.apache.royale.events.Event;
-            
-            private function clickHandler():void
-            {
-                var newEvent:org.apache.royale.events.Event = new org.apache.royale.events.Event('close');
-                UIBase(_strand).dispatchEvent(newEvent)   
+        import mx.containers.beads.models.PanelModel;
+        import mx.core.UIComponent;
+
+        import org.apache.royale.core.IStrand;
+
+        import org.apache.royale.html.TitleBar;
+        import org.apache.royale.core.ITitleBarModel;
+        import org.apache.royale.core.UIBase;
+        import org.apache.royale.events.Event;
+
+        private function clickHandler():void {
+            var newEvent:org.apache.royale.events.Event = new org.apache.royale.events.Event('close');
+            UIBase(_strand).dispatchEvent(newEvent)
+        }
+
+        private var statusTextField:TitleBarStatus;
+
+        override public function set strand(value:IStrand):void{
+            super.strand = value;
+            PanelModel(model).addEventListener('statusChanged', onStatusChange);
+            onStatusChange(null);
+        }
+
+        protected function onStatusChange(event:org.apache.royale.events.Event):void {
+            var newStatus:String = PanelModel(model).status;
+            var styleName:String = PanelModel(model).statusStyleName;
+            if (newStatus) {
+                if (!statusTextField) {
+                    statusTextField = new TitleBarStatus();
+                    UIComponent(_strand).addChildAt(statusTextField, 1)
+                }
+                statusTextField.text = newStatus;
+                statusTextField.styleName = styleName;
+                requestLayout();
+            } else {
+                if (statusTextField) {
+                    UIComponent(_strand).removeChild(statusTextField);
+                    statusTextField = null;
+                    requestLayout();
+                }
             }
+        }
+
+        private function requestLayout():void {
+            //this might be useful at some point if a layout support is added for TitleBar
+            //for now it will not really do anything
+            //host.dispatchEvent(new org.apache.royale.events.Event('layoutNeeded'))
+            //we could run in here some sort of internal code, but for now in Browser, using native CSS layout
+        }
         ]]>
     </fx:Script>
     <js:beads>
@@ -48,8 +87,8 @@ limitations under the License.
         <js:LayoutChangeNotifier watchedProperty="{titleLabel.text}" />
     </js:beads>
 
-    <mx:TitleBarTitle id="titleLabel" text="{ITitleBarModel(model).title}"/>
-    <js:CloseButton id="closeButton" click="clickHandler()" className="TitleBarCloseButton"
+    <mx:TitleBarTitle localId="titleLabel" text="{ITitleBarModel(model).title}"/>
+    <js:CloseButton localId="closeButton" click="clickHandler()" className="TitleBarCloseButton"
                     visible="{ITitleBarModel(model).showCloseButton}"/>
     
 </js:MXMLBeadView>

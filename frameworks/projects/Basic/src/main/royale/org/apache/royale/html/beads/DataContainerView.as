@@ -263,7 +263,6 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
-         * 	@royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
          *  @royaleignorecoercion org.apache.royale.core.IParent
          */
         public function updateAllItemRenderers():void
@@ -271,11 +270,22 @@ package org.apache.royale.html.beads
             var n:Number = (contentView as IParent).numElements;
             for (var i:Number = 0; i < n; i++)
             {
-                var renderer:DataItemRenderer = getItemRendererForIndex(i) as DataItemRenderer;
-                if (renderer) {
-                    renderer.setWidth(host.width,true);
-                    renderer.adjustSize();
-                }
+                updateItemRenderer(getItemRendererForIndex(i));
+            }
+        }
+
+        /**
+         * @private
+         *
+         * @param ir the renderer to update
+         *
+         * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+         */
+        protected function updateItemRenderer(ir:IItemRenderer):void{
+            var renderer:DataItemRenderer = ir as DataItemRenderer;
+            if (renderer) {
+                renderer.setWidth(host.width,true);
+                renderer.adjustSize();
             }
         }
 

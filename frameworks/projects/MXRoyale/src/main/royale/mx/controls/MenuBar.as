@@ -450,7 +450,8 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
     {
         super();
        /*  menuBarItemRenderer = new ClassFactory(MenuBarItem);
-        tabChildren = false; */		
+        tabChildren = false; */
+        typeNames = 'MenuBar';
     }
     
     /**

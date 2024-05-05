@@ -21,12 +21,14 @@ package mx.controls.beads
 
 	import mx.controls.listClasses.BaseListData;
 
-	import org.apache.royale.collections.ITreeData;
+	//import org.apache.royale.collections.ITreeData;
     import mx.controls.treeClasses.TreeListData;
     import mx.controls.listClasses.ListBase;
 
 	import org.apache.royale.core.IBeadController;
 import org.apache.royale.core.IIndexedItemRenderer;
+
+	import mx.controls.treeClasses.ITreeData
 
 /**
 	 *  The TreeItemRendererInitializer class initializes item renderers
@@ -67,7 +69,7 @@ import org.apache.royale.core.IIndexedItemRenderer;
 			var treeData:ITreeData = dataProviderModel.dataProvider as ITreeData;
 			var depth:int = treeData.getDepth(data);
 			var isOpen:Boolean = treeData.isOpen(data);
-			var hasChildren:Boolean = treeData.hasChildren(data);
+			var hasChildren:Boolean = treeData.isBranch(data);// treeData.hasChildren(data);
 
 			// Set the listData with the depth of this item
 			var treeListData:TreeListData = new TreeListData("", uid, _strand as ListBase);

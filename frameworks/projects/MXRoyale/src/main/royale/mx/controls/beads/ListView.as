@@ -18,18 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
-	COMPILE::SWF
-	{
-	import org.apache.royale.core.IStrand;
-	}
+	import mx.core.UIComponent;
+
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.getSelectionRenderBead;
-	import org.apache.royale.html.beads.ListView;
+	import org.apache.royale.html.beads.*;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+
+
 
 	/**
-	 *  The List class creates the visual elements of the org.apache.royale.html.List
+	 *  The ListView class creates the visual elements of the mx.controls.List
 	 *  component. A List consists of the area to display the data (in the dataGroup), any
 	 *  scrollbars, and so forth.
 	 *
@@ -37,31 +37,43 @@ package mx.controls.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.10
+	 *  @productversion Royale 0.9
 	 */
 	public class ListView extends org.apache.royale.html.beads.ListView
 	{
-		override protected function selectionChangeHandler(event:Event):void
+		public function ListView()
 		{
-			var selectionBead:ISelectableItemRenderer;
-			var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
-			if (ir) 
-			{
-				selectionBead = getSelectionRenderBead(ir);
-				if (selectionBead)
-				{
-					selectionBead.selected = false;
-					selectionBead.down = false;
-				}
-			}
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IItemRenderer;
-			if (ir) {
-				selectionBead = getSelectionRenderBead(ir);
-				if (selectionBead)
-					selectionBead.selected = true;
-			}
-			lastSelectedIndex = listModel.selectedIndex;
+			super();
 		}
+
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			host.addEventListener("widthChanged", onHostWidthChange);
+
+		}
+
+
+		protected function onHostWidthChange(e:Event):void{
+			updateAllItemRenderers();
+		}
+
+		/**
+		 * @private
+		 *
+		 * @param ir the renderer to update
+		 *
+		 * @royaleignorecoercion mx.core.UIComponent
+		 */
+		override protected function updateItemRenderer(ir:IItemRenderer):void{
+			var renderer:DataItemRenderer = ir as DataItemRenderer;
+			if (renderer) {
+				super.updateItemRenderer(renderer)
+			} else {
+				(ir as UIComponent).setWidth(host.width);
+			}
+		}
+
 
 	}
 }

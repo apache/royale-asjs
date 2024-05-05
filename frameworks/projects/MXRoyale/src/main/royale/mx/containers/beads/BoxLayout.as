@@ -75,17 +75,36 @@ package mx.containers.beads
 		//
 		//--------------------------------------------------------------------------
 		
-		private var _strand:IStrand;
-		
+
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			_target = value as Container;
 			super.strand = value;
+			var oldTarget:Container = _target;
+			_target = value as Container;
 			// The main layout may not get put on the strand until
 			// after children are added so listen here as well
-			if (target.parent)
-				listenToChildren();			
+			if (value){
+				if (target.parent)
+					listenToChildren(true);
+			} else {
+				if (oldTarget) {
+					host = oldTarget;
+					listenToChildren(false);
+					host = null;
+				}
+			}
+
+		}
+
+		override protected function setListeners(off:Boolean=false):void{
+			/*listenOnStrand("widthChanged", handleSizeChange, false, off);
+			listenOnStrand("heightChanged", handleSizeChange, false, off);
+			listenOnStrand("sizeChanged", handleSizeChange, false, off);
+
+			listenOnStrand("childrenAdded", handleChildrenAdded, false, off);
+			listenOnStrand("initComplete", handleInitComplete, false, off);
+			listenOnStrand("layoutNeeded", handleLayoutNeeded, false, off);*/
+			super.setListeners(off);
 		}
 		
 		private var _target:Container;
@@ -151,12 +170,12 @@ package mx.containers.beads
 					continue;
 				}
 				
-				COMPILE::JS {
+				/*COMPILE::JS {
 				if (child is Image) {
 					trace("measure.image.complete: "+(child as Image).complete);
 				}
-				}
-				
+				}*/
+
 				var wPref:Number = child.getExplicitOrMeasuredWidth();
 				var hPref:Number = child.getExplicitOrMeasuredHeight();
 				
@@ -203,22 +222,51 @@ package mx.containers.beads
 		override public function layout():Boolean
 		{
 			ranLayout = true;
-			
 			var n:int = layoutView.numElements;
 			if (n == 0)
 				return false;
+
+			var widthToContent:Boolean = target.isWidthSizedToContent();
+			var heightToContent:Boolean = target.isHeightSizedToContent();
+			//first deal with content based sizing
+			if (widthToContent || heightToContent) {
+				measure();
+				if (widthToContent && heightToContent) {
+					target.setActualSize(target.getExplicitOrMeasuredWidth(),
+							target.getExplicitOrMeasuredHeight());
+				} else if (heightToContent) {
+					target.setHeight(target.getExplicitOrMeasuredHeight());
+				} else {
+					target.setWidth(target.getExplicitOrMeasuredWidth());
+				}
+			}
 			
 			updateDisplayList(target.width, target.height);
 			
-			// update the target's actual size if needed.
+			/*// update the target's actual size if needed.
 			if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
 				target.setActualSize(target.getExplicitOrMeasuredWidth(), 
 					                 target.getExplicitOrMeasuredHeight());
+				/!*COMPILE::JS{
+					//GD - tbc, otherwise the 'non' includeInLayout elements outside measured bounds can cause scrollbars:
+					target.element.style.overflow = 'visible'
+				}*!/
 			}
-            else if (target.isWidthSizedToContent())
-                target.setWidth(target.getExplicitOrMeasuredWidth());
-            else if (target.isHeightSizedToContent())
-                target.setHeight(target.getExplicitOrMeasuredHeight());
+            else if (target.isWidthSizedToContent()){
+				target.setWidth(target.getExplicitOrMeasuredWidth());
+				/!*COMPILE::JS{
+					//GD - tbc, otherwise the 'non' includeInLayout elements outside measured bounds can cause scrollbars:
+					target.element.style.overflowX = 'visible'
+				}*!/
+			}
+            else if (target.isHeightSizedToContent()) {
+				target.setHeight(target.getExplicitOrMeasuredHeight());
+				/!*COMPILE::JS{
+					//GD - tbc, otherwise the 'non' includeInLayout elements outside measured bounds can cause scrollbars:
+					target.element.style.overflowY = 'visible'
+				}*!/
+			}*/
+
 
 			return true;
 		}
@@ -241,6 +289,8 @@ package mx.containers.beads
 			
 			var paddingLeft:Number = pd.left;
 			var paddingTop:Number = pd.top;
+			var hPadding:Number = paddingLeft + pd.right;
+			var vPadding:Number = paddingTop + pd.bottom;
 			
 			var horizontalAlign:Number = getHorizontalAlignValue();
 			var verticalAlign:Number = getVerticalAlignValue();
@@ -252,14 +302,14 @@ package mx.containers.beads
 				target.minHeight / Math.abs(target.scaleY) :
 				target.minHeight;
 			
-			if (host.isWidthSizedToContent() || host.isHeightSizedToContent()) {
+			/*if (host.isWidthSizedToContent() || host.isHeightSizedToContent()) {
 				measure();
 				if (host.isWidthSizedToContent()) unscaledWidth = target.measuredWidth;
 				if (host.isHeightSizedToContent()) unscaledHeight = target.measuredHeight;
-			}
+			}*/
 			
-			var w:Number = Math.max(unscaledWidth, mw) - vm.right - vm.left;
-			var h:Number = Math.max(unscaledHeight, mh) - vm.bottom - vm.top;
+			var w:Number = Math.max(unscaledWidth, mw) - vm.right - vm.left //- hPadding;
+			var h:Number = Math.max(unscaledHeight, mh) - vm.bottom - vm.top //- vPadding;
 			
 //			var horizontalScrollBar:ScrollBar = target.horizontalScrollBar;
 //			var verticalScrollBar:ScrollBar = target.verticalScrollBar;
@@ -286,34 +336,36 @@ package mx.containers.beads
 				var percentHeight:Number = child.percentHeight;
 				
 				var width:Number;
-				if (percentWidth)
+				if (uic != null && !isNaN(Number(uic.left)) && !isNaN(Number(uic.right)))
+				{
+					width = w - Number(uic.left) - Number(uic.right);
+				}
+                else if (percentWidth)
 				{
 					width = Math.max(child.minWidth,
-						Math.min(child.maxWidth,
-							((percentWidth >= 100) ? w : (w * percentWidth / 100))));
+							Math.min(child.maxWidth,
+									((percentWidth >= 100) ? w : (w * percentWidth / 100))));
 				}
-                else if (uic != null && !isNaN(Number(uic.left)) && !isNaN(Number(uic.right)))
-                {
-                    width = w - Number(uic.left) - Number(uic.right);
-                }
 				else
 				{
+					if (uic) uic.measuredWidth = NaN;
 					width = child.getExplicitOrMeasuredWidth();
 				}
 				
 				var height:Number
-				if (percentHeight)
+				if (uic != null && !isNaN(Number(uic.top)) && !isNaN(Number(uic.bottom)))
+				{
+					height = h - Number(uic.top) - Number(uic.bottom);
+				}
+                else if (percentHeight)
 				{
 					height = Math.max(child.minHeight,
-						Math.min(child.maxHeight,
-							((percentHeight >= 100) ? h : (h * percentHeight / 100))));
+							Math.min(child.maxHeight,
+									((percentHeight >= 100) ? h : (h * percentHeight / 100))));
 				}
-                else if (uic != null && !isNaN(Number(uic.top)) && !isNaN(Number(uic.bottom)))
-                {
-                    height = h - Number(uic.top) - Number(uic.bottom);
-                }
 				else
 				{
+					if (uic) uic.measuredHeight = NaN;
 					height = child.getExplicitOrMeasuredHeight();
 				}
 				
@@ -378,13 +430,22 @@ package mx.containers.beads
 				for (i = 0; i < n; i++)
 				{
 					obj = layoutView.getElementAt(i) as IUIComponent;
-					left = (w - obj.width) * horizontalAlign + paddingLeft;
+					/*left = (w - obj.width) * horizontalAlign + paddingLeft;
                     COMPILE::JS {
                         obj.positioner.style.position = 'absolute';
                     }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
+						top += obj.height + gap;*/
+					COMPILE::JS {
+						obj.positioner.style.position = 'absolute';
+					}
+					if (obj.includeInLayout){
+						left = (w - obj.width) * horizontalAlign + paddingLeft;
+						obj.move(Math.floor(left), Math.floor(top));
 						top += obj.height + gap;
+					}
+
 				}
 			}
 				
@@ -420,13 +481,23 @@ package mx.containers.beads
 				for (i = 0; i < n; i++)
 				{
 					obj = layoutView.getElementAt(i) as IUIComponent;
-					top = (h - obj.height) * verticalAlign + paddingTop;
+					/*top = (h - obj.height) * verticalAlign + paddingTop;
                     COMPILE::JS {
                         obj.positioner.style.position = 'absolute';
                     }
 					obj.move(Math.floor(left), Math.floor(top));
 					if (obj.includeInLayout)
+						left += obj.width + gap;*/
+					//Attempt to fix includeInLayout positioning (when presumably it should not change position)
+					COMPILE::JS {
+						obj.positioner.style.position = 'absolute';
+					}
+					if (obj.includeInLayout) {
+						top = (h - obj.height) * verticalAlign + paddingTop;
+						obj.move(Math.floor(left), Math.floor(top));
 						left += obj.width + gap;
+					}
+
 				}
 			}
 			inUpdateDisplayList = false;
@@ -506,7 +577,7 @@ package mx.containers.beads
 		 */
 		public function getVerticalAlignValue():Number
 		{
-			var verticalAlign:String = target.getStyle("verticalAlign");
+			var verticalAlign:String = target.verticalAlign;
 			
 			if (verticalAlign == "middle")
 				return 0.5;
@@ -521,23 +592,62 @@ package mx.containers.beads
 		override protected function handleChildrenAdded(event:Event):void
 		{
 			super.handleChildrenAdded(event);
-			listenToChildren();
+			listenToChildren(true);
 		}
-		
-		private function listenToChildren():void
+
+		private var childListeningCache:Array = [];
+		private function listenToChildren(on:Boolean):void
 		{
 			var n:Number = layoutView.numElements;
+			var handler:Function = childResizeHandler;
+
+			var currentChildren:Array = [];
 			for(var i:int=0; i < n; i++) {
 				var child:IEventDispatcher = layoutView.getElementAt(i) as IEventDispatcher;
-				child.addEventListener("widthChanged", childResizeHandler);
-				child.addEventListener("heightChanged", childResizeHandler);
-				child.addEventListener("sizeChanged", childResizeHandler);
+				currentChildren.push(child);
+				/*var adjustListener:Function = on ? child.addEventListener : child.removeEventListener;
+                adjustListener("widthChanged", handler);
+                adjustListener("heightChanged", handler);
+                adjustListener("sizeChanged", handler);*/
+				listenToChild(child,on, handler);
+			}
+			if (!on) {
+				n= childListeningCache.length;
+				for(i=0; i < n; i++) {
+					child = childListeningCache[i];
+					if (currentChildren.indexOf(child)==-1) {
+						listenToChild(child,false, handler);
+					}
+				}
+				childListeningCache.length = 0;
+			} else {
+				n= childListeningCache.length;
+				for(i=0; i < n; i++) {
+					child = childListeningCache[i];
+					if (currentChildren.indexOf(child)==-1) {
+						listenToChild(child,false, handler);
+					}
+				}
+				childListeningCache = currentChildren;
 			}
 		}
-		
+
+		private function listenToChild(child:IEventDispatcher, on:Boolean, handler:Function):void{
+			var adjustListener:Function = on ? child.addEventListener : child.removeEventListener;
+			adjustListener("widthChanged", handler);
+			adjustListener("heightChanged", handler);
+			adjustListener("sizeChanged", handler);
+			adjustListener("move", handler);
+		}
+		private var ignoreChildCount:int = 0;
 		override protected function childResizeHandler(event:Event):void
 		{
 			if (inUpdateDisplayList) return;
+			if (ignoreChildCount) {
+				ignoreChildCount--;
+				return;
+			}
+			if (event.type == 'sizeChanged') ignoreChildCount = 2; //ignore next 2 widthChanged/heightChanged events
 			ranLayout = false;
 			super.childResizeHandler(event); // will set ranLayout if it did
 			if (!ranLayout)

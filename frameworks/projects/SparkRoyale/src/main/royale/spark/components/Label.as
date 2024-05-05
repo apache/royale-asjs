@@ -401,27 +401,31 @@ public class Label extends TextBase
     	
 	public function get verticalAlign():Object
     {
-        if (GOOG::DEBUG)
-            trace("verticalAlign not implemented");
+        //@todo restore in royale merge:
+        /*if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");*/
         return 0;
     }
     public function set verticalAlign(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("verticalAlign not implemented");
+        //@todo restore in royale merge:
+        /*if (GOOG::DEBUG)
+            trace("verticalAlign not implemented");*/
     }
 	
 	
     public function set lineBreak(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("lineBreak not implemented");
+        //@todo restore in royale merge:
+        /*if (GOOG::DEBUG)
+            trace("lineBreak not implemented");*/
     }
 	
     public function set baselineShift(value:Object):void
     {
-        if (GOOG::DEBUG)
-            trace("baselineShift not implemented");
+        //@todo restore in royale merge:
+        /*if (GOOG::DEBUG)
+            trace("baselineShift not implemented");*/
     }
 
     override public function addedToParent():void
@@ -442,7 +446,7 @@ public class Label extends TextBase
     }
 	    
     // TODO figure out if Flex values are identical
-    public function get textDecoration():String
+    /*public function get textDecoration():String
     {
         return ValuesManager.valuesImpl.getValue(this, "textDecoration");
     }
@@ -450,7 +454,7 @@ public class Label extends TextBase
     public function set textDecoration(value:String):void
     {
         setStyle("textDecoration", value);
-    }
+    }*/
     
     //--------------------------------------------------------------------------
     //

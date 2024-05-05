@@ -288,10 +288,18 @@ public class DragManager
      */
     public static function getFeedback():String
     {
-        /*return impl.getFeedback();*/
+        /*/!*return impl.getFeedback();*!/
         //TODO
         trace("getFeedback is not implemented");
-        return ""
+        return ""*/
+
+        return impl.getFeedback();
+    }
+
+
+    mx_internal static function endDrag():void
+    {
+        impl.endDrag();
     }
    
 }

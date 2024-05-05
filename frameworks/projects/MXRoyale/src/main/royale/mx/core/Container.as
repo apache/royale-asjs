@@ -175,6 +175,9 @@ use namespace mx_internal;
  */
 //[Event(name="childRemove", type="mx.events.ChildExistenceChangedEvent")]
 
+
+
+[Event(name='childrenAdded', type="org.apache.royale.events.ValueEvent")]
 /**
  *  Dispatched when the <code>data</code> property changes.
  *
@@ -461,14 +464,14 @@ public class Container extends UIComponent
     
 	
 	
-    public function get textDecoration():String 
+    /*public function get textDecoration():String
 	{
 		return "none";
 	}
    public function set textDecoration(val:String):void
 	{
 	
-	}
+	}*/
 	
     //----------------------------------
     //  horizontalScrollPolicy
@@ -738,7 +741,8 @@ public class Container extends UIComponent
     
     [Bindable("verticalScrollPolicyChanged")]
     [Inspectable(enumeration="off,on,auto", defaultValue="auto")]
-    
+    [Inspectable(enumeration="off,on,auto", defaultValue="auto")]
+
     /**
      *  A property that indicates whether the vertical scroll bar is always on, always off,
      *  or automatically changes based on the parameters passed to the
@@ -929,12 +933,11 @@ public class Container extends UIComponent
      */
     public function get verticalGap():Object
     {
-        trace("verticalGap not implemented");
-        return 0;
+        return getStyle("verticalGap");
     }
     public function set verticalGap(value:Object):void
     {
-        trace("verticalGap not implemented");
+        setStyle("verticalGap", value);
     }
 	
     private var _horizontalAlign:String;
@@ -951,11 +954,11 @@ public class Container extends UIComponent
      */
     public function get horizontalAlign():String
     {
-        return _horizontalAlign;
+        return getStyle("horizontalAlign") || 'left';
     }
     public function set horizontalAlign(value:String):void
     {
-        _horizontalAlign = value;
+        setStyle("horizontalAlign", value);
     }
     
     
@@ -967,14 +970,15 @@ public class Container extends UIComponent
     {
         setStyle("horizontalGap", value);
     }
-     public function get verticalAlign():Object
+
+    private var _verticalAlign:String;
+     public function get verticalAlign():String
     {
-        trace("verticalAlign not implemented");
-        return 0;
+        return _verticalAlign || 'top';
     }
-    public function set verticalAlign(value:Object):void
+    public function set verticalAlign(value:String):void
     {
-        trace("verticalAlign not implemented");
+        _verticalAlign = value;
     }
 	/*	  
      *  @langversion 3.0
@@ -1076,6 +1080,21 @@ public class Container extends UIComponent
 	{
 		return addElementToWrapper(this,'div');
 	}
+
+    /**
+     * True if this instance should not be returned as each of its children's parent, but
+     * the parent of this instance should be returned instead.
+     */
+    protected var isPassThru:Boolean;
+
+    private function processPassThru():void{
+        var n:uint = numElements;
+        while(n) {//this is a royale-specific approach, not part of original Flex approach
+            n--;
+            var uic:UIComponent = getChildAt(n) as UIComponent;
+            if (uic) uic.mx_internal::_parent = this.parent;
+        }
+    }
 	
 	//--------------------------------------------------------------------------
 	//
@@ -1093,7 +1112,7 @@ public class Container extends UIComponent
 
         if (noChildrenNow) _deferSetInitialized = true;
 		super.addedToParent();
-
+        if (isPassThru) processPassThru();//this is a royale-specific approach, not part of original Flex approach
 		// Load the layout bead if it hasn't already been loaded.
 		loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
         if (!noChildrenNow) {
@@ -1184,14 +1203,15 @@ public class Container extends UIComponent
             createChildren();
             //run the original addedToParent stuff
             dispatchEvent(new Event("initComplete"));
-            if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
-                    (isWidthSizedToContent() || !isNaN(explicitWidth)))
-                dispatchEvent(new Event("layoutNeeded"));
-
-            processedDescriptors = true;
             creationPolicyNone = true;
             //dispatchEvent(new FlexEvent(FlexEvent.CONTENT_CREATION_COMPLETE));
+            var neededLayout:Boolean = needsLayout;
+            super.initializationComplete();
             initialized = true;
+//@todo review... not sure that the following is needed...
+            if (!neededLayout && (isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+                    (isWidthSizedToContent() || !isNaN(explicitWidth))) layoutNeeded();
+
         }
     }
     
@@ -1261,6 +1281,9 @@ public class Container extends UIComponent
 
         // Set the child's virtual parent, nestLevel, document, etc.
         super.addingChild(child);
+        if (isPassThru) { //this is a royale-specific approach, not part of original Flex approach
+            if (child is UIComponent) UIComponent(child).mx_internal::_parent = this.parent;
+        }
 
         invalidateSize();
         invalidateDisplayList();
@@ -1314,6 +1337,7 @@ public class Container extends UIComponent
 
 		if (parent)
 		{
+            //should this perhaps be differentiating based on if this has widthSizedToContent or heightSizedToContent or not?
 			var oldMeasuredWidth:Number = measuredWidth;
 			var oldMeasuredHeight:Number = measuredHeight;
 			invalidateSize();
@@ -1347,6 +1371,9 @@ public class Container extends UIComponent
             event.relatedObject = child as UIComponent;
             dispatchEvent(event);
         }
+        if (isPassThru) {//this is a royale-specific approach, not part of original Flex approach
+            if (child is UIComponent) UIComponent(child).mx_internal::_parent = null;
+        }
     }
 
     /**
@@ -1356,10 +1383,10 @@ public class Container extends UIComponent
     {
         //why is this calling removingChild in the super?
 		//super.removingChild(child);
-
         super.childRemoved(child);
 		if (parent)
 		{
+            //should this perhaps be differentiating based on if this has widthSizedToContent or heightSizedToContent or not?
 			var oldMeasuredWidth:Number = measuredWidth;
 			var oldMeasuredHeight:Number = measuredHeight;
 			invalidateSize();
@@ -1372,6 +1399,9 @@ public class Container extends UIComponent
 				}
 			}
 		}
+
+        if (hasEventListener("childrenChanged"))
+            dispatchEvent(new Event("childrenChanged"));
 	}
 	
 	//----------------------------------

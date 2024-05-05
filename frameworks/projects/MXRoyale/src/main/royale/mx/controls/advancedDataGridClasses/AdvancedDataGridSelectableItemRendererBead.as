@@ -16,7 +16,6 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
 package mx.controls.advancedDataGridClasses
 {
 
@@ -125,8 +124,8 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
         textSelectedColor = styleCache["textSelectedColor"];
         textRollOverColor = styleCache["textRollOverColor"];
         backgroundColor = ((treeListData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
-        var backgroundColorAttr:String = ((treeListData.rowIndex % 2) == 1) ? bgColorsAttr[1] : bgColorsAttr[0];
-        
+        //var backgroundColorAttr:String = ((treeListData.rowIndex % 2) == 1) ? bgColorsAttr[1] : bgColorsAttr[0];
+        var backgroundColorAttr:String = bgColorsAttr[1];
         COMPILE::SWF
         {
             super.updateRenderer();
@@ -135,12 +134,12 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
         {
             if (selected)
             {
-                ir.element.style.backgroundColor = '#9C9C9C';
+                ir.element.style.backgroundColor = '#A8C6EE';
                 ir.element.style.color = textSelectedColor;
             }
             else if (hovered)
             {
-                ir.element.style.backgroundColor = '#ECECEC';
+                ir.element.style.backgroundColor = '#D4E5FC';
                 ir.element.style.color = textRollOverColor;
             }
             else

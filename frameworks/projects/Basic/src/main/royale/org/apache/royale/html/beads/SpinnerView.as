@@ -118,10 +118,12 @@ COMPILE::SWF {
 				_increment = new SpinnerButton();
 				_increment.text = '\u25B2';
 				_increment.positioner.style.display = 'block';
+				_increment.className = 'up';
 
 				_decrement = new SpinnerButton();
 				_decrement.text = '\u25BC';
 				_decrement.positioner.style.display = 'block';
+				_decrement.className = 'down';
 				host.addElement(_increment);
 				host.addElement(_decrement);
 

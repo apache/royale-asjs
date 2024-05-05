@@ -20,11 +20,21 @@
 package mx.events
 {
 
-/* import flash.events.Event;
-import flash.events.MouseEvent; */
-import mx.events.MouseEvent; 
-import mx.core.DragSource;
-import mx.core.IUIComponent;
+	/* import flash.events.Event;
+	import flash.events.MouseEvent; */
+	
+	COMPILE::SWF{
+		import flash.display.InteractiveObject
+	}
+	
+
+	import mx.events.MouseEvent;
+	import mx.core.DragSource;
+	import mx.core.IUIComponent;
+
+	import RoyaleDragEvent = org.apache.royale.events.DragEvent;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IRoyaleEvent;
 
 /**
  *  The DragEvent class represents event objects that are dispatched as part of a drag-and-drop
@@ -254,6 +264,52 @@ public class DragEvent extends MouseEvent
 	 */
 	public static const DRAG_START:String = "dragStart";
 
+
+	/**
+	 *
+	 * @royalesuppressexport
+	 */
+	public static function createMxDragEventFromRoyaleDragEvent(type:String, event:RoyaleDragEvent, bubbles:Boolean=false, cancelable:Boolean=false, action:String = null):mx.events.DragEvent
+	{
+		var initiator:IUIComponent = RoyaleDragEvent.dragInitiator as IUIComponent;
+		var dragSource:DragSource = RoyaleDragEvent.dragSource as DragSource;
+		COMPILE::SWF
+		{
+			var de:mx.events.DragEvent = new mx.events.DragEvent(type, bubbles, cancelable, initiator,dragSource,action,event.ctrlKey,event.altKey, event.shiftKey);
+			de.localX = event.localX;
+			de.localY = event.localY;
+			/*de.altKey = event.altKey;
+			de.ctrlKey = event.ctrlKey;
+			de.shiftKey = event.shiftKey;*/
+			de.buttonDown = event.buttonDown;
+			de.delta = event.delta;
+			de.relatedObject = event.target as InteractiveObject;
+
+			de.clientX = event.clientX;
+			de.clientY = event.clientY;
+
+			return de;
+		}
+		COMPILE::JS
+		{
+			var de:mx.events.DragEvent = new mx.events.DragEvent(type, bubbles, cancelable, initiator,dragSource,action,event.ctrlKey,event.altKey, event.shiftKey);
+			/*de.localX = event.localX;
+			de.localY = event.localY;*/
+		/*	de.altKey = event.altKey;
+			de.ctrlKey = event.ctrlKey;
+			de.shiftKey = event.shiftKey;*/
+			de.relatedObject = event.target;
+
+			/*de.clientX = event.clientX;
+			de.clientY = event.clientY;*/
+
+			de.wrapEvent(event);
+
+			return de;
+		}
+	}
+
+
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor
@@ -289,13 +345,13 @@ public class DragEvent extends MouseEvent
 	 *  @productversion Flex 3
 	 */
 	public function DragEvent(type:String, bubbles:Boolean = false,
-							  cancelable:Boolean = true,
-							  dragInitiator:IUIComponent = null,
-							  dragSource:DragSource = null,
-							  action:String = null,
-							  ctrlKey:Boolean = false,
-							  altKey:Boolean = false,
-							  shiftKey:Boolean = false)
+                              cancelable:Boolean = true,
+                              dragInitiator:IUIComponent = null,
+                              dragSource:DragSource = null,
+                              action:String = null,
+                              ctrlKey:Boolean = false,
+                              altKey:Boolean = false,
+                              shiftKey:Boolean = false)
 	{
 		super(type, bubbles, cancelable);
 
@@ -381,12 +437,31 @@ public class DragEvent extends MouseEvent
 	//
 	//--------------------------------------------------------------------------
 
+	COMPILE::JS
+	override public function get localX():Number
+	{
+		var wrappedEvent:RoyaleDragEvent = getWrappedEvent() as RoyaleDragEvent;
+		if (!wrappedEvent) return super.localX;
+		return wrappedEvent.clientX - wrappedEvent.relatedObject.element.getBoundingClientRect().left
+		//return wrappedEvent ? wrappedEvent.clientX - wrappedEvent.currentTarget.getBoundingClientRect().left : _localX;
+	}
+	
+	COMPILE::JS
+	override public function get localY():Number
+	{
+		var wrappedEvent:RoyaleDragEvent = getWrappedEvent() as RoyaleDragEvent;
+		if (!wrappedEvent) return super.localY;
+		return wrappedEvent.clientY - wrappedEvent.relatedObject.element.getBoundingClientRect().top
+		//return wrappedEvent ? wrappedEvent.clientY - wrappedEvent.currentTarget.getBoundingClientRect().top : _localY;
+	}
+
+
 	/**
  	 *  @private
 	 */
-	/* override public function clone():Event
+	 override public function cloneEvent():IRoyaleEvent
 	{
-		var cloneEvent:DragEvent = new DragEvent(type, bubbles, cancelable, 
+		var cloneEvent:mx.events.DragEvent = new mx.events.DragEvent(type, bubbles, cancelable,
                                                  dragInitiator, dragSource,
 												 action, ctrlKey,
 												 altKey, shiftKey);
@@ -396,8 +471,13 @@ public class DragEvent extends MouseEvent
 		cloneEvent.localX = this.localX;
 		cloneEvent.localY = this.localY;
 
+		COMPILE::SWF{
+			cloneEvent.clientX = this.clientX;
+			cloneEvent.clientY = this.clientY;
+		}
+
 		return cloneEvent;
-	} */
+	}
 }
 
 }

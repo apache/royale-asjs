@@ -356,7 +356,7 @@ public class CursorManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public static function setCursor(cursorClass:Class, priority:int = 2,
+    public static function setCursor(cursorClass:Object, priority:int = 2,
                                      xOffset:Number = 0,
                                      yOffset:Number = 0):int 
     {

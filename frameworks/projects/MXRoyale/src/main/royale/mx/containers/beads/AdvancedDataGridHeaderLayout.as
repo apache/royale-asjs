@@ -20,7 +20,8 @@
 package mx.containers.beads
 {
     import mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer;
-	import mx.core.EdgeMetrics;
+import mx.controls.listClasses.IListItemRenderer;
+import mx.core.EdgeMetrics;
 	import mx.core.UIComponent;
 	
 	import org.apache.royale.core.LayoutBase;
@@ -150,8 +151,8 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
         {	
             var ilc:ILayoutChild = contentView.getElementAt(i) as ILayoutChild;
             if (ilc == null || !ilc.visible) continue;
-            if (!(ilc is AdvancedDataGridHeaderRenderer)) continue;
-            
+            if (!(ilc is IListItemRenderer)) continue;
+
             COMPILE::JS {
                 if (!host.isHeightSizedToContent())
                     ilc.height = contentView.height;
@@ -165,8 +166,11 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
 
                     // call updateDisplayList()
                     var adghr:AdvancedDataGridHeaderRenderer = ilc as AdvancedDataGridHeaderRenderer;
-                    adghr.invalidateDisplayList();
-                    adghr.validateDisplayList();
+                    if (adghr) {
+                        adghr.invalidateDisplayList();
+                        adghr.validateDisplayList();
+                    }
+
                 }
                 ilc.x = xx;
                 xx += ilc.width;

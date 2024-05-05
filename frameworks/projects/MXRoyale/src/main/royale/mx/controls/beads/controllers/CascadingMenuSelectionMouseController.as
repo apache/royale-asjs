@@ -22,6 +22,8 @@ package mx.controls.beads.controllers
 	import mx.collections.XMLListCollection;
 	
 	import org.apache.royale.core.IMenu;
+
+	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController;
 	import org.apache.royale.core.ICascadingMenuModel
 	import org.apache.royale.html.CascadingMenu;
@@ -38,6 +40,10 @@ package mx.controls.beads.controllers
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.geom.Point;
 	import mx.collections.ArrayCollection;
+	
+	COMPILE::JS{
+		import org.apache.royale.events.BrowserEvent;
+	}
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -171,12 +177,23 @@ package mx.controls.beads.controllers
 			{
 				removeClickOutHandler(value);
 				(value as IEventDispatcher).addEventListener('show', showHandler);
+			} else {
+				(value as IEventDispatcher).addEventListener('hide', hideHandler);
 			}
 		}
 
 		protected function showHandler(event:Event):void
 		{
+			(event.target as IEventDispatcher).removeEventListener('show', showHandler);
+			(event.target as IEventDispatcher).addEventListener('hide', hideHandler);
 			addClickOutHandler(event.target);
+		}
+
+		protected function hideHandler(event:Event):void
+		{
+			(event.target as IEventDispatcher).removeEventListener('hide', hideHandler);
+			(event.target as IEventDispatcher).addEventListener('show', showHandler);
+			removeClickOutHandler(event.target);
 		}
 
 		override protected function showSubMenu(menu:IMenu, component:IUIBase):void
@@ -186,6 +203,17 @@ package mx.controls.beads.controllers
 		}
 
 
+		COMPILE::JS
+		override protected function hideMenu_internal(event:BrowserEvent):void{
+			var target:Object = event.target['royale_wrapper'] || event.target
+			var checkEvent:ValueEvent = new ValueEvent('checkPreventMenuHide', target);
+			(_strand as IEventDispatcher).dispatchEvent(checkEvent);
+
+			if (checkEvent.value == target) {
+				//then assume we are not doing something other than default:
+				super.hideMenu_internal(event);
+			}
+		}
 	}
 
 }

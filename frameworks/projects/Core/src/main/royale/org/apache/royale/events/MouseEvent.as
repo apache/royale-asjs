@@ -325,6 +325,10 @@ package org.apache.royale.events
          * @type {?goog.events.BrowserEvent}
          */
         private var wrappedEvent:Object;
+
+        protected function getWrappedEvent():Object{
+            return wrappedEvent;
+        }
         
         /**
          * @type {MouseEvent}

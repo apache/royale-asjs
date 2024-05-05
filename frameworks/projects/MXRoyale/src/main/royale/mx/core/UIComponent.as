@@ -39,13 +39,17 @@ import flash.events.IEventDispatcher;
 
 import mx.controls.beads.ToolTipBead;
 import mx.core.mx_internal;
+import mx.managers.CursorManager;
 import mx.managers.IToolTipManagerClient;
+
+import org.apache.royale.core.IParent;
 
 COMPILE::SWF
 {
 import flash.display.DisplayObject;
 import flash.display.Graphics;
 import flash.display.GradientType;
+import flash.display.DisplayObjectContainer;
 }
 COMPILE::JS{
     import org.apache.royale.core.WrappedHTMLElement;
@@ -96,7 +100,7 @@ import org.apache.royale.events.MouseEvent;
 import org.apache.royale.events.ValueChangeEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
-import org.apache.royale.html.beads.DisableBead;
+//import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.reflection.getQualifiedClassName;
@@ -114,8 +118,9 @@ import mx.styles.CSSStyleDeclaration;
 
 import org.apache.royale.utils.ClassSelectorList;
 import mx.display.NativeMenu;
-import mx.binding.BindingManager2;
-import mx.managers.CursorManager;
+import mx.binding.BindingManager;
+
+import mx.controls.beads.DisableBead;
 
 /**
  *  Set a different class for click events so that
@@ -961,7 +966,7 @@ public class UIComponent extends UIBase
     public function executeBindings(recurse:Boolean = false):void
     {
 	   var bindingsHost:Object = descriptor && descriptor.document ? descriptor.document : parentMxmlDocument;
-       BindingManager2.executeBindings(bindingsHost, id, this);
+       BindingManager.executeBindings(bindingsHost, id, this);
 	   //recurse = false;
 	   //trace("UIComponent.executeBindings is not implemented");
 	   
@@ -1211,7 +1216,8 @@ public class UIComponent extends UIBase
 	{
 	   	_rotation = value;
         element.style.transform = computeTransformString();
-        element.style["transform-origin"] = "0 0";
+        element.style["transform-origin-x"] = "0px";
+        element.style["transform-origin-y"] = "0px";
 	}
 	
     COMPILE::JS
@@ -1809,7 +1815,7 @@ public class UIComponent extends UIBase
     private var _enabled:Boolean = true;
 
     [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
-    [Bindable("disabledChange")]
+    [Bindable("enabledChanged")]
 
     /**
      *  @copy mx.core.IUIComponent#enabled
@@ -1829,14 +1835,24 @@ public class UIComponent extends UIBase
      */
     public function set enabled(value:Boolean):void
     {
-        _enabled = value;
-        if (_disableBead == null) {
-		_disableBead = new DisableBead();
-		addBead(_disableBead);
-		addBead(new DisabledAlphaBead());
-	}
-	_disableBead.disabled = !_enabled;
+        if (_enabled != value) {
+            _enabled = value;
+            if (_disableBead == null) {
+                _disableBead = new DisableBead(); //using an mx-specific DisableBead
+                configureDisableBead(_disableBead);
+                _disableBead.disabled = !value;
+                addBead(_disableBead);
+                //addBead(new DisabledAlphaBead());
+            } else {
+                _disableBead.disabled = !value;
+            }
+        }
     }
+
+
+   protected function configureDisableBead(inst:DisableBead):void{
+
+   }
 
     //----------------------------------
     //  focusEnabled
@@ -2255,6 +2271,9 @@ public class UIComponent extends UIBase
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
+     *  @royaleignorecoercion mx.core.UIComponent
+     *  @royaleignorecoercion mx.managers.ISystemManager
      */
     public function get systemManager():ISystemManager
     {
@@ -2546,6 +2565,31 @@ COMPILE::JS
         return o;
     }
 
+    COMPILE::JS
+    mx_internal var _parent: IParent;
+
+    COMPILE::SWF
+    mx_internal var _parent: DisplayObjectContainer;
+
+    /**
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     * @royaleignorecoercion org.apache.royale.core.IParent
+     */
+    COMPILE::JS
+    override public function get parent():IParent
+    {
+        return _parent ? _parent : super.parent;
+    }
+
+    COMPILE::SWF
+    {
+        [SWFOverride(returns="flash.display.DisplayObjectContainer")]
+        override public function get parent():IParent
+        {
+            return _parent ? IParent(_parent) : super.parent;
+        }
+    }
+
     //----------------------------------
     //  parentComponent
     //----------------------------------
@@ -2698,18 +2742,22 @@ COMPILE::JS
             }
 		}
 		COMPILE::JS {
-			if (isNaN(_measuredWidth) || _measuredWidth <= 0) 
+			if (isNaN(_measuredWidth) || _measuredWidth </*=*/ 0)
             {
                 var oldWidth:Object;
                 var oldLeft:String;
                 var oldRight:String;
+                var oldOverflow:String;
                 oldWidth = this.positioner.style.width;
                 oldLeft = this.positioner.style.left;
                 oldRight = this.positioner.style.right;
+                oldOverflow = this.positioner.style.overflow;
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     return 0; // this.positioner.style.left = "";
                 if (oldWidth.length)
                     this.positioner.style.width = "";
+                if (oldOverflow.length)
+                    this.positioner.style.overflow = "unset";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && _initialized && numChildren > 0)
                 {
@@ -2719,17 +2767,19 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         //@todo investigate traces
                         if (child is IUIComponent) // child is null for TextNodes
-                            mw = Math.max(mw, child.getExplicitOrMeasuredWidth());
+                            mw = Math.max(mw, child.x + child.getExplicitOrMeasuredWidth());
                         else {
                             if (child is IUIBase) {
-                                mw = Math.max(mw, child.width);
+                                mw = Math.max(mw, child.x +child.width);
                             }
-                            trace(getQualifiedClassName(this) + " Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
+                            trace(getQualifiedClassName(this) + " measuring width... Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                         }
                     }
                 }
                 if (oldWidth.length)
                     this.positioner.style.width = oldWidth;
+                if (oldOverflow.length)
+                    this.positioner.style.overflow = oldOverflow;
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     this.positioner.style.left = oldLeft;
                 if (!isNaN(percentWidth))
@@ -2780,7 +2830,7 @@ COMPILE::JS
             }
 		}
 		COMPILE::JS {
-            if (isNaN(_measuredHeight) || _measuredHeight <= 0)
+            if (isNaN(_measuredHeight) || _measuredHeight </*=*/ 0)
             {
                 var oldHeight:Object;
                 var oldTop:String;
@@ -2795,7 +2845,7 @@ COMPILE::JS
                 if (oldHeight.length)
                     this.positioner.style.height = "";
                 if (oldOverflow.length)
-                    this.positioner.style.overflow = "visible";
+                    this.positioner.style.overflow = "unset";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && _initialized && numChildren > 0)
                 {
@@ -2804,12 +2854,12 @@ COMPILE::JS
                         var child:IUIComponent = getChildAt(i);
                         //@todo investigate traces
                         if (child is IUIComponent) // child is null for TextNodes
-                            mh = Math.max(mh, child.getExplicitOrMeasuredHeight());
+                            mh = Math.max(mh, child.y + child.getExplicitOrMeasuredHeight());
                         else {
                             if (child is IUIBase) {
-                                mh = Math.max(mh, child.height);
+                                mh = Math.max(mh, child.y + child.height);
                             }
-                            trace(getQualifiedClassName(this) + " Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
+                            trace(getQualifiedClassName(this) + " measuring height... Child class not IUIComponent: " + getQualifiedClassName(getElementAt(i)));
                         }
                     }
                 }
@@ -3762,6 +3812,8 @@ COMPILE::JS
     {
         var computed:String = super.computeFinalClassNames();
         if (typeof _styleName == 'string') computed += ' ' + _styleName;
+        //provide 'mx' namespacing to allow specific targeting of emulation content only
+        if (computed) computed = 'mx '+ computed;
         return  computed;
     }
 
@@ -3831,7 +3883,7 @@ COMPILE::JS
      */
     private var _toolTip:String;
 	
-	protected var _toolTipBead: ToolTipBead;
+	protected  var _toolTipBead: ToolTipBead;
 	private var _disableBead: DisableBead;
 
     [Bindable("toolTipChanged")]
@@ -3857,18 +3909,18 @@ COMPILE::JS
      */
     public function set toolTip(value:String):void
     {
-        var oldValue:String = _toolTip;
+        if (_toolTip == value) return;
         _toolTip = value;
 
-        if (_toolTip != null && _toolTip != "" && _toolTipBead == null) {
+        if (value != null && value != "" && _toolTipBead == null) {
 			_toolTipBead = new ToolTipBead();
 			addBead(_toolTipBead);
 		}
-		else if ((_toolTip == null || _toolTip == "") && _toolTipBead != null) {
-		}
+		/*else if ((_toolTip == null || _toolTip == "") && _toolTipBead != null) {
+		}*/
 		
 		if (_toolTipBead) {
-			_toolTipBead.toolTip = _toolTip;
+			_toolTipBead.toolTip = value;
 		}
 
         dispatchEvent(new Event("toolTipChanged"));
@@ -3925,7 +3977,8 @@ COMPILE::JS
     { override }
     public function addChild(child:IUIComponent):IUIComponent
     {
-        return addElement(child) as IUIComponent;
+        addElement(child);
+        return child;
     }
     
     
@@ -3946,7 +3999,8 @@ COMPILE::JS
     public function addChildAt(child:IUIComponent,
                                         index:int):IUIComponent
     {
-        return addElementAt(child, index) as IUIComponent;
+        addElementAt(child, index);
+        return child
     }
     
     public function $uibase_addChildAt(child:IUIComponent,
@@ -3970,7 +4024,8 @@ COMPILE::JS
     { override }
     public function removeChild(child:IUIComponent):IUIComponent
     {
-        return removeElement(child) as IUIComponent;
+        removeElement(child);
+        return child;
     }
     
     public function $uibase_removeChild(child:IUIComponent):IUIComponent
@@ -3979,11 +4034,38 @@ COMPILE::JS
         var ret:IUIComponent = super.removeElement(child) as IUIComponent;
         return ret;
     }
-    
+
+        /**
+         *
+         * @royaleignorecoercion Element
+         */
     COMPILE::JS
 	public function swapChildren(child1:IUIComponent, child2:IUIComponent):void
 	{
-	
+            function findNext(elm:Element):Element{
+                do {
+                    elm = elm.nextSibling as Element;
+                } while(elm && elm.nodeType != 1);
+                return elm;
+            }
+           // var actualChildren:Array = internalChildren();
+            if (!child1 || !child2) throw new Error('ArgumentError : child is null');
+            if (child1.parent != this || child2.parent != this) throw new Error('ArgumentError : child does not belong to parent');
+            if (child1 == child2) {
+                //nothing to swap
+                return ;
+            }
+
+            var child1Next:Element = findNext(child1.element);
+            var child2Next:Element = findNext(child2.element);
+
+            if (!child1Next) {
+                this.element.appendChild(child2.element);
+            } else this.element.insertBefore(child2.element, child1Next);
+            if (!child2Next) {
+                this.element.appendChild(child1.element)
+            } else this.element.insertBefore(child1.element, child2Next)
+
 	}
     /**
      *  @private
@@ -3995,7 +4077,9 @@ COMPILE::JS
     public function removeChildAt(index:int):IUIComponent
     {
         // this should probably call the removingChild/childRemoved
-        return removeElement(getElementAt(index)) as IUIComponent;
+        var child:IUIComponent = getElementAt(index) as IUIComponent;
+        removeElement(child);
+        return child;
     }
     
     public function $uibase_removeChildAt(index:int):IUIComponent
@@ -4024,6 +4108,29 @@ COMPILE::JS
     public function get numChildren():int
     {
         return numElements;
+    }
+
+
+
+    /**
+     * @return The array of children.
+     * @royaleignorecoercion Array
+     */
+    COMPILE::JS
+    override public function internalChildren():Array
+    {
+        var nodeList:NodeList = element.childNodes;
+        //note - this could possibly be converted via Array.from(nodeList) and sliced
+        //but probably faking it with NodeList is the more common case
+        if (!_graphics) return nodeList as Array;
+        else {
+            var l:int = nodeList.length;
+            var ret:Array = [];
+            for (var i:int=1;i<l;i++) {
+                ret.push(nodeList[i])
+            }
+            return ret;
+        }
     }
 
     /**
@@ -4064,7 +4171,40 @@ COMPILE::JS
     { override }
     public function setChildIndex(child:IUIComponent, index:int):void
     {
-        if (doTraceNI) trace("setChildIndex not implemented");
+        COMPILE::JS {
+            var actualChildren:Array = internalChildren();
+            if (child.parent != this) throw new Error('ArgumentError : child does not belong to parent');
+            var last:uint = actualChildren.length-1;
+            if (index<0 || index>last) throw new RangeError('index is out of range');
+            //don't change it if it is already there
+            if (actualChildren[index] != child) {
+                //find current index
+                //don't assume it's an array, it most often will be NodeList
+                var currentIndex:uint;
+                //we need to check the current index first
+                var childElement:Element = child.element;
+                for (var i:uint =0;i<=last;i++) {
+                    if (actualChildren[i] == childElement) {
+                        currentIndex = i;
+                        break;
+                    }
+                }
+                //if it's below to start with then move it up one for insertion
+                if (currentIndex < index) index++;
+                if (index == last) {
+                    element.appendChild(child.element);
+                } else {
+                    var currentElement:Element = actualChildren[index];
+                    element.insertBefore(child.element,currentElement);
+                }
+               // trace('setChildIndex executed for ', child);
+            }
+        }
+
+        COMPILE::SWF{
+            if (doTraceNI) trace("setChildIndex not implemented");
+            //$sprite_setChildIndex(child,index);
+        }
     }
 
     /**
@@ -4512,7 +4652,7 @@ COMPILE::JS
      */
     COMPILE::SWF
     {
-        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent:mx.events.FocusEvent")]
+        [SWFOverride(params="flash.events.Event", altparams="org.apache.royale.events.Event:org.apache.royale.events.MouseEvent")]
         override public function dispatchEvent(event:Event):Boolean {
             //trap the layout requests and ignore them if we have deferred layout
             if (event.type == "layoutNeeded") {
@@ -5352,6 +5492,144 @@ COMPILE::JS
             return (parent as UIComponent).isHeightSizedToContent();
         return false;
     }
+
+
+    /**
+     * avoid treating x and left or y and top as the same thing.
+      * @param value
+     */
+    override public function set style(value:Object):void{
+        var curX:Number = _x;_x = NaN;
+        var curY:Number = _y;_y = NaN;
+        super.style = value;
+        _x=curX;
+        _y=curY;
+    }
+
+        [Bindable("xChanged")]
+        override public function get x():Number{
+            return super.x;
+        }
+
+        override public function set x(value:Number):void
+        {
+            if (_x == value)
+                return;
+
+          /*  if (_layoutFeatures == null)
+            {
+                super.x  = value;
+            }
+            else
+            {
+                _layoutFeatures.layoutX = value;
+                invalidateTransform();
+            }*/
+            super.x  = value;
+            /*invalidateProperties();
+
+            if (parent && parent is UIComponent)
+                UIComponent(parent).childXYChanged();*/
+
+            if (hasEventListener("xChanged"))
+                dispatchEvent(new Event("xChanged"));
+            //usually in Flex this would be deferred in commitProperties, so would wait for (possibly) both x and y, but this is royale:
+            dispatchMoveEvent();
+        }
+
+        [Bindable("yChanged")]
+        override public function get y():Number{
+            return super.y;
+        }
+
+        override public function set y(value:Number):void
+        {
+            if (y == value)
+                return;
+
+            /*if (_layoutFeatures == null)
+            {
+                super.y  = value;
+            }
+            else
+            {
+                _layoutFeatures.layoutY = value;
+                invalidateTransform();
+            }*/
+            super.y  = value;
+            /*invalidateProperties();
+
+            if (parent && parent is UIComponent)
+                UIComponent(parent).childXYChanged();*/
+
+            if (hasEventListener("yChanged"))
+                dispatchEvent(new Event("yChanged"));
+            //usually in Flex this would be deferred in commitProperties, so would wait for (possibly) both x and y, but this is royale:
+            dispatchMoveEvent();
+        }
+
+
+        /**
+         *  Returns a layout constraint value, which is the same as
+         *  getting the constraint style for this component.
+         *
+         *  @param constraintName The name of the constraint style, which
+         *  can be any of the following: left, right, top, bottom,
+         *  verticalCenter, horizontalCenter, baseline
+         *
+         *  @return Returns the layout constraint value, which can be
+         *  specified in either of two forms. It can be specified as a
+         *  numeric string, for example, "10" or it can be specified as
+         *  identifier:numeric string. For identifier:numeric string,
+         *  identifier is the <code>id</code> of a ConstraintRow or
+         *  ConstraintColumn. For example, a value of "cc1:10" specifies a
+         *  value of 10 for the ConstraintColumn that has the
+         *  <code>id</code> "cc1."
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function getConstraintValue(constraintName:String):*
+        {
+            return getStyle(constraintName);
+        }
+
+        /**
+         *  Sets a layout constraint value, which is the same as
+         *  setting the constraint style for this component.
+         *
+         *  @param constraintName The name of the constraint style, which
+         *  can be any of the following: left, right, top, bottom,
+         *  verticalCenter, horizontalCenter, baseline
+         *
+         *  @param value The value of the constraint can be specified in either
+         *  of two forms. It can be specified as a numeric string, for
+         *  example, "10" or it can be specified as identifier:numeric
+         *  string. For identifier:numeric string, identifier is the
+         *  <code>id</code> of a ConstraintRow or ConstraintColumn. For
+         *  example, a value of "cc1:10" specifies a value of 10 for the
+         *  ConstraintColumn that has the <code>id</code> "cc1."
+         *
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function setConstraintValue(constraintName:String, value:*):void
+        {
+            var oldValue:* = ValuesManager.valuesImpl.getValue(this, constraintName);
+            const changed:Boolean = oldValue != value;
+            if (changed) {
+                setStyle(constraintName, value);
+                invalidateSize();
+                //dispatch Event ? constraintName + 'Changed' ?
+            }
+        }
+
+
     
     [Inspectable(category="General")]
 
@@ -5375,11 +5653,15 @@ COMPILE::JS
      */
     public function get left():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "left");
+        var val:* = getConstraintValue('left');
+        if (val === undefined) return NaN;
+        var num:Number = Number(val)
+        if (isNaN(num)) return val; //possible string value for extra constraints info
+        return num;
     }
     public function set left(value:Object):void
     {
-        setStyle("left", value);
+        setConstraintValue("left", value != null ? value : undefined);
     }
 
     [Inspectable(category="General")]
@@ -5404,11 +5686,16 @@ COMPILE::JS
      */
     public function get right():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "right");
+       // return getConstraintValue('right') || null;
+        var val:* = getConstraintValue('right');
+        if (val === undefined) return NaN;
+        var num:Number = Number(val)
+        if (isNaN(num)) return val; //possible string value for extra constraints info
+        return num;
     }
     public function set right(value:Object):void
     {
-        setStyle("right", value);
+        setConstraintValue("right", value != null ? value : undefined);
     }
 
     [Inspectable(category="General")]
@@ -5433,11 +5720,16 @@ COMPILE::JS
      */
     public function get top():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "top");
+        //return getConstraintValue('top') || null;
+        var val:* = getConstraintValue('top');
+        if (val === undefined) return NaN;
+        var num:Number = Number(val)
+        if (isNaN(num)) return val; //possible string value for extra constraints info
+        return num;
     }
     public function set top(value:Object):void
     {
-        setStyle("top", value);
+        setConstraintValue("top", value != null ? value : undefined);
     }
 
     [Inspectable(category="General")]
@@ -5462,11 +5754,16 @@ COMPILE::JS
      */
     public function get bottom():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "bottom");
+        //return getConstraintValue('bottom') || null;
+        var val:* = getConstraintValue('bottom');
+        if (val === undefined) return NaN;
+        var num:Number = Number(val)
+        if (isNaN(num)) return val; //possible string value for extra constraints info
+        return num;
     }
     public function set bottom(value:Object):void
     {
-        setStyle("bottom", value);
+        setConstraintValue("bottom", value != null ? value : undefined);
     }
     
     [Inspectable(category="General")]
@@ -5484,7 +5781,7 @@ COMPILE::JS
      */
     public function get paddingLeft():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "paddingLeft");
+        return ValuesManager.valuesImpl.getValue(this, "paddingLeft") || 0;
     }
     public function set paddingLeft(value:Object):void
     {
@@ -5506,7 +5803,7 @@ COMPILE::JS
      */
     public function get paddingRight():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "paddingRight");
+        return ValuesManager.valuesImpl.getValue(this, "paddingRight") || 0;
     }
     public function set paddingRight(value:Object):void
     {
@@ -5528,7 +5825,7 @@ COMPILE::JS
      */
     public function get paddingTop():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "paddingTop");
+        return ValuesManager.valuesImpl.getValue(this, "paddingTop") || 0;
     }
     public function set paddingTop(value:Object):void
     {
@@ -5550,7 +5847,7 @@ COMPILE::JS
      */
     public function get paddingBottom():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "paddingBottom");
+        return ValuesManager.valuesImpl.getValue(this, "paddingBottom") || 0;
     }
     public function set paddingBottom(value:Object):void
     {
@@ -5580,11 +5877,17 @@ COMPILE::JS
      */
     public function get horizontalCenter():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "horizontalCenter");
+       // return getConstraintValue('horizontalCenter') || null;
+        var val:* = getConstraintValue('horizontalCenter');
+        if (val === undefined) return NaN;
+        var num:Number = Number(val)
+        if (isNaN(num)) return val; //possible string value for extra constraints info
+        return num;
+
     }
     public function set horizontalCenter(value:Object):void
     {
-        setStyle("horizontalCenter", value);
+        setConstraintValue("horizontalCenter", value != null ? value : undefined);
     }
 
     [Inspectable(category="General")]
@@ -5609,11 +5912,16 @@ COMPILE::JS
      */
     public function get verticalCenter():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "verticalCenter");
+        //return getConstraintValue('verticalCenter') || null;
+        var val:* = getConstraintValue('verticalCenter');
+        if (val === undefined) return NaN;
+        var num:Number = Number(val)
+        if (isNaN(num)) return val; //possible string value for extra constraints info
+        return num;
     }
     public function set verticalCenter(value:Object):void
     {
-        setStyle("verticalCenter", value);
+        setConstraintValue("verticalCenter", value != null ? value : undefined);
     }
 	
     [Inspectable(category="General")]
@@ -5733,11 +6041,18 @@ COMPILE::JS
     */
     public function get baseline():Object
     {
-        return ValuesManager.valuesImpl.getValue(this, "baseline");
+       // return ValuesManager.valuesImpl.getValue(this, "baseline");
+        //return getConstraintValue("baseline") || null;
+        var val:* = getConstraintValue('baseline');
+        if (val === undefined) return NaN;
+        var num:Number = Number(val)
+        if (isNaN(num)) return val; //possible string value for extra constraints info
+        return num;
     }
     public function set baseline(value:Object):void
     {
-        setStyle("baseline", value);
+       // setStyle("baseline", value);
+        setConstraintValue("baseline", value != null ? value : undefined);
     }
     
 	[Inspectable(category="General")]
@@ -5789,6 +6104,25 @@ COMPILE::JS
     {
         setStyle("textAlign", value);
     }
+
+    [Inspectable(category="General")]
+
+    /*
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get textDecoration():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "textDecoration") || 'none';
+    }
+    public function set textDecoration(value:Object):void
+    {
+        setStyle("textDecoration", value);
+    }
+
+
 	[Inspectable(category="General")]
 	
 	
@@ -5860,9 +6194,65 @@ COMPILE::JS
       */
     public function move(x:Number, y:Number):void
     {
-		this.x = x;
-		this.y = y;
+
+        var changed:Boolean = false;
+
+        if (x != _x)
+        {
+           /* if (_layoutFeatures == null)*/
+                super.x  = x;
+           /* else
+                _layoutFeatures.layoutX = x;*/
+
+            if (hasEventListener("xChanged"))
+                dispatchEvent(new Event("xChanged"));
+            changed = true;
+        }
+
+        if (y != _y)
+        {
+           /* if (_layoutFeatures == null)*/
+                super.y  = y;
+           /* else
+                _layoutFeatures.layoutY = y;*/
+
+            if (hasEventListener("yChanged"))
+                dispatchEvent(new Event("yChanged"));
+            changed = true;
+        }
+
+        if (changed)
+        {
+            /*invalidateTransform();*/
+            dispatchMoveEvent();
+        }
     }
+
+
+    private function dispatchMoveEvent():void
+    {
+        if (hasEventListener(MoveEvent.MOVE))
+        {
+            var moveEvent:MoveEvent = new MoveEvent(MoveEvent.MOVE);
+            moveEvent.oldX = oldX;
+            moveEvent.oldY = oldY;
+            dispatchEvent(moveEvent);
+        }
+
+        oldX = x;
+        oldY = y;
+    }
+
+
+    /**
+     *  @private
+     *  Whether setActualSize() has been called on this component
+     *  at least once.  This is used in validateBaselinePosition()
+     *  to resize the component to explicit or measured
+     *  size if baselinePosition getter is called before the
+     *  component has been resized by the layout.
+     */
+    mx_internal var setActualSizeCalled:Boolean = false;
 
     /**
      *  Sizes the object.
@@ -5888,7 +6278,9 @@ COMPILE::JS
     {
     
     //    trace("setActualSize not implemented");
+        //setWidthAndHeight is problematic, because it prevents bindings working for 'widthChanged' and 'heightChanged':
 		this.setWidthAndHeight(w, h);
+        setActualSizeCalled = true;
     }
 
 
@@ -6021,6 +6413,8 @@ COMPILE::JS
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
      */
     public function setStyle(styleProp:String, newValue:*):void
     {
@@ -6055,7 +6449,7 @@ COMPILE::JS
                 var blue:Number = parseInt("0x" + _backgroundColor.substring(5, 7));
                 var rgba:String = "rgba(" + red + "," + green + "," + blue + "," + _backgroundAlpha + ")";
                 (element as HTMLElement).style['backgroundColor'] = rgba;
-            }                
+            }
         }
     }
 
@@ -6099,6 +6493,11 @@ COMPILE::JS
         // You must override this function if your component accepts focus
     }
 
+
+    protected function isOurFocus(target:UIBase):Boolean{
+        return target == this;
+    }
+
     /**
      *  The event handler called for a <code>focusIn</code> event.
      *  If you override this method, make sure to call the base class version.
@@ -6113,6 +6512,11 @@ COMPILE::JS
     protected function focusInHandler(event:FocusEvent):void
     {
         // You must override this function if your component accepts focus
+        if (isOurFocus((event.target) as UIBase)){
+            var related:UIBase = event.relatedObject as UIBase;
+            trace('focus in!')
+            ContainerGlobals.checkFocus(related, this)
+        }
     }
 
 
@@ -6151,14 +6555,29 @@ COMPILE::JS
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *
+     *  @royaleignorecoercion mx.core.UIComponent
      */
     public function owns(child:IUIBase):Boolean
     {
 		if (!(child is IUIBase))
 			return false;
-			
+        //attempt to navigate non-UIComponent hierarchy (e.g. currently some Datagrid ColumnLists or some renderers)
+        var currentCheck:IUIBase = child;
+        while (currentCheck){
+            if (currentCheck == this) return true;
+            if (currentCheck is UIComponent) {
+                currentCheck = (currentCheck as UIComponent).owner
+            } else {
+                currentCheck = currentCheck.parent as IUIBase;
+            }
+        }
+
+        //fallback
         return contains(child as IUIBase);
     }
+
+
     
     /**
      *  Same as visible setter but does not dispatch events
