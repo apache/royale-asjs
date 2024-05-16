@@ -115,7 +115,7 @@ package org.apache.royale.jewel.beads.views
         /**
          *  Update the text when message changed. 
          */
-        private function messageChangeHandler(event:Event):void {
+        protected function messageChangeHandler(event:Event):void {
             COMPILE::JS
             {
                 HTMLElement(host.element.firstChild.firstChild).innerHTML = SnackbarModel(host.model).message;
@@ -125,7 +125,7 @@ package org.apache.royale.jewel.beads.views
         /**
          *  Show the action element or remove it, based on action text.
          */
-        private function actionChangeHandler(event:Event):void {
+        protected function actionChangeHandler(event:Event):void {
             var model:SnackbarModel = host.model as SnackbarModel;
 
             COMPILE::JS
@@ -151,7 +151,7 @@ package org.apache.royale.jewel.beads.views
         /**
          *  Trigger event and dismiss the host when action clicked.
          */
-        private function actionClickHandler(event:Event):void {
+        protected function actionClickHandler(event:Event):void {
             COMPILE::JS
             {
             actionElement.removeEventListener("click", actionClickHandler);
