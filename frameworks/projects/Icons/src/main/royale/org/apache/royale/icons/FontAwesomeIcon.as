@@ -93,7 +93,7 @@ package org.apache.royale.icons
         {
             removeClass('fa' + _oldFaStyle);
 
-            if(v == 5)
+            if(v != 4)
                 addClass('fa' + _faStyle);
             else
                 addClass('fa');
