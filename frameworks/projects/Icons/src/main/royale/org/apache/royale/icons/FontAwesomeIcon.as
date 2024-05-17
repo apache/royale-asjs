@@ -408,5 +408,27 @@ package org.apache.royale.icons
             if(value && _stackLevel == 1)
                 addClass('fa-inverse');
         }
+        
+        protected var _kit:Boolean;
+        /**
+         *  Indicates that the icon is personalized and is part of a Professional Kit
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.11
+         */
+        public function get kit():Boolean
+        {
+            return _kit;
+        }
+        public function set kit(value:Boolean):void
+        {
+            if(v >= 6)
+            {
+                _kit = value;
+                toggleClass('fa-kit', _kit);
+            }
+        }
     }
 }
