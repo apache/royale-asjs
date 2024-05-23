@@ -224,6 +224,7 @@ package org.apache.royale.icons
         }
 		public function set relativeSize(value:String):void
         {
+            if(_relativeSize) removeClass('fa-' + _relativeSize);
             removeClass('fa-' + value);
             _relativeSize = value;
             addClass('fa-' + value);
@@ -310,6 +311,7 @@ package org.apache.royale.icons
         COMPILE::JS
         public function set rotation(value:String):void
         {
+            if(_rotation) removeClass('fa-rotate-' + _rotation);
             removeClass('fa-rotate-' + value);
             _rotation = value;
             addClass('fa-rotate-' + value);
@@ -409,6 +411,25 @@ package org.apache.royale.icons
                 addClass('fa-inverse');
         }
         
+        protected var _swapOpacity:Boolean;
+        /**
+         *  Swap opacity of layers in Font Awesome's duotone icons.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.11
+         */
+        public function get swapOpacity():Boolean
+        {
+            return _swapOpacity;
+        }
+        public function set swapOpacity(value:Boolean):void
+        {
+            _swapOpacity = value;
+            toggleClass('fa-swap-opacity', _swapOpacity);
+        }
+        
         protected var _kit:Boolean;
         /**
          *  Indicates that the icon is personalized and is part of a Professional Kit
@@ -424,11 +445,37 @@ package org.apache.royale.icons
         }
         public function set kit(value:Boolean):void
         {
-            if(v >= 6)
-            {
-                _kit = value;
-                toggleClass('fa-kit', _kit);
+            if(value){
+                if(v < 6) v=6;
+                if(_kitDuotone)
+                    kitDuotone = false;
             }
+            _kit = value;
+            toggleClass('fa-kit', _kit);
+        }
+        
+        protected var _kitDuotone:Boolean;
+        /**
+         *  Indicates that the icon is personalized and is part of a Professional Duotone Kit
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.11
+         */
+        public function get kitDuotone():Boolean
+        {
+            return _kitDuotone;
+        }
+        public function set kitDuotone(value:Boolean):void
+        {
+            if(value){
+                if(v < 6) v=6;
+                if(_kit)
+                    kit = false;
+            }
+            _kitDuotone = value;
+            toggleClass('fa-kit-duotone', _kitDuotone);
         }
     }
 }
