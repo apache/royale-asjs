@@ -171,7 +171,7 @@ package
 			return target;
 		}
         
-		private var _xmlArray:Array = [];
+		protected var _xmlArray:Array = [];
 		/*
 			9.2.1.2 [[Put]] (P, V)
 			Overview
@@ -256,14 +256,16 @@ package
 		private function addIndex(idx:int):void
 		{
 			var idxStr:String = "" + idx;
-			Object.defineProperty(this,idxStr,
+			if(idxStr in XMLList.prototype)
+				return;
+			Object.defineProperty(XMLList.prototype,idxStr,
 				{
-					"get": function():* { return _xmlArray[idx]; },
+					"get": function():* { return this._xmlArray[idx]; },
 					"set": function(newValue:*):void {
-						if(idx >= _xmlArray.length)
-							append(newValue);
+						if(idx >= this._xmlArray.length)
+							this.append(newValue);
 						else
-							replaceChildAt(idx,newValue);
+							this.replaceChildAt(idx,newValue);
 					},
 					enumerable: true,
 					configurable: true
@@ -976,7 +978,7 @@ package
 					child.parent().removeChild(child);
 			}
 		}
-		private function replaceChildAt(idx:int,child:*):void
+		protected function replaceChildAt(idx:int,child:*):void
 		{
 			var i:int;
 			var childToReplace:XML = _xmlArray[idx];
