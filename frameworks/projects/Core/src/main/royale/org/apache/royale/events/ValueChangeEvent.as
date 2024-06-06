@@ -103,7 +103,7 @@ package org.apache.royale.events
          *  A convenience method to create an instance of the ValueChangeEvent.
          * 
          *  @param source The source of the object.
-         *  @param name The name of the event.
+         *  @param name The name of the property being changed
          *  @param oldValue The value before it was changed.
          *  @param newValue The value after it was changed.
          *  @return An instance of the ValueChangeEvent.
