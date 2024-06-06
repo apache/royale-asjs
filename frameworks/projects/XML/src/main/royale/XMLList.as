@@ -253,11 +253,14 @@ package
 			  b. Call the [[Put]] method of x[0] with arguments P and V
 			4. Return
 		*/
+		private static var counter:int = -1;
 		private function addIndex(idx:int):void
 		{
-			var idxStr:String = "" + idx;
-			if(idxStr in XMLList.prototype)
+			if(idx <= counter)
 				return;
+			
+			counter = idx;
+			var idxStr:String = "" + idx;
 			Object.defineProperty(XMLList.prototype,idxStr,
 				{
 					"get": function():* { return this._xmlArray[idx]; },
