@@ -3810,7 +3810,7 @@ j|HSlider {
 }
 
 .jewel.tablecell .vslider .transform-container {
-  margin-left: calc(50% - 27px/2*2);
+  margin-left: calc(50% - 27px/2 * 2);
 }
 
 .jewel.snackbar {
