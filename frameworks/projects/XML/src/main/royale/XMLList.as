@@ -74,6 +74,16 @@ package
 			return list !== null ? String(list) : null;
 		}
 		
+		public static function fromArray(arr:Array):XMLList
+		{
+			var list:XMLList = new XMLList();
+			var len:int = arr.length;
+			while(counter < len)
+				list.addIndex(counter+1);
+
+			list._xmlArray = arr;
+			return list;
+		}
 		public function XMLList(expression:Object = null)
 		{
 			addIndex(0);
@@ -328,23 +338,20 @@ package
 		{
 			_xmlArray[_xmlArray.length] = child;
 			addIndex(_xmlArray.length);
-			do//while false
+			if(!_targetObject)
+				return;
+			if(!_targetProperty)
 			{
-				if(!_targetObject)
-					break;
-				if(!_targetProperty)
-				{
-					_targetObject.appendChild(child);
-					break;
-				}
-				var objToAppend:XMLList = _targetObject.child(_targetProperty);
-				if(!objToAppend.length())
-				{
-					_targetObject.appendChild(child);
-					break;
-				}
-				_targetObject.insertChildAfter(objToAppend[objToAppend.length()-1],child);
-			}while(false);
+				_targetObject.appendChild(child);
+				return;
+			}
+			var objToAppend:XMLList = _targetObject.child(_targetProperty);
+			if(!objToAppend.length())
+			{
+				_targetObject.appendChild(child);
+				return;
+			}
+			_targetObject.insertChildAfter(objToAppend[objToAppend.length()-1],child);
 		}
 
 		public function appendChild(child:*):XML

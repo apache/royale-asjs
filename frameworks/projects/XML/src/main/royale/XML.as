@@ -1396,29 +1396,37 @@ package
 			var len:int;
 			if(!name)
 				name = "*";
-			name = toXMLName(name);
-			var list:XMLList = new XMLList();
-			if(name.isAttribute)
+			var descendents:Array = getDescendentArray(this,toXMLName(name),[]);
+			COMPILE::SWF{
+				return null;
+			}
+			COMPILE::JS{
+				return XMLList.fromArray(descendents);
+			}
+		}
+		private function getDescendentArray(current:XML,name:QName,arr:Array):Array
+		{
+			if(name.isAttribute && current._attributes)
 			{
-				len = attributeLength();
-				for(i=0;i<len;i++)
+				for each(var attr:XML in current._attributes)
 				{
-					if(name.matches(_attributes[i].name()))
-						list.append(_attributes[i]);
+					if(name.matches(attr.name()))
+						arr.push(attr);
 				}
 			}
-			len = childrenLength();
-			for(i=0;i<len;i++)
+			if(current._children)
 			{
-				var child:XML = _children[i] as XML;
-				if(name.matches(child.name()))
-					list.append(child);
-				if(child.getNodeRef() == ELEMENT)
+				for each(var child:XML in current._children)
 				{
-					list.concat(child.descendants(name));
+					if(name.matches(child.name()))
+						arr.push(child);
+					if(child.getNodeRef() == ELEMENT)
+					{
+						getDescendentArray(child,name,arr);
+					}
 				}
 			}
-			return list;
+			return arr;
 		}
 		
 		/**
@@ -3212,11 +3220,11 @@ package
 			var str:String = name.toString();
 			if(parseInt(str,10).toString() == name)
 				throw new TypeError("invalid element name");
-			
-			if(str.indexOf("@") == 0)
-				return toAttributeName(name);
+			var qname:QName = new QName(str);
+			if(str.charCodeAt(0) == 64)// "@"
+				qname.setIsAttribute(true);
 
-			return new QName(str);
+			return qname;
 		}
 		
 		/**
