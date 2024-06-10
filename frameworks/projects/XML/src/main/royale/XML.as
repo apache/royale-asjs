@@ -3221,7 +3221,7 @@ package
 			if(parseInt(str,10).toString() == name)
 				throw new TypeError("invalid element name");
 			
-			var isAttribute:Boolean = str.charCodeAt(0) == 64;// "@"
+			var isAttribute:Boolean = str.charCodeAt(0) == 64; // "@"
 			if(isAttribute)
 				str = str.slice(1);
 
