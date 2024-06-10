@@ -3220,10 +3220,15 @@ package
 			var str:String = name.toString();
 			if(parseInt(str,10).toString() == name)
 				throw new TypeError("invalid element name");
-			var qname:QName = new QName(str);
-			if(str.charCodeAt(0) == 64)// "@"
-				qname.setIsAttribute(true);
+			
+			var isAttribute:Boolean = str.charCodeAt(0) == 64;// "@"
+			if(isAttribute)
+				str = str.slice(1);
 
+			var qname:QName = new QName(str);
+			if(isAttribute)
+				qname.setIsAttribute(true);
+				
 			return qname;
 		}
 		
