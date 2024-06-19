@@ -62,7 +62,7 @@ section on "Additional Prerequisites for SWF Output" before building Royale.
 Building Royale With Apache Maven
 =================================
 
-Royale requires Maven 3.3.9 or greater to be installed on your computer.
+Royale requires Maven 3.8.1 or greater to be installed on your computer.
 
 To build Royale with Apache Maven, run Maven in the 3 folders as follows:
 
