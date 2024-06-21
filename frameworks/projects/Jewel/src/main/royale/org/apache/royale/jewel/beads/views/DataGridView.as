@@ -234,52 +234,15 @@ package org.apache.royale.jewel.beads.views
          */
         protected function createLists():void
         {
-            // get the name of the class to use for the columns
-            var columnClass:Class = ValuesManager.valuesImpl.getValue(host, "columnClass") as Class;
             var len:uint = sharedModel.columns.length;
             for (var i:int=0; i < len; i++)
             {
                 ignoreSizeChange = i != len-1;
                 var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
                 IEventDispatcher(dataGridColumn).addEventListener("labelChanged", labelChangedHandler);
+                IEventDispatcher(dataGridColumn).addEventListener("itemRendererChanged", itemRendererChangedHandler);
 
-                var list:IDataGridColumnList = new columnClass();
-                list.columnInfo = dataGridColumn;
-                
-                list.datagrid = _dg;
-                list.emphasis = (_dg as IEmphasis).emphasis;
-                
-                if (i == 0) {
-                    list.className = "first";
-                }
-                else if (i == len-1) {
-                    list.className = "last";
-                }
-                else {
-                    list.className = "middle";
-                }
-                
-                // by default make columns get the 1/n of the maximun space available
-                // (list as ILayoutChild).percentWidth = 100 / len;
-                
-                // need to add itemRenderer interface to DataGrid
-                if((_dg as IItemRendererProvider).itemRenderer)
-                    list.itemRenderer = (_dg as IItemRendererProvider).itemRenderer;
-                else
-                    list.itemRenderer = dataGridColumn.itemRenderer;
-                list.labelField = dataGridColumn.dataField;
-                if(dataGridColumn.labelFunction)
-                {
-                    var lf:LabelFunction = new LabelFunction();
-                    lf.labelFunction = dataGridColumn.labelFunction;
-                    list.addBead(lf);
-                }
-                list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
-                list.addEventListener('selectionChanged', handleColumnListSelectionChange);
-                list.addEventListener('beadsAdded', configureColumnListPresentationModel);
-                (list as StyledUIBase).tabIndex = -1;
-                setColumnHeight(list as StyledUIBase);
-                
+                var list:IDataGridColumnList = createColumnList(i, len, dataGridColumn);
 
                 (_listArea as IParent).addElement(list as IChild);
 
@@ -322,6 +285,49 @@ package org.apache.royale.jewel.beads.views
 
             }
             columnLists.length = 0;
+        }
+
+        protected function createColumnList(index:int, len:int, dataGridColumn:IDataGridColumn):IDataGridColumnList
+        {
+            // get the name of the class to use for the columns
+            var columnClass:Class = ValuesManager.valuesImpl.getValue(host, "columnClass") as Class;
+            var list:IDataGridColumnList = new columnClass();
+                list.columnInfo = dataGridColumn;
+
+                list.datagrid = _dg;
+                list.emphasis = (_dg as IEmphasis).emphasis;
+
+                if (index == 0) {
+                    list.className = "first";
+                }
+                else if (index == len-1) {
+                    list.className = "last";
+                }
+                else {
+                    list.className = "middle";
+                }
+
+                // by default make columns get the 1/n of the maximun space available
+                // (list as ILayoutChild).percentWidth = 100 / len;
+
+                // need to add itemRenderer interface to DataGrid
+                if((_dg as IItemRendererProvider).itemRenderer)
+                    list.itemRenderer = (_dg as IItemRendererProvider).itemRenderer;
+                else
+                    list.itemRenderer = dataGridColumn.itemRenderer;
+                list.labelField = dataGridColumn.dataField;
+                if(dataGridColumn.labelFunction)
+                {
+                    var lf:LabelFunction = new LabelFunction();
+                    lf.labelFunction = dataGridColumn.labelFunction;
+                    list.addBead(lf);
+                }
+                list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
+                list.addEventListener('selectionChanged', handleColumnListSelectionChange);
+                list.addEventListener('beadsAdded', configureColumnListPresentationModel);
+                (list as StyledUIBase).tabIndex = -1;
+                setColumnHeight(list as StyledUIBase);
+             return list;
         }
 
         /**
@@ -497,7 +503,8 @@ package org.apache.royale.jewel.beads.views
             sharedModel.rollOverIndex = list.rollOverIndex;
             var columnLists:Array = this.columnLists;
             for(var i:int=0; i < columnLists.length; i++) {
-                if (list != columnLists[i]) {
+                if (list != columnLists[i])
+                {
                     var otherList:IDataGridColumnList = columnLists[i] as IDataGridColumnList;
                     otherList.rollOverIndex = list.rollOverIndex;
                 }
@@ -523,6 +530,32 @@ package org.apache.royale.jewel.beads.views
                 }
             }
             _header.dataProvider = new ArrayList(_sharedModel.columns);
+        }
+
+        private function itemRendererChangedHandler(event:Event):void
+        {
+            var columnListLength:int = columnLists.length;
+            for(var i:int=0; i < columnLists.length; i++)
+            {
+                var dataGridColumnList:IDataGridColumnList = columnLists[i] as IDataGridColumnList;
+                if (dataGridColumnList.columnInfo == event.currentTarget)
+                {
+                    var elementIndex:int = (_listArea as IParent).getElementIndex(dataGridColumnList as IChild);
+                     (_listArea as IParent).removeElement(dataGridColumnList as IChild);
+
+                     var newDataGridColumnList:IDataGridColumnList = createColumnList(elementIndex, columnListLength, sharedModel.columns[i]);
+
+                     (newDataGridColumnList as IChild).element.style["minWidth"] = (dataGridColumnList as IChild).element.style["minWidth"];
+                     (newDataGridColumnList as IChild).element.style["maxWidth"] = (dataGridColumnList as IChild).element.style["maxWidth"];
+                     (newDataGridColumnList as IChild).element.style["width"] = (dataGridColumnList as IChild).element.style["width"];
+                     (newDataGridColumnList as IChild).element.style["flex"] = (dataGridColumnList as IChild).element.style["flex"];
+
+                     (_listArea as IParent).addElementAt(newDataGridColumnList as IChild, elementIndex);
+                     columnLists[elementIndex] = newDataGridColumnList;
+
+                     newDataGridColumnList.dataProvider = dp;
+                }
+            }
         }
     }
 }

@@ -20,6 +20,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 {
 import org.apache.royale.core.IStyledUIBase;
 import org.apache.royale.jewel.supportClasses.table.TableColumn;
+import org.apache.royale.core.IFactory;
 
 /**
  *  The DataGridColumn class is the collection of properties that describe
@@ -47,8 +48,31 @@ public class DataGridColumn extends TableColumn implements IDataGridColumn
 	{
 	}
 
+    private var _itemRenderer:IFactory;
 	
+    /**
+     *  The itemRenderer class or factory to use to make instances of itemRenderers for
+     *  display of data.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.11
+     */
+    override public function get itemRenderer():IFactory
+    {
+        return _itemRenderer;
+    }
 
+    override public function set itemRenderer(value:IFactory):void
+    {
+        if (_itemRenderer != value)
+        {
+            _itemRenderer = value;
+
+            dispatchEvent(new Event('itemRendererChanged'));
+        }
+    }
 
 	private var _visible:Boolean = true;
 	public function set visible(value:Boolean):void{
