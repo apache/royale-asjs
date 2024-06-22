@@ -18,72 +18,73 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
-import org.apache.royale.core.IStyledUIBase;
-import org.apache.royale.jewel.supportClasses.table.TableColumn;
-import org.apache.royale.core.IFactory;
+    import org.apache.royale.core.IStyledUIBase;
+    import org.apache.royale.jewel.supportClasses.table.TableColumn;
+    import org.apache.royale.core.IFactory;
+    import org.apache.royale.events.Event;
 
-/**
- *  The DataGridColumn class is the collection of properties that describe
- *  a column of the org.apache.royale.jewel.DataGrid: which renderer
- *  to use for each cell in the column, the width of the column, the label for the
- *  column, and the name of the field in the data containing the value to display
- *  in the column.
- *
- *  @langversion 3.0
- *  @playerversion Flash 10.2
- *  @playerversion AIR 2.6
- *  @productversion Royale 0.9.7
- */
-public class DataGridColumn extends TableColumn implements IDataGridColumn
-{
-	/**
-	 *  constructor.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
-	 */
-	public function DataGridColumn()
-	{
-	}
-
-    private var _itemRenderer:IFactory;
-	
     /**
-     *  The itemRenderer class or factory to use to make instances of itemRenderers for
-     *  display of data.
+     *  The DataGridColumn class is the collection of properties that describe
+     *  a column of the org.apache.royale.jewel.DataGrid: which renderer
+     *  to use for each cell in the column, the width of the column, the label for the
+     *  column, and the name of the field in the data containing the value to display
+     *  in the column.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.11
+     *  @productversion Royale 0.9.7
      */
-    override public function get itemRenderer():IFactory
+    public class DataGridColumn extends TableColumn implements IDataGridColumn
     {
-        return _itemRenderer;
-    }
-
-    override public function set itemRenderer(value:IFactory):void
-    {
-        if (_itemRenderer != value)
+        /**
+         *  constructor.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function DataGridColumn()
         {
-            _itemRenderer = value;
+        }
 
-            dispatchEvent(new Event('itemRendererChanged'));
+        private var _itemRenderer:IFactory;
+
+        /**
+         *  The itemRenderer class or factory to use to make instances of itemRenderers for
+         *  display of data.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.11
+         */
+        override public function get itemRenderer():IFactory
+        {
+            return _itemRenderer;
+        }
+
+        override public function set itemRenderer(value:IFactory):void
+        {
+            if (_itemRenderer != value)
+            {
+                _itemRenderer = value;
+
+                dispatchEvent(new Event('itemRendererChanged'));
+            }
+        }
+
+        private var _visible:Boolean = true;
+        public function set visible(value:Boolean):void{
+            if (value != _visible) {
+                _visible = value;
+                //somehow, invalidate layout
+            }
+        }
+
+        public function get visible():Boolean{
+            return _visible;
         }
     }
-
-	private var _visible:Boolean = true;
-	public function set visible(value:Boolean):void{
-		if (value != _visible) {
-			_visible = value;
-			//somehow, invalidate layout
-		}
-	}
-
-	public function get visible():Boolean{
-		return _visible;
-	}
-}
 }

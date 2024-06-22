@@ -545,15 +545,20 @@ package org.apache.royale.jewel.beads.views
 
                      var newDataGridColumnList:IDataGridColumnList = createColumnList(elementIndex, columnListLength, sharedModel.columns[i]);
 
-                     (newDataGridColumnList as IChild).element.style["minWidth"] = (dataGridColumnList as IChild).element.style["minWidth"];
-                     (newDataGridColumnList as IChild).element.style["maxWidth"] = (dataGridColumnList as IChild).element.style["maxWidth"];
-                     (newDataGridColumnList as IChild).element.style["width"] = (dataGridColumnList as IChild).element.style["width"];
-                     (newDataGridColumnList as IChild).element.style["flex"] = (dataGridColumnList as IChild).element.style["flex"];
+                     COMPILE::JS
+                     {
+                        (newDataGridColumnList as IChild).element.style["minWidth"] = (dataGridColumnList as IChild).element.style["minWidth"];
+                        (newDataGridColumnList as IChild).element.style["maxWidth"] = (dataGridColumnList as IChild).element.style["maxWidth"];
+                        (newDataGridColumnList as IChild).element.style["width"] = (dataGridColumnList as IChild).element.style["width"];
+                        (newDataGridColumnList as IChild).element.style["flex"] = (dataGridColumnList as IChild).element.style["flex"];
+                     }
 
                      (_listArea as IParent).addElementAt(newDataGridColumnList as IChild, elementIndex);
                      columnLists[elementIndex] = newDataGridColumnList;
 
                      newDataGridColumnList.dataProvider = dp;
+
+                     break;
                 }
             }
         }
