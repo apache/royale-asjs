@@ -22,8 +22,8 @@
 // DateField variables
 $datefield-input-width: 9.2em
 $datefield-button-size: 22px
-$datefield-button-xoffset: calc(50% - #{$datefield-button-size/2})
-$datefield-button-yoffset: calc(50% - #{$datefield-button-size/2})
+$datefield-button-xoffset: calc(50% - #{math.div($datefield-button-size, 2)})
+$datefield-button-yoffset: calc(50% - #{math.div($datefield-button-size, 2)})
 $datechooser-popup-margin-offset: 10px
 $datechooser-popup-overlay-color: #000 !default
 $datechooser-popup-overlay-opacity: .65 !default

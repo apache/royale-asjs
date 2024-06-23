@@ -195,16 +195,16 @@ $gap-size: 10px !default
 				@for $i from 1 through $grid-columns
 					@for $j from 1 through $i
 						.#{$size}-col-#{$j}-#{$i}
-							width: percentage($j / $i)
+							width: percentage(math.div($j, $i))
 		&.gap	
 			> *
-				margin: $gap-size / 2
+				margin: math.div($gap-size, 2)
 			@each $size in $size-names
 				@media (min-width: map-get($sizes, $size))
 					@for $i from 1 through $grid-columns
 						@for $j from 1 through $i
 							.#{$size}-col-#{$j}-#{$i}
-								width: calc(#{percentage($j / $i)} - #{$gap-size})
+								width: calc(#{percentage(math.div($j, $i))} - #{$gap-size})
 	&.horizontal, &.vertical, &.grid
 		&.itemsSpaceBetween
 			justify-content: space-between

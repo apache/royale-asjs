@@ -73,12 +73,12 @@ $datechooser-buttons-border-radius: 50%
                     // background-size: 40%
                     width: $datechooser-button-size
                     height: $datechooser-button-size
-                    top: calc(50% - #{$datechooser-button-size/2})
+                    top: calc(50% - #{math.div($datechooser-button-size, 2)})
                 .previousButton::after
-                    left: calc(50% - #{$datechooser-button-size/2 + 2px})
+                    left: calc(50% - #{math.div($datechooser-button-size, 2) + 2px})
                     background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero'></path></g></g></svg>") no-repeat center center
                 .nextButton::after
-                    left: calc(50% - #{$datechooser-button-size/2 - 2px})
+                    left: calc(50% - #{math.div($datechooser-button-size, 2) - 2px})
                     background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '></path></g></g></svg>") no-repeat center center
 
         .jewel.tablecell
