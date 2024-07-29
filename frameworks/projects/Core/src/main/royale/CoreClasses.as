@@ -380,6 +380,7 @@ internal class CoreClasses
 	import org.apache.royale.utils.async.promiseToTask; promiseToTask;
 
 	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
+	import org.apache.royale.utils.css.removeDynamicSelector; removeDynamicSelector;
 
 	COMPILE::JS
 	{
