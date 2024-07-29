@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.controls.button
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.IInputButton;
 	import org.apache.royale.utils.css.addDynamicSelector;
+	import org.apache.royale.utils.css.removeDynamicSelector;
 	
     /**
      *  The InputButtonSize class implements input button size for controls
@@ -132,6 +133,7 @@ package org.apache.royale.jewel.beads.controls.button
 			}
 		}
 
+		private var ruleName:String = "";
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.jewel.CheckBox
@@ -139,11 +141,18 @@ package org.apache.royale.jewel.beads.controls.button
 		COMPILE::JS
 		private function sizeChangeHandler(event:Event):void
 		{
-			var ruleName:String;
 			var beforeSelector:String = "";
 			if(width || height) {
+				if(ruleName!="")
+				{
+					removeDynamicSelector(".jewel." + ruleName + " input+span::before");
+					removeDynamicSelector(".jewel." + ruleName + " input+span::after");
+					if ((host as StyledUIBase).containsClass(ruleName) )
+						(host as StyledUIBase).removeClass(ruleName);
+				}
 				ruleName = "inpbtn" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
-				(host as StyledUIBase).className = ruleName;
+				// (host as StyledUIBase).className = ruleName;
+				(host as StyledUIBase).addClass(ruleName);
 			}
 			
 			if(width) {
