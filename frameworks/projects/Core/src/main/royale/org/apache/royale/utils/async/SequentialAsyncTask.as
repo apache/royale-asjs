@@ -66,7 +66,6 @@ package org.apache.royale.utils.async
             return;
           }
           break;
-					return;
         default:// not sure why this would happen
           throw new Error("Unknown task status");
 
