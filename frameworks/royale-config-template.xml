@@ -454,7 +454,7 @@
       <warn-bad-array-cast>true</warn-bad-array-cast>
 
       <!-- Non-Boolean value used where a Boolean value was expected. -->
-      <warn-bad-bool-assignment>true</warn-bad-bool-assignment>
+      <warn-bad-bool-assignment>false</warn-bad-bool-assignment>
 
       <!-- Invalid Date cast operation. -->
       <warn-bad-date-cast>true</warn-bad-date-cast>
