@@ -26,11 +26,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-express</artifactId>
-    <version>0.9.11-SNAPSHOT</version>
+    <version>0.9.11</version>
   </parent>
 
   <artifactId>DataGridExample-Express</artifactId>
-  <version>0.9.11-SNAPSHOT</version>
+  <version>0.9.11</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Express: DataGridExample</name>
@@ -53,4 +53,4 @@
   <dependencies>
   </dependencies>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2024-10-05T11:59:32Z</project.build.outputTimestamp></properties></project>

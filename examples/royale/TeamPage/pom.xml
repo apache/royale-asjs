@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.11-SNAPSHOT</version>
+    <version>0.9.11</version>
   </parent>
 
   <artifactId>TeamPage</artifactId>
-  <version>0.9.11-SNAPSHOT</version>
+  <version>0.9.11</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: TeamPage</name>
@@ -53,21 +53,21 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.11</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.11</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.11-SNAPSHOT</version>
+      <version>0.9.11</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -81,14 +81,14 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>0.9.11-SNAPSHOT</version>
+          <version>0.9.11</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.11-SNAPSHOT</version>
+          <version>0.9.11</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -96,4 +96,4 @@
     </profile>
   </profiles>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2024-10-05T11:59:32Z</project.build.outputTimestamp></properties></project>
