@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.11</version>
+    <version>0.9.12-SNAPSHOT</version>
   </parent>
 
   <artifactId>HTML5</artifactId>
-  <version>0.9.11</version>
+  <version>0.9.12-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: HTML5</name>
@@ -67,14 +67,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.11</version>
+      <version>0.9.12-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.11</version>
+      <version>0.9.12-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -87,14 +87,14 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.11</version>
+          <version>0.9.12-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.11</version>
+          <version>0.9.12-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -102,4 +102,4 @@
     </profile>
   </profiles>
 
-<properties><project.build.outputTimestamp>2024-10-05T11:59:32Z</project.build.outputTimestamp></properties></project>
+<properties /></project>

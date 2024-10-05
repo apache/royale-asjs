@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.11</version>
+    <version>0.9.12-SNAPSHOT</version>
   </parent>
 
   <artifactId>RoyaleTeamPage_MDL</artifactId>
-  <version>0.9.11</version>
+  <version>0.9.12-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: RoyaleTeamPage_MDL</name>
@@ -35,7 +35,7 @@
     <!-- Customize MDL colors using this the tool at : https://getmdl.io/customize/index.html -->
     <primary>indigo</primary>
     <accent>pink</accent>
-  <project.build.outputTimestamp>2024-10-05T11:59:32Z</project.build.outputTimestamp></properties>
+  </properties>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -63,21 +63,21 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>MaterialDesignLite</artifactId>
-      <version>0.9.11</version>
+      <version>0.9.12-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>FontAwesome</artifactId>
-      <version>0.9.11</version>
+      <version>0.9.12-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>0.9.11</version>
+      <version>0.9.12-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
