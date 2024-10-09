@@ -52,7 +52,7 @@ public class Fade extends org.apache.royale.effects.Fade
      */
     public function Fade(target:IUIBase = null)
     {
-        super(IUIBase);
+        super(target);
 
     }
    
