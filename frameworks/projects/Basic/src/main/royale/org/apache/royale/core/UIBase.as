@@ -1603,9 +1603,9 @@ package org.apache.royale.core
             return super.getChildAt(index);
         }
         COMPILE::SWF
-        public function $sprite_setChildIndex(index:int):void
+        public function $sprite_setChildIndex(child:DisplayObject, index:int):void
         {
-            super.setChildIndex(index);
+            super.setChildIndex(child, index);
         }
         COMPILE::SWF
         public function $sprite_getChildIndex(child:DisplayObject):int
