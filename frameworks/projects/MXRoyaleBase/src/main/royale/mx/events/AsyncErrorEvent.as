@@ -43,7 +43,8 @@ public class AsyncErrorEvent extends flash.events.AsyncErrorEvent
 							  cancelable:Boolean = false, text:String = "", id:int = 0
 							  )
 	{
-		super(type, bubbles, cancelable,text,id);
+		// SWF expects an Error object, so create one from our parameters
+		super(type, bubbles, cancelable, text, new Error(text, id));
 	}
 }
 
