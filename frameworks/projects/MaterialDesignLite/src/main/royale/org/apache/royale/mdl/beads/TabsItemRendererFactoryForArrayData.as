@@ -54,7 +54,7 @@ package org.apache.royale.mdl.beads
     {
         public function TabsItemRendererFactoryForArrayData(target:Object = null)
         {
-            super(target);
+            super(IEventDispatcher(target));
         }
 
         protected var dataProviderModel:ITabModel;

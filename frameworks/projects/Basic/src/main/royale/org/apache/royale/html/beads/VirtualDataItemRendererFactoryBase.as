@@ -66,7 +66,7 @@ package org.apache.royale.html.beads
          */
 		public function VirtualDataItemRendererFactoryBase(target:Object=null)
 		{
-			super(target);
+			super(IEventDispatcher(target));
 		}
 
 		protected var dataProviderModel:IDataProviderModel;

@@ -60,7 +60,7 @@ package org.apache.royale.html.beads
          */
 		public function TextItemRendererFactoryForStringVectorData(target:Object=null)
 		{
-			super(target);
+			super(IEventDispatcher(target));
 		}
 		
 		private var selectionModel:ISelectionModel;

@@ -65,7 +65,7 @@ package org.apache.royale.html.beads
 		 */
 		public function TextItemRendererFactoryForArrayData(target:Object=null)
 		{
-			super(target);
+			super(IEventDispatcher(target));
 		}
 
 		private var selectionModel:ISelectionModel;

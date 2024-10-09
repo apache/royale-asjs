@@ -45,7 +45,7 @@ package org.apache.royale.mdl.beads
     {
         public function TabsDataItemRendererFactoryForArrayListData(target:Object = null)
         {
-            super(target);
+            super(IEventDispatcher(target));
         }
     }
 }

@@ -61,7 +61,7 @@ package org.apache.royale.createjs.tween
 		 */
         public function Tween(target:Object=null)
 		{
-			super(target);
+			super(CreateJSBase(target));
 			
 			COMPILE::SWF {
 				_parallel = new Parallel();
