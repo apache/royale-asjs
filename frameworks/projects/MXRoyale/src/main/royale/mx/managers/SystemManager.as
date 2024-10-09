@@ -1785,7 +1785,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         }
         COMPILE::SWF
         {
-            var ret:DisplayObject = super.addChildAt(child as DisplayObject);
+            var ret:DisplayObject = super.addChildAt(child as DisplayObject, index);
             if (ret is IUIBase)
                 (ret as IUIBase).addedToParent();
             return ret as IUIComponent;
