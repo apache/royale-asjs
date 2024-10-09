@@ -198,8 +198,16 @@ public class UITextFormat extends TextFormat
     {
         this.systemManager = systemManager;
 
-        super(font, size, color, bold, italic, underline,
-              align, leftMargin, rightMargin);
+        COMPILE::SWF
+        {
+            super(font, size, color, bold, italic, underline,
+                null, null, align, leftMargin, rightMargin);
+        }
+        COMPILE::JS
+        {
+            super(font, size, color, bold, italic, underline,
+                align, leftMargin, rightMargin);
+        }
     }
 
     //--------------------------------------------------------------------------
