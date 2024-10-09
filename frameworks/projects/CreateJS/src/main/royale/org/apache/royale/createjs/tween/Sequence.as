@@ -60,7 +60,7 @@ package org.apache.royale.createjs.tween
 		 */
         public function Sequence(target:Object=null)
 		{
-			super(target);
+			super(CreateJSBase(target));
 			
 			_tweens = [];
 			

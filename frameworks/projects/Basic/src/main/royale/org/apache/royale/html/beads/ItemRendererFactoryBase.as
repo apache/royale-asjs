@@ -50,7 +50,7 @@ package org.apache.royale.html.beads
          */
 		public function ItemRendererFactoryBase(target:Object=null)
 		{
-			super(target);
+			super(IEventDispatcher(target));
 		}
 
 		protected var dataProviderModel:IDataProviderModel;

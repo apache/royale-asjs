@@ -70,7 +70,7 @@ package mx.controls.dataGridClasses
 		 */
 		public function HeaderRendererFactoryForArrayData(target:Object=null)
 		{
-			super(target);
+			super(IEventDispatcher(target));
 		}
 
 		private var selectionModel:ISelectionModel;
