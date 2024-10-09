@@ -24,6 +24,10 @@ import org.apache.royale.events.Event;
 import org.apache.royale.geom.Point;
 import mx.system.ApplicationDomain;
 import mx.display.Bitmap;
+COMPILE::SWF
+{
+    import flash.display.BitmapData;
+}
 
 /**
  *  BitmapAsset is a subclass of the flash.display.Bitmap class
@@ -116,6 +120,7 @@ public class BitmapAsset extends Bitmap //extends FlexBitmap
     //
     //--------------------------------------------------------------------------
 
+    COMPILE::SWF
     /**
      *  Constructor.
      *
@@ -131,7 +136,40 @@ public class BitmapAsset extends Bitmap //extends FlexBitmap
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function BitmapAsset(bitmapData:Bitmap = null,
+    public function BitmapAsset(bitmapData:BitmapData = null,
+                                pixelSnapping:String = "auto",
+                                smoothing:Boolean = false)
+    {
+        super(bitmapData, pixelSnapping, smoothing);
+        
+     /*   if (FlexVersionClass == null)
+        {
+            var appDomain:ApplicationDomain = ApplicationDomain.currentDomain;
+            if (appDomain.hasDefinition("mx.core::FlexVersion"))
+                FlexVersionClass = Class(appDomain.getDefinition("mx.core::FlexVersion"));
+        }
+        
+        if (FlexVersionClass && FlexVersionClass["compatibilityVersion"] >= FlexVersionClass["VERSION_4_0"])
+            //this.addEventListener(Event.ADDED, addedHandler); */
+    }
+
+    COMPILE::JS
+    /**
+     *  Constructor.
+     *
+     *  @param bitmapData The data for the bitmap image. 
+     *
+     *  @param pixelSnapping Whether or not the bitmap is snapped
+     *  to the nearest pixel.
+     *
+     *  @param smoothing Whether or not the bitmap is smoothed when scaled. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function BitmapAsset(bitmapData:Object = null,
                                 pixelSnapping:String = "auto",
                                 smoothing:Boolean = false)
     {
