@@ -1114,6 +1114,7 @@ ${my.name}
         <antcall target="merge_rc_to_master" />
         <antcall target="get_head_of_rc_branches" />
 	<antcall target="release.npm" />
+
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
         <antcall target="release.maven.staging.repo" />
