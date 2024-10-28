@@ -1,4 +1,4 @@
-Apache Royale 0.9.11
+Apache Royale 0.9.12
 ====================
 
 - MXRoyaleBase
