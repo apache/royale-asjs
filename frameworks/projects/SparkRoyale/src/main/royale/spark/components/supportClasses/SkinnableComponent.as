@@ -162,7 +162,7 @@ public class SkinnableComponent extends UIComponent
 	
     override public function get chromeColor():uint
     {
-       return null;
+       return 0;
     }
         
     override public function set chromeColor(value:uint):void

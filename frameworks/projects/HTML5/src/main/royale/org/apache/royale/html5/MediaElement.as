@@ -426,7 +426,7 @@ package org.apache.royale.html5
 		{
 	        COMPILE::JS{return (element as HTMLMediaElement).currentTime;}
 
-	        COMPILE::SWF{return null;}
+	        COMPILE::SWF{return 0;}
 		}
 
 
@@ -471,7 +471,7 @@ package org.apache.royale.html5
 		{
 	        COMPILE::JS{return (element as HTMLMediaElement).defaultPlaybackRate;}
 
-	        COMPILE::SWF{return null;}
+	        COMPILE::SWF{return 0;}
 		}
 
         /*COMPILE::JS
@@ -507,7 +507,7 @@ package org.apache.royale.html5
 		{
 	        COMPILE::JS{return (element as HTMLMediaElement).duration;}
 
-	        COMPILE::SWF{return null;}
+	        COMPILE::SWF{return 0;}
 		}
 
 		/**
@@ -523,7 +523,7 @@ package org.apache.royale.html5
 		{
 	        COMPILE::JS{return (element as HTMLMediaElement).ended;}
 
-	        COMPILE::SWF{return null;}
+	        COMPILE::SWF{return false;}
 		}
 
 		/**
@@ -557,7 +557,7 @@ package org.apache.royale.html5
 		{
 	        COMPILE::JS{return (element as HTMLMediaElement).loop;}
 
-	        COMPILE::SWF{return null;}
+	        COMPILE::SWF{return false;}
 		}
 
 		/**
@@ -587,7 +587,7 @@ package org.apache.royale.html5
 		{
 			COMPILE::JS{return (element as HTMLMediaElement).muted;}
 
-	        COMPILE::SWF{return null;}
+	        COMPILE::SWF{return false;}
 		}
         
 		/**
@@ -626,7 +626,7 @@ package org.apache.royale.html5
 		public function get networkState():uint{
     	    COMPILE::JS{return (element as HTMLMediaElement).networkState;}
 
-    	    COMPILE::SWF{return null;}
+    	    COMPILE::SWF{return 0;}
 		}
 
 		/**
@@ -641,7 +641,7 @@ package org.apache.royale.html5
 		{
 			COMPILE::JS{return (element as HTMLMediaElement).paused;}
 
-    	    COMPILE::SWF{return null;}
+    	    COMPILE::SWF{return false;}
 		}
 
 		/**
@@ -656,7 +656,7 @@ package org.apache.royale.html5
 		public function get playbackRate():Number{
 	        COMPILE::JS{return (element as HTMLMediaElement).playbackRate;}
 
-    	    COMPILE::SWF{return null;}
+    	    COMPILE::SWF{return 0;}
 		}
 
 		/**
@@ -710,7 +710,7 @@ package org.apache.royale.html5
 		{
 	        COMPILE::JS{return (element as HTMLMediaElement).readyState;}
 
-    	    COMPILE::SWF{return null;}
+    	    COMPILE::SWF{return 0;}
 		}
 
 		/**
@@ -809,7 +809,7 @@ package org.apache.royale.html5
 		{
 	        COMPILE::JS{return (element as HTMLMediaElement).volume;}
 
-    	    COMPILE::SWF{return null;}
+    	    COMPILE::SWF{return 0;}
 		}
 
 		/**

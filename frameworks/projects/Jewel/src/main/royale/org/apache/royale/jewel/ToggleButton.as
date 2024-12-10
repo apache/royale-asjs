@@ -185,7 +185,8 @@ package org.apache.royale.jewel
         {
             COMPILE::SWF
             {
-            if(!savedClassName == null)
+            //if(!savedClassName == null)
+            if(savedClassName !== null)
                 savedClassName = className;
             var name:String = savedClassName;
             if (selected)

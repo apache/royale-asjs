@@ -75,8 +75,8 @@ package org.apache.royale.jewel.beads.models
          */
 		public function set required(value:Boolean):void
 		{
-            if (value == null)
-                value = "";
+            // if (value == null)
+            //    value = "";
 			if (value != _required)
 			{
 				_required = value;

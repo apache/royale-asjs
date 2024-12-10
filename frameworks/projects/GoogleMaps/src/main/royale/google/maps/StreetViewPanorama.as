@@ -55,7 +55,7 @@ public class StreetViewPanorama extends google.maps.MVCObject {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function getVisible():Boolean {  return null; }
+    public function getVisible():Boolean {  return false; }
 
     /**
      * @see [google_maps_api_v3_11]

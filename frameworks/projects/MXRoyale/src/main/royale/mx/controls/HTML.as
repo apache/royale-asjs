@@ -361,7 +361,7 @@ use namespace mx_internal;
     public static function get pdfCapability():int
     {
         //return HTMLLoader.pdfCapability;
-		return null;
+		return 0;
     }
 
     //--------------------------------------------------------------------------

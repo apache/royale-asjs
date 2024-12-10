@@ -458,7 +458,7 @@ package spark.collections
 			var fa:String = name == null ? String(a) : String(getSortFieldValue(a));
 			var fb:String = name == null ? String(b) : String(getSortFieldValue(b));
 			
-			return null; //stringCollator.compare(fa, fb);
+			return 0; //stringCollator.compare(fa, fb);
 		}
 		
 		/**
@@ -482,7 +482,7 @@ package spark.collections
 			}
 			else
 			{
-				return null; //stringCollator.compare(sa, sb);
+				return 0; //stringCollator.compare(sa, sb);
 			}
 		}
 		

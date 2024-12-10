@@ -155,7 +155,7 @@ public class LocalStorageProvider implements IWebStorage
 	 */
 	public function removeItem(key:String) : Boolean
 	{
-		if (!storageAvailable()) return null;
+		if (!storageAvailable()) return false;
 
 		COMPILE::SWF {
 			delete sharedObject.data[key];

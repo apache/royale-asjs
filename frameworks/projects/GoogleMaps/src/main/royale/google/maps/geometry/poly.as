@@ -37,7 +37,7 @@ public class poly {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public static function containsLocation(point:google.maps.LatLng, polygon:google.maps.Polygon):Boolean {  return null; }
+    public static function containsLocation(point:google.maps.LatLng, polygon:google.maps.Polygon):Boolean {  return false; }
 
     /**
      * @param point [(google.maps.LatLng|null)] 
@@ -46,7 +46,7 @@ public class poly {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public static function isLocationOnEdge(point:google.maps.LatLng, poly:Object, opt_tolerance:Number = 0):Boolean {  return null; }
+    public static function isLocationOnEdge(point:google.maps.LatLng, poly:Object, opt_tolerance:Number = 0):Boolean {  return false; }
 
 }
 }

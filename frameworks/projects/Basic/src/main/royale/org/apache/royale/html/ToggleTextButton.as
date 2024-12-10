@@ -164,7 +164,8 @@ package org.apache.royale.html
         {
             COMPILE::SWF
             {
-                if(!savedClassName == null)
+                //if(!savedClassName == null)
+                if(savedClassName !== null)
                     savedClassName = className;
                 var name:String = savedClassName;
                 if (selected)

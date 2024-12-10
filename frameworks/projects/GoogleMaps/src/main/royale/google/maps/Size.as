@@ -51,7 +51,7 @@ public class Size {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function equals(other:google.maps.Size):Boolean {  return null; }
+    public function equals(other:google.maps.Size):Boolean {  return false; }
 
     /**
      * @see [google_maps_api_v3_11]

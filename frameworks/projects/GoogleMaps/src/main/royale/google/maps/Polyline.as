@@ -35,7 +35,7 @@ public class Polyline extends google.maps.MVCObject {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function getEditable():Boolean {  return null; }
+    public function getEditable():Boolean {  return false; }
 
     /**
      * @param draggable [boolean] 
@@ -48,7 +48,7 @@ public class Polyline extends google.maps.MVCObject {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function getVisible():Boolean {  return null; }
+    public function getVisible():Boolean {  return false; }
 
     /**
      * @param editable [boolean] 
@@ -88,7 +88,7 @@ public class Polyline extends google.maps.MVCObject {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function getDraggable():Boolean {  return null; }
+    public function getDraggable():Boolean {  return false; }
 
     /**
      * @param map [(google.maps.Map|null)] 

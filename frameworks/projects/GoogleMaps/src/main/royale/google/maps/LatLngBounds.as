@@ -42,7 +42,7 @@ public class LatLngBounds {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function isEmpty():Boolean {  return null; }
+    public function isEmpty():Boolean {  return false; }
 
     /**
      * @see [google_maps_api_v3_11]
@@ -61,7 +61,7 @@ public class LatLngBounds {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function equals(other:google.maps.LatLngBounds):Boolean {  return null; }
+    public function equals(other:google.maps.LatLngBounds):Boolean {  return false; }
 
     /**
      * @param point [(google.maps.LatLng|null)] 
@@ -82,7 +82,7 @@ public class LatLngBounds {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function intersects(other:google.maps.LatLngBounds):Boolean {  return null; }
+    public function intersects(other:google.maps.LatLngBounds):Boolean {  return false; }
 
     /**
      * @see [google_maps_api_v3_11]
@@ -95,7 +95,7 @@ public class LatLngBounds {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function contains(latLng:google.maps.LatLng):Boolean {  return null; }
+    public function contains(latLng:google.maps.LatLng):Boolean {  return false; }
 
     /**
      * @param opt_precision [(number|undefined)] 

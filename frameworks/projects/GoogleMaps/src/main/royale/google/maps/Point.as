@@ -49,7 +49,7 @@ public class Point {
      * @see [google_maps_api_v3_11]
      * @returns {boolean} 
      */
-    public function equals(other:google.maps.Point):Boolean {  return null; }
+    public function equals(other:google.maps.Point):Boolean {  return false; }
 
     /**
      * @see [google_maps_api_v3_11]

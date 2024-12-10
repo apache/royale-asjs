@@ -331,7 +331,7 @@ public class ScrollControlBase extends UIComponent
 	
 	public function get contentBackgroundColor():uint
     {
-      return null;
+      return 0;
     }
 
     public function set contentBackgroundColor(value:uint):void
@@ -345,7 +345,7 @@ public class ScrollControlBase extends UIComponent
 	
 	public function get borderVisible():Boolean
     {
-      return 0;
+      return false;
     }
 
     public function set borderVisible(value:Boolean):void

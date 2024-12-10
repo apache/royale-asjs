@@ -91,7 +91,8 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
         var treeListData:AdvancedDataGridListData = ir.listData as AdvancedDataGridListData;
         var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
 
-        if (isInit && wasSelected == (selected == null ? false : selected) && wasHovered == (hovered == null ? false : hovered))
+        //if (isInit && wasSelected == (selected == null ? false : selected) && wasHovered == (hovered == null ? false : hovered))
+        if (isInit && wasSelected == selected && wasHovered == hovered)
             return;
         isInit = true;
         wasSelected = selected;

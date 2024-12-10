@@ -55,7 +55,7 @@ package mx.events
 		public static const STANDARD_OUTPUT_DATA:String = "standardOutputData";
 		 
 		 public function get bytesTotal():Number{
-		    return null;
+		    return 0;
 		 }
 		 
                  public function set bytesTotal(value:Number):void{
@@ -64,7 +64,7 @@ package mx.events
 		 
 		
 		 public function get bytesLoaded():Number{
-		     return null;
+		     return 0;
 		 }
 		 
 		 public function set bytesLoaded(value:Number):void{

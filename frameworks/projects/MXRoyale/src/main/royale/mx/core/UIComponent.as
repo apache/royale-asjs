@@ -1428,7 +1428,7 @@ public class UIComponent extends UIBase
     COMPILE::JS{
     public function get tabChildren():Boolean
 	{
-	  return 0;
+	  return false;
 	}
     public function set tabChildren(value:Boolean):void
 	{

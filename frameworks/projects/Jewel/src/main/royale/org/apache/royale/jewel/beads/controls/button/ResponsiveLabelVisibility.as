@@ -64,37 +64,37 @@ package org.apache.royale.jewel.beads.controls.button
 				spanLabel.classList.remove("visible-widescreen");
 				spanLabel.classList.remove("hidden-widescreen");
 
-				if(phoneVisible != null)
-				{
+				//if(phoneVisible != null)
+				//{
 					if(phoneVisible)
 						spanLabel.classList.add("visible-phone");
 					else
 						spanLabel.classList.add("hidden-phone");
-				}
+				//}
 
-				if(tabletVisible != null)
-				{
+				//if(tabletVisible != null)
+				//{
 					if(tabletVisible)
 						spanLabel.classList.add("visible-tablet");
 					else
 						spanLabel.classList.add("hidden-tablet");
-				}
+				//}
 				
-				if(desktopVisible != null)
-				{
+				//if(desktopVisible != null)
+				//{
 					if(desktopVisible)
 						spanLabel.classList.add("visible-desktop");
 					else
 						spanLabel.classList.add("hidden-desktop");
-				}
+				//}
 
-				if(wideScreenVisible != null)
-				{
+				//if(wideScreenVisible != null)
+				//{
 					if(wideScreenVisible)
 						spanLabel.classList.add("visible-widescreen");
 					else
 						spanLabel.classList.add("hidden-widescreen");
-				}
+				//}
 			}
         	}
 		}
