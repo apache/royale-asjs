@@ -1008,7 +1008,7 @@ package org.apache.royale.collections
                     addedItems[l] = localEvent;
                     localEvent.index = getItemIndex(localEvent.item);
                 }
-                addedItems.sort(function(event1:CollectionEvent, event2:CollectionEvent):Boolean{return event1.index < event2.index ? -1 : 1});
+                addedItems.sort(function(event1:CollectionEvent, event2:CollectionEvent):int{return event1.index < event2.index ? -1 : 1});
                 while (addedItems.length) {
                     localEvent = addedItems.shift();
                     dispatchEvent(localEvent);
@@ -1050,7 +1050,7 @@ package org.apache.royale.collections
                     localUpdate = true;
                 }
                 
-                removedItems.sort(function(event1:CollectionEvent, event2:CollectionEvent):Boolean{return event1.index < event2.index ? 1 : -1});
+                removedItems.sort(function(event1:CollectionEvent, event2:CollectionEvent):int{return event1.index < event2.index ? 1 : -1});
                 var offset:int = 0;
                 while (removedItems.length) {
                     localEvent = removedItems.shift();

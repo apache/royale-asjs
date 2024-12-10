@@ -193,7 +193,7 @@
             if (!rect) throw new TypeError(nonNullParamError('rect'));
             if (!compressor) throw new TypeError(nonNullParamError('compressor'));
             //observed in swf testing... this appears to unlock first
-            var wasLocked:Boolean = _lockedData;
+            var wasLocked:Boolean = _lockedData!=null?true:false; // var wasLocked:Boolean = _lockedData;  
             if (wasLocked) unlock();
             var dataString:String;
             switch(compressor.constructor) {

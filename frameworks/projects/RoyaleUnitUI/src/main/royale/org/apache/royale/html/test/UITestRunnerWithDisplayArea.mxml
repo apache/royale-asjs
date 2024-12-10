@@ -202,7 +202,7 @@
 					{
 						case UITestRunnerModel.RESULT_TYPE_FAILED:
 						{
-							return test.failure;
+							return test!=null; // test.failure;
 						}
 						case UITestRunnerModel.RESULT_TYPE_PASSED:
 						{

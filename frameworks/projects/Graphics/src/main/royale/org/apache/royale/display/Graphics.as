@@ -547,7 +547,7 @@ package org.apache.royale.display
             }
             COMPILE::JS
             {
-                var checkForSpawn:Boolean = _currentPath;
+                var checkForSpawn:Boolean = _currentPath!=null?true:false; //var checkForSpawn:Boolean = _currentPath;
                 var strokeBase:GraphicsStroke = currentStroke;
                 
                 caps = caps ? caps: CapsStyle.ROUND;

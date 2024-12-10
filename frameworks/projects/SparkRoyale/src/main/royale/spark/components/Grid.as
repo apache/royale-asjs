@@ -4185,7 +4185,7 @@ package spark.components
 		public function isCellVisible(rowIndex:int = -1, columnIndex:int = -1):Boolean
 		{
 			const view:GridView = getGridViewAt(rowIndex, columnIndex);
-			return view ;//&& view.gridViewLayout.isCellVisible(rowIndex, columnIndex);
+			return view!=null ;//&& view.gridViewLayout.isCellVisible(rowIndex, columnIndex);
 		}
 		
 		//--------------------------------------------------------------------------
