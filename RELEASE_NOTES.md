@@ -1,9 +1,53 @@
 Apache Royale 0.9.12
 ====================
 
+- Basic
+  - Make shift click aware of the first selection in `ListMultiSelectionMouseController`.
+  - Added `ReusableDataItemRendererFactoryForCollectionView` for reusable item renderers.
+  - Fixed exception in `StyleInheritanceWithObserverBead` due to attempting to set style inheritance on non-element (e.g. Text) descendant nodes under the strand.
+  - `ContainerView` Checks the type on adding to strand and not on every `contentView` access
+  - Optimized closing tree nodes.
+
+- Core
+  - Added `removeDynamicSelector` method. Removes a CSS selector dynamically at runtime.
+  - Added support for native `PointerEvent`.
+  - Added `toDecimals` utility method.
+  - Fixed "click" not being converted to Royale `MouseEvent`.
+
+- Graphics
+  - Fixed `PathBuilder` using out of range radius values when drawing rounded rectangles.
+
+- Icons
+  - Added `FontAwesome6IconType` with Font Awesome 6 icons.
+  - Added new icons to `MaterialIconType` and `FontAwesome5IconType`.
+
+- Jewel
+  - Added `RestrictRegExp` bead, which is essentially a copy of Restrict, but with RegExp property.
+  - Added `RestrictValidator` for validation based on StringValidator capabilities and RegExp pattern.
+  - Added ability to dynamically assign `itemRenderer` to `DataGridColumn`
+  - Added ability to extend and override `SnackbarView` in `Snackbar`.
+  - Added `ComboBoxListWidth` bead to set ComboBox List width.
+  - Fixed issue in `DateChooser` where next/previous buttons without text setup property were sized incorrectly.
+  - Fixed font size alignment in `RadioButton`.
+
 - MXRoyaleBase
   - Added missing `mx.messaging.Producer` to MXML manifest.
   - Ensure that `SecureHTTPChannel`, `AMFChannel`, and `SecureAMFChannel` are included in SWC.
+
+- MXRoyale
+  - Added event when tool tip changes.
+  - Fixed tooltip getting created twice.
+  - Fixed `Bitmap` class for embedding compatibility with Flex.
+
+- Network
+  - Added `execute()` method to `HttpRequestTask`.
+  - Fixed creation of loader in `HttpRequestTask`.
+  - Fixed `BinaryUploader` POST data sent to server.
+  - Made response headers accessible from `URLBinaryLoader` and `URLStream`.
+
+- XML
+  - Improve performance of getting descendants.
+  - Added index to XMLList prototype instead of instances to prevent GC thrashing.
 
 - Fixed broken download locations for _playerglobal.swc_ and Adobe AIR SDK in _InstallAdobeSDKs.xml_ script.
 - Compiler and command line tools now require Java 11 or newer to run.
