@@ -192,7 +192,7 @@
         <plugin>
           <groupId>io.github.cleydyr</groupId>
           <artifactId>dart-sass-maven-plugin</artifactId>
-          <version>0.3.0</version>
+          <version>1.4.0</version>
         </plugin>
 
         <plugin>

@@ -57,8 +57,9 @@
       <plugin>
         <groupId>io.github.cleydyr</groupId>
         <artifactId>dart-sass-maven-plugin</artifactId>
-        <version>0.3.0</version>
+        <version>1.4.0</version>
         <configuration>
+          <version>1.78.0</version>
           <inputFolder>${basedir}/src/main/sass</inputFolder>
           <outputFolder>${basedir}/src/main/resources</outputFolder>
         </configuration>
