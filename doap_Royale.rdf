@@ -39,8 +39,8 @@ limitations under the License.
     <release>
       <Version>
         <name>Apache Royale</name>
-        <created>2023-06-05</created>
-        <revision>0.9.10</revision>
+        <created>2024-12-11</created>
+        <revision>0.9.12</revision>
       </Version>
     </release>
 </Project>
