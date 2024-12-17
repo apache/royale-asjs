@@ -67,7 +67,7 @@ package org.apache.royale.mdl
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
-        {;
+        {
 			return addElementToWrapper(this,'header');
         }
 

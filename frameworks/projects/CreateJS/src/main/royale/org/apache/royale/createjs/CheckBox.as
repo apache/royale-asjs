@@ -137,7 +137,7 @@ package org.apache.royale.createjs
             
         public function get selected():Boolean
         {
-            return IToggleButtonModel(model).selected;;
+            return IToggleButtonModel(model).selected;
         }
         
         /**

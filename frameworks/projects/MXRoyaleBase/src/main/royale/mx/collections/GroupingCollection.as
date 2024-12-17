@@ -838,7 +838,7 @@ public class GroupingCollection extends HierarchicalData implements IGroupingCol
                         while (!cursor.afterLast)
                         {
                             var current:Object = cursor.current;
-                            var temp:Number = current.hasOwnProperty(label) ? current[label] : 0.0;;
+                            var temp:Number = current.hasOwnProperty(label) ? current[label] : 0.0;
                             
                             if (summaryField.operation == "SUM" || summaryField.operation == "COUNT")
                                 summary += temp;

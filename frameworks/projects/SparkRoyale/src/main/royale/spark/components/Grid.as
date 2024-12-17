@@ -3822,7 +3822,7 @@ package spark.components
 		 *  <pre>
 		 *  function getVisibleColumns():Vector.&lt;GridColumn&gt;
 		 *  {
-		 *      var visibleColumns = new Vector.&lt;GridColumn&gt;;
+		 *      var visibleColumns = new Vector.&lt;GridColumn&gt;
 		 *      for each (var columnIndex:int in grid.getVisibleColumnIndices())
 		 *          visibleColumns.push(grid.columns.getItemAt(columnIndex));
 		 *      return visibleColumns;

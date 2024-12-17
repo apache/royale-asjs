@@ -87,7 +87,7 @@ package mx.utils
 			//        // Calculate global position of label.
 			//        var sm:ISystemManager = systemManager.topLevelSystemManager;
 			//        var sbRoot:DisplayObject = sm.getSandboxRoot();
-			//        var screen:Rectangle = sm.getVisibleApplicationRect(null, true);;
+			//        var screen:Rectangle = sm.getVisibleApplicationRect(null, true);
 			//        var pt:Point = new Point(0, 0);
 			//        pt = label.localToGlobal(pt);
 			//        pt = sbRoot.globalToLocal(pt);

@@ -1064,7 +1064,7 @@ public class SkinnableTextBase extends SkinnableComponent
 //
 //        invalidateProperties();
 //        invalidateSize();
-//        invalidateDisplayList();;
+//        invalidateDisplayList();
 		
 		if (_displayAsPassword && _passwordBead == null) {
 			_passwordBead = new PasswordInputBead();

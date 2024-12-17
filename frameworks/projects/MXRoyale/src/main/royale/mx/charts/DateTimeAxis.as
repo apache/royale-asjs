@@ -991,7 +991,7 @@ public class DateTimeAxis extends NumericAxis
                                    convertedField:String):void
     {
         update();
-        var alen:Number = computedMaximum - computedMinimum - dateRangeUtilities.calculateDisabledRange(computedMinimum, computedMaximum);;
+        var alen:Number = computedMaximum - computedMinimum - dateRangeUtilities.calculateDisabledRange(computedMinimum, computedMaximum);
         var n:int = cache.length;
         var i:int;
         
@@ -1449,7 +1449,7 @@ public class DateTimeAxis extends NumericAxis
         var d:Date = new Date();
         labelCache = [];
         
-        var r:Number = computedMaximum - computedMinimum - dateRangeUtilities.calculateDisabledRange(computedMinimum, computedMaximum);;
+        var r:Number = computedMaximum - computedMinimum - dateRangeUtilities.calculateDisabledRange(computedMinimum, computedMaximum);
         var milliInterval:Number = toMilli(computedInterval, _labelUnits);          
         var labelBase:Number = labelMinimum;
         var labelTop:Number = labelMaximum + 0.000001
@@ -1824,7 +1824,7 @@ public class DateTimeAxis extends NumericAxis
     {
         var cache:Array /* of Number */ = [];
         var d:Date = new Date();
-        var r:Number = computedMaximum - computedMinimum - dateRangeUtilities.calculateDisabledRange(computedMinimum, computedMaximum);;
+        var r:Number = computedMaximum - computedMinimum - dateRangeUtilities.calculateDisabledRange(computedMinimum, computedMaximum);
         var milliInterval:Number = toMilli(_minorTickInterval,
                                            _minorTickUnits);            
         var labelBase:Number = labelMinimum;

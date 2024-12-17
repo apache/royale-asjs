@@ -2216,7 +2216,7 @@ public class BarSeries extends Series implements IStackable2, IBar, IHasLabelFie
             return [];
         
         var arrItems:Array /* of BarSeriesItem */ = [];    
-        var rc:Rectangle = new Rectangle();;
+        var rc:Rectangle = new Rectangle();
         var localRectangle:Rectangle = new Rectangle();
         var n:uint = _renderData.filteredCache.length;
         

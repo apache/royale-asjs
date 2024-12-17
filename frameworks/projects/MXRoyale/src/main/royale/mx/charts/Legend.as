@@ -6547,7 +6547,7 @@ package mx.charts
         {
             invalidateProperties();
             invalidateSize();
-            _childrenDirty = true;;
+            _childrenDirty = true;
             
             if (parent)
             {

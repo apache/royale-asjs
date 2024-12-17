@@ -1445,7 +1445,7 @@ class QuadraticBezierSegment extends PathSegment
 	override public function getTangent(prev:PathSegment, start:Boolean, sx:Number, sy:Number, m:Matrix, result:Point):void
 	{
 		var pt0:Point = MatrixUtil.transformPoint(prev ? prev.x * sx : 0, prev ? prev.y * sy : 0, m).clone();
-		var pt1:Point = MatrixUtil.transformPoint(control1X * sx, control1Y * sy, m).clone();;
+		var pt1:Point = MatrixUtil.transformPoint(control1X * sx, control1Y * sy, m).clone();
 		var pt2:Point = MatrixUtil.transformPoint(x * sx, y * sy, m).clone();
 		
 		getQTangent(pt0.x, pt0.y, pt1.x, pt1.y, pt2.x, pt2.y, start, result);

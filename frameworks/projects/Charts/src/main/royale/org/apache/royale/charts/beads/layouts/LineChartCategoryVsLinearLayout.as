@@ -65,7 +65,7 @@ package org.apache.royale.charts.beads.layouts
 			var yAxisOffset:Number = 0;
 			
 			var xpos:Number = yAxisOffset;
-			var useWidth:Number = contentView.width - yAxisOffset;;
+			var useWidth:Number = contentView.width - yAxisOffset;
 			var useHeight:Number = contentView.height - xAxisOffset;
 			var itemWidth:Number =  useWidth / dp.length;
 			

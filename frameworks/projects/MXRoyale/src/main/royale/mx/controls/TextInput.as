@@ -608,7 +608,7 @@ public class TextInput extends UIComponent implements ITextInput
 //
 //        invalidateProperties();
 //        invalidateSize();
-//        invalidateDisplayList();;
+//        invalidateDisplayList();
 		
 		if (_displayAsPassword && _passwordBead == null) {
 			_passwordBead = new PasswordInputBead();

@@ -6665,7 +6665,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         
         while (queue.length > 0 && valid)
         {
-            var c:AdvancedDataGridColumn = queue.shift();;
+            var c:AdvancedDataGridColumn = queue.shift();
             var uid:String = itemToUID(c);
             if (dict[uid]!=null)
             {

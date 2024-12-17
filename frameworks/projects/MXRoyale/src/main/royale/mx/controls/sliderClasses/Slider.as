@@ -2437,7 +2437,7 @@ package mx.controls.sliderClasses
             keyInteraction = false;
 
             var event:SliderEvent = new SliderEvent(SliderEvent.THUMB_PRESS);
-            event.value = getValueFromX(thumb.xPosition);;
+            event.value = getValueFromX(thumb.xPosition);
             event.thumbIndex = thumb.thumbIndex;
             dispatchEvent(event);
         }
@@ -2456,7 +2456,7 @@ package mx.controls.sliderClasses
             dataFormatter = null;
 
             var event:SliderEvent = new SliderEvent(SliderEvent.THUMB_RELEASE);
-            event.value = getValueFromX(thumb.xPosition);;
+            event.value = getValueFromX(thumb.xPosition);
             event.thumbIndex = thumb.thumbIndex;
             dispatchEvent(event);
         }

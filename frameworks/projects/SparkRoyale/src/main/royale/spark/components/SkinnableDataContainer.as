@@ -721,7 +721,7 @@ public class SkinnableDataContainer extends SkinnableContainerBase implements II
             {
                 dataGroup.layout = dataGroupProperties.layout;
                 newDataGroupProperties = BitFlagUtil.update(newDataGroupProperties as uint, 
-                                                            LAYOUT_PROPERTY_FLAG, true);;
+                                                            LAYOUT_PROPERTY_FLAG, true);
             }
             
             if (dataGroupProperties.autoLayout !== undefined)

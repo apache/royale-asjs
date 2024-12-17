@@ -41,7 +41,7 @@ COMPILE::SWF{
 import flash.display.DisplayObject;
 }
 COMPILE::JS{
-    import DisplayObject = org.apache.royale.core.UIBase;;
+    import DisplayObject = org.apache.royale.core.UIBase;
 }
 import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;

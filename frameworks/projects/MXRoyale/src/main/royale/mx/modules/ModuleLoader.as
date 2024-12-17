@@ -355,7 +355,7 @@ public class ModuleLoader extends VBox
         else
         {
             utils.modulePath = value.substring(0, c);
-            utils.moduleName = value.substring(c + 1).replace(".swf", "");;
+            utils.moduleName = value.substring(c + 1).replace(".swf", "");
         }
 
         dispatchEvent(new FlexEvent(FlexEvent.URL_CHANGED));

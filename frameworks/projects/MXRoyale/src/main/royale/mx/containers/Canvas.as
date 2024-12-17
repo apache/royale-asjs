@@ -251,7 +251,7 @@ public class Canvas extends Container implements IConstraintLayout
             _constraintRows = value;
             
             //invalidateSize();
-            //invalidateDisplayList();;
+            //invalidateDisplayList();
 			dispatchEvent(new Event("layoutNeeded"));
         }
     }

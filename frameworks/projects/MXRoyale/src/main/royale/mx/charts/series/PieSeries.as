@@ -1552,7 +1552,7 @@ public class PieSeries extends Series implements IHasLabelField
             	else
             		a  = startAngle + _startAngleRadians + v.angle/2;
             	var xpos:Number = v.origin.x + Math.cos(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);
-            	var ypos:Number = v.origin.y - Math.sin(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);;
+            	var ypos:Number = v.origin.y - Math.sin(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);
             	var hd:HitData = new HitData(createDataID(v.index),0,xpos,ypos,v);
             	hd.dataTipFunction = formatDataTip;
             	var fills:Array /* of IFill */ = getStyle("fills");
@@ -1643,7 +1643,7 @@ public class PieSeries extends Series implements IHasLabelField
             else
             	a  = startAngle + _startAngleRadians + hitItem.angle/2;
             var xpos:Number = hitItem.origin.x + Math.cos(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);
-            var ypos:Number = hitItem.origin.y - Math.sin(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);;
+            var ypos:Number = hitItem.origin.y - Math.sin(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);
             var hd:HitData = new HitData(createDataID(hitItem.index),0,xpos,ypos,hitItem);
             hd.dataTipFunction = formatDataTip;
             var fills:Array /* of IFill */ = getStyle("fills");
@@ -2347,7 +2347,7 @@ public class PieSeries extends Series implements IHasLabelField
              else
              	a  = startAngle + _startAngleRadians + v.angle/2;
             var xpos:Number = v.origin.x + Math.cos(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);
-            var ypos:Number = v.origin.y - Math.sin(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);;
+            var ypos:Number = v.origin.y - Math.sin(a)*(inr + (_radiusInPixelsScaledForExplode-inr)*.5);
             
             if (localRectangle.contains(xpos,ypos))
                 arrItems.push(v);
