@@ -16,10 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.net
+package org.apache.royale.file.beads
 {
+	import org.apache.royale.events.Event;
+	import org.apache.royale.file.IFileModel;
+	import org.apache.royale.net.URLBinaryLoaderWithCorsCredentials;
+	import org.apache.royale.net.URLRequest;
+
 	/**
-	 *  Provides binary data loading functionality with CORS credentials support
+	 *  Provides file uploading functionality with CORS credentials support and the ability to handle response data
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -28,19 +33,27 @@ package org.apache.royale.net
 	 *
 	 *  @royalesuppresspublicvarwarning
 	 */
-	public class URLBinaryLoaderWithCorsCredentials extends URLBinaryLoader 
+	public class FileUploaderWithResponseDataAndCorsCredentials extends FileUploaderWithResponseData
 	{
 		/**
 		 * constructor
 		 */
-		public function URLBinaryLoaderWithCorsCredentials()
+		public function FileUploaderWithResponseDataAndCorsCredentials()
 		{
 			super();
 		}
 		
-		override protected function createStream():void
+		override public function upload(url:String):void
 		{
-			this.stream = new URLStreamWithCorsCredentials();
+			var binaryUploader:URLBinaryLoaderWithCorsCredentials = new URLBinaryLoaderWithCorsCredentials();
+			var req:URLRequest = new URLRequest();
+				req.contentType = contentType;
+
+			req.method = "POST";
+			req.data = (host.model as IFileModel).blob;
+			req.url = url;
+			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
+			binaryUploader.load(req);
 		}
 	}
 }
