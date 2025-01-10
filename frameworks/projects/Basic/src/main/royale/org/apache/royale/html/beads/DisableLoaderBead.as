@@ -73,7 +73,7 @@ package org.apache.royale.html.beads
 			{
 				_strand = value;
 				listenOnStrand("disabledChange", disabledChangeHandler);
-				updateHost(null);
+				updateHost(false);
 			}
 		}
 
@@ -90,7 +90,7 @@ package org.apache.royale.html.beads
 			return _strand as IUIBase;
 		}
 
-		private function updateHost(value:Object):void
+		private function updateHost(value:Boolean):void
 		{
 			COMPILE::JS
 			{
@@ -98,19 +98,23 @@ package org.apache.royale.html.beads
 					return;
 				
 				var disabled:Boolean;
-				if(value == null)
+				if(!value)
 				{
 					var disableBead:DisableBead = _strand.getBeadByType(DisableBead) as DisableBead;
 					if(!disableBead)// The DisableBead was not added yet. We'll set this when the event is dispatched.
 						return;
 					disabled = disableBead.disabled;
-				} else {
+				}
+				else
+				{
 					disabled = value;
 				}
+
 				if (disabled)
 				{
 					addLoadIndicator();
-				} else if (_loader)
+				}
+				else if (_loader)
 				{
 					removeLoadIndicator();
 				}
