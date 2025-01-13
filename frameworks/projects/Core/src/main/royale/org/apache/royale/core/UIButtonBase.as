@@ -97,6 +97,39 @@ package org.apache.royale.core
         {
             
         }
+		
+		//----------------------------------
+		//  document
+		//----------------------------------
+
+		/**
+		 *  @private
+		 *  Storage for the enabled property.
+		 */
+		private var _mxmlDocument:Object;
+
+		/**
+		 *  A reference to the document object associated with this UITextField object. 
+		 *  A document object is an Object at the top of the hierarchy of a Flex application, 
+		 *  MXML component, or AS component.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function get mxmlDocument():Object
+		{
+			return _mxmlDocument;
+		}
+
+		/**
+		 *  @private
+		 */
+		public function set mxmlDocument(value:Object):void
+		{
+			_mxmlDocument = value;
+		}
 
         private var _x:Number;
         

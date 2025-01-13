@@ -960,7 +960,7 @@ public class DataGridItemRenderer extends StringItemRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get mxmlDocument():Object
+    override public function get mxmlDocument():Object
     {
         return _mxmlDocument;
     }
@@ -968,7 +968,7 @@ public class DataGridItemRenderer extends StringItemRenderer
     /**
      *  @private
      */
-    public function set mxmlDocument(value:Object):void
+    override public function set mxmlDocument(value:Object):void
     {
         _mxmlDocument = value;
     }

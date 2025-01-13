@@ -365,6 +365,9 @@ internal class BasicClasses
 	}
 
 	import org.apache.royale.html.SimpleTextHighlighter; SimpleTextHighlighter;
+	import org.apache.royale.managers.ISystemManager; ISystemManager;
+	import org.apache.royale.core.IChildList; IChildList;
+	import org.apache.royale.core.IUIBaseBasic; IUIBaseBasic;
 }
 
 }

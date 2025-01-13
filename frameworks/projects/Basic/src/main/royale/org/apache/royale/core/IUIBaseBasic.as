@@ -28,7 +28,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IUIBase extends IStrand, IEventDispatcher, IChild
+	public interface IUIBaseBasic extends IStrand, IEventDispatcher, IChild
 	{
 
         /**
@@ -42,13 +42,6 @@ package org.apache.royale.core
          */
 		function addedToParent():void;
 		
-		function get mxmlDocument():Object
-
-		/**
-		 *  @private
-		 */
-		function set mxmlDocument(value:Object):void
-		
 		/**
 		 *  The alpha or opacity in the range of 0 to 1.
 		 *  
@@ -59,6 +52,13 @@ package org.apache.royale.core
 		 */
 		function get alpha():Number;
 		function set alpha(value:Number):void;
+		
+		function get mxmlDocument():Object
+
+		/**
+		 *  @private
+		 */
+		function set mxmlDocument(value:Object):void
 		
 		/**
 		 *  The x co-ordinate or left side position of the bounding box.
