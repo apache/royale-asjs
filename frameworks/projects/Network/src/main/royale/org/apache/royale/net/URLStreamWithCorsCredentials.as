@@ -35,11 +35,12 @@ package org.apache.royale.net
 		{
 			super();
 		}
-		
+
+		COMPILE::JS
 		override protected function createXmlHttpRequest():void
 		{
 			super.createXmlHttpRequest();
-			
+
 			xhr.withCredentials = true;
 		}
 	}
