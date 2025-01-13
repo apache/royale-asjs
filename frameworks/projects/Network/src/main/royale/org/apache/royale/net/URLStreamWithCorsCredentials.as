@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net
 {
+	import org.apache.royale.net.URLStream;
 	/**
 	 *  Provides URL streaming functionality with CORS credentials enabled (withCredentials = true)
 	 *
