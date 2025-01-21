@@ -833,9 +833,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
 
         return _densityScale;
     } */
-	
-	
-	
+    
     //----------------------------------
     //  component (was 'document' in Flex, but collides with browser 'document'
     //----------------------------------
@@ -844,8 +842,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @private
      *  Storage for the mxmlDocument property.
      */
-    
-	private var _mxmlDocument:Object;
+    private var _mxmlDocument:Object;
 
     /**
      *  @inheritDoc
@@ -855,31 +852,18 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-	COMPILE::JS {
-	override public function get mxmlDocument():Object
+    public function get mxmlDocument():Object
     {
         return _mxmlDocument;
     }
 
-   
-    override public function set mxmlDocument(value:Object):void
-    {
-        _mxmlDocument = value;
-    }
-	}
-	
-	COMPILE::SWF {
-	public function get mxmlDocument():Object
-    {
-        return _mxmlDocument;
-    }
-
-   
+    /**
+     *  @private
+     */
     public function set mxmlDocument(value:Object):void
     {
         _mxmlDocument = value;
     }
-	}
 
     //----------------------------------
     //  embeddedFontList

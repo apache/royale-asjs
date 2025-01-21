@@ -42,13 +42,6 @@ package org.apache.royale.core
          */
 		function addedToParent():void;
 		
-		function get mxmlDocument():Object
-
-		/**
-		 *  @private
-		 */
-		function set mxmlDocument(value:Object):void
-		
 		/**
 		 *  The alpha or opacity in the range of 0 to 1.
 		 *  

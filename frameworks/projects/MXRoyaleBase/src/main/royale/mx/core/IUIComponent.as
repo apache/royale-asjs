@@ -56,12 +56,12 @@ public interface IUIComponent extends IFlexDisplayObject, IChild, IUIBase, IChil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    // function get mxmlDocument():Object
+    function get mxmlDocument():Object
 
     /**
      *  @private
      */
-    // function set mxmlDocument(value:Object):void
+    function set mxmlDocument(value:Object):void
 
     //----------------------------------
     //  enabled

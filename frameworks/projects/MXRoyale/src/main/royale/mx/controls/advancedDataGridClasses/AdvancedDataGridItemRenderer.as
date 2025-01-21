@@ -800,7 +800,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    override public function get mxmlDocument():Object
+    public function get mxmlDocument():Object
     {
         return _mxmlDocument;
     }
@@ -808,7 +808,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     /**
      *  @private
      */
-    override public function set mxmlDocument(value:Object):void
+    public function set mxmlDocument(value:Object):void
     {
         _mxmlDocument = value;
     }

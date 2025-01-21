@@ -2391,7 +2391,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    override public function get mxmlDocument():Object
+    public function get mxmlDocument():Object
     {
         if (!_mxmlDocument && MXMLDescriptor != null)
             _mxmlDocument = this;
@@ -2408,7 +2408,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    override public function set mxmlDocument(value:Object):void
+    public function set mxmlDocument(value:Object):void
     {
         var n:int = numChildren;
         for (var i:int = 0; i < n; i++)
@@ -2519,7 +2519,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    override public function get parentApplication():Object
+    public function get parentApplication():Object
     {
         // Look for the SystemManager's document,
         // which should be the Application.
@@ -2572,7 +2572,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    override public function get parentMxmlDocument():Object
+    public function get parentMxmlDocument():Object
     {
         if (mxmlDocument == this)
         {
