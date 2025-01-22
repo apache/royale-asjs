@@ -143,6 +143,23 @@ package org.apache.royale.utils.async
       doneCallbacks.push(callback);
       return this;
     }
+    
+    /**
+     * exec encapsulates both `run` and `done` in a single call.
+     * The instance of the task is returned so that the task can be chained.
+     * This pattern enables code like this: `var task:AsyncTask = new AsyncTask().exec(callback);`
+     * The properties of the task should be examined in the callback to determine the results.
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.13
+     */
+    public function exec(callback:Function):IAsyncTask
+    {
+      run();
+      done(callback);
+      return this;
+    }
     public abstract function run(data:Object=null):void;
 
     /**

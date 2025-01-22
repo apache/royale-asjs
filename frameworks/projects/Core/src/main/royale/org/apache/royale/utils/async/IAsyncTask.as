@@ -21,6 +21,7 @@ package org.apache.royale.utils.async
 	public interface IAsyncTask
 	{
 		function done(callback:Function):IAsyncTask;
+		function exec(callback:Function):IAsyncTask;
 		function run(data:Object=null):void;
 
 		function complete():void;
