@@ -40,6 +40,13 @@ package org.apache.royale.utils.async
 			failedTasks = [];
 		}
 		protected var tasks:Array;
+		/**
+		 * Returns all requested tasks in order specified.
+		 * @productversion Royale 0.9.13
+		 */
+		public function get allTasks():Array{
+			return tasks.slice();
+		}
 
 		private var _failEarly:Boolean;
 		/**
@@ -72,19 +79,21 @@ package org.apache.royale.utils.async
 		protected var pendingTasks:Array;
 
 		/**
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
-		 *  @royalesuppresspublicvarwarning
+		 * Returns the completed tasks in order of completion 
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.6
+		 * @royalesuppresspublicvarwarning
 		 */
 		public var completedTasks:Array;
 		/**
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
-		 *  @royalesuppresspublicvarwarning
+		 * Returns the failed tasks in order of failure
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.6
+		 * @royalesuppresspublicvarwarning
 		 */
 		public var failedTasks:Array;
 
