@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.controls.list
 
         private function dataProviderChangedHandler(event:Event):void
         {
-            if (_strand.dataProvider != null && _strand.dataProvider.length > 0)
+            if (_strand.dataProvider != null && _strand.dataProvider.length > 0 && _strand.getElementAt(1) != null)
                 (_strand.getElementAt(1) as ListItemRenderer).dispatchEvent(new Event("click"));
         }
 	}
