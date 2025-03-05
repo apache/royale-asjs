@@ -137,6 +137,10 @@ package org.apache.royale.utils.async
      *  @productversion Royale 0.9.6
      */
     public function done(callback:Function):IAsyncTask{
+      if(_status == "complete" || _status == "failed"){
+        callback(this);
+        return this;
+      }
       if(!doneCallbacks){
         doneCallbacks = [];
       }
@@ -156,8 +160,8 @@ package org.apache.royale.utils.async
      */
     public function exec(callback:Function):IAsyncTask
     {
-      run();
       done(callback);
+      run();
       return this;
     }
     public abstract function run(data:Object=null):void;
