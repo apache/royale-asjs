@@ -17,15 +17,38 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-DESCRIPTION
+## DESCRIPTION
 
-Tour De Jewel is a Component Explorer for Apache Royale Jewel UI Set
+Tour De Jewel is a Component Explorer for Apache Royale Jewel UI Set.
 
 Jewel is a new UI component set, created with design and responsiveness in mind. 
 Apache Royale provides themes to use with Jewel out of the box. 
 Jewel themes support up to 12 colors, light/dark, and flat/normal modes.
 
 This App shows all Jewel components and different use cases and is still in development
-as we continue make it grow and improve.
+as we continue to make it grow and improve.
 
+## Typeface
+
+### **Lato**  
+Tour De Jewel uses the Lato typeface, which is loaded dynamically from Google Fonts and is **not distributed** as part of this repository or its binary releases.
+
+You can download it for free from Google Fonts:  
+🔗 [Lato on Google Fonts](https://fonts.google.com/specimen/Lato)
+
+This Font Software is licensed under the **SIL Open Font License, Version 1.1**.  
+You can find more details about the license and FAQ at:  
+🔗 [Open Font License](https://openfontlicense.org)
+
+## External Libraries  
+
+### **Highlight.js**  
+Tour De Jewel includes **highlight.js**, a syntax highlighter with language auto-detection, written in JavaScript.  
+🔗 [Official website](https://highlightjs.org/)
+
+Highlight.js is licensed under the **BSD-3-Clause License**.  
+See our LICENSE file for details:  
+🔗 [highlight.js LICENSE](https://github.com/highlightjs/highlight.js/blob/main/LICENSE)
+
+This library is included in our distribution for syntax highlighting.
 
