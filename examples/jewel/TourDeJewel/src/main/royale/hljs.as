@@ -26,15 +26,18 @@ package
 	{
 		/** 
          * <inject_script>
-		 * var script = document.createElement("script");
-		 * //script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js");
-		 * script.setAttribute("src", "ajax/libs/highlight.js/9.12.0/highlight.min.js");
-		 * document.head.appendChild(script);
+		 * // Js file included in the compilation, through the option 
+		 * // -js-include-script+=src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js
+		 * // -----------------------------------------------------------------------------------------------------------
+		 * // var script = document.createElement("script");
+		 * // script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js");
+		 * // document.head.appendChild(script);
+		 * // -----------------------------------------------------------------------------------------------------------
          * var link = document.createElement("link");
          * link.setAttribute("rel", "stylesheet");
          * link.setAttribute("type", "text/css");
          * //link.setAttribute("href", "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css");
-         * link.setAttribute("href", "ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css");
+         * link.setAttribute("href", "assets/css/highlight.js/9.12.0/styles/atom-one-dark.min.css");
          * document.head.appendChild(link);
 		 * </inject_script>
 		 */

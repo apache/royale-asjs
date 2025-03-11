@@ -30,5 +30,8 @@
             "src/main/royale"
         ],
         "output": "target/Jewel.swc"
-    }
+    },
+    "additionalOptions": [
+        "-js-include-script+=src/main/assembly/scripts/web-animations/2.3.1/web-animations.min.js"
+    ]
 }

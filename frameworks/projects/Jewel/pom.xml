@@ -64,7 +64,10 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>${project.compiler.options}</additionalCompilerOptions>
+          <additionalCompilerOptions>
+            ${project.compiler.options}
+            -js-include-script+=${basedir}/src/main/assembly/scripts/web-animations/2.3.1/web-animations.min.js
+          </additionalCompilerOptions>
         </configuration>
       </plugin>
       <plugin>
