@@ -957,6 +957,7 @@
             -prevent-rename-public-instance-methods=false
             
             -source-map=true;
+            -js-include-script+=${basedir}/src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js;
           </additionalCompilerOptions>
           <!-- At command line use -Droyalelib=/Users/carlosrovira/Dev/Royale/Sdks/apache-royale-maven/frameworks -->
         </configuration>

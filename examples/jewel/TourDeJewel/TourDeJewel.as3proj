@@ -60,7 +60,7 @@
     <option es="False"/>
     <option verboseStackTraces="False"/>
     <option allowSourcePathOverlap="False"/>
-    <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/jewel-example-index-template.html -js-dynamic-access-unknown-members=true"/>
+    <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/jewel-example-index-template.html -js-dynamic-access-unknown-members=true -js-include-script+=src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js"/>
     <option linkReport=""/>
   </build>
   <mavenBuild>

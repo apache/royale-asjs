@@ -42,11 +42,11 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 *  constructor.
 		 *
-		 *  <inject_script>
-		 *  var script = document.createElement("script");
-		 *  script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js");
-		 *  document.head.appendChild(script);
-		 *  </inject_script>
+		 *  //<inject_script>
+		 *  //var script = document.createElement("script");
+		 *  //script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js");
+		 *  //document.head.appendChild(script);
+		 *  //</inject_script>
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

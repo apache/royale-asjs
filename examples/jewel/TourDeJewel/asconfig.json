@@ -11,7 +11,10 @@
         "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
     },
     "copySourcePathAssets": true,
-    "additionalOptions": "-js-dynamic-access-unknown-members=true",
+    "additionalOptions": [
+        "-js-dynamic-access-unknown-members=true",
+        "-js-include-script+=src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js"
+    ],
     "files":
     [
         "src/main/royale/App.mxml"
