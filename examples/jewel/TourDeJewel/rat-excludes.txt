@@ -1,0 +1,9 @@
+src/main/assembly/css/highlight.js/9.12.0/styles/LICENSE-highlightjs.txt
+src/main/assembly/css/highlight.js/9.12.0/styles/atom-one-dark.min.css
+src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js
+src/main/assembly/scripts/highlight.js/9.12.0/LICENSE-highlightjs.txt
+src/main/resources/assets/fonts/lato/LICENSE-Lato.txt
+.vscode/launch.json
+.vscode/tasks.json
+asconfig.json
+rat-excludes.txt

@@ -13,7 +13,9 @@
     "copySourcePathAssets": true,
     "additionalOptions": [
         "-js-dynamic-access-unknown-members=true",
-        "-js-include-script+=src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js"
+        "-js-include-script+=src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js",
+        "-js-include-css+=src/main/assembly/css/highlight.js/9.12.0/styles/atom-one-dark.min.css",
+        "-js-include-css+=src/main/assembly/css/Lato400_700.css"
     ],
     "files":
     [
