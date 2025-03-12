@@ -608,9 +608,6 @@
                 <exclude name="royale-asjs/templates/swfobject/expressInstall.swf"/>
 
                 <exclude name="royale-asjs/examples/mxroyale/tourdeflexmodules/src/swfobject.js"/>
-<!--                 <exclude name="royale-asjs/examples/jewel/TourDeJewel/src/main/resources/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js"/>
-                <exclude name="royale-asjs/examples/jewel/TourDeJewel/src/main/resources/ajax/libs/highlight.js/9.12.0/highlight.min.js"/>
-                <exclude name="royale-asjs/examples/jewel/TourDeJewel/src/main/resources/ajax/libs/web-animations/2.3.1/web-animations.min.js"/> -->
 
             </fileset>
         </rat:report>
