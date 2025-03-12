@@ -16,7 +16,9 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -947,7 +949,7 @@
           <targets>JSRoyale</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>
+          <additionalCompilerOptions> 
             -js-dynamic-access-unknown-members=true
             
             -export-public-symbols=false
@@ -958,10 +960,22 @@
             
             -source-map=true;
             -js-include-script+=${basedir}/src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js;
+            <!-- Required commit https://github.com/apache/royale-compiler/commit/08160d2639e0bd88c705111d8ee49c4f16396183 -->
+            -js-include-css+=${basedir}/src/main/assembly/css/highlight.js/9.12.0/styles/atom-one-dark.min.css;
+            -js-include-css+=${basedir}/src/main/assembly/css/Lato400_700.css;
           </additionalCompilerOptions>
           <!-- At command line use -Droyalelib=/Users/carlosrovira/Dev/Royale/Sdks/apache-royale-maven/frameworks -->
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.16.1</version>
+        <configuration>
+          <excludesFile>${project.basedir}/rat-excludes.txt</excludesFile>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 
@@ -1906,4 +1920,5 @@
     </profile>
   </profiles>
 
-<properties /></project>
+  <properties />
+</project>

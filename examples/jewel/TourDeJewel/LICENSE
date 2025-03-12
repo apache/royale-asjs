@@ -211,7 +211,7 @@ under separate license terms. The following components are included:
 1. **Lato Typeface**
    - Source: https://fonts.google.com/specimen/Lato
    - License: SIL Open Font License 1.1 (OFL-1.1)
-   - License text: See `src\main\resources\assets\css\LICENSE-Lato.txt`
+   - License text: See `src\main\resources\assets\fonts\lato\LICENSE-Lato.txt`
    - Lato is included in this distribution as a font resource for styling
      purposes in examples. It is distributed under the OFL-1.1 license, which
      permits use, modification, and redistribution under specific conditions.
@@ -220,7 +220,7 @@ under separate license terms. The following components are included:
 2. **Highlight.js**
    - Source: https://highlightjs.org/
    - License: BSD-3-Clause License
-   - License text: See `src\main\resources\assets\css\highlight.js\9.12.0\LICENSE-highlightjs.txt`
+   - License text: See `src\main\assembly\css\highlight.js\9.12.0\LICENSE-highlightjs.txt`
    - Highlight.js is included for syntax highlighting in examples.
      The BSD-3-Clause license permits redistribution with proper attribution.
      For details, refer to the official license text.
