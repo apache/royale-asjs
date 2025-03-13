@@ -67,7 +67,20 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>${project.compiler.options};-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>
+          <additionalCompilerOptions>
+            ${project.compiler.options};
+            -compiler.fxg-base-class=flash.display.Sprite;
+            -js-include-script+=${basedir}/src/main/assembly/scripts/dialog-polyfill/0.4.9/dialog-polyfill.min.js
+            -js-include-css+=${basedir}/src/main/assembly/css/dialog-polyfill/0.4.9/dialog-polyfill.min.css;
+          </additionalCompilerOptions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.16.1</version>
+        <configuration>
+          <excludesFile>${project.basedir}/rat-excludes.txt</excludesFile>
         </configuration>
       </plugin>
     </plugins>

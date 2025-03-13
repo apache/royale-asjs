@@ -21,7 +21,7 @@ package org.apache.royale.html.util
 	COMPILE::JS
 	public class DialogPolyfill
 	{
-		/** 
+		/*
 		 * <inject_script>
 		 * var script = document.createElement("script");
 		 * script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js");
@@ -38,6 +38,6 @@ package org.apache.royale.html.util
 		public static function registerDialog(dialog:Element):void
 		{
 				window["dialogPolyfill"]["registerDialog"](dialog);
-    }
+    	}
 	}
 }
