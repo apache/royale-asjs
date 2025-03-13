@@ -1,0 +1,3 @@
+src/main/assembly/css/material-design-icons/0.14.15/material-icons.css
+src/main/assembly/css/fontawesome-free/5.13.0/fontawesome-all.css
+rat-excludes.txt
