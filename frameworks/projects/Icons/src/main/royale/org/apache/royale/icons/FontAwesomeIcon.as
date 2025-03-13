@@ -48,9 +48,7 @@ package org.apache.royale.icons
         public static const LIGHT:String = "l";
         public static const DUOTONE:String = "d";
         
-        /**
-         *  constructor.
-         * 
+         /* 
          *  <inject_script>
          *   var link = document.createElement("link");
          *   link.setAttribute("rel", "stylesheet");
@@ -58,6 +56,9 @@ package org.apache.royale.icons
          *   link.setAttribute("href", "https://pro.fontawesome.com/releases/v5.15.4/css/all.css");
          *   document.head.appendChild(link);
 	     *  </inject_script>
+         */
+        /**
+         *  constructor.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

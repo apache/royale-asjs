@@ -30,9 +30,7 @@ package org.apache.royale.icons
      */
     public class MaterialIcon extends FontIconBase
     {
-        /**
-         *  constructor.
-         * 
+         /* 
          *  <inject_script>
          *  var link = document.createElement("link");
          *  link.setAttribute("rel", "stylesheet");
@@ -40,6 +38,10 @@ package org.apache.royale.icons
          *  link.setAttribute("href", "https://fonts.googleapis.com/icon?family=Material+Icons");
          *  document.head.appendChild(link);
          *  </inject_script>
+         */
+        
+        /**
+         *  constructor.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -65,6 +65,23 @@
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
           <!--<additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>-->
+          <additionalCompilerOptions>
+            -js-include-css+=${project.basedir}/src/main/assembly/css/material-design-icons/0.14.15/material-icons.css;
+            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/material-design-icons/0.14.15/material-icons.woff2;
+
+            -js-include-css+=${project.basedir}/src/main/assembly/css/fontawesome-free/5.13.0/fontawesome-all.css;
+            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-brands-400.woff2;
+            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-regular-400.woff2;
+            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-solid-900.woff2;
+          </additionalCompilerOptions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.16.1</version>
+        <configuration>
+          <excludesFile>${project.basedir}/rat-excludes.txt</excludesFile>
         </configuration>
       </plugin>
       
