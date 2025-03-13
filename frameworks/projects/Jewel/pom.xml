@@ -66,7 +66,7 @@
           <skipAS>${royale.skipAS}</skipAS>
           <additionalCompilerOptions>
             ${project.compiler.options}
-            -js-include-script+=${basedir}/src/main/assembly/scripts/web-animations/2.3.1/web-animations.min.js
+            -js-include-script+=${project.basedir}/src/main/assembly/scripts/web-animations/2.3.1/web-animations.min.js
           </additionalCompilerOptions>
         </configuration>
       </plugin>
