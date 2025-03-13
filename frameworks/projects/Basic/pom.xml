@@ -70,8 +70,8 @@
           <additionalCompilerOptions>
             ${project.compiler.options};
             -compiler.fxg-base-class=flash.display.Sprite;
-            -js-include-script+=${basedir}/src/main/assembly/scripts/dialog-polyfill/0.4.9/dialog-polyfill.min.js
-            -js-include-css+=${basedir}/src/main/assembly/css/dialog-polyfill/0.4.9/dialog-polyfill.min.css;
+            -js-include-script+=${project.basedir}/src/main/assembly/scripts/dialog-polyfill/0.4.9/dialog-polyfill.min.js
+            -js-include-css+=${project.basedir}/src/main/assembly/css/dialog-polyfill/0.4.9/dialog-polyfill.min.css;
           </additionalCompilerOptions>
         </configuration>
       </plugin>
