@@ -34,6 +34,9 @@ limitations under the License.
     
     <js:initialView>
         <rs:MainPage width="100%" height="100%">
+            <rs:beads>
+                <js:NoLayout/>
+            </rs:beads>
             <rs:TopBar />
             <rs:Tagline />
             <H2>Code Once.  Run Everywhere.</H2>
