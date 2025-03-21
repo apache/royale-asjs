@@ -725,7 +725,14 @@ COMPILE::SWF
             } else if (element.readyState == 4) {
                 //unset any json Object decoded (and cached) from previous response first:
                 _json = null;
-                dispatchEvent(HTTPConstants.COMPLETE);
+                if (status >= 200 && status < 400)
+                {
+                    dispatchEvent(HTTPConstants.COMPLETE);
+                }
+                else
+                {
+                    dispatchEvent(HTTPConstants.IO_ERROR);
+                }
             }
         }
 
