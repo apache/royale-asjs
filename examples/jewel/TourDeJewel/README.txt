@@ -21,11 +21,38 @@ DESCRIPTION
 
 Tour De Jewel is a Component Explorer for Apache Royale Jewel UI Set
 
-Jewel is a new UI component set, created with design and responsiveness in mind. 
-Apache Royale provides themes to use with Jewel out of the box. 
-Jewel themes support up to 12 colors, light/dark, and flat/normal modes.
+Jewel is a new UI component set for JavaScript, created with design and
+responsiveness in mind.
 
-This App shows all Jewel components and different use cases and is still in development
-as we continue make it grow and improve.
+Apache Royale provides themes to use with Jewel out of the box.  Jewel themes
+support up to 12 colors, light/dark, and flat/normal modes.
 
+This App shows all Jewel components and different use cases and is still in
+development as we continue make it grow and improve.
 
+HOW TO BUILD
+
+For convenience, this example includes build scripts, including a pom.xml file
+to build with Maven and a build.xml file to build with Ant.
+
+BUILD WITH MAVEN
+
+To build with Maven, run the following command in the project's root directory
+(which should be the same directory that contains this README file):
+
+	mvn compile
+
+The debug version of the app built with Maven can be found in the
+./target/javascript/bin/js-debug directory, and the optimized release version of
+the app can be found in the ./target/javascript/bin/js-release directory. 
+
+BUILD WITH ANT
+
+To build with Ant, run the following command in this project's root directory
+(which should be the same directory that contains this README file):
+
+	ant
+
+The debug version of the app built with Ant can be found in the ./bin/js-debug
+directory, and the optimized release version of the app can be found in the
+./bin/js-release directory.
