@@ -66,13 +66,25 @@
           <skipAS>${royale.skipAS}</skipAS>
           <!--<additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>-->
           <additionalCompilerOptions>
-            -js-include-css+=${project.basedir}/src/main/assembly/css/material-design-icons/0.14.15/material-icons.css;
-            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/material-design-icons/0.14.15/material-icons.woff2;
+            -js-include-css+=${project.basedir}/src/main/resources/assets/material-icons/4.0.0/material-icons.css;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/material-icons/4.0.0/material-icons.woff2;
 
-            -js-include-css+=${project.basedir}/src/main/assembly/css/fontawesome-free/5.13.0/fontawesome-all.css;
-            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-brands-400.woff2;
-            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-regular-400.woff2;
-            -js-include-asset+=${project.basedir}/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-solid-900.woff2;
+            -js-include-css+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fontawesome-all.css;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.eot;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.svg;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.ttf;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.woff;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.woff2;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.eot;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.svg;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.ttf;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.woff;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.woff2;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.eot;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.svg;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.ttf;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.woff;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.woff2;
           </additionalCompilerOptions>
         </configuration>
       </plugin>

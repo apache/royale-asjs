@@ -29,17 +29,7 @@ package org.apache.royale.icons
      *  
      */
     public class MaterialIcon extends FontIconBase
-    {
-         /* 
-         *  <inject_script>
-         *  var link = document.createElement("link");
-         *  link.setAttribute("rel", "stylesheet");
-         *  link.setAttribute("type", "text/css");
-         *  link.setAttribute("href", "https://fonts.googleapis.com/icon?family=Material+Icons");
-         *  document.head.appendChild(link);
-         *  </inject_script>
-         */
-        
+    {   
         /**
          *  constructor.
          *
