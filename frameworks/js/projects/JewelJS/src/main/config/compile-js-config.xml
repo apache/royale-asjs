@@ -103,7 +103,7 @@
     <js-vector-index-checks>false</js-vector-index-checks>
                 
     <js-include-script>
-        <path-element>../../../../../../projects/Jewel/src/main/assembly/scripts/web-animations/2.3.1/web-animations.min.js</path-element>
+        <path-element>../../../../../../projects/Jewel/src/main/resources/assets/web-animations/2.3.1/web-animations.min.js</path-element>
     </js-include-script>
 
 </royale-config>
