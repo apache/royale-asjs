@@ -15,6 +15,41 @@
 @namespace "http://www.w3.org/1999/xhtml";
 @namespace rs "library://ns.apache.org/royale/site";
 
+@font-face {
+	font-family: 'Hind Siliguri';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Hind Siliguri Light'), local('HindSiliguri-Light'), url(assets/HindSiliguri-Light.woff2) format('woff2');
+}
+@font-face {
+	font-family: 'Hind Siliguri';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Hind Siliguri Regular'), local('HindSiliguri-Regular'), url(assets/HindSiliguri-Regular.woff2) format('woff2');
+}
+@font-face {
+	font-family: 'Signika';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Signika Regular'), local('Signika-Regular'), url(assets/Signika-Regular.woff2) format('woff2');
+}
+@font-face {
+	font-family: 'Signika';
+	font-style: normal;
+	font-weight: 600;
+	src: local('Signika SemiBold'), local('Signika-SemiBold'), url(assets/Signika-SemiBold.woff2) format('woff2');
+}
+@font-face {
+	font-family: 'Signika';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Signika Bold'), local('Signika-Bold'), url(assets/Signika-Bold.woff2) format('woff2');
+}
+
+body {
+	font-family: 'Hind Siliguri';
+}
+
 h1 {
 	margin-top: 0px;
 }
