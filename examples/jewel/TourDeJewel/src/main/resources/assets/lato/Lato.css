@@ -23,23 +23,23 @@
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  src: url(../assets/fonts/lato/Lato-Regular.ttf) format('truetype');
+  src: url(../assets/Lato-Regular.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
-  src: url(../assets/fonts/lato/Lato-Italic.ttf) format('truetype');
+  src: url(../assets/Lato-Italic.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
-  src: url(../assets/fonts/lato/Lato-Bold.ttf) format('truetype');
+  src: url(../assets/Lato-Bold.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
-  src: url(../assets/fonts/lato/Lato-BoldItalic.ttf) format('truetype');
+  src: url(../assets/Lato-BoldItalic.ttf) format('truetype');
 }
