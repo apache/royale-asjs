@@ -959,10 +959,13 @@
             -prevent-rename-public-instance-methods=false
             
             -source-map=true;
-            -js-include-script+=${basedir}/src/main/assembly/scripts/highlight.js/9.12.0/highlight.min.js;
-            <!-- Required commit https://github.com/apache/royale-compiler/commit/08160d2639e0bd88c705111d8ee49c4f16396183 -->
-            -js-include-css+=${basedir}/src/main/assembly/css/highlight.js/9.12.0/styles/atom-one-dark.min.css;
-            -js-include-css+=${basedir}/src/main/assembly/css/Lato400_700.css;
+            -js-include-script+=${basedir}/src/main/resources/assets/highlight.js/9.12.0/highlight.min.js;
+            -js-include-css+=${basedir}/src/main/resources/assets/highlight.js/9.12.0/atom-one-dark.min.css;
+            -js-include-css+=${basedir}/src/main/resources/assets/lato/Lato.css;
+            -js-include-asset+=${basedir}/src/main/resources/assets/lato/Lato-Regular.ttf;
+            -js-include-asset+=${basedir}/src/main/resources/assets/lato/Lato-Bold.ttf;
+            -js-include-asset+=${basedir}/src/main/resources/assets/lato/Lato-Italic.ttf;
+            -js-include-asset+=${basedir}/src/main/resources/assets/lato/Lato-BoldItalic.ttf;
           </additionalCompilerOptions>
           <!-- At command line use -Droyalelib=/Users/carlosrovira/Dev/Royale/Sdks/apache-royale-maven/frameworks -->
         </configuration>
