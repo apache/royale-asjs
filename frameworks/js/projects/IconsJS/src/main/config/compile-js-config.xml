@@ -95,15 +95,27 @@
     <js-vector-index-checks>false</js-vector-index-checks>
                 
     <js-include-css>
-        <path-element>../../../../../../projects/Icons/src/main/assembly/css/material-design-icons/0.14.15/material-icons.css</path-element>
-        <path-element>../../../../../../projects/Icons/src/main/assembly/css/fontawesome-free/5.13.0/fontawesome-all.css</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/material-icons/4.0.0/material-icons.css</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fontawesome-all.css</path-element>
     </js-include-css>
                 
     <js-include-asset>
-        <path-element>../../../../../../projects/Icons/src/main/assembly/assets/fonts/material-design-icons/0.14.15/material-icons.woff2</path-element>
-        <path-element>../../../../../../projects/Icons/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-brands-400.woff2</path-element>
-        <path-element>../../../../../../projects/Icons/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-regular-400.woff2</path-element>
-        <path-element>../../../../../../projects/Icons/src/main/assembly/assets/fonts/fontawesome-free/5.13.0/fa-solid-900.woff2</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/material-icons/4.0.0/material-icons.woff2</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.eot</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.svg</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.ttf</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.woff</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-brands-400.woff2</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.eot</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.svg</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.ttf</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.woff</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-regular-400.woff2</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.eot</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.svg</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.ttf</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.woff</path-element>
+        <path-element>../../../../../../projects/Icons/src/main/resources/assets/font-awesome/5.15.4/fa-solid-900.woff2</path-element>
     </js-include-asset>
         
 

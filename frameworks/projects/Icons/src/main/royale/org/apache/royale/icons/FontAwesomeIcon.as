@@ -47,16 +47,7 @@ package org.apache.royale.icons
         public static const REGULAR:String = "r";
         public static const LIGHT:String = "l";
         public static const DUOTONE:String = "d";
-        
-         /* 
-         *  <inject_script>
-         *   var link = document.createElement("link");
-         *   link.setAttribute("rel", "stylesheet");
-         *   link.setAttribute("type", "text/css");
-         *   link.setAttribute("href", "https://pro.fontawesome.com/releases/v5.15.4/css/all.css");
-         *   document.head.appendChild(link);
-	     *  </inject_script>
-         */
+
         /**
          *  constructor.
          *
