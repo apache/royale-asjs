@@ -80,6 +80,21 @@
         <name>defaults.css</name>
         <path>../../../../../../projects/RoyaleSite/src/main/resources/defaults.css</path>
     </include-file>
+    <js-include-asset>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/hind-siliguri/HindSiliguri-Light.woff2</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/hind-siliguri/HindSiliguri-Regular.woff2</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/signika/Signika-Regular.woff2</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/signika/Signika-SemiBold.woff2</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/signika/Signika-Bold.woff2</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/font-awesome/fontawesome-webfont.eot</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/font-awesome/fontawesome-webfont.svg</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/font-awesome/fontawesome-webfont.ttf</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/font-awesome/fontawesome-webfont.woff</path-element>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/font-awesome/fontawesome-webfont.woff2</path-element>
+    </js-include-asset>
+    <js-include-css>
+        <path-element>../../../../../../projects/RoyaleSite/src/main/resources/assets/font-awesome/font-awesome.min.css</path-element>
+    </js-include-css>
     
     <include-sources>
     </include-sources>
