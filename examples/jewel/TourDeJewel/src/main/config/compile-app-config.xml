@@ -31,4 +31,18 @@
             <filename>../../../../../../frameworks/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme/src/main/resources/defaults.css</filename>
         </theme>
     </compiler>
+
+    <js-include-script>
+        <path-element>../resources/assets/highlight.js/9.12.0/highlight.min.js</path-element>
+    </js-include-script>
+    <js-include-css>
+        <path-element>../resources/assets/highlight.js/9.12.0/atom-one-dark.min.css</path-element>
+        <path-element>../resources/assets/lato/Lato.css</path-element>
+    </js-include-css>
+    <js-include-asset>
+        <path-element>../resources/assets/lato/Lato-Regular.ttf</path-element>
+        <path-element>../resources/assets/lato/Lato-Bold.ttf</path-element>
+        <path-element>../resources/assets/lato/Lato-Italic.ttf</path-element>
+        <path-element>../resources/assets/lato/Lato-BoldItalic.ttf</path-element>
+    </js-include-asset>
 </royale-config>

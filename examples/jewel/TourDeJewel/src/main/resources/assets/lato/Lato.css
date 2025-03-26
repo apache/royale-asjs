@@ -19,31 +19,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
-/* latin-ext */
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
   src: url(../assets/fonts/lato/Lato-Regular.ttf) format('truetype');
-  }
-/* latin */
+}
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 400;
   src: url(../assets/fonts/lato/Lato-Italic.ttf) format('truetype');
-  }
-/* latin-ext */
+}
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
   src: url(../assets/fonts/lato/Lato-Bold.ttf) format('truetype');
-  }
-/* latin */
+}
 @font-face {
   font-family: 'Lato';
   font-style: normal;
   font-weight: 700;
   src: url(../assets/fonts/lato/Lato-BoldItalic.ttf) format('truetype');
-  }
+}
