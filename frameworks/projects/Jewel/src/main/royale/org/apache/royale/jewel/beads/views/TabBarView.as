@@ -39,17 +39,6 @@ package org.apache.royale.jewel.beads.views
 	 */
 	public class TabBarView extends ListView
 	{
-		 /*
-		 * Js file included in the compilation, through the option 
-		 * -js-include-script+=src/main/assembly/scripts/web-animations/2.3.1/web-animations.min.js
-		 * -----------------------------------------------------------------------------------------------------------
-		 *  <inject_script>
-		 *  var script = document.createElement("script");
-		 *  script.setAttribute("src", "https://cdnjs.cloudflare.com/ajax/libs/web-animations/2.3.1/web-animations.min.js");
-		 *  document.head.appendChild(script);
-		 *  </inject_script>
-		 */
-
 		/**
 		 *  constructor.
 		 * 
