@@ -30,9 +30,6 @@ support up to 12 colors, light/dark, and flat/normal modes.
 This App shows all Jewel components and different use cases and is still in
 development as we continue make it grow and improve.
 
-This App shows all Jewel components and different use cases and is still in development
-as we continue to make it grow and improve.
-
 ## Typeface
 
 ### **Lato**  
@@ -57,6 +54,7 @@ See our LICENSE file for details:
 
 This library is included in our distribution for syntax highlighting.
 
+<<<<<<< HEAD
 HOW TO BUILD
 
 For convenience, this example includes build scripts, including a pom.xml file
@@ -83,3 +81,5 @@ To build with Ant, run the following command in this project's root directory
 The debug version of the app built with Ant can be found in the ./bin/js-debug
 directory, and the optimized release version of the app can be found in the
 ./bin/js-release directory.
+=======
+>>>>>>> 00e9288cd243d153057ae975afae84d88a508e89
