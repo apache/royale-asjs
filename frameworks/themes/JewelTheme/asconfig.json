@@ -24,11 +24,18 @@
             "JSRoyale"
         ],
         "include-classes": [
-            "src/main/royale/JewelThemeClasses.as"
+            "JewelThemeClasses"
         ],
         "source-path": [
             "src/main/royale"
         ],
         "output": "target/JewelTheme.swc"
-    }
+    },
+    "additionalOptions": [
+        "-js-include-css+=src/main/assembly/third-party/lato/Lato.css",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-Regular.ttf",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-Bold.ttf",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-Italic.ttf",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-BoldItalic.ttf"
+    ]
 }

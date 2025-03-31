@@ -64,6 +64,13 @@
               <path>../src/main/resources/defaults.css</path>
             </include-file>
           </includeFiles>
+          <additionalCompilerOptions> 
+            -js-include-css+=${project.basedir}/src/main/assembly/third-party/lato/Lato.css;
+            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/lato/Lato-Regular.ttf;
+            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/lato/Lato-Bold.ttf;
+            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/lato/Lato-Italic.ttf;
+            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/lato/Lato-BoldItalic.ttf;
+            </additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
