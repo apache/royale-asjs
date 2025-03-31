@@ -105,14 +105,5 @@
     <js-include-script>
         <path-element>../../../../../../projects/Jewel/src/main/assembly/third-party/web-animations/2.3.1/web-animations.min.js</path-element>
     </js-include-script>
-    <js-include-css>
-        <path-element>../../../../../../projects/Jewel/src/main/assembly/third-party/lato/Lato.css</path-element>
-    </js-include-css>
-    <js-include-asset>
-        <path-element>../../../../../../projects/Jewel/src/main/assembly/third-party/lato/Lato-Regular.ttf</path-element>
-        <path-element>../../../../../../projects/Jewel/src/main/assembly/third-party/lato/Lato-Bold.ttf</path-element>
-        <path-element>../../../../../../projects/Jewel/src/main/assembly/third-party/lato/Lato-Italic.ttf</path-element>
-        <path-element>../../../../../../projects/Jewel/src/main/assembly/third-party/lato/Lato-BoldItalic.ttf</path-element>
-    </js-include-asset>
 
 </royale-config>

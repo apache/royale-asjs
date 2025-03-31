@@ -94,6 +94,16 @@
     </include-namespaces>-->
 
     <js-default-initializers>false</js-default-initializers>
+
+    <js-include-css>
+        <path-element>../../../../../../themes/JewelTheme/src/main/assembly/third-party/lato/Lato.css</path-element>
+    </js-include-css>
+    <js-include-asset>
+        <path-element>../../../../../../themes/JewelTheme/src/main/assembly/third-party/lato/Lato-Regular.ttf</path-element>
+        <path-element>../../../../../../themes/JewelTheme/src/main/assembly/third-party/lato/Lato-Bold.ttf</path-element>
+        <path-element>../../../../../../themes/JewelTheme/src/main/assembly/third-party/lato/Lato-Italic.ttf</path-element>
+        <path-element>../../../../../../themes/JewelTheme/src/main/assembly/third-party/lato/Lato-BoldItalic.ttf</path-element>
+    </js-include-asset>
         
 
 </royale-config>
