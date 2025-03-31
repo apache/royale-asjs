@@ -54,13 +54,12 @@ See our LICENSE file for details:
 
 This library is included in our distribution for syntax highlighting.
 
-<<<<<<< HEAD
-HOW TO BUILD
+## How to Build
 
 For convenience, this example includes build scripts, including a pom.xml file
 to build with Maven and a build.xml file to build with Ant.
 
-BUILD WITH MAVEN
+### **Build with maven**  
 
 To build with Maven, run the following command in the project's root directory
 (which should be the same directory that contains this README file):
@@ -71,7 +70,7 @@ The debug version of the app built with Maven can be found in the
 ./target/javascript/bin/js-debug directory, and the optimized release version of
 the app can be found in the ./target/javascript/bin/js-release directory. 
 
-BUILD WITH ANT
+### **Build with ant**  
 
 To build with Ant, run the following command in this project's root directory
 (which should be the same directory that contains this README file):
@@ -81,5 +80,3 @@ To build with Ant, run the following command in this project's root directory
 The debug version of the app built with Ant can be found in the ./bin/js-debug
 directory, and the optimized release version of the app can be found in the
 ./bin/js-release directory.
-=======
->>>>>>> 00e9288cd243d153057ae975afae84d88a508e89
