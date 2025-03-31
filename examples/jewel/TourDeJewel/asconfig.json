@@ -32,6 +32,13 @@
     "copySourcePathAssets": true,
     "additionalOptions": [
         "-js-dynamic-access-unknown-members=true",
+        "-js-include-script+=src/main/assembly/third-party/highlight.js/9.12.0/highlight.min.js",
+        "-js-include-css+=src/main/assembly/third-party/highlight.js/9.12.0/atom-one-dark.min.css",
+        "-js-include-css+=src/main/assembly/third-party/lato/Lato.css",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-Regular.ttf",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-Bold.ttf",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-Italic.ttf",
+        "-js-include-asset+=src/main/assembly/third-party/lato/Lato-BoldItalic.ttf"
     ],
     "files":
     [

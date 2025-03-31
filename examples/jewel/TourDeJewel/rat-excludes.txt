@@ -18,5 +18,5 @@
 ################################################################################
 
 # highlight.js is BSD-3-Clause
-src/main/resources/assets/highlight.js/9.12.0/atom-one-dark.min.css
-src/main/resources/assets/highlight.js/9.12.0/highlight.min.js
+src/main/assembly/third-party/highlight.js/9.12.0/atom-one-dark.min.css
+src/main/assembly/third-party/highlight.js/9.12.0/highlight.min.js
