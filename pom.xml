@@ -357,6 +357,15 @@
             <exclude>**/localfonts.ser</exclude>
             <exclude>**/macfonts.ser</exclude>
             <exclude>**/winfonts.ser</exclude>
+
+            <!--
+              if an example has a rat-excludes.txt file, it will actually be
+              ignored unless the with-examples profile has been activated.
+              
+              this excludes the example in that case, but rat-excludes.txt will
+              actually be used properly when with-examples is activated too!
+            -->
+            <exclude>examples/jewel/TourDeJewel/**</exclude>
           </excludes>
         </configuration>
       </plugin>
