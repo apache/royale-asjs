@@ -58,20 +58,28 @@
           <additionalCompilerOptions>
             ${project.compiler.options}
 
-            -js-include-asset+=src/main/resources/assets/hind-siliguri/HindSiliguri-Light.woff2;
-            -js-include-asset+=src/main/resources/assets/hind-siliguri/HindSiliguri-Regular.woff2;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/hind-siliguri/HindSiliguri-Light.woff2;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/hind-siliguri/HindSiliguri-Regular.woff2;
 
-            -js-include-asset+=src/main/resources/assets/signika/Signika-Regular.woff2;
-            -js-include-asset+=src/main/resources/assets/signika/Signika-SemiBold.woff2;
-            -js-include-asset+=src/main/resources/assets/signika/Signika-Bold.woff2;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/signika/Signika-Regular.woff2;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/signika/Signika-SemiBold.woff2;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/signika/Signika-Bold.woff2;
 
-            -js-include-css+=src/main/resources/assets/font-awesome/font-awesome.min.css;
-            -js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.eot;
-            -js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.svg;
-            -js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.ttf;
-            -js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.woff;
-            -js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.woff2;
+            -js-include-css+=${project.basedir}/src/main/resources/assets/font-awesome/font-awesome.min.css;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/fontawesome-webfont.eot;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/fontawesome-webfont.svg;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/fontawesome-webfont.ttf;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/fontawesome-webfont.woff;
+            -js-include-asset+=${project.basedir}/src/main/resources/assets/font-awesome/fontawesome-webfont.woff2;
           </additionalCompilerOptions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.16.1</version>
+        <configuration>
+          <excludesFile>${project.basedir}/rat-excludes.txt</excludesFile>
         </configuration>
       </plugin>
     </plugins>
