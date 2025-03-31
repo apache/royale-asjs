@@ -105,11 +105,11 @@
     <js-vector-index-checks>false</js-vector-index-checks>
                 
     <js-include-script>
-        <path-element>../../../../../../projects/Basic/src/main/resources/assets/dialog-polyfill/0.4.9/dialog-polyfill.min.js</path-element>
+        <path-element>../../../../../../projects/Basic/src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.js</path-element>
     </js-include-script>
                 
     <js-include-css>
-        <path-element>../../../../../../projects/Basic/src/main/resources/assets/dialog-polyfill/0.4.9/dialog-polyfill.min.css</path-element>
+        <path-element>../../../../../../projects/Basic/src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.css</path-element>
     </js-include-css>
         
 

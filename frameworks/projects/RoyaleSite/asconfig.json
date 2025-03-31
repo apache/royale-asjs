@@ -38,18 +38,18 @@
         "output": "target/RoyaleSite.swc"
     },
     "additionalOptions": [
-		"-js-include-asset+=src/main/resources/assets/hind-siliguri/HindSiliguri-Light.woff2",
-		"-js-include-asset+=src/main/resources/assets/hind-siliguri/HindSiliguri-Regular.woff2",
+		"-js-include-asset+=src/main/assembly/third-party/hind-siliguri/HindSiliguri-Light.woff2",
+		"-js-include-asset+=src/main/assembly/third-party/hind-siliguri/HindSiliguri-Regular.woff2",
 
-		"-js-include-asset+=src/main/resources/assets/signika/Signika-Regular.woff2",
-		"-js-include-asset+=src/main/resources/assets/signika/Signika-SemiBold.woff2",
-		"-js-include-asset+=src/main/resources/assets/signika/Signika-Bold.woff2",
+		"-js-include-asset+=src/main/assembly/third-party/signika/Signika-Regular.woff2",
+		"-js-include-asset+=src/main/assembly/third-party/signika/Signika-SemiBold.woff2",
+		"-js-include-asset+=src/main/assembly/third-party/signika/Signika-Bold.woff2",
 
-		"-js-include-css+=src/main/resources/assets/font-awesome/font-awesome.min.css",
-		"-js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.eot",
-		"-js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.svg",
-		"-js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.ttf",
-		"-js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.woff",
-		"-js-include-asset+=src/main/resources/assets/font-awesome/fontawesome-webfont.woff2"
+		"-js-include-css+=src/main/assembly/third-party/font-awesome/font-awesome.min.css",
+		"-js-include-asset+=src/main/assembly/third-party/font-awesome/fontawesome-webfont.eot",
+		"-js-include-asset+=src/main/assembly/third-party/font-awesome/fontawesome-webfont.svg",
+		"-js-include-asset+=src/main/assembly/third-party/font-awesome/fontawesome-webfont.ttf",
+		"-js-include-asset+=src/main/assembly/third-party/font-awesome/fontawesome-webfont.woff",
+		"-js-include-asset+=src/main/assembly/third-party/font-awesome/fontawesome-webfont.woff2"
     ]
 }

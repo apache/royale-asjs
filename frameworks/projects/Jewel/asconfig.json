@@ -32,6 +32,6 @@
         "output": "target/Jewel.swc"
     },
     "additionalOptions": [
-        "-js-include-script+=src/main/resources/assets/web-animations/2.3.1/web-animations.min.js"
+        "-js-include-script+=src/main/assembly/third-party/web-animations/2.3.1/web-animations.min.js"
     ]
 }

@@ -34,7 +34,7 @@
         "output": "target/Basic.swc"
     },
     "additionalOptions": [
-        "-js-include-script+=src/main/resources/assets/dialog-polyfill/0.4.9/dialog-polyfill.min.js",
-        "-js-include-css+=src/main/resources/assets/dialog-polyfill/0.4.9/dialog-polyfill.min.css"
+        "-js-include-script+=src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.js",
+        "-js-include-css+=src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.css"
     ]
 }

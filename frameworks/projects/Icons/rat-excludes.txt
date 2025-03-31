@@ -18,7 +18,7 @@
 ################################################################################
 
 # CSS is MIT
-src/main/resources/assets/font-awesome/5.15.4/fontawesome-all.css
+src/main/assembly/third-party/font-awesome/5.15.4/fontawesome-all.css
 
 # SVGs are OFL-1.1
-src/main/resources/assets/font-awesome/5.15.4/fa-*.svg
+src/main/assembly/third-party/font-awesome/5.15.4/fa-*.svg

@@ -18,5 +18,5 @@
 ################################################################################
 
 # dialog-polyfill is BSD-3-Clause
-src/main/resources/assets/dialog-polyfill/0.4.9/dialog-polyfill.min.css
-src/main/resources/assets/dialog-polyfill/0.4.9/dialog-polyfill.min.js
+src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.css
+src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.js
