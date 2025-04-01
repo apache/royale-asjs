@@ -120,7 +120,7 @@ limitations under the License.
             </j:Form>
         </j:VGroup>
 
-        <j:Label width="400" multiline="true" html="Jewel is a themeable and responsive set of user interface components for Apache Royale to help you quickly build the front end of your applications with ActionScript &amp; MXML.&lt;br>Check &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a>">
+        <j:Label width="400" multiline="true" html="Jewel is a themeable and responsive set of user interface components for Apache Royale to help you quickly build the front-end of your applications with ActionScript &amp; MXML.&lt;br>Visit &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a> to learn more">
             <j:beads>
                 <j:SizeControl size="large"/>
                 <j:TextAlign align="center"/>

@@ -101,7 +101,7 @@ package components
             
             var link:A = new A();
             link.href = sourceCodeUrlWebPrefix + sourceCodeUrl;
-            link.text = "Watch the source code for this page in GitHub";
+            link.text = "View the source code for this page in GitHub";
             link.target = "_blank";
             link.rel = "noreferrer noopener"
             sourceCodeTab.addElement(link);
