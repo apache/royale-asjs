@@ -29,7 +29,7 @@ package components
     import org.apache.royale.jewel.TabBarContent;
     import org.apache.royale.html.beads.layouts.Paddings;
 
-    import services.GitHubService;
+    import services.SourceCodeService;
 
     import vos.TabBarButtonVO;
     
@@ -50,7 +50,7 @@ package components
             addEventListener("beadsAdded", beadsAddedHandler);
 		}
 
-        private var service:GitHubService;
+        private var service:SourceCodeService;
         private var tabbar:TabBar;
         private var tabBarNavigation:ArrayList;
         private var tabcontent:TabBarContent;
@@ -58,7 +58,7 @@ package components
         private var sourceCodeTab:ScrollableSectionContent;
         private var sourceCodeMXMLText:Code;
 
-        private var sourceCodeUrlPrefix:String = "https://api.github.com/repos/apache/royale-asjs/contents/examples/jewel/TourDeJewel/src/main/royale/";
+        private var sourceCodeUrlPrefix:String = "./src/";
         private var sourceCodeUrlWebPrefix:String = "https://github.com/apache/royale-asjs/blob/develop/examples/jewel/TourDeJewel/src/main/royale/";
         
         private var _sourceCodeUrl:String;
@@ -118,7 +118,7 @@ package components
             tabcontent.selectedContent = "exampleTab";
             strandChildren.addElement(tabcontent);
             
-            service = new GitHubService();
+            service = new SourceCodeService();
             service.addEventListener("dataReady", dataReadyHandler);
             service.sourceCodeUrl = sourceCodeUrlPrefix + sourceCodeUrl;
         }

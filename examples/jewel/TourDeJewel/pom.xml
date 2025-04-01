@@ -938,6 +938,42 @@
               <outputDirectory>${project.build.directory}/javascript/bin/js-release/assets/themes</outputDirectory>
             </configuration>
           </execution>
+          <execution>
+            <id>copy-source-to-debug</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${project.build.sourceDirectory}</directory>
+                  <includes>
+                    <include>**/*.mxml</include>
+                  </includes>
+                </resource>
+              </resources>
+              <outputDirectory>${project.build.directory}/javascript/bin/js-debug/src/</outputDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-source-to-release</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${project.build.sourceDirectory}</directory>
+                  <includes>
+                    <include>**/*.mxml</include>
+                  </includes>
+                </resource>
+              </resources>
+              <outputDirectory>${project.build.directory}/javascript/bin/js-release/src/</outputDirectory>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>

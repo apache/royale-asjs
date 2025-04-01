@@ -43,6 +43,18 @@
                 <include name="**" />
             </fileset>
         </copy>
+        <mkdir dir="${basedir}/bin/js-debug/src" />
+        <copy todir="${basedir}/bin/js-debug/src" failonerror="false">
+            <fileset dir="${basedir}/src/main/royale">
+                <include name="**/*.mxml" />
+            </fileset>
+        </copy>
+        <mkdir dir="${basedir}/bin/js-release/src" />
+        <copy todir="${basedir}/bin/js-release/src" failonerror="false">
+            <fileset dir="${basedir}/src/main/royale">
+                <include name="**/*.mxml" />
+            </fileset>
+        </copy>
     </target>
     
     <target name="clean">
