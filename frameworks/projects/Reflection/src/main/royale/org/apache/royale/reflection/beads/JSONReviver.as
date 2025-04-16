@@ -113,6 +113,7 @@ public class JSONReviver implements IBead
                 {
                     newValue[p] = value[p];
                 }
+                return newValue;
             }
         }
         return value;
