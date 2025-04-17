@@ -111,7 +111,6 @@
                 <not>
                     <or>
                         <equals arg1="${errorCodeJS}" arg2="0" />
-                        <equals arg1="${errorCodeJS}" arg2="2" />
                     </or>
                 </not>
             </condition>
@@ -158,7 +157,6 @@
                 <not>
                     <or>
                         <equals arg1="${errorCodeSWF}" arg2="0" />
-                        <equals arg1="${errorCodeSWF}" arg2="2" />
                     </or>
                 </not>
             </condition>
