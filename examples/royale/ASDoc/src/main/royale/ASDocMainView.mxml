@@ -226,8 +226,9 @@ limitations under the License.
         }
         
         .titleGroup {
-        	margin-top: 30px;
-        	margin-left: 5px;
+        	padding-top: 36px;
+        	padding-left: 5px;
+            padding-right: 5px;
         }
         
         .detailsPane {
@@ -422,16 +423,15 @@ limitations under the License.
         <js:CallLaterBead id="clb" />
     </rs:beads>
     <rs:DocTopBar />
-    <rs:DocTagline />
     <js:Group width="100%" id="titleGroup" className="titleGroup">
         <js:beads>
-            <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="spacer" />
+            <js:FlexibleFirstChildHorizontalLayout />
         </js:beads>
         <js:Label text="Apache Royale ActionScript Library Reference" id="title" height="30" className="title"/>
         <js:Spacer width="20" />
         <js:Label text="Find a class" className="findClassLabel"/>
         <js:TextInput id="searchTI" className="searchTI" change="search()" />
-        <js:Spacer id="spacer" />
+        <js:Spacer id="spacer" width="20" />
         <js:CheckBox id="topLevel" text="Top-Level" click="showTopLevel()" />
         <js:CheckBox id="viewBeads" text="View Bead" click="showViewBeads()" />
     </js:Group>
