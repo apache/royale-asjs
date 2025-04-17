@@ -269,9 +269,9 @@ limitations under the License.
         }
         
         .detailCaption {
-        	font-weight: bold;
-        	width: 80px;
-        	line-height: 20px;
+            font-weight: bold;
+            width: 90px;
+            line-height: 20px;
         }
         
         .title {
