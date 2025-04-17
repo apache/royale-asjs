@@ -42,6 +42,7 @@ package models
         
         private function initializeHandler(event:Event):void
         {
+            app.service.addEventListener("ioError", configIOErrorHandler);
             app.service.addEventListener("complete", configCompleteHandler);
             app.service.url = "config.json";
             app.service.send();
@@ -70,9 +71,18 @@ package models
         
         private var platformList:Array;
         private var currentPlatform:String;
+
+        private function configIOErrorHandler(event:Event):void
+        {
+            app.service.removeEventListener("ioError", configIOErrorHandler);
+            app.service.removeEventListener("complete", configCompleteHandler);
+
+            trace("[ASDoc] failed to load URL: " + app.service.url);
+        }
         
         private function configCompleteHandler(event:Event):void
         {
+            app.service.removeEventListener("ioError", configIOErrorHandler);
             app.service.removeEventListener("complete", configCompleteHandler);
             var config:Object = JSON.parse(app.service.data);
             tagNameMap = config["tagNames"];
@@ -116,7 +126,7 @@ package models
                 platformList = platforms.slice();
                 currentPlatform = platformList.shift();
                 middle = "." + currentPlatform;
-                app.service.addEventListener("complete", completeHandler);
+                app.service.addEventListener("complete", classListCompleteHandler);
                 app.service.url = "classlist" + middle + ".json";
                 app.service.send();                
             }
@@ -132,9 +142,9 @@ package models
         /**
          * @royaleignorecoercion ASDocClassData 
          */
-        private function completeHandler(event:Event):void
+        private function classListCompleteHandler(event:Event):void
         {
-            app.service.removeEventListener("complete", completeHandler);
+            app.service.removeEventListener("complete", classListCompleteHandler);
             if (!masterData)
                 masterData = { "classnames": [], "data": [] };
             var allNames:Array = allClasses;
@@ -162,20 +172,47 @@ package models
             {
                 currentPlatform = platformList.shift();
                 var middle:String = "." + currentPlatform;
-                app.service.addEventListener("complete", completeHandler);
+                app.service.addEventListener("complete", classListCompleteHandler);
                 app.service.url = "classlist" + middle + ".json";
                 app.service.send();
             }
             else
             {
-                filterPackageList();
                 platformList = platforms.slice();
                 currentPlatform = platformList.shift();
                 middle = "." + currentPlatform;
+                app.service.addEventListener("ioError", classesIOErrorHandler);
                 app.service.addEventListener("complete", classesCompleteHandler);
                 app.service.url = "classes" + middle + ".json";
                 app.service.send();                
             }
+        }
+
+        private function loadClassesForNextPlatform():void
+        {
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                var middle:String = "." + currentPlatform;
+                app.service.addEventListener("ioError", classesIOErrorHandler);
+                app.service.addEventListener("complete", classesCompleteHandler);
+                app.service.url = "classes" + middle + ".json";
+                app.service.send();
+            }
+            else
+            {
+                filterPackageList();
+            }
+        }
+
+        private function classesIOErrorHandler(event:Event):void
+        {
+            app.service.removeEventListener("ioError", classesIOErrorHandler);
+            app.service.removeEventListener("complete", classesCompleteHandler);
+
+            trace("[ASDoc] failed to load URL: " + app.service.url);
+
+            loadClassesForNextPlatform();
         }
         
         /**
@@ -183,6 +220,7 @@ package models
          */
         private function classesCompleteHandler(event:Event):void
         {
+            app.service.removeEventListener("ioError", classesIOErrorHandler);
             app.service.removeEventListener("complete", classesCompleteHandler);
             if (!masterData["filterData"])
                 masterData["filterData"] = {};
@@ -208,14 +246,7 @@ package models
                     masterData["filterData"][cname] = item;
                 }
             }
-            if (platformList.length)
-            {
-                currentPlatform = platformList.shift();
-                var middle:String = "." + currentPlatform;
-                app.service.addEventListener("complete", classesCompleteHandler);
-                app.service.url = "classes" + middle + ".json";
-                app.service.send();
-            }
+            loadClassesForNextPlatform();
         }
         
         private function addTags(item:ASDocClass, tags:Array):void
@@ -343,7 +374,8 @@ package models
                 dispatchEvent(new Event("currentClassChanged"));
                 platformList = platforms.slice();
                 currentPlatform = platformList.shift();
-                app.service.addEventListener("complete", completeClassHandler);
+                app.service.addEventListener("ioError", classIOErrorHandler);
+                app.service.addEventListener("complete", classCompleteHandler);
                 app.service.url = computeFileName(_currentPackage + "." + _currentClass);
                 app.service.send();
                 _currentClassData = null;
@@ -355,16 +387,30 @@ package models
         private var _baseClassList:Array;
         
         private var _attributesMap:Object;
+
+        private function classIOErrorHandler(event:Event):void
+        {
+            app.service.removeEventListener("ioError", classIOErrorHandler);
+            app.service.removeEventListener("complete", classCompleteHandler);
+
+            // TODO: perhaps the list of classes should also include the list of
+            // platforms for each class so that we don't try to load files that
+            // don't exist!
+            // if we do that, we should log this error.
+
+            loadClassForNextPlatform();
+        }
         
         /**
-         * @royaleignorecoercion ASDocClass 
+         * @royaleignorecoercion ASDocClass
          * @royaleignorecoercion ASDocClassMembers
          * @royaleignorecoercion ASDocClassFunction
          * @royaleignorecoercion ASDocClassField
          */
-        private function completeClassHandler(event:Event):void
+        private function classCompleteHandler(event:Event):void
         {
-            app.service.removeEventListener("complete", completeClassHandler);
+            app.service.removeEventListener("ioError", classIOErrorHandler);
+            app.service.removeEventListener("complete", classCompleteHandler);
             var data:ASDocClass = app.reviver.parse(app.service.data) as ASDocClass;
             if (_currentClassData == null)
             {
@@ -419,7 +465,7 @@ package models
                     var a:ASDocClassAccessor = m as ASDocClassAccessor; // force link class
                     addIfNeededAndMakeAttributes(_publicProperties, a);
                 }
-else if (m.type == "field")
+                else if (m.type == "field")
                 {
                     var f:ASDocClassField = m as ASDocClassField; // force link class
                     addIfNeededAndMakeAttributes(_publicProperties, f);
@@ -467,35 +513,42 @@ else if (m.type == "field")
             if (data.type == "class" && data.baseClassname && 
             	data.baseClassname.indexOf("flash.") != 0  && data.baseClassname.indexOf("goog.") != 0)
             {
-                app.service.addEventListener("complete", completeClassHandler);
+                app.service.addEventListener("ioError", classIOErrorHandler);
+                app.service.addEventListener("complete", classCompleteHandler);
                 app.service.url = computeFileName(data.baseClassname);
                 app.service.send();
             }
             else if (data.type == "interface" && data.baseInterfaceNames && 
             	data.baseInterfaceNames[0].indexOf("flash.") != 0 && data.baseInterfaceNames[0].indexOf("goog.") != 0)
             {
+                app.service.addEventListener("ioError", classIOErrorHandler);
                 app.service.addEventListener("complete", completeInterfaceHandler);
                 extensions = data.baseInterfaceNames;
                 app.service.url = computeFileName(data.baseInterfaceNames[0]);
                 app.service.send();
-                
             }
             else
             {
-                if (platformList.length)
-                {
-                    currentPlatform = platformList.shift();
-                    app.service.addEventListener("complete", completeClassHandler);
-                    app.service.url = computeFileName(_currentPackage + "." + _currentClass);
-                    app.service.send();                    
-                }
-                else
-                {
-                    _publicMethods.sortOn("qname");
-                    _publicEvents.sortOn("qname");
-                    _publicProperties.sortOn("qname");
-                    dispatchEvent(new Event("currentDataChanged"));
-                }
+                loadClassForNextPlatform();
+            }
+        }
+
+        private function loadClassForNextPlatform():void
+        {
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                app.service.addEventListener("ioError", classIOErrorHandler);
+                app.service.addEventListener("complete", classCompleteHandler);
+                app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                app.service.send();                    
+            }
+            else
+            {
+                _publicMethods.sortOn("qname");
+                _publicEvents.sortOn("qname");
+                _publicProperties.sortOn("qname");
+                dispatchEvent(new Event("currentDataChanged"));
             }
         }
         
@@ -628,6 +681,24 @@ else if (m.type == "field")
         }
         
         private var extensions:Array;
+
+        private function loadInterfaceForNextPlatform():void
+        {
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                app.service.addEventListener("complete", completeInterfaceHandler);
+                app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                app.service.send();                                        
+            }
+            else
+            {
+                _publicMethods.sortOn("qname");
+                _publicEvents.sortOn("qname");
+                _publicProperties.sortOn("qname");
+                dispatchEvent(new Event("currentDataChanged"));
+            }
+        }
         
         /**
          * @royaleignorecoercion ASDocInterface 
@@ -729,20 +800,7 @@ else if (m.type == "field")
             }
             else
             {
-                if (platformList.length)
-                {
-                    currentPlatform = platformList.shift();
-                    app.service.addEventListener("complete", completeInterfaceHandler);
-                    app.service.url = computeFileName(_currentPackage + "." + _currentClass);
-                    app.service.send();                                        
-                }
-                else
-                {
-                    _publicMethods.sortOn("qname");
-                    _publicEvents.sortOn("qname");
-                    _publicProperties.sortOn("qname");
-                    dispatchEvent(new Event("currentDataChanged"));
-                }
+                loadInterfaceForNextPlatform();
             }
         }
         
