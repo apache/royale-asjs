@@ -162,9 +162,9 @@ rs|MainPage {
 rs|DocPage {
 	width: 100%;
 	background-image: url('https://royale.apache.org/wp-content/uploads/2017/10/page-bg-1-1920x300.png');
-	background-size: 100%;
 	background-repeat: no-repeat;
 	margin-top: 0px;
+	background-position: center top;
 }
 
 rs|SocialButtons {
@@ -195,29 +195,32 @@ rs|TopBar {
 
 rs|DocTopBar {
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: space-between;
 	padding-left: 54px;
-	padding-right: 54px;
+	padding-right: 20px;
 	color: #fff;
 }
 
 rs|TopMenu {
-	display: inline-block;
-	vertical-align: top;
-	margin-top: 0px;
+	display: inline-flex;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	margin-top: 15px;
 	margin-bottom: 0px;
 	height: 40px;
 	list-style: none;
+	flex-grow: 1;
+	text-align: right;
 }
 
 rs|TopMenuButton {
 	display: inline;
-	margin-right: 20px;
+	margin-left: 20px;
 	font-size: 14px;
 	font-weight: 600;
 	font-family: 'Signika';
-	line-height: 70px;
+	line-height: 40px;
 	letter-spacing: 1px;
 	color: inherit;
 }
@@ -377,6 +380,14 @@ rs|TitledAnchorList {
 .logo {
     margin-top:15px; 
     margin-bottom: 5px; 
-    width: 190px; 
+    width: 180px; 
     height: 40px;
+}
+
+
+@media (max-width: 590px) {
+	/* the menu items wrap, and this is when the layout starts to break */
+	.TopMenu {
+		display: none;
+	}
 }
