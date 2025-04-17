@@ -360,6 +360,7 @@ package models
          * @royaleignorecoercion ASDocClass 
          * @royaleignorecoercion ASDocClassMembers
          * @royaleignorecoercion ASDocClassFunction
+         * @royaleignorecoercion ASDocClassField
          */
         private function completeClassHandler(event:Event):void
         {
@@ -417,6 +418,11 @@ package models
                 {
                     var a:ASDocClassAccessor = m as ASDocClassAccessor; // force link class
                     addIfNeededAndMakeAttributes(_publicProperties, a);
+                }
+else if (m.type == "field")
+                {
+                    var f:ASDocClassField = m as ASDocClassField; // force link class
+                    addIfNeededAndMakeAttributes(_publicProperties, f);
                 }
                 if (masterData["classnames"].indexOf(m.return) != -1)
                 {
