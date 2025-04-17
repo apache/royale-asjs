@@ -629,10 +629,13 @@ else if (m.type == "field")
         
         private var extensions:Array;
         
+        /**
+         * @royaleignorecoercion ASDocInterface 
+         */
         private function completeInterfaceHandler(event:Event):void
         {
             app.service.removeEventListener("complete", completeInterfaceHandler);
-            var data:ASDocClass = app.reviver.parse(app.service.data) as ASDocClass;
+            var data:ASDocInterface = app.reviver.parse(app.service.data) as ASDocInterface;
             if (_currentClassData == null)
             {
                 _currentClassData = data;
