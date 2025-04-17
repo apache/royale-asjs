@@ -488,7 +488,7 @@ limitations under the License.
 		        </js:Group>
 	            <js:Group>
 		            <js:beads>
-		                <js:HorizontalLayout />
+		                <js:OneFlexibleChildHorizontalLayoutForOverflow flexibleChild="inheritance" />
 		            </js:beads>
 		            <js:Label className="detailCaption" text="Inheritance" />
 		            <js:List className="inheritanceList" id="inheritance" dataProvider="{ASDocModel(applicationModel).inheritance}"
