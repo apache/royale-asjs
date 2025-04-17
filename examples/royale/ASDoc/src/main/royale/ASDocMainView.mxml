@@ -20,7 +20,7 @@ limitations under the License.
 <rs:DocPage xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:js="library://ns.apache.org/royale/basic"
 				xmlns:rs="library://ns.apache.org/royale/site"
-				xmlns:local="*"
+				xmlns:local="*" xmlns:models="org.apache.royale.html.beads.models.*"
 			    width="100%" height="100%"
 			    initComplete="applicationModel.addEventListener('packageListChanged', packagesReadyHandler)"
 			    >
@@ -494,29 +494,61 @@ limitations under the License.
 		            </js:List>
 		        </js:Group>
 	            <js:DataContainer id="attributes" className="attributeList" dataProvider="{ASDocModel(applicationModel).attributes}" 
-	                itemRenderer="AttributeRenderer" width="100%"/>
+	                itemRenderer="AttributeRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:DataContainer>
 	            <js:MultilineLabel id="description" className="description" html="{ASDocModel(applicationModel).description}" width="100%"/>
 	            <js:Label text="Public Properties" className="sectionLabel"/>
 	            <js:List className="summaryList" id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
-	                     itemRenderer="SummaryRenderer" width="100%"/>
+	                     itemRenderer="SummaryRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:List>
 	            <js:Label text="Public Methods" className="sectionLabel"/>
 	            <js:List className="summaryList" id="publicMethodList" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
-	                     itemRenderer="MethodSummaryRenderer" width="100%"/>
+	                     itemRenderer="MethodSummaryRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:List>
 	            <js:Label text="Events" className="sectionLabel"/>
 	            <js:List className="summaryList" id="publicEventList" dataProvider="{ASDocModel(applicationModel).publicEvents}" 
-	                     itemRenderer="EventSummaryRenderer" width="100%"/>
+	                     itemRenderer="EventSummaryRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:List>
 	            <js:Label text="Property Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="propertyDetails" dataProvider="{ASDocModel(applicationModel).publicProperties}" 
-	                              itemRenderer="PropertyDetailRenderer" width="100%"/>
+	                              itemRenderer="PropertyDetailRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:DataContainer>
 	            <js:Label text="Constructor Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="constructorDetails" dataProvider="{ASDocModel(applicationModel).constructorList}" 
-	                              itemRenderer="MethodDetailRenderer" width="100%"/>
+	                              itemRenderer="MethodDetailRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:DataContainer>
 	            <js:Label text="Method Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="MethodDetails" dataProvider="{ASDocModel(applicationModel).publicMethods}" 
-	                              itemRenderer="MethodDetailRenderer" width="100%"/>
+	                              itemRenderer="MethodDetailRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:DataContainer>
 	            <js:Label text="Event Details" className="sectionLabel"/>
 	            <js:DataContainer className="detailList" id="EventDetails" dataProvider="{ASDocModel(applicationModel).publicEvents}" 
-	                              itemRenderer="EventDetailRenderer" width="100%"/>
+	                              itemRenderer="EventDetailRenderer" width="100%">
+                    <js:beads>
+                        <models:ListPresentationModel rowHeight="NaN"/>
+                    </js:beads>
+                </js:DataContainer>
 	        </js:Group>
         </js:Container>
     </js:Group>	

@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <js:MXMLItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
                      xmlns:js="library://ns.apache.org/royale/basic"
-	 				 xmlns:html="library://ns.apache.org/royale/html"
+	 				 xmlns:html="library://ns.apache.org/royale/html" xmlns:models="org.apache.royale.html.beads.models.*"
 	  				 className="property"
                      width="100%">
     <fx:Script>
@@ -74,7 +74,11 @@ limitations under the License.
       <js:Label id="label" className="eventType" text="{ASDocClassEvents(data).type}" />
       <html:A id="link" className="eventTypeLink" text="{ASDocClassEvents(data).type}" href="{ASDocClassEvents(data).typehref}" />
     </js:Group>
-	<js:DataContainer id="attributes" className="attributeList" dataProvider="{ASDocClassEvents(data).attributes}" 
-	     itemRenderer="AttributeRenderer" width="100%"/>
+    <js:DataContainer id="attributes" className="attributeList" dataProvider="{ASDocClassEvents(data).attributes}" 
+        itemRenderer="AttributeRenderer" width="100%">
+      <js:beads>
+        <models:ListPresentationModel rowHeight="NaN"/>
+      </js:beads>
+    </js:DataContainer>
     <js:MultilineLabel id="description" width="100%" text="{obj.description}"/>
 </js:MXMLItemRenderer>
