@@ -24,6 +24,8 @@ limitations under the License.
                      width="100%">
     <fx:Script>
         <![CDATA[            
+            import org.apache.royale.utils.string.sanitizeHtml;
+
             private static var fakeBothPlatforms:Object = {"addEventListener": 1, "removeEventListener" : 1,
                 "hasEventListener": 1, "dispatchEvent": 1,
                 "toString": 1};
@@ -92,5 +94,5 @@ limitations under the License.
         <models:ListPresentationModel rowHeight="NaN"/>
       </js:beads>
     </js:DataContainer>
-    <js:MultilineLabel id="description" width="100%" text="{obj.description}"/>
+    <js:MultilineLabel id="description" width="100%" html="{sanitizeHtml(obj.description)}"/>
 </js:MXMLItemRenderer>

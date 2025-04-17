@@ -24,6 +24,8 @@ limitations under the License.
                      width="100%">
     <fx:Script>
         <![CDATA[
+			import org.apache.royale.utils.string.sanitizeHtml;
+
             
 			override public function set data(value:Object):void
 			{
@@ -80,5 +82,5 @@ limitations under the License.
         <models:ListPresentationModel rowHeight="NaN"/>
       </js:beads>
     </js:DataContainer>
-    <js:MultilineLabel id="description" width="100%" text="{obj.description}"/>
+    <js:MultilineLabel id="description" width="100%" html="{sanitizeHtml(obj.description)}"/>
 </js:MXMLItemRenderer>
