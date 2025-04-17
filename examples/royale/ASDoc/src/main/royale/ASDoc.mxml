@@ -35,6 +35,10 @@ limitations under the License.
             verticalAlign: bottom;
         }
 
+        body {
+            overflow: hidden;
+        }
+
         pre {
             overflow: auto;
         }
@@ -56,5 +60,6 @@ limitations under the License.
         </js:HTTPService>
         <js:JSONReviver id="reviver" />
         <js:ViewSourceContextMenuOption />
+        <js:BrowserResizeApplicationListener enableScroll="false"/>
     </js:beads>
 </js:Application>
