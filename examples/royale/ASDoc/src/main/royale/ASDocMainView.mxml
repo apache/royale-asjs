@@ -313,10 +313,11 @@ limitations under the License.
         }
         
         .inheritanceList {
-		IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
-		IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory"); /* no selection */
-		        }
-        
+            border: none;
+            IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
+            IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory"); /* no selection */
+        }
+
         .summaryList {
         	margin-bottom: 20px;
         	border-style: solid;
