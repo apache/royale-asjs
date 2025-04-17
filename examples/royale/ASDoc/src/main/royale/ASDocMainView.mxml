@@ -32,6 +32,7 @@ limitations under the License.
             import org.apache.royale.events.DetailEvent;
             import org.apache.royale.html.PopUpList;
             import org.apache.royale.utils.PointUtils;
+            import org.apache.royale.utils.string.sanitizeHtml;
 			
             private var packagesReady:Boolean = false;
             
@@ -504,7 +505,7 @@ limitations under the License.
                         <models:ListPresentationModel rowHeight="NaN"/>
                     </js:beads>
                 </js:DataContainer>
-	            <js:MultilineLabel id="description" className="description" html="{ASDocModel(applicationModel).description}" width="100%"/>
+	            <js:MultilineLabel id="description" className="description" html="{sanitizeHtml(ASDocModel(applicationModel).description)}" width="100%"/>
 	            <js:Label text="Public Properties" className="sectionLabel"/>
 	            <js:List className="summaryList" id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
 	                     itemRenderer="SummaryRenderer" width="100%">
