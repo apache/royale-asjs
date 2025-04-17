@@ -328,6 +328,10 @@ limitations under the License.
         .detailList {
         	margin-bottom: 20px;
         }
+
+        .signatureParamsList {
+            IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.HorizontalListItemRendererInitializer");
+        }
         
         .property {
         	padding-left: 20px;

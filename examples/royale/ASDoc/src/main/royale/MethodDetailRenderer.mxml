@@ -75,12 +75,13 @@ limitations under the License.
       </js:beads>
       <js:Label className="propertyQName" text="{ASDocClassMembers(data).qname}" />
       <js:Label text="(" />
-  	  <js:DataContainer id="params" dataProvider="{ASDocClassMembers(data).params}" style="border-style:none"
-	     itemRenderer="ParameterRenderer">
-	    <js:beads>
-	      <js:HorizontalLayout />
-	    </js:beads>
-	  </js:DataContainer>
+      <js:DataContainer id="params" className="signatureParamsList" dataProvider="{ASDocClassMembers(data).params}" style="border-style:none"
+        itemRenderer="ParameterRenderer">
+        <js:beads>
+          <js:HorizontalLayout />
+          <models:ListPresentationModel rowHeight="NaN"/>
+        </js:beads>
+      </js:DataContainer>
       <js:Label text="):" />
       <js:Label id="label" className="propertyType" text="{ASDocClassMembers(data).return}" />
       <html:A id="link" className="propertyTypeLink" text="{ASDocClassMembers(data).return}" href="{ASDocClassMembers(data).returnhref}" />
