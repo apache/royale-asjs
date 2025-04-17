@@ -49,9 +49,9 @@ import  org.apache.royale.html.DataContainer;
 		override public function set text(value:String):void
 		{
 			var last:Boolean = false;
-			if (itemRendererOwnerView)
+			if (parent is DataContainer)
 			{
-				var n:int = (itemRendererOwnerView.host as DataContainer).dataProvider.length;
+				var n:int = (parent as DataContainer).dataProvider.length;
 				last = n == index + 1; 
 			}			
 			var html:String = "<span class='paramName'>" + data.name + ":</span>";
