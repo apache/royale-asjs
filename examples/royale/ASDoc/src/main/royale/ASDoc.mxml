@@ -25,6 +25,7 @@ limitations under the License.
                    width="900" height="500"
                    >
 	<fx:Style>
+        @namespace "http://www.w3.org/1999/xhtml";
 		@namespace basic "library://ns.apache.org/royale/basic";
 		
 		global {
@@ -32,6 +33,10 @@ limitations under the License.
 		}
         basic|DataContainer{
             verticalAlign: bottom;
+        }
+
+        pre {
+            overflow: auto;
         }
 	</fx:Style>
     <js:valuesImpl>
