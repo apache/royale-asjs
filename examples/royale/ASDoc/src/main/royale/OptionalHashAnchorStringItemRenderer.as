@@ -53,7 +53,7 @@ import  org.apache.royale.html.List;
 		override public function set text(value:String):void
 		{
 			var last:Boolean = false;
-			if (itemRendererOwnerView)
+			if (parent is List)
 			{
 				var n:int = (parent as List).dataProvider.length;
 				last = n == index + 1; 
