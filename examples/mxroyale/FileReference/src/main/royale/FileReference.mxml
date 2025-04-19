@@ -32,7 +32,7 @@ limitations under the License.
 		private var uploadURL:URLRequest;
 		private var file:FileReference;
 
-		private function clickHandler(event:MouseEvent):void
+		private function clickHandler(event:Event):void
 		{
 		    uploadURL = new URLRequest();
 		    uploadURL.url = "http://www.[yourDomain].com/yourUploadHandlerScript.cfm";

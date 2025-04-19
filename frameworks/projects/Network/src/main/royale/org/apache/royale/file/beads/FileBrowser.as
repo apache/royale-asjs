@@ -81,7 +81,7 @@ package org.apache.royale.file.beads
 			delegate = document.createElement('input') as WrappedHTMLElement;
 			delegate.setAttribute('type', 'file');
 			goog.events.listen(delegate, 'change', fileChangeHandler);
-			}
+		}
 		
 		/**
 		 *  @private
@@ -135,8 +135,16 @@ package org.apache.royale.file.beads
 				window.addEventListener("keydown", keyHandler);
 				window.addEventListener("mousemove", mouseHandler);
 				window.addEventListener("mousedown", mouseHandler);
-				delegate.click();
+				focusedButton.addEventListener("click", clickHandler);	
+				focusedButton.click();
+				focusedButton.removeEventListener("click", clickHandler);	
 			}
+		}
+		
+		COMPILE::JS
+		private function clickHandler(e:Object):void
+		{
+			delegate.click();
 		}
 		
 		COMPILE::JS
@@ -147,7 +155,7 @@ package org.apache.royale.file.beads
 			cleanupWindow();
 		}
 
-		public static const CANCEL_TIMEOUT:Number = 150;
+		public static const CANCEL_TIMEOUT:Number = 250;
 		
 		COMPILE::JS
 		private function focusHandler(e:Object):void
