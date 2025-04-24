@@ -108,8 +108,10 @@ package org.apache.royale.file.beads
 		
 		COMPILE::JS
 		private var focusedButton:WrappedHTMLElement;
+		//COMPILE::JS
+		//private var interval:int = -1;
 		COMPILE::JS
-		private var interval:int = -1;
+		private var proxyButton:HTMLButtonElement;
 		
 		/**
 		 *  Open up the system file browser. A user selection will trigger a 'modelChanged' event on the strand.
@@ -130,14 +132,23 @@ package org.apache.royale.file.beads
 			{
 				focusedButton = document.activeElement as WrappedHTMLElement;
 				//trace("activeElement is: " + focusedButton);
-				focusedButton.addEventListener("blur", blurHandler);
-				focusedButton.addEventListener("focus", focusHandler);				
+				// Listen for cancellation
+				if (focusedButton) {
+					focusedButton.addEventListener("blur", blurHandler);
+					focusedButton.addEventListener("focus", focusHandler);
+				}
 				window.addEventListener("keydown", keyHandler);
 				window.addEventListener("mousemove", mouseHandler);
 				window.addEventListener("mousedown", mouseHandler);
-				focusedButton.addEventListener("click", clickHandler);	
-				focusedButton.click();
-				focusedButton.removeEventListener("click", clickHandler);	
+
+				if (isElementClickFriendly(focusedButton)) {
+					focusedButton.addEventListener("click", clickHandler);
+					focusedButton.click();
+					focusedButton.removeEventListener("click", clickHandler);
+				} else {
+					createProxyButton();
+					proxyButton.click();
+				}
 			}
 		}
 		
@@ -146,7 +157,37 @@ package org.apache.royale.file.beads
 		{
 			delegate.click();
 		}
+
+		COMPILE::JS
+		private function createProxyButton():void
+		{
+    		if (proxyButton) return;
+
+			proxyButton = document.createElement("button") as HTMLButtonElement;
+			proxyButton.style.position = "absolute";
+			proxyButton.style.left = "-9999px";
+			proxyButton.style.width = "1px";
+			proxyButton.style.height = "1px";
+			proxyButton.style.opacity = "0";
+			proxyButton.style.pointerEvents = "auto";
+			proxyButton.onclick = function():void {
+				delegate.click();
+			};
+			document.body.appendChild(proxyButton);
+		}
 		
+		COMPILE::JS
+		private function removeProxyButton():void
+		{
+			if (proxyButton) {
+				proxyButton.onclick = null;
+				if (proxyButton.parentElement) {
+					proxyButton.parentElement.removeChild(proxyButton);
+				}
+				proxyButton = null;
+			}
+		}
+
 		COMPILE::JS
 		private function blurHandler(e:Object):void
 		{
@@ -215,6 +256,7 @@ package org.apache.royale.file.beads
 			else {
 				host.dispatchEvent(new Event("cancel"));
 				//trace("FileReference cancel");
+				removeProxyButton();
 			}
 		}
 						
@@ -252,6 +294,53 @@ package org.apache.royale.file.beads
 			var fileModel:IFileModel = host.model as IFileModel;
 			fileModel.fileReference = (delegate as HTMLInputElement).files[0];
 			host.dispatchEvent(new Event("modelChanged"));
+    		
+			removeProxyButton();
+		}
+
+		COMPILE::JS
+		/**
+		 * Determines whether an HTML element can be considered click-friendly,
+		 * meaning it is likely to respond properly to a programmatic `.click()` call.
+		 * Useful for detecting elements that can trigger "user activation" in browsers like Chrome.
+		 *
+		 * @param el The WrappedHTMLElement to test.
+		 * @return true if the element is clickable and likely to trigger user interaction events.
+		 */
+		private function isElementClickFriendly(el:WrappedHTMLElement):Boolean
+		{
+			if (!el) return false;
+
+			// 1. Style checks: ensure the element is visible and interactive
+			var style:CSSStyleDeclaration = getComputedStyle(el, null);
+			if (style.pointerEvents == "none" || style.visibility == "hidden" || style.display == "none")
+				return false;
+
+			// 2. Structural checks: avoid elements that are disabled or not in the layout flow
+			if (el.getAttribute("disabled") || el.offsetParent === null)
+				return false;
+
+			// 3. Layout checks: ensure the element has a visible bounding box inside the viewport
+			var rect:Object = el.getBoundingClientRect();
+			var inViewport:Boolean = rect.width > 0 && rect.height > 0 &&
+									rect.bottom >= 0 && rect.top <= window.innerHeight &&
+									rect.right >= 0 && rect.left <= window.innerWidth;
+
+			if (!inViewport)
+				return false;
+
+			// 4. Semantic checks: known interactive elements or those with keyboard/tab access
+			var tag:String = el.tagName.toLowerCase();
+			var role:String = el.getAttribute("role");
+
+			if (tag == "button" || tag == "a" || tag == "input" || tag == "label") return true;
+			if (el.hasAttribute("tabindex")) return true;
+			if (role == "button" || role == "link" || role == "checkbox" || role == "menuitem") return true;
+
+			// 5. Behavior check: detect programmatically attached handlers
+			if (typeof(el.onclick) == "function" || typeof(el.click) == "function") return true;
+
+			return false;
 		}
 		
 	}
