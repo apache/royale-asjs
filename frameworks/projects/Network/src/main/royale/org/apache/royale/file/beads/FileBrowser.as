@@ -81,7 +81,7 @@ package org.apache.royale.file.beads
 			delegate = document.createElement('input') as WrappedHTMLElement;
 			delegate.setAttribute('type', 'file');
 			goog.events.listen(delegate, 'change', fileChangeHandler);
-			}
+		}
 		
 		/**
 		 *  @private
@@ -108,8 +108,10 @@ package org.apache.royale.file.beads
 		
 		COMPILE::JS
 		private var focusedButton:WrappedHTMLElement;
+		//COMPILE::JS
+		//private var interval:int = -1;
 		COMPILE::JS
-		private var interval:int = -1;
+		private var proxyButton:HTMLButtonElement;
 		
 		/**
 		 *  Open up the system file browser. A user selection will trigger a 'modelChanged' event on the strand.
@@ -130,15 +132,58 @@ package org.apache.royale.file.beads
 			{
 				focusedButton = document.activeElement as WrappedHTMLElement;
 				//trace("activeElement is: " + focusedButton);
-				focusedButton.addEventListener("blur", blurHandler);
-				focusedButton.addEventListener("focus", focusHandler);				
+				// Listen for cancellation
+				if (focusedButton) {
+					focusedButton.addEventListener("blur", blurHandler);
+					focusedButton.addEventListener("focus", focusHandler);
+				}
 				window.addEventListener("keydown", keyHandler);
 				window.addEventListener("mousemove", mouseHandler);
 				window.addEventListener("mousedown", mouseHandler);
-				delegate.click();
+
+				createProxyButton();
+				proxyButton.click();
 			}
 		}
 		
+		COMPILE::JS
+		private function clickHandler(e:Object):void
+		{
+			delegate.click();
+		}
+
+		COMPILE::JS
+		private function createProxyButton():void
+		{
+    		if (proxyButton) return;
+
+			proxyButton = document.createElement("button") as HTMLButtonElement;
+			proxyButton.style.position = "absolute";
+			proxyButton.style.left = "-9999px";
+			proxyButton.style.top = "-9999px";
+			proxyButton.style.width = "1px";
+			proxyButton.style.height = "1px";
+			proxyButton.style.opacity = "0";
+			proxyButton.style.pointerEvents = "auto";
+			proxyButton.setAttribute("aria-hidden", "true");
+			proxyButton.tabIndex = -1;
+			proxyButton.onclick = function():void {
+				delegate.click();
+			};
+		}
+		
+		COMPILE::JS
+		private function removeProxyButton():void
+		{
+			if (proxyButton) {
+				proxyButton.onclick = null;
+				if (proxyButton.parentElement) {
+					proxyButton.parentElement.removeChild(proxyButton);
+				}
+				proxyButton = null;
+			}
+		}
+
 		COMPILE::JS
 		private function blurHandler(e:Object):void
 		{
@@ -147,7 +192,7 @@ package org.apache.royale.file.beads
 			cleanupWindow();
 		}
 
-		public static const CANCEL_TIMEOUT:Number = 150;
+		public static const CANCEL_TIMEOUT:Number = 250;
 		
 		COMPILE::JS
 		private function focusHandler(e:Object):void
@@ -207,6 +252,7 @@ package org.apache.royale.file.beads
 			else {
 				host.dispatchEvent(new Event("cancel"));
 				//trace("FileReference cancel");
+				removeProxyButton();
 			}
 		}
 						
@@ -244,7 +290,8 @@ package org.apache.royale.file.beads
 			var fileModel:IFileModel = host.model as IFileModel;
 			fileModel.fileReference = (delegate as HTMLInputElement).files[0];
 			host.dispatchEvent(new Event("modelChanged"));
-		}
-		
+    		
+			removeProxyButton();
+		}		
 	}
 }
