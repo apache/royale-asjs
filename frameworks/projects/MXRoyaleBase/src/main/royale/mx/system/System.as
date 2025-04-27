@@ -84,13 +84,25 @@ package mx.system
 			return 0;
 		}
 		
-		
+		COMPILE::JS
 		public static var _useCodePage:Boolean = false;
 		public static function get useCodePage():Boolean {
-			return _useCodePage;
+			COMPILE::JS{
+				return _useCodePage;
+			}
+			COMPILE::SWF
+			{
+				return flash.system.System.useCodePage;
+			}
 		}
 		public static function set useCodePage(value:Boolean):void {
-			_useCodePage = value;
+			COMPILE::JS{
+				_useCodePage = value;
+			}
+			COMPILE::SWF
+			{
+				flash.system.System.useCodePage = value;
+			}
 		}
 	}
 }

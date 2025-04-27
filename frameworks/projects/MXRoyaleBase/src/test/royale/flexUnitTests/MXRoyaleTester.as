@@ -37,6 +37,8 @@ package flexUnitTests
         public var flexSDK_ObjectUtil_FLEX_34852_Tests:FlexSDK_ObjectUtil_FLEX_34852_Tests;
         public var flexSDK_ObjectUtil_Compare_Tests:FlexSDK_ObjectUtil_Compare_Tests;
         public var timerEmulationTests:TimerEmulationTest;
+        public var decodingTest:DecodingTest;
+        public var encodingTest:EncodingTest;
         
     }
     

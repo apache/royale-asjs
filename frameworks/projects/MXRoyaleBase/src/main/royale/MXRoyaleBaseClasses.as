@@ -270,9 +270,12 @@ internal class MXRoyaleBaseClasses
 	import mx.utils.Timer;Timer;
 	import mx.utils.UIDUtil;UIDUtil;
 	import mx.utils.URLUtil;URLUtil;
+	import mx.utils.unescapeMultiByte;unescapeMultiByte;
+	import mx.utils.escapeMultiByte;escapeMultiByte;
 	import mx.utils.XMLNotifier;XMLNotifier;
 	import mx.utils.XMLUtil;XMLUtil;
 	import mx.utils.RoyaleUtil; RoyaleUtil;
+	
 
 
 
