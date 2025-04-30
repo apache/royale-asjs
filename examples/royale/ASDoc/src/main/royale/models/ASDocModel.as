@@ -839,6 +839,10 @@ package models
         [Bindable("currentDataChanged")]
         public function get description():String
         {
+            if (!_currentClassData)
+            {
+                return null;
+            }
             return _currentClassData.description;
         }
         
