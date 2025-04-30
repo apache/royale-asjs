@@ -86,6 +86,10 @@ package controllers
         {
             var sym:String = mainView.currentPackage;
             model.currentPackage = sym;
+            if (mainView.currentState == "packageDetail")
+            {
+                model.currentClass = null;
+            }
         }
 
         private function classChangedHandler(event:Event):void
