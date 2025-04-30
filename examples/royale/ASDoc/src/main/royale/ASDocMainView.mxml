@@ -154,6 +154,7 @@ limitations under the License.
             		}
             		else
             		{
+            	        currentState = "packageDetail";
 						packageList.selectedItem = hash;
                         router.title = hash;
 						packageChangedHandler();
@@ -415,6 +416,7 @@ limitations under the License.
 	  <js:State name="packages" />
       <js:State name="loading" />
 	  <js:State name="classDetail" />
+	  <js:State name="packageDetail" />
 	</rs:states>
     <rs:beads>
         <js:ViewDataBinding />
@@ -458,12 +460,19 @@ limitations under the License.
                 <js:ScrollingViewport />
             </js:beads>
 	        <js:Label className="paneTitle" id="baseName" width="100%" style="fontSize:20"
-	        	text="{currentState == 'packages' ? 'All Packages' : ASDocModel(applicationModel).currentClass}" />
+	        	text="{currentState == 'packages' ? 'All Packages' : currentState == 'packageDetail' ? ASDocModel(applicationModel).currentPackage : ASDocModel(applicationModel).currentClass}" />
             <js:Group id="packageListPane" width="100%" includeIn="packages">
 	            <js:beads>
 	                <js:VerticalLayout />
 	            </js:beads>
 	            <js:List className="paneList" id="packagePaneList" dataProvider="{ASDocModel(applicationModel).packageList}" 
+	                itemRenderer="AltBGRenderer"/>
+            </js:Group>
+            <js:Group id="pacakgeDetailListPane" width="100%" includeIn="packageDetail">
+	            <js:beads>
+	                <js:VerticalLayout />
+	            </js:beads>
+	            <js:List className="paneList" id="packageDetailPaneList" dataProvider="{ASDocModel(applicationModel).classList}" 
 	                itemRenderer="AltBGRenderer"/>
             </js:Group>
             <js:Group id="loadingPane" width="100%" includeIn="loading">
