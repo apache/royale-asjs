@@ -114,6 +114,7 @@ limitations under the License.
             	  currentState = "packages";
             	else
             	{
+                    hash = decodeURIComponent(hash);
                     var delimiter:String = ASDocModel.DELIMITER;
             		var c:int = hash.indexOf(delimiter);
                     if (c == -1)
