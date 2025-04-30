@@ -518,7 +518,7 @@ package models
                 app.service.url = computeFileName(data.baseClassname);
                 app.service.send();
             }
-            else if (data.type == "interface" && data.baseInterfaceNames && 
+            else if (data.type == "interface" && data.baseInterfaceNames && data.baseInterfaceNames.length > 0 &&
             	data.baseInterfaceNames[0].indexOf("flash.") != 0 && data.baseInterfaceNames[0].indexOf("goog.") != 0)
             {
                 app.service.addEventListener("ioError", classIOErrorHandler);
