@@ -376,7 +376,16 @@ package models
                 currentPlatform = platformList.shift();
                 app.service.addEventListener("ioError", classIOErrorHandler);
                 app.service.addEventListener("complete", classCompleteHandler);
-                app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                var urlQname:String;
+                if (_currentPackage != "Top Level")
+                {
+                    urlQname = _currentPackage + "." + _currentClass;
+                }
+                else
+                {
+                    urlQname = _currentClass;
+                }
+                app.service.url = computeFileName(urlQname);
                 app.service.send();
                 _currentClassData = null;
             }
@@ -540,7 +549,16 @@ package models
                 currentPlatform = platformList.shift();
                 app.service.addEventListener("ioError", classIOErrorHandler);
                 app.service.addEventListener("complete", classCompleteHandler);
-                app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                var urlQname:String;
+                if (_currentPackage != "Top Level")
+                {
+                    urlQname = _currentPackage + "." + _currentClass;
+                }
+                else
+                {
+                    urlQname = _currentClass;
+                }
+                app.service.url = computeFileName(urlQname);
                 app.service.send();                    
             }
             else
@@ -688,7 +706,16 @@ package models
             {
                 currentPlatform = platformList.shift();
                 app.service.addEventListener("complete", completeInterfaceHandler);
-                app.service.url = computeFileName(_currentPackage + "." + _currentClass);
+                var urlQname:String;
+                if (_currentPackage != "Top Level")
+                {
+                    urlQname = _currentPackage + "." + _currentClass;
+                }
+                else
+                {
+                    urlQname = _currentClass;
+                }
+                app.service.url = computeFileName(urlQname);
                 app.service.send();                                        
             }
             else
