@@ -873,6 +873,24 @@ package models
             return _currentClassData.description;
         }
         
+        [Bindable("currentDataChanged")]
+        public function get currentSymbolType():String
+        {
+            if (!_currentClassData)
+            {
+                return null;
+            }
+            switch (_currentClassData.type)
+            {
+                case "class":
+                    return "Class";
+                case "interface":
+                    return "Interface";
+                default:
+                    return "Symbol";
+            }
+        }
+        
         private var _inheritance:Array;
         
         [Bindable("currentDataChanged")]

@@ -498,7 +498,7 @@ limitations under the License.
 		            <js:beads>
 		                <js:HorizontalLayout />
 		            </js:beads>
-		            <js:Label className="detailCaption" text="Class" />
+		            <js:Label className="detailCaption" text="{ASDocModel(applicationModel).currentSymbolType}" />
 		            <js:Label className="detailInfo" text="{ASDocModel(applicationModel).currentClass}" />
 		        </js:Group>
 	            <js:Group>
