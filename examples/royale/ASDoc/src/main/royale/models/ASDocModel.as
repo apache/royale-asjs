@@ -334,6 +334,12 @@ package models
 			if (value != _currentPackage)
 			{
                 _currentPackage = value;
+                // if the package changes, the current class will no longer
+                // be displayed, so clear it. this also ensures that classes
+                // with the same base name, but in different packages, can
+                // navigate between each other because the currentClass setter
+                // checks only the base name changing.
+                currentClass = null;
                 var packageData:Object = allPackages[value];
                 var arr:Array = [];
                 for (var p:String in packageData)
@@ -370,24 +376,27 @@ package models
             if (value != _currentClass)
             {
                 _currentClass = value;
+                _currentClassData = null;
                 var packageData:Object = allPackages[_currentPackage];
                 dispatchEvent(new Event("currentClassChanged"));
-                platformList = platforms.slice();
-                currentPlatform = platformList.shift();
-                app.service.addEventListener("ioError", classIOErrorHandler);
-                app.service.addEventListener("complete", classCompleteHandler);
-                var urlQname:String;
-                if (_currentPackage != "Top Level")
+                if (_currentClass)
                 {
-                    urlQname = _currentPackage + "." + _currentClass;
+                    platformList = platforms.slice();
+                    currentPlatform = platformList.shift();
+                    app.service.addEventListener("ioError", classIOErrorHandler);
+                    app.service.addEventListener("complete", classCompleteHandler);
+                    var urlQname:String;
+                    if (_currentPackage != "Top Level")
+                    {
+                        urlQname = _currentPackage + "." + _currentClass;
+                    }
+                    else
+                    {
+                        urlQname = _currentClass;
+                    }
+                    app.service.url = computeFileName(urlQname);
+                    app.service.send();
                 }
-                else
-                {
-                    urlQname = _currentClass;
-                }
-                app.service.url = computeFileName(urlQname);
-                app.service.send();
-                _currentClassData = null;
             }
         }
         
