@@ -91,7 +91,7 @@ package org.apache.royale.icons
                 addClass('fa');
         }
 
-        protected var _faStyle:String = REGULAR;
+        protected var _faStyle:String = SOLID;
         protected var _oldFaStyle:String;
         /**
          *  the font awesome 5 style.
