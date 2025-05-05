@@ -21,7 +21,7 @@
 
 <project name="BE0007_Selecting_options_from_a_group_of_jewel_checkbox_controls" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0007_Selecting_options_from_a_group_of_jewel_checkbox_controls" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

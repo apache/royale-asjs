@@ -21,7 +21,7 @@
 
 <project name="BE0010_Customization_through_the_Royale_API" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0011_Loading_external_data_through_HTTPService" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
@@ -41,6 +41,17 @@
         <copy todir="${basedir}/bin/js-release/assets" failonerror="false">
             <fileset dir="${basedir}/src/main/resources/assets">
                 <include name="**" />
+            </fileset>
+        </copy>
+        <!-- copy the mock JSON response -->
+        <copy todir="${basedir}/bin/js-debug" failonerror="false">
+            <fileset dir="${basedir}/src/main/resources">
+                <include name="*.json" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin/js-release" failonerror="false">
+            <fileset dir="${basedir}/src/main/resources">
+                <include name="*.json" />
             </fileset>
         </copy>
     </target>

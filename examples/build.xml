@@ -127,6 +127,20 @@
         <ant dir="${basedir}/mxroyale/ResourceManagerExample"/>
         <ant dir="${basedir}/native/ButtonExample"/>
         <ant dir="${basedir}/native/USStatesMap"/>
+        <ant dir="${basedir}/blog/BE0001_Hello_World"/>
+        <ant dir="${basedir}/blog/BE0002_Using_Jewel_Alert_Control"/>
+        <ant dir="${basedir}/blog/BE0003_Using_Jewel_Slider_Control"/>
+        <ant dir="${basedir}/blog/BE0004_Adding_an_item_to_a_Jewel_List"/>
+        <ant dir="${basedir}/blog/BE0005_Creating_a_group_of_Jewel_RadioButtons"/>
+        <ant dir="${basedir}/blog/BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label"/>
+        <ant dir="${basedir}/blog/BE0007_Selecting_options_from_a_group_of_jewel_checkbox_controls"/>
+        <ant dir="${basedir}/blog/BE0008_Using_View_States_to_show_or_hide_content"/>
+        <ant dir="${basedir}/blog/BE0009_Using_an_Item_Renderer_with_a_List"/>
+        <ant dir="${basedir}/blog/BE0010_Customization_through_the_Royale_API"/>
+        <ant dir="${basedir}/blog/BE0011_Loading_external_data_through_HTTPService"/>
+        <ant dir="${basedir}/blog/BE0012_Using_external_javascript_libraries_in_Apache_Royale"/>
+        <ant dir="${basedir}/blog/BE0013_Dividing_an_Apache_Royale_application_with_modules"/>
+        <ant dir="${basedir}/blog/BE0014_Working_with_vector_graphics"/>
     </target>
     
     <!--

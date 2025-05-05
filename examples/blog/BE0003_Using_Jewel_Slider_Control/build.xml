@@ -21,7 +21,7 @@
 
 <project name="BE0003_Using_Jewel_Slider_Control" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0003_Using_Jewel_Slider_Control" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

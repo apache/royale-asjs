@@ -21,7 +21,7 @@
 
 <project name="BE0004_Adding_an_item_to_a_Jewel_List" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0004_Adding_an_item_to_a_Jewel_List" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

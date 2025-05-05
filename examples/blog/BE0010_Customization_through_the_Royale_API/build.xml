@@ -21,7 +21,7 @@
 
 <project name="BE0010_Customization_through_the_Royale_API" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0010_Customization_through_the_Royale_API" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

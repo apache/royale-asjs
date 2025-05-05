@@ -21,7 +21,7 @@
 
 <project name="BE0009_Using_an_Item_Renderer_with_a_List" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0009_Using_an_Item_Renderer_with_a_List" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

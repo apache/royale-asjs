@@ -21,7 +21,7 @@
 
 <project name="BE0008_Using_View_States_to_show_or_hide_content" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0008_Using_View_States_to_show_or_hide_content" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

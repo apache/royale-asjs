@@ -21,7 +21,7 @@
 
 <project name="BE0012_Using_external_javascript_libraries_in_Apache_Royale" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
+    <property name="example" value="BE0012_Using_external_javascript_libraries_in_Apache_Royale" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
@@ -41,6 +41,17 @@
         <copy todir="${basedir}/bin/js-release/assets" failonerror="false">
             <fileset dir="${basedir}/src/main/resources/assets">
                 <include name="**" />
+            </fileset>
+        </copy>
+        <!-- copy the mock JSON response -->
+        <copy todir="${basedir}/bin/js-debug" failonerror="false">
+            <fileset dir="${basedir}/src/main/resources">
+                <include name="as3code.txt" />
+            </fileset>
+        </copy>
+        <copy todir="${basedir}/bin/js-release" failonerror="false">
+            <fileset dir="${basedir}/src/main/resources">
+                <include name="as3code.txt" />
             </fileset>
         </copy>
     </target>
