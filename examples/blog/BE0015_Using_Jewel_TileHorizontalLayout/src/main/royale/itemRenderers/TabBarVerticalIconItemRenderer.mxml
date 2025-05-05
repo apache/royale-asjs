@@ -42,7 +42,7 @@ limitations under the License.
 
     <j:VGroup gap="3" itemsHorizontalAlign="itemsCenter">
         <js:FontAwesomeIcon text="{tabButton.icon}" 
-                            faStyle="{FontAwesomeIcon.LIGHT}" 
+                            faStyle="{FontAwesomeIcon.SOLID}" 
                             relativeSize="{FontAwesomeIcon.SIZE_LG}"/>
         <html:Span text="{tabButton.label}"/>
     </j:VGroup>

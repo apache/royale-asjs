@@ -96,15 +96,15 @@
 
                                 <js:ArrayList>
                                     <fx:Array>
-                                        <vos:IconListVO label="Ank" icon="{FontAwesome5IconType.ANKH}"/>
+                                        <vos:IconListVO label="Ankh" icon="{FontAwesome5IconType.ANKH}"/>
                                         <vos:IconListVO label="Atom" icon="{FontAwesome5IconType.ATOM}"/>
                                         <vos:IconListVO label="Burn" icon="{FontAwesome5IconType.BURN}"/>
                                         <vos:IconListVO label="Candy Cane" icon="{FontAwesome5IconType.CANDY_CANE}"/>
                                         <vos:IconListVO label="Fire" icon="{FontAwesome5IconType.FIRE_ALT}"/>
-                                        <vos:IconListVO label="Duck" icon="{FontAwesome5IconType.DUCK}"/>
+                                        <vos:IconListVO label="Dog" icon="{FontAwesome5IconType.DOG}"/>
                                         <vos:IconListVO label="Cloud And Moon" icon="{FontAwesome5IconType.CLOUD_MOON}"/>
                                         <vos:IconListVO label="Europe" icon="{FontAwesome5IconType.GLOBE_EUROPE}"/>
-                                        <vos:IconListVO label="Electric Guitar" icon="{FontAwesome5IconType.GUITAR_ELECTRIC}"/>
+                                        <vos:IconListVO label="Guitar" icon="{FontAwesome5IconType.GUITAR}"/>
                                         <vos:IconListVO label="Mask" icon="{FontAwesome5IconType.MASK}"/>
                                         <vos:IconListVO label="Skull" icon="{FontAwesome5IconType.SKULL}"/>
                                         <vos:IconListVO label="Spider" icon="{FontAwesome5IconType.SPIDER}"/>

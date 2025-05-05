@@ -54,7 +54,11 @@
 
                 </j:CardPrimaryContent>
                 <j:CardActions itemsHorizontalAlign="itemsRight">
-                    <j:Button text="Load a Module" emphasis="primary" click="loadModule()"/>
+                    <j:IconButton text="Load a Module" emphasis="primary" click="loadModule()">
+                        <j:icon>
+                            <js:MaterialIcon text="{MaterialIconType.DOWNLOAD}"/>
+                        </j:icon>
+                    </j:IconButton>
                 </j:CardActions>
              </j:Card>
         </j:View>

@@ -39,7 +39,7 @@ limitations under the License.
     </j:beads>
 
     <js:FontAwesomeIcon text="{iconList.icon}"
-                    faStyle="{FontAwesomeIcon.DUOTONE}" 
+                    faStyle="{FontAwesomeIcon.SOLID}" 
                     relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
 
     <j:Label html="{text}"/>
