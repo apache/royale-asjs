@@ -55,7 +55,9 @@
                 </j:CardHeader>
                 <j:CardPrimaryContent>
 
-                    <j:Label html="This example uses hljs library to highligh a piece of code"/>
+                    <j:Label>
+                        <j:html><![CDATA[This example uses the <strong>hljs</strong> library to highlight some code]]></j:html>
+                    </j:Label>
 
                     <html:Pre height="300" width="100%" style="background-color: white">
                         <html:beads>

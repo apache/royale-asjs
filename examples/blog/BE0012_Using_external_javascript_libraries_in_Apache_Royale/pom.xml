@@ -43,8 +43,60 @@
           <targets>${royale.targets}</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
-          <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>
+          <additionalCompilerOptions>
+            -source-map=true;
+            -js-include-script+=${basedir}/src/main/assembly/third-party/highlight.js/9.12.0/highlight.min.js;
+            -js-include-css+=${basedir}/src/main/assembly/third-party/highlight.js/9.12.0/atom-one-dark.min.css;
+          </additionalCompilerOptions>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+        <version>0.16.1</version>
+        <configuration>
+          <excludesFile>${project.basedir}/rat-excludes.txt</excludesFile>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>copy-resources-debug</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${compiler.output-dir-debug}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/resources</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>copy-resources-release</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <!-- Copy the assets to the assets output directory -->
+              <outputDirectory>${compiler.output-dir-release}</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src/main/resources</directory>
+                  <filtering>true</filtering>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
