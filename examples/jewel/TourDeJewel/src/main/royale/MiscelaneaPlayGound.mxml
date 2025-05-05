@@ -187,26 +187,14 @@ limitations under the License.
                         <j:VGroup gap="3">
                             <html:H3 text="Styles (FAv5.0)" className="secondary-normal"/>
 
-
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.SOLID}"/>
+                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.USER}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.SOLID}"/>
                             <j:Label text="Solid Style"/>
 
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}"/>
+                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.USER}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.REGULAR}"/>
                             <j:Label text="Regular Style"/>
-
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.LIGHT}"/>
-                            <j:Label text="Light Style"/>
-
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.VIRUS}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.DUOTONE}"/>
-                            <j:Label text="Duotone Style"/>
                             
                             <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.TWITTER_SQUARE}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.BRANDS}"/>
                             <j:Label text="Brands Style"/>
-                            
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.PUMP_SOAP}" relativeSize="{FontAwesomeIcon.SIZE_X3}"/>
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.BACTERIA}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.LIGHT}"/>
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.VIRUS_SLASH}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.DUOTONE}"/>
-                            <js:FontAwesomeIcon className="primary-normal" text="{FontAwesome5IconType.FINGERPRINT}" relativeSize="{FontAwesomeIcon.SIZE_X3}" faStyle="{FontAwesomeIcon.DUOTONE}"/>
 
                             <html:H3 text="IconButton" className="secondary-normal"/>
 
@@ -239,8 +227,8 @@ limitations under the License.
 
                             <j:ToggleButton emphasis="emphasized" text="Go Down" selectedText="Go Up">
                                 <j:icon>
-                                    <js:FontAwesomeToggleIcon text="{FontAwesome5IconType.ANGLE_DOUBLE_DOWN}" faStyle="{FontAwesomeIcon.LIGHT}"
-                                                            selectedText="{FontAwesome5IconType.ANGLE_DOUBLE_UP}" faSelectedStyle="{FontAwesomeIcon.DUOTONE}"
+                                    <js:FontAwesomeToggleIcon text="{FontAwesome5IconType.ANGLE_DOUBLE_DOWN}" faStyle="{FontAwesomeIcon.SOLID}"
+                                                            selectedText="{FontAwesome5IconType.ANGLE_DOUBLE_UP}" faSelectedStyle="{FontAwesomeIcon.SOLID}"
                                                             relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
                                 </j:icon>
                             </j:ToggleButton>
@@ -249,7 +237,7 @@ limitations under the License.
                             
                             <j:ToggleButton text="Go Down" selectedText="Go Up" selected="true">
                                 <j:icon>
-                                    <js:FontAwesomeToggleIcon text="{FontAwesome5IconType.CHEVRON_CIRCLE_DOWN}"
+                                    <js:FontAwesomeToggleIcon text="{FontAwesome5IconType.CHEVRON_CIRCLE_DOWN}" faStyle="{FontAwesomeIcon.SOLID}"
                                                             selectedText="{FontAwesome5IconType.CHEVRON_CIRCLE_UP}"
                                                             relativeSize="{FontAwesomeIcon.SIZE_X2}"/>
                                 </j:icon>

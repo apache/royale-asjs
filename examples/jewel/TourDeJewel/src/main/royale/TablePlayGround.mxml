@@ -269,7 +269,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Change Data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontAwesomeIcon text="{FontAwesome5IconType.RECYCLE}"/>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.RECYCLE}" faStyle="{FontAwesomeIcon.SOLID}"/>
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="addItem()" outlined="true">
@@ -277,7 +277,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Add Row (item)"/>
 						</j:beads>
 						<j:icon>
-							<js:FontAwesomeIcon text="{FontAwesome5IconType.PLUS}"/>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.PLUS}" faStyle="{FontAwesomeIcon.SOLID}"/>
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="removeItemAt()" outlined="true">
@@ -285,7 +285,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Remove first row (item)"/>
 						</j:beads>
 						<j:icon>
-							<js:FontAwesomeIcon text="{FontAwesome5IconType.MINUS}"/>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.MINUS}" faStyle="{FontAwesomeIcon.SOLID}"/>
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="updateFirstItem()" outlined="true">
@@ -293,7 +293,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Update first row (item)"/>
 						</j:beads>
 						<j:icon>
-							<js:FontAwesomeIcon text="edit"/>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.EDIT}" faStyle="{FontAwesomeIcon.SOLID}"/>
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="removeAllData()" outlined="true">
@@ -301,7 +301,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Remove all data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontAwesomeIcon text="{FontAwesome5IconType.REPLY_ALL}"/>
+							<js:FontAwesomeIcon text="{FontAwesome5IconType.REPLY_ALL}" faStyle="{FontAwesomeIcon.SOLID}"/>
 						</j:icon>
 					</j:IconButton>
 				</j:CardActions>
