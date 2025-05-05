@@ -31,6 +31,22 @@
 
             public function getGithubContent(event:MouseEvent):void
             {
+                if (CONFIG::MOCK_RESPONSE)
+                {
+                    // the ASF's servers are configured to block URL requests to
+                    // external APIs, so to display a working version of this
+                    // example on royale.apache.org, we load a JSON file that
+                    // is also on royale.apache.org.
+                    // this is still a valid demonstration of how to load data
+                    // files in a Royale app using HTTPService.
+                    service.sourceCodeUrl = "mock-response.json";
+                }
+                else
+                {
+                    // however, if CONFIG::MOCK_RESPONSE is false, we can make
+                    // a call to the real GitHub API
+                    service.sourceCodeUrl = "https://api.github.com/repos/apache/royale-asjs/contents/examples/blog/BE0011_Loading_external_data_through_HTTPService/src/main/royale/BE0011_Loading_external_data_through_HTTPService.mxml";
+                }
                 service.getContent();
             }
             
@@ -47,7 +63,6 @@
     
     <fx:Declarations>
         <services:GitHubService id="service" 
-            sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/blog/BE0011_Loading_external_data_through_HTTPService/src/main/royale/BE0011_Loading_external_data_through_HTTPService.mxml"
             dataReady="dataReadyHandler(event)"/> 
     </fx:Declarations>
 
