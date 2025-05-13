@@ -32,9 +32,5 @@
             "../../../../royale-typedefs/airglobal/target/airglobal.swc"
         ],
         "output": "target/Basic.swc"
-    },
-    "additionalOptions": [
-        "-js-include-script+=src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.js",
-        "-js-include-css+=src/main/assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.css"
-    ]
+    }
 }

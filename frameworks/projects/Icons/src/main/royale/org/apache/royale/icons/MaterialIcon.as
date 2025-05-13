@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
+    [JSIncludeCSS(source="../../../../../assembly/third-party/material-icons/4.0.0/material-icons.css")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/material-icons/4.0.0/material-icons.woff2")]
     /**
      *  A Material based icon can be used alone or in buttons and other controls 
      *  

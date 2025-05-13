@@ -27,6 +27,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.utils.getSelectionRenderBead;
 	}
 
+	[JSIncludeScript(source="../../../../../../../assembly/third-party/web-animations/2.3.1/web-animations.min.js")]
 	/**
 	 *  The TabBarView class creates the visual elements of the org.apache.royale.jewel.TabBar
 	 *  component.

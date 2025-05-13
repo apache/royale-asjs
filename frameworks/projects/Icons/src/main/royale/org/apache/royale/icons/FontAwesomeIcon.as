@@ -18,6 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
+    [JSIncludeCSS(source="../../../../../assembly/third-party/font-awesome/5.15.4/fontawesome-all.css")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-brands-400.eot")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-brands-400.svg")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-brands-400.ttf")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-brands-400.woff")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-brands-400.woff2")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-regular-400.eot")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-regular-400.svg")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-regular-400.ttf")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-regular-400.woff")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-regular-400.woff2")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-solid-900.eot")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-solid-900.svg")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-solid-900.ttf")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-solid-900.woff")]
+    [JSIncludeAsset(source="../../../../../assembly/third-party/font-awesome/5.15.4/fa-solid-900.woff2")]
     /**
      *  Icons can be used alone or in buttons and other controls 
      * 

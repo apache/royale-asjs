@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.util
 {
+	[JSIncludeScript(source="../../../../../../assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.js")]
+	[JSIncludeCSS(source="../../../../../../assembly/third-party/dialog-polyfill/0.4.9/dialog-polyfill.min.css")]
 	COMPILE::JS
 	public class DialogPolyfill
 	{
@@ -25,7 +27,7 @@ package org.apache.royale.html.util
 		 
 		public static function registerDialog(dialog:Element):void
 		{
-				window["dialogPolyfill"]["registerDialog"](dialog);
+			window["dialogPolyfill"]["registerDialog"](dialog);
     	}
 	}
 }

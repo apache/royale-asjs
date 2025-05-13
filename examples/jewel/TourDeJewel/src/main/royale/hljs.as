@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+	[JSIncludeScript(source="../assembly/third-party/highlight.js/9.12.0/highlight.min.js")]
+	[JSIncludeCSS(source="../assembly/third-party/highlight.js/9.12.0/atom-one-dark.min.css")]
 	/**
 	 * @externs
 	 */

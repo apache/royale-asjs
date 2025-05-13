@@ -66,25 +66,6 @@
           <skipAS>${royale.skipAS}</skipAS>
           <!--<additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>-->
           <additionalCompilerOptions>
-            -js-include-css+=${project.basedir}/src/main/assembly/third-party/material-icons/4.0.0/material-icons.css;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/material-icons/4.0.0/material-icons.woff2;
-
-            -js-include-css+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fontawesome-all.css;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-brands-400.eot;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-brands-400.svg;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-brands-400.ttf;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-brands-400.woff;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-brands-400.woff2;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-regular-400.eot;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-regular-400.svg;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-regular-400.ttf;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-regular-400.woff;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-regular-400.woff2;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-solid-900.eot;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-solid-900.svg;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-solid-900.ttf;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-solid-900.woff;
-            -js-include-asset+=${project.basedir}/src/main/assembly/third-party/font-awesome/5.15.4/fa-solid-900.woff2;
           </additionalCompilerOptions>
         </configuration>
       </plugin>
