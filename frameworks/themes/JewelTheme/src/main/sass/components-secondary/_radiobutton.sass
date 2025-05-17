@@ -20,3 +20,47 @@
 // Jewel RadioButton
 
 // RadioButton variables
+$radiobutton-secondary-svg-checked: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><circle fill='#{$secondary-color}' cx='11' cy='11' r='6'/></svg>") no-repeat center center
+$radiobutton-secondary-svg-checked-disabled: encodeSVG("<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><rect x='0' y='0' width='22' height='22' fill-opacity='0'/><circle fill='#{darken($disabled-color, 15%)}' cx='11' cy='11' r='6'/></svg>") no-repeat center center
+
+.jewel.radiobutton.secondary
+
+	// -- INPUT
+	input
+
+		+ span::before
+			@if $flat
+				background: lighten($default-color, 15%)
+				border: 1px solid $default-color
+			@else
+				background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
+				border: 1px solid darken($default-color, 15%)
+
+		+ span::after
+			background: $radiobutton-secondary-svg-checked
+			border: 1px solid transparent
+
+		&:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
+			@if $flat
+				background: lighten($secondary-color, 25%)
+				border: 1px solid $secondary-color
+			@else
+				background: linear-gradient(lighten($secondary-color, 30%), lighten($secondary-color, 20%))
+				border: 1px solid darken($secondary-color, 15%)
+
+		&[disabled]
+
+			& + span::before
+				background: $disabled-color
+				@if $flat
+					border: 1px solid $disabled-border-color
+				@else
+					border: 1px solid $disabled-border-color// .094em
+
+			& + span
+				color: $disabled-font-color
+
+			& + span::after
+				background: $radiobutton-secondary-svg-checked-disabled
+
+
