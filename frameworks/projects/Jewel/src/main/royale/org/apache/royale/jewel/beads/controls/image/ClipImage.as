@@ -26,10 +26,18 @@ package org.apache.royale.jewel.beads.controls.image
 	import org.apache.royale.utils.css.addDynamicSelector;
 	
 	/**
-	 *  The HorizontalListScroll bead is a specialty bead that can be used with
-	 *  Jewel List control and gives horizontal scroll to the list
+	 *  The ClipImage bead is a visual styling bead that applies a clipping mask
+	 *  to a component that extends StyledUIBase.
 	 * 
-	 *  examples of use:
+	 *  <p>It is most commonly used with Jewel Image components to render images in
+	 *  circular, elliptical, polygonal, or inset shapes, but can be applied to any
+	 *  visual component that supports CSS clip-path styling.</p>
+	 * 
+	 *  <p>This bead dynamically generates and assigns a CSS class to apply the
+	 *  desired clip shape via styles, using parameters such as shape type, radius,
+	 *  coordinates, and optional borders or rounded corners.</p>
+	 * 
+	 *  <p>Examples of use:</p>
 	 * 
 	 *  CIRCLE_SHAPE
 	 *  <j:ClipImage shape="{ClipImage.CIRCLE_SHAPE}" radius="46" x="50" y="50" units="%"/>
