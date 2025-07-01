@@ -41,4 +41,6 @@
     <component id="FileModel" class="org.apache.royale.file.beads.FileModel"/>
     <component id="FileModelWithParams" class="org.apache.royale.file.beads.FileModelWithParams"/>
     <component id="FileModelWithParamsAndFileContent" class="org.apache.royale.file.beads.FileModelWithParamsAndFileContent"/>
+    <component id="JSONResult" class="org.apache.royale.net.beads.JSONResult"/>
+    <component id="XMLResult" class="org.apache.royale.net.beads.XMLResult"/>
 </componentPackage>

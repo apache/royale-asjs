@@ -58,6 +58,7 @@
             <path-element>../../../../../libs/LanguageJS.swc</path-element>
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
+            <path-element>../../../../../libs/XMLJS.swc</path-element>
         </external-library-path>
         
         <namespaces>

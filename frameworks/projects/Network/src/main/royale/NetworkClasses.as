@@ -34,6 +34,9 @@ package
         import org.apache.royale.net.URLVariables; URLVariables;
         import org.apache.royale.net.navigateToURL; navigateToURL;
 
+        import org.apache.royale.net.beads.JSONResult; JSONResult;
+        import org.apache.royale.net.beads.XMLResult; XMLResult;
+
         import org.apache.royale.net.events.ResultEvent; ResultEvent;
         import org.apache.royale.net.events.FaultEvent; FaultEvent;
         
