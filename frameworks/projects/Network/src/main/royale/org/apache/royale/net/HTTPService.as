@@ -736,6 +736,7 @@ COMPILE::SWF
             }
         }
 
+        [Bindable("complete")]
         /**
          *  The text returned from the server.
          *  
@@ -760,6 +761,7 @@ COMPILE::SWF
         
         private var _json:Object;
         
+        [Bindable("complete")]
         /**
          *  A JSON object parsed from the data.
          *  
