@@ -152,14 +152,9 @@ package org.apache.royale.jewel.beads.layouts
 			hostComponent.replaceClass("tile");
 			hostComponent.dispatchEvent(new org.apache.royale.events.Event("layoutNeeded"));
 			
-			COMPILE::JS{
-				//OSUtils.getOS() == OSUtils.MAC_OS || OSUtils.getOS() == OSUtils.IOS_OS ??
-    			var isMac:Boolean = OSUtils.getOS() == OSUtils.MAC_OS;
-				if(!isMac)
-					observeElementSize(hostComponent.element, observedChangeSize);
-				else
-					// TODO - To be tested (scroll - mouseenter - ...?)
-                	hostComponent.element.addEventListener('mouseenter', observedChangeSize);                
+			COMPILE::JS
+			{
+				observeElementSize(hostComponent.element, observedChangeSize);              
             }
 		}
 
