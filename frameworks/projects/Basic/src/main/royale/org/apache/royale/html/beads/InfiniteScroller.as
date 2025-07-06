@@ -96,11 +96,12 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			listenOnStrand("itemAdded", handleItemAdded);
+			listenOnStrand("itemAdded", handleItemsChanged);
+			listenOnStrand("itemRemoved", handleItemsChanged);
 		}
 
 		COMPILE::JS
-		private function handleItemAdded(event:ValueEvent):void{
+		private function handleItemsChanged(event:ValueEvent):void{
 			if(pendingObserve){
 				return;
 			}
@@ -150,9 +151,13 @@ package org.apache.royale.html.beads
 					threshold: threshold
 				});
 			}
+			var newItem:IItemRenderer = view.getItemRendererAt(view.numItemRenderers - 1);
+			if(newItem == observedItem){
+				// nothing changed, no need to observe again
+				return;
+			}
 			unobserveItem();
-			
-			observedItem = view.getItemRendererAt(view.numItemRenderers - 1);
+			observedItem = newItem;
 			if(observedItem && observedItem.element){
 				observer.observe(observedItem.element);
 			}
