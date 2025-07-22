@@ -36,6 +36,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.utils.sendEvent;
+	COMPILE::JS
+	{
+		import org.apache.royale.core.UIBase;
+	}
 
 	/**
 	 *  The SearchFilterForList bead class is a specialty bead that can be used with
@@ -321,8 +325,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 					//decorate text
 					if(useDecoration)
 					{
-						ir.text = "<span style='display:contents;'>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
-					}
+						var txt:String = "<span style='display:contents;'>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
+						COMPILE::JS
+						{
+							var a:UIBase = ir as UIBase;
+							(ir as UIBase).element.innerHTML = txt;
+						}
+            		}
 				} else {
 					ir.visible = false;
 				}
