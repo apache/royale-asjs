@@ -39,6 +39,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	COMPILE::JS
 	{
 		import org.apache.royale.core.UIBase;
+		import org.apache.royale.utils.string.sanitizeHtml;
 	}
 
 	/**
@@ -321,13 +322,15 @@ package org.apache.royale.jewel.beads.controls.textinput
 					//stores the item if text is the same
 					if(textData.toUpperCase() == filterText.toUpperCase())
 						item = ir.data;
-
-					//decorate text
-					if(useDecoration)
+					
+					COMPILE::JS
 					{
-						var txt:String = "<span style='display:contents;'>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
-						COMPILE::JS
+						//decorate text
+						if(useDecoration)
 						{
+							var securetxt:String = sanitizeHtml(textData);
+							var securefiltertxt:String = sanitizeHtml(filterText);
+							var txt:String = "<span style='display:contents;'>" + (securefiltertxt != "" ?  decorateText(securetxt, securetxt.toUpperCase().indexOf(securefiltertxt.toUpperCase()), securefiltertxt.length) : securetxt ) + "</span>";
 							var a:UIBase = ir as UIBase;
 							(ir as UIBase).element.innerHTML = txt;
 						}
