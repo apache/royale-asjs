@@ -27,7 +27,7 @@
 }
 @font-face {
   font-family: 'Lato';
-  font-style: normal;
+  font-style: italic;
   font-weight: 400;
   src: url(../assets/Lato-Italic.ttf) format('truetype');
 }
@@ -39,7 +39,7 @@
 }
 @font-face {
   font-family: 'Lato';
-  font-style: normal;
+  font-style: italic;
   font-weight: 700;
   src: url(../assets/Lato-BoldItalic.ttf) format('truetype');
 }
