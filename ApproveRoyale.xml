@@ -592,10 +592,9 @@
                 <exclude name="royale-asjs/lib/external/lzma-sdk-LICENSE.html"/>
                 <exclude name="royale-asjs/lib/external/antlr.jar"/>
                 <exclude name="royale-asjs/lib/external/commons-cli.jar"/>
-                <exclude name="royale-asjs/lib/external/commons-compress-1.10.jar"/>
+                <exclude name="royale-asjs/lib/external/commons-compress-1.26.0.jar"/>
                 <exclude name="royale-asjs/lib/external/commons-io.jar"/>
-                <exclude name="royale-asjs/lib/external/commons-lang-2.6.jar"/>
-                <exclude name="royale-asjs/lib/external/commons-lang3-3.4.jar"/>
+                <exclude name="royale-asjs/lib/external/commons-lang3-3.18.0.jar"/>
                 <exclude name="royale-asjs/lib/external/flex-tool-api.jar"/>
                 <exclude name="royale-asjs/lib/external/guava.jar"/>
                 <exclude name="royale-asjs/lib/external/failureaccess.jar"/>
