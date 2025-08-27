@@ -365,6 +365,7 @@
               this excludes the example in that case, but rat-excludes.txt will
               actually be used properly when with-examples is activated too!
             -->
+            <exclude>examples/blog/BE0012_Using_external_javascript_libraries_in_Apache_Royale/**</exclude>
             <exclude>examples/jewel/TourDeJewel/**</exclude>
           </excludes>
         </configuration>
