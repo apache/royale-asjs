@@ -54,6 +54,7 @@
     <!-- Light & NoFlat-->
     <module>Jewel-Light-NoFlat-Primary-Amethyst-Theme</module>
     <module>Jewel-Light-NoFlat-Primary-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Community-Theme</module>
     <module>Jewel-Light-NoFlat-Primary-Emerald-Theme</module>
     <module>Jewel-Light-NoFlat-Primary-Green-Theme</module>
     <module>Jewel-Light-NoFlat-Primary-Orange-Theme</module>
@@ -67,6 +68,7 @@
 
     <module>Jewel-Light-NoFlat-Secondary-Amethyst-Theme</module>
     <module>Jewel-Light-NoFlat-Secondary-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Community-Theme</module>
     <module>Jewel-Light-NoFlat-Secondary-Emerald-Theme</module>
     <module>Jewel-Light-NoFlat-Secondary-Green-Theme</module>
     <module>Jewel-Light-NoFlat-Secondary-Orange-Theme</module>
@@ -80,6 +82,7 @@
 
     <module>Jewel-Light-NoFlat-Emphasized-Amethyst-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Community-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Green-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Orange-Theme</module>
@@ -94,6 +97,7 @@
     <!-- Light & Flat-->
     <module>Jewel-Light-Flat-Primary-Amethyst-Theme</module>
     <module>Jewel-Light-Flat-Primary-Blue-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Community-Theme</module>
     <module>Jewel-Light-Flat-Primary-Emerald-Theme</module>
     <module>Jewel-Light-Flat-Primary-Green-Theme</module>
     <module>Jewel-Light-Flat-Primary-Orange-Theme</module>
@@ -107,6 +111,7 @@
 
     <module>Jewel-Light-Flat-Secondary-Amethyst-Theme</module>
     <module>Jewel-Light-Flat-Secondary-Blue-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Community-Theme</module>
     <module>Jewel-Light-Flat-Secondary-Emerald-Theme</module>
     <module>Jewel-Light-Flat-Secondary-Green-Theme</module>
     <module>Jewel-Light-Flat-Secondary-Orange-Theme</module>
@@ -120,6 +125,7 @@
 
     <module>Jewel-Light-Flat-Emphasized-Amethyst-Theme</module>
     <module>Jewel-Light-Flat-Emphasized-Blue-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Community-Theme</module>
     <module>Jewel-Light-Flat-Emphasized-Emerald-Theme</module>
     <module>Jewel-Light-Flat-Emphasized-Green-Theme</module>
     <module>Jewel-Light-Flat-Emphasized-Orange-Theme</module>
@@ -131,9 +137,15 @@
     <module>Jewel-Light-Flat-Emphasized-Violet-Theme</module>
     <module>Jewel-Light-Flat-Emphasized-Yellow-Theme</module>
 
+    <!-- Dark & Flat-->
+    <module>Jewel-Dark-Flat-Primary-Community-Theme</module>
+    <module>Jewel-Dark-Flat-Secondary-Community-Theme</module>
+    <module>Jewel-Dark-Flat-Emphasized-Community-Theme</module>
+
     <!-- Dark & NoFlat-->
     <module>Jewel-Dark-NoFlat-Primary-Amethyst-Theme</module>
     <module>Jewel-Dark-NoFlat-Primary-Blue-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Community-Theme</module>
     <module>Jewel-Dark-NoFlat-Primary-Emerald-Theme</module>
     <module>Jewel-Dark-NoFlat-Primary-Green-Theme</module>
     <module>Jewel-Dark-NoFlat-Primary-Orange-Theme</module>
@@ -147,6 +159,7 @@
 
     <module>Jewel-Dark-NoFlat-Secondary-Amethyst-Theme</module>
     <module>Jewel-Dark-NoFlat-Secondary-Blue-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Community-Theme</module>
     <module>Jewel-Dark-NoFlat-Secondary-Emerald-Theme</module>
     <module>Jewel-Dark-NoFlat-Secondary-Green-Theme</module>
     <module>Jewel-Dark-NoFlat-Secondary-Orange-Theme</module>
@@ -160,6 +173,7 @@
 
     <module>Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</module>
     <module>Jewel-Dark-NoFlat-Emphasized-Blue-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Community-Theme</module>
     <module>Jewel-Dark-NoFlat-Emphasized-Emerald-Theme</module>
     <module>Jewel-Dark-NoFlat-Emphasized-Green-Theme</module>
     <module>Jewel-Dark-NoFlat-Emphasized-Orange-Theme</module>

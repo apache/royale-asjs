@@ -48,6 +48,114 @@
             </goals>
             <configuration>
               <artifactItems>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Light-Flat-Primary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Light-Flat-Secondary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Secondary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Light-Flat-Emphasized-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Emphasized-Community-Theme</outputDirectory>
+                </artifactItem>
+
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Light-NoFlat-Primary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Primary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Light-NoFlat-Secondary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Secondary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Light-NoFlat-Emphasized-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-NoFlat-Emphasized-Community-Theme</outputDirectory>
+                </artifactItem>
+
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Dark-Flat-Primary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-Flat-Primary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Dark-Flat-Secondary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-Flat-Secondary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Dark-Flat-Emphasized-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-Flat-Emphasized-Community-Theme</outputDirectory>
+                </artifactItem>
+
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Dark-NoFlat-Primary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Primary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Dark-NoFlat-Secondary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Secondary-Community-Theme</outputDirectory>
+                </artifactItem>
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Dark-NoFlat-Emphasized-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Dark-NoFlat-Emphasized-Community-Theme</outputDirectory>
+                </artifactItem>
+
+			          <artifactItem>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel-Light-Flat-Primary-Community-Theme</artifactId>
+                  <version>${project.version}</version>
+                  <type>swc</type>
+                  <classifier>js</classifier>
+                  <outputDirectory>${project.build.directory}/javascript/bin/js-debug/assets/themes/Jewel-Light-Flat-Primary-Community-Theme</outputDirectory>
+                </artifactItem>
                 <artifactItem>
                   <groupId>org.apache.royale.framework</groupId>
                   <artifactId>Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</artifactId>
@@ -1043,6 +1151,107 @@
     </dependency>
 
     <!-- Make sure all the Jewel themes are built before this module -->
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-Flat-Primary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-Flat-Secondary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-Flat-Emphasized-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-NoFlat-Primary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	    
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-NoFlat-Secondary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Light-NoFlat-Emphasized-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Dark-Flat-Primary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Dark-Flat-Secondary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Dark-Flat-Emphasized-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Dark-NoFlat-Primary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Dark-NoFlat-Secondary-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Jewel-Dark-NoFlat-Emphasized-Community-Theme</artifactId>
+      <version>0.9.13-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+      <scope>provided</scope>
+    </dependency>	
+
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</artifactId>

@@ -29,8 +29,8 @@ limitations under the License.
             import org.apache.royale.utils.css.loadCSS;
             import org.apache.royale.events.Event;
 
-            [Bindable]
-            public var color:String = "Blue";
+            //[Bindable]
+            //public var color:String = "Blue";
 
             private var themePrimaryIds:Array = [];
             private var themeSecondaryIds:Array = [];
@@ -52,8 +52,8 @@ limitations under the License.
             {
                 flat = event.target.selected;
                 changeCSS(event, String(primary.selectedItem),'Primary', themePrimaryIds);
-                changeCSS(event, String(secondary.selectedItem), 'Secondary', themeEmphasizedIds);
-                changeCSS(event, String(emphasized.selectedItem), 'Emphasized', themeSecondaryIds);
+                changeCSS(event, String(secondary.selectedItem), 'Secondary', themeSecondaryIds);
+                changeCSS(event, String(emphasized.selectedItem), 'Emphasized', themeEmphasizedIds);
             }
         ]]>
     </fx:Script>
@@ -85,9 +85,9 @@ limitations under the License.
             
             <j:Form>
                 <j:FormItem label="Primary:">
-                    <j:DropDownList localId="primary" change="changeCSS(event, event.target.selectedItem, 'Primary', themePrimaryIds)" selectedIndex="3">
+                    <j:DropDownList localId="primary" change="changeCSS(event, event.target.selectedItem, 'Primary', themePrimaryIds)" selectedIndex="4">
                         <j:dataProvider>
-                            <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
+                            <js:ArrayList source="[Community, Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
                         </j:dataProvider>
                         <j:beads>
                             <j:RequireSelection requireSelection="true"/>
@@ -95,9 +95,9 @@ limitations under the License.
                     </j:DropDownList>
                 </j:FormItem>
                 <j:FormItem label="Secondary:">
-                    <j:DropDownList localId="secondary" change="changeCSS(event, event.target.selectedItem, 'Secondary', themeSecondaryIds)" selectedIndex="8">
+                    <j:DropDownList localId="secondary" change="changeCSS(event, event.target.selectedItem, 'Secondary', themeSecondaryIds)" selectedIndex="9">
                         <j:dataProvider>
-                            <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
+                            <js:ArrayList source="[Community, Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
                         </j:dataProvider>
                         <j:beads>
                             <j:RequireSelection requireSelection="true"/>
@@ -105,9 +105,9 @@ limitations under the License.
                     </j:DropDownList>
                 </j:FormItem>
                 <j:FormItem label="Emphasized:">
-                    <j:DropDownList localId="emphasized" change="changeCSS(event, event.target.selectedItem, 'Emphasized', themeEmphasizedIds)" selectedIndex="0">
+                    <j:DropDownList localId="emphasized" change="changeCSS(event, event.target.selectedItem, 'Emphasized', themeEmphasizedIds)" selectedIndex="1">
                         <j:dataProvider>
-                            <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
+                            <js:ArrayList source="[Community, Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
                         </j:dataProvider>
                         <j:beads>
                             <j:RequireSelection requireSelection="true"/>
