@@ -19,7 +19,7 @@
 -->
 
 
-<project name="jQuery" default="main" basedir=".">
+<project name="JQuery" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     
     <property file="${ROYALE_HOME}/env.properties"/>
