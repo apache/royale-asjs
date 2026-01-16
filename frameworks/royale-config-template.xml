@@ -113,7 +113,7 @@
          <path-element>libs/Icons.swc</path-element>
          <path-element>libs/Jewel.swc</path-element>
          <path-element>libs/Crux.swc</path-element>
-         <path-element>libs/jQuery.swc</path-element>
+         <path-element>libs/JQuery.swc</path-element>
          <path-element>libs/Language.swc</path-element>
          <path-element>libs/MaterialDesignLite.swc</path-element>
          <path-element>libs/Mobile.swc</path-element>
