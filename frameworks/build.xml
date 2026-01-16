@@ -696,6 +696,21 @@
         <condition property="playerglobal.swfversion" value="38">
             <equals arg1="${playerglobal.version}" arg2="27.0" />
         </condition>
+        <condition property="playerglobal.swfversion" value="39">
+            <equals arg1="${playerglobal.version}" arg2="28.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="40">
+            <equals arg1="${playerglobal.version}" arg2="29.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="41">
+            <equals arg1="${playerglobal.version}" arg2="30.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="42">
+            <equals arg1="${playerglobal.version}" arg2="31.0" />
+        </condition>
+        <condition property="playerglobal.swfversion" value="43">
+            <equals arg1="${playerglobal.version}" arg2="32.0" />
+        </condition>
 	</target>
 
 </project>
