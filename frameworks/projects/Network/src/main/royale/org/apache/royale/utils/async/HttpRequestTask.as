@@ -139,7 +139,7 @@ package org.apache.royale.utils.async
 		{
 			fail();
 		}
-		public static function execute(url:String, callback:Function, method:String = HTTPConstants.GET, parameters:Object = null, contentType:String = HTTPConstants.FORM_URL_ENCODED, requestHeaders:Array = null):void
+		public static function execute(url:String, callback:(task:IAsyncTask)=>void, method:String = HTTPConstants.GET, parameters:Object = null, contentType:String = HTTPConstants.FORM_URL_ENCODED, requestHeaders:Array = null):void
 		{
 			var task:HttpRequestTask = new HttpRequestTask();
 			task.url = url;

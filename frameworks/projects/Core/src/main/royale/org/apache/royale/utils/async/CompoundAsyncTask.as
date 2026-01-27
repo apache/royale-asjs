@@ -184,12 +184,10 @@ package org.apache.royale.utils.async
 		 *  @langversion 3.0
 		 *  @productversion Royale 0.9.9
 		 */
-		public static function execute(tasks:Array,callback:Function,failEarly:Boolean=false):void{
+		public static function execute(tasks:Array,callback:(task:IAsyncTask)=>void,failEarly:Boolean=false):void{
 			var task:CompoundAsyncTask = new CompoundAsyncTask(tasks);
 			task.failEarly = failEarly;
-			task.done(function():void{
-				callback(task);
-			});
+			task.done(callback);
 			task.run();
 		}    
 	}

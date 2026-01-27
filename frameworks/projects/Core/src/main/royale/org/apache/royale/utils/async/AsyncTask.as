@@ -136,7 +136,7 @@ package org.apache.royale.utils.async
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.6
      */
-    public function done(callback:Function):IAsyncTask{
+    public function done(callback:(task:IAsyncTask)=>void):IAsyncTask{
       if(_status == "complete" || _status == "failed"){
         callback(this);
         return this;
@@ -158,7 +158,7 @@ package org.apache.royale.utils.async
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.13
      */
-    public function exec(callback:Function):IAsyncTask
+    public function exec(callback:(task:IAsyncTask)=>void):IAsyncTask
     {
       done(callback);
       run();
