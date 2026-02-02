@@ -92,7 +92,18 @@
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
         <taskdef resource="royaleUnitTasks.tasks" classpathref="royaleunit.lib.path"/>
 		<mkdir dir="${report.dir}" />
-		<royaleunit
+
+        <!-- If the FLASHPLAYER_DEBUGGER is set, use it. Otherwise, prefer ADL from AIR_HOME. -->
+        <condition property="royaleunit.command" value="${env.FLASHPLAYER_DEBUGGER}" else="">
+            <isset property="env.FLASHPLAYER_DEBUGGER" />
+        </condition>
+        <condition property="royaleunit.player" value="flash" else="air">
+            <isset property="env.FLASHPLAYER_DEBUGGER" />
+        </condition>
+
+        <royaleunit
+            command="${royaleunit.command}"
+            player="${royaleunit.player}"
             swf="${basedir}/FlexUnitRoyaleApplication.swf"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"
