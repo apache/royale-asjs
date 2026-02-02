@@ -31,6 +31,7 @@ limitations under the License.
             COMPILE::SWF
             {
                 import flash.system.fscommand;
+                import flash.utils.getDefinitionByName;
             }
 
             import flexUnitTests.BindingTester;
@@ -95,7 +96,20 @@ limitations under the License.
             {
                 COMPILE::SWF
                 {
-                    fscommand("quit");
+                    var NativeApplication:Class = null;
+                    try
+                    {
+                        NativeApplication = getDefinitionByName("flash.desktop.NativeApplication") as Class;
+                    }
+                    catch (error:Error) {}
+                    if (NativeApplication != null)
+                    {
+                        NativeApplication.nativeApplication.exit();
+                    }
+                    else
+                    {
+                        fscommand("quit");
+                    }
                 }
             }
             
