@@ -158,4 +158,5 @@ npm/cli/test
 
 frameworks/projects/MXRoyale/.vscode
 .gitignore
-.gitignore
+
+frameworks/projects/**/src/test/royale/royaleUnitDescriptor.xml
