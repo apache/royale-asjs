@@ -630,6 +630,16 @@ package flexUnitTests {
             assertEquals(0, ba.position, "BinaryData position after clear: should be 0");
             assertNotEquals(ba.data, olddata, "BinaryData data accessor after clear: should be new internal instance");
         }
+        [Test]
+        public function testArray():void
+        {
+            COMPILE::JS {
+                var ba:BinaryData = new BinaryData([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
+                assertEquals(15, ba.length, "BinaryData length should be 15");
+                assertEquals(0, ba.position, "BinaryData position should be 0");
+                assertTrue(ba.data instanceof ArrayBuffer, "BinaryData data accessor should be an ArrayBuffer");
+            }
+        }
 
 }
 }

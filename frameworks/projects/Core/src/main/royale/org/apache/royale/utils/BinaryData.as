@@ -52,7 +52,12 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 {
     /**
      *  Constructor. The constructor takes an optional bytes argument.
-     *  In Flash this should be a ByteArray. In JS this should be an ArrayBuffer
+     *  In Flash this should be a ByteArray.
+     *  In JS this should be an ArrayBuffer.
+     *  
+     *  The JS constructor also accepts an Array of numbers,
+     *  or any ArrayBufferView (like Uint8Array) as a parameter,
+     *  but these are not valid types for the Flash constructor.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -66,11 +71,17 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     /**
+    * @royaleignorecoercion Array
     * @royaleignorecoercion ArrayBuffer
+    * @royaleignorecoercion ArrayBufferView
     */
     COMPILE::JS
     public function BinaryData(bytes:Object = null)
     {
+        if(bytes is Array)
+            bytes = new Uint8Array(bytes);
+        if(ArrayBuffer.isView(bytes))
+            bytes = (bytes as ArrayBufferView).buffer;
         if(goog.DEBUG)
         {
             if(bytes && typeof bytes.byteLength != "number" && bytes.buffer !== undefined)
