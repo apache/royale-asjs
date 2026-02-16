@@ -123,13 +123,13 @@ public interface ISort {
      *  @playerversion AIR 2.6
      *  @productversion Flex 4.5
      */
-    function get compareFunction():Function;
+    function get compareFunction():(a:Object, b:Object, fields?:Array)=>int;
 
     /**
      *  @deprecated A future release of Apache Flex SDK will remove this function. Please use the constructor
      *  argument instead.
      */
-    function set compareFunction(value:Function):void;
+    function set compareFunction(value:(a:Object, b:Object, fields?:Array)=>int):void;
 
     /**
      *  An <code>Array</code> of <code>ISortField</code> objects that
@@ -280,7 +280,7 @@ public interface ISort {
             values:Object,
             mode:String,
             returnInsertionIndex:Boolean = false,
-            compareFunction:Function = null):int;
+            compareFunction:(a:Object, b:Object, fields?:Array)=>int = null):int;
 
     /**
      *  Return whether the specified property is used to control the sort.

@@ -130,7 +130,7 @@ public class SortField extends EventDispatcher implements ISortField
 							  descending:Boolean = false,
 							  numeric:Object = null,
 							  sortCompareType:String = null,
-							  customCompareFunction:Function = null)
+							  customCompareFunction:(a:Object, b:Object)=>int = null)
     {
         super();
 
@@ -210,7 +210,7 @@ public class SortField extends EventDispatcher implements ISortField
      *  @private
      *  Storage for the compareFunction property.
      */
-    private var _compareFunction:Function;
+    private var _compareFunction:(a:Object, b:Object)=>int;
 
     [Inspectable(category="General")]
 
@@ -253,7 +253,7 @@ public class SortField extends EventDispatcher implements ISortField
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get compareFunction():Function
+    public function get compareFunction():(a:Object, b:Object)=>int
     {
         return _compareFunction;
     }

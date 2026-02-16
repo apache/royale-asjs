@@ -186,7 +186,7 @@ public class Sort extends EventDispatcher implements ISort
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function Sort(fields:Array = null, customCompareFunction:Function = null, unique:Boolean = false)
+    public function Sort(fields:Array = null, customCompareFunction:(a:Object, b:Object, fields?:Array)=>int = null, unique:Boolean = false)
     {
         super();
 
@@ -236,7 +236,7 @@ public class Sort extends EventDispatcher implements ISort
      *  @private
      *  Storage for the compareFunction property.
      */
-    private var _compareFunction:Function;
+    private var _compareFunction:(a:Object, b:Object, fields?:Array)=>int;
 
     /**
      *  @private
@@ -253,7 +253,7 @@ public class Sort extends EventDispatcher implements ISort
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get compareFunction():Function
+    public function get compareFunction():(a:Object, b:Object, fields?:Array)=>int
     {
         return usingCustomCompareFunction ? _compareFunction : internalCompare;
     }
@@ -261,7 +261,7 @@ public class Sort extends EventDispatcher implements ISort
     /**
      *  @private
      */
-    public function set compareFunction(value:Function):void
+    public function set compareFunction(value:(a:Object, b:Object, fields?:Array)=>int):void
     {
         _compareFunction = value;
         usingCustomCompareFunction = _compareFunction != null;
@@ -376,9 +376,9 @@ public class Sort extends EventDispatcher implements ISort
                              values:Object,
                              mode:String,
                              returnInsertionIndex:Boolean = false,
-                             compareFunction:Function = null):int
+                             compareFunction:(a:Object, b:Object, fields?:Array)=>int = null):int
     {
-        var compareForFind:Function;
+        var compareForFind:(a:Object, b:Object, fields?:Array)=>int;
         var fieldsForCompare:Array;
         var message:String;
 
@@ -615,7 +615,7 @@ public class Sort extends EventDispatcher implements ISort
             // the Sort.internalCompare function knows to use Sort._fields; that same logic
             // needs to be part of calling a custom compareFunction. Of course, a user shouldn't
             // be doing this -- so I wrap calls to compareFunction with _fields as the last parameter
-            const fixedCompareFunction:Function =
+            const fixedCompareFunction:(a:Object, b:Object)=>int =
                     function (a:Object, b:Object):int
                     {
                         // append our fields to the call, since items.sort() won't
@@ -760,7 +760,7 @@ public class Sort extends EventDispatcher implements ISort
             var len:int = fields ? fields.length : _fields.length;
             while (result == 0 && (i < len))
             {
-                var sf:ISortField = ISortField(_fields[i]);
+                var sf:ISortField = (_fields[i] as ISortField);
                 result = sf.compareFunction(a, b);
                 if (sf.descending)
                     result *= -1;

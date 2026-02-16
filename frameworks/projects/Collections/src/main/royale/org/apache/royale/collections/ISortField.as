@@ -74,7 +74,7 @@ public interface ISortField
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    function get compareFunction():Function;
+    function get compareFunction():(a:Object, b:Object)=>int;
 
     /**
      *  Specifies whether this field should be sorted in descending
