@@ -53,26 +53,29 @@ package org.apache.royale.html.supportClasses
 			super();
 		}
 		
+		private var _initialized:Boolean = false;
 		/**
 		 * @private
 		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			
-			// very common for item renderers to be resized by their containers,
-			addEventListener("widthChanged", sizeChangeHandler);
-			addEventListener("heightChanged", sizeChangeHandler);
-			
-			// each MXML file can also have styles in fx:Style block
-			ValuesManager.valuesImpl.init(this);
-            
-			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
-			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
-			
-			dispatchEvent(new Event("initBindings"));
-			dispatchEvent(new Event("initComplete"));
-			
+			if(!_initialized)
+			{			
+				// very common for item renderers to be resized by their containers,
+				addEventListener("widthChanged", sizeChangeHandler);
+				addEventListener("heightChanged", sizeChangeHandler);
+				
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+							
+				MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
+				MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+			}
 		}
 		
 		private var _labelField:String = "label";
