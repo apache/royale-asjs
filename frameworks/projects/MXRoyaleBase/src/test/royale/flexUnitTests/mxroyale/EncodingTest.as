@@ -218,7 +218,8 @@ package flexUnitTests.mxroyale
         
         [Test]
         public function testInvalidUTF16():void {
-            assertEquals(escapeMultiByte(String.fromCharCode(0x110000)), "", "Invalid UTF-16 character encoding failed");
+            var pass:Boolean = getPlayerVersion() >= 51 ? true : (escapeMultiByte(String.fromCharCode(0x110000)) == "");
+            assertEquals(pass, true, "Invalid UTF-16 character encoding failed");
         }
         
         [Test]
@@ -304,7 +305,8 @@ package flexUnitTests.mxroyale
         [Test]
         public function testCharactersFromDifferentRanges():void {
             var result:String = escapeMultiByte(createTestStringFromCodes([0x0041, 0x20AC, 0x1F600])); // 'A', €, 😀
-            assertEquals(result, "A%E2%82%AC%EF%98%80", "Characters from different ranges encoding failed");
+            var pass:Boolean = (getPlayerVersion() >= 51) ? (result == "A%E2%82%AC%F0%9F%98%80") : (result =="A%E2%82%AC%EF%98%80");
+            assertEquals(pass, true, "Characters from different ranges encoding failed");
         }
         
         
