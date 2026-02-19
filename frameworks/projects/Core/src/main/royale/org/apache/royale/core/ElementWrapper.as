@@ -362,7 +362,7 @@ package org.apache.royale.core
                 eventType = e as String;
                 if (e == "change")
                 {
-                    e = EventUtils.createEvent(eventType, e["bubbles"]);
+                    e = EventUtils.createEvent(eventType);
                 }
             }
             else
