@@ -23,7 +23,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.jewel.beads.models.ComboBoxPresentationModel;
 	import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
 	import org.apache.royale.core.IHasLabelField;

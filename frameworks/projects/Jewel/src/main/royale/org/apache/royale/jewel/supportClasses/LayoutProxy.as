@@ -25,7 +25,7 @@ package org.apache.royale.jewel.supportClasses
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 
     /**
      *  The LayoutProxy class is used by components in order for layouts to operate

@@ -34,7 +34,7 @@ package org.apache.royale.jewel.supportClasses.group
     import org.apache.royale.core.IState;
     import org.apache.royale.core.IStatesImpl;
     import org.apache.royale.core.IStatesObject;
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.events.ValueEvent;

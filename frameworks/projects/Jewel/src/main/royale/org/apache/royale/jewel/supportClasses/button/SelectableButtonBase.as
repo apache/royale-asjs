@@ -28,7 +28,7 @@ package org.apache.royale.jewel.supportClasses.button
 
     COMPILE::JS
     {
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
     }
 
     import org.apache.royale.core.ISelectable;

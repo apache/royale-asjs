@@ -16,10 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package org.apache.royale.jewel
 {
     import org.apache.royale.utils.IClassSelectorListSupport;
-    import org.apache.royale.utils.IEmphasis;
+    import org.apache.royale.core.IUIBase;
 
     /**
      *  The IStyledUIBase interface is the interface for advanced user interface components.

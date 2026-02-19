@@ -26,7 +26,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;

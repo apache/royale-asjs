@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.jewel.IStyledUIBase;
 	import org.apache.royale.jewel.supportClasses.table.ITableColumn;
 
 	/**

@@ -23,11 +23,11 @@ package org.apache.royale.jewel.supportClasses.button
     import org.apache.royale.core.UIButtonBase;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
-    import org.apache.royale.utils.IEmphasis;
+    import org.apache.royale.jewel.IEmphasis;
     }
     COMPILE::JS
     {
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }

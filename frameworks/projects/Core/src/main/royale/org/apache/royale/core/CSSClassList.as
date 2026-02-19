@@ -43,6 +43,22 @@ package org.apache.royale.core
 		}
 
         private var _list:Array;
+
+        /**
+         *  Determines if the list contains a specific className.
+         *
+         *  @param className The class name to look for.
+         *  @return true if className exists in the list; false otherwise.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Royale 0.9.2
+         */
+        public function has(className:String):Boolean
+        {
+            return _list ? _list.indexOf(className) != -1 : false;
+        }
 		
         /**
          *  Adds a className to the list of classes.

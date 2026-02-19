@@ -27,7 +27,7 @@ package org.apache.royale.jewel
     import flash.system.ApplicationDomain;
     import flash.system.LoaderContext;
 	}
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.utils.UIModuleUtils;
     
     /**

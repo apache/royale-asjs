@@ -16,12 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html5
+package org.apache.royale.jewel.supportClasses
 {
 
-	import org.apache.royale.core.UIBase;
-
-
+	import org.apache.royale.jewel.StyledUIBase;
 
 	//--------------------------------------
     //  Events
@@ -276,7 +274,7 @@ package org.apache.royale.html5
      *  @playerversion AIR 0.0
      *  @productversion Royale 0.0
      */
-    public class MediaElement extends UIBase
+    public class MediaElement extends StyledUIBase
     {
         public function MediaElement()
         {

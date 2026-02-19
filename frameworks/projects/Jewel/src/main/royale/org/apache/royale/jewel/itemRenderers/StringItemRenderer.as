@@ -32,7 +32,7 @@ package org.apache.royale.jewel.itemRenderers
     }
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IOwnerViewItemRenderer;
-    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+    import org.apache.royale.jewel.StyledDataItemRenderer;
     import org.apache.royale.html.util.getLabelFromData;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;

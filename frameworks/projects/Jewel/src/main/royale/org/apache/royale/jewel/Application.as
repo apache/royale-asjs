@@ -32,7 +32,7 @@ package org.apache.royale.jewel
     }
 
     COMPILE::JS {
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
     }
     import org.apache.royale.core.AllCSSValuesImpl;
     import org.apache.royale.core.ApplicationBase;
@@ -704,7 +704,7 @@ package org.apache.royale.jewel
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IBead
-         * @royaleignorecoercion org.apache.royale.core.StyledUIBase
+         * @royaleignorecoercion org.apache.royale.jewel.StyledUIBase
 		 */
 		COMPILE::JS
 		protected function initialize():void

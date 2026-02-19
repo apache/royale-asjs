@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.supportClasses.popup
 {
     import org.apache.royale.core.IPopUp;
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
 
     /**
 	 *  The PopUpContent class is a component

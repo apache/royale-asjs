@@ -28,7 +28,7 @@ package org.apache.royale.jewel.supportClasses.table
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.ItemAddedEvent;
     import org.apache.royale.events.ItemRemovedEvent;
-    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+    import org.apache.royale.jewel.StyledDataItemRenderer;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
     import org.apache.royale.jewel.supportClasses.container.StyledContainerContentArea;
     import org.apache.royale.jewel.supportClasses.table.TableRow;

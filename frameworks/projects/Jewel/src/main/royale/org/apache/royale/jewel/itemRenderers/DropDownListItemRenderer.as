@@ -24,7 +24,7 @@ package org.apache.royale.jewel.itemRenderers
     import org.apache.royale.jewel.beads.views.DropDownListView;            
     }
     import org.apache.royale.html.elements.Option;
-    import org.apache.royale.core.StyledMXMLItemRenderer;
+    import org.apache.royale.jewel.StyledMXMLItemRenderer;
 
     /**
      *  The DropDownListItemRenderer class creates a DropDownList menu item

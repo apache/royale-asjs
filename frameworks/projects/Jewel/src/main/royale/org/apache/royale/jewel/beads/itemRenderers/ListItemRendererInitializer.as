@@ -23,8 +23,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledMXMLItemRenderer;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
@@ -62,7 +62,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.StyledUIBase;
+		 *  @royaleignorecoercion org.apache.royale.jewel.StyledUIBase;
 		 */
 		override public function set strand(value:IStrand):void
 		{	

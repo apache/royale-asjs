@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controls
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 
 	/**
 	 *  The SizeControl bead class is a specialty bead that can be used to size a Jewel control.

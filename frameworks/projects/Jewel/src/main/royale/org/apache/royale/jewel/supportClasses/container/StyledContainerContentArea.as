@@ -22,7 +22,7 @@ package org.apache.royale.jewel.supportClasses.container
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 

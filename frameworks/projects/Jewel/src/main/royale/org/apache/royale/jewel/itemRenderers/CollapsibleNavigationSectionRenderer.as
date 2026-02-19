@@ -24,7 +24,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.collections.IArrayList;
-	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.jewel.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.elements.A;
 	import org.apache.royale.jewel.Navigation;

@@ -97,7 +97,6 @@ internal class BasicClasses
 	import org.apache.royale.html.MXMLBeadView; MXMLBeadView;
 	import org.apache.royale.html.beads.GroupView; GroupView;
 	import org.apache.royale.html.beads.ContainerView; ContainerView;
-	import org.apache.royale.core.supportClasses.StyledImageBase; StyledImageBase;
 	import org.apache.royale.html.beads.plugin.ModalDisplay; ModalDisplay;
 
 
@@ -132,7 +131,6 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.PanelWithControlBarView; PanelWithControlBarView;
 	import org.apache.royale.html.beads.AccordionItemRendererView; AccordionItemRendererView;
 	import org.apache.royale.html.supportClasses.MXMLItemRenderer; MXMLItemRenderer;
-	import org.apache.royale.core.StyledMXMLItemRenderer; StyledMXMLItemRenderer;
 
 	COMPILE::SWF
 	{
@@ -291,7 +289,6 @@ internal class BasicClasses
 	import org.apache.royale.core.Lookalike; Lookalike;
 	import org.apache.royale.core.FilledRectangle; FilledRectangle;
 	import org.apache.royale.core.UIBase; UIBase;
-	import org.apache.royale.core.StyledUIBase; StyledUIBase;
 	import org.apache.royale.core.GroupBase; GroupBase;
 	import org.apache.royale.core.ContainerBase; ContainerBase;
 	import org.apache.royale.core.ViewBase; ViewBase;

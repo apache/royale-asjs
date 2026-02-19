@@ -16,11 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core.supportClasses
+package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IImage;
 	import org.apache.royale.core.IImageModel;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	
 	/**
 	 *  The StyledImageBase class serves as a base class for components that displays a bitmap and used

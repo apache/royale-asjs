@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer;
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.jewel.IStyledUIBase;
 	import org.apache.royale.utils.getSelectionRenderBead;
 	}
 
@@ -55,7 +55,7 @@ package org.apache.royale.jewel.beads.views
 
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.StyledMXMLItemRenderer
+		 * @royaleignorecoercion org.apache.royale.jewel.StyledMXMLItemRenderer
 		 */
 		COMPILE::JS
 		override protected function selectionChangeHandler(event:Event):void

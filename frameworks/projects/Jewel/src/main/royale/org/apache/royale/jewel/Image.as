@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.supportClasses.StyledImageBase;
+	import org.apache.royale.jewel.StyledImageBase;
 
     COMPILE::JS
     {

@@ -21,7 +21,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IListWithPresentationModel;
     import org.apache.royale.html.supportClasses.IDataGridColumnList;
-    import org.apache.royale.utils.IEmphasis;
+    import org.apache.royale.jewel.IEmphasis;
 
     /**
      *  The Jewel IDataGridColumnList interface is a marker interface for Jewel DataGrid Column Lists

@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controls.image
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.debugging.throwError;
 	import org.apache.royale.jewel.Group;
 	import org.apache.royale.utils.css.addDynamicSelector;

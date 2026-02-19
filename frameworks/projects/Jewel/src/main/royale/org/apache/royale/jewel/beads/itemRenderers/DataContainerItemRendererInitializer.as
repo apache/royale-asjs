@@ -22,7 +22,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.jewel.StyledMXMLItemRenderer;
 	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
 
 	/**

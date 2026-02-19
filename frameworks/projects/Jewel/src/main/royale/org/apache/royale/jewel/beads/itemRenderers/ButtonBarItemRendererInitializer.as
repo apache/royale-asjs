@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.core.ISelectable;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.ButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;

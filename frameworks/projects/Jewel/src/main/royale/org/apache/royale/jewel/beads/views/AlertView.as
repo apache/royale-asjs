@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.CloseEvent;
     import org.apache.royale.events.IEventDispatcher;

@@ -21,7 +21,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateControlConfigBead;
 	import org.apache.royale.core.IFormatter;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	

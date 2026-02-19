@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.jewel.IStyledUIBase;
 	
 	/**
 	 *  The TruncateText class is a specialty bead that can be used with

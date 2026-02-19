@@ -22,7 +22,7 @@ package org.apache.royale.jewel.supportClasses.combobox
     import org.apache.royale.core.IFactory;
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.core.ISelectionModel;
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
     import org.apache.royale.jewel.beads.models.ComboBoxPresentationModel;
     import org.apache.royale.html.util.getModelByType;
     

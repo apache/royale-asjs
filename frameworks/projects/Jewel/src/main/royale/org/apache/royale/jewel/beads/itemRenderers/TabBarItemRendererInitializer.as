@@ -22,7 +22,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.jewel.IStyledUIBase;
 	import org.apache.royale.html.beads.IPaddings;
 	import org.apache.royale.html.beads.layouts.Paddings;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;

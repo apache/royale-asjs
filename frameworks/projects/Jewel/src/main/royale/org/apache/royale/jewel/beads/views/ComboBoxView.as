@@ -120,7 +120,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 * @royaleignorecoercion org.apache.royale.core.StyledUIBase
+		 * @royaleignorecoercion org.apache.royale.jewel.StyledUIBase
 		 */
 		override public function set strand(value:IStrand):void
 		{

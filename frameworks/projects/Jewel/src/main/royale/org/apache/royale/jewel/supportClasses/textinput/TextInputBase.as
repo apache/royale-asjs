@@ -27,7 +27,7 @@ package org.apache.royale.jewel.supportClasses.textinput
     import org.apache.royale.core.WrappedHTMLElement;
     }
 
-    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.StyledUIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.KeyboardEvent;
     import org.apache.royale.jewel.supportClasses.textinput.ITextInput;

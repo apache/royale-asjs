@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.ILayoutChildren;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;

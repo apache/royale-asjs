@@ -118,7 +118,11 @@ import org.apache.royale.utils.observeElementSize;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;
         import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase; SelectableButtonBase;
-        
+
+        import org.apache.royale.jewel.StyledUIBase; StyledUIBase;
+        import org.apache.royale.jewel.StyledImageBase; StyledImageBase;
+        import org.apache.royale.jewel.StyledMXMLItemRenderer; StyledMXMLItemRenderer;
+
         import org.apache.royale.jewel.beads.views.DataGridView; DataGridView;
         import org.apache.royale.jewel.beads.layouts.DataGridLayout; DataGridLayout;
         

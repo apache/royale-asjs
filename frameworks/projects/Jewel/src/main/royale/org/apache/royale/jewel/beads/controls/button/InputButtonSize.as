@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controls.button
 {
 	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.IInputButton;

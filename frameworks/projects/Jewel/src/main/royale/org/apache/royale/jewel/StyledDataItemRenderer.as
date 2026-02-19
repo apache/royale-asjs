@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.supportClasses
+package org.apache.royale.jewel
 {
 	COMPILE::SWF
 	{

@@ -19,7 +19,7 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IRangeModel;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 
     COMPILE::JS
     {

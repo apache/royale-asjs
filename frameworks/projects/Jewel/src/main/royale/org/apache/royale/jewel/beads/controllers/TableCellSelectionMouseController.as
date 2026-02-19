@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.beads.ITableView;
-	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+	import org.apache.royale.jewel.StyledDataItemRenderer;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.html.util.getModelByType;
 

@@ -24,7 +24,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.core.IRangeModel;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 
 	[Event(name="valueChange", type="org.apache.royale.events.Event")]
 

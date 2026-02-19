@@ -19,8 +19,8 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledMXMLItemRenderer;
+	import org.apache.royale.jewel.StyledUIBase;
 
 	/**
 	 *  The DataGridColumnListItemRendererInitializer class initializes item renderers

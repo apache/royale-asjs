@@ -25,7 +25,7 @@ package org.apache.royale.jewel.itemRenderers
 	}
     import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.ILabelFunction;
-    import org.apache.royale.core.StyledMXMLItemRenderer;
+    import org.apache.royale.jewel.StyledMXMLItemRenderer;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.util.getLabelFromData;
     import org.apache.royale.jewel.beads.controls.TextAlign;

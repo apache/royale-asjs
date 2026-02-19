@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.supportClasses
+package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IState;
 	import org.apache.royale.core.IStatesImpl;
@@ -26,7 +26,7 @@ package org.apache.royale.html.supportClasses
 
 	/**
      *  Indicates that the state change has completed.  All properties
-     *  that need to change have been changed, and all transitinos
+     *  that need to change have been changed, and all transitions
      *  that need to run have completed.  However, any deferred work
      *  may not be completed, and the screen may not be updated until
      *  code stops executing.

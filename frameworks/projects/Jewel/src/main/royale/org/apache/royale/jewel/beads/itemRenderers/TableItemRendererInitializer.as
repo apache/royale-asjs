@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
 
 	/**

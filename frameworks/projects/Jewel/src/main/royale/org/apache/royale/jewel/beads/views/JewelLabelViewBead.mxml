@@ -24,7 +24,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import org.apache.royale.jewel.beads.models.TextModel;
-            import org.apache.royale.core.StyledUIBase;
+            import org.apache.royale.jewel.StyledUIBase;
 
             // private function clickHandler():void
             // {

@@ -24,7 +24,7 @@ package org.apache.royale.jewel.beads.views
 	}
 	COMPILE::JS
     {
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.jewel.IStyledUIBase;
 	}
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;

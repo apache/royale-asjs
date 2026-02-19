@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.utils
+package org.apache.royale.jewel
 {
     /**
      *  The IEmphasis is the interface a jewel control implements to get diferent jewel

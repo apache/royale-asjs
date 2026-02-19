@@ -1,4 +1,4 @@
-    ////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -19,72 +19,70 @@
 
 package org.apache.royale.html5
 {
-	import org.apache.royale.html5.MediaElement;
-	
+
 	COMPILE::JS
-    {
+	{
 		import org.apache.royale.core.WrappedHTMLElement;
 		import org.apache.royale.html.util.addElementToWrapper;
-    }
-
+	}
 
 	/**
-     *  The AudioElement class provides access to the properties of audio elements,
+	 *  The AudioElement class provides access to the properties of audio elements,
 	 *  as well as methods to manipulate them.
-	 * 
+	 *
 	 *  Some of the more commonly used properties of the audio element include src,
 	 *  currentTime, duration, paused, muted, and volume
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 0.0
-     *  @playerversion AIR 0.0
-     *  @productversion Royale 0.0
-     */
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 0.0
+	 *  @playerversion AIR 0.0
+	 *  @productversion Royale 0.0
+	 */
 	public class AudioElement extends MediaElement
 	{
-
 
 		public function AudioElement()
 		{
 			super();
 		}
-		
-		/**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {			
-            addElementToWrapper(this, 'audio');
 
-			element.addEventListener("abort",handleEvent);
-			element.addEventListener("canplay",handleEvent);
-			element.addEventListener("canplaythrough",handleEvent);
-			element.addEventListener("durationchange",handleEvent);
-			element.addEventListener("emptied",handleEvent);
-			element.addEventListener("ended",handleEvent);
-			element.addEventListener("loadeddata",handleEvent);
-			element.addEventListener("loadedmetadata",handleEvent);
-			element.addEventListener("loadstart",handleEvent);
-			element.addEventListener("pause",handleEvent);
-			element.addEventListener("play",handleEvent);
-			element.addEventListener("playing",handleEvent);
-			element.addEventListener("progress",handleEvent);
-			element.addEventListener("ratechange",handleEvent);
-			element.addEventListener("seeked",handleEvent);
-			element.addEventListener("seeking",handleEvent);
-			element.addEventListener("stalled",handleEvent);
-			element.addEventListener("suspend",handleEvent);
-			element.addEventListener("timeupdate",handleEvent);
-			element.addEventListener("volumechange",handleEvent);
-			element.addEventListener("waiting",handleEvent);
-			element.addEventListener("error",handleEvent);
-			
-            return element;
-        }
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			addElementToWrapper(this, 'audio');
+
+			element.addEventListener("abort", handleEvent);
+			element.addEventListener("canplay", handleEvent);
+			element.addEventListener("canplaythrough", handleEvent);
+			element.addEventListener("durationchange", handleEvent);
+			element.addEventListener("emptied", handleEvent);
+			element.addEventListener("ended", handleEvent);
+			element.addEventListener("loadeddata", handleEvent);
+			element.addEventListener("loadedmetadata", handleEvent);
+			element.addEventListener("loadstart", handleEvent);
+			element.addEventListener("pause", handleEvent);
+			element.addEventListener("play", handleEvent);
+			element.addEventListener("playing", handleEvent);
+			element.addEventListener("progress", handleEvent);
+			element.addEventListener("ratechange", handleEvent);
+			element.addEventListener("seeked", handleEvent);
+			element.addEventListener("seeking", handleEvent);
+			element.addEventListener("stalled", handleEvent);
+			element.addEventListener("suspend", handleEvent);
+			element.addEventListener("timeupdate", handleEvent);
+			element.addEventListener("volumechange", handleEvent);
+			element.addEventListener("waiting", handleEvent);
+			element.addEventListener("error", handleEvent);
+
+			return element;
+		}
 
 		COMPILE::JS
-		private function handleEvent(e:Event):void{
+		private function handleEvent(e:Event):void
+		{
 			dispatchEvent(new Event(e.type));
 		}
 

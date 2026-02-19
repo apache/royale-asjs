@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.utils.NavigationKeys;
 	import org.apache.royale.events.utils.WhitespaceKeys;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
+	import org.apache.royale.jewel.StyledDataItemRenderer;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;

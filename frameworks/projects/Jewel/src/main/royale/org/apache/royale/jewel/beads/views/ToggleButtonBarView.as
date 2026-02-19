@@ -51,7 +51,7 @@ package org.apache.royale.jewel.beads.views
 
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.StyledMXMLItemRenderer
+		 * @royaleignorecoercion org.apache.royale.jewel.StyledMXMLItemRenderer
 		 */
 		COMPILE::JS
 		override protected function selectionChangeHandler(event:Event):void

@@ -16,14 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.supportClasses
+package org.apache.royale.jewel
 {
-	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.jewel.StyledUIBase;
 		
 	[DefaultProperty("mxmlContent")]
 

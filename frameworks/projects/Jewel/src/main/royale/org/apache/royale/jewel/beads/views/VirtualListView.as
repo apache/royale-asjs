@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::JS
     {
-	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.jewel.IStyledUIBase;
 	}
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IIndexedItemRenderer;

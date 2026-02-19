@@ -32,7 +32,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.StyledUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.CollectionEvent;
@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
-	import org.apache.royale.utils.IEmphasis;
+	import org.apache.royale.jewel.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.observeElementSize;
     
