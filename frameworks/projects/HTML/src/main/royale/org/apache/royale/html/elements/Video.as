@@ -21,187 +21,52 @@ package org.apache.royale.html.elements
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.html.NodeElementBase;
+    import org.apache.royale.html.MediaElementBase;
 
-	/**
-	 *  The Video class represents an HTML <video> element
-     *  
-	 *  
+    /**
+     *  The Video class represents an HTML <video> element
+     *
+     *
      *  @toplevel
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.8
-	 */
-	public class Video extends NodeElementBase
-	{
-		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.8
-		 */
-		public function Video()
-		{
-			super();
-		}
-
-        COMPILE::SWF
-        private var _source:Object;
-
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     */
+    public class Video extends MediaElementBase
+    {
         /**
-         *  Stream object for Video
+         *  constructor.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.8
          */
-        public function get source():Object
+        public function Video()
         {
-            COMPILE::SWF
-            {
-                return _source;
-            }
-
-            COMPILE::JS
-            {
-                return element["srcObject"];
-            }
-        }
-
-        public function set source(value:Object):void
-        {
-            COMPILE::SWF
-            {
-                _source = value;
-            }
-            COMPILE::JS
-            {
-                element["srcObject"] = value;
-            }
-        }
-
-		COMPILE::SWF
-        private var _autoplay:Boolean;
-
-        /**
-         *  Whether the video is autoplay
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.8
-         */
-        public function get autoplay():Boolean
-        {
-            COMPILE::SWF
-            {
-                return _autoplay;
-            }
-
-            COMPILE::JS
-            {
-                return (element as HTMLVideoElement).autoplay;
-            }
-        }
-
-        public function set autoplay(value:Boolean):void
-        {
-            COMPILE::SWF
-            {
-                _autoplay = value;
-            }
-            COMPILE::JS
-            {
-                (element as HTMLVideoElement).autoplay = value;
-            }
-        }
-
-        COMPILE::SWF
-        private var _paused:Boolean;
-
-        /**
-         *  Whether the video is paused
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.8
-         */
-        public function get paused():Boolean
-        {
-            COMPILE::SWF
-            {
-                return _paused;
-            }
-
-            COMPILE::JS
-            {
-                return (element as HTMLVideoElement).paused;
-            }
+            super();
         }
 
         COMPILE::JS
-        /**
-         *  Start video
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.8
-         */
-        public function play():void
+        public function get videoHeight():uint
         {
-            COMPILE::JS
-            {
-                (element as HTMLMediaElement).play();
-            }
+            return (element as HTMLVideoElement).videoHeight;
         }
 
         COMPILE::JS
-        /**
-         *  Pause video
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.8
-         */
-        public function pause():void
-        {
-            COMPILE::JS
-            {
-                (element as HTMLMediaElement).pause();
-            }
-        }
 
-        COMPILE::JS
-        /**
-         *  Resets the media element to its initial state and begins the process of selecting
-         *  a media source and loading the media in preparation for playback to begin at the beginning.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.8
-         */
-        public function load():void
+        public function get videoWidth():uint
         {
-            COMPILE::JS
-            {
-                (element as HTMLMediaElement).load();
-            }
+            return (element as HTMLVideoElement).videoWidth;
         }
 
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			return addElementToWrapper(this,'video');
+            return addElementToWrapper(this, 'video');
         }
     }
 }

@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="A" class="org.apache.royale.html.elements.A" />
+    <component id="Audio" class="org.apache.royale.html.elements.Audio" />
     <component id="B" class="org.apache.royale.html.elements.B" />
     <component id="Br" class="org.apache.royale.html.elements.Br" />
     <component id="Button" class="org.apache.royale.html.elements.Button" />
