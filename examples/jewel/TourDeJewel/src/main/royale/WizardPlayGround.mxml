@@ -25,7 +25,7 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.royale.core.StyledUIBase;
+			import org.apache.royale.jewel.StyledUIBase;
 			import org.apache.royale.jewel.Button;
 			import org.apache.royale.jewel.events.WizardEvent;
 			

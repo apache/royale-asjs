@@ -25,7 +25,7 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[      
-            import org.apache.royale.core.StyledUIBase;
+            import org.apache.royale.jewel.StyledUIBase;
 
             private function clickHandler(event:MouseEvent):void {
                 event.target.emphasis = event.target.emphasis == StyledUIBase.PRIMARY ? "" : StyledUIBase.PRIMARY;
