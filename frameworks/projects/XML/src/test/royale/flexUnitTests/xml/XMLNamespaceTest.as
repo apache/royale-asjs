@@ -124,13 +124,24 @@ package flexUnitTests.xml
             
             var ns:Namespace = xml.namespace();
             var playerVersion:Number = getPlayerVersion();
-            //account for what appears to be a player bug in a range of player versions (not verified on Mac)
+
+            // account for what appears to be a bug in a range of player versions on Windows (not verified on Mac)
             // Javascript conforms to the latest swf behavior
-            
-            var permitEmptyString:Boolean  = /*playerVersion >= 11.2 &&*/ playerVersion <= 20.0 || getPlayerType() == 'StandAlone';
+            COMPILE::SWF
+            {
+                var permitEmptyString:Boolean = true;
+                // previously: (playerVersion <= 20.0 || getPlayerType() == 'StandAlone');
+                // however, an empty string may be returned in AIR 51.2 on Linux
+                // too, so we may not be able to assume that it will be
+                // consistently undefined in any version.
+            }
+            COMPILE::JS
+            {
+                var permitEmptyString:Boolean = false;
+            }
             var prefix:* = ns.prefix;
             var testIsOK:Boolean = permitEmptyString ? prefix === '' || prefix === undefined : prefix === undefined;
-            
+
             //assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value ');
             assertTrue(testIsOK, playerVersion+' unexpected prefix value :'+prefix);
             
