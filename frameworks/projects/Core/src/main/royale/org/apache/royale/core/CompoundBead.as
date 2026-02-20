@@ -24,6 +24,11 @@ package org.apache.royale.core
 	/**
 	 *  A container bead that aggregates multiple child beads and applies them
 	 *  to a strand as a single unit.
+	 * 
+	 * This would normally be used as a base class for a bead that composes beads meant to be used together.
+	 * 
+	 * It can also be used as a base for an MXML file while declares a number of commonly used beads,
+	 * so that it can be used elsewhere to apply all the beads at once.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
