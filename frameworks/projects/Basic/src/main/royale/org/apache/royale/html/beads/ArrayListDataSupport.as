@@ -45,6 +45,7 @@ package org.apache.royale.html.beads
 		 */
 		public function ArrayListDataSupport()
 		{
+			super();
 			addBead(new CollectionChangeUpdateForArrayListData());
 			addBead(new DynamicRemoveAllItemRendererForArrayListData());
 			factory = new DataItemRendererFactoryForCollectionView();
