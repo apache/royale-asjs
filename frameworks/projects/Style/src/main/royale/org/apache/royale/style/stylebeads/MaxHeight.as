@@ -18,14 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class SizeStyle extends MeasurementStyleBase
+	public class MaxHeight extends MeasurementStyleBase
 	{
-		public function SizeStyle()
+		public function MaxHeight()
 		{
 			super();
 		}
 
-		[[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]]
+		[[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none", defaultValue="none")]]
 		public function get fit():String
 		{
 			return _strVal;
@@ -38,14 +38,12 @@ package org.apache.royale.style.stylebeads
 
 		override public function get selectors():Array
 		{
-			return [".size-" + toSelector()];
+			return [".max-h-" + toSelector()];
 		}
 	
 		override public function get rules():Array
 		{
-			var val:String = toRuleVal();
-			return ["width:" + val + ";", "height:" + val + ";"];
+			return ["max-height:" + toRuleVal() + ";"];
 		}
-
 	}
 }

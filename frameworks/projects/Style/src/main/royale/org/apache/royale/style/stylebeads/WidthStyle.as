@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class SizeStyle extends MeasurementStyleBase
+	public class WidthStyle extends MeasurementStyleBase
 	{
-		public function SizeStyle()
+		public function WidthStyle()
 		{
 			super();
 		}
@@ -38,14 +38,12 @@ package org.apache.royale.style.stylebeads
 
 		override public function get selectors():Array
 		{
-			return [".size-" + toSelector()];
+			return [".w-" + toSelector()];
 		}
 	
 		override public function get rules():Array
 		{
-			var val:String = toRuleVal();
-			return ["width:" + val + ";", "height:" + val + ";"];
+			return ["width:" + toRuleVal() + ";"];
 		}
-
 	}
 }

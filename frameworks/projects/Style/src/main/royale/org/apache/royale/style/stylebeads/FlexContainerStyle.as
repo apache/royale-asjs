@@ -96,20 +96,6 @@ package org.apache.royale.style.stylebeads
 
 		private var _value:String;
 		
-		/**
-		 * Possible selectors:
-		 * flex-direction if wrap is undefined.
-		 * flex-flow: row nowrap | row wrap | row wrap-reverse | column nowrap | column wrap | column wrap-reverse
-		 * flex-flow: row;
-flex-flow: row-reverse;
-flex-flow: column;
-flex-flow: column-reverse;
-
-
-flex-flow: row nowrap;
-flex-flow: column wrap;
-flex-flow: column-reverse wrap-reverse;
-		 */
 		private function stringify(sep:String):String
 		{
 			var wrapStr:String = wrap ? "wrap" : "nowrap";

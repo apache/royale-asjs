@@ -18,9 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class SizeStyle extends MeasurementStyleBase
+	public class MinWidth extends MeasurementStyleBase
 	{
-		public function SizeStyle()
+		public static const PROSE:String = "65ch";
+		public static const SCREEN_SM:String = "640px";
+		public static const SCREEN_MD:String = "768px";
+		public static const SCREEN_LG:String = "1024px";
+		public static const SCREEN_XL:String = "1280px";
+		public static const SCREEN_2XL:String = "1536px";
+		public function MinWidth()
 		{
 			super();
 		}
@@ -38,14 +44,12 @@ package org.apache.royale.style.stylebeads
 
 		override public function get selectors():Array
 		{
-			return [".size-" + toSelector()];
+			return [".min-w-" + toSelector()];
 		}
 	
 		override public function get rules():Array
 		{
-			var val:String = toRuleVal();
-			return ["width:" + val + ";", "height:" + val + ";"];
+			return ["min-width:" + toRuleVal() + ";"];
 		}
-
 	}
 }

@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class SizeStyle extends MeasurementStyleBase
+	public class MinHeight extends MeasurementStyleBase
 	{
-		public function SizeStyle()
+		public function MinHeight()
 		{
 			super();
 		}
@@ -38,14 +38,12 @@ package org.apache.royale.style.stylebeads
 
 		override public function get selectors():Array
 		{
-			return [".size-" + toSelector()];
+			return [".min-w-" + toSelector()];
 		}
 	
 		override public function get rules():Array
 		{
-			var val:String = toRuleVal();
-			return ["width:" + val + ";", "height:" + val + ";"];
+			return ["min-width:" + toRuleVal() + ";"];
 		}
-
 	}
 }

@@ -16,36 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.util
 {
-	public class SizeStyle extends MeasurementStyleBase
+	public class ContentFit
 	{
-		public function SizeStyle()
+		public function ContentFit()
 		{
-			super();
+			// Static only class.
 		}
-
-		[[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]]
-		public function get fit():String
-		{
-			return _strVal;
-		}
-
-		public function set fit(value:String):void
-		{
-			_strVal = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [".size-" + toSelector()];
-		}
-	
-		override public function get rules():Array
-		{
-			var val:String = toRuleVal();
-			return ["width:" + val + ";", "height:" + val + ";"];
-		}
-
+		public static const COVER:String = "cover";
+		public static const CONTAIN:String = "contain";
+		public static const FILL:String = "fill";
+		public static const NONE:String = "none";
+		public static const SCALE_DOWN:String = "scale-down";
+		public static const MIN_CONTENT:String = "min-content";
+		public static const MAX_CONTENT:String = "max-content";
 	}
 }
