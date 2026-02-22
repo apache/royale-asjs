@@ -34,6 +34,7 @@
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Basic.swc</path-element>
         </external-library-path>
         
         <allow-subclass-overrides>true</allow-subclass-overrides>
@@ -71,16 +72,8 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../resources/style-manifest.xml</manifest>
+                <manifest>../resources/basic-manifest.xml</manifest>
             </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../resources/style-as-manifest.xml</manifest>
-            </namespace>
-            <!-- <namespace>
-                <uri>library://ns.apache.org/royale/svg</uri>
-                <manifest>../resources/svg-manifest.xml</manifest>
-            </namespace> -->
         </namespaces>
         
         <source-path>

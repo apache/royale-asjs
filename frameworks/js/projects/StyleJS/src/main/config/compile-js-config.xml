@@ -61,16 +61,13 @@
             <path-element>../../../../../libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../libs/CollectionsJS.swc</path-element>
             <path-element>../../../../../libs/XMLJS.swc</path-element>
+            <path-element>../../../../../libs/BasicJS.swc</path-element>
         </external-library-path>
         
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../../../../../../projects/Style/src/main/resources/style-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/royale/svg</uri>
-                <manifest>../../../../../../projects/Style/src/main/resources/svg-manifest.xml</manifest>
+                <manifest>../../../../../../projects/Style/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
         

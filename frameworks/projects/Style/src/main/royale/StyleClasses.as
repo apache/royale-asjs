@@ -27,7 +27,7 @@ package
 	 */
 	internal class StyleClasses
 	{
-		// import org.apache.royale.style.Foo; Foo;
+		import org.apache.royale.style.util.StyleManager; StyleManager;
 
 	}
 

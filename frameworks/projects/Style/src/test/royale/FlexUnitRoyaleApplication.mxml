@@ -34,7 +34,7 @@ limitations under the License.
                 import flash.utils.getDefinitionByName;
             }
 
-            // import flexUnitTests.DataGridColumnTester;
+            import flexUnitTests.StyleManagerTest;
             
             import org.apache.royale.events.Event;
             import org.apache.royale.test.listeners.CIListener;
@@ -77,9 +77,22 @@ limitations under the License.
                 } else{
                     core.addListener(new CIListener());
                 }
-                core.addEventListener(Event.COMPLETE, core_completeHandler);
-                // Insert test classes here. For example:
-                // core.runClasses(DataGridColumnTester);
+                /**
+                 * Style does not support swf, so exit without running any tests.
+                 */
+                COMPILE::SWF
+                {
+                    core_completeHandler(null);
+                }
+                /**
+                 * Run the tests for js.
+                 */
+                COMPILE::JS
+                {
+                    core.addEventListener(Event.COMPLETE, core_completeHandler);
+                    // Insert test classes here. For example:
+                    core.runClasses(StyleManagerTest);
+                }
             }
 
             private function core_completeHandler(event:Event):void

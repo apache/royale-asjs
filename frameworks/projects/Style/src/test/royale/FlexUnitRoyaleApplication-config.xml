@@ -100,15 +100,7 @@
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../../main/resources/style-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../../main/resources/style-as-manifest.xml</manifest>
-            </namespace>
-            <namespace>
-                <uri>library://ns.apache.org/royale/svg</uri>
-                <manifest>../../main/resources/svg-manifest.xml</manifest>
+                <manifest>../../main/resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
         

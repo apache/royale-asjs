@@ -75,9 +75,9 @@
             </or>
         </condition>
     </target>
-    
+
     <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
-        <antcall target="test-swf" />
+        <!-- This does not support swf so no tests <antcall target="test-swf" /> -->
         <antcall target="test-js" />
     </target>
     
