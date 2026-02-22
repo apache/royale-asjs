@@ -18,35 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class FlexStyle extends StyleBeadBase
+	public interface IMeasurementStyleBead extends IStyleBead
 	{
-		public function FlexStyle()
-		{
-			super();
-		}
-
-		private var _value:String;
-		
-		[[Inspectable(category="General", enumeration="none,flex", defaultValue="none")]]
-		public function get value():String
-		{
-			return _value;
-		}
-
-		public function set value(value:String):void
-		{
-			_value = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return ["." + value];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["display:" + value + ";"];
-		}
-
+		function get unit():String;
+		function set unit(value:String):void;
 	}
 }

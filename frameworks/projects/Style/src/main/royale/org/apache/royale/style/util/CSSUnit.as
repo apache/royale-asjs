@@ -16,37 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.util
 {
-	public class PositionStyle extends MeasurementStyleBase
+	public class CSSUnit
 	{
-		public function PositionStyle()
+		private function CSSUnit()
 		{
-			super();
+			// Static only class.
 		}
-
-		private var _value:String;
-		
-		[[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]]
-		public function get value():String
-		{
-			return _value;
-		}
-
-		public function set value(value:String):void
-		{
-			_value = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return ["." + value];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["position:" + value + unit + ";"];
-		}
-
+		public static const PX:String = "px";
+		public static const EM:String = "em";
+		public static const REM:String = "rem";
+		public static const PERCENT:String = "%";
+		public static const VW:String = "vw";
+		public static const VH:String = "vh";
+		public static const VMIN:String = "vmin";
+		public static const VMAX:String = "vmax";
+		public static const EX:String = "ex";
+		public static const CH:String = "ch";
 	}
 }

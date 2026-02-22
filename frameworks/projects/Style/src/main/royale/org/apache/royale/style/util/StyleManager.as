@@ -65,5 +65,17 @@ package org.apache.royale.style.util
 				ss.insertRule(selector + "{" + rule + "}", ruleIdx++);
 			}
 		}
+		
+		private var _defaultUnit:String = "px";
+
+		public function get defaultUnit():String
+		{
+			return _defaultUnit;
+		}
+
+		public function set defaultUnit(value:String):void
+		{
+			_defaultUnit = value;
+		}
 	}
 }

@@ -18,35 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class PositionStyle extends MeasurementStyleBase
+	import org.apache.royale.style.util.CSSUnit;
+
+	abstract public class MeasurementStyleBase extends StyleBeadBase implements IMeasurementStyleBead
 	{
-		public function PositionStyle()
+		public function MeasurementStyleBase()
 		{
 			super();
 		}
+		private var _unit:String;
 
-		private var _value:String;
-		
-		[[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]]
-		public function get value():String
+		public function get unit():String
 		{
-			return _value;
+			return _unit || CSSUnit.PX;
 		}
 
-		public function set value(value:String):void
+		public function set unit(value:String):void
 		{
-			_value = value;
+			_unit = value;
 		}
-
-		override public function get selectors():Array
-		{
-			return ["." + value];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["position:" + value + unit + ";"];
-		}
-
 	}
 }
