@@ -262,11 +262,11 @@ package org.apache.royale.html.elements
 		 *  @langversion 3.0
 		 *  @productversion Royale 0.9.9
 		 */
-		public function addMessageListener(handler:Function):void
+		public function addMessageListener(handler:(e:MessageEvent)=>void):void
 		{
 			COMPILE::JS
 			{
-				contentWindow.addEventListener("message",handler);
+				window.addEventListener("message",handler);
 			}
 		}
 		
