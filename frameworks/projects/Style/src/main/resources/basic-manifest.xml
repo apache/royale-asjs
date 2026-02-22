@@ -27,6 +27,7 @@
   <component id="MaxWidth" class="org.apache.royale.style.stylebeads.MaxWidth"/>
   <component id="MinHeight" class="org.apache.royale.style.stylebeads.MinHeight"/>
   <component id="MinWidth" class="org.apache.royale.style.stylebeads.MinWidth"/>
+  <component id="OverflowStyle" class="org.apache.royale.style.stylebeads.OverflowStyle"/>
   <component id="PositionStyle" class="org.apache.royale.style.stylebeads.PositionStyle"/>
   <component id="SizeStyle" class="org.apache.royale.style.stylebeads.SizeStyle"/>
   <component id="WidthStyle" class="org.apache.royale.style.stylebeads.WidthStyle"/>

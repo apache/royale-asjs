@@ -25,7 +25,7 @@ package org.apache.royale.style.stylebeads
 			super();
 		}
 
-		[[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none", defaultValue="none")]]
+		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none", defaultValue="none")]
 		public function get fit():String
 		{
 			return _strVal;

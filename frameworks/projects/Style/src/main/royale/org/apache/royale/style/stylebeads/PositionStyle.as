@@ -27,7 +27,7 @@ package org.apache.royale.style.stylebeads
 
 		private var _value:String;
 		
-		[[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]]
+		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
 		public function get value():String
 		{
 			return _value;
