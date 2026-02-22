@@ -27,6 +27,32 @@ package
 	 */
 	internal class StyleClasses
 	{
+		import org.apache.royale.style.colors.AmberSwatch; AmberSwatch;
+		import org.apache.royale.style.colors.BlueSwatch; BlueSwatch;
+		import org.apache.royale.style.colors.CyanSwatch; CyanSwatch;
+		import org.apache.royale.style.colors.EmeraldSwatch; EmeraldSwatch;
+		import org.apache.royale.style.colors.FuchsiaSwatch; FuchsiaSwatch;
+		import org.apache.royale.style.colors.GraySwatch; GraySwatch;
+		import org.apache.royale.style.colors.GreenSwatch; GreenSwatch;
+		import org.apache.royale.style.colors.IndigoSwatch; IndigoSwatch;
+		import org.apache.royale.style.colors.LimeSwatch; LimeSwatch;
+		import org.apache.royale.style.colors.MauveSwatch; MauveSwatch;
+		import org.apache.royale.style.colors.MistSwatch; MistSwatch;
+		import org.apache.royale.style.colors.NeutralSwatch; NeutralSwatch;
+		import org.apache.royale.style.colors.OliveSwatch; OliveSwatch;
+		import org.apache.royale.style.colors.OrangeSwatch; OrangeSwatch;
+		import org.apache.royale.style.colors.PinkSwatch; PinkSwatch;
+		import org.apache.royale.style.colors.PurpleSwatch; PurpleSwatch;
+		import org.apache.royale.style.colors.RedSwatch; RedSwatch;
+		import org.apache.royale.style.colors.RoseSwatch; RoseSwatch;
+		import org.apache.royale.style.colors.SkySwatch; SkySwatch;
+		import org.apache.royale.style.colors.SlateSwatch; SlateSwatch;
+		import org.apache.royale.style.colors.StoneSwatch; StoneSwatch;
+		import org.apache.royale.style.colors.TaupeSwatch; TaupeSwatch;
+		import org.apache.royale.style.colors.TealSwatch; TealSwatch;
+		import org.apache.royale.style.colors.VioletSwatch; VioletSwatch;
+		import org.apache.royale.style.colors.YellowSwatch; YellowSwatch;
+		import org.apache.royale.style.colors.ZincSwatch; ZincSwatch;
 		import org.apache.royale.style.util.StyleManager; StyleManager;
 
 	}
