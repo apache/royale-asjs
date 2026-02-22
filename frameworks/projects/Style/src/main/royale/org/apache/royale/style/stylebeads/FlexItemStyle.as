@@ -20,6 +20,8 @@ package org.apache.royale.style.stylebeads
 {
 	public class FlexItemStyle extends StyleBeadBase
 	{
+		public static const ORDER_FIRST:Number = -9999;
+		public static const ORDER_LAST:Number = 9999;
 		public function FlexItemStyle()
 		{
 			super();
@@ -81,7 +83,17 @@ package org.apache.royale.style.stylebeads
 			_basis = value;
 		}
 
-		private var _value:String;
+		private var _order:Number;
+		[Inspectable(category="General", defaultValue="NaN", minValue="-9999", maxValue="9999")]
+		public function get order():Number
+		{
+			return _order;
+		}
+
+		public function set order(value:Number):void
+		{
+			_order = value;
+		}
 		
 		private function computeShrink():String
 		{
@@ -113,12 +125,20 @@ package org.apache.royale.style.stylebeads
 
 		override public function get selectors():Array
 		{
-			return [".flex-" + stringify("-")];
+			var retVal:Array = [
+				".flex-" + stringify("-")
+			];
+			if(!isNaN(order))
+				retVal.push(".order-" + order);
+			return retVal;
 		}
 	
 		override public function get rules():Array
 		{
-			return ["flex:" + stringify(" ") + ";"];
+			var retVal:Array = ["flex:" + stringify(" ") + ";"];
+			if(!isNaN(order))
+				retVal.push("order:" + order + ";");
+			return retVal;
 		}
 	}	
 }
