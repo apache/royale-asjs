@@ -56,6 +56,7 @@
     <component id="S" class="org.apache.royale.html.elements.S" />
     <component id="Section" class="org.apache.royale.html.elements.Section"/>
     <component id="Select" class="org.apache.royale.html.elements.Select"/>
+    <component id="SecurityIframe" class="org.apache.royale.html.elements.SecurityIframe" />
     <component id="Small" class="org.apache.royale.html.elements.Small"/>
     <component id="Span" class="org.apache.royale.html.elements.Span" />
     <component id="Strong" class="org.apache.royale.html.elements.Strong" />
