@@ -104,6 +104,17 @@ package org.apache.royale.core
 		{
             return _list ? _list.join(" ") + " " : "";
 		}
+        /**
+         * Clears the list of class names.
+         * @langversion 3.0
+         * @playerversion Flash 9
+         * @playerversion AIR 1.1
+         * @productversion Royale 0.9.13
+         */
+        public function clear():void
+        {
+            _list = null;
+        }
 	}
 }
 
