@@ -16,29 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextOverflow extends StyleBeadBase
+	public class Float extends SingleStyleBase
 	{
-		public function TextOverflow()
+		public function Float()
 		{
-			super();
+			super("float", "float");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["left","right","inline-start","inline-end","none"].indexOf(value) >= 0, "Invalid value for float: " + value);
+			var str:String = value;
+			_value = str;
+			calculatedRuleValue = value;
+			if(str == "none")
+				calculatedSelector = "hidden";
+			else
+			{
+				var inlineIdx:int = str.indexOf("inline-");
+				if(inlineIdx >= 0)
+					str = str.substring(inlineIdx + 7);
+				calculatedSelector = str;
+			}
 		}
 	}
 }

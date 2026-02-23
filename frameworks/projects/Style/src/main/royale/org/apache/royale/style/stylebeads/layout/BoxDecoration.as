@@ -16,29 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextOverflow extends StyleBeadBase
+	public class BoxDecoration extends SingleStyleBase
 	{
-		public function TextOverflow()
+		public function BoxDecoration()
 		{
-			super();
+			super("box-decoration", "box-decoration");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			assert(value == "slice" || value == "clone", "box-decoration must be 'slice' or 'clone'");
+			calculatedRuleValue = calculatedSelector = value;
 		}
 	}
 }

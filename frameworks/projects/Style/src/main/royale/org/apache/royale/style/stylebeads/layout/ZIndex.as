@@ -16,29 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
 
-	public class TextOverflow extends StyleBeadBase
+	public class ZIndex extends SingleStyleBase
 	{
-		public function TextOverflow()
+		public function ZIndex()
 		{
-			super();
+			super("z", "z-index");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		private var negative:Boolean;
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			negative = value < 0;
+			if(negative)
+				_rulePrefix = "-z";
+			calculatedRuleValue = _value = value;
+			calculatedSelector = negative ? "" + Math.abs(value) : value;
 		}
 	}
 }

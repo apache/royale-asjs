@@ -16,29 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
 
-	public class TextOverflow extends StyleBeadBase
+	public class AspectRatio extends SingleStyleBase
 	{
-		public function TextOverflow()
+		public function AspectRatio()
 		{
-			super();
+			super("aspect", "aspect-ratio");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			// TODO validate aspect before setting
+			calculatedSelector = value;
+			calculatedRuleValue = value; // aspect-ratio doesn't have a separate rule value like box-sizing does
+			
 		}
 	}
 }

@@ -16,29 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.util
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
-
-	public class TextOverflow extends StyleBeadBase
+	public function parseCSSValue(value:*,stepValue:*):*
 	{
-		public function TextOverflow()
-		{
-			super();
-		}
-
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
-		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
-		}
+		// TODO
 	}
 }

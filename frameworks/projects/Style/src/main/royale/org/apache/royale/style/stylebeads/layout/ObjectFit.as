@@ -16,29 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextOverflow extends StyleBeadBase
+	public class ObjectFit extends SingleStyleBase
 	{
-		public function TextOverflow()
+		public function ObjectFit()
 		{
-			super();
+			super("object", "object-fit");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["fill","contain","cover","none","scale-down"].indexOf(value) >= 0, "Invalid value for object-fit: " + value);
+			_value = value;
+			calculatedRuleValue = calculatedSelector = value;
 		}
 	}
 }

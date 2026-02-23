@@ -16,29 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
 
-	public class TextOverflow extends StyleBeadBase
+	public class ObjectPosition extends SingleStyleBase
 	{
-		public function TextOverflow()
+		public function ObjectPosition()
 		{
-			super();
+			super("object", "object-position");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			// TODO sanitize the selector name by replacing spaces and dots with dashes
+			calculatedRuleValue = value;
+			calculatedSelector = sanitizeSelector(value);
 		}
 	}
 }

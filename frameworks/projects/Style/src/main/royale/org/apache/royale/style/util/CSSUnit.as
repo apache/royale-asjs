@@ -37,5 +37,41 @@ package org.apache.royale.style.util
 		public static const VMAX:String = "vmax";
 		public static const EX:String = "ex";
 		public static const CH:String = "ch";
+
+		public static function convert(value:Number, fromUnit:String, toUnit:String):Number
+		{
+			var preprocess:Number = enumToNumber(fromUnit);
+			if(!preprocess)
+			{
+				// Can't convert from this unit, return the value as-is.
+				return value;
+			}
+			value /= preprocess;
+			var postProcess:Number = enumToNumber(toUnit);
+			if(!postProcess)			{
+				// Can't convert to this unit, return the value as-is.
+				return value;
+			}
+			return value / postProcess;
+		}
+		private static function enumToNumber(unit:String):Number
+		{
+			switch(unit)
+			{
+				case EM:
+				case REM:
+					return 16;
+				case PERCENT:
+					return 100;
+				case VW:
+				case VH:
+				case VMIN:
+				case VMAX:
+					return 0;
+				case PX:
+				default:
+					return 1;
+			}
+		}
 	}
 }

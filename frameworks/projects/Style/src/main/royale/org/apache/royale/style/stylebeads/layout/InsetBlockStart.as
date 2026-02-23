@@ -16,29 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextOverflow extends StyleBeadBase
+	public class InsetBlockStart extends InsetBase
 	{
-		public function TextOverflow()
+		public function InsetBlockStart()
 		{
-			super();
+			super("inset-bs", "inset-block-start");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
-		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

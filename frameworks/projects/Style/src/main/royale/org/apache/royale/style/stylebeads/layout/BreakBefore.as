@@ -16,29 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextOverflow extends StyleBeadBase
+	public class BreakBefore extends SingleStyleBase
 	{
-		public function TextOverflow()
+		public function BreakBefore()
 		{
-			super();
+			super("break-before", "break-before");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
+			assert(["auto","avoid","all","avoid-page","page","left","right","column"].indexOf(value) >= 0, "Invalid value for break-before: " + value);
+			_value = value;
+			calculatedRuleValue = calculatedSelector = value;
 		}
 
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

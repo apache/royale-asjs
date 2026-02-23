@@ -16,29 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
-
-	public class TextOverflow extends StyleBeadBase
+	public class InsetInlineEnd extends InsetBase
 	{
-		public function TextOverflow()
+		public function InsetInlineEnd()
 		{
-			super();
-		}
-
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
-		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			super("inset-e", "inset-inline-end");
 		}
 	}
 }
