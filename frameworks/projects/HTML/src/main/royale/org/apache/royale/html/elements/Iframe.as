@@ -252,8 +252,11 @@ package org.apache.royale.html.elements
 		{
 			COMPILE::JS
 			{
-				transfer = transfer || undefined;
-				contentWindow.postMessage(message,targetOrigin,transfer);
+				var transferables:* = undefined;
+				if (transfer) {
+					transferables = Array.isArray(transfer) ? transfer : [transfer];
+				}
+				contentWindow.postMessage(message,targetOrigin,transferables);
 			}
 		}
 
