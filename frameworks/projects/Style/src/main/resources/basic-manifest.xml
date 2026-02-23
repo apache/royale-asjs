@@ -20,6 +20,7 @@
 
 
 <componentPackage>
+  <component id="BackgroundStyle" class="org.apache.royale.style.stylebeads.BackgroundStyle"/>
   <component id="ContainerPosition" class="org.apache.royale.style.stylebeads.ContainerPosition"/>
   <component id="FlexContainerStyle" class="org.apache.royale.style.stylebeads.FlexContainerStyle"/>
   <component id="FlexItemStyle" class="org.apache.royale.style.stylebeads.FlexItemStyle"/>
