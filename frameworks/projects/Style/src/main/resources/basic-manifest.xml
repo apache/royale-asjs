@@ -39,7 +39,8 @@
   <component id="SizeStyle" class="org.apache.royale.style.stylebeads.SizeStyle"/>
   <component id="WidthStyle" class="org.apache.royale.style.stylebeads.WidthStyle"/>
 
-  <!-- <component id="BackgroundBlendMode" class="org.apache.royale.style.stylebeads.effects.BackgroundBlendMode"/>
+  <!-- 
+  <component id="BackgroundBlendMode" class="org.apache.royale.style.stylebeads.effects.BackgroundBlendMode"/>
   <component id="BoxShadow" class="org.apache.royale.style.stylebeads.effects.BoxShadow"/>
   <component id="MaskClip" class="org.apache.royale.style.stylebeads.effects.MaskClip"/>
   <component id="MaskComposite" class="org.apache.royale.style.stylebeads.effects.MaskComposite"/>
@@ -51,7 +52,10 @@
   <component id="MaskSize" class="org.apache.royale.style.stylebeads.effects.MaskSize"/>
   <component id="MaskType" class="org.apache.royale.style.stylebeads.effects.MaskType"/>
   <component id="OpacityStyle" class="org.apache.royale.style.stylebeads.effects.OpacityStyle"/>
-  <component id="TextShadow" class="org.apache.royale.style.stylebeads.effects.TextShadow"/> -->
+  <component id="TextShadow" class="org.apache.royale.style.stylebeads.effects.TextShadow"/>
+  <component id="FilterEffect" class="org.apache.royale.style.stylebeads.effects.FilterEffect"/>
+  <component id="BackdropFilter" class="org.apache.royale.style.stylebeads.effects.BackdropFilter"/>
+  -->
 
 
 </componentPackage>
