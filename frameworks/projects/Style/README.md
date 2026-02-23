@@ -154,3 +154,8 @@ Button {
 
 This project is under active development. APIs and naming may evolve as style beads, runtime class composition, and asset generation are expanded.
 
+
+### To work on later:
+- (min/max-)inline-size
+- (min/max-)block-size
+- Add support for normal rgb for browsers which don't support oklch (i.e. CEP) Maybe?

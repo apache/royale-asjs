@@ -28,6 +28,7 @@ package org.apache.royale.style
 	{
 		import org.apache.royale.html.util.addElementToWrapper;
 		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.style.util.ThemeManager;
 	}
 
 	/**
@@ -56,6 +57,14 @@ package org.apache.royale.style
 		protected var classList:CSSClassList;
 		protected var utilityList:CSSClassList;
 		protected var styleBeads:Array = [];
+
+		/**
+		 * TODO: Add support for cascading theming.
+		 */
+		public function get theme():String
+		{
+			return ThemeManager.instance.current;
+		}
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.IStyleBead

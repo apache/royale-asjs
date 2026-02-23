@@ -19,6 +19,8 @@
 package org.apache.royale.style.stylebeads
 {
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.style.IStyleUIBase;
+	import org.apache.royale.core.IStrand;
 
 	abstract public class StyleBeadBase extends Bead implements IStyleBead
 	{
@@ -28,5 +30,17 @@ package org.apache.royale.style.stylebeads
 		}
 		abstract public function get selectors():Array;
 		abstract public function get rules():Array;
+		protected var _theme:String;
+		protected function findTheme():String
+		{
+			var parent:IStrand = _strand;
+			while(parent is IStyleBead)
+				parent = (parent as StyleBeadBase)._strand;
+			
+			if(parent is IStyleUIBase)
+				return (parent as IStyleUIBase).theme;
+			
+			return null;
+		}
 	}
 }

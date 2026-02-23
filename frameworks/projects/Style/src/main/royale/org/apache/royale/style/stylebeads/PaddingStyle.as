@@ -16,21 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style
+package org.apache.royale.style.stylebeads
 {
-		import org.apache.royale.core.IUIBase;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.CSSUnit;
 
-		/**
-		 *  The IStyleUIBase interface defines the contract for all UI components that support styles.
-		 *  It provides a common set of methods and properties for handling style classes and applying them to the component.
-		 *	@langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
-		 */
-	public interface IStyleUIBase extends IUIBase
+	public class PaddingStyle extends SpacingBase
 	{
-		function toggleClass(classNameVal:String,add:Boolean):void;
-		function get theme():String;
+		public function PaddingStyle()
+		{
+			super();
+
+		}
+
+		override public function get selectors():Array
+		{
+			var items:Array = stringify();
+			if(items.length > 1)
+				return [".pt" + items[0], ".pr" + items[1], ".pb" + items[2], ".pl" + items[3]];
+			
+			return [".p" + items[0]];
+		}
+	
+		override public function get rules():Array
+		{
+			var items:Array = stringify();
+			if(items.length > 1)
+				return ["padding-top:" + items[0] + ";", "padding-right:" + items[1] + ";", "padding-bottom:" + items[2] + ";", "padding-left:" + items[3] + ";"];
+			
+			return ["padding:" + items[0] + ";"];
+		}
+
 	}
 }

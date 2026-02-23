@@ -23,11 +23,15 @@
   <component id="FlexContainerStyle" class="org.apache.royale.style.stylebeads.FlexContainerStyle"/>
   <component id="FlexItemStyle" class="org.apache.royale.style.stylebeads.FlexItemStyle"/>
   <component id="HeightStyle" class="org.apache.royale.style.stylebeads.HeightStyle"/>
+  <component id="MarginBlock" class="org.apache.royale.style.stylebeads.MarginBlock"/>
+  <component id="MarginInline" class="org.apache.royale.style.stylebeads.MarginInline"/>
+  <component id="MarginStyle" class="org.apache.royale.style.stylebeads.MarginStyle"/>
   <component id="MaxHeight" class="org.apache.royale.style.stylebeads.MaxHeight"/>
   <component id="MaxWidth" class="org.apache.royale.style.stylebeads.MaxWidth"/>
   <component id="MinHeight" class="org.apache.royale.style.stylebeads.MinHeight"/>
   <component id="MinWidth" class="org.apache.royale.style.stylebeads.MinWidth"/>
   <component id="OverflowStyle" class="org.apache.royale.style.stylebeads.OverflowStyle"/>
+  <component id="PaddingStyle" class="org.apache.royale.style.stylebeads.PaddingStyle"/>
   <component id="PositionStyle" class="org.apache.royale.style.stylebeads.PositionStyle"/>
   <component id="SizeStyle" class="org.apache.royale.style.stylebeads.SizeStyle"/>
   <component id="WidthStyle" class="org.apache.royale.style.stylebeads.WidthStyle"/>

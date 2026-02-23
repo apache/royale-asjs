@@ -54,6 +54,7 @@ package
 		import org.apache.royale.style.colors.YellowSwatch; YellowSwatch;
 		import org.apache.royale.style.colors.ZincSwatch; ZincSwatch;
 		import org.apache.royale.style.util.StyleManager; StyleManager;
+		import org.apache.royale.style.util.ThemeManager; ThemeManager;
 
 	}
 

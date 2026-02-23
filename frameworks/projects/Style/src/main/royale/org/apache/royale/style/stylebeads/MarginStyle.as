@@ -16,21 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style
+package org.apache.royale.style.stylebeads
 {
-		import org.apache.royale.core.IUIBase;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.CSSUnit;
 
-		/**
-		 *  The IStyleUIBase interface defines the contract for all UI components that support styles.
-		 *  It provides a common set of methods and properties for handling style classes and applying them to the component.
-		 *	@langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
-		 */
-	public interface IStyleUIBase extends IUIBase
+	public class MarginStyle extends SpacingBase
 	{
-		function toggleClass(classNameVal:String,add:Boolean):void;
-		function get theme():String;
+		public function MarginStyle()
+		{
+			super();
+
+		}
+
+
+		override public function get selectors():Array
+		{
+			var items:Array = stringify();
+			if(items.length > 1)
+				return [".mt" + items[0], ".mr" + items[1], ".mb" + items[2], ".ml" + items[3]];
+			
+			return [".m" + items[0]];
+		}
+	
+		override public function get rules():Array
+		{
+			var items:Array = stringify();
+			if(items.length > 1)
+				return ["margin-top:" + items[0] + ";", "margin-right:" + items[1] + ";", "margin-bottom:" + items[2] + ";", "margin-left:" + items[3] + ";"];
+			
+			return ["margin:" + items[0] + ";"];
+		}
+
 	}
 }

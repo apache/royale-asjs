@@ -16,21 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style
+package org.apache.royale.style.stylebeads
 {
-		import org.apache.royale.core.IUIBase;
-
-		/**
-		 *  The IStyleUIBase interface defines the contract for all UI components that support styles.
-		 *  It provides a common set of methods and properties for handling style classes and applying them to the component.
-		 *	@langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
-		 */
-	public interface IStyleUIBase extends IUIBase
+	public class MarginInline extends MeasurementStyleBase
 	{
-		function toggleClass(classNameVal:String,add:Boolean):void;
-		function get theme():String;
+		public function MarginInline()
+		{
+			super();
+			
+		}
+		//TODO https://tailwindcss.com/docs/margin
+		override public function get selectors():Array
+		{
+			return [];
+		}
+	
+		override public function get rules():Array
+		{
+			return [];
+		}
+
 	}
 }
