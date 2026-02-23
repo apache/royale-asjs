@@ -40,6 +40,34 @@
   <component id="WidthStyle" class="org.apache.royale.style.stylebeads.WidthStyle"/>
 
   <!-- 
+  <component id="FontFamily" class="org.apache.royale.style.stylebeads.typography.FontFamily"/>
+  <component id="FontFeatures" class="org.apache.royale.style.stylebeads.typography.FontFeatures"/>
+  <component id="FontNumeric" class="org.apache.royale.style.stylebeads.typography.FontNumeric"/>
+  <component id="FontSize" class="org.apache.royale.style.stylebeads.typography.FontSize"/>
+  <component id="FontSmoothing" class="org.apache.royale.style.stylebeads.typography.FontSmoothing"/>
+  <component id="FontStretch" class="org.apache.royale.style.stylebeads.typography.FontStretch"/>
+  <component id="FontStyle" class="org.apache.royale.style.stylebeads.typography.FontStyle"/>
+  <component id="FontWeight" class="org.apache.royale.style.stylebeads.typography.FontWeight"/>
+  <component id="Hyphens" class="org.apache.royale.style.stylebeads.typography.Hyphens"/>
+  <component id="LetterSpacing" class="org.apache.royale.style.stylebeads.typography.LetterSpacing"/>
+  <component id="LineClamp" class="org.apache.royale.style.stylebeads.typography.LineClamp"/>
+  <component id="LineHeight" class="org.apache.royale.style.stylebeads.typography.LineHeight"/>
+  <component id="ListStyle" class="org.apache.royale.style.stylebeads.typography.ListStyle"/>
+  <component id="OverflowWrap" class="org.apache.royale.style.stylebeads.typography.OverflowWrap"/>
+  <component id="TextAlign" class="org.apache.royale.style.stylebeads.typography.TextAlign"/>
+  <component id="TextColor" class="org.apache.royale.style.stylebeads.typography.TextColor"/>
+  <component id="TextContent" class="org.apache.royale.style.stylebeads.typography.TextContent"/>
+  <component id="TextDecoration" class="org.apache.royale.style.stylebeads.typography.TextDecoration"/>
+  <component id="TextIndent" class="org.apache.royale.style.stylebeads.typography.TextIndent"/>
+  <component id="TextOverflow" class="org.apache.royale.style.stylebeads.typography.TextOverflow"/>
+  <component id="TextTransform" class="org.apache.royale.style.stylebeads.typography.TextTransform"/>
+  <component id="TextUnderline" class="org.apache.royale.style.stylebeads.typography.TextUnderline"/>
+  <component id="TextWrap" class="org.apache.royale.style.stylebeads.typography.TextWrap"/>
+  <component id="VerticalAlign" class="org.apache.royale.style.stylebeads.typography.VerticalAlign"/>
+  <component id="Whitespace" class="org.apache.royale.style.stylebeads.typography.Whitespace"/>
+  <component id="WordBreak" class="org.apache.royale.style.stylebeads.typography.WordBreak"/>
+  -->
+  <!-- 
   <component id="BackgroundBlendMode" class="org.apache.royale.style.stylebeads.effects.BackgroundBlendMode"/>
   <component id="BoxShadow" class="org.apache.royale.style.stylebeads.effects.BoxShadow"/>
   <component id="MaskClip" class="org.apache.royale.style.stylebeads.effects.MaskClip"/>
@@ -55,8 +83,9 @@
   <component id="TextShadow" class="org.apache.royale.style.stylebeads.effects.TextShadow"/>
   <component id="FilterEffect" class="org.apache.royale.style.stylebeads.effects.FilterEffect"/>
   <component id="BackdropFilter" class="org.apache.royale.style.stylebeads.effects.BackdropFilter"/>
-  
+
   <component id="TableLayout" class="org.apache.royale.style.stylebeads.TableLayout"/>
+  
   -->
 
 
