@@ -55,6 +55,8 @@
   <component id="TextShadow" class="org.apache.royale.style.stylebeads.effects.TextShadow"/>
   <component id="FilterEffect" class="org.apache.royale.style.stylebeads.effects.FilterEffect"/>
   <component id="BackdropFilter" class="org.apache.royale.style.stylebeads.effects.BackdropFilter"/>
+  
+  <component id="TableLayout" class="org.apache.royale.style.stylebeads.TableLayout"/>
   -->
 
 
