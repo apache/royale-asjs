@@ -20,6 +20,7 @@
 
 
 <componentPackage>
+  <component id="ContainerPosition" class="org.apache.royale.style.stylebeads.ContainerPosition"/>
   <component id="FlexContainerStyle" class="org.apache.royale.style.stylebeads.FlexContainerStyle"/>
   <component id="FlexItemStyle" class="org.apache.royale.style.stylebeads.FlexItemStyle"/>
   <component id="HeightStyle" class="org.apache.royale.style.stylebeads.HeightStyle"/>
@@ -33,6 +34,7 @@
   <component id="OverflowStyle" class="org.apache.royale.style.stylebeads.OverflowStyle"/>
   <component id="PaddingStyle" class="org.apache.royale.style.stylebeads.PaddingStyle"/>
   <component id="PositionStyle" class="org.apache.royale.style.stylebeads.PositionStyle"/>
+  <component id="SelfPosition" class="org.apache.royale.style.stylebeads.SelfPosition"/>
   <component id="SizeStyle" class="org.apache.royale.style.stylebeads.SizeStyle"/>
   <component id="WidthStyle" class="org.apache.royale.style.stylebeads.WidthStyle"/>
 </componentPackage>
