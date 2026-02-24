@@ -26,12 +26,10 @@ package org.apache.royale.style.stylebeads.layout
 		{
 			super("z", "z-index");
 		}
-		private var negative:Boolean;
 		override public function set value(value:*):void
 		{
-			negative = value < 0;
-			if(negative)
-				_rulePrefix = "-z";
+			var negative:Boolean = value < 0;;
+			_selectorPrefix = negative ? "-z" : "z";
 			calculatedRuleValue = _value = value;
 			calculatedSelector = negative ? "" + Math.abs(value) : value;
 		}
