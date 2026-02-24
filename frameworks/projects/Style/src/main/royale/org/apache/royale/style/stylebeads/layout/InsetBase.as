@@ -35,7 +35,7 @@ package org.apache.royale.style.stylebeads.layout
 		override public function set value(value:*):void
 		{
 			var isNum:Boolean = parseFloat(value) == value;
-			var isInt:Boolean = parseInt(value, 10) == value;
+			var isInt:Boolean = int(value) == value;
 			var parseNum:Number = parseFloat(value);
 			var isNegative:Boolean = parseNum < 0;
 			if(isNegative)
