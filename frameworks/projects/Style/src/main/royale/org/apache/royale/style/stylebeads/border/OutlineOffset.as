@@ -18,37 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.background
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.colors.ColorPair;
 
-	public class BorderColor extends SingleStyleBase
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+
+	public class OutlineOffset extends SingleStyleBase
 	{
-		public function BorderColor()
+		public function OutlineOffset()
 		{
-			super("border", "border-color");
+			super("outline-offset", "outline-offset");
 		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
-		 */
+		private var savedPrefix:String;
 		override public function set value(value:*):void
 		{
-			calculatedSelector = calculatedRuleValue = _value = value;
-			switch(value)
-			{
-				case "inherit":
-				case "transparent":
-					return;
-				case "currentColor":
-					calculatedSelector = "current";
-					return;
-				default:
-					assert(value is ColorPair, "The value must be a ColorPair: " + value);
-					var pair:ColorPair = value as ColorPair;
-					calculatedRuleValue = pair.value;
-					calculatedSelector = pair.name;
-					return;
-			}
+			var numVal:Number = parseFloat(value);
+			var negative:Boolean = numVal < 0;
+			if(!savedPrefix)
+				savedPrefix = selectorPrefix;
+			_selectorPrefix = negative ? "-" + savedPrefix : savedPrefix;
+			_value = value;
+			calculatedRuleValue = value;
+			calculatedSelector = sanitizeSelector(value);
 		}
 	}
 }

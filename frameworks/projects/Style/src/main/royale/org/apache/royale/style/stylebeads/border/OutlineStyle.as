@@ -20,35 +20,26 @@ package org.apache.royale.style.stylebeads.background
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.colors.ColorPair;
 
-	public class BorderColor extends SingleStyleBase
+	public class OutlineStyle extends SingleStyleBase
 	{
-		public function BorderColor()
+		public function OutlineStyle()
 		{
-			super("border", "border-color");
+			super("outline", "outline-style");
 		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
-		 */
 		override public function set value(value:*):void
 		{
+			assert(["solid","dashed","dotted","double","hidden","none"].indexOf(value) >= 0, "The value must be a valid outline style: " + value);
 			calculatedSelector = calculatedRuleValue = _value = value;
-			switch(value)
+		}
+		override public function get rule():String
+		{
+			// enable outline in in forced colors mode
+			if(calculatedSelector == "hidden")
 			{
-				case "inherit":
-				case "transparent":
-					return;
-				case "currentColor":
-					calculatedSelector = "current";
-					return;
-				default:
-					assert(value is ColorPair, "The value must be a ColorPair: " + value);
-					var pair:ColorPair = value as ColorPair;
-					calculatedRuleValue = pair.value;
-					calculatedSelector = pair.name;
-					return;
+				return "outline: 2px solid transparent; outline-offset: 2px;";
 			}
+			return super.rule;
 		}
 	}
 }

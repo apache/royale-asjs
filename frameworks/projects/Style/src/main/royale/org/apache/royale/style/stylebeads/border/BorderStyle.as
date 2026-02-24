@@ -20,35 +20,17 @@ package org.apache.royale.style.stylebeads.background
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.colors.ColorPair;
 
-	public class BorderColor extends SingleStyleBase
+	public class BorderStyle extends SingleStyleBase
 	{
-		public function BorderColor()
+		public function BorderStyle()
 		{
-			super("border", "border-color");
+			super("border", "border-style");
 		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
-		 */
 		override public function set value(value:*):void
 		{
+			assert(["solid","dashed","dotted","double","hidden","none"].indexOf(value) >= 0, "The value must be a valid border style: " + value);
 			calculatedSelector = calculatedRuleValue = _value = value;
-			switch(value)
-			{
-				case "inherit":
-				case "transparent":
-					return;
-				case "currentColor":
-					calculatedSelector = "current";
-					return;
-				default:
-					assert(value is ColorPair, "The value must be a ColorPair: " + value);
-					var pair:ColorPair = value as ColorPair;
-					calculatedRuleValue = pair.value;
-					calculatedSelector = pair.name;
-					return;
-			}
 		}
 	}
 }

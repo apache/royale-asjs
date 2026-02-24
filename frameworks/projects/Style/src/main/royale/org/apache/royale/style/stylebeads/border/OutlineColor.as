@@ -22,11 +22,11 @@ package org.apache.royale.style.stylebeads.background
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.colors.ColorPair;
 
-	public class BorderColor extends SingleStyleBase
+	public class OutlineColor extends SingleStyleBase
 	{
-		public function BorderColor()
+		public function OutlineColor()
 		{
-			super("border", "border-color");
+			super("outline", "outline-color");
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair

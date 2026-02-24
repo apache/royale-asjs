@@ -20,35 +20,36 @@ package org.apache.royale.style.stylebeads.background
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.colors.ColorPair;
-
-	public class BorderColor extends SingleStyleBase
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.StyleTheme;
+	/**
+	 * Defaults to 1px.
+	 */
+	public class OutlineWidth extends SingleStyleBase
 	{
-		public function BorderColor()
+		public function OutlineWidth()
 		{
-			super("border", "border-color");
+			super("outline", "outline-width");
 		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
-		 */
 		override public function set value(value:*):void
 		{
-			calculatedSelector = calculatedRuleValue = _value = value;
-			switch(value)
-			{
-				case "inherit":
-				case "transparent":
-					return;
-				case "currentColor":
-					calculatedSelector = "current";
-					return;
-				default:
-					assert(value is ColorPair, "The value must be a ColorPair: " + value);
-					var pair:ColorPair = value as ColorPair;
-					calculatedRuleValue = pair.value;
-					calculatedSelector = pair.name;
-					return;
-			}
+			_value = value;
+			calculatedRuleValue = value;
+			calculatedSelector = sanitizeSelector(value);
+		}
+		override public function get selector():String
+		{
+			if(!calculatedSelector)
+				return selectorPrefix;
+			
+			return super.selector;
+		}
+		override public function get rule():String
+		{
+			if(!calculatedRuleValue)
+				return "1px";
+			
+			return super.rule;
 		}
 	}
 }
