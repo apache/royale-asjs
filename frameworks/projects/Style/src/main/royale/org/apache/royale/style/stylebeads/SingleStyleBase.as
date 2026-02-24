@@ -87,9 +87,9 @@ package org.apache.royale.style.stylebeads
 			if(strVal == "100%")
 				return "full";
 			if(strVal.indexOf("%") >= 0)
-				return "p" + strVal.replace(/%/g, "");
+				strVal = strVal.replace(/%/g, "p");
 			
-			return value.replace(/[\.\s]/g, "-");
+			return strVal.replace(/[\.\s]/g, "-");
 		}
 
 	}
