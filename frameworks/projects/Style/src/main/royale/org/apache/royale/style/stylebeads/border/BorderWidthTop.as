@@ -16,37 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.background
 {
-	public class PositionStyle extends MeasurementStyleBase
+	/**
+	 * Defaults to 1px.
+	 */
+	public class BorderWidthTop extends BorderWidth
 	{
-		public function PositionStyle()
+		public function BorderWidthTop()
 		{
-			super();
+			super("border-t", "border-top-width");
 		}
-
-		private var _value:String;
-		
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		public function get value():String
-		{
-			return _value;
-		}
-
-		public function set value(value:String):void
-		{
-			_value = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [value];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["position:" + value + unit + ";"];
-		}
-
 	}
 }

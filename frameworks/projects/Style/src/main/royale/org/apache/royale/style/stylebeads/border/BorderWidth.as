@@ -16,37 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.background
 {
-	public class PositionStyle extends MeasurementStyleBase
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.StyleTheme;
+	/**
+	 * Defaults to 1px.
+	 */
+	public class BorderWidth extends SingleStyleBase
 	{
-		public function PositionStyle()
+		public function BorderWidth(selectorPrefix:String = "border", rulePrefix:String = "border-width")
 		{
-			super();
+			super(selectorPrefix, rulePrefix);
 		}
-
-		private var _value:String;
-		
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		public function get value():String
-		{
-			return _value;
-		}
-
-		public function set value(value:String):void
+		override public function set value(value:*):void
 		{
 			_value = value;
+			calculatedRuleValue = value;
+			calculatedSelector = sanitizeSelector(value);
 		}
-
-		override public function get selectors():Array
+		override public function get selector():String
 		{
-			return [value];
+			if(!calculatedSelector)
+				return selectorPrefix;
+			
+			return super.selector;
 		}
-	
-		override public function get rules():Array
+		override public function get rule():String
 		{
-			return ["position:" + value + unit + ";"];
+			if(!calculatedRuleValue)
+				return "1px";
+			
+			return super.rule;
 		}
-
 	}
 }

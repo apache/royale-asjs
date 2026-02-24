@@ -64,11 +64,11 @@ package org.apache.royale.style.stylebeads
 			{
 				var s:String = selectorName;
 				if (overflowX == overflowY)
-					return ["." + s + "-" + overflowX];
+					return [s + "-" + overflowX];
 
 				return [
-					"." + s + "-x-" + overflowX,
-					"." + s + "-y-" + overflowY
+					s + "-x-" + overflowX,
+					s + "-y-" + overflowY
 				];
 			}
 
@@ -76,7 +76,7 @@ package org.apache.royale.style.stylebeads
 			{
 				var s:String = selectorName;
 				if (overflowX == overflowY)
-					return ["." + s + ":" + overflowX + ";"];
+					return [s + ":" + overflowX + ";"];
 
 				return [
 					s + "-x:" + overflowX + ";",

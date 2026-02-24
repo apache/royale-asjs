@@ -159,3 +159,4 @@ This project is under active development. APIs and naming may evolve as style be
 - (min/max-)inline-size
 - (min/max-)block-size
 - Add support for normal rgb for browsers which don't support oklch (i.e. CEP) Maybe?
+- border "between" https://tailwindcss.com/docs/border-width

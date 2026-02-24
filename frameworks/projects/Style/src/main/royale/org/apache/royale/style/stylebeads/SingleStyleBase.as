@@ -71,7 +71,7 @@ package org.apache.royale.style.stylebeads
 		{
 			if(!calculatedSelector)
 				return "";
-			return "." + selectorPrefix + "-" + calculatedSelector;
+			return selectorPrefix + "-" + calculatedSelector;
 		}
 		public function get rule():String
 		{
