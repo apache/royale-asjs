@@ -28,59 +28,59 @@ package org.apache.royale.style.colors
 			
 		}
 		COMPILE::JS
-		public static function get _50():String
+		public static function get _50():ColorPair
 		{
-			return "oklch(98.7% 0.026 102.212)";
+			return new ColorPair("yellow-50","oklch(98.7% 0.026 102.212)") ;
 		}
 		COMPILE::JS
-		public static function get _100():String
+		public static function get _100():ColorPair
 		{
-			return "oklch(97.3% 0.071 103.193)";
+			return new ColorPair("yellow-100","oklch(97.3% 0.071 103.193)") ;
 		}
 		COMPILE::JS
-		public static function get _200():String
+		public static function get _200():ColorPair
 		{
-			return "oklch(94.5% 0.129 101.54)";
+			return new ColorPair("yellow-200","oklch(94.5% 0.129 101.54)") ;
 		}
 		COMPILE::JS
-		public static function get _300():String
+		public static function get _300():ColorPair
 		{
-			return "oklch(90.5% 0.182 98.111)";
+			return new ColorPair("yellow-300","oklch(90.5% 0.182 98.111)") ;
 		}
 		COMPILE::JS
-		public static function get _400():String
+		public static function get _400():ColorPair
 		{
-			return "oklch(85.2% 0.199 91.936)";
+			return new ColorPair("yellow-400","oklch(85.2% 0.199 91.936)") ;
 		}
 		COMPILE::JS
-		public static function get _500():String
+		public static function get _500():ColorPair
 		{
-			return "oklch(79.5% 0.184 86.047)";
+			return new ColorPair("yellow-500","oklch(79.5% 0.184 86.047)") ;
 		}
 		COMPILE::JS
-		public static function get _600():String
+		public static function get _600():ColorPair
 		{
-			return "oklch(68.1% 0.162 75.834)";
+			return new ColorPair("yellow-600","oklch(68.1% 0.162 75.834)") ;
 		}
 		COMPILE::JS
-		public static function get _700():String
+		public static function get _700():ColorPair
 		{
-			return "oklch(55.4% 0.135 66.442)";
+			return new ColorPair("yellow-700","oklch(55.4% 0.135 66.442)") ;
 		}
 		COMPILE::JS
-		public static function get _800():String
+		public static function get _800():ColorPair
 		{
-			return "oklch(47.6% 0.114 61.907)";
+			return new ColorPair("yellow-800","oklch(47.6% 0.114 61.907)") ;
 		}
 		COMPILE::JS
-		public static function get _900():String
+		public static function get _900():ColorPair
 		{
-			return "oklch(42.1% 0.095 57.708)";
+			return new ColorPair("yellow-900","oklch(42.1% 0.095 57.708)") ;
 		}
 		COMPILE::JS
-		public static function get _950():String
+		public static function get _950():ColorPair
 		{
-			return "oklch(28.6% 0.066 53.813)";
+			return new ColorPair("yellow-950","oklch(28.6% 0.066 53.813)") ;
 		}
 
 	}

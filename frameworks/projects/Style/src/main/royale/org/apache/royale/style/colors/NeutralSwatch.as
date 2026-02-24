@@ -28,59 +28,59 @@ package org.apache.royale.style.colors
 			
 		}
 		COMPILE::JS
-		public static function get _50():String
+		public static function get _50():ColorPair
 		{
-			return "oklch(98.5% 0 0)";
+			return new ColorPair("neutral-50","oklch(98.5% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _100():String
+		public static function get _100():ColorPair
 		{
-			return "oklch(97% 0 0)";
+			return new ColorPair("neutral-100","oklch(97% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _200():String
+		public static function get _200():ColorPair
 		{
-			return "oklch(92.2% 0 0)";
+			return new ColorPair("neutral-200","oklch(92.2% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _300():String
+		public static function get _300():ColorPair
 		{
-			return "oklch(87% 0 0)";
+			return new ColorPair("neutral-300","oklch(87% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _400():String
+		public static function get _400():ColorPair
 		{
-			return "oklch(70.8% 0 0)";
+			return new ColorPair("neutral-400","oklch(70.8% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _500():String
+		public static function get _500():ColorPair
 		{
-			return "oklch(55.6% 0 0)";
+			return new ColorPair("neutral-500","oklch(55.6% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _600():String
+		public static function get _600():ColorPair
 		{
-			return "oklch(43.9% 0 0)";
+			return new ColorPair("neutral-600","oklch(43.9% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _700():String
+		public static function get _700():ColorPair
 		{
-			return "oklch(37.1% 0 0)";
+			return new ColorPair("neutral-700","oklch(37.1% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _800():String
+		public static function get _800():ColorPair
 		{
-			return "oklch(26.9% 0 0)";
+			return new ColorPair("neutral-800","oklch(26.9% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _900():String
+		public static function get _900():ColorPair
 		{
-			return "oklch(20.5% 0 0)";
+			return new ColorPair("neutral-900","oklch(20.5% 0 0)") ;
 		}
 		COMPILE::JS
-		public static function get _950():String
+		public static function get _950():ColorPair
 		{
-			return "oklch(14.5% 0 0)";
+			return new ColorPair("neutral-950","oklch(14.5% 0 0)") ;
 		}
 
 	}

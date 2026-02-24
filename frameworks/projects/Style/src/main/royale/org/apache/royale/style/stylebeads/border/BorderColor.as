@@ -16,13 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.spacing
+package org.apache.royale.style.stylebeads.background
 {
-	public class MarginBlockStart extends Margin
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.colors.ColorPair;
+
+	public class BorderColor extends SingleStyleBase
 	{
-		public function MarginBlockStart()
+		public function BorderColor()
 		{
-			super("mbs", "margin-block-start");
+			super("border", "border-color");
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
+		 */
+		override public function set value(value:*):void
+		{
+			assert(value is ColorPair, "The value must be a ColorPair: " + value);
+			_value = value;
+			var pair:ColorPair = value as ColorPair;
+			calculatedRuleValue = pair.value;
+			calculatedSelector = pair.name;
 		}
 	}
 }

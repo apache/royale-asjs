@@ -16,13 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.spacing
+package org.apache.royale.style.colors
 {
-	public class MarginBlockStart extends Margin
+	public class ColorPair
 	{
-		public function MarginBlockStart()
+		public function ColorPair(name:String, value:String)
 		{
-			super("mbs", "margin-block-start");
+			super();
+			this.name = name;
+			this.value = value;
 		}
+		public var name:String;
+		public var value:String;
 	}
 }

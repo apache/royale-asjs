@@ -28,59 +28,59 @@ package org.apache.royale.style.colors
 			
 		}
 		COMPILE::JS
-		public static function get _50():String
+		public static function get _50():ColorPair
 		{
-			return "oklch(97.9% 0.021 166.113)";
+			return new ColorPair("emerald-50","oklch(97.9% 0.021 166.113)") ;
 		}
 		COMPILE::JS
-		public static function get _100():String
+		public static function get _100():ColorPair
 		{
-			return "oklch(95% 0.052 163.051)";
+			return new ColorPair("emerald-100","oklch(95% 0.052 163.051)") ;
 		}
 		COMPILE::JS
-		public static function get _200():String
+		public static function get _200():ColorPair
 		{
-			return "oklch(90.5% 0.093 164.15)";
+			return new ColorPair("emerald-200","oklch(90.5% 0.093 164.15)") ;
 		}
 		COMPILE::JS
-		public static function get _300():String
+		public static function get _300():ColorPair
 		{
-			return "oklch(84.5% 0.143 164.978)";
+			return new ColorPair("emerald-300","oklch(84.5% 0.143 164.978)") ;
 		}
 		COMPILE::JS
-		public static function get _400():String
+		public static function get _400():ColorPair
 		{
-			return "oklch(76.5% 0.177 163.223)";
+			return new ColorPair("emerald-400","oklch(76.5% 0.177 163.223)") ;
 		}
 		COMPILE::JS
-		public static function get _500():String
+		public static function get _500():ColorPair
 		{
-			return "oklch(69.6% 0.17 162.48)";
+			return new ColorPair("emerald-500","oklch(69.6% 0.17 162.48)") ;
 		}
 		COMPILE::JS
-		public static function get _600():String
+		public static function get _600():ColorPair
 		{
-			return "oklch(59.6% 0.145 163.225)";
+			return new ColorPair("emerald-600","oklch(59.6% 0.145 163.225)") ;
 		}
 		COMPILE::JS
-		public static function get _700():String
+		public static function get _700():ColorPair
 		{
-			return "oklch(50.8% 0.118 165.612)";
+			return new ColorPair("emerald-700","oklch(50.8% 0.118 165.612)") ;
 		}
 		COMPILE::JS
-		public static function get _800():String
+		public static function get _800():ColorPair
 		{
-			return "oklch(43.2% 0.095 166.913)";
+			return new ColorPair("emerald-800","oklch(43.2% 0.095 166.913)") ;
 		}
 		COMPILE::JS
-		public static function get _900():String
+		public static function get _900():ColorPair
 		{
-			return "oklch(37.8% 0.077 168.94)";
+			return new ColorPair("emerald-900","oklch(37.8% 0.077 168.94)") ;
 		}
 		COMPILE::JS
-		public static function get _950():String
+		public static function get _950():ColorPair
 		{
-			return "oklch(26.2% 0.051 172.552)";
+			return new ColorPair("emerald-950","oklch(26.2% 0.051 172.552)") ;
 		}
 
 	}

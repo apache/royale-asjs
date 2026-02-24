@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.flexgrid
+package org.apache.royale.style.stylebeads.spacing
 {
 	public class PaddingBottom extends Padding
 	{

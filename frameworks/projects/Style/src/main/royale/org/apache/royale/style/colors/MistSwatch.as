@@ -28,59 +28,59 @@ package org.apache.royale.style.colors
 			
 		}
 		COMPILE::JS
-		public static function get _50():String
+		public static function get _50():ColorPair
 		{
-			return "oklch(98.7% 0.002 197.1)";
+			return new ColorPair("mist-50","oklch(98.7% 0.002 197.1)") ;
 		}
 		COMPILE::JS
-		public static function get _100():String
+		public static function get _100():ColorPair
 		{
-			return "oklch(96.3% 0.002 197.1)";
+			return new ColorPair("mist-100","oklch(96.3% 0.002 197.1)") ;
 		}
 		COMPILE::JS
-		public static function get _200():String
+		public static function get _200():ColorPair
 		{
-			return "oklch(92.5% 0.005 214.3)";
+			return new ColorPair("mist-200","oklch(92.5% 0.005 214.3)") ;
 		}
 		COMPILE::JS
-		public static function get _300():String
+		public static function get _300():ColorPair
 		{
-			return "oklch(87.2% 0.007 219.6)";
+			return new ColorPair("mist-300","oklch(87.2% 0.007 219.6)") ;
 		}
 		COMPILE::JS
-		public static function get _400():String
+		public static function get _400():ColorPair
 		{
-			return "oklch(72.3% 0.014 214.4)";
+			return new ColorPair("mist-400","oklch(72.3% 0.014 214.4)") ;
 		}
 		COMPILE::JS
-		public static function get _500():String
+		public static function get _500():ColorPair
 		{
-			return "oklch(56% 0.021 213.5)";
+			return new ColorPair("mist-500","oklch(56% 0.021 213.5)") ;
 		}
 		COMPILE::JS
-		public static function get _600():String
+		public static function get _600():ColorPair
 		{
-			return "oklch(45% 0.017 213.2)";
+			return new ColorPair("mist-600","oklch(45% 0.017 213.2)") ;
 		}
 		COMPILE::JS
-		public static function get _700():String
+		public static function get _700():ColorPair
 		{
-			return "oklch(37.8% 0.015 216)";
+			return new ColorPair("mist-700","oklch(37.8% 0.015 216)") ;
 		}
 		COMPILE::JS
-		public static function get _800():String
+		public static function get _800():ColorPair
 		{
-			return "oklch(27.5% 0.011 216.9)";
+			return new ColorPair("mist-800","oklch(27.5% 0.011 216.9)") ;
 		}
 		COMPILE::JS
-		public static function get _900():String
+		public static function get _900():ColorPair
 		{
-			return "oklch(21.8% 0.008 223.9)";
+			return new ColorPair("mist-900","oklch(21.8% 0.008 223.9)") ;
 		}
 		COMPILE::JS
-		public static function get _950():String
+		public static function get _950():ColorPair
 		{
-			return "oklch(14.8% 0.004 228.8)";
+			return new ColorPair("mist-950","oklch(14.8% 0.004 228.8)") ;
 		}
 
 	}

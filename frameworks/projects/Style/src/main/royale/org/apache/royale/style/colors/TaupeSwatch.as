@@ -28,59 +28,59 @@ package org.apache.royale.style.colors
 			
 		}
 		COMPILE::JS
-		public static function get _50():String
+		public static function get _50():ColorPair
 		{
-			return "oklch(98.6% 0.002 67.8)";
+			return new ColorPair("taupe-50","oklch(98.6% 0.002 67.8)") ;
 		}
 		COMPILE::JS
-		public static function get _100():String
+		public static function get _100():ColorPair
 		{
-			return "oklch(96% 0.002 17.2)";
+			return new ColorPair("taupe-100","oklch(96% 0.002 17.2)") ;
 		}
 		COMPILE::JS
-		public static function get _200():String
+		public static function get _200():ColorPair
 		{
-			return "oklch(92.2% 0.005 34.3)";
+			return new ColorPair("taupe-200","oklch(92.2% 0.005 34.3)") ;
 		}
 		COMPILE::JS
-		public static function get _300():String
+		public static function get _300():ColorPair
 		{
-			return "oklch(86.8% 0.007 39.5)";
+			return new ColorPair("taupe-300","oklch(86.8% 0.007 39.5)") ;
 		}
 		COMPILE::JS
-		public static function get _400():String
+		public static function get _400():ColorPair
 		{
-			return "oklch(71.4% 0.014 41.2)";
+			return new ColorPair("taupe-400","oklch(71.4% 0.014 41.2)") ;
 		}
 		COMPILE::JS
-		public static function get _500():String
+		public static function get _500():ColorPair
 		{
-			return "oklch(54.7% 0.021 43.1)";
+			return new ColorPair("taupe-500","oklch(54.7% 0.021 43.1)") ;
 		}
 		COMPILE::JS
-		public static function get _600():String
+		public static function get _600():ColorPair
 		{
-			return "oklch(43.8% 0.017 39.3)";
+			return new ColorPair("taupe-600","oklch(43.8% 0.017 39.3)") ;
 		}
 		COMPILE::JS
-		public static function get _700():String
+		public static function get _700():ColorPair
 		{
-			return "oklch(36.7% 0.016 35.7)";
+			return new ColorPair("taupe-700","oklch(36.7% 0.016 35.7)") ;
 		}
 		COMPILE::JS
-		public static function get _800():String
+		public static function get _800():ColorPair
 		{
-			return "oklch(26.8% 0.011 36.5)";
+			return new ColorPair("taupe-800","oklch(26.8% 0.011 36.5)") ;
 		}
 		COMPILE::JS
-		public static function get _900():String
+		public static function get _900():ColorPair
 		{
-			return "oklch(21.4% 0.009 43.1)";
+			return new ColorPair("taupe-900","oklch(21.4% 0.009 43.1)") ;
 		}
 		COMPILE::JS
-		public static function get _950():String
+		public static function get _950():ColorPair
 		{
-			return "oklch(14.7% 0.004 49.3)";
+			return new ColorPair("taupe-950","oklch(14.7% 0.004 49.3)") ;
 		}
 
 	}
