@@ -16,8 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.effects
+package org.apache.royale.style.stylebeads.filters
 {
+
 
 	public class FilterEffect extends FilterEffectBase
 	{

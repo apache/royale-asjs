@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.effects
+package org.apache.royale.style.stylebeads.filters
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
 

@@ -39,7 +39,7 @@
   <component id="SizeStyle" class="org.apache.royale.style.stylebeads.SizeStyle"/>
   <component id="WidthStyle" class="org.apache.royale.style.stylebeads.WidthStyle"/>
 
-  <!-- 
+
   <component id="FontFamily" class="org.apache.royale.style.stylebeads.typography.FontFamily"/>
   <component id="FontFeatures" class="org.apache.royale.style.stylebeads.typography.FontFeatures"/>
   <component id="FontNumeric" class="org.apache.royale.style.stylebeads.typography.FontNumeric"/>
@@ -66,8 +66,24 @@
   <component id="VerticalAlign" class="org.apache.royale.style.stylebeads.typography.VerticalAlign"/>
   <component id="Whitespace" class="org.apache.royale.style.stylebeads.typography.Whitespace"/>
   <component id="WordBreak" class="org.apache.royale.style.stylebeads.typography.WordBreak"/>
-  -->
-  <!-- 
+
+  <component id="Animation" class="org.apache.royale.style.stylebeads.anim.Animation"/>
+  <component id="TransitionBehavior" class="org.apache.royale.style.stylebeads.anim.TransitionBehavior"/>
+  <component id="TransitionDelay" class="org.apache.royale.style.stylebeads.anim.TransitionDelay"/>
+  <component id="TransitionDuration" class="org.apache.royale.style.stylebeads.anim.TransitionDuration"/>
+  <component id="TransitionProperty" class="org.apache.royale.style.stylebeads.anim.TransitionProperty"/>
+  <component id="TransitionTimingFunction" class="org.apache.royale.style.stylebeads.anim.TransitionTimingFunction"/>
+
+  <component id="BackgroundAttachment" class="org.apache.royale.style.stylebeads.background.BackgroundAttachment"/>
+  <component id="BackgroundClip" class="org.apache.royale.style.stylebeads.background.BackgroundClip"/>
+  <component id="BackgroundColor" class="org.apache.royale.style.stylebeads.background.BackgroundColor"/>
+  <component id="BackgroundImage" class="org.apache.royale.style.stylebeads.background.BackgroundImage"/>
+  <component id="BackgroundOrigin" class="org.apache.royale.style.stylebeads.background.BackgroundOrigin"/>
+  <component id="BackgroundPosition" class="org.apache.royale.style.stylebeads.background.BackgroundPosition"/>
+  <component id="BackgroundRepeat" class="org.apache.royale.style.stylebeads.background.BackgroundRepeat"/>
+  <component id="BackgroundSize" class="org.apache.royale.style.stylebeads.background.BackgroundSize"/>
+  
+   
   <component id="BackgroundBlendMode" class="org.apache.royale.style.stylebeads.effects.BackgroundBlendMode"/>
   <component id="BoxShadow" class="org.apache.royale.style.stylebeads.effects.BoxShadow"/>
   <component id="MaskClip" class="org.apache.royale.style.stylebeads.effects.MaskClip"/>
@@ -81,12 +97,26 @@
   <component id="MaskType" class="org.apache.royale.style.stylebeads.effects.MaskType"/>
   <component id="OpacityStyle" class="org.apache.royale.style.stylebeads.effects.OpacityStyle"/>
   <component id="TextShadow" class="org.apache.royale.style.stylebeads.effects.TextShadow"/>
-  <component id="FilterEffect" class="org.apache.royale.style.stylebeads.effects.FilterEffect"/>
-  <component id="BackdropFilter" class="org.apache.royale.style.stylebeads.effects.BackdropFilter"/>
+  <component id="FilterEffect" class="org.apache.royale.style.stylebeads.filters.FilterEffect"/>
+  <component id="BackdropFilter" class="org.apache.royale.style.stylebeads.filters.BackdropFilter"/>
 
   <component id="TableLayout" class="org.apache.royale.style.stylebeads.TableLayout"/>
-  
-  -->
+  <component id="BorderColor" class="org.apache.royale.style.stylebeads.border.BorderColor"/>
+  <component id="BorderRadius" class="org.apache.royale.style.stylebeads.border.BorderRadius"/>
+  <component id="BorderStyle" class="org.apache.royale.style.stylebeads.border.BorderStyle"/>
+  <component id="BorderWidth" class="org.apache.royale.style.stylebeads.border.BorderWidth"/>
+  <component id="ColumnGap" class="org.apache.royale.style.stylebeads.flexgrid.ColumnGap"/>
+  <component id="RowGap" class="org.apache.royale.style.stylebeads.flexgrid.RowGap"/>
+  <component id="GridRow" class="org.apache.royale.style.stylebeads.flexgrid.GridRow"/>
+  <component id="RowSpan" class="org.apache.royale.style.stylebeads.flexgrid.GridRow"/>
+  <component id="GridAutoColumns" class="org.apache.royale.style.stylebeads.flexgrid.GridAutoColumns"/>
+  <component id="GridAutoFlow" class="org.apache.royale.style.stylebeads.flexgrid.GridAutoFlow"/>
+  <component id="GridAutoRows" class="org.apache.royale.style.stylebeads.flexgrid.GridAutoRows"/>
+  <component id="GridTemplateColumns" class="org.apache.royale.style.stylebeads.flexgrid.GridTemplateColumns"/>
+  <component id="GridTemplateRows" class="org.apache.royale.style.stylebeads.flexgrid.GridTemplateRows"/>
+  <component id="Stroke" class="org.apache.royale.style.stylebeads.svg.Stroke"/>
+  <component id="StrokeWidth" class="org.apache.royale.style.stylebeads.svg.StrokeWidth"/>
+  <component id="ForcedColorAdjust" class="org.apache.royale.style.stylebeads.access.ForcedColorAdjust"/>
 
 
 </componentPackage>

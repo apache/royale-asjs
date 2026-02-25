@@ -16,13 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style.stylebeads
 {
-	public class BorderRadiusEndEnd extends BorderRadius
+	public class CompositeStyle extends StyleBeadBase
 	{
-		public function BorderRadiusEndEnd()
+		public function CompositeStyle()
 		{
-			super("rounded-ee", "border-end-end-radius");
+			
 		}
+		protected var _styles:Array = [];
+		override public function get selectors():Array
+		{
+			var retVal:Array = [];
+			for each (var style:StyleBeadBase in _styles)			{
+				retVal = retVal.concat(style.selectors);
+			}
+			return retVal;
+		}
+
+		override public function get rules():Array
+		{
+			var retVal:Array = [];
+			for each (var style:StyleBeadBase in _styles)			{
+				retVal = retVal.concat(style.rules);
+			}
+			return retVal;
+		}		
 	}
 }

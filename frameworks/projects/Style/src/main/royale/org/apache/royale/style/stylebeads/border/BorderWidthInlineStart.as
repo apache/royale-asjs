@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style.stylebeads.border
 {
 	/**
 	 * Defaults to 1px.
