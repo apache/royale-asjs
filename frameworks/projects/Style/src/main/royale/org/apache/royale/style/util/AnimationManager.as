@@ -16,32 +16,46 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.effects
+package org.apache.royale.style.util
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.debugging.assert;
 
-	public class BoxShadow extends StyleBeadBase
+	public class AnimationManager
 	{
-		public function BoxShadow()
+		private function AnimationManager()
 		{
-			super();
+			
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		public var size:String;
-		
-		// none is special
-		public var color:String;
-		public var inset:Boolean;
-		override public function get selectors():Array
+		COMPILE::JS
+		private static const keyframeSet:Set = new Set();
+
+		public static function registerKeyframes(name:String, keyframes:Array):void
 		{
-			return [];
+			COMPILE::JS
+			{
+				assert(name.indexOf("--") != 0, "Keyframes does not support CSS variables. The name should not start with '--': " + name);
+				// Only add once. "has" is much faster than running "set" again.
+				if(keyframeSet.has(name))
+					return;
+
+				keyframeSet.add(name);
+				// Should we check that it's not being added twice?
+				// Shouldn't be necessary unless something went wrong...
+				StyleManager.addStyle("@keyframes " + name, keyframes.join("\n"));
+			}
 		}
 
-		override public function get rules():Array
+
+		public static function has(name:String):Boolean
 		{
-			return [];
+			COMPILE::JS
+			{
+				return keyframeSet.has(name);
+			}
+			COMPILE::SWF
+			{
+				return false;
+			}
 		}
 	}
 }

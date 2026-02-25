@@ -72,6 +72,17 @@ SVG icons are created at runtime as well, enabling:
 - This allows for dynamic color generation and usage without needing to pre-generate static CSS classes for each color variant.
 - Anywhere colors are applied, the string name of the color should be used, , but the nmes must be registered by CSSLookup first.
 
+### Arbitrary CSS Values
+- Any style bead which acepts a `value` should support names registered with CSSLookup. This enables specifying specific styling used in theming such as custom box-shadows or filters, etc. without needing to create a new style bead for each unique value.
+
+### Animations
+- Style includes the prebuilt standard animations inclused in Tailwind.
+- Those standard settings can be customized in the StyleTheme.
+- If custom keyframes are needed, they must be registered in the AnimationManager.
+- Keyframes are registered with a `name` and an array of the keyframe steps.
+- Animation variables can be defined as any other CSS variable definition. The rule should use the keyframe name as necessary.
+- All keyframe names must be unique across the application to avoid conflicts.
+
 ## Why this project
 
 Traditional styling in large component systems can become rigid over time. This project aims to keep Royale styling lightweight, composable, and application-driven by combining:

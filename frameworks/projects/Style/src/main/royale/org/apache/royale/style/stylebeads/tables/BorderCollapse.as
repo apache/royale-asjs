@@ -16,32 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.effects
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class BoxShadow extends StyleBeadBase
+	public class BorderCollapse extends SingleStyleBase
 	{
-		public function BoxShadow()
+		public function BorderCollapse()
 		{
-			super();
-		}
-		/**
-		 * TODO: Figure this out
-		 */
-		public var size:String;
-		
-		// none is special
-		public var color:String;
-		public var inset:Boolean;
-		override public function get selectors():Array
-		{
-			return [];
+			super("border", "border-collapse");
 		}
 
-		override public function get rules():Array
+		override public function set value(value:*):void
 		{
-			return [];
+			assert(value == "collapse" || value == "separate", "border-collapse only accepts 'collapse' or 'separate'");
+			calculatedRuleValue = calculatedSelector = _value = value;
 		}
 	}
 }

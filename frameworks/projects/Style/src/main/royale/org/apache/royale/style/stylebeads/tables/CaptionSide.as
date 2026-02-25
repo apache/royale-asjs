@@ -16,32 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.effects
+package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class BoxShadow extends StyleBeadBase
+	public class CaptionSide extends SingleStyleBase
 	{
-		public function BoxShadow()
+		public function CaptionSide()
 		{
-			super();
-		}
-		/**
-		 * TODO: Figure this out
-		 */
-		public var size:String;
-		
-		// none is special
-		public var color:String;
-		public var inset:Boolean;
-		override public function get selectors():Array
-		{
-			return [];
+			super("caption", "caption-side");
 		}
 
-		override public function get rules():Array
+		override public function set value(value:*):void
 		{
-			return [];
+			assert(value == "top" || value == "bottom" , "caption-side only accepts 'top' or 'bottom'");
+			calculatedRuleValue = calculatedSelector = _value = value;
 		}
 	}
 }

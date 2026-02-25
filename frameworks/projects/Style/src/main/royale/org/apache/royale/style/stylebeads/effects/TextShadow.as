@@ -29,6 +29,11 @@ package org.apache.royale.style.stylebeads.effects
 		/**
 		 * TODO: Figure this out
 		 */
+		public var size:String;
+		
+		// none is special
+		public var color:String;
+
 		override public function get selectors():Array
 		{
 			return [];

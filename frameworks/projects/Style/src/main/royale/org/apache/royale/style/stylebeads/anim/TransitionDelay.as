@@ -16,32 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.effects
+package org.apache.royale.style.stylebeads.anim
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.CSSLookup;
 
-	public class BoxShadow extends StyleBeadBase
+	public class TransitionDelay extends SingleStyleBase
 	{
-		public function BoxShadow()
+		public function TransitionDelay()
 		{
-			super();
-		}
-		/**
-		 * TODO: Figure this out
-		 */
-		public var size:String;
-		
-		// none is special
-		public var color:String;
-		public var inset:Boolean;
-		override public function get selectors():Array
-		{
-			return [];
+			super("delay", "transition-delay");
 		}
 
-		override public function get rules():Array
+
+		override public function set value(value:*):void
 		{
-			return [];
-		}
+			var isInt:Boolean = int(value) == value;
+			var isVar:Boolean = CSSLookup.has(value);
+			assert(isVar || (isInt && value >= 0), "transition-delay only accepts valid CSS variables or non-negative integers representing milliseconds");
+			calculatedSelector = _value = value;
+			calculatedRuleValue = isInt ? value + "ms" : CSSLookup.getProperty(value);
+		}		
 	}
 }

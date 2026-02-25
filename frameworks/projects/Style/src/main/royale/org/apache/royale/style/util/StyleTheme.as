@@ -127,11 +127,50 @@ package org.apache.royale.style.util
 		public var easeOut:String = "cubic-bezier(0,0,.2,1)";
 		public var easeInOut:String = "cubic-bezier(.4,0,.2,1)";
 		
-		// TODO: Add keyframes for these animations.
-		public var animateSpin:String = "spin 1s linear infinite"
-		public var animatePing:String = "ping 1s cubic-bezier(0,0,.2,1) infinite";
-		public var animatePulse:String = "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite";
-		public var animateBounce:String = "bounce 1s infinite";
+		public function get animateSpin():String
+		{
+			if(!AnimationManager.has("spin"))
+			{
+				AnimationManager.registerKeyframes("spin", [
+					"to {transform: rotate(360deg);}"
+				]);
+			}
+			return "spin 1s linear infinite";
+		}
+		public function get animatePing():String
+		{
+			if(!AnimationManager.has("ping"))
+			{
+				AnimationManager.registerKeyframes("ping", [
+					"75%, 100% {transform: scale(2); opacity: 0;}"
+				]);
+			}
+			return "ping 1s cubic-bezier(0,0,.2,1) infinite";
+		}
+		
+
+		public function get animatePulse():String
+		{
+			if(!AnimationManager.has("pulse"))
+			{
+				AnimationManager.registerKeyframes("pulse", [
+					"50% {opacity: 0.5;}"
+				]);
+			}
+			return "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite";
+		}
+
+		public function get animateBounce():String
+		{
+			if(!AnimationManager.has("bounce"))
+			{
+				AnimationManager.registerKeyframes("bounce", [
+					"0%, 100% {transform: translateY(-25%);animation-timing-function: cubic-bezier(0.8, 0, 1, 1);}",
+					"50% {transform: none;animation-timing-function: cubic-bezier(0, 0, 0.2, 1);}"
+				]);
+			}
+			return "bounce 1s infinite";
+		}
 		
 		public var blurXS:String = "4px";
 		public var blurSM:String = "8px";

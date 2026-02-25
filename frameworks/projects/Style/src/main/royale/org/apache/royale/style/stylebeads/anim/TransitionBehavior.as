@@ -16,32 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.effects
+package org.apache.royale.style.stylebeads.anim
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class BoxShadow extends StyleBeadBase
+	public class TransitionBehavior extends SingleStyleBase
 	{
-		public function BoxShadow()
+		public function TransitionBehavior()
 		{
-			super();
+			super("transition", "transition-behavior");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		public var size:String;
-		
-		// none is special
-		public var color:String;
-		public var inset:Boolean;
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
-		}
+			assert(value == "normal" || value == "allow-discrete", "transition-behavior only accepts 'normal' or 'allow-discrete'");
+			calculatedRuleValue = _value = value;
+			calculatedSelector = value == "normal" ? "normal" : "discrete";
+		}		
 	}
 }
