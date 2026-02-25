@@ -18,17 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
+	[DefaultProperty("styles")]
 	public class CompositeStyle extends StyleBeadBase
 	{
 		public function CompositeStyle()
 		{
 			
 		}
-		protected var _styles:Array = [];
+		/**
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var styles:Array = [];
 		override public function get selectors():Array
 		{
+			var s:Array = styles || [];
 			var retVal:Array = [];
-			for each (var style:StyleBeadBase in _styles)			{
+			for each (var style:StyleBeadBase in s)			{
 				retVal = retVal.concat(style.selectors);
 			}
 			return retVal;
@@ -36,8 +41,9 @@ package org.apache.royale.style.stylebeads
 
 		override public function get rules():Array
 		{
+			var s:Array = styles || [];
 			var retVal:Array = [];
-			for each (var style:StyleBeadBase in _styles)			{
+			for each (var style:StyleBeadBase in s)			{
 				retVal = retVal.concat(style.rules);
 			}
 			return retVal;

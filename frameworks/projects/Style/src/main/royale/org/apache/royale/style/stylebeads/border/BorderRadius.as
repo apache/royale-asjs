@@ -23,12 +23,15 @@ package org.apache.royale.style.stylebeads.border
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
-
+	/**
+	 * @royalesuppressexport
+	 */
 	public class BorderRadius extends CompositeStyle
 	{
 		public function BorderRadius()
 		{
 			super();
+			styles = [];
 		}
 
 		private var _radius:*;
@@ -42,7 +45,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!rStyle)
 			{
 				rStyle = new Radius();
-				_styles.push(rStyle);
+				styles.push(rStyle);
 			}
 			_radius = value;
 			rStyle.value = value;
@@ -59,7 +62,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!tlStyle)
 			{
 				tlStyle = new TopLeft();
-				_styles.push(tlStyle);
+				styles.push(tlStyle);
 			}
 			_topLeft = value;
 			tlStyle.value = value;
@@ -75,7 +78,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!trStyle)
 			{
 				trStyle = new TopRight();
-				_styles.push(trStyle);
+				styles.push(trStyle);
 			}
 			_topRight = value;
 			trStyle.value = value;
@@ -91,7 +94,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!blStyle)
 			{
 				blStyle = new BottomLeft();
-				_styles.push(blStyle);
+				styles.push(blStyle);
 			}
 			_bottomLeft = value;
 			blStyle.value = value;
@@ -107,7 +110,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!brStyle)
 			{
 				brStyle = new BottomRight();
-				_styles.push(brStyle);
+				styles.push(brStyle);
 			}
 			_bottomRight = value;
 			brStyle.value = value;
@@ -123,7 +126,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!ssStyle)
 			{
 				ssStyle = new StartStart();
-				_styles.push(ssStyle);
+				styles.push(ssStyle);
 			}
 			_startStart = value;
 			ssStyle.value = value;
@@ -139,7 +142,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!seStyle)
 			{
 				seStyle = new StartEnd();
-				_styles.push(seStyle);
+				styles.push(seStyle);
 			}
 			_startEnd = value;
 			seStyle.value = value;
@@ -155,7 +158,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!esStyle)
 			{
 				esStyle = new EndStart();
-				_styles.push(esStyle);
+				styles.push(esStyle);
 			}
 			_endStart = value;
 			esStyle.value = value;
@@ -171,7 +174,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!eeStyle)
 			{
 				eeStyle = new EndEnd();
-				_styles.push(eeStyle);
+				styles.push(eeStyle);
 			}
 			_endEnd = value;
 			eeStyle.value = value;

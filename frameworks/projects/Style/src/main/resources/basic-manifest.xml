@@ -101,9 +101,9 @@
   <component id="BackdropFilter" class="org.apache.royale.style.stylebeads.filters.BackdropFilter"/>
 
   <component id="TableLayout" class="org.apache.royale.style.stylebeads.TableLayout"/>
-  <component id="BorderColor" class="org.apache.royale.style.stylebeads.border.BorderColor"/>
+  <component id="Border" class="org.apache.royale.style.stylebeads.border.Border"/>
+  <component id="Outline" class="org.apache.royale.style.stylebeads.border.Outline"/>
   <component id="BorderRadius" class="org.apache.royale.style.stylebeads.border.BorderRadius"/>
-  <component id="BorderStyle" class="org.apache.royale.style.stylebeads.border.BorderStyle"/>
   <component id="BorderWidth" class="org.apache.royale.style.stylebeads.border.BorderWidth"/>
   <component id="ColumnGap" class="org.apache.royale.style.stylebeads.flexgrid.ColumnGap"/>
   <component id="RowGap" class="org.apache.royale.style.stylebeads.flexgrid.RowGap"/>
