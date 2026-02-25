@@ -190,9 +190,14 @@
 	</target>
 	
     <target name="rat-taskdef" description="Rat taskdef">
-        <typedef resource="org/apache/rat/anttasks/antlib.xml"
-        uri="antlib:org.apache.rat.anttasks"
-        classpathref="anttask.classpath"/>
+        <taskdef
+            uri="antlib:org.apache.rat.anttasks"
+            resource="org/apache/rat/anttasks/antlib.xml">
+            <classpath>
+                <pathelement location="${env.ANT_HOME}/lib/${apache.rat.jar}"/>
+                <pathelement location="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}"/>
+            </classpath>
+        </taskdef>
     </target>
 
     <target name="main" depends="check-flash,write-out-jars-list,install-rat,download,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
@@ -339,7 +344,7 @@
                 dest="${basedir}/${doc.package.url.name}"/>-->
     </target>
 
-    <target name="rat-check" >
+    <target name="rat-check" depends="rat-taskdef">
 
         <echo message="Checking files at ${basedir}/${package.url.name}, report is ${src.rat.report}"/>
 
@@ -412,7 +417,7 @@
         addproperty="rat.binaries.ok"/>
     </target>
 
-    <target name="binary-rat" >
+    <target name="binary-rat" depends="rat-taskdef">
         <echo message="Checking files at ${basedir}/${bin.package.url.name}, report is ${bin.rat.report}"/>
         <rat:report xmlns:rat="antlib:org.apache.rat.anttasks"
             reportFile="${bin.rat.report}">
