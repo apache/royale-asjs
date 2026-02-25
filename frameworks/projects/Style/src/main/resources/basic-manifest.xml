@@ -25,15 +25,11 @@
   <component id="FlexContainerStyle" class="org.apache.royale.style.stylebeads.FlexContainerStyle"/>
   <component id="FlexItemStyle" class="org.apache.royale.style.stylebeads.FlexItemStyle"/>
   <component id="HeightStyle" class="org.apache.royale.style.stylebeads.HeightStyle"/>
-  <component id="MarginBlock" class="org.apache.royale.style.stylebeads.MarginBlock"/>
-  <component id="MarginInline" class="org.apache.royale.style.stylebeads.MarginInline"/>
-  <component id="MarginStyle" class="org.apache.royale.style.stylebeads.MarginStyle"/>
   <component id="MaxHeight" class="org.apache.royale.style.stylebeads.MaxHeight"/>
   <component id="MaxWidth" class="org.apache.royale.style.stylebeads.MaxWidth"/>
   <component id="MinHeight" class="org.apache.royale.style.stylebeads.MinHeight"/>
   <component id="MinWidth" class="org.apache.royale.style.stylebeads.MinWidth"/>
   <component id="OverflowStyle" class="org.apache.royale.style.stylebeads.OverflowStyle"/>
-  <component id="PaddingStyle" class="org.apache.royale.style.stylebeads.PaddingStyle"/>
   <component id="PositionStyle" class="org.apache.royale.style.stylebeads.PositionStyle"/>
   <component id="SelfPosition" class="org.apache.royale.style.stylebeads.SelfPosition"/>
   <component id="SizeStyle" class="org.apache.royale.style.stylebeads.SizeStyle"/>
@@ -119,7 +115,6 @@
   <component id="ForcedColorAdjust" class="org.apache.royale.style.stylebeads.access.ForcedColorAdjust"/>
   <component id="BorderStyle" class="org.apache.royale.style.stylebeads.BorderStyle"/>
   <component id="CompositeStyle" class="org.apache.royale.style.stylebeads.CompositeStyle"/>
-  <component id="OutlineStyle" class="org.apache.royale.style.stylebeads.OutlineStyle"/>
   <component id="MixBlendMode" class="org.apache.royale.style.stylebeads.effects.MixBlendMode"/>
   <component id="RingEffect" class="org.apache.royale.style.stylebeads.effects.RingEffect"/>
   <component id="AlignContent" class="org.apache.royale.style.stylebeads.flexgrid.AlignContent"/>
@@ -211,6 +206,5 @@
   <component id="TransformOrigin" class="org.apache.royale.style.stylebeads.transform.TransformOrigin"/>
   <component id="TransformStyle" class="org.apache.royale.style.stylebeads.transform.TransformStyle"/>
   <component id="Translate" class="org.apache.royale.style.stylebeads.transform.Translate"/>
-
 
 </componentPackage>
