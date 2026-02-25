@@ -16,39 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.flexgrid
+package org.apache.royale.style.stylebeads.transform
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.CSSUnit;
 
-	public class Gap extends SingleStyleBase
+	public class BackfaceVisibility extends SingleStyleBase
 	{
-		public function Gap(selectorPrefix:String="gap", rulePrefix:String="gap")
+		public function BackfaceVisibility()
 		{
-			super(selectorPrefix, rulePrefix);
+			super("backface", "backface-visibility");
 		}
-
-		public var unit:String = "px";
-
 		override public function set value(value:*):void
 		{
-			_value = value;
-			// TODO validate aspect before setting
-			var ruleProp:* = value;
-			if(int(value) == value)
-			{
-				assert(value >= 0, "Invalid value for gap: " + value);
-				var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
-				calculatedSelector = "" + value;
-				calculatedRuleValue = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
-			}
-			else
-			{
-				calculatedRuleValue = calculatedSelector = value;
-			}
-			
+			assert(value == "hidden" || value == "visible", "Invalid value for backface-visibility: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 	}
 }

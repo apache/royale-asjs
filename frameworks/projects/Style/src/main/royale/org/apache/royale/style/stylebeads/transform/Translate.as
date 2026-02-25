@@ -16,39 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.flexgrid
+package org.apache.royale.style.stylebeads.transform
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.CSSUnit;
 
-	public class Gap extends SingleStyleBase
+	public class Translate extends SingleStyleBase
 	{
-		public function Gap(selectorPrefix:String="gap", rulePrefix:String="gap")
+		public function Translate()
 		{
-			super(selectorPrefix, rulePrefix);
+			super("translate", "translate");
 		}
-
-		public var unit:String = "px";
-
+		//TODO: Not implemented. Add support for x, y and z.
 		override public function set value(value:*):void
 		{
-			_value = value;
-			// TODO validate aspect before setting
-			var ruleProp:* = value;
-			if(int(value) == value)
-			{
-				assert(value >= 0, "Invalid value for gap: " + value);
-				var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
-				calculatedSelector = "" + value;
-				calculatedRuleValue = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
-			}
-			else
-			{
-				calculatedRuleValue = calculatedSelector = value;
-			}
-			
+			var negative:Boolean = value + "".indexOf("-") == 0;
+
+				var isInt:Boolean = int(value) == value;
+				if(isInt)
+				{
+					// validated = true;
+					// var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * val;
+					// selectorValue[i] = "" + Math.abs(val);
+					// ruleValue[i] = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
+				}
+
+
+			assert(isInt || value == "none", "Invalid value for translate: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 	}
 }

@@ -31,7 +31,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 		override public function set value(value:*):void
 		{
 			// For now we're assuming that flex-shrink is only a number, but it can also be "initial" or "inherit"
-			assert(parseFloat(value) == value && parseInt(value, 10) >= 0, "Invalid value for flex-shrink: " + value);
+			assert(parseFloat(value) == value && int(value) >= 0, "Invalid value for flex-shrink: " + value);
 			calculatedRuleValue = calculatedSelector = _value = value;
 			
 		}

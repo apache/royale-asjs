@@ -16,39 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.flexgrid
+package org.apache.royale.style.stylebeads.transform
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.CSSUnit;
+	import org.apache.royale.style.util.CSSLookup;
 
-	public class Gap extends SingleStyleBase
+	public class PerspectiveOrigin extends SingleStyleBase
 	{
-		public function Gap(selectorPrefix:String="gap", rulePrefix:String="gap")
+		public function PerspectiveOrigin()
 		{
-			super(selectorPrefix, rulePrefix);
+			super("perspective-origin", "perspective-origin");
 		}
-
-		public var unit:String = "px";
-
 		override public function set value(value:*):void
 		{
-			_value = value;
-			// TODO validate aspect before setting
-			var ruleProp:* = value;
-			if(int(value) == value)
-			{
-				assert(value >= 0, "Invalid value for gap: " + value);
-				var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
-				calculatedSelector = "" + value;
-				calculatedRuleValue = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
-			}
+			var isVar:Boolean = CSSLookup.has(value);
+			assert(isVar || ['center','top','top right','right','bottom right','bottom','bottom left','left','top left'].indexOf(value) != -1, "Invalid value for perspective-origin: " + value);
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(isVar)
+				calculatedRuleValue = CSSLookup.getProperty(value);
 			else
 			{
-				calculatedRuleValue = calculatedSelector = value;
+				calculatedSelector = sanitizeSelector(value);
 			}
-			
 		}
 	}
 }
