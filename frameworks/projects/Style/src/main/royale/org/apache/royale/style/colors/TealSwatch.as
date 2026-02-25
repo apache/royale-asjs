@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.colors
 {
+	import org.apache.royale.style.util.CSSLookup;
+
 	/**
 	 * @royalesuppressexport
 	 */
@@ -28,59 +30,81 @@ package org.apache.royale.style.colors
 			
 		}
 		COMPILE::JS
-		public static function get _50():ColorPair
+		public static function get _50():String
 		{
-			return new ColorPair("teal-50","oklch(98.4% 0.014 180.72)") ;
+			var name:String = "teal-50";
+			CSSLookup.register(name, "oklch(98.4% 0.014 180.72)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _100():ColorPair
+		public static function get _100():String
 		{
-			return new ColorPair("teal-100","oklch(95.3% 0.051 180.801)") ;
+			var name:String = "teal-100";
+			CSSLookup.register(name, "oklch(95.3% 0.051 180.801)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _200():ColorPair
+		public static function get _200():String
 		{
-			return new ColorPair("teal-200","oklch(91% 0.096 180.426)") ;
+			var name:String = "teal-200";
+			CSSLookup.register(name, "oklch(91% 0.096 180.426)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _300():ColorPair
+		public static function get _300():String
 		{
-			return new ColorPair("teal-300","oklch(85.5% 0.138 181.071)") ;
+			var name:String = "teal-300";
+			CSSLookup.register(name, "oklch(85.5% 0.138 181.071)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _400():ColorPair
+		public static function get _400():String
 		{
-			return new ColorPair("teal-400","oklch(77.7% 0.152 181.912)") ;
+			var name:String = "teal-400";
+			CSSLookup.register(name, "oklch(77.7% 0.152 181.912)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _500():ColorPair
+		public static function get _500():String
 		{
-			return new ColorPair("teal-500","oklch(70.4% 0.14 182.503)") ;
+			var name:String = "teal-500";
+			CSSLookup.register(name, "oklch(70.4% 0.14 182.503)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _600():ColorPair
+		public static function get _600():String
 		{
-			return new ColorPair("teal-600","oklch(60% 0.118 184.704)") ;
+			var name:String = "teal-600";
+			CSSLookup.register(name, "oklch(60% 0.118 184.704)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _700():ColorPair
+		public static function get _700():String
 		{
-			return new ColorPair("teal-700","oklch(51.1% 0.096 186.391)") ;
+			var name:String = "teal-700";
+			CSSLookup.register(name, "oklch(51.1% 0.096 186.391)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _800():ColorPair
+		public static function get _800():String
 		{
-			return new ColorPair("teal-800","oklch(43.7% 0.078 188.216)") ;
+			var name:String = "teal-800";
+			CSSLookup.register(name, "oklch(43.7% 0.078 188.216)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _900():ColorPair
+		public static function get _900():String
 		{
-			return new ColorPair("teal-900","oklch(38.6% 0.063 188.416)") ;
+			var name:String = "teal-900";
+			CSSLookup.register(name, "oklch(38.6% 0.063 188.416)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _950():ColorPair
+		public static function get _950():String
 		{
-			return new ColorPair("teal-950","oklch(27.7% 0.046 192.524)") ;
+			var name:String = "teal-950";
+			CSSLookup.register(name, "oklch(27.7% 0.046 192.524)");
+			return name;
 		}
 
 	}

@@ -58,6 +58,20 @@ SVG icons are created at runtime as well, enabling:
 - scalable icon rendering,
 - flexible icon usage without requiring a large set of precompiled assets.
 
+## Implementation Details
+
+### CSS Variables and Lookups
+- This component set supports faux CSS variables by using a global CSS lookup system.
+- Custom CSS variables can be registered and used anywhere CSS values are accepted, such as in style beads or component styles.
+- The naming of these vartiables is flexible, but they must be registered with the CSS lookup system to be used in styles.
+-- The names must **not** include the `--` prefix that is typically used in CSS variable naming. For example, a color variable would be registered as `primary` instead of `--primary`.
+
+### Colors
+- Colors are defined as static properties on color swatch classes (e.g., `SkySwatch._500`).
+- When accessed, these properties register the color value with a global CSS lookup and return a string name that can be used in style beads and components.
+- This allows for dynamic color generation and usage without needing to pre-generate static CSS classes for each color variant.
+- Anywhere colors are applied, the string name of the color should be used, , but the nmes must be registered by CSSLookup first.
+
 ## Why this project
 
 Traditional styling in large component systems can become rigid over time. This project aims to keep Royale styling lightweight, composable, and application-driven by combining:

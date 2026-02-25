@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.colors
 {
+	import org.apache.royale.style.util.CSSLookup;
+
 	/**
 	 * @royalesuppressexport
 	 */
@@ -28,59 +30,81 @@ package org.apache.royale.style.colors
 			
 		}
 		COMPILE::JS
-		public static function get _50():ColorPair
+		public static function get _50():String
 		{
-			return new ColorPair("taupe-50","oklch(98.6% 0.002 67.8)") ;
+			var name:String = "taupe-50";
+			CSSLookup.register(name, "oklch(98.6% 0.002 67.8)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _100():ColorPair
+		public static function get _100():String
 		{
-			return new ColorPair("taupe-100","oklch(96% 0.002 17.2)") ;
+			var name:String = "taupe-100";
+			CSSLookup.register(name, "oklch(96% 0.002 17.2)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _200():ColorPair
+		public static function get _200():String
 		{
-			return new ColorPair("taupe-200","oklch(92.2% 0.005 34.3)") ;
+			var name:String = "taupe-200";
+			CSSLookup.register(name, "oklch(92.2% 0.005 34.3)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _300():ColorPair
+		public static function get _300():String
 		{
-			return new ColorPair("taupe-300","oklch(86.8% 0.007 39.5)") ;
+			var name:String = "taupe-300";
+			CSSLookup.register(name, "oklch(86.8% 0.007 39.5)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _400():ColorPair
+		public static function get _400():String
 		{
-			return new ColorPair("taupe-400","oklch(71.4% 0.014 41.2)") ;
+			var name:String = "taupe-400";
+			CSSLookup.register(name, "oklch(71.4% 0.014 41.2)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _500():ColorPair
+		public static function get _500():String
 		{
-			return new ColorPair("taupe-500","oklch(54.7% 0.021 43.1)") ;
+			var name:String = "taupe-500";
+			CSSLookup.register(name, "oklch(54.7% 0.021 43.1)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _600():ColorPair
+		public static function get _600():String
 		{
-			return new ColorPair("taupe-600","oklch(43.8% 0.017 39.3)") ;
+			var name:String = "taupe-600";
+			CSSLookup.register(name, "oklch(43.8% 0.017 39.3)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _700():ColorPair
+		public static function get _700():String
 		{
-			return new ColorPair("taupe-700","oklch(36.7% 0.016 35.7)") ;
+			var name:String = "taupe-700";
+			CSSLookup.register(name, "oklch(36.7% 0.016 35.7)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _800():ColorPair
+		public static function get _800():String
 		{
-			return new ColorPair("taupe-800","oklch(26.8% 0.011 36.5)") ;
+			var name:String = "taupe-800";
+			CSSLookup.register(name, "oklch(26.8% 0.011 36.5)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _900():ColorPair
+		public static function get _900():String
 		{
-			return new ColorPair("taupe-900","oklch(21.4% 0.009 43.1)") ;
+			var name:String = "taupe-900";
+			CSSLookup.register(name, "oklch(21.4% 0.009 43.1)");
+			return name;
 		}
 		COMPILE::JS
-		public static function get _950():ColorPair
+		public static function get _950():String
 		{
-			return new ColorPair("taupe-950","oklch(14.7% 0.004 49.3)") ;
+			var name:String = "taupe-950";
+			CSSLookup.register(name, "oklch(14.7% 0.004 49.3)");
+			return name;
 		}
 
 	}
