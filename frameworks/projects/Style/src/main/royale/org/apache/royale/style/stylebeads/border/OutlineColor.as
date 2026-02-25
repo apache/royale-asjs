@@ -20,7 +20,7 @@ package org.apache.royale.style.stylebeads.background
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.colors.ColorPair;
+	import org.apache.royale.style.util.StyleData;
 
 	public class OutlineColor extends SingleStyleBase
 	{
@@ -33,22 +33,10 @@ package org.apache.royale.style.stylebeads.background
 		 */
 		override public function set value(value:*):void
 		{
-			calculatedSelector = calculatedRuleValue = _value = value;
-			switch(value)
-			{
-				case "inherit":
-				case "transparent":
-					return;
-				case "currentColor":
-					calculatedSelector = "current";
-					return;
-				default:
-					assert(value is ColorPair, "The value must be a ColorPair: " + value);
-					var pair:ColorPair = value as ColorPair;
-					calculatedRuleValue = pair.value;
-					calculatedSelector = pair.name;
-					return;
-			}
+			_value = value;
+			var styleData:StyleData = validateColor(value,false);
+			calculatedRuleValue = styleData.rule;
+			calculatedSelector = styleData.selector;
 		}
 	}
 }

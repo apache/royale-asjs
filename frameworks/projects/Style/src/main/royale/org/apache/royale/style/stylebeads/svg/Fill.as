@@ -16,49 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.svg
 {
-	import org.apache.royale.core.Bead;
-	import org.apache.royale.style.IStyleUIBase;
-	import org.apache.royale.core.IStrand;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
 
-	abstract public class StyleBeadBase extends Bead implements IStyleBead
+	public class Fill extends SingleStyleBase
 	{
-		public function StyleBeadBase()
+		public function Fill()
 		{
-			super();
+			super("fill", "fill");
 		}
-		protected function validateColor(value:*,supportsNone:Boolean):StyleData
+		override public function set value(value:*):void
 		{
-			if(!supportsNone && value == "none")
-				assert(false, "Invalid color value: " + value);
-			
-			var selectorVal:String = "" + value;
-			var ruleVal:String = selectorVal;
-			switch(selectorVal)
-			{
-				case "transparent":
-				case "currentColor":
-				case "inherit":
-				case "none":
-					break;
-				case "black":
-					ruleVal = "#000";
-					break;
-				case "white":
-					ruleVal = "#fff";
-					break;
-				default:
-					assert(CSSLookup.has(selectorVal), "Invalid color value: " + value);
-					ruleVal = CSSLookup.getProperty(selectorVal);
-					break;
-			}
-			return new StyleData(selectorVal, ruleVal,value);
+			_value = value;
+			var styleData:StyleData = validateColor(value,true);
+			calculatedRuleValue = styleData.rule;
+			calculatedSelector = styleData.selector;
 		}
-		abstract public function get selectors():Array;
-		abstract public function get rules():Array;
 	}
 }

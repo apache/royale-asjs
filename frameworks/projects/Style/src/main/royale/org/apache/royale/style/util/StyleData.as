@@ -16,27 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style.util
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.StyleData;
-
-	public class BorderColor extends SingleStyleBase
+	public class StyleData
 	{
-		public function BorderColor()
+		public function StyleData(selector:String, rule:String, value:String, negative:Boolean = false)
 		{
-			super("border", "border-color");
+			this.selector = selector;
+			this.rule = rule;
+			this.value = value;
+			this.negative = negative;
 		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
-		 */
-		override public function set value(value:*):void
-		{
-			_value = value;
-			var styleData:StyleData = validateColor(value,false);
-			calculatedSelector = styleData.selector;
-			calculatedRuleValue = styleData.rule;
-		}
+		public var selector:String;
+		public var rule:String;
+		public var value:String;
+		public var negative:Boolean;
 	}
 }

@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.CSSLookup;
+	import org.apache.royale.style.util.StyleData;
+
 	abstract public class SingleStyleBase extends StyleBeadBase
 	{
 		public function SingleStyleBase(selectorPrefix:String, rulePrefix:String)

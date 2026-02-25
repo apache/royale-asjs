@@ -16,17 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.colors
+package org.apache.royale.style.stylebeads.access
 {
-	public class ColorPair
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.CSSLookup;
+
+	public class ForcedColorAdjust extends SingleStyleBase
 	{
-		public function ColorPair(name:String, value:String)
+		public function ForcedColorAdjust()
 		{
-			super();
-			this.name = name;
-			this.value = value;
+			super("forced-color-adjust", "forced-color-adjust");
 		}
-		public var name:String;
-		public var value:String;
+		override public function set value(value:*):void
+		{
+			assert(["auto","none"].indexOf(value) != -1, "Invalid value for forced-color-adjust: " + value);
+			calculatedRuleValue = calculatedSelector = _value = value;
+		}
 	}
 }

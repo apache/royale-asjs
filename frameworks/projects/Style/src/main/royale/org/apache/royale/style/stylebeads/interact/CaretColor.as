@@ -21,6 +21,7 @@ package org.apache.royale.style.stylebeads.interact
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
+	import org.apache.royale.style.util.StyleData;
 
 	public class CaretColor extends SingleStyleBase
 	{
@@ -30,29 +31,10 @@ package org.apache.royale.style.stylebeads.interact
 		}
 		override public function set value(value:*):void
 		{
-			var isVar:Boolean = CSSLookup.has(value);
-			assert(isVar || ['black','white','inherit','currentColor','transparent'].indexOf(value) != -1, "Invalid value for accent-color: " + value);
-			calculatedRuleValue = calculatedSelector = _value = value;
-			if(isVar)
-				calculatedRuleValue = CSSLookup.getProperty(value);
-			else
-			{
-				switch(value)
-				{
-					case "black":
-						calculatedRuleValue = "#000";
-						break;
-					case "white":
-						calculatedRuleValue = "#fff";
-						break;
-					case "inherit":
-					case "currentColor":
-					case "transparent":
-						break;
-					default:
-						assert(false, "Invalid value for accent-color: " + value);
-				}
-			}
+			_value = value;
+			var styleData:StyleData = validateColor(value,false);
+			calculatedRuleValue = styleData.rule;
+			calculatedSelector = styleData.selector;
 		}
 	}
 }

@@ -19,27 +19,22 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.util.StyleData;
 
-	public class TextColor extends StyleBeadBase
+	public class TextColor extends SingleStyleBase
 	{
 		public function TextColor()
 		{
-			super();
+			super("text", "color");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/color
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			var styleData:StyleData = validateColor(value,false);
+			calculatedRuleValue = styleData.rule;
+			calculatedSelector = styleData.selector;
 		}
 	}
 }

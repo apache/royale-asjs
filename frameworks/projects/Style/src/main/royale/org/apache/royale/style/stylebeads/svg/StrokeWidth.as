@@ -16,27 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style.stylebeads.svg
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.StyleData;
+	import org.apache.royale.style.util.CSSLookup;
 
-	public class BorderColor extends SingleStyleBase
+	public class StrokeWidth extends SingleStyleBase
 	{
-		public function BorderColor()
+		public function StrokeWidth()
 		{
-			super("border", "border-color");
+			super("stroke", "stroke-width");
 		}
-		/**
-		 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
-		 */
 		override public function set value(value:*):void
 		{
-			_value = value;
-			var styleData:StyleData = validateColor(value,false);
-			calculatedSelector = styleData.selector;
-			calculatedRuleValue = styleData.rule;
+			//TODO validate value
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(CSSLookup.has(value))
+				calculatedRuleValue = CSSLookup.getProperty(value);
 		}
 	}
 }

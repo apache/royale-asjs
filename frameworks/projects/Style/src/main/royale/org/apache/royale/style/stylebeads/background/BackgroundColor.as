@@ -20,6 +20,7 @@ package org.apache.royale.style.stylebeads.background
 {
 	import org.apache.royale.style.stylebeads.SingleStyleBase;
 	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.StyleData;
 
 	public class BackgroundColor extends SingleStyleBase
 	{
@@ -33,9 +34,10 @@ package org.apache.royale.style.stylebeads.background
 		}
 		override public function set value(value:*):void
 		{
-			assert(["scroll","fixed","local"].indexOf(value) >= 0, "Invalid value for background-attachment: " + value);
-			calculatedRuleValue = _value = value;
-			calculatedSelector = sanitizeSelector(value);
+			_value = value;
+			var styleData:StyleData = validateColor(value,false);
+			calculatedRuleValue = styleData.rule;
+			calculatedSelector = styleData.selector;
 		}
 	}
 }
