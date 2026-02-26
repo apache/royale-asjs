@@ -16,28 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.elements
 {
-	public class BorderStyle extends StyleBeadBase
+	import org.apache.royale.style.support.TextNodeContainerBase;
+
+	/**
+	 *  The Code class represents an HTML <code> element
+	 *
+	 *
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.13
+	 */
+	public class Code extends TextNodeContainerBase
 	{
-		public function BorderStyle()
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.13
+		 */
+		public function Code()
 		{
 			super();
 		}
-
-		/**
-		 * TODO:
-		 * border-radius, border-color, border-style, border-width
-		 */
-
-		override public function get selectors():Array
+		override protected function getTag():String
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			return "code";
 		}
 	}
 }

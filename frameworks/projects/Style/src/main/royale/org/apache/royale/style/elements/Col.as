@@ -16,23 +16,65 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.elements
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.support.NodeElementBase;
 
-	public class Position extends SingleStyleBase
+	/**
+	 *  The Col class represents an HTML <col> element
+	 *
+	 *
+	 *  @toplevel
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.13
+	 */
+	public class Col extends NodeElementBase
 	{
-		public function Position()
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.13
+		 */
+		public function Col()
 		{
-			super("", "position");
+			super();
 		}
 
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		override public function set value(value:*):void
+		private var _span:Number;
+
+		/**
+		 *  The column span
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.13
+		 */
+		public function get span():Number
 		{
-			assert(["static","fixed","absolute","relative","sticky"].indexOf(value) >= 0, "Invalid value for position: " + value);
-			calculatedSelector = calculatedRuleValue = _value = value;
+			COMPILE::SWF
+			{
+				return _span;
+			}
+			COMPILE::JS
+			{
+				return (element as HTMLTableColElement).span;
+			}
+		}
+		public function set span(value:Number):void
+		{
+			COMPILE::SWF
+			{
+				_span = value;
+			}
+
+			COMPILE::JS
+			{
+				(element as HTMLTableColElement).span = value;
+			}
+		}
+		override protected function getTag():String
+		{
+			return "col";
 		}
 	}
 }

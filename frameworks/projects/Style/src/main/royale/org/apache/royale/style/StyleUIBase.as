@@ -23,12 +23,12 @@ package org.apache.royale.style
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.style.stylebeads.IStyleBead;
 	import org.apache.royale.style.util.StyleManager;
+	import org.apache.royale.style.util.ThemeManager;
 
 	COMPILE::JS
 	{
 		import org.apache.royale.html.util.addElementToWrapper;
 		import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.style.util.ThemeManager;
 	}
 
 	/**
@@ -56,7 +56,6 @@ package org.apache.royale.style
 		}
 		protected var classList:CSSClassList;
 		protected var utilityList:CSSClassList;
-		protected var styleBeads:Array = [];
 
 		/**
 		 * TODO: Add support for cascading theming.
@@ -67,32 +66,49 @@ package org.apache.royale.style
 		}
 
 		/**
+		 *  
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.13
+		 * 
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var styleBeads:Array;
+
+		protected var _styleBeads:Vector.<IStyleBead>;
+		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.IStyleBead
 		 */
-		override public function addBead(bead:IBead):void
+		public function addStyleBead(bead:IStyleBead):void
 		{
-			super.addBead(bead);
 			if (bead is IStyleBead)
 			{
 				var styleBead:IStyleBead = bead as IStyleBead;
 				styleBeads.push(styleBead);
+				_styleBeads.push(styleBead);
 			}
 			refreshStyles();
 		}
 		override protected function loadBeads():void
 		{
 			super.loadBeads();
+			if(styleBeads)
+			for each(var bead:IStyleBead in styleBeads)
+				addStyleBead(bead);
+				
 			refreshStyles();
 		}
 
 		protected function refreshStyles():void
 		{
-			utilityList.clear();
-			for each (var styleBead:IStyleBead in styleBeads)
+			COMPILE::JS
 			{
-				applyStyle(styleBead);
+				utilityList.clear();
+				for each (var styleBead:IStyleBead in styleBeads)
+				{
+					applyStyle(styleBead);
+				}
+				computeFinalClassNames();
 			}
-			computeFinalClassNames();
 		}
 		protected function applyStyle(styleBead:IStyleBead):void
 		{

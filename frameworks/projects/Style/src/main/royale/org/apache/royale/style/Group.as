@@ -16,23 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.debugging.assert;
-
-	public class Position extends SingleStyleBase
+	public class Group extends GroupBase
 	{
-		public function Position()
+		public function Group()
 		{
-			super("", "position");
+			super();
 		}
-
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		override public function set value(value:*):void
-		{
-			assert(["static","fixed","absolute","relative","sticky"].indexOf(value) >= 0, "Invalid value for position: " + value);
-			calculatedSelector = calculatedRuleValue = _value = value;
+		override protected function requiresView():Boolean{
+			return false;
+		}
+		override protected function requiresController():Boolean{
+			return false;
+		}
+		override protected function requiresLayout():Boolean{
+			return false;
 		}
 	}
 }

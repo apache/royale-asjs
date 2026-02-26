@@ -16,23 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.elements
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.debugging.assert;
 
-	public class Position extends SingleStyleBase
+	import org.apache.royale.style.support.MediaElementBase;
+
+	/**
+	 *  The Video class represents an HTML <video> element
+	 *
+	 *
+	 *  @toplevel
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.13
+	 */
+	public class Video extends MediaElementBase
 	{
-		public function Position()
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.13
+		 */
+		public function Video()
 		{
-			super("", "position");
+			super();
 		}
 
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		override public function set value(value:*):void
+		COMPILE::JS
+		public function get videoHeight():uint
 		{
-			assert(["static","fixed","absolute","relative","sticky"].indexOf(value) >= 0, "Invalid value for position: " + value);
-			calculatedSelector = calculatedRuleValue = _value = value;
+			return (element as HTMLVideoElement).videoHeight;
+		}
+
+		COMPILE::JS
+		public function get videoWidth():uint
+		{
+			return (element as HTMLVideoElement).videoWidth;
+		}
+
+		override protected function getTag():String
+		{
+			return "video";
 		}
 	}
 }

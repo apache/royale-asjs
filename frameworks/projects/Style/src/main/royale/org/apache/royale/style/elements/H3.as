@@ -16,23 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.elements
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.support.TextNodeContainerBase;
 
-	public class Position extends SingleStyleBase
+	/**
+	 *  The H3 class represents an HTML <h3> element
+	 *
+	 *
+	 *  @toplevel
+	 *  @langversion 3.0
+	 *  @productversion Royale 0.9.13
+	 */
+	public class H3 extends TextNodeContainerBase
 	{
-		public function Position()
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 0.9.13
+		 */
+		public function H3()
 		{
-			super("", "position");
+			super();
 		}
 
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		override public function set value(value:*):void
+		override protected function getTag():String
 		{
-			assert(["static","fixed","absolute","relative","sticky"].indexOf(value) >= 0, "Invalid value for position: " + value);
-			calculatedSelector = calculatedRuleValue = _value = value;
+			return "h3";
 		}
-	}
+    }
 }

@@ -16,23 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.elements
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.debugging.assert;
+  import org.apache.royale.style.support.NodeElementBase;
+  public class Br extends NodeElementBase
+  {
+    public function Br()
+    {
 
-	public class Position extends SingleStyleBase
-	{
-		public function Position()
-		{
-			super("", "position");
-		}
-
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		override public function set value(value:*):void
-		{
-			assert(["static","fixed","absolute","relative","sticky"].indexOf(value) >= 0, "Invalid value for position: " + value);
-			calculatedSelector = calculatedRuleValue = _value = value;
-		}
-	}
+    }
+    override protected function getTag():String
+    {
+      return "br";
+    }
+  }
 }
