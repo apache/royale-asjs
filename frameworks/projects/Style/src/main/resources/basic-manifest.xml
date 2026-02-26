@@ -25,6 +25,7 @@
   <component id="List" class="org.apache.royale.style.List"/>
   <component id="MultiSelectionList" class="org.apache.royale.style.MultiSelectionList"/>
   <component id="Tree" class="org.apache.royale.style.Tree"/>
+  <component id="DataItemRenderer" class="org.apache.royale.style.DataItemRenderer"/>
 
   <component id="BackgroundStyle" class="org.apache.royale.style.stylebeads.BackgroundStyle"/>
   <component id="ContainerPosition" class="org.apache.royale.style.stylebeads.ContainerPosition"/>
