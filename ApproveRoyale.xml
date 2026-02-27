@@ -208,7 +208,7 @@
     <target name="main" depends="check-flash,write-out-jars-list,install-rat,download,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
     </target>
     
-    <target name="main-no-download" depends="check-flash,write-out-jars-list,install-rat,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps">
+    <target name="main-no-download" depends="check-flash,write-out-jars-list,install-rat,check-sigs,uncompress,copy-source-for-maven,rat-check,binary-rat,doc-rat,check-notices,examine-jars,build,approve" description="Perform required release approval steps without downloading Royale distributions (src and bin archives and signatures must already exist in same directory)">
     </target>
 	
     <target name="copy-source-for-maven">
