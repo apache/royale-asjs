@@ -16,11 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.states.combiners
 {
-	public class HoverState extends StyleStateBase
+	import org.apache.royale.style.stylebeads.states.StyleStateBase;
+
+	public class SiblingCombiner extends StyleStateBase
 	{
-		public function HoverState()
+		public function SiblingCombiner()
 		{
 			super();
 		}
