@@ -84,9 +84,6 @@
 	<condition property="do.copy.downloads" >
 		<isset property="download.cache.dir" /> 
 	</condition>
-	
-    <fail message="The ANT_HOME environment variable is not set."
-        unless="env.ANT_HOME"/>
 		
     <target name="check-flash" if="use-flash">
         <available file="${env.AIR_HOME}"
@@ -111,6 +108,12 @@
             unless="FLASHPLAYER_DEBUGGER"/>
     </target>
         
+    <available file="${basedir}/${apache.rat.jar}"
+        type="file"
+        property="apache.rat.found"/>
+    <available file="${basedir}/${apache.rat.tasks.jar}"
+        type="file"
+        property="apache.rat.tasks.found"/>
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
         property="apache.rat.found"/>
@@ -183,10 +186,10 @@
 	
 	<target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
 	<target name="install-rat.jar" unless="apache.rat.found">
-		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
+		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${basedir}/${apache.rat.jar}" />
 	</target>
 	<target name="install-rat.tasks.jar" unless="apache.rat.tasks.found">
-		<get src="${apache.rat.tasks.url}/${apache.rat.tasks.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}" />
+		<get src="${apache.rat.tasks.url}/${apache.rat.tasks.jar}" dest="${basedir}/${apache.rat.tasks.jar}" />
 	</target>
 	
     <target name="rat-taskdef" description="Rat taskdef">
@@ -194,6 +197,8 @@
             uri="antlib:org.apache.rat.anttasks"
             resource="org/apache/rat/anttasks/antlib.xml">
             <classpath>
+                <pathelement location="${basedir}/${apache.rat.jar}"/>
+                <pathelement location="${basedir}/${apache.rat.tasks.jar}"/>
                 <pathelement location="${env.ANT_HOME}/lib/${apache.rat.jar}"/>
                 <pathelement location="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}"/>
             </classpath>
