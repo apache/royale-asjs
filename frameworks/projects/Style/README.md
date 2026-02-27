@@ -189,3 +189,22 @@ This project is under active development. APIs and naming may evolve as style be
 
 ### Internal notes
 - It does not look like we need ContainerBase
+- We need cascading styling.
+- For that to work, any "leaf" style bead should only be applied once.
+- Leaf stlye beads should be considered unique if they are decorated by state beads.
+- The first bead to be applied should win.
+- Skins should be applied last.
+- That would allow overriding specific style beads declared in a a skin.
+- Full order should probably be something like this:
+	1. Directly applied style beads
+	2. Beads listed in the styleBeads property of the component
+	3. Skin beads applied directly to the component
+	4. Beads declared in the component's CSS.
+	5. Skins declared in the component's CSS.
+- To facilitate this, leaf beads need to become special:
+	- All leaf beads will be applied directly to the component.
+	- All leaf beads will have their class prefix decorated by their parent state beads.
+	- State beads will have a way to return all their descendant leaf beads with the correctly decorated class names.
+	- Each component will maintain a list of all applied leaf beads names. Maybe it can be efficient enough to loop through the beads and check instead of maintaining the list. Needs thought.
+	- When trying to add a bead, the component will check if any of the leaf beads it would apply are already in the list of applied leaf beads. If so, it will skip applying that bead.
+
