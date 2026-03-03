@@ -35,13 +35,7 @@ package org.apache.royale.html.elements {
 	public class SecurityIframe extends Iframe {
 		public function SecurityIframe() {
 			super();
-			COMPILE::JS
-			{
-				(element as HTMLIFrameElement).addEventListener('load', onStatus);
-				(element as HTMLIFrameElement).addEventListener('error', onStatus)
-			}
 		}
-		
 		
 		private var _checkExpectedOrigin:Boolean = true;
 		/**
@@ -67,7 +61,6 @@ package org.apache.royale.html.elements {
 			{
 				if (w === root)
 					return true;
-				
 				w = w.parent as Window;
 			}
 			
@@ -87,13 +80,16 @@ package org.apache.royale.html.elements {
 			return _allowNestedFrames;
 		}
 		
-		
+		private var _srcSet:Boolean;
 		override public function set src(value:String):void
 		{
-			super.src = value;
-			
 			COMPILE::JS
 			{
+				if (!_srcSet)
+				{
+					(element as HTMLIFrameElement).addEventListener('load', onStatus);
+					(element as HTMLIFrameElement).addEventListener('error', onStatus)
+				}
 				try{
 					expectedOrigin = new URL(value, window.location.href).origin;
 				} catch(e:Error) {
@@ -104,6 +100,9 @@ package org.apache.royale.html.elements {
 					activateMessaging(true);
 				}
 			}
+			_srcSet = true;
+			super.src = value;
+			
 		}
 		
 		
@@ -132,6 +131,7 @@ package org.apache.royale.html.elements {
 				}
 			}
 		}
+
 		COMPILE::JS
 		private function onStatus(e:Object):void{
 			var localEventType:String = 'iframe'+e.type.charAt(0).toUpperCase() + e.type.substr(1)
@@ -186,7 +186,6 @@ package org.apache.royale.html.elements {
 				//accept messages also from nested iframes
 				if (!isDescendantWindow(e.source as Window, contentWindow as Window))
 					return;
-				
 			}
 			
 			//extra optional check to make sure the data received conforms to some expectations
