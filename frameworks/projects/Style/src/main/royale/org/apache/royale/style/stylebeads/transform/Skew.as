@@ -18,17 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.transform
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.CSSLookup;
 
-	public class Skew extends SingleStyleBase
+	public class Skew extends LeafStyleBase
 	{
 		public function Skew()
 		{
 			super("skew", "transform");
 		}
-
+		override public function get styleType():String
+		{
+			return selectorBase;
+		}
 		public function set skew(value:*):void
 		{
 			_skewX = _skewY = null;
@@ -81,7 +83,7 @@ package org.apache.royale.style.stylebeads.transform
 				calculatedRuleValue = "skewX(" + parseVal(_value) + ") " +"skewY(" + parseVal(_value) + ")";
 				calculatedSelector = positive(_value);
 			}
-			_selectorPrefix = negative ? "-skew" : "skew";
+			_selectorBase = negative ? "-skew" : "skew";
 		}
 		private function positive(val:*):String
 		{
@@ -95,8 +97,8 @@ package org.apache.royale.style.stylebeads.transform
 				return "none";
 			if(parseFloat(value) == value)
 				return value + "deg";
-			if(CSSLookup.has(value))
-				return CSSLookup.getProperty(value);
+			if(isVar(value))
+				return fromVar(value);
 			assert(false, "Invalid value for skew: " + value);
 			return value;
 		}

@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.interact
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 
-	public class Cursor extends SingleStyleBase
+	public class Cursor extends LeafStyleBase
 	{
 		public function Cursor()
 		{

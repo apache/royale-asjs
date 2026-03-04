@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.tables
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class TableLayout extends SingleStyleBase
+	public class TableLayout extends LeafStyleBase
 	{
 		public function TableLayout()
 		{

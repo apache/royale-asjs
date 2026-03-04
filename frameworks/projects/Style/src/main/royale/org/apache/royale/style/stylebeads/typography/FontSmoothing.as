@@ -18,28 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class FontSmoothing extends StyleBeadBase
+	public class FontSmoothing extends LeafStyleBase
 	{
 		public function FontSmoothing()
 		{
-			super();
+			super("", "");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/font-smoothing
-		 */
-
-		override public function get selectors():Array
+		override public function get styleType():String
 		{
-			return [];
+			return "font-smoothing";
 		}
-
-		override public function get rules():Array
+		[Inspectable(category="General", enumeration="antialiased,subpixel-antialiased", defaultValue="")]
+		override public function set value(value:*):void
 		{
-			return [];
+			assert(value == "antialiased" || value == "subpixel-antialiased", "FontSmoothing only accepts 'antialiased', 'subpixel-antialiased'.");
+			calculatedSelector = _value = value;
+			if(value == "antialiased")
+			{
+				calculatedRuleValue = "-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;";
+			}
+			else
+			{
+				calculatedRuleValue = "-webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto;";
+			}
 		}
 	}
 }

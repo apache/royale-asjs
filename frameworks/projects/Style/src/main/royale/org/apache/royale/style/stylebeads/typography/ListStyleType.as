@@ -16,11 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.typography
 {
-	public interface IMeasurementStyleBead extends IStyleBead
+	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+
+	public class ListStyleType extends LeafStyleBase
 	{
-		function get unit():String;
-		function set unit(value:String):void;
+		public function ListStyleType()
+		{
+			super("list", "list-style-type");
+		}
+		/**
+		 * Can be any legal values for list-style-type, but most likely "disc", "decimal", or "none"
+		 * https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/list-style-type
+		 */
+		[Inspectable(category="General", enumeration="disc,decimal,none", defaultValue="one")]
+		override public function set value(value:*):void
+		{
+			calculatedSelector = _value = value;
+			calculatedRuleValue = acceptVar(value);
+		}
 	}
 }

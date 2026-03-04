@@ -19,27 +19,19 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class TextContent extends StyleBeadBase
+	public class TextContent extends LeafStyleBase
 	{
 		public function TextContent()
 		{
-			super();
+			super("content", "content");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/content
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			calculatedSelector = value;
+			calculatedRuleValue = acceptVar(value);
 		}
 	}
 }

@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.anim
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
-	import org.apache.royale.style.util.CSSLookup;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.util.ThemeManager;
 
-	public class Animation extends SingleStyleBase
+	public class Animation extends LeafStyleBase
 	{
 		public function Animation()
 		{
@@ -51,15 +50,14 @@ package org.apache.royale.style.stylebeads.anim
 
 		override public function set value(value:*):void
 		{
-			var isVar:Boolean = CSSLookup.has(value);
 			assert(
-				isVar || ["spin","ping","pulse","bounce","none"].indexOf(value) != -1,
+				isVar(value) || ["spin","ping","pulse","bounce","none"].indexOf(value) != -1,
 				"animation only accepts 'spin', 'ping', 'pulse', 'bounce', or a CSS variable referencing a valid animation"
 				);
 			calculatedRuleValue = calculatedSelector = _value = value;
-			if(isVar)
+			if(isVar(value))
 			{
-				calculatedRuleValue = CSSLookup.getProperty(value);
+				calculatedRuleValue = fromVar(value);
 			}
 			else
 			{

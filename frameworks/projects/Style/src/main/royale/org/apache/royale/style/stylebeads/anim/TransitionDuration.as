@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.anim
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 
-	public class TransitionDuration extends SingleStyleBase
+	public class TransitionDuration extends LeafStyleBase
 	{
 		public function TransitionDuration()
 		{
@@ -31,11 +31,9 @@ package org.apache.royale.style.stylebeads.anim
 
 		override public function set value(value:*):void
 		{
-			var isInt:Boolean = int(value) == value;
-			var isVar:Boolean = CSSLookup.has(value);
-			assert(isVar || (isInt && value >= 0), "transition-duration only accepts valid CSS variables or non-negative integers representing milliseconds");
+			assert(isVar(value) || (isInt(value) && value >= 0), "transition-duration only accepts valid CSS variables or non-negative integers representing milliseconds");
 			calculatedSelector = _value = value;
-			calculatedRuleValue = isInt ? value + "ms" : CSSLookup.getProperty(value);
+			calculatedRuleValue = isInt(value) ? value + "ms" : fromVar(value);
 		}		
 	}
 }

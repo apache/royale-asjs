@@ -18,19 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.CSSUnit;
 
-	public class InsetBase extends SingleStyleBase
+	public class InsetBase extends LeafStyleBase
 	{
 		public function InsetBase(selectorPrefix:String, rulePrefix:String)
 		{
 			super(selectorPrefix, rulePrefix);
 		}
-		public var unit:String = CSSUnit.PX;
-		protected var pixelValue:Number;
 		private var savedPrefix:String;
 		override public function set value(value:*):void
 		{
@@ -41,15 +37,14 @@ package org.apache.royale.style.stylebeads.layout
 			if(isNegative)
 			{
 				if(!savedPrefix)
-					savedPrefix = _selectorPrefix;
-				_selectorPrefix = "-" + savedPrefix;
+					savedPrefix = _selectorBase;
+				_selectorBase = "-" + savedPrefix;
 			}
 			
 			if(isInt)
 			{
-				pixelValue = ThemeManager.instance.activeTheme.spacing * value;
 				calculatedSelector = "" + Math.abs(value);
-				calculatedRuleValue = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
+				calculatedRuleValue = computeSpacing(value);
 			}
 			else if(isNum)
 			{

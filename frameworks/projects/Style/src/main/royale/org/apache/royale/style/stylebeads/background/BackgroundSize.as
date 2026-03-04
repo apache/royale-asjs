@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.background
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class BackgroundSize extends SingleStyleBase
+	public class BackgroundSize extends LeafStyleBase
 	{
 		public function BackgroundSize()
 		{

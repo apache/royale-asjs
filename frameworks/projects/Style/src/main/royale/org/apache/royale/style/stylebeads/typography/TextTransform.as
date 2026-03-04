@@ -18,29 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextTransform extends StyleBeadBase
+	public class TextTransform extends LeafStyleBase
 	{
 		public function TextTransform()
 		{
-			super();
+			super("", "text-transform");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/text-transform
-		 *
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="none,capitalize,uppercase,lowercase", defaultValue="none")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["none", "capitalize", "uppercase", "lowercase"].indexOf(value) >= 0, "Invalid value for TextTransform");
+			calculatedSelector = calculatedRuleValue = _value = value;
+			if(value == "none")
+				calculatedSelector = "normal-case";
 		}
 	}
 }

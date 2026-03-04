@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.anim
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class TransitionProperty extends SingleStyleBase
+	public class TransitionProperty extends LeafStyleBase
 	{
 		public function TransitionProperty()
 		{

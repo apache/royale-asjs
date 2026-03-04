@@ -18,28 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
 
-	public class FontStretch extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+
+	public class FontStretch extends LeafStyleBase
 	{
 		public function FontStretch()
 		{
-			super();
+			super("font-stretch", "font-stretch");
 		}
-
 		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/font-stretch
+		 * Accept keywords or values for font-stretch.
+		 * See https://developer.mozilla.org/en-US/docs/Web/CSS/font-stretch for more information.
 		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="ultra-condensed,extra-condensed,condensed,semi-condensed,normal,semi-expanded,expanded,extra-expanded,ultra-expanded", defaultValue="")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			calculatedSelector = _value = value;
+			calculatedRuleValue = acceptVar(value);
 		}
 	}
 }

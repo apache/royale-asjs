@@ -19,12 +19,13 @@
 package org.apache.royale.style.stylebeads.filters
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	abstract public class FilterEffectBase extends StyleBeadBase
+	abstract public class FilterEffectBase extends LeafStyleBase
 	{
-		public function FilterEffectBase()
+		public function FilterEffectBase(selectorBase:String, ruleBase:String)
 		{
-			super();
+			super(selectorBase, ruleBase);
 		}
 
     private var _blur:String;

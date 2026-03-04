@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.svg
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
 
-	public class Fill extends SingleStyleBase
+	public class Fill extends LeafStyleBase
 	{
 		public function Fill()
 		{

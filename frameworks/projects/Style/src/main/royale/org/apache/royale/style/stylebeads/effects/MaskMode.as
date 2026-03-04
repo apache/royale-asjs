@@ -19,24 +19,24 @@
 package org.apache.royale.style.stylebeads.effects
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class MaskMode extends StyleBeadBase
+	public class MaskMode extends LeafStyleBase
 	{
 		public function MaskMode()
 		{
-			super();
+			super("mask","mask-mode");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="alpha,luminance,match", defaultValue="auto")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(value == "alpha" || value == "luminance" || value == "match", "MaskMode only accepts 'alpha', 'luminance', 'match'.");
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(value == "match")
+			{
+				calculatedRuleValue = "match-source";
+			}
 		}
 	}
 }

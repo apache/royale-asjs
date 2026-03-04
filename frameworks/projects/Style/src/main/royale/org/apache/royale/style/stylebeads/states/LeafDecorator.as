@@ -16,37 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.typography
+package org.apache.royale.style.stylebeads.states
 {
+	import org.apache.royale.style.stylebeads.IStyleBead;
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class TextDecoration extends StyleBeadBase
+	public class LeafDecorator extends StyleBeadBase
 	{
-		public function TextDecoration()
+		public function LeafDecorator()
 		{
 			super();
 		}
 
+		protected var preDecorator:String;
+		protected var postDecorator:String;
 		/**
-		 * TODO: Figure this out
+		 * @royaleignorecoercion org.apache.royale.style.stylebeads.LeafStyleBase
 		 */
-		// https://tailwindcss.com/docs/text-decoration-color
-		public var color:String;
-		// https://tailwindcss.com/docs/text-decoration-line
-		public var line:String;
-		// https://tailwindcss.com/docs/text-decoration-style
-		public var style:String;
-		// https://tailwindcss.com/docs/text-decoration-thickness
-		public var thickness:String;
-
-		override public function get selectors():Array
+		override public function decorateChildStyle(style:IStyleBead):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(style.isLeaf, "LeafDecorator can only decorate leaf styles");
+			var leafStyle:LeafStyleBase = style as LeafStyleBase;
+			leafStyle.rulePrefix = preDecorator + leafStyle.rulePrefix;
+			leafStyle.ruleSuffix = leafStyle.ruleSuffix + postDecorator;
+			leafStyle.selectorPrefix = preDecorator + leafStyle.selectorPrefix;
 		}
 	}
 }

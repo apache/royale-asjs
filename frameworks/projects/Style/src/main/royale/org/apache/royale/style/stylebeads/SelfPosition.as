@@ -18,7 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class SelfPosition extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.flexgrid.JustifySelf;
+	import org.apache.royale.style.stylebeads.flexgrid.AlignSelf;
+	import org.apache.royale.style.stylebeads.flexgrid.PlaceSelf;
+
+	public class SelfPosition extends CompositeStyle
 	{
 		public function SelfPosition()
 		{
@@ -42,8 +46,14 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set justifySelf(value:String):void
 		{
-			_justifySelf = value;
+			if(!jutifySelfStyle)
+			{
+				jutifySelfStyle = new JustifySelf();
+				addStyleBead(jutifySelfStyle);
+			}
+			_justifySelf = jutifySelfStyle.value = value;
 		}
+		private var jutifySelfStyle:JustifySelf;
 
 		private var _alignSelf:String;
 		/**
@@ -55,19 +65,25 @@ package org.apache.royale.style.stylebeads
 		 * @langversion 3.0
 		 * @productversion Royale 0.9.13
 		 */
-		[Inspectable(category="General", enumeration="auto,flex-start,flex-end,center,stretch,baseline,last baseline", defaultValue="")]
+		[Inspectable(category="General", enumeration="auto,flex-start,flex-end,center,safe center,safe flex-end,stretch,baseline,last baseline", defaultValue="")]
 		public function get alignSelf():String
 		{
 			return _alignSelf;
 		}
 		public function set alignSelf(value:String):void
 		{
-			_alignSelf = value;
+			if(!alignSelfStyle)
+			{
+				alignSelfStyle = new AlignSelf();
+				addStyleBead(alignSelfStyle);
+			}
+			_alignSelf = alignSelfStyle.value = value;
 		}
+		private var alignSelfStyle:AlignSelf;
 
 		private var _placeSelf:String;
 
-		[Inspectable(category="General", enumeration="auto,start,center,end,stretch", defaultValue="")]
+		[Inspectable(category="General", enumeration="auto,start,center,end,safe center,safe end,stretch", defaultValue="")]
 		/**
 		 * Applicabale for grid containers.
 		 * A shorthand property for align-content and justify-content.
@@ -84,64 +100,16 @@ package org.apache.royale.style.stylebeads
 
 		public function set placeSelf(value:String):void
 		{
-			_placeSelf = value;
+			if(!placeSelfStyle)
+			{
+				placeSelfStyle = new PlaceSelf();
+				addStyleBead(placeSelfStyle);
+			}
+			_placeSelf = placeSelfStyle.value = value;
 		}
+		private var placeSelfStyle:PlaceSelf;
 
-		public var safe:Boolean = false;
-		private function needsSafe(val:String):Boolean
-		{
-			if(!safe)
-				return false;
-			return val == "end" || val == "center" || val == "flex-end";
-		}
-		private function safeSelector(val:String):String
-		{
-			if(!safe)
-				return "";
-			return needsSafe(val) ? "-safe" : "";
-		}
-		private function safeRule(val:String):String
-		{
-			if(!safe)
-				return "";
-			return needsSafe(val) ? ": safe " : ": ";
-		}
-		override public function get selectors():Array
-		{
-			var safeStr:String = safeSelector(justifySelf);
-			var jsStr:String = ".justify-" + justifySelf + safeStr;
-			 safeStr = safeSelector(alignSelf);
-			var asStr:String = ".align-" + alignSelf + safeStr;
-			 safeStr = safeSelector(placeSelf);
-			var psStr:String = ".place-self-" + placeSelf + safeStr;
-			
-			var retVal:Array = [];
-			if(justifySelf)
-				retVal.push(jsStr);
-			if(alignSelf)
-				retVal.push(asStr);
-			if(placeSelf)
-				retVal.push(psStr);
-			return retVal;
-		}
-	
-		override public function get rules():Array
-		{
-			var safeStr:String = safeRule(justifySelf);
-			var jcStr:String = "justify-self" + safeStr + justifySelf;
-			 safeStr = safeRule(alignSelf);
-			var aiStr:String = "align-self" + safeStr + alignSelf;
-			 safeStr = safeRule(placeSelf);
-			var psStr:String = "place-self" + safeStr + placeSelf;
-			
-			var retVal:Array = [];
-			if(justifySelf)
-				retVal.push(jcStr);
-			if(alignSelf)
-				retVal.push(aiStr);
-			if(placeSelf)
-				retVal.push(psStr);
-			return retVal;
-		}
+		// public var safe:Boolean = false;
+
 	}
 }

@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class ActiveState extends StyleStateBase
+	public class ActiveState extends LeafDecorator
 	{
 		public function ActiveState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":active"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "active:";
+			postDecorator = ":active";
 		}
 	}
 }

@@ -18,28 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextAlign extends StyleBeadBase
+	public class TextAlign extends LeafStyleBase
 	{
 		public function TextAlign()
 		{
-			super();
+			super("text", "text-align");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/text-align
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="left,right,center,justify,start,end", defaultValue="left")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["left","right","center","justify","start","end"].indexOf(value) >= 0, "Invalid value for text-align: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 	}
 }

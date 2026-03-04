@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.interact
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
 
-	public class AccentColor extends SingleStyleBase
+	public class AccentColor extends LeafStyleBase
 	{
 		public function AccentColor()
 		{

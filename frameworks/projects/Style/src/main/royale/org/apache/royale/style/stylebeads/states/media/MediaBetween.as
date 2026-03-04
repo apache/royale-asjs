@@ -19,21 +19,14 @@
 package org.apache.royale.style.stylebeads.states.media
 {
 
-	public class MediaBetween extends MediaStyleBase
+	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
+
+	public class MediaBetween extends QueryBaseStyle
 	{
 		public function MediaBetween()
 		{
 			super();
 		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":media"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
-		}
+		//TODO
 	}
 }

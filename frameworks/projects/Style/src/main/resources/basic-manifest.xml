@@ -31,16 +31,16 @@
   <component id="ContainerPosition" class="org.apache.royale.style.stylebeads.ContainerPosition"/>
   <component id="FlexContainerStyle" class="org.apache.royale.style.stylebeads.FlexContainerStyle"/>
   <component id="FlexItemStyle" class="org.apache.royale.style.stylebeads.FlexItemStyle"/>
-  <component id="HeightStyle" class="org.apache.royale.style.stylebeads.HeightStyle"/>
-  <component id="MaxHeight" class="org.apache.royale.style.stylebeads.MaxHeight"/>
-  <component id="MaxWidth" class="org.apache.royale.style.stylebeads.MaxWidth"/>
-  <component id="MinHeight" class="org.apache.royale.style.stylebeads.MinHeight"/>
-  <component id="MinWidth" class="org.apache.royale.style.stylebeads.MinWidth"/>
-  <component id="OverflowStyle" class="org.apache.royale.style.stylebeads.OverflowStyle"/>
-  <component id="PositionStyle" class="org.apache.royale.style.stylebeads.PositionStyle"/>
+  <component id="HeightStyle" class="org.apache.royale.style.stylebeads.sizing.HeightStyle"/>
+  <component id="MaxHeight" class="org.apache.royale.style.stylebeads.sizing.MaxHeight"/>
+  <component id="MaxWidth" class="org.apache.royale.style.stylebeads.sizing.MaxWidth"/>
+  <component id="MinHeight" class="org.apache.royale.style.stylebeads.sizing.MinHeight"/>
+  <component id="MinWidth" class="org.apache.royale.style.stylebeads.sizing.MinWidth"/>
+  <component id="OverflowStyle" class="org.apache.royale.style.stylebeads.layout.Overflow"/>
+  <component id="PositionStyle" class="org.apache.royale.style.stylebeads.layout.Position"/>
   <component id="SelfPosition" class="org.apache.royale.style.stylebeads.SelfPosition"/>
-  <component id="SizeStyle" class="org.apache.royale.style.stylebeads.SizeStyle"/>
-  <component id="WidthStyle" class="org.apache.royale.style.stylebeads.WidthStyle"/>
+  <component id="SizeStyle" class="org.apache.royale.style.stylebeads.sizing.SizeStyle"/>
+  <component id="WidthStyle" class="org.apache.royale.style.stylebeads.sizing.WidthStyle"/>
 
 
   <component id="FontFamily" class="org.apache.royale.style.stylebeads.typography.FontFamily"/>
@@ -55,16 +55,25 @@
   <component id="LetterSpacing" class="org.apache.royale.style.stylebeads.typography.LetterSpacing"/>
   <component id="LineClamp" class="org.apache.royale.style.stylebeads.typography.LineClamp"/>
   <component id="LineHeight" class="org.apache.royale.style.stylebeads.typography.LineHeight"/>
-  <component id="ListStyle" class="org.apache.royale.style.stylebeads.typography.ListStyle"/>
+  <component id="ListStyle" class="org.apache.royale.style.stylebeads.typography.ListStyleType"/>
+  <component id="ListStyleImage" class="org.apache.royale.style.stylebeads.typography.ListStyleImage"/>
+  <component id="ListStylePosition" class="org.apache.royale.style.stylebeads.typography.ListStylePosition"/>
+  <component id="ListStyleType" class="org.apache.royale.style.stylebeads.typography.ListStyleType"/>
   <component id="OverflowWrap" class="org.apache.royale.style.stylebeads.typography.OverflowWrap"/>
   <component id="TextAlign" class="org.apache.royale.style.stylebeads.typography.TextAlign"/>
   <component id="TextColor" class="org.apache.royale.style.stylebeads.typography.TextColor"/>
   <component id="TextContent" class="org.apache.royale.style.stylebeads.typography.TextContent"/>
-  <component id="TextDecoration" class="org.apache.royale.style.stylebeads.typography.TextDecoration"/>
+  <component id="TextDecoration" class="org.apache.royale.style.stylebeads.typography.TextDecorationLine"/>
+  <component id="TextDecorationColor" class="org.apache.royale.style.stylebeads.typography.TextDecorationColor"/>
+  <component id="TextDecorationLine" class="org.apache.royale.style.stylebeads.typography.TextDecorationLine"/>
+  <component id="TextDecorationStyle" class="org.apache.royale.style.stylebeads.typography.TextDecorationStyle"/>
+  <component id="TextDecorationThickness" class="org.apache.royale.style.stylebeads.typography.TextDecorationThickness"/>
   <component id="TextIndent" class="org.apache.royale.style.stylebeads.typography.TextIndent"/>
   <component id="TextOverflow" class="org.apache.royale.style.stylebeads.typography.TextOverflow"/>
+  <component id="TextSize" class="org.apache.royale.style.stylebeads.typography.TextSize"/>
   <component id="TextTransform" class="org.apache.royale.style.stylebeads.typography.TextTransform"/>
-  <component id="TextUnderline" class="org.apache.royale.style.stylebeads.typography.TextUnderline"/>
+  <component id="TextUnderline" class="org.apache.royale.style.stylebeads.typography.TextDecorationLine"/>
+  <component id="Truncate" class="org.apache.royale.style.stylebeads.typography.Truncate"/>
   <component id="TextWrap" class="org.apache.royale.style.stylebeads.typography.TextWrap"/>
   <component id="VerticalAlign" class="org.apache.royale.style.stylebeads.typography.VerticalAlign"/>
   <component id="Whitespace" class="org.apache.royale.style.stylebeads.typography.Whitespace"/>
@@ -103,7 +112,7 @@
   <component id="FilterEffect" class="org.apache.royale.style.stylebeads.filters.FilterEffect"/>
   <component id="BackdropFilter" class="org.apache.royale.style.stylebeads.filters.BackdropFilter"/>
 
-  <component id="TableLayout" class="org.apache.royale.style.stylebeads.TableLayout"/>
+  <component id="TableLayout" class="org.apache.royale.style.stylebeads.tables.TableLayout"/>
   <component id="Border" class="org.apache.royale.style.stylebeads.border.Border"/>
   <component id="Outline" class="org.apache.royale.style.stylebeads.border.Outline"/>
   <component id="BorderRadius" class="org.apache.royale.style.stylebeads.border.BorderRadius"/>

@@ -18,40 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class FlexContainerStyle extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.layout.Display;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexDirection;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexWrap;
+	/**
+	 * A FlexContainerStyle is always flex.
+	 */
+	public class FlexContainerStyle extends CompositeStyle
 	{
 		public function FlexContainerStyle()
 		{
 			super();
+			displayStyle = new Display();
+			addStyleBead(displayStyle);
 		}
 		
-		private var _flex:Boolean = true;
-		/**
-		 * Added a FlexContainerStyle is implicitly flex.
-		 * This is only needed if you need to set flex to false.
-		 * For example, if you have a container that is flex by default
-		 * and you want to make it not flex,
-		 * then you would add a FlexContainerStyle with flex set to false.
-		 * 
-		 */
-		public function get flex():Boolean
-		{
-			return _flex;
-		}
-		public function set flex(value:Boolean):void
-		{
-			_flex = value;
-		}
+		private var displayStyle:Display;
 
 		private var _inline:Boolean;
 		public function get inline():Boolean
 		{
-			return _inline;
+			return !!_inline;
 		}
 
 		public function set inline(value:Boolean):void
 		{
 			_inline = value;
+			displayStyle.value = value ? "inline-flex" : "flex";
 		}
 
 		private var _column:Boolean;
@@ -61,22 +54,39 @@ package org.apache.royale.style.stylebeads
 		 */
 		public function get column():Boolean
 		{
-			return _column;
+			return !!_column;
 		}
 		public function set column(value:Boolean):void
 		{
 			_column = value;
+			setDirection();
 		}
-
+		private var directionStyle:FlexDirection;
+		private function setDirection():void
+		{
+			if(!directionStyle)
+			{
+				directionStyle = new FlexDirection();
+				addStyleBead(directionStyle);
+			}
+			var dir:String = _column ? "column" : "row";
+			if(reverse)
+				dir += "-reverse";
+			directionStyle.value = dir;
+		}
 		private var _reverse:Boolean;
 		public function get reverse():Boolean
 		{
-			return _reverse;
+			return !!_reverse;
 		}
 
 		public function set reverse(value:Boolean):void
 		{
 			_reverse = value;
+			if(directionStyle)
+				setDirection();
+			if(wrapStyle)
+				setWrap();
 		}
 
 		private var _wrap:*;
@@ -88,38 +98,23 @@ package org.apache.royale.style.stylebeads
 		{
 			return !!_wrap;
 		}
-
+		private var wrapStyle:FlexWrap;
 		public function set wrap(value:Boolean):void
 		{
 			_wrap = value;
+			setWrap();
 		}
-
-		private var _value:String;
-		
-		private function stringify(sep:String):String
+		private function setWrap():void
 		{
-			var wrapStr:String = wrap ? "wrap" : "nowrap";
-			var direction:String = column ? "column" : "row";
-			if(reverse){
-				if(wrap)
-					wrapStr += "-reverse";
-				else
-					direction += "-reverse";
+			if(!wrapStyle)
+			{
+				wrapStyle = new FlexWrap();
+				addStyleBead(wrapStyle);
 			}
-			if(_wrap == undefined)
-				return direction;
-			
-			return direction + sep + wrapStr;
+			var w:String = _wrap ? "wrap" : "nowrap";
+			if(_wrap && reverse)
+					w += "-reverse";
+			wrapStyle.value = w;
 		}
-		override public function get selectors():Array
-		{
-			return [".flex-flow" + stringify("-")];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["flex-flow:" + stringify(" ") + ";"];
-		}
-
 	}
 }

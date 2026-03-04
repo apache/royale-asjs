@@ -16,36 +16,50 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.sizing
 {
-	public class SizeStyle extends MeasurementStyleBase
+	public class WidthStyleBase extends MeasurementStyleBase
 	{
-		public function SizeStyle()
+		public function WidthStyleBase(selectorBase:String, ruleBase:String)
 		{
-			super();
+			super(selectorBase, ruleBase);
 		}
-
-		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]
-		public function get fit():String
+		override public function set value(value:*):void
 		{
-			return _strVal;
+			super.value = value;
+			switch("" + value)
+			{
+				case "screen":
+					calculatedRuleValue = "100vw";
+					break;
+				case "100vw":
+					calculatedSelector = "screen";
+					break;
+				case "dvw":
+					calculatedRuleValue = "100dvw";
+					break;
+				case "100dvw":
+					calculatedSelector = "dvw";
+					break;
+				case "lvw":
+					calculatedRuleValue = "100lvw";
+					break;
+				case "100lvw":
+					calculatedSelector = "lvw";
+					break;
+				case "svw":
+					calculatedRuleValue = "100svw";
+					break;
+				case "100svw":
+					calculatedSelector = "svw";
+					break;
+				case "lw":
+					calculatedRuleValue = "100lw";
+					break;
+				case "100lw":
+					calculatedSelector = "lw";
+					break;
+			}
 		}
-
-		public function set fit(value:String):void
-		{
-			_strVal = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [".size-" + toSelector()];
-		}
-	
-		override public function get rules():Array
-		{
-			var val:String = toRuleVal();
-			return ["width:" + val + ";", "height:" + val + ";"];
-		}
-
 	}
 }

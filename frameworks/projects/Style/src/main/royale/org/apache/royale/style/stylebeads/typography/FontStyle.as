@@ -18,28 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class FontStyle extends StyleBeadBase
+	public class FontStyle extends LeafStyleBase
 	{
 		public function FontStyle()
 		{
-			super();
+			super("", "font-style");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/font-style
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="normal,italic", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(value == "normal" || value == "italic", "FontStyle only accepts 'normal', 'italic'.");
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(value == "normal")
+			{
+				calculatedSelector = "not-italic";
+			}
 		}
 	}
 }

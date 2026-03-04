@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.interact
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 
-	public class WillChange extends SingleStyleBase
+	public class WillChange extends LeafStyleBase
 	{
 		public function WillChange()
 		{
@@ -31,12 +31,11 @@ package org.apache.royale.style.stylebeads.interact
 		[Inspectable(category="General", enumeration="auto,scroll-position,contents,transform", defaultValue="auto")]
 		override public function set value(value:*):void
 		{
-			var isVar:Boolean = CSSLookup.has(value);
 			calculatedSelector = _value = value;
 			if(value == "scroll-position")
 				calculatedSelector = "scroll";
 
-			calculatedRuleValue = isVar ? CSSLookup.getProperty(value) : value;
+			calculatedRuleValue = isVar(value) ? fromVar(value) : value;
 		}
 	}
 }

@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class FlexGrow extends SingleStyleBase
+	public class FlexGrow extends LeafStyleBase
 	{
 		public function FlexGrow()
 		{

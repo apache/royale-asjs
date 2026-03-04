@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.interact
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 
-	public class ColorScheme extends SingleStyleBase
+	public class ColorScheme extends LeafStyleBase
 	{
 		public function ColorScheme()
 		{
@@ -30,7 +30,6 @@ package org.apache.royale.style.stylebeads.interact
 		}
 		override public function set value(value:*):void
 		{
-			var isVar:Boolean = CSSLookup.has(value);
 			assert(["normal","dark","light","light dark","only dark","only light"].indexOf(value) != -1, "Invalid value for color-scheme: " + value);
 			calculatedRuleValue = _value = value;
 			calculatedSelector = value.replace(" ", "-");

@@ -18,25 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class MaskRepeat extends StyleBeadBase
+	public class MaskRepeat extends LeafStyleBase
 	{
 		public function MaskRepeat()
 		{
-			super();
+			super("mask","mask-repeat");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="repeat,no-repeat,repeat-x,repeat-y,space,round", defaultValue="repeat")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["repeat","no-repeat","repeat-x","repeat-y","space","round"].indexOf(value) >= 0, "Invalid value for MaskRepeat: " + value);
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(value == "space" || value == "round")
+			{
+				calculatedSelector = "repeat-" + value;
+			}
 		}
 	}
 }

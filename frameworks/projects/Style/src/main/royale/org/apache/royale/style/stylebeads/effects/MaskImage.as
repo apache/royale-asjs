@@ -18,25 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
-
-	public class MaskImage extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	/**
+	 * TODO: Add support for gradients.
+	 */
+	public class MaskImage extends LeafStyleBase
 	{
 		public function MaskImage()
 		{
-			super();
+			super("mask-image","mask-image");
 		}
 		/**
-		 * TODO: Figure this out
+		 * Supports none, vars or custom values.
+		 * It's possible to specify custom gradients here.
 		 */
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			calculatedSelector = _value = value;
+			calculatedRuleValue = acceptVar(value);
 		}
 	}
 }

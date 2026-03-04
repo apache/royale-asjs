@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.transform
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.CSSLookup;
 
-	public class Scale extends SingleStyleBase
+	public class Scale extends LeafStyleBase
 	{
 		public function Scale()
 		{
@@ -93,7 +92,7 @@ package org.apache.royale.style.stylebeads.transform
 				calculatedRuleValue = parseVal(_value) + " " + parseVal(_value);
 				calculatedSelector = positive(_value);
 			}
-			_selectorPrefix = negative ? "-scale" : "scale";
+			_selectorBase = negative ? "-scale" : "scale";
 		}
 		private function positive(val:*):String
 		{
@@ -105,8 +104,8 @@ package org.apache.royale.style.stylebeads.transform
 		private function parseVal(value:*):String{
 			if(value == "none")
 				return "none";
-			if(CSSLookup.has(value))
-				return CSSLookup.getProperty(value);
+			if(isVar(value))
+				return fromVar(value);
 			assert(false, "Invalid value for scale: " + value);
 			return value;
 		}

@@ -16,34 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.sizing
 {
-	public class MinHeight extends MeasurementStyleBase
+	import org.apache.royale.style.stylebeads.sizing.WidthStyleBase;
+
+	public class WidthStyle extends WidthStyleBase
 	{
-		public function MinHeight()
+		public function WidthStyle()
 		{
-			super();
+			super("w", "width");
 		}
 
-		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]
-		public function get fit():String
-		{
-			return _strVal;
-		}
-
-		public function set fit(value:String):void
-		{
-			_strVal = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [".min-w-" + toSelector()];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["min-width:" + toRuleVal() + ";"];
-		}
 	}
 }

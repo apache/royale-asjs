@@ -19,29 +19,29 @@
 package org.apache.royale.style.stylebeads.effects
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class BoxShadow extends StyleBeadBase
+	/**
+	 * TODO: Figure this out. ring effects cannot be stacked in CSS.
+	 * Tailwind uses @properties to create a single box-shadow property that combines all the properties.
+	 * We avoided using @properties elsewhere.
+	 * It might be simpler to just use `Outline` instead.
+	 * https://tailwindcss.com/docs/box-shadow
+	 */
+	public class BoxShadow extends LeafStyleBase
 	{
 		public function BoxShadow()
 		{
-			super();
+			super("shadow","box-shadow");
 		}
 		/**
 		 * TODO: Figure this out
+		 * box-shadow: var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow);
 		 */
 		public var size:String;
 		
 		// none is special
 		public var color:String;
 		public var inset:Boolean;
-		override public function get selectors():Array
-		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

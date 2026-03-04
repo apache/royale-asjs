@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class BackdropState extends StyleStateBase
+	public class BackdropState extends LeafDecorator
 	{
 		public function BackdropState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":active"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "backdrop:";
+			postDecorator = "::backdrop";
 		}
 	}
 }

@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class OddState extends StyleStateBase
+	public class OddState extends LeafDecorator
 	{
 		public function OddState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":odd"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return ["nth-child(odd)"];
+			preDecorator = "odd:";
+			postDecorator = ":nth-child(odd)";
 		}
 	}
 }

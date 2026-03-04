@@ -47,35 +47,93 @@ package org.apache.royale.style.util
 			}
 		}
 
-		COMPILE::JS
-		private static var ss:CSSStyleSheet;
-
 		private static var ruleIdx:int = 0;
 
 		private static function addRule(selector:String, rule:String):void
 		{
 			COMPILE::JS
 			{
-				if (!ss)
-				{
-					var styleElement:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
-					document.head.appendChild(styleElement);
-					ss = styleElement.sheet as CSSStyleSheet;
-				}
-				ss.insertRule(selector + "{" + rule + "}", ruleIdx++);
+				getStyleSheet().insertRule(selector + "{" + rule + "}", ruleIdx++);
 			}
 		}
-		
-		private var _defaultUnit:String = "px";
-
-		public function get defaultUnit():String
+		COMPILE::JS
+		private static var ss:CSSStyleSheet;
+		COMPILE::JS
+		private static function getStyleSheet():CSSStyleSheet
 		{
-			return _defaultUnit;
+			if (!ss)
+			{
+				var styleElement:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
+				document.head.appendChild(styleElement);
+				ss = styleElement.sheet as CSSStyleSheet;
+			}
+			return ss;
+		}
+		COMPILE::JS
+		private static const mediaList:Map = new Map();
+
+		public static function hasQuery(identifier:String):Boolean
+		{
+			COMPILE::JS
+			{
+				return mediaList.has(identifier);
+			}
+			COMPILE::SWF
+			{
+				return false;
+			}
+		}
+		/**
+		 * TODO: Should really be CSSGroupingRule.
+		 * It needs to be added to typedefs
+		 * */
+		COMPILE::JS
+		public static function getQuery(identifier:String):CSSRule
+		{
+			if (!mediaList.has(identifier))
+			{
+				return null;
+			}
+			return mediaList.get(identifier) as CSSRule;
+		}
+		public static function addQuery(identifier:String, query:String,parentId:String = null):void
+		{
+			COMPILE::JS
+			{
+				assert(!mediaList.has(identifier), "Media query " + identifier + " already exists");
+				var idx:int;
+				var rule:CSSRule;
+				if(parentId)
+				{
+					var parentQuery:CSSRule = getQuery(parentId);
+					assert(parentQuery, "Parent query " + parentId + " does not exist");
+					// TODO remove this once we have CSSGroupingRule in the typedefs
+					var fakeType:CSSStyleSheet = parentQuery as CSSStyleSheet;
+					idx = fakeType.insertRule(query, fakeType.cssRules.length);
+					rule = fakeType.cssRules.item(idx);
+					mediaList.set(identifier, rule);
+				}
+				else
+				{
+					idx = getStyleSheet().insertRule(query, ruleIdx++);
+					rule = getStyleSheet().cssRules.item(idx);
+					mediaList.set(identifier, rule);
+				}
+			}
+		}
+		public static function addGroupedRule(identifier:String, selector:String, rule:String):void
+		{
+			COMPILE::JS
+			{
+				// TODO Change this once we have CSSGroupingRule in the typedefs
+				var toGroup:CSSRule = getQuery(identifier);
+				// TODO remove this once we have CSSGroupingRule in the typedefs
+				var fakeType:CSSStyleSheet = toGroup as CSSStyleSheet;
+				var len:int = fakeType.cssRules.length;
+				fakeType.insertRule(selector + "{" + rule + "}", len);
+				styleList.add(selector);
+			}
 		}
 
-		public function set defaultUnit(value:String):void
-		{
-			_defaultUnit = value;
-		}
 	}
 }

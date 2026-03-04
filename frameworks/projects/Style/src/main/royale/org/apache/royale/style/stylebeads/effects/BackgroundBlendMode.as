@@ -18,25 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class BackgroundBlendMode extends StyleBeadBase
+	public class BackgroundBlendMode extends LeafStyleBase
 	{
 		public function BackgroundBlendMode()
 		{
-			super();
+			super("bg-blend","background-blend-mode");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="normal,multiply,screen,overlay,darken,lighten,color-dodge,color-burn,hard-light,soft-light,difference,exclusion,hue,saturation,color,luminosity", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["normal","multiply","screen","overlay","darken","lighten","color-dodge","color-burn","hard-light","soft-light","difference","exclusion","hue","saturation","color","luminosity"].indexOf(value) >= 0, "Invalid value for BackgroundBlendMode: " + value);
+			calculatedSelector = _value = value;
+			calculatedRuleValue = acceptVar(value);
 		}
 	}
 }

@@ -20,10 +20,11 @@ package org.apache.royale.style
 {
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.CSSClassList;
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.style.stylebeads.IStyleBead;
 	import org.apache.royale.style.util.StyleManager;
 	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
+	import org.apache.royale.debugging.assert;
 
 	COMPILE::JS
 	{
@@ -80,22 +81,52 @@ package org.apache.royale.style
 		 */
 		public function addStyleBead(bead:IStyleBead):void
 		{
-			if (bead is IStyleBead)
+			COMPILE::JS
 			{
-				var styleBead:IStyleBead = bead as IStyleBead;
-				styleBeads.push(styleBead);
-				_styleBeads.push(styleBead);
+				assert(bead != null, "bead cannot be null");
+				if(!styleTypes)
+					styleTypes = new Set();
+				
+				var leaves:Array = bead.getLeaves();
+				for each(var leaf:ILeafStyleBead in leaves)
+				{
+					assert(leaf.isLeaf, "getLeaves() should only return leaf style beads");
+					/**
+					 * Only add the first found leaf for each style type.
+					 * This is to prevent duplicate styles from being added to the style sheet
+					 * and enables proper handling of styling overrides.
+					 */
+					if(styleTypes.has(leaf.styleType))
+						continue;
+					styleTypes.add(leaf.styleType);
+					leaf.strand = this;
+					_styleBeads.push(leaf);
+				}
+				refreshStyles();
 			}
-			refreshStyles();
 		}
+		COMPILE::JS
+		private var styleTypes:Set;
 		override protected function loadBeads():void
 		{
 			super.loadBeads();
 			if(styleBeads)
-			for each(var bead:IStyleBead in styleBeads)
-				addStyleBead(bead);
-				
+			{
+				for each(var bead:IStyleBead in styleBeads)
+					addStyleBead(bead);
+			}
+			styleBeads = null;
 			refreshStyles();
+		}
+		public function getStyleBeadsByType(type:Class):Array
+		{
+			var retVal:Array = [];
+			for each(var bead:IStyleBead in _styleBeads)
+			{
+				if(bead is type)
+					retVal.push(bead);
+			}
+			return retVal;
 		}
 
 		protected function refreshStyles():void
@@ -103,24 +134,23 @@ package org.apache.royale.style
 			COMPILE::JS
 			{
 				utilityList.clear();
-				for each (var styleBead:IStyleBead in styleBeads)
+				for each (var styleBead:ILeafStyleBead in _styleBeads)
 				{
 					applyStyle(styleBead);
 				}
 				computeFinalClassNames();
 			}
 		}
-		protected function applyStyle(styleBead:IStyleBead):void
+		protected function applyStyle(styleBead:ILeafStyleBead):void
 		{
-			var selectors:Array = styleBead.selectors;
-			for(var i:int=0;i<selectors.length;i++)
+			var selector:String = styleBead.selector;
+			utilityList.add(selector);
+			if (!StyleManager.hasStyle(selector))
 			{
-				var selector:String = selectors[i];
-				utilityList.add(selector);
-				if (!StyleManager.hasStyle(selector))
-				{
-					StyleManager.addStyle(selector, styleBead.rules[i]);
-				}
+				if(styleBead.parentQueryId)
+					StyleManager.addGroupedRule(styleBead.parentQueryId, selector, styleBead.rule);
+				else
+					StyleManager.addStyle(selector, styleBead.rule);
 			}
 		}
 		public function toggleClass(classNameVal:String, add:Boolean):void

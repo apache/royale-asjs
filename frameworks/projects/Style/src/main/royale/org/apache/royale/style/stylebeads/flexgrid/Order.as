@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class Order extends SingleStyleBase
+	public class Order extends LeafStyleBase
 	{
 		public function Order()
 		{
@@ -41,9 +41,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 			{
 				negative = true;
 				if(!savedPrefix)
-					savedPrefix = _selectorPrefix;
+					savedPrefix = _selectorBase;
 				
-				_selectorPrefix = "-" + savedPrefix;
+				_selectorBase = "-" + savedPrefix;
 				selectorValue = "" + (-value);
 			}
 			switch(value)

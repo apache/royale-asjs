@@ -16,40 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.sizing
 {
-	public class MinWidth extends MeasurementStyleBase
+	public class MaxWidth extends WidthStyleBase
 	{
-		public static const PROSE:String = "65ch";
-		public static const SCREEN_SM:String = "640px";
-		public static const SCREEN_MD:String = "768px";
-		public static const SCREEN_LG:String = "1024px";
-		public static const SCREEN_XL:String = "1280px";
-		public static const SCREEN_2XL:String = "1536px";
-		public function MinWidth()
+		public function MaxWidth()
 		{
-			super();
-		}
-
-		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]
-		public function get fit():String
-		{
-			return _strVal;
-		}
-
-		public function set fit(value:String):void
-		{
-			_strVal = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [".min-w-" + toSelector()];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["min-width:" + toRuleVal() + ";"];
+			super("max-w", "max-width");
 		}
 	}
 }

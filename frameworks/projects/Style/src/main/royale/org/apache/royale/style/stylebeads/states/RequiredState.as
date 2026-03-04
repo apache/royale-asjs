@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class RequiredState extends StyleStateBase
+	public class RequiredState extends LeafDecorator
 	{
 		public function RequiredState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":required"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [".required\\:foo:required"];
+			preDecorator = "required:";
+			postDecorator = ":required";
 		}
 	}
 }

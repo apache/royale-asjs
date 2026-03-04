@@ -18,7 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class ContainerPosition extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.flexgrid.PlaceItems;
+	import org.apache.royale.style.stylebeads.flexgrid.JustifyContent;
+	import org.apache.royale.style.stylebeads.flexgrid.AlignItems;
+	import org.apache.royale.style.stylebeads.flexgrid.JustifyItems;
+	import org.apache.royale.style.stylebeads.flexgrid.AlignContent;
+	import org.apache.royale.style.stylebeads.flexgrid.PlaceContent;
+
+	public class ContainerPosition extends CompositeStyle
 	{
 		public function ContainerPosition()
 		{
@@ -42,8 +49,14 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set justifyContent(value:String):void
 		{
-			_justifyContent = value;
+			if(!justifyContentStyle)
+			{
+				justifyContentStyle = new JustifyContent();
+				addStyleBead(justifyContentStyle);
+			}
+			justifyContentStyle.value = _justifyContent = value;
 		}
+		private var justifyContentStyle:JustifyContent;
 
 		private var _alignItems:String;
 		/**
@@ -62,8 +75,14 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set alignItems(value:String):void
 		{
-			_alignItems = value;
+			if(!alignItemsStyle)
+			{
+				alignItemsStyle = new AlignItems();
+				addStyleBead(alignItemsStyle);
+			}
+			alignItemsStyle.value = _alignItems = value;
 		}
+		private var alignItemsStyle:AlignItems;
 
 		private var _justifyItems:String;
 		[Inspectable(category="General", enumeration="start,end,center,stretch,normal", defaultValue="")]
@@ -79,8 +98,14 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set justifyItems(value:String):void
 		{
-			_justifyItems = value;
+			if(!justifyItemsStyle)
+			{
+				justifyItemsStyle = new JustifyItems();
+				addStyleBead(justifyItemsStyle);
+			}
+			justifyItemsStyle.value = _justifyItems = value;
 		}
+		private var justifyItemsStyle:JustifyItems;
 
 		private var _alignContent:String;
 		[Inspectable(category="General", enumeration="normal,center,flex-start,flex-end,space-between,space-around,space-evenly,baseline,stretch", defaultValue="")]
@@ -99,8 +124,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set alignContent(value:String):void
 		{
-			_alignContent = value;
+			if(!alignContentStyle)
+			{
+				alignContentStyle = new AlignContent();
+				addStyleBead(alignContentStyle);
+			}
+			alignContentStyle.value = _alignContent = value;
 		}
+		private var alignContentStyle:AlignContent;
 
 		private var _placeContent:String;
 
@@ -121,8 +152,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set placeContent(value:String):void
 		{
-			_placeContent = value;
+			if(!placeContentStyle)
+			{
+				placeContentStyle = new PlaceContent();
+				addStyleBead(placeContentStyle);
+			}
+			placeContentStyle.value = _placeContent = value;
 		}
+		private var placeContentStyle:PlaceContent;
 		private var _placeItems:String;
 
 		[Inspectable(category="General", enumeration="start,end,safe end,center,safe center,baseline,stretch", defaultValue="")]
@@ -142,88 +179,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set placeItems(value:String):void
 		{
-			_placeItems = value;
+			if(!placeItemsStyle)
+			{
+				placeItemsStyle = new PlaceItems();
+				addStyleBead(placeItemsStyle);
+			}
+			placeItemsStyle.value = _placeItems = value;
 		}
-
-		public var safe:Boolean = false;
-		private function needsSafe(val:String):Boolean
-		{
-			if(!safe)
-				return false;
-			return val == "end" || val == "center" || val == "flex-end";
-		}
-		private function safeSelector(val:String):String
-		{
-			if(!safe)
-				return "";
-			return needsSafe(val) ? "-safe" : "";
-		}
-		private function safeRule(val:String):String
-		{
-			if(!safe)
-				return "";
-			return needsSafe(val) ? ": safe " : ": ";
-		}
-		override public function get selectors():Array
-		{
-			var safeStr:String = safeSelector(justifyContent);
-			var jcStr:String = ".justify-" + justifyContent + safeStr;
-			 safeStr = safeSelector(alignItems);
-			var aiStr:String = ".align-" + alignItems + safeStr;
-			 safeStr = safeSelector(justifyItems);
-			var jiStr:String = ".justify-items-" + justifyItems + safeStr;
-			 safeStr = safeSelector(alignContent);
-			var acStr:String = ".align-content-" + alignContent + safeStr;
-			 safeStr = safeSelector(placeContent);
-			var pcStr:String = ".place-content-" + placeContent + safeStr;
-			 safeStr = safeSelector(placeItems);
-			var piStr:String = ".place-items-" + placeItems + safeStr;
-			
-			var retVal:Array = [];
-			if(justifyContent)
-				retVal.push(jcStr);
-			if(alignItems)
-				retVal.push(aiStr);
-			if(justifyItems)
-				retVal.push(jiStr);
-			if(alignContent)
-				retVal.push(acStr);
-			if(placeContent)
-				retVal.push(pcStr);
-			if(placeItems)
-				retVal.push(piStr);
-			return retVal;
-		}
-	
-		override public function get rules():Array
-		{
-			var safeStr:String = safeRule(justifyContent);
-			var jcStr:String = "justify-content" + safeStr + justifyContent;
-			 safeStr = safeRule(alignItems);
-			var aiStr:String = "align-items" + safeStr + alignItems;
-			 safeStr = safeRule(justifyItems);
-			var jiStr:String = "justify-items" + safeStr + justifyItems;
-			 safeStr = safeRule(alignContent);
-			var acStr:String = "align-content" + safeStr + alignContent;
-			 safeStr = safeRule(placeContent);
-			var pcStr:String = "place-content" + safeStr + placeContent;
-			 safeStr = safeRule(placeItems);
-			var piStr:String = "place-items" + safeStr + placeItems;
-			
-			var retVal:Array = [];
-			if(justifyContent)
-				retVal.push(jcStr);
-			if(alignItems)
-				retVal.push(aiStr);
-			if(justifyItems)
-				retVal.push(jiStr);
-			if(alignContent)
-				retVal.push(acStr);
-			if(placeContent)
-				retVal.push(pcStr);
-			if(placeItems)
-				retVal.push(piStr);
-			return retVal;
-		}
+		private var placeItemsStyle:PlaceItems;
 	}
 }

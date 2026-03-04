@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.transform
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.CSSLookup;
 
-	public class PerspectiveOrigin extends SingleStyleBase
+	public class PerspectiveOrigin extends LeafStyleBase
 	{
 		public function PerspectiveOrigin()
 		{
@@ -30,11 +29,10 @@ package org.apache.royale.style.stylebeads.transform
 		}
 		override public function set value(value:*):void
 		{
-			var isVar:Boolean = CSSLookup.has(value);
-			assert(isVar || ['center','top','top right','right','bottom right','bottom','bottom left','left','top left'].indexOf(value) != -1, "Invalid value for perspective-origin: " + value);
+			assert(isVar(value) || ['center','top','top right','right','bottom right','bottom','bottom left','left','top left'].indexOf(value) != -1, "Invalid value for perspective-origin: " + value);
 			calculatedRuleValue = calculatedSelector = _value = value;
-			if(isVar)
-				calculatedRuleValue = CSSLookup.getProperty(value);
+			if(isVar(value))
+				calculatedRuleValue = fromVar(value);
 			else
 			{
 				calculatedSelector = sanitizeSelector(value);

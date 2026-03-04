@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.border
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.StyleTheme;
@@ -223,9 +223,9 @@ package org.apache.royale.style.stylebeads.border
 	}
 }
 
-import org.apache.royale.style.stylebeads.SingleStyleBase;
+import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-class Width extends SingleStyleBase
+class Width extends LeafStyleBase
 {
 	public function Width(selectorPrefix:String = "border", rulePrefix:String = "border-width")
 	{
@@ -240,7 +240,7 @@ class Width extends SingleStyleBase
 	override public function get selector():String
 	{
 		if(!calculatedSelector)
-			return selectorPrefix;
+			return selectorBase;
 		
 		return super.selector;
 	}

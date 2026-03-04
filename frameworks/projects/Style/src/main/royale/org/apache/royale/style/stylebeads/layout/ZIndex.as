@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class ZIndex extends SingleStyleBase
+	public class ZIndex extends LeafStyleBase
 	{
 		public function ZIndex()
 		{
@@ -29,7 +29,7 @@ package org.apache.royale.style.stylebeads.layout
 		override public function set value(value:*):void
 		{
 			var negative:Boolean = value < 0;;
-			_selectorPrefix = negative ? "-z" : "z";
+			_selectorBase = negative ? "-z" : "z";
 			calculatedRuleValue = _value = value;
 			calculatedSelector = negative ? "" + Math.abs(value) : value;
 		}

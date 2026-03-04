@@ -18,28 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.StyleData;
 
-	public class TextUnderline extends StyleBeadBase
+	public class TextDecorationColor extends LeafStyleBase
 	{
-		public function TextUnderline()
+		public function TextDecorationColor()
 		{
-			super();
+			super("decoration", "text-decoration-color");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/text-decoration
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			var styleData:StyleData = validateColor(value,false);
+			calculatedRuleValue = styleData.rule;
+			calculatedSelector = styleData.selector;
 		}
 	}
 }

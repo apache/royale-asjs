@@ -18,35 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	[DefaultProperty("styles")]
+	/**
+	 * Convenience class for styles that are composed of multiple leaf styles.
+	 * This class does not have any functionality on its own,
+	 * but serves as a base class for composite styles that contain multiple leaf styles.
+	 * 
+	 * It can also be used in MXML to group multiple styles together without adding any additional functionality.
+	 */
 	public class CompositeStyle extends StyleBeadBase
 	{
 		public function CompositeStyle()
 		{
-			
+			super();
 		}
-		/**
-		 *  @royalesuppresspublicvarwarning
-		 */
-		public var styles:Array = [];
-		override public function get selectors():Array
+		//TODO: Figure this out.
+		override public function decorateChildStyle(style:IStyleBead):void
 		{
-			var s:Array = styles || [];
-			var retVal:Array = [];
-			for each (var style:StyleBeadBase in s)			{
-				retVal = retVal.concat(style.selectors);
-			}
-			return retVal;
-		}
 
-		override public function get rules():Array
-		{
-			var s:Array = styles || [];
-			var retVal:Array = [];
-			for each (var style:StyleBeadBase in s)			{
-				retVal = retVal.concat(style.rules);
-			}
-			return retVal;
-		}		
+		}
 	}
 }

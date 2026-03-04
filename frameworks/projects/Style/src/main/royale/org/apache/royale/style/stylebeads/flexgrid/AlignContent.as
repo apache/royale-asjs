@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class AlignContent extends SingleStyleBase
+	public class AlignContent extends LeafStyleBase
 	{
 		public function AlignContent()
 		{
@@ -39,13 +39,6 @@ package org.apache.royale.style.stylebeads.flexgrid
 				}
 			}
 			return [value];
-		}
-		private function getAfterDash(value:String):String
-		{
-			var dashIndex:int = value.indexOf("-");
-			if(dashIndex >= 0)
-				return value.substring(dashIndex + 1);
-			return value;
 		}
 		override public function set value(value:*):void
 		{

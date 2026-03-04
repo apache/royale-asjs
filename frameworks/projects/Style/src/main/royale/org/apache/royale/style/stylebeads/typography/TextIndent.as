@@ -18,28 +18,43 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class TextIndent extends StyleBeadBase
+	public class TextIndent extends LeafStyleBase
 	{
 		public function TextIndent()
 		{
-			super();
+			super("indent", "text-indent");
+			unit = "rem";
 		}
 
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/text-indent
-		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			if(isNum(value))
+			{
+				calculatedRuleValue = computeSpacing(value);
+				if(isNegative(value))
+				{
+					value = ("" + value).substring(1);
+					selectorPrefix = "-";
+				}
+				calculatedSelector = value;
+				return;
+			}
+			if(isVar(value))
+			{
+				calculatedRuleValue = fromVar(value);
+				calculatedSelector = value;
+				return;
+			}
+			calculatedRuleValue = value;
+			if(isNegative(value))
+			{
+				value = value.substring(1);
+				selectorPrefix = "-";
+			}
+			calculatedSelector = value;
 		}
 	}
 }

@@ -19,32 +19,21 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.util.CSSLookup;
 
-	public class ListStyle extends StyleBeadBase
+	public class ListStyleImage extends LeafStyleBase
 	{
-		public function ListStyle()
+		public function ListStyleImage()
 		{
-			super();
+			super("list-image", "list-style-image");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 */
-		// https://tailwindcss.com/docs/list-style-image
-		public var image:String;
-		// https://tailwindcss.com/docs/list-style-position
-		public var position:String;
-		// https://tailwindcss.com/docs/list-style-type	
-		public var type:String;
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			calculatedSelector = value;
+			calculatedRuleValue = acceptVar(value);
 		}
 	}
 }

@@ -20,25 +20,38 @@
 package org.apache.royale.style.stylebeads.states.attribute
 {
 
-	import org.apache.royale.style.stylebeads.states.StyleStateBase;
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
 
-	public class DataState extends StyleStateBase
+	public class DataState extends LeafDecorator
 	{
 		public function DataState()
 		{
 			super();
 		}
-		public var dataAttribute:String;
-		public var dataValue:String;
-		override public function get selectors():Array
+		private var _data:String;
+
+		public function get data():String
 		{
-			//TODO Figure this out.
-			return [":data"];
+			return _data;
 		}
-		override public function get rules():Array
+
+		public function set data(value:String):void
 		{
-			//TODO Figure this out.
-			return [];
+			_data = value;
+			preDecorator = value + ":";
+			postDecorator = "[" + value + "]";
+		}
+		private var _dataType:String;
+
+		public function get dataType():String
+		{
+			return _dataType;
+		}
+
+		public function set dataType(value:String):void
+		{
+			_dataType = value;
+			data = "data-" + value;
 		}
 	}
 }

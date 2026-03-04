@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.transform
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.CSSLookup;
 
-	public class Transform extends SingleStyleBase
+	public class Transform extends LeafStyleBase
 	{
 		public function Transform()
 		{
@@ -30,11 +29,10 @@ package org.apache.royale.style.stylebeads.transform
 		}
 		override public function set value(value:*):void
 		{
-			var isVar:Boolean = CSSLookup.has(value);
-			assert(isVar || value == "none", "Invalid value for transform: " + value);
+			assert(isVar(value) || value == "none", "Invalid value for transform: " + value);
 			calculatedSelector = calculatedRuleValue = _value = value;
-			if(isVar)
-				calculatedRuleValue = CSSLookup.getProperty(value);
+			if(isVar(value))
+				calculatedRuleValue = fromVar(value);
 		}
 	}
 }

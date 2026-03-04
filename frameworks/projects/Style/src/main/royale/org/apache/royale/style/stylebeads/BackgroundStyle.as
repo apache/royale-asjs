@@ -20,30 +20,38 @@ package org.apache.royale.style.stylebeads
 {
 
 	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.stylebeads.background.BackgroundAttachment;
+	import org.apache.royale.style.stylebeads.background.BackgroundColor;
+	import org.apache.royale.style.stylebeads.background.BackgroundClip;
+	import org.apache.royale.style.stylebeads.background.BackgroundImage;
+	import org.apache.royale.style.stylebeads.background.BackgroundOrigin;
+	import org.apache.royale.style.stylebeads.background.BackgroundPosition;
+	import org.apache.royale.style.stylebeads.background.BackgroundRepeat;
+	import org.apache.royale.style.stylebeads.background.BackgroundSize;
 
-	public class BackgroundStyle extends StyleBeadBase
+	public class BackgroundStyle extends CompositeStyle
 	{
 		public function BackgroundStyle()
 		{
 			super();
 		}
 
-		private var _alpha:Number;
-		/**
-		 * The alpha value of the background, between 0 and 1.
-		 * 0 means fully transparent, 1 means fully opaque.
-		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
-		 */
-		[Inspectable(category="General", defaultValue="1", minValue="0", maxValue="1")]
-		public function get alpha():Number
-		{
-			return _alpha;
-		}
-		public function set alpha(value:Number):void
-		{
-			_alpha = value;
-		}
+		// private var _alpha:Number;
+		// /**
+		//  * The alpha value of the background, between 0 and 1.
+		//  * 0 means fully transparent, 1 means fully opaque.
+		//  * @langversion 3.0
+		//  * @productversion Royale 0.9.13
+		//  */
+		// [Inspectable(category="General", defaultValue="1", minValue="0", maxValue="1")]
+		// public function get alpha():Number
+		// {
+		// 	return _alpha;
+		// }
+		// public function set alpha(value:Number):void
+		// {
+		// 	_alpha = value;
+		// }
 		private var _attachment:String;
 		/**
 		 * Defines how the background image is attached to the component.
@@ -61,8 +69,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set attachment(value:String):void
 		{
-			_attachment = value;
+			if(!attachmentStyle)
+			{
+				attachmentStyle = new BackgroundAttachment();
+				addStyleBead(attachmentStyle);
+			}
+			attachmentStyle.value = _attachment = value;
 		}
+		private var attachmentStyle:BackgroundAttachment;
 		private var _color:String;
 		/**
 		 * The background color of the component.
@@ -78,8 +92,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set color(value:String):void
 		{
-			_color = value;
+			if(!colorStyle)
+			{
+				colorStyle = new BackgroundColor();
+				addStyleBead(colorStyle);
+			}
+			colorStyle.value = _color = value;
 		}
+		private var colorStyle:BackgroundColor;
 		private var _clip:String;
 		/**
 		 * Defines the area of the background that is visible.
@@ -100,7 +120,14 @@ package org.apache.royale.style.stylebeads
 		public function set clip(value:String):void
 		{
 			_clip = value;
+			if(!clipStyle)
+			{
+				clipStyle = new BackgroundClip();
+				addStyleBead(clipStyle);
+			}
+			clipStyle.value = _clip;
 		}
+		private var clipStyle:BackgroundClip;
 		//TODO gradient support
 		// public var gradient:String;
 		private var _image:String;
@@ -118,8 +145,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set image(value:String):void
 		{
-			_image = value;
+			if(!imageStyle)
+			{
+				imageStyle = new BackgroundImage();
+				addStyleBead(imageStyle);
+			}
+			imageStyle.value = _image = value;
 		}
+		private var imageStyle:BackgroundImage;
 		private var _origin:String;
 		/**
 		 * 
@@ -133,8 +166,14 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set origin(value:String):void
 		{
-			_origin = value;
+			if(!originStyle)
+			{
+				originStyle = new BackgroundOrigin();
+				addStyleBead(originStyle);
+			}
+			originStyle.value = _origin = value;
 		}
+		private var originStyle:BackgroundOrigin;
 		private var _position:String;
 		/**
 		 * Defines the position of the background image.
@@ -150,8 +189,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set position(value:String):void
 		{
-			_position = value;
+			if(!positionStyle)
+			{
+				positionStyle = new BackgroundPosition();
+				addStyleBead(positionStyle);
+			}
+			positionStyle.value = _position = value;
 		}
+		private var positionStyle:BackgroundPosition;
 		private var _repeat:String;
 		/**
 		 * Defines how the background image is repeated.
@@ -172,8 +217,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set repeat(value:String):void
 		{
-			_repeat = value;
+			if(!repeatStyle)
+			{
+				repeatStyle = new BackgroundRepeat();
+				addStyleBead(repeatStyle);
+			}
+			repeatStyle.value = _repeat = value;
 		}
+		private var repeatStyle:BackgroundRepeat;
 		private var _size:String;
 		/**
 		 * Defines the size of the background image.
@@ -197,96 +248,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set size(value:String):void
 		{
-			_size = value;
-		}
-
-		private function stringify():Array
-		{
-			if(alpha == 0)
-				return ["transparent"];
-			
-			return [
-				alpha,
-				attachment,
-				color,
-				clip,
-				image,
-				origin,
-				position,
-				repeat,
-				size
-			];
-		}
-		
-		override public function get selectors():Array
-		{
-			var retVal:Array = [];
-			COMPILE::JS
+			if(!sizeStyle)
 			{
-				var strs:Array = stringify();
-				for(var i:int = 0; i < strs.length; i++)
-				{
-					var val:* = strs[i];
-					if(val == null || val == "")
-						continue;
-					
-					var valStr:String = "" + val;
-					//TODO optimize?
-					valStr = valStr.trim().replace(/\s/g, "-").replace(/,/g, "-");
-					retVal.push(".bg-" + valStr);
-				}
+				sizeStyle = new BackgroundSize();
+				addStyleBead(sizeStyle);
 			}
-			return retVal;
+			sizeStyle.value = _size = value;
 		}
-
-		override public function get rules():Array
-		{
-			var bg:String = "background-";
-			var strs:Array = stringify();
-			if(strs[0] == "transparent")
-				return [bg + "color: transparent"];
-			
-			var retVal:Array = [];
-			for(var i:int = 0; i < strs.length; i++)
-			{
-				var val:* = strs[i];
-				if(val == null || val == "")
-					continue;
-				
-				switch(i)
-				{
-					case 0:
-						retVal.push(bg + "alpha:" + val);
-						break;
-					case 1:
-						retVal.push(bg + "attachment:" + val);
-						break;
-					case 2:
-						retVal.push(bg + "color:" + val);
-						break;
-					case 3:
-						retVal.push(bg + "clip:" + val);
-						break;
-					case 4:
-						retVal.push(bg + "image:url(" + val + ")");
-						break;
-					case 5:
-						retVal.push(bg + "origin:" + val);
-						break;
-					case 6:
-						retVal.push(bg + "position:" + val);
-						break;
-					case 7:
-						retVal.push(bg + "repeat:" + val);
-						break;
-					case 8:
-						retVal.push(bg + "size:" + val);
-						break;
-					default:
-						assert(false, "BackgroundStyle: Invalid property index.");
-				}
-			}
-			return retVal;
-		}
+		private var sizeStyle:BackgroundSize;
 	}
 }

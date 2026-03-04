@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class JustifyContent extends SingleStyleBase
+	public class JustifyContent extends LeafStyleBase
 	{
 		public function JustifyContent()
 		{
@@ -40,13 +40,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 			}
 			return [value];
 		}
-		private function getAfterDash(value:String):String
-		{
-			var dashIndex:int = value.indexOf("-");
-			if(dashIndex >= 0)
-				return value.substring(dashIndex + 1);
-			return value;
-		}
+		[Inspectable(category="General", enumeration="center,safe center,start,flex-end,safe flex-end,space-between,space-around,space-evenly,baseline,stretch,normal", defaultValue="normal")]
 		override public function set value(value:*):void
 		{
 			assert(["center","center safe","safe center","start","flex-end","flex-end safe","safe flex-end","space-between","space-around","space-evenly","baseline","stretch","normal"].indexOf(value) >= 0, "Invalid value for place-content: " + value);

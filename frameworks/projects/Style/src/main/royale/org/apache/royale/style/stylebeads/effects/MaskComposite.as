@@ -18,25 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class MaskComposite extends StyleBeadBase
+	public class MaskComposite extends LeafStyleBase
 	{
 		public function MaskComposite()
 		{
-			super();
+			super("mask","mask-composite");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="add,subtract,intersect,exclude", defaultValue="add")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(value == "add" || value == "subtract" || value == "intersect" || value == "exclude", "MaskComposite only accepts 'add', 'subtract', 'intersect', 'exclude'.");
+			calculatedRuleValue = calculatedSelector = _value = value;
 		}
 	}
 }

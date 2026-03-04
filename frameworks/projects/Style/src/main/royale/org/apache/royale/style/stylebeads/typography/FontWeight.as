@@ -18,28 +18,54 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
 
-	public class FontWeight extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+
+	public class FontWeight extends LeafStyleBase
 	{
 		public function FontWeight()
 		{
-			super();
+			super("font", "font-weight");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/font-weight
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="thin,extralight,light,normal,medium,semibold,bold,extrabold,black,100,200,300,400,500,600,700,800,900", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
+			var numMapping:Object = {
+				"100": "thin",
+				"200": "extralight",
+				"300": "light",
+				"400": "normal",
+				"500": "medium",
+				"600": "semibold",
+				"700": "bold",
+				"800": "extrabold",
+				"900": "black"
+			};
+			var nameMapping:Object = {
+				"thin": "100",
+				"extralight": "200",
+				"light": "300",
+				"normal": "400",
+				"medium": "500",
+				"semibold": "600",
+				"bold": "700",
+				"extrabold": "800",
+				"black": "900"
+			};
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(numMapping[value] !== undefined)
+			{
+				calculatedSelector = numMapping[value];
+			}
+			else if(nameMapping[value] !== undefined)
+			{
+				calculatedRuleValue = nameMapping[value];
+			}
+			else if(isVar(value))
+			{
+				calculatedRuleValue = fromVar(value);
+			}
 		}
 
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

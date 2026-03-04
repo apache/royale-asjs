@@ -16,34 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.sizing
 {
-	public class TableLayout extends StyleBeadBase
+	public class MaxHeight extends HeightStyleBase
 	{
-		public function TableLayout()
+		public function MaxHeight()
 		{
-			super();
-		}
-		/**
-		 * TODO: Figure this out
-		 */
-		// https://tailwindcss.com/docs/border-collapse
-		public var borderCollapse:String;
-		// https://tailwindcss.com/docs/border-spacing
-		public var borderSpacing:String;
-		// https://tailwindcss.com/docs/caption-side
-		public var captionSide:String;
-		// https://tailwindcss.com/docs/table-layout
-		public var tableLayout:String;
-
-		override public function get selectors():Array
-		{
-			return [];
+			super("max-h", "max-height");
 		}
 
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

@@ -16,37 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.typography
 {
-	public class PositionStyle extends MeasurementStyleBase
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+
+	public class TextDecorationLine extends LeafStyleBase
 	{
-		public function PositionStyle()
+		public function TextDecorationLine()
 		{
-			super();
+			super("", "text-decoration-line");
 		}
-
-		private var _value:String;
-		
-		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
-		public function get value():String
+		[Inspectable(category="General", enumeration="underline,overline,line-through,none", defaultValue="none")]
+		override public function set value(value:*):void
 		{
-			return _value;
+			assert(["underline", "overline", "line-through", "none"].indexOf(value) >= 0, "Invalid value for TextDecorationLine");
+			calculatedSelector = calculatedRuleValue = _value = value;
+			if(value == "none")
+				calculatedSelector = "no-underline";
 		}
-
-		public function set value(value:String):void
-		{
-			_value = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [value];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["position:" + value + unit + ";"];
-		}
-
 	}
 }

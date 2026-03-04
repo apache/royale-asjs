@@ -20,19 +20,12 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class HasState extends StyleStateBase
 	{
+		/**
+		 * TODO Figure :has out.
+		 */
 		public function HasState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":has"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
 		}
 	}
 }

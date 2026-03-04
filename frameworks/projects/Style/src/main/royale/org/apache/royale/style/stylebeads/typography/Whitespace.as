@@ -19,28 +19,20 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class Whitespace extends StyleBeadBase
+	public class Whitespace extends LeafStyleBase
 	{
 		public function Whitespace()
 		{
-			super();
+			super("whitespace", "white-space");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/whitespace
-		 *
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="normal,nowrap,pre,pre-line,pre-wrap,break-spaces", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["normal","nowrap","pre","pre-line","pre-wrap","break-spaces"].indexOf(value) >= 0, "Invalid value for white-space: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 	}
 }

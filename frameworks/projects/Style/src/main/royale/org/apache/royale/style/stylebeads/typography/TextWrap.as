@@ -19,27 +19,21 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextWrap extends StyleBeadBase
+	public class TextWrap extends LeafStyleBase
 	{
 		public function TextWrap()
 		{
-			super();
+			super("text-wrap", "text-wrap");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/text-wrap
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="wrap,nowrap,balance,pretty", defaultValue="")]
+		override public function set value(value:*):void
 		{
-			return [];
+			assert(["wrap","nowrap","balance","pretty"].indexOf(value) >= 0, "Invalid value for text-wrap: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

@@ -19,10 +19,10 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.style.util.StyleData;
 
-	public class TextColor extends SingleStyleBase
+	public class TextColor extends LeafStyleBase
 	{
 		public function TextColor()
 		{

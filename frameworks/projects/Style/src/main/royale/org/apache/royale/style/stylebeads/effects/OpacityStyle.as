@@ -19,24 +19,28 @@
 package org.apache.royale.style.stylebeads.effects
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.CSSLookup;
 
-	public class OpacityStyle extends StyleBeadBase
+	public class OpacityStyle extends LeafStyleBase
 	{
 		public function OpacityStyle()
 		{
-			super();
+			super("opacity", "opacity");
 		}
 		/**
-		 * TODO: Figure this out
+		 * Acepts a number between 0 and 100 representing percentage, or a CSS variable that resolves to such a number.
+		 * The value is converted to a percentage string when applied as a style rule.
+		 * 
+		 * @royaleignorecoercion Number
 		 */
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			var val:Number = isVar(value) ? fromVar(value) as Number : parseFloat(value);
+			assert(val >= 0 && val <= 100, "opacity only accepts valid CSS variables or numbers between 0 and 100 representing percentage");
+			calculatedSelector = _value = value;
+			calculatedRuleValue = val + "%";
 		}
 	}
 }

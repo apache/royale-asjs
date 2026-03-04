@@ -21,24 +21,42 @@ package org.apache.royale.style.stylebeads.states.attribute
 {
 
 	import org.apache.royale.style.stylebeads.states.StyleStateBase;
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
 
-	public class AriaState extends StyleStateBase
+	public class AriaState extends LeafDecorator
 	{
 		public function AriaState()
 		{
 			super();
 		}
-		public var ariaAttribute:String;
-		public var ariaValue:String;
-		override public function get selectors():Array
+
+		private var _aria:String;
+		/**
+		 * The aria attribute to use for this state. For example, "aria-hidden".
+		 */
+		public function get aria():String
 		{
-			//TODO Figure this out.
-			return [":aria"];
+			return _aria;
 		}
-		override public function get rules():Array
+
+		public function set aria(value:String):void
 		{
-			//TODO Figure this out.
-			return [];
+			_aria = value;
+			preDecorator = value + ":";
+			postDecorator = "[" + value + "=true]";
+		}
+		/**
+		 * The aria attribute without the aria- prefix.
+		 * For example, if aria is "aria-hidden", type would be "hidden".
+		 */
+		public function get type():String
+		{
+			return _aria ? _aria.replace("aria-", "") : "";
+		}
+
+		public function set type(value:String):void
+		{
+			aria = "aria-" + value;
 		}
 	}
 }

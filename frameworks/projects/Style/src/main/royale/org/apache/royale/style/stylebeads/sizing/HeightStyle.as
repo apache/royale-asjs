@@ -16,28 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states.media
+package org.apache.royale.style.stylebeads.sizing
 {
-	import org.apache.royale.style.stylebeads.states.StyleStateBase;
-
-	public class MediaStyleBase extends StyleStateBase
+	public class HeightStyle extends HeightStyleBase
 	{
-		public function MediaStyleBase()
+		public function HeightStyle()
 		{
-			super();
-		}
-		/**
-		 * Figure out how to wrap.
-		 */
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":media"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			super("h", "height");
 		}
 	}
 }

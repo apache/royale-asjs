@@ -18,25 +18,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class MaskPosition extends StyleBeadBase
+	public class MaskPosition extends LeafStyleBase
 	{
 		public function MaskPosition()
 		{
-			super();
+			super("mask","mask-position");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="top left,top,top right,left,center,right,bottom left,bottom,bottom right", defaultValue="top left")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			calculatedSelector = _value = value;
+			switch(value)
+			{
+				case "top left":
+				case "top":
+				case "top right":
+				case "left":
+				case "center":
+				case "right":
+				case "bottom left":
+				case "bottom":
+				case "bottom right":
+					calculatedRuleValue = value;
+					break;
+				default:
+					calculatedRuleValue = acceptVar(value);
+					break;
+			}
 		}
 	}
 }

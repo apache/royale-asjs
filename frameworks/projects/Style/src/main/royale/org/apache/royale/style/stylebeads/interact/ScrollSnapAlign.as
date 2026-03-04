@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.interact
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 
-	public class ScrollSnapAlign extends SingleStyleBase
+	public class ScrollSnapAlign extends LeafStyleBase
 	{
 		public function ScrollSnapAlign()
 		{

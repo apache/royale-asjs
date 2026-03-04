@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class MarkerState extends StyleStateBase
+	public class MarkerState extends LeafDecorator
 	{
 		public function MarkerState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":marker"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "marker:";
+			postDecorator = "::marker";
 		}
 	}
 }

@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class AspectRatio extends SingleStyleBase
+	public class AspectRatio extends LeafStyleBase
 	{
 		public function AspectRatio()
 		{

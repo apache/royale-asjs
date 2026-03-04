@@ -18,11 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.svg
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.CSSLookup;
 
-	public class StrokeWidth extends SingleStyleBase
+	public class StrokeWidth extends LeafStyleBase
 	{
 		public function StrokeWidth()
 		{
@@ -32,8 +31,8 @@ package org.apache.royale.style.stylebeads.svg
 		{
 			//TODO validate value
 			calculatedRuleValue = calculatedSelector = _value = value;
-			if(CSSLookup.has(value))
-				calculatedRuleValue = CSSLookup.getProperty(value);
+			if(isVar(value))
+				calculatedRuleValue = fromVar(value);
 		}
 	}
 }

@@ -18,28 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class Hyphens extends StyleBeadBase
+	public class Hyphens extends LeafStyleBase
 	{
 		public function Hyphens()
 		{
-			super();
+			super("hyphens", "hyphens");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/hyphens
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="none,manual,auto", defaultValue="none")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(value == "none" || value == "manual" || value == "auto", "Hyphens only accepts 'none', 'manual', 'auto'.");
+			calculatedRuleValue = calculatedSelector = _value = value;
 		}
 	}
 }

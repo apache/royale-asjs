@@ -16,23 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.states.attribute
 {
-	public class DataState extends StyleStateBase
+	public class SelectedState extends DataState
 	{
-		public function DataState()
+		public function SelectedState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":data-foo"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return ["data-active\\:foo[data-active]"];
-		}
+			dataType = "selected";
+		}	
 	}
 }

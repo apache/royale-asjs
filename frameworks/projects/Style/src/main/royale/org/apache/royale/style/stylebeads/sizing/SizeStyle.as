@@ -16,40 +16,50 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.sizing
 {
-	public class MaxWidth extends MeasurementStyleBase
+	import org.apache.royale.style.stylebeads.CompositeStyle;
+
+	public class SizeStyle extends CompositeStyle
 	{
-		public static const PROSE:String = "65ch";
-		public static const SCREEN_SM:String = "640px";
-		public static const SCREEN_MD:String = "768px";
-		public static const SCREEN_LG:String = "1024px";
-		public static const SCREEN_XL:String = "1280px";
-		public static const SCREEN_2XL:String = "1536px";
-		public function MaxWidth()
+		public function SizeStyle()
 		{
 			super();
 		}
+		private var widthStyle:WidthStyle;
+		private var _width:*;
 
-		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]
-		public function get fit():String
+		public function get width():*
 		{
-			return _strVal;
-		}
-
-		public function set fit(value:String):void
-		{
-			_strVal = value;
+			return _width;
 		}
 
-		override public function get selectors():Array
+		public function set width(value:*):void
 		{
-			return [".max-w-" + toSelector()];
+			if(!widthStyle)
+			{
+				widthStyle = new WidthStyle();
+				addStyleBead(widthStyle);
+			}
+			_width = widthStyle.value = value;
 		}
-	
-		override public function get rules():Array
+		private var heightStyle:HeightStyle;
+		private var _height:*;
+
+		public function get height():*
 		{
-			return ["max-width:" + toRuleVal() + ";"];
+			return _height;
 		}
+
+		public function set height(value:*):void
+		{
+			if(!heightStyle)
+			{
+				heightStyle = new HeightStyle();
+				addStyleBead(heightStyle);
+			}
+			_height = heightStyle.value = value;
+		}
+
 	}
 }

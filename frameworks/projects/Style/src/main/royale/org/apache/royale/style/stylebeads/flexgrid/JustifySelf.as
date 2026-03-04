@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class JustifySelf extends SingleStyleBase
+	public class JustifySelf extends LeafStyleBase
 	{
 		public function JustifySelf()
 		{
@@ -41,6 +41,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 			return [value];
 		}
 
+		[Inspectable(category="General", enumeration="auto,start,center,end,safe center,safe end,stretch", defaultValue="")]
 		override public function set value(value:*):void
 		{
 			assert(["start","end","safe end","end safe","center","safe center","center safe","stretch","auto"].indexOf(value) >= 0, "Invalid value for justify-self: " + value);

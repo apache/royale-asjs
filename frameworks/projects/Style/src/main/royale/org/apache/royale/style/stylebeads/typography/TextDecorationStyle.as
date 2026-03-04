@@ -16,34 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.typography
 {
-	public class MaxHeight extends MeasurementStyleBase
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+
+	public class TextDecorationStyle extends LeafStyleBase
 	{
-		public function MaxHeight()
+		public function TextDecorationStyle()
 		{
-			super();
+			super("decoration", "text-decoration-style");
 		}
-
-		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none", defaultValue="none")]
-		public function get fit():String
+		[Inspectable(category="General", enumeration="solid,double,dotted,dashed,wavy", defaultValue="solid")]
+		override public function set value(value:*):void
 		{
-			return _strVal;
-		}
-
-		public function set fit(value:String):void
-		{
-			_strVal = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [".max-h-" + toSelector()];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["max-height:" + toRuleVal() + ";"];
+			assert(["solid", "double", "dotted", "dashed", "wavy"].indexOf(value) >= 0, "Invalid value for TextDecorationStyle: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 	}
 }

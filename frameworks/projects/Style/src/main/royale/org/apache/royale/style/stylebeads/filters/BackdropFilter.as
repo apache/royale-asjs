@@ -18,24 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.filters
 {
-
+	/**
+	 * TODO: Figure this out. Filters cannot be stacked in CSS.
+	 * Tailwind uses @properties to create a single filter property that combines all the filters.
+	 * We avoided using @properties elsewhere.
+	 * https://tailwindcss.com/docs/backdrop-filter
+	 */
 	public class BackdropFilter extends FilterEffectBase
 	{
 		public function BackdropFilter()
 		{
-			super();
-		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
-		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			super("backdrop","backdrop-filter");
 		}
 	}
 }

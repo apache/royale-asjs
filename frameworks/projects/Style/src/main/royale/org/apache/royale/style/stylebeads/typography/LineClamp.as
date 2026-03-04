@@ -19,27 +19,46 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class LineClamp extends StyleBeadBase
+	public class LineClamp extends LeafStyleBase
 	{
 		public function LineClamp()
 		{
-			super();
+			super("line-clamp", "");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/line-clamp
-		 */
-
-		override public function get selectors():Array
+		override public function get styleType():String
 		{
-			return [];
+			return selectorBase;
 		}
-
-		override public function get rules():Array
+		override public function set value(value:*):void
 		{
-			return [];
+			_value = value;
+			var overflow:String = "overflow: ";
+			var hidden:String = "hidden;";
+			var visible:String = "visible;";
+			var display:String = "display: ";
+			var webkitBox:String = "-webkit-box;";
+			var block:String = "block;";
+			var orient:String = "-webkit-box-orient: ";
+			var vertical:String = "vertical;";
+			var horizontal:String = "horizontal;";
+			var clampPre:String = "-webkit-line-clamp: ";
+			if(isNum(value) || isVar(value))
+			{
+				assert(isInt(value), "Line clamp value must be an integer.");
+				calculatedRuleValue = overflow + hidden + display + webkitBox + orient + vertical + clampPre + value + ";";
+			}
+			else if(value == "none")
+			{
+				calculatedRuleValue = overflow + visible + display + block + orient + horizontal + clampPre + "unset;";
+			}
+			else
+			{
+				calculatedRuleValue = overflow + hidden + display + webkitBox + orient + vertical + clampPre + value + ";";
+			}
+			calculatedSelector = value;
 		}
 	}
 }

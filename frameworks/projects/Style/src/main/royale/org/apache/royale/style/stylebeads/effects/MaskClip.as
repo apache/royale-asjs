@@ -18,25 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class MaskClip extends StyleBeadBase
+	public class MaskClip extends LeafStyleBase
 	{
 		public function MaskClip()
 		{
-			super();
+			super("mask-clip","mask-clip");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="border,padding,content,fill,stroke,view,no-clip", defaultValue="border")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["border","padding","content","fill","stroke","view","no-clip"].indexOf(value) >= 0, "MaskClip only accepts 'border', 'padding', 'content', 'fill', 'stroke', 'view', 'no-clip'.");
+			calculatedSelector = _value = value;
+			if(value == "no-clip")
+			{
+				calculatedSelector = value;
+				_selectorBase = "mask";
+			}
+			else
+			{
+				calculatedRuleValue = value + "-box";
+				_selectorBase = "mask-clip";
+			}
 		}
 	}
 }

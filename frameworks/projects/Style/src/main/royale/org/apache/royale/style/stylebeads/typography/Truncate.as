@@ -16,34 +16,43 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.typography
 {
-	public class WidthStyle extends MeasurementStyleBase
+	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.layout.Overflow;
+	import org.apache.royale.style.stylebeads.CompositeStyle;
+
+	public class Truncate extends CompositeStyle
 	{
-		public function WidthStyle()
+		public function Truncate()
 		{
 			super();
 		}
 
-		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]
-		public function get fit():String
+		private var _truncate:Boolean;
+
+		public function get truncate():Boolean
 		{
-			return _strVal;
+			return _truncate;
 		}
 
-		public function set fit(value:String):void
+		public function set truncate(value:Boolean):void
 		{
-			_strVal = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [".w-" + toSelector()];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["width:" + toRuleVal() + ";"];
+			if(value)
+			{
+				var hiddenOverflow:Overflow = new Overflow();
+				hiddenOverflow.value = "hidden";
+				var textOverflow:TextOverflow = new TextOverflow();
+				textOverflow.value = "ellipsis";
+				var whitespace:Whitespace = new Whitespace();
+				whitespace.value = "nowrap";
+				styles = [
+					hiddenOverflow,
+					textOverflow,
+					whitespace
+				];
+			}
+			_truncate = value;
 		}
 	}
 }

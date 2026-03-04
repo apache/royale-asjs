@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class Flex extends SingleStyleBase
+	public class Flex extends LeafStyleBase
 	{
 		public function Flex()
 		{

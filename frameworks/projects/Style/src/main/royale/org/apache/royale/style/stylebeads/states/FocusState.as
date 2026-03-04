@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class FocusState extends StyleStateBase
+	public class FocusState extends LeafDecorator
 	{
 		public function FocusState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":focus"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "focus:";
+			postDecorator = ":focus";
 		}
 	}
 }

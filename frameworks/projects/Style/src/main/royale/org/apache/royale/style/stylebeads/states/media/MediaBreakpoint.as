@@ -19,21 +19,28 @@
 package org.apache.royale.style.stylebeads.states.media
 {
 
-	public class MediaBreakpoint extends MediaStyleBase
+	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
+
+	public class MediaBreakpoint extends QueryBaseStyle
 	{
 		public function MediaBreakpoint()
 		{
 			super();
 		}
-		override public function get selectors():Array
+		private var _size:*;
+
+		public function get size():*
 		{
-			//TODO Figure this out.
-			return [":media"];
+			return _size;
 		}
-		override public function get rules():Array
+
+		public function set size(value:*):void
 		{
-			//TODO Figure this out.
-			return [];
+			_size = value;
+			//TODO
+		// protected var queryBody:String = "";
+		// protected var querySelector:String;
+
 		}
 	}
 }

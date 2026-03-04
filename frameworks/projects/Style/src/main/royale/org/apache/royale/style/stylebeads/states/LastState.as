@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class LastState extends StyleStateBase
+	public class LastState extends LeafDecorator
 	{
 		public function LastState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":last"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [".last\\:foo:last-child"];
+			preDecorator = "last:";
+			postDecorator = ":last-child";
 		}
 	}
 }

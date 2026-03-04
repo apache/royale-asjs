@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.border
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.StyleTheme;
@@ -184,9 +184,9 @@ package org.apache.royale.style.stylebeads.border
 import org.apache.royale.style.stylebeads.border.BorderRadius;
 import org.apache.royale.style.util.StyleTheme;
 import org.apache.royale.style.util.ThemeManager;
-import org.apache.royale.style.stylebeads.SingleStyleBase;
+import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-class Radius extends SingleStyleBase
+class Radius extends LeafStyleBase
 {
 	public function Radius(selectorPrefix:String = "rounded", rulePrefix:String = "border-radius")
 	{

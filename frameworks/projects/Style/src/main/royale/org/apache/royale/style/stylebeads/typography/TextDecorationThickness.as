@@ -16,23 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.typography
 {
-	public class SelectedState extends StyleStateBase
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+
+	public class TextDecorationThickness extends LeafStyleBase
 	{
-		public function SelectedState()
+		public function TextDecorationThickness()
 		{
-			super();
+			super("decoration", "text-decoration-thickness");
 		}
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			//TODO Figure this out.
-			return [":selected"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [".data-selected\\:bg-blue-500\\/5[data-selected]"];
+			assert(isNum(value) || isVar(value) || value == "from-font" || value == "auto", "Invalid value for TextDecorationThickness: " + value);
+			calculatedSelector = _value = value;
+			var val:String = value;
+			if(isNum(value))
+				val += "px";
+			if(isVar(value))
+				val = fromVar(value);
+			calculatedRuleValue = val;
 		}
 	}
 }

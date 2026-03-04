@@ -18,28 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class VerticalAlign extends StyleBeadBase
+	public class VerticalAlign extends LeafStyleBase
 	{
 		public function VerticalAlign()
 		{
-			super();
+			super("align", "vertical-align");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/vertical-align
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="baseline,top,middle,bottom,text-top,text-bottom,sub,super", defaultValue="")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(isVar(value) || ["baseline","top","middle","bottom","text-top","text-bottom","sub","super"].indexOf(value) >= 0, "Invalid value for vertical-align: " + value);
+			calculatedSelector = _value = value;
+			calculatedRuleValue = isVar(value) ? fromVar(value) : value;
 		}
 	}
 }

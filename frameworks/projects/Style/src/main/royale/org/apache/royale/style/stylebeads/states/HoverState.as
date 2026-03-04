@@ -18,21 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class HoverState extends StyleStateBase
+	public class HoverState extends LeafDecorator
 	{
+		/**
+		 * TODO wrap in a media query for hover capability
+		 */
 		public function HoverState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":hover"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "hover:";
+			postDecorator = ":hover";
 		}
 	}
 }

@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class PlaceSelf extends SingleStyleBase
+	public class PlaceSelf extends LeafStyleBase
 	{
 		public function PlaceSelf()
 		{
@@ -39,6 +39,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 			}
 			return [value];
 		}
+		[Inspectable(category="General", enumeration="auto,start,center,end,safe center,safe end,stretch", defaultValue="")]
 		override public function set value(value:*):void
 		{
 			assert(["auto","center","center safe","safe center","start","end","end safe","safe end","baseline","stretch"].indexOf(value) >= 0, "Invalid value for place-self: " + value);

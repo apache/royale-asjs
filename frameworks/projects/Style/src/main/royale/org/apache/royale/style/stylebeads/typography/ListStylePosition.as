@@ -16,34 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.typography
 {
-	public class HeightStyle extends MeasurementStyleBase
+	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+
+	public class ListStylePosition extends LeafStyleBase
 	{
-		public function HeightStyle()
+		public function ListStylePosition()
 		{
-			super();
+			super("list", "list-style-position");
 		}
-
-		[Inspectable(category="General", enumeration="max-content,min-content,fit-content,stretch,none,65ch,640px,768px,1024px,1280px,1536px", defaultValue="none")]
-		public function get fit():String
+		[Inspectable(category="General", enumeration="inside,outside", defaultValue="outside")]
+		override public function set value(value:*):void
 		{
-			return _strVal;
-		}
-
-		public function set fit(value:String):void
-		{
-			_strVal = value;
-		}
-
-		override public function get selectors():Array
-		{
-			return [".h-" + toSelector()];
-		}
-	
-		override public function get rules():Array
-		{
-			return ["height:" + toRuleVal() + ";"];
+			assert(["inside","outside"].indexOf(value) >= 0, "Invalid value for list-style-position: " + value);
+			calculatedRuleValue = calculatedSelector = _value = value;
 		}
 	}
 }

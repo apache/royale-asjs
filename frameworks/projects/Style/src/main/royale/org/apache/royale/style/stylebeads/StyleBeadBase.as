@@ -24,13 +24,83 @@ package org.apache.royale.style.stylebeads
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
-
+	
+	[DefaultProperty("styles")]
+	/**
+	 * The base class for all style beads.
+	 * Style beads can have parents and childrem, but only leaf style beads can have values.
+	 * Leaf style beads are the actual styles that generate CSS rules. 
+	 * Non-leaf style beads are used to decorate the leaf selectors and rules.
+	 * Query style beads are used to generate media queries and other conditional rules.
+	 * Query style beads will self-generate the correct grouping which the leaf styles beads are added to.
+	 * Query styles beads can be nested in each other to generate nested grouping.
+	 * Leaf style beads cannot have children.
+	 */
 	abstract public class StyleBeadBase extends Bead implements IStyleBead
 	{
 		public function StyleBeadBase()
 		{
 			super();
 		}
+		/**
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var styles:Array = [];
+
+		/**
+		 * Decorator style beads should override this method to apply their decoration to child styles.
+		 */
+		public function getLeaves():Array
+		{
+			assert(styles && styles.length > 0, "Non-leaf style beads must have child styles");
+			preprocessStyle();
+			var retVal:Array = [];
+			for each(var style:IStyleBead in styles)
+			{
+				style.parentStyle = this;
+
+				retVal = retVal.concat(style.getLeaves());
+				/**
+				 * We want to decorate styles from to bottom up,
+				 * so we do this after we recursively traverse down the the leaves.
+				 */
+				decorateChildStyle(style);
+			}
+		return retVal;
+		}
+		/**
+		 * Override this method in subclasses to make sure the style is normalized
+		 * so cascading the styles works correctly.
+		 * 
+		 * This is most significant in query ("@"") styles which are nested.
+		 */
+		protected function preprocessStyle():void
+		{
+
+		}
+		public function addStyleBead(bead:IStyleBead):void
+		{
+			if(!styles)
+				styles = [];
+			styles.push(bead);
+		}
+		private var _parentStyle:IStyleBead;
+
+		public function get parentStyle():IStyleBead
+		{
+			return _parentStyle;
+		}
+
+		public function set parentStyle(value:IStyleBead):void
+		{
+			_parentStyle = value;
+		}
+		abstract public function decorateChildStyle(style:IStyleBead):void;
+		public function get isLeaf():Boolean
+		{
+			return false;
+		}
+
 		protected function validateColor(value:*,supportsNone:Boolean):StyleData
 		{
 			if(!supportsNone && value == "none")
@@ -58,7 +128,5 @@ package org.apache.royale.style.stylebeads
 			}
 			return new StyleData(selectorVal, ruleVal,value);
 		}
-		abstract public function get selectors():Array;
-		abstract public function get rules():Array;
 	}
 }

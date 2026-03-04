@@ -19,12 +19,18 @@
 package org.apache.royale.style.stylebeads.states
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.IStyleBead;
 
 	abstract public class StyleStateBase extends StyleBeadBase
 	{
 		public function StyleStateBase()
 		{
 			super();
+		}
+
+		override public function decorateChildStyle(style:IStyleBead):void
+		{
+			//TODO: Figure out what goes in here.
 		}
 
 		/**

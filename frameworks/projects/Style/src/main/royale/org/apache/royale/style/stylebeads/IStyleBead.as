@@ -29,7 +29,11 @@ package org.apache.royale.style.stylebeads
 	 */
 	public interface IStyleBead extends IBead
 	{
-		function get selectors():Array;
-		function get rules():Array;
+		function get isLeaf():Boolean;
+		function getLeaves():Array;
+		function addStyleBead(bead:IStyleBead):void;
+		function get parentStyle():IStyleBead;
+		function set parentStyle(value:IStyleBead):void;
+		function decorateChildStyle(style:IStyleBead):void;
 	}
 }

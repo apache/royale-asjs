@@ -18,25 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class MaskOrigin extends StyleBeadBase
+	public class MaskOrigin extends LeafStyleBase
 	{
 		public function MaskOrigin()
 		{
-			super();
+			super("mask-origin","mask-origin");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="border,padding,content,fill,stroke,view", defaultValue="border")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["border","padding","content","fill","stroke","view"].indexOf(value) >= 0, "MaskOrigin only accepts 'border', 'padding', 'content', 'fill', 'stroke', 'view'.");
+			calculatedSelector = _value = value;
+			calculatedRuleValue = value + "-box";
 		}
 	}
 }

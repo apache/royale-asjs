@@ -18,28 +18,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.util.StyleTheme;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class LetterSpacing extends StyleBeadBase
+	public class LetterSpacing extends LeafStyleBase
 	{
 		public function LetterSpacing()
 		{
-			super();
+			super("tracking", "letter-spacing");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/letter-spacing
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="tighter,tight,normal,wide,wider,widest", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			var styleTheme:StyleTheme = ThemeManager.instance.activeTheme;
+			var valMapping:Object = {
+				tighter: styleTheme.trackingTighter,
+				tight: styleTheme.trackingTight,
+				normal: styleTheme.trackingNormal,
+				wide: styleTheme.trackingWide,
+				wider: styleTheme.trackingWider,
+				widest: styleTheme.trackingWidest
+			};
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(isVar(value))
+			{
+				calculatedRuleValue = fromVar(value);
+			}
+			else if(valMapping[value] !== undefined)
+			{
+				calculatedRuleValue = valMapping[value];
+			}
 		}
 	}
 }

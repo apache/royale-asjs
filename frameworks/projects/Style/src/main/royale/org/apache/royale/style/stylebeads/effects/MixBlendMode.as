@@ -18,25 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class MixBlendMode extends StyleBeadBase
+	public class MixBlendMode extends LeafStyleBase
 	{
 		public function MixBlendMode()
 		{
-			super();
+			super("mix-blend","mix-blend-mode");
 		}
-		/**
-		 * TODO: Figure this out
-		 */
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="normal,multiply,screen,overlay,darken,lighten,color-dodge,color-burn,hard-light,soft-light,difference,exclusion,hue,saturation,color,luminosity,plus-darker,plus-lighter", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["normal","multiply","screen","overlay","darken","lighten","color-dodge","color-burn","hard-light","soft-light","difference","exclusion","hue","saturation","color","luminosity","plus-darker","plus-lighter"].indexOf(value) >= 0, "Invalid value for MixBlendMode: " + value);
+			calculatedSelector = _value = value;
+			calculatedRuleValue = acceptVar(value);
 		}
 	}
 }

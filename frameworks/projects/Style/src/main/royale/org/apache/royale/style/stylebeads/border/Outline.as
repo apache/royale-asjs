@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.border
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
@@ -99,11 +99,11 @@ package org.apache.royale.style.stylebeads.border
 		}
 	}
 }
-import org.apache.royale.style.stylebeads.SingleStyleBase;
+import org.apache.royale.style.stylebeads.LeafStyleBase;
 import org.apache.royale.style.util.StyleData;
 import org.apache.royale.debugging.assert;
 
-class Color extends SingleStyleBase
+class Color extends LeafStyleBase
 {
 	public function Color()
 	{
@@ -120,7 +120,7 @@ class Color extends SingleStyleBase
 		calculatedSelector = styleData.selector;
 	}
 }
-class Offset extends SingleStyleBase
+class Offset extends LeafStyleBase
 {
 	public function Offset()
 	{
@@ -132,14 +132,14 @@ class Offset extends SingleStyleBase
 		var numVal:Number = parseFloat(value);
 		var negative:Boolean = numVal < 0;
 		if(!savedPrefix)
-			savedPrefix = selectorPrefix;
-		_selectorPrefix = negative ? "-" + savedPrefix : savedPrefix;
+			savedPrefix = selectorBase;
+		_selectorBase = negative ? "-" + savedPrefix : savedPrefix;
 		_value = value;
 		calculatedRuleValue = value;
 		calculatedSelector = sanitizeSelector(value);
 	}
 }
-class Style extends SingleStyleBase
+class Style extends LeafStyleBase
 {
 	public function Style()
 	{
@@ -160,7 +160,7 @@ class Style extends SingleStyleBase
 		return super.rule;
 	}
 }
-class Width extends SingleStyleBase
+class Width extends LeafStyleBase
 {
 	public function Width()
 	{
@@ -175,7 +175,7 @@ class Width extends SingleStyleBase
 	override public function get selector():String
 	{
 		if(!calculatedSelector)
-			return selectorPrefix;
+			return selectorBase;
 		
 		return super.selector;
 	}

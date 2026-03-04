@@ -19,9 +19,9 @@
 package org.apache.royale.style.stylebeads.interact
 {
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class Appearance extends SingleStyleBase
+	public class Appearance extends LeafStyleBase
 	{
 		public function Appearance()
 		{

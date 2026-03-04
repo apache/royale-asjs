@@ -20,21 +20,15 @@ package org.apache.royale.style.stylebeads.states.combiners
 {
 	import org.apache.royale.style.stylebeads.states.StyleStateBase;
 
+	/**
+	 * TODO: Figure this out
+	 * 
+	 */
 	public class ParentCombiner extends StyleStateBase
 	{
 		public function ParentCombiner()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":hover"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
 		}
 	}
 }

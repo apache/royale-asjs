@@ -18,37 +18,33 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.CSSUnit;
 
-	public class Gap extends SingleStyleBase
+	public class Gap extends LeafStyleBase
 	{
 		public function Gap(selectorPrefix:String="gap", rulePrefix:String="gap")
 		{
 			super(selectorPrefix, rulePrefix);
+			// TODO: Is this the correct default?
+			unit = "rem";
+
 		}
-
-		public var unit:String = "px";
-
 		override public function set value(value:*):void
 		{
 			_value = value;
-			// TODO validate aspect before setting
-			var ruleProp:* = value;
-			if(int(value) == value)
+			calculatedSelector = value;
+			if(isInt(value))
 			{
-				assert(value >= 0, "Invalid value for gap: " + value);
-				var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
-				calculatedSelector = "" + value;
-				calculatedRuleValue = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
+				assert(value >= 0, "Negative values are not allowed for gap: " + value);
+				calculatedRuleValue = computeSpacing(value);
 			}
-			else
-			{
-				calculatedRuleValue = calculatedSelector = value;
-			}
-			
+			 else
+			 {
+				calculatedRuleValue = acceptVar(value);
+			 }
 		}
 	}
 }

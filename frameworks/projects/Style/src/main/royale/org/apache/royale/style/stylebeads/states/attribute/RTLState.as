@@ -20,26 +20,15 @@
 package org.apache.royale.style.stylebeads.states.attribute
 {
 
-	import org.apache.royale.style.stylebeads.states.StyleStateBase;
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
 
-	public class RTLState extends StyleStateBase
+	public class RTLState extends LeafDecorator
 	{
 		public function RTLState()
 		{
 			super();
-		}
-		/**
-		 *   .rtl\:ml-0:where(:is(:lang(ae), :lang(ar), :lang(arc), :lang(bcc), :lang(bqi), :lang(ckb), :lang(dv), :lang(fa), :lang(glk), :lang(he), :lang(ku), :lang(mzn), :lang(nqo), :lang(pnb), :lang(ps), :lang(sd), :lang(ug), :lang(ur), :lang(yi)), [dir="rtl"], [dir="rtl"] *) {
-		 */
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":rtl"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "rtl:";
+			postDecorator = ":where(:is(:lang(ae),:lang(ar),:lang(arc),:lang(bcc),:lang(bqi),:lang(ckb),:lang(dv),:lang(fa),:lang(glk),:lang(he),:lang(ku),:lang(mzn),:lang(nqo),:lang(pnb),:lang(ps),:lang(sd),:lang(ug),:lang(ur),:lang(yi)),[dir=rtl],[dir=rtl] *)";
 		}
 	}
 }

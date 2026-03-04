@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class FileState extends StyleStateBase
+	public class FileState extends LeafDecorator
 	{
 		public function FileState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":active"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "file:";
+			postDecorator = "::file-selector-button";
 		}
 	}
 }

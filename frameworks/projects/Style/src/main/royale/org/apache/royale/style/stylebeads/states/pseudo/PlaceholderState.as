@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class PlaceholderState extends StyleStateBase
+	public class PlaceholderState extends LeafDecorator
 	{
 		public function PlaceholderState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":placeholder"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "placeholder:";
+			postDecorator = "::placeholder";
 		}
 	}
 }

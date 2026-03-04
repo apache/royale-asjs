@@ -18,19 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.tables
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.CSSUnit;
 
-	public class BorderSpacing extends SingleStyleBase
+	public class BorderSpacing extends LeafStyleBase
 	{
 		public function BorderSpacing()
 		{
 			super("border-spacing", "border-spacing");
 		}
-		public var unit:String = "px";
 		private var _x:*;
 		public function set x(value:*):void
 		{
@@ -67,14 +66,13 @@ package org.apache.royale.style.stylebeads.tables
 				if(isInt)
 				{
 					validated = true;
-					var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * val;
 					selectorValue[i] = "" + Math.abs(val);
-					ruleValue[i] = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
+					ruleValue[i] = computeSpacing(val);
 				}
-				else if(CSSLookup.has(val))
+				else if(isVar(val))
 				{
 					validated = true;
-					ruleValue[i] = CSSLookup.getProperty(val);
+					ruleValue[i] = fromVar(val);
 				}
 			}
 			if(vals.length == 1)

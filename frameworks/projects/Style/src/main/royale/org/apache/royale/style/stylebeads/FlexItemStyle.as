@@ -18,7 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
-	public class FlexItemStyle extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.flexgrid.FlexGrow;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexShrink;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexBasis;
+	import org.apache.royale.style.stylebeads.flexgrid.Order;
+
+	public class FlexItemStyle extends CompositeStyle
 	{
 		public static const ORDER_FIRST:Number = -9999;
 		public static const ORDER_LAST:Number = 9999;
@@ -34,7 +39,7 @@ package org.apache.royale.style.stylebeads
 
 		public function set grow(value:Boolean):void
 		{
-			_growFactor = value ? 1 : 0;
+			growFactor = value ? 1 : 0;
 		}
 
 		private var _growFactor:Number;
@@ -44,8 +49,14 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set growFactor(value:Number):void
 		{
-			_growFactor = value;
+			if(!growStyle)
+			{
+				growStyle = new FlexGrow();
+				addStyleBead(growStyle);
+			}
+			_growFactor = growStyle.value = value;
 		}
+		private var growStyle:FlexGrow;
 
 
 		private var _shrink:Boolean;
@@ -57,7 +68,7 @@ package org.apache.royale.style.stylebeads
 
 		public function set shrink(value:Boolean):void
 		{
-			_shrinkFactor = value ? 1 : 0;
+			shrinkFactor = value ? 1 : 0;
 		}
 
 		private var _shrinkFactor:Number;
@@ -69,8 +80,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set shrinkFactor(value:Number):void
 		{
-			_shrinkFactor = value;
+			if(!shrinkStyle)
+			{
+				shrinkStyle = new FlexShrink();
+				addStyleBead(shrinkStyle);
+			}
+			_shrinkFactor = shrinkStyle.value = value;
 		}
+		private var shrinkStyle:FlexShrink;
 		private var _basis:String = "auto";
 
 		public function get basis():String
@@ -80,8 +97,14 @@ package org.apache.royale.style.stylebeads
 
 		public function set basis(value:String):void
 		{
-			_basis = value;
+			if(!basisStyle)
+			{
+				basisStyle = new FlexBasis();
+				addStyleBead(basisStyle);
+			}
+			_basis = basisStyle.value = value;
 		}
+		private var basisStyle:FlexBasis;
 
 		private var _order:Number;
 		[Inspectable(category="General", defaultValue="NaN", minValue="-9999", maxValue="9999")]
@@ -92,53 +115,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set order(value:Number):void
 		{
-			_order = value;
+			if(!orderStyle)
+			{
+				orderStyle = new Order();
+				addStyleBead(orderStyle);
+			}
+			_order = orderStyle.value = value;
 		}
-		
-		private function computeShrink():String
-		{
-			if (isNaN(_shrinkFactor))
-				return "1";
-			return "" + _shrinkFactor;
-		}
-
-		private function computeGrow():String
-		{
-			if (isNaN(_growFactor))
-				return "1";
-			return "" + _growFactor;
-		}
-		private function computeBasis():String
-		{
-			return basis || "auto";
-		}
-
-		private function stringify(sep:String):String
-		{
-			var grow:String = computeGrow();
-			var shrink:String = computeShrink();
-			var basis:String = computeBasis();
-			if(grow == "0" && shrink == "0")
-				return "none";
-			return grow + sep + shrink + sep + basis;
-		}
-
-		override public function get selectors():Array
-		{
-			var retVal:Array = [
-				".flex-" + stringify("-")
-			];
-			if(!isNaN(order))
-				retVal.push(".order-" + order);
-			return retVal;
-		}
-	
-		override public function get rules():Array
-		{
-			var retVal:Array = ["flex:" + stringify(" ") + ";"];
-			if(!isNaN(order))
-				retVal.push("order:" + order + ";");
-			return retVal;
-		}
+		private var orderStyle:Order;
 	}	
 }

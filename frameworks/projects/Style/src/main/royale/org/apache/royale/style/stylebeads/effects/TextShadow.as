@@ -19,12 +19,19 @@
 package org.apache.royale.style.stylebeads.effects
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+		/**
+		 * TODO: Figure this out. text-shadow cannot be stacked in CSS.
+		 * Tailwind uses @properties to create a single filter property that combines all the filters.
+		 * We avoided using @properties elsewhere.
+		 * https://tailwindcss.com/docs/text-shadow
+		 */
 
-	public class TextShadow extends StyleBeadBase
+	public class TextShadow extends LeafStyleBase
 	{
 		public function TextShadow()
 		{
-			super();
+			super("text-shadow","text-shadow");
 		}
 		/**
 		 * TODO: Figure this out
@@ -34,14 +41,5 @@ package org.apache.royale.style.stylebeads.effects
 		// none is special
 		public var color:String;
 
-		override public function get selectors():Array
-		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

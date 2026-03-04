@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.transform
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.util.ThemeManager;
 
-	public class Perspective extends SingleStyleBase
+	public class Perspective extends LeafStyleBase
 	{
 		public function Perspective()
 		{
@@ -33,11 +32,10 @@ package org.apache.royale.style.stylebeads.transform
 		
 		override public function set value(value:*):void
 		{
-			var isVar:Boolean = CSSLookup.has(value);
-			assert(isVar || ["dramatic","near","normal","midrange","distant","none"].indexOf(value) != -1, "Invalid value for perspective: " + value);
+			assert(isVar(value) || ["dramatic","near","normal","midrange","distant","none"].indexOf(value) != -1, "Invalid value for perspective: " + value);
 			calculatedSelector = _value = value;
-			if(isVar)
-				calculatedRuleValue = CSSLookup.getProperty(value);
+			if(isVar(value))
+				calculatedRuleValue = fromVar(value);
 			else
 			{
 				var theme:StyleTheme = ThemeManager.instance.activeTheme;

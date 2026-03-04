@@ -186,7 +186,23 @@ This project is under active development. APIs and naming may evolve as style be
 - Add support for normal rgb for browsers which don't support oklch (i.e. CEP) Maybe?
 - border "between" https://tailwindcss.com/docs/border-width
 - Audit all of the available Tailwind state classes: https://tailwindcss.com/docs/hover-focus-and-other-states#quick-reference
-
+- peer and peer-has.
+```css
+.peer:focus ~ .peer-focus\:invisible {
+    visibility: hidden;
+}
+.peer-has-checked\:hidden:is(:where(.peer):has(:checked) ~ *) {
+	display: none;
+}
+```
+- "not" media queries:
+```css
+@media not all and (min-width:80rem) {
+    .not-xl\:hidden {
+      display:none
+    }
+  }
+```
 
 ### Internal notes
 - It does not look like we need ContainerBase
@@ -209,3 +225,61 @@ This project is under active development. APIs and naming may evolve as style be
 	- Each component will maintain a list of all applied leaf beads names. Maybe it can be efficient enough to loop through the beads and check instead of maintaining the list. Needs thought.
 	- When trying to add a bead, the component will check if any of the leaf beads it would apply are already in the list of applied leaf beads. If so, it will skip applying that bead.
 
+### CSS Notes:
+
+**Combinators:**
+- Child: `" > "`
+- Descendant: `" "` (space)
+- Adjacent sibling: `" + "`
+- Sibling: `" ~ "`
+
+**Selectors:**
+- `&`: refers to the current selector in nested CSS rules. (not sure if we need it)
+- `[]`: attribute selector, can be used to target elements with specific attributes or attribute values.
+
+**Pseudo-classes:**
+- `:hover`: applies when the user hovers over an element.
+- `:focus`: applies when an element has focus.
+- `:active`: applies when an element is being activated (e.g., clicked).
+- `:disabled`: applies when an element is disabled.
+- `:checked`: applies to checkboxes or radio buttons that are checked.
+- `:first-child`: applies to an element that is the first child of its parent.
+- `:last-child`: applies to an element that is the last child of its parent.
+- `:nth-child(n)`: applies to an element that is the nth child of its parent.
+- `:not(selector)`: applies to elements that do not match the specified selector.
+- `:has(selector)`: applies to elements that have at least one descendant that matches the specified selector.
+- `:is(selector)`: applies to elements that match any of the selectors in the list.
+- `:where(selector)`: similar to `:is()`, but with zero specificity, meaning it won't override other styles.
+- `:root`: applies to the root element of the document (e.g., `<html>` in HTML).
+- `:empty`: applies to elements that have no children (including text nodes).
+- `:nth-of-type(n)`: applies to an element that is the nth child of its type (tag name) among its siblings.
+- `:first-of-type`: applies to an element that is the first child of its type among its siblings.
+- `:last-of-type`: applies to an element that is the last child of its type among its siblings.
+- `:only-child`: applies to an element that is the only child of its parent.
+- `:only-of-type`: applies to an element that is the only child of its type among its siblings.
+- `:lang(language)`: applies to elements that are in a specific language (e.g., `:lang(en)` for English).
+- `:dir(direction)`: applies to elements based on their text direction (e.g., `:dir(ltr)` for left-to-right).
+- `:in-range`: applies to input elements with a value within a specified range.
+- `:out-of-range`: applies to input elements with a value outside a specified range.
+- `:valid`: applies to input elements with valid values.
+- `:invalid`: applies to input elements with invalid values.
+- `:required`: applies to input elements that are required.
+- `:optional`: applies to input elements that are not required.
+- `:read-only`: applies to elements that are read-only.
+- `:read-write`: applies to elements that are not read-only.
+- `:placeholder-shown`: applies to input elements that are showing placeholder text.
+- `:default`: applies to form elements that are in their default state.
+- `:indeterminate`: applies to checkboxes that are in an indeterminate state.
+- `:fullscreen`: applies to elements that are in fullscreen mode.
+- `:focus-within`: applies to an element if it or any of its descendants have focus.
+- `:focus-visible`: applies to an element when it receives focus and the user agent determines that the focus should be visibly indicated (e.g., when navigating with a keyboard).
+- `:current`: applies to elements that represent the current item within a set (e.g., the current page in a pagination component).
+- `:past`: applies to elements that represent items that are in the past relative to the current item.
+- `:future`: applies to elements that represent items that are in the future relative to the current item.
+- `:seeking`: applies to elements that are in the process of being focused or activated.
+- `:playing`: applies to media elements that are currently playing.
+- `:paused`: applies to media elements that are currently paused.
+- `:stalled`: applies to media elements that are stalled (e.g., waiting for data).
+- `:muted`: applies to media elements that are muted.
+- `:volume-locked`: applies to media elements that have a locked volume state.
+- `:scope`: applies to the element that is the scope of a query (e.g., the element that is the context for a `:has()` selector).

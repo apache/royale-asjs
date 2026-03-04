@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class SelectionState extends StyleStateBase
+	public class SelectionState extends LeafDecorator
 	{
 		public function SelectionState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":selection"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "selection:";
+			postDecorator = "::selection";
 		}
 	}
 }

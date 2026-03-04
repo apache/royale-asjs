@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.flexgrid
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class AlignSelf extends SingleStyleBase
+	public class AlignSelf extends LeafStyleBase
 	{
 		public function AlignSelf()
 		{
@@ -40,13 +40,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 			}
 			return [value];
 		}
-		private function getAfterDash(value:String):String
-		{
-			var dashIndex:int = value.indexOf("-");
-			if(dashIndex >= 0)
-				return value.substring(dashIndex + 1);
-			return value;
-		}
+		[Inspectable(category="General", enumeration="auto,flex-start,flex-end,center,safe center,safe flex-end,stretch,baseline,last baseline", defaultValue="")]
 		override public function set value(value:*):void
 		{
 			assert(["auto","flex-start","flex-end","safe flex-end","flex-end safe","center","safe center","center safe","baseline","last baseline","stretch"].indexOf(value) >= 0, "Invalid value for align-items: " + value);

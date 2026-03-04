@@ -18,27 +18,57 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.util.StyleTheme;
+	import org.apache.royale.style.util.ThemeManager;
 
-	public class FontFamily extends StyleBeadBase
+	public class FontFamily extends LeafStyleBase
 	{
 		public function FontFamily()
 		{
-			super();
+			super("font", "font-family");
 		}
-
 		/**
-		 * TODO: Figure this out
+		 * Accepts a font family name, or one of the following keywords:
+		 * sans, serif, mono
 		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="sans,serif,mono", defaultValue="one")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			calculatedSelector = _value = value;
+			if(isVar(value))
+			{
+				calculatedRuleValue = fromVar(value);
+				calculatedSelector = "font-family-" + value;
+			}
+			else
+			{
+				var theme:StyleTheme = ThemeManager.instance.activeTheme;
+				switch(value)
+				{
+					case "sans":
+						calculatedRuleValue = theme.defaultSansFamily;
+						if(theme.defaultSansFeatures)
+						{
+							calculatedRuleValue += "; font-feature-settings: " + theme.defaultSansFeatures;
+						}
+						break;
+					case "serif":
+						calculatedRuleValue = theme.defaultSerifFamily;
+						if(theme.defaultSerifFeatures)						{
+							calculatedRuleValue += "; font-feature-settings: " + theme.defaultSerifFeatures;
+						}
+						break;
+					case "mono":
+						calculatedRuleValue = theme.defaultMonoFontFamily;
+						if(theme.defaultMonoFeatures)						{
+							calculatedRuleValue += "; font-feature-settings: " + theme.defaultMonoFeatures;
+						}
+						break;
+					default:
+						calculatedRuleValue = value;
+				}
+			}
 		}
 	}
 }

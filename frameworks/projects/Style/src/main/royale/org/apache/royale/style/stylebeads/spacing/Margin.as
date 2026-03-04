@@ -244,18 +244,17 @@ package org.apache.royale.style.stylebeads.spacing
 }
 
 
-import org.apache.royale.style.stylebeads.SingleStyleBase;
+import org.apache.royale.style.stylebeads.LeafStyleBase;
 import org.apache.royale.debugging.assert;
 import org.apache.royale.style.util.ThemeManager;
 import org.apache.royale.style.util.CSSUnit;
 
-class Marg extends SingleStyleBase
+class Marg extends LeafStyleBase
 {
 	public function Marg(selectorPrefix:String = "m", rulePrefix:String = "margin")
 	{
 		super(selectorPrefix, rulePrefix);
 	}
-	public var unit:String = "px";
 	private function toSelector(value:String):String
 	{
 		return value.replace(" ", "-");
@@ -273,13 +272,12 @@ class Marg extends SingleStyleBase
 				if(value < 0)
 				{
 					if(!savedPrefix)
-						savedPrefix = _selectorPrefix;
+						savedPrefix = _selectorBase;
 					
-					_selectorPrefix = "-" + savedPrefix;
+					_selectorBase = "-" + savedPrefix;
 					selectorValue = "" + (-value);
 				}
-				var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
-				ruleValue = CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
+				ruleValue = computeSpacing(value);
 			}
 			_value = value;
 			calculatedRuleValue = ruleValue.trim();

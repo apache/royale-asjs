@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.anim
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.debugging.assert;
 
-	public class TransitionTimingFunction extends SingleStyleBase
+	public class TransitionTimingFunction extends LeafStyleBase
 	{
 		public function TransitionTimingFunction()
 		{

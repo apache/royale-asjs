@@ -18,28 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class FontFeatures extends StyleBeadBase
+	public class FontFeatures extends LeafStyleBase
 	{
 		public function FontFeatures()
 		{
-			super();
+			super("font-features", "font-feature-settings");
 		}
-
 		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/font-feature-settings
+		 * Accepts any valid value for font-feature-settings. Details on supported values can be found here:
+		 * https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-feature-settings
 		 */
-
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			calculatedSelector = _value = value;
+			calculatedRuleValue = acceptVar(value);
 		}
 	}
 }

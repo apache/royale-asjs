@@ -18,28 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class FontNumeric extends StyleBeadBase
+	public class FontNumeric extends LeafStyleBase
 	{
 		public function FontNumeric()
 		{
-			super();
+			super("", "font-variant-numeric");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/font-variant-numeric
-		 */
-
-		override public function get selectors():Array
+		override public function get styleType():String
 		{
-			return [];
+			// TODO: Enable stacked values.
+			return "font-numeric";
 		}
-
-		override public function get rules():Array
+		[Inspectable(category="General", enumeration="normal,ordinal,slashed-zero,lining-nums,oldstyle-nums,proportional-nums,tabular-nums,diagonal-fractions,stacked-fractions", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
+			assert(["normal","ordinal","slashed-zero","lining-nums","oldstyle-nums","proportional-nums","tabular-nums","diagonal-fractions","stacked-fractions"].indexOf(value) >= 0, "Invalid value for font-variant-numeric: " + value);
+			calculatedSelector = _value = value;
+			if(value == "normal")
+				calculatedSelector = "normal-nums";
+
 		}
 	}
 }

@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.anim
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class TransitionBehavior extends SingleStyleBase
+	public class TransitionBehavior extends LeafStyleBase
 	{
 		public function TransitionBehavior()
 		{

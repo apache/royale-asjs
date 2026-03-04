@@ -18,28 +18,48 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
 
-	public class FontSize extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.util.StyleTheme;
+	import org.apache.royale.style.util.ThemeManager;
+
+	public class FontSize extends LeafStyleBase
 	{
 		public function FontSize()
 		{
-			super();
+			super("font-size", "font-size");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/font-size
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="one,two,three", defaultValue="one")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			calculatedSelector =  _value = value;
+			if(isInt(value))
+				calculatedRuleValue = computeSpacing(value);
+			else if(isVar(value))
+				calculatedRuleValue = fromVar(value);
+			else
+			{
+				var theme:StyleTheme = ThemeManager.instance.activeTheme;
+				var sizeLookup:Object = {
+					"xs": theme.textXS,
+					"sm": theme.textSM,
+					"base": theme.textBase,
+					"lg": theme.textLG,
+					"xl": theme.textXL,
+					"2xl": theme.text2XL,
+					"3xl": theme.text3XL,
+					"4xl": theme.text4XL,
+					"5xl": theme.text5XL,
+					"6xl": theme.text6XL,
+					"7xl": theme.text7XL,
+					"8xl": theme.text8XL,
+					"9xl": theme.text9XL
+				};
+				if(sizeLookup[value] !== undefined)
+					calculatedRuleValue = sizeLookup[value];
+				else
+				calculatedRuleValue = value;
+			}
 		}
 	}
 }

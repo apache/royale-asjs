@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class FirstLineState extends StyleStateBase
+	public class FirstLineState extends LeafDecorator
 	{
 		public function FirstLineState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":first-line"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "first-line:";
+			postDecorator = ":first-line";
 		}
 	}
 }

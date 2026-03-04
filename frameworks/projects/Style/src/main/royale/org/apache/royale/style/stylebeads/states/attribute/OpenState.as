@@ -20,23 +20,15 @@
 package org.apache.royale.style.stylebeads.states.attribute
 {
 
-	import org.apache.royale.style.stylebeads.states.StyleStateBase;
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
 
-	public class OpenState extends StyleStateBase
+	public class OpenState extends LeafDecorator
 	{
 		public function OpenState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":open"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "open:";
+			postDecorator = ":is([open], :popover-open, :open)";
 		}
 	}
 }

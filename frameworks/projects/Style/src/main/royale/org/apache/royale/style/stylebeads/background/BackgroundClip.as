@@ -18,21 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.background
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class BackgroundClip extends SingleStyleBase
+	public class BackgroundClip extends LeafStyleBase
 	{
 		public function BackgroundClip()
 		{
 			super("bg-clip", "background-clip");
-		}
-		private function getBeforeDash(value:String):String
-		{
-			var dashIndex:int = value.indexOf("-");
-			if(dashIndex >= 0)
-				return value.substring(0, dashIndex);
-			return value;
 		}
 		override public function set value(value:*):void
 		{

@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class EvenState extends StyleStateBase
+	public class EvenState extends LeafDecorator
 	{
 		public function EvenState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":even"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return ["nth-child(2n)"];
+			preDecorator = "even:";
+			postDecorator = ":nth-child(2n)";
 		}
 	}
 }

@@ -21,21 +21,13 @@ package org.apache.royale.style.stylebeads.states
 	/**
 	 * Avoid using before or after unless an extra element is a problem.
 	 */
-	public class BeforeState extends StyleStateBase
+	public class BeforeState extends LeafDecorator
 	{
 		public function BeforeState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":before"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "before:";
+			postDecorator = ":before";
 		}
 	}
 }

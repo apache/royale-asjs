@@ -24,15 +24,8 @@ package org.apache.royale.style.stylebeads.states
 		{
 			super();
 		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":not"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [".lg\\:not-first\\:border-l:not(:first-child)"];
-		}
+		//TODO Figure this out.
+		// ":not"
+		//".lg\\:not-first\\:border-l:not(:first-child)"
 	}
 }

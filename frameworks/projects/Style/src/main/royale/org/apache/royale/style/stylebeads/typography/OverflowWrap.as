@@ -18,28 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class OverflowWrap extends StyleBeadBase
+	public class OverflowWrap extends LeafStyleBase
 	{
 		public function OverflowWrap()
 		{
-			super();
+			super("wrap", "overflow-wrap");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/overflow-wrap
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="normal,break-word,anywhere", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			assert(["normal","break-word","anywhere"].indexOf(value) >= 0,"Invalid value for overflow-wrap: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 	}
 }

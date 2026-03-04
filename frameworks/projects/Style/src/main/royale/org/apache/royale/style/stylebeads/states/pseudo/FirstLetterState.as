@@ -18,21 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class FirstLetterState extends StyleStateBase
+	public class FirstLetterState extends LeafDecorator
 	{
 		public function FirstLetterState()
 		{
 			super();
-		}
-		override public function get selectors():Array
-		{
-			//TODO Figure this out.
-			return [":active"];
-		}
-		override public function get rules():Array
-		{
-			//TODO Figure this out.
-			return [];
+			preDecorator = "first-letter:";
+			postDecorator = ":first-letter";
 		}
 	}
 }

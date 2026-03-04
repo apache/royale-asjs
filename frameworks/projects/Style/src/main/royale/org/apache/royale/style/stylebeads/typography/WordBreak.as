@@ -19,28 +19,22 @@
 package org.apache.royale.style.stylebeads.typography
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class WordBreak extends StyleBeadBase
+	public class WordBreak extends LeafStyleBase
 	{
 		public function WordBreak()
 		{
-			super();
+			super("break", "word-break");
 		}
 
-		/**
-		 * TODO: Figure this out
-		 * https://tailwindcss.com/docs/word-break
-		 *
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="normal,break-all,keep-all", defaultValue="normal")]
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
-		}
+			assert(["normal","break-all","keep-all"].indexOf(value) >= 0, "Invalid value for word-break: " + value);
+			calculatedRuleValue = _value = value;
+			calculatedSelector = getAfterDash(value);
+		}	
 	}
 }

@@ -18,27 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.typography
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class TextOverflow extends StyleBeadBase
+	public class TextOverflow extends LeafStyleBase
 	{
+		/**
+		 * To set text to truncate and show an ellipsis ("..."), use the `Truncate` bead instead.
+		 */
 		public function TextOverflow()
 		{
-			super();
+			super("text", "text-overflow");
 		}
-
-		/**
-		 * TODO: Figure this out
-		 */
-
-		override public function get selectors():Array
+		[Inspectable(category="General", enumeration="clip,ellipsis", defaultValue="clip")]
+		override public function set value(value:*):void
 		{
-			return [];
+			assert(["clip", "ellipsis"].indexOf(value) >= 0, "Invalid value for TextOverflow: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 
-		override public function get rules():Array
-		{
-			return [];
-		}
 	}
 }

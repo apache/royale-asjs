@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.layout
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class ObjectPosition extends SingleStyleBase
+	public class ObjectPosition extends LeafStyleBase
 	{
 		public function ObjectPosition()
 		{

@@ -18,25 +18,34 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.effects
 {
-	import org.apache.royale.style.stylebeads.StyleBeadBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
 
-	public class MaskSize extends StyleBeadBase
+	public class MaskSize extends LeafStyleBase
 	{
 		public function MaskSize()
 		{
-			super();
+			super("mask","mask-size");
 		}
 		/**
-		 * TODO: Figure this out
+		 * Supports, auto, cover, contain, and length values.
 		 */
-		override public function get selectors():Array
+		override public function set value(value:*):void
 		{
-			return [];
-		}
-
-		override public function get rules():Array
-		{
-			return [];
+			_value = value;
+			switch(value)
+			{
+				case "auto":
+				case "cover":
+				case "contain":
+					calculatedRuleValue = calculatedSelector = value;
+					break;
+				default:
+					assert(isVar(value) || /^\d+(px|em|rem|%)$/.test("" + value), "Invalid value for mask-size: " + value);
+					calculatedSelector = "-size" + value;
+					calculatedRuleValue = acceptVar(value);
+					break;
+			}
 		}
 	}
 }

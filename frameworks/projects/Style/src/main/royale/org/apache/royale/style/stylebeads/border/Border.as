@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.border
 {
-	import org.apache.royale.style.stylebeads.SingleStyleBase;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
@@ -108,11 +108,11 @@ package org.apache.royale.style.stylebeads.border
 		}
 	}
 }
-import org.apache.royale.style.stylebeads.SingleStyleBase;
+import org.apache.royale.style.stylebeads.LeafStyleBase;
 import org.apache.royale.style.util.StyleData;
 import org.apache.royale.debugging.assert;
 
-class Color extends SingleStyleBase
+class Color extends LeafStyleBase
 {
 	public function Color()
 	{
@@ -126,7 +126,7 @@ class Color extends SingleStyleBase
 		calculatedRuleValue = styleData.rule;
 	}
 }
-class Style extends SingleStyleBase
+class Style extends LeafStyleBase
 {
 	public function Style()
 	{
