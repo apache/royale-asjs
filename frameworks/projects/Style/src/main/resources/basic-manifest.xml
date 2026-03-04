@@ -20,6 +20,8 @@
 
 
 <componentPackage>
+  <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
+
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
   <component id="List" class="org.apache.royale.style.List"/>

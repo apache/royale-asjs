@@ -20,11 +20,13 @@ package org.apache.royale.style
 {
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.CSSClassList;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.IStyleSkin;
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
 	import org.apache.royale.style.stylebeads.IStyleBead;
 	import org.apache.royale.style.util.StyleManager;
 	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.stylebeads.ILeafStyleBead;
-	import org.apache.royale.debugging.assert;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	COMPILE::JS
 	{
@@ -107,6 +109,7 @@ package org.apache.royale.style
 		}
 		COMPILE::JS
 		private var styleTypes:Set;
+		private var _stylesLoaded:Boolean;
 		override protected function loadBeads():void
 		{
 			super.loadBeads();
@@ -116,6 +119,8 @@ package org.apache.royale.style
 					addStyleBead(bead);
 			}
 			styleBeads = null;
+			applySkin();
+			_stylesLoaded = true;
 			refreshStyles();
 		}
 		public function getStyleBeadsByType(type:Class):Array
@@ -127,6 +132,32 @@ package org.apache.royale.style
 					retVal.push(bead);
 			}
 			return retVal;
+		}
+		private var _skin:IStyleSkin;
+
+		public function get skin():IStyleSkin
+		{
+			return _skin;
+		}
+
+		public function set skin(value:IStyleSkin):void
+		{
+			_skin = value;
+			if(_stylesLoaded)
+			{
+				addBead(value);
+			}
+		}
+		private function applySkin():void
+		{
+			if(skin)
+			{
+				addBead(skin);
+			}
+			else
+			{
+				_skin = loadBeadFromValuesManager(IStyleSkin, "iStyleSkin", this) as IStyleSkin;				
+			}
 		}
 
 		protected function refreshStyles():void
