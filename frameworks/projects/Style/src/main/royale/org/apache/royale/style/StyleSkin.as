@@ -41,6 +41,9 @@ package org.apache.royale.style
 		{
 			super();
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.IStyleUIBase
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
