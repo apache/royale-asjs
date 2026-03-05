@@ -16,44 +16,44 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.elements {
+package org.apache.royale.style.elements
+{
 	import org.apache.royale.style.elements.Iframe;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueEvent;
 
-	[Event(name='message',type='org.apache.royale.events.ValueEvent')]
-	[Event(name='iframeLoad',type='org.apache.royale.events.Event')]
-	[Event(name='iframeError',type='org.apache.royale.events.Event')]
+	[Event(name="message", type="org.apache.royale.events.ValueEvent")]
+	[Event(name="iframeLoad", type="org.apache.royale.events.Event")]
+	[Event(name="iframeError", type="org.apache.royale.events.Event")]
+
 	/**
 	 *  Enhanced version of the Iframe base component, with additional security support for message filtering
 	 *
 	 *  @langversion 3.0
 	 *  @productversion Royale 0.9.13
 	 */
-	public class SecurityIframe extends Iframe {
-		public function SecurityIframe() {
+	public class SecurityIframe extends Iframe
+	{
+		public function SecurityIframe()
+		{
 			super();
-			COMPILE::JS
-			{
-				(element as HTMLIFrameElement).addEventListener('load', onStatus);
-				(element as HTMLIFrameElement).addEventListener('error', onStatus)
-			}
 		}
 
-
 		private var _checkExpectedOrigin:Boolean = true;
+
 		/**
 		 * This is true by default. Setting it to false will also allow message handling from
 		 * potential opaque origins ("" or 'null' origins)  which is NOT considered secure
 		 * @param value
 		 */
-		public function set checkExpectedOrigin(value:Boolean):void{
+		public function set checkExpectedOrigin(value:Boolean):void
+		{
 			_checkExpectedOrigin = value;
 		}
-		public function get checkExpectedOrigin():Boolean{
+		public function get checkExpectedOrigin():Boolean
+		{
 			return _checkExpectedOrigin;
 		}
-
 
 		COMPILE::JS
 		private static function isDescendantWindow(source:Window, root:Window):Boolean
@@ -65,48 +65,58 @@ package org.apache.royale.style.elements {
 			{
 				if (w === root)
 					return true;
-
 				w = w.parent as Window;
 			}
 
 			return false;
 		}
 
-
 		private var _allowNestedFrames:Boolean = false;
+
 		/**
 		 * whether or not to filter messaging from deeper nested iframes
 		 * @param value true if messaging from nested iframes is supported. false by default
 		 */
-		public function set allowNestedFrames(value:Boolean):void{
+		public function set allowNestedFrames(value:Boolean):void
+		{
 			_allowNestedFrames = value;
 		}
-		public function get allowNestedFrames():Boolean{
+		public function get allowNestedFrames():Boolean
+		{
 			return _allowNestedFrames;
 		}
 
-
+		private var _srcSet:Boolean;
 		override public function set src(value:String):void
 		{
-			super.src = value;
-
 			COMPILE::JS
 			{
-				try{
+				if (!_srcSet)
+				{
+					(element as HTMLIFrameElement).addEventListener('load', onStatus);
+					(element as HTMLIFrameElement).addEventListener('error', onStatus);
+				}
+				try
+				{
 					expectedOrigin = new URL(value, window.location.href).origin;
-				} catch(e:Error) {
+				}
+				catch (e:Error)
+				{
 					expectedOrigin = null;
 				}
 
-				if ((_listeners.length || hasEventListener('message')) && expectedOrigin) {
+				if ((_listeners.length || hasEventListener('message')) && expectedOrigin)
+				{
 					activateMessaging(true);
 				}
 			}
+			_srcSet = true;
+			super.src = value;
+
 		}
 
-
 		COMPILE::JS
-		private var _listeners:Array = []
+		private var _listeners:Array = [];
 
 		/* the royale version needs fixing... this might be a candidate */
 		override public function addMessageListener(handler:(e:MessageEvent)=>void):void
@@ -114,8 +124,10 @@ package org.apache.royale.style.elements {
 			COMPILE::JS
 			{
 				var idx:int = _listeners.indexOf(handler);
-				if (idx== -1 ) _listeners.push(handler)
-				if (expectedOrigin) activateMessaging(true);
+				if (idx == -1)
+					_listeners.push(handler);
+				if (expectedOrigin)
+					activateMessaging(true);
 			}
 		}
 
@@ -124,32 +136,46 @@ package org.apache.royale.style.elements {
 			COMPILE::JS
 			{
 				var idx:int = _listeners.indexOf(handler);
-				if (idx!= -1 ) _listeners.splice(idx,1);
-				if (!_listeners.length) {
+				if (idx != -1)
+					_listeners.splice(idx, 1);
+				if (!_listeners.length)
+				{
 					activateMessaging(false);
 				}
 			}
 		}
+
 		COMPILE::JS
-		private function onStatus(e:Object):void{
-			var localEventType:String = 'iframe'+e.type.charAt(0).toUpperCase() + e.type.substr(1)
-			dispatchEvent(new Event(localEventType))
+
+		private function onStatus(e:Object):void
+		{
+			var localEventType:String = 'iframe' + e.type.charAt(0).toUpperCase() + e.type.substr(1);
+			dispatchEvent(new Event(localEventType));
 		}
 
 		COMPILE::JS
+
 		private var expectedOrigin:String;
 
 		COMPILE::JS
+
 		private var messagingActive:Boolean;
 		COMPILE::JS
-		private function activateMessaging(on:Boolean):void{
-			if (on) {
-				if (!messagingActive) {
+
+		private function activateMessaging(on:Boolean):void
+		{
+			if (on)
+			{
+				if (!messagingActive)
+				{
 					window.addEventListener('message', filterMessaging);
 					messagingActive = true;
 				}
-			} else {
-				if (messagingActive) {
+			}
+			else
+			{
+				if (messagingActive)
+				{
 					window.removeEventListener('message', filterMessaging);
 					messagingActive = false;
 				}
@@ -163,47 +189,61 @@ package org.apache.royale.style.elements {
 		 * for example, check if a namespace field matches expectations, or data appears to be a certain 'shape'
 		 * @param checker the function which should examine the data object and return true if it conforms to expectations
 		 */
-		public function setMessageValidationCheck(checker:(dataObject:Object)=>Boolean):void{
-				_messageShapeChecker = checker;
+		public function setMessageValidationCheck(checker:(dataObject:Object)=>Boolean):void
+		{
+			_messageShapeChecker = checker;
 		}
 
-
 		COMPILE::JS
-		private function filterMessaging(e:MessageEvent):void{
-			//opaque origins (cases including "" and "null" origin) will always be excluded unless  checkExpectedOrigin is false
-			if (checkExpectedOrigin) {
+
+		private function filterMessaging(e:MessageEvent):void
+		{
+			// opaque origins (cases including "" and "null" origin) will always be excluded unless  checkExpectedOrigin is false
+			if (checkExpectedOrigin)
+			{
 				if (!e.origin || e.origin === "null")
 					return;
-				if (e.origin != expectedOrigin) return;
+				if (e.origin != expectedOrigin)
+					return;
 			}
 
-			if (!allowNestedFrames) {
+			if (!allowNestedFrames)
+			{
 				// default: only accept messages from the iframe itself
-				if (e.source != contentWindow) return;
-			} else {
-				//accept messages also from nested iframes
+				if (e.source != contentWindow)
+					return;
+			}
+			else
+			{
+				// accept messages also from nested iframes
 				if (!isDescendantWindow(e.source as Window, contentWindow as Window))
 					return;
-
 			}
 
-			//extra optional check to make sure the data received conforms to some expectations
-			if (_messageShapeChecker && !_messageShapeChecker(e.data)) return;
+			// extra optional check to make sure the data received conforms to some expectations
+			if (_messageShapeChecker && !_messageShapeChecker(e.data))
+				return;
 
-			for each(var _listener:(e:MessageEvent)=>void in _listeners) {
+			for each (var _listener:(e:MessageEvent)=>void in _listeners)
+			{
 				_listener(e);
 			}
-			if (hasEventListener('message')) {
-				//send the native MessageEvent via a ValueEvent
-				dispatchEvent(new ValueEvent('message', e))
+			if (hasEventListener('message'))
+			{
+				// send the native MessageEvent via a ValueEvent
+				dispatchEvent(new ValueEvent('message', e));
+
 			}
 		}
 
 		COMPILE::JS
+
 		override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
 		{
-			if (type=='message' && expectedOrigin || !_checkExpectedOrigin) {
-				activateMessaging(true)
+			if (type == 'message' && expectedOrigin || !_checkExpectedOrigin)
+			{
+				activateMessaging(true);
+
 			}
 			super.addEventListener(type, handler, opt_capture, opt_handlerScope);
 		}
