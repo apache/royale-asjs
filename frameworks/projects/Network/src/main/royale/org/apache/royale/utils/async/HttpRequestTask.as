@@ -31,9 +31,14 @@ package org.apache.royale.utils.async
 	 */
 	public class HttpRequestTask extends AsyncTask
 	{
-		public function HttpRequestTask()
+		public function HttpRequestTask(url:String = null, method:String = HTTPConstants.GET, parameters:Object = null, contentType:String = HTTPConstants.FORM_URL_ENCODED, requestHeaders:Array = null)
 		{
 			super();
+			this.url = url;
+			this.method = method;
+			this.parameters = parameters;
+			this.contentType = contentType;
+			this.requestHeaders = requestHeaders;
 		}
 
 		override public function run(data:Object=null):void{
@@ -139,6 +144,8 @@ package org.apache.royale.utils.async
 		{
 			fail();
 		}
+		
+		[Deprecated(message="Prefer using new HttpRequestTask(url, method, parameters, contentType, requestHeaders).exec(callback) instead of this static function.")]
 		public static function execute(url:String, callback:Function, method:String = HTTPConstants.GET, parameters:Object = null, contentType:String = HTTPConstants.FORM_URL_ENCODED, requestHeaders:Array = null):void
 		{
 			var task:HttpRequestTask = new HttpRequestTask();
