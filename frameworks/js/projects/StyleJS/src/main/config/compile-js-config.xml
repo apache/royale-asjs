@@ -62,6 +62,7 @@
             <path-element>../../../../../libs/CollectionsJS.swc</path-element>
             <path-element>../../../../../libs/XMLJS.swc</path-element>
             <path-element>../../../../../libs/BasicJS.swc</path-element>
+            <path-element>../../../../../libs/NetworkJS.swc</path-element>
         </external-library-path>
         
         <namespaces>
