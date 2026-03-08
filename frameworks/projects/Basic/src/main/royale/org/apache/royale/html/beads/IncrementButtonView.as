@@ -40,6 +40,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
+		 * 
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -54,17 +56,20 @@ package org.apache.royale.html.beads
 			var host:UIBase = _strand as UIBase;
 
 			_backRect = new Rect();
-			_backRect.fill = new SolidColor();
-			(_backRect.fill as SolidColor).color = 0xFFFFFF;
-			_backRect.stroke = new SolidColorStroke();
-			(_backRect.stroke as SolidColorStroke).color = 0x000000;
-			(_backRect.stroke as SolidColorStroke).weight = 1.0;
+			var fill:SolidColor = new SolidColor();
+			fill.color = 0xFFFFFF;
+			_backRect.fill = fill;
+			var stroke:SolidColorStroke = new SolidColorStroke();
+			stroke.color = 0x000000;
+			stroke.weight = 1.0;
+			_backRect.stroke = stroke;
 			host.addElement(_backRect);
 
 			// arrow
 			_arrow = new Path();
-			_arrow.fill = new SolidColor();
-			(_arrow.fill as SolidColor).color = 0x000000;
+			fill = new SolidColor();
+			fill.color = 0x000000;
+			_arrow.fill = fill;
 			host.addElement(_arrow);
 
 			host.addEventListener("widthChanged", sizeHandler);
@@ -72,7 +77,9 @@ package org.apache.royale.html.beads
 
 			sizeHandler(null);
 		}
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
 		private function sizeHandler(event:Event):void
 		{
 			var host:UIBase = _strand as UIBase;

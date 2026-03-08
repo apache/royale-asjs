@@ -18,12 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-COMPILE::SWF {
-	import flash.display.DisplayObject;
-    import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
-}
+	COMPILE::SWF
+	{
+		import flash.display.DisplayObject;
+		import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
+	}
 
-    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IRangeModel;
@@ -34,12 +35,13 @@ COMPILE::SWF {
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Button;
 
-	COMPILE::JS {
+	COMPILE::JS
+	{
 		import org.apache.royale.html.beads.controllers.SpinnerMouseController;
 		import org.apache.royale.html.supportClasses.SpinnerButton;
 	}
-    import org.apache.royale.html.util.getModelByType;
-    import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.util.getModelByType;
+	import org.apache.royale.core.IStrandWithModel;
 
 	/**
 	 *  The SpinnerView class creates the visual elements of the org.apache.royale.html.Spinner
@@ -66,15 +68,17 @@ COMPILE::SWF {
 
 		private var rangeModel:IRangeModel;
 
-		COMPILE::JS {
-		public var _increment:SpinnerButton;
-        public var _decrement:SpinnerButton;
-        private var controller:SpinnerMouseController;
+		COMPILE::JS
+		{
+			public var _increment:SpinnerButton;
+			public var _decrement:SpinnerButton;
+			private var controller:SpinnerMouseController;
 		}
 
-		COMPILE::SWF {
-		private var _decrement:DisplayObject;
-		private var _increment:DisplayObject;
+		COMPILE::SWF
+		{
+			private var _decrement:DisplayObject;
+			private var _increment:DisplayObject;
 		}
 
 		/**
@@ -91,7 +95,8 @@ COMPILE::SWF {
 		{
 			super.strand = value;
 
-            COMPILE::SWF {
+			COMPILE::SWF
+			{
 				_increment = new Button();
 				Button(_increment).addBead(new UpArrowButtonView());
 				Button(_increment).addBead(new ButtonAutoRepeatController());
@@ -108,9 +113,10 @@ COMPILE::SWF {
 				UIBase(_strand).$sprite_addChild(_increment);
 				rangeModel = (_strand as IStrandWithModel).model as IRangeModel;
 			}
-			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
-			COMPILE::JS {
+			(value as IEventDispatcher).addEventListener("widthChanged", sizeChangeHandler);
+			(value as IEventDispatcher).addEventListener("heightChanged", sizeChangeHandler);
+			COMPILE::JS
+			{
 				var host:UIBase = value as UIBase;
 				// depending on the surrounding layout, the element can be offset without this.
 				host.element.style.position = "absolute";
@@ -125,19 +131,19 @@ COMPILE::SWF {
 				host.addElement(_increment);
 				host.addElement(_decrement);
 
-// add this in CSS!
+				// add this in CSS!
 				controller = new SpinnerMouseController();
 				host.addBead(controller);
 			}
-				
+
 			COMPILE::SWF
 			{
 				var host:ILayoutChild = ILayoutChild(value);
-				
+
 				// Complete the setup if the height is sized to content or has been explicitly set
 				// and the width is sized to content or has been explicitly set
 				if ((host.isHeightSizedToContent() || !isNaN(host.explicitHeight)) &&
-					(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
+						(host.isWidthSizedToContent() || !isNaN(host.explicitWidth)))
 					sizeChangeHandler(null);
 			}
 			COMPILE::JS
@@ -180,6 +186,7 @@ COMPILE::SWF {
 			return _increment;
 		}
 		COMPILE::JS
+
 		public function get increment():SpinnerButton
 		{
 			return _increment;
@@ -189,21 +196,21 @@ COMPILE::SWF {
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		private function sizeChangeHandler( event:Event ) : void
+		private function sizeChangeHandler(event:Event):void
 		{
-            var w:Number = UIBase(_strand).width;
-            var h:Number =  UIBase(_strand).height / 2;
+			var w:Number = (_strand as UIBase).width;
+			var h:Number = (_strand as UIBase).height / 2;
 			_increment.width = w;
 			_increment.height = h;
 			COMPILE::SWF
 			{
-			_increment.y      = 0;
+				_increment.y = 0;
 			}
 			_decrement.width = w;
 			_decrement.height = h;
 			COMPILE::SWF
 			{
-			_decrement.y      = h;
+				_decrement.y = h;
 			}
 		}
 	}

@@ -22,7 +22,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IRangeModel;
 	import org.apache.royale.core.IStrand;
@@ -30,12 +29,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.Spinner;
 	import org.apache.royale.html.TextInput;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.IBeadModel;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 
@@ -74,19 +73,19 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
-		 *  @royaleignorecoercion org.apache.royale.core.IBead
-		 *  @royaleignorecoercion org.apache.royale.core.IParent
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.IBeadModel
 		 */
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			var host:UIBase = value as UIBase;
+			var model:IBeadModel = host.model as IBeadModel;
 			
 			// add an input field
 			input = new TextInput();
 			input.className = "NumericStepperInput";
 			input.typeNames = "NumericStepperInput";
-			(value as IParent).addElement(input);
+			host.addElement(input);
 			COMPILE::JS
 			{
 				input.positioner.style.display = 'inline-block';
@@ -94,8 +93,8 @@ package org.apache.royale.html.beads
 			}
 			// add a spinner
 			spinner = new Spinner();
-			spinner.addBead( (value as UIBase).model as IBead );
-			(value as IParent).addElement(spinner);
+			spinner.addBead(model);
+			host.addElement(spinner);
 			// delay this until the resize event in JS
 			COMPILE::SWF
 			{
@@ -122,17 +121,16 @@ package org.apache.royale.html.beads
 			listenOnStrand("sizeChanged",sizeChangeHandler);
 			
 			// listen for changes to the model itself and update the UI accordingly
-			IEventDispatcher(UIBase(value).model).addEventListener("valueChange",modelChangeHandler);
-			IEventDispatcher(UIBase(value).model).addEventListener("minimumChange",modelChangeHandler);
-			IEventDispatcher(UIBase(value).model).addEventListener("maximumChange",modelChangeHandler);
-			IEventDispatcher(UIBase(value).model).addEventListener("stepSizeChange",modelChangeHandler);
-			IEventDispatcher(UIBase(value).model).addEventListener("snapIntervalChange",modelChangeHandler);
+			model.addEventListener("valueChange",modelChangeHandler);
+			model.addEventListener("minimumChange",modelChangeHandler);
+			model.addEventListener("maximumChange",modelChangeHandler);
+			model.addEventListener("stepSizeChange",modelChangeHandler);
+			model.addEventListener("snapIntervalChange",modelChangeHandler);
 			
 			input.text = String(spinner.value);
 			
 			COMPILE::SWF
 			{
-				var host:ILayoutChild = ILayoutChild(value);
 				
 				// Complete the setup if the height is sized to content or has been explicitly set
 				// and the width is sized to content or has been explicitly set
@@ -183,7 +181,6 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function spinnerValueChanged(event:ValueChangeEvent) : void
 		{

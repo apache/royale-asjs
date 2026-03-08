@@ -72,6 +72,10 @@ package org.apache.royale.html.beads
 		/**
 		 * Handles the "childrenAdded" event and generates the separators between them
 		 * based on the direction of the box.
+		 * 
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.IDividedContainerDivider
+		 *  @royaleignorecoercion org.apache.royale.html.beads.models.DividedContainerModel
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

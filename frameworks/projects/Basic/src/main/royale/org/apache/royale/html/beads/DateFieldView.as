@@ -18,25 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-    import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDateChooserModel;
-    import org.apache.royale.core.IDateChooserModelWithChangeCheck;
+	import org.apache.royale.core.IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.IFormatter;
-	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.ITextInput;
+	import org.apache.royale.core.ITextInput;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.PointUtils;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.geom.Point;
-    import org.apache.royale.html.beads.IComboBoxView;
+	import org.apache.royale.html.beads.IComboBoxView;
 	import org.apache.royale.html.supportClasses.IDateChooser;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TextInput;
@@ -105,10 +103,10 @@ package org.apache.royale.html.beads
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		 protected function getHost():UIBase
-		 {
-			 return _strand as UIBase;
-		 }
+		protected function getHost():UIBase
+		{
+			return _strand as UIBase;
+		}
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -122,22 +120,23 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 
-            if (!_textInput)
-    			_textInput = new TextInput();
+			if (!_textInput)
+				_textInput = new TextInput();
 			getHost().addElement(_textInput);
 			_textInput.width = 100;
 			_textInput.height = 18;
 
 			_button = new TextButton();
-			//_button.text = "⬇︎";
-			_button.text =  "\uD83D\uDCC5"
+			// _button.text = "⬇︎";
+			_button.text = "\uD83D\uDCC5";
 			getHost().addElement(_button);
 
-			COMPILE::SWF {
+			COMPILE::SWF
+			{
 				_button.x = _textInput.width;
 				_button.y = _textInput.y;
 				var view:TextInputView = _strand.getBeadByType(IBeadView) as TextInputView;
-				if(view)
+				if (view)
 					view.textField.type = TextFieldType.DYNAMIC;
 			}
 
@@ -146,20 +145,20 @@ package org.apache.royale.html.beads
 				_textInput.element.setAttribute('readonly', 'true');
 			}
 
-			getHost().addEventListener("initComplete",handleInitComplete);
+			getHost().addEventListener("initComplete", handleInitComplete);
 		}
+
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.IBeadModel
 		 * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function handleInitComplete(event:Event):void
 		{
 			_textInput.height = _button.height;
 
-			var model:IBeadModel = (_strand as IStrandWithModel).model as IBeadModel;
-			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
+			var model:IEventDispatcher = (_strand as IStrandWithModel).model as IEventDispatcher;
+			model.addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
-
 
 		protected var _popUp:IDateChooser;
 
@@ -191,13 +190,19 @@ package org.apache.royale.html.beads
 			return _popUpVisible;
 		}
 		protected var _showingPopup:Boolean;
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDateChooser
+		 * @royaleignorecoercion org.apache.royale.core.IDateChooserModel
+		 * @royaleignorecoercion org.apache.royale.core.IDateChooserModelWithChangeCheck
+		 * @royaleignorecoercion org.apache.royale.core.IPopUpHost
+		 */
 		public function set popUpVisible(value:Boolean):void
 		{
 			// prevent resursive calls
 			// setting _popUp.selectedDate below triggers a change event
 			// which tries to close the popup causing a recursive call.
 			// There might be a better way to resolve this problem, but this works for now...
-			if(_showingPopup)
+			if (_showingPopup)
 				return;
 
 			if (value != _popUpVisible)
@@ -207,14 +212,14 @@ package org.apache.royale.html.beads
 				if (value)
 				{
 					if (!_popUp)
-                    {
-                        _popUp = ValuesManager.valuesImpl.newInstance(_strand, "iPopUp") as IDateChooser;
-                    }
+					{
+						_popUp = ValuesManager.valuesImpl.newInstance(_strand, "iPopUp") as IDateChooser;
+					}
 
-					var model:IDateChooserModel = getModelByType(_strand,IDateChooserModel) as IDateChooserModel;
+					var model:IDateChooserModel = getModelByType(_strand, IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
-                    var popUpModel:IDateChooserModelWithChangeCheck = getModelByType(_popUp,IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
-                    popUpModel.disableChangeCheck = true;
+					var popUpModel:IDateChooserModelWithChangeCheck = getModelByType(_popUp, IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
+					popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());
 					var point:Point = new Point(_textInput.width, _button.height);
@@ -222,7 +227,8 @@ package org.apache.royale.html.beads
 					var p3:Point = PointUtils.globalToLocal(p2, host);
 					_popUp.x = p3.x;
 					_popUp.y = p3.y;
-					COMPILE::JS {
+					COMPILE::JS
+					{
 						_popUp.element.style.position = "absolute";
 					}
 
@@ -238,6 +244,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IDateChooserModel
+		 * @royaleignorecoercion org.apache.royale.core.IFormatter
 		 */
 		private function selectionChangeHandler(event:Event):void
 		{

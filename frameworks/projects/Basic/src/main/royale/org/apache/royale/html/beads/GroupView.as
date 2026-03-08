@@ -20,45 +20,46 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
-	COMPILE::SWF {
+	COMPILE::SWF
+	{
 		import org.apache.royale.geom.Size;
 	}
 
 	/**
 	 *  The GroupView is a bead that manages the layout bead (if any) attached to a Group. This class
 	 *  also provides support for background and border styles for a Group on the SWF platform.
-     *
+	 *
 	 *  @viewbead
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.8
 	 */
 	public class GroupView extends BeadViewBase implements ILayoutHost
 	{
 		/**
-     	 *  The GroupView class is the default view for
-         *  the org.apache.royale.html.Group class.
-         *  It lets you use some CSS styles to manage the border, background
-         *  and padding around the content area.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         */
+		 *  The GroupView class is the default view for
+		 *  the org.apache.royale.html.Group class.
+		 *  It lets you use some CSS styles to manage the border, background
+		 *  and padding around the content area.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
 		public function GroupView()
 		{
 			super();
@@ -94,7 +95,6 @@ package org.apache.royale.html.beads
 			return host;
 		}
 
-
 		private var layoutRunning:Boolean;
 
 		/**
@@ -109,7 +109,8 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 
-			COMPILE::SWF {
+			COMPILE::SWF
+			{
 				displayBackgroundAndBorder(host as UIBase);
 			}
 
@@ -130,18 +131,20 @@ package org.apache.royale.html.beads
 		 */
 		protected function handleInitComplete(event:Event):void
 		{
-            var ilc:ILayoutChild = host as ILayoutChild;
+			var ilc:ILayoutChild = host as ILayoutChild;
 			// Complete the setup if the height is sized to content or has been explicitly set
-            // and the width is sized to content or has been explicitly set
+			// and the width is sized to content or has been explicitly set
 			if ((ilc.isHeightSizedToContent() || !isNaN(ilc.explicitHeight) || !isNaN(ilc.percentHeight)) &&
-                (ilc.isWidthSizedToContent() || !isNaN(ilc.explicitWidth) || !isNaN(ilc.percentWidth))) {
+					(ilc.isWidthSizedToContent() || !isNaN(ilc.explicitWidth) || !isNaN(ilc.percentWidth)))
+			{
 				completeSetup();
 			}
-			else {
+			else
+			{
 				// otherwise, wait until the unknown sizes have been set and then finish
 				host.addEventListener("sizeChanged", deferredSizeHandler);
-                host.addEventListener("widthChanged", deferredSizeHandler);
-                host.addEventListener("heightChanged", deferredSizeHandler);
+				host.addEventListener("widthChanged", deferredSizeHandler);
+				host.addEventListener("heightChanged", deferredSizeHandler);
 			}
 		}
 
@@ -156,10 +159,10 @@ package org.apache.royale.html.beads
 		 */
 		protected function deferredSizeHandler(event:Event):void
 		{
-            host.removeEventListener("sizeChanged", deferredSizeHandler);
-            host.removeEventListener("widthChanged", deferredSizeHandler);
-            host.removeEventListener("heightChanged", deferredSizeHandler);
-			
+			host.removeEventListener("sizeChanged", deferredSizeHandler);
+			host.removeEventListener("widthChanged", deferredSizeHandler);
+			host.removeEventListener("heightChanged", deferredSizeHandler);
+
 			completeSetup();
 		}
 
@@ -179,7 +182,7 @@ package org.apache.royale.html.beads
 			host.addEventListener("widthChanged", resizeHandler);
 			host.addEventListener("heightChanged", resizeHandler);
 		}
-		
+
 		/**
 		 * Invoked in response to the strand being resized.
 		 *
@@ -193,7 +196,7 @@ package org.apache.royale.html.beads
 			// override in subclasses in case there is something besides running
 			// the layout (which is handled automatically by the layout itself).
 		}
-		
+
 		/**
 		 * Provides a place for pre-layout actions.
 		 *
@@ -230,7 +233,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		protected function calculateContentSize():Size
@@ -239,9 +242,11 @@ package org.apache.royale.html.beads
 			var maxHeight:Number = 0;
 			var num:Number = contentView.numElements;
 
-			for (var i:int=0; i < num; i++) {
+			for (var i:int = 0; i < num; i++)
+			{
 				var child:IUIBase = contentView.getElementAt(i) as IUIBase;
-				if (child == null || !child.visible) continue;
+				if (child == null || !child.visible)
+					continue;
 				var childXMax:Number = child.x + child.width;
 				var childYMax:Number = child.y + child.height;
 				maxWidth = Math.max(maxWidth, childXMax);
@@ -253,7 +258,7 @@ package org.apache.royale.html.beads
 
 			// return the content size as the max plus right/bottom padding. the x,y position of
 			// each child is already offset by the left/top padding by the layout algorithm.
-			return new Size(maxWidth + padding.right - (border.left+border.right), maxHeight + padding.bottom - (border.top+border.bottom));
+			return new Size(maxWidth + padding.right - (border.left + border.right), maxHeight + padding.bottom - (border.top + border.bottom));
 		}
 
 		/**
@@ -263,7 +268,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
 		public function afterLayout():void
@@ -276,11 +281,11 @@ package org.apache.royale.html.beads
 			var padding:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this._strand as IUIBase);
 			// add padding.left since it wasn't considered in contentSize,
 			// and add border.right so the border can be drawn in that column of pixels
-			contentSize.width += padding.left + border.right; 
+			contentSize.width += padding.left + border.right;
 			contentSize.height += padding.top + border.top;
-			
 
-			if (host.isWidthSizedToContent() && host.isHeightSizedToContent()) {
+			if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+			{
 				host.setWidthAndHeight(contentSize.width, contentSize.height, true);
 			}
 			else if (!host.isWidthSizedToContent() && host.isHeightSizedToContent())
@@ -292,7 +297,7 @@ package org.apache.royale.html.beads
 				host.setWidth(contentSize.width, true);
 			}
 		}
-		
+
 		COMPILE::JS
 		public function afterLayout():void
 		{
@@ -301,10 +306,11 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
-         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
 		COMPILE::SWF
-		protected function displayBackgroundAndBorder(host:UIBase) : void
+
+		protected function displayBackgroundAndBorder(host:UIBase):void
 		{
 			var backgroundColor:Object = ValuesManager.valuesImpl.getValue(host, "background-color");
 			var backgroundImage:Object = ValuesManager.valuesImpl.getValue(host, "background-image");
@@ -312,8 +318,8 @@ package org.apache.royale.html.beads
 			{
 				loadBeadFromValuesManager(IBackgroundBead, "iBackgroundBead", _strand);
 			}
-			
-            var border:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this._strand as IUIBase);
+
+			var border:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(this._strand as IUIBase);
 			if (border.left + border.right + border.top + border.bottom > 0)
 			{
 				loadBeadFromValuesManager(IBorderBead, "iBorderBead", _strand);

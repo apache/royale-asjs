@@ -25,7 +25,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.svg.Rect;
 	import org.apache.royale.graphics.SolidColorStroke;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.ImageButton;
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.models.RangeModelExtended;
@@ -88,6 +87,10 @@ package org.apache.royale.html.beads
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
+		 * 
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.beads.models.RangeModelExtended
+		 * 
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -102,9 +105,10 @@ package org.apache.royale.html.beads
 			var host:UIBase = _strand as UIBase;
 
 			_labelBox = new Rect();
-			_labelBox.stroke = new SolidColorStroke();
-			(_labelBox.stroke as SolidColorStroke).color = 0x000000;
-			(_labelBox.stroke as SolidColorStroke).weight = 1.0;
+			var stroke:SolidColorStroke = new SolidColorStroke();
+			stroke.color = 0x000000;
+			stroke.weight = 1.0;
+			_labelBox.stroke = stroke;
 
 			_incrementButton = new ImageButton();
 			_incrementButton.src = "assets/up-arrow.png";
@@ -112,8 +116,8 @@ package org.apache.royale.html.beads
 			_decrementButton = new ImageButton();
 			_decrementButton.src = "assets/down-arrow.png";
 
-			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
-			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
+			host.addEventListener("widthChanged",sizeChangeHandler);
+			host.addEventListener("heightChanged",sizeChangeHandler);
 
 			_label = new Label();
 
@@ -127,7 +131,9 @@ package org.apache.royale.html.beads
 
 			sizeChangeHandler(null);
 		}
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
 		private function sizeChangeHandler(event:Event):void
 		{
 			var host:UIBase = _strand as UIBase;
@@ -148,7 +154,9 @@ package org.apache.royale.html.beads
 			_decrementButton.y = host.height - 20;
 			_decrementButton.setWidthAndHeight(host.width, 20);
 		}
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.beads.models.RangeModelExtended
+		 */
 		private function handleValueChange(event:Event):void
 		{
 			var model:RangeModelExtended = (_strand as UIBase).model as RangeModelExtended;
