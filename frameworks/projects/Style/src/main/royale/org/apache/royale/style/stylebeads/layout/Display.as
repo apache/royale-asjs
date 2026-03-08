@@ -27,7 +27,7 @@ package org.apache.royale.style.stylebeads.layout
 		{
 			super("", "display");
 		}
-
+		[Inspectable(category="General", enumeration="inline,block,inline-block,flow-root,flex,inline-flex,grid,inline-grid,contents,table,inline-table,table-caption,table-cell,table-column,table-column-group,table-footer-group,table-header-group,table-row-group,table-row,list-item,none", defaultValue="inline")]
 		override public function set value(value:*):void
 		{
 			// TODO: Support `sr-only` and `not-sr-only`

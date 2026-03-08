@@ -24,6 +24,10 @@ package org.apache.royale.style
 	import org.apache.royale.style.IStyleSkin;
 	import org.apache.royale.style.stylebeads.ILeafStyleBead;
 	import org.apache.royale.style.stylebeads.IStyleBead;
+	import org.apache.royale.style.stylebeads.layout.Display;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexGrow;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexShrink;
+	import org.apache.royale.style.stylebeads.layout.Position;
 	import org.apache.royale.style.util.StyleManager;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -87,7 +91,7 @@ package org.apache.royale.style
 			{
 				assert(bead != null, "bead cannot be null");
 				if(!styleTypes)
-					styleTypes = new Set();
+					styleTypes = new Map();
 				
 				var leaves:Array = bead.getLeaves();
 				for each(var leaf:ILeafStyleBead in leaves)
@@ -100,7 +104,7 @@ package org.apache.royale.style
 					 */
 					if(styleTypes.has(leaf.styleType))
 						continue;
-					styleTypes.add(leaf.styleType);
+					styleTypes.set(leaf.styleType, leaf);
 					leaf.strand = this;
 					_styleBeads.push(leaf);
 				}
@@ -108,7 +112,7 @@ package org.apache.royale.style
 			}
 		}
 		COMPILE::JS
-		private var styleTypes:Set;
+		private var styleTypes:Map;
 		private var _stylesLoaded:Boolean;
 		override protected function loadBeads():void
 		{
@@ -123,15 +127,75 @@ package org.apache.royale.style
 			_stylesLoaded = true;
 			refreshStyles();
 		}
-		public function getStyleBeadsByType(type:Class):Array
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.stylebeads.ILeafStyleBead
+		 */
+		public function getStyleBeadByType(type:Class):ILeafStyleBead
 		{
-			var retVal:Array = [];
-			for each(var bead:IStyleBead in _styleBeads)
+			var style:ILeafStyleBead = new type() as ILeafStyleBead;
+			assert(style is ILeafStyleBead, "Only leaf style beads can be retrieved by type");
+			COMPILE::JS
 			{
-				if(bead is type)
-					retVal.push(bead);
+				var styleType:String = style.styleType;
+				if(styleTypes.has(styleType))
+				{
+					return styleTypes.get(styleType);
+				}
+				addStyleBead(style);
 			}
-			return retVal;
+			return style;
+		}
+		/**
+		 * Setters and Getters for common HTML attributes that can be set on any component.
+		 * Style beads are used and automatically createded if they don't yet exist.
+		 */
+		private var _displayStyle:String;
+		[Inspectable(category="General", enumeration="inline,block,inline-block,flow-root,flex,inline-flex,grid,inline-grid,contents,table,inline-table,table-caption,table-cell,table-column,table-column-group,table-footer-group,table-header-group,table-row-group,table-row,list-item,none", defaultValue="inline")]
+		public function get displayStyle():String
+		{
+			return _displayStyle;
+		}
+
+		public function set displayStyle(value:String):void
+		{
+			_displayStyle = value;
+			getStyleBeadByType(Display).value = value;
+		}
+		private var _positionStyle:String;
+		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]
+		public function get positionStyle():String
+		{
+			return _positionStyle;
+		}
+
+		public function set positionStyle(value:String):void
+		{
+			_positionStyle = value;
+			getStyleBeadByType(Position).value = value;
+		}
+		private var _flexGrow:Number;
+
+		public function get flexGrow():Number
+		{
+			return _flexGrow;
+		}
+
+		public function set flexGrow(value:Number):void
+		{
+			_flexGrow = value;
+			getStyleBeadByType(FlexGrow).value = value;
+		}
+		private var _flexShrink:Number;
+
+		public function get flexShrink():Number
+		{
+			return _flexShrink;
+		}
+
+		public function set flexShrink(value:Number):void
+		{
+			_flexShrink = value;
+			getStyleBeadByType(FlexShrink).value = value;
 		}
 		private var _skin:IStyleSkin;
 
