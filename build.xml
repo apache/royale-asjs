@@ -618,7 +618,6 @@ limitations under the License.
         <delete file="${ROYALE_HOME}/frameworks/macfonts.ser" failonerror="false"/>
         <delete file="${ROYALE_HOME}/frameworks/winfonts.ser" failonerror="false"/>
         <delete file="${ROYALE_HOME}/frameworks/localfonts.ser" failonerror="false"/>
-        <delete file="${ROYALE_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
         <delete dir="${basedir}" failonerror="false">
@@ -749,28 +748,6 @@ limitations under the License.
     &lt;flashbuilder-config&gt;
     &lt;express-install-swf&gt;expressInstall.swf&lt;/express-install-swf&gt;
     &lt;/flashbuilder-config&gt;
-</echo>
-        <echo file="${ROYALE_HOME}/frameworks/mxml-manifest.xml">&lt;?xml version="1.0"?&gt;
-    &lt;!--
-    
-    Licensed to the Apache Software Foundation (ASF) under one or more
-    contributor license agreements.  See the NOTICE file distributed with
-    this work for additional information regarding copyright ownership.
-    The ASF licenses this file to You under the Apache License, Version 2.0
-    (the "License"); you may not use this file except in compliance with
-    the License.  You may obtain a copy of the License at
-    
-    http://www.apache.org/licenses/LICENSE-2.0
-    
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
-    
-    --&gt;
-    &lt;componentPackage&gt;
-    &lt;/componentPackage&gt;
 </echo>
         <echo file="${ROYALE_HOME}/frameworks/spark-manifest.xml">&lt;?xml version="1.0"?&gt;
     &lt;!--
