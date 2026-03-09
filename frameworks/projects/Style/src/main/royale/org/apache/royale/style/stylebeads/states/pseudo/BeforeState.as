@@ -16,8 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.states.pseudo
 {
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
+
 	/**
 	 * Avoid using before or after unless an extra element is a problem.
 	 */
@@ -27,7 +29,7 @@ package org.apache.royale.style.stylebeads.states
 		{
 			super();
 			preDecorator = "before:";
-			postDecorator = ":before";
+			postDecorator = "::before";
 		}
 	}
 }

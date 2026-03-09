@@ -238,15 +238,8 @@ package org.apache.royale.style
 		}
 		protected function applyStyle(styleBead:ILeafStyleBead):void
 		{
-			var selector:String = styleBead.selector;
+			var selector:String = styleBead.getSelector();
 			utilityList.add(selector);
-			if (!StyleManager.hasStyle(selector))
-			{
-				if(styleBead.parentQueryId)
-					StyleManager.addGroupedRule(styleBead.parentQueryId, selector, styleBead.rule);
-				else
-					StyleManager.addStyle(selector, styleBead.rule);
-			}
 		}
 		public function toggleClass(classNameVal:String, add:Boolean):void
 		{

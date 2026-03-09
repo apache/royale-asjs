@@ -32,6 +32,23 @@
   <component id="MultiSelectionList" class="org.apache.royale.style.MultiSelectionList"/>
   <component id="Tree" class="org.apache.royale.style.Tree"/>
   <component id="DataItemRenderer" class="org.apache.royale.style.DataItemRenderer"/>
+  
+  <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>
+  <component id="AriaState" class="org.apache.royale.style.stylebeads.states.attribute.AriaState"/>
+  <component id="InertState" class="org.apache.royale.style.stylebeads.states.attribute.InertState"/>
+  <component id="OpenState" class="org.apache.royale.style.stylebeads.states.attribute.OpenState"/>
+  <component id="RTLState" class="org.apache.royale.style.stylebeads.states.attribute.RTLState"/>
+  <component id="SelectedState" class="org.apache.royale.style.stylebeads.states.attribute.SelectedState"/>
+  <component id="AfterState" class="org.apache.royale.style.stylebeads.states.pseudo.AfterState"/>
+  <component id="BackdropState" class="org.apache.royale.style.stylebeads.states.pseudo.BackdropState"/>
+  <component id="BeforeState" class="org.apache.royale.style.stylebeads.states.pseudo.BeforeState"/>
+  <component id="FileState" class="org.apache.royale.style.stylebeads.states.pseudo.FileState"/>
+  <component id="FirstLetterState" class="org.apache.royale.style.stylebeads.states.pseudo.FirstLetterState"/>
+  <component id="FirstLineState" class="org.apache.royale.style.stylebeads.states.pseudo.FirstLineState"/>
+  <component id="MarkerState" class="org.apache.royale.style.stylebeads.states.pseudo.MarkerState"/>
+  <component id="PlaceholderState" class="org.apache.royale.style.stylebeads.states.pseudo.PlaceholderState"/>
+  <component id="SelectionState" class="org.apache.royale.style.stylebeads.states.pseudo.SelectionState"/>
+  <component id="PeerPseudo" class="org.apache.royale.style.stylebeads.states.PeerPseudo"/>
 
   <component id="BackgroundStyle" class="org.apache.royale.style.stylebeads.BackgroundStyle"/>
   <component id="ContainerPosition" class="org.apache.royale.style.stylebeads.ContainerPosition"/>

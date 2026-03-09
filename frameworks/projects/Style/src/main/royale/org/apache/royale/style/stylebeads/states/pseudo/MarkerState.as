@@ -16,8 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.states.pseudo
 {
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
+
 	public class MarkerState extends LeafDecorator
 	{
 		public function MarkerState()

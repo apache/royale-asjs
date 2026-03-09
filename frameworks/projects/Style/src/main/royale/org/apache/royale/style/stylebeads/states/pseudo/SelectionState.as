@@ -16,8 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.states.pseudo
 {
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
+
 	public class SelectionState extends LeafDecorator
 	{
 		public function SelectionState()

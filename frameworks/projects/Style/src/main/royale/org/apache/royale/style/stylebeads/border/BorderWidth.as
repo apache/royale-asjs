@@ -227,9 +227,9 @@ import org.apache.royale.style.stylebeads.LeafStyleBase;
 
 class Width extends LeafStyleBase
 {
-	public function Width(selectorPrefix:String = "border", rulePrefix:String = "border-width")
+	public function Width(selectorBase:String = "border", ruleBase:String = "border-width")
 	{
-		super(selectorPrefix, rulePrefix);
+		super(selectorBase, ruleBase);
 	}
 	override public function set value(value:*):void
 	{
@@ -237,19 +237,19 @@ class Width extends LeafStyleBase
 		calculatedRuleValue = value;
 		calculatedSelector = sanitizeSelector(value);
 	}
-	override public function get selector():String
+	override public function getSelector():String
 	{
 		if(!calculatedSelector)
 			return selectorBase;
 		
-		return super.selector;
+		return super.getSelector();
 	}
-	override public function get rule():String
+	override public function getRule():String
 	{
 		if(!calculatedRuleValue)
 			return "1px";
 		
-		return super.rule;
+		return super.getRule();
 	}
 }
 class Top extends Width

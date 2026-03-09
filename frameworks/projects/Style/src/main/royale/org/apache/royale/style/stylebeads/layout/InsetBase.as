@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class InsetBase extends LeafStyleBase
 	{
-		public function InsetBase(selectorPrefix:String, rulePrefix:String)
+		public function InsetBase(selectorBase:String, ruleBase:String)
 		{
-			super(selectorPrefix, rulePrefix);
+			super(selectorBase, ruleBase);
 		}
 		private var savedPrefix:String;
 		override public function set value(value:*):void

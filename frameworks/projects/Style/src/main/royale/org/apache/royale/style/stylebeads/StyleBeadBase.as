@@ -58,13 +58,7 @@ package org.apache.royale.style.stylebeads
 			for each(var style:IStyleBead in styles)
 			{
 				style.parentStyle = this;
-
 				retVal = retVal.concat(style.getLeaves());
-				/**
-				 * We want to decorate styles from to bottom up,
-				 * so we do this after we recursively traverse down the the leaves.
-				 */
-				decorateChildStyle(style);
 			}
 		return retVal;
 		}
@@ -95,7 +89,7 @@ package org.apache.royale.style.stylebeads
 		{
 			_parentStyle = value;
 		}
-		abstract public function decorateChildStyle(style:IStyleBead):void;
+		abstract public function decorateChildStyle(style:ILeafStyleBead):void;
 		public function get isLeaf():Boolean
 		{
 			return false;

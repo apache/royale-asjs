@@ -249,9 +249,9 @@ import org.apache.royale.style.util.CSSUnit;
 
 class Pad extends LeafStyleBase
 {
-	public function Pad(selectorPrefix:String = "p", rulePrefix:String = "padding")
+	public function Pad(selectorBase:String = "p", ruleBase:String = "padding")
 	{
-		super(selectorPrefix, rulePrefix);
+		super(selectorBase, ruleBase);
 	}
 	private function toSelector(value:String):String
 	{

@@ -20,6 +20,7 @@ package org.apache.royale.style.stylebeads.states
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
 	import org.apache.royale.style.stylebeads.IStyleBead;
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
 
 	abstract public class StyleStateBase extends StyleBeadBase
 	{
@@ -28,9 +29,12 @@ package org.apache.royale.style.stylebeads.states
 			super();
 		}
 
-		override public function decorateChildStyle(style:IStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead):void
 		{
 			//TODO: Figure out what goes in here.
+			if(parentStyle)
+				parentStyle.decorateChildStyle(style);
+
 		}
 
 		/**

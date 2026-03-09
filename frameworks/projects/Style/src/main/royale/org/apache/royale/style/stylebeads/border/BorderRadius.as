@@ -188,9 +188,9 @@ import org.apache.royale.style.stylebeads.LeafStyleBase;
 
 class Radius extends LeafStyleBase
 {
-	public function Radius(selectorPrefix:String = "rounded", rulePrefix:String = "border-radius")
+	public function Radius(selectorBase:String = "rounded", ruleBase:String = "border-radius")
 	{
-		super(selectorPrefix, rulePrefix);
+		super(selectorBase, ruleBase);
 	}
 	override public function set value(value:*):void
 	{

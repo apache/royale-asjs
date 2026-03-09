@@ -22,13 +22,20 @@ package org.apache.royale.style.stylebeads
 	{
 		function get value():*;
 		function set value(value:*):void;
-		function get selector():String;
-		function get rule():String;
+		function getSelector():String;
+		function getRule():String;
 		function get selectorBase():String;
 		function get styleType():String;
 		function get parentQueryId():String;
 		function get unit():String;
 		function set unit(value:String):void;
+		function get selectorPrefix():String;
+		function set selectorPrefix(value:String):void;
+		function get rulePrefix():String;
+		function set rulePrefix(value:String):void;
+		function get ruleSuffix():String;
+		function set ruleSuffix(value:String):void;
+
 
 	}
 }

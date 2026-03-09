@@ -16,26 +16,44 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads
+package org.apache.royale.style.stylebeads.states
 {
-	/**
-	 * Convenience class for styles that are composed of multiple leaf styles.
-	 * This class does not have any functionality on its own,
-	 * but serves as a base class for composite styles that contain multiple leaf styles.
-	 * 
-	 * It can also be used in MXML to group multiple styles together without adding any additional functionality.
-	 */
-	public class CompositeStyle extends StyleBeadBase
+	import org.apache.royale.style.stylebeads.IStyleBead;
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
+
+	public class PeerPseudo extends StyleStateBase
 	{
-		public function CompositeStyle()
+		public function PeerPseudo()
 		{
 			super();
 		}
-		//TODO: Figure this out.
+		private var _forState:String;
+		[Inspectable(category="General", enumeration="one,two,three", defaultValue="one")]
+		public function get forState():String
+		{
+			return _forState;
+		}
+
+		public function set forState(value:String):void
+		{
+			_forState = value;
+		}
 		override public function decorateChildStyle(style:ILeafStyleBead):void
 		{
+			var selector:String = "peer-" + forState;
+			style.selectorPrefix = selector + ":" + style.selectorPrefix;
+			style.rulePrefix = selector + "\\:" +  style.rulePrefix;
+			style.ruleSuffix = selector + ":" +  ":is(:where(.peer):" + forState + " ~ *)" + style.ruleSuffix;
+			
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style);
 		}
 	}
 }
+/**
+ .peer-checked\:border-blue-700 {
+  &:is(:where(.peer):checked ~ *) {
+    border-color: var(--color-blue-700);
+  }
+}
+ */

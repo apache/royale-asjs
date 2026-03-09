@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class Gap extends LeafStyleBase
 	{
-		public function Gap(selectorPrefix:String="gap", rulePrefix:String="gap")
+		public function Gap(selectorBase:String="gap", ruleBase:String="gap")
 		{
-			super(selectorPrefix, rulePrefix);
+			super(selectorBase, ruleBase);
 			// TODO: Is this the correct default?
 			unit = "rem";
 

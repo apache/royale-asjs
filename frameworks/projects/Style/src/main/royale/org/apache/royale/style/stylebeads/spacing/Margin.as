@@ -251,9 +251,9 @@ import org.apache.royale.style.util.CSSUnit;
 
 class Marg extends LeafStyleBase
 {
-	public function Marg(selectorPrefix:String = "m", rulePrefix:String = "margin")
+	public function Marg(selectorBase:String = "m", ruleBase:String = "margin")
 	{
-		super(selectorPrefix, rulePrefix);
+		super(selectorBase, ruleBase);
 	}
 	private function toSelector(value:String):String
 	{

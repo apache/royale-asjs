@@ -23,6 +23,7 @@ package org.apache.royale.style.stylebeads
 	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.CSSUnit;
+	import org.apache.royale.style.util.StyleManager;
 	/**
 	 * @royalesuppressexport
 	 */
@@ -40,6 +41,9 @@ package org.apache.royale.style.stylebeads
 		}
 		override public function getLeaves():Array
 		{
+			// Walk up the chain decorating the styles.
+			if(parentStyle)
+				parentStyle.decorateChildStyle(this);
 			return [this];
 		}
 		protected var _value:*;
@@ -152,13 +156,26 @@ package org.apache.royale.style.stylebeads
 			_calculatedSelector = sanitizeSelector(value);
 		}
 		protected var calculatedRuleValue:String;
-		public function get selector():String
+		public function getSelector():String
 		{
 			if(!calculatedSelector)
 				return "";
-			return selectorPrefix + selectorBase + "-" + calculatedSelector;
+			
+			var selector:String = selectorPrefix + selectorBase + "-" + calculatedSelector;
+			/**
+			 * Always add the rule automatically when accessing the selector if needed.
+			 */
+			if (!StyleManager.hasStyle(selector))
+			{
+				if(parentQueryId)
+					StyleManager.addGroupedRule(parentQueryId, selector, getRule());
+				else
+					StyleManager.addStyle(selector, getRule());
+			}
+
+			return selector;
 		}
-		public function get rule():String
+		public function getRule():String
 		{
 			if(!calculatedRuleValue)
 				return "";
@@ -245,7 +262,7 @@ package org.apache.royale.style.stylebeads
 		{
 			_parentQueryId = value;
 		}
-		override public function decorateChildStyle(style:IStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead):void
 		{
 			assert(false, "Leaf styles should not have child styles.");
 		}

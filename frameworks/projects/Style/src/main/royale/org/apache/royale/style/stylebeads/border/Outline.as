@@ -150,14 +150,14 @@ class Style extends LeafStyleBase
 		assert(["solid","dashed","dotted","double","hidden","none"].indexOf(value) >= 0, "The value must be a valid outline style: " + value);
 		calculatedSelector = calculatedRuleValue = _value = value;
 	}
-	override public function get rule():String
+	override public function getRule():String
 	{
 		// enable outline in in forced colors mode
 		if(calculatedSelector == "hidden")
 		{
 			return "outline: 2px solid transparent; outline-offset: 2px;";
 		}
-		return super.rule;
+		return super.getRule();
 	}
 }
 class Width extends LeafStyleBase
@@ -172,18 +172,18 @@ class Width extends LeafStyleBase
 		calculatedRuleValue = value;
 		calculatedSelector = sanitizeSelector(value);
 	}
-	override public function get selector():String
+	override public function getSelector():String
 	{
 		if(!calculatedSelector)
 			return selectorBase;
 		
-		return super.selector;
+		return super.getSelector();
 	}
-	override public function get rule():String
+	override public function getRule():String
 	{
 		if(!calculatedRuleValue)
 			return "1px";
 		
-		return super.rule;
+		return super.getRule();
 	}
 }

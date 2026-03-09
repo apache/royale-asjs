@@ -22,6 +22,7 @@ package org.apache.royale.style.stylebeads.states
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
 
 	public class LeafDecorator extends StyleBeadBase
 	{
@@ -32,16 +33,20 @@ package org.apache.royale.style.stylebeads.states
 
 		protected var preDecorator:String;
 		protected var postDecorator:String;
+		protected var leafStyle:LeafStyleBase;
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.LeafStyleBase
 		 */
-		override public function decorateChildStyle(style:IStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead):void
 		{
 			assert(style.isLeaf, "LeafDecorator can only decorate leaf styles");
 			var leafStyle:LeafStyleBase = style as LeafStyleBase;
 			leafStyle.rulePrefix = preDecorator + leafStyle.rulePrefix;
 			leafStyle.ruleSuffix = leafStyle.ruleSuffix + postDecorator;
 			leafStyle.selectorPrefix = preDecorator + leafStyle.selectorPrefix;
+			if(parentStyle)
+				parentStyle.decorateChildStyle(style);
+
 		}
 	}
 }
