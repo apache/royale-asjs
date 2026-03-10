@@ -100,7 +100,7 @@
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../../main/resources/basic-manifest.xml</manifest>
+                <manifest>../../main/resources/style-manifest.xml</manifest>
             </namespace>
         </namespaces>
         

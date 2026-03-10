@@ -142,6 +142,7 @@
 
         <antcall target="Network"/>
         <antcall target="Storage"/>
+        <antcall target="Style"/>
 
         <antcall target="Text"/>
         <antcall target="TLF"/>
@@ -250,6 +251,7 @@
         <ant dir="${basedir}/projects/RoyaleUnit" target="clean"/>
         <ant dir="${basedir}/projects/RoyaleUnitUI" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
+        <ant dir="${basedir}/projects/Style" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
         <ant dir="${basedir}/projects/Text" target="clean"/>
@@ -496,6 +498,14 @@
 
     <target name="StorageTest" description="Test of Storage.swc">
         <ant dir="${basedir}/projects/Storage" target="test"/>
+    </target>
+    
+    <target name="Style" description="Clean build of Style.swc">
+        <ant dir="${basedir}/projects/Style"/>
+    </target>
+
+    <target name="StyleTest" description="Test of Style.swc">
+        <ant dir="${basedir}/projects/Style" target="test"/>
     </target>
 
     <target name="XML" description="Clean build of XML.swc">

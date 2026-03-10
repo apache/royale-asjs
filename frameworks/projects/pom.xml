@@ -78,6 +78,7 @@
     <module>RoyaleUnitUI</module>
     <module>SparkRoyale</module>
     <module>Storage</module>
+    <module>Style</module>
     <module>Text</module>
     <module>TLF</module>
     <module>XML</module>

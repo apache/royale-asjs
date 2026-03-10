@@ -43,7 +43,7 @@
           <namespaces>
             <namespace>
               <uri>library://ns.apache.org/royale/style</uri>
-              <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
+              <manifest>${project.basedir}/src/main/resources/style-manifest.xml</manifest>
             </namespace>
           </namespaces>
           <includeClasses>

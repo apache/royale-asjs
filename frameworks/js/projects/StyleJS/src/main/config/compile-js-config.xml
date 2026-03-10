@@ -68,7 +68,7 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../../../../../../projects/Style/src/main/resources/basic-manifest.xml</manifest>
+                <manifest>../../../../../../projects/Style/src/main/resources/style-manifest.xml</manifest>
             </namespace>
         </namespaces>
         

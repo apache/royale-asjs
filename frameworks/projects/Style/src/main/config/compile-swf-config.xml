@@ -73,7 +73,7 @@
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/style</uri>
-                <manifest>../resources/basic-manifest.xml</manifest>
+                <manifest>../resources/style-manifest.xml</manifest>
             </namespace>
         </namespaces>
         
