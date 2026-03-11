@@ -54,13 +54,22 @@ package org.apache.royale.style
 				styleUIBase.addStyleBead(styleBead);
 			}
 		}
+		private var _styles:Array;
+
 		/**
 		 *  The array of style beads that this StyleSkin will apply to the component.
 		 *  @langversion 3.0
 		 *  @productversion Royale 0.9.13
 		 * 
-		 *  @royalesuppresspublicvarwarning
 		 */
-		public var styles:Array;
+		public function get styles():Array
+		{
+			return _styles;
+		}
+
+		public function set styles(value:Array):void
+		{
+			_styles = value;
+		}
 	}
 }

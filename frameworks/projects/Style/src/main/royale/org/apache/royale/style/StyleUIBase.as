@@ -123,8 +123,15 @@ package org.apache.royale.style
 					addStyleBead(bead);
 			}
 			styleBeads = null;
-			applySkin();
 			_stylesLoaded = true;
+			if(!_skin)
+				_skin = loadBeadFromValuesManager(IStyleSkin, "iStyleSkin", this) as IStyleSkin;				
+			
+			if(_skin)
+			{
+				addBead(_skin);
+				applySkin();
+			}
 			refreshStyles();
 		}
 		/**
@@ -209,19 +216,27 @@ package org.apache.royale.style
 			_skin = value;
 			if(_stylesLoaded)
 			{
+				assert(getBeadByType(IStyleSkin) == null, "skins cannot be replaced once loaded");
 				addBead(value);
+				applySkin();
 			}
 		}
-		private function applySkin():void
+		/**
+		 * Skins have style beads and properties which can be applied in two ways:
+		 * 1. When the skin is added as a bead, the strand setter can apply the styles in the skin code.
+		 * 2. The applySkin method can be called to apply the styles after the skin is added.
+		 *    This is useful if there's a need to optimize the styling in a way whereit's not appropriate
+		 *    to make parts of the component publically available as StyleUIBase instances.
+		 * 
+		 * Override this method in subclasses as needed.
+		 * 
+		 * @langversion 3.0
+		 * @productversion Royale 0.9.13
+		 * 
+		 */
+		protected function applySkin():void
 		{
-			if(skin)
-			{
-				addBead(skin);
-			}
-			else
-			{
-				_skin = loadBeadFromValuesManager(IStyleSkin, "iStyleSkin", this) as IStyleSkin;				
-			}
+			// default implementation does nothing
 		}
 
 		protected function refreshStyles():void
