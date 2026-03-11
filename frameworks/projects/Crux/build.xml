@@ -114,7 +114,7 @@
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
 
-        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" resultproperty="compcoutput">
+        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" failonerror="true">
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
@@ -133,16 +133,6 @@
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
-        <fail>
-            <condition>
-                <not>
-                    <or>
-                        <equals arg1="${compcoutput}" arg2="0" />
-                        <equals arg1="${compcoutput}" arg2="2" />
-                    </or>
-                </not>
-            </condition>
-        </fail>
     </target>
 
     <target name="check-compiler" depends="check-compiler-home,check-transpiler-home">
