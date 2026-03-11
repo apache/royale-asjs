@@ -124,7 +124,7 @@
             <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}/frameworks/projects/${ant.project.name}/src/main/royale&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
-            <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
+            <arg value="-js-load-config=${ROYALE_HOME}/frameworks/createjs-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
     </target>
