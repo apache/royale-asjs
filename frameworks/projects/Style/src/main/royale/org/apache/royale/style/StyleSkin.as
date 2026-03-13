@@ -54,7 +54,7 @@ package org.apache.royale.style
 				styleUIBase.addStyleBead(styleBead);
 			}
 		}
-		private var _styles:Array;
+		protected var _styles:Array;
 
 		/**
 		 *  The array of style beads that this StyleSkin will apply to the component.

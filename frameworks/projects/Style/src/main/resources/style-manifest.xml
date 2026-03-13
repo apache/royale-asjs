@@ -22,6 +22,7 @@
 <componentPackage>
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="View" class="org.apache.royale.style.View"/>
+  <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
   <component id="Icon" class="org.apache.royale.style.Icon"/>
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
@@ -152,6 +153,7 @@
   <component id="Stroke" class="org.apache.royale.style.stylebeads.svg.Stroke"/>
   <component id="StrokeWidth" class="org.apache.royale.style.stylebeads.svg.StrokeWidth"/>
   <component id="ForcedColorAdjust" class="org.apache.royale.style.stylebeads.access.ForcedColorAdjust"/>
+  <component id="ScreenReader" class="org.apache.royale.style.stylebeads.utils.ScreenReader"/>
   <component id="CompositeStyle" class="org.apache.royale.style.stylebeads.CompositeStyle"/>
   <component id="MixBlendMode" class="org.apache.royale.style.stylebeads.effects.MixBlendMode"/>
   <component id="RingEffect" class="org.apache.royale.style.stylebeads.effects.RingEffect"/>

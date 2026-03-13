@@ -20,9 +20,6 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class HoverState extends LeafDecorator
 	{
-		/**
-		 * TODO wrap in a media query for hover capability
-		 */
 		public function HoverState()
 		{
 			super();

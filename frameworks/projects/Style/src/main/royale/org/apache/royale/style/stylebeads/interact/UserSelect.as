@@ -32,5 +32,14 @@ package org.apache.royale.style.stylebeads.interact
 			assert(['auto','none','text','all'].indexOf(value) != -1, "Invalid value for user-select: " + value);
 			calculatedRuleValue = calculatedSelector = _value = value;
 		}
+		override public function getRule():String
+		{
+			var rule:String = super.getRule();
+			if(!rule)
+				return "";
+			// We need the webkit prefix for Safari.
+			return "-webkit-" + rule + rule;
+		}
+
 	}
 }

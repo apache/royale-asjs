@@ -46,7 +46,7 @@ package org.apache.royale.style
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.13
 	 */
-	public class StyleUIBase extends UIBase
+	public class StyleUIBase extends UIBase implements IStyleUIBase
 	{
 		/**
 		 *  Constructor.
@@ -70,6 +70,24 @@ package org.apache.royale.style
 		public function get theme():String
 		{
 			return ThemeManager.instance.current;
+		}
+
+		private var _size:String = "md";
+		/**
+		 * The size is set as "t-shirt sizing" using a string value.
+		 * The actual styles for each size value are determined by the skin and style beads used.
+		 * 
+		 * Most components have four possible sizes, but specific components may choose to support a different set of sizes as needed.
+		 */
+		[Inspectable(category="General", enumeration="sm,md,lg,xl", defaultValue="md")]
+		public function get size():String
+		{
+			return _size;
+		}
+
+		public function set size(value:String):void
+		{
+			_size = value;
 		}
 
 		/**
@@ -113,7 +131,7 @@ package org.apache.royale.style
 		}
 		COMPILE::JS
 		private var styleTypes:Map;
-		private var _stylesLoaded:Boolean;
+		protected var _stylesLoaded:Boolean;
 		override protected function loadBeads():void
 		{
 			super.loadBeads();
@@ -369,6 +387,14 @@ package org.apache.royale.style
 		override protected function createElement():WrappedHTMLElement
 		{
 			return addElementToWrapper(this, getTag());
+		}
+		COMPILE::JS
+		protected function newElement(tag:String,className:String = null):HTMLElement{
+			var element:HTMLElement = document.createElement(tag) as HTMLElement;
+			if(className){
+				element.className = className;
+			}
+			return element;
 		}
 	}
 }

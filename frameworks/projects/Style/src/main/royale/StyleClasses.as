@@ -57,7 +57,7 @@ package
 		import org.apache.royale.style.util.ThemeManager; ThemeManager;
 		import org.apache.royale.style.util.ContentAlign; ContentAlign;
 		import org.apache.royale.style.support.UIItemRendererBase; UIItemRendererBase;
-
+		import org.apache.royale.style.const.Theme; Theme;
 	}
 
 }
