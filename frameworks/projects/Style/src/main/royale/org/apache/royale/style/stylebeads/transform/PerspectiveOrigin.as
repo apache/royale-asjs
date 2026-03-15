@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class PerspectiveOrigin extends LeafStyleBase
 	{
-		public function PerspectiveOrigin()
+		public function PerspectiveOrigin(value:* = null)
 		{
-			super("perspective-origin", "perspective-origin");
+			super("perspective-origin", "perspective-origin", value);
 		}
 		override public function set value(value:*):void
 		{

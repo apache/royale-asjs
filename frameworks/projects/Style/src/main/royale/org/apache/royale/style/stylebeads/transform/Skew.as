@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class Skew extends LeafStyleBase
 	{
-		public function Skew()
+		public function Skew(value:* = null)
 		{
-			super("skew", "transform");
+			super("skew", "transform", value);
 		}
 		override public function get styleType():String
 		{

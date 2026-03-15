@@ -33,7 +33,7 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class Border extends CompositeStyle
 	{
-		public function Border()
+		public function Border(value:* = null)
 		{
 			super();
 			styles = [];
@@ -114,9 +114,9 @@ import org.apache.royale.debugging.assert;
 
 class Color extends LeafStyleBase
 {
-	public function Color()
+	public function Color(value:* = null)
 	{
-		super("border", "border-color");
+		super("border", "border-color", value);
 	}
 	override public function set value(value:*):void
 	{
@@ -128,9 +128,9 @@ class Color extends LeafStyleBase
 }
 class Style extends LeafStyleBase
 {
-	public function Style()
+	public function Style(value:* = null)
 	{
-		super("border", "border-style");
+		super("border", "border-style", value);
 	}
 	override public function set value(value:*):void
 	{

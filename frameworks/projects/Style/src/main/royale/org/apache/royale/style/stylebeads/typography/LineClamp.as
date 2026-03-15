@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class LineClamp extends LeafStyleBase
 	{
-		public function LineClamp()
+		public function LineClamp(value:* = null)
 		{
-			super("line-clamp", "");
+			super("line-clamp", "", value);
 		}
 		override public function get styleType():String
 		{

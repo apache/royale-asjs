@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class ScrollBehavior extends LeafStyleBase
 	{
-		public function ScrollBehavior()
+		public function ScrollBehavior(value:* = null)
 		{
-			super("scroll", "scroll-behavior");
+			super("scroll", "scroll-behavior", value);
 		}
 		override public function set value(value:*):void
 		{

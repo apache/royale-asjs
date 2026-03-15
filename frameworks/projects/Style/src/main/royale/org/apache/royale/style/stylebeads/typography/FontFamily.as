@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontFamily extends LeafStyleBase
 	{
-		public function FontFamily()
+		public function FontFamily(value:* = null)
 		{
-			super("font", "font-family");
+			super("font", "font-family", value);
 		}
 		/**
 		 * Accepts a font family name, or one of the following keywords:

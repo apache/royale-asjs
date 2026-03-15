@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class GridTemplateColumns extends LeafStyleBase
 	{
-		public function GridTemplateColumns()
+		public function GridTemplateColumns(value:* = null)
 		{
-			super("grid-cols", "grid-template-columns");
+			super("grid-cols", "grid-template-columns", value);
 		}
 
 		override public function set value(value:*):void

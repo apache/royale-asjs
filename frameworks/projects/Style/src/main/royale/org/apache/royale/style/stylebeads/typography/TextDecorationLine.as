@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextDecorationLine extends LeafStyleBase
 	{
-		public function TextDecorationLine()
+		public function TextDecorationLine(value:* = null)
 		{
-			super("", "text-decoration-line");
+			super("", "text-decoration-line", value);
 		}
 		[Inspectable(category="General", enumeration="underline,overline,line-through,none", defaultValue="none")]
 		override public function set value(value:*):void

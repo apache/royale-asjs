@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class ListStyleType extends LeafStyleBase
 	{
-		public function ListStyleType()
+		public function ListStyleType(value:* = null)
 		{
-			super("list", "list-style-type");
+			super("list", "list-style-type", value);
 		}
 		/**
 		 * Can be any legal values for list-style-type, but most likely "disc", "decimal", or "none"

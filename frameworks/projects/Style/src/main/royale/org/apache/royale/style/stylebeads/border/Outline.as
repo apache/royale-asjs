@@ -27,7 +27,7 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class Outline extends CompositeStyle
 	{
-		public function Outline()
+		public function Outline(value:* = null)
 		{
 			super();
 			styles = [];
@@ -105,9 +105,9 @@ import org.apache.royale.debugging.assert;
 
 class Color extends LeafStyleBase
 {
-	public function Color()
+	public function Color(value:* = null)
 	{
-		super("outline", "outline-color");
+		super("outline", "outline-color", value);
 	}
 	/**
 	 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
@@ -122,9 +122,9 @@ class Color extends LeafStyleBase
 }
 class Offset extends LeafStyleBase
 {
-	public function Offset()
+	public function Offset(value:* = null)
 	{
-		super("outline-offset", "outline-offset");
+		super("outline-offset", "outline-offset", value);
 	}
 	private var savedPrefix:String;
 	override public function set value(value:*):void
@@ -141,9 +141,9 @@ class Offset extends LeafStyleBase
 }
 class Style extends LeafStyleBase
 {
-	public function Style()
+	public function Style(value:* = null)
 	{
-		super("outline", "outline-style");
+		super("outline", "outline-style", value);
 	}
 	override public function set value(value:*):void
 	{
@@ -162,9 +162,9 @@ class Style extends LeafStyleBase
 }
 class Width extends LeafStyleBase
 {
-	public function Width()
+	public function Width(value:* = null)
 	{
-		super("outline", "outline-width");
+		super("outline", "outline-width", value);
 	}
 	override public function set value(value:*):void
 	{

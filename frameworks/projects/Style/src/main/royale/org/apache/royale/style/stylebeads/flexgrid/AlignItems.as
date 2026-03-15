@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class AlignItems extends LeafStyleBase
 	{
-		public function AlignItems()
+		public function AlignItems(value:* = null)
 		{
-			super("items", "align-items");
+			super("items", "align-items", value);
 		}
 
 		private function normalizeSafeKeyword(value:String):Array

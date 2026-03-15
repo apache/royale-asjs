@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class FieldSizing extends LeafStyleBase
 	{
-		public function FieldSizing()
+		public function FieldSizing(value:* = null)
 		{
-			super("field-sizing", "field-sizing");
+			super("field-sizing", "field-sizing", value);
 		}
 		override public function set value(value:*):void
 		{

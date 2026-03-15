@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class Whitespace extends LeafStyleBase
 	{
-		public function Whitespace()
+		public function Whitespace(value:* = null)
 		{
-			super("whitespace", "white-space");
+			super("whitespace", "white-space", value);
 		}
 		[Inspectable(category="General", enumeration="normal,nowrap,pre,pre-line,pre-wrap,break-spaces", defaultValue="normal")]
 		override public function set value(value:*):void

@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class CaretColor extends LeafStyleBase
 	{
-		public function CaretColor()
+		public function CaretColor(value:* = null)
 		{
-			super("caret", "caret-color");
+			super("caret", "caret-color", value);
 		}
 		override public function set value(value:*):void
 		{

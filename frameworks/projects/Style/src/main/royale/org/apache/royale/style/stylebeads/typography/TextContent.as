@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextContent extends LeafStyleBase
 	{
-		public function TextContent()
+		public function TextContent(value:* = null)
 		{
-			super("content", "content");
+			super("content", "content", value);
 		}
 		override public function set value(value:*):void
 		{

@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.utils
 	 */
 	public class ScreenReader extends LeafStyleBase
 	{
-		public function ScreenReader()
+		public function ScreenReader(value:* = null)
 		{
-			super("","");
+			super("", "", value);
 			exclude = false;
 		}
 

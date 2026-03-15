@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundRepeat extends LeafStyleBase
 	{
-		public function BackgroundRepeat()
+		public function BackgroundRepeat(value:* = null)
 		{
-			super("bg", "background-repeat");
+			super("bg", "background-repeat", value);
 		}
 		override public function set value(value:*):void
 		{

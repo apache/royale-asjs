@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class TransformStyle extends LeafStyleBase
 	{
-		public function TransformStyle()
+		public function TransformStyle(value:* = null)
 		{
-			super("transform", "transform-style");
+			super("transform", "transform-style", value);
 		}
 		override public function set value(value:*):void
 		{

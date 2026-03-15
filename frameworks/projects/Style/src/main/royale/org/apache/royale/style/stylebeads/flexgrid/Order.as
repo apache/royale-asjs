@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class Order extends LeafStyleBase
 	{
-		public function Order()
+		public function Order(value:* = null)
 		{
-			super("order", "order");
+			super("order", "order", value);
 		}
 		private var savedPrefix:String;
 		override public function set value(value:*):void

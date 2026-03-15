@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Overflow extends LeafStyleBase
 	{
-		public function Overflow()
+		public function Overflow(value:* = null)
 		{
-			super("overflow", "overflow");
+			super("overflow", "overflow", value);
 		}
 
 		override public function set value(value:*):void

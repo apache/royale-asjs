@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.anim
 
 	public class TransitionDelay extends LeafStyleBase
 	{
-		public function TransitionDelay()
+		public function TransitionDelay(value:* = null)
 		{
-			super("delay", "transition-delay");
+			super("delay", "transition-delay", value);
 		}
 
 

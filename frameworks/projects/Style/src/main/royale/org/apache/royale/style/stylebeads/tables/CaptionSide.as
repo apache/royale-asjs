@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.tables
 
 	public class CaptionSide extends LeafStyleBase
 	{
-		public function CaptionSide()
+		public function CaptionSide(value:* = null)
 		{
-			super("caption", "caption-side");
+			super("caption", "caption-side", value);
 		}
 
 		override public function set value(value:*):void

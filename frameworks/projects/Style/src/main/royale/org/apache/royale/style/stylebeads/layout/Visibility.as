@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Visibility extends LeafStyleBase
 	{
-		public function Visibility()
+		public function Visibility(value:* = null)
 		{
-			super("", "visibility");
+			super("", "visibility", value);
 		}
 
 		override public function set value(value:*):void

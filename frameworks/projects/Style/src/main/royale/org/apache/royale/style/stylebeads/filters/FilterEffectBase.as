@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.filters
 
 	abstract public class FilterEffectBase extends LeafStyleBase
 	{
-		public function FilterEffectBase(selectorBase:String, ruleBase:String)
+		public function FilterEffectBase(selectorBase:String, ruleBase:String, value:* = null)
 		{
-			super(selectorBase, ruleBase);
+			super(selectorBase, ruleBase, value);
 		}
 
     private var _blur:String;

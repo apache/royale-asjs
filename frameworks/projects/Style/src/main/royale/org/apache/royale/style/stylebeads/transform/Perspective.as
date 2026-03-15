@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class Perspective extends LeafStyleBase
 	{
-		public function Perspective()
+		public function Perspective(value:* = null)
 		{
-			super("perspective", "perspective");
+			super("perspective", "perspective", value);
 		}
 		
 		override public function set value(value:*):void

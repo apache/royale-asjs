@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundOrigin extends LeafStyleBase
 	{
-		public function BackgroundOrigin()
+		public function BackgroundOrigin(value:* = null)
 		{
-			super("bg-origin", "background-origin");
+			super("bg-origin", "background-origin", value);
 		}
 		override public function set value(value:*):void
 		{

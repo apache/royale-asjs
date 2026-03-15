@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class Translate extends LeafStyleBase
 	{
-		public function Translate()
+		public function Translate(value:* = null)
 		{
-			super("translate", "translate");
+			super("translate", "translate", value);
 		}
 		//TODO: Not implemented. Add support for x, y and z.
 		override public function set value(value:*):void

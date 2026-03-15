@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundSize extends LeafStyleBase
 	{
-		public function BackgroundSize()
+		public function BackgroundSize(value:* = null)
 		{
-			super("bg", "background-size");
+			super("bg", "background-size", value);
 		}
 		override public function set value(value:*):void
 		{

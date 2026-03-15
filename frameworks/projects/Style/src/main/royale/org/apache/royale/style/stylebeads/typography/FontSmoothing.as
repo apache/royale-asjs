@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontSmoothing extends LeafStyleBase
 	{
-		public function FontSmoothing()
+		public function FontSmoothing(value:* = null)
 		{
-			super("", "");
+			super("", "", value);
 		}
 
 		override public function get styleType():String

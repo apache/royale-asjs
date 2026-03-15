@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class PlaceContent extends LeafStyleBase
 	{
-		public function PlaceContent()
+		public function PlaceContent(value:* = null)
 		{
-			super("place-content", "place-content");
+			super("place-content", "place-content", value);
 		}
 		private function normalizeSafeKeyword(value:String):Array
 		{

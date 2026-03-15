@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskType extends LeafStyleBase
 	{
-		public function MaskType()
+		public function MaskType(value:* = null)
 		{
-			super("mask-type","mask-type");
+			super("mask-type", "mask-type", value);
 		}
 		[Inspectable(category="General", enumeration="alpha,luminance", defaultValue="alpha")]
 		override public function set value(value:*):void

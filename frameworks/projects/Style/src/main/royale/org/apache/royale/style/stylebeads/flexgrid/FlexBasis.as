@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class FlexBasis extends LeafStyleBase
 	{
-		public function FlexBasis()
+		public function FlexBasis(value:* = null)
 		{
-			super("basis", "flex-basis");
+			super("basis", "flex-basis", value);
 		}
 
 		override public function set value(value:*):void

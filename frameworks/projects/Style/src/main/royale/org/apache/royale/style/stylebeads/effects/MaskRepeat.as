@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskRepeat extends LeafStyleBase
 	{
-		public function MaskRepeat()
+		public function MaskRepeat(value:* = null)
 		{
-			super("mask","mask-repeat");
+			super("mask", "mask-repeat", value);
 		}
 		[Inspectable(category="General", enumeration="repeat,no-repeat,repeat-x,repeat-y,space,round", defaultValue="repeat")]
 		override public function set value(value:*):void

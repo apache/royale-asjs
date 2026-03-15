@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class ObjectFit extends LeafStyleBase
 	{
-		public function ObjectFit()
+		public function ObjectFit(value:* = null)
 		{
-			super("object", "object-fit");
+			super("object", "object-fit", value);
 		}
 		override public function set value(value:*):void
 		{

@@ -28,7 +28,7 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class BorderRadius extends CompositeStyle
 	{
-		public function BorderRadius()
+		public function BorderRadius(value:* = null)
 		{
 			super();
 			styles = [];
@@ -188,9 +188,9 @@ import org.apache.royale.style.stylebeads.LeafStyleBase;
 
 class Radius extends LeafStyleBase
 {
-	public function Radius(selectorBase:String = "rounded", ruleBase:String = "border-radius")
+	public function Radius(selectorBase:String = "rounded", ruleBase:String = "border-radius", value:* = null)
 	{
-		super(selectorBase, ruleBase);
+		super(selectorBase, ruleBase, value);
 	}
 	override public function set value(value:*):void
 	{
@@ -241,57 +241,57 @@ class Radius extends LeafStyleBase
 }
 class TopRight extends Radius
 {
-	public function TopRight()
+	public function TopRight(value:* = null)
 	{
-		super("rounded-tr", "border-top-right-radius");
+		super("rounded-tr", "border-top-right-radius", value);
 	}
 }
 class TopLeft extends Radius
 {
-	public function TopLeft()
+	public function TopLeft(value:* = null)
 	{
-		super("rounded-tl", "border-top-left-radius");
+		super("rounded-tl", "border-top-left-radius", value);
 	}
 }
 class StartStart extends Radius
 {
-	public function StartStart()
+	public function StartStart(value:* = null)
 	{
-		super("rounded-ss", "border-start-start-radius");
+		super("rounded-ss", "border-start-start-radius", value);
 	}
 }
 class StartEnd extends Radius
 {
-	public function StartEnd()
+	public function StartEnd(value:* = null)
 	{
-		super("rounded-se", "border-start-end-radius");
+		super("rounded-se", "border-start-end-radius", value);
 	}
 }
 class EndStart extends Radius
 {
-	public function EndStart()
+	public function EndStart(value:* = null)
 	{
-		super("rounded-es", "border-end-start-radius");
+		super("rounded-es", "border-end-start-radius", value);
 	}
 }
 class EndEnd extends Radius
 {
-	public function EndEnd()
+	public function EndEnd(value:* = null)
 	{
-		super("rounded-ee", "border-end-end-radius");
+		super("rounded-ee", "border-end-end-radius", value);
 	}
 }
 class BottomRight extends Radius
 {
-	public function BottomRight()
+	public function BottomRight(value:* = null)
 	{
-		super("rounded-br", "border-bottom-right-radius");
+		super("rounded-br", "border-bottom-right-radius", value);
 	}
 }
 class BottomLeft extends Radius
 {
-	public function BottomLeft()
+	public function BottomLeft(value:* = null)
 	{
-		super("rounded-bl", "border-bottom-left-radius");
+		super("rounded-bl", "border-bottom-left-radius", value);
 	}
 }

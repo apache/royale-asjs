@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextDecorationThickness extends LeafStyleBase
 	{
-		public function TextDecorationThickness()
+		public function TextDecorationThickness(value:* = null)
 		{
-			super("decoration", "text-decoration-thickness");
+			super("decoration", "text-decoration-thickness", value);
 		}
 		override public function set value(value:*):void
 		{

@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class ListStyleImage extends LeafStyleBase
 	{
-		public function ListStyleImage()
+		public function ListStyleImage(value:* = null)
 		{
-			super("list-image", "list-style-image");
+			super("list-image", "list-style-image", value);
 		}
 
 		override public function set value(value:*):void

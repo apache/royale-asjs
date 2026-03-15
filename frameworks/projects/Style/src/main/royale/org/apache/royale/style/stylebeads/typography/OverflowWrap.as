@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class OverflowWrap extends LeafStyleBase
 	{
-		public function OverflowWrap()
+		public function OverflowWrap(value:* = null)
 		{
-			super("wrap", "overflow-wrap");
+			super("wrap", "overflow-wrap", value);
 		}
 
 		[Inspectable(category="General", enumeration="normal,break-word,anywhere", defaultValue="normal")]

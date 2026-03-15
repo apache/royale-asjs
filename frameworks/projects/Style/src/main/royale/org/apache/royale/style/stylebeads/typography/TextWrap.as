@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextWrap extends LeafStyleBase
 	{
-		public function TextWrap()
+		public function TextWrap(value:* = null)
 		{
-			super("text-wrap", "text-wrap");
+			super("text-wrap", "text-wrap", value);
 		}
 		[Inspectable(category="General", enumeration="wrap,nowrap,balance,pretty", defaultValue="")]
 		override public function set value(value:*):void

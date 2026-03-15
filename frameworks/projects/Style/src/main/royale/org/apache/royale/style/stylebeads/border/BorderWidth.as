@@ -28,7 +28,7 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class BorderWidth extends CompositeStyle
 	{
-		public function BorderWidth()
+		public function BorderWidth(value:* = null)
 		{
 			super();
 			styles = [];
@@ -227,9 +227,9 @@ import org.apache.royale.style.stylebeads.LeafStyleBase;
 
 class Width extends LeafStyleBase
 {
-	public function Width(selectorBase:String = "border", ruleBase:String = "border-width")
+	public function Width(selectorBase:String = "border", ruleBase:String = "border-width", value:* = null)
 	{
-		super(selectorBase, ruleBase);
+		super(selectorBase, ruleBase, value);
 	}
 	override public function set value(value:*):void
 	{
@@ -254,71 +254,71 @@ class Width extends LeafStyleBase
 }
 class Top extends Width
 {
-	public function Top()
+	public function Top(value:* = null)
 	{
-		super("border-t", "border-top-width");
+		super("border-t", "border-top-width", value);
 	}
 }
 class Left extends Width
 {
-	public function Left()
+	public function Left(value:* = null)
 	{
-		super("border-l", "border-left-width");
+		super("border-l", "border-left-width", value);
 	}
 }
 class Right extends Width
 {
-	public function Right()
+	public function Right(value:* = null)
 	{
-		super("border-r", "border-right-width");
+		super("border-r", "border-right-width", value);
 	}
 }
 class Bottom extends Width
 {
-	public function Bottom()
+	public function Bottom(value:* = null)
 	{
-		super("border-b", "border-bottom-width");
+		super("border-b", "border-bottom-width", value);
 	}
 }
 class Block extends Width
 {
-	public function Block()
+	public function Block(value:* = null)
 	{
-		super("border-y", "border-block-width");
+		super("border-y", "border-block-width", value);
 	}
 }
 class BlockEnd extends Width
 {
-	public function BlockEnd()
+	public function BlockEnd(value:* = null)
 	{
-		super("border-be", "border-block-end-width");
+		super("border-be", "border-block-end-width", value);
 	}
 }
 class BlockStart extends Width
 {
-	public function BlockStart()
+	public function BlockStart(value:* = null)
 	{
-		super("border-bs", "border-block-start-width");
+		super("border-bs", "border-block-start-width", value);
 	}
 }
 class Inline extends Width
 {
-	public function Inline()
+	public function Inline(value:* = null)
 	{
-		super("border-x", "border-inline-width");
+		super("border-x", "border-inline-width", value);
 	}
 }
 class InlineEnd extends Width
 {
-	public function InlineEnd()
+	public function InlineEnd(value:* = null)
 	{
-		super("border-e", "border-inline-end-width");
+		super("border-e", "border-inline-end-width", value);
 	}
 }
 class InlineStart extends Width
 {
-	public function InlineStart()
+	public function InlineStart(value:* = null)
 	{
-		super("border-s", "border-inline-start-width");
+		super("border-s", "border-inline-start-width", value);
 	}
 }

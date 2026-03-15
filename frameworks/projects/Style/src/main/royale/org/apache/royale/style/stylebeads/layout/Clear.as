@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Clear extends LeafStyleBase
 	{
-		public function Clear()
+		public function Clear(value:* = null)
 		{
-			super("clear", "clear");
+			super("clear", "clear", value);
 		}
 
 		override public function set value(value:*):void

@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class WordBreak extends LeafStyleBase
 	{
-		public function WordBreak()
+		public function WordBreak(value:* = null)
 		{
-			super("break", "word-break");
+			super("break", "word-break", value);
 		}
 
 		[Inspectable(category="General", enumeration="normal,break-all,keep-all", defaultValue="normal")]

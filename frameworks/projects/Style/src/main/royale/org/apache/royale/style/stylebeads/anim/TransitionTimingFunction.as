@@ -26,9 +26,9 @@ package org.apache.royale.style.stylebeads.anim
 
 	public class TransitionTimingFunction extends LeafStyleBase
 	{
-		public function TransitionTimingFunction()
+		public function TransitionTimingFunction(value:* = null)
 		{
-			super("ease", "transition-timing-function");
+			super("ease", "transition-timing-function", value);
 		}
 		override public function set value(value:*):void
 		{

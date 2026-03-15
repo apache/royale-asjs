@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextIndent extends LeafStyleBase
 	{
-		public function TextIndent()
+		public function TextIndent(value:* = null)
 		{
-			super("indent", "text-indent");
+			super("indent", "text-indent", value);
 			unit = "rem";
 		}
 

@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class Rotate extends LeafStyleBase
 	{
-		public function Rotate()
+		public function Rotate(value:* = null)
 		{
-			super("rotate", "rotate");
+			super("rotate", "rotate", value);
 		}
 
 		public function set rotate(value:*):void

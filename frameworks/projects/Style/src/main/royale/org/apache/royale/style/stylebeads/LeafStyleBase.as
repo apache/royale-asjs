@@ -29,11 +29,13 @@ package org.apache.royale.style.stylebeads
 	 */
 	abstract public class LeafStyleBase extends StyleBeadBase implements ILeafStyleBead
 	{
-		public function LeafStyleBase(selectorBase:String, ruleBase:String)
+		public function LeafStyleBase(selectorBase:String, ruleBase:String, value:* = null)
 		{
 			super();
 			_selectorBase = selectorBase;
 			_ruleBase = ruleBase;
+			if(value)
+				this.value = value;
 		}
 		override public function get isLeaf():Boolean
 		{
@@ -232,8 +234,8 @@ package org.apache.royale.style.stylebeads
 			return ("" + value).indexOf("-") == 0;
 		}
 
-		private var _unit:String = "px";
-
+		private var _unit:String = "rem";
+		[Inspectable(category="General", enumeration="px,em,rem", defaultValue="rem")]
 		public function get unit():String
 		{
 			return _unit;

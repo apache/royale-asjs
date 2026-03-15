@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class GridAutoFlow extends LeafStyleBase
 	{
-		public function GridAutoFlow()
+		public function GridAutoFlow(value:* = null)
 		{
-			super("grid-flow", "grid-auto-flow");
+			super("grid-flow", "grid-auto-flow", value);
 		}
 		private function toSelector(value:String):String
 		{

@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.sizing
 
 	abstract public class MeasurementStyleBase extends LeafStyleBase
 	{
-		public function MeasurementStyleBase(selectorBase:String, ruleBase:String)
+		public function MeasurementStyleBase(selectorBase:String, ruleBase:String, value:* = null)
 		{
-			super(selectorBase, ruleBase);
+			super(selectorBase, ruleBase, value);
 		}
 		override public function set value(value:*):void
 		{

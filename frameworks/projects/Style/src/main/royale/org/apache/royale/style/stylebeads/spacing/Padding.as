@@ -25,7 +25,7 @@ package org.apache.royale.style.stylebeads.spacing
 	 */
 	public class Padding extends CompositeStyle
 	{
-		public function Padding()
+		public function Padding(value:* = null)
 		{
 			super();
 			styles = [];
@@ -249,9 +249,9 @@ import org.apache.royale.style.util.CSSUnit;
 
 class Pad extends LeafStyleBase
 {
-	public function Pad(selectorBase:String = "p", ruleBase:String = "padding")
+	public function Pad(selectorBase:String = "p", ruleBase:String = "padding", value:* = null)
 	{
-		super(selectorBase, ruleBase);
+		super(selectorBase, ruleBase, value);
 	}
 	private function toSelector(value:String):String
 	{
@@ -274,71 +274,71 @@ class Pad extends LeafStyleBase
 }
 class Block extends Pad
 {
-	public function Block()
+	public function Block(value:* = null)
 	{
-		super("py", "padding-block");
+		super("py", "padding-block", value);
 	}
 }
 class BlockEnd extends Pad
 {
-	public function BlockEnd()
+	public function BlockEnd(value:* = null)
 	{
-		super("pbe", "padding-block-end");
+		super("pbe", "padding-block-end", value);
 	}
 }
 class BlockStart extends Pad
 {
-	public function BlockStart()
+	public function BlockStart(value:* = null)
 	{
-		super("pbs", "padding-block-start");
+		super("pbs", "padding-block-start", value);
 	}
 }
 class Bottom extends Pad
 {
-	public function Bottom()
+	public function Bottom(value:* = null)
 	{
-		super("pb", "padding-bottom");
+		super("pb", "padding-bottom", value);
 	}
 }
 class Inline extends Pad
 {
-	public function Inline()
+	public function Inline(value:* = null)
 	{
-		super("px", "padding-inline");
+		super("px", "padding-inline", value);
 	}
 }
 class InlineEnd extends Pad
 {
-	public function InlineEnd()
+	public function InlineEnd(value:* = null)
 	{
-		super("pe", "padding-inline-end");
+		super("pe", "padding-inline-end", value);
 	}
 }
 class InlineStart extends Pad
 {
-	public function InlineStart()
+	public function InlineStart(value:* = null)
 	{
-		super("ps", "padding-inline-start");
+		super("ps", "padding-inline-start", value);
 	}
 }
 class Left extends Pad
 {
-	public function Left()
+	public function Left(value:* = null)
 	{
-		super("pl", "padding-left");
+		super("pl", "padding-left", value);
 	}
 }
 class Right extends Pad
 {
-	public function Right()
+	public function Right(value:* = null)
 	{
-		super("pr", "padding-right");
+		super("pr", "padding-right", value);
 	}
 }
 class Top extends Pad
 {
-	public function Top()
+	public function Top(value:* = null)
 	{
-		super("pt", "padding-top");
+		super("pt", "padding-top", value);
 	}
 }

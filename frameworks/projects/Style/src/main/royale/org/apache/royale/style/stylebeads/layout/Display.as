@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Display extends LeafStyleBase
 	{
-		public function Display()
+		public function Display(value:* = null)
 		{
-			super("", "display");
+			super("", "display", value);
 		}
 		[Inspectable(category="General", enumeration="inline,block,inline-block,flow-root,flex,inline-flex,grid,inline-grid,contents,table,inline-table,table-caption,table-cell,table-column,table-column-group,table-footer-group,table-header-group,table-row-group,table-row,list-item,none", defaultValue="inline")]
 		override public function set value(value:*):void

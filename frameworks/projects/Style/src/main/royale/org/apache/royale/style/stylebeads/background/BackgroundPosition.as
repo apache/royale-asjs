@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundPosition extends LeafStyleBase
 	{
-		public function BackgroundPosition()
+		public function BackgroundPosition(value:* = null)
 		{
-			super("bg", "background-position");
+			super("bg", "background-position", value);
 		}
 		override public function set value(value:*):void
 		{

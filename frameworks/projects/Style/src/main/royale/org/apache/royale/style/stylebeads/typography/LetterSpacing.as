@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class LetterSpacing extends LeafStyleBase
 	{
-		public function LetterSpacing()
+		public function LetterSpacing(value:* = null)
 		{
-			super("tracking", "letter-spacing");
+			super("tracking", "letter-spacing", value);
 		}
 		[Inspectable(category="General", enumeration="tighter,tight,normal,wide,wider,widest", defaultValue="normal")]
 		override public function set value(value:*):void

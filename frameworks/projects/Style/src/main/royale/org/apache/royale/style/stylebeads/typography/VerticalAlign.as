@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class VerticalAlign extends LeafStyleBase
 	{
-		public function VerticalAlign()
+		public function VerticalAlign(value:* = null)
 		{
-			super("align", "vertical-align");
+			super("align", "vertical-align", value);
 		}
 		[Inspectable(category="General", enumeration="baseline,top,middle,bottom,text-top,text-bottom,sub,super", defaultValue="")]
 		override public function set value(value:*):void

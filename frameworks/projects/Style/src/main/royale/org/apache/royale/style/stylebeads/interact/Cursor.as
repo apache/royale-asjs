@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class Cursor extends LeafStyleBase
 	{
-		public function Cursor()
+		public function Cursor(value:* = null)
 		{
-			super("cursor", "cursor");
+			super("cursor", "cursor", value);
 		}
 		override public function set value(value:*):void
 		{

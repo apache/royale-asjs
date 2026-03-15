@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextAlign extends LeafStyleBase
 	{
-		public function TextAlign()
+		public function TextAlign(value:* = null)
 		{
-			super("text", "text-align");
+			super("text", "text-align", value);
 		}
 
 		[Inspectable(category="General", enumeration="left,right,center,justify,start,end", defaultValue="left")]

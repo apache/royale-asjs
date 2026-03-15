@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class Resize extends LeafStyleBase
 	{
-		public function Resize()
+		public function Resize(value:* = null)
 		{
-			super("resize", "resize");
+			super("resize", "resize", value);
 		}
 		override public function set value(value:*):void
 		{

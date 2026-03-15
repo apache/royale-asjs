@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class GridAutoRows extends LeafStyleBase
 	{
-		public function GridAutoRows()
+		public function GridAutoRows(value:* = null)
 		{
-			super("auto-rows", "grid-auto-rows");
+			super("auto-rows", "grid-auto-rows", value);
 		}
 
 		override public function set value(value:*):void

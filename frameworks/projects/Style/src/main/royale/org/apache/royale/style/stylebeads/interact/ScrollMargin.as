@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class ScrollMargin extends LeafStyleBase
 	{
-		public function ScrollMargin()
+		public function ScrollMargin(value:* = null)
 		{
-			super("scroll", "scroll-margin");
+			super("scroll", "scroll-margin", value);
 		}
 		//TODO:
 		override public function set value(value:*):void

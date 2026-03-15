@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Isolation extends LeafStyleBase
 	{
-		public function Isolation()
+		public function Isolation(value:* = null)
 		{
-			super("isolation", "isolation");
+			super("isolation", "isolation", value);
 		}
 
 		override public function set value(value:*):void

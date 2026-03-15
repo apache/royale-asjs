@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundImage extends LeafStyleBase
 	{
-		public function BackgroundImage()
+		public function BackgroundImage(value:* = null)
 		{
-			super("bg", "background-image");
+			super("bg", "background-image", value);
 		}
 		/**
 		 * TODO add support for gradients and other non-url values

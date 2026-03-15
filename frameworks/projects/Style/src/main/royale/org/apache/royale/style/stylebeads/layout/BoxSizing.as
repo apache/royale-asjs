@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class BoxSizing extends LeafStyleBase
 	{
-		public function BoxSizing()
+		public function BoxSizing(value:* = null)
 		{
-			super("box", "box-sizing");
+			super("box", "box-sizing", value);
 		}
 
 		override public function set value(value:*):void

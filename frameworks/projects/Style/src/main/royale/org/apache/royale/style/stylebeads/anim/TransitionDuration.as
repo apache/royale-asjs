@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.anim
 
 	public class TransitionDuration extends LeafStyleBase
 	{
-		public function TransitionDuration()
+		public function TransitionDuration(value:* = null)
 		{
-			super("duration", "transition-duration");
+			super("duration", "transition-duration", value);
 		}
 
 		override public function set value(value:*):void

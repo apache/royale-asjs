@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.tables
 
 	public class TableLayout extends LeafStyleBase
 	{
-		public function TableLayout()
+		public function TableLayout(value:* = null)
 		{
-			super("table", "table-layout");
+			super("table", "table-layout", value);
 		}
 
 		override public function set value(value:*):void

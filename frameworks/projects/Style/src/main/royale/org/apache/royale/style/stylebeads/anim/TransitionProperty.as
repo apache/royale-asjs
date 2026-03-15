@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.anim
 
 	public class TransitionProperty extends LeafStyleBase
 	{
-		public function TransitionProperty()
+		public function TransitionProperty(value:* = null)
 		{
-			super("transition", "transition-property");
+			super("transition", "transition-property", value);
 		}
 
 // transition	

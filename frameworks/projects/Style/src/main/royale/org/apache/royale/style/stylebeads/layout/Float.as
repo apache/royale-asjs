@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Float extends LeafStyleBase
 	{
-		public function Float()
+		public function Float(value:* = null)
 		{
-			super("float", "float");
+			super("float", "float", value);
 		}
 		override public function set value(value:*):void
 		{

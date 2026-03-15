@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.access
 
 	public class ForcedColorAdjust extends LeafStyleBase
 	{
-		public function ForcedColorAdjust()
+		public function ForcedColorAdjust(value:* = null)
 		{
-			super("forced-color-adjust", "forced-color-adjust");
+			super("forced-color-adjust", "forced-color-adjust", value);
 		}
 		override public function set value(value:*):void
 		{

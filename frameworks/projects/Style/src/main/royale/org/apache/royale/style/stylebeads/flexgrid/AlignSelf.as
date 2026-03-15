@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class AlignSelf extends LeafStyleBase
 	{
-		public function AlignSelf()
+		public function AlignSelf(value:* = null)
 		{
-			super("self", "align-self");
+			super("self", "align-self", value);
 		}
 
 		private function normalizeSafeKeyword(value:String):Array

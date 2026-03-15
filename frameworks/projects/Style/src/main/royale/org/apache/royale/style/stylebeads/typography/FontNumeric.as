@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontNumeric extends LeafStyleBase
 	{
-		public function FontNumeric()
+		public function FontNumeric(value:* = null)
 		{
-			super("", "font-variant-numeric");
+			super("", "font-variant-numeric", value);
 		}
 		override public function get styleType():String
 		{

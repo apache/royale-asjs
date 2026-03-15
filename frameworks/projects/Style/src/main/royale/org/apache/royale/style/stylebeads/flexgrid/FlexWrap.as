@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class FlexWrap extends LeafStyleBase
 	{
-		public function FlexWrap()
+		public function FlexWrap(value:* = null)
 		{
-			super("wrap", "flex-wrap");
+			super("wrap", "flex-wrap", value);
 		}
 
 		override public function set value(value:*):void

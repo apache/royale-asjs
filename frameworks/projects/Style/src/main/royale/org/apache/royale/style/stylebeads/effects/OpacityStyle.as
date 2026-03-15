@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class OpacityStyle extends LeafStyleBase
 	{
-		public function OpacityStyle()
+		public function OpacityStyle(value:* = null)
 		{
-			super("opacity", "opacity");
+			super("opacity", "opacity", value);
 		}
 		/**
 		 * Acepts a number between 0 and 100 representing percentage, or a CSS variable that resolves to such a number.

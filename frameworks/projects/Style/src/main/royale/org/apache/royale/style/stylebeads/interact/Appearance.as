@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class Appearance extends LeafStyleBase
 	{
-		public function Appearance()
+		public function Appearance(value:* = null)
 		{
-			super("appearance", "appearance");
+			super("appearance", "appearance", value);
 		}
 		override public function set value(value:*):void
 		{

@@ -26,9 +26,9 @@ package org.apache.royale.style.stylebeads.tables
 
 	public class BorderSpacing extends LeafStyleBase
 	{
-		public function BorderSpacing()
+		public function BorderSpacing(value:* = null)
 		{
-			super("border-spacing", "border-spacing");
+			super("border-spacing", "border-spacing", value);
 		}
 		private var _x:*;
 		public function set x(value:*):void

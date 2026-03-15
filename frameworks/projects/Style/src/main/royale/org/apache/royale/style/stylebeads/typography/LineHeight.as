@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class LineHeight extends LeafStyleBase
 	{
-		public function LineHeight()
+		public function LineHeight(value:* = null)
 		{
-			super("leading", "line-height");
+			super("leading", "line-height", value);
 			unit = "rem";
 		}
 		/**

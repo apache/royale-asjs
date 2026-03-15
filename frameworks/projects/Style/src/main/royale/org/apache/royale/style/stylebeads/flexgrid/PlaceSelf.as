@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class PlaceSelf extends LeafStyleBase
 	{
-		public function PlaceSelf()
+		public function PlaceSelf(value:* = null)
 		{
-			super("place-self", "place-self");
+			super("place-self", "place-self", value);
 		}
 		private function normalizeSafeKeyword(value:String):Array
 		{

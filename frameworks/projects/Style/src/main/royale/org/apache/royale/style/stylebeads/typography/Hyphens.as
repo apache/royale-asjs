@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class Hyphens extends LeafStyleBase
 	{
-		public function Hyphens()
+		public function Hyphens(value:* = null)
 		{
-			super("hyphens", "hyphens");
+			super("hyphens", "hyphens", value);
 		}
 		[Inspectable(category="General", enumeration="none,manual,auto", defaultValue="none")]
 		override public function set value(value:*):void

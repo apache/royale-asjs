@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundAttachment extends LeafStyleBase
 	{
-		public function BackgroundAttachment()
+		public function BackgroundAttachment(value:* = null)
 		{
-			super("bg", "background-attachment");
+			super("bg", "background-attachment", value);
 		}
 		override public function set value(value:*):void
 		{

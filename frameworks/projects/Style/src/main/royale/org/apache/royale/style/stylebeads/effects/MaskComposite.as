@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskComposite extends LeafStyleBase
 	{
-		public function MaskComposite()
+		public function MaskComposite(value:* = null)
 		{
-			super("mask","mask-composite");
+			super("mask", "mask-composite", value);
 		}
 		[Inspectable(category="General", enumeration="add,subtract,intersect,exclude", defaultValue="add")]
 		override public function set value(value:*):void

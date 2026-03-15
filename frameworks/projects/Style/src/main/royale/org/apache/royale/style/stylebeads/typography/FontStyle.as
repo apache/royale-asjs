@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontStyle extends LeafStyleBase
 	{
-		public function FontStyle()
+		public function FontStyle(value:* = null)
 		{
-			super("", "font-style");
+			super("", "font-style", value);
 		}
 		[Inspectable(category="General", enumeration="normal,italic", defaultValue="normal")]
 		override public function set value(value:*):void

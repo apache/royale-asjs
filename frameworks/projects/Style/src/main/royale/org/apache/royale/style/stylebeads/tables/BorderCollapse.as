@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.tables
 
 	public class BorderCollapse extends LeafStyleBase
 	{
-		public function BorderCollapse()
+		public function BorderCollapse(value:* = null)
 		{
-			super("border", "border-collapse");
+			super("border", "border-collapse", value);
 		}
 
 		override public function set value(value:*):void

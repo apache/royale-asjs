@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class BackgroundBlendMode extends LeafStyleBase
 	{
-		public function BackgroundBlendMode()
+		public function BackgroundBlendMode(value:* = null)
 		{
-			super("bg-blend","background-blend-mode");
+			super("bg-blend", "background-blend-mode", value);
 		}
 		[Inspectable(category="General", enumeration="normal,multiply,screen,overlay,darken,lighten,color-dodge,color-burn,hard-light,soft-light,difference,exclusion,hue,saturation,color,luminosity", defaultValue="normal")]
 		override public function set value(value:*):void

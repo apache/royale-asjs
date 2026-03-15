@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontFeatures extends LeafStyleBase
 	{
-		public function FontFeatures()
+		public function FontFeatures(value:* = null)
 		{
-			super("font-features", "font-feature-settings");
+			super("font-features", "font-feature-settings", value);
 		}
 		/**
 		 * Accepts any valid value for font-feature-settings. Details on supported values can be found here:

@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class WillChange extends LeafStyleBase
 	{
-		public function WillChange()
+		public function WillChange(value:* = null)
 		{
-			super("will-change", "will-change");
+			super("will-change", "will-change", value);
 		}
 		[Inspectable(category="General", enumeration="auto,scroll-position,contents,transform", defaultValue="auto")]
 		override public function set value(value:*):void

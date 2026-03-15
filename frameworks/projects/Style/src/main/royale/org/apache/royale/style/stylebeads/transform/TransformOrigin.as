@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class TransformOrigin extends LeafStyleBase
 	{
-		public function TransformOrigin()
+		public function TransformOrigin(value:* = null)
 		{
-			super("origin", "transform-origin");
+			super("origin", "transform-origin", value);
 		}
 		override public function set value(value:*):void
 		{

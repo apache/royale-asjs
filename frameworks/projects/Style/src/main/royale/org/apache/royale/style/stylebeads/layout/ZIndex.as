@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class ZIndex extends LeafStyleBase
 	{
-		public function ZIndex()
+		public function ZIndex(value:* = null)
 		{
-			super("z", "z-index");
+			super("z", "z-index", value);
 		}
 		override public function set value(value:*):void
 		{

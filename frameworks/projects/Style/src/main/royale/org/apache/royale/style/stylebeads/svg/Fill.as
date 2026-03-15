@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.svg
 
 	public class Fill extends LeafStyleBase
 	{
-		public function Fill()
+		public function Fill(value:* = null)
 		{
-			super("fill", "fill");
+			super("fill", "fill", value);
 		}
 		override public function set value(value:*):void
 		{

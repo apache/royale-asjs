@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextDecorationStyle extends LeafStyleBase
 	{
-		public function TextDecorationStyle()
+		public function TextDecorationStyle(value:* = null)
 		{
-			super("decoration", "text-decoration-style");
+			super("decoration", "text-decoration-style", value);
 		}
 		[Inspectable(category="General", enumeration="solid,double,dotted,dashed,wavy", defaultValue="solid")]
 		override public function set value(value:*):void

@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontStretch extends LeafStyleBase
 	{
-		public function FontStretch()
+		public function FontStretch(value:* = null)
 		{
-			super("font-stretch", "font-stretch");
+			super("font-stretch", "font-stretch", value);
 		}
 		/**
 		 * Accept keywords or values for font-stretch.

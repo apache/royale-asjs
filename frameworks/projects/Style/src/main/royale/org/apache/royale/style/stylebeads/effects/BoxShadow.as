@@ -30,9 +30,9 @@ package org.apache.royale.style.stylebeads.effects
 	 */
 	public class BoxShadow extends LeafStyleBase
 	{
-		public function BoxShadow()
+		public function BoxShadow(value:* = null)
 		{
-			super("shadow","box-shadow");
+			super("shadow", "box-shadow", value);
 		}
 		/**
 		 * TODO: Figure this out

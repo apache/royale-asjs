@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Columns extends LeafStyleBase
 	{
-		public function Columns()
+		public function Columns(value:* = null)
 		{
-			super("columns", "columns");
+			super("columns", "columns", value);
 		}
 		private const presets:Array = ["3xs","2xs","xs","sm","md","lg","xl","2xl","3xl","4xl","5xl","6xl","7xl"];
 		override public function set value(value:*):void

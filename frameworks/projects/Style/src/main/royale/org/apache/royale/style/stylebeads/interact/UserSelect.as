@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class UserSelect extends LeafStyleBase
 	{
-		public function UserSelect()
+		public function UserSelect(value:* = null)
 		{
-			super("select", "user-select");
+			super("select", "user-select", value);
 		}
 		override public function set value(value:*):void
 		{

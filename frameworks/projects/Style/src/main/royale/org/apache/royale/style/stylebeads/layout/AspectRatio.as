@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class AspectRatio extends LeafStyleBase
 	{
-		public function AspectRatio()
+		public function AspectRatio(value:* = null)
 		{
-			super("aspect", "aspect-ratio");
+			super("aspect", "aspect-ratio", value);
 		}
 
 		override public function set value(value:*):void

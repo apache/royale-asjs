@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Overscroll extends LeafStyleBase
 	{
-		public function Overscroll()
+		public function Overscroll(value:* = null)
 		{
-			super("overscroll", "overscroll-behavior");
+			super("overscroll", "overscroll-behavior", value);
 		}
 		override public function set value(value:*):void
 		{

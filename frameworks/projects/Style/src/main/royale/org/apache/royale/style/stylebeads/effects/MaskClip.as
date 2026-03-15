@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskClip extends LeafStyleBase
 	{
-		public function MaskClip()
+		public function MaskClip(value:* = null)
 		{
-			super("mask-clip","mask-clip");
+			super("mask-clip", "mask-clip", value);
 		}
 		[Inspectable(category="General", enumeration="border,padding,content,fill,stroke,view,no-clip", defaultValue="border")]
 		override public function set value(value:*):void

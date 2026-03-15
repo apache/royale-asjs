@@ -26,9 +26,9 @@ package org.apache.royale.style.stylebeads.typography
 		/**
 		 * To set text to truncate and show an ellipsis ("..."), use the `Truncate` bead instead.
 		 */
-		public function TextOverflow()
+		public function TextOverflow(value:* = null)
 		{
-			super("text", "text-overflow");
+			super("text", "text-overflow", value);
 		}
 		[Inspectable(category="General", enumeration="clip,ellipsis", defaultValue="clip")]
 		override public function set value(value:*):void

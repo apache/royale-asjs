@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MixBlendMode extends LeafStyleBase
 	{
-		public function MixBlendMode()
+		public function MixBlendMode(value:* = null)
 		{
-			super("mix-blend","mix-blend-mode");
+			super("mix-blend", "mix-blend-mode", value);
 		}
 		[Inspectable(category="General", enumeration="normal,multiply,screen,overlay,darken,lighten,color-dodge,color-burn,hard-light,soft-light,difference,exclusion,hue,saturation,color,luminosity,plus-darker,plus-lighter", defaultValue="normal")]
 		override public function set value(value:*):void

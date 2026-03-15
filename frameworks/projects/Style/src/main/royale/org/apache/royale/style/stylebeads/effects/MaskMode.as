@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskMode extends LeafStyleBase
 	{
-		public function MaskMode()
+		public function MaskMode(value:* = null)
 		{
-			super("mask","mask-mode");
+			super("mask", "mask-mode", value);
 		}
 		[Inspectable(category="General", enumeration="alpha,luminance,match", defaultValue="auto")]
 		override public function set value(value:*):void

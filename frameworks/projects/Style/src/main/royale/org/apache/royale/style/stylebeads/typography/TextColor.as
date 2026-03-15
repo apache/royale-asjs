@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextColor extends LeafStyleBase
 	{
-		public function TextColor()
+		public function TextColor(value:* = null)
 		{
-			super("text", "color");
+			super("text", "color", value);
 		}
 
 		override public function set value(value:*):void

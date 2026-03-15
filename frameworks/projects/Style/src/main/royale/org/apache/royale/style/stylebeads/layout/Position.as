@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Position extends LeafStyleBase
 	{
-		public function Position()
+		public function Position(value:* = null)
 		{
-			super("", "position");
+			super("", "position", value);
 		}
 
 		[Inspectable(category="General", enumeration="static,fixed,absolute,relative,sticky", defaultValue="absolute")]

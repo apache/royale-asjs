@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.svg
 
 	public class StrokeWidth extends LeafStyleBase
 	{
-		public function StrokeWidth()
+		public function StrokeWidth(value:* = null)
 		{
-			super("stroke", "stroke-width");
+			super("stroke", "stroke-width", value);
 		}
 		override public function set value(value:*):void
 		{

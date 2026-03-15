@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextTransform extends LeafStyleBase
 	{
-		public function TextTransform()
+		public function TextTransform(value:* = null)
 		{
-			super("", "text-transform");
+			super("", "text-transform", value);
 		}
 
 		[Inspectable(category="General", enumeration="none,capitalize,uppercase,lowercase", defaultValue="none")]

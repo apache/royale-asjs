@@ -30,9 +30,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class RingEffect extends LeafStyleBase
 	{
-		public function RingEffect()
+		public function RingEffect(value:* = null)
 		{
-			super("ring","box-shadow");
+			super("ring", "box-shadow", value);
 		}
 		
 		public var color:String;

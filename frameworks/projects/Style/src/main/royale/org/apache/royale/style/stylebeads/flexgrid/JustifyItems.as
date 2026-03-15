@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class JustifyItems extends LeafStyleBase
 	{
-		public function JustifyItems()
+		public function JustifyItems(value:* = null)
 		{
-			super("justify-items", "justify-items");
+			super("justify-items", "justify-items", value);
 		}
 		private function normalizeSafeKeyword(value:String):Array
 		{

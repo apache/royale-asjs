@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class BreakAfter extends LeafStyleBase
 	{
-		public function BreakAfter()
+		public function BreakAfter(value:* = null)
 		{
-			super("break-after", "break-after");
+			super("break-after", "break-after", value);
 		}
 
 		override public function set value(value:*):void

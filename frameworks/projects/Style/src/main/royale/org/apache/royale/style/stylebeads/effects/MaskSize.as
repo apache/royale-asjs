@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskSize extends LeafStyleBase
 	{
-		public function MaskSize()
+		public function MaskSize(value:* = null)
 		{
-			super("mask","mask-size");
+			super("mask", "mask-size", value);
 		}
 		/**
 		 * Supports, auto, cover, contain, and length values.

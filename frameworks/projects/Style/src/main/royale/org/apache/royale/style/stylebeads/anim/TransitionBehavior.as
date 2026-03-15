@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.anim
 
 	public class TransitionBehavior extends LeafStyleBase
 	{
-		public function TransitionBehavior()
+		public function TransitionBehavior(value:* = null)
 		{
-			super("transition", "transition-behavior");
+			super("transition", "transition-behavior", value);
 		}
 		override public function set value(value:*):void
 		{

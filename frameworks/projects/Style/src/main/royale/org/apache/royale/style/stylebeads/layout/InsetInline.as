@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class InsetInline extends LeafStyleBase
 	{
-		public function InsetInline()
+		public function InsetInline(value:* = null)
 		{
-			super("inset-x", "inset-inline");
+			super("inset-x", "inset-inline", value);
 		}
 	}
 }

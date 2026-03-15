@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class JustifySelf extends LeafStyleBase
 	{
-		public function JustifySelf()
+		public function JustifySelf(value:* = null)
 		{
-			super("justify-self", "justify-self");
+			super("justify-self", "justify-self", value);
 		}
 
 		private function normalizeSafeKeyword(value:String):Array

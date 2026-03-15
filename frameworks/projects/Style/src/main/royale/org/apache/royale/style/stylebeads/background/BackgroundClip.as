@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundClip extends LeafStyleBase
 	{
-		public function BackgroundClip()
+		public function BackgroundClip(value:* = null)
 		{
-			super("bg-clip", "background-clip");
+			super("bg-clip", "background-clip", value);
 		}
 		override public function set value(value:*):void
 		{

@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class BreakBefore extends LeafStyleBase
 	{
-		public function BreakBefore()
+		public function BreakBefore(value:* = null)
 		{
-			super("break-before", "break-before");
+			super("break-before", "break-before", value);
 		}
 
 		override public function set value(value:*):void

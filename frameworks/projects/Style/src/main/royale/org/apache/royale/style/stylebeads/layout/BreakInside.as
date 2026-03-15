@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class BreakInside extends LeafStyleBase
 	{
-		public function BreakInside()
+		public function BreakInside(value:* = null)
 		{
-			super("break-inside", "break-inside");
+			super("break-inside", "break-inside", value);
 		}
 
 		override public function set value(value:*):void

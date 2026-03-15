@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class ListStylePosition extends LeafStyleBase
 	{
-		public function ListStylePosition()
+		public function ListStylePosition(value:* = null)
 		{
-			super("list", "list-style-position");
+			super("list", "list-style-position", value);
 		}
 		[Inspectable(category="General", enumeration="inside,outside", defaultValue="outside")]
 		override public function set value(value:*):void

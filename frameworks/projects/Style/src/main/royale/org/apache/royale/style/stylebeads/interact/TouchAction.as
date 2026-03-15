@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class TouchAction extends LeafStyleBase
 	{
-		public function TouchAction()
+		public function TouchAction(value:* = null)
 		{
-			super("touch", "touch-action");
+			super("touch", "touch-action", value);
 		}
 		override public function set value(value:*):void
 		{

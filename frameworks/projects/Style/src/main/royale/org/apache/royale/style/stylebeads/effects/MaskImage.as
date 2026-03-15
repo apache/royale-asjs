@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.effects
 	 */
 	public class MaskImage extends LeafStyleBase
 	{
-		public function MaskImage()
+		public function MaskImage(value:* = null)
 		{
-			super("mask-image","mask-image");
+			super("mask-image", "mask-image", value);
 		}
 		/**
 		 * Supports none, vars or custom values.

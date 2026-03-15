@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class Scale extends LeafStyleBase
 	{
-		public function Scale()
+		public function Scale(value:* = null)
 		{
-			super("scale", "scale");
+			super("scale", "scale", value);
 		}
 
 		public function set scale(value:*):void

@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.anim
 
 	public class Animation extends LeafStyleBase
 	{
-		public function Animation()
+		public function Animation(value:* = null)
 		{
-			super("animate", "animation");
+			super("animate", "animation", value);
 		}
 
 // need to figure out how to register keyframes, etc.

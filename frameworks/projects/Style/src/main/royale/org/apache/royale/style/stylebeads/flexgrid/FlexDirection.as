@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class FlexDirection extends LeafStyleBase
 	{
-		public function FlexDirection()
+		public function FlexDirection(value:* = null)
 		{
-			super("flex", "flex-direction");
+			super("flex", "flex-direction", value);
 		}
 
 		override public function set value(value:*):void

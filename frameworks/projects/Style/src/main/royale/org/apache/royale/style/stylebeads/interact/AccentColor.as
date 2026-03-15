@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class AccentColor extends LeafStyleBase
 	{
-		public function AccentColor()
+		public function AccentColor(value:* = null)
 		{
-			super("accent-color", "accent-color");
+			super("accent-color", "accent-color", value);
 		}
 		override public function set value(value:*):void
 		{

@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class FlexGrow extends LeafStyleBase
 	{
-		public function FlexGrow()
+		public function FlexGrow(value:* = null)
 		{
-			super("grow", "flex-grow");
+			super("grow", "flex-grow", value);
 		}
 
 		override public function set value(value:*):void

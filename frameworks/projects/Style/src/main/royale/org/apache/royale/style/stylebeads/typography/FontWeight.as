@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontWeight extends LeafStyleBase
 	{
-		public function FontWeight()
+		public function FontWeight(value:* = null)
 		{
-			super("font", "font-weight");
+			super("font", "font-weight", value);
 		}
 		[Inspectable(category="General", enumeration="thin,extralight,light,normal,medium,semibold,bold,extrabold,black,100,200,300,400,500,600,700,800,900", defaultValue="normal")]
 		override public function set value(value:*):void

@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class FontSize extends LeafStyleBase
 	{
-		public function FontSize()
+		public function FontSize(value:* = null)
 		{
-			super("font-size", "font-size");
+			super("font-size", "font-size", value);
 		}
 		[Inspectable(category="General", enumeration="one,two,three", defaultValue="one")]
 		override public function set value(value:*):void

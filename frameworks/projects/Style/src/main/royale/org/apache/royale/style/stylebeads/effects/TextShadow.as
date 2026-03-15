@@ -29,9 +29,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class TextShadow extends LeafStyleBase
 	{
-		public function TextShadow()
+		public function TextShadow(value:* = null)
 		{
-			super("text-shadow","text-shadow");
+			super("text-shadow", "text-shadow", value);
 		}
 		/**
 		 * TODO: Figure this out

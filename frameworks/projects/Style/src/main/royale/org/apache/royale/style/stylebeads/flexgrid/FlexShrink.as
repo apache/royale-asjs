@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class FlexShrink extends LeafStyleBase
 	{
-		public function FlexShrink()
+		public function FlexShrink(value:* = null)
 		{
-			super("shrink", "flex-shrink");
+			super("shrink", "flex-shrink", value);
 		}
 
 		override public function set value(value:*):void

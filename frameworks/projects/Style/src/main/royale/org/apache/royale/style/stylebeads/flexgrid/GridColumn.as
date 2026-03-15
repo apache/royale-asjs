@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class GridColumn extends LeafStyleBase
 	{
-		public function GridColumn(selectorBase:String = "col", ruleBase:String = "grid-column")
+		public function GridColumn(selectorBase:String = "col", ruleBase:String = "grid-column", value:* = null)
 		{
-			super(selectorBase, ruleBase);
+			super(selectorBase, ruleBase, value);
 		}
 
 		override public function set value(value:*):void

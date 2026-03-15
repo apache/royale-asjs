@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class ScrollPadding extends LeafStyleBase
 	{
-		public function ScrollPadding()
+		public function ScrollPadding(value:* = null)
 		{
-			super("scroll", "scroll-padding");
+			super("scroll", "scroll-padding", value);
 		}
 		//TODO add all the scroll padding variants
 		override public function set value(value:*):void

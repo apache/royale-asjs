@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class ObjectPosition extends LeafStyleBase
 	{
-		public function ObjectPosition()
+		public function ObjectPosition(value:* = null)
 		{
-			super("object", "object-position");
+			super("object", "object-position", value);
 		}
 		override public function set value(value:*):void
 		{

@@ -25,7 +25,7 @@ package org.apache.royale.style.stylebeads.spacing
 	 */
 	public class Margin extends CompositeStyle
 	{
-		public function Margin()
+		public function Margin(value:* = null)
 		{
 			super();
 			styles = [];
@@ -251,9 +251,9 @@ import org.apache.royale.style.util.CSSUnit;
 
 class Marg extends LeafStyleBase
 {
-	public function Marg(selectorBase:String = "m", ruleBase:String = "margin")
+	public function Marg(selectorBase:String = "m", ruleBase:String = "margin", value:* = null)
 	{
-		super(selectorBase, ruleBase);
+		super(selectorBase, ruleBase, value);
 	}
 	private function toSelector(value:String):String
 	{
@@ -287,72 +287,72 @@ class Marg extends LeafStyleBase
 }
 class Top extends Marg
 {
-	public function Top()
+	public function Top(value:* = null)
 	{
-		super("mt", "margin-top");
+		super("mt", "margin-top", value);
 	}
 }
 class Left extends Marg
 {
-	public function Left()
+	public function Left(value:* = null)
 	{
-		super("ml", "margin-left");
+		super("ml", "margin-left", value);
 	}
 }
 class Right extends Marg
 {
-	public function Right()
+	public function Right(value:* = null)
 	{
-		super("mr", "margin-right");
+		super("mr", "margin-right", value);
 	}
 }
 class Bottom extends Marg
 {
-	public function Bottom()
+	public function Bottom(value:* = null)
 	{
-		super("mb", "margin-bottom");
+		super("mb", "margin-bottom", value);
 	}
 }
 class Block extends Marg
 {
-	public function Block()
+	public function Block(value:* = null)
 	{
-		super("my", "margin-block");
+		super("my", "margin-block", value);
 	}
 }
 class BlockStart extends Marg
 {
-	public function BlockStart()
+	public function BlockStart(value:* = null)
 	{
-		super("my-start", "margin-block-start");
+		super("my-start", "margin-block-start", value);
 	}
 }
 
 class BlockEnd extends Marg
 {
-	public function BlockEnd()
+	public function BlockEnd(value:* = null)
 	{
-		super("my-end", "margin-block-end");
+		super("my-end", "margin-block-end", value);
 	}
 }
 class Inline extends Marg
 {
-	public function Inline()
+	public function Inline(value:* = null)
 	{
-		super("mx", "margin-inline");
+		super("mx", "margin-inline", value);
 	}
 }
 class InlineEnd extends Marg
 {
-	public function InlineEnd()
+	public function InlineEnd(value:* = null)
 	{
-		super("me", "margin-inline-end");
+		super("me", "margin-inline-end", value);
 	}
 }
 class InlineStart extends Marg
 {
-	public function InlineStart()
+	public function InlineStart(value:* = null)
 	{
-		super("ms", "margin-inline-start");
+		super("ms", "margin-inline-start", value);
 	}
 }

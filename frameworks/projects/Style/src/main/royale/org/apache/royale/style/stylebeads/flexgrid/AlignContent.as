@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class AlignContent extends LeafStyleBase
 	{
-		public function AlignContent()
+		public function AlignContent(value:* = null)
 		{
-			super("content", "align-content");
+			super("content", "align-content", value);
 		}
 
 		private function normalizeSafeKeyword(value:String):Array

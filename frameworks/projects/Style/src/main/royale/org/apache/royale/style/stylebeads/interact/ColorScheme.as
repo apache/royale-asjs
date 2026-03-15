@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class ColorScheme extends LeafStyleBase
 	{
-		public function ColorScheme()
+		public function ColorScheme(value:* = null)
 		{
-			super("scheme", "color-scheme");
+			super("scheme", "color-scheme", value);
 		}
 		override public function set value(value:*):void
 		{

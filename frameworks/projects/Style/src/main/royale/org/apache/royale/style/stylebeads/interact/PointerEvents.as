@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class PointerEvents extends LeafStyleBase
 	{
-		public function PointerEvents()
+		public function PointerEvents(value:* = null)
 		{
-			super("pointer-events", "pointer-events");
+			super("pointer-events", "pointer-events", value);
 		}
 		override public function set value(value:*):void
 		{

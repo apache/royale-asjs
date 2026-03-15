@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskPosition extends LeafStyleBase
 	{
-		public function MaskPosition()
+		public function MaskPosition(value:* = null)
 		{
-			super("mask","mask-position");
+			super("mask", "mask-position", value);
 		}
 		[Inspectable(category="General", enumeration="top left,top,top right,left,center,right,bottom left,bottom,bottom right", defaultValue="top left")]
 		override public function set value(value:*):void

@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.transform
 
 	public class BackfaceVisibility extends LeafStyleBase
 	{
-		public function BackfaceVisibility()
+		public function BackfaceVisibility(value:* = null)
 		{
-			super("backface", "backface-visibility");
+			super("backface", "backface-visibility", value);
 		}
 		override public function set value(value:*):void
 		{

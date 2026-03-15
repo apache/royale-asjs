@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.interact
 
 	public class ScrollSnapAlign extends LeafStyleBase
 	{
-		public function ScrollSnapAlign()
+		public function ScrollSnapAlign(value:* = null)
 		{
-			super("snap", "scroll-snap-align");
+			super("snap", "scroll-snap-align", value);
 		}
 		override public function set value(value:*):void
 		{

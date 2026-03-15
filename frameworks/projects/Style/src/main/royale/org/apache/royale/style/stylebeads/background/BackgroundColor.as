@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.background
 
 	public class BackgroundColor extends LeafStyleBase
 	{
-		public function BackgroundColor()
+		public function BackgroundColor(value:* = null)
 		{
-			super("bg", "background-color");
+			super("bg", "background-color", value);
 		}
 		private function toSelector(value:String):String
 		{

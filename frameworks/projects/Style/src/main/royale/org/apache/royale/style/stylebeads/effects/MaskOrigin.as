@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class MaskOrigin extends LeafStyleBase
 	{
-		public function MaskOrigin()
+		public function MaskOrigin(value:* = null)
 		{
-			super("mask-origin","mask-origin");
+			super("mask-origin", "mask-origin", value);
 		}
 		[Inspectable(category="General", enumeration="border,padding,content,fill,stroke,view", defaultValue="border")]
 		override public function set value(value:*):void

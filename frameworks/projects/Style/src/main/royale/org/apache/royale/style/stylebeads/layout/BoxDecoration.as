@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class BoxDecoration extends LeafStyleBase
 	{
-		public function BoxDecoration()
+		public function BoxDecoration(value:* = null)
 		{
-			super("box-decoration", "box-decoration");
+			super("box-decoration", "box-decoration", value);
 		}
 
 		override public function set value(value:*):void
