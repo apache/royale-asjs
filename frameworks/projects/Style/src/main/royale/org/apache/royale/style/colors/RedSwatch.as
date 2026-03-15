@@ -29,77 +29,66 @@ package org.apache.royale.style.colors
 		{
 			
 		}
-		COMPILE::JS
 		public static function get _50():String
 		{
 			var name:String = "red-50";
 			CSSLookup.register(name, "oklch(97.1% 0.013 17.38)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _100():String
 		{
 			var name:String = "red-100";
 			CSSLookup.register(name, "oklch(93.6% 0.032 17.717)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _200():String
 		{
 			var name:String = "red-200";
 			CSSLookup.register(name, "oklch(88.5% 0.062 18.334)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _300():String
 		{
 			var name:String = "red-300";
 			CSSLookup.register(name, "oklch(80.8% 0.114 19.571)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _400():String
 		{
 			var name:String = "red-400";
 			CSSLookup.register(name, "oklch(70.4% 0.191 22.216)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _500():String
 		{
 			var name:String = "red-500";
 			CSSLookup.register(name, "oklch(63.7% 0.237 25.331)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _600():String
 		{
 			var name:String = "red-600";
 			CSSLookup.register(name, "oklch(57.7% 0.245 27.325)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _700():String
 		{
 			var name:String = "red-700";
 			CSSLookup.register(name, "oklch(50.5% 0.213 27.518)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _800():String
 		{
 			var name:String = "red-800";
 			CSSLookup.register(name, "oklch(44.4% 0.177 26.899)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _900():String
 		{
 			var name:String = "red-900";
 			CSSLookup.register(name, "oklch(39.6% 0.141 25.723)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _950():String
 		{
 			var name:String = "red-950";

@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 {
 	public class GridColumnEnd extends GridColumn
 	{
-		public function GridColumnEnd()
+		public function GridColumnEnd(value:* = null)
 		{
-			super("col-end", "grid-column-end");
+			super("col-end", "grid-column-end", value);
 		}
 	}
 }

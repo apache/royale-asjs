@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.sizing
 {
 	public class WidthStyleBase extends MeasurementStyleBase
 	{
-		public function WidthStyleBase(selectorBase:String, ruleBase:String)
+		public function WidthStyleBase(selectorBase:String, ruleBase:String, value:* = null)
 		{
-			super(selectorBase, ruleBase);
+			super(selectorBase, ruleBase, value);
 		}
 		override public function set value(value:*):void
 		{

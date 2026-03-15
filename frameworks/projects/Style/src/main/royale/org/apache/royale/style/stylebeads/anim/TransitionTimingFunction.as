@@ -37,6 +37,9 @@ package org.apache.royale.style.stylebeads.anim
 			var theme:StyleTheme = ThemeManager.instance.activeTheme;
 			switch(value)
 			{
+				case "default":
+					ruleValue = theme.defaultTransitionTimingFunction;
+					break;
 				case "in":
 					ruleValue = theme.easeIn;
 					break;

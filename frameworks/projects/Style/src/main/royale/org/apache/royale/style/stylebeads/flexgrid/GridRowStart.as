@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class GridRowStart extends GridRow
 	{
-		public function GridRowStart()
+		public function GridRowStart(value:* = null)
 		{
-			super("row-start", "grid-row-start");
+			super("row-start", "grid-row-start", value);
 		}
 
 		override public function set value(value:*):void

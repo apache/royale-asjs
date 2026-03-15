@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.sizing
 {
 	public class MaxWidth extends WidthStyleBase
 	{
-		public function MaxWidth()
+		public function MaxWidth(value:* = null)
 		{
-			super("max-w", "max-width");
+			super("max-w", "max-width", value);
 		}
 	}
 }

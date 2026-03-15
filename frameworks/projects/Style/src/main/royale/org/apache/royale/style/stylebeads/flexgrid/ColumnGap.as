@@ -21,9 +21,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class ColumnGap extends Gap
 	{
-		public function ColumnGap()
+		public function ColumnGap(value:* = null)
 		{
-			super("gap-x", "column-gap");
+			super("gap-x", "column-gap", value);
 		}
 	}
 }

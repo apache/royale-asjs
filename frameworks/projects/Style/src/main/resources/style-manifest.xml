@@ -141,6 +141,8 @@
   <component id="Outline" class="org.apache.royale.style.stylebeads.border.Outline"/>
   <component id="BorderRadius" class="org.apache.royale.style.stylebeads.border.BorderRadius"/>
   <component id="BorderWidth" class="org.apache.royale.style.stylebeads.border.BorderWidth"/>
+  <component id="BorderStyle" class="org.apache.royale.style.stylebeads.border.BorderStyle"/>
+  <component id="BorderColor" class="org.apache.royale.style.stylebeads.border.BorderColor"/>
   <component id="ColumnGap" class="org.apache.royale.style.stylebeads.flexgrid.ColumnGap"/>
   <component id="RowGap" class="org.apache.royale.style.stylebeads.flexgrid.RowGap"/>
   <component id="GridRow" class="org.apache.royale.style.stylebeads.flexgrid.GridRow"/>
@@ -297,5 +299,7 @@
   <component id="U" class="org.apache.royale.style.elements.U"/>
   <component id="Ul" class="org.apache.royale.style.elements.Ul"/>
   <component id="Video" class="org.apache.royale.style.elements.Video"/>
+
+  <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
 
 </componentPackage>

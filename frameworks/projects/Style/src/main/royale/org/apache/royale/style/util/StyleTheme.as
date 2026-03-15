@@ -18,12 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.util
 {
+	import org.apache.royale.style.colors.SlateSwatch;
+
 	/**
 	 * @royalesuppressexport
 	 */
 	public class StyleTheme
 	{
-		public function StyleTheme(name:String)
+		public function StyleTheme(name:String = "default")
 		{
 			themeName = name;
 		}
@@ -185,7 +187,7 @@ package org.apache.royale.style.util
 		public var perspectiveMidrange:String = "800px";
 		public var perspectiveDistant:String = "1200px";
 		public var aspectVideo:String = "16/9";
-		public var defaultTransitionDuration:String = ".15s";
+		public var defaultTransitionDuration:String = "150ms";
 		public var defaultTransitionTimingFunction:String = "cubic-bezier(.4,0,.2,1)";
 		public var defaultSansFamily:String = "ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'";
 		public var defaultSansFeatures:String = '"cv02","cv03","cv04","cv11"';

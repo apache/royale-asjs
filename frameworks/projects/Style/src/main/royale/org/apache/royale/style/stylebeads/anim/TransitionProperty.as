@@ -39,7 +39,31 @@ package org.apache.royale.style.stylebeads.anim
 
 		override public function set value(value:*):void
 		{
-			//TODO implement.
+			switch(value)
+			{
+				case "default":
+					calculatedRuleValue = "color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter, display, content-visibility, overlay, pointer-events";
+					calculatedSelector = "";
+					break;
+				case "colors":
+					calculatedRuleValue = "color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to";
+					calculatedSelector = "color";
+					break;
+				case "shadow":
+					calculatedRuleValue = "box-shadow";
+					calculatedSelector = "shadow";
+					break;
+				case "transform":
+					calculatedRuleValue = "transform, translate, scale, rotate";
+					calculatedSelector = "transform";
+					break;
+				case "all":
+				case "opacity":
+				default:
+					calculatedSelector = _value = value;
+					calculatedRuleValue = acceptVar(value);
+					break;
+			}
 		}		
 	}
 }

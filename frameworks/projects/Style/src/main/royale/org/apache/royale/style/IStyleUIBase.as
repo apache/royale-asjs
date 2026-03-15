@@ -35,5 +35,10 @@ package org.apache.royale.style
 		function addStyleBead(bead:IStyleBead):void;
 		function get theme():String;
 		function get skin():IStyleSkin;
+		function get unit():String;
+		function set unit(value:String):void;
+		function get size():String;
+		function set size(value:String):void;
+
 	}
 }

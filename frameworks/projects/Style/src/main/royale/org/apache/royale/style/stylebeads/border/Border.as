@@ -61,12 +61,12 @@ package org.apache.royale.style.stylebeads.border
 		{
 			return _style;
 		}
-		private var styleStyle:Style;
+		private var styleStyle:BorderStyle;
 		public function set style(value:String):void
 		{
 			if(!styleStyle)
 			{
-				styleStyle = new Style();
+				styleStyle = new BorderStyle();
 				styles.push(styleStyle);
 			}
 			styleStyle.value = value;
@@ -124,17 +124,5 @@ class Color extends LeafStyleBase
 		var styleData:StyleData = validateColor(value,false);
 		calculatedSelector = styleData.selector;
 		calculatedRuleValue = styleData.rule;
-	}
-}
-class Style extends LeafStyleBase
-{
-	public function Style(value:* = null)
-	{
-		super("border", "border-style", value);
-	}
-	override public function set value(value:*):void
-	{
-		assert(["solid","dashed","dotted","double","hidden","none"].indexOf(value) >= 0, "The value must be a valid border style: " + value);
-		calculatedSelector = calculatedRuleValue = _value = value;
 	}
 }

@@ -21,13 +21,18 @@ package org.apache.royale.style
 	import org.apache.royale.core.Application;
 	import org.apache.royale.binding.ApplicationDataBinding;
 	import org.apache.royale.core.CSSClassList;
+	import org.apache.royale.core.AllCSSValuesImpl;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.StyleTheme;
 
 	public class Application extends org.apache.royale.core.Application
 	{
 		public function Application()
 		{
 			super();
+			valuesImpl = new AllCSSValuesImpl();
       addBead(new ApplicationDataBinding());
+			ThemeManager.instance.registerTheme(new StyleTheme());
 		}
 
 		private var _theme:String = "";

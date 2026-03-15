@@ -16,16 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.border
 {
-	public class IndeterminateState extends LeafDecorator
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.util.StyleData;
+
+	public class BorderColor extends LeafStyleBase
 	{
-		public function IndeterminateState(styles:Array = null)
+		public function BorderColor(value:* = null)
 		{
-			super();
-			preDecorator = "indeterminate:";
-			postDecorator = ":indeterminate";
-			this.styles = styles;
+			super("border", "border-color", value);
+		}
+		override public function set value(value:*):void
+		{
+			_value = value;
+			var styleData:StyleData = validateColor(value, false);
+			calculatedSelector = styleData.selector;
+			calculatedRuleValue = styleData.rule;
 		}
 	}
 }

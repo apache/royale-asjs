@@ -57,6 +57,9 @@ package org.apache.royale.style.util
 					return;
 				themeSet.set(theme.themeName, theme);
 				themes.push(theme);
+				if(!current)
+					setTheme(theme.themeName);
+				
 			}
 		}
 

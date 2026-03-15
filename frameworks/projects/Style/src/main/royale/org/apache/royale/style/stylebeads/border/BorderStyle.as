@@ -16,16 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.border
 {
-	public class IndeterminateState extends LeafDecorator
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+
+	public class BorderStyle extends LeafStyleBase
 	{
-		public function IndeterminateState(styles:Array = null)
+		public function BorderStyle(value:* = null)
 		{
-			super();
-			preDecorator = "indeterminate:";
-			postDecorator = ":indeterminate";
-			this.styles = styles;
+			super("border", "border-style", value);
+		}
+		[Inspectable(category="General", enumeration="solid,dashed,dotted,double,hidden,none", defaultValue="solid")]
+		override public function set value(value:*):void
+		{
+			assert(["solid", "dashed", "dotted", "double", "hidden", "none"].indexOf(value) >= 0, "The value must be a valid border style: " + value);
+			calculatedSelector = calculatedRuleValue = _value = value;
 		}
 	}
 }

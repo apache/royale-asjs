@@ -29,77 +29,66 @@ package org.apache.royale.style.colors
 		{
 			
 		}
-		COMPILE::JS
 		public static function get _50():String
 		{
 			var name:String = "fuchsia-50";
 			CSSLookup.register(name, "oklch(97.7% 0.017 320.058)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _100():String
 		{
 			var name:String = "fuchsia-100";
 			CSSLookup.register(name, "oklch(95.2% 0.037 318.852)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _200():String
 		{
 			var name:String = "fuchsia-200";
 			CSSLookup.register(name, "oklch(90.3% 0.076 319.62)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _300():String
 		{
 			var name:String = "fuchsia-300";
 			CSSLookup.register(name, "oklch(83.3% 0.145 321.434)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _400():String
 		{
 			var name:String = "fuchsia-400";
 			CSSLookup.register(name, "oklch(74% 0.238 322.16)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _500():String
 		{
 			var name:String = "fuchsia-500";
 			CSSLookup.register(name, "oklch(66.7% 0.295 322.15)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _600():String
 		{
 			var name:String = "fuchsia-600";
 			CSSLookup.register(name, "oklch(59.1% 0.293 322.896)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _700():String
 		{
 			var name:String = "fuchsia-700";
 			CSSLookup.register(name, "oklch(51.8% 0.253 323.949)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _800():String
 		{
 			var name:String = "fuchsia-800";
 			CSSLookup.register(name, "oklch(45.2% 0.211 324.591)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _900():String
 		{
 			var name:String = "fuchsia-900";
 			CSSLookup.register(name, "oklch(40.1% 0.17 325.612)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _950():String
 		{
 			var name:String = "fuchsia-950";

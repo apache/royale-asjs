@@ -20,11 +20,12 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class DisabledState extends LeafDecorator
 	{
-		public function DisabledState()
+		public function DisabledState(styles:Array = null)
 		{
 			super();
 			preDecorator = "disabled:";
 			postDecorator = ":disabled";
+			this.styles = styles;
 		}
 	}
 }

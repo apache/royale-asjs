@@ -23,6 +23,8 @@ package org.apache.royale.style
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.IStyleUIBase;
 	import org.apache.royale.style.stylebeads.IStyleBead;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.CSSUnit;
 	[DefaultProperty("styles")]
 	/**
 	 * The StyleSkin class is a bead that can be added to a component to provide styling capabilities.
@@ -70,6 +72,11 @@ package org.apache.royale.style
 		public function set styles(value:Array):void
 		{
 			_styles = value;
+		}
+		protected function computeSize(value:Number,unit:String):String
+		{
+			var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
+			return CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
 		}
 	}
 }

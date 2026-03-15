@@ -25,7 +25,10 @@ View
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
 	IBeadLayout: ClassReference("org.apache.royale.style.beads.FlexLayout");
 }
-
+CheckBox
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CheckBoxSkin");
+}
 DataContainer
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataProviderModel");

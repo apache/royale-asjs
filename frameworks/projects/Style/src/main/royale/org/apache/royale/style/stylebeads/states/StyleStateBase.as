@@ -28,7 +28,22 @@ package org.apache.royale.style.stylebeads.states
 		{
 			super();
 		}
+/**
+ * 
+ * .peer:focus-visible ~ .peer-focus-visible\:ring-offset-slate-50 {
+    --tw-ring-offset-color: #f8fafc;
+}
+dark > peer > focus-visible > ring-offest: slate-950
 
+1. selectorPrefix is always added to the beginning.
+2. rulePrefix
+3. ruleSuffix
+selectorPrefix: dark:peer-focus-visible:ring-offset-slate-950
+.peer:focus-visible ~ .dark\:peer-focus-visible\:ring-offset-slate-950:is(.dark *) {
+    --tw-ring-offset-color: #020617;
+}
+
+ */
 		override public function decorateChildStyle(style:ILeafStyleBead):void
 		{
 			//TODO: Figure out what goes in here.

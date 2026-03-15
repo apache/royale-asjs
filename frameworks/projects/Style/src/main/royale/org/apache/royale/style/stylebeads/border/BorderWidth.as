@@ -32,6 +32,8 @@ package org.apache.royale.style.stylebeads.border
 		{
 			super();
 			styles = [];
+			if(value)
+				this.width = value;
 		}
 		private var _width:*;
 
@@ -234,7 +236,7 @@ class Width extends LeafStyleBase
 	override public function set value(value:*):void
 	{
 		_value = value;
-		calculatedRuleValue = value;
+		calculatedRuleValue = isNum(value) ? value + "px" : acceptVar(value);
 		calculatedSelector = sanitizeSelector(value);
 	}
 	override public function getSelector():String

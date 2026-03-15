@@ -23,27 +23,17 @@ package org.apache.royale.style.stylebeads.states
 
 	public class PeerPseudo extends StyleStateBase
 	{
-		public function PeerPseudo()
+		public function PeerPseudo(styles:Array = null)
 		{
 			super();
-		}
-		private var _forState:String;
-		[Inspectable(category="General", enumeration="one,two,three", defaultValue="one")]
-		public function get forState():String
-		{
-			return _forState;
-		}
-
-		public function set forState(value:String):void
-		{
-			_forState = value;
+			this.styles = styles;
 		}
 		override public function decorateChildStyle(style:ILeafStyleBead):void
 		{
-			var selector:String = "peer-" + forState;
+			var selector:String = "peer";
 			style.selectorPrefix = selector + ":" + style.selectorPrefix;
-			style.rulePrefix = selector + "\\:" +  style.rulePrefix;
-			style.ruleSuffix = selector + ":" +  ":is(:where(.peer):" + forState + " ~ *)" + style.ruleSuffix;
+			style.rulePrefix = "." + selector + "\\:" +  style.rulePrefix + "~";
+			style.ruleSuffix = selector + ":" + style.ruleSuffix;
 			
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style);

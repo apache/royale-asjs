@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.sizing
 
 	public class WidthStyle extends WidthStyleBase
 	{
-		public function WidthStyle()
+		public function WidthStyle(value:* = null)
 		{
-			super("w", "width");
+			super("w", "width", value);
 		}
 
 	}

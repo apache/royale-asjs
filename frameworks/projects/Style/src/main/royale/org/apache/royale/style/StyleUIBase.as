@@ -72,6 +72,18 @@ package org.apache.royale.style
 			return ThemeManager.instance.current;
 		}
 
+		private var _unit:String = "rem";
+		[Inspectable(category="General", enumeration="px,em,rem", defaultValue="rem")]
+		public function get unit():String
+		{
+			return _unit;
+		}
+
+		public function set unit(value:String):void
+		{
+			_unit = value;
+		}
+
 		private var _size:String = "md";
 		/**
 		 * The size is set as "t-shirt sizing" using a string value.
@@ -99,7 +111,7 @@ package org.apache.royale.style
 		 */
 		public var styleBeads:Array;
 
-		protected var _styleBeads:Vector.<IStyleBead>;
+		protected var _styleBeads:Vector.<IStyleBead> = new Vector.<IStyleBead>();
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.IStyleBead
 		 */

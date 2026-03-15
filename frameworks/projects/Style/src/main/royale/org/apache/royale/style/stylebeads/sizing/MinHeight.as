@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.sizing
 {
 	public class MinHeight extends HeightStyleBase
 	{
-		public function MinHeight()
+		public function MinHeight(value:* = null)
 		{
-			super("min-h", "min-height");
+			super("min-h", "min-height", value);
 		}
 
 	}

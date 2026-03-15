@@ -29,77 +29,66 @@ package org.apache.royale.style.colors
 		{
 			
 		}
-		COMPILE::JS
 		public static function get _50():String
 		{
 			var name:String = "neutral-50";
 			CSSLookup.register(name, "oklch(98.5% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _100():String
 		{
 			var name:String = "neutral-100";
 			CSSLookup.register(name, "oklch(97% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _200():String
 		{
 			var name:String = "neutral-200";
 			CSSLookup.register(name, "oklch(92.2% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _300():String
 		{
 			var name:String = "neutral-300";
 			CSSLookup.register(name, "oklch(87% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _400():String
 		{
 			var name:String = "neutral-400";
 			CSSLookup.register(name, "oklch(70.8% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _500():String
 		{
 			var name:String = "neutral-500";
 			CSSLookup.register(name, "oklch(55.6% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _600():String
 		{
 			var name:String = "neutral-600";
 			CSSLookup.register(name, "oklch(43.9% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _700():String
 		{
 			var name:String = "neutral-700";
 			CSSLookup.register(name, "oklch(37.1% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _800():String
 		{
 			var name:String = "neutral-800";
 			CSSLookup.register(name, "oklch(26.9% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _900():String
 		{
 			var name:String = "neutral-900";
 			CSSLookup.register(name, "oklch(20.5% 0 0)");
 			return name;
 		}
-		COMPILE::JS
 		public static function get _950():String
 		{
 			var name:String = "neutral-950";

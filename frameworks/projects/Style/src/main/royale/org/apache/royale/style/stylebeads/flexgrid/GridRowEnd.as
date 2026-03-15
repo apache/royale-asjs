@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class GridRowEnd extends GridRow
 	{
-		public function GridRowEnd()
+		public function GridRowEnd(value:* = null)
 		{
-			super("row-end", "grid-row-end");
+			super("row-end", "grid-row-end", value);
 		}
 
 		override public function set value(value:*):void

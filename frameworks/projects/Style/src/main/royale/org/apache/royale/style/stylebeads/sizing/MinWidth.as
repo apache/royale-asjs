@@ -21,9 +21,9 @@ package org.apache.royale.style.stylebeads.sizing
 
 	public class MinWidth extends WidthStyleBase
 	{
-		public function MinWidth()
+		public function MinWidth(value:* = null)
 		{
-			super("min-w", "min-width");
+			super("min-w", "min-width", value);
 		}
 
 

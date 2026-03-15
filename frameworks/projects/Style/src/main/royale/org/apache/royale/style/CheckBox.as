@@ -247,7 +247,7 @@ package org.apache.royale.style
 			COMPILE::JS
 			{
 				if(value != !!_disabled){
-					input.disabled = value;
+					element["disabled"] = input.disabled = value;
 				}
 			}
 			_disabled = value;
@@ -334,7 +334,7 @@ package org.apache.royale.style
           aria-label="Click this awesome button"
         />
 
-        <div class="checkbox-box col-start-1 row-start-1 h-[var(--box)] w-[var(--box)] rounded border-2 border-slate-500 transition peer-focus-visible:ring-2 peer-focus-visible:ring-orange-500/40 peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-slate-50 peer-checked:border-orange-500 peer-checked:bg-orange-500 peer-indeterminate:border-orange-500 peer-indeterminate:bg-orange-500 peer-disabled:border-slate-300 peer-disabled:bg-slate-100 dark:border-slate-400 dark:peer-focus-visible:ring-orange-500/40 dark:peer-focus-visible:ring-offset-slate-950 dark:peer-disabled:border-slate-600 dark:peer-disabled:bg-slate-800"></div>
+        <div class="checkbox-box col-start-1 row-start-1 h-[var(--box)] w-[var(--box)] rounded border-2 border-slate-500 transition peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-orange-500 peer-focus-visible:outline-offset-2 peer-checked:border-orange-500 peer-checked:bg-orange-500 peer-indeterminate:border-orange-500 peer-indeterminate:bg-orange-500 peer-disabled:border-slate-300 peer-disabled:bg-slate-100 dark:border-slate-400 dark:peer-disabled:border-slate-600 dark:peer-disabled:bg-slate-800"></div>
         <div class="check-icon col-start-1 row-start-1 h-[var(--tick-h)] w-[var(--tick-w)] place-self-center -translate-y-[8%] rotate-45 border-b-[3px] border-r-[3px] border-white opacity-0 transition peer-checked:opacity-100 peer-indeterminate:opacity-0 peer-disabled:border-slate-300 dark:peer-disabled:border-slate-500"></div>
         <div class="col-start-1 row-start-1 h-[14%] w-[var(--minus-w)] place-self-center rounded bg-white opacity-0 transition peer-indeterminate:opacity-100 peer-disabled:bg-slate-300 dark:peer-disabled:bg-slate-500"></div>
         <span class="col-start-2 row-start-1 text-[length:var(--size)] font-semibold text-slate-800 dark:text-slate-100 peer-disabled:text-slate-400 dark:peer-disabled:text-slate-500">Click this awesome button</span>

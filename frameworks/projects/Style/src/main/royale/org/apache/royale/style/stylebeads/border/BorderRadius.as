@@ -32,6 +32,8 @@ package org.apache.royale.style.stylebeads.border
 		{
 			super();
 			styles = [];
+			if(value)
+				radius = value;
 		}
 
 		private var _radius:*;

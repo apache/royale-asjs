@@ -21,6 +21,7 @@ package org.apache.royale.style.stylebeads.anim
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
+	import org.apache.royale.style.util.ThemeManager;
 
 	public class TransitionDuration extends LeafStyleBase
 	{
@@ -31,9 +32,12 @@ package org.apache.royale.style.stylebeads.anim
 
 		override public function set value(value:*):void
 		{
-			assert(isVar(value) || (isInt(value) && value >= 0), "transition-duration only accepts valid CSS variables or non-negative integers representing milliseconds");
+			assert(value == "default" || isVar(value) || (isInt(value) && value >= 0), "transition-duration only accepts valid CSS variables or non-negative integers representing milliseconds");
 			calculatedSelector = _value = value;
-			calculatedRuleValue = isInt(value) ? value + "ms" : fromVar(value);
+			if(value == "default")
+				calculatedRuleValue = ThemeManager.instance.activeTheme.defaultTransitionDuration;
+			else
+				calculatedRuleValue = isInt(value) ? value + "ms" : fromVar(value);
 		}		
 	}
 }

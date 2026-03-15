@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.sizing
 {
 	public class MaxHeight extends HeightStyleBase
 	{
-		public function MaxHeight()
+		public function MaxHeight(value:* = null)
 		{
-			super("max-h", "max-height");
+			super("max-h", "max-height", value);
 		}
 
 	}

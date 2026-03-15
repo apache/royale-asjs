@@ -20,7 +20,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 {
 	public class GridColumnStart extends GridColumn
 	{
-		public function GridColumnStart()
+		public function GridColumnStart(value:* = null)
 		{
 			super("col-start", "grid-column-start");
 		}

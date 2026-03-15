@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.sizing
 {
 	public class HeightStyle extends HeightStyleBase
 	{
-		public function HeightStyle()
+		public function HeightStyle(value:* = null)
 		{
-			super("h", "height");
+			super("h", "height", value);
 		}
 	}
 }
