@@ -112,8 +112,8 @@
                 }
             }
             
-            borderStroke.color = getStyle("borderColor");
-            borderStroke.alpha = getStyle("borderAlpha");
+            // borderStroke.color = getStyle("borderColor");
+            // borderStroke.alpha = getStyle("borderAlpha");
             
             /* var cr:Number = getStyle("cornerRadius");
             
@@ -218,7 +218,7 @@
     <s:Rect left="0" right="0" top="0" bottom="0" id="border">
         <!-- <s:stroke>      -->
             <!--- @private -->
-            <s:SolidColorStroke id="borderStroke" weight="1" />
+            <!-- <s:SolidColorStroke id="borderStroke" weight="1" /> -->
         <!-- </s:stroke> -->
     </s:Rect>
 
@@ -227,16 +227,16 @@
     <s:Rect id="background" left="1" right="1" top="1" bottom="1">
         <!-- <s:fill> -->
         <!--- Defines the background fill color. -->
-            <s:SolidColor id="bgFill" color="0xFFFFFF" />
+            <!-- <s:SolidColor id="bgFill" color="0xFFFFFF" /> -->
         <!-- </s:fill> -->
     </s:Rect>
     
     <!-- shadow -->
     <!--- @private -->
     <s:Rect left="1" top="1" right="1" height="1" id="shadow">
-        <!-- <s:fill> -->
+        <!-- <s:fill>
             <s:SolidColor color="0x000000" alpha="0.12" />
-        <!-- </s:fill> -->
+        </s:fill> -->
     </s:Rect>
     
     <!-- text -->

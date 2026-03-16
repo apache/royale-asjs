@@ -108,7 +108,7 @@
     <!-- layer 1: fill -->
     <!--- @private -->
     <s:Rect id="fill" left="1" right="1" top="1" bottom="1">
-        <!-- <s:fill> -->
+        <!-- <s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry color="0xFFFFFF" 
                                  color.over="0xBBBDBD" 
@@ -119,25 +119,25 @@
                                  color.down="0x929496" 
                                  alpha="0.85" />
             </s:LinearGradient>
-        <!-- </s:fill> -->
+        </s:fill> -->
     </s:Rect>
     
     <!-- layer 2: fill lowlight -->
     <!--- @private -->
     <s:Rect id="lowlight" left="1" right="1" top="1" bottom="1">
-        <!-- <s:fill> -->
+        <!-- <s:fill>
             <s:LinearGradient rotation="270">
                 <s:GradientEntry color="0x000000" ratio="0.0" alpha="0.0627" />
                 <s:GradientEntry color="0x000000" ratio="0.48" alpha="0.0099" />
                 <s:GradientEntry color="0x000000" ratio="0.48001" alpha="0" />
             </s:LinearGradient>
-        <!-- </s:fill> -->
+        </s:fill> -->
     </s:Rect>
     
     <!-- layer 3: fill highlight -->
     <!--- @private -->
     <s:Rect id="highlight" left="1" right="1" top="1" bottom="1">
-        <!-- <s:fill> -->
+        <!-- <s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry color="0xFFFFFF"
                                  ratio="0.0"
@@ -153,24 +153,24 @@
                                  ratio="0.48001"
                                  alpha="0" />
             </s:LinearGradient>
-        <!-- </s:fill> -->
+        </s:fill> -->
     </s:Rect>
     
     <!-- layer 4: highlight stroke (all states except down) -->
     <!--- @private -->
     <s:Rect id="highlightStroke" left="1" right="1" top="1" bottom="1" radiusX="0" radiusY="0" excludeFrom="down">
-        <!-- <s:stroke> -->
+        <!-- <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
                 <s:GradientEntry color="0xFFFFFF" alpha.over="0.22" />
                 <s:GradientEntry color="0xD8D8D8" alpha.over="0.22" />
             </s:LinearGradientStroke>
-        <!-- </s:stroke> -->
+        </s:stroke> -->
     </s:Rect>
     
     <!-- layer 5: highlight stroke (down state only) -->
     <!--- @private -->
     <s:Rect id="hldownstroke1" left="1" right="1" top="1" bottom="1" radiusX="0" radiusY="0" includeIn="down">
-        <!-- <s:stroke> -->
+        <!-- <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
                 <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.0" />
                 <s:GradientEntry color="0x000000" alpha="0.25" ratio="0.001" />
@@ -178,22 +178,22 @@
                 <s:GradientEntry color="0x000000" alpha="0.07" ratio="0.965" />
                 <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.9651" />
             </s:LinearGradientStroke>
-        <!-- </s:stroke> -->
+        </s:stroke> -->
     </s:Rect>
     <!--- @private -->
     <s:Rect id="hldownstroke2" left="2" right="2" top="2" bottom="2" radiusX="0" radiusY="0" includeIn="down">
-        <!-- <s:stroke> -->
+        <!-- <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
                 <s:GradientEntry color="0x000000" alpha="0.09" ratio="0.0" />
                 <s:GradientEntry color="0x000000" alpha="0.00" ratio="0.0001" />
             </s:LinearGradientStroke>
-        <!-- </s:stroke> -->
+        </s:stroke> -->
     </s:Rect>
     
     <!-- layer 6: border - put on top of the fill so it doesn't disappear when scale is less than 1 -->
     <!--- @private -->
     <s:Rect id="border" left="0" right="0" top="0" bottom="0" width="18" height="21">
-        <!-- <s:stroke> -->
+        <!-- <s:stroke>
             <s:LinearGradientStroke rotation="90" weight="1">
                 <s:GradientEntry color="0x000000" 
                                  alpha="0.5625"
@@ -202,7 +202,7 @@
                                  alpha="0.75" 
                                  alpha.down="0.85" />
             </s:LinearGradientStroke>
-        <!-- </s:stroke> -->
+        </s:stroke> -->
     </s:Rect>
     
     <!-- layer 7: arrow -->
@@ -216,13 +216,13 @@
                     The first part of the arrow's gradient fill. 
                     The default alpha is .6. The default color if 0x000000.
                 -->
-                <s:GradientEntry id="arrowFill1" color="0" alpha="0.6" />
+                <!-- <s:GradientEntry id="arrowFill1" color="0" alpha="0.6" /> -->
                 <!--- 
                     @private 
                     The second part of the arrow's gradient fill. 
                     The default alpha is .6. The default color if 0x000000.
                 -->
-                <s:GradientEntry id="arrowFill2" color="0" alpha="0.8" />
+                <!-- <s:GradientEntry id="arrowFill2" color="0" alpha="0.8" /> -->
             <!-- </s:RadialGradient> -->
         <!-- </s:fill> -->
     </s:Path>

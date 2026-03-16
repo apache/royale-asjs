@@ -225,8 +225,8 @@
                 <s:Rect id="tbHilite" left="0" right="0" top="0" bottom="0">
                     <s:stroke>
                         <s:LinearGradientStroke rotation="90" weight="1">
-                            <s:GradientEntry color="0xE6E6E6" />
-                            <s:GradientEntry color="0xFFFFFF" alpha="0.22"/>
+                            <!-- <s:GradientEntry color="0xE6E6E6" />
+                            <s:GradientEntry color="0xFFFFFF" alpha="0.22"/> -->
                         </s:LinearGradientStroke>
                     </s:stroke>
                     <!--
@@ -290,8 +290,8 @@
                     <s:Rect left="0" right="0" top="1" bottom="0">
                         <s:stroke>
                             <s:LinearGradientStroke rotation="90" weight="1">
-                                <s:GradientEntry color="0xFFFFFF" />
-                                <s:GradientEntry color="0xD8D8D8" />
+                                <!-- <s:GradientEntry color="0xFFFFFF" />
+                                <s:GradientEntry color="0xD8D8D8" /> -->
                             </s:LinearGradientStroke>
                         </s:stroke>
                     </s:Rect>
