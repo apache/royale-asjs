@@ -71,7 +71,17 @@ package org.apache.royale.createjs.core
 	COMPILE::SWF
 	public class View extends org.apache.royale.core.ViewBase
 	{
-		// nothing different for the SWF version
+		/**
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+         * 
+         *  @royalesuppresspublicvarwarning
+		 */
+		public var mxmlContent:Array;
 	}
 	
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
