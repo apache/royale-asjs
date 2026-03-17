@@ -32,7 +32,7 @@ package org.apache.royale.style.stylebeads.states
 		{
 			var selector:String = "peer";
 			style.selectorPrefix = selector + ":" + style.selectorPrefix;
-			style.rulePrefix = "." + selector + "\\:" +  style.rulePrefix + "~";
+			// style.rulePrefix = "." + selector + "\\:" +  style.rulePrefix + "~";
 			style.ruleSuffix = selector + ":" + style.ruleSuffix;
 			
 			if(parentStyle)

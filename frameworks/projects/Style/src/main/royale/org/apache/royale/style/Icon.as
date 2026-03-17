@@ -94,11 +94,13 @@ package org.apache.royale.style
 		private function loadMarkup():void
 		{
 			assert(iconPath, "Icon path must be provided");
+			// TODO don't make the same request twice.
 			new HttpRequestTask(iconPath).exec(function(task:HttpRequestTask):void
 				{
 					if (task.completed)
 					{
 						parseMarkup(new XML(task.resultString));
+						// register the loaded markup for future use
 					}
 					// TODO do we want some kind of error handling here?
 				});

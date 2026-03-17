@@ -53,8 +53,13 @@ package org.apache.royale.style.util
 		{
 			COMPILE::JS
 			{
+				selector = normalizeSelector(selector);
 				getStyleSheet().insertRule(selector + "{" + rule + "}", ruleIdx++);
 			}
+		}
+		private static function normalizeSelector(selector:String):String
+		{			// TODO this is pretty naive. We should probably be doing some kind of parsing here.
+			return selector.replace(/:/g, "\\:").replace(/\./g, "\\.");
 		}
 		COMPILE::JS
 		private static var ss:CSSStyleSheet;

@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.util
 {
-	import org.apache.royale.style.colors.SlateSwatch;
 
 	/**
 	 * @royalesuppressexport

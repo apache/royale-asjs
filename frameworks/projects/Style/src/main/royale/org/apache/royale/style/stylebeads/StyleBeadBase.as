@@ -24,6 +24,7 @@ package org.apache.royale.style.stylebeads
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
+	import org.apache.royale.style.colors.ColorSwatch;
 	
 	[DefaultProperty("styles")]
 	/**
@@ -117,7 +118,13 @@ package org.apache.royale.style.stylebeads
 					break;
 				default:
 					// assert(CSSLookup.has(selectorVal), "Invalid color value: " + value);
-					ruleVal = CSSLookup.getProperty(selectorVal);
+					if(CSSLookup.has(selectorVal))
+						ruleVal = CSSLookup.getProperty(selectorVal);
+					else
+					{
+						var color:ColorSwatch = ColorSwatch.fromSpecifier(selectorVal);
+						ruleVal = color.colorValue;
+					}
 					break;
 			}
 			return new StyleData(selectorVal, ruleVal,value);

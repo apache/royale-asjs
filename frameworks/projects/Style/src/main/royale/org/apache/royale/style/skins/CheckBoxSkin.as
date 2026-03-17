@@ -39,14 +39,12 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.border.BorderRadius;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.stylebeads.border.BorderWidth;
-	import org.apache.royale.style.colors.SlateSwatch;
 	import org.apache.royale.style.stylebeads.border.BorderColor;
 	import org.apache.royale.style.stylebeads.anim.Transition;
 	import org.apache.royale.style.stylebeads.states.PeerPseudo;
 	import org.apache.royale.style.stylebeads.states.FocusVisibleState;
 	import org.apache.royale.style.stylebeads.border.Outline;
 	import org.apache.royale.style.stylebeads.states.CheckedState;
-	import org.apache.royale.style.colors.OrangeSwatch;
 	import org.apache.royale.style.stylebeads.background.BackgroundColor;
 	import org.apache.royale.style.stylebeads.states.IndeterminateState;
 	import org.apache.royale.style.stylebeads.typography.FontSize;
@@ -152,30 +150,30 @@ package org.apache.royale.style.skins
 				new WidthStyle(box),
 				new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
 				new BorderWidth(2),
-				new BorderColor(SlateSwatch._500),
+				new BorderColor("slate-500"),
 				new Transition()
 			];
 			var peer:PeerPseudo = new PeerPseudo();
 			var focusVisible:FocusVisibleState = new FocusVisibleState();
 			var outline1:Outline = new Outline();
 			outline1.width = 2;
-			outline1.color = "oklch(70.5% 0.213 47.604 / .40)";
+			outline1.color = "orange-500/40";
 			outline1.offset = 2;
 			focusVisible.styles = [outline1];
 			var checked:CheckedState = new CheckedState();
 			checked.styles = [
-				new BorderColor(OrangeSwatch._500),
-				new BackgroundColor(OrangeSwatch._500)
+				new BorderColor("orange-500"),
+				new BackgroundColor("orange-500")
 			];
 			var indeterminate:IndeterminateState = new IndeterminateState();
 			indeterminate.styles = [
-				new BorderColor(OrangeSwatch._500),
-				new BackgroundColor(OrangeSwatch._500)
+				new BorderColor("orange-500"),
+				new BackgroundColor("orange-500")
 			];
 			var disabled:DisabledState = new DisabledState();
 			disabled.styles = [
-				new BorderColor(SlateSwatch._300),
-				new BackgroundColor(SlateSwatch._100)
+				new BorderColor("slate-300"),
+				new BackgroundColor("slate-100")
 			];
 
 			peer.styles = [
@@ -249,12 +247,12 @@ package org.apache.royale.style.skins
 				new GridRowStart("1"),
 				new FontSize(fontSize),
 				new FontWeight("600"),
-				new TextColor(SlateSwatch._800)
+				new TextColor("slate-800")
 			];
 			var peer:PeerPseudo = new PeerPseudo();
 			var disabled:DisabledState = new DisabledState();
 			disabled.styles = [
-				new TextColor(SlateSwatch._400)
+				new TextColor("slate-400")
 			];
 			peer.styles = [
 				disabled
@@ -324,11 +322,11 @@ package org.apache.royale.style.skins
 							new OpacityStyle(0)
 						]),
 						new DisabledState([
-							new BorderColor(SlateSwatch._300)
+							new BorderColor("slate-300"),
 						])
 					])
 				];
-				div.styleBeads = [styles];
+				div.addStyleBead(styles);
 				// TODO dark mode styles
 			}
 
@@ -384,7 +382,7 @@ dark:peer-disabled:border-slate-500
 							new OpacityStyle(1)
 						]),
 						new DisabledState([
-							new BackgroundColor(SlateSwatch._300)
+							new BackgroundColor("slate-300")
 						])
 					])
 				];
