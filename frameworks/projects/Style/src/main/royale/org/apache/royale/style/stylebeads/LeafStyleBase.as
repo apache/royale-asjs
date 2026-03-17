@@ -163,25 +163,34 @@ package org.apache.royale.style.stylebeads
 			if(!calculatedSelector)
 				return "";
 			
-			var selector:String = selectorPrefix + selectorBase + "-" + calculatedSelector;
+			var str:String = selectorPrefix + selectorBase;
+			if(str)
+				str += "-";
+			var selector:String = str + calculatedSelector;
 			/**
 			 * Always add the rule automatically when accessing the selector if needed.
 			 */
-			if (!StyleManager.hasStyle(selector))
+			var selectorForRule:String = rulePrefix + normalizeSelector(selector) + ruleSuffix;
+			if (!StyleManager.hasStyle(selectorForRule))
 			{
 				if(parentQueryId)
-					StyleManager.addGroupedRule(parentQueryId, selector, getRule());
+					StyleManager.addGroupedRule(parentQueryId, selectorForRule, getRule());
 				else
-					StyleManager.addStyle(selector, getRule());
+					StyleManager.addStyle(selectorForRule, getRule());
 			}
 
 			return selector;
 		}
+		private function normalizeSelector(selector:String):String
+		{			// TODO this is pretty naive. We should probably be doing some kind of parsing here.
+			return "." + selector.replace(/:/g, "\\:").replace(/\./g, "\\.").replace(/\//g, "\\/");
+		}
+
 		public function getRule():String
 		{
 			if(!calculatedRuleValue)
 				return "";
-			return rulePrefix + ruleBase + ":" + calculatedRuleValue + ";";
+			return ruleBase + ":" + calculatedRuleValue + ";";
 		}
 		protected function sanitizeSelector(value:String):String
 		{

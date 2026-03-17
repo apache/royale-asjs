@@ -31,9 +31,9 @@ package org.apache.royale.style.stylebeads.states
 		override public function decorateChildStyle(style:ILeafStyleBead):void
 		{
 			var selector:String = "peer";
-			style.selectorPrefix = selector + ":" + style.selectorPrefix;
-			// style.rulePrefix = "." + selector + "\\:" +  style.rulePrefix + "~";
-			style.ruleSuffix = selector + ":" + style.ruleSuffix;
+			style.selectorPrefix = selector + "-" + style.selectorPrefix;
+			style.rulePrefix = "." + selector + ":" +  style.rulePrefix + " ~ ";
+			// style.ruleSuffix = selector + ":" + style.ruleSuffix;
 			
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style);
