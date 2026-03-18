@@ -73,7 +73,7 @@ package org.apache.royale.style
 		}
 		protected function computeSize(value:Number,unit:String):String
 		{
-			var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
+			var pixelValue:Number = value;
 			return CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
 		}
 	}

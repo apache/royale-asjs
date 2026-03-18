@@ -57,6 +57,8 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.border.Border;
 	import org.apache.royale.style.stylebeads.transform.Transform;
 	import org.apache.royale.style.stylebeads.effects.OpacityStyle;
+	import org.apache.royale.style.stylebeads.flexgrid.GridTemplateColumns;
+	import org.apache.royale.style.stylebeads.flexgrid.ColumnGap;
 
 	public class CheckBoxSkin extends StyleSkin implements ICheckBoxSkin
 	{
@@ -106,9 +108,9 @@ package org.apache.royale.style.skins
 			_styles = [
 				new Display("inline-grid"),
 				new Cursor("pointer"),
-				new GridAutoColumns(box + " auto"),
+				new GridTemplateColumns(box + " auto"),
 				new AlignItems("center"),
-				new RowGap(gap),
+				new ColumnGap(gap),
 				new UserSelect("none"),
 				disabledStyle
 			];
@@ -144,7 +146,6 @@ package org.apache.royale.style.skins
 		{
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
-			var gap:String = computeSize(size * 0.75, host.unit);
 			_boxStyles = [
 				new GridColumnStart("1"),
 				new GridRowStart("1"),

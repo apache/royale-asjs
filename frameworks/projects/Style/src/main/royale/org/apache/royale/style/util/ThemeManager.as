@@ -33,7 +33,18 @@ package org.apache.royale.style.util
 		public static function get instance():ThemeManager
 		{
 			if(!_instance)
+			{
 				_instance = new ThemeManager();
+				// Set css preflight defaults. These are the same as Tailwind's preflight defaults.
+				// See https://tailwindcss.com/docs/preflight for more details.
+				//TODO make this more PAYG
+				StyleManager.addStyle("img, svg, video, canvas, audio, iframe, embed, object", "display: block; vertical-align: middle;")
+				StyleManager.addStyle("img, video", "max-width: 100%; height: auto;");
+				StyleManager.addStyle(":host, html", 'line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; font-feature-settings: normal; font-variation-settings: normal; -webkit-tap-highlight-color: transparent');
+				StyleManager.addStyle("body", 'margin: 0; line-height: inherit;');
+				StyleManager.addStyle("code, kbd, pre, samp", 'font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-feature-settings: normal; font-variation-settings: normal; font-size: 1em');
+
+			}
 
 			return _instance;
 		}

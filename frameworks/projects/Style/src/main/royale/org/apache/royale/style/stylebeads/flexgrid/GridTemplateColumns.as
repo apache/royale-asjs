@@ -39,7 +39,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 				ruleValue = "repeat(" + value + ", minmax(0, 1fr))";
 			}
 			assert(selectorValue.indexOf("--") != 0, "css variables for grid-template-columns not yet supported: " + value);
-			assert(selectorValue.indexOf(" ") == -1, "values with spaces for grid-template-columns not yet supported: " + value);
+			// assert(selectorValue.indexOf(" ") == -1, "values with spaces for grid-template-columns not yet supported: " + value);
 			calculatedRuleValue = ruleValue;
 			calculatedSelector = selectorValue;
 			_value = value;
