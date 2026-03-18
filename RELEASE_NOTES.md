@@ -1,3 +1,56 @@
+Apache Royale 1.0.0
+===================
+
+- **New Style Project** _(Experimental - not yet ready for production use)_
+  - Added new `Style` component library inspired by utility-first CSS patterns (like Tailwind CSS).
+  - Style beads compose CSS classes at runtime for flexible, composable styling.
+  - Runtime color generation enables dynamic theming and palette switching.
+  - Skinning support for applying component-specific styles, colors, and icons.
+  - Includes style beads for: borders, backgrounds, spacing, typography, colors, flex-grid layouts, transforms, and animations.
+  - Added `CheckBox` component with skinning support.
+
+- Basic
+  - Added `CompoundBead` for combining multiple beads.
+  - Added enhanced `IFrame` component with message filtering support.
+  - Fixed IFrame message listeners for contentWindow.
+  - Expanded `Video` component and added `Audio` component in HTML.
+
+- Core
+  - Added `ArrayListDataSupport` bead.
+  - Added MXML 2006 namespace support for core language types.
+
+- CreateJS
+  - Fixed `View` class for SWF missing the default property.
+
+- Icons
+  - Added `SvgIcon` support with runtime SVG generation.
+
+- Jewel
+  - Fixed font "Lato" having wrong `font-style` in JewelTheme.
+  - Added secondary theme for Jewel radiobutton.
+  - Fixed `SearchFilterForList` to properly render HTML with `useDecoration`.
+  - Updated blog examples to use new `[JSIncludeScript]`, `[JSIncludeCSS]`, and `[JSIncludeAsset]` metadata.
+
+- MXRoyaleBase
+  - Fixed `EncodingTest` for AIR 51 from Harman.
+
+- Network
+  - Added `XMLResult` and `JSONResult` beads for `HTTPService`.
+  - Made `HTTPService` `data` and `json` getters bindable.
+  - Fixed missing `IO_ERROR` event on JS target when `HTTPService` loading fails.
+
+- SparkRoyale
+  - Fixed invalid MXML that the compiler didn't catch before.
+
+- Build/Testing
+  - Improved Ant build support for case-sensitive file systems (Linux).
+  - RoyaleUnit tests can fall back to AIR SDK ADL when Flash Player debugger is not available.
+  - Improved ApproveRoyale.xml to not require `ANT_HOME` and auto-download Apache Rat JARs.
+
+- ASDoc
+  - Fixed class loading failure after navigating to package and back.
+  - Display descriptions as HTML with proper sanitization.
+
 Apache Royale 0.9.12
 ====================
 
