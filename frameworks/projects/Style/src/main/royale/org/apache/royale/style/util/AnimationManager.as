@@ -41,7 +41,8 @@ package org.apache.royale.style.util
 				keyframeSet.add(name);
 				// Should we check that it's not being added twice?
 				// Shouldn't be necessary unless something went wrong...
-				StyleManager.addStyle("@keyframes " + name, keyframes.join("\n"));
+				var selector:String = "@keyframes " + name;
+				StyleManager.addStyle(selector, selector, keyframes.join("\n"));
 			}
 		}
 

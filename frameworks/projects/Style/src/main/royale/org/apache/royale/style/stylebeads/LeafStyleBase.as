@@ -177,13 +177,13 @@ package org.apache.royale.style.stylebeads
 			/**
 			 * Always add the rule automatically when accessing the selector if needed.
 			 */
-			var selectorForRule:String = rulePrefix + normalizeSelector(selector) + ruleSuffix;
-			if (!StyleManager.hasStyle(selectorForRule))
+			if (!StyleManager.hasStyle(selector))
 			{
+				var selectorForRule:String = rulePrefix + normalizeSelector(selector) + ruleSuffix;
 				if(parentQueryId)
-					StyleManager.addGroupedRule(parentQueryId, selectorForRule, getRule());
+					StyleManager.addGroupedRule(parentQueryId, selector, selectorForRule, getRule());
 				else
-					StyleManager.addStyle(selectorForRule, getRule());
+					StyleManager.addStyle(selector, selectorForRule, getRule());
 			}
 
 			return selector;

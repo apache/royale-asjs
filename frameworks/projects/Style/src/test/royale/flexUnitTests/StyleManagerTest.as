@@ -50,7 +50,7 @@ package flexUnitTests
 			COMPILE::JS
 			{
 				assertFalse(StyleManager.hasStyle(".foo"));
-				StyleManager.addStyle(".foo", "display:flex;");
+				StyleManager.addStyle(".foo", ".foo", "display:flex;");
 				assertTrue(StyleManager.hasStyle(".foo"));
 			}
 		}

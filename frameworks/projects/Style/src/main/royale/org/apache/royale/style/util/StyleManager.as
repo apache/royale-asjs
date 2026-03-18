@@ -37,13 +37,13 @@ package org.apache.royale.style.util
 			}
 			return false;
 		}
-		public static function addStyle(selector:String, rule:String):void
+		public static function addStyle(selector:String, normalizedSelector:String, rule:String):void
 		{
 			COMPILE::JS
 			{
 				assert(!styleList.has(selector), "Style " + selector + " already exists");
 				styleList.add(selector);
-				addRule(selector, rule);
+				addRule(normalizedSelector, rule);
 			}
 		}
 
@@ -121,7 +121,7 @@ package org.apache.royale.style.util
 				}
 			}
 		}
-		public static function addGroupedRule(identifier:String, selector:String, rule:String):void
+		public static function addGroupedRule(identifier:String, selector:String, normalizedSelector:String, rule:String):void
 		{
 			COMPILE::JS
 			{
@@ -130,7 +130,7 @@ package org.apache.royale.style.util
 				// TODO remove this once we have CSSGroupingRule in the typedefs
 				var fakeType:CSSStyleSheet = toGroup as CSSStyleSheet;
 				var len:int = fakeType.cssRules.length;
-				fakeType.insertRule(selector + "{" + rule + "}", len);
+				fakeType.insertRule(normalizedSelector + "{" + rule + "}", len);
 				styleList.add(selector);
 			}
 		}

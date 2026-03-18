@@ -38,9 +38,11 @@ package org.apache.royale.style.stylebeads.states
 			style.selectorPrefix = selectorDecorator + style.selectorPrefix;
 
 			//TODO figure out more complex combinations. For now, just handle limited nesting.
-			var decorationStr:String = decorations.map(function(decoration:StyleDecoration, index:int, arr:Array):String{
-				return decoration.decoration;
-			}).join("");
+			var decorationStr:String = ""
+			for each(var decoration:StyleDecoration in decorations)
+			{
+				decorationStr += decoration.decoration;
+			}
 			
 			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
 			style.rulePrefix = "." + ruleDecorator + decorationStr + " ~ " + style.rulePrefix;

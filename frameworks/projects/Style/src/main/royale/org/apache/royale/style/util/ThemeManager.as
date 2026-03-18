@@ -38,11 +38,16 @@ package org.apache.royale.style.util
 				// Set css preflight defaults. These are the same as Tailwind's preflight defaults.
 				// See https://tailwindcss.com/docs/preflight for more details.
 				//TODO make this more PAYG
-				StyleManager.addStyle("img, svg, video, canvas, audio, iframe, embed, object", "display: block; vertical-align: middle;")
-				StyleManager.addStyle("img, video", "max-width: 100%; height: auto;");
-				StyleManager.addStyle(":host, html", 'line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; font-feature-settings: normal; font-variation-settings: normal; -webkit-tap-highlight-color: transparent');
-				StyleManager.addStyle("body", 'margin: 0; line-height: inherit;');
-				StyleManager.addStyle("code, kbd, pre, samp", 'font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-feature-settings: normal; font-variation-settings: normal; font-size: 1em');
+				var sel:String = "img, svg, video, canvas, audio, iframe, embed, object";
+				StyleManager.addStyle(sel, sel, "display: block; vertical-align: middle;");
+				sel = "img, video";
+				StyleManager.addStyle(sel, sel, "max-width: 100%; height: auto;");
+				sel = ":host, html";
+				StyleManager.addStyle(sel, sel, 'line-height: 1.5; -webkit-text-size-adjust: 100%; -moz-tab-size: 4; tab-size: 4; font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; font-feature-settings: normal; font-variation-settings: normal; -webkit-tap-highlight-color: transparent');
+				sel = "body";
+				StyleManager.addStyle(sel, sel, 'margin: 0; line-height: inherit;');
+				sel = "code, kbd, pre, samp";
+				StyleManager.addStyle(sel, sel, 'font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-feature-settings: normal; font-variation-settings: normal; font-size: 1em');
 
 			}
 
@@ -59,7 +64,7 @@ package org.apache.royale.style.util
 		}
 		COMPILE::JS
 		private var themeSet:Map = new Map();
-		private var themes:Vector.<StyleTheme> = new Vector.<StyleTheme>();
+		private var themes:Array = [];
 		public function registerTheme(theme:StyleTheme):void
 		{
 			COMPILE::JS

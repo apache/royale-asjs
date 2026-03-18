@@ -111,7 +111,7 @@ package org.apache.royale.style
 		 */
 		public var styleBeads:Array;
 
-		protected var _styleBeads:Vector.<IStyleBead> = new Vector.<IStyleBead>();
+		protected var _styleBeads:Array = [];
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.IStyleBead
 		 */
