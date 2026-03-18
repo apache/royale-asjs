@@ -33,6 +33,7 @@ package org.apache.royale.style
 	{
 		function toggleClass(classNameVal:String,add:Boolean):void;
 		function addStyleBead(bead:IStyleBead):void;
+		function setStyles(styles:Array, overrideExisting:Boolean = false):void;
 		function get theme():String;
 		function get skin():IStyleSkin;
 		function get unit():String;

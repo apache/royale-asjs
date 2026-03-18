@@ -117,28 +117,37 @@ package org.apache.royale.style
 		 */
 		public function addStyleBead(bead:IStyleBead):void
 		{
+			assert(bead != null, "bead cannot be null");
 			COMPILE::JS
 			{
-				assert(bead != null, "bead cannot be null");
-				if(!styleTypes)
-					styleTypes = new Map();
-				
-				var leaves:Array = bead.getLeaves();
-				for each(var leaf:ILeafStyleBead in leaves)
+				addStyleInternal(bead, false);
+			}
+		}
+		COMPILE::JS
+		private function addStyleInternal(bead:IStyleBead, overrideExisting:Boolean):void
+		{
+			if(!styleTypes)
+				styleTypes = new Map();
+			
+			var leaves:Array = bead.getLeaves();
+			for each(var leaf:ILeafStyleBead in leaves)
+			{
+				assert(leaf.isLeaf, "getLeaves() should only return leaf style beads");
+				/**
+				 * Only add the first found leaf for each style type.
+				 * This is to prevent duplicate styles from being added to the style sheet
+				 * and enables proper handling of styling overrides.
+				 */
+				if(styleTypes.has(leaf.styleType))
 				{
-					assert(leaf.isLeaf, "getLeaves() should only return leaf style beads");
-					/**
-					 * Only add the first found leaf for each style type.
-					 * This is to prevent duplicate styles from being added to the style sheet
-					 * and enables proper handling of styling overrides.
-					 */
-					if(styleTypes.has(leaf.styleType))
-						continue;
-					styleTypes.set(leaf.styleType, leaf);
-					leaf.strand = this;
-					_styleBeads.push(leaf);
+					if(overrideExisting)
+						(styleTypes.get(leaf.styleType) as ILeafStyleBead).value = leaf.value;
+
+					continue;
 				}
-				refreshStyles();
+				styleTypes.set(leaf.styleType, leaf);
+				leaf.strand = this;
+				_styleBeads.push(leaf);
 			}
 		}
 		COMPILE::JS
@@ -152,6 +161,7 @@ package org.apache.royale.style
 				for each(var bead:IStyleBead in styleBeads)
 					addStyleBead(bead);
 			}
+			refreshSuspended = true;
 			styleBeads = null;
 			_stylesLoaded = true;
 			if(!_skin)
@@ -162,7 +172,29 @@ package org.apache.royale.style
 				addBead(_skin);
 				applySkin();
 			}
+			refreshSuspended = false;
 			refreshStyles();
+		}
+		/**
+		 * Sets styles on the component using an array of style beads.
+		 * Use this for applying styles to an existing component that already has a skin applied.
+		 * 
+		 * To change existing applied styles, set overrideExisting to true.
+		 * This will change the values of existing styles beads to the new ones provided in the styles array.
+			 *
+		 * @langversion 3.0
+		 * @productversion Royale 0.9.13
+		 */
+		public function setStyles(styles:Array, overrideExisting:Boolean = false):void
+		{
+			COMPILE::JS
+			{
+				for each(var style:IStyleBead in styles)
+				{
+					addStyleInternal(style, overrideExisting);
+				}
+				refreshStyles();
+			}
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.ILeafStyleBead
@@ -247,8 +279,11 @@ package org.apache.royale.style
 			if(_stylesLoaded)
 			{
 				assert(getBeadByType(IStyleSkin) == null, "skins cannot be replaced once loaded");
+				refreshSuspended = true;
 				addBead(value);
 				applySkin();
+				refreshSuspended = false;
+				refreshStyles();
 			}
 		}
 		/**
@@ -268,9 +303,14 @@ package org.apache.royale.style
 		{
 			// default implementation does nothing
 		}
-
+		/**
+		 * Used to prevent multiple setting of the style classes when internally setting styles and skins
+		 */
+		private var refreshSuspended:Boolean;
 		protected function refreshStyles():void
 		{
+			if(refreshSuspended)
+				return;
 			COMPILE::JS
 			{
 				utilityList.clear();
@@ -278,7 +318,7 @@ package org.apache.royale.style
 				{
 					applyStyle(styleBead);
 				}
-				computeFinalClassNames();
+				setClassName(computeFinalClassNames());
 			}
 		}
 		protected function applyStyle(styleBead:ILeafStyleBead):void

@@ -51,10 +51,8 @@ package org.apache.royale.style
 			super.strand = value;
 			assert(value is IStyleUIBase, "StyleSkin can only be added to components that implement IStyleUIBase");
 			var styleUIBase:IStyleUIBase = value as IStyleUIBase;
-			for each(var styleBead:IStyleBead in styles)
-			{
-				styleUIBase.addStyleBead(styleBead);
-			}
+			if(styles)
+				styleUIBase.setStyles(styles);
 		}
 		protected var _styles:Array;
 

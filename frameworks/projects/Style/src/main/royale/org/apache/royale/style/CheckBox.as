@@ -103,14 +103,9 @@ package org.apache.royale.style
 		override protected function applySkin():void
 		{
 			var checkSkin:ICheckBoxSkin = skin as ICheckBoxSkin;
-			var styles:Array = checkSkin?.styles || [];
-			for each(var style:IStyleBead in styles){
-				addStyleBead(style);
-			}
-			styles = checkSkin?.boxStyles || [];
-			for each(style in styles){
-				box.addStyleBead(style);
-			}
+			assert(checkSkin, "CheckBox requires a skin that implements ICheckBoxSkin");
+			var styles:Array = checkSkin.boxStyles || [];
+			box.setStyles(styles);
 			applyCheckSkin();
 			applyIndeterminateSkin();
 			applyLabelSkin();
@@ -120,11 +115,10 @@ package org.apache.royale.style
 		 */
 		private function applyLabelSkin():void
 		{
+			if(!span) return;
 			var checkSkin:ICheckBoxSkin = skin as ICheckBoxSkin;
-			var styles:Array = checkSkin?.labelStyles || [];
-			for each(var style:IStyleBead in styles){
-				span.addStyleBead(style);
-			}
+			assert(checkSkin && checkSkin.labelStyles, "CheckBox requires a skin that implements ICheckBoxSkin");
+			span.setStyles(checkSkin.labelStyles);
 		}
 		private var _truncate:Boolean;
 
@@ -216,7 +210,8 @@ package org.apache.royale.style
 			COMPILE::JS
 			{
 				var checkSkin:ICheckBoxSkin = skin as ICheckBoxSkin;
-				var icon:IStyleUIBase = checkSkin?.indeterminateIcon;
+				assert(checkSkin, "CheckBox needs a skin");
+				var icon:IStyleUIBase = checkSkin.indeterminateIcon;
 				if(icon && icon != indeterminateIcon){
 					if(indeterminateIcon && indeterminateIcon.parent){
 						assert(indeterminateIcon.parent == this, "Indeterminate icon should be a child of this");

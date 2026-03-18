@@ -29,6 +29,8 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			super();
 			styles = [];
+			if(value != null)
+				this.padding = value;
 		}
 		public var unit:String = "px";
 		private var paddingStyle:Pad;

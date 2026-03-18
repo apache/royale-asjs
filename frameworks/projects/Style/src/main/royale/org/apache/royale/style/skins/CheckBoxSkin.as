@@ -95,6 +95,7 @@ package org.apache.royale.style.skins
 			// Manually set. Don't create the default ones.
 			if(_styles)
 				return;
+			
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
 			var gap:String = computeSize(size * 0.75, host.unit);
@@ -111,6 +112,7 @@ package org.apache.royale.style.skins
 				new UserSelect("none"),
 				disabledStyle
 			];
+			host.setStyles(_styles);
 		}
 		private function getMultiplier():Number
 		{
@@ -283,8 +285,7 @@ package org.apache.royale.style.skins
 		public function get checkIcon():IStyleUIBase
 		{
 			if(!_checkIcon){
-				var div:Div = new Div();
-				_checkIcon = div;
+				_checkIcon = new Div();
 				// var iconName:String = "style_checkIconSmall";
 				// if(!Icon.isRegistered(iconName))
 				// 	Icon.registerIcon(iconName,
@@ -302,8 +303,7 @@ package org.apache.royale.style.skins
 				var borderWidth:BorderWidth = new BorderWidth();
 				borderWidth.bottom = 3;
 				borderWidth.right = 3;
-				var styles:CompositeStyle = new CompositeStyle();
-				styles.styles = [
+				var styles:Array = [
 					new GridColumnStart("1"),
 					new GridRowStart("1"),
 					new HeightStyle(computeSize(size * 0.625, host.unit)),
@@ -326,7 +326,7 @@ package org.apache.royale.style.skins
 						])
 					])
 				];
-				div.addStyleBead(styles);
+				_checkIcon.setStyles(styles);
 				// TODO dark mode styles
 			}
 
@@ -366,8 +366,7 @@ dark:peer-disabled:border-slate-500
 				_indeterminateIcon = new Div();
 				var size:Number = 16 * getMultiplier();
 
-				var styles:CompositeStyle = new CompositeStyle();
-				styles.styles = [
+				var styles:Array = [
 					new GridColumnStart("1"),
 					new GridRowStart("1"),
 					new HeightStyle("14%"),
@@ -386,6 +385,7 @@ dark:peer-disabled:border-slate-500
 						])
 					])
 				];
+				_indeterminateIcon.setStyles(styles);
 				// var iconName:String = "style_indeterminateIconSmall";
 				// if(!Icon.isRegistered(iconName))
 				// 	Icon.registerIcon(iconName,

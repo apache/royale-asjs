@@ -34,7 +34,7 @@ package org.apache.royale.style.stylebeads
 			super();
 			_selectorBase = selectorBase;
 			_ruleBase = ruleBase;
-			if(value)
+			if(value != null)
 				this.value = value;
 		}
 		override public function get isLeaf():Boolean

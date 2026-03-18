@@ -33,7 +33,7 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class Border extends CompositeStyle
 	{
-		public function Border(value:* = null)
+		public function Border()
 		{
 			super();
 			styles = [];
