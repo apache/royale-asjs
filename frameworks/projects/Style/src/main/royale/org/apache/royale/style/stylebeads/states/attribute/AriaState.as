@@ -42,8 +42,8 @@ package org.apache.royale.style.stylebeads.states.attribute
 		public function set aria(value:String):void
 		{
 			_aria = value;
-			preDecorator = value + ":";
-			postDecorator = "[" + value + "=true]";
+			selectorDecorator = value + ":";
+			ruleDecorator = "[" + value + "=true]";
 		}
 		/**
 		 * The aria attribute without the aria- prefix.

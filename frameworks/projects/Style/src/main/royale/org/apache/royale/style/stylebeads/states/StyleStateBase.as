@@ -44,11 +44,11 @@ selectorPrefix: dark:peer-focus-visible:ring-offset-slate-950
 }
 
  */
-		override public function decorateChildStyle(style:ILeafStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
 			//TODO: Figure out what goes in here.
 			if(parentStyle)
-				parentStyle.decorateChildStyle(style);
+				parentStyle.decorateChildStyle(style, decorations);
 
 		}
 

@@ -38,8 +38,8 @@ package org.apache.royale.style.stylebeads.states.attribute
 		public function set data(value:String):void
 		{
 			_data = value;
-			preDecorator = value + ":";
-			postDecorator = "[" + value + "]";
+			selectorDecorator = value + ":";
+			ruleDecorator = "[" + value + "]";
 		}
 		private var _dataType:String;
 

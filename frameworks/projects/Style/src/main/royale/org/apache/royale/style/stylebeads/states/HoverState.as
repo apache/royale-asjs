@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function HoverState()
 		{
 			super();
-			preDecorator = "hover:";
-			postDecorator = ":hover";
+			selectorDecorator = "hover:";
+			ruleDecorator = ":hover";
 		}
 	}
 }

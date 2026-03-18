@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function FirstState()
 		{
 			super();
-			preDecorator = "first:";
-			postDecorator = ":first-child";
+			selectorDecorator = "first:";
+			ruleDecorator = ":first-child";
 		}
 	}
 }

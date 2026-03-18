@@ -25,8 +25,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function PlaceholderState()
 		{
 			super();
-			preDecorator = "placeholder:";
-			postDecorator = "::placeholder";
+			selectorDecorator = "placeholder:";
+			ruleDecorator = "::placeholder";
 		}
 	}
 }

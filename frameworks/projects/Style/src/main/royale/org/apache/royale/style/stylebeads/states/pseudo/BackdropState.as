@@ -25,8 +25,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function BackdropState()
 		{
 			super();
-			preDecorator = "backdrop:";
-			postDecorator = "::backdrop";
+			selectorDecorator = "backdrop:";
+			ruleDecorator = "::backdrop";
 		}
 	}
 }

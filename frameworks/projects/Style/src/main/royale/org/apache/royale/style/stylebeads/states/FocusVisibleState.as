@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function FocusVisibleState()
 		{
 			super();
-			preDecorator = "focus-visible:";
-			postDecorator = ":focus-visible";
+			selectorDecorator = "focus-visible:";
+			ruleDecorator = ":focus-visible";
 		}
 	}
 }

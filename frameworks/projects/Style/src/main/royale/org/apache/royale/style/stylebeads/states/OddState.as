@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function OddState()
 		{
 			super();
-			preDecorator = "odd:";
-			postDecorator = ":nth-child(odd)";
+			selectorDecorator = "odd:";
+			ruleDecorator = ":nth-child(odd)";
 		}
 	}
 }

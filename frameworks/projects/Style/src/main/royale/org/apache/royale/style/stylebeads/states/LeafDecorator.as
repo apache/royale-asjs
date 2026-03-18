@@ -23,29 +23,42 @@ package org.apache.royale.style.stylebeads.states
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.style.stylebeads.ILeafStyleBead;
+	import org.apache.royale.style.util.StyleDecoration;
 
 	public class LeafDecorator extends StyleBeadBase
 	{
+		protected static const STATE:String = "state";
+		protected static const COMBINER:String = "combiner";
+		protected static const QUERY:String = "query";
+
 		public function LeafDecorator()
 		{
 			super();
 		}
-
-		protected var preDecorator:String;
-		protected var postDecorator:String;
+		protected var decoratorType:String = STATE;
+		protected var selectorDecorator:String;
+		protected var ruleDecorator:String;
 		protected var leafStyle:LeafStyleBase;
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.LeafStyleBase
 		 */
-		override public function decorateChildStyle(style:ILeafStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
 			assert(style.isLeaf, "LeafDecorator can only decorate leaf styles");
 			var leafStyle:LeafStyleBase = style as LeafStyleBase;
-			leafStyle.rulePrefix = preDecorator + leafStyle.rulePrefix;
-			leafStyle.ruleSuffix = leafStyle.ruleSuffix + postDecorator;
-			leafStyle.selectorPrefix = preDecorator + leafStyle.selectorPrefix;
+			leafStyle.selectorPrefix = selectorDecorator + leafStyle.selectorPrefix;
+
+			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
+			/**
+			 * Default behavior is for state decorators. In that case, the decoration is added as a suffix.
+			 * Otherwise, the decoration is passed to the parent which handles the decoration based on the type.
+			 */
+			if(!parentStyle || parentStyle.isGroup)
+			{
+				leafStyle.ruleSuffix = leafStyle.ruleSuffix + ruleDecorator;
+			}
 			if(parentStyle)
-				parentStyle.decorateChildStyle(style);
+				parentStyle.decorateChildStyle(style, decorations);
 
 		}
 	}

@@ -27,8 +27,8 @@ package org.apache.royale.style.stylebeads.states.attribute
 		public function OpenState()
 		{
 			super();
-			preDecorator = "open:";
-			postDecorator = ":is([open], :popover-open, :open)";
+			selectorDecorator = "open:";
+			ruleDecorator = ":is([open], :popover-open, :open)";
 		}
 	}
 }

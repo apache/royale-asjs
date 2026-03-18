@@ -27,6 +27,11 @@ package org.apache.royale.style.stylebeads.states
 		{
 			super();
 		}
+
+		override public function get isGroup():Boolean
+		{
+			return true;
+		}
 		/**
 		 * Change in subclasses for other query types such as `container` or `supports`.
 		 */

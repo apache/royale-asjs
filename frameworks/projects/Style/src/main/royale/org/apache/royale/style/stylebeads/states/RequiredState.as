@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function RequiredState()
 		{
 			super();
-			preDecorator = "required:";
-			postDecorator = ":required";
+			selectorDecorator = "required:";
+			ruleDecorator = ":required";
 		}
 	}
 }

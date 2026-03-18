@@ -25,8 +25,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function MarkerState()
 		{
 			super();
-			preDecorator = "marker:";
-			postDecorator = "::marker";
+			selectorDecorator = "marker:";
+			ruleDecorator = "::marker";
 		}
 	}
 }

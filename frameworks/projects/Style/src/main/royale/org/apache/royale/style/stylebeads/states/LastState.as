@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function LastState()
 		{
 			super();
-			preDecorator = "last:";
-			postDecorator = ":last-child";
+			selectorDecorator = "last:";
+			ruleDecorator = ":last-child";
 		}
 	}
 }

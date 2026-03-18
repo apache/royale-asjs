@@ -90,8 +90,12 @@ package org.apache.royale.style.stylebeads
 		{
 			_parentStyle = value;
 		}
-		abstract public function decorateChildStyle(style:ILeafStyleBead):void;
+		abstract public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void;
 		public function get isLeaf():Boolean
+		{
+			return false;
+		}
+		public function get isGroup():Boolean
 		{
 			return false;
 		}

@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function IndeterminateState(styles:Array = null)
 		{
 			super();
-			preDecorator = "indeterminate:";
-			postDecorator = ":indeterminate";
+			selectorDecorator = "indeterminate:";
+			ruleDecorator = ":indeterminate";
 			this.styles = styles;
 		}
 	}

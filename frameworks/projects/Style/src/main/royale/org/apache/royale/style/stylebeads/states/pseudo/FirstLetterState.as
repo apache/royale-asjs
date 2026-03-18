@@ -25,8 +25,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function FirstLetterState()
 		{
 			super();
-			preDecorator = "first-letter:";
-			postDecorator = ":first-letter";
+			selectorDecorator = "first-letter:";
+			ruleDecorator = ":first-letter";
 		}
 	}
 }

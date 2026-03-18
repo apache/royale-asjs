@@ -16,15 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.util
 {
-	public class ActiveState extends LeafDecorator
+	public class StyleDecoration
 	{
-		public function ActiveState()
+		public function StyleDecoration(type:String, decoration:String)
 		{
-			super();
-			selectorDecorator = "active:";
-			ruleDecorator = ":active";
+			this.type = type;
+			this.decoration = decoration;
 		}
-	}
+		public var type:String;
+		public var decoration:String;
+	}	
 }

@@ -25,8 +25,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function FileState()
 		{
 			super();
-			preDecorator = "file:";
-			postDecorator = "::file-selector-button";
+			selectorDecorator = "file:";
+			ruleDecorator = "::file-selector-button";
 		}
 	}
 }

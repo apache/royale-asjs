@@ -20,23 +20,35 @@ package org.apache.royale.style.stylebeads.states
 {
 	import org.apache.royale.style.stylebeads.IStyleBead;
 	import org.apache.royale.style.stylebeads.ILeafStyleBead;
+	import org.apache.royale.style.util.StyleDecoration;
 
-	public class PeerPseudo extends StyleStateBase
+	public class PeerPseudo extends LeafDecorator
 	{
 		public function PeerPseudo(styles:Array = null)
 		{
 			super();
 			this.styles = styles;
+			selectorDecorator = "peer-";
+			ruleDecorator = "peer";
+
+			decoratorType = COMBINER;
 		}
-		override public function decorateChildStyle(style:ILeafStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
-			var selector:String = "peer";
-			style.selectorPrefix = selector + "-" + style.selectorPrefix;
-			style.rulePrefix = "." + selector + ":" +  style.rulePrefix + " ~ ";
+			style.selectorPrefix = selectorDecorator + style.selectorPrefix;
+
+			//TODO figure out more complex combinations. For now, just handle limited nesting.
+			var decorationStr:String = decorations.map(function(decoration:StyleDecoration, index:int, arr:Array):String{
+				return decoration.decoration;
+			}).join("");
+			
+			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
+
+			style.rulePrefix = "." + ruleDecorator + decorationStr + " ~ " + style.rulePrefix;
 			// style.ruleSuffix = selector + ":" + style.ruleSuffix;
 			
 			if(parentStyle)
-				parentStyle.decorateChildStyle(style);
+				parentStyle.decorateChildStyle(style, decorations);
 		}
 	}
 }

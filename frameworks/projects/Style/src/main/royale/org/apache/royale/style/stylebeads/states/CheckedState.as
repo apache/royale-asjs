@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function CheckedState(styles:Array = null)
 		{
 			super();
-			preDecorator = "checked:";
-			postDecorator = ":checked";
+			selectorDecorator = "checked:";
+			ruleDecorator = ":checked";
 			this.styles = styles;
 		}
 	}

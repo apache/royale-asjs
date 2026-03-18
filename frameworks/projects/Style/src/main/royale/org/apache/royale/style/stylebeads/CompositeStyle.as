@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads
 {
+	import org.apache.royale.debugging.assert;
+
 	/**
 	 * Convenience class for styles that are composed of multiple leaf styles.
 	 * This class does not have any functionality on its own,
@@ -31,11 +33,28 @@ package org.apache.royale.style.stylebeads
 		{
 			super();
 		}
+		/**
+		 * Composite styles have no effect, so it should not insert itself into the hierarchy.
+		 */
+		override public function getLeaves():Array
+		{
+			assert(styles && styles.length > 0, "Non-leaf style beads must have child styles");
+			// nothing to preprocess.
+			var retVal:Array = [];
+			for each(var style:IStyleBead in styles)
+			{
+				// Composite styles have no effect, so it should not insert itself into the hierarchy.
+				style.parentStyle = parentStyle;
+				retVal = retVal.concat(style.getLeaves());
+			}
+		return retVal;
+		}
+
 		//TODO: Figure this out.
-		override public function decorateChildStyle(style:ILeafStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead,decorations:Array):void
 		{
 			if(parentStyle)
-				parentStyle.decorateChildStyle(style);
+				parentStyle.decorateChildStyle(style, decorations);
 		}
 	}
 }

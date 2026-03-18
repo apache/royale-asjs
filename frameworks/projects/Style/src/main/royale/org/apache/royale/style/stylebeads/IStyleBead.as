@@ -30,10 +30,11 @@ package org.apache.royale.style.stylebeads
 	public interface IStyleBead extends IBead
 	{
 		function get isLeaf():Boolean;
+		function get isGroup():Boolean;
 		function getLeaves():Array;
 		function addStyleBead(bead:IStyleBead):void;
 		function get parentStyle():IStyleBead;
 		function set parentStyle(value:IStyleBead):void;
-		function decorateChildStyle(style:ILeafStyleBead):void;
+		function decorateChildStyle(style:ILeafStyleBead,decorations:Array):void;
 	}
 }

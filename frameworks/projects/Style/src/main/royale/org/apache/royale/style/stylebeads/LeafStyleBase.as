@@ -45,7 +45,7 @@ package org.apache.royale.style.stylebeads
 		{
 			// Walk up the chain decorating the styles.
 			if(parentStyle)
-				parentStyle.decorateChildStyle(this);
+				parentStyle.decorateChildStyle(this,[]);
 			return [this];
 		}
 		protected var _value:*;
@@ -273,7 +273,7 @@ package org.apache.royale.style.stylebeads
 		{
 			_parentQueryId = value;
 		}
-		override public function decorateChildStyle(style:ILeafStyleBead):void
+		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
 			assert(false, "Leaf styles should not have child styles.");
 		}

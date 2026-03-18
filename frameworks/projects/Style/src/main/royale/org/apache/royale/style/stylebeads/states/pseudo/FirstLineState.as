@@ -25,8 +25,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function FirstLineState()
 		{
 			super();
-			preDecorator = "first-line:";
-			postDecorator = ":first-line";
+			selectorDecorator = "first-line:";
+			ruleDecorator = ":first-line";
 		}
 	}
 }

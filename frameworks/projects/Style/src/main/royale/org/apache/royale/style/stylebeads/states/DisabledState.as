@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function DisabledState(styles:Array = null)
 		{
 			super();
-			preDecorator = "disabled:";
-			postDecorator = ":disabled";
+			selectorDecorator = "disabled:";
+			ruleDecorator = ":disabled";
 			this.styles = styles;
 		}
 	}

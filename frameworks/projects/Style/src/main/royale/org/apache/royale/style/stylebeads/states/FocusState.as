@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function FocusState()
 		{
 			super();
-			preDecorator = "focus:";
-			postDecorator = ":focus";
+			selectorDecorator = "focus:";
+			ruleDecorator = ":focus";
 		}
 	}
 }

@@ -28,8 +28,8 @@ package org.apache.royale.style.stylebeads.states.attribute
 		public function InertState()
 		{
 			super();
-			preDecorator = "inert:";
-			postDecorator = ":is([inert], [inert] *)";
+			selectorDecorator = "inert:";
+			ruleDecorator = ":is([inert], [inert] *)";
 		}
 	}
 }

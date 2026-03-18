@@ -28,8 +28,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function BeforeState()
 		{
 			super();
-			preDecorator = "before:";
-			postDecorator = "::before";
+			selectorDecorator = "before:";
+			ruleDecorator = "::before";
 		}
 	}
 }

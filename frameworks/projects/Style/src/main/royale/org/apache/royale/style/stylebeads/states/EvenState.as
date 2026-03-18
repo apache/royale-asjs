@@ -23,8 +23,8 @@ package org.apache.royale.style.stylebeads.states
 		public function EvenState()
 		{
 			super();
-			preDecorator = "even:";
-			postDecorator = ":nth-child(2n)";
+			selectorDecorator = "even:";
+			ruleDecorator = ":nth-child(2n)";
 		}
 	}
 }

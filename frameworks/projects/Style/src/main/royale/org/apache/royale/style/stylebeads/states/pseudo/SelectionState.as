@@ -25,8 +25,8 @@ package org.apache.royale.style.stylebeads.states.pseudo
 		public function SelectionState()
 		{
 			super();
-			preDecorator = "selection:";
-			postDecorator = "::selection";
+			selectorDecorator = "selection:";
+			ruleDecorator = "::selection";
 		}
 	}
 }
