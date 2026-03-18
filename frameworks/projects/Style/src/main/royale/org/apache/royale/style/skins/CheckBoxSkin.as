@@ -298,7 +298,7 @@ package org.apache.royale.style.skins
 				// --tick-w: calc(var(--size) * 0.375);
 				var size:Number = 16 * getMultiplier();
 				var transform:Transform = new Transform();
-				transform.translateY = "8%";
+				transform.translateY = "-8%";
 				transform.rotate = "45deg";
 	
 				var borderWidth:BorderWidth = new BorderWidth();
