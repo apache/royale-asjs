@@ -26,7 +26,7 @@ package org.apache.royale.style
 	 *  object as its data provider.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Tree extends List
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style
 		 * Constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Tree()
 		{

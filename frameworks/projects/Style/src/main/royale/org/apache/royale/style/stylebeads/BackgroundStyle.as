@@ -41,7 +41,7 @@ package org.apache.royale.style.stylebeads
 		//  * The alpha value of the background, between 0 and 1.
 		//  * 0 means fully transparent, 1 means fully opaque.
 		//  * @langversion 3.0
-		//  * @productversion Royale 0.9.13
+		//  * @productversion Royale 1.0.0
 		//  */
 		// [Inspectable(category="General", defaultValue="1", minValue="0", maxValue="1")]
 		// public function get alpha():Number
@@ -59,7 +59,7 @@ package org.apache.royale.style.stylebeads
 		 * "fixed" means the background image will stay fixed in place, even when the content is scrolled. 
 		 * "local" means the background image will scroll with the element's content, but not with the element itself. 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		[Inspectable(category = "General", enumeration = "scroll,fixed,local", defaultValue = "scroll")]
 		public function get attachment():String
@@ -83,7 +83,7 @@ package org.apache.royale.style.stylebeads
 		 * This can be any valid color, but using color constants is recommended.
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get color():String
 		{
@@ -109,7 +109,7 @@ package org.apache.royale.style.stylebeads
 		 * "text" means the background is painted only behind the text of the component, and not behind any padding or border.
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		[[Inspectable(category="General", enumeration="border-box,padding-box,content-box,text", defaultValue="border-box")]]
 		public function get clip():String
@@ -136,7 +136,7 @@ package org.apache.royale.style.stylebeads
 		 * This can be any valid image URL or data URI.
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get image():String
 		{
@@ -157,7 +157,7 @@ package org.apache.royale.style.stylebeads
 		/**
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		[Inspectable(category="General", enumeration="border-box,padding-box,content-box", defaultValue="")]
 		public function get origin():String
@@ -180,7 +180,7 @@ package org.apache.royale.style.stylebeads
 		 * This can be any valid CSS background-position value, such as "center", "top left", "50% 50%", etc.
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get position():String
 		{
@@ -207,7 +207,7 @@ package org.apache.royale.style.stylebeads
 		 * "round" means the background image will be repeated as many times as will fit in the component, and the images will be scaled to fit the space.
 		 * "no-repeat" means the background image will not be repeated, and will only be shown once at the position defined by the position property.
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		[Inspectable(category="General", enumeration="repeat,repeat-x,repeat-y,space,round,no-repeat", defaultValue="")]
 		public function get repeat():String
@@ -238,7 +238,7 @@ package org.apache.royale.style.stylebeads
 		 * Any other valid CSS background-size value can also be used, such as "100px 50px", "50% auto", etc.
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		[Inspectable(category="General", enumeration="auto,cover,contain", defaultValue="auto")]
 		public function get size():String

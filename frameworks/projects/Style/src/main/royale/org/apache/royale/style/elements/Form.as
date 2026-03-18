@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Form extends NodeElementBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Form()
 		{
@@ -54,7 +54,7 @@ package org.apache.royale.style.elements
 		 *  The form method (either "post" or "get")
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get method():String
 		{
@@ -84,7 +84,7 @@ package org.apache.royale.style.elements
 		 *  The form name
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		COMPILE::JS
 		public function get name():String

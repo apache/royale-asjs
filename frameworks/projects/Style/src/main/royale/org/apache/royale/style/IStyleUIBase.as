@@ -27,7 +27,7 @@ package org.apache.royale.style
 		 *	@langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 	public interface IStyleUIBase extends IUIBase
 	{

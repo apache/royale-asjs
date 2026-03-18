@@ -44,7 +44,7 @@ package org.apache.royale.style
 	 *	@langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class StyleUIBase extends UIBase implements IStyleUIBase
 	{
@@ -53,7 +53,7 @@ package org.apache.royale.style
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function StyleUIBase()
 		{
@@ -105,7 +105,7 @@ package org.apache.royale.style
 		/**
 		 *  
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 * 
 		 *  @royalesuppresspublicvarwarning
 		 */
@@ -261,7 +261,7 @@ package org.apache.royale.style
 		 * Override this method in subclasses as needed.
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 * 
 		 */
 		protected function applySkin():void

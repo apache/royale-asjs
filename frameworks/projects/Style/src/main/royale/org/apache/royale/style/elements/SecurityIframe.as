@@ -30,7 +30,7 @@ package org.apache.royale.style.elements
 	 *  Enhanced version of the Iframe base component, with additional security support for message filtering
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class SecurityIframe extends Iframe
 	{

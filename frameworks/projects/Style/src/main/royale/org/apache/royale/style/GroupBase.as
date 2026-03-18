@@ -42,7 +42,7 @@ package org.apache.royale.style
 	 *  code stops executing.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	[Event(name="stateChangeComplete", type="org.apache.royale.events.Event")]
 
@@ -50,7 +50,7 @@ package org.apache.royale.style
 	 *  Indicates that the initialization of the container is complete.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
@@ -58,7 +58,7 @@ package org.apache.royale.style
 	 *  Indicates that the children of the container is have been added.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	[Event(name="childrenAdded", type="org.apache.royale.events.Event")]
 
@@ -68,7 +68,7 @@ package org.apache.royale.style
 	 *  documents and UI controls and containers are added to it.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class GroupBase extends StyleUIBase implements IStatesObject, IContainer, ILayoutParent, ILayoutView, IContentViewHost
 	{
@@ -76,7 +76,7 @@ package org.apache.royale.style
 		 *  Constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function GroupBase()
 		{
@@ -121,7 +121,7 @@ package org.apache.royale.style
 		 * Dispatches a "layoutNeeded" event
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function layoutNeeded():void
 		{
@@ -136,7 +136,7 @@ package org.apache.royale.style
 		 * Returns the ILayoutHost which is its view. From ILayoutParent.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 */
 		public function getLayoutHost():ILayoutHost
@@ -148,7 +148,7 @@ package org.apache.royale.style
 		 * @copy org.apache.royale.core.IContentViewHost#strandChildren
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get strandChildren():IParent
 		{
@@ -162,7 +162,7 @@ package org.apache.royale.style
 		 *  be instances of org.apache.royale.states.State.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get states():Array
 		{
@@ -201,7 +201,7 @@ package org.apache.royale.style
 		 *  @return True if state in state array
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function hasState(state:String):Boolean
 		{
@@ -220,7 +220,7 @@ package org.apache.royale.style
 		 *  The name of the current state.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get currentState():String
 		{

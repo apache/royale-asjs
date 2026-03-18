@@ -29,7 +29,7 @@ package org.apache.royale.html.beads
 	 * @langversion 3.0
 	 * @playerversion Flash 10.2
 	 * @playerversion AIR 2.6
-	 * @productversion Royale 0.9.13
+	 * @productversion Royale 1.0.0
 	 */
 	public class ArrayListDataSupport extends CompoundBead implements IDataProviderItemRendererMapper
 	{
@@ -41,7 +41,7 @@ package org.apache.royale.html.beads
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function ArrayListDataSupport()
 		{
@@ -60,7 +60,7 @@ package org.apache.royale.html.beads
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get itemRendererFactory():org.apache.royale.core.IItemRendererClassFactory
 		{

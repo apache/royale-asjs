@@ -32,7 +32,7 @@ package org.apache.royale.style.beads
 	 *  This class is the base class for most, if not all, layouts.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class LayoutBase extends Bead implements IBeadLayout
 	{
@@ -40,7 +40,7 @@ package org.apache.royale.style.beads
 		 *  Constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function LayoutBase()
 		{
@@ -54,7 +54,7 @@ package org.apache.royale.style.beads
 		 * important to know for layout optimization.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		protected var host:ILayoutChild;
 
@@ -62,7 +62,7 @@ package org.apache.royale.style.beads
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 */
@@ -96,7 +96,7 @@ package org.apache.royale.style.beads
 		 * size changes in the children.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		protected function handleChildrenAdded(event:Event):void
 		{
@@ -113,7 +113,7 @@ package org.apache.royale.style.beads
 		 * Called whenever "layoutNeeded" event is dispatched against the host strand.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		protected function handleLayoutNeeded(event:Event):void
 		{
@@ -124,7 +124,7 @@ package org.apache.royale.style.beads
 		 * Handles the final start-up condition by running the layout an initial time.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		protected function handleInitComplete(event:Event):void
 		{
@@ -140,7 +140,7 @@ package org.apache.royale.style.beads
 		 * Returns the ILayoutView for the host.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 */
@@ -156,7 +156,7 @@ package org.apache.royale.style.beads
 		 * Performs the layout in three parts: before, layout, after.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutParent
 		 */
 		public function performLayout():void
@@ -186,7 +186,7 @@ package org.apache.royale.style.beads
 		 * @copy org.apache.royale.core.IBeadLayout#layout
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function layout():Boolean
 		{

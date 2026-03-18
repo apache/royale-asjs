@@ -42,7 +42,7 @@ package org.apache.royale.utils.async
 		protected var tasks:Array;
 		/**
 		 * Returns all requested tasks in order specified.
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get allTasks():Array{
 			return tasks.slice();

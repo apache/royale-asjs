@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 		 *	@toplevel
 	 *	@langversion 3.0
-	 *	@productversion Royale 0.9.13
+	 *	@productversion Royale 1.0.0
 	 */
 	public class Progress extends NodeElementBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *	constructor.
 		 *
 		 *	@langversion 3.0
-		 *	@productversion Royale 0.9.13
+		 *	@productversion Royale 1.0.0
 		 */
 		public function Progress()
 		{
@@ -58,7 +58,7 @@ package org.apache.royale.style.elements
 		 *	if the progress bar is an indeterminate progress bar, it returns 0.
 		 *
 		 *	@langversion 3.0
-		 *	@productversion Royale 0.9.13
+		 *	@productversion Royale 1.0.0
 		 */
 		public function get value():Number
 		{
@@ -93,7 +93,7 @@ package org.apache.royale.style.elements
 		 *  limited to numbers greater than zero. Its default value is 1.0.
 		 *
 		 *	@langversion 3.0
-		 *	@productversion Royale 0.9.13
+		 *	@productversion Royale 1.0.0
 		 */
 		public function get max():Number
 		{
@@ -127,7 +127,7 @@ package org.apache.royale.style.elements
 		 *  If the progress bar is an indeterminate progress bar, it returns -1.
 		 *
 		 *	@langversion 3.0
-		 *	@productversion Royale 0.9.13
+		 *	@productversion Royale 1.0.0
 		 */
 		public function get position():Number
 		{
@@ -148,7 +148,7 @@ package org.apache.royale.style.elements
 		 *	Whether the progress bar is determinate (true) or indeterminate (false)
 		 *
 		 *	@langversion 3.0
-		 *	@productversion Royale 0.9.13
+		 *	@productversion Royale 1.0.0
 		 */
 		public function get determinate():Boolean
 		{

@@ -28,7 +28,7 @@ package org.apache.royale.style
 	 *  that have generated content, like lists.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class DataContainerBase extends GroupBase implements IItemRendererProvider
 	{
@@ -36,7 +36,7 @@ package org.apache.royale.style
 		 *  Constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function DataContainerBase()
 		{
@@ -69,7 +69,7 @@ package org.apache.royale.style
 		 *  The class or factory used to display each item.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get itemRenderer():IFactory
 		{

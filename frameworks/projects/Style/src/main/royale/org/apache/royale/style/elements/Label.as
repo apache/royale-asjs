@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Label extends NodeElementBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Label()
 		{
@@ -47,7 +47,7 @@ package org.apache.royale.style.elements
 		 *  The id of the associated element
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get for():String
 		{

@@ -31,7 +31,7 @@ package org.apache.royale.style.support
 	 *  Indicates that the initialization of the container is complete.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
@@ -41,7 +41,7 @@ package org.apache.royale.style.support
 	 *  show their dataProviders.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class UIItemRendererBase extends StyleUIBase implements ILabelFieldItemRenderer, IHasLabelField
 	{
@@ -49,7 +49,7 @@ package org.apache.royale.style.support
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function UIItemRendererBase()
 		{
@@ -90,7 +90,7 @@ package org.apache.royale.style.support
 		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *
 		 *  @royalesuppresspublicvarwarning
 		 */
@@ -123,7 +123,7 @@ package org.apache.royale.style.support
 		 *  a Number or something very complex.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get data():Object
 		{
@@ -156,7 +156,7 @@ package org.apache.royale.style.support
 		 *  The position with the dataProvider being shown by the itemRenderer instance.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get index():int
 		{
@@ -180,7 +180,7 @@ package org.apache.royale.style.support
 		 *  this method an handle the size change.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function adjustSize():void
 		{

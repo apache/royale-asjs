@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Button extends NodeElementBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Button()
 		{
@@ -54,7 +54,7 @@ package org.apache.royale.style.elements
 		 *  Whether the button is disabled
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get disabled():Boolean
 		{
@@ -84,7 +84,7 @@ package org.apache.royale.style.elements
 		 *  The button name
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		COMPILE::JS
 
@@ -120,7 +120,7 @@ package org.apache.royale.style.elements
 		 *  The button type
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get type():String
 		{
@@ -154,7 +154,7 @@ package org.apache.royale.style.elements
 		 *  The current value of the control
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get value():String
 		{

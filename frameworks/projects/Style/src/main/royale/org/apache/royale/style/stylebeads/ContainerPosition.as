@@ -40,7 +40,7 @@ package org.apache.royale.style.stylebeads
 		 * By default, the main axis is the horizontal axis (row).
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		[Inspectable(category="General", enumeration="flex-start,flex-end,center,space-between,space-around,space-evenly,stretch,baseline,normal", defaultValue="")]
 		public function get justifyContent():String
@@ -66,7 +66,7 @@ package org.apache.royale.style.stylebeads
 		 * By default, the cross axis is the vertical axis (column).
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		[Inspectable(category="General", enumeration="flex-start,flex-end,center,baseline,last baseline,stretch", defaultValue="")]
 		public function get alignItems():String
@@ -115,7 +115,7 @@ package org.apache.royale.style.stylebeads
 		 * The main axis is defined by the flex-direction or grid-auto-flow property.
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get alignContent():String
 		{
@@ -143,7 +143,7 @@ package org.apache.royale.style.stylebeads
 		 * By default, the main axis is the horizontal axis (row).
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get placeContent():String
 		{
@@ -170,7 +170,7 @@ package org.apache.royale.style.stylebeads
 		 * By default, the main axis is the horizontal axis (row).
 		 * 
 		 * @langversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get placeItems():String
 		{

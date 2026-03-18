@@ -33,7 +33,7 @@ package org.apache.royale.core
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class CompoundBead implements IBead, IStrand, IMXMLDocument
 	{
@@ -43,7 +43,7 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function CompoundBead()
 		{
@@ -61,7 +61,7 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -81,7 +81,7 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function addBead(bead:IBead):void
 		{
@@ -99,7 +99,7 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function getBeadByType(classOrInterface:Class):IBead
 		{
@@ -124,7 +124,7 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function removeBead(bead:IBead):IBead
 		{
@@ -146,7 +146,7 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get beads():Array
 		{

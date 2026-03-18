@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Img extends NodeElementBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Img()
 		{
@@ -47,7 +47,7 @@ package org.apache.royale.style.elements
 		 *  The img src
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get src():String
 		{
@@ -79,7 +79,7 @@ package org.apache.royale.style.elements
 		 *  The img alt
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get alt():String
 		{
