@@ -59,7 +59,7 @@ package org.apache.royale.style
 		/**
 		 *  The array of style beads that this StyleSkin will apply to the component.
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 * 
 		 */
 		public function get styles():Array

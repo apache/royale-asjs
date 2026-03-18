@@ -29,7 +29,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.13-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -55,8 +55,8 @@
     <maven.version>3.8.1</maven.version>
 
     <royale.build-tools.version>1.2.1</royale.build-tools.version>
-    <project.royale.compiler.version>0.9.13-SNAPSHOT</project.royale.compiler.version>
-    <royale.typedefs.version>0.9.13-SNAPSHOT</royale.typedefs.version>
+    <project.royale.compiler.version>1.0.0-SNAPSHOT</project.royale.compiler.version>
+    <royale.typedefs.version>1.0.0-SNAPSHOT</royale.typedefs.version>
 
     <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>

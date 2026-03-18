@@ -153,7 +153,7 @@ package org.apache.royale.style
 		 * The Checkbox skin should specify invalid styles if desired.
 		 * 
 		 * @languageversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get invalid():Boolean
 		{
@@ -182,7 +182,7 @@ package org.apache.royale.style
 		 * If no indeterminateIcon is provided, the CheckBox will simply not display a check icon when in the indeterminate state.
 		 * 
 		 * @languageversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get indeterminate():Boolean
 		{
@@ -302,7 +302,7 @@ package org.apache.royale.style
 		 * The Checkbox skin should specify styles for the quiet state if it should look different than the regular state. This might include things like lighter colors, smaller size, or less prominent check icons.
 		 * 
 		 * @languageversion 3.0
-		 * @productversion Royale 0.9.13
+		 * @productversion Royale 1.0.0
 		 */
 		public function get quiet():Boolean
 		{

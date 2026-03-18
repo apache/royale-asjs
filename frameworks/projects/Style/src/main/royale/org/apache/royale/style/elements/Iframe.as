@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Iframe extends NodeElementBase
 	{
@@ -38,7 +38,7 @@ package org.apache.royale.style.elements
 		 * Specifies the feature policy for the iframe
 		 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get allow():String
 		{
@@ -53,7 +53,7 @@ package org.apache.royale.style.elements
 		 * Specifies the Content Security Policy for the iframe
 		 * https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get csp():String
 		{
@@ -75,7 +75,7 @@ package org.apache.royale.style.elements
 		 * low
 		 *    The resource should be downloaded after other higher-priority page resources.
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get importance():String
 		{
@@ -94,7 +94,7 @@ package org.apache.royale.style.elements
 		 * lazy: Defer loading of the iframe until it reaches a calculated distance from the viewport, as defined by the browser.
 
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get loading():String
 		{
@@ -110,7 +110,7 @@ package org.apache.royale.style.elements
 		/**
 		 * A targetable name for the embedded browsing context.
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		COMPILE::JS
 		public function get name():String
@@ -138,7 +138,7 @@ package org.apache.royale.style.elements
 		 * Indicates which referrer to send when fetching the frame's resource
 		 * https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/referrerPolicy
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get referrerpolicy():String
 		{
@@ -157,7 +157,7 @@ package org.apache.royale.style.elements
 		 * empty to apply all restrictions, or space-separated tokens to lift particular restrictions:
 		 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-sandbox
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get sandbox():String
 		{
@@ -192,7 +192,7 @@ package org.apache.royale.style.elements
 		 * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-src
 		 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get src():String
 		{
@@ -223,7 +223,7 @@ package org.apache.royale.style.elements
 		/**
 		 * Convenience method for postMessage
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function postMessage(message:Object, targetOrigin:String, transfer:Object = null):void
 		{
@@ -240,7 +240,7 @@ package org.apache.royale.style.elements
 		/**
 		 * Convenience method to attach message listener
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function addMessageListener(handler:(e:MessageEvent)=>void):void
 		{
@@ -258,7 +258,7 @@ package org.apache.royale.style.elements
 		/**
 		 * @royaleignorecoercion HTMLIFrameElement
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		COMPILE::JS
 		public function get contentWindow():Window

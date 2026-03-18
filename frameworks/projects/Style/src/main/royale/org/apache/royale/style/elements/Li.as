@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Li extends TextNodeContainerBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Li()
 		{

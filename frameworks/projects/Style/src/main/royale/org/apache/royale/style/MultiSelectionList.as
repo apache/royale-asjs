@@ -27,7 +27,7 @@ package org.apache.royale.style
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
@@ -35,7 +35,7 @@ package org.apache.royale.style
 	 * The selectionChange event is dispatched whenever the list's selection changes.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	[Event(name="selectionChange", type="org.apache.royale.events.Event")]
 
@@ -52,7 +52,7 @@ package org.apache.royale.style
 	 *  org.apache.royale.core.IItemRenderer: the class or factory used to display an item in the list.
 	 *
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class MultiSelectionList extends DataContainer
 	{
@@ -60,7 +60,7 @@ package org.apache.royale.style
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function MultiSelectionList()
 		{
@@ -73,7 +73,7 @@ package org.apache.royale.style
 		 *  also changes the selectedItems property.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
 		 */
 		[Bindable("selectionChange")]
@@ -94,7 +94,7 @@ package org.apache.royale.style
 		 *  The index of the item currently below the pointer.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		public function get rollOverIndex():int
@@ -114,7 +114,7 @@ package org.apache.royale.style
 		 *  The default height of each cell in every column
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
 		public function get rowHeight():Number
@@ -132,7 +132,7 @@ package org.apache.royale.style
 		 *  changes the selectedIndices property.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
 		 */
 		[Bindable("selectionChange")]

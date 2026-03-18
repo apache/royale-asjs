@@ -31,7 +31,7 @@ package org.apache.royale.style.beads
 		 *  Constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function FlexLayout()
 		{

@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Input extends NodeElementBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Input()
 		{
@@ -54,7 +54,7 @@ package org.apache.royale.style.elements
 		 *  Whether the input is disabled
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get disabled():Boolean
 		{
@@ -84,7 +84,7 @@ package org.apache.royale.style.elements
 		 *  The input name
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		COMPILE::JS
 		public function get name():String
@@ -119,7 +119,7 @@ package org.apache.royale.style.elements
 		 *  Whether the input is required
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get required():Boolean
 		{
@@ -153,7 +153,7 @@ package org.apache.royale.style.elements
 		 *  The input type
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get type():String
 		{
@@ -187,7 +187,7 @@ package org.apache.royale.style.elements
 		 *  The current value of the control
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get value():String
 		{

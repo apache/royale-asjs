@@ -26,7 +26,7 @@ package org.apache.royale.style.elements
 	 *
 	 *  @toplevel
 	 *  @langversion 3.0
-	 *  @productversion Royale 0.9.13
+	 *  @productversion Royale 1.0.0
 	 */
 	public class Textarea extends NodeElementBase
 	{
@@ -34,7 +34,7 @@ package org.apache.royale.style.elements
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function Textarea()
 		{
@@ -57,7 +57,7 @@ package org.apache.royale.style.elements
 		 *  Width of textarea in (average) character widths
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get cols():uint
 		{
@@ -90,7 +90,7 @@ package org.apache.royale.style.elements
 		 *  Number of visible lines
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get rows():uint
 		{
@@ -124,7 +124,7 @@ package org.apache.royale.style.elements
 		 *  Whether the textarea is disabled
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get disabled():Boolean
 		{
@@ -154,7 +154,7 @@ package org.apache.royale.style.elements
 		 *  The textarea name
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		COMPILE::JS
 
@@ -190,7 +190,7 @@ package org.apache.royale.style.elements
 		 *  The current value of the textarea
 		 *
 		 *  @langversion 3.0
-		 *  @productversion Royale 0.9.13
+		 *  @productversion Royale 1.0.0
 		 */
 		public function get value():String
 		{
