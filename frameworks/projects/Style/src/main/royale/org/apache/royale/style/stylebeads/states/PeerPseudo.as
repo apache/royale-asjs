@@ -43,10 +43,7 @@ package org.apache.royale.style.stylebeads.states
 			}).join("");
 			
 			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
-
 			style.rulePrefix = "." + ruleDecorator + decorationStr + " ~ " + style.rulePrefix;
-			// style.ruleSuffix = selector + ":" + style.ruleSuffix;
-			
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style, decorations);
 		}
