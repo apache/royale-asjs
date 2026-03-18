@@ -379,7 +379,7 @@ dark:peer-disabled:border-slate-500
 					new OpacityStyle(0),
 					new PeerPseudo([
 						new IndeterminateState([
-							new OpacityStyle(1)
+							new OpacityStyle(100)
 						]),
 						new DisabledState([
 							new BackgroundColor("slate-300")

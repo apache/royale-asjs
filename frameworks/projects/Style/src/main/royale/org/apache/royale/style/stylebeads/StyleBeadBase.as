@@ -121,7 +121,6 @@ package org.apache.royale.style.stylebeads
 					ruleVal = "#fff";
 					break;
 				default:
-					// assert(CSSLookup.has(selectorVal), "Invalid color value: " + value);
 					if(CSSLookup.has(selectorVal))
 						ruleVal = CSSLookup.getProperty(selectorVal);
 					else
