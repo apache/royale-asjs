@@ -74,9 +74,16 @@ package org.apache.royale.style.stylebeads
 		 * 
 		 * In many classes the ruleBase can be shared across multiple style types.
 		 */
-		public function get styleType():String
+		override public function get styleType():String
 		{
-			return ruleBase;
+			var str:String = "";
+			var parent:IStyleBead = parentStyle;
+			while(parent)
+			{
+				str += "-" + parent.styleType;
+				parent = parent.parentStyle;
+			}
+			return ruleBase + str;
 		}
 		private var _selectorPrefix:String = "";
 		/**

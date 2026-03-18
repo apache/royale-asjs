@@ -47,7 +47,7 @@ package org.apache.royale.style.stylebeads
 		 *  @royalesuppresspublicvarwarning
 		 */
 		public var styles:Array = [];
-
+		abstract public function get styleType():String;
 		/**
 		 * Decorator style beads should override this method to apply their decoration to child styles.
 		 */

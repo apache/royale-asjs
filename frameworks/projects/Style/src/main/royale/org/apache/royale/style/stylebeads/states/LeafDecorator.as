@@ -38,7 +38,10 @@ package org.apache.royale.style.stylebeads.states
 		protected var decoratorType:String = STATE;
 		protected var selectorDecorator:String;
 		protected var ruleDecorator:String;
-		protected var leafStyle:LeafStyleBase;
+		override public function get styleType():String
+		{
+			return selectorDecorator;
+		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.style.stylebeads.LeafStyleBase
 		 */

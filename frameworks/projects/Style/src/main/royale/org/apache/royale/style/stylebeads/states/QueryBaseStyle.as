@@ -32,6 +32,10 @@ package org.apache.royale.style.stylebeads.states
 		{
 			return true;
 		}
+		override public function get styleType():String
+		{
+			return querySelector;
+		}
 		/**
 		 * Change in subclasses for other query types such as `container` or `supports`.
 		 */

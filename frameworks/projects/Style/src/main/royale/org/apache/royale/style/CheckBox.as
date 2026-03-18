@@ -47,10 +47,12 @@ package org.apache.royale.style
 		}
 		COMPILE::JS
 		private var input:HTMLInputElement;
-
+		
+		COMPILE::JS
 		private function elementClicked():void{
 			// _indeterminate = input.indeterminate = false;// input.indeterminate should be resolved automatically.
 			_indeterminate = false;
+			_checked = input.checked;
 			if(_stylesLoaded && !checkIcon)
 				applyCheckSkin();
 		}

@@ -317,7 +317,7 @@ package org.apache.royale.style.skins
 					new OpacityStyle(0),
 					new PeerPseudo([
 						new CheckedState([
-							new OpacityStyle(1)
+							new OpacityStyle(100)
 						]),
 						new IndeterminateState([
 							new OpacityStyle(0)

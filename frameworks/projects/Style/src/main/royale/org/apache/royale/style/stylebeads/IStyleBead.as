@@ -29,6 +29,7 @@ package org.apache.royale.style.stylebeads
 	 */
 	public interface IStyleBead extends IBead
 	{
+		function get styleType():String;
 		function get isLeaf():Boolean;
 		function get isGroup():Boolean;
 		function getLeaves():Array;
