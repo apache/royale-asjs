@@ -32,8 +32,11 @@ package org.apache.royale.style.stylebeads.border
 		{
 			super();
 			styles = [];
-			if(value)
-				radius = value;
+			//because of @royalesuppressexport, the following did not work in release/minified build from within this constructor when using the radius setter directly:
+			//if (value) radius = value;
+			//however a usage of the getter here will make the setter usage survive minification:
+			if (value != radius) radius = value;
+			//another option that worked was to isolate the setter's internals into a separate private method and call that directly (as would the setter itself).
 		}
 
 		private var _radius:*;
@@ -183,7 +186,7 @@ package org.apache.royale.style.stylebeads.border
 		}
 	}
 }
-import org.apache.royale.style.stylebeads.border.BorderRadius;
+
 import org.apache.royale.style.util.StyleTheme;
 import org.apache.royale.style.util.ThemeManager;
 import org.apache.royale.style.stylebeads.LeafStyleBase;
