@@ -39,9 +39,10 @@ package org.apache.royale.style.stylebeads.states
 
 			//TODO figure out more complex combinations. For now, just handle limited nesting.
 			var decorationStr:String = ""
-			for each(var decoration:StyleDecoration in decorations)
+			var len:int = decorations.length;
+			for(var i:int = 0; i < len; i++)
 			{
-				decorationStr += decoration.decoration;
+				decorationStr += decorations[i].decoration;				
 			}
 			
 			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));

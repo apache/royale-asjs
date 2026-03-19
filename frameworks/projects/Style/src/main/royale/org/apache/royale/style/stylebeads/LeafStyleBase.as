@@ -199,17 +199,18 @@ package org.apache.royale.style.stylebeads
 				return "";
 			return ruleBase + ":" + calculatedRuleValue + ";";
 		}
+		private static const SPACE_DOT_REGEX:RegExp = /[\s\.]/g;
+		private static const PERCENT_REGEX:RegExp = /%/g;
 		protected function sanitizeSelector(value:String):String
 		{
-			var strVal:String = "" + value;
-			if(strVal.indexOf("-") == 0)
-				strVal = strVal.substring(1);
-			if(strVal == "100%")
+			if(value.indexOf("-") == 0)
+				value = value.substring(1);
+			if(value == "100%")
 				return "full";
-			if(strVal.indexOf("%") >= 0)
-				strVal = strVal.replace(/%/g, "p");
+			if(value.indexOf("%") >= 0)
+				value = value.replace(PERCENT_REGEX, "p");
 			
-			return strVal.replace(/[\.\s]/g, "-");
+			return value.replace(SPACE_DOT_REGEX, "-");
 		}
 		protected function acceptVar(value:String):String
 		{

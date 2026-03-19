@@ -20,11 +20,12 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class FocusVisibleState extends LeafDecorator
 	{
-		public function FocusVisibleState()
+		public function FocusVisibleState(styles:Array = null)
 		{
 			super();
 			selectorDecorator = "focus-visible:";
 			ruleDecorator = ":focus-visible";
+			this.styles = styles;
 		}
 	}
 }
