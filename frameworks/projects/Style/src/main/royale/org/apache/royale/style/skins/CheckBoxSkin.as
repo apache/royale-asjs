@@ -67,24 +67,6 @@ package org.apache.royale.style.skins
 			super();
 		}
 		/**
-    .checkbox[data-size="sm"] {
-      --size: 0.875rem;
-    }
-
-    .checkbox[data-size="md"] {
-      --size: 1rem; *4;
-    }
-
-    .checkbox[data-size="lg"] {
-      --size: 1.125rem;
-    }
-
-    .checkbox[data-size="xl"] {
-      --size: 1.25rem;
-    }
-
-		 */
-		/**
 		 * @royaleignorecoercion org.apache.royale.style.CheckBox
 		 */
 		private function get host():CheckBox
@@ -146,6 +128,10 @@ package org.apache.royale.style.skins
 		{
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
+			var outline:Outline = new Outline();
+			outline.width = 2;
+			outline.color = "orange-500/40";
+			outline.offset = 2;
 			_boxStyles = [
 				new GridColumnStart("1"),
 				new GridRowStart("1"),
@@ -154,78 +140,23 @@ package org.apache.royale.style.skins
 				new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
 				new BorderWidth(2),
 				new BorderColor("slate-500"),
-				new Transition()
+				new Transition(),
+				new PeerPseudo([
+					new FocusVisibleState([outline]),
+					new CheckedState([
+						new BorderColor("orange-500"),
+						new BackgroundColor("orange-500")
+					]),
+					new IndeterminateState([
+						new BorderColor("orange-500"),
+						new BackgroundColor("orange-500")
+					]),
+					new DisabledState([
+						new BorderColor("slate-300"),
+						new BackgroundColor("slate-100")
+					])
+				])
 			];
-			var peer:PeerPseudo = new PeerPseudo();
-			var focusVisible:FocusVisibleState = new FocusVisibleState();
-			var outline1:Outline = new Outline();
-			outline1.width = 2;
-			outline1.color = "orange-500/40";
-			outline1.offset = 2;
-			focusVisible.styles = [outline1];
-			var checked:CheckedState = new CheckedState();
-			checked.styles = [
-				new BorderColor("orange-500"),
-				new BackgroundColor("orange-500")
-			];
-			var indeterminate:IndeterminateState = new IndeterminateState();
-			indeterminate.styles = [
-				new BorderColor("orange-500"),
-				new BackgroundColor("orange-500")
-			];
-			var disabled:DisabledState = new DisabledState();
-			disabled.styles = [
-				new BorderColor("slate-300"),
-				new BackgroundColor("slate-100")
-			];
-
-			peer.styles = [
-				focusVisible,
-				checked,
-				indeterminate,
-				disabled
-			];
-			_boxStyles.push(peer);
-		/**
-		 col-start-1
-		row-start-1
-		h-[var(--box)]
-		w-[var(--box)]
-		rounded
-		border-2
-		border-slate-500
-		transition
-		peer-focus-visible:ring-2
-		peer-focus-visible:ring-orange-500/40
-		peer-focus-visible:ring-offset-2
-		peer-focus-visible:ring-offset-slate-50
-		peer-checked:border-orange-500
-		peer-checked:bg-orange-500
-		peer-indeterminate:border-orange-500
-		peer-indeterminate:bg-orange-500
-		peer-disabled:border-slate-300
-		peer-disabled:bg-slate-100
-		dark:border-slate-400
-		dark:peer-focus-visible:ring-orange-500/40
-		dark:peer-focus-visible:ring-offset-slate-950
-		dark:peer-disabled:border-slate-600
-		dark:peer-disabled:bg-slate-800
-		
-		peer-focus-visible:outline
-		peer-focus-visible:outline-2
-		peer-focus-visible:outline-orange-500/40
-		peer-focus-visible:outline-offset-2
-		peer-checked:border-orange-500
-		peer-checked:bg-orange-500
-		peer-indeterminate:border-orange-500
-		peer-indeterminate:bg-orange-500
-		peer-disabled:border-slate-300
-		peer-disabled:bg-slate-100
-		dark:border-slate-400
-		dark:peer-disabled:border-slate-600
-		dark:peer-disabled:bg-slate-800
-
-		*/
 		}
 
 		public function set boxStyles(value:Array):void
@@ -250,28 +181,13 @@ package org.apache.royale.style.skins
 				new GridRowStart("1"),
 				new FontSize(fontSize),
 				new FontWeight("600"),
-				new TextColor("slate-800")
+				new TextColor("slate-800"),
+				new PeerPseudo([
+					new DisabledState([
+						new TextColor("slate-400")
+					])
+				])
 			];
-			var peer:PeerPseudo = new PeerPseudo();
-			var disabled:DisabledState = new DisabledState();
-			disabled.styles = [
-				new TextColor("slate-400")
-			];
-			peer.styles = [
-				disabled
-			];
-			_labelStyles.push(peer);
-/**
- col-start-2
- row-start-1
- text-[length:var(--size)]
- font-semibold
- text-slate-800
- dark:text-slate-100
- peer-disabled:text-slate-400
- dark:peer-disabled:text-slate-500
- */
-
 		}
 
 		public function set labelStyles(value:Array):void
@@ -287,15 +203,6 @@ package org.apache.royale.style.skins
 		{
 			if(!_checkIcon){
 				_checkIcon = new Div();
-				// var iconName:String = "style_checkIconSmall";
-				// if(!Icon.isRegistered(iconName))
-				// 	Icon.registerIcon(iconName,
-				// 		<svg viewBox="0 0 12 10" fill="none" aria-hidden="true" width="10" height="10">
-				// 			<path d="M1.5 5.5L4.5 8.5L10.5 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-				// 		</svg>);
-				// _checkIcon = new Icon(iconName);
-				// --tick-h: calc(var(--size) * 0.625);
-				// --tick-w: calc(var(--size) * 0.375);
 				var size:Number = 16 * getMultiplier();
 				var transform:Transform = new Transform();
 				transform.translateY = "-8%";
@@ -330,25 +237,6 @@ package org.apache.royale.style.skins
 				_checkIcon.setStyles(styles);
 				// TODO dark mode styles
 			}
-
-/**
-col-start-1
-row-start-1
-h-[var(--tick-h)]
-w-[var(--tick-w)]
-place-self-center
--translate-y-[8%]
-rotate-45
-border-b-[3px]
-border-r-[3px]
-border-white
-opacity-0
-transition
-peer-checked:opacity-100
-peer-indeterminate:opacity-0
-peer-disabled:border-slate-300
-dark:peer-disabled:border-slate-500
- */				
 			return _checkIcon;
 		}
 
@@ -387,28 +275,6 @@ dark:peer-disabled:border-slate-500
 					])
 				];
 				_indeterminateIcon.setStyles(styles);
-				// var iconName:String = "style_indeterminateIconSmall";
-				// if(!Icon.isRegistered(iconName))
-				// 	Icon.registerIcon(iconName,
-				// 		<svg viewBox="0 0 12 10" fill="none" aria-hidden="true" width="10" height="10">
-				// 			<rect x="1" y="4.5" width="10" height="1" fill="currentColor"/>
-				// 		</svg>);
-				// _indeterminateIcon = new Icon(iconName);
-/**
- col-start-1
- row-start-1
- h-[14%]
- w-[var(--minus-w)]
- place-self-center
- rounded
- bg-white
- opacity-0
- transition
- peer-indeterminate:opacity-100
- peer-disabled:bg-slate-300
- dark:peer-disabled:bg-slate-500
- */
-
 			}
 			return _indeterminateIcon;
 		}
@@ -417,6 +283,5 @@ dark:peer-disabled:border-slate-500
 		{
 			_indeterminateIcon = value;
 		}
-
 	}
 }
