@@ -19,6 +19,8 @@
 package org.apache.royale.style
 {
 	
+	import org.apache.royale.style.support.ContentContainerBase;
+
 	/**
 	 *  The FlexContainer class is a container with CSS flex display enabled.
 	 *
@@ -26,7 +28,7 @@ package org.apache.royale.style
 	 *  @productversion Royale 1.0.0
 	 */
 	
-	public class FlexContainer extends Container
+	public class FlexContainer extends ContentContainerBase
 	{
 		/**
 		 *  Constructor.
@@ -36,51 +38,10 @@ package org.apache.royale.style
 		 */
 		public function FlexContainer()
 		{
+			displayType = "flex";
 			super();
-			setStyle("display","flex");
 		}
 
-		/**
-		 *  Returns the align-content style value.
-		 *
-		 *  @langversion 3.0
-		 *  @productversion Royale 1.0.0
-		 */
-		public function get alignContent():String{
-			COMPILE::SWF{return "";}
-			COMPILE::JS{return element.style.alignContent;}
-		}
-		public function set alignContent(value:String):void{
-			setStyle("alignContent",value);
-		}
-		/**
-		 *  Returns the align-items style value.
-		 *
-		 *  @langversion 3.0
-		 *  @productversion Royale 1.0.0
-		 */
-		public function get alignItems():String{
-			COMPILE::SWF{return "";}
-			COMPILE::JS{return element.style.alignItems;}
-		}
-		public function set alignItems(value:String):void{
-			setStyle("alignItems",value);
-		}
-		
-		/**
-		 *  Returns the justify-content style value.
-		 *
-		 *  @langversion 3.0
-		 *  @productversion Royale 1.0.0
-		 */
-		public function get justifyContent():String{
-			COMPILE::SWF{return "";}
-			COMPILE::JS{return element.style.justifyContent;}
-		}
-		public function set justifyContent(value:String):void{
-			setStyle("justifyContent",value);
-		}
-		
 		private var _vertical:Boolean = false;
 		
 		/**
@@ -178,56 +139,5 @@ package org.apache.royale.style
 			setStyle("flexWrap",wrapVal);
 		}
 
-		private var _gap:String;
-
-		/**
-		 *  Returns the gap style value.
-		 *
-		 *  @langversion 3.0
-		 *  @productversion Royale 1.0.0
-		 */
-		public function get gap():String
-		{
-			return _gap;
-		}
-		public function set gap(value:String):void
-		{
-			_gap = value;
-			setStyle("gap",value);
-		}
-		private var _columnGap:String;
-
-		/**
-		 *  Returns the column-gap style value.
-		 *
-		 *  @langversion 3.0
-		 *  @productversion Royale 1.0.0
-		 */
-		public function get columnGap():String
-		{
-			return _columnGap;
-		}
-		public function set columnGap(value:String):void
-		{
-			_columnGap = value;
-			setStyle("columnGap",value);
-		}
-		private var _rowGap:String;
-
-		/**
-		 *  Returns the row-gap style value.
-		 *
-		 *  @langversion 3.0
-		 *  @productversion Royale 1.0.0
-		 */
-		public function get rowGap():String
-		{
-			return _rowGap;
-		}
-		public function set rowGap(value:String):void
-		{
-			_rowGap = value;
-			setStyle("rowGap",value);
-		}
 	}
 }

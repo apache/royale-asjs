@@ -26,6 +26,7 @@
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
   <component id="Divider" class="org.apache.royale.style.Divider"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
+  <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
   <component id="Icon" class="org.apache.royale.style.Icon"/>
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
