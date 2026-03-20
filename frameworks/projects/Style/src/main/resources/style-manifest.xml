@@ -22,6 +22,7 @@
 <componentPackage>
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="View" class="org.apache.royale.style.View"/>
+  <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
   <component id="Divider" class="org.apache.royale.style.Divider"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
