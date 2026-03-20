@@ -18,39 +18,45 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
-	import org.apache.royale.core.Application;
-	import org.apache.royale.binding.ApplicationDataBinding;
-	import org.apache.royale.core.CSSClassList;
-	import org.apache.royale.core.AllCSSValuesImpl;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.StyleTheme;
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.MXMLDataInterpreter;
+	
 
-	public class Application extends org.apache.royale.core.Application
+	public class Divider extends StyleUIBase
 	{
-		public function Application()
+		public function Divider()
 		{
 			super();
-			valuesImpl = new AllCSSValuesImpl();
-     		addBead(new ApplicationDataBinding());
-			ThemeManager.instance.registerTheme(new StyleTheme());
 		}
-
-		private var _theme:String = "";
-
-		public function get theme():String
+		override protected function requiresView():Boolean{
+			return false;
+		}
+		override protected function requiresController():Boolean{
+			return false;
+		}
+		/*override protected function requiresLayout():Boolean{
+			return false;
+		}*/
+		
+		
+		private var _vertical:Boolean;
+		
+		/**
+		 * Whether horizontal or vertical divider
+		 */
+		public function get vertical():Boolean
 		{
-			return _theme;
+			return _vertical;
 		}
-
-		public function set theme(value:String):void
+		
+		public function set vertical(value:Boolean):void
 		{
-			_theme = value;
+			if(value != !!_vertical){
+				
+			}
+			_vertical = value;
 		}
-		COMPILE::JS
-		override public function start():void
-		{
-			super.start();
-		}
-
 	}
 }

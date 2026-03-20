@@ -37,7 +37,9 @@ package org.apache.royale.style
 	 *  @langversion 3.0
 	 *  @productversion Royale 1.0.0
 	 */
-	[Event(name="selectionChange", type="org.apache.royale.events.Event")]
+	//[Event(name="selectionChange", type="org.apache.royale.events.Event")]
+	[Event(name="change", type="org.apache.royale.events.Event")]
+	
 
 	/**
 	 *  The List class is a component that displays multiple data items. The List uses
@@ -76,7 +78,8 @@ package org.apache.royale.style
 		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-		[Bindable("selectionChange")]
+		//[Bindable("selectionChange")]
+		[Bindable("change")]
 		public function get selectedIndex():int
 		{
 			return (model as ISelectionModel).selectedIndex;
@@ -138,7 +141,8 @@ package org.apache.royale.style
 		 *  @productversion Royale 1.0.0
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-		[Bindable("selectionChange")]
+	//	[Bindable("selectionChange")]
+		[Bindable("change")]
 		public function get selectedItem():Object
 		{
 			return (model as ISelectionModel).selectedItem;

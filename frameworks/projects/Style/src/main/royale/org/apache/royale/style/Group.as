@@ -18,7 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
-	public class Group extends GroupBase
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.MXMLDataInterpreter;
+	
+	[DefaultProperty("mxmlContent")]
+	public class Group extends GroupBase implements IMXMLDocument
 	{
 		public function Group()
 		{
@@ -33,5 +39,83 @@ package org.apache.royale.style
 		override protected function requiresLayout():Boolean{
 			return false;
 		}
+		
+		
+		
+		private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+		private var _initialized:Boolean;
+		
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			if (!_initialized)
+			{
+				// each MXML file can also have styles in fx:Style block
+				ValuesManager.valuesImpl.init(this);
+			}
+			
+			super.addedToParent();
+			
+			if (!_initialized)
+			{
+				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+				
+				dispatchEvent(new Event("initBindings"));
+				dispatchEvent(new Event("initComplete"));
+				_initialized = true;
+				
+				//?? why was this added here? childrenAdded(); //?? Is this needed since MXMLDataInterpreter will already have called it
+			}
+		}
+		
+		/**
+		 *  @copy org.apache.royale.core.Application#MXMLDescriptor
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get MXMLDescriptor():Array
+		{
+			return _mxmlDescriptor;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function setMXMLDescriptor(document:Object, value:Array):void
+		{
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
+		}
+		
+		/**
+		 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function generateMXMLAttributes(data:Array):void
+		{
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
+		}
+		
+		/**
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 *
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var mxmlContent:Array;
 	}
 }

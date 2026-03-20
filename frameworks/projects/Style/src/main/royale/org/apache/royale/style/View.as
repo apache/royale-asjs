@@ -17,7 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
-{    	
+{
+	import org.apache.royale.binding.DataBindingBase;
+	import org.apache.royale.binding.ViewDataBinding;
 	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.utils.MXMLDataInterpreter;
@@ -65,6 +67,10 @@ package org.apache.royale.style
 			
 			if (!_initialized)
 			{
+				if ('_bindings' in this && !getBeadByType(DataBindingBase)) {
+					addBead(new ViewDataBinding());
+				}
+				
 				MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
 				
 				sendEvent(this,"initBindings");
