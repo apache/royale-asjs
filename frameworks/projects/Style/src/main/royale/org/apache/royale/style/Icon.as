@@ -178,7 +178,10 @@ package org.apache.royale.style
 			{
 				return _registeredIcons.has(name);
 			}
-			return false;
+			COMPILE::SWF
+			{
+				return false;
+			}
 		}
 		private static function getAttributes():Object
 		{

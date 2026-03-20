@@ -35,7 +35,10 @@ package org.apache.royale.style.util
 			{
 				return styleList.has(selector);
 			}
-			return false;
+			COMPILE::SWF
+			{
+				return false;
+			}
 		}
 		public static function addStyle(selector:String, normalizedSelector:String, rule:String):void
 		{
