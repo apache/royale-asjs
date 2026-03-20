@@ -20,10 +20,6 @@ package org.apache.royale.style
 {
 	import org.apache.royale.binding.ContainerDataBinding;
 	import org.apache.royale.binding.DataBindingBase;
-	import org.apache.royale.core.IMXMLDocument;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.MXMLDataInterpreter;
 	
 	
 	public class FlexContainer extends Group
@@ -155,6 +151,42 @@ package org.apache.royale.style
 			}
 			setStyle("flexWrap",wrapVal);
 		}
-		
+
+		private var _gap:String;
+
+		public function get gap():String
+		{
+			return _gap;
+		}
+
+		public function set gap(value:String):void
+		{
+			_gap = value;
+			setStyle("gap",value);
+		}
+		private var _columnGap:String;
+
+		public function get columnGap():String
+		{
+			return _columnGap;
+		}
+
+		public function set columnGap(value:String):void
+		{
+			_columnGap = value;
+			setStyle("columnGap",value);
+		}
+		private var _rowGap:String;
+
+		public function get rowGap():String
+		{
+			return _rowGap;
+		}
+
+		public function set rowGap(value:String):void
+		{
+			_rowGap = value;
+			setStyle("rowGap",value);
+		}
 	}
 }
