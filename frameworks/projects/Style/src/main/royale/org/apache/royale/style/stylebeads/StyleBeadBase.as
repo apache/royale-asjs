@@ -55,13 +55,28 @@ package org.apache.royale.style.stylebeads
 		{
 			assert(styles && styles.length > 0, "Non-leaf style beads must have child styles");
 			preprocessStyle();
+			return gatherLeaves(this);
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.stylebeads.ILeafStyleBead
+		 */
+		protected function gatherLeaves(parentStyle:IStyleBead):Array
+		{
 			var retVal:Array = [];
 			for each(var style:IStyleBead in styles)
 			{
-				style.parentStyle = this;
-				retVal = retVal.concat(style.getLeaves());
+				style.parentStyle = parentStyle;
+				if(style.isLeaf)
+				{
+					retVal.push(style);
+					var leaf:ILeafStyleBead = style as ILeafStyleBead;
+					if(!leaf.isDecorated())
+						decorateChildStyle(leaf, []);
+				}
+				else
+					retVal = retVal.concat(style.getLeaves());
 			}
-		return retVal;
+			return retVal;
 		}
 		/**
 		 * Override this method in subclasses to make sure the style is normalized

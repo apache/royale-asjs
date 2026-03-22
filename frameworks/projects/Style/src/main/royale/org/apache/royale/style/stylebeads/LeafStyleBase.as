@@ -44,7 +44,7 @@ package org.apache.royale.style.stylebeads
 		override public function getLeaves():Array
 		{
 			// Walk up the chain decorating the styles.
-			if(parentStyle)
+			if(parentStyle && !isDecorated())
 				parentStyle.decorateChildStyle(this,[]);
 			return [this];
 		}
@@ -170,10 +170,11 @@ package org.apache.royale.style.stylebeads
 			if(!calculatedSelector)
 				return "";
 			
-			var str:String = selectorPrefix + selectorBase;
-			if(str)
-				str += "-";
-			var selector:String = str + calculatedSelector;
+			var selector:String;
+			if(selectorPrefix || selectorBase)
+				selector = selectorPrefix + selectorBase + "-" + calculatedSelector;
+			else
+				selector = calculatedSelector;
 			/**
 			 * Always add the rule automatically when accessing the selector if needed.
 			 */
@@ -284,6 +285,10 @@ package org.apache.royale.style.stylebeads
 		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
 			assert(false, "Leaf styles should not have child styles.");
+		}
+		public function isDecorated():Boolean
+		{
+			return _selectorPrefix != "";
 		}
 	}
 }

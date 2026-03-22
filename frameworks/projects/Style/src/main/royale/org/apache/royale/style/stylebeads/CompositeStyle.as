@@ -44,14 +44,7 @@ package org.apache.royale.style.stylebeads
 		{
 			assert(styles && styles.length > 0, "Non-leaf style beads must have child styles");
 			// nothing to preprocess.
-			var retVal:Array = [];
-			for each(var style:IStyleBead in styles)
-			{
-				// Composite styles have no effect, so it should not insert itself into the hierarchy.
-				style.parentStyle = parentStyle;
-				retVal = retVal.concat(style.getLeaves());
-			}
-		return retVal;
+			return gatherLeaves(parentStyle);
 		}
 
 		//TODO: Figure this out.

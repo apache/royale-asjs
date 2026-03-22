@@ -123,32 +123,39 @@ package org.apache.royale.style
 				addStyleInternal(bead, false);
 			}
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.stylebeads.ILeafStyleBead
+		 */
 		COMPILE::JS
 		private function addStyleInternal(bead:IStyleBead, overrideExisting:Boolean):void
 		{
-			if(!styleTypes)
-				styleTypes = new Map();
-			
+			if(bead.isLeaf)
+				return addLeafStyleBead(bead as ILeafStyleBead, overrideExisting);
+
 			var leaves:Array = bead.getLeaves();
 			for each(var leaf:ILeafStyleBead in leaves)
 			{
 				assert(leaf.isLeaf, "getLeaves() should only return leaf style beads");
-				/**
-				 * Only add the first found leaf for each style type.
-				 * This is to prevent duplicate styles from being added to the style sheet
-				 * and enables proper handling of styling overrides.
-				 */
-				if(styleTypes.has(leaf.styleType))
-				{
-					if(overrideExisting)
-						(styleTypes.get(leaf.styleType) as ILeafStyleBead).value = leaf.value;
-
-					continue;
-				}
-				styleTypes.set(leaf.styleType, leaf);
-				leaf.strand = this;
-				_styleBeads.push(leaf);
+				addLeafStyleBead(leaf, overrideExisting);
 			}
+		}
+		COMPILE::JS
+		private function addLeafStyleBead(leaf:ILeafStyleBead,overrideExisting:Boolean):void
+		{
+			if(!styleTypes)
+				styleTypes = new Map();
+			
+			if(styleTypes.has(leaf.styleType))
+			{
+				if(overrideExisting)
+					(styleTypes.get(leaf.styleType) as ILeafStyleBead).value = leaf.value;
+
+				return;
+			}
+			
+			styleTypes.set(leaf.styleType, leaf);
+			leaf.strand = this;
+			_styleBeads.push(leaf);
 		}
 		COMPILE::JS
 		private var styleTypes:Map;
