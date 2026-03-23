@@ -24,6 +24,8 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.IStyleUIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.style.CheckBox;
+	import org.apache.royale.style.colors.ColorSwatch;
+	import org.apache.royale.style.colors.ThemeColorSet;
 	import org.apache.royale.style.stylebeads.layout.Display;
 	import org.apache.royale.style.stylebeads.interact.Cursor;
 	import org.apache.royale.style.stylebeads.flexgrid.GridAutoColumns;
@@ -85,6 +87,7 @@ package org.apache.royale.style.skins
 			var gap:String = computeSize(size * 0.75, host.unit);
 			var disabledStyle:DisabledState = new DisabledState();
 			disabledStyle.styles = [
+				//@todo: observed that this disabled style seems not to be working ('pointer' stays active):
 				new Cursor("auto")
 			];
 			_styles = [
@@ -126,12 +129,19 @@ package org.apache.royale.style.skins
 		}
 		private function createBoxStyles():void
 		{
+			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
+			var primaryColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.PRIMARY);
+			var enabledBorder:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL);
+			var disabledBorder:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL).getVariant(300);
+			var disabledFillColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL).getVariant(100);
+			
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
 			var outline:Outline = new Outline();
 			outline.width = 2;
-			outline.color = "orange-500/40";
+			outline.color = primaryColor.getVariant(NaN,40).colorSpecifier;
 			outline.offset = 2;
+			
 			_boxStyles = [
 				new GridColumnStart("1"),
 				new GridRowStart("1"),
@@ -139,21 +149,21 @@ package org.apache.royale.style.skins
 				new WidthStyle(box),
 				new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
 				new BorderWidth(2),
-				new BorderColor("slate-500"),
+				new BorderColor(enabledBorder),
 				new Transition(),
 				new PeerPseudo([
 					new FocusVisibleState([outline]),
 					new CheckedState([
-						new BorderColor("orange-500"),
-						new BackgroundColor("orange-500")
+						new BorderColor(primaryColor),
+						new BackgroundColor(primaryColor)
 					]),
 					new IndeterminateState([
-						new BorderColor("orange-500"),
-						new BackgroundColor("orange-500")
+						new BorderColor(primaryColor),
+						new BackgroundColor(primaryColor)
 					]),
 					new DisabledState([
-						new BorderColor("slate-300"),
-						new BackgroundColor("slate-100")
+						new BorderColor(disabledBorder),
+						new BackgroundColor(disabledFillColor)
 					])
 				])
 			];
@@ -175,16 +185,19 @@ package org.apache.royale.style.skins
 		{
 			var size:Number = 16 * getMultiplier();
 			var fontSize:String = computeSize(size, host.unit);
-
+			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
+			var enabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.BASE_CONTENT);
+			var disabledColor:ColorSwatch =	colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL_CONTENT).getVariant(NaN, 60);
+			
 			_labelStyles = [
 				new GridColumnStart("2"),
 				new GridRowStart("1"),
 				new FontSize(fontSize),
 				new FontWeight("600"),
-				new TextColor("slate-800"),
+				new TextColor(enabledColor),
 				new PeerPseudo([
 					new DisabledState([
-						new TextColor("slate-400")
+						new TextColor(disabledColor)
 					])
 				])
 			];
@@ -202,6 +215,10 @@ package org.apache.royale.style.skins
 		public function get checkIcon():IStyleUIBase
 		{
 			if(!_checkIcon){
+				var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
+				var enabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.PRIMARY_CONTENT);
+				var disabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL_CONTENT).getVariant(600, 40);
+				
 				_checkIcon = new Div();
 				var size:Number = 16 * getMultiplier();
 				var transform:Transform = new Transform();
@@ -219,7 +236,7 @@ package org.apache.royale.style.skins
 					new PlaceSelf("center"),
 					transform,
 					borderWidth,
-					new BorderColor("white"),
+					new BorderColor(enabledColor),
 					new Transition(),
 					new OpacityStyle(0),
 					new PeerPseudo([
@@ -230,7 +247,7 @@ package org.apache.royale.style.skins
 							new OpacityStyle(0)
 						]),
 						new DisabledState([
-							new BorderColor("slate-300"),
+							new BorderColor(disabledColor)
 						])
 					])
 				];
@@ -252,6 +269,9 @@ package org.apache.royale.style.skins
 		public function get indeterminateIcon():IStyleUIBase
 		{
 			if(!_indeterminateIcon){
+				var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
+				var enabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.PRIMARY_CONTENT);
+				var disabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL_CONTENT).getVariant(600, 40);
 				_indeterminateIcon = new Div();
 				var size:Number = 16 * getMultiplier();
 
@@ -262,7 +282,7 @@ package org.apache.royale.style.skins
 					new WidthStyle(computeSize(size * 0.625, host.unit)),
 					new PlaceSelf("center"),
 					new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
-					new BackgroundColor("white"),
+					new BackgroundColor(enabledColor),
 					new Transition(),
 					new OpacityStyle(0),
 					new PeerPseudo([
@@ -270,7 +290,7 @@ package org.apache.royale.style.skins
 							new OpacityStyle(100)
 						]),
 						new DisabledState([
-							new BackgroundColor("slate-300")
+							new BackgroundColor(disabledColor)
 						])
 					])
 				];

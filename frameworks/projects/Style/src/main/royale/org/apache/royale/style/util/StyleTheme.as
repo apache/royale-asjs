@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.util
 {
-
+	import org.apache.royale.style.colors.ThemeColorSet;
+	import org.apache.royale.style.const.Theme;
+	
 	/**
 	 * @royalesuppressexport
 	 */
@@ -29,6 +31,29 @@ package org.apache.royale.style.util
 			themeName = name;
 		}
 		public var themeName:String = "default";
+		
+		
+		public var themeColorSet:ThemeColorSet = new ThemeColorSet({
+			'primary': 'indigo-500',
+			"primary-content": "indigo-50",
+			'secondary': 'rose-500',
+			"secondary-content": "rose-50",
+			'accent': 'teal-400',
+			"accent-content": "teal-800",
+			'neutral': 'neutral-200',        // light neutral surface
+			"neutral-content": "neutral-800", // readable dark text/icon on neutral
+			'info': 'sky-400',
+			"info-content": "blue-800",
+			'success': 'emerald-400',
+			"success-content": "emerald-800",
+			'warning': 'amber-500',
+			"warning-content": "amber-800",
+			'error': 'red-500',
+			"error-content": "red-800",
+			"base": "slate-50",
+			"base-content": "slate-900"
+
+		});
 
 		public var spacing:Number = 4;
 		public var breakpointSM:String = "40rem";

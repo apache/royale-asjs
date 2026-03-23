@@ -54,32 +54,32 @@ package org.apache.royale.style.colors
 
 		// Tailwind 500 base colors keyed by Tailwind swatch name.
 		private static const BASE_COLORS:Object = {
-			"red": 0xFB2C36,
-			"orange": 0xFF6900,
 			"amber": 0xFE9A00,
-			"yellow": 0xF0B100,
-			"lime": 0x7CCF00,
-			"green": 0x00C950,
-			"emerald": 0x00BC7D,
-			"teal": 0x00BBA7,
-			"cyan": 0x00B8DB,
-			"sky": 0x00A6F4,
 			"blue": 0x2B7FFF,
-			"indigo": 0x615FFF,
-			"violet": 0x8E51FF,
-			"purple": 0xAD46FF,
+			"cyan": 0x00B8DB,
+			"emerald": 0x00BC7D,
 			"fuchsia": 0xE12AFB,
-			"pink": 0xF6339A,
-			"rose": 0xFF2056,
-			"slate": 0x62748E,
 			"gray": 0x6A7282,
-			"zinc": 0x71717B,
-			"neutral": 0x737373,
-			"stone": 0x79716B,
-			"taupe": 0x7C6D67,
+			"green": 0x00C950,
+			"indigo": 0x615FFF,
+			"lime": 0x7CCF00,
 			"mauve": 0x79697B,
 			"mist": 0x67787C,
-			"olive": 0x7C7C67
+			"neutral": 0x737373,
+			"olive": 0x7C7C67,
+			"orange": 0xFF6900,
+			"pink": 0xF6339A,
+			"purple": 0xAD46FF,
+			"red": 0xFB2C36,
+			"rose": 0xFF2056,
+			"sky": 0x00A6F4,
+			"slate": 0x62748E,
+			"stone": 0x79716B,
+			"taupe": 0x7C6D67,
+			"teal": 0x00BBA7,
+			"violet": 0x8E51FF,
+			"yellow": 0xF0B100,
+			"zinc": 0x71717B
 		};
 
 		/**
@@ -89,9 +89,20 @@ package org.apache.royale.style.colors
 		{
 			var base:Object = BASE_COLORS[swatch] || CSSLookup.getProperty(swatch);
 			assert(base, "Invalid color swatch: " + swatch);
+			
+			var baseColor:uint = CSSUtils.toColor(base);
+			var rgbComponents:Array= [(baseColor & 0xff0000)>>16,(baseColor & 0xff00)>>8,(baseColor & 0xff)];
+			var lch:Array = rgbToOKLCH(rgbComponents[0],rgbComponents[1],rgbComponents[2]);
+			
 			// Convert from 50,100,200... to 5,10,20... for easier math.
-			shade = Math.round(shade/10);
-			var colorVals:Array = CSSColor.getVariation(CSSUtils.toColor(base),shade);
+			
+			
+			
+		//	shade = Math.round(shade/10);
+		//	var colorVals:Array = CSSColor.getVariation(CSSUtils.toColor(base),shade);
+			
+			var colorVals:Array = lchShade(lch,factorForShade(shade));
+			colorSpace = 'oklch';
 
 			assert(opacity >= 0 && opacity <= 100, "Opacity must be between 0 and 100");
 			colorBase = swatch;
@@ -103,7 +114,8 @@ package org.apache.royale.style.colors
 				colorSpecifier += "/" + opacity;
 			}
 			colorValue = CSSColor.getColor(colorVals, opacity, colorSpace);
-			CSSLookup.register(colorSpecifier,colorValue);
+
+			CSSLookup.register (colorSpecifier,colorValue);
 		}
 		public var colorBase:String;
 		public var colorShade:Number;
@@ -111,6 +123,26 @@ package org.apache.royale.style.colors
 		public var colorValue:String;
 		public var colorSpace:String = "rgb";
 		public var colorSpecifier:String;
+
+		
+		/**
+		 * create a ColorSwatch variant from this instance
+		 * @param alternateShade - alternate shade. If you want to keep the same shade and adjust opacity, set this to NaN
+		 * @param alternateOpacity - if not set it will inherit the original value from this instance
+		 * @return a new ColorSwatch with different shade or opacity (or both)
+		 */
+		public function getVariant(alternateShade:Number, alternateOpacity:Number = NaN):ColorSwatch{
+			if (isNaN(alternateShade)) alternateShade = colorShade;
+			if (isNaN(alternateOpacity)) alternateOpacity = colorOpacity;
+			var alternate:ColorSwatch = new ColorSwatch(colorBase,alternateShade,alternateOpacity);
+			assert(alternate.colorShade != colorShade || alternate.colorOpacity != colorOpacity, "parameters not configured to create a variant");
+			return alternate;
+		}
+		
+		public function toString():String{
+			return colorSpecifier;
+		}
+		
 		public static function fromSpecifier(specifier:String):ColorSwatch
 		{
 			var parts:Array = specifier.split("-");
@@ -122,5 +154,93 @@ package org.apache.royale.style.colors
 			var opacity:Number = shadeParts.length > 1 ? Number(shadeParts[1]) : 100;
 			return new ColorSwatch(base, shade, opacity);
 		}
+		
+		public static function rgbToOKLCH(r:int, g:int, b:int):Array {
+			// Normalize
+			var R:Number = r / 255;
+			var G:Number = g / 255;
+			var B:Number = b / 255;
+			
+			// Convert to linear
+			R = srgbToLinear(R);
+			G = srgbToLinear(G);
+			B = srgbToLinear(B);
+			
+			// Convert to OKLab
+			var l:Number = 0.4122214708 * R + 0.5363325363 * G + 0.0514459929 * B;
+			var m:Number = 0.2119034982 * R + 0.6806995451 * G + 0.1073969566 * B;
+			var s:Number = 0.0883024619 * R + 0.2817188376 * G + 0.6299787005 * B;
+			
+			var l_:Number = Math['cbrt'](l);
+			var m_2:Number = Math['cbrt'](m);
+			var s_2:Number = Math['cbrt'](s);
+			
+			var L:Number = 0.2104542553 * l_ + 0.7936177850 * m_2 - 0.0040720468 * s_2;
+			var a:Number = 1.9779984951 * l_ - 2.4285922050 * m_2 + 0.4505937099 * s_2;
+			var b2:Number = 0.0259040371 * l_ + 0.7827717662 * m_2 - 0.8086757660 * s_2;
+			
+			var C:Number = Math.sqrt(a * a + b2 * b2);
+			var H:Number = (Math.atan2(b2, a) * 180 / Math.PI + 360) % 360;
+			
+			return  [L, C, H];
+		}
+		private static function srgbToLinear(x:Number):Number {
+			return (x <= 0.04045) ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
+		}
+		
+		private static const factors:Object = {
+			50: 1.60,
+			100: 1.45,
+			200: 1.30,
+			300: 1.15,
+			400: 1.05,
+			500: 1.00,
+			600: 0.90,
+			700: 0.75,
+			800: 0.60,
+			900: 0.45
+		}
+		public static function lchShade(base:Array, factor:Number):Array {
+			return [
+					base[0] * factor,                 // adjust lightness
+					base[1] * (0.5 + factor / 2),     // adjust chroma
+					base[2]                           // keep hue constant
+			];
+		}
+		private static const SHADE_KEYS:Array = [50,100,200,300,400,500,600,700,800,900];
+		
+		public static function factorForShade(shade:int):Number {
+			
+			// clamp to valid range
+			if (shade <= 50) return factors[50];
+			if (shade >= 900) return factors[900];
+			
+			// exact match
+			if (factors[shade] != null)
+				return factors[shade];
+			
+			// find neighbors
+			var lower:int = 50;
+			var upper:int = 900;
+			
+			for (var i:int = 0; i < SHADE_KEYS.length - 1; i++) {
+				var a:int = SHADE_KEYS[i];
+				var b:int = SHADE_KEYS[i+1];
+				
+				if (shade > a && shade < b) {
+					lower = a;
+					upper = b;
+					break;
+				}
+			}
+			
+			var f1:Number = factors[lower];
+			var f2:Number = factors[upper];
+			
+			var t:Number = (shade - lower) / (upper - lower);
+			
+			return f1 + t * (f2 - f1);
+		}
+		
 	}
 }
