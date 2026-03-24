@@ -127,13 +127,15 @@ package org.apache.royale.style.skins
 				createBoxStyles();
 			return _boxStyles;
 		}
+		
 		private function createBoxStyles():void
 		{
 			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
-			var primaryColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.PRIMARY);
-			var enabledBorder:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL);
-			var disabledBorder:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL).getVariant(300);
-			var disabledFillColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL).getVariant(100);
+			var primaryColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.PRIMARY,500);
+			var enabledBorder:ColorSwatch = colorSet.getSwatch(ThemeColorSet.NEUTRAL,500);
+			var disabledBorder:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 300,50);
+			var disabledFillColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
+			
 			
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
@@ -186,8 +188,8 @@ package org.apache.royale.style.skins
 			var size:Number = 16 * getMultiplier();
 			var fontSize:String = computeSize(size, host.unit);
 			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
-			var enabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.BASE_CONTENT);
-			var disabledColor:ColorSwatch =	colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL_CONTENT).getVariant(NaN, 60);
+			var enabledColor:ColorSwatch = colorSet.baseContent;
+			var disabledColor:ColorSwatch = colorSet.baseContentWeak;
 			
 			_labelStyles = [
 				new GridColumnStart("2"),
@@ -216,8 +218,10 @@ package org.apache.royale.style.skins
 		{
 			if(!_checkIcon){
 				var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
-				var enabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.PRIMARY_CONTENT);
-				var disabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL_CONTENT).getVariant(600, 40);
+				var enabledColor:ColorSwatch = colorSet.getContrastSwatch(colorSet.getSwatch(ThemeColorSet.PRIMARY,500));
+				//weak contrast against disabled fill:
+				var disabledFillColor:ColorSwatch  = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
+				var disabledColor:ColorSwatch = colorSet.getWeakContrastSwatch(disabledFillColor);
 				
 				_checkIcon = new Div();
 				var size:Number = 16 * getMultiplier();
@@ -270,8 +274,10 @@ package org.apache.royale.style.skins
 		{
 			if(!_indeterminateIcon){
 				var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
-				var enabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.PRIMARY_CONTENT);
-				var disabledColor:ColorSwatch = colorSet.getThemeColorSwatch(ThemeColorSet.NEUTRAL_CONTENT).getVariant(600, 40);
+				var enabledColor:ColorSwatch = colorSet.getContrastSwatch(colorSet.getSwatch(ThemeColorSet.PRIMARY,500));
+				var disabledFillColor:ColorSwatch  = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
+				var disabledColor:ColorSwatch = colorSet.getWeakContrastSwatch(disabledFillColor);
+				
 				_indeterminateIcon = new Div();
 				var size:Number = 16 * getMultiplier();
 

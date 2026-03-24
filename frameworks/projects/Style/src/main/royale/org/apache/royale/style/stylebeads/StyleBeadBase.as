@@ -140,7 +140,7 @@ package org.apache.royale.style.stylebeads
 						ruleVal = CSSLookup.getProperty(selectorVal);
 					else
 					{
-						var color:ColorSwatch = ColorSwatch.fromSpecifier(selectorVal);
+						var color:ColorSwatch = ColorSwatch.fromSpecifier(selectorVal,false);
 						ruleVal = color.colorValue;
 					}
 					break;

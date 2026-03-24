@@ -36,15 +36,6 @@ package org.apache.royale.style.colors
 		public static const ERROR:String = 'error';
 		public static const NEUTRAL:String = 'neutral';
 		
-		public static const BASE_CONTENT:String        = "base-content";
-		public static const PRIMARY_CONTENT:String     = "primary-content";
-		public static const SECONDARY_CONTENT:String   = "secondary-content";
-		public static const ACCENT_CONTENT:String      = "accent-content";
-		public static const INFO_CONTENT:String        = "info-content";
-		public static const SUCCESS_CONTENT:String     = "success-content";
-		public static const WARNING_CONTENT:String     = "warning-content";
-		public static const ERROR_CONTENT:String       = "error-content";
-		public static const NEUTRAL_CONTENT:String     = "neutral-content";
 		
 		
 		private static const _fieldNames:Array = [
@@ -56,16 +47,7 @@ package org.apache.royale.style.colors
 			SUCCESS,
 			WARNING,
 			ERROR,
-			NEUTRAL,
-			BASE_CONTENT,
-			PRIMARY_CONTENT,
-			SECONDARY_CONTENT,
-			ACCENT_CONTENT,
-			NEUTRAL_CONTENT,
-			INFO_CONTENT,
-			SUCCESS_CONTENT,
-			WARNING_CONTENT,
-			ERROR_CONTENT
+			NEUTRAL
 		]
 		
 		public static function get validFieldNames():Array{
@@ -87,17 +69,10 @@ package org.apache.royale.style.colors
 			assert(_fieldNames.indexOf(key) != -1, 'unknown key "'+key+'" - must be one of :"'+_fieldNames.join('","')+'"')
 			if (value) {
 				// do we need to validate value?
-				const exceptions:Array = [	
-					"transparent",
-					"currentColor",
-					"inherit",
-					"none",
-					"black",
-					"white"
-				]
-				var valueToSet:Object = exceptions.indexOf(value) == -1 ? ColorSwatch.fromSpecifier(value) : value;
+				assert(ColorSwatch.isExceptionValue(value) || ColorSwatch.isColorName(value), 'unsupported base color:'+value)
+			//	var valueToSet:Object = exceptions.indexOf(value) == -1 ? ColorSwatch.fromSpecifier(value) : value;
 				COMPILE::JS {
-					storage.set(key,valueToSet);
+					storage.set(key,value);
 				}
 			} else {
 				COMPILE::JS {
@@ -106,13 +81,13 @@ package org.apache.royale.style.colors
 			}
 		}
 		
-		public function getThemeColorSwatch(key:String):ColorSwatch{
+		public function getThemeBaseColor(key:String):String{
 			assert(_fieldNames.indexOf(key) != -1, 'unknown key "'+key+'" - must be one of :"'+_fieldNames.join('","')+'"');
 			COMPILE::JS{
 				//Q: should there always be a neutral default if no lookup is registered for a specific set?
 				if (!storage.has(key)) {
 					//do something?
-					storage.set(key,ColorSwatch.fromSpecifier(ColorSwatch.NEUTRAL+'-500'/*, key*/));
+					storage.set(key,ColorSwatch.NEUTRAL);
 				}
 				return storage.get(key)
 			}
@@ -120,11 +95,121 @@ package org.apache.royale.style.colors
 				return null;
 			}
 		}
+		COMPILE::JS
+		private var swatchStore:Map = new Map();
+		COMPILE::SWF
+		private var swatchStore:Object = {};
+		
+		public function getSwatch(key:String,shade:Number=500,opacity:Number=100,dark:Boolean=false):ColorSwatch{
+			const lookupVal:String = getThemeBaseColor(key);
+			assert(!ColorSwatch.isExceptionValue(lookupVal), 'no swatch or variation for '+key+":"+lookupVal);
+			var specifier:String = lookupVal + "-" + shade + '/' + opacity;
+			trace(key,specifier);
+			var lookupKey:String = key +':'+ specifier;
+			var swatch:ColorSwatch;
+			var swatchStoreMap:Object;
+			COMPILE::JS {
+				swatchStoreMap = swatchStore.get(lookupKey);
+				if (!swatchStoreMap) {
+					swatchStoreMap = {light:null,dark:null};
+					swatchStore.set(lookupKey,swatchStoreMap);
+				}
+			}
+			COMPILE::SWF {
+				swatchStoreMap = swatchStore[lookupKey];
+				if (!swatchStoreMap) {
+					swatchStoreMap = {light:null,dark:null};
+					swatchStore[lookupKey] = swatchStoreMap;
+				}
+			}
+			swatch = dark ? swatchStoreMap.dark : swatchStoreMap.light;
+			if (!swatch) {
+				swatch = ColorSwatch.fromSpecifier(specifier,dark);
+				if (dark) {
+					swatchStoreMap.dark = swatch;
+				} else {
+					swatchStoreMap.light = swatch;
+				}
+			}
+			trace(swatch);
+			return swatch;
+		}
+		
+		private var _baseContent:String;
+		public function get baseContent():ColorSwatch{
+			return ColorSwatch.fromSpecifier(_baseContent,false)
+		}
+		
+		private var _baseContentWeak:String;
+		public function get baseContentWeak():ColorSwatch{
+			return ColorSwatch.fromSpecifier(_baseContentWeak,false)
+		}
+		
+		public function getContrastSwatch(original:ColorSwatch):ColorSwatch{
+			var swatch:String = original.colorBase;
+			var shade:Number = original.colorShade;
+			var opacity:Number = original.colorOpacity;
+			var dark:Boolean = original.dark;
+			var nameVariant:String = swatch+'-contrast';
+			if (!CSSLookup.has(nameVariant)) {
+				registerContrastVariant(nameVariant,swatch,shade,dark,false);
+			}
+			return new ColorSwatch(nameVariant,500,opacity,dark);
+		}
+		
+		public function getWeakContrastSwatch(original:ColorSwatch):ColorSwatch{
+			var swatch:String = original.colorBase;
+			var shade:Number = original.colorShade;
+			var opacity:Number = original.colorOpacity;
+			var dark:Boolean = original.dark;
+			var nameVariant:String = swatch+'-contrast-weak';
+			if (!CSSLookup.has(nameVariant)) {
+				registerContrastVariant(nameVariant,swatch,shade,dark,true);
+			}
+			return new ColorSwatch(nameVariant,500,opacity,dark);
+		}
+		
+		private static function registerContrastVariant(nameVariant:String, swatch:String, shade:Number,dark:Boolean, weak:Boolean):void{
+			var base:Object = ColorSwatch.getColorValue(swatch) || CSSLookup.getProperty(swatch);
+			var baseColor:uint = CSSUtils.toColor(base);
+			// Convert from 50,100,200... to 5,10,20... for easier math.
+			shade = Math.round(shade/10);
+			var colorVals:Array = CSSColor.getVariation(baseColor,shade,dark);
+			var oklch:Array = CSSColor.rgb_ToOKLCH(colorVals);
+			var L:Number = oklch[0];
+			var H:Number = oklch[2];
+			var fg:Array;
+			
+			if (weak) {
+				if (L < 0.55)
+					fg = [0.80, 0.01, H]; // weak light
+				else
+					fg = [0.35, 0.02, H]; // weak dark
+			} else {
+				if (L < 0.55)
+					fg = [0.97, 0.02, H]; // light contrast
+				else
+					fg = [0.18, 0.03, H]; // dark contrast
+			}
+			
+			colorVals = CSSColor.oklch_ToRGB(fg);
+			CSSLookup.register(nameVariant,'rgb('+colorVals.join(',')+')');
+		}
 		
 		public function fromJSON(obj:Object):void{
 			if (typeof obj == 'string') obj = JSON.parse(obj as String);
 			for (var key:String in obj) {
-				setThemeColor(key,obj[key]);
+				switch(key) {
+					case '_baseContent':
+						_baseContent = obj[key];
+						break;
+					case '_baseContentWeak':
+						_baseContentWeak = obj[key];
+						break;
+					default:
+						setThemeColor(key,obj[key]);
+				}
+				
 			}
 		}
 		
@@ -133,9 +218,11 @@ package org.apache.royale.style.colors
 			COMPILE::JS{
 				var keys:Array = Object.keys(storage);
 				for each(var key:String in keys) {
-					var swatch:ColorSwatch = storage.get(key);
-					obj[key] = swatch.colorSpecifier;
+					var color:String = storage.get(key);
+					obj[key] = color;
 				}
+				obj['_baseContent'] = _baseContent;
+				obj['_baseContentWeak'] = _baseContentWeak;
 			}
 			return obj;
 		}
