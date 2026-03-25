@@ -104,7 +104,7 @@ package org.apache.royale.style.colors
 			const lookupVal:String = getThemeBaseColor(key);
 			assert(!ColorSwatch.isExceptionValue(lookupVal), 'no swatch or variation for '+key+":"+lookupVal);
 			var specifier:String = lookupVal + "-" + shade + '/' + opacity;
-			trace(key,specifier);
+			//trace(key,specifier);
 			var lookupKey:String = key +':'+ specifier;
 			var swatch:ColorSwatch;
 			var swatchStoreMap:Object;
@@ -131,7 +131,7 @@ package org.apache.royale.style.colors
 					swatchStoreMap.light = swatch;
 				}
 			}
-			trace(swatch);
+			//trace(swatch);
 			return swatch;
 		}
 		

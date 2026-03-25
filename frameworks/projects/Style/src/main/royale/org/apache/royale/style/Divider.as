@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -29,6 +30,7 @@ package org.apache.royale.style
 		public function Divider()
 		{
 			super();
+			unit = 'px';
 		}
 		override protected function requiresView():Boolean{
 			return false;
@@ -40,6 +42,16 @@ package org.apache.royale.style
 			return false;
 		}*/
 		
+		private var _edgePadding:Number = 0;
+		public function get edgePadding():uint{
+			return _edgePadding;
+		}
+		public function set edgePadding(value:uint):void{
+			if (_edgePadding != value) {
+				_edgePadding = value;
+				if (skin) skin.update();
+			}
+		}
 		
 		private var _vertical:Boolean;
 		
@@ -54,9 +66,10 @@ package org.apache.royale.style
 		public function set vertical(value:Boolean):void
 		{
 			if(value != !!_vertical){
-				
+				_vertical = value;
+				if (skin) skin.update();
 			}
-			_vertical = value;
+			
 		}
 	}
 }

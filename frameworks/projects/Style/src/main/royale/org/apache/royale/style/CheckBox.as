@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
+	import org.apache.royale.style.stylebeads.states.HasState;
 	
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
@@ -314,6 +315,10 @@ package org.apache.royale.style
 		public function set quiet(value:Boolean):void
 		{
 			_quiet = value;
+		}
+		override public function getChildInputType():String
+		{
+			return HasState.CHECKBOX_INPUT;
 		}
 	}
 }

@@ -33,12 +33,16 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.flexgrid.RowGap;
 	import org.apache.royale.style.stylebeads.interact.UserSelect;
 	import org.apache.royale.style.stylebeads.states.DisabledState;
+	import org.apache.royale.style.stylebeads.states.HasState;
 	import org.apache.royale.style.stylebeads.flexgrid.GridColumn;
 	import org.apache.royale.style.stylebeads.flexgrid.GridColumnStart;
 	import org.apache.royale.style.stylebeads.flexgrid.GridRowStart;
 	import org.apache.royale.style.stylebeads.sizing.HeightStyle;
 	import org.apache.royale.style.stylebeads.sizing.WidthStyle;
 	import org.apache.royale.style.stylebeads.border.BorderRadius;
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
+	import org.apache.royale.style.stylebeads.states.NotState;
+	import org.apache.royale.style.stylebeads.states.HoverState;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.stylebeads.border.BorderWidth;
 	import org.apache.royale.style.stylebeads.border.BorderColor;
@@ -85,21 +89,49 @@ package org.apache.royale.style.skins
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
 			var gap:String = computeSize(size * 0.75, host.unit);
-			var disabledStyle:DisabledState = new DisabledState();
-			disabledStyle.styles = [
-				//@todo: observed that this disabled style seems not to be working ('pointer' stays active):
-				new Cursor("auto")
-			];
+			
+			
+			var nativeInput:String = host.getChildInputType();
+			
+			//active cursor options, both currently working at time of testing:
+			//1. using NotState - 
+			// :not(:has(input[type="checkbox"]:disabled):hover {cursor:pointer} 
+			/*var disabledCondition:LeafDecorator = new HasState(nativeInput, [new DisabledState()]);
+			var activeCursor:LeafDecorator = new NotState(disabledCondition, [
+				new HoverState([
+					new Cursor("pointer")
+				])
+			]);
 			_styles = [
 				new Display("inline-grid"),
-				new Cursor("pointer"),
 				new GridTemplateColumns(box + " auto"),
 				new AlignItems("center"),
 				new ColumnGap(gap),
 				new UserSelect("none"),
-				disabledStyle
+				new Cursor("auto"),
+				activeCursor
+			];*/
+			
+			//using has - 
+			// :has(input[type="checkbox"]:disabled) {
+			//    cursor: auto;
+			//}
+			var disabledState:LeafDecorator = new HasState(nativeInput, [
+				new DisabledState([
+					new Cursor("auto")
+				])
+			]);
+			_styles = [
+				new Display("inline-grid"),
+				new GridTemplateColumns(box + " auto"),
+				new AlignItems("center"),
+				new ColumnGap(gap),
+				new UserSelect("none"),
+				new Cursor("pointer"),
+				disabledState
 			];
-			host.setStyles(_styles);
+			
+			host.setStyles(_styles, true);
 		}
 		private function getMultiplier():Number
 		{

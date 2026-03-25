@@ -40,6 +40,9 @@ package org.apache.royale.style
 		function set unit(value:String):void;
 		function get size():String;
 		function set size(value:String):void;
-
+		/**
+		 * support for component classes that wrap a native input element, useful in skins for creating Has states
+		 */
+		function getChildInputType():String;
 	}
 }

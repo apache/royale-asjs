@@ -18,14 +18,74 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class NotState extends StyleStateBase
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
+	import org.apache.royale.style.util.StyleDecoration;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+
+	public class NotState extends LeafDecorator
 	{
-		public function NotState()
+		/**
+		 * NotState is a decorator that adds a :not() pseudo-class to the rule.
+		 */
+		public function NotState(selector:* = null, styles:Array = null)
 		{
 			super();
+			selectorDecorator = "not-";
+			if (selector is LeafDecorator)
+			{
+				_nestedDecorator = selector as LeafDecorator;
+			}
+			else
+			{
+				ruleDecorator = selector as String;
+			}
+			this.styles = styles;
+
+			decoratorType = COMBINER;
 		}
-		//TODO Figure this out.
-		// ":not"
-		//".lg\\:not-first\\:border-l:not(:first-child)"
+
+		private var _nestedDecorator:LeafDecorator;
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.stylebeads.LeafStyleBase
+		 */
+		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
+		{
+			style.selectorPrefix = selectorDecorator + style.selectorPrefix;
+
+			var leafStyle:LeafStyleBase = style as LeafStyleBase;
+
+			//TODO figure out more complex combinations. For now, just handle limited nesting.
+			var decorationStr:String = ""
+			var len:int = decorations.length;
+			for(var i:int = 0; i < len; i++)
+			{
+				decorationStr += decorations[i].decoration;
+			}
+
+			var rule:String = ruleDecorator || "";
+			if (_nestedDecorator)
+			{
+				rule = _nestedDecorator.getFullRule();
+				if (_nestedDecorator is HasState)
+				{
+					rule = ":has(" + rule + ")";
+				}
+				else if (_nestedDecorator is NotState)
+				{
+					rule = ":not(" + rule + ")";
+				}
+			}
+
+			decorations.push(new StyleDecoration(decoratorType, rule + decorationStr));
+
+			if(!parentStyle || parentStyle.isGroup)
+			{
+				leafStyle.ruleSuffix = leafStyle.ruleSuffix + ":not(" + rule + decorationStr + ")";
+			}
+
+			if(parentStyle)
+				parentStyle.decorateChildStyle(style, decorations);
+		}
 	}
 }

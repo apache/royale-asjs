@@ -35,6 +35,7 @@ package org.apache.royale.style.stylebeads
 		function get ruleSuffix():String;
 		function set ruleSuffix(value:String):void;
 		function isDecorated():Boolean;
+		function get ruleBase():String;
 
 
 	}

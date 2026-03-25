@@ -20,11 +20,12 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class HoverState extends LeafDecorator
 	{
-		public function HoverState()
+		public function HoverState(styles:Array = null)
 		{
 			super();
 			selectorDecorator = "hover:";
 			ruleDecorator = ":hover";
+			this.styles = styles;
 		}
 	}
 }

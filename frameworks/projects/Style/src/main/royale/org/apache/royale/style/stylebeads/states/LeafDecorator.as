@@ -37,7 +37,15 @@ package org.apache.royale.style.stylebeads.states
 		}
 		protected var decoratorType:String = STATE;
 		protected var selectorDecorator:String;
-		protected var ruleDecorator:String;
+		protected var _ruleDecorator:String;
+		override public function get ruleDecorator():String
+		{
+			return _ruleDecorator;
+		}
+		public function set ruleDecorator(value:String):void
+		{
+			_ruleDecorator = value;
+		}
 		override public function get styleType():String
 		{
 			return selectorDecorator;
@@ -51,18 +59,37 @@ package org.apache.royale.style.stylebeads.states
 			var leafStyle:LeafStyleBase = style as LeafStyleBase;
 			leafStyle.selectorPrefix = selectorDecorator + leafStyle.selectorPrefix;
 
-			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
+			decorations.push(new StyleDecoration(decoratorType, _ruleDecorator));
 			/**
 			 * Default behavior is for state decorators. In that case, the decoration is added as a suffix.
 			 * Otherwise, the decoration is passed to the parent which handles the decoration based on the type.
 			 */
 			if(!parentStyle || parentStyle.isGroup)
 			{
-				leafStyle.ruleSuffix = leafStyle.ruleSuffix + ruleDecorator;
+				leafStyle.ruleSuffix = leafStyle.ruleSuffix + _ruleDecorator;
 			}
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style, decorations);
 
+		}
+		public function getFullRule():String
+		{
+			var rule:String = ruleDecorator || "";
+			if (styles && styles.length > 0)
+			{
+				for each (var style:IStyleBead in styles)
+				{
+					if (style is LeafDecorator)
+					{
+						rule += (style as LeafDecorator).getFullRule();
+					}
+					else if (style is ILeafStyleBead)
+					{
+						rule += (style as ILeafStyleBead).ruleSuffix;
+					}
+				}
+			}
+			return rule;
 		}
 	}
 }

@@ -172,11 +172,19 @@ package org.apache.royale.style
 			styleBeads = null;
 			_stylesLoaded = true;
 			if(!_skin)
-				_skin = loadBeadFromValuesManager(IStyleSkin, "iStyleSkin", this) as IStyleSkin;				
+				_skin = loadBeadFromValuesManager(IStyleSkin, "iStyleSkin", this) as IStyleSkin;
+			else {
+				COMPILE::JS{
+					if (!_beads || _beads.indexOf(_skin) == -1) addBead(_skin);
+				}
+				COMPILE::SWF{
+					//it seems that _beads is protected in js and private in swf.... see above
+					addBead(_skin);
+				}
+			}
 			
 			if(_skin)
 			{
-				addBead(_skin);
 				applySkin();
 			}
 			refreshSuspended = false;
@@ -430,6 +438,16 @@ package org.apache.royale.style
 			{
 				removeAttribute("tabindex");
 			}
+		}
+		
+		/**
+		 * for components that wrap a native input element, this should return the type of the element.
+		 * this can be useful in skinning.
+		 * Null if not applicable
+		 * @return
+		 */
+		public function getChildInputType():String{
+			return null;
 		}
 
 		/**

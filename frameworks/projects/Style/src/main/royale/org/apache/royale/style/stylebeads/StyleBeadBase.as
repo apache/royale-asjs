@@ -53,7 +53,12 @@ package org.apache.royale.style.stylebeads
 		 */
 		public function getLeaves():Array
 		{
-			assert(styles && styles.length > 0, "Non-leaf style beads must have child styles");
+			if (!isLeaf && (!styles || styles.length == 0))
+			{
+				// If we don't have children, we can't gather leaves.
+				// This can happen if a LeafDecorator is used as a selector source for HasState/NotState.
+				return [];
+			}
 			preprocessStyle();
 			return gatherLeaves(this);
 		}
@@ -104,6 +109,10 @@ package org.apache.royale.style.stylebeads
 		public function set parentStyle(value:IStyleBead):void
 		{
 			_parentStyle = value;
+		}
+		public function get ruleDecorator():String
+		{
+			return null;
 		}
 		abstract public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void;
 		public function get isLeaf():Boolean

@@ -23,5 +23,7 @@ package org.apache.royale.style
 	public interface IStyleSkin extends IBead
 	{
 		function get styles():Array;
+		
+		function update():void;
 	}
 }

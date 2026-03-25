@@ -37,5 +37,6 @@ package org.apache.royale.style.stylebeads
 		function get parentStyle():IStyleBead;
 		function set parentStyle(value:IStyleBead):void;
 		function decorateChildStyle(style:ILeafStyleBead,decorations:Array):void;
+		function get ruleDecorator():String;
 	}
 }

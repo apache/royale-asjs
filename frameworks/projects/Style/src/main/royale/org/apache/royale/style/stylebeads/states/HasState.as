@@ -18,14 +18,78 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	public class HasState extends StyleStateBase
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
+	import org.apache.royale.style.util.StyleDecoration;
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+
+	public class HasState extends LeafDecorator
 	{
+
+		public static const CHECKBOX_INPUT:String = 'input[type=checkbox]';
+
 		/**
-		 * TODO Figure :has out.
+		 * HasState is a decorator that adds a :has() pseudo-class to the rule.
+		 * It can be used to style a parent based on the state of a child.
 		 */
-		public function HasState()
+		public function HasState(selector:* = null, styles:Array = null)
 		{
 			super();
+			selectorDecorator = "has-";
+			if (selector is LeafDecorator)
+			{
+				_nestedDecorator = selector as LeafDecorator;
+			}
+			else
+			{
+				ruleDecorator = selector as String;
+			}
+			this.styles = styles;
+
+			decoratorType = COMBINER;
+		}
+
+		private var _nestedDecorator:LeafDecorator;
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.stylebeads.LeafStyleBase
+		 */
+		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
+		{
+			style.selectorPrefix = selectorDecorator + style.selectorPrefix;
+
+			var leafStyle:LeafStyleBase = style as LeafStyleBase;
+
+			//TODO figure out more complex combinations. For now, just handle limited nesting.
+			var decorationStr:String = ""
+			var len:int = decorations.length;
+			for(var i:int = 0; i < len; i++)
+			{
+				decorationStr += decorations[i].decoration;
+			}
+
+			var rule:String = ruleDecorator || "";
+			if (_nestedDecorator)
+			{
+				rule = _nestedDecorator.getFullRule();
+				if (_nestedDecorator is HasState)
+				{
+					rule = ":has(" + rule + ")";
+				}
+				else if (_nestedDecorator is NotState)
+				{
+					rule = ":not(" + rule + ")";
+				}
+			}
+
+			decorations.push(new StyleDecoration(decoratorType, rule + decorationStr));
+
+			if(!parentStyle || parentStyle.isGroup)
+			{
+				leafStyle.ruleSuffix = leafStyle.ruleSuffix + ":has(" + rule + decorationStr + ")";
+			}
+
+			if(parentStyle)
+				parentStyle.decorateChildStyle(style, decorations);
 		}
 	}
 }
