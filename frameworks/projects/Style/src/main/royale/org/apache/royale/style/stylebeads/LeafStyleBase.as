@@ -25,7 +25,7 @@ package org.apache.royale.style.stylebeads
 	import org.apache.royale.style.util.CSSUnit;
 	import org.apache.royale.style.util.StyleManager;
 	/**
-	 * @royalesuppressexport
+	 * 
 	 */
 	abstract public class LeafStyleBase extends StyleBeadBase implements ILeafStyleBead
 	{
