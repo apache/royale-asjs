@@ -63,7 +63,8 @@ package org.apache.royale.style
 			if(value != _disabled){
 				_disabled = value;
 
-			toggleAttribute("data-disabled", value);
+			toggleAttribute("disabled", value);
+			headerElem.toggleAttribute("disabled", value);
 			}
 		}
 		private var _open:Boolean = false;

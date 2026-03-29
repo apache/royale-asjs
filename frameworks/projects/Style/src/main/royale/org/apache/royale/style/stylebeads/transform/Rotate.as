@@ -25,7 +25,7 @@ package org.apache.royale.style.stylebeads.transform
 	{
 		public function Rotate(value:* = null)
 		{
-			super("rotate", "rotate", value);
+			super("rotate", "transform", value);
 		}
 
 		public function set rotate(value:*):void
@@ -110,6 +110,10 @@ package org.apache.royale.style.stylebeads.transform
 				return fromVar(value);
 			assert(false, "Invalid value for rotate: " + value);
 			return value;
+		}
+		override public function getSelector():String
+		{
+			return super.getSelector();
 		}
 	}
 }

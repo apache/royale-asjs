@@ -46,6 +46,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.spacing.Padding;
 	import org.apache.royale.style.stylebeads.typography.TextSize;
 	import org.apache.royale.style.stylebeads.typography.FontWeight;
+	import org.apache.royale.style.stylebeads.states.DisabledState;
 
 	public class AccordionSectionSkin extends StyleSkin implements IAccordionSectionSkin
 	{
@@ -74,13 +75,21 @@ package org.apache.royale.style.skins
 			border.bottom = 1;
 			var lastBorder:BorderWidth = new BorderWidth();
 			lastBorder.bottom = 0;
+			var padding:Padding = new Padding();
+			padding.inline = 4;
 			_styles = [
 				border,
+				padding,
 				new BorderColor(borderColor),
 				new BackgroundColor(bgColor),
 				new TextColor(borderColor),
 				new LastState([
 					lastBorder
+				]),
+				new DisabledState([
+					new BorderColor(colorSet.getSwatch(ThemeColorSet.NEUTRAL,200)),
+					new BackgroundColor(colorSet.getSwatch(ThemeColorSet.NEUTRAL,100)),
+					new TextColor(colorSet.getSwatch(ThemeColorSet.NEUTRAL,200))
 				])
 				//TODO dark mode dark:border-slate-700 dark:bg-slate-800
 				// group border-b border-slate-300 bg-slate-50 px-4 last:border-b-0 dark:border-slate-700 dark:bg-slate-800
@@ -104,7 +113,11 @@ package org.apache.royale.style.skins
 					new JustifyContent("space-between"),
 					padding,
 					new TextSize("sm"),
-					new FontWeight("semibold")
+					new FontWeight("semibold"),
+					new DisabledState([
+						new Cursor("default"),
+						new TextColor(ThemeManager.instance.activeTheme.themeColorSet.getSwatch(ThemeColorSet.NEUTRAL,200))
+					])
 				];
 				// flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold
 			}
@@ -129,7 +142,7 @@ package org.apache.royale.style.skins
 				new TextColor(textColor),
 				new Transition("transform"),
 				new TransitionDuration(200),
-				new DataState("open"[
+				new DataState("open",[
 					new Rotate(90)
 				])
 
