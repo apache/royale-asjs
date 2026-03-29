@@ -22,10 +22,9 @@ package org.apache.royale.style.stylebeads.states
 	{
 		public function DisabledState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "disabled:";
 			ruleDecorator = ":disabled";
-			this.styles = styles;
 		}
 	}
 }

@@ -361,6 +361,16 @@ package org.apache.royale.style
 				element.style[property] = value;
 			}
 		}
+		public function toggleAttribute(name:String, value:Boolean):void
+		{
+			COMPILE::JS
+			{
+				if(value)
+					element.setAttribute(name, "");
+				else
+					element.removeAttribute(name);
+			}
+		}
 
 		public function setAttribute(name:String, value:*):void
 		{

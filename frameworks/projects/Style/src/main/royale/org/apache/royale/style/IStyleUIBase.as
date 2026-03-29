@@ -34,6 +34,11 @@ package org.apache.royale.style
 		function toggleClass(classNameVal:String,add:Boolean):void;
 		function addStyleBead(bead:IStyleBead):void;
 		function setStyles(styles:Array, overrideExisting:Boolean = false):void;
+		function setStyle(property:String, value:Object):void;
+		function toggleAttribute(name:String, value:Boolean):void;
+		function setAttribute(name:String, value:*):void;
+		function getAttribute(name:String):*;
+		function removeAttribute(name:String):void;
 		function get theme():String;
 		function get skin():IStyleSkin;
 		function get unit():String;

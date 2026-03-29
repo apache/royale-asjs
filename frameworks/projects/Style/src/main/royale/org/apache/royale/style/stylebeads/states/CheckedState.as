@@ -22,10 +22,9 @@ package org.apache.royale.style.stylebeads.states
 	{
 		public function CheckedState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "checked:";
 			ruleDecorator = ":checked";
-			this.styles = styles;
 		}
 	}
 }

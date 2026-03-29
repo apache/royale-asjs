@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class EvenState extends LeafDecorator
 	{
-		public function EvenState()
+		public function EvenState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "even:";
 			ruleDecorator = ":nth-child(2n)";
 		}

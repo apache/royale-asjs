@@ -16,15 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style
 {
-	public class FirstState extends LeafDecorator
-	{
-		public function FirstState(styles:Array = null)
-		{
-			super(styles);
-			selectorDecorator = "first:";
-			ruleDecorator = ":first-child";
-		}
-	}
+
+  public class AccordionContent extends StyleUIBase
+  {
+    public function AccordionContent()
+    {
+      super();
+    }
+
+
+    COMPILE::JS
+    private var _textNode:Text;
+
+    private var _text:String;
+
+    public function get text():String
+    {
+    	return _text;
+    }
+
+    public function set text(value:String):void
+    {
+    	_text = value;
+      COMPILE::JS
+      {
+        if(!_textNode){
+          _textNode = document.createTextNode(_text) as Text;
+          _element.appendChild(_textNode);
+        }
+        _textNode.nodeValue = value;
+
+      }
+    }
+
+  }
 }

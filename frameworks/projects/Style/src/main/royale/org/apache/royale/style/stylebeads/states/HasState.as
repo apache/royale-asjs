@@ -33,7 +33,7 @@ package org.apache.royale.style.stylebeads.states
 		 */
 		public function HasState(selector:* = null, styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "has-";
 			if (selector is LeafDecorator)
 			{
@@ -43,7 +43,6 @@ package org.apache.royale.style.stylebeads.states
 			{
 				ruleDecorator = selector as String;
 			}
-			this.styles = styles;
 
 			decoratorType = COMBINER;
 		}

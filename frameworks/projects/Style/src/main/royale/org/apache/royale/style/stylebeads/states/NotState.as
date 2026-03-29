@@ -29,7 +29,7 @@ package org.apache.royale.style.stylebeads.states
 		 */
 		public function NotState(selector:* = null, styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "not-";
 			if (selector is LeafDecorator)
 			{
@@ -39,7 +39,6 @@ package org.apache.royale.style.stylebeads.states
 			{
 				ruleDecorator = selector as String;
 			}
-			this.styles = styles;
 
 			decoratorType = COMBINER;
 		}

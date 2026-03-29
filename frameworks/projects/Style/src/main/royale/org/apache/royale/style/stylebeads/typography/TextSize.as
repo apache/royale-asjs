@@ -23,16 +23,26 @@ package org.apache.royale.style.stylebeads.typography
 
 	public class TextSize extends CompositeStyle
 	{
-		public function TextSize()
+		public function TextSize(value:* = null)
 		{
 			super();
+			fontSize = new FontSize();
+			lineHeight = new LineHeight();
+			styles = [fontSize, lineHeight];
+			if(value != null)
+				this.value = value;
 		}
-
-		/**
-		 * TODO: Figure this out
-		 * Maybe wrap LineHeight and FontSize.
-		 * https://tailwindcss.com/docs/font-size
-		 */
-
+		private var fontSize:FontSize;
+		private var lineHeight:LineHeight;
+		public function get value():*
+		{
+			return _value;
+		}
+		[Inspectable(category="General", enumeration="xs,sm,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl", defaultValue="base")]
+		public function set value(value:*):void
+		{
+			_value = fontSize.value = lineHeight.value = value;
+		}
+		private var _value:*;
 	}
 }

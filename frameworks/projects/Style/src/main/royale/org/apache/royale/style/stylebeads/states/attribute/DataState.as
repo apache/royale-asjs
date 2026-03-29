@@ -22,24 +22,15 @@ package org.apache.royale.style.stylebeads.states.attribute
 
 	import org.apache.royale.style.stylebeads.states.LeafDecorator;
 
-	public class DataState extends LeafDecorator
+	public class DataState extends AttributeState
 	{
-		public function DataState()
+		public function DataState(type:String = null, styles:Array = null)
 		{
-			super();
-		}
-		private var _data:String;
-
-		public function get data():String
-		{
-			return _data;
-		}
-
-		public function set data(value:String):void
-		{
-			_data = value;
-			selectorDecorator = value + ":";
-			ruleDecorator = "[" + value + "]";
+			super(null, styles);
+			if(type)
+			{
+				dataType = type;
+			}
 		}
 		private var _dataType:String;
 
@@ -51,7 +42,7 @@ package org.apache.royale.style.stylebeads.states.attribute
 		public function set dataType(value:String):void
 		{
 			_dataType = value;
-			data = "data-" + value;
+			attribute = "data-" + value;
 		}
 	}
 }

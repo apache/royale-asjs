@@ -22,10 +22,9 @@ package org.apache.royale.style.stylebeads.states
 	{
 		public function FocusVisibleState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "focus-visible:";
 			ruleDecorator = ":focus-visible";
-			this.styles = styles;
 		}
 	}
 }

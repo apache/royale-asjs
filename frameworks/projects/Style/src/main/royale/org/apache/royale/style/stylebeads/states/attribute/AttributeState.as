@@ -16,15 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.states.attribute
 {
-	public class FirstState extends LeafDecorator
+
+	import org.apache.royale.style.stylebeads.states.LeafDecorator;
+
+	public class AttributeState extends LeafDecorator
 	{
-		public function FirstState(styles:Array = null)
+		public function AttributeState(attribute:String = null, styles:Array = null)
 		{
 			super(styles);
-			selectorDecorator = "first:";
-			ruleDecorator = ":first-child";
+			if(attribute)
+				this.attribute = attribute;
+
+		}
+		private var _attribute:String;
+
+		public function get attribute():String
+		{
+			return _attribute;
+		}
+
+		public function set attribute(value:String):void
+		{
+			_attribute = value;
+			selectorDecorator = value + ":";
+			ruleDecorator = "[" + value + "]";
 		}
 	}
 }

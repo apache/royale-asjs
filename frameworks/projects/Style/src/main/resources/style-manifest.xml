@@ -20,6 +20,9 @@
 
 
 <componentPackage>
+  <component id="Accordion" class="org.apache.royale.style.Accordion"/>
+  <component id="AccordionSection" class="org.apache.royale.style.AccordionSection"/>
+  <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
@@ -262,6 +265,7 @@
   <component id="Code" class="org.apache.royale.style.elements.Code"/>
   <component id="Col" class="org.apache.royale.style.elements.Col"/>
   <component id="Colgroup" class="org.apache.royale.style.elements.Colgroup"/>
+  <component id="Details" class="org.apache.royale.style.elements.Details"/>
   <component id="Div" class="org.apache.royale.style.elements.Div"/>
   <component id="Em" class="org.apache.royale.style.elements.Em"/>
   <component id="Footer" class="org.apache.royale.style.elements.Footer"/>
@@ -292,6 +296,7 @@
   <component id="Small" class="org.apache.royale.style.elements.Small"/>
   <component id="Span" class="org.apache.royale.style.elements.Span"/>
   <component id="Strong" class="org.apache.royale.style.elements.Strong"/>
+  <component id="Summary" class="org.apache.royale.style.elements.Summary"/>
   <component id="Table" class="org.apache.royale.style.elements.Table"/>
   <component id="Tbody" class="org.apache.royale.style.elements.Tbody"/>
   <component id="Td" class="org.apache.royale.style.elements.Td"/>
@@ -306,5 +311,8 @@
 
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
+  <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
+  <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
+  <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
 
 </componentPackage>

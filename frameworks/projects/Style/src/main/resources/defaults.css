@@ -30,7 +30,18 @@
 	box-sizing: border-box;
 	border: 0 solid;
 }
-
+Accordion
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSkin");
+}
+AccordionSection
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSectionSkin");
+}
+AccordionContent
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionContentSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");

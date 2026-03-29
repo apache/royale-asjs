@@ -31,9 +31,11 @@ package org.apache.royale.style.stylebeads.states
 		protected static const COMBINER:String = "combiner";
 		protected static const QUERY:String = "query";
 
-		public function LeafDecorator()
+		public function LeafDecorator(styles:Array = null)
 		{
 			super();
+			if(styles)
+				this.styles = styles;
 		}
 		protected var decoratorType:String = STATE;
 		protected var selectorDecorator:String;

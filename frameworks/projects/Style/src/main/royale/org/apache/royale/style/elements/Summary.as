@@ -16,15 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.elements
 {
-	public class FirstState extends LeafDecorator
+	import org.apache.royale.style.support.TextNodeContainerBase;
+
+	public class Summary extends TextNodeContainerBase
 	{
-		public function FirstState(styles:Array = null)
+		public function Summary()
 		{
-			super(styles);
-			selectorDecorator = "first:";
-			ruleDecorator = ":first-child";
+			super();
+		}
+		override protected function getTag():String
+		{
+			return "summary";
 		}
 	}
 }

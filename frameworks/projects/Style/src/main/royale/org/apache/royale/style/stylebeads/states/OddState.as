@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class OddState extends LeafDecorator
 	{
-		public function OddState()
+		public function OddState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "odd:";
 			ruleDecorator = ":nth-child(odd)";
 		}

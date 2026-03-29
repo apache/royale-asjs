@@ -22,10 +22,9 @@ package org.apache.royale.style.stylebeads.states
 	{
 		public function HoverState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "hover:";
 			ruleDecorator = ":hover";
-			this.styles = styles;
 		}
 	}
 }

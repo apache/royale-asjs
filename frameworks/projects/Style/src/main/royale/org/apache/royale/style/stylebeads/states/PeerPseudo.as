@@ -26,8 +26,7 @@ package org.apache.royale.style.stylebeads.states
 	{
 		public function PeerPseudo(styles:Array = null)
 		{
-			super();
-			this.styles = styles;
+			super(styles);
 			selectorDecorator = "peer-";
 			ruleDecorator = "peer";
 

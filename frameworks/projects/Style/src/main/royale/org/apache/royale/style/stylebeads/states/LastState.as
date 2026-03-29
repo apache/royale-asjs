@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class LastState extends LeafDecorator
 	{
-		public function LastState()
+		public function LastState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "last:";
 			ruleDecorator = ":last-child";
 		}

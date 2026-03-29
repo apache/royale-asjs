@@ -168,8 +168,8 @@ package org.apache.royale.style
 			COMPILE::JS
 			{
 				if(value != !!_invalid){
-					input.setAttribute("aria-invalid", value);
-					setAttribute("data-invalid", value);
+					value ? input.setAttribute("aria-invalid","") : input.removeAttribute("aria-invalid");
+					toggleAttribute("data-invalid", value);
 				}
 			}
 			_invalid = value;

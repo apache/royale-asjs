@@ -22,10 +22,9 @@ package org.apache.royale.style.stylebeads.states
 	{
 		public function IndeterminateState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "indeterminate:";
 			ruleDecorator = ":indeterminate";
-			this.styles = styles;
 		}
 	}
 }

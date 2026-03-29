@@ -16,15 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.skins
 {
-	public class FirstState extends LeafDecorator
+	import org.apache.royale.style.IStyleSkin;
+	import org.apache.royale.style.IStyleUIBase;
+
+	public interface IAccordionSectionSkin extends IStyleSkin
 	{
-		public function FirstState(styles:Array = null)
-		{
-			super(styles);
-			selectorDecorator = "first:";
-			ruleDecorator = ":first-child";
-		}
+		function getIcon():IStyleUIBase;
+		function get headerStyles():Array;
 	}
 }
