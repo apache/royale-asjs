@@ -103,7 +103,7 @@ package org.apache.royale.style.colors
 			var baseColor:uint = CSSUtils.toColor(base);
 			// Convert from 50,100,200... to 5,10,20... for easier math.
 		//	shade = Math.round(shade/10);
-			var colorVals:Array = CSSColor.getVariation(baseColor,Math.round(shade/10),darkMode);
+			rgb = CSSColor.getVariation(baseColor,Math.round(shade/10),darkMode);
 			assert(opacity >= 0 && opacity <= 100, "Opacity must be between 0 and 100");
 			colorBase = swatch;
 			colorShade = shade;
@@ -113,10 +113,11 @@ package org.apache.royale.style.colors
 			{
 				colorSpecifier += "/" + opacity;
 			}
-			colorValue = CSSColor.getColor(colorVals, opacity, colorSpace);
+			colorValue = CSSColor.getColor(rgb, opacity, colorSpace);
 			dark = darkMode;
 			CSSLookup.register (colorSpecifier,colorValue);
 		}
+		private var rgb:Array;
 		public var colorBase:String;
 		public var colorShade:Number;
 		public var colorOpacity:Number;
@@ -166,6 +167,8 @@ package org.apache.royale.style.colors
 		public static function isExceptionValue(value:String):Boolean{
 			return exceptions.indexOf(value) != -1;
 		}
-		
+		public function getRGB():Array{
+			return rgb;
+		}
 	}
 }
