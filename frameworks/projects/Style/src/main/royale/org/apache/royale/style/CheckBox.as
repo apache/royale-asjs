@@ -24,6 +24,7 @@ package org.apache.royale.style
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.core.IHasLabel;
 	import org.apache.royale.style.elements.Div;
 	import org.apache.royale.style.elements.Span;
@@ -50,7 +51,7 @@ package org.apache.royale.style
 			//useWrapperStyle = true;
 		}
 		private var _labelPlacement:String = "right";
-		[Bindable]
+		[Bindable(event='valueChange',type='org.apache.royale.events.ValueChangeEvent')]
 		public function get labelPlacement():String
 		{
 			return _labelPlacement;
@@ -59,6 +60,7 @@ package org.apache.royale.style
 		public function set labelPlacement(value:String):void
 		{
 			if(_labelPlacement != value){
+				var oldVal:String = _labelPlacement;
 				_labelPlacement = value;
 				if(_stylesLoaded)
 				{
@@ -66,6 +68,7 @@ package org.apache.royale.style
 						(skin as ICheckBoxSkin).updateStyles();
 					applySkin();
 				}
+				dispatchEvent(ValueChangeEvent.createUpdateEvent(this,'labelPlacement',oldVal,value))
 			}
 		}
 		COMPILE::JS
@@ -73,11 +76,7 @@ package org.apache.royale.style
 		
 		COMPILE::JS
 		private function elementClicked():void{
-			// _indeterminate = input.indeterminate = false;// input.indeterminate should be resolved automatically.
-			_indeterminate = false;
-			_checked = input.checked;
-			if(_stylesLoaded && !checkIcon)
-				applyCheckSkin();
+			processCheckedChange(input.checked, false)
 		}
 		
 		override protected function getTag():String
@@ -275,7 +274,7 @@ package org.apache.royale.style
 		}
 		private var checkIcon:IStyleUIBase;
 		private var _checked:Boolean;
-		[Bindable]
+		[Bindable(event='valueChange',type='org.apache.royale.events.ValueChangeEvent')]
 		public function get checked():Boolean
 		{
 			return _checked;
@@ -283,6 +282,10 @@ package org.apache.royale.style
 
 		public function set checked(value:Boolean):void
 		{
+			processCheckedChange(value,true);
+		}
+		
+		private function processCheckedChange(value:Boolean,programmatic:Boolean):void{
 			COMPILE::JS
 			{
 				if(value != !!_checked){
@@ -290,7 +293,8 @@ package org.apache.royale.style
 					_indeterminate = input.indeterminate = false;
 					if(_stylesLoaded && !checkIcon)
 						applyCheckSkin();
-					input.checked = value;
+					if (programmatic) input.checked = value;
+					dispatchEvent(ValueChangeEvent.createUpdateEvent(this,'checked',!value,value));
 				}
 			}
 		}

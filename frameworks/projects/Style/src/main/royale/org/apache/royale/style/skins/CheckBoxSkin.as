@@ -125,7 +125,7 @@ package org.apache.royale.style.skins
 				layoutStyles.push(new GridTemplateRows(rowTemplate));
 				layoutStyles.push(new GridTemplateColumns("auto"));
 				layoutStyles.push(new JustifyItems("center"));
-				layoutStyles.push(new AlignItems("flex-start"));
+				layoutStyles.push(new AlignItems("center"));
 				layoutStyles.push(new RowGap(gap));
 				padding.right = gap;
 			}
@@ -136,7 +136,7 @@ package org.apache.royale.style.skins
 				var colTemplate:String = (placement == "left") ? "auto " + box : box + " auto";
 				layoutStyles.push(new GridTemplateColumns(colTemplate));
 				layoutStyles.push(new GridTemplateRows("auto"));
-				layoutStyles.push(new AlignItems("flex-start"));
+				layoutStyles.push(new AlignItems("center"));
 				layoutStyles.push(new ColumnGap(gap));
 				padding.right = gap;
 			}
@@ -405,6 +405,7 @@ package org.apache.royale.style.skins
 				
 				_indeterminateIcon = new Div();
 				var size:Number = 16 * getMultiplier();
+				var unit:String = host.unit;
 
 				var boxColumn:String = "1";
 				var boxRow:String = "1";
@@ -422,12 +423,12 @@ package org.apache.royale.style.skins
 					boxColumn = "1";
 					boxRow = "1";
 				}
-
+				
 				var styles:Array = [
 					new GridColumnStart(boxColumn),
 					new GridRowStart(boxRow),
-					new HeightStyle("14%"),
-					new WidthStyle(computeSize(size * 0.625, host.unit)),
+					new HeightStyle(/*"14%"*/computeSize(size * 0.175,unit)), //note 0.175 is 14% of 1.25
+					new WidthStyle(computeSize(size * 0.625, unit)),
 					new AlignSelf("center"),
 					new PlaceSelf("center"),
 					new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
