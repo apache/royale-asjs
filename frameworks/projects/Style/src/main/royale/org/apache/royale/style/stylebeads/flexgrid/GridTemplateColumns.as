@@ -33,8 +33,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 			// TODO validate aspect before setting
 			var ruleValue:String = value;
 			var selectorValue:String = value;
-			var isInt:Boolean = int(value) == value;
-			if(isInt)
+			if(isInt(value))
 			{
 				ruleValue = "repeat(" + value + ", minmax(0, 1fr))";
 			}

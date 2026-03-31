@@ -32,12 +32,13 @@ package org.apache.royale.style.stylebeads.anim
 
 		override public function set value(value:*):void
 		{
+			_value = value;
 			assert(value == "default" || isVar(value) || (isInt(value) && value >= 0), "transition-duration only accepts valid CSS variables or non-negative integers representing milliseconds");
-			calculatedSelector = _value = value;
+			calculatedSelector = value;
 			if(value == "default")
 				calculatedRuleValue = ThemeManager.instance.activeTheme.defaultTransitionDuration;
 			else
 				calculatedRuleValue = isInt(value) ? value + "ms" : fromVar(value);
-		}		
+		}
 	}
 }

@@ -32,6 +32,7 @@ package org.apache.royale.style.stylebeads.anim
 		}
 		override public function set value(value:*):void
 		{
+			_value = value;
 			var ruleValue:String = value;
 			var selectorValue:String = value;
 			var theme:StyleTheme = ThemeManager.instance.activeTheme;
@@ -57,7 +58,6 @@ package org.apache.royale.style.stylebeads.anim
 					break;
 			}
 			assert(ruleValue, "transition-timing-function only accepts 'linear', 'in', 'out', 'in-out', 'initial', or a valid CSS timing function value");
-			_value = value;
 			calculatedSelector = selectorValue;
 			calculatedRuleValue = ruleValue;
 		}

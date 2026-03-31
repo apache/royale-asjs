@@ -23,6 +23,7 @@ package org.apache.royale.style.skins
 
 	public interface ICheckBoxSkin extends IStyleSkin
 	{
+		function updateStyles():void;
 		function get boxStyles():Array;
 		function get labelStyles():Array;
 		function get checkIcon():IStyleUIBase;

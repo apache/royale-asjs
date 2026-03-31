@@ -49,6 +49,25 @@ package org.apache.royale.style
 			//we could use the following for a generic name, or override getWrapperStyle with something specific
 			//useWrapperStyle = true;
 		}
+		private var _labelPlacement:String = "right";
+		[Bindable]
+		public function get labelPlacement():String
+		{
+			return _labelPlacement;
+		}
+		[Inspectable(category="General", enumeration="left,right,top,bottom")]
+		public function set labelPlacement(value:String):void
+		{
+			if(_labelPlacement != value){
+				_labelPlacement = value;
+				if(_stylesLoaded)
+				{
+					if (skin is ICheckBoxSkin)
+						(skin as ICheckBoxSkin).updateStyles();
+					applySkin();
+				}
+			}
+		}
 		COMPILE::JS
 		private var input:HTMLInputElement;
 		
@@ -111,7 +130,7 @@ package org.apache.royale.style
 			var checkSkin:ICheckBoxSkin = skin as ICheckBoxSkin;
 			assert(checkSkin, "CheckBox requires a skin that implements ICheckBoxSkin");
 			var styles:Array = checkSkin.boxStyles || [];
-			box.setStyles(styles);
+			box.setStyles(styles, true);
 			applyCheckSkin();
 			applyIndeterminateSkin();
 			applyLabelSkin();
@@ -124,7 +143,7 @@ package org.apache.royale.style
 			if(!span) return;
 			var checkSkin:ICheckBoxSkin = skin as ICheckBoxSkin;
 			assert(checkSkin && checkSkin.labelStyles, "CheckBox requires a skin that implements ICheckBoxSkin");
-			span.setStyles(checkSkin.labelStyles);
+			span.setStyles(checkSkin.labelStyles, true);
 		}
 		private var _truncate:Boolean;
 

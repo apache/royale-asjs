@@ -39,6 +39,7 @@ package org.apache.royale.style.stylebeads.anim
 
 		override public function set value(value:*):void
 		{
+			_value = value;
 			switch(value)
 			{
 				case "default":
@@ -60,10 +61,10 @@ package org.apache.royale.style.stylebeads.anim
 				case "all":
 				case "opacity":
 				default:
-					calculatedSelector = _value = value;
+					calculatedSelector = value;
 					calculatedRuleValue = acceptVar(value);
 					break;
 			}
-		}		
+		}
 	}
 }

@@ -30,6 +30,9 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.interact.Cursor;
 	import org.apache.royale.style.stylebeads.flexgrid.GridAutoColumns;
 	import org.apache.royale.style.stylebeads.flexgrid.AlignItems;
+	import org.apache.royale.style.stylebeads.flexgrid.AlignSelf;
+	import org.apache.royale.style.stylebeads.flexgrid.JustifyItems;
+	import org.apache.royale.style.stylebeads.flexgrid.GridTemplateRows;
 	import org.apache.royale.style.stylebeads.flexgrid.RowGap;
 	import org.apache.royale.style.stylebeads.interact.UserSelect;
 	import org.apache.royale.style.stylebeads.states.DisabledState;
@@ -71,6 +74,8 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.states.attribute.AttributeState;
 	import org.apache.royale.style.stylebeads.states.GroupPseudo;
 	
+	import org.apache.royale.style.stylebeads.typography.VerticalAlign;
+	
 	public class CheckBoxSkin extends StyleSkin implements ICheckBoxSkin
 	{
 		public function CheckBoxSkin()
@@ -87,16 +92,55 @@ package org.apache.royale.style.skins
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			// Manually set. Don't create the default ones.
-			if(_styles)
-				return;
-			
+			applyStyles();
+		}
+
+		public function updateStyles():void
+		{
+			_styles = null;
+			_boxStyles = null;
+			_labelStyles = null;
+			_checkIcon = null;
+			_indeterminateIcon = null;
+			applyStyles();
+		}
+
+		private function applyStyles():void
+		{
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
-			var gapValue:Number = size * 0.75;
+			var gapValue:Number = size * 0.375;
 			var gap:String = computeSize(gapValue, host.unit);
 			
+			var padding:Padding = new Padding();
+			padding.unit = host.unit;
 			
+			var layoutStyles:Array = [];
+			var placement:String = host.labelPlacement;
+			if (placement == "top" || placement == "bottom")
+			{
+				layoutStyles.push(new Display("inline-grid"));
+				layoutStyles.push(new VerticalAlign("top"));
+				var rowTemplate:String = (placement == "top") ? "auto " + box : box + " auto";
+				layoutStyles.push(new GridTemplateRows(rowTemplate));
+				layoutStyles.push(new GridTemplateColumns("auto"));
+				layoutStyles.push(new JustifyItems("center"));
+				layoutStyles.push(new AlignItems("flex-start"));
+				layoutStyles.push(new RowGap(gap));
+				padding.right = gap;
+			}
+			else
+			{
+				layoutStyles.push(new Display("inline-grid"));
+				layoutStyles.push(new VerticalAlign("top"));
+				var colTemplate:String = (placement == "left") ? "auto " + box : box + " auto";
+				layoutStyles.push(new GridTemplateColumns(colTemplate));
+				layoutStyles.push(new GridTemplateRows("auto"));
+				layoutStyles.push(new AlignItems("flex-start"));
+				layoutStyles.push(new ColumnGap(gap));
+				padding.right = gap;
+			}
+
 			// Style components often use a "group" pattern where the wrapper element 
 			// (usually a label) holds the state (like data-disabled), and child elements 
 			// (box, icon, text) respond to that state.
@@ -107,20 +151,13 @@ package org.apache.royale.style.skins
 			var disabledState:AttributeState = new AttributeState("data-disabled", [
 				new Cursor("auto")
 			]);
-			var padding:Padding = new Padding();
-			padding.unit = host.unit;
-			padding.right = gap;
 
 			_styles = [
-				new Display("inline-grid"),
-				new GridTemplateColumns(box + " auto"),
-				new AlignItems("center"),
-				new ColumnGap(gap),
 				new UserSelect("none"),
 				new Cursor("pointer"),
 				padding,
 				disabledState
-			];
+			].concat(layoutStyles);
 			
 			host.setStyles(_styles, true);
 		}
@@ -162,6 +199,24 @@ package org.apache.royale.style.skins
 			
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
+			
+			var boxColumn:String = "1";
+			var boxRow:String = "1";
+			var placement:String = host.labelPlacement;
+			if (placement == "top") {
+				boxRow = "2";
+				boxColumn = "1";
+			} else if (placement == "left") {
+				boxColumn = "2";
+				boxRow = "1";
+			} else if (placement == "bottom") {
+				boxRow = "1";
+				boxColumn = "1";
+			} else { // right
+				boxColumn = "1";
+				boxRow = "1";
+			}
+
 			var outline:Outline = new Outline();
 			outline.unit = host.unit;
 			outline.width = 0.5;
@@ -170,10 +225,11 @@ package org.apache.royale.style.skins
 			outline.offset = 0.5;
 			
 			_boxStyles = [
-				new GridColumnStart("1"),
-				new GridRowStart("1"),
+				new GridColumnStart(boxColumn),
+				new GridRowStart(boxRow),
 				new HeightStyle(box),
 				new WidthStyle(box),
+				new AlignSelf("center"),
 				new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
 				new BorderWidth(0.5),
 				new BorderColor(enabledBorder),
@@ -221,9 +277,26 @@ package org.apache.royale.style.skins
 			var enabledColor:ColorSwatch = colorSet.baseContent;
 			var disabledColor:ColorSwatch = colorSet.baseContentWeak;
 			
+			var labelColumn:String = "2";
+			var labelRow:String = "1";
+			var placement:String = host.labelPlacement;
+			if (placement == "top") {
+				labelColumn = "1";
+				labelRow = "1";
+			} else if (placement == "bottom") {
+				labelColumn = "1";
+				labelRow = "2";
+			} else if (placement == "left") {
+				labelColumn = "1";
+				labelRow = "1";
+			} else { // right
+				labelColumn = "2";
+				labelRow = "1";
+			}
+
 			_labelStyles = [
-				new GridColumnStart("2"),
-				new GridRowStart("1"),
+				new GridColumnStart(labelColumn),
+				new GridRowStart(labelRow),
 				new FontSize(fontSize),
 				new FontWeight("600"),
 				new TextColor(enabledColor),
@@ -255,19 +328,38 @@ package org.apache.royale.style.skins
 				
 				_checkIcon = new Div();
 				var size:Number = 16 * getMultiplier();
+				
+				var boxColumn:String = "1";
+				var boxRow:String = "1";
+				var placement:String = host.labelPlacement;
+				if (placement == "top") {
+					boxRow = "2";
+					boxColumn = "1";
+				} else if (placement == "left") {
+					boxColumn = "2";
+					boxRow = "1";
+				} else if (placement == "bottom") {
+					boxRow = "1";
+					boxColumn = "1";
+				} else { // right
+					boxColumn = "1";
+					boxRow = "1";
+				}
+
 				var transform:Transform = new Transform();
-				transform.translateY = "-8%";
 				transform.rotate = "45deg";
+				transform.translateY = "-8%";
 	
 				var borderWidth:BorderWidth = new BorderWidth();
 				borderWidth.bottom = 0.75;
 				borderWidth.right = 0.75;
 
 				var styles:Array = [
-					new GridColumnStart("1"),
-					new GridRowStart("1"),
+					new GridColumnStart(boxColumn),
+					new GridRowStart(boxRow),
 					new HeightStyle(computeSize(size * 0.625, host.unit)),
 					new WidthStyle(computeSize(size * 0.375, host.unit)),
+					new AlignSelf("center"),
 					new PlaceSelf("center"),
 					transform,
 					borderWidth,
@@ -314,11 +406,29 @@ package org.apache.royale.style.skins
 				_indeterminateIcon = new Div();
 				var size:Number = 16 * getMultiplier();
 
+				var boxColumn:String = "1";
+				var boxRow:String = "1";
+				var placement:String = host.labelPlacement;
+				if (placement == "top") {
+					boxRow = "2";
+					boxColumn = "1";
+				} else if (placement == "left") {
+					boxColumn = "2";
+					boxRow = "1";
+				} else if (placement == "bottom") {
+					boxRow = "1";
+					boxColumn = "1";
+				} else { // right
+					boxColumn = "1";
+					boxRow = "1";
+				}
+
 				var styles:Array = [
-					new GridColumnStart("1"),
-					new GridRowStart("1"),
+					new GridColumnStart(boxColumn),
+					new GridRowStart(boxRow),
 					new HeightStyle("14%"),
 					new WidthStyle(computeSize(size * 0.625, host.unit)),
+					new AlignSelf("center"),
 					new PlaceSelf("center"),
 					new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
 					new BackgroundColor(enabledColor),

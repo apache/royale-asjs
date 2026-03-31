@@ -33,13 +33,12 @@ package org.apache.royale.style.stylebeads.flexgrid
 			// TODO validate aspect before setting
 			var ruleValue:String = value;
 			var selectorValue:String = value;
-			var isInt:Boolean = int(value) == value;
-			if(isInt)
+			if(isInt(value))
 			{
 				ruleValue = "repeat(" + value + ", minmax(0, 1fr))";
 			}
 			assert(selectorValue.indexOf("--") != 0, "css variables for grid-template-rows not yet supported: " + value);
-			assert(selectorValue.indexOf(" ") == -1, "values with spaces for grid-template-rows not yet supported: " + value);
+			// assert(selectorValue.indexOf(" ") == -1, "values with spaces for grid-template-rows not yet supported: " + value);
 			calculatedRuleValue = ruleValue;
 			calculatedSelector = selectorValue;
 			_value = value;
