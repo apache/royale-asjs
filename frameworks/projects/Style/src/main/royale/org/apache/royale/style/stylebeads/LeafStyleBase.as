@@ -254,12 +254,12 @@ package org.apache.royale.style.stylebeads
 
 		private var _unit:String = "rem";
 		[Inspectable(category="General", enumeration="px,em,rem", defaultValue="rem")]
-		public function get unit():String
+		override public function get unit():String
 		{
 			return _unit;
 		}
 
-		public function set unit(value:String):void
+		override public function set unit(value:String):void
 		{
 			_unit = value;
 		}

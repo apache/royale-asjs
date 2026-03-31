@@ -37,7 +37,7 @@ package org.apache.royale.style.stylebeads
 	 * Query styles beads can be nested in each other to generate nested grouping.
 	 * Leaf style beads cannot have children.
 	 */
-	abstract public class StyleBeadBase extends Bead implements IStyleBead
+	public class StyleBeadBase extends Bead implements IStyleBead
 	{
 		public function StyleBeadBase()
 		{
@@ -47,7 +47,10 @@ package org.apache.royale.style.stylebeads
 		 *  @royalesuppresspublicvarwarning
 		 */
 		public var styles:Array = [];
-		abstract public function get styleType():String;
+		public function get styleType():String
+		{
+			return null;
+		}
 		/**
 		 * Decorator style beads should override this method to apply their decoration to child styles.
 		 */
@@ -71,6 +74,8 @@ package org.apache.royale.style.stylebeads
 			for each(var style:IStyleBead in styles)
 			{
 				style.parentStyle = parentStyle;
+				if(style is ILeafStyleBead)
+					(style as ILeafStyleBead).unit = unit;
 				if(style.isLeaf)
 				{
 					retVal.push(style);
@@ -114,7 +119,23 @@ package org.apache.royale.style.stylebeads
 		{
 			return null;
 		}
-		abstract public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void;
+		private var _unit:String = "rem";
+		/**
+		 * @copy org.apache.royale.style.stylebeads.ILeafStyleBead#unit
+		 */
+		public function get unit():String
+		{
+			return _unit;
+		}
+
+		public function set unit(value:String):void
+		{
+			_unit = value;
+		}
+		public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
+		{
+
+		}
 		public function get isLeaf():Boolean
 		{
 			return false;

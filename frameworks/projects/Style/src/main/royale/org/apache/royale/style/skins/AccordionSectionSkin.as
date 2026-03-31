@@ -72,7 +72,7 @@ package org.apache.royale.style.skins
 			var borderColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.NEUTRAL,300);
 			var bgColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.NEUTRAL,50);
 			var border:BorderWidth = new BorderWidth();
-			border.bottom = 1;
+			border.bottom = .25;
 			var lastBorder:BorderWidth = new BorderWidth();
 			lastBorder.bottom = 0;
 			var padding:Padding = new Padding();

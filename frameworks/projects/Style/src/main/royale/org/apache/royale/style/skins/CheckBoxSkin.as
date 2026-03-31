@@ -65,7 +65,12 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.effects.OpacityStyle;
 	import org.apache.royale.style.stylebeads.flexgrid.GridTemplateColumns;
 	import org.apache.royale.style.stylebeads.flexgrid.ColumnGap;
+	import org.apache.royale.style.stylebeads.spacing.Padding;
+	import org.apache.royale.style.stylebeads.spacing.Margin;
 
+	import org.apache.royale.style.stylebeads.states.attribute.AttributeState;
+	import org.apache.royale.style.stylebeads.states.GroupPseudo;
+	
 	public class CheckBoxSkin extends StyleSkin implements ICheckBoxSkin
 	{
 		public function CheckBoxSkin()
@@ -88,39 +93,24 @@ package org.apache.royale.style.skins
 			
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
-			var gap:String = computeSize(size * 0.75, host.unit);
+			var gapValue:Number = size * 0.75;
+			var gap:String = computeSize(gapValue, host.unit);
 			
 			
-			var nativeInput:String = host.getChildInputType();
+			// Style components often use a "group" pattern where the wrapper element 
+			// (usually a label) holds the state (like data-disabled), and child elements 
+			// (box, icon, text) respond to that state.
+			//
+			// By default, the wrapper has the 'style-group' class, but this can be specific via override (e.g. 'checkbox')
+			// host.getWrapperStyle() provides this class name to GroupPseudo.
 			
-			//active cursor options, both currently working at time of testing:
-			//1. using NotState - 
-			// :not(:has(input[type="checkbox"]:disabled):hover {cursor:pointer} 
-			/*var disabledCondition:LeafDecorator = new HasState(nativeInput, [new DisabledState()]);
-			var activeCursor:LeafDecorator = new NotState(disabledCondition, [
-				new HoverState([
-					new Cursor("pointer")
-				])
+			var disabledState:AttributeState = new AttributeState("data-disabled", [
+				new Cursor("auto")
 			]);
-			_styles = [
-				new Display("inline-grid"),
-				new GridTemplateColumns(box + " auto"),
-				new AlignItems("center"),
-				new ColumnGap(gap),
-				new UserSelect("none"),
-				new Cursor("auto"),
-				activeCursor
-			];*/
-			
-			//using has - 
-			// :has(input[type="checkbox"]:disabled) {
-			//    cursor: auto;
-			//}
-			var disabledState:LeafDecorator = new HasState(nativeInput, [
-				new DisabledState([
-					new Cursor("auto")
-				])
-			]);
+			var padding:Padding = new Padding();
+			padding.unit = host.unit;
+			padding.right = gap;
+
 			_styles = [
 				new Display("inline-grid"),
 				new GridTemplateColumns(box + " auto"),
@@ -128,6 +118,7 @@ package org.apache.royale.style.skins
 				new ColumnGap(gap),
 				new UserSelect("none"),
 				new Cursor("pointer"),
+				padding,
 				disabledState
 			];
 			
@@ -172,9 +163,11 @@ package org.apache.royale.style.skins
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
 			var outline:Outline = new Outline();
-			outline.width = 2;
+			outline.unit = host.unit;
+			outline.width = 0.5;
+			outline.style = "solid";
 			outline.color = primaryColor.getVariant(NaN,40).colorSpecifier;
-			outline.offset = 2;
+			outline.offset = 0.5;
 			
 			_boxStyles = [
 				new GridColumnStart("1"),
@@ -182,7 +175,7 @@ package org.apache.royale.style.skins
 				new HeightStyle(box),
 				new WidthStyle(box),
 				new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
-				new BorderWidth(2),
+				new BorderWidth(0.5),
 				new BorderColor(enabledBorder),
 				new Transition(),
 				new PeerPseudo([
@@ -194,12 +187,17 @@ package org.apache.royale.style.skins
 					new IndeterminateState([
 						new BorderColor(primaryColor),
 						new BackgroundColor(primaryColor)
-					]),
-					new DisabledState([
+					])
+				]),
+				// Apply disabled styles when the parent (wrapper) is disabled.
+				// host.getWrapperStyle() ensures this matches the component's top-level class.
+				// This is added at the end so it has higher priority in CSS than PeerPseudo styles.
+				new GroupPseudo([
+					new AttributeState("data-disabled", [
 						new BorderColor(disabledBorder),
 						new BackgroundColor(disabledFillColor)
 					])
-				])
+				], host.getWrapperStyle())
 			];
 		}
 
@@ -229,11 +227,11 @@ package org.apache.royale.style.skins
 				new FontSize(fontSize),
 				new FontWeight("600"),
 				new TextColor(enabledColor),
-				new PeerPseudo([
-					new DisabledState([
+				new GroupPseudo([
+					new AttributeState("data-disabled", [
 						new TextColor(disabledColor)
 					])
-				])
+				], host.getWrapperStyle())
 			];
 		}
 
@@ -262,8 +260,9 @@ package org.apache.royale.style.skins
 				transform.rotate = "45deg";
 	
 				var borderWidth:BorderWidth = new BorderWidth();
-				borderWidth.bottom = 3;
-				borderWidth.right = 3;
+				borderWidth.bottom = 0.75;
+				borderWidth.right = 0.75;
+
 				var styles:Array = [
 					new GridColumnStart("1"),
 					new GridRowStart("1"),
@@ -281,11 +280,13 @@ package org.apache.royale.style.skins
 						]),
 						new IndeterminateState([
 							new OpacityStyle(0)
-						]),
-						new DisabledState([
+						])
+					]),
+					new GroupPseudo([
+						new AttributeState("data-disabled", [
 							new BorderColor(disabledColor)
 						])
-					])
+					], host.getWrapperStyle())
 				];
 				_checkIcon.setStyles(styles);
 				// TODO dark mode styles
@@ -326,11 +327,13 @@ package org.apache.royale.style.skins
 					new PeerPseudo([
 						new IndeterminateState([
 							new OpacityStyle(100)
-						]),
-						new DisabledState([
+						])
+					]),
+					new GroupPseudo([
+						new AttributeState("data-disabled", [
 							new BackgroundColor(disabledColor)
 						])
-					])
+					], host.getWrapperStyle())
 				];
 				_indeterminateIcon.setStyles(styles);
 			}

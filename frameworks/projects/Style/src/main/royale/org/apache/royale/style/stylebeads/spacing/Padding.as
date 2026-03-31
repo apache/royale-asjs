@@ -29,10 +29,10 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			super();
 			styles = [];
+			unit = "px";
 			if(value != null)
 				this.padding = value;
 		}
-		public var unit:String = "px";
 		private var paddingStyle:Pad;
 		private var topStyle:Top;
 		private var rightStyle:Right;
@@ -55,7 +55,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!paddingStyle)
 			{
 				paddingStyle = new Pad();
-				paddingStyle.unit = unit;
 				styles.push(paddingStyle);
 			}
 			paddingStyle.value = value;
@@ -73,7 +72,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!topStyle)
 			{
 				topStyle = new Top();
-				topStyle.unit = unit;
 				styles.push(topStyle);
 			}
 			topStyle.value = value;
@@ -91,7 +89,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!rightStyle)
 			{
 				rightStyle = new Right();
-				rightStyle.unit = unit;
 				styles.push(rightStyle);
 			}
 			rightStyle.value = value;
@@ -109,7 +106,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!bottomStyle)
 			{
 				bottomStyle = new Bottom();
-				bottomStyle.unit = unit;
 				styles.push(bottomStyle);
 			}
 			bottomStyle.value = value;
@@ -127,7 +123,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!leftStyle)
 			{
 				leftStyle = new Left();
-				leftStyle.unit = unit;
 				styles.push(leftStyle);
 			}
 			leftStyle.value = value;
@@ -145,7 +140,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockStyle)
 			{
 				blockStyle = new Block();
-				blockStyle.unit = unit;
 				styles.push(blockStyle);
 			}
 			blockStyle.value = value;
@@ -163,7 +157,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockStartStyle)
 			{
 				blockStartStyle = new BlockStart();
-				blockStartStyle.unit = unit;
 				styles.push(blockStartStyle);
 			}
 			blockStartStyle.value = value;
@@ -181,7 +174,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockEndStyle)
 			{
 				blockEndStyle = new BlockEnd();
-				blockEndStyle.unit = unit;
 				styles.push(blockEndStyle);
 			}
 			blockEndStyle.value = value;
@@ -199,7 +191,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineStyle)
 			{
 				inlineStyle = new Inline();
-				inlineStyle.unit = unit;
 				styles.push(inlineStyle);
 			}
 			inlineStyle.value = value;
@@ -217,7 +208,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineStartStyle)
 			{
 				inlineStartStyle = new InlineStart();
-				inlineStartStyle.unit = unit;
 				styles.push(inlineStartStyle);
 			}
 			inlineStartStyle.value = value;
@@ -235,7 +225,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineEndStyle)
 			{
 				inlineEndStyle = new InlineEnd();
-				inlineEndStyle.unit = unit;
 				styles.push(inlineEndStyle);
 			}
 			inlineEndStyle.value = value;
@@ -259,19 +248,23 @@ class Pad extends LeafStyleBase
 	{
 		return value.replace(" ", "-");
 	}
-	override public function set value(value:*):void
+	override public function set value(val:*):void
 	{
-		var selectorValue:String = value;
+		_value = val;
+		var selectorValue:String = "" + val;
 		var ruleValue:String = selectorValue;
-		assert(selectorValue.indexOf("--") != 0, "css variables for grid-template-columns not yet supported: " + value);
-		if(int(value) == value)
+		assert(selectorValue.indexOf("--") != 0, "css variables for grid-template-columns not yet supported: " + val);
+		if(isNum(val))
 		{
-			assert(value >= 0, "Invalid value for padding: " + value);
-			ruleValue = computeSpacing(value);
+			assert(val >= 0, "Invalid value for padding: " + val);
+			ruleValue = computeSpacing(val);
 		}
-		_value = value;
+		else
+		{
+			ruleValue = acceptVar(val);
+		}
 		calculatedRuleValue = ruleValue;
-		calculatedSelector = toSelector(value);
+		calculatedSelector = toSelector(selectorValue);
 	}
 }
 class Block extends Pad

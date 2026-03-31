@@ -46,8 +46,8 @@ package org.apache.royale.style
 		function get size():String;
 		function set size(value:String):void;
 		/**
-		 * support for component classes that wrap a native input element, useful in skins for creating Has states
+		 * support for component classes that provide a wrapper element tagged with this style class (null if not applicable)
 		 */
-		function getChildInputType():String;
+		function getWrapperStyle():String;
 	}
 }

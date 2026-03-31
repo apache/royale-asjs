@@ -54,7 +54,7 @@ package org.apache.royale.style.skins
 			_styles = [
 				new Overflow("hidden"),
 				new BorderRadius("xl"),
-				new BorderWidth(1),
+				new BorderWidth(0.25),
 				new BorderColor(borderColor)
 				//TODO dark mode dark:border-slate-700
 // overflow-hidden rounded-xl border border-slate-300 dark:border-slate-700	

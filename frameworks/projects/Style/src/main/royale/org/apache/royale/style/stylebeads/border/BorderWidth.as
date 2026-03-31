@@ -227,18 +227,25 @@ package org.apache.royale.style.stylebeads.border
 
 import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-class Width extends LeafStyleBase
-{
-	public function Width(selectorBase:String = "border", ruleBase:String = "border-width", value:* = null)
+	class Width extends LeafStyleBase
 	{
-		super(selectorBase, ruleBase, value);
-	}
-	override public function set value(value:*):void
-	{
-		_value = value;
-		calculatedRuleValue = isNum(value) ? value + "px" : acceptVar(value);
-		calculatedSelector = sanitizeSelector(value);
-	}
+		public function Width(selectorBase:String = "border", ruleBase:String = "border-width", value:* = null)
+		{
+			super(selectorBase, ruleBase, value);
+		}
+		override public function set value(value:*):void
+		{
+			_value = value;
+			if(isNum(value))
+			{
+				calculatedRuleValue = computeSpacing(value);
+			}
+			else
+			{
+				calculatedRuleValue = acceptVar(value);
+			}
+			calculatedSelector = sanitizeSelector(value);
+		}
 	override public function getSelector():String
 	{
 		if(!calculatedSelector)

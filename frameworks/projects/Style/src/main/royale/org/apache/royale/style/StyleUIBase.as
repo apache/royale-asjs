@@ -48,6 +48,14 @@ package org.apache.royale.style
 	 */
 	public class StyleUIBase extends UIBase implements IStyleUIBase
 	{
+		
+		/**
+		 *  The default class name used for the top-level wrapper element when useWrapperStyle is true.
+		 *  This allows child elements to be styled based on the state of the parent (e.g., .style-group[data-disabled] .child).
+		 */
+		public static const GROUP_WRAPPER_STYLE:String = 'style-group';
+		
+		
 		/**
 		 *  Constructor.
 		 *  @langversion 3.0
@@ -61,6 +69,17 @@ package org.apache.royale.style
 			classList = new CSSClassList();
 			utilityList = new CSSClassList();
 		}
+		
+		/**
+		 *  If true, the component will add a default "group" class to its top-level element.
+		 *  This is useful for complex components that need to style their internal elements 
+		 *  based on the component's top level state.
+		 *  
+		 *  By default, it uses GROUP_WRAPPER_STYLE ('style-group').
+		 *  Subclasses can override getWrapperStyle() to provide a more specific name.
+		 */
+		protected var useWrapperStyle:Boolean;
+		
 		protected var classList:CSSClassList;
 		protected var utilityList:CSSClassList;
 
@@ -352,7 +371,8 @@ package org.apache.royale.style
 		COMPILE::JS
 		override protected function computeFinalClassNames():String
 		{
-			return (utilityList.compute() + classList.compute() + super.computeFinalClassNames()).trim();
+			var wrapperStyle:String = getWrapperStyle();
+			return (wrapperStyle ? wrapperStyle + ' ' : '') + (utilityList.compute() + classList.compute() + super.computeFinalClassNames()).trim();
 		}
 		public function setStyle(property:String, value:Object):void
 		{
@@ -451,13 +471,22 @@ package org.apache.royale.style
 		}
 		
 		/**
-		 * for components that wrap a native input element, this should return the type of the element.
-		 * this can be useful in skinning.
-		 * Null if not applicable
-		 * @return
+		 *  Returns the class name to be used on the top-level element for this component instance
+		 *  to enable group-based styling for children.
+		 *  
+		 *  In a skin, this provides access to the wrapper style being used by the component. 
+		 *  It helps with namespacing Style components and makes it easier to target child elements.
+		 *  
+		 *  If the subclass sets useWrapperStyle to true in its constructor, the generic 
+		 *  GROUP_WRAPPER_STYLE ('style-group') will be used by default. 
+		 *  
+		 *  Subclasses can override this method to return a specific class (e.g., 'checkbox') 
+		 *  for better semantics and higher CSS specificity.
+		 *  
+		 *  @return the class name to be used on the top-level element, or null if none.
 		 */
-		public function getChildInputType():String{
-			return null;
+		public function getWrapperStyle():String{
+			return useWrapperStyle ? GROUP_WRAPPER_STYLE : null;
 		}
 
 		/**

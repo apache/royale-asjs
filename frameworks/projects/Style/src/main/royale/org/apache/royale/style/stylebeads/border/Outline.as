@@ -135,7 +135,14 @@ class Offset extends LeafStyleBase
 			savedPrefix = selectorBase;
 		_selectorBase = negative ? "-" + savedPrefix : savedPrefix;
 		_value = value;
-		calculatedRuleValue = value;
+		if(isNum(value))
+		{
+			calculatedRuleValue = computeSpacing(value);
+		}
+		else
+		{
+			calculatedRuleValue = acceptVar(value);
+		}
 		calculatedSelector = sanitizeSelector(value);
 	}
 }
@@ -169,7 +176,14 @@ class Width extends LeafStyleBase
 	override public function set value(value:*):void
 	{
 		_value = value;
-		calculatedRuleValue = value;
+		if(isNum(value))
+		{
+			calculatedRuleValue = computeSpacing(value);
+		}
+		else
+		{
+			calculatedRuleValue = acceptVar(value);
+		}
 		calculatedSelector = sanitizeSelector(value);
 	}
 	override public function getSelector():String

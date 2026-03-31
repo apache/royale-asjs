@@ -33,10 +33,6 @@ package org.apache.royale.style.stylebeads
 		{
 			super();
 		}
-		override public function get styleType():String
-		{
-			return "";
-		}
 		/**
 		 * Composite styles have no effect, so it should not insert itself into the hierarchy.
 		 */

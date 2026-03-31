@@ -18,47 +18,41 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
+	import org.apache.royale.style.StyleUIBase;
 	import org.apache.royale.style.stylebeads.ILeafStyleBead;
 	import org.apache.royale.style.util.StyleDecoration;
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
 
-	public class HasState extends LeafDecorator
+	/**
+	 *  The GroupPseudo class is a style decorator that allows child elements to be styled
+	 *  based on the state of a parent element. It corresponds to the "group-*" utility
+	 *  pattern in CSS frameworks like Tailwind CSS.
+	 *  
+	 *  The parent element must have a "group" class (defaults to 'style-group').
+	 *  When this decorator is used, it generates CSS rules like:
+	 *  .style-group[data-disabled] .child-element { ... }
+	 */
+	public class GroupPseudo extends LeafDecorator
 	{
-
-		public static const CHECKBOX_INPUT:String = 'input[type=checkbox]';
-
 		/**
-		 * HasState is a decorator that adds a :has() pseudo-class to the rule.
-		 * It can be used to style a parent based on the state of a child.
+		 *  Constructor.
+		 *  
+		 *  @param styles An array of style beads to apply when the group condition is met.
+		 *  @param groupClass The CSS class name of the parent element to target. 
+		 *  If null, it defaults to StyleUIBase.GROUP_WRAPPER_STYLE ('style-group').
 		 */
-		public function HasState(selector:* = null, styles:Array = null)
+		public function GroupPseudo(styles:Array = null, groupClass:String = null)
 		{
 			super(styles);
-			selectorDecorator = "has-";
-			if (selector is LeafDecorator)
-			{
-				_nestedDecorator = selector as LeafDecorator;
-			}
-			else
-			{
-				ruleDecorator = selector as String;
-			}
+			var base:String = groupClass || StyleUIBase.GROUP_WRAPPER_STYLE;
+			selectorDecorator = base + '-';
+			ruleDecorator = base;
 
 			decoratorType = COMBINER;
 		}
-
-		private var _nestedDecorator:LeafDecorator;
-
-		/**
-		 * @royaleignorecoercion org.apache.royale.style.stylebeads.LeafStyleBase
-		 */
 		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
 			style.selectorPrefix = selectorDecorator + style.selectorPrefix;
 
-			var leafStyle:LeafStyleBase = style as LeafStyleBase;
-
-			//TODO figure out more complex combinations. For now, just handle limited nesting.
 			var decorationStr:String = ""
 			var len:int = decorations.length;
 			for(var i:int = len - 1; i >= 0; i--)
@@ -67,28 +61,9 @@ package org.apache.royale.style.stylebeads.states
 					break;
 				decorationStr = decorations[i].decoration + decorationStr;
 			}
-
-			var rule:String = ruleDecorator || "";
-			if (_nestedDecorator)
-			{
-				rule = _nestedDecorator.getFullRule();
-				if (_nestedDecorator is HasState)
-				{
-					rule = ":has(" + rule + ")";
-				}
-				else if (_nestedDecorator is NotState)
-				{
-					rule = ":not(" + rule + ")";
-				}
-			}
-
-			decorations.push(new StyleDecoration(decoratorType, rule + decorationStr));
-
-			if(!parentStyle || parentStyle.isGroup)
-			{
-				leafStyle.ruleSuffix = leafStyle.ruleSuffix + ":has(" + rule + decorationStr + ")";
-			}
-
+			
+			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
+			style.rulePrefix = "." + ruleDecorator + decorationStr + " " + style.rulePrefix;
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style, decorations);
 		}

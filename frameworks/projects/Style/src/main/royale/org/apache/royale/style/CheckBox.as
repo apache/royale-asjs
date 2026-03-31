@@ -45,6 +45,9 @@ package org.apache.royale.style
 		public function CheckBox()
 		{
 			super();
+			//we want group level 'pseudo' styling
+			//we could use the following for a generic name, or override getWrapperStyle with something specific
+			//useWrapperStyle = true;
 		}
 		COMPILE::JS
 		private var input:HTMLInputElement;
@@ -245,7 +248,8 @@ package org.apache.royale.style
 			COMPILE::JS
 			{
 				if(value != !!_disabled){
-					element["disabled"] = input.disabled = value;
+					input.disabled = value;
+					toggleAttribute("data-disabled", value);
 				}
 			}
 			_disabled = value;
@@ -316,9 +320,12 @@ package org.apache.royale.style
 		{
 			_quiet = value;
 		}
-		override public function getChildInputType():String
-		{
-			return HasState.CHECKBOX_INPUT;
+		
+		/**
+		 *  @copy org.apache.royale.style.StyleUIBase#getWrapperStyle()
+		 */
+		override public function getWrapperStyle():String{
+			return 'checkbox';
 		}
 	}
 }

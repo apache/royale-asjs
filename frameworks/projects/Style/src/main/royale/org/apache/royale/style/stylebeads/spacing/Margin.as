@@ -29,8 +29,8 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			super();
 			styles = [];
+			unit = "px";
 		}
-		public var unit:String = "px";
 
 		private var marginStyle:Marg;
 		private var topStyle:Top;
@@ -54,7 +54,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!marginStyle)
 			{
 				marginStyle = new Marg();
-				marginStyle.unit = unit;
 				styles.push(marginStyle);
 			}
 			marginStyle.value = value;
@@ -72,7 +71,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!topStyle)
 			{
 				topStyle = new Top();
-				topStyle.unit = unit;
 				styles.push(topStyle);
 			}
 			topStyle.value = value;
@@ -90,7 +88,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!rightStyle)
 			{
 				rightStyle = new Right();
-				rightStyle.unit = unit;
 				styles.push(rightStyle);
 			}
 			rightStyle.value = value;
@@ -108,7 +105,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!bottomStyle)
 			{
 				bottomStyle = new Bottom();
-				bottomStyle.unit = unit;
 				styles.push(bottomStyle);
 			}
 			bottomStyle.value = value;
@@ -126,7 +122,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!leftStyle)
 			{
 				leftStyle = new Left();
-				leftStyle.unit = unit;
 				styles.push(leftStyle);
 			}
 			leftStyle.value = value;
@@ -144,7 +139,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockStyle)
 			{
 				blockStyle = new Block();
-				blockStyle.unit = unit;
 				styles.push(blockStyle);
 			}
 			blockStyle.value = value;
@@ -162,7 +156,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockStartStyle)
 			{
 				blockStartStyle = new BlockStart();
-				blockStartStyle.unit = unit;
 				styles.push(blockStartStyle);
 			}
 			blockStartStyle.value = value;
@@ -180,7 +173,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockEndStyle)
 			{
 				blockEndStyle = new BlockEnd();
-				blockEndStyle.unit = unit;
 				styles.push(blockEndStyle);
 			}
 			blockEndStyle.value = value;
@@ -198,7 +190,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineStyle)
 			{
 				inlineStyle = new Inline();
-				inlineStyle.unit = unit;
 				styles.push(inlineStyle);
 			}
 			inlineStyle.value = value;
@@ -216,7 +207,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineStartStyle)
 			{
 				inlineStartStyle = new InlineStart();
-				inlineStartStyle.unit = unit;
 				styles.push(inlineStartStyle);
 			}
 			inlineStartStyle.value = value;
@@ -234,7 +224,6 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineEndStyle)
 			{
 				inlineEndStyle = new InlineEnd();
-				inlineEndStyle.unit = unit;
 				styles.push(inlineEndStyle);
 			}
 			inlineEndStyle.value = value;

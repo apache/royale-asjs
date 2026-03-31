@@ -18,8 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
+	/**
+	 *  The FocusVisibleState class is a style decorator that applies styles when
+	 *  an element is in the :focus-visible state. 
+	 */
 	public class FocusVisibleState extends LeafDecorator
 	{
+		/**
+		 *  Constructor.
+		 *  
+		 *  @param styles An array of style beads to apply when the element is focus-visible.
+		 */
 		public function FocusVisibleState(styles:Array = null)
 		{
 			super(styles);
