@@ -21,6 +21,7 @@ package org.apache.royale.style
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.html.IListPresentationModel;
+	import org.apache.royale.style.util.StyleManager;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -67,7 +68,17 @@ package org.apache.royale.style
 		public function List()
 		{
 			super();
+			register();
 			// typeNames += " List";
+		}
+		private static var _registered:Boolean = false;
+		private static function register():void
+		{
+			if(!_registered){
+				var sel:String = "menu, ol, ul";
+				StyleManager.addStyle(sel, sel, "list-style: none; margin: 0; padding: 0;");
+				_registered = true;
+			}
 		}
 
 		/**
@@ -155,6 +166,15 @@ package org.apache.royale.style
 		{
 			(model as ISelectionModel).selectedItem = value;
 		}
+		override protected function getTag():String
+		{
+			return "ul";
+		}
+
+    public function get focusParent():IStyleUIBase
+    {
+      return this;
+    }
 
 	}
 }

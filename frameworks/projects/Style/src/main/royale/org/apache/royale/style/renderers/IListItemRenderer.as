@@ -16,13 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states.attribute
+package org.apache.royale.style.renderers
 {
-	public class SelectedState extends DataState
+	import org.apache.royale.core.ILabelFieldItemRenderer;
+	import org.apache.royale.core.IHasLabelField;
+	import org.apache.royale.core.IHasDataField;
+
+	public interface IListItemRenderer extends ILabelFieldItemRenderer, IHasLabelField, IHasDataField
 	{
-		public function SelectedState(styles:Array = null)
-		{
-			super("selected", styles);
-		}	
+		function get selected():Boolean;
+		function set selected(value:Boolean):void;
+		function get hovered():Boolean;
+		function set hovered(value:Boolean):void;
+		function get down():Boolean;
+		function set down(value:Boolean):void;
 	}
 }

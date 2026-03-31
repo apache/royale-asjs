@@ -40,10 +40,10 @@ package org.apache.royale.style.stylebeads.flexgrid
 			}
 			return [value];
 		}
-		[Inspectable(category="General", enumeration="center,safe center,start,flex-end,safe flex-end,space-between,space-around,space-evenly,baseline,stretch,normal", defaultValue="normal")]
+		[Inspectable(category="General", enumeration="center,safe center,start,end,safe end,space-between,space-around,space-evenly,baseline,stretch,normal", defaultValue="normal")]
 		override public function set value(value:*):void
 		{
-			assert(["center","center safe","safe center","start","flex-end","flex-end safe","safe flex-end","space-between","space-around","space-evenly","baseline","stretch","normal"].indexOf(value) >= 0, "Invalid value for place-content: " + value);
+			assert(["center","center safe","safe center","start","end","end safe","safe end","space-between","space-around","space-evenly","baseline","stretch","normal"].indexOf(value) >= 0, "Invalid value for place-content: " + value);
 			_value = value;
 			var vals:Array = normalizeSafeKeyword(value);
 			calculatedRuleValue = vals[0];

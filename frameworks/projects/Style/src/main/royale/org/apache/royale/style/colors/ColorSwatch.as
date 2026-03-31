@@ -170,5 +170,33 @@ package org.apache.royale.style.colors
 		public function getRGB():Array{
 			return rgb;
 		}
+		/**
+		 * Returns true if this color swatch is considered a "dark" color,
+		 * meaning that it would require light text for good contrast.
+		 * This is based on the base color, shade, not the opacity.
+		 */
+		public function isDark():Boolean
+		{
+			if (!rgb || rgb.length < 3)
+			{
+				return false;
+			}
+
+			var r:Number = Number(rgb[0]) / 255;
+			var g:Number = Number(rgb[1]) / 255;
+			var b:Number = Number(rgb[2]) / 255;
+
+			var rLinear:Number = toLinearChannel(r);
+			var gLinear:Number = toLinearChannel(g);
+			var bLinear:Number = toLinearChannel(b);
+
+			var luminance:Number = 0.2126 * rLinear + 0.7152 * gLinear + 0.0722 * bLinear;
+			return luminance < 0.179;
+		}
+
+		private function toLinearChannel(channel:Number):Number
+		{
+			return (channel <= 0.04045) ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4);
+		}
 	}
 }

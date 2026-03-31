@@ -40,6 +40,11 @@
   <component id="MultiSelectionList" class="org.apache.royale.style.MultiSelectionList"/>
   <component id="Tree" class="org.apache.royale.style.Tree"/>
   <component id="DataItemRenderer" class="org.apache.royale.style.DataItemRenderer"/>
+  <component id="ListItemRenderer" class="org.apache.royale.style.renderers.ListItemRenderer"/>
+  
+  <component id="ListController" class="org.apache.royale.style.beads.ListController"/>
+  <component id="ListModel" class="org.apache.royale.style.beads.ListModel"/>
+  <component id="ListView" class="org.apache.royale.style.beads.ListView"/>
   
   <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>
   <component id="AriaState" class="org.apache.royale.style.stylebeads.states.attribute.AriaState"/>
@@ -314,5 +319,6 @@
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
+  <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
 
 </componentPackage>

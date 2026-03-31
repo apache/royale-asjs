@@ -25,7 +25,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 	public class Gap extends LeafStyleBase
 	{
-		public function Gap(selectorBase:String="gap", ruleBase:String="gap", value:* = null)
+		public function Gap(value:* = null, selectorBase:String="gap", ruleBase:String="gap")
 		{
 			super(selectorBase, ruleBase, value);
 			// TODO: Is this the correct default?

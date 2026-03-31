@@ -132,7 +132,10 @@ package org.apache.royale.style.support
 		public function set data(value:Object):void
 		{
 			_data = value;
+			if(focusable)
+				tabFocusable = true;
 		}
+		public var focusable:Boolean = true;
 
 		private var _labelField:String = "label";
 

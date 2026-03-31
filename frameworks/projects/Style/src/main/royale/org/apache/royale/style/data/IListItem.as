@@ -16,13 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states.attribute
+package org.apache.royale.style.data
 {
-	public class SelectedState extends DataState
-	{
-		public function SelectedState(styles:Array = null)
-		{
-			super("selected", styles);
-		}	
-	}
+  public interface IListItem extends IDataItem
+  {
+    function get text():String;
+    function set text(value:String):void;
+    function get label():String;
+    function get icon():String;
+    function set icon(value:String):void;
+
+    /**
+     * src of an icon to be rendered an an img
+     */
+    function get imageIcon():String;
+    function set imageIcon(value:String):void;
+
+  }	
 }

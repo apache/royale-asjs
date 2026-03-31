@@ -23,7 +23,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 	{
 		public function RowGap(value:* = null)
 		{
-			super("gap-y", "row-gap", value);
+			super(value, "gap-y", "row-gap");
 		}
 	}
 }

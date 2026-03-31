@@ -16,13 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states.attribute
+package org.apache.royale.style.beads
 {
-	public class SelectedState extends DataState
+	public interface IKeyboardHandler
 	{
-		public function SelectedState(styles:Array = null)
-		{
-			super("selected", styles);
-		}	
+		
 	}
 }

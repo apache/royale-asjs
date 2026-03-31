@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states.attribute
+package org.apache.royale.style.data
 {
-	public class SelectedState extends DataState
-	{
-		public function SelectedState(styles:Array = null)
-		{
-			super("selected", styles);
-		}	
-	}
+  public interface IDataItem
+  {
+    function get disabled():Boolean;
+    function set disabled(value:Boolean):void;
+    function get selected():Boolean;
+    function set selected(value:Boolean):void;
+  }	
 }
