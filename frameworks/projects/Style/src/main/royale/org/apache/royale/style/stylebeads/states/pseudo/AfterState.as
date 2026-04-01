@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.states.pseudo
 	 */
 	public class AfterState extends LeafDecorator
 	{
-		public function AfterState()
+		public function AfterState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "after:";
 			ruleDecorator = "::after";
 		}

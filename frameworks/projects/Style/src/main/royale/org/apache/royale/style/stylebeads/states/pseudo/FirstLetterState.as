@@ -22,11 +22,11 @@ package org.apache.royale.style.stylebeads.states.pseudo
 
 	public class FirstLetterState extends LeafDecorator
 	{
-		public function FirstLetterState()
+		public function FirstLetterState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "first-letter:";
-			ruleDecorator = ":first-letter";
+			ruleDecorator = "::first-letter";
 		}
 	}
 }

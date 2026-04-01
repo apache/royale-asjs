@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.states.pseudo
 	 */
 	public class BeforeState extends LeafDecorator
 	{
-		public function BeforeState()
+		public function BeforeState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "before:";
 			ruleDecorator = "::before";
 		}

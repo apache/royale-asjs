@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.states.attribute
 
 	public class InertState extends LeafDecorator
 	{
-		public function InertState()
+		public function InertState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "inert:";
 			ruleDecorator = ":is([inert], [inert] *)";
 		}

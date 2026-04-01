@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.states.attribute
 
 	public class RTLState extends LeafDecorator
 	{
-		public function RTLState()
+		public function RTLState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "rtl:";
 			ruleDecorator = ":where(:is(:lang(ae),:lang(ar),:lang(arc),:lang(bcc),:lang(bqi),:lang(ckb),:lang(dv),:lang(fa),:lang(glk),:lang(he),:lang(ku),:lang(mzn),:lang(nqo),:lang(pnb),:lang(ps),:lang(sd),:lang(ug),:lang(ur),:lang(yi)),[dir=rtl],[dir=rtl] *)";
 		}

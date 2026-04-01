@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class ActiveState extends LeafDecorator
 	{
-		public function ActiveState()
+		public function ActiveState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "active:";
 			ruleDecorator = ":active";
 		}

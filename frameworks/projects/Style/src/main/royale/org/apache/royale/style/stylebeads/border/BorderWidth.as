@@ -28,10 +28,11 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class BorderWidth extends CompositeStyle
 	{
-		public function BorderWidth(value:* = null)
+		public function BorderWidth(value:* = null, unit:String = "px")
 		{
 			super();
 			styles = [];
+			this.unit = unit;
 			if(value)
 				this.width = value;
 		}

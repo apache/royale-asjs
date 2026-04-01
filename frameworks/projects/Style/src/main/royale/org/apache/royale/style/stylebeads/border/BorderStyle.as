@@ -23,15 +23,26 @@ package org.apache.royale.style.stylebeads.border
 
 	public class BorderStyle extends LeafStyleBase
 	{
-		public function BorderStyle(value:* = null)
+		public function BorderStyle(selectorBase:String = "border", ruleBase:String = "border-style", value:* = null)
 		{
-			super("border", "border-style", value);
+			super(selectorBase, ruleBase, value);
 		}
 		[Inspectable(category="General", enumeration="solid,dashed,dotted,double,hidden,none", defaultValue="solid")]
 		override public function set value(value:*):void
 		{
-			assert(["solid", "dashed", "dotted", "double", "hidden", "none"].indexOf(value) >= 0, "The value must be a valid border style: " + value);
-			calculatedSelector = calculatedRuleValue = _value = value;
+			_value = value;
+			calculatedSelector = value;
+			calculatedRuleValue = value;
+		}
+
+		override public function getRule():String
+		{
+			// enable outline in forced colors mode
+			if(calculatedSelector == "hidden")
+			{
+				return ruleBase + ": 2px solid transparent; " + ruleBase + "-offset: 2px;";
+			}
+			return super.getRule();
 		}
 	}
 }

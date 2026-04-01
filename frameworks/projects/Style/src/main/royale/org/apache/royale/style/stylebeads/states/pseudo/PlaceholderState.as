@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.states.pseudo
 
 	public class PlaceholderState extends LeafDecorator
 	{
-		public function PlaceholderState()
+		public function PlaceholderState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "placeholder:";
 			ruleDecorator = "::placeholder";
 		}

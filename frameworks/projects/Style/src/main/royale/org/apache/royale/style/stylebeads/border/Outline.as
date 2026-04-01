@@ -38,12 +38,12 @@ package org.apache.royale.style.stylebeads.border
 		{
 			return _color;
 		}
-		private var colorStyle:Color;
+		private var colorStyle:BorderColor;
 		public function set color(value:String):void
 		{
 			if(!colorStyle)
 			{
-				colorStyle = new Color();
+				colorStyle = new BorderColor("outline", "outline-color");
 				styles.push(colorStyle);
 			}
 			colorStyle.value = value;
@@ -70,7 +70,7 @@ package org.apache.royale.style.stylebeads.border
 		{
 			return _style;
 		}
-		private var styleStyle:Style;
+		private var styleStyle:BorderStyle;
 		public function set style(value:String):void
 		{
 			if(!styleStyle)
@@ -99,27 +99,11 @@ package org.apache.royale.style.stylebeads.border
 		}
 	}
 }
-import org.apache.royale.style.stylebeads.LeafStyleBase;
-import org.apache.royale.style.util.StyleData;
-import org.apache.royale.debugging.assert;
 
-class Color extends LeafStyleBase
-{
-	public function Color(value:* = null)
-	{
-		super("outline", "outline-color", value);
-	}
-	/**
-	 * @royaleignorecoercion org.apache.royale.style.colors.ColorPair
-	 */
-	override public function set value(value:*):void
-	{
-		_value = value;
-		var styleData:StyleData = validateColor(value,false);
-		calculatedRuleValue = styleData.rule;
-		calculatedSelector = styleData.selector;
-	}
-}
+import org.apache.royale.style.stylebeads.LeafStyleBase;
+import org.apache.royale.debugging.assert;
+import org.apache.royale.style.stylebeads.border.BorderStyle;
+
 class Offset extends LeafStyleBase
 {
 	public function Offset(value:* = null)
@@ -129,7 +113,8 @@ class Offset extends LeafStyleBase
 	private var savedPrefix:String;
 	override public function set value(value:*):void
 	{
-		var numVal:Number = parseFloat(value);
+		var val:* = value;
+		var numVal:Number = parseFloat(val);
 		var negative:Boolean = numVal < 0;
 		if(!savedPrefix)
 			savedPrefix = selectorBase;
@@ -146,16 +131,11 @@ class Offset extends LeafStyleBase
 		calculatedSelector = sanitizeSelector(value);
 	}
 }
-class Style extends LeafStyleBase
+class Style extends BorderStyle
 {
 	public function Style(value:* = null)
 	{
 		super("outline", "outline-style", value);
-	}
-	override public function set value(value:*):void
-	{
-		assert(["solid","dashed","dotted","double","hidden","none"].indexOf(value) >= 0, "The value must be a valid outline style: " + value);
-		calculatedSelector = calculatedRuleValue = _value = value;
 	}
 	override public function getRule():String
 	{

@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class RequiredState extends LeafDecorator
 	{
-		public function RequiredState()
+		public function RequiredState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "required:";
 			ruleDecorator = ":required";
 		}

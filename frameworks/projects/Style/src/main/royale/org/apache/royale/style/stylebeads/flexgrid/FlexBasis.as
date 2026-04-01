@@ -29,9 +29,16 @@ package org.apache.royale.style.stylebeads.flexgrid
 
 		override public function set value(value:*):void
 		{
+			if(value === 0 || value === "0") {
+				_value = value;
+				calculatedRuleValue = calculatedSelector = "0";
+				return;
+			}
+			_value = value;
+			calculatedRuleValue = calculatedSelector = value;
 			// TODO validate aspect before setting
 				var isNum:Boolean = parseFloat(value) == value;
-				var isInt:Boolean = int(value) == value;
+				var isInt:Boolean = parseInt(value) == value;
 				if(isNum && !isInt)
 					calculatedRuleValue = (value * 100) + "%";
 

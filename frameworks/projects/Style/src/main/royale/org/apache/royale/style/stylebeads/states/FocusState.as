@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.states
 {
 	public class FocusState extends LeafDecorator
 	{
-		public function FocusState()
+		public function FocusState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "focus:";
 			ruleDecorator = ":focus";
 		}

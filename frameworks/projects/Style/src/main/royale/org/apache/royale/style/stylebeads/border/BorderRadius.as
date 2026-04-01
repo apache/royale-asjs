@@ -28,10 +28,11 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class BorderRadius extends CompositeStyle
 	{
-		public function BorderRadius(value:* = null)
+		public function BorderRadius(value:* = null, unit:String = "px")
 		{
 			super();
 			styles = [];
+			this.unit = unit;
 			//because of @royalesuppressexport, the following did not work in release/minified build from within this constructor when using the radius setter directly:
 			//if (value) radius = value;
 			//however a usage of the getter here will make the setter usage survive minification:

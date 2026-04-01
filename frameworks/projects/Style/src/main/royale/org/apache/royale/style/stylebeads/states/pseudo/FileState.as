@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.states.pseudo
 
 	public class FileState extends LeafDecorator
 	{
-		public function FileState()
+		public function FileState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "file:";
 			ruleDecorator = "::file-selector-button";
 		}

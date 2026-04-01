@@ -25,9 +25,9 @@ package org.apache.royale.style.stylebeads.states.attribute
 
 	public class AriaState extends LeafDecorator
 	{
-		public function AriaState()
+		public function AriaState(styles:Array = null)
 		{
-			super();
+			super(styles);
 		}
 
 		private var _aria:String;

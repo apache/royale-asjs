@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.states.pseudo
 
 	public class SelectionState extends LeafDecorator
 	{
-		public function SelectionState()
+		public function SelectionState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "selection:";
 			ruleDecorator = "::selection";
 		}

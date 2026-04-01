@@ -31,7 +31,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 		{
 			COMPILE::JS
 			{
-				value = value.trim();
+				value = (''+value).trim(); //String conversion first in case it got passed as a number
 				// TODO validate aspect before setting
 				calculatedRuleValue = calculatedSelector = _value = value;
 				var isNum:Boolean = parseFloat(value) == value;

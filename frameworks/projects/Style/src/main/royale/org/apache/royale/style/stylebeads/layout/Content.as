@@ -16,28 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.border
+package org.apache.royale.style.stylebeads.layout
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.style.util.StyleData;
 
-	public class BorderColor extends LeafStyleBase
+	public class Content extends LeafStyleBase
 	{
-		public function BorderColor(selectorBase:* = "border", ruleBase:String = "border-color", value:* = null)
+		/**
+		 * for use inside BeforeState and AfterState declarations (for completeness)
+		 * @param value
+		 */
+		public function Content(value:* = '""')
 		{
-			if (!(selectorBase is String))
-			{
-				value = selectorBase;
-				selectorBase = "border";
-			}
-			super(selectorBase as String, ruleBase, value);
+			super("", "content", value);
 		}
-		override public function set value(value:*):void
+
+		public function set value(value:*):void
 		{
 			_value = value;
-			var styleData:StyleData = validateColor(value, false);
-			calculatedSelector = styleData.selector;
-			calculatedRuleValue = styleData.rule;
+			calculatedRuleValue = calculatedSelector = value;
 		}
 	}
 }

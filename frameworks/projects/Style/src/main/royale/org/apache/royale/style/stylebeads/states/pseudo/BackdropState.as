@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.states.pseudo
 
 	public class BackdropState extends LeafDecorator
 	{
-		public function BackdropState()
+		public function BackdropState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "backdrop:";
 			ruleDecorator = "::backdrop";
 		}

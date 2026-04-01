@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.states.pseudo
 
 	public class MarkerState extends LeafDecorator
 	{
-		public function MarkerState()
+		public function MarkerState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "marker:";
 			ruleDecorator = "::marker";
 		}

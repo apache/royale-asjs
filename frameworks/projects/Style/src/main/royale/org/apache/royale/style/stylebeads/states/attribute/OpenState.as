@@ -24,9 +24,9 @@ package org.apache.royale.style.stylebeads.states.attribute
 
 	public class OpenState extends LeafDecorator
 	{
-		public function OpenState()
+		public function OpenState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "open:";
 			ruleDecorator = ":is([open], :popover-open, :open)";
 		}

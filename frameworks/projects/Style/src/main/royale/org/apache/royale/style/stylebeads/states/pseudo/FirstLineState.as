@@ -22,11 +22,11 @@ package org.apache.royale.style.stylebeads.states.pseudo
 
 	public class FirstLineState extends LeafDecorator
 	{
-		public function FirstLineState()
+		public function FirstLineState(styles:Array = null)
 		{
-			super();
+			super(styles);
 			selectorDecorator = "first-line:";
-			ruleDecorator = ":first-line";
+			ruleDecorator = "::first-line";
 		}
 	}
 }

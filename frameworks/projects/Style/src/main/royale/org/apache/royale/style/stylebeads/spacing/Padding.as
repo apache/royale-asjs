@@ -25,11 +25,11 @@ package org.apache.royale.style.stylebeads.spacing
 	 */
 	public class Padding extends CompositeStyle
 	{
-		public function Padding(value:* = null)
+		public function Padding(value:* = null, unit:String = "px")
 		{
 			super();
 			styles = [];
-			unit = "px";
+			this.unit = unit;
 			if(value != null)
 				this.padding = value;
 		}

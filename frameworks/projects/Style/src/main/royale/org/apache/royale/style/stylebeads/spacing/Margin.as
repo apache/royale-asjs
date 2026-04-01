@@ -25,11 +25,13 @@ package org.apache.royale.style.stylebeads.spacing
 	 */
 	public class Margin extends CompositeStyle
 	{
-		public function Margin(value:* = null)
+		public function Margin(value:* = null, unit:String = "px")
 		{
 			super();
 			styles = [];
-			unit = "px";
+			this.unit = unit;
+			if(value != null)
+				this.margin = value;
 		}
 
 		private var marginStyle:Marg;
