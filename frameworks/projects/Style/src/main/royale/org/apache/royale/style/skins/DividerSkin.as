@@ -28,16 +28,26 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.stylebeads.background.BackgroundColor;
 	
-	import org.apache.royale.style.Divider;
+	import org.apache.royale.style.stylebeads.flexgrid.AlignItems;
+	import org.apache.royale.style.stylebeads.flexgrid.JustifyContent;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexDirection;
+	import org.apache.royale.style.stylebeads.flexgrid.Flex;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexGrow;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexBasis;
+	import org.apache.royale.style.stylebeads.spacing.Margin;
+	import org.apache.royale.style.stylebeads.layout.Display;
 	
-	public class DividerSkin extends StyleSkin /*implements ICheckBoxSkin*/
+	import org.apache.royale.style.Divider;
+
+	public class DividerSkin extends StyleSkin implements IDividerSkin
 	{
 		public function DividerSkin()
 		{
 			super();
 		}
+
 		/**
-		 * @royaleignorecoercion org.apache.royale.style.CheckBox
+		 * @royaleignorecoercion org.apache.royale.style.Divider
 		 */
 		private function getHost():Divider
 		{
@@ -46,6 +56,7 @@ package org.apache.royale.style.skins
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
+			
 			// Manually set. Don't create the default ones.
 			if(_styles)
 				return;
@@ -55,49 +66,75 @@ package org.apache.royale.style.skins
 		override public function update():void{
 			processStyles()
 		}
+
+		private var _lineStyles:Array;
+
+		public function get lineStyles():Array
+		{
+			if(!_lineStyles)
+				processStyles();
+			return _lineStyles;
+		}
 		
 		private function processStyles():void{
 			var host:Divider = getHost();
-			var hostSize:String = getHost().size;
+			var hostSize:String = host.size;
+			var hostUnit:String = host.unit;
 			var size:Number =  getAppliedSize(hostSize);
 			var colorAdjust:Number = getShading(hostSize);
-			var edgePadding:Number = host.edgePadding;
-			var appliedSize:String = computeSize(size + edgePadding * 2 , host.unit);
-			//edgePadding will be applied with transparent borders;
-			var borderPadding:Border
-			if (edgePadding) {
-				var appliedEdgePadding:String = computeSize(edgePadding,host.unit);
-				borderPadding = new Border();
-				borderPadding.color = 'transparent';
-			}
+			var edgePadding:String = computeSize(host.edgePadding, hostUnit);
 			
-			var styles:Array = [
-					new BackgroundColor("slate-"+colorAdjust),
-				    new BorderRadius(ThemeManager.instance.activeTheme.radiusSM),
-			]
-			if (borderPadding) {
-				styles.push(borderPadding);
-				styles.push(new BackgroundClip('padding-box'));
-			}
-			if (getHost().vertical) {
-				styles.push(new HeightStyle('100%'));
-				styles.push(new WidthStyle(appliedSize));
-				if (borderPadding) {
-					//there seems to be no way to configure top and bottom border...tbd
-					borderPadding.width = appliedEdgePadding;
-				}
+			var appliedSize:String = computeSize(size, hostUnit);
+			
+			var hostStyles:Array = [
+			//	new BackgroundColor('transparent'), //probably not needed
+				new Display('flex'),
+				new Flex(0),
+				new JustifyContent('center'),
+				new AlignItems('center')
+			];
+
+			var lineStylesArr:Array = [
+				new BackgroundColor("slate-"+colorAdjust),
+				new BorderRadius(ThemeManager.instance.activeTheme.radiusSM)
+			];
+			
+			lineStylesArr.push(new Display('block')); // Ensure it renders
+
+			if (host.vertical) {
+				hostStyles.push(new FlexDirection('column'));
+				hostStyles.push(new HeightStyle('100%'));
 				
+				lineStylesArr.push(new WidthStyle(appliedSize));
+				lineStylesArr.push(new FlexGrow(1));
+				lineStylesArr.push(new FlexBasis(0));
+
+				if (edgePadding) {
+					var hMargin:Margin = new Margin();
+					hMargin.unit = hostUnit;
+					hMargin.left = edgePadding;
+					hMargin.right = edgePadding;
+					lineStylesArr.push(hMargin);
+				}
 			} else {
-				
-				if (borderPadding) {
-					//there seems to be no way to configure left and right border...tbd
-					borderPadding.width = appliedEdgePadding;
+				hostStyles.push(new FlexDirection('row'));
+				hostStyles.push(new WidthStyle('100%'));
+
+				lineStylesArr.push(new HeightStyle(appliedSize));
+				lineStylesArr.push(new FlexGrow(1));
+				lineStylesArr.push(new FlexBasis(0));
+
+				if (edgePadding) {
+					var vMargin:Margin = new Margin();
+					vMargin.unit = hostUnit;
+					vMargin.top = edgePadding;
+					vMargin.bottom = edgePadding;
+					lineStylesArr.push(vMargin);
 				}
-				styles.push(new WidthStyle('100%'));
-				styles.push(new HeightStyle(appliedSize));
 			}
-			_styles = styles;
 			
+			_lineStyles = lineStylesArr;
+			_styles = hostStyles;
 			host.setStyles(_styles, true);
 		}
 		
