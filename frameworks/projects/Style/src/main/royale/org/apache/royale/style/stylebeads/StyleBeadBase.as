@@ -76,6 +76,9 @@ package org.apache.royale.style.stylebeads
 				style.parentStyle = parentStyle;
 				if(style is ILeafStyleBead)
 					(style as ILeafStyleBead).unit = unit;
+				else if (style is StyleBeadBase)
+					(style as StyleBeadBase).unit = unit;
+
 				if(style.isLeaf)
 				{
 					retVal.push(style);
@@ -131,6 +134,16 @@ package org.apache.royale.style.stylebeads
 		public function set unit(value:String):void
 		{
 			_unit = value;
+			if (styles)
+			{
+				for each(var style:IStyleBead in styles)
+				{
+					if(style is ILeafStyleBead)
+						(style as ILeafStyleBead).unit = value;
+					else if (style is StyleBeadBase)
+						(style as StyleBeadBase).unit = value;
+				}
+			}
 		}
 		public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
