@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IDataGrid;
+    import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.jewel.Container;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
         
@@ -36,6 +37,10 @@ package org.apache.royale.jewel.beads.layouts
 	public class VirtualDataGridListAreaLayout extends VirtualListVerticalLayout
 	{
         private var isAreaFocus:Boolean;
+
+        // Tracks which DataGrid is currently syncing columns, to suppress redundant
+        // layout() calls from scroll events triggered by programmatic scrollTop changes.
+        private static var _syncingDataGrid:IDataGrid = null;
 
 		/**
 		 *  Constructor.
@@ -59,7 +64,29 @@ package org.apache.royale.jewel.beads.layouts
             {
                 host.element.addEventListener("mouseover", function():void { isAreaFocus = true });
                 host.element.addEventListener("mouseleave", function():void { isAreaFocus = false });
+
+                // Non-passive wheel listener so preventDefault() can block the browser's
+                // compositor thread from scrolling this column ahead of its siblings.
+                // Without this, the compositor moves this column visually before our
+                // scrollHandler fires, producing one frame of cross-column misalignment.
+                var wheelOptions:Object = new Object();
+                wheelOptions["passive"] = false;
+                host.element.addEventListener("wheel", wheelHandler, wheelOptions);
             }
+        }
+
+        COMPILE::JS
+        private function wheelHandler(e:*):void
+        {
+            if (!isAreaFocus || e.deltaY == 0) return;
+
+            e.preventDefault();
+
+            // deltaMode: 0 = pixels (trackpad/modern), 1 = lines (mouse wheel on Firefox)
+            var delta:Number = (e.deltaMode == 0) ? e.deltaY : e.deltaY * 40;
+            var limitY:Number = host.element.scrollHeight - host.element.clientHeight;
+            host.element.scrollTop = Math.max(0, Math.min(host.element.scrollTop + delta, limitY));
+            // The resulting scroll event triggers scrollHandler which syncs all other columns.
         }
 
         private function getListArea():Container
@@ -71,23 +98,51 @@ package org.apache.royale.jewel.beads.layouts
 
         override protected function scrollHandler(e:Event):void
         {
+            if (!isAreaFocus)
+            {
+                // Non-focused column: skip layout() if the focused column already synced us
+                // and called layout() directly — avoids a redundant call before the browser paints.
+                COMPILE::JS
+                {
+                    if (_syncingDataGrid != null && _syncingDataGrid == (host as IDataGridColumnList).datagrid)
+                        return;
+                }
+                super.scrollHandler(e);
+                return;
+            }
+
+            // Focused column: update its own layout first.
             super.scrollHandler(e);
 
-            //this is not ideal, but avoids that the other VirtualDataGrid columns
-            //also try to do scrollTop to all columns again in a loop, that causes a performance issue
-            //and a strang behaviour on the first column that started the process
-            if (!isAreaFocus)
-                return;
-
-            var listArea:Container = getListArea();
-
-            for (var i:int = 0; i < listArea.numElements; i++)
+            COMPILE::JS
             {
-				COMPILE::JS
-				{
-                if (listArea.getElementAt(i) != host)
-                    listArea.getElementAt(i).element.scrollTop = host.element.scrollTop;
-				}	
+                var myDataGrid:IDataGrid = (host as IDataGridColumnList).datagrid;
+                _syncingDataGrid = myDataGrid;
+
+                var listArea:Container = getListArea();
+                var scrollTop:Number = host.element.scrollTop;
+
+                for (var i:int = 0; i < listArea.numElements; i++)
+                {
+                    var otherColumn:* = listArea.getElementAt(i);
+                    if (otherColumn != host)
+                    {
+                        otherColumn.element.scrollTop = scrollTop;
+                        // Immediately call layout() so all columns are visually aligned
+                        // before the browser paints — without waiting for the async scroll event.
+                        var otherLayout:IBeadLayout = otherColumn.getBeadByType(IBeadLayout) as IBeadLayout;
+                        if (otherLayout)
+                            otherLayout.layout();
+                    }
+                }
+
+                // Clear the flag after any queued scroll events from the programmatic
+                // scrollTop changes above have been processed and suppressed.
+                setTimeout(function():void
+                {
+                    if (_syncingDataGrid == myDataGrid)
+                        _syncingDataGrid = null;
+                }, 0);
             }
         }
 	}
