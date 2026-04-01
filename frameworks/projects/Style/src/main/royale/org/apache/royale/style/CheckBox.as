@@ -50,27 +50,7 @@ package org.apache.royale.style
 			//we could use the following for a generic name, or override getWrapperStyle with something specific
 			//useWrapperStyle = true;
 		}
-		private var _labelPlacement:String = "right";
-		[Bindable(event='valueChange',type='org.apache.royale.events.ValueChangeEvent')]
-		public function get labelPlacement():String
-		{
-			return _labelPlacement;
-		}
-		[Inspectable(category="General", enumeration="left,right,top,bottom")]
-		public function set labelPlacement(value:String):void
-		{
-			if(_labelPlacement != value){
-				var oldVal:String = _labelPlacement;
-				_labelPlacement = value;
-				if(_stylesLoaded)
-				{
-					if (skin is ICheckBoxSkin)
-						(skin as ICheckBoxSkin).updateStyles();
-					applySkin();
-				}
-				dispatchEvent(ValueChangeEvent.createUpdateEvent(this,'labelPlacement',oldVal,value))
-			}
-		}
+		
 		COMPILE::JS
 		private var input:HTMLInputElement;
 		

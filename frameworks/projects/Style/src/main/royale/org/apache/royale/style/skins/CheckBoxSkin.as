@@ -46,6 +46,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.states.LeafDecorator;
 	import org.apache.royale.style.stylebeads.states.NotState;
 	import org.apache.royale.style.stylebeads.states.HoverState;
+	import org.apache.royale.style.stylebeads.states.attribute.DataState;
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.stylebeads.border.BorderWidth;
 	import org.apache.royale.style.stylebeads.border.BorderColor;
@@ -114,56 +115,29 @@ package org.apache.royale.style.skins
 			
 			var padding:Padding = new Padding();
 			padding.unit = host.unit;
+			padding.right = gap;
+			var layoutStyles:Array = [
+				new Display("inline-grid"),
+				new VerticalAlign("top"),
+				new GridTemplateColumns(box + " auto"),
+				new GridTemplateRows("auto"),
+				new AlignItems("center"),
+				new ColumnGap(gap),
+				padding
+			];
 			
-			var layoutStyles:Array = [];
-			var placement:String = host.labelPlacement;
-			if (placement == "top" || placement == "bottom")
-			{
-				layoutStyles.push(new Display("inline-grid"));
-				layoutStyles.push(new VerticalAlign("top"));
-				var rowTemplate:String = (placement == "top") ? "auto " + box : box + " auto";
-				layoutStyles.push(new GridTemplateRows(rowTemplate));
-				layoutStyles.push(new GridTemplateColumns("auto"));
-				layoutStyles.push(new JustifyItems("center"));
-				layoutStyles.push(new AlignItems("center"));
-				layoutStyles.push(new RowGap(gap));
-				padding.right = gap;
-			}
-			else
-			{
-				layoutStyles.push(new Display("inline-grid"));
-				layoutStyles.push(new VerticalAlign("top"));
-				var colTemplate:String = (placement == "left") ? "auto " + box : box + " auto";
-				layoutStyles.push(new GridTemplateColumns(colTemplate));
-				layoutStyles.push(new GridTemplateRows("auto"));
-				layoutStyles.push(new AlignItems("center"));
-				layoutStyles.push(new ColumnGap(gap));
-				padding.right = gap;
-			}
-
-			// Style components often use a "group" pattern where the wrapper element 
-			// (usually a label) holds the state (like data-disabled), and child elements 
-			// (box, icon, text) respond to that state.
-			//
-			// By default, the wrapper has the 'style-group' class, but this can be specific via override (e.g. 'checkbox')
-			// host.getWrapperStyle() provides this class name to GroupPseudo.
-			
-			var disabledState:AttributeState = new AttributeState("data-disabled", [
-				new Cursor("auto")
-			]);
-
 			_styles = [
 				new UserSelect("none"),
 				new Cursor("pointer"),
-				padding,
-				disabledState
+				new DataState("disabled", [
+					new Cursor("auto")
+				])
 			].concat(layoutStyles);
 			
 			host.setStyles(_styles, true);
 		}
 		private function getMultiplier():Number
 		{
-			var multiple:Number;
 			switch(host.size)
 			{
 				case "sm":
@@ -200,23 +174,9 @@ package org.apache.royale.style.skins
 			var size:Number = 16 * getMultiplier();
 			var box:String = computeSize(size * 1.25, host.unit);
 			
-			var boxColumn:String = "1";
-			var boxRow:String = "1";
-			var placement:String = host.labelPlacement;
-			if (placement == "top") {
-				boxRow = "2";
-				boxColumn = "1";
-			} else if (placement == "left") {
-				boxColumn = "2";
-				boxRow = "1";
-			} else if (placement == "bottom") {
-				boxRow = "1";
-				boxColumn = "1";
-			} else { // right
-				boxColumn = "1";
-				boxRow = "1";
-			}
-
+			var boxColumn:String = "1";// the grid column to place the box in
+			var boxRow:String = "1";// the grid row to place the box in
+			
 			var outline:Outline = new Outline();
 			outline.unit = host.unit;
 			outline.width = 0.5;
@@ -243,17 +203,23 @@ package org.apache.royale.style.skins
 					new IndeterminateState([
 						new BorderColor(primaryColor),
 						new BackgroundColor(primaryColor)
+					]),
+					new DisabledState([
+						new BorderColor(disabledBorder),
+						new BackgroundColor(disabledFillColor)
 					])
-				]),
+				])/*,
+				
+				//for reference, this also works instead of PeerPseudo/DisabledState above:
 				// Apply disabled styles when the parent (wrapper) is disabled.
 				// host.getWrapperStyle() ensures this matches the component's top-level class.
 				// This is added at the end so it has higher priority in CSS than PeerPseudo styles.
 				new GroupPseudo([
-					new AttributeState("data-disabled", [
+					new DataState("disabled", [
 						new BorderColor(disabledBorder),
 						new BackgroundColor(disabledFillColor)
 					])
-				], host.getWrapperStyle())
+				], host.getWrapperStyle())*/
 			];
 		}
 
@@ -277,34 +243,26 @@ package org.apache.royale.style.skins
 			var enabledColor:ColorSwatch = colorSet.baseContent;
 			var disabledColor:ColorSwatch = colorSet.baseContentWeak;
 			
-			var labelColumn:String = "2";
-			var labelRow:String = "1";
-			var placement:String = host.labelPlacement;
-			if (placement == "top") {
-				labelColumn = "1";
-				labelRow = "1";
-			} else if (placement == "bottom") {
-				labelColumn = "1";
-				labelRow = "2";
-			} else if (placement == "left") {
-				labelColumn = "1";
-				labelRow = "1";
-			} else { // right
-				labelColumn = "2";
-				labelRow = "1";
-			}
-
+			var labelColumn:String = "2"; // the grid column to place the label in
+			var labelRow:String = "1"; // the grid row to place the label in
+			
 			_labelStyles = [
 				new GridColumnStart(labelColumn),
 				new GridRowStart(labelRow),
 				new FontSize(fontSize),
 				new FontWeight("600"),
 				new TextColor(enabledColor),
-				new GroupPseudo([
-					new AttributeState("data-disabled", [
+				new PeerPseudo([
+					new DisabledState([
 						new TextColor(disabledColor)
 					])
-				], host.getWrapperStyle())
+				])/*
+				//for reference, this also works instead of PeerPseudo/DisabledState above:
+				new GroupPseudo([
+					new DataState("disabled", [
+						new TextColor(disabledColor)
+					])
+				], host.getWrapperStyle())*/
 			];
 		}
 
@@ -329,22 +287,8 @@ package org.apache.royale.style.skins
 				_checkIcon = new Div();
 				var size:Number = 16 * getMultiplier();
 				
-				var boxColumn:String = "1";
-				var boxRow:String = "1";
-				var placement:String = host.labelPlacement;
-				if (placement == "top") {
-					boxRow = "2";
-					boxColumn = "1";
-				} else if (placement == "left") {
-					boxColumn = "2";
-					boxRow = "1";
-				} else if (placement == "bottom") {
-					boxRow = "1";
-					boxColumn = "1";
-				} else { // right
-					boxColumn = "1";
-					boxRow = "1";
-				}
+				var boxColumn:String = "1"; // the grid column to place the icon in
+				var boxRow:String = "1"; // the grid row to place the icon in
 
 				var transform:Transform = new Transform();
 				transform.rotate = "45deg";
@@ -372,13 +316,17 @@ package org.apache.royale.style.skins
 						]),
 						new IndeterminateState([
 							new OpacityStyle(0)
-						])
-					]),
-					new GroupPseudo([
-						new AttributeState("data-disabled", [
+						]),
+						new DisabledState([
 							new BorderColor(disabledColor)
 						])
-					], host.getWrapperStyle())
+					])/*,
+					//for reference, this also works instead of PeerPseudo/DisabledState above:
+					new GroupPseudo([
+						new DataState("disabled", [
+							new BorderColor(disabledColor)
+						])
+					], host.getWrapperStyle())*/
 				];
 				_checkIcon.setStyles(styles);
 				// TODO dark mode styles
@@ -407,22 +355,8 @@ package org.apache.royale.style.skins
 				var size:Number = 16 * getMultiplier();
 				var unit:String = host.unit;
 
-				var boxColumn:String = "1";
-				var boxRow:String = "1";
-				var placement:String = host.labelPlacement;
-				if (placement == "top") {
-					boxRow = "2";
-					boxColumn = "1";
-				} else if (placement == "left") {
-					boxColumn = "2";
-					boxRow = "1";
-				} else if (placement == "bottom") {
-					boxRow = "1";
-					boxColumn = "1";
-				} else { // right
-					boxColumn = "1";
-					boxRow = "1";
-				}
+				var boxColumn:String = "1"; // the grid column to place the icon in
+				var boxRow:String = "1";// the grid row to place the icon in
 				
 				var styles:Array = [
 					new GridColumnStart(boxColumn),
@@ -438,13 +372,18 @@ package org.apache.royale.style.skins
 					new PeerPseudo([
 						new IndeterminateState([
 							new OpacityStyle(100)
-						])
-					]),
-					new GroupPseudo([
-						new AttributeState("data-disabled", [
+						]),
+						new DisabledState([
 							new BackgroundColor(disabledColor)
 						])
-					], host.getWrapperStyle())
+					])
+					/*,
+					//for reference, this also works instead of PeerPseudo/DisabledState above:
+					new GroupPseudo([
+						new DataState("disabled", [
+							new BackgroundColor(disabledColor)
+						])
+					], host.getWrapperStyle())*/
 				];
 				_indeterminateIcon.setStyles(styles);
 			}
