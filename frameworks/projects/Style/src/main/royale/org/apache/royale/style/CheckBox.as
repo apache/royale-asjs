@@ -306,23 +306,6 @@ package org.apache.royale.style
 				}
 			}
 		}
-		private var _quiet:Boolean;
-		/**
-		 * When true, the CheckBox will have a quieter appearance with less visual emphasis. This can be used when the CheckBox is part of a group of related options to reduce visual noise.
-		 * The Checkbox skin should specify styles for the quiet state if it should look different than the regular state. This might include things like lighter colors, smaller size, or less prominent check icons.
-		 * 
-		 * @languageversion 3.0
-		 * @productversion Royale 1.0.0
-		 */
-		public function get quiet():Boolean
-		{
-			return _quiet;
-		}
-
-		public function set quiet(value:Boolean):void
-		{
-			_quiet = value;
-		}
 		
 		/**
 		 *  @copy org.apache.royale.style.StyleUIBase#getWrapperStyle()
