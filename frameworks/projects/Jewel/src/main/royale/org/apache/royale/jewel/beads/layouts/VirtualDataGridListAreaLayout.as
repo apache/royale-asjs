@@ -98,24 +98,25 @@ package org.apache.royale.jewel.beads.layouts
 
         override protected function scrollHandler(e:Event):void
         {
-            if (!isAreaFocus)
+            // Check if we're being synced by another column's scroll handler
+            COMPILE::JS
             {
-                // Non-focused column: skip layout() if the focused column already synced us
-                // and called layout() directly — avoids a redundant call before the browser paints.
-                COMPILE::JS
+                if (_syncingDataGrid != null && _syncingDataGrid == (host as IDataGridColumnList).datagrid)
                 {
-                    if (_syncingDataGrid != null && _syncingDataGrid == (host as IDataGridColumnList).datagrid)
-                        return;
+                    // Being synced - just update layout without syncing others
+                    super.scrollHandler(e);
+                    return;
                 }
-                super.scrollHandler(e);
-                return;
             }
 
-            // Focused column: update its own layout first.
+            // Update own layout
             super.scrollHandler(e);
 
             COMPILE::JS
             {
+                // Any scroll event on this column triggers sync to all others,
+                // regardless of mouse position. This handles cases where the browser
+                // window regains focus without a mouseover event.
                 var myDataGrid:IDataGrid = (host as IDataGridColumnList).datagrid;
                 _syncingDataGrid = myDataGrid;
 
