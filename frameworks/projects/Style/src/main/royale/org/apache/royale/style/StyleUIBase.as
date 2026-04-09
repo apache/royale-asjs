@@ -86,9 +86,14 @@ package org.apache.royale.style
 		/**
 		 * TODO: Add support for cascading theming.
 		 */
+		private var _theme:String = ThemeManager.instance.current;
+		public function set theme(value:String):void
+		{
+			_theme = value;
+		}
 		public function get theme():String
 		{
-			return ThemeManager.instance.current;
+			return _theme;
 		}
 
 		private var _unit:String = "rem";
