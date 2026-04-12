@@ -18,41 +18,37 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.elements
 {
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.skins.ILabelSkin;
 	import org.apache.royale.style.support.NodeElementBase;
 
-	COMPILE::JS
-	{
-		import org.apache.royale.core.WrappedHTMLElement;
-	}
+	/**
+	 *  The Label class represents an HTML <label> element
+	 *
+	 *
+	 *  @toplevel
+	 *  @langversion 3.0
+	 *  @productversion Royale 1.0.0
+	 */
 	public class Label extends NodeElementBase
 	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 1.0.0
+		 */
 		public function Label()
 		{
 			super();
 		}
 
-		private var textElement:Span;
-		private var _text:String;
-		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-			var elem:WrappedHTMLElement = super.createElement();
-			textElement = new Span();
-			addElement(textElement);
-			textElement.text = _text || "";
-			return elem;
-		}
-		override protected function applySkin():void
-		{
-			var labelSkin:ILabelSkin = skin as ILabelSkin;
-			assert(labelSkin, "Label requires a skin that implements ILabelSkin");
-			var styles:Array = labelSkin.labelStyles || [];
-			if(textElement) {
-				textElement.setStyles(styles, true);
-			}
-		}
+		private var _for:String;
+
+		/**
+		 *  The id of the associated element
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 1.0.0
+		 */
 		public function get for():String
 		{
 			return getAttribute("for");
@@ -61,19 +57,7 @@ package org.apache.royale.style.elements
 		{
 			setAttribute("for", value);
 		}
-		public function get text():String
-		{
-			if(textElement)
-				return textElement.text;
-			return _text;
-		}
-		public function set text(value:String):void
-		{
-			_text = value;
-			if(textElement) {
-				textElement.text = value || "";
-			}
-		}
+
 		override protected function getTag():String
 		{
 			return "label";
