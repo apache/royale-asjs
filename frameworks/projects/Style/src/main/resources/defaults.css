@@ -57,6 +57,10 @@ DataItemRenderer
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
+Label
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.LabelSkin");
+}
 DataContainer
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataProviderModel");
