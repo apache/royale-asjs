@@ -163,6 +163,10 @@ package org.apache.royale.style.stylebeads
 			if(!supportsNone && value == "none")
 				assert(false, "Invalid color value: " + value);
 			
+			if(value === 0)
+				value = "black";
+			else if(value == 16777215)
+				value = "white";
 			var selectorVal:String = "" + value;
 			var ruleVal:String = selectorVal;
 			switch(selectorVal)
