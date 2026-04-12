@@ -40,6 +40,7 @@ package org.apache.royale.style
 		function getAttribute(name:String):*;
 		function removeAttribute(name:String):void;
 		function get theme():String;
+		function set theme(value:String):void;
 		function get skin():IStyleSkin;
 		function get unit():String;
 		function set unit(value:String):void;
