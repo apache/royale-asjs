@@ -31,6 +31,7 @@
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
+  <component id="TextButton" class="org.apache.royale.style.TextButton"/>
   <component id="Icon" class="org.apache.royale.style.Icon"/>
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
 
@@ -320,5 +321,6 @@
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
   <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
+  <component id="TextButtonSkin" class="org.apache.royale.style.skins.TextButtonSkin"/>
 
 </componentPackage>

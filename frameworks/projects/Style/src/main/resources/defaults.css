@@ -42,6 +42,10 @@ AccordionContent
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionContentSkin");
 }
+TextButton
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextButtonSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
