@@ -77,6 +77,10 @@ Divider
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DividerSkin");
 }
+Link
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.LinkSkin");
+}
 
 MultiSelectionList
 {
