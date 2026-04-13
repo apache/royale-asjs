@@ -16,25 +16,47 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.skins.LinkSkin;
+	import org.apache.royale.style.elements.A;
 
-	public class Content extends LeafStyleBase
+	/**
+	 * Styled anchor element with LinkSkin defaults.
+	 */
+	public class Link extends A
 	{
-		/**
-		 * for use inside BeforeState and AfterState declarations (for completeness)
-		 * @param value
-		 */
-		public function Content(value:* = '""')
+		public function Link()
 		{
-			super("", "content", value);
+			super();
 		}
 
-		override public function set value(value:*):void
+		private var _disabled:Boolean;
+		public function get disabled():Boolean
 		{
-			_value = value;
-			calculatedRuleValue = calculatedSelector = value;
+			return _disabled;
+		}
+
+		public function set disabled(value:Boolean):void
+		{
+			COMPILE::JS
+			{
+				if (value != !!_disabled)
+				{
+					toggleAttribute("data-disabled", value);
+					toggleAttribute("aria-disabled", value);
+					if (value)
+					{
+						element.setAttribute("tabindex", "-1");
+					}
+					else
+					{
+						element.removeAttribute("tabindex");
+					}
+				}
+			}
+			_disabled = value;
 		}
 	}
 }

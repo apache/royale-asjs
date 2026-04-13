@@ -135,7 +135,7 @@ package org.apache.royale.style.skins
 			
 			_lineStyles = lineStylesArr;
 			_styles = hostStyles;
-			host.setStyles(_styles, true);
+			host.setStyles(_styles);
 		}
 		
 		private function getShading(size:String):Number{
