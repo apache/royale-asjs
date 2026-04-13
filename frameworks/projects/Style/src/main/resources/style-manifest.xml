@@ -33,7 +33,7 @@
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
   <component id="Icon" class="org.apache.royale.style.Icon"/>
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
-
+  <component id="Link" class="org.apache.royale.style.Link"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
   <component id="List" class="org.apache.royale.style.List"/>
