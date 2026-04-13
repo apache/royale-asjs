@@ -65,7 +65,7 @@ package org.apache.royale.style.skins
 
 			_styles = [
 					new Display("inline-flex"),
-					new FontSize(host.size || "md"),
+					new FontSize(host.size || "base"),
 					new FontWeight("semibold"),
 					new Cursor("pointer"),
 					new TextColor(textColor),
