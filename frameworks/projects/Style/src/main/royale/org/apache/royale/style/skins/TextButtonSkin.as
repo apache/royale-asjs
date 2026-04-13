@@ -16,7 +16,6 @@ package org.apache.royale.style.skins
 	import org.apache.royale.html.beads.DisableBead;
 	import org.apache.royale.style.stylebeads.states.DisabledState;
 	import org.apache.royale.style.stylebeads.states.RequiredState;
-	import org.apache.royale.style.stylebeads.typography.FontSize;
 	import org.apache.royale.style.Icon;
 	import org.apache.royale.style.stylebeads.layout.Display;
 	import org.apache.royale.style.stylebeads.sizing.HeightStyle;
@@ -25,6 +24,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.flexgrid.JustifyContent;
 	import org.apache.royale.style.stylebeads.flexgrid.Gap;
 	import org.apache.royale.style.stylebeads.svg.Stroke;
+	import org.apache.royale.style.stylebeads.typography.FontSize;
 
 	/**
 	 * Button skin that exposes style beads and optional icons for Button component.
@@ -53,7 +53,6 @@ package org.apache.royale.style.skins
 			var textColor:String = (haveTheme && getTextColorBasedOnBackground(baseColor)) ? "white" : darkText.colorSpecifier;
 			var hoverTextColor:String = getTextColorBasedOnBackground(hoverColor) ? "white" : darkText.colorSpecifier;
 
-			var fontSize:String = computeSize(getFontSizePx(), host.unit);
 			var paddings:Padding = new Padding();
 			paddings.block = getBlockPadding();
 			paddings.inline = getInlinePadding();
@@ -65,7 +64,7 @@ package org.apache.royale.style.skins
 					new Gap(2),
 					paddings,
 					new FontWeight("semibold"),
-					new FontSize(fontSize),
+					new FontSize(host.unit || "base"),
 					new LetterSpacing("wide"),
 					new HoverState([
 							new BackgroundColor(hoverColor),
@@ -141,25 +140,6 @@ package org.apache.royale.style.skins
 			var sg:Number = getLinearChannel(g / 255.0);
 			var sb:Number = getLinearChannel(b / 255.0);
 			return 0.2126 * sr + 0.7152 * sg + 0.0722 * sb;
-		}
-
-		private function getFontSizePx():Number
-		{
-			switch (host.size)
-			{
-				case "xs":
-					return 11; // text-[0.6875rem]
-				case "sm":
-					return 12; // text-[0.75rem]
-				case "md":
-					return 14; // text-[0.875rem]
-				case "lg":
-					return 18; // text-[1.125rem]
-				case "xl":
-					return 22; // text-[1.375rem]
-				default:
-					return 14; // text-[0.875rem]
-			}
 		}
 
 		private function getBlockPadding():Number
