@@ -28,6 +28,7 @@
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
   <component id="Divider" class="org.apache.royale.style.Divider"/>
+  <component id="Dropdown" class="org.apache.royale.style.Dropdown"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
@@ -49,6 +50,7 @@
   <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>
   <component id="AriaState" class="org.apache.royale.style.stylebeads.states.attribute.AriaState"/>
   <component id="InertState" class="org.apache.royale.style.stylebeads.states.attribute.InertState"/>
+  <component id="FocusWithinState" class="org.apache.royale.style.stylebeads.states.FocusWithinState"/>
   <component id="OpenState" class="org.apache.royale.style.stylebeads.states.attribute.OpenState"/>
   <component id="RTLState" class="org.apache.royale.style.stylebeads.states.attribute.RTLState"/>
   <component id="SelectedState" class="org.apache.royale.style.stylebeads.states.attribute.SelectedState"/>
