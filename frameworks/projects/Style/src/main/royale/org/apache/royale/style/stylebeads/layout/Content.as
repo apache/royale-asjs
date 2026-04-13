@@ -31,7 +31,7 @@ package org.apache.royale.style.stylebeads.layout
 			super("", "content", value);
 		}
 
-		public function set value(value:*):void
+		override public function set value(value:*):void
 		{
 			_value = value;
 			calculatedRuleValue = calculatedSelector = value;

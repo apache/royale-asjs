@@ -46,6 +46,10 @@ TextButton
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextButtonSkin");
 }
+Badge
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
@@ -59,6 +63,11 @@ CheckBox
 DataItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+}
+
+Link
+{
+    IStyleSkin: ClassReference("org.apache.royale.style.skins.LinkSkin");
 }
 
 DataContainer
