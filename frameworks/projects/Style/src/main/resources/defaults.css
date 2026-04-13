@@ -42,6 +42,10 @@ AccordionContent
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionContentSkin");
 }
+Badge
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");

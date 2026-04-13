@@ -38,7 +38,7 @@ package org.apache.royale.style.stylebeads.typography
 		{
 			return _value;
 		}
-		[Inspectable(category="General", enumeration="xs,sm,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl", defaultValue="base")]
+		[Inspectable(category="General", enumeration="xs,sm,md,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl", defaultValue="base")]
 		public function set value(value:*):void
 		{
 			_value = fontSize.value = lineHeight.value = value;
