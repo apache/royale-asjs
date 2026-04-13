@@ -134,7 +134,7 @@ package org.apache.royale.style.skins
 				])
 			].concat(layoutStyles);
 			
-			host.setStyles(_styles, true);
+			host.setStyles(_styles);
 		}
 		private function getMultiplier():Number
 		{
