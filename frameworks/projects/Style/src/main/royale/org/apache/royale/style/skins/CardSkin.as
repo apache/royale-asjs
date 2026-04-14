@@ -82,8 +82,8 @@ package org.apache.royale.style.skins
 						dashBorder
 					])
 				];
+				host.setStyles(_styles);
 			}
-			host.setStyles(_styles);
 		}
 	}
 }

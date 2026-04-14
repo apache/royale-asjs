@@ -64,8 +64,8 @@ package org.apache.royale.style.skins
 					new Gap(gapVal),
 					padding
 				];
+				host.setStyles(_styles);
 			}
-			host.setStyles(_styles);
 		}
 
 		private function getMultiplier():Number

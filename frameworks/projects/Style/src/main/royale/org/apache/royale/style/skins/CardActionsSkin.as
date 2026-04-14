@@ -57,8 +57,8 @@ package org.apache.royale.style.skins
 					new JustifyContent("end"),
 					new Gap(gapVal)
 				];
+				host.setStyles(_styles);
 			}
-			host.setStyles(_styles);
 		}
 	}
 }

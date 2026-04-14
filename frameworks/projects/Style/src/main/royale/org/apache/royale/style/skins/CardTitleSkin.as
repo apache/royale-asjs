@@ -53,8 +53,8 @@ package org.apache.royale.style.skins
 					new FontSize(host.size || "base"),
 					new FontWeight("600")
 				];
+				host.setStyles(_styles);
 			}
-			host.setStyles(_styles);
 		}
 	}
 }
