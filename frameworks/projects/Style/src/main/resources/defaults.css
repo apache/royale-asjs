@@ -59,6 +59,14 @@ Dropdown
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
 }
+Tab
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TabSkin");
+}
+TabBar
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TabBarSkin");
+}
 Toggle
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");

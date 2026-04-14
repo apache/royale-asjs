@@ -30,6 +30,8 @@
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
   <component id="Divider" class="org.apache.royale.style.Divider"/>
   <component id="Dropdown" class="org.apache.royale.style.Dropdown"/>
+  <component id="Tab" class="org.apache.royale.style.Tab"/>
+  <component id="TabBar" class="org.apache.royale.style.TabBar"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
@@ -326,6 +328,8 @@
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
   <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
+  <component id="TabSkin" class="org.apache.royale.style.skins.TabSkin"/>
+  <component id="TabBarSkin" class="org.apache.royale.style.skins.TabBarSkin"/>
   <component id="ToggleSkin" class="org.apache.royale.style.skins.ToggleSkin"/>
 
 </componentPackage>
