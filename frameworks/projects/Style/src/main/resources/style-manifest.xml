@@ -321,6 +321,7 @@
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
+  <component id="LinkSkin" class="org.apache.royale.style.skins.LinkSkin"/>
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
