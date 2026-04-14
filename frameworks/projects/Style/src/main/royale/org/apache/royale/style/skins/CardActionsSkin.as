@@ -50,11 +50,14 @@ package org.apache.royale.style.skins
 		{
 			var gapVal:String = computeSize(8, host.unit);
 
-			_styles = [
-				new Display("flex"),
-				new JustifyContent("end"),
-				new Gap(gapVal)
-			];
+			if(!_styles)
+			{
+				_styles = [
+					new Display("flex"),
+					new JustifyContent("end"),
+					new Gap(gapVal)
+				];
+			}
 			host.setStyles(_styles);
 		}
 	}

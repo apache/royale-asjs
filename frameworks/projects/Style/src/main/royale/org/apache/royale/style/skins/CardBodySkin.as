@@ -56,12 +56,15 @@ package org.apache.royale.style.skins
 			var padding:Padding = new Padding();
 			padding.padding = paddingVal;
 
-			_styles = [
-				new Display("flex"),
-				new FlexDirection("column"),
-				new Gap(gapVal),
-				padding
-			];
+			if(!_styles)
+			{
+				_styles = [
+					new Display("flex"),
+					new FlexDirection("column"),
+					new Gap(gapVal),
+					padding
+				];
+			}
 			host.setStyles(_styles);
 		}
 

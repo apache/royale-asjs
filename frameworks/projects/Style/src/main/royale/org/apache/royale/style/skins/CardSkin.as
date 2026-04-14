@@ -69,17 +69,20 @@ package org.apache.royale.style.skins
 			dashBorder.style = "dashed";
 			dashBorder.width = "1px";
 
-			_styles = [
-				new Display("flex"),
-				new FlexDirection("column"),
-				new Overflow("hidden"),
-				new BorderRadius(computeSize(8, host.unit)),
-				new BackgroundColor(bgColor.colorSpecifier),
-				defaultBorder,
-				new DataState("dash", [
-					dashBorder
-				])
-			];
+			if(!_styles)
+			{
+				_styles = [
+					new Display("flex"),
+					new FlexDirection("column"),
+					new Overflow("hidden"),
+					new BorderRadius(computeSize(8, host.unit)),
+					new BackgroundColor(bgColor.colorSpecifier),
+					defaultBorder,
+					new DataState("dash", [
+						dashBorder
+					])
+				];
+			}
 			host.setStyles(_styles);
 		}
 	}
