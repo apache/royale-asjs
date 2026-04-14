@@ -67,6 +67,22 @@ TabBar
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.TabBarSkin");
 }
+Card
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardSkin");
+}
+CardBody
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardBodySkin");
+}
+CardTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardTitleSkin");
+}
+CardActions
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardActionsSkin");
+}
 Toggle
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");

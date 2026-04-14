@@ -32,6 +32,10 @@
   <component id="Dropdown" class="org.apache.royale.style.Dropdown"/>
   <component id="Tab" class="org.apache.royale.style.Tab"/>
   <component id="TabBar" class="org.apache.royale.style.TabBar"/>
+  <component id="Card" class="org.apache.royale.style.Card"/>
+  <component id="CardBody" class="org.apache.royale.style.CardBody"/>
+  <component id="CardTitle" class="org.apache.royale.style.CardTitle"/>
+  <component id="CardActions" class="org.apache.royale.style.CardActions"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
@@ -331,6 +335,10 @@
   <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
   <component id="TabSkin" class="org.apache.royale.style.skins.TabSkin"/>
   <component id="TabBarSkin" class="org.apache.royale.style.skins.TabBarSkin"/>
+  <component id="CardSkin" class="org.apache.royale.style.skins.CardSkin"/>
+  <component id="CardBodySkin" class="org.apache.royale.style.skins.CardBodySkin"/>
+  <component id="CardTitleSkin" class="org.apache.royale.style.skins.CardTitleSkin"/>
+  <component id="CardActionsSkin" class="org.apache.royale.style.skins.CardActionsSkin"/>
   <component id="ToggleSkin" class="org.apache.royale.style.skins.ToggleSkin"/>
 
 </componentPackage>
