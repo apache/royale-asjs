@@ -47,33 +47,14 @@ package org.apache.royale.style.skins
 
 		private function applyStyles():void
 		{
-			var size:Number = 16 * getMultiplier();
-			var fontSize:String = computeSize(size * 1.125, host.unit);
-
-			_styles = [
-				new FontSize(fontSize),
-				new FontWeight("600")
-			];
-			host.setStyles(_styles);
-		}
-
-		private function getMultiplier():Number
-		{
-			switch(host.size)
+			if(!_styles)
 			{
-				case "xs":
-					return 0.75;
-				case "sm":
-					return 0.875;
-				case "md":
-					return 1;
-				case "lg":
-					return 1.125;
-				case "xl":
-					return 1.25;
-				default:
-					return 1;
+				_styles = [
+					new FontSize(host.size || "base"),
+					new FontWeight("600")
+				];
 			}
+			host.setStyles(_styles);
 		}
 	}
 }
