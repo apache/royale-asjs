@@ -34,6 +34,9 @@ Accordion
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSkin");
 }
+Radio{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RadioSkin");
+}
 AccordionSection
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSectionSkin");

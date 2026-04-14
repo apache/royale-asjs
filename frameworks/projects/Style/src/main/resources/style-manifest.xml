@@ -24,6 +24,7 @@
   <component id="AccordionSection" class="org.apache.royale.style.AccordionSection"/>
   <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
+  <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
@@ -315,6 +316,7 @@
   <component id="Video" class="org.apache.royale.style.elements.Video"/>
 
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
+  <component id="RadioSkin" class="org.apache.royale.style.skins.RadioSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
