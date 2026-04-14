@@ -59,6 +59,10 @@ CheckBox
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CheckBoxSkin");
 }
+Dropdown
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
+}
 
 DataItemRenderer
 {
