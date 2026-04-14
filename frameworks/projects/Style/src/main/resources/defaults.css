@@ -59,6 +59,10 @@ Dropdown
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
 }
+Toggle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
+}
 
 DataItemRenderer
 {
