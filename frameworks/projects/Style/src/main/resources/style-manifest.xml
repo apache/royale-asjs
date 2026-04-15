@@ -23,6 +23,8 @@
   <component id="Accordion" class="org.apache.royale.style.Accordion"/>
   <component id="AccordionSection" class="org.apache.royale.style.AccordionSection"/>
   <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
+  <component id="Breadcrumbs" class="org.apache.royale.style.Breadcrumbs"/>
+  <component id="BreadcrumbItem" class="org.apache.royale.style.BreadcrumbItem"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
   <component id="View" class="org.apache.royale.style.View"/>
@@ -272,59 +274,7 @@
   <component id="TransformStyle" class="org.apache.royale.style.stylebeads.transform.TransformStyle"/>
   <component id="Translate" class="org.apache.royale.style.stylebeads.transform.Translate"/>
 
-  <component id="A" class="org.apache.royale.style.elements.A"/>
-  <component id="Audio" class="org.apache.royale.style.elements.Audio"/>
-  <component id="B" class="org.apache.royale.style.elements.B"/>
-  <component id="Br" class="org.apache.royale.style.elements.Br"/>
-  <component id="Button" class="org.apache.royale.style.elements.Button"/>
-  <component id="Caption" class="org.apache.royale.style.elements.Caption"/>
-  <component id="Code" class="org.apache.royale.style.elements.Code"/>
-  <component id="Col" class="org.apache.royale.style.elements.Col"/>
-  <component id="Colgroup" class="org.apache.royale.style.elements.Colgroup"/>
-  <component id="Details" class="org.apache.royale.style.elements.Details"/>
-  <component id="Div" class="org.apache.royale.style.elements.Div"/>
-  <component id="Em" class="org.apache.royale.style.elements.Em"/>
-  <component id="Footer" class="org.apache.royale.style.elements.Footer"/>
-  <component id="Form" class="org.apache.royale.style.elements.Form"/>
-  <component id="H1" class="org.apache.royale.style.elements.H1"/>
-  <component id="H2" class="org.apache.royale.style.elements.H2"/>
-  <component id="H3" class="org.apache.royale.style.elements.H3"/>
-  <component id="H4" class="org.apache.royale.style.elements.H4"/>
-  <component id="H5" class="org.apache.royale.style.elements.H5"/>
-  <component id="H6" class="org.apache.royale.style.elements.H6"/>
-  <component id="Header" class="org.apache.royale.style.elements.Header"/>
-  <component id="Hr" class="org.apache.royale.style.elements.Hr"/>
-  <component id="I" class="org.apache.royale.style.elements.I"/>
-  <component id="Iframe" class="org.apache.royale.style.elements.Iframe"/>
-  <component id="Img" class="org.apache.royale.style.elements.Img"/>
-  <component id="Input" class="org.apache.royale.style.elements.Input"/>
-  <component id="Label" class="org.apache.royale.style.elements.Label"/>
-  <component id="Li" class="org.apache.royale.style.elements.Li"/>
-  <component id="Ol" class="org.apache.royale.style.elements.Ol"/>
-  <component id="Option" class="org.apache.royale.style.elements.Option"/>
-  <component id="P" class="org.apache.royale.style.elements.P"/>
-  <component id="Pre" class="org.apache.royale.style.elements.Pre"/>
-  <component id="Progress" class="org.apache.royale.style.elements.Progress"/>
-  <component id="S" class="org.apache.royale.style.elements.S"/>
-  <component id="Section" class="org.apache.royale.style.elements.Section"/>
-  <component id="SecurityIframe" class="org.apache.royale.style.elements.SecurityIframe"/>
-  <component id="Select" class="org.apache.royale.style.elements.Select"/>
-  <component id="Small" class="org.apache.royale.style.elements.Small"/>
-  <component id="Span" class="org.apache.royale.style.elements.Span"/>
-  <component id="Strong" class="org.apache.royale.style.elements.Strong"/>
-  <component id="Summary" class="org.apache.royale.style.elements.Summary"/>
-  <component id="Table" class="org.apache.royale.style.elements.Table"/>
-  <component id="Tbody" class="org.apache.royale.style.elements.Tbody"/>
-  <component id="Td" class="org.apache.royale.style.elements.Td"/>
-  <component id="Textarea" class="org.apache.royale.style.elements.Textarea"/>
-  <component id="Tfoot" class="org.apache.royale.style.elements.Tfoot"/>
-  <component id="Th" class="org.apache.royale.style.elements.Th"/>
-  <component id="Thead" class="org.apache.royale.style.elements.Thead"/>
-  <component id="Tr" class="org.apache.royale.style.elements.Tr"/>
-  <component id="U" class="org.apache.royale.style.elements.U"/>
-  <component id="Ul" class="org.apache.royale.style.elements.Ul"/>
-  <component id="Video" class="org.apache.royale.style.elements.Video"/>
-
+  <component id="BreadcrumbsSkin" class="org.apache.royale.style.skins.BreadcrumbsSkin"/>
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
