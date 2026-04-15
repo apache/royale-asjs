@@ -83,6 +83,22 @@ CardActions
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardActionsSkin");
 }
+Modal
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalSkin");
+}
+ModalBody
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalBodySkin");
+}
+ModalTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalTitleSkin");
+}
+ModalActions
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalActionsSkin");
+}
 Toggle
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");

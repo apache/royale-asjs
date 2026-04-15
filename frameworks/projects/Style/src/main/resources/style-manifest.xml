@@ -36,6 +36,10 @@
   <component id="CardBody" class="org.apache.royale.style.CardBody"/>
   <component id="CardTitle" class="org.apache.royale.style.CardTitle"/>
   <component id="CardActions" class="org.apache.royale.style.CardActions"/>
+  <component id="Modal" class="org.apache.royale.style.Modal"/>
+  <component id="ModalBody" class="org.apache.royale.style.ModalBody"/>
+  <component id="ModalTitle" class="org.apache.royale.style.ModalTitle"/>
+  <component id="ModalActions" class="org.apache.royale.style.ModalActions"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
