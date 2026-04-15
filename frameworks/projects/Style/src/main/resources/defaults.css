@@ -99,6 +99,14 @@ ModalActions
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalActionsSkin");
 }
+Pagination
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.PaginationSkin");
+}
+PaginationItem
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.PaginationItemSkin");
+}
 Toggle
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");

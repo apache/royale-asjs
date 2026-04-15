@@ -40,6 +40,8 @@
   <component id="ModalBody" class="org.apache.royale.style.ModalBody"/>
   <component id="ModalTitle" class="org.apache.royale.style.ModalTitle"/>
   <component id="ModalActions" class="org.apache.royale.style.ModalActions"/>
+  <component id="Pagination" class="org.apache.royale.style.Pagination"/>
+  <component id="PaginationItem" class="org.apache.royale.style.PaginationItem"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
@@ -291,5 +293,7 @@
   <component id="CardTitleSkin" class="org.apache.royale.style.skins.CardTitleSkin"/>
   <component id="CardActionsSkin" class="org.apache.royale.style.skins.CardActionsSkin"/>
   <component id="ToggleSkin" class="org.apache.royale.style.skins.ToggleSkin"/>
+  <component id="PaginationSkin" class="org.apache.royale.style.skins.PaginationSkin"/>
+  <component id="PaginationItemSkin" class="org.apache.royale.style.skins.PaginationItemSkin"/>
 
 </componentPackage>
