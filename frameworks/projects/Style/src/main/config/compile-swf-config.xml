@@ -99,7 +99,7 @@
     
     <include-namespaces>
         <uri>library://ns.apache.org/royale/style</uri>
-        <!-- <uri>library://ns.apache.org/royale/svg</uri> -->
+        <uri>library://ns.apache.org/royale/style-elements</uri>
     </include-namespaces>
         
     <target-player>${playerglobal.version}</target-player>
