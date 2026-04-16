@@ -42,9 +42,11 @@ AccordionContent
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionContentSkin");
 }
-TextButton
+Button,
+TextButton,
+IconButton
 {
-	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextButtonSkin");
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ButtonSkin");
 }
 View
 {

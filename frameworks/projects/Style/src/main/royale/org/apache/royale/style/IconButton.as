@@ -1,4 +1,4 @@
-// ///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 // 
 // Licensed to the Apache Software Foundation (ASF) under one or more
 // contributor license agreements.  See the NOTICE file distributed with
@@ -15,45 +15,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 // 
-// ///////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.Button;
 
 	/**
-	 *  A styled Button component that contains only text.
-	 *  Does not support icons.
+	 *  A styled Button component that contains only an icon.
+	 *  Does not support text.
 	 */
-	public class TextButton extends Button
+	public class IconButton extends Button
 	{
-		public function TextButton()
+		public function IconButton()
 		{
 			super();
 		}
 
 		/**
 		 *  @private
-		 *  TextButton does not support icons - override to prevent usage
+		 *  IconButton does not support text - override to prevent usage
 		 */
-		override public function get icon():IIcon
+		override public function get text():String
 		{
-			return null;
+			return "";
 		}
 
-		override public function set icon(value:IIcon):void
+		override public function set text(value:String):void
 		{
-			// TextButton does not support icons
-			assert(!value, "TextButton does not support icons");
-		}
-
-		/**
-		 *  @private
-		 *  Override applySkin to ignore icons
-		 */
-		override protected function applySkin():void
-		{
-			// TextButton does not use icons, skip icon handling
+			// IconButton does not support text
+			assert(!value, "IconButton does not support text");
 		}
 	}
 }
