@@ -55,6 +55,19 @@ individually:
     ant -Dexample=TabsPlayGround
     ant -Dexample=TogglePlayGround
     ant -Dexample=DropdownPlayGround
+    ant -Dexample=NavbarPlayGround
+
+### Debug-Only Build (faster)
+
+To skip the JS release/Closure Compiler step and build only the debug output,
+use the `debug` target with any example:
+
+    ant debug -Dexample=NavbarPlayGround
+    ant debug -Dexample=CardPlayGround
+    ant debug                              # builds TourDeStyle
+
+This is significantly faster during development and produces
+`bin/js-debug/index.html` ready for browser testing.
 
 ### Viewing
 
@@ -70,3 +83,4 @@ After building, open `bin/js-debug/index.html` in a browser.
 | TabsPlayGround         | TabBar with content switching, disabled tabs      |
 | TogglePlayGround       | Toggle switches, checked and disabled states      |
 | DropdownPlayGround     | Dropdowns with programmatic and disabled states   |
+| NavbarPlayGround       | Navbar with start/center/end slot layout           |
