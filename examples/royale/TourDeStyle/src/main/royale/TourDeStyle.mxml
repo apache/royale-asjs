@@ -41,30 +41,6 @@
             }
         ]]>
     </fx:Script>
-    <fx:Style>
-        @namespace s "library://ns.apache.org/royale/style";
-        s|Tab
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabSkin");
-        }
-        s|TabBar
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabBarSkin");
-        }
-        s|Toggle
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
-        }
-        s|Dropdown
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
-        }
-        s|View
-        {
-            IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-            IBeadLayout: ClassReference("org.apache.royale.style.beads.FlexLayout");
-        }
-    </fx:Style>
 
     <s:initialView>
     <s:View>
