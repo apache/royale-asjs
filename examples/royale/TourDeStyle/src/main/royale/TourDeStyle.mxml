@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.apache.org/royale/style"
+               xmlns:e="library://ns.apache.org/royale/style-elements">
+    <fx:Script>
+        <![CDATA[
+            private function onTabChange():void
+            {
+                var idx:int = navBar.selectedIndex;
+                toggleSection.visible = (idx == 0);
+                tabsSection.visible = (idx == 1);
+                cardSection.visible = (idx == 2);
+                dropdownSection.visible = (idx == 3);
+                modalSection.visible = (idx == 4);
+                paginationSection.visible = (idx == 5);
+            }
+
+            private function openModal(id:String):void
+            {
+                var modal:Modal = this[id] as Modal;
+                if (modal)
+                    modal.open = true;
+            }
+        ]]>
+    </fx:Script>
+    <fx:Style>
+        @namespace s "library://ns.apache.org/royale/style";
+        s|Tab
+        {
+            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabSkin");
+        }
+        s|TabBar
+        {
+            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabBarSkin");
+        }
+        s|Toggle
+        {
+            IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
+        }
+        s|Dropdown
+        {
+            IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
+        }
+        s|View
+        {
+            IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+            IBeadLayout: ClassReference("org.apache.royale.style.beads.FlexLayout");
+        }
+    </fx:Style>
+
+    <s:initialView>
+    <s:View>
+    <s:FlexContainer vertical="true" gap="24">
+
+        <!-- Navigation -->
+        <s:TabBar id="navBar" selectedIndex="0" change="onTabChange()">
+            <s:tabs>
+                <s:Tab text="Toggle" />
+                <s:Tab text="Tabs" />
+                <s:Tab text="Card" />
+                <s:Tab text="Dropdown" />
+                <s:Tab text="Modal" />
+                <s:Tab text="Pagination" />
+            </s:tabs>
+        </s:TabBar>
+
+        <!-- Toggle Section -->
+        <s:FlexContainer id="toggleSection" gap="1rem" vertical="true">
+            <s:Toggle label="Enable notifications" />
+            <s:Toggle label="Dark mode" checked="true" />
+            <s:Toggle label="Disabled off" disabled="true" />
+            <s:Toggle label="Disabled on" checked="true" disabled="true" />
+        </s:FlexContainer>
+
+        <!-- Tabs Section -->
+        <s:FlexContainer id="tabsSection" visible="false" gap="2rem" vertical="true">
+            <s:TabBar selectedIndex="1">
+                <s:tabs>
+                    <s:Tab text="Home" />
+                    <s:Tab text="Profile" />
+                    <s:Tab text="Settings" />
+                </s:tabs>
+            </s:TabBar>
+            <s:TabBar selectedIndex="0">
+                <s:tabs>
+                    <s:Tab text="Active" />
+                    <s:Tab text="Disabled" disabled="true" />
+                    <s:Tab text="Another" />
+                </s:tabs>
+            </s:TabBar>
+        </s:FlexContainer>
+
+        <!-- Card Section -->
+        <s:FlexContainer id="cardSection" visible="false" gap="24" vertical="true">
+            <s:Card width="384">
+                <s:CardBody>
+                    <s:CardTitle text="Default Card" />
+                    <e:Div text="A card component has a figure, a body part, and inside body there are title and actions parts." />
+                    <s:CardActions>
+                        <e:Div text="Buy Now" />
+                    </s:CardActions>
+                </s:CardBody>
+            </s:Card>
+            <s:Card width="384" variant="border">
+                <s:CardBody>
+                    <s:CardTitle text="Border Card" />
+                    <e:Div text="This card uses a border instead of a shadow." />
+                    <s:CardActions>
+                        <e:Div text="Action" />
+                    </s:CardActions>
+                </s:CardBody>
+            </s:Card>
+            <s:Card width="384" variant="dash">
+                <s:CardBody>
+                    <s:CardTitle text="Dash Border Card" />
+                    <e:Div text="This card uses a dashed border style." />
+                    <s:CardActions>
+                        <e:Div text="Action" />
+                    </s:CardActions>
+                </s:CardBody>
+            </s:Card>
+        </s:FlexContainer>
+
+        <!-- Dropdown Section -->
+        <s:FlexContainer id="dropdownSection" visible="false" gap="1rem">
+            <s:Dropdown triggerText="Click me">
+                <e:Div text="Option 1" />
+                <e:Div text="Option 2" />
+                <e:Div text="Option 3" />
+            </s:Dropdown>
+            <s:Dropdown triggerText="Always open" open="true">
+                <e:Div text="Item A" />
+                <e:Div text="Item B" />
+            </s:Dropdown>
+            <s:Dropdown triggerText="Disabled" disabled="true">
+                <e:Div text="Unreachable" />
+            </s:Dropdown>
+        </s:FlexContainer>
+
+        <!-- Modal Section -->
+        <s:FlexContainer id="modalSection" visible="false" gap="24" vertical="true">
+            <e:Div text="Open Basic Modal" click="openModal('basicModal')" />
+            <e:Div text="Open Easy Dismiss Modal" click="openModal('easyModal')" />
+            <e:Div text="Open Modal with Actions" click="openModal('actionsModal')" />
+
+            <s:Modal id="basicModal">
+                <s:ModalBody>
+                    <s:ModalTitle text="Hello!" />
+                    <e:Div text="Press ESC key or click the button below to close." />
+                </s:ModalBody>
+                <s:ModalActions>
+                    <e:Div text="Close" click="basicModal.open = false" />
+                </s:ModalActions>
+            </s:Modal>
+            <s:Modal id="easyModal" easyDismiss="true">
+                <s:ModalBody>
+                    <s:ModalTitle text="Easy Dismiss" />
+                    <e:Div text="Click outside this dialog or press ESC to close." />
+                </s:ModalBody>
+            </s:Modal>
+            <s:Modal id="actionsModal">
+                <s:ModalBody>
+                    <s:ModalTitle text="Confirm Action" />
+                    <e:Div text="Are you sure you want to proceed?" />
+                </s:ModalBody>
+                <s:ModalActions>
+                    <e:Div text="Cancel" click="actionsModal.open = false" />
+                    <e:Div text="Confirm" click="actionsModal.open = false" />
+                </s:ModalActions>
+            </s:Modal>
+        </s:FlexContainer>
+
+        <!-- Pagination Section -->
+        <s:FlexContainer id="paginationSection" visible="false" gap="24" vertical="true">
+            <s:styleBeads>
+                <s:AlignItems value="flex-start" />
+            </s:styleBeads>
+
+            <s:Pagination>
+                <s:PaginationItem text="1" />
+                <s:PaginationItem text="2" />
+                <s:PaginationItem text="3" selected="true" />
+                <s:PaginationItem text="4" />
+            </s:Pagination>
+            <s:Pagination>
+                <s:PaginationItem text="Prev" selectable="false" />
+                <s:PaginationItem text="1" selected="true" />
+                <s:PaginationItem text="2" />
+                <s:PaginationItem text="3" />
+                <s:PaginationItem text="Next" selectable="false" />
+            </s:Pagination>
+            <s:Pagination>
+                <s:PaginationItem text="Prev" disabled="true" selectable="false" />
+                <s:PaginationItem text="1" selected="true" />
+                <s:PaginationItem text="2" />
+                <s:PaginationItem text="…" disabled="true" selectable="false" />
+                <s:PaginationItem text="99" />
+                <s:PaginationItem text="100" />
+                <s:PaginationItem text="Next" selectable="false" />
+            </s:Pagination>
+        </s:FlexContainer>
+
+    </s:FlexContainer>
+    </s:View>
+    </s:initialView>
+
+</s:Application>

@@ -65,7 +65,7 @@ package org.apache.royale.style.skins
 
 			_styles = [
 				new Display("flex"),
-				new AlignItems("end"),
+				new AlignItems("flex-end"),
 				new FlexWrap("wrap"),
 				borderWidth,
 				border

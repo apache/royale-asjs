@@ -293,6 +293,11 @@
   <component id="CardTitleSkin" class="org.apache.royale.style.skins.CardTitleSkin"/>
   <component id="CardActionsSkin" class="org.apache.royale.style.skins.CardActionsSkin"/>
   <component id="ToggleSkin" class="org.apache.royale.style.skins.ToggleSkin"/>
+  <component id="DropdownSkin" class="org.apache.royale.style.skins.DropdownSkin"/>
+  <component id="ModalSkin" class="org.apache.royale.style.skins.ModalSkin"/>
+  <component id="ModalBodySkin" class="org.apache.royale.style.skins.ModalBodySkin"/>
+  <component id="ModalTitleSkin" class="org.apache.royale.style.skins.ModalTitleSkin"/>
+  <component id="ModalActionsSkin" class="org.apache.royale.style.skins.ModalActionsSkin"/>
   <component id="PaginationSkin" class="org.apache.royale.style.skins.PaginationSkin"/>
   <component id="PaginationItemSkin" class="org.apache.royale.style.skins.PaginationItemSkin"/>
 
