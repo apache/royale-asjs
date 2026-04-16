@@ -55,6 +55,10 @@ CheckBox
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CheckBoxSkin");
 }
+Textarea
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextareaSkin");
+}
 Dropdown
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
