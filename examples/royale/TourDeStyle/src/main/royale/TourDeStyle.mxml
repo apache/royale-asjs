@@ -31,6 +31,7 @@
                 dropdownSection.visible = (idx == 3);
                 modalSection.visible = (idx == 4);
                 paginationSection.visible = (idx == 5);
+                navbarSection.visible = (idx == 6);
             }
 
             private function openModal(id:String):void
@@ -55,6 +56,7 @@
                 <s:Tab text="Dropdown" />
                 <s:Tab text="Modal" />
                 <s:Tab text="Pagination" />
+                <s:Tab text="Navbar" />
             </s:tabs>
         </s:TabBar>
 
@@ -192,6 +194,36 @@
                 <s:PaginationItem text="100" />
                 <s:PaginationItem text="Next" selectable="false" />
             </s:Pagination>
+        </s:FlexContainer>
+
+        <!-- Navbar Section -->
+        <s:FlexContainer id="navbarSection" visible="false" gap="24" vertical="true">
+            <s:Navbar>
+                <e:Span text="Brand" />
+            </s:Navbar>
+            <s:Navbar>
+                <s:NavbarStart>
+                    <e:Span text="Brand" />
+                </s:NavbarStart>
+                <s:NavbarCenter>
+                    <e:A text="Features" href="#" />
+                    <e:A text="Pricing" href="#" />
+                    <e:A text="About" href="#" />
+                </s:NavbarCenter>
+                <s:NavbarEnd>
+                    <e:Div text="Get Started" />
+                </s:NavbarEnd>
+            </s:Navbar>
+            <s:Navbar>
+                <s:NavbarStart>
+                    <e:Span text="Brand" />
+                </s:NavbarStart>
+                <s:NavbarEnd>
+                    <e:A text="Features" href="#" />
+                    <e:A text="Pricing" href="#" />
+                    <e:A text="Contact" href="#" />
+                </s:NavbarEnd>
+            </s:Navbar>
         </s:FlexContainer>
 
     </s:FlexContainer>

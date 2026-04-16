@@ -42,6 +42,10 @@
   <component id="ModalActions" class="org.apache.royale.style.ModalActions"/>
   <component id="Pagination" class="org.apache.royale.style.Pagination"/>
   <component id="PaginationItem" class="org.apache.royale.style.PaginationItem"/>
+  <component id="Navbar" class="org.apache.royale.style.Navbar"/>
+  <component id="NavbarStart" class="org.apache.royale.style.NavbarStart"/>
+  <component id="NavbarCenter" class="org.apache.royale.style.NavbarCenter"/>
+  <component id="NavbarEnd" class="org.apache.royale.style.NavbarEnd"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
@@ -300,5 +304,9 @@
   <component id="ModalActionsSkin" class="org.apache.royale.style.skins.ModalActionsSkin"/>
   <component id="PaginationSkin" class="org.apache.royale.style.skins.PaginationSkin"/>
   <component id="PaginationItemSkin" class="org.apache.royale.style.skins.PaginationItemSkin"/>
+  <component id="NavbarSkin" class="org.apache.royale.style.skins.NavbarSkin"/>
+  <component id="NavbarStartSkin" class="org.apache.royale.style.skins.NavbarStartSkin"/>
+  <component id="NavbarCenterSkin" class="org.apache.royale.style.skins.NavbarCenterSkin"/>
+  <component id="NavbarEndSkin" class="org.apache.royale.style.skins.NavbarEndSkin"/>
 
 </componentPackage>

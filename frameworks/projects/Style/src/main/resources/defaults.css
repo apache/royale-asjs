@@ -111,6 +111,22 @@ Toggle
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
 }
+Navbar
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarSkin");
+}
+NavbarStart
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarStartSkin");
+}
+NavbarCenter
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarCenterSkin");
+}
+NavbarEnd
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarEndSkin");
+}
 
 DataItemRenderer
 {
