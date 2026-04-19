@@ -56,6 +56,7 @@ individually:
     ant -Dexample=TogglePlayGround
     ant -Dexample=DropdownPlayGround
     ant -Dexample=NavbarPlayGround
+    ant -Dexample=MenuPlayGround
 
 ### Debug-Only Build (faster)
 
@@ -84,3 +85,4 @@ After building, open `bin/js-debug/index.html` in a browser.
 | TogglePlayGround       | Toggle switches, checked and disabled states      |
 | DropdownPlayGround     | Dropdowns with programmatic and disabled states   |
 | NavbarPlayGround       | Navbar with start/center/end slot layout           |
+| MenuPlayGround         | Menu with titles, items, and links                 |

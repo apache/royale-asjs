@@ -32,6 +32,7 @@
                 modalSection.visible = (idx == 4);
                 paginationSection.visible = (idx == 5);
                 navbarSection.visible = (idx == 6);
+                menuSection.visible = (idx == 7);
             }
 
             private function openModal(id:String):void
@@ -57,6 +58,7 @@
                 <s:Tab text="Modal" />
                 <s:Tab text="Pagination" />
                 <s:Tab text="Navbar" />
+                <s:Tab text="Menu" />
             </s:tabs>
         </s:TabBar>
 
@@ -224,6 +226,23 @@
                     <e:A text="Contact" href="#" />
                 </s:NavbarEnd>
             </s:Navbar>
+        </s:FlexContainer>
+
+        <!-- Menu Section -->
+        <s:FlexContainer id="menuSection" visible="false" gap="24" vertical="true">
+            <s:Menu>
+                <s:MenuItem><e:Span text="Item 1" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Item 2" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Item 3" /></s:MenuItem>
+            </s:Menu>
+            <s:Menu>
+                <s:MenuTitle><e:Span text="General" /></s:MenuTitle>
+                <s:MenuItem><e:Span text="Dashboard" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Settings" /></s:MenuItem>
+                <s:MenuTitle><e:Span text="Account" /></s:MenuTitle>
+                <s:MenuItem><e:Span text="Profile" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Billing" /></s:MenuItem>
+            </s:Menu>
         </s:FlexContainer>
 
     </s:FlexContainer>

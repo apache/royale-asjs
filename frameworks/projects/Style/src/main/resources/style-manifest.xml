@@ -46,6 +46,10 @@
   <component id="NavbarStart" class="org.apache.royale.style.NavbarStart"/>
   <component id="NavbarCenter" class="org.apache.royale.style.NavbarCenter"/>
   <component id="NavbarEnd" class="org.apache.royale.style.NavbarEnd"/>
+  <component id="Menu" class="org.apache.royale.style.Menu"/>
+  <component id="MenuItem" class="org.apache.royale.style.MenuItem"/>
+  <component id="MenuTitle" class="org.apache.royale.style.MenuTitle"/>
+  <component id="MenuDetails" class="org.apache.royale.style.MenuDetails"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
@@ -308,5 +312,10 @@
   <component id="NavbarStartSkin" class="org.apache.royale.style.skins.NavbarStartSkin"/>
   <component id="NavbarCenterSkin" class="org.apache.royale.style.skins.NavbarCenterSkin"/>
   <component id="NavbarEndSkin" class="org.apache.royale.style.skins.NavbarEndSkin"/>
+  <component id="MenuSkin" class="org.apache.royale.style.skins.MenuSkin"/>
+  <component id="MenuItemSkin" class="org.apache.royale.style.skins.MenuItemSkin"/>
+  <component id="MenuTitleSkin" class="org.apache.royale.style.skins.MenuTitleSkin"/>
+  <component id="MenuDetailsSkin" class="org.apache.royale.style.skins.MenuDetailsSkin"/>
+  <component id="IMenuDetailsSkin" class="org.apache.royale.style.skins.IMenuDetailsSkin"/>
 
 </componentPackage>

@@ -127,6 +127,22 @@ NavbarEnd
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarEndSkin");
 }
+Menu
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuSkin");
+}
+MenuItem
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuItemSkin");
+}
+MenuTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuTitleSkin");
+}
+MenuDetails
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuDetailsSkin");
+}
 
 DataItemRenderer
 {
