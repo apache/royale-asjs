@@ -18,33 +18,46 @@
 /////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.Button;
+	import org.apache.royale.style.elements.Button;
 
 	/**
 	 *  A styled Button component that contains only an icon.
 	 *  Does not support text.
 	 */
-	public class IconButton extends Button
+	public class IconButton extends org.apache.royale.style.elements.Button
 	{
 		public function IconButton()
 		{
 			super();
 		}
 
-		/**
-		 *  @private
-		 *  IconButton does not support text - override to prevent usage
-		 */
-		override public function get text():String
+		override protected function applySkin():void
 		{
-			return "";
+			// keep existing icon.
+			if (icon && getElementIndex(icon) != -1)
+				return;
+
+			if (icon && this.getElementIndex(icon) == -1)
+			{
+				this.addElementAt(icon, 0);
+			}
+		}
+		override public function set disabled(value:Boolean):void
+		{
+			super.disabled = value;
+			if (icon)
+				icon.toggleAttribute("data-disabled", value);
+
+		}
+		private var _icon:IIcon;
+		public function get icon():IIcon
+		{
+			return _icon;
 		}
 
-		override public function set text(value:String):void
+		public function set icon(value:IIcon):void
 		{
-			// IconButton does not support text
-			assert(!value, "IconButton does not support text");
+			_icon = value;
 		}
 	}
 }

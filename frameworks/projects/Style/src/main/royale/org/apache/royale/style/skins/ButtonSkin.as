@@ -22,7 +22,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.flexgrid.JustifyContent;
 	import org.apache.royale.style.stylebeads.flexgrid.Gap;
 	import org.apache.royale.style.stylebeads.svg.Stroke;
-	import org.apache.royale.style.Button;
+	import org.apache.royale.style.elements.Button;
 	import org.apache.royale.style.stylebeads.typography.FontSize;
 
 	/**
@@ -63,7 +63,7 @@ package org.apache.royale.style.skins
 					new Gap(2),
 					paddings,
 					new FontWeight("semibold"),
-					new FontSize(host.unit || "base"),
+					new FontSize(host.size || "base"),
 					new LetterSpacing("wide"),
 					new HoverState([
 							new BackgroundColor(hoverColor),

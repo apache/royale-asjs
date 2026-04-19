@@ -18,42 +18,49 @@
 // ///////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.Button;
+	COMPILE::JS
+	{
+		import org.apache.royale.core.WrappedHTMLElement;
+	}
+	import org.apache.royale.style.elements.Button;
 
 	/**
 	 *  A styled Button component that contains only text.
 	 *  Does not support icons.
 	 */
-	public class TextButton extends Button
+	public class TextButton extends org.apache.royale.style.elements.Button
 	{
 		public function TextButton()
 		{
 			super();
 		}
 
-		/**
-		 *  @private
-		 *  TextButton does not support icons - override to prevent usage
-		 */
-		override public function get icon():IIcon
+		COMPILE::JS
+		protected var textNode:Text;
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
 		{
-			return null;
+			var elem:WrappedHTMLElement = super.createElement();
+			textNode = document.createTextNode('') as Text;
+			elem.appendChild(textNode);
+			return elem;
 		}
 
-		override public function set icon(value:IIcon):void
+		private var _text:String = "";
+		public function get text():String
 		{
-			// TextButton does not support icons
-			assert(!value, "TextButton does not support icons");
+			return _text;
 		}
 
-		/**
-		 *  @private
-		 *  Override applySkin to ignore icons
-		 */
-		override protected function applySkin():void
+		public function set text(value:String):void
 		{
-			// TextButton does not use icons, skip icon handling
+			COMPILE::JS
+			{
+				if (_text != value)
+					textNode.nodeValue = value;
+				
+			}
+			_text = value;
 		}
 	}
 }
