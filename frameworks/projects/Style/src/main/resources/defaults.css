@@ -48,6 +48,10 @@ IconButton
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ButtonSkin");
 }
+Badge
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
@@ -57,10 +61,19 @@ CheckBox
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CheckBoxSkin");
 }
+Dropdown
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
+}
 
 DataItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+}
+
+Link
+{
+    IStyleSkin: ClassReference("org.apache.royale.style.skins.LinkSkin");
 }
 
 DataContainer
@@ -78,6 +91,10 @@ DataContainer
 Divider
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DividerSkin");
+}
+Link
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.LinkSkin");
 }
 
 MultiSelectionList

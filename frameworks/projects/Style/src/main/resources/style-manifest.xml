@@ -24,10 +24,12 @@
   <component id="AccordionSection" class="org.apache.royale.style.AccordionSection"/>
   <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
+  <component id="Badge" class="org.apache.royale.style.Badge"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
   <component id="Divider" class="org.apache.royale.style.Divider"/>
+  <component id="Dropdown" class="org.apache.royale.style.Dropdown"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
@@ -36,7 +38,8 @@
   <component id="IconButton" class="org.apache.royale.style.IconButton"/>
   <component id="Icon" class="org.apache.royale.style.Icon"/>
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
-
+  <component id="Link" class="org.apache.royale.style.Link"/>
+  <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
   <component id="List" class="org.apache.royale.style.List"/>
@@ -52,9 +55,11 @@
   <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>
   <component id="AriaState" class="org.apache.royale.style.stylebeads.states.attribute.AriaState"/>
   <component id="InertState" class="org.apache.royale.style.stylebeads.states.attribute.InertState"/>
+  <component id="FocusWithinState" class="org.apache.royale.style.stylebeads.states.FocusWithinState"/>
   <component id="OpenState" class="org.apache.royale.style.stylebeads.states.attribute.OpenState"/>
   <component id="RTLState" class="org.apache.royale.style.stylebeads.states.attribute.RTLState"/>
   <component id="SelectedState" class="org.apache.royale.style.stylebeads.states.attribute.SelectedState"/>
+  <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
   <component id="AfterState" class="org.apache.royale.style.stylebeads.states.pseudo.AfterState"/>
   <component id="BackdropState" class="org.apache.royale.style.stylebeads.states.pseudo.BackdropState"/>
   <component id="BeforeState" class="org.apache.royale.style.stylebeads.states.pseudo.BeforeState"/>
@@ -318,7 +323,9 @@
   <component id="Video" class="org.apache.royale.style.elements.Video"/>
 
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
+  <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
+  <component id="LinkSkin" class="org.apache.royale.style.skins.LinkSkin"/>
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>

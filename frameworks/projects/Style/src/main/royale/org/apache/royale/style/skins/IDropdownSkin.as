@@ -16,25 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.skins
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.IStyleSkin;
 
-	public class Content extends LeafStyleBase
+	public interface IDropdownSkin extends IStyleSkin
 	{
-		/**
-		 * for use inside BeforeState and AfterState declarations (for completeness)
-		 * @param value
-		 */
-		public function Content(value:* = '""')
-		{
-			super("", "content", value);
-		}
-
-		override public function set value(value:*):void
-		{
-			_value = value;
-			calculatedRuleValue = calculatedSelector = value;
-		}
+		function get triggerStyles():Array;
+		function get contentStyles():Array;
+		function get itemStyles():Array;
 	}
 }

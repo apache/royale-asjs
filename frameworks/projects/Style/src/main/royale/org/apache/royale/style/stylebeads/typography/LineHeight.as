@@ -35,7 +35,7 @@ package org.apache.royale.style.stylebeads.typography
 		 * If it's a number, this will be multiplied by default spacing.
 		 * The default value is in rems.
 		 */
-		[Inspectable(category="General", enumeration="xs,sm,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl", defaultValue="base")]
+		[Inspectable(category="General", enumeration="xs,sm,md,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl", defaultValue="base")]
 		override public function set value(value:*):void
 		{
 			// assert(isNum(value) || isVar(value) || value == "none", "Invalid value for line-height: " + value);
@@ -50,6 +50,7 @@ package org.apache.royale.style.stylebeads.typography
 				var sizeLookup:Object = {
 					"xs": theme.lineXS,
 					"sm": theme.lineSM,
+					"md": theme.lineBase,
 					"base": theme.lineBase,
 					"lg": theme.lineLG,
 					"xl": theme.lineXL,

@@ -16,25 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.stylebeads.states
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-
-	public class Content extends LeafStyleBase
+	/**
+	 *  The FocusWithinState class is a style decorator that applies styles when
+	 *  any child of the element has focus (:focus-within pseudo-class).
+	 */
+	public class FocusWithinState extends LeafDecorator
 	{
-		/**
-		 * for use inside BeforeState and AfterState declarations (for completeness)
-		 * @param value
-		 */
-		public function Content(value:* = '""')
+		public function FocusWithinState(styles:Array = null)
 		{
-			super("", "content", value);
-		}
-
-		override public function set value(value:*):void
-		{
-			_value = value;
-			calculatedRuleValue = calculatedSelector = value;
+			super(styles);
+			selectorDecorator = "focus-within:";
+			ruleDecorator = ":focus-within";
 		}
 	}
 }
