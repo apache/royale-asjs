@@ -59,7 +59,6 @@
   <component id="OpenState" class="org.apache.royale.style.stylebeads.states.attribute.OpenState"/>
   <component id="RTLState" class="org.apache.royale.style.stylebeads.states.attribute.RTLState"/>
   <component id="SelectedState" class="org.apache.royale.style.stylebeads.states.attribute.SelectedState"/>
-  <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
   <component id="AfterState" class="org.apache.royale.style.stylebeads.states.pseudo.AfterState"/>
   <component id="BackdropState" class="org.apache.royale.style.stylebeads.states.pseudo.BackdropState"/>
   <component id="BeforeState" class="org.apache.royale.style.stylebeads.states.pseudo.BeforeState"/>
