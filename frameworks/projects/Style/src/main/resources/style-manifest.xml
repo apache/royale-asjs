@@ -50,6 +50,8 @@
   <component id="MenuItem" class="org.apache.royale.style.MenuItem"/>
   <component id="MenuTitle" class="org.apache.royale.style.MenuTitle"/>
   <component id="MenuDetails" class="org.apache.royale.style.MenuDetails"/>
+  <component id="Steps" class="org.apache.royale.style.Steps"/>
+  <component id="Step" class="org.apache.royale.style.Step"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
@@ -317,5 +319,8 @@
   <component id="MenuTitleSkin" class="org.apache.royale.style.skins.MenuTitleSkin"/>
   <component id="MenuDetailsSkin" class="org.apache.royale.style.skins.MenuDetailsSkin"/>
   <component id="IMenuDetailsSkin" class="org.apache.royale.style.skins.IMenuDetailsSkin"/>
+  <component id="StepsSkin" class="org.apache.royale.style.skins.StepsSkin"/>
+  <component id="StepSkin" class="org.apache.royale.style.skins.StepSkin"/>
+  <component id="IStepSkin" class="org.apache.royale.style.skins.IStepSkin"/>
 
 </componentPackage>

@@ -143,6 +143,14 @@ MenuDetails
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuDetailsSkin");
 }
+Steps
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepsSkin");
+}
+Step
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepSkin");
+}
 
 DataItemRenderer
 {
