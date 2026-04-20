@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.layout
 {
 	public class Left extends InsetBase
 	{
-		public function Left()
+		public function Left(value:* = null)
 		{
-			super("left", "left");
+			super("left", "left", value);
 		}
 	}
 }

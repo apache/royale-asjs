@@ -23,6 +23,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.style.IStyleUIBase;
 	import org.apache.royale.style.Icon;
+	import org.apache.royale.style.stylebeads.interact.PointerEvents;
 	import org.apache.royale.style.stylebeads.sizing.HeightStyle;
 	import org.apache.royale.style.stylebeads.sizing.WidthStyle;
 	import org.apache.royale.style.colors.ThemeColorSet;
@@ -86,10 +87,10 @@ package org.apache.royale.style.skins
 				new LastState([
 					lastBorder
 				]),
-				new DisabledState([
+				new DataState('disabled',[
 					new BorderColor(colorSet.getSwatch(ThemeColorSet.NEUTRAL,200)),
 					new BackgroundColor(colorSet.getSwatch(ThemeColorSet.NEUTRAL,100)),
-					new TextColor(colorSet.getSwatch(ThemeColorSet.NEUTRAL,200))
+					new TextColor(colorSet.getSwatch(ThemeColorSet.NEUTRAL,200)),
 				])
 				//TODO dark mode dark:border-slate-700 dark:bg-slate-800
 				// group border-b border-slate-300 bg-slate-50 px-4 last:border-b-0 dark:border-slate-700 dark:bg-slate-800
@@ -114,9 +115,10 @@ package org.apache.royale.style.skins
 					padding,
 					new TextSize("sm"),
 					new FontWeight("semibold"),
-					new DisabledState([
+					new DataState('disabled',[
 						new Cursor("default"),
-						new TextColor(ThemeManager.instance.activeTheme.themeColorSet.getSwatch(ThemeColorSet.NEUTRAL,200))
+						new TextColor(ThemeManager.instance.activeTheme.themeColorSet.getSwatch(ThemeColorSet.NEUTRAL,200)),
+						new PointerEvents('none')
 					])
 				];
 				// flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold

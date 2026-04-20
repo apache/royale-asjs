@@ -83,6 +83,51 @@ package org.apache.royale.style.colors
 			"zinc": 0x71717B
 		};
 		
+		private static const lchLookups:Object = {init:false};
+		private static function getLCHLookups():Object{
+			if (lchLookups.init === false) {
+				delete lchLookups.init;
+				for (var key:String in BASE_COLORS) {
+					var col:uint = BASE_COLORS[key];
+					lchLookups[key] = ColorUtils.rgb_ToOKLCH([(col>>16)&0xff,(col>>8)&0xff,col&0xff])
+				}
+				//add white and black
+				
+				
+			}
+			return lchLookups;
+		}
+		
+		public static function estimateFromRGB(rgb:Array, customOklchLookups:Object = null):ColorSwatch{
+			var BASE_COLORS_OKLCH:Object = customOklchLookups || getLCHLookups();
+			var bestName:String = null;
+			var inputAsOKLCH:Array =  ColorUtils.rgb_ToOKLCH(rgb);
+			var bestDist:Number = Number.MAX_VALUE;
+			for (var name:String in BASE_COLORS_OKLCH) {
+				var ref:Array = BASE_COLORS_OKLCH[name];
+				var d:Number = ColorUtils.oklchDistance(inputAsOKLCH, ref);
+				if (d < bestDist) {
+					bestDist = d;
+					bestName = name;
+				}
+			}
+			var base:Array = BASE_COLORS_OKLCH[bestName];
+			var ramp:Object = ColorUtils.getOklchRamp(base);
+			var bestShade:uint = 500;
+			bestDist = Number.MAX_VALUE;
+			for (var shadeKey:String in ramp) {
+				ref = ramp[shadeKey];
+				d = ColorUtils.oklchDistance(inputAsOKLCH, ref);
+				if (d < bestDist)
+				{
+					bestDist = d;
+					bestShade = uint(shadeKey);
+				}
+			}
+			return new ColorSwatch(bestName,bestShade);
+		}
+		
+		
 		private static const exceptions:Array = [
 			"transparent",
 			"currentColor",
@@ -103,7 +148,7 @@ package org.apache.royale.style.colors
 			var baseColor:uint = CSSUtils.toColor(base);
 			// Convert from 50,100,200... to 5,10,20... for easier math.
 		//	shade = Math.round(shade/10);
-			rgb = CSSColor.getVariation(baseColor,Math.round(shade/10),darkMode);
+			rgb = ColorUtils.getVariation(baseColor,Math.round(shade/10),darkMode);
 			assert(opacity >= 0 && opacity <= 100, "Opacity must be between 0 and 100");
 			colorBase = swatch;
 			colorShade = shade;
@@ -127,14 +172,17 @@ package org.apache.royale.style.colors
 		public var dark:Boolean;
 		
 		/**
-		 * create a ColorSwatch variant from this instance
-		 * @param alternateShade - alternate shade. If you want to keep the same shade and adjust opacity, set this to NaN
-		 * @param alternateOpacity - if not set it will inherit the original value from this instance
-		 * @return a new ColorSwatch with different shade or opacity (or both)
-		 */
-		public function getVariant(alternateShade:Number, alternateOpacity:Number = NaN):ColorSwatch{
+         * create a ColorSwatch variant from this instance
+         * @param alternateShade - alternate shade. If you want to keep the same shade and adjust opacity, set this to NaN
+         * @param alternateOpacity - if not set it will inherit the original value from this instance
+         * @param applyDelta if true, the alternate values will be applied as deltas to existing values to create the variant
+         * @return a new ColorSwatch with different shade or opacity (or both)
+         */
+		public function getVariant(alternateShade:Number, alternateOpacity:Number = NaN, applyDelta:Boolean = false):ColorSwatch{
 			if (isNaN(alternateShade)) alternateShade = colorShade;
+			else if (applyDelta) alternateShade = colorShade + alternateShade;
 			if (isNaN(alternateOpacity)) alternateOpacity = colorOpacity;
+			else if (applyDelta) alternateOpacity = colorOpacity + alternateOpacity;
 			var alternate:ColorSwatch = new ColorSwatch(colorBase,alternateShade,alternateOpacity,dark);
 			assert(alternate.colorShade != colorShade || alternate.colorOpacity != colorOpacity, "parameters not configured to create a variant");
 			return alternate;
@@ -160,7 +208,7 @@ package org.apache.royale.style.colors
 			return name in BASE_COLORS;
 		}
 		
-		public static function getColorValue(name:String):Boolean{
+		public static function getColorValue(name:String):uint{
 			return BASE_COLORS[name];
 		}
 		

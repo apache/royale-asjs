@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class InsetInlineStart extends InsetBase
 	{
-		public function InsetInlineStart()
+		public function InsetInlineStart(value:* = null)
 		{
-			super("inset-s", "inset-inline-start");
+			super("inset-inline-start", "inset-inline-start", value);
 		}
 	}
 }

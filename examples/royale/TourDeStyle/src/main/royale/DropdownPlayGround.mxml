@@ -20,18 +20,6 @@
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:s="library://ns.apache.org/royale/style"
                xmlns:e="library://ns.apache.org/royale/style-elements">
-    <fx:Style>
-        @namespace s "library://ns.apache.org/royale/style";
-        s|Dropdown
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
-        }
-        s|View
-        {
-            IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-            IBeadLayout: ClassReference("org.apache.royale.style.beads.FlexLayout");
-        }
-    </fx:Style>
     <fx:Script>
         <![CDATA[
             import org.apache.royale.style.Dropdown;

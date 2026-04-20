@@ -115,7 +115,7 @@ package org.apache.royale.style
 		 * 
 		 * Most components have four possible sizes, but specific components may choose to support a different set of sizes as needed.
 		 */
-		[Inspectable(category="General", enumeration="sm,md,lg,xl", defaultValue="md")]
+		[Inspectable(category="General", enumeration="xs,sm,md,lg,xl", defaultValue="md")]
 		public function get size():String
 		{
 			return _size;
