@@ -16,15 +16,49 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states
+package org.apache.royale.style.stylebeads.anim
 {
-	public class InvalidState extends LeafDecorator
+	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.util.AnimationManager;
+
+	public class Keyframes extends LeafStyleBase
 	{
-		public function InvalidState(styles:Array = null)
+		public function Keyframes(name:String = null, value:Array = null)
 		{
-			super(styles);
-			selectorDecorator = "invalid:";
-			ruleDecorator = ":invalid";
+			_keyframes = value;
+			super("keyframes", "animation-name", name);
+		}
+
+		private var _keyframes:Array;
+
+		public function get keyframes():Array
+		{
+			return _keyframes;
+		}
+
+		public function set keyframes(value:Array):void
+		{
+			_keyframes = value;
+			if (_value && _keyframes)
+			{
+				AnimationManager.registerKeyframes(_value, _keyframes);
+			}
+		}
+
+		override public function get value():*
+		{
+			return _value;
+		}
+
+		override public function set value(value:*):void
+		{
+			_value = value;
+			calculatedSelector = _value;
+			calculatedRuleValue = _value;
+			if (_value && _keyframes)
+			{
+				AnimationManager.registerKeyframes(_value, _keyframes);
+			}
 		}
 	}
 }

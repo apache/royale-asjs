@@ -55,10 +55,6 @@ CheckBox
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CheckBoxSkin");
 }
-Textarea
-{
-	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextareaSkin");
-}
 Range
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.RangeSkin");
@@ -118,6 +114,46 @@ PaginationItem
 Toggle
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
+}
+Navbar
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarSkin");
+}
+NavbarStart
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarStartSkin");
+}
+NavbarCenter
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarCenterSkin");
+}
+NavbarEnd
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarEndSkin");
+}
+Menu
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuSkin");
+}
+MenuItem
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuItemSkin");
+}
+MenuTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuTitleSkin");
+}
+MenuDetails
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuDetailsSkin");
+}
+Steps
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepsSkin");
+}
+Step
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepSkin");
 }
 
 DataItemRenderer
@@ -192,3 +228,6 @@ Tree
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+Toast {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToastSkin");
+}

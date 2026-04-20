@@ -31,6 +31,9 @@
                 dropdownSection.visible = (idx == 3);
                 modalSection.visible = (idx == 4);
                 paginationSection.visible = (idx == 5);
+                navbarSection.visible = (idx == 6);
+                menuSection.visible = (idx == 7);
+                stepsSection.visible = (idx == 8);
             }
 
             private function openModal(id:String):void
@@ -41,30 +44,6 @@
             }
         ]]>
     </fx:Script>
-    <fx:Style>
-        @namespace s "library://ns.apache.org/royale/style";
-        s|Tab
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabSkin");
-        }
-        s|TabBar
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabBarSkin");
-        }
-        s|Toggle
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
-        }
-        s|Dropdown
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
-        }
-        s|View
-        {
-            IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-            IBeadLayout: ClassReference("org.apache.royale.style.beads.FlexLayout");
-        }
-    </fx:Style>
 
     <s:initialView>
     <s:View>
@@ -79,6 +58,9 @@
                 <s:Tab text="Dropdown" />
                 <s:Tab text="Modal" />
                 <s:Tab text="Pagination" />
+                <s:Tab text="Navbar" />
+                <s:Tab text="Menu" />
+                <s:Tab text="Steps" />
             </s:tabs>
         </s:TabBar>
 
@@ -216,6 +198,88 @@
                 <s:PaginationItem text="100" />
                 <s:PaginationItem text="Next" selectable="false" />
             </s:Pagination>
+        </s:FlexContainer>
+
+        <!-- Navbar Section -->
+        <s:FlexContainer id="navbarSection" visible="false" gap="24" vertical="true">
+            <s:Navbar>
+                <e:Span text="Brand" />
+            </s:Navbar>
+            <s:Navbar>
+                <s:NavbarStart>
+                    <e:Span text="Brand" />
+                </s:NavbarStart>
+                <s:NavbarCenter>
+                    <e:A text="Features" href="#" />
+                    <e:A text="Pricing" href="#" />
+                    <e:A text="About" href="#" />
+                </s:NavbarCenter>
+                <s:NavbarEnd>
+                    <e:Div text="Get Started" />
+                </s:NavbarEnd>
+            </s:Navbar>
+            <s:Navbar>
+                <s:NavbarStart>
+                    <e:Span text="Brand" />
+                </s:NavbarStart>
+                <s:NavbarEnd>
+                    <e:A text="Features" href="#" />
+                    <e:A text="Pricing" href="#" />
+                    <e:A text="Contact" href="#" />
+                </s:NavbarEnd>
+            </s:Navbar>
+        </s:FlexContainer>
+
+        <!-- Menu Section -->
+        <s:FlexContainer id="menuSection" visible="false" gap="24" vertical="true">
+            <s:Menu>
+                <s:MenuItem><e:Span text="Item 1" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Item 2" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Item 3" /></s:MenuItem>
+            </s:Menu>
+            <s:Menu>
+                <s:MenuTitle><e:Span text="General" /></s:MenuTitle>
+                <s:MenuItem><e:Span text="Dashboard" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Settings" /></s:MenuItem>
+                <s:MenuTitle><e:Span text="Account" /></s:MenuTitle>
+                <s:MenuItem><e:Span text="Profile" /></s:MenuItem>
+                <s:MenuItem><e:Span text="Billing" /></s:MenuItem>
+            </s:Menu>
+        </s:FlexContainer>
+
+        <!-- Steps Section -->
+        <s:FlexContainer id="stepsSection" visible="false" gap="24" vertical="true">
+            <s:Steps>
+                <s:Step text="Register" content="1" completed="true" />
+                <s:Step text="Choose plan" content="2" completed="true" />
+                <s:Step text="Purchase" content="3" />
+                <s:Step text="Receive Product" content="4" />
+            </s:Steps>
+            <s:Steps vertical="true">
+                <s:Step text="Register" content="1" completed="true" />
+                <s:Step text="Choose plan" content="2" completed="true" />
+                <s:Step text="Purchase" content="3" />
+                <s:Step text="Receive Product" content="4" />
+            </s:Steps>
+            <s:Steps>
+                <s:Step text="Step 1" content="?" completed="true" />
+                <s:Step text="Step 2" content="!" completed="true" />
+                <s:Step text="Step 3" content="✓" completed="true" />
+                <s:Step text="Step 4" content="✕" />
+                <s:Step text="Step 5" content="★" />
+            </s:Steps>
+            <s:Steps>
+                <s:Step text="Register" content="1" size="sm" completed="true" />
+                <s:Step text="Choose plan" content="2" size="sm" completed="true" />
+                <s:Step text="Purchase" content="3" size="sm" />
+                <s:Step text="Receive Product" content="4" size="sm" />
+            </s:Steps>
+            <s:Steps>
+                <s:Step text="Register" content="1" size="lg" completed="true" />
+                <s:Step text="Choose plan" content="2" size="lg" completed="true" />
+                <s:Step text="Purchase" content="3" size="lg" />
+                <s:Step text="Receive Product" content="4" size="lg" />
+            </s:Steps>
         </s:FlexContainer>
 
     </s:FlexContainer>
