@@ -18,39 +18,14 @@
 // //////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
-	import org.apache.royale.style.stylebeads.states.HasState;
-
-	COMPILE::JS
-	{
-		import org.apache.royale.core.WrappedHTMLElement;
-	}
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.ValueChangeEvent;
-	import org.apache.royale.core.IHasLabel;
-	import org.apache.royale.style.elements.Div;
-	import org.apache.royale.style.elements.Span;
-	import org.apache.royale.style.support.TextNode;
-	import org.apache.royale.style.elements.I;
-	import org.apache.royale.style.stylebeads.IStyleBead;
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.stylebeads.utils.ScreenReader;
 	import org.apache.royale.style.elements.Input;
-	import org.apache.royale.style.skins.RangeSkin;
-
 	public class Range extends Input
 	{
 
 		public function Range()
 		{
 			super();
-		}
-		
-		COMPILE::JS
-		override protected function createElement():WrappedHTMLElement
-		{
-			var elem:WrappedHTMLElement = super.createElement();
 			type = "range";
-			return elem;
 		}
 	}
 }
