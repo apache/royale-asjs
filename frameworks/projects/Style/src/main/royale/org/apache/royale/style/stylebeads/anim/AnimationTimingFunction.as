@@ -16,50 +16,50 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.stylebeads.anim
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.util.StyleTheme;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.debugging.assert;
 
-	public class InsetBase extends LeafStyleBase
+	public class AnimationTimingFunction extends LeafStyleBase
 	{
-		public function InsetBase(selectorBase:String, ruleBase:String, value:* = null)
+		public function AnimationTimingFunction(value:* = null)
 		{
-			super(selectorBase, ruleBase, value);
+			super("ease", "animation-timing-function", value);
 		}
-		private var savedPrefix:String;
 		override public function set value(value:*):void
 		{
 			_value = value;
-			var isNum:Boolean = parseFloat(value) == value;
-			var isInt:Boolean = int(value) == value;
-			var parseNum:Number = parseFloat(value);
-			var isNegative:Boolean = parseNum < 0;
-
-			if(isNegative)
+			var ruleValue:String = value;
+			var selectorValue:String = value;
+			var theme:StyleTheme = ThemeManager.instance.activeTheme;
+			switch(value)
 			{
-				if(!savedPrefix)
-					savedPrefix = _selectorBase;
-				_selectorBase = "-" + savedPrefix;
+				case "default":
+					ruleValue = theme.defaultTransitionTimingFunction;
+					break;
+				case "in":
+					ruleValue = theme.easeIn;
+					break;
+				case "out":
+					ruleValue = theme.easeOut;
+					break;
+				case "in-out":
+					ruleValue = theme.easeInOut;
+					break;
+				case "linear":
+				case "initial":
+					break;
+				default:
+					ruleValue = CSSLookup.getProperty(value);
+					break;
 			}
-			
-			if(isInt)
-			{
-				calculatedSelector = "" + Math.abs(value);
-				calculatedRuleValue = computeSpacing(value);
-			}
-			else if(isNum)
-			{
-				calculatedSelector = "p" + Math.abs(value);
-				calculatedRuleValue = (value * 100) + "%";
-			}
-			else
-			{
-				calculatedSelector = sanitizeSelector(value);
-				calculatedRuleValue = value;
-				if(value == "none")
-					calculatedSelector = "hidden";
-			}
+			assert(ruleValue, "animation-timing-function only accepts 'linear', 'in', 'out', 'in-out', 'initial', or a valid CSS timing function value");
+			calculatedSelector = selectorValue;
+			calculatedRuleValue = ruleValue;
 		}
 	}
 }

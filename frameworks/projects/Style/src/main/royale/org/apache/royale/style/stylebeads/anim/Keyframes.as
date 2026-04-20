@@ -16,16 +16,49 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.stylebeads.anim
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.AnimationManager;
 
-	public class InsetInlineStart extends InsetBase
+	public class Keyframes extends LeafStyleBase
 	{
-		public function InsetInlineStart(value:* = null)
+		public function Keyframes(name:String = null, value:Array = null)
 		{
-			super("inset-inline-start", "inset-inline-start", value);
+			_keyframes = value;
+			super("keyframes", "animation-name", name);
+		}
+
+		private var _keyframes:Array;
+
+		public function get keyframes():Array
+		{
+			return _keyframes;
+		}
+
+		public function set keyframes(value:Array):void
+		{
+			_keyframes = value;
+			if (_value && _keyframes)
+			{
+				AnimationManager.registerKeyframes(_value, _keyframes);
+			}
+		}
+
+		override public function get value():*
+		{
+			return _value;
+		}
+
+		override public function set value(value:*):void
+		{
+			_value = value;
+			calculatedSelector = _value;
+			calculatedRuleValue = _value;
+			if (_value && _keyframes)
+			{
+				AnimationManager.registerKeyframes(_value, _keyframes);
+			}
 		}
 	}
 }

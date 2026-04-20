@@ -16,16 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.skins
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
-
-	public class InsetInlineStart extends InsetBase
+	import org.apache.royale.style.IStyleSkin;
+	import org.apache.royale.style.IStyleUIBase;
+	import org.apache.royale.style.StyleUIBase;
+	
+	public interface IToastSkin extends IStyleSkin
 	{
-		public function InsetInlineStart(value:* = null)
-		{
-			super("inset-inline-start", "inset-inline-start", value);
-		}
+		//function updateStyles():void;
+		//function get labelStyles():Array;
+		
+		function get toastContentStyles():Array;
+		function get textLayoutStyles():Array;
+		function get buttonsLayoutStyles():Array;
+		function get toastBodyStyles():Array;
+		
+		function getIcon(flavor:String):IStyleUIBase;
+		function getActionButton(action:String):IStyleUIBase;
+		function getCloseButton():IStyleUIBase;
 	}
 }

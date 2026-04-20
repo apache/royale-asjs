@@ -48,21 +48,21 @@ package org.apache.royale.style.stylebeads.anim
 }
  */
 
-		override public function set value(value:*):void
+		override public function set value(v:*):void
 		{
 			assert(
-				isVar(value) || ["spin","ping","pulse","bounce","none"].indexOf(value) != -1,
-				"animation only accepts 'spin', 'ping', 'pulse', 'bounce', or a CSS variable referencing a valid animation"
+				isVar(v) || v == "none" || (v is String && v.length > 0),
+				"animation only accepts a valid animation name, 'none', or a CSS variable referencing an animation"
 				);
-			calculatedRuleValue = calculatedSelector = _value = value;
-			if(isVar(value))
+			calculatedRuleValue = calculatedSelector = _value = v;
+			if(isVar(v))
 			{
-				calculatedRuleValue = fromVar(value);
+				calculatedRuleValue = fromVar(v);
 			}
 			else
 			{
 				var theme:StyleTheme = ThemeManager.instance.activeTheme;
-				switch(value)
+				switch(v)
 				{
 					case "spin":
 						calculatedRuleValue = theme.animateSpin;
@@ -80,6 +80,6 @@ package org.apache.royale.style.stylebeads.anim
 						break;
 				}
 			}
-		}		
+		}
 	}
 }

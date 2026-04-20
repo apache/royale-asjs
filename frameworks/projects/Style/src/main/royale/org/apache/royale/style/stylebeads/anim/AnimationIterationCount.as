@@ -16,16 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.stylebeads.anim
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
 
-	public class InsetInlineStart extends InsetBase
+	public class AnimationIterationCount extends LeafStyleBase
 	{
-		public function InsetInlineStart(value:* = null)
+		public function AnimationIterationCount(value:* = null)
 		{
-			super("inset-inline-start", "inset-inline-start", value);
+			super("iteration", "animation-iteration-count", value);
+		}
+
+		override public function get value():*
+		{
+			return _value;
+		}
+
+		override public function set value(value:*):void
+		{
+			assert(isVar(value) || value == "infinite" || (isInt(value) && value >= 0), "animation-iteration-count only accepts 'infinite', a non-negative integer, or a CSS variable");
+			calculatedRuleValue = calculatedSelector = _value = value;
+			if(isVar(value))
+			{
+				calculatedRuleValue = fromVar(value);
+			}
 		}
 	}
 }

@@ -60,6 +60,7 @@
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
   <component id="Link" class="org.apache.royale.style.Link"/>
   <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
+  <component id="Toast" class="org.apache.royale.style.Toast"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
   <component id="List" class="org.apache.royale.style.List"/>
@@ -73,6 +74,7 @@
   <component id="ListView" class="org.apache.royale.style.beads.ListView"/>
   
   <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>
+  <component id="NotDataState" class="org.apache.royale.style.stylebeads.states.attribute.NotDataState"/>
   <component id="AriaState" class="org.apache.royale.style.stylebeads.states.attribute.AriaState"/>
   <component id="InertState" class="org.apache.royale.style.stylebeads.states.attribute.InertState"/>
   <component id="FocusWithinState" class="org.apache.royale.style.stylebeads.states.FocusWithinState"/>
@@ -88,6 +90,7 @@
   <component id="MarkerState" class="org.apache.royale.style.stylebeads.states.pseudo.MarkerState"/>
   <component id="PlaceholderState" class="org.apache.royale.style.stylebeads.states.pseudo.PlaceholderState"/>
   <component id="SelectionState" class="org.apache.royale.style.stylebeads.states.pseudo.SelectionState"/>
+  <component id="NotState" class="org.apache.royale.style.stylebeads.states.NotState"/>
   <component id="PeerPseudo" class="org.apache.royale.style.stylebeads.states.PeerPseudo"/>
 
   <component id="BackgroundStyle" class="org.apache.royale.style.stylebeads.BackgroundStyle"/>
@@ -143,6 +146,11 @@
   <component id="WordBreak" class="org.apache.royale.style.stylebeads.typography.WordBreak"/>
 
   <component id="Animation" class="org.apache.royale.style.stylebeads.anim.Animation"/>
+  <component id="CustomAnimation" class="org.apache.royale.style.stylebeads.anim.CustomAnimation"/>
+  <component id="Keyframes" class="org.apache.royale.style.stylebeads.anim.Keyframes"/>
+  <component id="AnimationDuration" class="org.apache.royale.style.stylebeads.anim.AnimationDuration"/>
+  <component id="AnimationTimingFunction" class="org.apache.royale.style.stylebeads.anim.AnimationTimingFunction"/>
+  <component id="Transition" class="org.apache.royale.style.stylebeads.anim.Transition"/>
   <component id="TransitionBehavior" class="org.apache.royale.style.stylebeads.anim.TransitionBehavior"/>
   <component id="TransitionDelay" class="org.apache.royale.style.stylebeads.anim.TransitionDelay"/>
   <component id="TransitionDuration" class="org.apache.royale.style.stylebeads.anim.TransitionDuration"/>
@@ -322,5 +330,6 @@
   <component id="StepsSkin" class="org.apache.royale.style.skins.StepsSkin"/>
   <component id="StepSkin" class="org.apache.royale.style.skins.StepSkin"/>
   <component id="IStepSkin" class="org.apache.royale.style.skins.IStepSkin"/>
+  <component id="ToastSkin" class="org.apache.royale.style.skins.ToastSkin"/>
 
 </componentPackage>

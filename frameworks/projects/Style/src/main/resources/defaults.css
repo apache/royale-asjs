@@ -224,3 +224,6 @@ Tree
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+Toast {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToastSkin");
+}

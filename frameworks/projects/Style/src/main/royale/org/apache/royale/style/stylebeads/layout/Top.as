@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Top extends InsetBase
 	{
-		public function Top()
+		public function Top(value:* = null)
 		{
-			super("top", "top");
+			super("top", "top", value);
 		}
 	}
 }

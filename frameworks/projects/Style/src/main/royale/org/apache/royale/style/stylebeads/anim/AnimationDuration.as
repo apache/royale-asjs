@@ -16,16 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.stylebeads.anim
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
 	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.util.ThemeManager;
 
-	public class InsetInlineStart extends InsetBase
+	public class AnimationDuration extends LeafStyleBase
 	{
-		public function InsetInlineStart(value:* = null)
+		public function AnimationDuration(value:* = null)
 		{
-			super("inset-inline-start", "inset-inline-start", value);
+			super("duration", "animation-duration", value);
+		}
+
+		override public function set value(value:*):void
+		{
+			_value = value;
+			assert(value == "default" || isVar(value) || (isInt(value) && value >= 0), "animation-duration only accepts valid CSS variables or non-negative integers representing milliseconds");
+			calculatedSelector = value;
+			if(value == "default")
+				calculatedRuleValue = ThemeManager.instance.activeTheme.defaultTransitionDuration;
+			else
+				calculatedRuleValue = isInt(value) ? value + "ms" : fromVar(value);
 		}
 	}
 }

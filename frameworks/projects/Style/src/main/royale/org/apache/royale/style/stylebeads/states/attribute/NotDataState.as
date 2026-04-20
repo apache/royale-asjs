@@ -16,16 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.layout
+package org.apache.royale.style.stylebeads.states.attribute
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.stylebeads.states.NotState;
 
-	public class InsetInlineStart extends InsetBase
+	/**
+	 * NotDataState is a decorator that adds a :not([data-attribute]) pseudo-class to the rule.
+	 */
+	public class NotDataState extends NotState
 	{
-		public function InsetInlineStart(value:* = null)
+		public function NotDataState(type:String = null, styles:Array = null)
 		{
-			super("inset-inline-start", "inset-inline-start", value);
+			super(null, styles);
+			if(type)
+			{
+				dataType = type;
+			}
+		}
+		private var _dataType:String;
+
+		public function get dataType():String
+		{
+			return _dataType;
+		}
+
+		public function set dataType(value:String):void
+		{
+			_dataType = value;
+			ruleDecorator = "[data-" + value + "]";
+			selectorDecorator = "not-data-" + value + ":";
 		}
 	}
 }
