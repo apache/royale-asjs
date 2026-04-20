@@ -29,6 +29,7 @@
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
   <component id="Textarea" class="org.apache.royale.style.Textarea"/>
+  <component id="Range" class="org.apache.royale.style.Range"/>
   <component id="Divider" class="org.apache.royale.style.Divider"/>
   <component id="Dropdown" class="org.apache.royale.style.Dropdown"/>
   <component id="Tab" class="org.apache.royale.style.Tab"/>
@@ -281,6 +282,7 @@
 
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
   <component id="TextareaSkin" class="org.apache.royale.style.skins.TextareaSkin"/>
+  <component id="RangeSkin" class="org.apache.royale.style.skins.RangeSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
   <component id="LinkSkin" class="org.apache.royale.style.skins.LinkSkin"/>
