@@ -46,6 +46,10 @@ Badge
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
 }
+FileInput
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
