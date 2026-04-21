@@ -25,6 +25,7 @@
   <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
+  <component id="FileInput" class="org.apache.royale.style.FileInput"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
@@ -303,6 +304,7 @@
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
+  <component id="FileInputSkin" class="org.apache.royale.style.skins.FileInputSkin"/>
   <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
   <component id="TabSkin" class="org.apache.royale.style.skins.TabSkin"/>
   <component id="TabBarSkin" class="org.apache.royale.style.skins.TabBarSkin"/>
