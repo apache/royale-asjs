@@ -35,6 +35,9 @@ limitations under the License.
             }
 
             import flexUnitTests.StyleManagerTest;
+            import flexUnitTests.ColorUtilsContrastTest;
+            import flexUnitTests.ColorUtilsContrastFunctionTest;
+            import flexUnitTests.ThemeColorSetTest;
             
             import org.apache.royale.events.Event;
             import org.apache.royale.test.listeners.CIListener;
@@ -91,7 +94,7 @@ limitations under the License.
                 {
                     core.addEventListener(Event.COMPLETE, core_completeHandler);
                     // Insert test classes here. For example:
-                    core.runClasses(StyleManagerTest);
+                    core.runClasses(StyleManagerTest,ColorUtilsContrastFunctionTest,ColorUtilsContrastTest,ThemeColorSetTest);
                 }
             }
 
