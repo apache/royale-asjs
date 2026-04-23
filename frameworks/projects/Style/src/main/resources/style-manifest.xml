@@ -37,6 +37,7 @@
   <component id="CardBody" class="org.apache.royale.style.CardBody"/>
   <component id="CardTitle" class="org.apache.royale.style.CardTitle"/>
   <component id="CardActions" class="org.apache.royale.style.CardActions"/>
+  <component id="Loading" class="org.apache.royale.style.Loading"/>
   <component id="Modal" class="org.apache.royale.style.Modal"/>
   <component id="ModalBody" class="org.apache.royale.style.ModalBody"/>
   <component id="ModalTitle" class="org.apache.royale.style.ModalTitle"/>
@@ -315,6 +316,7 @@
   <component id="CardActionsSkin" class="org.apache.royale.style.skins.CardActionsSkin"/>
   <component id="ToggleSkin" class="org.apache.royale.style.skins.ToggleSkin"/>
   <component id="DropdownSkin" class="org.apache.royale.style.skins.DropdownSkin"/>
+  <component id="LoadingSkin" class="org.apache.royale.style.skins.LoadingSkin"/>
   <component id="ModalSkin" class="org.apache.royale.style.skins.ModalSkin"/>
   <component id="ModalBodySkin" class="org.apache.royale.style.skins.ModalBodySkin"/>
   <component id="ModalTitleSkin" class="org.apache.royale.style.skins.ModalTitleSkin"/>
