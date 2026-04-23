@@ -56,17 +56,37 @@ package org.apache.royale.style.colors
 		COMPILE::JS
 		private const storage:Map = new Map();
 		
-		private const lchLookups:Object = {init:false};
+		private var _includeBlackAndWhite:Boolean = false;
+		public function get includeBlackAndWhite():Boolean{
+			return _includeBlackAndWhite;
+		}
+		public function set includeBlackAndWhite(value:Boolean):void{
+			if (_includeBlackAndWhite != value) {
+				_includeBlackAndWhite = value;
+				// Reset lookups if they were already initialized
+				if (lchLookups.init !== false) {
+					// We need to re-initialize to reflect the change in _includeBlackAndWhite
+					lchLookups = {init:false};
+				}
+			}
+		}
+
+		private var lchLookups:Object = {init:false};
 		private function getLCHLookups():Object{
 			if (lchLookups.init === false) {
 				delete lchLookups.init;
 				var key:String;
-				for each(key in _fieldNames) {
+				var fieldNames:Array = _fieldNames;
+				for each(key in fieldNames) {
 					var baseColor:String = getThemeBaseColor(key);
-					if (baseColor) {
-						var col:uint =ColorSwatch.getColorValue(baseColor);
+					if (baseColor && !lchLookups.hasOwnProperty(baseColor)) {
+						var col:uint = ColorSwatch.getColorValue(baseColor);
 						lchLookups[baseColor] = ColorUtils.rgb_ToOKLCH([(col>>16)&0xff,(col>>8)&0xff,col&0xff])
 					}
+				}
+				if (_includeBlackAndWhite) {
+					lchLookups['black'] = [0,0,0]; // Black L=0, C=0, H=0
+					lchLookups['white'] = [1,0,0]; // White L=1, C=0, H=0
 				}
 			}
 			return lchLookups;
@@ -88,6 +108,10 @@ package org.apache.royale.style.colors
 			//	var valueToSet:Object = exceptions.indexOf(value) == -1 ? ColorSwatch.fromSpecifier(value) : value;
 				COMPILE::JS {
 					storage.set(key,value);
+				}
+				// Clear lookups if theme colors change
+				if (lchLookups.init !== false) {
+					lchLookups = {init:false};
 				}
 			} else {
 				COMPILE::JS {
@@ -187,39 +211,93 @@ package org.apache.royale.style.colors
          * @param limitRange if true then limit lookups to this color set only
          * @return
          */
-		public function findContrastVariant(swatch:String, shade:Number,dark:Boolean, weak:Boolean, limitRange:Boolean=false):ColorSwatch{
-			const lookupKey:String = swatch+'$$'+shade+'$$'+dark+'$$'+weak+'$$';
-
+		public function findContrastVariant(swatch:String,shade:Number,dark:Boolean,weak:Boolean,limitRange:Boolean = false):ColorSwatch
+		{
+			const lookupKey:String = swatch + "$$" + shade + "$$" + dark + "$$" + weak + "$$" + limitRange;
+			
+			// Cached?
 			var existing:String = contrastLookupSpecifiers[lookupKey];
-			if (existing) {
-				
+			if (existing)
 				return ColorSwatch.fromSpecifier(existing);
-			}
+			
+			// Resolve base color
 			var base:Object = ColorSwatch.getColorValue(swatch) || CSSLookup.getProperty(swatch);
 			var baseColor:uint = CSSUtils.toColor(base);
-			shade = Math.round(shade/10);
-			var colorVals:Array = ColorUtils.getVariation(baseColor,shade,dark);
-			var bgLch:Array = ColorUtils.rgb_ToOKLCH(colorVals);
-			var L:Number = bgLch[0];
-
-		//	var wantLight:Boolean = (ColorUtils.contrast([255,255,255], colorVals) < ColorUtils.contrast([0,0,0], colorVals));
-			var wantLight:Boolean = (L < .62);
 			
-			// Strong or weak contrast?
-			var targetLch:Array = ColorUtils.generateContrastLCH(bgLch, wantLight);
-			if (weak) {
-				// Weak contrast = reduce chroma + move L slightly toward bg
-				targetLch[1] *= 0.4;     // reduce chroma
-				targetLch[0] = (targetLch[0] + L) * 0.5; // blend toward background
+			// Tailwind-like shade rounding
+			shade = Math.round(shade / 10);
+			
+			// Background RGB for contrast measurement
+			var bgRgb:Array = ColorUtils.getVariation(baseColor, shade, dark);
+			
+			// Background OKLCH
+			var bgLch:Array = ColorUtils.rgb_ToOKLCH(bgRgb);
+			var bgL:Number = bgLch[0];
+			
+			// Decide whether we want a light or dark foreground
+			// (L threshold is more stable than RGB contrast heuristic)
+			var wantLight:Boolean = (bgL < ColorUtils.WANT_LIGHT_THRESHOLD);
+			
+			// --- STEP 1: Try hue‑preserving OKLCH contrast first ---
+			var fgLch:Array = ColorUtils.generateContrastLCH(bgLch, wantLight);
+			var fgRgb:Array = ColorUtils.oklch_ToRGB(fgLch);
+			
+			// --- STEP 2: If weak contrast requested, soften the LCH result ---
+			if (weak)
+			{
+				// Reduce chroma
+				fgLch[1] *= 0.40;
+				
+				// Blend L halfway back toward background
+				fgLch[0] = (fgLch[0] + bgL) * 0.50;
+				
+				// Recompute RGB after weak adjustment
+				fgRgb = ColorUtils.oklch_ToRGB(fgLch);
 			}
 			
-			var fg:Array = targetLch;
-			colorVals = ColorUtils.oklch_ToRGB(fg);
+			// --- STEP 3: If contrast < 4.5, fallback to guaranteed RGB contrast ---
+			if (!weak) // weak contrast is allowed to be < 4.5
+			{
+				if (ColorUtils.contrast(fgRgb, bgRgb) < 4.5)
+				{
+					// WCAG contrast is not guaranteed (may be black or white)
+					if (wantLight)
+						fgRgb = [255,255,255];
+					else
+						fgRgb = [0,0,0];
+					
+				}
+			}
+			
+			// --- STEP 4: Snap to theme palette if requested ---
 			var lookups:Object = limitRange ? getLCHLookups() : null;
-			var ret:ColorSwatch = ColorSwatch.estimateFromRGB(colorVals,lookups);
-			contrastLookupSpecifiers[lookupKey] = ret.toString()
+			
+			// If we are NOT limiting range, we should still use a global lookup 
+			// that EXCLUDES black and white unless explicitly asked? 
+			// Actually, ColorSwatch.estimateFromRGB uses global lookups that DO NOT include black/white now.
+			
+			var result:ColorSwatch = ColorSwatch.estimateFromRGB(fgRgb, lookups);
+			
+			// If includeBlackAndWhite is enabled and we wanted light/dark, check if black/white would be a better fit
+			// than what estimateFromRGB returned, especially if it didn't snap to black/white but should have.
+			if (_includeBlackAndWhite && limitRange) {
+				if (wantLight && result.colorBase != "white") {
+					// Check if white is actually better
+					if (ColorUtils.contrast([255,255,255], bgRgb) > ColorUtils.contrast(result.getRGB(), bgRgb)) {
+						result = new ColorSwatch("white", 0);
+					}
+				} else if (!wantLight && result.colorBase != "black") {
+					// Check if black is actually better
+					if (ColorUtils.contrast([0,0,0], bgRgb) > ColorUtils.contrast(result.getRGB(), bgRgb)) {
+						result = new ColorSwatch("black", 0);
+					}
+				}
+			}
 
-			return ret;
+			// Cache
+			contrastLookupSpecifiers[lookupKey] = result.toString();
+			
+			return result;
 		}
 		
 		public function fromJSON(obj:Object):void{
@@ -231,6 +309,9 @@ package org.apache.royale.style.colors
 						break;
 					case '_baseContentWeak':
 						_baseContentWeak = obj[key];
+						break;
+					case 'includeBlackAndWhite':
+						includeBlackAndWhite = obj[key];
 						break;
 					default:
 						setThemeColor(key,obj[key]);
@@ -249,6 +330,7 @@ package org.apache.royale.style.colors
 				}
 				obj['_baseContent'] = _baseContent;
 				obj['_baseContentWeak'] = _baseContentWeak;
+				obj['includeBlackAndWhite'] = _includeBlackAndWhite;
 			}
 			return obj;
 		}
