@@ -40,6 +40,12 @@ package org.apache.royale.style.stylebeads.anim
 		override public function set value(value:*):void
 		{
 			_value = value;
+			/*if(value == null)
+			{
+				calculatedSelector = null;
+				calculatedRuleValue = null;
+				return;
+			}*/
 			switch(value)
 			{
 				case "default":

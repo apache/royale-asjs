@@ -24,6 +24,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.IStyleUIBase;
 	import org.apache.royale.style.Icon;
 	import org.apache.royale.style.stylebeads.interact.PointerEvents;
+	import org.apache.royale.style.stylebeads.interact.UserSelect;
 	import org.apache.royale.style.stylebeads.sizing.HeightStyle;
 	import org.apache.royale.style.stylebeads.sizing.WidthStyle;
 	import org.apache.royale.style.colors.ThemeColorSet;
@@ -115,6 +116,7 @@ package org.apache.royale.style.skins
 					padding,
 					new TextSize("sm"),
 					new FontWeight("semibold"),
+					new UserSelect('none'),
 					new DataState('disabled',[
 						new Cursor("default"),
 						new TextColor(ThemeManager.instance.activeTheme.themeColorSet.getSwatch(ThemeColorSet.NEUTRAL,200)),

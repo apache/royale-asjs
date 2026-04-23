@@ -50,6 +50,7 @@ package org.apache.royale.style.stylebeads.anim
 
 		override public function set value(v:*):void
 		{
+			_value = v;
 			assert(
 				isVar(v) || v == "none" || (v is String && v.length > 0),
 				"animation only accepts a valid animation name, 'none', or a CSS variable referencing an animation"
