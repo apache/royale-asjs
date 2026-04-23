@@ -62,6 +62,7 @@
   <component id="Link" class="org.apache.royale.style.Link"/>
   <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
   <component id="Toast" class="org.apache.royale.style.Toast"/>
+  <component id="Tooltip" class="org.apache.royale.style.Tooltip"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
   <component id="List" class="org.apache.royale.style.List"/>
@@ -333,5 +334,7 @@
   <component id="StepSkin" class="org.apache.royale.style.skins.StepSkin"/>
   <component id="IStepSkin" class="org.apache.royale.style.skins.IStepSkin"/>
   <component id="ToastSkin" class="org.apache.royale.style.skins.ToastSkin"/>
+  <component id="TooltipSkin" class="org.apache.royale.style.skins.TooltipSkin"/>
+  <component id="ITooltipSkin" class="org.apache.royale.style.skins.ITooltipSkin"/>
 
 </componentPackage>

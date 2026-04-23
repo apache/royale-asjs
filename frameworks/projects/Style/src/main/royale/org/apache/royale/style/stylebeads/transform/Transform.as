@@ -29,6 +29,12 @@ package org.apache.royale.style.stylebeads.transform
 		}
 		override public function set value(value:*):void
 		{
+			if(value == null)
+			{
+				_value = null;
+				calculateValue();
+				return;
+			}
 			assert(isVar(value) || value == "none", "Invalid value for transform: " + value);
 			calculatedSelector = calculatedRuleValue = _value = value;
 			if(isVar(value))

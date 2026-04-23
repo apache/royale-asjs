@@ -231,3 +231,6 @@ Tree
 Toast {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToastSkin");
 }
+Tooltip {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TooltipSkin");
+}
