@@ -336,5 +336,9 @@
   <component id="ToastSkin" class="org.apache.royale.style.skins.ToastSkin"/>
   <component id="TooltipSkin" class="org.apache.royale.style.skins.TooltipSkin"/>
   <component id="ITooltipSkin" class="org.apache.royale.style.skins.ITooltipSkin"/>
+  
+  
+  <component id="TooltipBead" class="org.apache.royale.style.beads.TooltipBead"/>
+  <component id="AdaptiveTooltipBead" class="org.apache.royale.style.beads.AdaptiveTooltipBead"/>
 
 </componentPackage>

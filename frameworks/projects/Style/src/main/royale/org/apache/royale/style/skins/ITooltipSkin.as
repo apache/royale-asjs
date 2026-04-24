@@ -26,5 +26,8 @@ package org.apache.royale.style.skins
 		function get tooltipContentStyles():Array;
 		function get tipStyles():Array;
 		function getIcon(flavor:String):IStyleUIBase;
+		
+		function getExtraHeight():Number;
+		function getExtraWidth():Number;
 	}
 }
