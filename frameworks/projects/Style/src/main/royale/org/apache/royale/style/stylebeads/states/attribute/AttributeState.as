@@ -23,6 +23,10 @@ package org.apache.royale.style.stylebeads.states.attribute
 
 	public class AttributeState extends LeafDecorator
 	{
+		override public function get isGroup():Boolean
+		{
+			return true;
+		}
 		public function AttributeState(attribute:String = null, styles:Array = null)
 		{
 			super(styles);
