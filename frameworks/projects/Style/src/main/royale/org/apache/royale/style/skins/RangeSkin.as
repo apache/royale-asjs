@@ -61,9 +61,10 @@ package org.apache.royale.style.skins
 			super.strand = value;
 			if (_styles)
 				return;
+			var size:String = computeSize(400, host.unit);
 			_styles = [
-					new WidthStyle("400px"),
-					new MinWidth("400px"),
+					new WidthStyle(size),
+					new MinWidth(size),
 				];
 			host.setStyles(_styles);
 		}
@@ -106,9 +107,9 @@ package org.apache.royale.style.skins
 			var fillColor:ColorSwatch = (host.theme && host.theme != "default") ? colorSet.getSwatch(host.theme, 500) : colorSet.getSwatch(ThemeColorSet.NEUTRAL, 900);
 			var disabledFillColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
 			var boxShadowColor:ColorSwatch = (host.theme && host.theme != "default") ? colorSet.getSwatch(host.theme, 200) : colorSet.getSwatch(ThemeColorSet.NEUTRAL, 500);
-			var size:Object = getRangeSize();
+			var size:Number = getMultiplier();
 			_fillStyles = [
-					new HeightStyle(size.trackHeight),
+					new HeightStyle(computeSize(size, host.unit)),
 					new BorderRadius("full"),
 					new BackgroundColor(fillColor),
 					new BoxShadow(boxShadowColor.colorSpecifier),
@@ -138,20 +139,19 @@ package org.apache.royale.style.skins
 			var borderColor:ColorSwatch = (host.theme && host.theme != "default") ? colorSet.getSwatch(host.theme, 500) : colorSet.getSwatch(ThemeColorSet.NEUTRAL, 900);
 			var disabledBorderColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
 			var disabledBackgroundColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 100, 50);
-			var size:Object = getRangeSize();
+			var size:Number = getMultiplier();
 			var handleMargin:Margin = new Margin();
-			handleMargin.left = size.handleMargin;
-			handleMargin.right = size.handleMargin;
-
+			handleMargin.left = handleMargin.right = computeSize(size*-0.5, host.unit);
+			var borderWidth:Number = size == 5 ? 1:2;
 			_handleStyles = [
 					new Position("relative"),
 					new ZIndex(10),
 					handleMargin,
-					new HeightStyle(size.handleSize),
-					new WidthStyle(size.handleSize),
+					new HeightStyle(computeSize(size, host.unit)),
+					new WidthStyle(computeSize(size, host.unit)),
 					new FlexShrink(0),
 					new BorderRadius("full"),
-					new BorderWidth(size.borderWidth),
+					new BorderWidth(computeSize(borderWidth, host.unit)),
 					new BorderColor(borderColor),
 					new BackgroundColor("white"),
 					new GroupPseudo([
@@ -180,10 +180,9 @@ package org.apache.royale.style.skins
 			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
 			var emptyColor:ColorSwatch = (host.theme && host.theme != "default") ? colorSet.getSwatch(host.theme, 100) : colorSet.getSwatch(ThemeColorSet.NEUTRAL, 200);
 			var disabledColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
-
-			var size:Object = getRangeSize();
+			var size:Number = getMultiplier();
 			_emptyStyles = [
-					new HeightStyle(size.trackHeight),
+					new HeightStyle(computeSize(size, host.unit)),
 					new BorderRadius("full"),
 					new BackgroundColor(emptyColor),
 					new GroupPseudo([
@@ -217,24 +216,24 @@ package org.apache.royale.style.skins
 					new WidthStyle("100%")
 				];
 		}
-		private function getRangeSize():Object
+		private function getMultiplier():Number
 		{
 			switch (host.size)
 			{
 				case "xs":
-					return {trackHeight: "0.3125rem", handleSize: "0.3125rem", handleMargin: "-0.15625rem", borderWidth: "1px"};
+					return 5;
 				case "sm":
-					return {trackHeight: "0.375rem", handleSize: "0.375rem", handleMargin: "-0.1875rem", borderWidth: "2px"};
+					return 6;
 				case "md":
-					return {trackHeight: "0.55rem", handleSize: "0.55rem", handleMargin: "-0.275rem", borderWidth: "2px"};
+					return 8.8;
 				case "lg":
-					return {trackHeight: "0.75rem", handleSize: "0.75rem", handleMargin: "-0.375rem", borderWidth: "2px"};
+					return 12;
 				case "xl":
-					return {trackHeight: "1rem", handleSize: "1rem", handleMargin: "-0.5rem", borderWidth: "2px"};
+					return 16;
 				case "2xl":
-					return {trackHeight: "1.25rem", handleSize: "1.25rem", handleMargin: "-0.625rem", borderWidth: "2px"};
+					return 20;
 				default:
-					return {trackHeight: "0.5rem", handleSize: "0.5rem", handleMargin: "-0.25rem", borderWidth: "2px"};
+					return 8.8;
 			}
 		}
 	}
