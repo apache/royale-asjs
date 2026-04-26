@@ -31,22 +31,6 @@
             }
         ]]>
     </fx:Script>
-    <fx:Style>
-        @namespace s "library://ns.apache.org/royale/style";
-        s|Tab
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabSkin");
-        }
-        s|TabBar
-        {
-            IStyleSkin: ClassReference("org.apache.royale.style.skins.TabBarSkin");
-        }
-        s|View
-        {
-            IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
-            IBeadLayout: ClassReference("org.apache.royale.style.beads.FlexLayout");
-        }
-    </fx:Style>
 
     <s:initialView>
     <s:View>

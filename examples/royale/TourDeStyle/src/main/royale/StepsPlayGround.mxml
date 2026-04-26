@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.apache.org/royale/style"
+               xmlns:e="library://ns.apache.org/royale/style-elements">
+
+    <s:initialView>
+    <s:View>
+    <s:FlexContainer vertical="true" gap="24">
+
+        <!-- Horizontal steps -->
+        <e:Div text="Horizontal — First two steps completed, last two pending." />
+        <s:Steps>
+            <s:Step text="Register" content="1" completed="true" />
+            <s:Step text="Choose plan" content="2" completed="true" />
+            <s:Step text="Purchase" content="3" />
+            <s:Step text="Receive Product" content="4" />
+        </s:Steps>
+
+        <!-- Vertical steps -->
+        <e:Div text="Vertical — Same four steps in vertical layout." />
+        <s:Steps vertical="true">
+            <s:Step text="Register" content="1" completed="true" />
+            <s:Step text="Choose plan" content="2" completed="true" />
+            <s:Step text="Purchase" content="3" />
+            <s:Step text="Receive Product" content="4" />
+        </s:Steps>
+
+        <!-- Custom content -->
+        <e:Div text="Custom Content — Symbols instead of numbers in circles." />
+        <s:Steps>
+            <s:Step text="Step 1" content="?" completed="true" />
+            <s:Step text="Step 2" content="!" completed="true" />
+            <s:Step text="Step 3" content="✓" completed="true" />
+            <s:Step text="Step 4" content="✕" />
+            <s:Step text="Step 5" content="★" />
+        </s:Steps>
+
+        <!-- Sizes -->
+        <e:Div text="Sizes — sm, md (default), and lg." />
+        <s:Steps>
+            <s:Step text="Register" content="1" size="sm" completed="true" />
+            <s:Step text="Choose plan" content="2" size="sm" completed="true" />
+            <s:Step text="Purchase" content="3" size="sm" />
+            <s:Step text="Receive Product" content="4" size="sm" />
+        </s:Steps>
+        <s:Steps>
+            <s:Step text="Register" content="1" completed="true" />
+            <s:Step text="Choose plan" content="2" completed="true" />
+            <s:Step text="Purchase" content="3" />
+            <s:Step text="Receive Product" content="4" />
+        </s:Steps>
+        <s:Steps>
+            <s:Step text="Register" content="1" size="lg" completed="true" />
+            <s:Step text="Choose plan" content="2" size="lg" completed="true" />
+            <s:Step text="Purchase" content="3" size="lg" />
+            <s:Step text="Receive Product" content="4" size="lg" />
+        </s:Steps>
+
+    </s:FlexContainer>
+    </s:View>
+    </s:initialView>
+
+</s:Application>

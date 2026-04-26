@@ -34,6 +34,9 @@ Accordion
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSkin");
 }
+Radio{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RadioSkin");
+}
 AccordionSection
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSectionSkin");
@@ -45,6 +48,10 @@ AccordionContent
 Badge
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
+}
+FileInput
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
 }
 View
 {
@@ -114,6 +121,46 @@ PaginationItem
 Toggle
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
+}
+Navbar
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarSkin");
+}
+NavbarStart
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarStartSkin");
+}
+NavbarCenter
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarCenterSkin");
+}
+NavbarEnd
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarEndSkin");
+}
+Menu
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuSkin");
+}
+MenuItem
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuItemSkin");
+}
+MenuTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuTitleSkin");
+}
+MenuDetails
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuDetailsSkin");
+}
+Steps
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepsSkin");
+}
+Step
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepSkin");
 }
 
 DataItemRenderer
@@ -188,3 +235,9 @@ Tree
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+Toast {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToastSkin");
+}
+Tooltip {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TooltipSkin");
+}

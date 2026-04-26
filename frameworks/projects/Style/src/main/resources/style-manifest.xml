@@ -24,7 +24,9 @@
   <component id="AccordionSection" class="org.apache.royale.style.AccordionSection"/>
   <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
+  <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
+  <component id="FileInput" class="org.apache.royale.style.FileInput"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
@@ -43,6 +45,16 @@
   <component id="ModalActions" class="org.apache.royale.style.ModalActions"/>
   <component id="Pagination" class="org.apache.royale.style.Pagination"/>
   <component id="PaginationItem" class="org.apache.royale.style.PaginationItem"/>
+  <component id="Navbar" class="org.apache.royale.style.Navbar"/>
+  <component id="NavbarStart" class="org.apache.royale.style.NavbarStart"/>
+  <component id="NavbarCenter" class="org.apache.royale.style.NavbarCenter"/>
+  <component id="NavbarEnd" class="org.apache.royale.style.NavbarEnd"/>
+  <component id="Menu" class="org.apache.royale.style.Menu"/>
+  <component id="MenuItem" class="org.apache.royale.style.MenuItem"/>
+  <component id="MenuTitle" class="org.apache.royale.style.MenuTitle"/>
+  <component id="MenuDetails" class="org.apache.royale.style.MenuDetails"/>
+  <component id="Steps" class="org.apache.royale.style.Steps"/>
+  <component id="Step" class="org.apache.royale.style.Step"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
@@ -51,6 +63,8 @@
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
   <component id="Link" class="org.apache.royale.style.Link"/>
   <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
+  <component id="Toast" class="org.apache.royale.style.Toast"/>
+  <component id="Tooltip" class="org.apache.royale.style.Tooltip"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
   <component id="List" class="org.apache.royale.style.List"/>
@@ -64,6 +78,7 @@
   <component id="ListView" class="org.apache.royale.style.beads.ListView"/>
   
   <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>
+  <component id="NotDataState" class="org.apache.royale.style.stylebeads.states.attribute.NotDataState"/>
   <component id="AriaState" class="org.apache.royale.style.stylebeads.states.attribute.AriaState"/>
   <component id="InertState" class="org.apache.royale.style.stylebeads.states.attribute.InertState"/>
   <component id="FocusWithinState" class="org.apache.royale.style.stylebeads.states.FocusWithinState"/>
@@ -79,6 +94,7 @@
   <component id="MarkerState" class="org.apache.royale.style.stylebeads.states.pseudo.MarkerState"/>
   <component id="PlaceholderState" class="org.apache.royale.style.stylebeads.states.pseudo.PlaceholderState"/>
   <component id="SelectionState" class="org.apache.royale.style.stylebeads.states.pseudo.SelectionState"/>
+  <component id="NotState" class="org.apache.royale.style.stylebeads.states.NotState"/>
   <component id="PeerPseudo" class="org.apache.royale.style.stylebeads.states.PeerPseudo"/>
 
   <component id="BackgroundStyle" class="org.apache.royale.style.stylebeads.BackgroundStyle"/>
@@ -134,6 +150,11 @@
   <component id="WordBreak" class="org.apache.royale.style.stylebeads.typography.WordBreak"/>
 
   <component id="Animation" class="org.apache.royale.style.stylebeads.anim.Animation"/>
+  <component id="CustomAnimation" class="org.apache.royale.style.stylebeads.anim.CustomAnimation"/>
+  <component id="Keyframes" class="org.apache.royale.style.stylebeads.anim.Keyframes"/>
+  <component id="AnimationDuration" class="org.apache.royale.style.stylebeads.anim.AnimationDuration"/>
+  <component id="AnimationTimingFunction" class="org.apache.royale.style.stylebeads.anim.AnimationTimingFunction"/>
+  <component id="Transition" class="org.apache.royale.style.stylebeads.anim.Transition"/>
   <component id="TransitionBehavior" class="org.apache.royale.style.stylebeads.anim.TransitionBehavior"/>
   <component id="TransitionDelay" class="org.apache.royale.style.stylebeads.anim.TransitionDelay"/>
   <component id="TransitionDuration" class="org.apache.royale.style.stylebeads.anim.TransitionDuration"/>
@@ -280,6 +301,7 @@
   <component id="Translate" class="org.apache.royale.style.stylebeads.transform.Translate"/>
 
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
+  <component id="RadioSkin" class="org.apache.royale.style.skins.RadioSkin"/>
   <component id="TextareaSkin" class="org.apache.royale.style.skins.TextareaSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
@@ -287,6 +309,7 @@
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
+  <component id="FileInputSkin" class="org.apache.royale.style.skins.FileInputSkin"/>
   <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
   <component id="TabSkin" class="org.apache.royale.style.skins.TabSkin"/>
   <component id="TabBarSkin" class="org.apache.royale.style.skins.TabBarSkin"/>
@@ -302,5 +325,24 @@
   <component id="ModalActionsSkin" class="org.apache.royale.style.skins.ModalActionsSkin"/>
   <component id="PaginationSkin" class="org.apache.royale.style.skins.PaginationSkin"/>
   <component id="PaginationItemSkin" class="org.apache.royale.style.skins.PaginationItemSkin"/>
+  <component id="NavbarSkin" class="org.apache.royale.style.skins.NavbarSkin"/>
+  <component id="NavbarStartSkin" class="org.apache.royale.style.skins.NavbarStartSkin"/>
+  <component id="NavbarCenterSkin" class="org.apache.royale.style.skins.NavbarCenterSkin"/>
+  <component id="NavbarEndSkin" class="org.apache.royale.style.skins.NavbarEndSkin"/>
+  <component id="MenuSkin" class="org.apache.royale.style.skins.MenuSkin"/>
+  <component id="MenuItemSkin" class="org.apache.royale.style.skins.MenuItemSkin"/>
+  <component id="MenuTitleSkin" class="org.apache.royale.style.skins.MenuTitleSkin"/>
+  <component id="MenuDetailsSkin" class="org.apache.royale.style.skins.MenuDetailsSkin"/>
+  <component id="IMenuDetailsSkin" class="org.apache.royale.style.skins.IMenuDetailsSkin"/>
+  <component id="StepsSkin" class="org.apache.royale.style.skins.StepsSkin"/>
+  <component id="StepSkin" class="org.apache.royale.style.skins.StepSkin"/>
+  <component id="IStepSkin" class="org.apache.royale.style.skins.IStepSkin"/>
+  <component id="ToastSkin" class="org.apache.royale.style.skins.ToastSkin"/>
+  <component id="TooltipSkin" class="org.apache.royale.style.skins.TooltipSkin"/>
+  <component id="ITooltipSkin" class="org.apache.royale.style.skins.ITooltipSkin"/>
+  
+  
+  <component id="TooltipBead" class="org.apache.royale.style.beads.TooltipBead"/>
+  <component id="AdaptiveTooltipBead" class="org.apache.royale.style.beads.AdaptiveTooltipBead"/>
 
 </componentPackage>

@@ -29,6 +29,7 @@ internal class RoyaleUnitClasses
 	import org.apache.royale.test.Assert;Assert;
 	import org.apache.royale.test.AssertionError;AssertionError;
 	import org.apache.royale.test.RoyaleUnitCore;RoyaleUnitCore;
+	import org.apache.royale.test.asserts.assertCloseTo;assertCloseTo;
 	import org.apache.royale.test.asserts.assertEquals;assertEquals;
 	import org.apache.royale.test.asserts.assertFalse;assertFalse;
 	import org.apache.royale.test.asserts.assertNotEquals;assertNotEquals;
