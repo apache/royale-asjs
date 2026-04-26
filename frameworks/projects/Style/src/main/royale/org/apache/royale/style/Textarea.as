@@ -31,58 +31,6 @@ package org.apache.royale.style
             super();
         }
 
-        private var _placeholder:String;
-        COMPILE::JS
-        public function set placeholder(value:String):void
-        {
-            _placeholder = value;
-            {
-                if (element)
-                    element["placeholder"] = value;
-            }
-        }
-
-        private var _readonly:Boolean;
-
-        public function get readonly():Boolean
-        {
-            return _readonly;
-        }
-
-        COMPILE::JS
-        public function set readonly(value:Boolean):void
-        {
-            {
-                if (value != !!_readonly)
-                {
-                    element["readOnly"] = value;
-                }
-            }
-            _readonly = value;
-        }
-        COMPILE::JS
-        public function get required():Boolean
-        {
-            return element["required"];
-        }
-
-        COMPILE::JS
-        public function set required(value:Boolean):void
-        {
-            element["required"] = value;
-        }
-        COMPILE::JS
-        public function get invalid():Boolean
-        {
-            return !element["validity"]["valid"];
-        }
-
-        COMPILE::JS
-        public function set invalid(value:Boolean):void
-        {
-            element["invalid"] = value;
-            element["setCustomValidity"](value ? "invalid" : "");
-        }
 
         public function get minlength():String
         {
