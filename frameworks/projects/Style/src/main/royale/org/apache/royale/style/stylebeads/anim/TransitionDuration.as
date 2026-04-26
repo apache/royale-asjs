@@ -30,15 +30,53 @@ package org.apache.royale.style.stylebeads.anim
 			super("duration", "transition-duration", value);
 		}
 
-		override public function set value(value:*):void
+		override public function set value(val:*):void
 		{
-			_value = value;
-			assert(value == "default" || isVar(value) || (isInt(value) && value >= 0), "transition-duration only accepts valid CSS variables or non-negative integers representing milliseconds");
-			calculatedSelector = value;
-			if(value == "default")
+			_value = val;
+			if(val == "default")
+			{
+				calculatedSelector = val;
 				calculatedRuleValue = ThemeManager.instance.activeTheme.defaultTransitionDuration;
+			}
+			else if(isVar(val))
+			{
+				calculatedSelector = val;
+				calculatedRuleValue = fromVar(val);
+			}
+			else if(isInt(val))
+			{
+				assert(val >= 0, "transition-duration only accepts non-negative integers representing milliseconds");
+				calculatedSelector = val;
+				calculatedRuleValue = val + "ms";
+			}
+			else if(val is String)
+			{
+				// Handle comma separated durations like '130ms, 130ms, 0s'
+				var durations:Array = (val as String).split(",");
+				var formattedDurations:Array = [];
+				for (var i:int = 0; i < durations.length; i++)
+				{
+					var duration:String = durations[i].trim();
+					// If it's a number, assume it's milliseconds and add the unit
+					if (isInt(duration))
+					{
+						formattedDurations.push(duration + "ms");
+					}
+					else
+					{
+						// Assume it already has a unit (ms, s) or it's a variable
+						var resolved:String = acceptVar(duration);
+						assert(resolved, "transition-duration only accepts valid CSS variables, non-negative integers representing milliseconds, or a comma-separated sequence of durations");
+						formattedDurations.push(resolved);
+					}
+				}
+				calculatedSelector = (val as String).replace(/,/g, "-").replace(/\s/g, "");
+				calculatedRuleValue = formattedDurations.join(", ");
+			}
 			else
-				calculatedRuleValue = isInt(value) ? value + "ms" : fromVar(value);
+			{
+				assert(false, "transition-duration only accepts valid CSS variables, non-negative integers representing milliseconds, or a comma-separated sequence of durations");
+			}
 		}
 	}
 }

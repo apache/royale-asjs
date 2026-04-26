@@ -134,7 +134,7 @@ package org.apache.royale.style.skins
 				])
 			].concat(layoutStyles);
 			
-			host.setStyles(_styles, true);
+			host.setStyles(_styles);
 		}
 		private function getMultiplier():Number
 		{
@@ -281,8 +281,9 @@ package org.apache.royale.style.skins
 				var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
 				var enabledColor:ColorSwatch = colorSet.getContrastSwatch(colorSet.getSwatch(ThemeColorSet.PRIMARY,500));
 				//weak contrast against disabled fill:
-				var disabledFillColor:ColorSwatch  = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
-				var disabledColor:ColorSwatch = colorSet.getWeakContrastSwatch(disabledFillColor);
+		//		var disabledFillColor:ColorSwatch  = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
+		//		var disabledColor:ColorSwatch = colorSet.getWeakContrastSwatch(disabledFillColor);
+				var disabledColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 300,50);
 				
 				_checkIcon = new Div();
 				var size:Number = 16 * getMultiplier();
@@ -348,8 +349,10 @@ package org.apache.royale.style.skins
 			if(!_indeterminateIcon){
 				var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
 				var enabledColor:ColorSwatch = colorSet.getContrastSwatch(colorSet.getSwatch(ThemeColorSet.PRIMARY,500));
-				var disabledFillColor:ColorSwatch  = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
-				var disabledColor:ColorSwatch = colorSet.getWeakContrastSwatch(disabledFillColor);
+			//	var disabledFillColor:ColorSwatch  = colorSet.getSwatch(ThemeColorSet.BASE, 200, 50);
+			//	var disabledColor:ColorSwatch = colorSet.getWeakContrastSwatch(disabledFillColor);
+				
+				var disabledColor:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 300,50);
 				
 				_indeterminateIcon = new Div();
 				var size:Number = 16 * getMultiplier();

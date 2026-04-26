@@ -29,7 +29,7 @@ package org.apache.royale.style.stylebeads.typography
 		{
 			super("font-size", "font-size", value);
 		}
-		[Inspectable(category="General", enumeration="xs,sm,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl", defaultValue="base")]
+		[Inspectable(category="General", enumeration="xs,sm,md,base,lg,xl,2xl,3xl,4xl,5xl,6xl,7xl,8xl,9xl", defaultValue="base")]
 		override public function set value(value:*):void
 		{
 			calculatedSelector =  _value = value;
@@ -44,6 +44,7 @@ package org.apache.royale.style.stylebeads.typography
 					"xs": theme.textXS,
 					"sm": theme.textSM,
 					"base": theme.textBase,
+					"md": theme.textBase,
 					"lg": theme.textLG,
 					"xl": theme.textXL,
 					"2xl": theme.text2XL,

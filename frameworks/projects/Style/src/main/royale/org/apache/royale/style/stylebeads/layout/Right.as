@@ -22,9 +22,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Right extends InsetBase
 	{
-		public function Right()
+		public function Right(value:* = null)
 		{
-			super("right", "right");
+			super("right", "right", value);
 		}
 	}
 }

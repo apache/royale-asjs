@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.layout
 {
 	public class Bottom extends InsetBase
 	{
-		public function Bottom()
+		public function Bottom(value:* = null)
 		{
-			super("bottom", "bottom");
+			super("bottom", "bottom", value);
 		}
 	}
 }

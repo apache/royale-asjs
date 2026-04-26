@@ -20,7 +20,6 @@ package org.apache.royale.style.colors
 {
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.utils.CSSUtils;
-	
 	import org.apache.royale.debugging.assert;
 
 	public class ThemeColorSet
@@ -56,6 +55,42 @@ package org.apache.royale.style.colors
 
 		COMPILE::JS
 		private const storage:Map = new Map();
+		
+		private var _includeBlackAndWhite:Boolean = false;
+		public function get includeBlackAndWhite():Boolean{
+			return _includeBlackAndWhite;
+		}
+		public function set includeBlackAndWhite(value:Boolean):void{
+			if (_includeBlackAndWhite != value) {
+				_includeBlackAndWhite = value;
+				// Reset lookups if they were already initialized
+				if (lchLookups.init !== false) {
+					// We need to re-initialize to reflect the change in _includeBlackAndWhite
+					lchLookups = {init:false};
+				}
+			}
+		}
+
+		private var lchLookups:Object = {init:false};
+		private function getLCHLookups():Object{
+			if (lchLookups.init === false) {
+				delete lchLookups.init;
+				var key:String;
+				var fieldNames:Array = _fieldNames;
+				for each(key in fieldNames) {
+					var baseColor:String = getThemeBaseColor(key);
+					if (baseColor && !lchLookups.hasOwnProperty(baseColor)) {
+						var col:uint = ColorSwatch.getColorValue(baseColor);
+						lchLookups[baseColor] = ColorUtils.rgb_ToOKLCH([(col>>16)&0xff,(col>>8)&0xff,col&0xff])
+					}
+				}
+				if (_includeBlackAndWhite) {
+					lchLookups['black'] = [0,0,0]; // Black L=0, C=0, H=0
+					lchLookups['white'] = [1,0,0]; // White L=1, C=0, H=0
+				}
+			}
+			return lchLookups;
+		}
 
 		/**
 		 * Subclasses must specify colorBase before calling this constructor.
@@ -73,6 +108,10 @@ package org.apache.royale.style.colors
 			//	var valueToSet:Object = exceptions.indexOf(value) == -1 ? ColorSwatch.fromSpecifier(value) : value;
 				COMPILE::JS {
 					storage.set(key,value);
+				}
+				// Clear lookups if theme colors change
+				if (lchLookups.init !== false) {
+					lchLookups = {init:false};
 				}
 			} else {
 				COMPILE::JS {
@@ -146,54 +185,119 @@ package org.apache.royale.style.colors
 		}
 		
 		public function getContrastSwatch(original:ColorSwatch):ColorSwatch{
-			var swatch:String = original.colorBase;
-			var shade:Number = original.colorShade;
-			var opacity:Number = original.colorOpacity;
-			var dark:Boolean = original.dark;
-			var nameVariant:String = swatch+'-contrast';
-			if (!CSSLookup.has(nameVariant)) {
-				registerContrastVariant(nameVariant,swatch,shade,dark,false);
+			var result:ColorSwatch = findContrastVariant(original.colorBase,original.colorShade,original.dark,false, true);
+			if (original.colorOpacity != 100) {
+				result = result.getVariant(NaN,original.colorOpacity);
 			}
-			return new ColorSwatch(nameVariant,500,opacity,dark);
+			return result
 		}
 		
 		public function getWeakContrastSwatch(original:ColorSwatch):ColorSwatch{
-			var swatch:String = original.colorBase;
-			var shade:Number = original.colorShade;
-			var opacity:Number = original.colorOpacity;
-			var dark:Boolean = original.dark;
-			var nameVariant:String = swatch+'-contrast-weak';
-			if (!CSSLookup.has(nameVariant)) {
-				registerContrastVariant(nameVariant,swatch,shade,dark,true);
+			var result:ColorSwatch = findContrastVariant(original.colorBase,original.colorShade,original.dark,true, true);
+			if (original.colorOpacity != 100) {
+				result = result.getVariant(NaN,original.colorOpacity);
 			}
-			return new ColorSwatch(nameVariant,500,opacity,dark);
+			return result;
 		}
 		
-		private static function registerContrastVariant(nameVariant:String, swatch:String, shade:Number,dark:Boolean, weak:Boolean):void{
+		private var contrastLookupSpecifiers:Object = {};
+		
+		/**
+         * Finds a contrast variant ColorSwatch based on the pararmeters passed in
+         * @param swatch the name of a color swatch (can be outside this set)
+         * @param shade the shade 50 - 900
+         * @param dark tbd
+         * @param weak if true then a weak contrast is returned, otherwise a strong contrast
+         * @param limitRange if true then limit lookups to this color set only
+         * @return
+         */
+		public function findContrastVariant(swatch:String,shade:Number,dark:Boolean,weak:Boolean,limitRange:Boolean = false):ColorSwatch
+		{
+			const lookupKey:String = swatch + "$$" + shade + "$$" + dark + "$$" + weak + "$$" + limitRange;
+			
+			// Cached?
+			var existing:String = contrastLookupSpecifiers[lookupKey];
+			if (existing)
+				return ColorSwatch.fromSpecifier(existing);
+			
+			// Resolve base color
 			var base:Object = ColorSwatch.getColorValue(swatch) || CSSLookup.getProperty(swatch);
 			var baseColor:uint = CSSUtils.toColor(base);
-			// Convert from 50,100,200... to 5,10,20... for easier math.
-			shade = Math.round(shade/10);
-			var colorVals:Array = CSSColor.getVariation(baseColor,shade,dark);
-			var oklch:Array = CSSColor.rgb_ToOKLCH(colorVals);
-			var L:Number = oklch[0];
-			var H:Number = oklch[2];
-			var fg:Array;
 			
-			if (weak) {
-				if (L < 0.55)
-					fg = [0.80, 0.01, H]; // weak light
-				else
-					fg = [0.35, 0.02, H]; // weak dark
-			} else {
-				if (L < 0.55)
-					fg = [0.97, 0.02, H]; // light contrast
-				else
-					fg = [0.18, 0.03, H]; // dark contrast
+			// Tailwind-like shade rounding
+			shade = Math.round(shade / 10);
+			
+			// Background RGB for contrast measurement
+			var bgRgb:Array = ColorUtils.getVariation(baseColor, shade, dark);
+			
+			// Background OKLCH
+			var bgLch:Array = ColorUtils.rgb_ToOKLCH(bgRgb);
+			var bgL:Number = bgLch[0];
+			
+			// Decide whether we want a light or dark foreground
+			// (L threshold is more stable than RGB contrast heuristic)
+			var wantLight:Boolean = (bgL < ColorUtils.WANT_LIGHT_THRESHOLD);
+			
+			// --- STEP 1: Try hue‑preserving OKLCH contrast first ---
+			var fgLch:Array = ColorUtils.generateContrastLCH(bgLch, wantLight);
+			var fgRgb:Array = ColorUtils.oklch_ToRGB(fgLch);
+			
+			// --- STEP 2: If weak contrast requested, soften the LCH result ---
+			if (weak)
+			{
+				// Reduce chroma
+				fgLch[1] *= 0.40;
+				
+				// Blend L halfway back toward background
+				fgLch[0] = (fgLch[0] + bgL) * 0.50;
+				
+				// Recompute RGB after weak adjustment
+				fgRgb = ColorUtils.oklch_ToRGB(fgLch);
 			}
 			
-			colorVals = CSSColor.oklch_ToRGB(fg);
-			CSSLookup.register(nameVariant,'rgb('+colorVals.join(',')+')');
+			// --- STEP 3: If contrast < 4.5, fallback to guaranteed RGB contrast ---
+			if (!weak) // weak contrast is allowed to be < 4.5
+			{
+				if (ColorUtils.contrast(fgRgb, bgRgb) < 4.5)
+				{
+					// WCAG contrast is not guaranteed (may be black or white)
+					if (wantLight)
+						fgRgb = [255,255,255];
+					else
+						fgRgb = [0,0,0];
+					
+				}
+			}
+			
+			// --- STEP 4: Snap to theme palette if requested ---
+			var lookups:Object = limitRange ? getLCHLookups() : null;
+			
+			// If we are NOT limiting range, we should still use a global lookup 
+			// that EXCLUDES black and white unless explicitly asked? 
+			// Actually, ColorSwatch.estimateFromRGB uses global lookups that DO NOT include black/white now.
+			
+			var result:ColorSwatch = ColorSwatch.estimateFromRGB(fgRgb, lookups);
+			
+			// If includeBlackAndWhite is enabled and we wanted light/dark, check if black/white would be a better fit
+			// than what estimateFromRGB returned, especially if it didn't snap to black/white but should have.
+			if (_includeBlackAndWhite && limitRange) {
+				if (wantLight && result.colorBase != "white") {
+					// Check if white is actually better
+					if (ColorUtils.contrast([255,255,255], bgRgb) > ColorUtils.contrast(result.getRGB(), bgRgb)) {
+						result = new ColorSwatch("white", 0);
+					}
+				} else if (!wantLight && result.colorBase != "black") {
+					// Check if black is actually better
+					if (ColorUtils.contrast([0,0,0], bgRgb) > ColorUtils.contrast(result.getRGB(), bgRgb)) {
+						result = new ColorSwatch("black", 0);
+					}
+				}
+			}
+
+			// Cache
+			contrastLookupSpecifiers[lookupKey] = result.toString();
+			
+			return result;
 		}
 		
 		public function fromJSON(obj:Object):void{
@@ -205,6 +309,9 @@ package org.apache.royale.style.colors
 						break;
 					case '_baseContentWeak':
 						_baseContentWeak = obj[key];
+						break;
+					case 'includeBlackAndWhite':
+						includeBlackAndWhite = obj[key];
 						break;
 					default:
 						setThemeColor(key,obj[key]);
@@ -223,6 +330,7 @@ package org.apache.royale.style.colors
 				}
 				obj['_baseContent'] = _baseContent;
 				obj['_baseContentWeak'] = _baseContentWeak;
+				obj['includeBlackAndWhite'] = _includeBlackAndWhite;
 			}
 			return obj;
 		}

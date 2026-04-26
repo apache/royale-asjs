@@ -19,37 +19,13 @@
 package org.apache.royale.style
 {
 
-  public class AccordionContent extends StyleUIBase
+  import org.apache.royale.style.support.TextNodeContainerBase;
+
+  public class AccordionContent extends TextNodeContainerBase
   {
     public function AccordionContent()
     {
       super();
     }
-
-
-    COMPILE::JS
-    private var _textNode:Text;
-
-    private var _text:String;
-
-    public function get text():String
-    {
-    	return _text;
-    }
-
-    public function set text(value:String):void
-    {
-    	_text = value;
-      COMPILE::JS
-      {
-        if(!_textNode){
-          _textNode = document.createTextNode(_text) as Text;
-          _element.appendChild(_textNode);
-        }
-        _textNode.nodeValue = value;
-
-      }
-    }
-
   }
 }
