@@ -61,11 +61,12 @@ package org.apache.royale.style.skins
 				return;
 			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
 			var baseColor:ColorSwatch = (host.theme && host.theme != "default") ? colorSet.getSwatch(host.theme, 600) : colorSet.getSwatch(ThemeColorSet.NEUTRAL, 300);
+			var heightWidth:String = computeSize(getSize(), host.unit);
 			_styles = [
 					new Position("relative"),
 					new Display("inline-block"),
-					new HeightStyle(getSize() + "px"),
-					new WidthStyle(getSize() + "px"),
+					new HeightStyle(heightWidth),
+					new WidthStyle(heightWidth),
 					new Overflow("hidden"),
 					new BorderRadius("9999px"),
 					new VerticalAlign("middle"),
