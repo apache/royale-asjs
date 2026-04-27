@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.apache.org/royale/style"
+               xmlns:e="library://ns.apache.org/royale/style-elements">
+
+    <s:initialView>
+    <s:View>
+    <s:FlexContainer vertical="true" gap="24">
+
+        <!-- Basic vertical menu -->
+        <e:Div text="Basic — A simple vertical menu with three items." />
+        <s:Menu>
+            <s:MenuItem><e:Span text="Item 1" /></s:MenuItem>
+            <s:MenuItem><e:Span text="Item 2" /></s:MenuItem>
+            <s:MenuItem><e:Span text="Item 3" /></s:MenuItem>
+        </s:Menu>
+
+        <!-- Menu with title -->
+        <e:Div text="With Title — Section headers group related menu items." />
+        <s:Menu>
+            <s:MenuTitle><e:Span text="General" /></s:MenuTitle>
+            <s:MenuItem><e:Span text="Dashboard" /></s:MenuItem>
+            <s:MenuItem><e:Span text="Settings" /></s:MenuItem>
+            <s:MenuTitle><e:Span text="Account" /></s:MenuTitle>
+            <s:MenuItem><e:Span text="Profile" /></s:MenuItem>
+            <s:MenuItem><e:Span text="Billing" /></s:MenuItem>
+        </s:Menu>
+
+        <!-- Menu with links -->
+        <e:Div text="With Links — Menu items containing clickable links." />
+        <s:Menu>
+            <s:MenuItem><e:A text="Features" href="#" /></s:MenuItem>
+            <s:MenuItem><e:A text="Pricing" href="#" /></s:MenuItem>
+            <s:MenuItem><e:A text="About" href="#" /></s:MenuItem>
+        </s:Menu>
+
+        <!-- Collapsible submenu -->
+        <e:Div text="Collapsible Submenu — Click 'Parent' to toggle the nested menu." />
+        <s:Menu>
+            <s:MenuItem><e:Span text="Item 1" /></s:MenuItem>
+            <s:MenuDetails headerText="Parent" open="true">
+                <s:Menu submenu="true">
+                    <s:MenuItem><e:Span text="Submenu 1" /></s:MenuItem>
+                    <s:MenuItem><e:Span text="Submenu 2" /></s:MenuItem>
+                </s:Menu>
+            </s:MenuDetails>
+            <s:MenuItem><e:Span text="Item 3" /></s:MenuItem>
+        </s:Menu>
+
+    </s:FlexContainer>
+    </s:View>
+    </s:initialView>
+
+</s:Application>

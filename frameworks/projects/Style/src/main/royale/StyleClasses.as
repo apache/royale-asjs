@@ -33,6 +33,10 @@ package
 		import org.apache.royale.style.util.ContentAlign; ContentAlign;
 		import org.apache.royale.style.support.UIItemRendererBase; UIItemRendererBase;
 		import org.apache.royale.style.const.Theme; Theme;
+		import org.apache.royale.style.skins.ModalSkin; ModalSkin;
+		import org.apache.royale.style.skins.ModalBodySkin; ModalBodySkin;
+		import org.apache.royale.style.skins.ModalTitleSkin; ModalTitleSkin;
+		import org.apache.royale.style.skins.ModalActionsSkin; ModalActionsSkin;
 	}
 
 }

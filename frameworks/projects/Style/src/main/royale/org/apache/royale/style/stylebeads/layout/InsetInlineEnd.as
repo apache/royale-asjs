@@ -20,9 +20,9 @@ package org.apache.royale.style.stylebeads.layout
 {
 	public class InsetInlineEnd extends InsetBase
 	{
-		public function InsetInlineEnd()
+		public function InsetInlineEnd(value:* = null)
 		{
-			super("inset-e", "inset-inline-end");
+			super("inset-inline-end", "inset-inline-end", value);
 		}
 	}
 }

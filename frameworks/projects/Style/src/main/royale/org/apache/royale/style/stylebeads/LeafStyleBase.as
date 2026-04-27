@@ -191,7 +191,7 @@ package org.apache.royale.style.stylebeads
 		}
 		private function normalizeSelector(selector:String):String
 		{			// TODO this is pretty naive. We should probably be doing some kind of parsing here.
-			return "." + selector.replace(/:/g, "\\:").replace(/\./g, "\\.").replace(/\//g, "\\/");
+			return "." + selector.replace(/(:|\.|\/)/g, "\\$1");
 		}
 
 		public function getRule():String
@@ -200,7 +200,7 @@ package org.apache.royale.style.stylebeads
 				return "";
 			return ruleBase + ":" + calculatedRuleValue + ";";
 		}
-		private static const SPACE_DOT_REGEX:RegExp = /[\s\.]/g;
+		private static const SANITIZE_REGEX:RegExp = /[\s\.\(\)\+\*\/\[\]]/g;
 		private static const PERCENT_REGEX:RegExp = /%/g;
 		protected function sanitizeSelector(value:String):String
 		{
@@ -211,7 +211,9 @@ package org.apache.royale.style.stylebeads
 			if(value.indexOf("%") >= 0)
 				value = value.replace(PERCENT_REGEX, "p");
 			
-			return value.replace(SPACE_DOT_REGEX, "-");
+			var sanitized:String = value.replace(SANITIZE_REGEX, "-");
+			// Replace multiple consecutive dashes with a single dash
+			return sanitized.replace(/-+/g, "-");
 		}
 		protected function acceptVar(value:String):String
 		{

@@ -33,33 +33,61 @@ package org.apache.royale.style.stylebeads.anim
 		override public function set value(value:*):void
 		{
 			_value = value;
-			var ruleValue:String = value;
-			var selectorValue:String = value;
+			if (value is String && (value as String).indexOf(",") != -1)
+			{
+				var parts:Array = (value as String).split(",");
+				var resolvedParts:Array = [];
+				for (var i:int = 0; i < parts.length; i++)
+				{
+					resolvedParts.push(resolveTimingFunction(parts[i].trim()));
+				}
+				calculatedRuleValue = resolvedParts.join(", ");
+				calculatedSelector = (value as String).replace(/,/g, "-").replace(/\s/g, "");
+			}
+			else
+			{
+				calculatedRuleValue = resolveTimingFunction(value);
+				calculatedSelector = value;
+			}
+		}
+
+		private function resolveTimingFunction(val:*):String
+		{
+			var ruleValue:String = val;
 			var theme:StyleTheme = ThemeManager.instance.activeTheme;
-			switch(value)
+			switch(val)
 			{
 				case "default":
 					ruleValue = theme.defaultTransitionTimingFunction;
 					break;
+				case "in-out":
+				case "ease-in-out":
+					ruleValue = theme.easeInOut;
+					break;
 				case "in":
+				case "ease-in":
 					ruleValue = theme.easeIn;
 					break;
 				case "out":
+				case "ease-out":
 					ruleValue = theme.easeOut;
 					break;
-				case "in-out":
-					ruleValue = theme.easeInOut;
+				case "ease":
+					ruleValue = "ease";
 					break;
 				case "linear":
 				case "initial":
 					break;
 				default:
-					ruleValue = CSSLookup.getProperty(value);
+					ruleValue = acceptVar(val as String);
+					if (ruleValue == val)
+					{
+						ruleValue = CSSLookup.getProperty(val);
+					}
 					break;
 			}
-			assert(ruleValue, "transition-timing-function only accepts 'linear', 'in', 'out', 'in-out', 'initial', or a valid CSS timing function value");
-			calculatedSelector = selectorValue;
-			calculatedRuleValue = ruleValue;
+			assert(ruleValue, "transition-timing-function only accepts 'linear', 'ease', 'ease-in', 'ease-out', 'ease-in-out', 'initial', or a valid CSS timing function value");
+			return ruleValue;
 		}
 	}
 }

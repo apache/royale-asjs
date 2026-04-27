@@ -27,11 +27,19 @@ package org.apache.royale.style
 
 	public class Application extends org.apache.royale.core.Application
 	{
+		private static var _current:org.apache.royale.style.Application;
+		/**
+		 * Global getter to get a reference to the top-level application
+		 */
+		public static function get current():org.apache.royale.style.Application{
+			return _current;
+		}
 		public function Application()
 		{
 			super();
 			valuesImpl = new AllCSSValuesImpl();
      		addBead(new ApplicationDataBinding());
+			_current = this;
 			ThemeManager.instance.registerTheme(new StyleTheme());
 		}
 
