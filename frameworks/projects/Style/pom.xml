@@ -45,6 +45,10 @@
               <uri>library://ns.apache.org/royale/style</uri>
               <manifest>${project.basedir}/src/main/resources/style-manifest.xml</manifest>
             </namespace>
+            <namespace>
+              <uri>library://ns.apache.org/royale/style-elements</uri>
+              <manifest>${project.basedir}/src/main/resources/style-element-manifest.xml</manifest>
+            </namespace>
           </namespaces>
           <includeClasses>
             <includeClass>StyleClasses</includeClass>

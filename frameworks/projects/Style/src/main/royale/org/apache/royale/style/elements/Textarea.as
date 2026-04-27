@@ -215,6 +215,88 @@ package org.apache.royale.style.elements
 				textarea.value = value;
 			}
 		}
+		
+		public function get readonly():Boolean
+		{
+			COMPILE::JS
+			{
+				return textarea.readOnly;
+			}
+			COMPILE::SWF
+			{
+				return false
+			}
+		}
+		
+		public function set readonly(value:Boolean):void
+		{
+			COMPILE::JS
+			{
+				textarea.readOnly = value;
+			}
+		}
+		
+		public function get placeholder():String
+		{
+			COMPILE::JS
+			{
+				return textarea.placeholder;
+			}
+			COMPILE::SWF
+			{
+				return null
+			}
+		}
+		
+		public function set placeholder(value:String):void
+		{
+			COMPILE::JS
+			{
+				//set the content in the textArea
+				textarea.placeholder = value;
+			}
+		}
+		
+		private var _required:Boolean;
+		
+		public function get required():Boolean
+		{
+			return _required;
+		}
+		
+		public function set required(value:Boolean):void
+		{
+			if(value != !!_required){
+				toggleAttribute('required',value);
+			}
+			_required = value;
+		}
+		
+		private var _invalid:Boolean;
+		/**
+		 * Indicates whether the current state of the component is invalid.
+		 * This can be used to apply error styles to the component.
+		 *
+		 * The Checkbox skin should specify invalid styles if desired.
+		 *
+		 * @languageversion 3.0
+		 * @productversion Royale 1.0.0
+		 */
+		public function get invalid():Boolean
+		{
+			return _invalid;
+		}
+		
+		public function set invalid(value:Boolean):void
+		{
+			COMPILE::JS
+			{
+				if(value != !!_invalid){
+					toggleAttribute("data-invalid", value);
+				}
+			}
+			_invalid = value;
+		}
 
 		override protected function getTag():String
 		{

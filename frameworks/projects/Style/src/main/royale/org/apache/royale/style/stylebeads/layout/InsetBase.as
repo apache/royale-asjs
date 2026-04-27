@@ -30,10 +30,12 @@ package org.apache.royale.style.stylebeads.layout
 		private var savedPrefix:String;
 		override public function set value(value:*):void
 		{
+			_value = value;
 			var isNum:Boolean = parseFloat(value) == value;
 			var isInt:Boolean = int(value) == value;
 			var parseNum:Number = parseFloat(value);
 			var isNegative:Boolean = parseNum < 0;
+
 			if(isNegative)
 			{
 				if(!savedPrefix)
@@ -55,12 +57,9 @@ package org.apache.royale.style.stylebeads.layout
 			{
 				calculatedSelector = sanitizeSelector(value);
 				calculatedRuleValue = value;
+				if(value == "none")
+					calculatedSelector = "hidden";
 			}
-			// assert(["inline","block","inline-block","flow-root","flex","inline-flex","grid","inline-grid","contents","table","inline-table","table-caption","table-cell","table-column","table-column-group","table-footer-group","table-header-group","table-row-group","table-row","list-item","none"].indexOf(value) >= 0, "Invalid value for display: " + value);
-			_value = value;
-			calculatedRuleValue = calculatedSelector = value;
-			if(value == "none")
-				calculatedSelector = "hidden";
 		}
 	}
 }

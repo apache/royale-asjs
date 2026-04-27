@@ -102,6 +102,10 @@
                 <uri>library://ns.apache.org/royale/style</uri>
                 <manifest>../../main/resources/style-manifest.xml</manifest>
             </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/style-elements</uri>
+                <manifest>../../main/resources/style-element-manifest.xml</manifest>
+            </namespace>
         </namespaces>
         
         <warn-no-constructor>false</warn-no-constructor>

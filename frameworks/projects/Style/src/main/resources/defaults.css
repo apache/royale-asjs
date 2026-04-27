@@ -52,6 +52,10 @@ Badge
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
 }
+FileInput
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
@@ -64,6 +68,98 @@ CheckBox
 Dropdown
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
+}
+Tab
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TabSkin");
+}
+TabBar
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TabBarSkin");
+}
+Card
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardSkin");
+}
+CardBody
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardBodySkin");
+}
+CardTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardTitleSkin");
+}
+CardActions
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardActionsSkin");
+}
+Modal
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalSkin");
+}
+ModalBody
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalBodySkin");
+}
+ModalTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalTitleSkin");
+}
+ModalActions
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalActionsSkin");
+}
+Pagination
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.PaginationSkin");
+}
+PaginationItem
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.PaginationItemSkin");
+}
+Toggle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToggleSkin");
+}
+Navbar
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarSkin");
+}
+NavbarStart
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarStartSkin");
+}
+NavbarCenter
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarCenterSkin");
+}
+NavbarEnd
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.NavbarEndSkin");
+}
+Menu
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuSkin");
+}
+MenuItem
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuItemSkin");
+}
+MenuTitle
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuTitleSkin");
+}
+MenuDetails
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.MenuDetailsSkin");
+}
+Steps
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepsSkin");
+}
+Step
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.StepSkin");
 }
 
 DataItemRenderer
@@ -138,3 +234,6 @@ Tree
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+Toast {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToastSkin");
+}

@@ -20,7 +20,6 @@ package org.apache.royale.style.colors
 {
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.utils.CSSUtils;
-	
 	import org.apache.royale.debugging.assert;
 
 	public class ThemeColorSet
@@ -56,6 +55,22 @@ package org.apache.royale.style.colors
 
 		COMPILE::JS
 		private const storage:Map = new Map();
+		
+		private const lchLookups:Object = {init:false};
+		private function getLCHLookups():Object{
+			if (lchLookups.init === false) {
+				delete lchLookups.init;
+				var key:String;
+				for each(key in _fieldNames) {
+					var baseColor:String = getThemeBaseColor(key);
+					if (baseColor) {
+						var col:uint =ColorSwatch.getColorValue(baseColor);
+						lchLookups[baseColor] = ColorUtils.rgb_ToOKLCH([(col>>16)&0xff,(col>>8)&0xff,col&0xff])
+					}
+				}
+			}
+			return lchLookups;
+		}
 
 		/**
 		 * Subclasses must specify colorBase before calling this constructor.
@@ -146,54 +161,65 @@ package org.apache.royale.style.colors
 		}
 		
 		public function getContrastSwatch(original:ColorSwatch):ColorSwatch{
-			var swatch:String = original.colorBase;
-			var shade:Number = original.colorShade;
-			var opacity:Number = original.colorOpacity;
-			var dark:Boolean = original.dark;
-			var nameVariant:String = swatch+'-contrast';
-			if (!CSSLookup.has(nameVariant)) {
-				registerContrastVariant(nameVariant,swatch,shade,dark,false);
+			var result:ColorSwatch = findContrastVariant(original.colorBase,original.colorShade,original.dark,false, true);
+			if (original.colorOpacity != 100) {
+				result = result.getVariant(NaN,original.colorOpacity);
 			}
-			return new ColorSwatch(nameVariant,500,opacity,dark);
+			return result
 		}
 		
 		public function getWeakContrastSwatch(original:ColorSwatch):ColorSwatch{
-			var swatch:String = original.colorBase;
-			var shade:Number = original.colorShade;
-			var opacity:Number = original.colorOpacity;
-			var dark:Boolean = original.dark;
-			var nameVariant:String = swatch+'-contrast-weak';
-			if (!CSSLookup.has(nameVariant)) {
-				registerContrastVariant(nameVariant,swatch,shade,dark,true);
+			var result:ColorSwatch = findContrastVariant(original.colorBase,original.colorShade,original.dark,true, true);
+			if (original.colorOpacity != 100) {
+				result = result.getVariant(NaN,original.colorOpacity);
 			}
-			return new ColorSwatch(nameVariant,500,opacity,dark);
+			return result;
 		}
 		
-		private static function registerContrastVariant(nameVariant:String, swatch:String, shade:Number,dark:Boolean, weak:Boolean):void{
+		private var contrastLookupSpecifiers:Object = {};
+		
+		/**
+         * Finds a contrast variant ColorSwatch based on the pararmeters passed in
+         * @param swatch the name of a color swatch (can be outside this set)
+         * @param shade the shade 50 - 900
+         * @param dark tbd
+         * @param weak if true then a weak contrast is returned, otherwise a strong contrast
+         * @param limitRange if true then limit lookups to this color set only
+         * @return
+         */
+		public function findContrastVariant(swatch:String, shade:Number,dark:Boolean, weak:Boolean, limitRange:Boolean=false):ColorSwatch{
+			const lookupKey:String = swatch+'$$'+shade+'$$'+dark+'$$'+weak+'$$';
+
+			var existing:String = contrastLookupSpecifiers[lookupKey];
+			if (existing) {
+				
+				return ColorSwatch.fromSpecifier(existing);
+			}
 			var base:Object = ColorSwatch.getColorValue(swatch) || CSSLookup.getProperty(swatch);
 			var baseColor:uint = CSSUtils.toColor(base);
-			// Convert from 50,100,200... to 5,10,20... for easier math.
 			shade = Math.round(shade/10);
-			var colorVals:Array = CSSColor.getVariation(baseColor,shade,dark);
-			var oklch:Array = CSSColor.rgb_ToOKLCH(colorVals);
-			var L:Number = oklch[0];
-			var H:Number = oklch[2];
-			var fg:Array;
+			var colorVals:Array = ColorUtils.getVariation(baseColor,shade,dark);
+			var bgLch:Array = ColorUtils.rgb_ToOKLCH(colorVals);
+			var L:Number = bgLch[0];
+
+		//	var wantLight:Boolean = (ColorUtils.contrast([255,255,255], colorVals) < ColorUtils.contrast([0,0,0], colorVals));
+			var wantLight:Boolean = (L < .62);
 			
+			// Strong or weak contrast?
+			var targetLch:Array = ColorUtils.generateContrastLCH(bgLch, wantLight);
 			if (weak) {
-				if (L < 0.55)
-					fg = [0.80, 0.01, H]; // weak light
-				else
-					fg = [0.35, 0.02, H]; // weak dark
-			} else {
-				if (L < 0.55)
-					fg = [0.97, 0.02, H]; // light contrast
-				else
-					fg = [0.18, 0.03, H]; // dark contrast
+				// Weak contrast = reduce chroma + move L slightly toward bg
+				targetLch[1] *= 0.4;     // reduce chroma
+				targetLch[0] = (targetLch[0] + L) * 0.5; // blend toward background
 			}
 			
-			colorVals = CSSColor.oklch_ToRGB(fg);
-			CSSLookup.register(nameVariant,'rgb('+colorVals.join(',')+')');
+			var fg:Array = targetLch;
+			colorVals = ColorUtils.oklch_ToRGB(fg);
+			var lookups:Object = limitRange ? getLCHLookups() : null;
+			var ret:ColorSwatch = ColorSwatch.estimateFromRGB(colorVals,lookups);
+			contrastLookupSpecifiers[lookupKey] = ret.toString()
+
+			return ret;
 		}
 		
 		public function fromJSON(obj:Object):void{

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.apache.org/royale/style"
+               xmlns:e="library://ns.apache.org/royale/style-elements">
+
+    <fx:Script>
+    <![CDATA[
+        private function openModal(id:String):void
+        {
+            var modal:Modal = this[id] as Modal;
+            if (modal)
+                modal.open = true;
+        }
+    ]]>
+    </fx:Script>
+
+    <s:initialView>
+    <s:View>
+    <s:FlexContainer vertical="true" gap="24">
+
+        <!-- Button to open basic modal -->
+        <e:Div text="Open Basic Modal" click="openModal('basicModal')" />
+
+        <!-- Button to open easy-dismiss modal -->
+        <e:Div text="Open Easy Dismiss Modal" click="openModal('easyModal')" />
+
+        <!-- Button to open modal with actions -->
+        <e:Div text="Open Modal with Actions" click="openModal('actionsModal')" />
+
+        <!-- Basic modal -->
+        <s:Modal id="basicModal">
+            <s:ModalBody>
+                <s:ModalTitle text="Hello!" />
+                <e:Div text="Press ESC key or click the button below to close." />
+            </s:ModalBody>
+            <s:ModalActions>
+                <e:Div text="Close" click="basicModal.open = false" />
+            </s:ModalActions>
+        </s:Modal>
+
+        <!-- Easy dismiss modal (click backdrop to close) -->
+        <s:Modal id="easyModal" easyDismiss="true">
+            <s:ModalBody>
+                <s:ModalTitle text="Easy Dismiss" />
+                <e:Div text="Click outside this dialog or press ESC to close." />
+            </s:ModalBody>
+        </s:Modal>
+
+        <!-- Modal with actions -->
+        <s:Modal id="actionsModal">
+            <s:ModalBody>
+                <s:ModalTitle text="Confirm Action" />
+                <e:Div text="Are you sure you want to proceed?" />
+            </s:ModalBody>
+            <s:ModalActions>
+                <e:Div text="Cancel" click="actionsModal.open = false" />
+                <e:Div text="Confirm" click="actionsModal.open = false" />
+            </s:ModalActions>
+        </s:Modal>
+
+    </s:FlexContainer>
+    </s:View>
+    </s:initialView>
+
+</s:Application>
