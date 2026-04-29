@@ -267,6 +267,11 @@ package org.apache.royale.style.stylebeads
 		}
 		protected function computeSpacing(value:Number):String
 		{
+			assert(!isNaN(value), "Cannot compute spacing from NaN.");
+			if (value == 0) {
+				//unit-less zero
+				return '0'; 
+			}
 			var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
 			return CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
 		}

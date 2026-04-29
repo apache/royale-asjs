@@ -237,3 +237,6 @@ Toast {
 Tooltip {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.TooltipSkin");
 }
+RadialProgress {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RadialProgressSkin");
+}
