@@ -28,6 +28,12 @@
   <component id="Badge" class="org.apache.royale.style.Badge"/>
   <component id="FileInput" class="org.apache.royale.style.FileInput"/>
   <component id="Footer" class="org.apache.royale.style.Footer"/>
+  <component id="Hero" class="org.apache.royale.style.Hero"/>
+  <component id="HeroContent" class="org.apache.royale.style.HeroContent"/>
+  <component id="HeroOverlay" class="org.apache.royale.style.HeroOverlay"/>
+  <component id="HeroSkin" class="org.apache.royale.style.skins.HeroSkin"/>
+  <component id="HeroContentSkin" class="org.apache.royale.style.skins.HeroContentSkin"/>
+  <component id="HeroOverlaySkin" class="org.apache.royale.style.skins.HeroOverlaySkin"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>

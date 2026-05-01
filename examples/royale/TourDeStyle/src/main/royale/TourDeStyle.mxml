@@ -35,6 +35,7 @@
                 menuSection.visible = (idx == 7);
                 stepsSection.visible = (idx == 8);
                 footerSection.visible = (idx == 9);
+                heroSection.visible = (idx == 10);
             }
 
             private function openModal(id:String):void
@@ -63,6 +64,7 @@
                 <s:Tab text="Menu" />
                 <s:Tab text="Steps" />
                 <s:Tab text="Footer" />
+                <s:Tab text="Hero" />
             </s:tabs>
         </s:TabBar>
 
@@ -330,6 +332,58 @@
                     <e:Small text="Copyright © 2026 - All rights reserved" />
                 </s:FlexContainer>
             </s:Footer>
+        </s:FlexContainer>
+
+        <!-- Hero Section -->
+        <s:FlexContainer id="heroSection" visible="false" gap="24" vertical="true">
+            <s:Hero>
+                <s:HeroContent>
+                    <e:H2 text="Hello there" />
+                    <e:P text="Hero sections are large attention blocks with headline and action." />
+                    <e:Div text="Get Started" />
+                </s:HeroContent>
+            </s:Hero>
+
+            <s:Hero>
+                <s:HeroContent>
+                    <s:FlexContainer gap="24">
+                        <s:FlexContainer width="220" height="120">
+                            <s:styleBeads>
+                                <s:Display value="flex" />
+                                <s:AlignItems value="center" />
+                                <s:JustifyContent value="center" />
+                                <s:BackgroundColor value="blue-500" />
+                                <s:BorderRadius radius="12" />
+                            </s:styleBeads>
+                            <e:Span text="Figure" />
+                        </s:FlexContainer>
+                        <s:FlexContainer vertical="true" gap="8">
+                            <e:H2 text="Box Office News!" />
+                            <e:P text="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi." />
+                            <e:Div text="Get Started" />
+                        </s:FlexContainer>
+                    </s:FlexContainer>
+                </s:HeroContent>
+            </s:Hero>
+
+            <s:Hero>
+                <s:styleBeads>
+                    <s:BackgroundColor value="sky-500" />
+                </s:styleBeads>
+                <s:HeroOverlay>
+                    <s:styleBeads>
+                        <s:BackgroundColor value="slate-900/60" />
+                    </s:styleBeads>
+                </s:HeroOverlay>
+                <s:HeroContent>
+                    <s:styleBeads>
+                        <s:TextColor value="slate-50" />
+                    </s:styleBeads>
+                    <e:H2 text="Hello there" />
+                    <e:P text="Background with overlay and centered content." />
+                    <e:Div text="Get Started" />
+                </s:HeroContent>
+            </s:Hero>
         </s:FlexContainer>
 
     </s:FlexContainer>
