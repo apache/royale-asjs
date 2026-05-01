@@ -37,6 +37,8 @@ package
 		import org.apache.royale.style.skins.ModalBodySkin; ModalBodySkin;
 		import org.apache.royale.style.skins.ModalTitleSkin; ModalTitleSkin;
 		import org.apache.royale.style.skins.ModalActionsSkin; ModalActionsSkin;
+		import org.apache.royale.style.Footer; Footer;
+		import org.apache.royale.style.skins.FooterSkin; FooterSkin;
 	}
 
 }

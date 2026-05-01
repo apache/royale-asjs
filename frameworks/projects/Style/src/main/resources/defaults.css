@@ -53,6 +53,10 @@ FileInput
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
 }
+Footer
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.FooterSkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");

@@ -27,6 +27,7 @@
   <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
   <component id="FileInput" class="org.apache.royale.style.FileInput"/>
+  <component id="Footer" class="org.apache.royale.style.Footer"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>

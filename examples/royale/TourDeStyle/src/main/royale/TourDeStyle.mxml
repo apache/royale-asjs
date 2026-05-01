@@ -34,6 +34,7 @@
                 navbarSection.visible = (idx == 6);
                 menuSection.visible = (idx == 7);
                 stepsSection.visible = (idx == 8);
+                footerSection.visible = (idx == 9);
             }
 
             private function openModal(id:String):void
@@ -61,6 +62,7 @@
                 <s:Tab text="Navbar" />
                 <s:Tab text="Menu" />
                 <s:Tab text="Steps" />
+                <s:Tab text="Footer" />
             </s:tabs>
         </s:TabBar>
 
@@ -280,6 +282,54 @@
                 <s:Step text="Purchase" content="3" size="lg" />
                 <s:Step text="Receive Product" content="4" size="lg" />
             </s:Steps>
+        </s:FlexContainer>
+
+        <!-- Footer Section -->
+        <s:FlexContainer id="footerSection" visible="false" gap="24" vertical="true">
+            <s:Footer>
+                <e:Span text="Acme Inc. © 2026" />
+                <s:FlexContainer gap="12">
+                    <e:A text="Docs" href="#" />
+                    <e:A text="Privacy" href="#" />
+                    <e:A text="Terms" href="#" />
+                </s:FlexContainer>
+            </s:Footer>
+
+            <s:Footer>
+                <s:FlexContainer vertical="true" gap="4">
+                    <e:Span text="ACME Industries Ltd." />
+                    <e:Small text="Providing reliable tech since 1992" />
+                </s:FlexContainer>
+                <s:FlexContainer gap="20">
+                    <s:FlexContainer vertical="true" gap="4">
+                        <e:Strong text="Services" />
+                        <e:A text="Branding" href="#" />
+                        <e:A text="Design" href="#" />
+                    </s:FlexContainer>
+                    <s:FlexContainer vertical="true" gap="4">
+                        <e:Strong text="Company" />
+                        <e:A text="About" href="#" />
+                        <e:A text="Contact" href="#" />
+                    </s:FlexContainer>
+                </s:FlexContainer>
+            </s:Footer>
+
+            <s:Footer>
+                <s:FlexContainer vertical="true" gap="10">
+                    <s:FlexContainer gap="12">
+                        <e:A text="About us" href="#" />
+                        <e:A text="Contact" href="#" />
+                        <e:A text="Jobs" href="#" />
+                        <e:A text="Press kit" href="#" />
+                    </s:FlexContainer>
+                    <s:FlexContainer gap="10">
+                        <e:Span text="X" />
+                        <e:Span text="YT" />
+                        <e:Span text="FB" />
+                    </s:FlexContainer>
+                    <e:Small text="Copyright © 2026 - All rights reserved" />
+                </s:FlexContainer>
+            </s:Footer>
         </s:FlexContainer>
 
     </s:FlexContainer>
