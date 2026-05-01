@@ -67,6 +67,7 @@
   <component id="Tooltip" class="org.apache.royale.style.Tooltip"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
+  <component id="RadialProgress" class="org.apache.royale.style.RadialProgress"/>
   <component id="List" class="org.apache.royale.style.List"/>
   <component id="MultiSelectionList" class="org.apache.royale.style.MultiSelectionList"/>
   <component id="Tree" class="org.apache.royale.style.Tree"/>
@@ -333,6 +334,7 @@
   <component id="MenuTitleSkin" class="org.apache.royale.style.skins.MenuTitleSkin"/>
   <component id="MenuDetailsSkin" class="org.apache.royale.style.skins.MenuDetailsSkin"/>
   <component id="IMenuDetailsSkin" class="org.apache.royale.style.skins.IMenuDetailsSkin"/>
+  <component id="RadialProgressSkin" class="org.apache.royale.style.skins.RadialProgressSkin"/>
   <component id="StepsSkin" class="org.apache.royale.style.skins.StepsSkin"/>
   <component id="StepSkin" class="org.apache.royale.style.skins.StepSkin"/>
   <component id="IStepSkin" class="org.apache.royale.style.skins.IStepSkin"/>

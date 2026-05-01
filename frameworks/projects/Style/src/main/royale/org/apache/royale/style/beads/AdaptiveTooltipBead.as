@@ -26,9 +26,6 @@ package org.apache.royale.style.beads
 	 * Provides core functionality for managing display of Tooltips.
 	 * AdaptiveTooltipBead supports avoidance of browser edges when the tooltip is displayed
 	 *
-	 * This file includes derived work from Spectrum Royale,
-	 * also licensed under the Apache License, Version 2.0.
-	 *
 	 */
 	public class AdaptiveTooltipBead extends TooltipBead
 	{
