@@ -28,6 +28,7 @@
   <component id="Badge" class="org.apache.royale.style.Badge"/>
   <component id="FileInput" class="org.apache.royale.style.FileInput"/>
   <component id="Footer" class="org.apache.royale.style.Footer"/>
+  <component id="FooterSkin" class="org.apache.royale.style.skins.FooterSkin"/>
   <component id="Hero" class="org.apache.royale.style.Hero"/>
   <component id="HeroContent" class="org.apache.royale.style.HeroContent"/>
   <component id="HeroOverlay" class="org.apache.royale.style.HeroOverlay"/>
@@ -49,6 +50,10 @@
   <component id="ModalBody" class="org.apache.royale.style.ModalBody"/>
   <component id="ModalTitle" class="org.apache.royale.style.ModalTitle"/>
   <component id="ModalActions" class="org.apache.royale.style.ModalActions"/>
+  <component id="ModalSkin" class="org.apache.royale.style.skins.ModalSkin"/>
+  <component id="ModalBodySkin" class="org.apache.royale.style.skins.ModalBodySkin"/>
+  <component id="ModalTitleSkin" class="org.apache.royale.style.skins.ModalTitleSkin"/>
+  <component id="ModalActionsSkin" class="org.apache.royale.style.skins.ModalActionsSkin"/>
   <component id="Pagination" class="org.apache.royale.style.Pagination"/>
   <component id="PaginationItem" class="org.apache.royale.style.PaginationItem"/>
   <component id="Navbar" class="org.apache.royale.style.Navbar"/>
