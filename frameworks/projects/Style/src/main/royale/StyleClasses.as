@@ -33,6 +33,9 @@ package
 		import org.apache.royale.style.util.ContentAlign; ContentAlign;
 		import org.apache.royale.style.support.UIItemRendererBase; UIItemRendererBase;
 		import org.apache.royale.style.const.Theme; Theme;
+		import org.apache.royale.style.data.DataItem; DataItem;
+		import org.apache.royale.style.data.ListData; ListData;
+		import org.apache.royale.style.data.MenuData; MenuData;
 	}
 
 }

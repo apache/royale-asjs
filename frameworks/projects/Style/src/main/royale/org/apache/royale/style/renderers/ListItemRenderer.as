@@ -22,7 +22,7 @@ package org.apache.royale.style.renderers
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.style.Icon;
-	import org.apache.royale.style.data.IListItem;
+	import org.apache.royale.style.data.IListData;
 	import org.apache.royale.style.elements.Img;
 
 	public class ListItemRenderer extends DataItemRenderer implements IListItemRenderer
@@ -120,17 +120,17 @@ package org.apache.royale.style.renderers
 		 */
 		private function getIconSelector():String
 		{
-			if (data is IListItem)
+			if (data is IListData)
 			{
-				return (data as IListItem).icon;
+				return (data as IListData).icon;
 			}
 			return data["icon"];
 		}
 		private function getImageIcon():String
 		{
-			if (data is IListItem)
+			if (data is IListData)
 			{
-				return (data as IListItem).imageIcon;
+				return (data as IListData).imageIcon;
 			}
 			return data["imageIcon"];
 		}
