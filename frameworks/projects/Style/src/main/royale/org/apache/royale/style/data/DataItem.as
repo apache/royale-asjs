@@ -16,18 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.skins
+package org.apache.royale.style.data
 {
-	import org.apache.royale.style.IStyleSkin;
-	import org.apache.royale.style.IStyleUIBase;
-	
-	public interface ITooltipSkin extends IStyleSkin
+	/**
+	 * A simple implementation of IDataItem that can be used as a base class for more complex data items or as a simple data item on its own.
+	 * 
+	 * @languageversion 3.0
+	 * @productversion Royale 1.0.0
+	 */
+	public class DataItem implements IDataItem
 	{
-		function get tooltipContentStyles():Array;
-		function get tipStyles():Array;
-		function getIcon(flavor:String):IStyleUIBase;
-		
-		function getExtraHeight():Number;
-		function getExtraWidth():Number;
+		public function DataItem()
+		{
+
+		}
+		private var _disabled:Boolean;
+		public function get disabled():Boolean{
+			return _disabled;
+		}
+		public function set disabled(value:Boolean):void{
+			_disabled = value;
+		}
+		private var _selected:Boolean;
+		public function get selected():Boolean{
+			return _selected;
+		}
+		public function set selected(value:Boolean):void{
+			_selected = value;
+		}
 	}
 }

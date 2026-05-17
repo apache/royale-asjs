@@ -32,14 +32,12 @@ package org.apache.royale.style.stylebeads.sizing
 		{
 			calculatedRuleValue = calculatedSelector = _value = value;
 
-			if(isInt(value))
+			if(isNum(value))
 			{
-				calculatedRuleValue = computeSpacing(value);
-				return;
-			}
-			else if(isNum(value))
-			{
-				percentSize = value * 100;
+				if(value >= 1)
+					calculatedRuleValue = computeSpacing(value);
+				else
+					percentSize = value * 100;
 				return;
 			}
 			else if(isVar(value))

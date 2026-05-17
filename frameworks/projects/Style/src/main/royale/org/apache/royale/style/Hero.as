@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.skins
+package org.apache.royale.style
 {
-	import org.apache.royale.style.IStyleSkin;
-	import org.apache.royale.style.IStyleUIBase;
-	
-	public interface ITooltipSkin extends IStyleSkin
+	public class Hero extends Group
 	{
-		function get tooltipContentStyles():Array;
-		function get tipStyles():Array;
-		function getIcon(flavor:String):IStyleUIBase;
-		
-		function getExtraHeight():Number;
-		function getExtraWidth():Number;
+		public function Hero()
+		{
+			super();
+		}
+
+		override public function getWrapperStyle():String
+		{
+			return "hero";
+		}
 	}
 }

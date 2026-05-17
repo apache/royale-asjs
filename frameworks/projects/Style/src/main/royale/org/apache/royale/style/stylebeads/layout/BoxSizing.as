@@ -32,8 +32,8 @@ package org.apache.royale.style.stylebeads.layout
 		{
 			_value = value;
 			assert(value == "border-box" || value == "content-box", "box-sizing must be 'border-box' or 'content-box'");
-			calculatedSelector = value;
-			calculatedRuleValue = value.slice(0, -4); // remove "-box" from the end of the value for the rule
+			calculatedSelector = value.slice(0, -4); // remove "-box" from the end of the value for the selector
+			calculatedRuleValue = value;
 		}
 	}
 }

@@ -20,6 +20,7 @@ package org.apache.royale.style.skins
 {
 	import org.apache.royale.style.StyleSkin;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.style.colors.ThemeColorSet;
 	import org.apache.royale.style.stylebeads.background.BackgroundClip;
 	import org.apache.royale.style.stylebeads.border.Border;
 	import org.apache.royale.style.stylebeads.sizing.HeightStyle;
@@ -64,7 +65,7 @@ package org.apache.royale.style.skins
 		}
 		
 		override public function update():void{
-			processStyles()
+			processStyles();
 		}
 
 		private var _lineStyles:Array;
@@ -86,8 +87,12 @@ package org.apache.royale.style.skins
 			
 			var appliedSize:String = computeSize(size, hostUnit);
 			
+			var hostColor:String = host.flavor;
+			if (hostColor == 'default') hostColor = 'base';
+			const colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
+			hostColor = colorSet.getThemeBaseColor(hostColor);
+			
 			var hostStyles:Array = [
-			//	new BackgroundColor('transparent'), //probably not needed
 				new Display('flex'),
 				new Flex(0),
 				new JustifyContent('center'),
@@ -95,7 +100,7 @@ package org.apache.royale.style.skins
 			];
 
 			var lineStylesArr:Array = [
-				new BackgroundColor("slate-"+colorAdjust),
+				new BackgroundColor(hostColor+"-"+colorAdjust),
 				new BorderRadius(ThemeManager.instance.activeTheme.radiusSM)
 			];
 			
@@ -149,7 +154,7 @@ package org.apache.royale.style.skins
 					return 700;
 				case "md":
 				default:
-					return 900;
+					return 400;
 			}
 		}
 		

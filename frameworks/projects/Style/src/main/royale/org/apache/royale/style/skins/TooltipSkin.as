@@ -33,6 +33,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.flexgrid.AlignItems;
 	import org.apache.royale.style.stylebeads.flexgrid.Flex;
 	import org.apache.royale.style.stylebeads.flexgrid.Gap;
+	import org.apache.royale.style.stylebeads.interact.PointerEvents;
 	import org.apache.royale.style.stylebeads.interact.UserSelect;
 	import org.apache.royale.style.stylebeads.layout.Bottom;
 	import org.apache.royale.style.stylebeads.layout.Display;
@@ -46,7 +47,9 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.sizing.WidthStyle;
 	import org.apache.royale.style.stylebeads.spacing.Margin;
 	import org.apache.royale.style.stylebeads.spacing.Padding;
+	import org.apache.royale.style.stylebeads.states.GroupPseudo;
 	import org.apache.royale.style.stylebeads.states.attribute.AttributeState;
+	import org.apache.royale.style.stylebeads.states.attribute.DataState;
 	import org.apache.royale.style.stylebeads.transform.Transform;
 	import org.apache.royale.style.stylebeads.typography.FontSize;
 	import org.apache.royale.style.stylebeads.typography.FontWeight;
@@ -91,27 +94,46 @@ package org.apache.royale.style.skins
 
 		private function applyStyles():void
 		{
-			//transform 130ms ease-in-out, opacity 130ms ease-in-out, visibility 0ms linear 130ms;
-			
+
 			var transition:Transition = new Transition()
-			transition.property = 'transform, opacity, visibility';
+			transition.property = 'transform,opacity';
+			transition.duration = '130ms';
+			transition.timingFunction ='ease-in-out';
+			const inPopup:Boolean = host.forDisplayInPopup;
 			
-			transition.timingFunction ='ease-in-out,ease-in-out,linear'
+			var openStates:Array = [	
+				new Visibility('visible'),
+				new OpacityStyle(100)
+			]
+			if (inPopup) {
+				var tipMargin:String = computeSize(2 * border_radius * getMultiplier(),host.unit);
+				var transformTop:Transform = new Transform();
+				transformTop.translateY = '-' + tipMargin;
+				var transformBottom:Transform = new Transform();
+				transformBottom.translateY = tipMargin;
+				var transformLeft:Transform = new Transform();
+				transformLeft.translateX = '-' + tipMargin;
+				var transformRight:Transform = new Transform();
+				transformRight.translateX = tipMargin;
+				openStates.push(new DataState('direction-top',[transformTop]));
+				openStates.push(new DataState('direction-left',[transformLeft]));
+				openStates.push(new DataState('direction-right',[transformRight]));
+				openStates.push(new DataState('direction-bottom',[transformBottom]));
+			}
 			
-			//var multiplier:Number = getMultiplier();
+			var positionStyle:String = inPopup ? 'absolute' : 'relative';
 			var styles:Array = [
 				new Display('inline-flex'),
 				new AlignItems('center'),
-				new Position('relative'),
+				new Position(positionStyle),
 				new UserSelect('none'),
+				new PointerEvents('none'),
 				transition,
 				new Visibility('hidden'),
 				new OpacityStyle(0),
-				new AttributeState('is-open',[
-						new Visibility('visible'),
-						new OpacityStyle(100)
-				])
+				new AttributeState('is-open',openStates)
 			];
+			
 			host.setStyles(styles, true);
 		}
 
@@ -189,13 +211,7 @@ package org.apache.royale.style.skins
 			border.topColor = backgroundColor.colorSpecifier;
 			
 			//location related:
-			var locationStyles:Array = []
-			var tipDirection:String = host.direction;
 			var tipPosition:String = host.tipPosition;
-			var margin:Margin = new Margin(null,unit);
-			var transform:Transform = new Transform();
-			locationStyles.push(margin);
-			
 			var sideLocation:String;
 			if (tipPosition == 'center') {
 				sideLocation = '50%';
@@ -203,38 +219,50 @@ package org.apache.royale.style.skins
 				var cornerExclusionZone:String = computeSize(border_radius * 1.5 * multiplier,unit);
 				sideLocation = 'calc(' + (tipPosition == 'start' ? '0% + ' : '100% - ') + cornerExclusionZone + ')';
 			}
-
-			switch(tipDirection) {
-				case 'bottom':
-					margin.left = '-'+tipWidth;
-					locationStyles.push(new Bottom('100%'));
-					transform.rotate = '180deg';
-					locationStyles.push(transform);
-					//side location
-					locationStyles.push(new Left(sideLocation));
-					break;
-				case 'left':
-					margin.top = '-'+tipWidth;
-					locationStyles.push(new Right('100%'));
-					transform.rotate = '90deg';
-					locationStyles.push(transform);
-					//side location
-					locationStyles.push(new Top(sideLocation));
-					break;
-				case 'right':
-					margin.top = '-'+tipWidth;
-					locationStyles.push(new Left('100%'));
-					transform.rotate = '-90deg';	
-					locationStyles.push(transform);
-					//side location
-					locationStyles.push(new Top(sideLocation));
-					break;
-				default:
-					margin.left = '-'+tipWidth;
-					locationStyles.push(new Top('100%'));
-					//side location
-					locationStyles.push(new Left(sideLocation));
-			}
+			
+			var verticalPlacementMarginTop:Margin = new Margin(null,unit);
+			verticalPlacementMarginTop.left = '-'+tipWidth;
+			var verticalPlacementMarginBottom:Margin = new Margin(null,unit);
+			verticalPlacementMarginBottom.left = '-'+tipWidth;
+			var horizontalPlacementMarginLeft:Margin = new Margin(null,unit);
+			horizontalPlacementMarginLeft.top = '-'+tipWidth;
+			var horizontalPlacementMarginRight:Margin = new Margin(null,unit);
+			horizontalPlacementMarginRight.top = '-'+tipWidth;
+			
+			var bottomRotate:Transform = new Transform();
+			bottomRotate.rotate = '180deg';
+			var leftRotate:Transform = new Transform();
+			leftRotate.rotate = '-90deg';
+			var rightRotate:Transform = new Transform();
+			rightRotate.rotate = '90deg';
+			
+			var locationStyles:Array = [
+				new GroupPseudo([
+					new DataState('direction-top', [
+						verticalPlacementMarginTop,
+						new Top('100%'),
+						new Left(sideLocation)
+					]),
+					new DataState('direction-left', [
+						horizontalPlacementMarginLeft,
+						leftRotate,
+						new Left('100%'),
+						new Top(sideLocation)
+					]),
+					new DataState('direction-right', [
+						horizontalPlacementMarginRight,
+						rightRotate,
+						new Right('100%'),
+						new Top(sideLocation)
+					]),
+					new DataState('direction-bottom', [
+						verticalPlacementMarginBottom,
+						bottomRotate,
+						new Bottom('100%'),
+						new Left(sideLocation)
+					])
+				], host.getWrapperStyle())
+			]
 			
 			return [
 				new Position('absolute'),
@@ -290,6 +318,25 @@ package org.apache.royale.style.skins
 				case "xl": return 1.4;
 				default: return 1;
 			}
+		}
+		
+		//Q:why are these here? 
+		//A: because the absolutely positioned tip child does not contribute to the host component's measured height and width
+		//these are needed for adaptive positioning. Putting this support in the skin will mean different skins can do different things internally
+		public function getExtraHeight():Number{
+			var dir:String = host.direction;
+			if (dir =='bottom' || dir=='top') {
+				return 2 * border_radius;
+			}
+			return 0;
+		}
+		
+		public function getExtraWidth():Number{
+			var dir:String = host.direction;
+			if (dir =='left' || dir=='right') {
+				return 2 * border_radius;
+			}
+			return 0;
 		}
 	}
 }

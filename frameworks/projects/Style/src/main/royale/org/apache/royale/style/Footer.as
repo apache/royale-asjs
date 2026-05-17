@@ -16,18 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.skins
+package org.apache.royale.style
 {
-	import org.apache.royale.style.IStyleSkin;
-	import org.apache.royale.style.IStyleUIBase;
-	
-	public interface ITooltipSkin extends IStyleSkin
+	COMPILE::JS
 	{
-		function get tooltipContentStyles():Array;
-		function get tipStyles():Array;
-		function getIcon(flavor:String):IStyleUIBase;
-		
-		function getExtraHeight():Number;
-		function getExtraWidth():Number;
+		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
+	}
+
+	public class Footer extends Group
+	{
+		public function Footer()
+		{
+			super();
+		}
+
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			addElementToWrapper(this, "footer");
+			return element;
+		}
+
+		override public function getWrapperStyle():String
+		{
+			return "footer";
+		}
 	}
 }

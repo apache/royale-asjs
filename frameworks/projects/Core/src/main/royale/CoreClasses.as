@@ -181,6 +181,8 @@ internal class CoreClasses
 	import org.apache.royale.core.IScrollingViewport; IScrollingViewport;
 	import org.apache.royale.core.IViewportModel; IViewportModel;
 	import org.apache.royale.core.IListWithPresentationModel; IListWithPresentationModel;
+	import org.apache.royale.core.IRGBA; IRGBA;
+	import org.apache.royale.core.RGBColor; RGBColor;
 
 	import org.apache.royale.core.IApplicationView; IApplicationView;
 

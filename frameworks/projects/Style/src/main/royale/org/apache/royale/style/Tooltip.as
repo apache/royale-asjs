@@ -23,6 +23,7 @@ package org.apache.royale.style
   import org.apache.royale.style.elements.Div;
   import org.apache.royale.style.elements.Span;
   import org.apache.royale.style.skins.ITooltipSkin;
+  import org.apache.royale.geom.Rectangle;
   
   COMPILE::JS {
     import org.apache.royale.core.WrappedHTMLElement;
@@ -31,9 +32,22 @@ package org.apache.royale.style
   public class Tooltip extends StyleUIBase implements IHasLabel
   {
     
-    public function Tooltip()
+    public function Tooltip(forDisplayInPopup:Boolean = false)
     {
       super();
+      useWrapperStyle = true;
+      _forDisplayInPopup = forDisplayInPopup;
+      //set the default direction
+      toggleAttribute("data-direction-top", true);
+    }
+    
+    override public function getWrapperStyle():String{
+      return 'tool-tip';
+    }
+    
+    private var _forDisplayInPopup:Boolean;
+    public function get forDisplayInPopup():Boolean{
+        return _forDisplayInPopup
     }
   
     private var _contentNode:Div;
@@ -171,16 +185,16 @@ package org.apache.royale.style
     public function set direction(value:String):void
     {
       if (value == _direction) return;
-     /* if(_direction){
+      if(_direction){
         toggleAttribute("data-direction-" + _direction, false);
-      }*/
+      }
       if(value){
         switch(value){
           case "left":
           case "right":
           case "bottom":
           case "top":
-         //   toggleAttribute("data-direction-" + value, true);
+            toggleAttribute("data-direction-" + value, true);
             break;
           default:
             throw new Error("Invalid direction: " + value);
@@ -222,7 +236,7 @@ package org.apache.royale.style
       }
     }
 
-    private var _isOpen:Boolean;
+    private var _isOpen:Boolean = false;
 
     public function get isOpen():Boolean
     {
@@ -231,7 +245,7 @@ package org.apache.royale.style
 
     public function set isOpen(value:Boolean):void
     {
-      if(value != !!_isOpen){
+      if(value != _isOpen){
         toggleAttribute("is-open", value);
       }
       _isOpen = value;
@@ -260,6 +274,22 @@ package org.apache.royale.style
       
       updateFlavorIcon();
       positionTip();
+    }
+    
+    public function getFullHeight():Number{
+      var h:Number = height;
+      if (skin) {
+        h += (skin as ITooltipSkin).getExtraHeight();
+      }
+      return h;
+    }
+    
+    public function getFullHWidth():Number{
+      var w:Number = width;
+      if (skin) {
+        w += (skin as ITooltipSkin).getExtraWidth();
+      }
+      return w;
     }
   }
 }

@@ -20,14 +20,13 @@ package org.apache.royale.style.skins
 {
 	import org.apache.royale.style.IStyleSkin;
 	import org.apache.royale.style.IStyleUIBase;
-	
-	public interface ITooltipSkin extends IStyleSkin
+
+	public interface IRadioSkin extends IStyleSkin
 	{
-		function get tooltipContentStyles():Array;
-		function get tipStyles():Array;
-		function getIcon(flavor:String):IStyleUIBase;
-		
-		function getExtraHeight():Number;
-		function getExtraWidth():Number;
+		function get boxStyles():Array;
+		function set boxStyles(value:Array):void;
+
+		function get dotStyles():Array;
+		function set dotStyles(value:Array):void;
 	}
 }

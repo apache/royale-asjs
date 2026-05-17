@@ -20,14 +20,10 @@ package org.apache.royale.style.skins
 {
 	import org.apache.royale.style.IStyleSkin;
 	import org.apache.royale.style.IStyleUIBase;
-	
-	public interface ITooltipSkin extends IStyleSkin
+
+	public interface IBarLoaderSkin extends IStyleSkin
 	{
-		function get tooltipContentStyles():Array;
-		function get tipStyles():Array;
-		function getIcon(flavor:String):IStyleUIBase;
-		
-		function getExtraHeight():Number;
-		function getExtraWidth():Number;
+		function get barLoaderStyles():Array;
+		function get indeterminateStyles():Array;
 	}
 }

@@ -29,7 +29,7 @@ package org.apache.royale.style.stylebeads.background
 		}
 		override public function set value(value:*):void
 		{
-			assert(["repeat","repeat-x","x","repeat-y","y","space","round","no-repeat"].indexOf(value) >= 0, "Invalid value for background-attachment: " + value);
+			assert(["repeat","repeat-x","x","repeat-y","y","space","round","no-repeat"].indexOf(value) >= 0, "Invalid value for background-repeat: " + value);
 			var ruleValue:String = value;
 			var selectorValue:String = value;
 			switch(value)

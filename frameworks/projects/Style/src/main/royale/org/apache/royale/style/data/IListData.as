@@ -16,18 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.skins
+package org.apache.royale.style.data
 {
-	import org.apache.royale.style.IStyleSkin;
-	import org.apache.royale.style.IStyleUIBase;
-	
-	public interface ITooltipSkin extends IStyleSkin
-	{
-		function get tooltipContentStyles():Array;
-		function get tipStyles():Array;
-		function getIcon(flavor:String):IStyleUIBase;
-		
-		function getExtraHeight():Number;
-		function getExtraWidth():Number;
-	}
+  public interface IListData extends IDataItem
+  {
+    function get text():String;
+    function set text(value:String):void;
+    function get label():String;
+    function get icon():String;
+    function set icon(value:String):void;
+
+    /**
+     * src of an icon to be rendered an an img
+     */
+    function get imageIcon():String;
+    function set imageIcon(value:String):void;
+
+  }	
 }

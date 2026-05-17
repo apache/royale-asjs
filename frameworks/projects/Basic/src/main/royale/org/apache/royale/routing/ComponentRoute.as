@@ -19,6 +19,7 @@
 package org.apache.royale.routing
 {
   import org.apache.royale.core.IParent;
+  import org.apache.royale.core.IChild;
   /**
    * ComponentRoutes are declared in RouteToComponent beads.
    * This maps a base name of a route path to a component class.
@@ -34,6 +35,21 @@ package org.apache.royale.routing
      */
     public var component:Class;
     /**
+     * Use getComponent to auto-generate the component instance.
+     * If preserveState is true, the same instance will be returned each time.
+     * Otherwise, a new instance will be created each time.
+     */
+    public function getComponent():IChild
+    {
+      if(_instance)
+        return _instance;
+      var comp:IChild = new component() as IChild;
+      if(preserveState)
+        _instance = comp;
+      return comp;
+    }
+    private var _instance:IChild;
+    /**
      * This is the base name (leaf) of the route path.
      */
     public var baseName:String;
@@ -41,9 +57,16 @@ package org.apache.royale.routing
      * The parent to add the component to. (Defaults to the strand of the router.)
      */
     public var parent:IParent;
-
+    /**
+     * The title of the route, typically used for display purposes.
+     */
     public var title:String;
 
     public var defaultRoute:Boolean = false;
+    /**
+     * If true, the same instance of the component with its state will be preserved and returned
+     * each time this route is hit. Otherwise, a new instance will be created each time.
+     */
+    public var preserveState:Boolean = false;
   }
 }
