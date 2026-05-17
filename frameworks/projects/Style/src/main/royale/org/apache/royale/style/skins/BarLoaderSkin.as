@@ -102,10 +102,5 @@ package org.apache.royale.style.skins
 				new Animation("indeterminateSlide 1.2s ease-in-out 0s infinite normal none running")
 			];
 		}
-		public function set value(value:Number):void
-		{
-			// No value, but we want to trigger the styles to be applied.
-			processStyles();
-		}
 	}
 }
