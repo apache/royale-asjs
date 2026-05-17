@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.apache.org/royale/style"
+               xmlns:e="library://ns.apache.org/royale/style-elements">
+
+    <s:initialView>
+    <s:View>
+    <s:FlexContainer vertical="true" gap="24">
+
+        <e:Div text="Centered Hero" />
+        <s:Hero>
+            <s:HeroContent>
+                <e:H2 text="Hello there" />
+                <e:P text="Hero sections are large attention blocks with headline and action." />
+                <e:Div text="Get Started" />
+            </s:HeroContent>
+        </s:Hero>
+
+        <e:Div text="Hero with Figure" />
+        <s:Hero>
+            <s:HeroContent>
+                <s:FlexContainer gap="24">
+                        <s:FlexContainer width="220" height="120">
+                            <s:styleBeads>
+                                <s:Display value="flex" />
+                                <s:AlignItems value="center" />
+                                <s:JustifyContent value="center" />
+                                <s:BackgroundColor value="blue-500" />
+                                <s:BorderRadius radius="12" />
+                            </s:styleBeads>
+                            <e:Span text="Figure" />
+                        </s:FlexContainer>
+                    <s:FlexContainer vertical="true" gap="8">
+                        <e:H2 text="Box Office News!" />
+                        <e:P text="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi." />
+                        <e:Div text="Get Started" />
+                    </s:FlexContainer>
+                </s:FlexContainer>
+            </s:HeroContent>
+        </s:Hero>
+
+        <e:Div text="Hero with Overlay" />
+        <s:Hero>
+            <s:styleBeads>
+                <s:BackgroundColor value="sky-500" />
+            </s:styleBeads>
+            <s:HeroOverlay>
+                <s:styleBeads>
+                    <s:BackgroundColor value="slate-900/60" />
+                </s:styleBeads>
+            </s:HeroOverlay>
+            <s:HeroContent>
+                <s:styleBeads>
+                    <s:TextColor value="slate-50" />
+                </s:styleBeads>
+                <e:H2 text="Hello there" />
+                <e:P text="Background with overlay and centered content." />
+                <e:Div text="Get Started" />
+            </s:HeroContent>
+        </s:Hero>
+
+    </s:FlexContainer>
+    </s:View>
+    </s:initialView>
+
+</s:Application>

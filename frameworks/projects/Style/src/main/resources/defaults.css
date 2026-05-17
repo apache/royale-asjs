@@ -53,6 +53,22 @@ FileInput
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
 }
+Footer
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.FooterSkin");
+}
+Hero
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroSkin");
+}
+HeroContent
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroContentSkin");
+}
+HeroOverlay
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroOverlaySkin");
+}
 View
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
@@ -240,4 +256,7 @@ Toast {
 }
 Tooltip {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.TooltipSkin");
+}
+RadialProgress {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RadialProgressSkin");
 }

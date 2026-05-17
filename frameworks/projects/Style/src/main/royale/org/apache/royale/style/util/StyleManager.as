@@ -137,6 +137,47 @@ package org.apache.royale.style.util
 				styleList.add(selector);
 			}
 		}
+		
+		
+		public static function addCustomProperty(propertyName:String,syntax:String,inherits:Boolean = true,initialValue:String = null):Boolean{
+			assert(propertyName && propertyName.indexOf('--') == 0, "propertyName " + propertyName + " not correctly specified");
+			assert(syntax && syntax.charAt(0) == "<" && syntax.charAt(syntax.length - 1) == ">", "syntax " + syntax + " not correctly specified");
+			var uniquePropertyDeclaration:String = "@property " + propertyName ;
+			
+			var hasInitial:Boolean = initialValue != null && initialValue.replace(/\s+/g, "").length > 0;
+			var rule:String = 	uniquePropertyDeclaration + " {\n" +
+								"  syntax: \"" + syntax + "\";\n" +
+								"  inherits: " + (inherits ? "true" : "false") + ";\n" +
+								(hasInitial ? "  initial-value: " + initialValue + ";\n" : "") +
+								"}";
+			
+			var success:Boolean = false;
+			
+			COMPILE::JS
+			{
+				assert(!styleList.has(uniquePropertyDeclaration), "Custom Property " + uniquePropertyDeclaration + " already exists");
+				try {
+					getStyleSheet().insertRule(rule, ruleIdx++);
+					styleList.add(uniquePropertyDeclaration);
+					success = true;
+				} catch (e:Error) {}
+			}
+			
+			return success
+		}
+		
+		public static function hasCustomProperty(propertyName:String):Boolean{
+			COMPILE::JS
+			{
+				assert(propertyName && propertyName.indexOf('--') == 0, "propertyName " + propertyName + " not correctly specified");
+				var uniquePropertyDeclaration:String = "@property " + propertyName ;
+				return styleList.has(uniquePropertyDeclaration);
+			}
+			COMPILE::SWF
+			{
+				return false;
+			}
+		}
 
 	}
 }

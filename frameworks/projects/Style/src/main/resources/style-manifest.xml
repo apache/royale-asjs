@@ -27,6 +27,14 @@
   <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
   <component id="FileInput" class="org.apache.royale.style.FileInput"/>
+  <component id="Footer" class="org.apache.royale.style.Footer"/>
+  <component id="FooterSkin" class="org.apache.royale.style.skins.FooterSkin"/>
+  <component id="Hero" class="org.apache.royale.style.Hero"/>
+  <component id="HeroContent" class="org.apache.royale.style.HeroContent"/>
+  <component id="HeroOverlay" class="org.apache.royale.style.HeroOverlay"/>
+  <component id="HeroSkin" class="org.apache.royale.style.skins.HeroSkin"/>
+  <component id="HeroContentSkin" class="org.apache.royale.style.skins.HeroContentSkin"/>
+  <component id="HeroOverlaySkin" class="org.apache.royale.style.skins.HeroOverlaySkin"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
@@ -42,6 +50,10 @@
   <component id="ModalBody" class="org.apache.royale.style.ModalBody"/>
   <component id="ModalTitle" class="org.apache.royale.style.ModalTitle"/>
   <component id="ModalActions" class="org.apache.royale.style.ModalActions"/>
+  <component id="ModalSkin" class="org.apache.royale.style.skins.ModalSkin"/>
+  <component id="ModalBodySkin" class="org.apache.royale.style.skins.ModalBodySkin"/>
+  <component id="ModalTitleSkin" class="org.apache.royale.style.skins.ModalTitleSkin"/>
+  <component id="ModalActionsSkin" class="org.apache.royale.style.skins.ModalActionsSkin"/>
   <component id="Pagination" class="org.apache.royale.style.Pagination"/>
   <component id="PaginationItem" class="org.apache.royale.style.PaginationItem"/>
   <component id="Navbar" class="org.apache.royale.style.Navbar"/>
@@ -67,6 +79,7 @@
   <component id="BarLoader" class="org.apache.royale.style.BarLoader"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
+  <component id="RadialProgress" class="org.apache.royale.style.RadialProgress"/>
   <component id="List" class="org.apache.royale.style.List"/>
   <component id="MultiSelectionList" class="org.apache.royale.style.MultiSelectionList"/>
   <component id="Tree" class="org.apache.royale.style.Tree"/>
@@ -333,6 +346,7 @@
   <component id="MenuTitleSkin" class="org.apache.royale.style.skins.MenuTitleSkin"/>
   <component id="MenuDetailsSkin" class="org.apache.royale.style.skins.MenuDetailsSkin"/>
   <component id="IMenuDetailsSkin" class="org.apache.royale.style.skins.IMenuDetailsSkin"/>
+  <component id="RadialProgressSkin" class="org.apache.royale.style.skins.RadialProgressSkin"/>
   <component id="StepsSkin" class="org.apache.royale.style.skins.StepsSkin"/>
   <component id="StepSkin" class="org.apache.royale.style.skins.StepSkin"/>
   <component id="IStepSkin" class="org.apache.royale.style.skins.IStepSkin"/>
