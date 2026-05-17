@@ -44,7 +44,8 @@ package org.apache.royale.style.util
 			'error': 'red',
 			"base": "slate",
 			"_baseContent" : 'slate-500',
-			"_baseContentWeak" : 'neutral-400/80'
+			"_baseContentWeak" : 'neutral-400/80',
+			'includeBlackAndWhite' : true
 		});
 
 		public var spacing:Number = 4;

@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class Inset extends InsetBase
 	{
-		public function Inset()
+		public function Inset(value:* = null)
 		{
-			super("inset", "inset");
+			super("inset", "inset", value);
 		}
 	}
 }

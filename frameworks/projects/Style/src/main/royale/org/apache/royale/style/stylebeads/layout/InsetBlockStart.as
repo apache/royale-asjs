@@ -23,9 +23,9 @@ package org.apache.royale.style.stylebeads.layout
 
 	public class InsetBlockStart extends InsetBase
 	{
-		public function InsetBlockStart()
+		public function InsetBlockStart(value:* = null)
 		{
-			super("inset-bs", "inset-block-start");
+			super("inset-block-start", "inset-block-start", value);
 		}
 
 	}

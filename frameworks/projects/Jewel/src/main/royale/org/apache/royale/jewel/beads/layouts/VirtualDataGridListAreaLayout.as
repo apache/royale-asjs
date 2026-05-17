@@ -36,8 +36,6 @@ package org.apache.royale.jewel.beads.layouts
 	 */
 	public class VirtualDataGridListAreaLayout extends VirtualListVerticalLayout
 	{
-        private var isAreaFocus:Boolean;
-
         // Tracks which DataGrid is currently syncing columns, to suppress redundant
         // layout() calls from scroll events triggered by programmatic scrollTop changes.
         private static var _syncingDataGrid:IDataGrid = null;
@@ -62,13 +60,10 @@ package org.apache.royale.jewel.beads.layouts
 
             COMPILE::JS
             {
-                host.element.addEventListener("mouseover", function():void { isAreaFocus = true });
-                host.element.addEventListener("mouseleave", function():void { isAreaFocus = false });
-
                 // Non-passive wheel listener so preventDefault() can block the browser's
                 // compositor thread from scrolling this column ahead of its siblings.
                 // Without this, the compositor moves this column visually before our
-                // scrollHandler fires, producing one frame of cross-column misalignment.
+                // handler fires, producing one frame of cross-column misalignment.
                 var wheelOptions:Object = new Object();
                 wheelOptions["passive"] = false;
                 host.element.addEventListener("wheel", wheelHandler, wheelOptions);
@@ -78,15 +73,50 @@ package org.apache.royale.jewel.beads.layouts
         COMPILE::JS
         private function wheelHandler(e:*):void
         {
-            if (!isAreaFocus || e.deltaY == 0) return;
+            if (e.deltaY == 0) return;
 
             e.preventDefault();
 
             // deltaMode: 0 = pixels (trackpad/modern), 1 = lines (mouse wheel on Firefox)
             var delta:Number = (e.deltaMode == 0) ? e.deltaY : e.deltaY * 40;
             var limitY:Number = host.element.scrollHeight - host.element.clientHeight;
-            host.element.scrollTop = Math.max(0, Math.min(host.element.scrollTop + delta, limitY));
-            // The resulting scroll event triggers scrollHandler which syncs all other columns.
+            var newScrollTop:Number = Math.max(0, Math.min(host.element.scrollTop + delta, limitY));
+            if (newScrollTop == host.element.scrollTop) return;
+
+            // Apply scroll + layout on host and siblings synchronously inside this
+            // handler so the browser paints a single frame with all columns aligned.
+            // Going through the async scroll event leaves a gap visible on slower
+            // machines, especially with heavy renderers such as editable checkboxes.
+            host.element.scrollTop = newScrollTop;
+            layout();
+            syncSiblings(newScrollTop);
+        }
+
+        COMPILE::JS
+        private function syncSiblings(scrollTop:Number):void
+        {
+            var myDataGrid:IDataGrid = (host as IDataGridColumnList).datagrid;
+            _syncingDataGrid = myDataGrid;
+
+            var listArea:Container = getListArea();
+            for (var i:int = 0; i < listArea.numElements; i++)
+            {
+                var column:* = listArea.getElementAt(i);
+                if (column == host) continue;
+
+                column.element.scrollTop = scrollTop;
+                var columnLayout:IBeadLayout = column.getBeadByType(IBeadLayout) as IBeadLayout;
+                if (columnLayout)
+                    columnLayout.layout();
+            }
+
+            // Clear the flag after any queued scroll events from the programmatic
+            // scrollTop changes above have been processed and suppressed.
+            setTimeout(function():void
+            {
+                if (_syncingDataGrid == myDataGrid)
+                    _syncingDataGrid = null;
+            }, 0);
         }
 
         private function getListArea():Container
@@ -98,52 +128,24 @@ package org.apache.royale.jewel.beads.layouts
 
         override protected function scrollHandler(e:Event):void
         {
-            // Check if we're being synced by another column's scroll handler
             COMPILE::JS
             {
                 if (_syncingDataGrid != null && _syncingDataGrid == (host as IDataGridColumnList).datagrid)
                 {
-                    // Being synced - just update layout without syncing others
+                    // Being synced from another column or from wheelHandler - just
+                    // update own layout without re-syncing siblings.
                     super.scrollHandler(e);
                     return;
                 }
             }
 
-            // Update own layout
+            // Non-wheel scroll path (keyboard, scrollbar drag, programmatic).
+            // wheelHandler covers the wheel path; this branch keeps the rest in sync.
             super.scrollHandler(e);
 
             COMPILE::JS
             {
-                // Any scroll event on this column triggers sync to all others,
-                // regardless of mouse position. This handles cases where the browser
-                // window regains focus without a mouseover event.
-                var myDataGrid:IDataGrid = (host as IDataGridColumnList).datagrid;
-                _syncingDataGrid = myDataGrid;
-
-                var listArea:Container = getListArea();
-                var scrollTop:Number = host.element.scrollTop;
-
-                for (var i:int = 0; i < listArea.numElements; i++)
-                {
-                    var otherColumn:* = listArea.getElementAt(i);
-                    if (otherColumn != host)
-                    {
-                        otherColumn.element.scrollTop = scrollTop;
-                        // Immediately call layout() so all columns are visually aligned
-                        // before the browser paints — without waiting for the async scroll event.
-                        var otherLayout:IBeadLayout = otherColumn.getBeadByType(IBeadLayout) as IBeadLayout;
-                        if (otherLayout)
-                            otherLayout.layout();
-                    }
-                }
-
-                // Clear the flag after any queued scroll events from the programmatic
-                // scrollTop changes above have been processed and suppressed.
-                setTimeout(function():void
-                {
-                    if (_syncingDataGrid == myDataGrid)
-                        _syncingDataGrid = null;
-                }, 0);
+                syncSiblings(host.element.scrollTop);
             }
         }
 	}

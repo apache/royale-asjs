@@ -34,6 +34,9 @@ Accordion
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSkin");
 }
+Radio{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RadioSkin");
+}
 AccordionSection
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionSectionSkin");
@@ -42,9 +45,31 @@ AccordionContent
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionContentSkin");
 }
+Button,
+TextButton,
+IconButton
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ButtonSkin");
+}
 Badge
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
+}
+Footer
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.FooterSkin");
+}
+Hero
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroSkin");
+}
+HeroContent
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroContentSkin");
+}
+HeroOverlay
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroOverlaySkin");
 }
 View
 {
@@ -213,6 +238,10 @@ ListItemRenderer
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ListRendererSkin");
 }
+BarLoader
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.BarLoaderSkin");
+}
 Tree
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeModel");
@@ -228,3 +257,12 @@ Tree
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+Toast {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ToastSkin");
+}
+Tooltip {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TooltipSkin");
+}
+RadialProgress {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RadialProgressSkin");
+}

@@ -24,7 +24,16 @@
   <component id="AccordionSection" class="org.apache.royale.style.AccordionSection"/>
   <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
+  <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
+  <component id="Footer" class="org.apache.royale.style.Footer"/>
+  <component id="FooterSkin" class="org.apache.royale.style.skins.FooterSkin"/>
+  <component id="Hero" class="org.apache.royale.style.Hero"/>
+  <component id="HeroContent" class="org.apache.royale.style.HeroContent"/>
+  <component id="HeroOverlay" class="org.apache.royale.style.HeroOverlay"/>
+  <component id="HeroSkin" class="org.apache.royale.style.skins.HeroSkin"/>
+  <component id="HeroContentSkin" class="org.apache.royale.style.skins.HeroContentSkin"/>
+  <component id="HeroOverlaySkin" class="org.apache.royale.style.skins.HeroOverlaySkin"/>
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
@@ -40,6 +49,10 @@
   <component id="ModalBody" class="org.apache.royale.style.ModalBody"/>
   <component id="ModalTitle" class="org.apache.royale.style.ModalTitle"/>
   <component id="ModalActions" class="org.apache.royale.style.ModalActions"/>
+  <component id="ModalSkin" class="org.apache.royale.style.skins.ModalSkin"/>
+  <component id="ModalBodySkin" class="org.apache.royale.style.skins.ModalBodySkin"/>
+  <component id="ModalTitleSkin" class="org.apache.royale.style.skins.ModalTitleSkin"/>
+  <component id="ModalActionsSkin" class="org.apache.royale.style.skins.ModalActionsSkin"/>
   <component id="Pagination" class="org.apache.royale.style.Pagination"/>
   <component id="PaginationItem" class="org.apache.royale.style.PaginationItem"/>
   <component id="Navbar" class="org.apache.royale.style.Navbar"/>
@@ -57,12 +70,19 @@
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
+  <component id="Button" class="org.apache.royale.style.Button"/>
+  <component id="TextButton" class="org.apache.royale.style.TextButton"/>
+  <component id="IconButton" class="org.apache.royale.style.IconButton"/>
   <component id="Icon" class="org.apache.royale.style.Icon"/>
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
   <component id="Link" class="org.apache.royale.style.Link"/>
   <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
+  <component id="Toast" class="org.apache.royale.style.Toast"/>
+  <component id="Tooltip" class="org.apache.royale.style.Tooltip"/>
+  <component id="BarLoader" class="org.apache.royale.style.BarLoader"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
+  <component id="RadialProgress" class="org.apache.royale.style.RadialProgress"/>
   <component id="List" class="org.apache.royale.style.List"/>
   <component id="MultiSelectionList" class="org.apache.royale.style.MultiSelectionList"/>
   <component id="Tree" class="org.apache.royale.style.Tree"/>
@@ -74,6 +94,7 @@
   <component id="ListView" class="org.apache.royale.style.beads.ListView"/>
   
   <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>
+  <component id="NotDataState" class="org.apache.royale.style.stylebeads.states.attribute.NotDataState"/>
   <component id="AriaState" class="org.apache.royale.style.stylebeads.states.attribute.AriaState"/>
   <component id="InertState" class="org.apache.royale.style.stylebeads.states.attribute.InertState"/>
   <component id="FocusWithinState" class="org.apache.royale.style.stylebeads.states.FocusWithinState"/>
@@ -89,6 +110,7 @@
   <component id="MarkerState" class="org.apache.royale.style.stylebeads.states.pseudo.MarkerState"/>
   <component id="PlaceholderState" class="org.apache.royale.style.stylebeads.states.pseudo.PlaceholderState"/>
   <component id="SelectionState" class="org.apache.royale.style.stylebeads.states.pseudo.SelectionState"/>
+  <component id="NotState" class="org.apache.royale.style.stylebeads.states.NotState"/>
   <component id="PeerPseudo" class="org.apache.royale.style.stylebeads.states.PeerPseudo"/>
 
   <component id="BackgroundStyle" class="org.apache.royale.style.stylebeads.BackgroundStyle"/>
@@ -144,6 +166,11 @@
   <component id="WordBreak" class="org.apache.royale.style.stylebeads.typography.WordBreak"/>
 
   <component id="Animation" class="org.apache.royale.style.stylebeads.anim.Animation"/>
+  <component id="CustomAnimation" class="org.apache.royale.style.stylebeads.anim.CustomAnimation"/>
+  <component id="Keyframes" class="org.apache.royale.style.stylebeads.anim.Keyframes"/>
+  <component id="AnimationDuration" class="org.apache.royale.style.stylebeads.anim.AnimationDuration"/>
+  <component id="AnimationTimingFunction" class="org.apache.royale.style.stylebeads.anim.AnimationTimingFunction"/>
+  <component id="Transition" class="org.apache.royale.style.stylebeads.anim.Transition"/>
   <component id="TransitionBehavior" class="org.apache.royale.style.stylebeads.anim.TransitionBehavior"/>
   <component id="TransitionDelay" class="org.apache.royale.style.stylebeads.anim.TransitionDelay"/>
   <component id="TransitionDuration" class="org.apache.royale.style.stylebeads.anim.TransitionDuration"/>
@@ -288,8 +315,8 @@
   <component id="TransformOrigin" class="org.apache.royale.style.stylebeads.transform.TransformOrigin"/>
   <component id="TransformStyle" class="org.apache.royale.style.stylebeads.transform.TransformStyle"/>
   <component id="Translate" class="org.apache.royale.style.stylebeads.transform.Translate"/>
-
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
+  <component id="RadioSkin" class="org.apache.royale.style.skins.RadioSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
   <component id="TextInputSkin" class="org.apache.royale.style.skins.TextInputSkin"/>
@@ -298,6 +325,7 @@
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
   <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
+  <component id="ButtonSkin" class="org.apache.royale.style.skins.ButtonSkin"/>
   <component id="TabSkin" class="org.apache.royale.style.skins.TabSkin"/>
   <component id="TabBarSkin" class="org.apache.royale.style.skins.TabBarSkin"/>
   <component id="CardSkin" class="org.apache.royale.style.skins.CardSkin"/>
@@ -321,8 +349,17 @@
   <component id="MenuTitleSkin" class="org.apache.royale.style.skins.MenuTitleSkin"/>
   <component id="MenuDetailsSkin" class="org.apache.royale.style.skins.MenuDetailsSkin"/>
   <component id="IMenuDetailsSkin" class="org.apache.royale.style.skins.IMenuDetailsSkin"/>
+  <component id="RadialProgressSkin" class="org.apache.royale.style.skins.RadialProgressSkin"/>
   <component id="StepsSkin" class="org.apache.royale.style.skins.StepsSkin"/>
   <component id="StepSkin" class="org.apache.royale.style.skins.StepSkin"/>
   <component id="IStepSkin" class="org.apache.royale.style.skins.IStepSkin"/>
+  <component id="ToastSkin" class="org.apache.royale.style.skins.ToastSkin"/>
+  <component id="TooltipSkin" class="org.apache.royale.style.skins.TooltipSkin"/>
+  <component id="ITooltipSkin" class="org.apache.royale.style.skins.ITooltipSkin"/>
+  
+  
+  <component id="TooltipBead" class="org.apache.royale.style.beads.TooltipBead"/>
+  <component id="AdaptiveTooltipBead" class="org.apache.royale.style.beads.AdaptiveTooltipBead"/>
+  <component id="BarLoaderSkin" class="org.apache.royale.style.skins.BarLoaderSkin"/>
 
 </componentPackage>

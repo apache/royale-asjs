@@ -115,7 +115,7 @@ package org.apache.royale.style
 		 * 
 		 * Most components have four possible sizes, but specific components may choose to support a different set of sizes as needed.
 		 */
-		[Inspectable(category="General", enumeration="sm,md,lg,xl", defaultValue="md")]
+		[Inspectable(category="General", enumeration="xs,sm,md,lg,xl", defaultValue="md")]
 		public function get size():String
 		{
 			return _size;
@@ -386,6 +386,23 @@ package org.apache.royale.style
 				element.style[property] = value;
 			}
 		}
+		
+		/**
+		 * set a style property (var) on the current element
+		 * @param propertyName
+		 * @param value
+		 * 
+		 * @royaleignorecoercion String
+		 */
+		public function setStyleProperty(propertyName:String,value:Object):void{
+			assert(propertyName && propertyName.indexOf('--') == 0, 'bad property name, must start with "--"')
+			COMPILE::JS
+			{
+				element.style.setProperty(propertyName,value as String);
+			}
+		}
+		
+		
 		public function toggleAttribute(name:String, value:Boolean):void
 		{
 			COMPILE::JS
