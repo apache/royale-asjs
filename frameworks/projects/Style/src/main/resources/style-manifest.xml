@@ -26,7 +26,6 @@
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
-  <component id="FileInput" class="org.apache.royale.style.FileInput"/>
   <component id="Footer" class="org.apache.royale.style.Footer"/>
   <component id="FooterSkin" class="org.apache.royale.style.skins.FooterSkin"/>
   <component id="Hero" class="org.apache.royale.style.Hero"/>
@@ -70,6 +69,9 @@
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
+  <component id="Button" class="org.apache.royale.style.Button"/>
+  <component id="TextButton" class="org.apache.royale.style.TextButton"/>
+  <component id="IconButton" class="org.apache.royale.style.IconButton"/>
   <component id="Icon" class="org.apache.royale.style.Icon"/>
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
   <component id="Link" class="org.apache.royale.style.Link"/>
@@ -312,7 +314,6 @@
   <component id="TransformOrigin" class="org.apache.royale.style.stylebeads.transform.TransformOrigin"/>
   <component id="TransformStyle" class="org.apache.royale.style.stylebeads.transform.TransformStyle"/>
   <component id="Translate" class="org.apache.royale.style.stylebeads.transform.Translate"/>
-
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
   <component id="RadioSkin" class="org.apache.royale.style.skins.RadioSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
@@ -321,8 +322,8 @@
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>
   <component id="AccordionContentSkin" class="org.apache.royale.style.skins.AccordionContentSkin"/>
-  <component id="FileInputSkin" class="org.apache.royale.style.skins.FileInputSkin"/>
   <component id="ListRendererSkin" class="org.apache.royale.style.skins.ListRendererSkin"/>
+  <component id="ButtonSkin" class="org.apache.royale.style.skins.ButtonSkin"/>
   <component id="TabSkin" class="org.apache.royale.style.skins.TabSkin"/>
   <component id="TabBarSkin" class="org.apache.royale.style.skins.TabBarSkin"/>
   <component id="CardSkin" class="org.apache.royale.style.skins.CardSkin"/>

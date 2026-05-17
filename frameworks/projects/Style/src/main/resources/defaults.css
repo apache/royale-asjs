@@ -45,13 +45,15 @@ AccordionContent
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionContentSkin");
 }
+Button,
+TextButton,
+IconButton
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ButtonSkin");
+}
 Badge
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
-}
-FileInput
-{
-	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
 }
 Footer
 {

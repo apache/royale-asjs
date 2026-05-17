@@ -18,14 +18,46 @@
 /////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
-	import org.apache.royale.style.elements.Input;
+	import org.apache.royale.style.elements.Button;
 
-	public class FileInput extends Input
+	/**
+	 *  A styled Button component that contains only an icon.
+	 *  Does not support text.
+	 */
+	public class IconButton extends org.apache.royale.style.elements.Button
 	{
-		public function FileInput()
+		public function IconButton()
 		{
 			super();
-			type = "file";
+		}
+
+		override protected function applySkin():void
+		{
+			// keep existing icon.
+			if (icon && getElementIndex(icon) != -1)
+				return;
+
+			if (icon && this.getElementIndex(icon) == -1)
+			{
+				this.addElementAt(icon, 0);
+			}
+		}
+		override public function set disabled(value:Boolean):void
+		{
+			super.disabled = value;
+			if (icon)
+				icon.toggleAttribute("data-disabled", value);
+
+		}
+		private var _icon:IIcon;
+		public function get icon():IIcon
+		{
+			return _icon;
+		}
+
+		public function set icon(value:IIcon):void
+		{
+			_icon = value;
 		}
 	}
 }
