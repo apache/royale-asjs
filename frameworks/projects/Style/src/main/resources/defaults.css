@@ -80,6 +80,10 @@ CheckBox
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CheckBoxSkin");
 }
+Range
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RangeSkin");
+}
 Dropdown
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DropdownSkin");
