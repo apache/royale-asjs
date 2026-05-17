@@ -26,7 +26,6 @@
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
-  <component id="FileInput" class="org.apache.royale.style.FileInput"/>
   <component id="Footer" class="org.apache.royale.style.Footer"/>
   <component id="FooterSkin" class="org.apache.royale.style.skins.FooterSkin"/>
   <component id="Hero" class="org.apache.royale.style.Hero"/>

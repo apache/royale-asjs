@@ -55,10 +55,6 @@ Badge
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
 }
-FileInput
-{
-	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
-}
 Footer
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.FooterSkin");
