@@ -232,6 +232,10 @@ ListItemRenderer
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ListRendererSkin");
 }
+BarLoader
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.BarLoaderSkin");
+}
 Tree
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeModel");

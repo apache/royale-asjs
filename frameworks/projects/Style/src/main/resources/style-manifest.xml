@@ -76,6 +76,7 @@
   <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
   <component id="Toast" class="org.apache.royale.style.Toast"/>
   <component id="Tooltip" class="org.apache.royale.style.Tooltip"/>
+  <component id="BarLoader" class="org.apache.royale.style.BarLoader"/>
   <component id="Group" class="org.apache.royale.style.Group"/>
   <component id="DataContainer" class="org.apache.royale.style.DataContainer"/>
   <component id="RadialProgress" class="org.apache.royale.style.RadialProgress"/>
@@ -356,5 +357,6 @@
   
   <component id="TooltipBead" class="org.apache.royale.style.beads.TooltipBead"/>
   <component id="AdaptiveTooltipBead" class="org.apache.royale.style.beads.AdaptiveTooltipBead"/>
+  <component id="BarLoaderSkin" class="org.apache.royale.style.skins.BarLoaderSkin"/>
 
 </componentPackage>
