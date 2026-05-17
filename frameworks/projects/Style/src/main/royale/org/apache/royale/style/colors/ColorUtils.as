@@ -28,6 +28,8 @@ package org.apache.royale.style.colors
 			
 		}
 		
+		public static const WANT_LIGHT_THRESHOLD:Number= 0.675;
+		
 		/**
 		 * Returns an RGB array representing a perceptually-balanced variation of the input color.
 		 * Uses OKLCH color space to maintain consistent hue and saturation across different lightness levels.
@@ -45,6 +47,8 @@ package org.apache.royale.style.colors
 			var r:Number = (color >> 16) & 0xFF;
 			var g:Number = (color >> 8) & 0xFF;
 			var b:Number = color & 0xFF;
+			
+			if (grayValue == 50) return [r, g, b];
 
 			//convert to 0 - 1000 range
 			var t:Number = pinValue(grayValue, 0, 100) * 10;
@@ -54,27 +58,6 @@ package org.apache.royale.style.colors
 			//shade it
 			lch = lchShade(lch,factorForShadeTableInterpolated(t,darkMode));
 			return oklch_ToRGB(lch);
-			
-			/*var outR:Number;
-			var outG:Number;
-			var outB:Number;
-
-			if (t <= 50)
-			{
-				var toBase:Number = t / 50;
-				outR = 255 + (r - 255) * toBase;
-				outG = 255 + (g - 255) * toBase;
-				outB = 255 + (b - 255) * toBase;
-			}
-			else
-			{
-				var toBlack:Number = (t - 50) / 50;
-				outR = r * (1 - toBlack);
-				outG = g * (1 - toBlack);
-				outB = b * (1 - toBlack);
-			}
-
-			return [Math.round(outR), Math.round(outG), Math.round(outB)];*/
 		}
 
 		/**
@@ -86,7 +69,7 @@ package org.apache.royale.style.colors
 			var gg:uint = uint(pinValue(g, 0, 255));
 			var bb:uint = uint(pinValue(b, 0, 255));
 			var color:uint = (rr << 16) | (gg << 8) | bb;
-			return getVariation(color, grayValue);
+			return getVariation(color, grayValue,darkMode);
 		}
 		
 		/**
@@ -134,7 +117,7 @@ package org.apache.royale.style.colors
 		 * @param lch lch values in 3 element array
 		 * @return rgb values in 3 element array
 		 */
-		public static function oklch_ToRGB(lch:Array):Array {
+		/*public static function oklch_ToRGB(lch:Array):Array {
 			
 			// --- 1. OKLCH → OKLab ---
 			const L:Number = lch[0];
@@ -176,7 +159,89 @@ package org.apache.royale.style.colors
 			var b:uint = uint(pinValue(linearToSrgb(bLin),0,1) * 255);
 			
 			return [r ,g ,b];
+		}*/
+		
+		public static function oklch_ToRGB(lch:Array):Array
+		{
+			const L:Number = lch[0];
+			const C:Number = lch[1];
+			const hRad:Number = lch[2] * Math.PI / 180.0;
+			
+			// Convert OKLCH → OKLab
+			function labFrom(L:Number, C:Number, hRad:Number):Array {
+				const a_:Number = C * Math.cos(hRad);
+				const b_:Number = C * Math.sin(hRad);
+				
+				const l_:Number = L + 0.3963377774 * a_ + 0.2158037573 * b_;
+				const m_:Number = L - 0.1055613458 * a_ - 0.0638541728 * b_;
+				const s_:Number = L - 0.0894841775 * a_ - 1.2914855480 * b_;
+				
+				const l:Number = (l_ < 0) ? 0 : l_ * l_ * l_;
+				const m:Number = (m_ < 0) ? 0 : m_ * m_ * m_;
+				const s:Number = (s_ < 0) ? 0 : s_ * s_ * s_;
+				
+				return [l, m, s];
+			}
+			
+			// Convert LMS → sRGB (linear → gamma)
+			function rgbFrom(l:Number, m:Number, s:Number):Array {
+				var rLin:Number =  4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s;
+				var gLin:Number = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s;
+				var bLin:Number = -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s;
+				
+				var r:Number = pinValue(linearToSrgb(rLin), 0, 1);
+				var g:Number = pinValue(linearToSrgb(gLin), 0, 1);
+				var b:Number = pinValue(linearToSrgb(bLin), 0, 1);
+				
+				return [r, g, b];
+			}
+			
+			// Try full chroma first
+			var lms:Array = labFrom(L, C, hRad);
+			var rgb:Array = rgbFrom(lms[0], lms[1], lms[2]);
+			
+			var inGamut:Boolean =
+					rgb[0] >= 0 && rgb[0] <= 1 &&
+					rgb[1] >= 0 && rgb[1] <= 1 &&
+					rgb[2] >= 0 && rgb[2] <= 1;
+			
+			if (inGamut) {
+				return [
+					uint(rgb[0] * 255),
+					uint(rgb[1] * 255),
+					uint(rgb[2] * 255)
+				];
+			}
+			
+			// Otherwise binary-search chroma down
+			var low:Number = 0;
+			var high:Number = C;
+			
+			for (var i:int = 0; i < 20; i++) {
+				var mid:Number = (low + high) * 0.5;
+				
+				lms = labFrom(L, mid, hRad);
+				rgb = rgbFrom(lms[0], lms[1], lms[2]);
+				
+				inGamut =
+						rgb[0] >= 0 && rgb[0] <= 1 &&
+						rgb[1] >= 0 && rgb[1] <= 1 &&
+						rgb[2] >= 0 && rgb[2] <= 1;
+				
+				if (inGamut)
+					low = mid;
+				else
+					high = mid;
+			}
+			
+			return [
+				uint(rgb[0] * 255),
+				uint(rgb[1] * 255),
+				uint(rgb[2] * 255)
+			];
 		}
+		
+		
 		
 		private static function srgbToLinear(x:Number):Number {
 			return (x <= 0.04045) ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4);
@@ -262,17 +327,7 @@ package org.apache.royale.style.colors
 			for (var shade:String in shading_factors)
 			{
 				var m:Number = shading_factors[shade];
-				
-				// Lightness scaling
-				var L:Number = base[0] * m;
-				
-				// Chroma scaling (slightly reduced for darker shades)
-				var C:Number = base[1] * (m < 1 ? m : 1);
-				
-				// Hue stays constant
-				var H:Number = base[2];
-				
-				ramp[shade] = [L,C,H];
+				ramp[shade] = lchShade(base, m);
 			}
 			return ramp;
 		}
@@ -283,10 +338,18 @@ package org.apache.royale.style.colors
 			var dh:Number = Math.abs(a[2] - b[2]);
 			if (dh > 180) dh = 360 - dh;
 			
+			// If both colors are very achromatic, hue doesn't matter
+			if (a[1] < 0.01 && b[1] < 0.01) dh = 0;
+			
+			// Normalize dh to a similar scale as L and C (0..1)
+			var dH_normalized:Number = dh / 180.0;
+			
 			var dL:Number = a[0] - b[0];
 			var dC:Number = a[1] - b[1];
 			
-			return Math.sqrt(dL*dL + dC*dC + dh*dh);
+			// Weighted distance: prioritize Hue strongly, then Lightness, then Chroma
+			// This ensures we snap to the correct color family (hue) first.
+			return Math.sqrt(dL*dL + (dC*dC * 0.25) + (dH_normalized * dH_normalized * 16.0));
 		}
 		
 		public static function flattenRGBAOverBackground(fg_rgb:Array, alpha:Number, bg_rgb:Array = null):Array
@@ -462,7 +525,7 @@ package org.apache.royale.style.colors
 		/**
 		 * Compute WCAG relative luminance from sRGB (0–255)
 		 */
-		private static function relativeLuminance(rgb:Array):Number {
+		public static function relativeLuminance(rgb:Array):Number {
 			function chan(v:Number):Number {
 				v /= 255.0;
 				return (v <= 0.04045) ? (v / 12.92) : Math.pow((v + 0.055) / 1.055, 2.4);
@@ -515,33 +578,45 @@ package org.apache.royale.style.colors
 			}
 			
 			var mid:Number;
-			var safeC:Number;
 			var test:Array;
 			var rgb:Array;
+			var bestL:Number = wantLight ? 1.0 : 0.0;
 			
 			// 20 iterations = sub‑pixel precision
 			for (var i:int = 0; i < 20; i++) {
 				mid = (low + high) * 0.5;
-				
-				// Stability chroma curve (prevents invalid OKLCH at extremes)
-				safeC = C * (1 - Math.abs(mid - 0.5) * 2);
-				safeC = pinValue(safeC, 0, C);
-				
-				test = [mid, safeC, h];
+				// Be conservative: solve L for achromatic foreground contrast: C=0
+				test = [mid, 0, h];
 				rgb = oklch_ToRGB(test);
 				
 				var cr:Number = contrast(rgb, bgRgb);
 				
-				if (cr >= 4.5) {
-					if (wantLight) high = mid;
-					else low = mid;
-				} else {
-					if (wantLight) low = mid;
-					else high = mid;
-				}
+ 			if (cr >= 4.5) {
+				bestL = mid;
+				if (wantLight) high = mid;
+				else low = mid;
+			} else {
+				if (wantLight) low = mid;
+				else high = mid;
 			}
-			
-			var L_final:Number = mid;
+		}
+		
+		// If we wanted light and didn't reach 4.5, check if pure white (L=1) is better than bestL.
+		// If we wanted dark and didn't reach 4.5, check if pure black (L=0) is better than bestL.
+		// In JS, sometimes the binary search might stay slightly away from the extreme.
+		if (wantLight) {
+			test = [1.0, 0, h];
+			if (contrast(oklch_ToRGB(test), bgRgb) > contrast(oklch_ToRGB([bestL, 0, h]), bgRgb)) {
+				bestL = 1.0;
+			}
+		} else {
+			test = [0.0, 0, h];
+			if (contrast(oklch_ToRGB(test), bgRgb) > contrast(oklch_ToRGB([bestL, 0, h]), bgRgb)) {
+				bestL = 0.0;
+			}
+		}
+		
+		var L_final:Number = bestL;
 			
 			// -----------------------------
 			// 2. BINARY SEARCH FOR CHROMA
@@ -601,8 +676,8 @@ package org.apache.royale.style.colors
 			var bgLch:Array = rgb_ToOKLCH(bgRgb);
 			var L:Number = bgLch[0];
 			
-			// If background is light, generate dark text; if dark, generate light text
-			var wantLight:Boolean = (L < 0.6);
+			// If background is light, generate dark contrast; if dark, generate light contrast
+			var wantLight:Boolean = (L < WANT_LIGHT_THRESHOLD);
 			
 			var correctedLch:Array = generateContrastLCH(bgLch, wantLight);
 			return oklch_ToRGB(correctedLch);

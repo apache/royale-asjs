@@ -86,7 +86,9 @@ package org.apache.royale.style
 		public function set edgePadding(value:Number):void{
 			if (_edgePadding != value) {
 				_edgePadding = value;
-				if (skin) skin.update();
+				if (skin) {
+					skin.update();
+				}
 			}
 		}
 		
@@ -106,7 +108,45 @@ package org.apache.royale.style
 				_vertical = value;
 				if (skin) skin.update();
 			}
-			
+		}
+		
+		private var _flavor:String = 'default';
+		public function get flavor():String
+		{
+			return _flavor;
+		}
+		
+		[Inspectable(category="General", enumeration="base,primary,secondary,accent,info,success,warning,error,neutral", defaultValue="default")]
+		/**
+		 * Set the flavor of the Toast
+		 * One of info, success, positive and negative. warning also appears to be an option
+		 * To set the Toast to the default, specify an empty string
+		 */
+		public function set flavor(value:String):void
+		{
+			if (!value) value = 'default';
+			if(value != _flavor){
+				switch(value){
+					case "default":
+					case 'base':
+					case 'primary':
+					case 'secondary':
+					case 'accent':
+					case 'info':
+					case 'success':
+					case 'warning':
+					case 'error':
+					case 'neutral':
+						break;
+					default:
+						throw new Error("Unknown flavor: " + value);
+				}
+				_flavor = value;
+				if (skin) {
+					skin.update();
+					applySkin()
+				}
+			}
 		}
 	}
 }

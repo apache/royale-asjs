@@ -91,9 +91,6 @@ package org.apache.royale.style.colors
 					var col:uint = BASE_COLORS[key];
 					lchLookups[key] = ColorUtils.rgb_ToOKLCH([(col>>16)&0xff,(col>>8)&0xff,col&0xff])
 				}
-				//add white and black
-				
-				
 			}
 			return lchLookups;
 		}
@@ -106,12 +103,23 @@ package org.apache.royale.style.colors
 			for (var name:String in BASE_COLORS_OKLCH) {
 				var ref:Array = BASE_COLORS_OKLCH[name];
 				var d:Number = ColorUtils.oklchDistance(inputAsOKLCH, ref);
+				
+				// Bias toward black/white if they are in the lookups
+				if (name == "white" || name == "black") {
+					d *= 0.01;
+					// If the input is very extreme (L close to 0 or 1), force a very small distance
+					if (name == "white" && inputAsOKLCH[0] > 0.99) d = 0;
+					if (name == "black" && inputAsOKLCH[0] < 0.01) d = 0;
+				}
+
 				if (d < bestDist) {
 					bestDist = d;
 					bestName = name;
 				}
 			}
 			var base:Array = BASE_COLORS_OKLCH[bestName];
+			if (bestName == "white") return new ColorSwatch("white", 0);
+			if (bestName == "black") return new ColorSwatch("black", 0);
 			var ramp:Object = ColorUtils.getOklchRamp(base);
 			var bestShade:uint = 500;
 			bestDist = Number.MAX_VALUE;
@@ -121,7 +129,7 @@ package org.apache.royale.style.colors
 				if (d < bestDist)
 				{
 					bestDist = d;
-					bestShade = uint(shadeKey);
+					bestShade = Number(shadeKey);
 				}
 			}
 			return new ColorSwatch(bestName,bestShade);
@@ -142,13 +150,17 @@ package org.apache.royale.style.colors
 		 */
 		public function ColorSwatch(swatch:String,shade:Number,opacity:Number = 100,darkMode:Boolean=false)
 		{
-			var base:Object = BASE_COLORS[swatch] || CSSLookup.getProperty(swatch);
-			assert(base, "Invalid color swatch: " + swatch);
+			if (swatch == "white") {
+				rgb = [255,255,255];
+			} else if (swatch == "black") {
+				rgb = [0,0,0];
+			} else {
+				var base:Object = BASE_COLORS[swatch] || CSSLookup.getProperty(swatch);
+				assert(base, "Invalid color swatch: " + swatch);
+				var baseColor:uint = CSSUtils.toColor(base);
+				rgb = ColorUtils.getVariation(baseColor,Math.round(shade/10),darkMode);
+			}
 			assert(shade>=0 && shade<=1000, "Invalid shade: " + shade);
-			var baseColor:uint = CSSUtils.toColor(base);
-			// Convert from 50,100,200... to 5,10,20... for easier math.
-		//	shade = Math.round(shade/10);
-			rgb = ColorUtils.getVariation(baseColor,Math.round(shade/10),darkMode);
 			assert(opacity >= 0 && opacity <= 100, "Opacity must be between 0 and 100");
 			colorBase = swatch;
 			colorShade = shade;
