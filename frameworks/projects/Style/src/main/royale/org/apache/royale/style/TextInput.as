@@ -92,31 +92,5 @@ package org.apache.royale.style
 		{
 			return _maxlength;
 		}
-		private var _min:String;
-		public function set min(value:String):void
-		{
-			_min = value;
-			COMPILE::JS
-			{
-				(element as HTMLInputElement).min = value;
-			}
-		}
-		public function get min():String
-		{
-			return _min;
-		}
-		private var _max:String;
-		public function set max(value:String):void
-		{
-			_max = value;
-			COMPILE::JS
-			{
-				(element as HTMLInputElement).max = value;
-			}
-		}
-		public function get max():String
-		{
-			return _max;
-		}
 	}
 }

@@ -81,7 +81,7 @@ package org.apache.royale.style.skins
 		}
 		private function applyStyles():void
 		{
-			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;;
+			var colorSet:ThemeColorSet = ThemeManager.instance.activeTheme.themeColorSet;
 			var size:String = host.size || "base";
 			var haveTheme:Boolean = host.theme && host.theme != "default";
 			var black:ColorSwatch = colorSet.getSwatch(ThemeColorSet.BASE, 900);
