@@ -38,6 +38,7 @@
   <component id="View" class="org.apache.royale.style.View"/>
   <component id="Container" class="org.apache.royale.style.Container"/>
   <component id="CheckBox" class="org.apache.royale.style.CheckBox"/>
+  <component id="Status" class="org.apache.royale.style.Status"/>
   <component id="Divider" class="org.apache.royale.style.Divider"/>
   <component id="Dropdown" class="org.apache.royale.style.Dropdown"/>
   <component id="Tab" class="org.apache.royale.style.Tab"/>
@@ -84,7 +85,6 @@
   <component id="Tree" class="org.apache.royale.style.Tree"/>
   <component id="DataItemRenderer" class="org.apache.royale.style.DataItemRenderer"/>
   <component id="ListItemRenderer" class="org.apache.royale.style.renderers.ListItemRenderer"/>
-  
   <component id="ListController" class="org.apache.royale.style.beads.ListController"/>
   <component id="ListModel" class="org.apache.royale.style.beads.ListModel"/>
   <component id="ListView" class="org.apache.royale.style.beads.ListView"/>
@@ -314,6 +314,7 @@
 
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
   <component id="RadioSkin" class="org.apache.royale.style.skins.RadioSkin"/>
+  <component id="StatusSkin" class="org.apache.royale.style.skins.StatusSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
   <component id="LinkSkin" class="org.apache.royale.style.skins.LinkSkin"/>
