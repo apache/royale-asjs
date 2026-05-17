@@ -67,6 +67,7 @@
   <component id="Steps" class="org.apache.royale.style.Steps"/>
   <component id="Step" class="org.apache.royale.style.Step"/>
   <component id="Toggle" class="org.apache.royale.style.Toggle"/>
+  <component id="TextInput" class="org.apache.royale.style.TextInput"/>
   <component id="FlexContainer" class="org.apache.royale.style.FlexContainer"/>
   <component id="GridContainer" class="org.apache.royale.style.GridContainer"/>
   <component id="StyleSkin" class="org.apache.royale.style.StyleSkin"/>
@@ -320,6 +321,7 @@
   <component id="RadioSkin" class="org.apache.royale.style.skins.RadioSkin"/>
   <component id="BadgeSkin" class="org.apache.royale.style.skins.BadgeSkin"/>
   <component id="DividerSkin" class="org.apache.royale.style.skins.DividerSkin"/>
+  <component id="TextInputSkin" class="org.apache.royale.style.skins.TextInputSkin"/>
   <component id="LinkSkin" class="org.apache.royale.style.skins.LinkSkin"/>
   <component id="AccordionSkin" class="org.apache.royale.style.skins.AccordionSkin"/>
   <component id="AccordionSectionSkin" class="org.apache.royale.style.skins.AccordionSectionSkin"/>

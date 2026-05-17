@@ -208,6 +208,10 @@ Divider
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DividerSkin");
 }
 
+TextInput
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextInputSkin");
+}
 MultiSelectionList
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayMultiSelectionModel");
