@@ -18,13 +18,13 @@
 /////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
-	import org.apache.royale.style.elements.Button;
+	import org.apache.royale.style.support.NodeElementBase;
 
 	/**
 	 *  A styled Button component that contains only an icon.
 	 *  Does not support text.
 	 */
-	public class IconButton extends org.apache.royale.style.elements.Button
+	public class IconButton extends NodeElementBase
 	{
 		public function IconButton()
 		{
@@ -42,13 +42,41 @@ package org.apache.royale.style
 				this.addElementAt(icon, 0);
 			}
 		}
-		override public function set disabled(value:Boolean):void
+		COMPILE::SWF
+		private var _disabled:Boolean;
+		COMPILE::JS
+		private function get button():HTMLButtonElement
 		{
-			super.disabled = value;
-			if (icon)
-				icon.toggleAttribute("data-disabled", value);
-
+			return element as HTMLButtonElement;
 		}
+
+		public function get disabled():Boolean
+		{
+			COMPILE::SWF
+			{
+				return _disabled;
+			}
+
+			COMPILE::JS
+			{
+				return button.disabled;
+			}
+		}
+		public function set disabled(value:Boolean):void
+		{
+			COMPILE::SWF
+			{
+				_disabled = value;
+			}
+			COMPILE::JS
+			{
+				button.disabled = value;
+				if (icon)
+					icon.toggleAttribute("data-disabled", value);
+			}
+		}
+
+
 		private var _icon:IIcon;
 		public function get icon():IIcon
 		{
@@ -58,6 +86,12 @@ package org.apache.royale.style
 		public function set icon(value:IIcon):void
 		{
 			_icon = value;
+			if(disabled)
+				_icon.toggleAttribute("data-disabled", true);
+		}
+		override protected function getTag():String
+		{
+			return "button";
 		}
 	}
 }

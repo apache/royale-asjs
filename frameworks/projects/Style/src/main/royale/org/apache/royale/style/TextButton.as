@@ -22,13 +22,13 @@ package org.apache.royale.style
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
-	import org.apache.royale.style.elements.Button;
+	import org.apache.royale.style.support.NodeElementBase;
 
 	/**
 	 *  A styled Button component that contains only text.
 	 *  Does not support icons.
 	 */
-	public class TextButton extends org.apache.royale.style.elements.Button
+	public class TextButton extends NodeElementBase
 	{
 		public function TextButton()
 		{
@@ -46,6 +46,45 @@ package org.apache.royale.style
 			return elem;
 		}
 
+		COMPILE::JS
+		private function get button():HTMLButtonElement
+		{
+			return element as HTMLButtonElement;
+		}
+
+		COMPILE::SWF
+		private var _disabled:Boolean;
+
+		/**
+		 *  Whether the button is disabled
+		 *
+		 *  @langversion 3.0
+		 *  @productversion Royale 1.0.0
+		 */
+		public function get disabled():Boolean
+		{
+			COMPILE::SWF
+			{
+				return _disabled;
+			}
+
+			COMPILE::JS
+			{
+				return button.disabled;
+			}
+		}
+		public function set disabled(value:Boolean):void
+		{
+			COMPILE::SWF
+			{
+				_disabled = value;
+			}
+			COMPILE::JS
+			{
+				button.disabled = value;
+			}
+		}
+
 		private var _text:String = "";
 		public function get text():String
 		{
@@ -61,6 +100,10 @@ package org.apache.royale.style
 				
 			}
 			_text = value;
+		}
+		override protected function getTag():String
+		{
+			return "button";
 		}
 	}
 }
