@@ -245,7 +245,7 @@ package org.apache.royale.style
 			COMPILE::JS
 			{
 				var styleType:String = style.styleType;
-				if(styleTypes.has(styleType))
+				if(styleTypes && styleTypes.has(styleType))
 				{
 					return styleTypes.get(styleType);
 				}
