@@ -41,12 +41,6 @@ package org.apache.royale.style
 		private var span:Span;
 
 		COMPILE::JS
-		override protected function getTag():String
-		{
-			return "label";
-		}
-		COMPILE::JS
-
 		override protected function createElement():WrappedHTMLElement
 		{
 			var elem:WrappedHTMLElement = super.createElement();
