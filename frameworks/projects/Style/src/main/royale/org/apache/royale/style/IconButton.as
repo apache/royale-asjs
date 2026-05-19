@@ -49,7 +49,11 @@ package org.apache.royale.style
 		{
 			return element as HTMLButtonElement;
 		}
-
+		/**
+		 * Whether the button is disabled
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 */
 		public function get disabled():Boolean
 		{
 			COMPILE::SWF
@@ -78,6 +82,11 @@ package org.apache.royale.style
 
 
 		private var _icon:IIcon;
+		/**
+		 * The icon to display in the button. Should be an icon that can be styled with CSS.
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 */
 		public function get icon():IIcon
 		{
 			return _icon;
@@ -88,10 +97,40 @@ package org.apache.royale.style
 			_icon = value;
 			if(disabled)
 				_icon.toggleAttribute("data-disabled", true);
+			if(selected)
+				_icon.toggleAttribute("data-selected", true);
 		}
 		override protected function getTag():String
 		{
 			return "button";
 		}
+
+		private var _selected:Boolean;
+		/**
+		 * Whether the button is selected.
+		 * This is a separate state from "disabled" and can be used to indicate an active or toggled state for the button.
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 */
+		public function get selected():Boolean
+		{
+			return _selected;
+		}
+
+		public function set selected(value:Boolean):void
+		{
+			if(value != _selected)
+			{
+				_selected = value;
+				toggleAttribute("data-selected", value);
+				if (icon)
+					icon.toggleAttribute("data-selected", value);
+				COMPILE::JS
+				{
+					element.setAttribute("aria-selected", value ? "true" : "false");
+				}
+			}
+		}
+
 	}
 }
