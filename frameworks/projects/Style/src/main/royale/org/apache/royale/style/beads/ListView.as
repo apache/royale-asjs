@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.beads
 {
-  import org.apache.royale.html.beads.DataContainerView;
-  import org.apache.royale.events.Event;
   import org.apache.royale.core.IRollOverModel;
-  import org.apache.royale.core.IParent;
+  import org.apache.royale.core.ISelectionModel;
+  import org.apache.royale.debugging.assert;
+  import org.apache.royale.events.Event;
   import org.apache.royale.functional.decorator.debounceLong;
-  import org.apache.royale.style.DataItemRenderer;
+  import org.apache.royale.html.beads.DataContainerView;
   import org.apache.royale.style.renderers.ListItemRenderer;
 
 	public class ListView extends DataContainerView
@@ -36,7 +36,7 @@ package org.apache.royale.style.beads
 			},0);
 		}
 
-		protected var listModel:ListModel;
+		protected var listModel:IRollOverModel;
 
 		protected var lastSelectedIndex:int = -1;
 		protected var lastFocusedIndex:int = -1;
@@ -45,10 +45,11 @@ package org.apache.royale.style.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
-			listModel = dataModel as ListModel;
+			listModel = dataModel as IRollOverModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			// Don't call super because we don't need the overhead of layout
@@ -62,19 +63,21 @@ package org.apache.royale.style.beads
 		}
 		private var runChangeHandler:Function;
 		/**
-		 * @private
+		 * TODO move this out of the view bead to handle selection and multi-selection.
 		 * @royaleignorecoercion org.apache.royale.style.renderers.ListItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
 			var ir:ListItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ListItemRenderer;
 			if(ir)
 				ir.selected = false;
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ListItemRenderer;
+			assert(listModel is ISelectionModel, "ListModel should implement ISelectionModel");
+			ir = dataGroup.getItemRendererForIndex((listModel as ISelectionModel).selectedIndex) as ListItemRenderer;
 			if(ir)
 				ir.selected = true;
 
-			lastSelectedIndex = listModel.selectedIndex;
+			lastSelectedIndex = (listModel as ISelectionModel).selectedIndex;
 		}
 
 		protected var lastRollOverIndex:int = -1;
