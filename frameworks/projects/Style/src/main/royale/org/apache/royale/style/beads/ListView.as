@@ -24,7 +24,7 @@ package org.apache.royale.style.beads
   import org.apache.royale.events.Event;
   import org.apache.royale.functional.decorator.debounceLong;
   import org.apache.royale.html.beads.DataContainerView;
-  import org.apache.royale.style.renderers.ListItemRenderer;
+  import org.apache.royale.style.renderers.IListItemRenderer;
 
 	public class ListView extends DataContainerView
 	{
@@ -55,7 +55,6 @@ package org.apache.royale.style.beads
 			// Don't call super because we don't need the overhead of layout
 			// super.handleInitComplete(event);
 		}
-		private var focusableItemRenderer:ListItemRenderer;
 		override protected function itemsCreatedHandler(event:Event):void
 		{
 			super.itemsCreatedHandler(event);
@@ -63,17 +62,16 @@ package org.apache.royale.style.beads
 		}
 		private var runChangeHandler:Function;
 		/**
-		 * TODO move this out of the view bead to handle selection and multi-selection.
-		 * @royaleignorecoercion org.apache.royale.style.renderers.ListItemRenderer
 		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 * @royaleignorecoercion org.apache.royale.style.renderers.IListItemRenderer
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ListItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ListItemRenderer;
+			var ir:IListItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IListItemRenderer;
 			if(ir)
 				ir.selected = false;
-			assert(listModel is ISelectionModel, "ListModel should implement ISelectionModel");
-			ir = dataGroup.getItemRendererForIndex((listModel as ISelectionModel).selectedIndex) as ListItemRenderer;
+			assert(listModel is ISelectionModel, "ListModel should implement ISelectionModel. For multi-selection, use MultiSelectionListView.");
+			ir = dataGroup.getItemRendererForIndex((listModel as ISelectionModel).selectedIndex) as IListItemRenderer;
 			if(ir)
 				ir.selected = true;
 
@@ -84,15 +82,15 @@ package org.apache.royale.style.beads
 
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.style.renderers.ListItemRenderer
-		 * * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.style.renderers.IListItemRenderer
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			var ir:ListItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ListItemRenderer;
+			var ir:IListItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IListItemRenderer;
 			if(ir)
 				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as ListItemRenderer;
+			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as IListItemRenderer;
 			if(ir)
 				ir.hovered = true;
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
