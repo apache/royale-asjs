@@ -33,10 +33,9 @@ package
 		import org.apache.royale.style.util.ContentAlign; ContentAlign;
 		import org.apache.royale.style.support.UIItemRendererBase; UIItemRendererBase;
 		import org.apache.royale.style.const.Theme; Theme;
-		import org.apache.royale.style.skins.ModalSkin; ModalSkin;
-		import org.apache.royale.style.skins.ModalBodySkin; ModalBodySkin;
-		import org.apache.royale.style.skins.ModalTitleSkin; ModalTitleSkin;
-		import org.apache.royale.style.skins.ModalActionsSkin; ModalActionsSkin;
+		import org.apache.royale.style.data.DataItem; DataItem;
+		import org.apache.royale.style.data.ListData; ListData;
+		import org.apache.royale.style.data.MenuData; MenuData;
 	}
 
 }

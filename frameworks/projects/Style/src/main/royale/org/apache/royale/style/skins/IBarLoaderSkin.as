@@ -16,38 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style.skins
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.IStyleSkin;
+	import org.apache.royale.style.IStyleUIBase;
 
-	public class BackgroundRepeat extends LeafStyleBase
+	public interface IBarLoaderSkin extends IStyleSkin
 	{
-		public function BackgroundRepeat(value:* = null)
-		{
-			super("bg", "background-repeat", value);
-		}
-		override public function set value(value:*):void
-		{
-			assert(["repeat","repeat-x","x","repeat-y","y","space","round","no-repeat"].indexOf(value) >= 0, "Invalid value for background-repeat: " + value);
-			var ruleValue:String = value;
-			var selectorValue:String = value;
-			switch(value)
-			{
-				case "x":
-					selectorValue = ruleValue = "repeat-x";
-					break;
-				case "y":
-					selectorValue = ruleValue = "repeat-y";
-					break;
-				case "space":
-				case "round":
-					selectorValue = "repeat-" + value;
-					break;
-			}
-			calculatedRuleValue = ruleValue;
-			calculatedSelector = selectorValue;
-			_value = value;
-		}
+		function get barLoaderStyles():Array;
+		function get indeterminateStyles():Array;
 	}
 }
