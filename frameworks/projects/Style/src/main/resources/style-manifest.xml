@@ -23,6 +23,8 @@
   <component id="Accordion" class="org.apache.royale.style.Accordion"/>
   <component id="AccordionSection" class="org.apache.royale.style.AccordionSection"/>
   <component id="AccordionContent" class="org.apache.royale.style.AccordionContent"/>
+  <component id="Breadcrumbs" class="org.apache.royale.style.Breadcrumbs"/>
+  <component id="BreadcrumbItem" class="org.apache.royale.style.BreadcrumbItem"/>
   <component id="Application" class="org.apache.royale.style.Application"/>
   <component id="Radio" class="org.apache.royale.style.Radio"/>
   <component id="Badge" class="org.apache.royale.style.Badge"/>
@@ -89,6 +91,7 @@
   <component id="Tree" class="org.apache.royale.style.Tree"/>
   <component id="DataItemRenderer" class="org.apache.royale.style.DataItemRenderer"/>
   <component id="ListItemRenderer" class="org.apache.royale.style.renderers.ListItemRenderer"/>
+  <component id="ListItemRendererBase" class="org.apache.royale.style.renderers.ListItemRendererBase"/>
   
   <component id="ListController" class="org.apache.royale.style.beads.ListController"/>
   <component id="ListModel" class="org.apache.royale.style.beads.ListModel"/>
@@ -316,6 +319,8 @@
   <component id="TransformOrigin" class="org.apache.royale.style.stylebeads.transform.TransformOrigin"/>
   <component id="TransformStyle" class="org.apache.royale.style.stylebeads.transform.TransformStyle"/>
   <component id="Translate" class="org.apache.royale.style.stylebeads.transform.Translate"/>
+
+  <component id="BreadcrumbsSkin" class="org.apache.royale.style.skins.BreadcrumbsSkin"/>
   <component id="CheckBoxSkin" class="org.apache.royale.style.skins.CheckBoxSkin"/>
   <component id="RangeSkin" class="org.apache.royale.style.skins.RangeSkin"/>
   <component id="RadioSkin" class="org.apache.royale.style.skins.RadioSkin"/>

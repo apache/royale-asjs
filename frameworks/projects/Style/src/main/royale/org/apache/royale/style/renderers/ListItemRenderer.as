@@ -25,7 +25,7 @@ package org.apache.royale.style.renderers
 	import org.apache.royale.style.data.IListData;
 	import org.apache.royale.style.elements.Img;
 
-	public class ListItemRenderer extends DataItemRenderer implements IListItemRenderer
+	public class ListItemRenderer extends ListItemRendererBase
 	{
 		public function ListItemRenderer()
 		{
@@ -137,49 +137,5 @@ package org.apache.royale.style.renderers
 		protected var icon:Icon;
 		protected var imageIcon:Img;
 
-		override protected function getTag():String
-		{
-			return "li";
-		}
-
-		public function get selected():Boolean
-		{
-			return getAttribute("data-selected") != null;
-		}
-
-		public function set selected(value:Boolean):void
-		{
-			toggleAttribute("data-selected", value);
-		}
-
-		public function get hovered():Boolean
-		{
-			return getAttribute("data-hovered") != null;
-		}
-
-		public function set hovered(value:Boolean):void
-		{
-			toggleAttribute("data-hovered", value);
-		}
-
-		public function get down():Boolean
-		{
-			return getAttribute("data-down") != null;
-		}
-
-		public function set down(value:Boolean):void
-		{
-			toggleAttribute("data-down", value);
-		}
-
-		public function get disabled():Boolean
-		{
-			return getAttribute("data-disabled") != null;
-		}
-
-		public function set disabled(value:Boolean):void
-		{
-			toggleAttribute("data-disabled", value);
-		}
 	}
 }
