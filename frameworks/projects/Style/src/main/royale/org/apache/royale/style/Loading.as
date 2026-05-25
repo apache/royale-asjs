@@ -26,14 +26,14 @@ package org.apache.royale.style
 			super();
 		}
 
-		private var _animation:Object;
+		private var _animation:String;
 
-		public function get animation():Object
+		public function get animation():String
 		{
 			return _animation;
 		}
 
-		public function set animation(value:Object):void
+		public function set animation(value:String):void
 		{
 			_animation = value;
 		}
