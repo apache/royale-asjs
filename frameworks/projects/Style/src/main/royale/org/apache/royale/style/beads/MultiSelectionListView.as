@@ -25,6 +25,7 @@ package org.apache.royale.style.beads
 	import org.apache.royale.html.util.getModelByType;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.renderers.IListItemRenderer;
+	import org.apache.royale.core.IStrand;
 
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List
@@ -182,10 +183,10 @@ package org.apache.royale.style.beads
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+			var ir:IListItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IListItemRenderer;
 			if(ir)
 				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererForIndex(IRollOverModel(listModel).rollOverIndex) as IListItemRenderer;
 			if(ir)
 				ir.hovered = true;
 			
