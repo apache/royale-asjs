@@ -302,21 +302,25 @@ package org.apache.royale.style.elements
 		{
 			return "textarea";
 		}
-		 public function get minlength():String
+		 public function get minlength():int
         {
             COMPILE::JS
             {
-                return element["minLength"].toString();
+                return element["minLength"];
             }
             COMPILE::SWF
             {
-                return "";
+                return 0;
             }
         }
-        public function set minlength(value:String):void
+        public function set minlength(value:int):void
         {
             COMPILE::JS
             {
+				if(value < 1){
+					element["minLength"] = "";
+					return;
+				}
                 element["minLength"] = parseInt(value);
             }
             COMPILE::SWF
@@ -325,21 +329,25 @@ package org.apache.royale.style.elements
             }
         }
 
-        public function get maxlength():String
+        public function get maxlength():int
         {
             COMPILE::JS
             {
-                return element["maxLength"].toString();
+                return element["maxLength"];
             }
             COMPILE::SWF
             {
-                return "";
+                return 0;
             }
         }
-        public function set maxlength(value:String):void
+        public function set maxlength(value:int):void
         {
             COMPILE::JS
             {
+				if(value < 1){
+					element["maxLength"] = "";
+					return;
+				}
                 element["maxLength"] = parseInt(value);
             }
             COMPILE::SWF
@@ -362,6 +370,7 @@ package org.apache.royale.style.elements
                 return "";
             }
         }
+		[Inspectable(category="General", enumeration="true,false,default", defaultValue="false")]
         public function set spellcheck(value:String):void
         {
             COMPILE::JS
@@ -385,6 +394,7 @@ package org.apache.royale.style.elements
                 return "";
             }
         }
+		[Inspectable(category="General", enumeration="hard,soft,off", defaultValue="soft")]
         public function set wrap(value:String):void
         {
             COMPILE::JS
@@ -454,6 +464,7 @@ package org.apache.royale.style.elements
                 return "";
             }
         }
+		[Inspectable(category="General", enumeration="on,off", defaultValue="off")]
         public function set autocorrect(value:String):void
         {
             COMPILE::JS
@@ -500,6 +511,7 @@ package org.apache.royale.style.elements
                 return "";
             }
         }
+		[Inspectable(category="General", enumeration="none,off,sentences,on,words,characters", defaultValue="none")]
         public function set autocapitalize(value:String):void
         {
             COMPILE::JS
