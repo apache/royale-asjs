@@ -296,6 +296,7 @@
           <consoleOutput>true</consoleOutput>
           <excludes>
             <exclude>.gitattributes</exclude>
+            <exclude>.asf.yaml</exclude>
             <!-- JSON files can't contain comments -->
             <exclude>**/*.json</exclude>
             <!-- This is appended to the LICENSE file for binary packages-->

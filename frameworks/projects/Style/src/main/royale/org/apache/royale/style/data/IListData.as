@@ -16,38 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style.data
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
+  public interface IListData extends IDataItem
+  {
+    function get text():String;
+    function set text(value:String):void;
+    function get label():String;
+    function get icon():String;
+    function set icon(value:String):void;
 
-	public class BackgroundRepeat extends LeafStyleBase
-	{
-		public function BackgroundRepeat(value:* = null)
-		{
-			super("bg", "background-repeat", value);
-		}
-		override public function set value(value:*):void
-		{
-			assert(["repeat","repeat-x","x","repeat-y","y","space","round","no-repeat"].indexOf(value) >= 0, "Invalid value for background-repeat: " + value);
-			var ruleValue:String = value;
-			var selectorValue:String = value;
-			switch(value)
-			{
-				case "x":
-					selectorValue = ruleValue = "repeat-x";
-					break;
-				case "y":
-					selectorValue = ruleValue = "repeat-y";
-					break;
-				case "space":
-				case "round":
-					selectorValue = "repeat-" + value;
-					break;
-			}
-			calculatedRuleValue = ruleValue;
-			calculatedSelector = selectorValue;
-			_value = value;
-		}
-	}
+    /**
+     * src of an icon to be rendered an an img
+     */
+    function get imageIcon():String;
+    function set imageIcon(value:String):void;
+
+  }	
 }

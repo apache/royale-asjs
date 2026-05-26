@@ -45,13 +45,31 @@ AccordionContent
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.AccordionContentSkin");
 }
+Button,
+TextButton,
+IconButton
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.ButtonSkin");
+}
 Badge
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.BadgeSkin");
 }
-FileInput
+Footer
 {
-	IStyleSkin: ClassReference("org.apache.royale.style.skins.FileInputSkin");
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.FooterSkin");
+}
+Hero
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroSkin");
+}
+HeroContent
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroContentSkin");
+}
+HeroOverlay
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.HeroOverlaySkin");
 }
 View
 {
@@ -65,6 +83,9 @@ CheckBox
 Textarea
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextareaSkin");
+Range
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RangeSkin");
 }
 Dropdown
 {
@@ -190,6 +211,10 @@ Divider
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.DividerSkin");
 }
 
+TextInput
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextInputSkin");
+}
 MultiSelectionList
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayMultiSelectionModel");
@@ -220,6 +245,10 @@ ListItemRenderer
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ListRendererSkin");
 }
+BarLoader
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.BarLoaderSkin");
+}
 Tree
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.TreeModel");
@@ -240,4 +269,7 @@ Toast {
 }
 Tooltip {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.TooltipSkin");
+}
+RadialProgress {
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.RadialProgressSkin");
 }

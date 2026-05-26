@@ -16,38 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
-
-	public class BackgroundRepeat extends LeafStyleBase
+	COMPILE::JS
 	{
-		public function BackgroundRepeat(value:* = null)
+		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addElementToWrapper;
+	}
+
+	public class Footer extends Group
+	{
+		public function Footer()
 		{
-			super("bg", "background-repeat", value);
+			super();
 		}
-		override public function set value(value:*):void
+
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
 		{
-			assert(["repeat","repeat-x","x","repeat-y","y","space","round","no-repeat"].indexOf(value) >= 0, "Invalid value for background-repeat: " + value);
-			var ruleValue:String = value;
-			var selectorValue:String = value;
-			switch(value)
-			{
-				case "x":
-					selectorValue = ruleValue = "repeat-x";
-					break;
-				case "y":
-					selectorValue = ruleValue = "repeat-y";
-					break;
-				case "space":
-				case "round":
-					selectorValue = "repeat-" + value;
-					break;
-			}
-			calculatedRuleValue = ruleValue;
-			calculatedSelector = selectorValue;
-			_value = value;
+			addElementToWrapper(this, "footer");
+			return element;
+		}
+
+		override public function getWrapperStyle():String
+		{
+			return "footer";
 		}
 	}
 }

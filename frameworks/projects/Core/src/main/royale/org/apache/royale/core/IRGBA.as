@@ -16,38 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.core
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
+    /**
+     *  The IRGBA interface is the basic interface for an
+     *  object which has RGBA color properties.
+     * 
+     *  @langversion 3.0
+     *  @productversion Royale 1.0.0
+     */
 
-	public class BackgroundRepeat extends LeafStyleBase
+	public interface IRGBA
 	{
-		public function BackgroundRepeat(value:* = null)
-		{
-			super("bg", "background-repeat", value);
-		}
-		override public function set value(value:*):void
-		{
-			assert(["repeat","repeat-x","x","repeat-y","y","space","round","no-repeat"].indexOf(value) >= 0, "Invalid value for background-repeat: " + value);
-			var ruleValue:String = value;
-			var selectorValue:String = value;
-			switch(value)
-			{
-				case "x":
-					selectorValue = ruleValue = "repeat-x";
-					break;
-				case "y":
-					selectorValue = ruleValue = "repeat-y";
-					break;
-				case "space":
-				case "round":
-					selectorValue = "repeat-" + value;
-					break;
-			}
-			calculatedRuleValue = ruleValue;
-			calculatedSelector = selectorValue;
-			_value = value;
-		}
+		function get r():Number;
+		function set r(value:Number):void;
+		function get g():Number;
+		function set g(value:Number):void;
+		function get b():Number;
+		function set b(value:Number):void;
+		function get alpha():Number;
+		function set alpha(value:Number):void;
+		function get colorValue():uint;
+		function set colorValue(value:uint):void;
+		function get styleString():String;
+		function get hexString():String;
+		function get isValid():Boolean;
+		function clone():IRGBA;		
 	}
 }

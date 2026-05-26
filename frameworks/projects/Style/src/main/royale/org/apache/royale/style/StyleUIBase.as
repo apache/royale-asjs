@@ -245,7 +245,7 @@ package org.apache.royale.style
 			COMPILE::JS
 			{
 				var styleType:String = style.styleType;
-				if(styleTypes.has(styleType))
+				if(styleTypes && styleTypes.has(styleType))
 				{
 					return styleTypes.get(styleType);
 				}
@@ -386,6 +386,23 @@ package org.apache.royale.style
 				element.style[property] = value;
 			}
 		}
+		
+		/**
+		 * set a style property (var) on the current element
+		 * @param propertyName
+		 * @param value
+		 * 
+		 * @royaleignorecoercion String
+		 */
+		public function setStyleProperty(propertyName:String,value:Object):void{
+			assert(propertyName && propertyName.indexOf('--') == 0, 'bad property name, must start with "--"')
+			COMPILE::JS
+			{
+				element.style.setProperty(propertyName,value as String);
+			}
+		}
+		
+		
 		public function toggleAttribute(name:String, value:Boolean):void
 		{
 			COMPILE::JS

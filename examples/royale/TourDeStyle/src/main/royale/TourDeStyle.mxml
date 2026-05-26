@@ -34,6 +34,8 @@
                 navbarSection.visible = (idx == 6);
                 menuSection.visible = (idx == 7);
                 stepsSection.visible = (idx == 8);
+                footerSection.visible = (idx == 9);
+                heroSection.visible = (idx == 10);
             }
 
             private function openModal(id:String):void
@@ -61,6 +63,8 @@
                 <s:Tab text="Navbar" />
                 <s:Tab text="Menu" />
                 <s:Tab text="Steps" />
+                <s:Tab text="Footer" />
+                <s:Tab text="Hero" />
             </s:tabs>
         </s:TabBar>
 
@@ -280,6 +284,106 @@
                 <s:Step text="Purchase" content="3" size="lg" />
                 <s:Step text="Receive Product" content="4" size="lg" />
             </s:Steps>
+        </s:FlexContainer>
+
+        <!-- Footer Section -->
+        <s:FlexContainer id="footerSection" visible="false" gap="24" vertical="true">
+            <s:Footer>
+                <e:Span text="Acme Inc. © 2026" />
+                <s:FlexContainer gap="12">
+                    <e:A text="Docs" href="#" />
+                    <e:A text="Privacy" href="#" />
+                    <e:A text="Terms" href="#" />
+                </s:FlexContainer>
+            </s:Footer>
+
+            <s:Footer>
+                <s:FlexContainer vertical="true" gap="4">
+                    <e:Span text="ACME Industries Ltd." />
+                    <e:Small text="Providing reliable tech since 1992" />
+                </s:FlexContainer>
+                <s:FlexContainer gap="20">
+                    <s:FlexContainer vertical="true" gap="4">
+                        <e:Strong text="Services" />
+                        <e:A text="Branding" href="#" />
+                        <e:A text="Design" href="#" />
+                    </s:FlexContainer>
+                    <s:FlexContainer vertical="true" gap="4">
+                        <e:Strong text="Company" />
+                        <e:A text="About" href="#" />
+                        <e:A text="Contact" href="#" />
+                    </s:FlexContainer>
+                </s:FlexContainer>
+            </s:Footer>
+
+            <s:Footer>
+                <s:FlexContainer vertical="true" gap="10">
+                    <s:FlexContainer gap="12">
+                        <e:A text="About us" href="#" />
+                        <e:A text="Contact" href="#" />
+                        <e:A text="Jobs" href="#" />
+                        <e:A text="Press kit" href="#" />
+                    </s:FlexContainer>
+                    <s:FlexContainer gap="10">
+                        <e:Span text="X" />
+                        <e:Span text="YT" />
+                        <e:Span text="FB" />
+                    </s:FlexContainer>
+                    <e:Small text="Copyright © 2026 - All rights reserved" />
+                </s:FlexContainer>
+            </s:Footer>
+        </s:FlexContainer>
+
+        <!-- Hero Section -->
+        <s:FlexContainer id="heroSection" visible="false" gap="24" vertical="true">
+            <s:Hero>
+                <s:HeroContent>
+                    <e:H2 text="Hello there" />
+                    <e:P text="Hero sections are large attention blocks with headline and action." />
+                    <e:Div text="Get Started" />
+                </s:HeroContent>
+            </s:Hero>
+
+            <s:Hero>
+                <s:HeroContent>
+                    <s:FlexContainer gap="24">
+                        <s:FlexContainer width="220" height="120">
+                            <s:styleBeads>
+                                <s:Display value="flex" />
+                                <s:AlignItems value="center" />
+                                <s:JustifyContent value="center" />
+                                <s:BackgroundColor value="blue-500" />
+                                <s:BorderRadius radius="12" />
+                            </s:styleBeads>
+                            <e:Span text="Figure" />
+                        </s:FlexContainer>
+                        <s:FlexContainer vertical="true" gap="8">
+                            <e:H2 text="Box Office News!" />
+                            <e:P text="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi." />
+                            <e:Div text="Get Started" />
+                        </s:FlexContainer>
+                    </s:FlexContainer>
+                </s:HeroContent>
+            </s:Hero>
+
+            <s:Hero>
+                <s:styleBeads>
+                    <s:BackgroundColor value="sky-500" />
+                </s:styleBeads>
+                <s:HeroOverlay>
+                    <s:styleBeads>
+                        <s:BackgroundColor value="slate-900/60" />
+                    </s:styleBeads>
+                </s:HeroOverlay>
+                <s:HeroContent>
+                    <s:styleBeads>
+                        <s:TextColor value="slate-50" />
+                    </s:styleBeads>
+                    <e:H2 text="Hello there" />
+                    <e:P text="Background with overlay and centered content." />
+                    <e:Div text="Get Started" />
+                </s:HeroContent>
+            </s:Hero>
         </s:FlexContainer>
 
     </s:FlexContainer>

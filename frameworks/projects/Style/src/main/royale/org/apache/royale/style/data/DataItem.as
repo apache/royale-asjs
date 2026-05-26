@@ -16,38 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.background
+package org.apache.royale.style.data
 {
-	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
-
-	public class BackgroundRepeat extends LeafStyleBase
+	/**
+	 * A simple implementation of IDataItem that can be used as a base class for more complex data items or as a simple data item on its own.
+	 * 
+	 * @languageversion 3.0
+	 * @productversion Royale 1.0.0
+	 */
+	public class DataItem implements IDataItem
 	{
-		public function BackgroundRepeat(value:* = null)
+		public function DataItem()
 		{
-			super("bg", "background-repeat", value);
+
 		}
-		override public function set value(value:*):void
-		{
-			assert(["repeat","repeat-x","x","repeat-y","y","space","round","no-repeat"].indexOf(value) >= 0, "Invalid value for background-repeat: " + value);
-			var ruleValue:String = value;
-			var selectorValue:String = value;
-			switch(value)
-			{
-				case "x":
-					selectorValue = ruleValue = "repeat-x";
-					break;
-				case "y":
-					selectorValue = ruleValue = "repeat-y";
-					break;
-				case "space":
-				case "round":
-					selectorValue = "repeat-" + value;
-					break;
-			}
-			calculatedRuleValue = ruleValue;
-			calculatedSelector = selectorValue;
-			_value = value;
+		private var _disabled:Boolean;
+		public function get disabled():Boolean{
+			return _disabled;
+		}
+		public function set disabled(value:Boolean):void{
+			_disabled = value;
+		}
+		private var _selected:Boolean;
+		public function get selected():Boolean{
+			return _selected;
+		}
+		public function set selected(value:Boolean):void{
+			_selected = value;
 		}
 	}
 }

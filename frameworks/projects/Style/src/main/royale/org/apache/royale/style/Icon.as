@@ -201,7 +201,7 @@ package org.apache.royale.style
 			if (!_elements)
 			{
 				_elements = {
-						"svg": 1, "path": 1, "g": 1, "rect": 1, "circle": 1, "line": 1, "polyline": 1, "polygon": 1, "defs": 1, "clipPath": 1, "title": 1, "mask": 1, "use": 1, "symbol": 1
+						"svg": 1, "path": 1, "g": 1, "rect": 1, "circle": 1, "ellipse": 1, "line": 1, "polyline": 1, "polygon": 1, "defs": 1, "clipPath": 1, "title": 1, "mask": 1, "use": 1, "symbol": 1
 					};
 			}
 			return _elements;
