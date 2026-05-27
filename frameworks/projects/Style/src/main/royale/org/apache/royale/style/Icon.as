@@ -67,6 +67,7 @@ package org.apache.royale.style
 		{
 			_iconPath = value;
 		}
+		COMPILE::JS
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -91,19 +92,48 @@ package org.apache.royale.style
 				}
 			}
 		}
+		// keep a map of paths and requests
+		COMPILE::JS
+		private static var _requests:Map = new Map();
+		COMPILE::JS
 		private function loadMarkup():void
 		{
 			assert(iconPath, "Icon path must be provided");
-			// TODO don't make the same request twice.
-			new HttpRequestTask(iconPath).exec(function(task:HttpRequestTask):void
-				{
-					if (task.completed)
+			// don't make the same request twice.
+			var existingRequest:HttpRequestTask = _requests.get(iconPath);
+			if (existingRequest){
+				existingRequest.done(
+					function(task:HttpRequestTask):void
 					{
-						parseMarkup(new XML(task.resultString));
-						// register the loaded markup for future use
+						var markup:XML = _registeredIcons.get (iconPath);
+						if (markup)
+							return parseMarkup(markup);
+						// This shouldn't happen because done on the main request should have already registered the markup,
+						// but just in case...
+						parseTask(task);
 					}
-					// TODO do we want some kind of error handling here?
-				});
+				);
+				return;
+			}
+			var request:HttpRequestTask = new HttpRequestTask(iconPath);
+			_requests.set(iconPath, request);
+			request.exec(
+				function(task:HttpRequestTask):void
+				{
+					parseTask(task);
+					_requests.delete(iconPath);
+				}
+			);
+		}
+		private function parseTask(task:HttpRequestTask):void
+		{
+			if (task.completed)
+			{
+				var markup:XML = new XML(task.resultString);
+				parseMarkup(markup);
+				registerIcon(iconPath, markup);
+			}
+			// TODO do we want some kind of error handling here?
 		}
 		COMPILE::JS
 		private var _iconElement:SVGElement;
