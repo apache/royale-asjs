@@ -26,6 +26,7 @@ package org.apache.royale.style.stylebeads
 		function getRule():String;
 		function get selectorBase():String;
 		function get parentQueryId():String;
+		function set parentQueryId(value:String):void;
 		function get unit():String;
 		function set unit(value:String):void;
 		function get selectorPrefix():String;

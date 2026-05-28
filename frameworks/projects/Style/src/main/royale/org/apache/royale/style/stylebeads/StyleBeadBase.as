@@ -25,6 +25,7 @@ package org.apache.royale.style.stylebeads
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.colors.ColorSwatch;
+	import org.apache.royale.utils.StringUtil;
 	
 	[DefaultProperty("styles")]
 	/**
@@ -169,30 +170,61 @@ package org.apache.royale.style.stylebeads
 				value = "white";
 			var selectorVal:String = "" + value;
 			var ruleVal:String = selectorVal;
-			switch(selectorVal)
+
+			if (selectorVal.indexOf("color-mix(") == 0)
+			{
+				ruleVal = resolveColorMix(selectorVal);
+				return new StyleData(selectorVal.replace(/\s+/g, "-").replace(/\(/g, "-").replace(/\)/g, "").replace(/,/g, "-").replace(/%/g, "pc"), ruleVal, value);
+			}
+
+			ruleVal = resolveColor(selectorVal);
+			return new StyleData(selectorVal, ruleVal,value);
+		}
+
+		private function resolveColor(color:String):String
+		{
+			switch(color)
 			{
 				case "transparent":
 				case "currentColor":
 				case "inherit":
 				case "none":
-					break;
+					return color;
 				case "black":
-					ruleVal = "#000";
-					break;
+					return "#000";
 				case "white":
-					ruleVal = "#fff";
-					break;
+					return "#fff";
 				default:
-					if(CSSLookup.has(selectorVal))
-						ruleVal = CSSLookup.getProperty(selectorVal);
-					else
+					if(CSSLookup.has(color))
+						return CSSLookup.getProperty(color);
+					else if (color.indexOf("-") != -1)
 					{
-						var color:ColorSwatch = ColorSwatch.fromSpecifier(selectorVal,false);
-						ruleVal = color.colorValue;
+						var swatch:ColorSwatch = ColorSwatch.fromSpecifier(color, false);
+						return swatch.colorValue;
 					}
 					break;
 			}
-			return new StyleData(selectorVal, ruleVal,value);
+			return color;
+		}
+
+		private function resolveColorMix(value:String):String
+		{
+			// color-mix(in srgb, blue 50%, white)
+			var content:String = value.substring(10, value.length - 1);
+			var parts:Array = content.split(",");
+			var ret:String = "color-mix(" + parts[0]; // in srgb
+			for (var i:int = 1; i < parts.length; i++)
+			{
+				var part:String = StringUtil.trim(parts[i]);
+				var colorPart:Array = part.split(/\s+/);
+				var color:String = colorPart[0];
+				var resolved:String = resolveColor(color);
+				ret += ", " + resolved;
+				if (colorPart.length > 1)
+					ret += " " + colorPart[1];
+			}
+			ret += ")";
+			return ret;
 		}
 	}
 }

@@ -99,6 +99,15 @@ package org.apache.royale.style.util
 			}
 			return mediaList.get(identifier) as CSSRule;
 		}
+		
+		/**
+		 * 
+		 * @param identifier
+		 * @param query
+		 * @param parentId
+		 *
+		 * @royaleignorecoercion CSSStyleSheet
+		 */
 		public static function addQuery(identifier:String, query:String,parentId:String = null):void
 		{
 			COMPILE::JS
@@ -124,6 +133,17 @@ package org.apache.royale.style.util
 				}
 			}
 		}
+		
+		/**
+		 * 
+		 * @param identifier
+		 * @param selector
+		 * @param normalizedSelector
+		 * @param rule
+		 * 
+		 * 
+		 * @royaleignorecoercion CSSStyleSheet
+		 */
 		public static function addGroupedRule(identifier:String, selector:String, normalizedSelector:String, rule:String):void
 		{
 			COMPILE::JS
@@ -132,6 +152,7 @@ package org.apache.royale.style.util
 				var toGroup:CSSRule = getQuery(identifier);
 				// TODO remove this once we have CSSGroupingRule in the typedefs
 				var fakeType:CSSStyleSheet = toGroup as CSSStyleSheet;
+				//var fakeType:CSSGroupingRule = toGroup as CSSGroupingRule;
 				var len:int = fakeType.cssRules.length;
 				fakeType.insertRule(normalizedSelector + "{" + rule + "}", len);
 				styleList.add(selector);

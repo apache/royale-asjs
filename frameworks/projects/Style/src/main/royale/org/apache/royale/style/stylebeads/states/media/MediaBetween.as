@@ -20,13 +20,77 @@ package org.apache.royale.style.stylebeads.states.media
 {
 
 	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.CSSUnit;
 
 	public class MediaBetween extends QueryBaseStyle
 	{
-		public function MediaBetween()
+		public function MediaBetween(min:* = null, max:* = null, styles:Array = null)
 		{
 			super();
+			if (styles)
+				this.styles = styles;
+			if (min != null)
+				this.min = min;
+			if (max != null)
+				this.max = max;
 		}
-		//TODO
+		
+		private var _min:*;
+		private var _max:*;
+
+		public function get min():*
+		{
+			return _min;
+		}
+
+		public function set min(value:*):void
+		{
+			_min = value;
+			updateQuery();
+		}
+
+		public function get max():*
+		{
+			return _max;
+		}
+
+		public function set max(value:*):void
+		{
+			_max = value;
+			updateQuery();
+		}
+
+		private function updateQuery():void
+		{
+			if(_min == null && _max == null)
+			{
+				queryBody = "";
+				querySelector = "";
+				return;
+			}
+			
+			var minVal:String = _min != null ? computeSize(_min) : null;
+			var maxVal:String = _max != null ? computeSize(_max) : null;
+			
+			var body:String = "";
+			var id:String = "media-between";
+			
+			if(minVal)
+			{
+				body += "(min-width: " + minVal + ")";
+				id += "-min-" + sanitizeIdentifier(minVal);
+			}
+			
+			if(maxVal)
+			{
+				if(body) body += " and ";
+				body += "(max-width: " + maxVal + ")";
+				id += "-max-" + sanitizeIdentifier(maxVal);
+			}
+			
+			queryBody = body;
+			querySelector = id;
+		}
 	}
 }

@@ -19,7 +19,12 @@
 package org.apache.royale.style.stylebeads.states
 {
 	import org.apache.royale.style.util.StyleManager;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.CSSUnit;
 	import org.apache.royale.style.stylebeads.IStyleBead;
+	import org.apache.royale.style.stylebeads.ILeafStyleBead;
+	import org.apache.royale.style.IStyleUIBase;
+	import org.apache.royale.core.IStrand;
 
 	public class QueryBaseStyle extends StyleStateBase
 	{
@@ -36,6 +41,17 @@ package org.apache.royale.style.stylebeads.states
 		{
 			return querySelector;
 		}
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.stylebeads.ILeafStyleBead
+		 */
+		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
+		{
+			style.parentQueryId = querySelector;
+			if(parentStyle)
+				parentStyle.decorateChildStyle(style, decorations);
+		}
+
 		/**
 		 * Change in subclasses for other query types such as `container` or `supports`.
 		 */
@@ -49,6 +65,44 @@ package org.apache.royale.style.stylebeads.states
 		 */
 		protected var queryBody:String = "";
 		protected var querySelector:String;
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IStrand
+		 */
+		public function get strand():IStrand
+		{
+			return _strand;
+		}
+
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			if (value)
+			{
+				applyContainerStyles();
+			}
+		}
+
+		protected function applyContainerStyles():void
+		{
+			// Subclasses can override to apply styles to the strand
+		}
+		
+		protected function computeSize(value:*):String
+		{
+			if(value == null) return "";
+			if(parseFloat(value) == value)
+			{
+				var pixelValue:Number = ThemeManager.instance.activeTheme.spacing * value;
+				return CSSUnit.convert(pixelValue, CSSUnit.PX, unit) + unit;
+			}
+			return "" + value;
+		}
+
+		protected function sanitizeIdentifier(value:String):String
+		{
+			return value.replace(/[\s\.\(\)\+\*\/\[\]]/g, "-").replace(/-+/g, "-");
+		}
 		
 		override protected function preprocessStyle():void
 		{

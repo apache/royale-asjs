@@ -16,42 +16,41 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states.media
+package org.apache.royale.style.stylebeads.states
 {
-
-	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.CSSUnit;
-
-	public class MediaBreakpoint extends QueryBaseStyle
+	/**
+	 *  The ClassState class is a style decorator that applies styles when
+	 *  an element has a specific CSS class.
+	 */
+	public class ClassState extends LeafDecorator
 	{
-		public function MediaBreakpoint(size:* = null, styles:Array = null)
+		/**
+		 *  Constructor.
+		 *  
+		 *  @param className The name of the CSS class (without the dot).
+		 *  @param styles An array of style beads to apply when the class is present.
+		 */
+		public function ClassState(className:String = null, styles:Array = null)
 		{
-			super();
-			if (styles)
-				this.styles = styles;
-			if (size != null)
-				this.size = size;
-		}
-		private var _size:*;
-
-		public function get size():*
-		{
-			return _size;
+			super(styles);
+			if (className)
+				this.className = className;
 		}
 
-		public function set size(value:*):void
+		private var _className:String;
+
+		public function get className():String
 		{
-			_size = value;
-			if(value == null)
-			{
-				queryBody = "";
-				querySelector = "";
-				return;
-			}
-			var sizeValue:String = computeSize(value);
-			queryBody = "(min-width: " + sizeValue + ")";
-			querySelector = "media-min-width-" + sanitizeIdentifier(sizeValue);
+			return _className;
+		}
+
+		public function set className(value:String):void
+		{
+			_className = value;
+			// Escape colon for things like "lg:drawer-open"
+			var escaped:String = value.replace(/:/g, "\\:");
+			selectorDecorator = value + ":";
+			ruleDecorator = "." + escaped;
 		}
 	}
 }

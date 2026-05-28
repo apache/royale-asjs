@@ -39,16 +39,22 @@ package org.apache.royale.style.stylebeads.states
 		 *  @param styles An array of style beads to apply when the group condition is met.
 		 *  @param groupClass The CSS class name of the parent element to target. 
 		 *  If null, it defaults to StyleUIBase.GROUP_WRAPPER_STYLE ('style-group').
+		 *  @param combiner The combiner to use between the group element and the child element.
+		 *  Defaults to a space (descendant combiner). Can be '>', '+', or '~'.
 		 */
-		public function GroupPseudo(styles:Array = null, groupClass:String = null)
+		public function GroupPseudo(styles:Array = null, groupClass:String = null, combiner:String = " ")
 		{
 			super(styles);
 			var base:String = groupClass || StyleUIBase.GROUP_WRAPPER_STYLE;
 			selectorDecorator = base + '-';
 			ruleDecorator = base;
+			_combiner = combiner;
 
 			decoratorType = COMBINER;
 		}
+
+		private var _combiner:String;
+
 		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
 			style.selectorPrefix = selectorDecorator + style.selectorPrefix;
@@ -63,7 +69,8 @@ package org.apache.royale.style.stylebeads.states
 			}
 			
 			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
-			style.rulePrefix = "." + ruleDecorator + decorationStr + " " + style.rulePrefix;
+			var escapedRuleDecorator:String = ruleDecorator.indexOf(".") == 0 ? ruleDecorator : "." + ruleDecorator.replace(/:/g, "\\:");
+			style.rulePrefix = escapedRuleDecorator + decorationStr + _combiner + style.rulePrefix;
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style, decorations);
 		}

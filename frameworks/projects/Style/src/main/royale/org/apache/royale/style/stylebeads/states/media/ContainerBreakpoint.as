@@ -18,16 +18,50 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states.media
 {
-
+	import org.apache.royale.style.IStyleUIBase;
 	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
+	import org.apache.royale.style.util.ThemeManager;
+	import org.apache.royale.style.util.CSSUnit;
 
 	public class ContainerBreakpoint extends QueryBaseStyle
 	{
-		public function ContainerBreakpoint()
+		public function ContainerBreakpoint(size:* = null, styles:Array = null)
 		{
 			super();
 			queryType = "container";
+			if (styles)
+				this.styles = styles;
+			if (size != null)
+				this.size = size;
 		}
+
+		private var _containerType:String = "inline-size";
+		/**
+		 * The type of the container query. Defaults to "inline-size".
+		 * Can also be "size" or "normal".
+		 */
+		public function get containerType():String
+		{
+			return _containerType;
+		}
+
+		public function set containerType(value:String):void
+		{
+			_containerType = value;
+			if (strand)
+			{
+				applyContainerStyles();
+			}
+		}
+
+		override protected function applyContainerStyles():void
+		{
+			if (strand is IStyleUIBase)
+			{
+				(strand as IStyleUIBase).setStyle("container-type", _containerType);
+			}
+		}
+
 		private var _size:*;
 
 		public function get size():*
@@ -38,10 +72,15 @@ package org.apache.royale.style.stylebeads.states.media
 		public function set size(value:*):void
 		{
 			_size = value;
-			//TODO
-		// protected var queryBody:String = "";
-		// protected var querySelector:String;
-
+			if(value == null)
+			{
+				queryBody = "";
+				querySelector = "";
+				return;
+			}
+			var sizeValue:String = computeSize(value);
+			queryBody = "(min-width: " + sizeValue + ")";
+			querySelector = "container-min-width-" + sanitizeIdentifier(sizeValue);
 		}
 	}
 }

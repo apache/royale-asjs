@@ -18,20 +18,50 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.stylebeads.states
 {
-	import org.apache.royale.style.stylebeads.IStyleBead;
 	import org.apache.royale.style.stylebeads.ILeafStyleBead;
 	import org.apache.royale.style.util.StyleDecoration;
 
-	public class PeerPseudo extends LeafDecorator
+	/**
+	 *  The SiblingPseudo class is a style decorator that allows elements to be styled
+	 *  based on the state of a preceding sibling element. 
+	 *  It corresponds to the "peer-*" utility pattern in CSS frameworks like Tailwind CSS,
+	 *  but allows specifying the sibling's class/selector explicitly.
+	 */
+	public class SiblingPseudo extends LeafDecorator
 	{
-		public function PeerPseudo(styles:Array = null)
+		/**
+		 *  Constructor.
+		 *  
+		 *  @param styles An array of style beads to apply when the sibling condition is met.
+		 *  @param siblingSelector The CSS selector of the preceding sibling element.
+		 *  @param general If true, uses the general sibling combiner (~), 
+		 *  otherwise uses the adjacent sibling combiner (+).
+		 */
+		public function SiblingPseudo(styles:Array = null, siblingSelector:String = null, general:Boolean = true)
 		{
 			super(styles);
-			selectorDecorator = "peer-";
-			ruleDecorator = "peer";
+			if (siblingSelector)
+				this.siblingSelector = siblingSelector;
+			_combiner = general ? " ~ " : " + ";
 
 			decoratorType = COMBINER;
 		}
+
+		private var _siblingSelector:String;
+		private var _combiner:String;
+
+		public function get siblingSelector():String
+		{
+			return _siblingSelector;
+		}
+
+		public function set siblingSelector(value:String):void
+		{
+			_siblingSelector = value;
+			selectorDecorator = value + (value.indexOf(":") == value.length - 1 ? "" : "-");
+			ruleDecorator = value;
+		}
+
 		override public function decorateChildStyle(style:ILeafStyleBead, decorations:Array):void
 		{
 			style.selectorPrefix = selectorDecorator + style.selectorPrefix;
@@ -47,16 +77,9 @@ package org.apache.royale.style.stylebeads.states
 			
 			decorations.push(new StyleDecoration(decoratorType, ruleDecorator));
 			var escapedRuleDecorator:String = ruleDecorator.indexOf(".") == 0 ? ruleDecorator : "." + ruleDecorator.replace(/:/g, "\\:");
-			style.rulePrefix = escapedRuleDecorator + decorationStr + " ~ " + style.rulePrefix;
+			style.rulePrefix = escapedRuleDecorator + decorationStr + _combiner + style.rulePrefix;
 			if(parentStyle)
 				parentStyle.decorateChildStyle(style, decorations);
 		}
 	}
 }
-/**
- .peer-checked\:border-blue-700 {
-  &:is(:where(.peer):checked ~ *) {
-    border-color: var(--color-blue-700);
-  }
-}
- */

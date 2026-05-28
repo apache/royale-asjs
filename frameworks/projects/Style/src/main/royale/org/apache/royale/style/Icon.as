@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style
 {
+	import org.apache.royale.style.util.StyleManager;
+	
 	COMPILE::JS
 	{
 		import org.apache.royale.html.util.createSVG;
@@ -37,6 +39,10 @@ package org.apache.royale.style
 	 */
 	public class Icon extends StyleUIBase implements IIcon
 	{
+		
+		//the following ensures that content is centered inside the Icon's "frame" div:
+		private static var init:Array = [StyleManager.addStyle('.Icon svg', '.Icon svg','width:100%;height:100%')];
+		
 		public function Icon(name:String = null)
 		{
 			super();
