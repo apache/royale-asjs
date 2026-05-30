@@ -302,5 +302,227 @@ package org.apache.royale.style.elements
 		{
 			return "textarea";
 		}
+		 public function get minlength():int
+        {
+            COMPILE::JS
+            {
+                return element["minLength"];
+            }
+            COMPILE::SWF
+            {
+                return 0;
+            }
+        }
+        public function set minlength(value:int):void
+        {
+            COMPILE::JS
+            {
+				if(value < 1){
+					element["minLength"] = "";
+					return;
+				}
+                element["minLength"] = parseInt(value);
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
+        public function get maxlength():int
+        {
+            COMPILE::JS
+            {
+                return element["maxLength"];
+            }
+            COMPILE::SWF
+            {
+                return 0;
+            }
+        }
+        public function set maxlength(value:int):void
+        {
+            COMPILE::JS
+            {
+				if(value < 1){
+					element["maxLength"] = "";
+					return;
+				}
+                element["maxLength"] = parseInt(value);
+            }
+            COMPILE::SWF
+            {
+                return;
+
+            }
+        }
+
+        COMPILE::JS
+
+        public function get spellcheck():String
+        {
+            COMPILE::JS
+            {
+                return element["spellcheck"].toString();
+            }
+            COMPILE::SWF
+            {
+                return "";
+            }
+        }
+		[Inspectable(category="General", enumeration="true,false,default", defaultValue="false")]
+        public function set spellcheck(value:String):void
+        {
+            COMPILE::JS
+            {
+                element["spellcheck"] = (value == "true");
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
+        public function get wrap():String
+        {
+            COMPILE::JS
+            {
+                return element["wrap"].toString();
+            }
+            COMPILE::SWF
+            {
+                return "";
+            }
+        }
+		[Inspectable(category="General", enumeration="hard,soft,off", defaultValue="soft")]
+        public function set wrap(value:String):void
+        {
+            COMPILE::JS
+            {
+                element["wrap"] = value;
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
+        public function get form():String
+        {
+            COMPILE::JS
+            {
+                return element["form"].toString();
+            }
+            COMPILE::SWF
+            {
+                return "";
+            }
+        }
+        public function set form(value:String):void
+        {
+            COMPILE::JS
+            {
+                element["form"] = value;
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
+        public function get dirname():String
+        {
+            COMPILE::JS
+            {
+                return element["dirName"].toString();
+            }
+            COMPILE::SWF
+            {
+                return "";
+            }
+        }
+        public function set dirname(value:String):void
+        {
+            COMPILE::JS
+            {
+                element["dirName"] = value;
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
+        public function get autocorrect():String
+        {
+            COMPILE::JS
+            {
+                return element["autocorrect"].toString();
+            }
+            COMPILE::SWF
+            {
+                return "";
+            }
+        }
+		[Inspectable(category="General", enumeration="on,off", defaultValue="off")]
+        public function set autocorrect(value:String):void
+        {
+            COMPILE::JS
+            {
+                element["autocorrect"] = value;
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
+        public function get autocomplete():String
+        {
+            COMPILE::JS
+            {
+                return element["autocomplete"].toString();
+            }
+            COMPILE::SWF
+            {
+                return "";
+            }
+        }
+        public function set autocomplete(value:String):void
+        {
+            COMPILE::JS
+            {
+                element["autocomplete"] = value;
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
+        public function get autocapitalize():String
+        {
+            COMPILE::JS
+            {
+                return element["autocapitalize"].toString();
+            }
+            COMPILE::SWF
+            {
+                return "";
+            }
+        }
+		[Inspectable(category="General", enumeration="none,off,sentences,on,words,characters", defaultValue="none")]
+        public function set autocapitalize(value:String):void
+        {
+            COMPILE::JS
+            {
+                element["autocapitalize"] = value;
+            }
+            COMPILE::SWF
+            {
+                return;
+            }
+        }
+
 	}
 }
