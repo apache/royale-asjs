@@ -80,6 +80,9 @@ CheckBox
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CheckBoxSkin");
 }
+Textarea
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.TextareaSkin");
 Range
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.RangeSkin");
