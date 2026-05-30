@@ -18,36 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.number
 {
-		/**
-	 *  Rounds a number to the specified precision (the number of digits in a
-	 *  decimal number). The precision can range from 0 to 28. If you omit this
-	 *  parameter, Math.round() rounds to the nearest integer.
+	import org.apache.royale.debugging.assert;
+
+	/**
+	 *  Rounds a number to the specified number of decimal places.
 	 *
 	 *  @param value The number to round.
 	 *
-	 *  @param precision The number of decimal places to which to round. If you
-	 *  omit this parameter, Math.round() rounds to the nearest integer.
+	 *  @param precision The number of decimal places to keep. Positive values
+	 *  keep digits to the right of the decimal point. Negative values are not supported.
 	 *
 	 *  @return The rounded value.
 	 *
 	 *  @example
 	 *  <pre>
-	 *  trace(MathUtil.round(3.14159, 3)) // 3.142
-	 *  trace(MathUtil.round(3.14159, 2)) // 3.14
-	 *  trace(MathUtil.round(3.14159, 1)) // 3.1
-	 *  trace(MathUtil.round(3.14159, 0)) // 3
-	 *  trace(MathUtil.round(3.14159, -1)) // 0
-	 *  trace(MathUtil.round(314159, -2)) // 314200
-	 *  trace(MathUtil.round(314159, -3)) // 314000
-	 *  trace(MathUtil.round(314159, -4)) // 310000
+	 *  trace(toDecimals(3.14159, 3)) // 3.142
+	 *  trace(toDecimals(3.14159, 2)) // 3.14
+	 *  trace(toDecimals(3.14159, 0)) // 3
 	 *  </pre>
-	 * 
+	 *
 	 *  @langversion 3.0
 	 *  @productversion Royale 0.9.10
-	 * 
 	 */
 	public function toDecimals(value:Number, precision:int = 0):Number
 	{
+		assert(precision >= 0, "Negative precision is not supported.");
 		var decimalPlaces:Number = Math.pow(10, precision);
 		return Math.round(decimalPlaces * value) / decimalPlaces;
 	}
