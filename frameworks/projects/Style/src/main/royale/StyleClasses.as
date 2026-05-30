@@ -36,6 +36,12 @@ package
 		import org.apache.royale.style.data.DataItem; DataItem;
 		import org.apache.royale.style.data.ListData; ListData;
 		import org.apache.royale.style.data.MenuData; MenuData;
+		
+		import org.apache.royale.style.util.Calc;Calc;
+		import org.apache.royale.style.util.Clamp;Clamp;
+		import org.apache.royale.style.util.Min;Min;
+		import org.apache.royale.style.util.Max;Max;
+		
 	}
 
 }

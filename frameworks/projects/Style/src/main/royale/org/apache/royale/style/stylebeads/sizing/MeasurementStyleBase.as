@@ -46,6 +46,19 @@ package org.apache.royale.style.stylebeads.sizing
 				calculatedRuleValue = fromVar(value);
 				return;
 			}
+			else if (isFunction(value))
+			{
+				calculatedRuleValue = value;
+				// function values can be very long and have invalid characters
+				// so we use a hash/uid if it's too long or has special characters
+				// but LeafStyleBase.sanitizeSelector now handles some of it.
+				// However, for very long functions, a shorter selector is better.
+				if (value.length > 20)
+					calculatedSelector = "func-" + value.length + "-" + Math.abs(hashCode(value));
+				else
+					calculatedSelector = value;
+				return;
+			}
 			calculatedRuleValue = calculatedSelector = value;
 			switch("" + value)
 			{
@@ -145,6 +158,22 @@ package org.apache.royale.style.stylebeads.sizing
 			
 		// 	return "";
 		// }
+
+		protected function isFunction(value:String):Boolean
+		{
+			return value.indexOf("calc(") == 0 || value.indexOf("max(") == 0 || value.indexOf("min(") == 0 || value.indexOf("clamp(") == 0 || value.indexOf("var(") == 0;
+		}
+
+		protected function hashCode(str:String):int
+		{
+			var hash:int = 0;
+			for (var i:int = 0; i < str.length; i++) {
+				var char:int = str.charCodeAt(i);
+				hash = ((hash << 5) - hash) + char;
+				hash |= 0; // Convert to 32bit integer
+			}
+			return hash;
+		}
 
 	}
 }

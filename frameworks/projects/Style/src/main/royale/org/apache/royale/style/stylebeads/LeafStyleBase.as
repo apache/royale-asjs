@@ -200,7 +200,7 @@ package org.apache.royale.style.stylebeads
 				return "";
 			return ruleBase + ":" + calculatedRuleValue + ";";
 		}
-		private static const SANITIZE_REGEX:RegExp = /[\s\.\(\)\+\*\/\[\]]/g;
+		private static const SANITIZE_REGEX:RegExp = /[\s\.\(\)\+\*\/\[\],]/g;
 		private static const PERCENT_REGEX:RegExp = /%/g;
 		protected function sanitizeSelector(value:String):String
 		{
