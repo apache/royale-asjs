@@ -43,7 +43,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 		[Inspectable(category="General", enumeration="auto,flex-start,flex-end,center,safe center,safe flex-end,stretch,baseline,last baseline", defaultValue="")]
 		override public function set value(value:*):void
 		{
-			assert(["auto","flex-start","flex-end","safe flex-end","flex-end safe","center","safe center","center safe","baseline","last baseline","stretch"].indexOf(value) >= 0, "Invalid value for align-items: " + value);
+			assert(["auto","flex-start","flex-end","safe flex-end","flex-end safe","center","safe center","center safe","baseline","last baseline","stretch"].indexOf(value) >= 0, "Invalid value for align-self: " + value);
 			_value = value;
 			var vals:Array = normalizeSafeKeyword(value);
 			calculatedRuleValue = vals[0];
