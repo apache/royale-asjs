@@ -65,15 +65,18 @@ package org.apache.royale.utils.async
 		 * parameters is any object URLRequest can accept
 		 */
 		public var parameters:Object;
-
+		private var _resultString:String;
 		public function get resultString():String
 		{
-			var l:URLBinaryLoader = loader;
-			if(l && l.data)
+			if(_resultString == null)
 			{
-				return l.data.readUTFBytes(l.data.length);
+				var l:URLBinaryLoader = loader;
+				if(l && l.data)
+					_resultString = l.data.readUTFBytes(l.data.length);
+				else
+					_resultString = "";
 			}
-			return "";
+			return _resultString;
 		}
 		/**
 		 * We try to parse the httpResult as JSON. If that fails, it defaults to a string.
