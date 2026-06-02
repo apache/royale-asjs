@@ -73,7 +73,7 @@ package org.apache.royale.routing
       while(parent.numElements > 0)
         parent.removeElement(parent.getElementAt(0));
       
-      var comp:IChild = new route.component();
+      var comp:IChild = route.getComponent();
       parent.addElement(comp);
       if(route.title)
         host.routeState.title = route.title;
