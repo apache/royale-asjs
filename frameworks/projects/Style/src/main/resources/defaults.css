@@ -203,7 +203,6 @@ DataContainer
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
@@ -225,7 +224,7 @@ MultiSelectionList
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.OverridableSelectableItemRendererClassFactory");
 	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
+	IItemRenderer: ClassReference("org.apache.royale.style.renderers.ListItemRenderer");
 	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
