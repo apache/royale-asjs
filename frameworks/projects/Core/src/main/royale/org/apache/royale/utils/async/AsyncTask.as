@@ -178,6 +178,17 @@ package org.apache.royale.utils.async
       _status = "canceled";
       notifyDone();
     }
+    /**
+     * canceled (and a status of `canceled`) means the task was canceled before completion
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 1.0.0
+     */
+    public function get canceled():Boolean
+    {
+      return _status == "canceled";
+    }
 
     private var _data:Object;
     /**
