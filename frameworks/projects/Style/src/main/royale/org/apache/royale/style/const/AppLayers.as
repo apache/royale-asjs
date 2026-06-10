@@ -25,11 +25,10 @@ package org.apache.royale.style.const
 	{
 		/**
 		 * Static only
+		 * const class for zIndex 'zones'
 		 */
-		private function AppLayers()
-		{
-			
-		}
-		public static const TOOL_TIPS:uint = 4;
+		public static const POPUP_TOOL_TIPS:uint = 1000; //@todo review this maybe it should be much higher
+		
+		private function AppLayers(){}
 	}
 }

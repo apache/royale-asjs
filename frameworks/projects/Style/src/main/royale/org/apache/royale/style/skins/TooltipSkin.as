@@ -25,6 +25,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.Tooltip;
 	import org.apache.royale.style.colors.ColorSwatch;
 	import org.apache.royale.style.colors.ThemeColorSet;
+	import org.apache.royale.style.const.AppLayers;
 	import org.apache.royale.style.stylebeads.anim.Transition;
 	import org.apache.royale.style.stylebeads.background.BackgroundColor;
 	import org.apache.royale.style.stylebeads.border.Border;
@@ -42,6 +43,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.layout.Right;
 	import org.apache.royale.style.stylebeads.layout.Top;
 	import org.apache.royale.style.stylebeads.layout.Visibility;
+	import org.apache.royale.style.stylebeads.layout.ZIndex;
 	import org.apache.royale.style.stylebeads.sizing.HeightStyle;
 	import org.apache.royale.style.stylebeads.sizing.MaxWidth;
 	import org.apache.royale.style.stylebeads.sizing.WidthStyle;
@@ -119,6 +121,7 @@ package org.apache.royale.style.skins
 				openStates.push(new DataState('direction-left',[transformLeft]));
 				openStates.push(new DataState('direction-right',[transformRight]));
 				openStates.push(new DataState('direction-bottom',[transformBottom]));
+				openStates.push(new ZIndex(AppLayers.POPUP_TOOL_TIPS));
 			}
 			
 			var positionStyle:String = inPopup ? 'absolute' : 'relative';
