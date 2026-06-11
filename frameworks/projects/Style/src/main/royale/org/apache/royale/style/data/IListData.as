@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.style.data
 {
-  public interface IListData extends IDataItem
+  import org.apache.royale.core.ILabeledData;
+
+  public interface IListData extends IDataItem, ILabeledData
   {
     function get text():String;
     function set text(value:String):void;
-    function get label():String;
     function get icon():String;
     function set icon(value:String):void;
 
