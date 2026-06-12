@@ -93,7 +93,9 @@
   <component id="ListItemRendererBase" class="org.apache.royale.style.renderers.ListItemRendererBase"/>
   
   <component id="ListController" class="org.apache.royale.style.beads.ListController"/>
+  <component id="TreeController" class="org.apache.royale.style.beads.TreeController"/>
   <component id="ListModel" class="org.apache.royale.style.beads.ListModel"/>
+  <component id="TreeModel" class="org.apache.royale.style.beads.TreeModel"/>
   <component id="ListView" class="org.apache.royale.style.beads.ListView"/>
   
   <component id="DataState" class="org.apache.royale.style.stylebeads.states.attribute.DataState"/>

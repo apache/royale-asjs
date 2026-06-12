@@ -32,33 +32,61 @@ package org.apache.royale.style.beads
 	import org.apache.royale.style.renderers.IListItemRenderer;
 	import org.apache.royale.events.Event;
 
+	/**
+	 * Controller for list item selection and rollover state.
+	 *
+	 * @langversion 3.0
+	 * @productversion Royale 1.0.0
+	 */
 	public class ListController implements IBeadController
 	{
+		/**
+		 * Creates a ListController bead.
+		 */
 		public function ListController()
 		{			
 		}
+
 		/**
-		 *  The model.
+		 * The model for the list.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
 		 */
 		protected var listModel:ListModel;
 
 		/**
-		 *  The view.
-		 *  
+		 * The view for the list.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
 		 */
 		protected var listView:IListView;
 
 		/**
-		 *  The parent of the item renderers.
+		 * The parent of the item renderers.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
 		 */
 		protected var dataGroup:IItemRendererOwnerView;
 
+		/**
+		 * The strand that owns this bead.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 */
 		protected var _strand:IStrand;
 
 		private var host:List;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 *
 		 * @royaleignorecoercion org.apache.royale.style.List
 		 * @royaleignorecoercion org.apache.royale.style.beads.ListModel
 		 * @royaleignorecoercion org.apache.royale.html.beads.IListView
@@ -74,9 +102,14 @@ package org.apache.royale.style.beads
 			loadBeadFromValuesManager(IKeyboardHandler, "iKeyboardHandler", _strand);
 		}
 		
-    /**
-     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-     */
+		/**
+		 * Adds item renderer event listeners.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 *
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleItemAdded(event:ItemAddedEvent):void
 		{
 			(event.item as IEventDispatcher).addEventListener("itemClicked", selectedHandler);
@@ -84,9 +117,14 @@ package org.apache.royale.style.beads
 			(event.item as IEventDispatcher).addEventListener("itemRollOut", rolloutHandler);
 		}
 		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+		/**
+		 * Removes item renderer event listeners.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 *
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleItemRemoved(event:ItemRemovedEvent):void
 		{
 			(event.item as IEventDispatcher).removeEventListener("itemClicked", selectedHandler);
@@ -94,6 +132,12 @@ package org.apache.royale.style.beads
 			(event.item as IEventDispatcher).removeEventListener("itemRollOut", rolloutHandler);
 		}
 		
+		/**
+		 * Updates the selected item in the list model.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 */
 		protected function selectedHandler(event:ItemClickedEvent):void
 		{
 			listModel.selectedIndex = event.index;
@@ -102,6 +146,11 @@ package org.apache.royale.style.beads
 		}
 		
 		/**
+		 * Updates the rollover index in the list model.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 *
 		 * @royaleemitcoercion org.apache.royale.style.renderers.IListItemRenderer
 		 */
 		protected function rolloverHandler(event:Event):void
@@ -113,8 +162,13 @@ package org.apache.royale.style.beads
 		}
 		
 		/**
-			* @royaleemitcoercion org.apache.royale.style.renderers.IListItemRenderer
-			*/
+		 * Clears rollover and pressed state from the item renderer.
+		 *
+		 * @langversion 3.0
+		 * @productversion Royale 1.0.0
+		 *
+		 * @royaleemitcoercion org.apache.royale.style.renderers.IListItemRenderer
+		 */
 		protected function rolloutHandler(event:Event):void
 		{
 			var renderer:IListItemRenderer  = event.currentTarget as IListItemRenderer;

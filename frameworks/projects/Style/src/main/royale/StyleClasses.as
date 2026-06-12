@@ -41,6 +41,7 @@ package
 		import org.apache.royale.style.util.Clamp;Clamp;
 		import org.apache.royale.style.util.Min;Min;
 		import org.apache.royale.style.util.Max;Max;
+		import org.apache.royale.style.beads.TreeItemRendererInitializer;TreeItemRendererInitializer;
 		
 	}
 
