@@ -35,18 +35,22 @@ package org.apache.royale.style.stylebeads.flexgrid
 				if (value.indexOf("safe") >= 0)
 				{
 					value = value.replace("safe", "").trim();
+					if(value == "start" || value == "end")
+						value = "flex-" + value;
 					return [value,"safe"];
 				}
 			}
+			if(value == "start" || value == "end")
+				value = "flex-" + value;
 			return [value];
 		}
 		[Inspectable(category="General", enumeration="center,safe center,start,end,safe end,space-between,space-around,space-evenly,baseline,stretch,normal", defaultValue="normal")]
 		override public function set value(value:*):void
 		{
-			assert(["center","center safe","safe center","start","end","end safe","safe end","space-between","space-around","space-evenly","baseline","stretch","normal"].indexOf(value) >= 0, "Invalid value for place-content: " + value);
 			_value = value;
 			var vals:Array = normalizeSafeKeyword(value);
 			calculatedRuleValue = vals[0];
+			assert(["center","flex-start","flex-end","space-between","space-around","space-evenly","baseline","stretch","normal"].indexOf(vals[0]) >= 0, "Invalid value for place-content: " + value);
 			calculatedSelector = getAfterDash(vals[0]);
 			if(vals.length > 1)
 			{

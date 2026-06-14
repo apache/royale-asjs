@@ -40,16 +40,43 @@ package org.apache.royale.style.stylebeads.flexgrid
 			}
 			return [value];
 		}
+		private function normalizeDistributedKeyword(value:String):String
+		{
+			switch(value)
+			{
+				case "between":
+					return "space-between";
+				case "around":
+					return "space-around";
+				case "evenly":
+					return "space-evenly";
+			}
+			return value;
+		}
+		private function normalizeDistributedSelector(value:String):String
+		{
+			switch(value)
+			{
+				case "space-between":
+					return "between";
+				case "space-around":
+					return "around";
+				case "space-evenly":
+					return "evenly";
+			}
+			return getAfterDash(value);
+		}
+		[Inspectable(category="General", enumeration="normal,center,safe center,start,end,safe end,flex-start,flex-end,safe flex-end,between,around,evenly,baseline,stretch", defaultValue="normal")]
 		override public function set value(value:*):void
 		{
-			assert(["normal","flex-start","flex-end","safe flex-end","flex-end safe","center","safe center","center safe","baseline","last baseline","stretch"].indexOf(value) >= 0, "Invalid value for align-items: " + value);
+			assert(["normal","center","safe center","center safe","start","end","safe end","end safe","flex-start","flex-end","safe flex-end","flex-end safe","between","around","evenly","space-between","space-around","space-evenly","baseline","stretch"].indexOf(value) >= 0, "Invalid value for align-content: " + value);
 			_value = value;
 			var vals:Array = normalizeSafeKeyword(value);
-			calculatedRuleValue = vals[0];
-			calculatedSelector = getAfterDash(vals[0]);
+			calculatedRuleValue = normalizeDistributedKeyword(vals[0]);
+			calculatedSelector = normalizeDistributedSelector(vals[0]);
 			if(vals.length > 1)
 			{
-				calculatedRuleValue = vals[1] + " " + vals[0];
+				calculatedRuleValue = vals[1] + " " + normalizeDistributedKeyword(vals[0]);
 				calculatedSelector += "-" + vals[1];
 			}
 		}
