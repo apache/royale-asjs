@@ -191,7 +191,7 @@ package org.apache.royale.style.stylebeads
 		}
 		private function normalizeSelector(selector:String):String
 		{			// TODO this is pretty naive. We should probably be doing some kind of parsing here.
-			return "." + selector.replace(/(:|\.|\/)/g, "\\$1");
+			return "." + selector.replace(/(:|\.|\/|#)/g, "\\$1");
 		}
 
 		public function getRule():String
