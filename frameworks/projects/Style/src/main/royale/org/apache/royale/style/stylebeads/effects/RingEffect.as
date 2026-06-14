@@ -20,6 +20,7 @@ package org.apache.royale.style.stylebeads.effects
 {
 	import org.apache.royale.style.stylebeads.StyleBeadBase;
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
+	import org.apache.royale.style.util.StyleData;
 		/**
 		 * TODO: Figure this out. ring effects cannot be stacked in CSS.
 		 * Tailwind uses @properties to create a single box-shadow property that combines all the properties.
@@ -30,14 +31,62 @@ package org.apache.royale.style.stylebeads.effects
 
 	public class RingEffect extends LeafStyleBase
 	{
-		public function RingEffect(value:* = null)
+		public function RingEffect(value:* = null, color:* = null)
 		{
-			super("ring", "box-shadow", value);
+			super("ring", "box-shadow");
+			this.color = color;
+			if(value != null)
+				this.value = value;
 		}
 		
-		public var color:String;
+		public var color:*;
 		public var inset:Boolean;
-		public var weight:Number;
+		public var weight:*;
+
+		[Inspectable(category="General", defaultValue="1")]
+		override public function set value(value:*):void
+		{
+			weight = value == null ? 1 : value;
+			calculatedSelector = _value = weight;
+			if(inset)
+				calculatedSelector = "inset-" + calculatedSelector;
+			if(color != null)
+				calculatedSelector += "-" + getColorSelector();
+			calculatedRuleValue = (inset ? "inset " : "") + "0 0 0 " + getWeightRuleValue(weight) + " " + getColorRuleValue();
+		}
+
+		public function getShadowSelector():String
+		{
+			return selectorBase + "-" + calculatedSelector;
+		}
+
+		public function getShadowValue():String
+		{
+			return calculatedRuleValue;
+		}
+
+		private function getWeightRuleValue(value:*):String
+		{
+			if(isVar(value))
+				return fromVar(value);
+			if(isNum(value))
+				return value + "px";
+			return value;
+		}
+
+		private function getColorRuleValue():String
+		{
+			if(color == null)
+				return "currentColor";
+			var styleData:StyleData = validateColor(color, false);
+			return styleData.rule;
+		}
+
+		private function getColorSelector():String
+		{
+			var styleData:StyleData = validateColor(color, false);
+			return styleData.selector;
+		}
       // --tw-ring-color:initial;
       // --tw-ring-shadow:0 0 #0000;
       // --tw-inset-ring-color:initial;

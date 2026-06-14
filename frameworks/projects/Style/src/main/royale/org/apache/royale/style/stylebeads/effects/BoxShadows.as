@@ -47,7 +47,11 @@ package org.apache.royale.style.stylebeads.effects
 			var rules:Array = [];
 			for each(var shadow:LeafStyleBase in shadows)
 			{
-				rules.push(shadow.getRule());
+				assert(shadow is BoxShadow || shadow is RingEffect, "BoxShadows style bead only accepts BoxShadow or RingEffect style beads");
+				if(shadow is BoxShadow)
+					rules.push((shadow as BoxShadow).getShadowValue());
+				else
+					rules.push((shadow as RingEffect).getShadowValue());
 			}
 			calculatedRuleValue = rules.join(", ");
 			return super.getRule();
@@ -59,7 +63,10 @@ package org.apache.royale.style.stylebeads.effects
 			for each(var shadow:LeafStyleBase in shadows)
 			{
 				assert(shadow is BoxShadow || shadow is RingEffect, "BoxShadows style bead only accepts BoxShadow or RingEffect style beads");
-				selectors.push(shadow.getSelector());
+				if(shadow is BoxShadow)
+					selectors.push((shadow as BoxShadow).getShadowSelector());
+				else
+					selectors.push((shadow as RingEffect).getShadowSelector());
 			}
 			calculatedSelector = selectors.join("-");
 			return super.getSelector();
