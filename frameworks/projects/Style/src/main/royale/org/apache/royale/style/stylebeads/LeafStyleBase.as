@@ -200,7 +200,11 @@ package org.apache.royale.style.stylebeads
 				return "";
 			return ruleBase + ":" + calculatedRuleValue + ";";
 		}
-		private static const SANITIZE_REGEX:RegExp = /[\s\.\(\)\+\*\/\[\],]/g;
+		// Note: '#' is included so that values containing hex colors (e.g.
+		// "conic-gradient(... #ccc ...)") do not produce a class name with
+		// literal '#' chars, which the browser would otherwise parse as a
+		// chain of id selectors (.class#id#id...) that matches nothing.
+		private static const SANITIZE_REGEX:RegExp = /[\s\.\(\)\+\*\/\[\],#]/g;
 		private static const PERCENT_REGEX:RegExp = /%/g;
 		protected function sanitizeSelector(value:String):String
 		{
