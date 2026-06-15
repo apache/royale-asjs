@@ -35,6 +35,7 @@ package org.apache.royale.style.stylebeads.flexgrid
 				if (value.indexOf("safe") >= 0)
 				{
 					value = value.replace("safe", "").trim();
+					assert(["center","start","end","flex-start","flex-end"/*,"left","right"*/].indexOf(value) == 0, "Invalid 'safe' value for justify-content: " + value);
 					if(value == "start" || value == "end")
 						value = "flex-" + value;
 					return [value,"safe"];
@@ -44,13 +45,14 @@ package org.apache.royale.style.stylebeads.flexgrid
 				value = "flex-" + value;
 			return [value];
 		}
-		[Inspectable(category="General", enumeration="center,safe center,start,end,safe end,space-between,space-around,space-evenly,baseline,stretch,normal", defaultValue="normal")]
+		[Inspectable(category="General", enumeration="normal,center,safe center,start,end,safe end,space-between,space-around,space-evenly,stretch", defaultValue="normal")]
 		override public function set value(value:*):void
 		{
 			_value = value;
 			var vals:Array = normalizeSafeKeyword(value);
 			calculatedRuleValue = vals[0];
-			assert(["center","flex-start","flex-end","space-between","space-around","space-evenly","baseline","stretch","normal"].indexOf(vals[0]) >= 0, "Invalid value for place-content: " + value);
+			//note stretch has no meaning for flexbox here, but is valid, for example, for grid:
+			assert(["normal","center","flex-start","flex-end","space-between","space-around","space-evenly","stretch"].indexOf(vals[0]) >= 0, "Invalid value for justify-content: " + value);
 			calculatedSelector = getAfterDash(vals[0]);
 			if(vals.length > 1)
 			{
