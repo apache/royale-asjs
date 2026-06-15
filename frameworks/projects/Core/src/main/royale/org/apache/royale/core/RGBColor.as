@@ -155,5 +155,21 @@ package org.apache.royale.core
 			}
 			return true;
 		}
+
+		/**
+		 *  Parse a 6-digit hex color string (with or without leading <code>#</code>)
+		 *  into a new <code>RGBColor</code>. Returns a color with NaN channels
+		 *  (i.e. <code>isValid == false</code>) if the input is malformed.
+		 */
+		public static function fromHex(hex:String):RGBColor{
+			var c:RGBColor = new RGBColor();
+			if(!hex) return c;
+			var v:String = hex.charAt(0) == "#" ? hex.substr(1) : hex;
+			if(v.length != 6) return c;
+			var n:Number = parseInt(v, 16);
+			if(isNaN(n)) return c;
+			c.colorValue = uint(n);
+			return c;
+		}
 	}
 }
