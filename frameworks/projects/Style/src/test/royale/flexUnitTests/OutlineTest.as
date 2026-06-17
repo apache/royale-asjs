@@ -27,16 +27,18 @@ package flexUnitTests
 		[Test]
 		public function testConstructorSetsOptionalArguments():void
 		{
-			var outline:Outline = new Outline("2px", "solid", "red");
+			var outline:Outline = new Outline("2px", "solid", "red", "1px");
 			var leaves:Array = outline.getLeaves();
 
 			assertEquals("2px", outline.width);
 			assertEquals("solid", outline.style);
 			assertEquals("red", outline.color);
-			assertEquals(3, leaves.length);
+			assertEquals("1px", outline.offset);
+			assertEquals(4, leaves.length);
 			assertEquals("outline-width:2px;", ILeafStyleBead(leaves[0]).getRule());
 			assertEquals("outline-style:solid;", ILeafStyleBead(leaves[1]).getRule());
 			assertEquals("outline-color:red;", ILeafStyleBead(leaves[2]).getRule());
+			assertEquals("outline-offset:1px;", ILeafStyleBead(leaves[3]).getRule());
 		}
 
 		[Test]
@@ -47,6 +49,7 @@ package flexUnitTests
 			assertNull(outline.width);
 			assertEquals("dashed", outline.style);
 			assertNull(outline.color);
+			assertNull(outline.offset);
 			assertEquals(1, outline.getLeaves().length);
 		}
 	}
