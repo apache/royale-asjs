@@ -307,7 +307,27 @@
   <component id="Visibility" class="org.apache.royale.style.stylebeads.layout.Visibility"/>
   <component id="ZIndex" class="org.apache.royale.style.stylebeads.layout.ZIndex"/>
   <component id="Margin" class="org.apache.royale.style.stylebeads.spacing.Margin"/>
+  <component id="MarginBlock" class="org.apache.royale.style.stylebeads.spacing.MarginBlock"/>
+  <component id="MarginBlockEnd" class="org.apache.royale.style.stylebeads.spacing.MarginBlockEnd"/>
+  <component id="MarginBlockStart" class="org.apache.royale.style.stylebeads.spacing.MarginBlockStart"/>
+  <component id="MarginBottom" class="org.apache.royale.style.stylebeads.spacing.MarginBottom"/>
+  <component id="MarginInline" class="org.apache.royale.style.stylebeads.spacing.MarginInline"/>
+  <component id="MarginInlineEnd" class="org.apache.royale.style.stylebeads.spacing.MarginInlineEnd"/>
+  <component id="MarginInlineStart" class="org.apache.royale.style.stylebeads.spacing.MarginInlineStart"/>
+  <component id="MarginLeft" class="org.apache.royale.style.stylebeads.spacing.MarginLeft"/>
+  <component id="MarginRight" class="org.apache.royale.style.stylebeads.spacing.MarginRight"/>
+  <component id="MarginTop" class="org.apache.royale.style.stylebeads.spacing.MarginTop"/>
   <component id="Padding" class="org.apache.royale.style.stylebeads.spacing.Padding"/>
+  <component id="PaddingBlock" class="org.apache.royale.style.stylebeads.spacing.PaddingBlock"/>
+  <component id="PaddingBlockEnd" class="org.apache.royale.style.stylebeads.spacing.PaddingBlockEnd"/>
+  <component id="PaddingBlockStart" class="org.apache.royale.style.stylebeads.spacing.PaddingBlockStart"/>
+  <component id="PaddingBottom" class="org.apache.royale.style.stylebeads.spacing.PaddingBottom"/>
+  <component id="PaddingInline" class="org.apache.royale.style.stylebeads.spacing.PaddingInline"/>
+  <component id="PaddingInlineEnd" class="org.apache.royale.style.stylebeads.spacing.PaddingInlineEnd"/>
+  <component id="PaddingInlineStart" class="org.apache.royale.style.stylebeads.spacing.PaddingInlineStart"/>
+  <component id="PaddingLeft" class="org.apache.royale.style.stylebeads.spacing.PaddingLeft"/>
+  <component id="PaddingRight" class="org.apache.royale.style.stylebeads.spacing.PaddingRight"/>
+  <component id="PaddingTop" class="org.apache.royale.style.stylebeads.spacing.PaddingTop"/>
   <component id="Fill" class="org.apache.royale.style.stylebeads.svg.Fill"/>
   <component id="BorderCollapse" class="org.apache.royale.style.stylebeads.tables.BorderCollapse"/>
   <component id="BorderSpacing" class="org.apache.royale.style.stylebeads.tables.BorderSpacing"/>

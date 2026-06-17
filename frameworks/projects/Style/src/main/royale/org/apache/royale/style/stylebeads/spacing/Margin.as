@@ -19,6 +19,7 @@
 package org.apache.royale.style.stylebeads.spacing
 {
 	import org.apache.royale.style.stylebeads.CompositeStyle;
+	import org.apache.royale.style.util.parseShorthandCSS;
 
 	/**
 	 * @royalesuppressexport
@@ -35,16 +36,16 @@ package org.apache.royale.style.stylebeads.spacing
 		}
 
 		private var marginStyle:Marg;
-		private var topStyle:Top;
-		private var rightStyle:Right;
-		private var bottomStyle:Bottom;
-		private var leftStyle:Left;
-		private var blockStyle:Block;
-		private var blockStartStyle:BlockStart;
-		private var blockEndStyle:BlockEnd;
-		private var inlineStyle:Inline;
-		private var inlineStartStyle:InlineStart;
-		private var inlineEndStyle:InlineEnd;
+		private var topStyle:MarginTop;
+		private var rightStyle:MarginRight;
+		private var bottomStyle:MarginBottom;
+		private var leftStyle:MarginLeft;
+		private var blockStyle:MarginBlock;
+		private var blockStartStyle:MarginBlockStart;
+		private var blockEndStyle:MarginBlockEnd;
+		private var inlineStyle:MarginInline;
+		private var inlineStartStyle:MarginInlineStart;
+		private var inlineEndStyle:MarginInlineEnd;
 		private var _margin:*;
 
 		public function get margin():*
@@ -53,13 +54,71 @@ package org.apache.royale.style.stylebeads.spacing
 		}
 		public function set margin(value:*):void
 		{
+			resetMarginStyles();
+			var shorthand:Array = parseShorthandCSS(value);
+			if(shorthand)
+			{
+				applyShorthand(shorthand);
+				_margin = value;
+				return;
+			}
 			if(!marginStyle)
 			{
 				marginStyle = new Marg();
 				styles.push(marginStyle);
 			}
 			marginStyle.value = value;
+			_top = value;
+			_right = value;
+			_bottom = value;
+			_left = value;
 			_margin = value;
+		}
+
+		private function resetMarginStyles():void
+		{
+			styles = [];
+			marginStyle = null;
+			topStyle = null;
+			rightStyle = null;
+			bottomStyle = null;
+			leftStyle = null;
+			blockStyle = null;
+			blockStartStyle = null;
+			blockEndStyle = null;
+			inlineStyle = null;
+			inlineStartStyle = null;
+			inlineEndStyle = null;
+		}
+
+		private function applyShorthand(values:Array):void
+		{
+			var topValue:* = values[0];
+			var rightValue:* = values.length > 1 ? values[1] : values[0];
+			var bottomValue:* = values.length > 2 ? values[2] : values[0];
+			var leftValue:* = values.length > 3 ? values[3] : rightValue;
+			if(values.length <= 2)
+			{
+				block = topValue;
+				inline = rightValue;
+			}
+			else if(values.length == 3)
+			{
+				blockStart = topValue;
+				blockEnd = bottomValue;
+				inline = rightValue;
+			}
+			else
+			{
+				blockStart = topValue;
+				blockEnd = bottomValue;
+				inlineEnd = rightValue;
+				inlineStart = leftValue;
+			}
+			_top = topValue;
+			_right = rightValue;
+			_bottom = bottomValue;
+			_left = leftValue;
 		}
 		private var _top:*;
 
@@ -72,7 +131,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!topStyle)
 			{
-				topStyle = new Top();
+				topStyle = new MarginTop();
 				styles.push(topStyle);
 			}
 			topStyle.value = value;
@@ -89,7 +148,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!rightStyle)
 			{
-				rightStyle = new Right();
+				rightStyle = new MarginRight();
 				styles.push(rightStyle);
 			}
 			rightStyle.value = value;
@@ -106,7 +165,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!bottomStyle)
 			{
-				bottomStyle = new Bottom();
+				bottomStyle = new MarginBottom();
 				styles.push(bottomStyle);
 			}
 			bottomStyle.value = value;
@@ -123,7 +182,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!leftStyle)
 			{
-				leftStyle = new Left();
+				leftStyle = new MarginLeft();
 				styles.push(leftStyle);
 			}
 			leftStyle.value = value;
@@ -140,7 +199,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!blockStyle)
 			{
-				blockStyle = new Block();
+				blockStyle = new MarginBlock();
 				styles.push(blockStyle);
 			}
 			blockStyle.value = value;
@@ -157,7 +216,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!blockStartStyle)
 			{
-				blockStartStyle = new BlockStart();
+				blockStartStyle = new MarginBlockStart();
 				styles.push(blockStartStyle);
 			}
 			blockStartStyle.value = value;
@@ -174,7 +233,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!blockEndStyle)
 			{
-				blockEndStyle = new BlockEnd();
+				blockEndStyle = new MarginBlockEnd();
 				styles.push(blockEndStyle);
 			}
 			blockEndStyle.value = value;
@@ -191,7 +250,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!inlineStyle)
 			{
-				inlineStyle = new Inline();
+				inlineStyle = new MarginInline();
 				styles.push(inlineStyle);
 			}
 			inlineStyle.value = value;
@@ -208,7 +267,7 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!inlineStartStyle)
 			{
-				inlineStartStyle = new InlineStart();
+				inlineStartStyle = new MarginInlineStart();
 				styles.push(inlineStartStyle);
 			}
 			inlineStartStyle.value = value;
@@ -225,125 +284,11 @@ package org.apache.royale.style.stylebeads.spacing
 		{
 			if(!inlineEndStyle)
 			{
-				inlineEndStyle = new InlineEnd();
+				inlineEndStyle = new MarginInlineEnd();
 				styles.push(inlineEndStyle);
 			}
 			inlineEndStyle.value = value;
 			_inlineEnd = value;
 		}
-	}
-}
-
-
-import org.apache.royale.style.stylebeads.LeafStyleBase;
-import org.apache.royale.debugging.assert;
-import org.apache.royale.style.util.ThemeManager;
-import org.apache.royale.style.util.CSSUnit;
-
-class Marg extends LeafStyleBase
-{
-	public function Marg(selectorBase:String = "m", ruleBase:String = "margin", value:* = null)
-	{
-		super(selectorBase, ruleBase, value);
-	}
-	private function toSelector(value:String):String
-	{
-		return value.replace(" ", "-");
-	}
-	private var savedPrefix:String;
-	override public function set value(value:*):void
-	{
-		COMPILE::JS
-		{
-			var selectorValue:String = value;
-			var ruleValue:String = selectorValue;
-			assert(selectorValue.indexOf("--") != 0, "css variables for grid-template-columns not yet supported: " + value);
-			if(int(value) == value)
-			{
-				if(value < 0)
-				{
-					if(!savedPrefix)
-						savedPrefix = _selectorBase;
-					
-					_selectorBase = "-" + savedPrefix;
-					selectorValue = "" + (-value);
-				}
-				ruleValue = computeSpacing(value);
-			}
-			_value = value;
-			calculatedRuleValue = ruleValue.trim();
-			calculatedSelector = toSelector(selectorValue.trim());
-		}
-	}
-}
-class Top extends Marg
-{
-	public function Top(value:* = null)
-	{
-		super("mt", "margin-top", value);
-	}
-}
-class Left extends Marg
-{
-	public function Left(value:* = null)
-	{
-		super("ml", "margin-left", value);
-	}
-}
-class Right extends Marg
-{
-	public function Right(value:* = null)
-	{
-		super("mr", "margin-right", value);
-	}
-}
-class Bottom extends Marg
-{
-	public function Bottom(value:* = null)
-	{
-		super("mb", "margin-bottom", value);
-	}
-}
-class Block extends Marg
-{
-	public function Block(value:* = null)
-	{
-		super("my", "margin-block", value);
-	}
-}
-class BlockStart extends Marg
-{
-	public function BlockStart(value:* = null)
-	{
-		super("my-start", "margin-block-start", value);
-	}
-}
-
-class BlockEnd extends Marg
-{
-	public function BlockEnd(value:* = null)
-	{
-		super("my-end", "margin-block-end", value);
-	}
-}
-class Inline extends Marg
-{
-	public function Inline(value:* = null)
-	{
-		super("mx", "margin-inline", value);
-	}
-}
-class InlineEnd extends Marg
-{
-	public function InlineEnd(value:* = null)
-	{
-		super("me", "margin-inline-end", value);
-	}
-}
-class InlineStart extends Marg
-{
-	public function InlineStart(value:* = null)
-	{
-		super("ms", "margin-inline-start", value);
 	}
 }
