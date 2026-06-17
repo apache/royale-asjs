@@ -27,10 +27,16 @@ package org.apache.royale.style.stylebeads.border
 	 */
 	public class Outline extends CompositeStyle
 	{
-		public function Outline()
+		public function Outline(width:*=null, style:*=null, color:*=null)
 		{
 			super();
 			styles = [];
+			if (width != null)
+				this.width = width;
+			if (style != null)
+				this.style = style;
+			if (color != null)
+				this.color = color;
 		}
 		private var _color:String;
 
