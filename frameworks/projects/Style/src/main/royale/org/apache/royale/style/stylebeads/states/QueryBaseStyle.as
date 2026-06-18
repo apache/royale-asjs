@@ -99,6 +99,26 @@ package org.apache.royale.style.stylebeads.states
 			return "" + value;
 		}
 
+		protected function computeBreakpoint(value:*):String
+		{
+			if(value == null) return "";
+			var breakpoint:String = "" + value;
+			switch(breakpoint.toLowerCase())
+			{
+				case "sm":
+					return ThemeManager.instance.activeTheme.breakpointSM;
+				case "md":
+					return ThemeManager.instance.activeTheme.breakpointMD;
+				case "lg":
+					return ThemeManager.instance.activeTheme.breakpointLG;
+				case "xl":
+					return ThemeManager.instance.activeTheme.breakpointXL;
+				case "2xl":
+					return ThemeManager.instance.activeTheme.breakpoint2XL;
+			}
+			return computeSize(value);
+		}
+
 		protected function sanitizeIdentifier(value:String):String
 		{
 			return value.replace(/[\s\.\(\)\+\*\/\[\]]/g, "-").replace(/-+/g, "-");

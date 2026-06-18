@@ -120,6 +120,9 @@
   <component id="GroupPseudo" class="org.apache.royale.style.stylebeads.states.GroupPseudo"/>
   <component id="ClassState" class="org.apache.royale.style.stylebeads.states.ClassState"/>
   <component id="SiblingPseudo" class="org.apache.royale.style.stylebeads.states.SiblingPseudo"/>
+	<component id="MediaBreakpoint" class="org.apache.royale.style.stylebeads.states.media.MediaBreakpoint"/>
+	<component id="MediaBetween" class="org.apache.royale.style.stylebeads.states.media.MediaBetween"/>
+	<component id="ContainerBreakpoint" class="org.apache.royale.style.stylebeads.states.media.ContainerBreakpoint"/>
 
   <component id="BackgroundStyle" class="org.apache.royale.style.stylebeads.BackgroundStyle"/>
   <component id="ContainerPosition" class="org.apache.royale.style.stylebeads.ContainerPosition"/>

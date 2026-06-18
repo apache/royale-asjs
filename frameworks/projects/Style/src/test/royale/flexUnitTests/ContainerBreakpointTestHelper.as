@@ -16,40 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.style.stylebeads.states.media
+package flexUnitTests
 {
+	import org.apache.royale.style.stylebeads.states.media.ContainerBreakpoint;
 
-	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
-
-	public class MediaBreakpoint extends QueryBaseStyle
+	public class ContainerBreakpointTestHelper extends ContainerBreakpoint
 	{
-		public function MediaBreakpoint(size:* = null, styles:Array = null)
+		public function ContainerBreakpointTestHelper(size:* = null)
 		{
-			super();
-			if (styles)
-				this.styles = styles;
-			if (size != null)
-				this.size = size;
-		}
-		private var _size:*;
-
-		public function get size():*
-		{
-			return _size;
+			super(size);
 		}
 
-		public function set size(value:*):void
+		public function get queryRule():String
 		{
-			_size = value;
-			if(value == null)
-			{
-				queryBody = "";
-				querySelector = "";
-				return;
-			}
-			var sizeValue:String = computeBreakpoint(value);
-			queryBody = "(min-width: " + sizeValue + ")";
-			querySelector = "media-min-width-" + sanitizeIdentifier("" + value);
+			return "@" + queryType + queryPrefix + " " + queryBody + " { }";
 		}
 	}
 }

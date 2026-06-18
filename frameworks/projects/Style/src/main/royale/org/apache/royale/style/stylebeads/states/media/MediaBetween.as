@@ -20,8 +20,6 @@ package org.apache.royale.style.stylebeads.states.media
 {
 
 	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.CSSUnit;
 
 	public class MediaBetween extends QueryBaseStyle
 	{
@@ -70,8 +68,8 @@ package org.apache.royale.style.stylebeads.states.media
 				return;
 			}
 			
-			var minVal:String = _min != null ? computeSize(_min) : null;
-			var maxVal:String = _max != null ? computeSize(_max) : null;
+			var minVal:String = _min != null ? computeBreakpoint(_min) : null;
+			var maxVal:String = _max != null ? computeBreakpoint(_max) : null;
 			
 			var body:String = "";
 			var id:String = "media-between";
@@ -79,14 +77,14 @@ package org.apache.royale.style.stylebeads.states.media
 			if(minVal)
 			{
 				body += "(min-width: " + minVal + ")";
-				id += "-min-" + sanitizeIdentifier(minVal);
+				id += "-min-" + sanitizeIdentifier("" + _min);
 			}
 			
 			if(maxVal)
 			{
 				if(body) body += " and ";
-				body += "(max-width: " + maxVal + ")";
-				id += "-max-" + sanitizeIdentifier(maxVal);
+				body += "(width < " + maxVal + ")";
+				id += "-max-" + sanitizeIdentifier("" + _max);
 			}
 			
 			queryBody = body;

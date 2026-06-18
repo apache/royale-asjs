@@ -20,8 +20,6 @@ package org.apache.royale.style.stylebeads.states.media
 {
 	import org.apache.royale.style.IStyleUIBase;
 	import org.apache.royale.style.stylebeads.states.QueryBaseStyle;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.CSSUnit;
 
 	public class ContainerBreakpoint extends QueryBaseStyle
 	{
@@ -78,9 +76,9 @@ package org.apache.royale.style.stylebeads.states.media
 				querySelector = "";
 				return;
 			}
-			var sizeValue:String = computeSize(value);
-			queryBody = "(min-width: " + sizeValue + ")";
-			querySelector = "container-min-width-" + sanitizeIdentifier(sizeValue);
+			var sizeValue:String = computeBreakpoint(value);
+			queryBody = "(width >= " + sizeValue + ")";
+			querySelector = "container-min-width-" + sanitizeIdentifier("" + value);
 		}
 	}
 }
