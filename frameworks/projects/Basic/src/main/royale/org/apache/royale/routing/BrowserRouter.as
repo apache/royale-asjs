@@ -190,6 +190,22 @@ package org.apache.royale.routing
 		 */
 		public function setState():void
 		{
+		  commitState(false);
+		}
+		/**
+		 * Replaces the current state in the browsing history
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 1.0.0
+		 */
+		public function replaceState():void
+		{
+		  commitState(true);
+		}
+
+		private function commitState(replace:Boolean):void
+		{
 		  COMPILE::JS
 		  {
 			var path:String = basePath;
@@ -200,7 +216,9 @@ package org.apache.royale.routing
 			if(!ev.defaultPrevented)
 			{
 			  path += ev.value;
-			  window.history.pushState(stateEv.value,_routeState.title,path);
+			  replace ?
+					window.history.replaceState(stateEv.value,_routeState.title,path):
+					window.history.pushState(stateEv.value,_routeState.title,path);
 			  sendStrandEvent(this,"stateSet");
 			}
 		  }

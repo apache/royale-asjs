@@ -26,5 +26,6 @@ package org.apache.royale.routing
     function set routeState(state:RouteState):void;
     function get host():IStrand;
     function setState():void;
+    function replaceState():void;
   }
 }
