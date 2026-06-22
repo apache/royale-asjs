@@ -64,7 +64,10 @@ package org.apache.royale.routing
       var hash:String = event.value;
       var index:int = hash.indexOf("?");
       if(index == -1)//no params
+      {
+        host.routeState.parameters = {};
         return;
+      }
       hash = hash.slice(index + 1);
       index = hash.indexOf("#");
       if(index != -1)
