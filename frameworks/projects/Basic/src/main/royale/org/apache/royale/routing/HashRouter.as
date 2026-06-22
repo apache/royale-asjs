@@ -113,6 +113,7 @@ package org.apache.royale.routing
 			COMPILE::JS
 			{
 				window.addEventListener("hashchange", hashChangeHandler);
+				window.addEventListener("popstate", hashChangeHandler);
 			}
 			// wait until the app is initialized. Calling onInit async solves this problem
 			callLater(onInit);

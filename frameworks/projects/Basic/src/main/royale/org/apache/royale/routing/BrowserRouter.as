@@ -117,6 +117,10 @@ package org.apache.royale.routing
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
+			COMPILE::JS
+			{
+				window.addEventListener("popstate", locationChangeHandler);
+			}
 			// wait until the app is initialized. Calling onInit async solves this problem
 			callLater(onInit);
 		}
