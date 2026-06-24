@@ -23,9 +23,7 @@ package org.apache.royale.style.stylebeads.border
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
-	/**
-	 * @royalesuppressexport
-	 */
+
 	public class BorderRadius extends CompositeStyle
 	{
 		public function BorderRadius(value:* = null, unit:String = "px")

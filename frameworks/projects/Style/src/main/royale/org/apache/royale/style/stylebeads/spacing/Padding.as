@@ -20,9 +20,7 @@ package org.apache.royale.style.stylebeads.spacing
 {
 	import org.apache.royale.style.stylebeads.CompositeStyle;
 	import org.apache.royale.style.util.parseShorthandCSS;
-	/**
-	 * @royalesuppressexport
-	 */
+
 	public class Padding extends CompositeStyle
 	{
 		public function Padding(value:* = null, unit:String = "px")

@@ -28,8 +28,7 @@ package org.apache.royale.style.stylebeads.border
 	 * For more complex borders, use BorderRadius and BorderWidth,
 	 * which allow for more specific control over the radius and width
 	 * of each corner and side of the border.
-	 * 
-	 * @royalesuppressexport
+	 *
 	 */
 	public class Border extends CompositeStyle
 	{

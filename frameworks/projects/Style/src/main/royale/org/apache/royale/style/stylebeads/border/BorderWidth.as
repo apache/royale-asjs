@@ -23,9 +23,7 @@ package org.apache.royale.style.stylebeads.border
 	import org.apache.royale.style.util.ThemeManager;
 	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
-	/**
-	 * @royalesuppressexport
-	 */
+
 	public class BorderWidth extends CompositeStyle
 	{
 		public function BorderWidth(value:* = null, unit:String = "px")

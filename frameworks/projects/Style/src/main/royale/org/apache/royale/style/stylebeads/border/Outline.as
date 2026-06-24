@@ -22,9 +22,7 @@ package org.apache.royale.style.stylebeads.border
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
-	/**
-	 * @royalesuppressexport
-	 */
+
 	public class Outline extends CompositeStyle
 	{
 		public function Outline(width:*=null, style:*=null, color:*=null, offset:*=null)

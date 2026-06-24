@@ -21,9 +21,7 @@ package org.apache.royale.style.stylebeads.spacing
 	import org.apache.royale.style.stylebeads.CompositeStyle;
 	import org.apache.royale.style.util.parseShorthandCSS;
 
-	/**
-	 * @royalesuppressexport
-	 */
+
 	public class Margin extends CompositeStyle
 	{
 		public function Margin(value:* = null, unit:String = "px")
