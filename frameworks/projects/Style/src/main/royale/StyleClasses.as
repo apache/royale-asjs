@@ -28,6 +28,7 @@ package
 	internal class StyleClasses
 	{
 		import org.apache.royale.style.colors.ColorSwatch; ColorSwatch;
+		import org.apache.royale.style.colors.NamedColorSet; NamedColorSet;
 		import org.apache.royale.style.util.StyleManager; StyleManager;
 		import org.apache.royale.style.util.ThemeManager; ThemeManager;
 		import org.apache.royale.style.util.ContentAlign; ContentAlign;
@@ -45,6 +46,7 @@ package
 		import org.apache.royale.style.stylebeads.states.media.MediaBreakpoint; MediaBreakpoint;
 		import org.apache.royale.style.stylebeads.states.media.MediaBetween; MediaBetween;
 		import org.apache.royale.style.stylebeads.states.media.ContainerBreakpoint; ContainerBreakpoint;
+		import org.apache.royale.style.stylebeads.states.ActiveState; ActiveState;
 		
 	}
 

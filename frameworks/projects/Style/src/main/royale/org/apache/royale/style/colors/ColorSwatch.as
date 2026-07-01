@@ -206,14 +206,39 @@ package org.apache.royale.style.colors
 		
 		public static function fromSpecifier(specifier:String,darkMode:Boolean=false):ColorSwatch
 		{
+			assert(isSpecifier(specifier), "Invalid color specifier: " + specifier);
 			var parts:Array = specifier.split("-");
-			assert(parts.length == 2, "Invalid color specifier: " + specifier);
 			var base:String = parts[0];
 			var shadeAndOpacity:String = parts[1];
 			var shadeParts:Array = shadeAndOpacity.split("/");
 			var shade:Number = Number(shadeParts[0]);
 			var opacity:Number = shadeParts.length > 1 ? Number(shadeParts[1]) : 100;
 			return new ColorSwatch(base, shade, opacity, darkMode);
+		}
+
+		public static function isSpecifier(specifier:String):Boolean
+		{
+			if (!specifier)
+				return false;
+			var parts:Array = specifier.split("-");
+			if (parts.length != 2)
+				return false;
+			var base:String = parts[0];
+			if (!(isColorName(base) || base == "black" || base == "white" || CSSLookup.has(base)))
+				return false;
+			var shadeParts:Array = parts[1].split("/");
+			if (shadeParts.length > 2)
+				return false;
+			var shade:Number = Number(shadeParts[0]);
+			if (isNaN(shade) || shade < 0 || shade > 1000)
+				return false;
+			if (shadeParts.length == 2)
+			{
+				var opacity:Number = Number(shadeParts[1]);
+				if (isNaN(opacity) || opacity < 0 || opacity > 100)
+					return false;
+			}
+			return true;
 		}
 		
 		public static function isColorName(name:String):Boolean{

@@ -79,6 +79,7 @@
   <component id="FlexLayout" class="org.apache.royale.style.beads.FlexLayout"/>
   <component id="Link" class="org.apache.royale.style.Link"/>
   <component id="HoverState" class="org.apache.royale.style.stylebeads.states.HoverState"/>
+  <component id="ActiveState" class="org.apache.royale.style.stylebeads.states.ActiveState"/>
   <component id="Toast" class="org.apache.royale.style.Toast"/>
   <component id="Tooltip" class="org.apache.royale.style.Tooltip"/>
   <component id="BarLoader" class="org.apache.royale.style.BarLoader"/>

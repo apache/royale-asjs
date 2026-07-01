@@ -25,6 +25,7 @@ package org.apache.royale.style.stylebeads
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.colors.ColorSwatch;
+	import org.apache.royale.style.colors.NamedColorSet;
 	import org.apache.royale.utils.StringUtil;
 	
 	[DefaultProperty("styles")]
@@ -197,7 +198,10 @@ package org.apache.royale.style.stylebeads
 				default:
 					if(CSSLookup.has(color))
 						return CSSLookup.getProperty(color);
-					else if (color.indexOf("-") != -1)
+					var namedColor:String = NamedColorSet.resolve(color);
+					if(namedColor)
+						return namedColor;
+					if (ColorSwatch.isSpecifier(color))
 					{
 						var swatch:ColorSwatch = ColorSwatch.fromSpecifier(color, false);
 						return swatch.colorValue;
