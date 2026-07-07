@@ -49,6 +49,7 @@ package org.apache.royale.style.skins
 	import org.apache.royale.style.stylebeads.typography.TextSize;
 	import org.apache.royale.style.stylebeads.typography.FontWeight;
 	import org.apache.royale.style.stylebeads.states.DisabledState;
+	import org.apache.royale.style.stylebeads.flexgrid.FlexShrink;
 
 	public class AccordionSectionSkin extends StyleSkin implements IAccordionSectionSkin
 	{
@@ -143,6 +144,7 @@ package org.apache.royale.style.skins
 			icon.styleBeads = [
 				new HeightStyle(4),
 				new WidthStyle(4),
+				new FlexShrink(0),
 				new TextColor(textColor),
 				new Transition("transform"),
 				new TransitionDuration(200),
