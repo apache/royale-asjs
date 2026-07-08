@@ -36,12 +36,13 @@ package org.apache.royale.style.stylebeads.sizing
 
 		public function set width(value:*):void
 		{
+			_width = value;
 			if(!widthStyle)
 			{
-				widthStyle = new WidthStyle();
-				addStyleBead(widthStyle);
+				widthStyle = new WidthStyle(value);
+				return addStyleBead(widthStyle);
 			}
-			_width = widthStyle.value = value;
+			widthStyle.value = value;
 		}
 		private var heightStyle:HeightStyle;
 		private var _height:*;
@@ -53,12 +54,13 @@ package org.apache.royale.style.stylebeads.sizing
 
 		public function set height(value:*):void
 		{
+			_height = value;
 			if(!heightStyle)
 			{
-				heightStyle = new HeightStyle();
-				addStyleBead(heightStyle);
+				heightStyle = new HeightStyle(value);
+				return addStyleBead(heightStyle);
 			}
-			_height = heightStyle.value = value;
+			heightStyle.value = value;
 		}
 
 	}

@@ -19,9 +19,6 @@
 package org.apache.royale.style.stylebeads.border
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
 
 	public class BorderRadius extends CompositeStyle
@@ -45,12 +42,12 @@ package org.apache.royale.style.stylebeads.border
 		private var rStyle:Radius;
 		public function set radius(value:*):void
 		{
+			_radius = value;
 			if(!rStyle)
 			{
-				rStyle = new Radius();
-				addStyleBead(rStyle);
+				rStyle = new Radius("rounded", "border-radius", value);
+				return addStyleBead(rStyle);
 			}
-			_radius = value;
 			rStyle.value = value;
 		}
 		private var _topLeft:*;
@@ -62,12 +59,12 @@ package org.apache.royale.style.stylebeads.border
 		private var tlStyle:TopLeft;
 		public function set topLeft(value:*):void
 		{
+			_topLeft = value;
 			if(!tlStyle)
 			{
-				tlStyle = new TopLeft();
-				addStyleBead(tlStyle);
+				tlStyle = new TopLeft(value);
+				return addStyleBead(tlStyle);
 			}
-			_topLeft = value;
 			tlStyle.value = value;
 		}
 		private var _topRight:*;
@@ -78,12 +75,12 @@ package org.apache.royale.style.stylebeads.border
 		private var trStyle:TopRight;
 		public function set topRight(value:*):void
 		{
+			_topRight = value;
 			if(!trStyle)
 			{
-				trStyle = new TopRight();
-				addStyleBead(trStyle);
+				trStyle = new TopRight(value);
+				return addStyleBead(trStyle);
 			}
-			_topRight = value;
 			trStyle.value = value;
 		}
 		private var _bottomLeft:*;
@@ -94,12 +91,12 @@ package org.apache.royale.style.stylebeads.border
 		private var blStyle:BottomLeft;
 		public function set bottomLeft(value:*):void
 		{
+			_bottomLeft = value;
 			if(!blStyle)
 			{
-				blStyle = new BottomLeft();
-				addStyleBead(blStyle);
+				blStyle = new BottomLeft(value);
+				return addStyleBead(blStyle);
 			}
-			_bottomLeft = value;
 			blStyle.value = value;
 		}
 		private var _bottomRight:*;
@@ -110,12 +107,12 @@ package org.apache.royale.style.stylebeads.border
 		private var brStyle:BottomRight;
 		public function set bottomRight(value:*):void
 		{
+			_bottomRight = value;
 			if(!brStyle)
 			{
-				brStyle = new BottomRight();
-				addStyleBead(brStyle);
+				brStyle = new BottomRight(value);
+				return addStyleBead(brStyle);
 			}
-			_bottomRight = value;
 			brStyle.value = value;
 		}
 		private var _startStart:*;
@@ -126,12 +123,12 @@ package org.apache.royale.style.stylebeads.border
 		private var ssStyle:StartStart;
 		public function set startStart(value:*):void
 		{
+			_startStart = value;
 			if(!ssStyle)
 			{
-				ssStyle = new StartStart();
-				addStyleBead(ssStyle);
+				ssStyle = new StartStart(value);
+				return addStyleBead(ssStyle);
 			}
-			_startStart = value;
 			ssStyle.value = value;
 		}
 		private var _startEnd:*;
@@ -142,12 +139,12 @@ package org.apache.royale.style.stylebeads.border
 		private var seStyle:StartEnd;
 		public function set startEnd(value:*):void
 		{
+			_startEnd = value;
 			if(!seStyle)
 			{
-				seStyle = new StartEnd();
-				addStyleBead(seStyle);
+				seStyle = new StartEnd(value);
+				return addStyleBead(seStyle);
 			}
-			_startEnd = value;
 			seStyle.value = value;
 		}
 		private var _endStart:*;
@@ -158,12 +155,12 @@ package org.apache.royale.style.stylebeads.border
 		private var esStyle:EndStart;
 		public function set endStart(value:*):void
 		{
+			_endStart = value;
 			if(!esStyle)
 			{
-				esStyle = new EndStart();
-				addStyleBead(esStyle);
+				esStyle = new EndStart(value);
+				return addStyleBead(esStyle);
 			}
-			_endStart = value;
 			esStyle.value = value;
 		}
 		private var _endEnd:*;
@@ -174,12 +171,12 @@ package org.apache.royale.style.stylebeads.border
 		private var eeStyle:EndEnd;
 		public function set endEnd(value:*):void
 		{
+			_endEnd = value;
 			if(!eeStyle)
 			{
-				eeStyle = new EndEnd();
-				addStyleBead(eeStyle);
+				eeStyle = new EndEnd(value);
+				return addStyleBead(eeStyle);
 			}
-			_endEnd = value;
 			eeStyle.value = value;
 		}
 	}

@@ -19,9 +19,6 @@
 package org.apache.royale.style.stylebeads.border
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.ThemeManager;
-	import org.apache.royale.style.util.StyleTheme;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
 
 	public class BorderWidth extends CompositeStyle
@@ -30,8 +27,8 @@ package org.apache.royale.style.stylebeads.border
 		{
 			super();
 			this.unit = unit;
-			if(value)
-				this.width = value;
+			if(value != width)
+				width = value;
 		}
 		private var _width:*;
 
@@ -42,13 +39,13 @@ package org.apache.royale.style.stylebeads.border
 		private var widthStyle:Width;
 		public function set width(value:*):void
 		{
-			 if(!widthStyle)
+			_width = value;
+			if(!widthStyle)
 			 {
-				 widthStyle = new Width();
-				 addStyleBead(widthStyle);
+				 widthStyle = new Width("border", "border-width", value);
+				 return addStyleBead(widthStyle);
 			 }
 			 widthStyle.value = value;
-			_width = value;
 		}
 		private var _top:*;
 
@@ -59,13 +56,13 @@ package org.apache.royale.style.stylebeads.border
 		private var topStyle:Top;
 		public function set top(value:*):void
 		{
-			 if(!topStyle)
+			_top = value;
+			if(!topStyle)
 			 {
-				 topStyle = new Top();
-				 addStyleBead(topStyle);
+				 topStyle = new Top(value);
+				 return addStyleBead(topStyle);
 			 }
 			 topStyle.value = value;
-			_top = value;
 		}
 		private var _left:*;
 
@@ -76,13 +73,13 @@ package org.apache.royale.style.stylebeads.border
 		private var leftStyle:Left;
 		public function set left(value:*):void
 		{
-			 if(!leftStyle)
+			_left = value;
+			if(!leftStyle)
 			 {
-				 leftStyle = new Left();
-				 addStyleBead(leftStyle);
+				 leftStyle = new Left(value);
+				 return addStyleBead(leftStyle);
 			 }
 			 leftStyle.value = value;
-			_left = value;
 		}
 		private var _right:*;
 
@@ -93,13 +90,13 @@ package org.apache.royale.style.stylebeads.border
 		private var rightStyle:Right;
 		public function set right(value:*):void
 		{
+			_right = value;
 			 if(!rightStyle)
 			 {
-				 rightStyle = new Right();
-				 addStyleBead(rightStyle);
+				 rightStyle = new Right(value);
+				 return addStyleBead(rightStyle);
 			 }
 			 rightStyle.value = value;
-			_right = value;
 		}
 		private var _bottom:*;
 
@@ -110,13 +107,13 @@ package org.apache.royale.style.stylebeads.border
 		private var bottomStyle:Bottom;
 		public function set bottom(value:*):void
 		{
+			_bottom = value;
 			 if(!bottomStyle)
 			 {
-				 bottomStyle = new Bottom();
-				 addStyleBead(bottomStyle);
+				 bottomStyle = new Bottom(value);
+				 return addStyleBead(bottomStyle);
 			 }
 			 bottomStyle.value = value;
-			_bottom = value;
 		}
 		private var _block:*;
 
@@ -127,13 +124,13 @@ package org.apache.royale.style.stylebeads.border
 		private var blockStyle:Block;
 		public function set block(value:*):void
 		{
+			_block = value;
 			 if(!blockStyle)
 			 {
-				 blockStyle = new Block();
-				 addStyleBead(blockStyle);
+				 blockStyle = new Block(value);
+				 return addStyleBead(blockStyle);
 			 }
 			 blockStyle.value = value;
-			_block = value;
 		}
 		private var _blockEnd:*;
 
@@ -144,13 +141,13 @@ package org.apache.royale.style.stylebeads.border
 		private var blockEndStyle:BlockEnd;
 		public function set blockEnd(value:*):void
 		{	
+			_blockEnd = value;
 			 if(!blockEndStyle)
 			 {
-				 blockEndStyle = new BlockEnd();
-				 addStyleBead(blockEndStyle);
+				 blockEndStyle = new BlockEnd(value);
+				 return addStyleBead(blockEndStyle);
 			 }
 			 blockEndStyle.value = value;
-			_blockEnd = value;
 		}
 		private var _blockStart:*;
 
@@ -161,13 +158,13 @@ package org.apache.royale.style.stylebeads.border
 		private var blockStartStyle:BlockStart;
 		public function set blockStart(value:*):void
 		{
+			_blockStart = value;
 			 if(!blockStartStyle)
 			 {
-				 blockStartStyle = new BlockStart();
-				 addStyleBead(blockStartStyle);
+				 blockStartStyle = new BlockStart(value);
+				 return addStyleBead(blockStartStyle);
 			 }
 			 blockStartStyle.value = value;
-			_blockStart = value;
 		}
 		private var _inline:*;
 
@@ -178,13 +175,13 @@ package org.apache.royale.style.stylebeads.border
 		private var inlineStyle:Inline;
 		public function set inline(value:*):void
 		{
+			_inline = value;
 			if(!inlineStyle)
 			 {
-				 inlineStyle = new Inline();
-				 addStyleBead(inlineStyle);
+				 inlineStyle = new Inline(value);
+				 return addStyleBead(inlineStyle);
 			 }
 			 inlineStyle.value = value;
-			_inline = value;
 		}
 		private var _inlineEnd:*;
 
@@ -195,13 +192,13 @@ package org.apache.royale.style.stylebeads.border
 		private var inlineEndStyle:InlineEnd;
 		public function set inlineEnd(value:*):void
 		{
+			_inlineEnd = value;
 			if(!inlineEndStyle)
 			 {
-				 inlineEndStyle = new InlineEnd();
-				 addStyleBead(inlineEndStyle);
+				 inlineEndStyle = new InlineEnd(value);
+				 return addStyleBead(inlineEndStyle);
 			 }
 			 inlineEndStyle.value = value;
-			_inlineEnd = value;
 		}
 		private var _inlineStart:*;
 
@@ -212,13 +209,13 @@ package org.apache.royale.style.stylebeads.border
 		private var inlineStartStyle:InlineStart;
 		public function set inlineStart(value:*):void
 		{
+			_inlineStart = value;
 			if(!inlineStartStyle)
 			 {
-				 inlineStartStyle = new InlineStart();
-				 addStyleBead(inlineStartStyle);
+				 inlineStartStyle = new InlineStart(value);
+				 return addStyleBead(inlineStartStyle);
 			 }
 			 inlineStartStyle.value = value;
-			_inlineStart = value;
 		}
 	}
 }

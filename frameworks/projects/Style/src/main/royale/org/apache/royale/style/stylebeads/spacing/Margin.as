@@ -52,24 +52,23 @@ package org.apache.royale.style.stylebeads.spacing
 		public function set margin(value:*):void
 		{
 			resetMarginStyles();
+			_margin = value;
 			var shorthand:Array = parseShorthandCSS(value);
 			if(shorthand)
 			{
 				applyShorthand(shorthand);
-				_margin = value;
 				return;
 			}
-			if(!marginStyle)
-			{
-				marginStyle = new Marg();
-				addStyleBead(marginStyle);
-			}
-			marginStyle.value = value;
 			_top = value;
 			_right = value;
 			_bottom = value;
 			_left = value;
-			_margin = value;
+			if(!marginStyle)
+			{
+				marginStyle = new Marg("m", "margin", value);
+				return addStyleBead(marginStyle);
+			}
+			marginStyle.value = value;
 		}
 
 		private function resetMarginStyles():void
@@ -126,13 +125,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set top(value:*):void
 		{
+			_top = value;
 			if(!topStyle)
 			{
-				topStyle = new MarginTop();
-				addStyleBead(topStyle);
+				topStyle = new MarginTop(value);
+				return addStyleBead(topStyle);
 			}
 			topStyle.value = value;
-			_top = value;
 		}
 		private var _right:*;
 
@@ -143,13 +142,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set right(value:*):void
 		{
+			_right = value;
 			if(!rightStyle)
 			{
-				rightStyle = new MarginRight();
-				addStyleBead(rightStyle);
+				rightStyle = new MarginRight(value);
+				return addStyleBead(rightStyle);
 			}
 			rightStyle.value = value;
-			_right = value;
 		}
 		private var _bottom:*;
 
@@ -160,13 +159,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set bottom(value:*):void
 		{
+			_bottom = value;
 			if(!bottomStyle)
 			{
-				bottomStyle = new MarginBottom();
-				addStyleBead(bottomStyle);
+				bottomStyle = new MarginBottom(value);
+				return addStyleBead(bottomStyle);
 			}
 			bottomStyle.value = value;
-			_bottom = value;
 		}
 		private var _left:*;
 
@@ -177,13 +176,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set left(value:*):void
 		{
+			_left = value;
 			if(!leftStyle)
 			{
-				leftStyle = new MarginLeft();
-				addStyleBead(leftStyle);
+				leftStyle = new MarginLeft(value);
+				return addStyleBead(leftStyle);
 			}
 			leftStyle.value = value;
-			_left = value;
 		}
 		private var _block:*;
 
@@ -194,13 +193,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set block(value:*):void
 		{
+			_block = value;
 			if(!blockStyle)
 			{
-				blockStyle = new MarginBlock();
-				addStyleBead(blockStyle);
+				blockStyle = new MarginBlock(value);
+				return addStyleBead(blockStyle);
 			}
 			blockStyle.value = value;
-			_block = value;
 		}
 		private var _blockStart:*;
 
@@ -211,13 +210,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set blockStart(value:*):void
 		{
+			_blockStart = value;
 			if(!blockStartStyle)
 			{
-				blockStartStyle = new MarginBlockStart();
-				addStyleBead(blockStartStyle);
+				blockStartStyle = new MarginBlockStart(value);
+				return addStyleBead(blockStartStyle);
 			}
 			blockStartStyle.value = value;
-			_blockStart = value;
 		}
 		private var _blockEnd:*;
 
@@ -228,13 +227,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set blockEnd(value:*):void
 		{
+			_blockEnd = value;
 			if(!blockEndStyle)
 			{
-				blockEndStyle = new MarginBlockEnd();
-				addStyleBead(blockEndStyle);
+				blockEndStyle = new MarginBlockEnd(value);
+				return addStyleBead(blockEndStyle);
 			}
 			blockEndStyle.value = value;
-			_blockEnd = value;
 		}
 		private var _inline:*;
 
@@ -245,13 +244,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set inline(value:*):void
 		{
+			_inline = value;
 			if(!inlineStyle)
 			{
-				inlineStyle = new MarginInline();
-				addStyleBead(inlineStyle);
+				inlineStyle = new MarginInline(value);
+				return addStyleBead(inlineStyle);
 			}
 			inlineStyle.value = value;
-			_inline = value;
 		}
 		private var _inlineStart:*;
 
@@ -262,13 +261,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set inlineStart(value:*):void
 		{
+			_inlineStart = value;
 			if(!inlineStartStyle)
 			{
-				inlineStartStyle = new MarginInlineStart();
-				addStyleBead(inlineStartStyle);
+				inlineStartStyle = new MarginInlineStart(value);
+				return addStyleBead(inlineStartStyle);
 			}
 			inlineStartStyle.value = value;
-			_inlineStart = value;
 		}
 		private var _inlineEnd:*;
 
@@ -279,13 +278,13 @@ package org.apache.royale.style.stylebeads.spacing
 
 		public function set inlineEnd(value:*):void
 		{
+			_inlineEnd = value;
 			if(!inlineEndStyle)
 			{
-				inlineEndStyle = new MarginInlineEnd();
-				addStyleBead(inlineEndStyle);
+				inlineEndStyle = new MarginInlineEnd(value);
+				return addStyleBead(inlineEndStyle);
 			}
 			inlineEndStyle.value = value;
-			_inlineEnd = value;
 		}
 	}
 }

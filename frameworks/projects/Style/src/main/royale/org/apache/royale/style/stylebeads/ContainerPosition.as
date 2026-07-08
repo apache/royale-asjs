@@ -49,12 +49,13 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set justifyContent(value:String):void
 		{
+			_justifyContent = value;
 			if(!justifyContentStyle)
 			{
-				justifyContentStyle = new JustifyContent();
-				addStyleBead(justifyContentStyle);
+				justifyContentStyle = new JustifyContent(value);
+				return addStyleBead(justifyContentStyle);
 			}
-			justifyContentStyle.value = _justifyContent = value;
+			justifyContentStyle.value = value;
 		}
 		private var justifyContentStyle:JustifyContent;
 
@@ -75,12 +76,13 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set alignItems(value:String):void
 		{
+			_alignItems = value;
 			if(!alignItemsStyle)
 			{
-				alignItemsStyle = new AlignItems();
-				addStyleBead(alignItemsStyle);
+				alignItemsStyle = new AlignItems(value);
+				return addStyleBead(alignItemsStyle);
 			}
-			alignItemsStyle.value = _alignItems = value;
+			alignItemsStyle.value = value;
 		}
 		private var alignItemsStyle:AlignItems;
 
@@ -98,12 +100,13 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set justifyItems(value:String):void
 		{
+			_justifyItems = value;
 			if(!justifyItemsStyle)
 			{
-				justifyItemsStyle = new JustifyItems();
-				addStyleBead(justifyItemsStyle);
+				justifyItemsStyle = new JustifyItems(value);
+				return addStyleBead(justifyItemsStyle);
 			}
-			justifyItemsStyle.value = _justifyItems = value;
+			justifyItemsStyle.value = value;
 		}
 		private var justifyItemsStyle:JustifyItems;
 
@@ -124,12 +127,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set alignContent(value:String):void
 		{
+			_alignContent = value;
 			if(!alignContentStyle)
 			{
-				alignContentStyle = new AlignContent();
-				addStyleBead(alignContentStyle);
+				alignContentStyle = new AlignContent(value);
+				return addStyleBead(alignContentStyle);
 			}
-			alignContentStyle.value = _alignContent = value;
+			alignContentStyle.value = value;
 		}
 		private var alignContentStyle:AlignContent;
 
@@ -152,12 +156,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set placeContent(value:String):void
 		{
+			_placeContent = value;
 			if(!placeContentStyle)
 			{
-				placeContentStyle = new PlaceContent();
-				addStyleBead(placeContentStyle);
+				placeContentStyle = new PlaceContent(value);
+				return addStyleBead(placeContentStyle);
 			}
-			placeContentStyle.value = _placeContent = value;
+			placeContentStyle.value = value;
 		}
 		private var placeContentStyle:PlaceContent;
 		private var _placeItems:String;
@@ -179,12 +184,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set placeItems(value:String):void
 		{
+			_placeItems = value;
 			if(!placeItemsStyle)
 			{
-				placeItemsStyle = new PlaceItems();
-				addStyleBead(placeItemsStyle);
+				placeItemsStyle = new PlaceItems(value);
+				return addStyleBead(placeItemsStyle);
 			}
-			placeItemsStyle.value = _placeItems = value;
+			placeItemsStyle.value = value;
 		}
 		private var placeItemsStyle:PlaceItems;
 	}

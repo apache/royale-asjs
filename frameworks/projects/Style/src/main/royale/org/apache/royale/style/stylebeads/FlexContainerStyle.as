@@ -29,7 +29,7 @@ package org.apache.royale.style.stylebeads
 		public function FlexContainerStyle()
 		{
 			super();
-			displayStyle = new Display();
+			displayStyle = new Display("flex");
 			addStyleBead(displayStyle);
 		}
 		
@@ -64,14 +64,14 @@ package org.apache.royale.style.stylebeads
 		private var directionStyle:FlexDirection;
 		private function setDirection():void
 		{
-			if(!directionStyle)
-			{
-				directionStyle = new FlexDirection();
-				addStyleBead(directionStyle);
-			}
 			var dir:String = _column ? "column" : "row";
 			if(reverse)
 				dir += "-reverse";
+			if(!directionStyle)
+			{
+				directionStyle = new FlexDirection(dir);
+				return addStyleBead(directionStyle);
+			}
 			directionStyle.value = dir;
 		}
 		private var _reverse:Boolean;
@@ -106,14 +106,14 @@ package org.apache.royale.style.stylebeads
 		}
 		private function setWrap():void
 		{
-			if(!wrapStyle)
-			{
-				wrapStyle = new FlexWrap();
-				addStyleBead(wrapStyle);
-			}
 			var w:String = _wrap ? "wrap" : "nowrap";
 			if(_wrap && reverse)
 					w += "-reverse";
+			if(!wrapStyle)
+			{
+				wrapStyle = new FlexWrap(w);
+				return addStyleBead(wrapStyle);
+			}
 			wrapStyle.value = w;
 		}
 	}

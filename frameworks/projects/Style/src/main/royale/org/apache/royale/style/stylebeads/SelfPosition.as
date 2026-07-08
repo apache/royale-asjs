@@ -46,12 +46,13 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set justifySelf(value:String):void
 		{
+			_justifySelf = value;
 			if(!jutifySelfStyle)
 			{
-				jutifySelfStyle = new JustifySelf();
-				addStyleBead(jutifySelfStyle);
+				jutifySelfStyle = new JustifySelf(value);
+				return addStyleBead(jutifySelfStyle);
 			}
-			_justifySelf = jutifySelfStyle.value = value;
+			jutifySelfStyle.value = value;
 		}
 		private var jutifySelfStyle:JustifySelf;
 
@@ -72,12 +73,13 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set alignSelf(value:String):void
 		{
+			_alignSelf = value;
 			if(!alignSelfStyle)
 			{
-				alignSelfStyle = new AlignSelf();
-				addStyleBead(alignSelfStyle);
+				alignSelfStyle = new AlignSelf(value);
+				return addStyleBead(alignSelfStyle);
 			}
-			_alignSelf = alignSelfStyle.value = value;
+			alignSelfStyle.value = value;
 		}
 		private var alignSelfStyle:AlignSelf;
 
@@ -100,12 +102,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set placeSelf(value:String):void
 		{
+			_placeSelf = value;
 			if(!placeSelfStyle)
 			{
-				placeSelfStyle = new PlaceSelf();
-				addStyleBead(placeSelfStyle);
+				placeSelfStyle = new PlaceSelf(value);
+				return addStyleBead(placeSelfStyle);
 			}
-			_placeSelf = placeSelfStyle.value = value;
+			placeSelfStyle.value = value;
 		}
 		private var placeSelfStyle:PlaceSelf;
 

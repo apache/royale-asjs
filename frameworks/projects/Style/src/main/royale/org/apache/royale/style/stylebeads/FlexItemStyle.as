@@ -49,12 +49,13 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set growFactor(value:Number):void
 		{
+			_growFactor = value;
 			if(!growStyle)
 			{
-				growStyle = new FlexGrow();
-				addStyleBead(growStyle);
+				growStyle = new FlexGrow(value);
+				return addStyleBead(growStyle);
 			}
-			_growFactor = growStyle.value = value;
+			growStyle.value = value;
 		}
 		private var growStyle:FlexGrow;
 
@@ -80,12 +81,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set shrinkFactor(value:Number):void
 		{
+			_shrinkFactor = value;
 			if(!shrinkStyle)
 			{
-				shrinkStyle = new FlexShrink();
-				addStyleBead(shrinkStyle);
+				shrinkStyle = new FlexShrink(value);
+				return addStyleBead(shrinkStyle);
 			}
-			_shrinkFactor = shrinkStyle.value = value;
+			shrinkStyle.value = value;
 		}
 		private var shrinkStyle:FlexShrink;
 		private var _basis:String = "auto";
@@ -97,12 +99,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set basis(value:String):void
 		{
+			_basis = value;
 			if(!basisStyle)
 			{
-				basisStyle = new FlexBasis();
-				addStyleBead(basisStyle);
+				basisStyle = new FlexBasis(value);
+				return addStyleBead(basisStyle);
 			}
-			_basis = basisStyle.value = value;
+			basisStyle.value = value;
 		}
 		private var basisStyle:FlexBasis;
 
@@ -115,12 +118,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set order(value:Number):void
 		{
+			_order = value;
 			if(!orderStyle)
 			{
-				orderStyle = new Order();
-				addStyleBead(orderStyle);
+				orderStyle = new Order(value);
+				return addStyleBead(orderStyle);
 			}
-			_order = orderStyle.value = value;
+			orderStyle.value = value;
 		}
 		private var orderStyle:Order;
 	}	

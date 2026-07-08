@@ -19,8 +19,6 @@
 package org.apache.royale.style.stylebeads.border
 {
 	import org.apache.royale.style.stylebeads.LeafStyleBase;
-	import org.apache.royale.debugging.assert;
-	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.stylebeads.CompositeStyle;
 
 	public class Outline extends CompositeStyle
@@ -46,13 +44,13 @@ package org.apache.royale.style.stylebeads.border
 		private var colorStyle:BorderColor;
 		public function set color(value:String):void
 		{
+			_color = value;
 			if(!colorStyle)
 			{
-				colorStyle = new BorderColor("outline", "outline-color");
-				addStyleBead(colorStyle);
+				colorStyle = new BorderColor("outline", "outline-color", value);
+				return addStyleBead(colorStyle);
 			}
 			colorStyle.value = value;
-			_color = value;
 		}
 		private var _offset:*;
 		public function get offset():*
@@ -62,13 +60,13 @@ package org.apache.royale.style.stylebeads.border
 		private var offsetStyle:Offset;
 		public function set offset(value:*):void
 		{
+			_offset = value;
 			if(!offsetStyle)
 			{
-				offsetStyle = new Offset();
-				addStyleBead(offsetStyle);
+				offsetStyle = new Offset(value);
+				return addStyleBead(offsetStyle);
 			}
 			offsetStyle.value = value;
-			_offset = value;
 		}
 		private var _style:String;
 		public function get style():String
@@ -78,13 +76,13 @@ package org.apache.royale.style.stylebeads.border
 		private var styleStyle:BorderStyle;
 		public function set style(value:String):void
 		{
+			_style = value;
 			if(!styleStyle)
 			{
-				styleStyle = new Style();
-				addStyleBead(styleStyle);
+				styleStyle = new Style(value);
+				return addStyleBead(styleStyle);
 			}
 			styleStyle.value = value;
-			_style = value;
 		}
 		private var _width:*;
 		public function get width():*
@@ -94,13 +92,13 @@ package org.apache.royale.style.stylebeads.border
 		private var widthStyle:Width;
 		public function set width(value:*):void
 		{
+			_width = value;
 			if(!widthStyle)
 			{
-				widthStyle = new Width();
-				addStyleBead(widthStyle);
+				widthStyle = new Width(value);
+				return addStyleBead(widthStyle);
 			}
 			widthStyle.value = value;
-			_width = value;
 		}
 	}
 }

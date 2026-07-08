@@ -19,7 +19,6 @@
 package org.apache.royale.style.stylebeads
 {
 
-	import org.apache.royale.debugging.assert;
 	import org.apache.royale.style.stylebeads.background.BackgroundAttachment;
 	import org.apache.royale.style.stylebeads.background.BackgroundColor;
 	import org.apache.royale.style.stylebeads.background.BackgroundClip;
@@ -69,12 +68,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set attachment(value:String):void
 		{
+			_attachment = value;
 			if(!attachmentStyle)
 			{
-				attachmentStyle = new BackgroundAttachment();
-				addStyleBead(attachmentStyle);
+				attachmentStyle = new BackgroundAttachment(value);
+				return addStyleBead(attachmentStyle);
 			}
-			attachmentStyle.value = _attachment = value;
+			attachmentStyle.value = value;
 		}
 		private var attachmentStyle:BackgroundAttachment;
 		private var _color:String;
@@ -92,12 +92,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set color(value:String):void
 		{
+			_color = value;
 			if(!colorStyle)
 			{
-				colorStyle = new BackgroundColor();
-				addStyleBead(colorStyle);
+				colorStyle = new BackgroundColor(value);
+				return addStyleBead(colorStyle);
 			}
-			colorStyle.value = _color = value;
+			colorStyle.value = value;
 		}
 		private var colorStyle:BackgroundColor;
 		private var _clip:String;
@@ -122,10 +123,10 @@ package org.apache.royale.style.stylebeads
 			_clip = value;
 			if(!clipStyle)
 			{
-				clipStyle = new BackgroundClip();
-				addStyleBead(clipStyle);
+				clipStyle = new BackgroundClip(value);
+				return addStyleBead(clipStyle);
 			}
-			clipStyle.value = _clip;
+			clipStyle.value = value;
 		}
 		private var clipStyle:BackgroundClip;
 		//TODO gradient support
@@ -145,12 +146,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set image(value:String):void
 		{
+			_image = value;
 			if(!imageStyle)
 			{
-				imageStyle = new BackgroundImage();
-				addStyleBead(imageStyle);
+				imageStyle = new BackgroundImage(value);
+				return addStyleBead(imageStyle);
 			}
-			imageStyle.value = _image = value;
+			imageStyle.value = value;
 		}
 		private var imageStyle:BackgroundImage;
 		private var _origin:String;
@@ -166,12 +168,13 @@ package org.apache.royale.style.stylebeads
 		}
 		public function set origin(value:String):void
 		{
+			_origin = value;
 			if(!originStyle)
 			{
-				originStyle = new BackgroundOrigin();
-				addStyleBead(originStyle);
+				originStyle = new BackgroundOrigin(value);
+				return addStyleBead(originStyle);
 			}
-			originStyle.value = _origin = value;
+			originStyle.value = value;
 		}
 		private var originStyle:BackgroundOrigin;
 		private var _position:String;
@@ -189,12 +192,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set position(value:String):void
 		{
+			_position = value;
 			if(!positionStyle)
 			{
-				positionStyle = new BackgroundPosition();
-				addStyleBead(positionStyle);
+				positionStyle = new BackgroundPosition(value);
+				return addStyleBead(positionStyle);
 			}
-			positionStyle.value = _position = value;
+			positionStyle.value = value;
 		}
 		private var positionStyle:BackgroundPosition;
 		private var _repeat:String;
@@ -217,12 +221,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set repeat(value:String):void
 		{
+			_repeat = value;
 			if(!repeatStyle)
 			{
-				repeatStyle = new BackgroundRepeat();
-				addStyleBead(repeatStyle);
+				repeatStyle = new BackgroundRepeat(value);
+				return addStyleBead(repeatStyle);
 			}
-			repeatStyle.value = _repeat = value;
+			repeatStyle.value = value;
 		}
 		private var repeatStyle:BackgroundRepeat;
 		private var _size:String;
@@ -248,12 +253,13 @@ package org.apache.royale.style.stylebeads
 
 		public function set size(value:String):void
 		{
+			_size = value;
 			if(!sizeStyle)
 			{
-				sizeStyle = new BackgroundSize();
-				addStyleBead(sizeStyle);
+				sizeStyle = new BackgroundSize(value);
+				return addStyleBead(sizeStyle);
 			}
-			sizeStyle.value = _size = value;
+			sizeStyle.value = value;
 		}
 		private var sizeStyle:BackgroundSize;
 	}
