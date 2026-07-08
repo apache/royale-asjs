@@ -29,7 +29,6 @@ package org.apache.royale.style.stylebeads.border
 		public function BorderRadius(value:* = null, unit:String = "px")
 		{
 			super();
-			styles = [];
 			this.unit = unit;
 			//because of @royalesuppressexport, the following did not work in release/minified build from within this constructor when using the radius setter directly:
 			//if (value) radius = value;
@@ -49,7 +48,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!rStyle)
 			{
 				rStyle = new Radius();
-				styles.push(rStyle);
+				addStyleBead(rStyle);
 			}
 			_radius = value;
 			rStyle.value = value;
@@ -66,7 +65,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!tlStyle)
 			{
 				tlStyle = new TopLeft();
-				styles.push(tlStyle);
+				addStyleBead(tlStyle);
 			}
 			_topLeft = value;
 			tlStyle.value = value;
@@ -82,7 +81,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!trStyle)
 			{
 				trStyle = new TopRight();
-				styles.push(trStyle);
+				addStyleBead(trStyle);
 			}
 			_topRight = value;
 			trStyle.value = value;
@@ -98,7 +97,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!blStyle)
 			{
 				blStyle = new BottomLeft();
-				styles.push(blStyle);
+				addStyleBead(blStyle);
 			}
 			_bottomLeft = value;
 			blStyle.value = value;
@@ -114,7 +113,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!brStyle)
 			{
 				brStyle = new BottomRight();
-				styles.push(brStyle);
+				addStyleBead(brStyle);
 			}
 			_bottomRight = value;
 			brStyle.value = value;
@@ -130,7 +129,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!ssStyle)
 			{
 				ssStyle = new StartStart();
-				styles.push(ssStyle);
+				addStyleBead(ssStyle);
 			}
 			_startStart = value;
 			ssStyle.value = value;
@@ -146,7 +145,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!seStyle)
 			{
 				seStyle = new StartEnd();
-				styles.push(seStyle);
+				addStyleBead(seStyle);
 			}
 			_startEnd = value;
 			seStyle.value = value;
@@ -162,7 +161,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!esStyle)
 			{
 				esStyle = new EndStart();
-				styles.push(esStyle);
+				addStyleBead(esStyle);
 			}
 			_endStart = value;
 			esStyle.value = value;
@@ -178,7 +177,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!eeStyle)
 			{
 				eeStyle = new EndEnd();
-				styles.push(eeStyle);
+				addStyleBead(eeStyle);
 			}
 			_endEnd = value;
 			eeStyle.value = value;

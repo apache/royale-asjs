@@ -155,7 +155,8 @@ package org.apache.royale.style
 		{
 			if(bead.isLeaf)
 				return addLeafStyleBead(bead as ILeafStyleBead, overrideExisting);
-
+			
+			bead.strand = this;
 			var leaves:Array = bead.getLeaves();
 			for each(var leaf:ILeafStyleBead in leaves)
 			{
@@ -190,7 +191,9 @@ package org.apache.royale.style
 			if(styleBeads)
 			{
 				for each(var bead:IStyleBead in styleBeads)
+				{
 					addStyleBead(bead);
+				}
 			}
 			refreshSuspended = true;
 			styleBeads = null;

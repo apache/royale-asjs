@@ -29,7 +29,6 @@ package org.apache.royale.style.stylebeads.border
 		public function BorderWidth(value:* = null, unit:String = "px")
 		{
 			super();
-			styles = [];
 			this.unit = unit;
 			if(value)
 				this.width = value;
@@ -46,7 +45,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!widthStyle)
 			 {
 				 widthStyle = new Width();
-				 styles.push(widthStyle);
+				 addStyleBead(widthStyle);
 			 }
 			 widthStyle.value = value;
 			_width = value;
@@ -63,7 +62,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!topStyle)
 			 {
 				 topStyle = new Top();
-				 styles.push(topStyle);
+				 addStyleBead(topStyle);
 			 }
 			 topStyle.value = value;
 			_top = value;
@@ -80,7 +79,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!leftStyle)
 			 {
 				 leftStyle = new Left();
-				 styles.push(leftStyle);
+				 addStyleBead(leftStyle);
 			 }
 			 leftStyle.value = value;
 			_left = value;
@@ -97,7 +96,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!rightStyle)
 			 {
 				 rightStyle = new Right();
-				 styles.push(rightStyle);
+				 addStyleBead(rightStyle);
 			 }
 			 rightStyle.value = value;
 			_right = value;
@@ -114,7 +113,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!bottomStyle)
 			 {
 				 bottomStyle = new Bottom();
-				 styles.push(bottomStyle);
+				 addStyleBead(bottomStyle);
 			 }
 			 bottomStyle.value = value;
 			_bottom = value;
@@ -131,7 +130,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!blockStyle)
 			 {
 				 blockStyle = new Block();
-				 styles.push(blockStyle);
+				 addStyleBead(blockStyle);
 			 }
 			 blockStyle.value = value;
 			_block = value;
@@ -148,7 +147,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!blockEndStyle)
 			 {
 				 blockEndStyle = new BlockEnd();
-				 styles.push(blockEndStyle);
+				 addStyleBead(blockEndStyle);
 			 }
 			 blockEndStyle.value = value;
 			_blockEnd = value;
@@ -165,7 +164,7 @@ package org.apache.royale.style.stylebeads.border
 			 if(!blockStartStyle)
 			 {
 				 blockStartStyle = new BlockStart();
-				 styles.push(blockStartStyle);
+				 addStyleBead(blockStartStyle);
 			 }
 			 blockStartStyle.value = value;
 			_blockStart = value;
@@ -182,7 +181,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!inlineStyle)
 			 {
 				 inlineStyle = new Inline();
-				 styles.push(inlineStyle);
+				 addStyleBead(inlineStyle);
 			 }
 			 inlineStyle.value = value;
 			_inline = value;
@@ -199,7 +198,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!inlineEndStyle)
 			 {
 				 inlineEndStyle = new InlineEnd();
-				 styles.push(inlineEndStyle);
+				 addStyleBead(inlineEndStyle);
 			 }
 			 inlineEndStyle.value = value;
 			_inlineEnd = value;
@@ -216,7 +215,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!inlineStartStyle)
 			 {
 				 inlineStartStyle = new InlineStart();
-				 styles.push(inlineStartStyle);
+				 addStyleBead(inlineStartStyle);
 			 }
 			 inlineStartStyle.value = value;
 			_inlineStart = value;

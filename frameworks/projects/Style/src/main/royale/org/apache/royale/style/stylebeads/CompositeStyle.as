@@ -19,6 +19,7 @@
 package org.apache.royale.style.stylebeads
 {
 	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.StyleUIBase;
 
 	/**
 	 * Convenience class for styles that are composed of multiple leaf styles.
@@ -40,7 +41,33 @@ package org.apache.royale.style.stylebeads
 		{
 			assert(styles && styles.length > 0, "Non-leaf style beads must have child styles");
 			// nothing to preprocess.
+			_leavesGathered = true;
 			return gatherLeaves(parentStyle);
+		}
+		private var _leavesGathered:Boolean;
+
+		override public function addStyleBead(bead:IStyleBead):void
+		{
+			super.addStyleBead(bead);
+			if(_leavesGathered && _strand)
+			{
+				var pStyle:IStyleBead = parentStyle || this;
+				bead.parentStyle = pStyle;
+				if(bead is ILeafStyleBead)
+					(bead as ILeafStyleBead).unit = unit;
+				else if (bead is StyleBeadBase)
+					(bead as StyleBeadBase).unit = unit;
+
+				if(bead.isLeaf)
+				{
+					var leaf:ILeafStyleBead = bead as ILeafStyleBead;
+					if(!leaf.isDecorated())
+						decorateChildStyle(leaf, []);
+					(_strand as StyleUIBase).setStyles([leaf], true);
+				}
+				else
+					(_strand as StyleUIBase).setStyles(bead.getLeaves(), true);
+			}
 		}
 
 		//TODO: Figure this out.

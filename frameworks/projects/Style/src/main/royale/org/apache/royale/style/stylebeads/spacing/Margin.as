@@ -27,7 +27,6 @@ package org.apache.royale.style.stylebeads.spacing
 		public function Margin(value:* = null, unit:String = "px")
 		{
 			super();
-			styles = [];
 			this.unit = unit;
 			if(value != null)
 				this.margin = value;
@@ -63,7 +62,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!marginStyle)
 			{
 				marginStyle = new Marg();
-				styles.push(marginStyle);
+				addStyleBead(marginStyle);
 			}
 			marginStyle.value = value;
 			_top = value;
@@ -130,7 +129,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!topStyle)
 			{
 				topStyle = new MarginTop();
-				styles.push(topStyle);
+				addStyleBead(topStyle);
 			}
 			topStyle.value = value;
 			_top = value;
@@ -147,7 +146,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!rightStyle)
 			{
 				rightStyle = new MarginRight();
-				styles.push(rightStyle);
+				addStyleBead(rightStyle);
 			}
 			rightStyle.value = value;
 			_right = value;
@@ -164,7 +163,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!bottomStyle)
 			{
 				bottomStyle = new MarginBottom();
-				styles.push(bottomStyle);
+				addStyleBead(bottomStyle);
 			}
 			bottomStyle.value = value;
 			_bottom = value;
@@ -181,7 +180,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!leftStyle)
 			{
 				leftStyle = new MarginLeft();
-				styles.push(leftStyle);
+				addStyleBead(leftStyle);
 			}
 			leftStyle.value = value;
 			_left = value;
@@ -198,7 +197,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockStyle)
 			{
 				blockStyle = new MarginBlock();
-				styles.push(blockStyle);
+				addStyleBead(blockStyle);
 			}
 			blockStyle.value = value;
 			_block = value;
@@ -215,7 +214,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockStartStyle)
 			{
 				blockStartStyle = new MarginBlockStart();
-				styles.push(blockStartStyle);
+				addStyleBead(blockStartStyle);
 			}
 			blockStartStyle.value = value;
 			_blockStart = value;
@@ -232,7 +231,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!blockEndStyle)
 			{
 				blockEndStyle = new MarginBlockEnd();
-				styles.push(blockEndStyle);
+				addStyleBead(blockEndStyle);
 			}
 			blockEndStyle.value = value;
 			_blockEnd = value;
@@ -249,7 +248,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineStyle)
 			{
 				inlineStyle = new MarginInline();
-				styles.push(inlineStyle);
+				addStyleBead(inlineStyle);
 			}
 			inlineStyle.value = value;
 			_inline = value;
@@ -266,7 +265,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineStartStyle)
 			{
 				inlineStartStyle = new MarginInlineStart();
-				styles.push(inlineStartStyle);
+				addStyleBead(inlineStartStyle);
 			}
 			inlineStartStyle.value = value;
 			_inlineStart = value;
@@ -283,7 +282,7 @@ package org.apache.royale.style.stylebeads.spacing
 			if(!inlineEndStyle)
 			{
 				inlineEndStyle = new MarginInlineEnd();
-				styles.push(inlineEndStyle);
+				addStyleBead(inlineEndStyle);
 			}
 			inlineEndStyle.value = value;
 			_inlineEnd = value;

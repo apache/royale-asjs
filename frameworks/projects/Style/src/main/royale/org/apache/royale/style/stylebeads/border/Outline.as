@@ -28,7 +28,6 @@ package org.apache.royale.style.stylebeads.border
 		public function Outline(width:*=null, style:*=null, color:*=null, offset:*=null)
 		{
 			super();
-			styles = [];
 			if (width != null)
 				this.width = width;
 			if (style != null)
@@ -50,7 +49,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!colorStyle)
 			{
 				colorStyle = new BorderColor("outline", "outline-color");
-				styles.push(colorStyle);
+				addStyleBead(colorStyle);
 			}
 			colorStyle.value = value;
 			_color = value;
@@ -66,7 +65,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!offsetStyle)
 			{
 				offsetStyle = new Offset();
-				styles.push(offsetStyle);
+				addStyleBead(offsetStyle);
 			}
 			offsetStyle.value = value;
 			_offset = value;
@@ -82,7 +81,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!styleStyle)
 			{
 				styleStyle = new Style();
-				styles.push(styleStyle);
+				addStyleBead(styleStyle);
 			}
 			styleStyle.value = value;
 			_style = value;
@@ -98,7 +97,7 @@ package org.apache.royale.style.stylebeads.border
 			if(!widthStyle)
 			{
 				widthStyle = new Width();
-				styles.push(widthStyle);
+				addStyleBead(widthStyle);
 			}
 			widthStyle.value = value;
 			_width = value;
