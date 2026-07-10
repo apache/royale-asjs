@@ -349,6 +349,25 @@ package org.apache.royale.style
 		 * Used to prevent multiple setting of the style classes when internally setting styles and skins
 		 */
 		private var refreshSuspended:Boolean;
+		private var refreshPending:Boolean;
+		public function stylesChanged():void
+		{
+			if(refreshPending)
+				return;
+			refreshPending = true;
+			COMPILE::JS
+			{
+				requestAnimationFrame(function():void{
+					refreshPending = false;
+					refreshStyles();
+				});
+			}
+			COMPILE::SWF
+			{
+				refreshPending = false;
+				refreshStyles();
+			}
+		}
 		protected function refreshStyles():void
 		{
 			if(refreshSuspended)

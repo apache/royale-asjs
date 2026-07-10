@@ -19,6 +19,7 @@
 package org.apache.royale.style.stylebeads
 {
 	import org.apache.royale.debugging.assert;
+	import org.apache.royale.style.IStyleUIBase;
 	import org.apache.royale.style.util.CSSLookup;
 	import org.apache.royale.style.util.StyleData;
 	import org.apache.royale.style.util.ThemeManager;
@@ -159,10 +160,17 @@ package org.apache.royale.style.stylebeads
 		{
 			return _calculatedSelector;
 		}
-
+		/**
+		 * @royaleignorecoercion org.apache.royale.style.IStyleUIBase
+		 */
 		protected function set calculatedSelector(value:String):void
 		{
 			_calculatedSelector = sanitizeSelector(value);
+			if(_strand)
+			{
+				assert(_strand is IStyleUIBase, "LeafStyleBase can only be used with IStyleUIBase");
+				(_strand as IStyleUIBase).stylesChanged();
+			}
 		}
 		protected var calculatedRuleValue:String;
 		public function getSelector():String
