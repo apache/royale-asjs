@@ -59,6 +59,7 @@ package org.apache.royale.utils
 		 *  @param obj The object to test.
 		 *  @param boundsBeforeTransform Optional untransformed local bounds. On JS,
 		 *  these bounds are transformed into viewport coordinates for SVG elements.
+		 *  The supplied rectangle is not modified.
 		 *
 		 *  @return The object's axis-aligned bounds in the top-level visible coordinate space.
 		 *  
@@ -84,9 +85,9 @@ package org.apache.royale.utils
 					var r:Object = (obj.element as HTMLElement).getBoundingClientRect();
 					bounds = new Rectangle(r.left, r.top, r.right - r.left, r.bottom - r.top);
 				}
-				if (obj.element is SVGElement)
+				if (boundsBeforeTransform != null && obj.element is SVGElement)
 				{
-					var m:org.apache.royale.geom.Matrix = getTransormMatrix(obj);
+					var m:org.apache.royale.geom.Matrix = getTransformMatrix(obj);
 					var tl:Point = m.transformPoint(bounds.topLeft);
 					var tr:Point = m.transformPoint(new Point(bounds.right, bounds.top));
 					var bl:Point = m.transformPoint(new Point(bounds.left, bounds.bottom));
@@ -95,10 +96,7 @@ package org.apache.royale.utils
 					var topY:Number = Math.min(tl.y, tr.y, bl.y, br.y);
 					var rightX:Number = Math.max(tl.x, tr.x, bl.x, br.x);
 					var bottomY:Number = Math.max(tl.y, tr.y, bl.y, br.y);
-					bounds.top = topY;
-					bounds.left = leftX;
-					bounds.bottom = bottomY;
-					bounds.right = rightX;
+					bounds = new Rectangle(leftX, topY, rightX - leftX, bottomY - topY);
 				}
 				return bounds;
 			}
@@ -117,7 +115,7 @@ package org.apache.royale.utils
 		 *  @royaleignorecoercion HTMLElement
 		 *  @royaleignorecoercion org.apache.royale.core.ITransformHost
 		 */
-		public static function getTransormMatrix(obj:IUIBase):org.apache.royale.geom.Matrix
+		public static function getTransformMatrix(obj:IUIBase):org.apache.royale.geom.Matrix
 		{
 			COMPILE::SWF
 			{
@@ -132,6 +130,16 @@ package org.apache.royale.utils
 				return new org.apache.royale.geom.Matrix(sm.a,sm.b,sm.c,sm.d,sm.e,sm.f);
 			}
 			
+		}
+
+		/**
+		 *  @copy #getTransformMatrix()
+		 *  @deprecated Use <code>getTransformMatrix()</code> instead.
+		 */
+		[Deprecated(message="Use getTransformMatrix() instead")]
+		public static function getTransormMatrix(obj:IUIBase):org.apache.royale.geom.Matrix
+		{
+			return getTransformMatrix(obj);
 		}
 
 		/**

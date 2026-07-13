@@ -19,7 +19,9 @@
 package flexUnitTests
 {
     import org.apache.royale.core.UIBase;
+    import org.apache.royale.geom.Matrix;
     import org.apache.royale.geom.Rectangle;
+    import org.apache.royale.svg.GraphicContainer;
     import org.apache.royale.test.asserts.*;
     import org.apache.royale.utils.DisplayUtils;
 
@@ -147,6 +149,60 @@ package flexUnitTests
         }
 
         [Test]
+        public function testSvgWithoutSuppliedBoundsUsesClientBounds():void
+        {
+            COMPILE::JS
+            {
+                var svg:GraphicContainer = createSvgTarget();
+                svg.transformElement.setAttribute("transform", "translate(75 50) rotate(35)");
+                var clientBounds:Object = svg.element.getBoundingClientRect();
+                var bounds:Rectangle = DisplayUtils.getScreenBoundingRect(svg);
+
+                assertRectangleMatchesClientBounds(bounds, clientBounds);
+            }
+        }
+
+        [Test]
+        public function testSvgSuppliedBoundsUsesTransformElementMatrix():void
+        {
+            COMPILE::JS
+            {
+                var svg:GraphicContainer = createSvgTarget();
+                svg.transformElement.setAttribute("transform", "translate(75 50) rotate(35)");
+                var localBounds:Rectangle = new Rectangle(10, 20, 30, 40);
+                var transformElement:Object = svg.transformElement;
+                var screenMatrix:Object = transformElement.getScreenCTM();
+                var bounds:Rectangle = DisplayUtils.getScreenBoundingRect(svg, localBounds);
+
+                assertTransformedBounds(bounds, localBounds, screenMatrix);
+                assertFalse(bounds === localBounds);
+                assertEquals(10, localBounds.left);
+                assertEquals(20, localBounds.top);
+                assertEquals(40, localBounds.right);
+                assertEquals(60, localBounds.bottom);
+            }
+        }
+
+        [Test]
+        public function testTransformMatrixCompatibilityAlias():void
+        {
+            COMPILE::JS
+            {
+                var svg:GraphicContainer = createSvgTarget();
+                svg.transformElement.setAttribute("transform", "translate(25 40) scale(2 3)");
+                var matrix:Matrix = DisplayUtils.getTransformMatrix(svg);
+                var compatibilityMatrix:Matrix = DisplayUtils.getTransormMatrix(svg);
+
+                assertNear(matrix.a, compatibilityMatrix.a, "Incorrect compatibility matrix a");
+                assertNear(matrix.b, compatibilityMatrix.b, "Incorrect compatibility matrix b");
+                assertNear(matrix.c, compatibilityMatrix.c, "Incorrect compatibility matrix c");
+                assertNear(matrix.d, compatibilityMatrix.d, "Incorrect compatibility matrix d");
+                assertNear(matrix.tx, compatibilityMatrix.tx, "Incorrect compatibility matrix tx");
+                assertNear(matrix.ty, compatibilityMatrix.ty, "Incorrect compatibility matrix ty");
+            }
+        }
+
+        [Test]
         public function testObjectsOverlapUsesViewportBounds():void
         {
             COMPILE::JS
@@ -173,6 +229,37 @@ package flexUnitTests
             assertNear(clientBounds.top, bounds.top, "Incorrect top viewport coordinate");
             assertNear(clientBounds.right, bounds.right, "Incorrect right viewport coordinate");
             assertNear(clientBounds.bottom, bounds.bottom, "Incorrect bottom viewport coordinate");
+        }
+
+        COMPILE::JS
+        private function createSvgTarget():GraphicContainer
+        {
+            var svg:GraphicContainer = new GraphicContainer();
+            svg.element.style.position = "absolute";
+            svg.element.style.left = "250px";
+            svg.element.style.top = "300px";
+            svg.element.style.width = "200px";
+            svg.element.style.height = "150px";
+            fixture.appendChild(svg.element);
+            return svg;
+        }
+
+        COMPILE::JS
+        private function assertTransformedBounds(bounds:Rectangle, localBounds:Rectangle, matrix:Object):void
+        {
+            var x1:Number = matrix.a * localBounds.left + matrix.c * localBounds.top + matrix.e;
+            var y1:Number = matrix.b * localBounds.left + matrix.d * localBounds.top + matrix.f;
+            var x2:Number = matrix.a * localBounds.right + matrix.c * localBounds.top + matrix.e;
+            var y2:Number = matrix.b * localBounds.right + matrix.d * localBounds.top + matrix.f;
+            var x3:Number = matrix.a * localBounds.left + matrix.c * localBounds.bottom + matrix.e;
+            var y3:Number = matrix.b * localBounds.left + matrix.d * localBounds.bottom + matrix.f;
+            var x4:Number = matrix.a * localBounds.right + matrix.c * localBounds.bottom + matrix.e;
+            var y4:Number = matrix.b * localBounds.right + matrix.d * localBounds.bottom + matrix.f;
+
+            assertNear(Math.min(x1, x2, x3, x4), bounds.left, "Incorrect transformed left");
+            assertNear(Math.min(y1, y2, y3, y4), bounds.top, "Incorrect transformed top");
+            assertNear(Math.max(x1, x2, x3, x4), bounds.right, "Incorrect transformed right");
+            assertNear(Math.max(y1, y2, y3, y4), bounds.bottom, "Incorrect transformed bottom");
         }
 
         COMPILE::JS
