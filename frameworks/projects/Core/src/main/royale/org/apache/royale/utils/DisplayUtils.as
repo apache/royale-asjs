@@ -38,7 +38,7 @@ package org.apache.royale.utils
 		import org.apache.royale.core.ITransformHost;
 	}
 	/**
-	 *  The SpriteUtils class is a collection of static functions that are useful
+	 *  The DisplayUtils class is a collection of static functions that are useful
 	 *  for geometric operations on visible objects.
 	 *  
 	 *  @langversion 3.0
@@ -50,9 +50,17 @@ package org.apache.royale.utils
 	{
 
 		/**
-		 *  Gets the bounding box of an object relative to the screen ignoring any scrolling.
+		 *  Gets the axis-aligned bounding box of an object in the top-level visible
+		 *  coordinate space. On SWF, this is the stage coordinate space. On JS, this
+		 *  is the browser layout viewport coordinate space returned by
+		 *  <code>getBoundingClientRect()</code>. Scrolling the document or an ancestor
+		 *  changes the returned position relative to the viewport.
 		 * 
 		 *  @param obj The object to test.
+		 *  @param boundsBeforeTransform Optional untransformed local bounds. On JS,
+		 *  these bounds are transformed into viewport coordinates for SVG elements.
+		 *
+		 *  @return The object's axis-aligned bounds in the top-level visible coordinate space.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -76,8 +84,6 @@ package org.apache.royale.utils
 					var r:Object = (obj.element as HTMLElement).getBoundingClientRect();
 					bounds = new Rectangle(r.left, r.top, r.right - r.left, r.bottom - r.top);
 				}
-				bounds.x -= window.pageXOffset;
-				bounds.y -= window.pageYOffset;
 				if (obj.element is SVGElement)
 				{
 					var m:org.apache.royale.geom.Matrix = getTransormMatrix(obj);
@@ -99,7 +105,8 @@ package org.apache.royale.utils
 		}
 		
 		/**
-		 *  Gets a composition all transform matrices applied to an IUIBase. Currently only works for SVG on JS side.
+		 *  Gets the composition of all transform matrices applied to an IUIBase.
+		 *  Currently only works for SVG elements on JS.
 		 * 
 		 *  @param obj The object to test.
 		 *  
@@ -128,7 +135,7 @@ package org.apache.royale.utils
 		}
 
 		/**
-		 *  Evaluates the bounding box of two objects to see if thier bounding boxes overlap.
+		 *  Evaluates the bounding boxes of two objects to see if they overlap.
 		 * 
 		 *  @param obj1 The object to test.
 		 *  @param obj2 The object to test against.
