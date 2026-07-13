@@ -1898,7 +1898,7 @@ package org.apache.royale.textLayout.container
 			if (!_hasScrollRect)
 				return;
 			var containerPoint:Point = new Point(mouseX, mouseY);
-			containerPoint = PointUtils.globalToLocal(containerPoint, _container);// _container.globalToLocal(containerPoint); 			
+			containerPoint = PointUtils.viewportToLocal(containerPoint, _container);// _container.globalToLocal(containerPoint);
 			autoScrollIfNecessaryInternal(containerPoint);
 		}
 		

@@ -329,12 +329,12 @@ package org.apache.royale.textLayout.edit
 					{
 						var bounds:Rectangle = boundsResult[0].rect;
 						var textLine:ITextLine = boundsResult[0].textLine;
-						var resultTopLeft:Point = PointUtils.localToGlobal(bounds.topLeft, textLine);// textLine.localToGlobal(bounds.topLeft);
-						var resultBottomRight:Point = PointUtils.localToGlobal(bounds.bottomRight, textLine);// textLine.localToGlobal(bounds.bottomRight);
+											var resultTopLeft:Point = PointUtils.localToViewport(bounds.topLeft, textLine);// textLine.localToGlobal(bounds.topLeft);
+											var resultBottomRight:Point = PointUtils.localToViewport(bounds.bottomRight, textLine);// textLine.localToGlobal(bounds.bottomRight);
 						if (textLine.parent)
 						{
-							var containerTopLeft:Point = PointUtils.globalToLocal(resultTopLeft, textLine.parent);// textLine.parent.globalToLocal(resultTopLeft);
-							var containerBottomLeft:Point = PointUtils.globalToLocal(resultBottomRight, textLine.parent);// textLine.parent.globalToLocal(resultBottomRight);
+													var containerTopLeft:Point = PointUtils.viewportToLocal(resultTopLeft, textLine.parent);// textLine.parent.globalToLocal(resultTopLeft);
+													var containerBottomLeft:Point = PointUtils.viewportToLocal(resultBottomRight, textLine.parent);// textLine.parent.globalToLocal(resultBottomRight);
 							// CONFIG::debug { displayRectInContainer(Sprite(textLine.parent), new Rectangle(containerTopLeft.x, containerTopLeft.y, containerBottomLeft.x - containerTopLeft.x, containerBottomLeft.y - containerTopLeft.y));}
 							return new Rectangle(containerTopLeft.x, containerTopLeft.y, containerBottomLeft.x - containerTopLeft.x, containerBottomLeft.y - containerTopLeft.y);
 						}

@@ -223,8 +223,8 @@ package org.apache.royale.html.beads
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());
 					var point:Point = new Point(_textInput.width, _button.height);
-					var p2:Point = PointUtils.localToGlobal(point, _strand);
-					var p3:Point = PointUtils.globalToLocal(p2, host);
+					var p2:Point = PointUtils.localToViewport(point, _strand);
+					var p3:Point = PointUtils.viewportToLocal(p2, host);
 					_popUp.x = p3.x;
 					_popUp.y = p3.y;
 					COMPILE::JS

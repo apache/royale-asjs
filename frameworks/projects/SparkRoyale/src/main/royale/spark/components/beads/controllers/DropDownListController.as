@@ -87,8 +87,8 @@ public class DropDownListController implements IBead, IBeadController
         if (viewBead.popUpVisible)
         {
             var pt:Point = new Point(0, host.height);
-            pt = PointUtils.localToGlobal(pt, _strand);
-            pt = PointUtils.globalToLocal(pt, popup.parent);
+            pt = PointUtils.localToViewport(pt, _strand);
+            pt = PointUtils.viewportToLocal(pt, popup.parent);
             popup.x = pt.x;
             popup.y = pt.y;
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);

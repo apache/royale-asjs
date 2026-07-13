@@ -315,7 +315,7 @@ package org.apache.royale.html.beads.controllers
                         host = UIUtils.findPopUpHost(_strand as IUIBase);
                         if (host == null) return;
                         host.popUpParent.addElement(dragImage);
-                        pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
+                        pt = PointUtils.viewportToLocal(new Point(event.clientX, event.clientY), host);
                         dragImage.x = pt.x + dragImageOffsetX;
                         dragImage.y = pt.y + dragImageOffsetY;
 						(dragImage as UIBase).id = "drag_image";
@@ -336,7 +336,7 @@ package org.apache.royale.html.beads.controllers
                 if (host == null) return;
 //                trace("DRAG-MOUSE: sending dragMove via " + event.target.toString()+" == "+dragImageOffsetX);
                 dragEvent = DragEvent.createDragEvent("dragMove", event);
-                pt = PointUtils.globalToLocal(new Point(event.clientX, event.clientY), host);
+                pt = PointUtils.viewportToLocal(new Point(event.clientX, event.clientY), host);
                 dragImage.x = pt.x + dragImageOffsetX;
                 dragImage.y = pt.y + dragImageOffsetY;
 				COMPILE::SWF {

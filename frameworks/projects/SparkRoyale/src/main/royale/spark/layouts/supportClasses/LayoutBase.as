@@ -898,9 +898,9 @@ public class LayoutBase extends org.apache.royale.core.LayoutBase implements IEv
             var sizePoint:Point = new Point(element.getLayoutBoundsWidth(), element.getLayoutBoundsHeight());
             
             // Convert from local to global coordinate space
-            var posPoint:Point = PointUtils.localToGlobal(posPointStart, parentUIC);
+            var posPoint:Point = PointUtils.localToViewport(posPointStart, parentUIC);
             // Convert from global to target's local coordinate space
-            posPoint = PointUtils.globalToLocal(posPoint, g);
+            posPoint = PointUtils.viewportToLocal(posPoint, g);
                         
             return new Rectangle(posPoint.x, posPoint.y, sizePoint.x, sizePoint.y);
         }
@@ -930,9 +930,9 @@ public class LayoutBase extends org.apache.royale.core.LayoutBase implements IEv
                                                 element.getLayoutBoundsY() + elementLocalBounds.y);
             
             // Convert from local to global coordinate space
-            var posPoint:Point = PointUtils.localToGlobal(posPointStart, parentUIC);
+            var posPoint:Point = PointUtils.localToViewport(posPointStart, parentUIC);
             // Convert from global to target's local coordinate space
-            posPoint = PointUtils.globalToLocal(posPoint, g);
+            posPoint = PointUtils.viewportToLocal(posPoint, g);
             
             return new Rectangle(posPoint.x, posPoint.y, elementLocalBounds.width, elementLocalBounds.height);
         }

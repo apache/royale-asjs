@@ -395,15 +395,15 @@ package mx.controls.beads
 
 			if (dropDirection == "horizontal") {
 				pt0 = new Point(0, item.y+item.height);
-				pt1 = PointUtils.localToGlobal(pt0, item.parent);
-				pt2 = PointUtils.globalToLocal(pt1, indicatorParent);
+				pt1 = PointUtils.localToViewport(pt0, item.parent);
+				pt2 = PointUtils.viewportToLocal(pt1, indicatorParent);
 				_dropIndicator.x = 0;
 				_dropIndicator.y = pt2.y - 1;
 			}
 			else {
 				pt0 = new Point(item.x, 0);
-				pt1 = PointUtils.localToGlobal(pt0, item.parent);
-				pt2 = PointUtils.globalToLocal(pt1, indicatorParent);
+				pt1 = PointUtils.localToViewport(pt0, item.parent);
+				pt2 = PointUtils.viewportToLocal(pt1, indicatorParent);
 				_dropIndicator.x = pt2.x - 1;
 				_dropIndicator.y = 0;
 			}
@@ -412,8 +412,8 @@ package mx.controls.beads
 		COMPILE::JS
 		private function displayDropIndicator(item:IUIBase):void
 		{
-			var pt:Point = PointUtils.localToGlobal(new Point(0,0), item);
-			pt = PointUtils.globalToLocal(pt,indicatorParent);
+			var pt:Point = PointUtils.localToViewport(new Point(0,0), item);
+			pt = PointUtils.viewportToLocal(pt,indicatorParent);
 			if (dropDirection == "horizontal") {
 				_dropIndicator.x = 0;
 				_dropIndicator.y = pt.y;

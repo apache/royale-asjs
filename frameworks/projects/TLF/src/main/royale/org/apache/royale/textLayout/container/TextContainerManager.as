@@ -2518,8 +2518,8 @@ class RemappedMouseEvent extends org.apache.royale.events.MouseEvent
 		var containerPoint:Point;
 		if (!cloning)
 		{
-			containerPoint = PointUtils.localToGlobal(new Point(event.localX, event.localY), event.target);// DisplayObject(event.target).localToGlobal(new Point(event.localX, event.localY));
-			containerPoint = PointUtils.globalToLocal(containerPoint, event.currentTarget);// DisplayObject(event.currentTarget).globalToLocal(containerPoint);
+				   containerPoint = PointUtils.localToViewport(new Point(event.localX, event.localY), event.target);// DisplayObject(event.target).localToGlobal(new Point(event.localX, event.localY));
+				   containerPoint = PointUtils.viewportToLocal(containerPoint, event.currentTarget);// DisplayObject(event.currentTarget).globalToLocal(containerPoint);
 		}
 		else
 			containerPoint = new Point();

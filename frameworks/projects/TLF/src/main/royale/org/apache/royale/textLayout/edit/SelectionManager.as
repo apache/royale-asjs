@@ -1790,7 +1790,7 @@ package org.apache.royale.textLayout.edit
 			var controller:IContainerController;
 			var containerPoint:Point; // scratch
 
-			var globalPoint:Point = PointUtils.localToGlobal(new Point(localX, localY), target);// DisplayObject(target).localToGlobal(new Point(localX, localY));
+				   var globalPoint:Point = PointUtils.localToViewport(new Point(localX, localY), target);// DisplayObject(target).localToGlobal(new Point(localX, localY));
 
 			for (var idx:int = 0; idx < textFlow.flowComposer.numControllers; idx++)
 			{
@@ -1805,7 +1805,7 @@ package org.apache.royale.textLayout.edit
 			{
 				if (target != controller.container)
 				{
-					containerPoint = PointUtils.globalToLocal(globalPoint, controller.container);// DisplayObject(controller.container).globalToLocal(globalPoint);
+								   containerPoint = PointUtils.viewportToLocal(globalPoint, controller.container);// DisplayObject(controller.container).globalToLocal(globalPoint);
 					localPoint.x = containerPoint.x;
 					localPoint.y = containerPoint.y;
 				}
@@ -1837,7 +1837,7 @@ package org.apache.royale.textLayout.edit
 				var containerWidth:Number = isNaN(curContainerController.compositionWidth) ? curContainerController.getTotalPaddingLeft() + bounds.width : curContainerController.compositionWidth;
 				var containerHeight:Number = isNaN(curContainerController.compositionHeight) ? curContainerController.getTotalPaddingTop() + bounds.height : curContainerController.compositionHeight;
 
-				containerPoint = PointUtils.globalToLocal(globalPoint, curContainerController.container);// DisplayObject(curContainerController.container).globalToLocal(globalPoint);
+						   containerPoint = PointUtils.viewportToLocal(globalPoint, curContainerController.container);// DisplayObject(curContainerController.container).globalToLocal(globalPoint);
 
 				// remove scrollRect effects for the distance test but add it back in for the result
 				var adjustX:Number = 0;
@@ -2225,7 +2225,7 @@ package org.apache.royale.textLayout.edit
 
 					if (cellContainer)
 					{
-						var cellContainerPoint:Point = PointUtils.localToGlobal(new Point(), cellContainer);// cellContainer.localToGlobal(new Point);
+						var cellContainerPoint:Point = PointUtils.localToViewport(new Point(), cellContainer);// cellContainer.localToGlobal(new Point);
 						point = globalPoint.subtract(cellContainerPoint);
 					}
 					if (useTableSelectionCursors)
