@@ -45,6 +45,7 @@ package flexUnitTests
         public var sanitizerTest:SanitizeTest;
         public var eventsTest:EventsTest;
         public var displayUtilsTest:DisplayUtilsTest;
+        public var pointUtilsTest:PointUtilsTest;
         public var objectUtilTests:ObjectUtilsTest;
         public var functionalTests:FunctionalTests;
         public var taskTests:TaskTests;

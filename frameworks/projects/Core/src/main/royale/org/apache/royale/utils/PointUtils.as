@@ -163,5 +163,91 @@ package org.apache.royale.utils
                 return new org.apache.royale.geom.Point(x, y);
             }
         }
+
+        /**
+         *  Converts a point from viewport coordinates to local coordinates.
+         *  On JavaScript, viewport coordinates are the coordinate space used by
+         *  MouseEvent.clientX/clientY and Element.getBoundingClientRect().
+         *  CSS transforms are not included in the conversion.
+         *  Works with IRenderedObject or any object that has an element property.
+         *  Also works with an HTMLElement.
+         *
+         *  @param point The point being converted.
+         *  @param local The component used as reference for the conversion.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 1.0.0
+         *  @royaleignorecoercion HTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+         */
+        public static function viewportToLocal( pt:org.apache.royale.geom.Point, local:Object ):org.apache.royale.geom.Point
+        {
+            COMPILE::SWF
+            {
+                return globalToLocal(pt, local);
+            }
+            COMPILE::JS
+            {
+                var element:HTMLElement;
+                if(local.getBoundingClientRect){
+                    element = local as HTMLElement;
+                } else if(local.element){
+                    element = local.element as HTMLElement;
+                } else if(local is IRenderedObject){
+                    element = (local as IRenderedObject).element;
+                } else {
+                    assert(false,"Invalid object used for PointUtils.viewportToLocal")
+                }
+                var rect:Object = element.getBoundingClientRect();
+                return new org.apache.royale.geom.Point(
+                    pt.x - rect.left - element.clientLeft + element.scrollLeft,
+                    pt.y - rect.top - element.clientTop + element.scrollTop);
+            }
+        }
+
+        /**
+         *  Converts a point from local coordinates to viewport coordinates.
+         *  On JavaScript, viewport coordinates are the coordinate space used by
+         *  MouseEvent.clientX/clientY and Element.getBoundingClientRect().
+         *  CSS transforms are not included in the conversion.
+         *  Works with IRenderedObject or any object that has an element property.
+         *  Also works with an HTMLElement.
+         *
+         *  @param point The point being converted.
+         *  @param local The component used as reference for the conversion.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 1.0.0
+         *  @royaleignorecoercion HTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.IRenderedObject
+         */
+        public static function localToViewport( pt:org.apache.royale.geom.Point, local:Object ):org.apache.royale.geom.Point
+        {
+            COMPILE::SWF
+            {
+                return localToGlobal(pt, local);
+            }
+            COMPILE::JS
+            {
+                var element:HTMLElement;
+                if(local.getBoundingClientRect){
+                    element = local as HTMLElement;
+                } else if(local.element){
+                    element = local.element as HTMLElement;
+                } else if(local is IRenderedObject){
+                    element = (local as IRenderedObject).element;
+                } else {
+                    assert(false,"Invalid object used for PointUtils.localToViewport")
+                }
+                var rect:Object = element.getBoundingClientRect();
+                return new org.apache.royale.geom.Point(
+                    rect.left + element.clientLeft - element.scrollLeft + pt.x,
+                    rect.top + element.clientTop - element.scrollTop + pt.y);
+            }
+        }
 	}
 }
