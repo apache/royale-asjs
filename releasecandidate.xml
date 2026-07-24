@@ -1027,14 +1027,8 @@ The vote passes if there is:\n\
 - At least 3 +1 votes from the PMC\n\
 - More positive votes than negative votes\n\
 \n\
-Remember that this is a 'beta-quality' release so I expect there\n\
-will be many bugs found.  IMO the goal is not to try to find and fix bugs\n\
-in the RC, but to make sure we have the packaging right, and enough\n\
-functionality that folks will have some success trying to use it.\n\
-\n\
-People who are not in PMC are also encouraged to test out the release and\n\
-vote, although their votes will not be binding, they can influence how the\n\
-PMC votes.\n\
+People who are not in the PMC are also encouraged to test the release and\n\
+vote; their votes are non-binding but can influence how the PMC votes.\n\
 \n\
 When voting please indicate what OS, IDE, Flash Player version and AIR\n\
 version you tested with.\n\
