@@ -996,6 +996,8 @@ The source was built from the following tags:\n\
   royale-typedefs:  org.apache.royale.typedefs-${release.version}-rc${rc}\n\
                     https://github.com/apache/royale-typedefs/releases/tag/org.apache.royale.typedefs-${release.version}-rc${rc}\n\
 \n\
+Reviewers wishing to inspect provenance can compare the source archive against the tag content on GitHub via the URLs above.\n\
+\n\
 Before voting please review the section,'What are the ASF requirements on\n\
 approving a release?', at:\n\
 http://www.apache.org/dev/release.html#approving-a-release\n\
