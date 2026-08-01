@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<project name="codegraphs" default="codegraphs" basedir=".">
+
+    <property name="ROYALE_HOME" location=".."/>
+    <property file="${ROYALE_HOME}/env.properties"/>
+    <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
+    <property file="${ROYALE_HOME}/build.properties"/>
+
+    <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js">
+        <available file="${ROYALE_HOME}/js/lib/codegraph.jar"/>
+    </condition>
+    <condition property="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}">
+        <available file="${env.ROYALE_COMPILER_HOME}/lib/codegraph.jar"/>
+    </condition>
+    <condition property="AIR_HOME" value="${env.AIR_HOME}">
+        <isset property="env.AIR_HOME"/>
+    </condition>
+    <property name="AIR_HOME" value="${ROYALE_HOME}"/>
+
+    <macrodef name="codegraph-js">
+        <attribute name="module"/>
+        <attribute name="config" default="js-config.xml"/>
+        <element name="extra-args" optional="true"/>
+        <sequential>
+            <echo message="Generating JS code graph for @{module}"/>
+            <mkdir dir="${basedir}/projects/@{module}/target/codegraph/js"/>
+            <java jar="${ROYALE_COMPILER_HOME}/lib/codegraph.jar"
+                dir="${basedir}/js/projects/@{module}JS"
+                fork="true" failonerror="true">
+                <jvmarg value="-Xmx384m"/>
+                <jvmarg value="-Dsun.io.useCanonCaches=false"/>
+                <jvmarg value="-Droyalecompiler=${ROYALE_COMPILER_HOME}"/>
+                <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks"/>
+                <arg value="-compiler.strict-xml=true"/>
+                <arg value="-output=${basedir}/projects/@{module}/target/codegraph/js/@{module}.json"/>
+                <arg value="-load-config=${basedir}/@{config}"/>
+                <arg value="-load-config+=${basedir}/js/projects/@{module}JS/src/main/config/compile-js-config.xml"/>
+                <arg value="-keep-asdoc=true"/>
+                <extra-args/>
+            </java>
+        </sequential>
+    </macrodef>
+
+    <macrodef name="codegraph-swf">
+        <attribute name="module"/>
+        <element name="extra-args" optional="true"/>
+        <sequential>
+            <echo message="Generating SWF code graph for @{module}"/>
+            <mkdir dir="${basedir}/projects/@{module}/target/codegraph/swf"/>
+            <java jar="${ROYALE_COMPILER_HOME}/lib/codegraph.jar"
+                dir="${basedir}/projects/@{module}"
+                fork="true" failonerror="true">
+                <jvmarg value="-Xmx384m"/>
+                <jvmarg value="-Dsun.io.useCanonCaches=false"/>
+                <jvmarg value="-Droyalecompiler=${ROYALE_COMPILER_HOME}"/>
+                <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks"/>
+                <arg value="+playerglobal.version=${playerglobal.version}"/>
+                <arg value="+env.AIR_HOME=${AIR_HOME}"/>
+                <arg value="-compiler.strict-xml=true"/>
+                <arg value="-output=${basedir}/projects/@{module}/target/codegraph/swf/@{module}.json"/>
+                <arg value="-load-config=${basedir}/projects/@{module}/src/main/config/compile-swf-config.xml"/>
+                <arg value="-keep-asdoc=true"/>
+                <extra-args/>
+            </java>
+        </sequential>
+    </macrodef>
+
+    <target name="check">
+        <fail message="ROYALE_COMPILER_HOME must point to a compiler with lib/codegraph.jar"
+            unless="ROYALE_COMPILER_HOME"/>
+    </target>
+
+    <target name="generate-driver">
+        <mkdir dir="${basedir}/target"/>
+        <xslt in="${basedir}/projects/pom.xml"
+            out="${basedir}/target/codegraph-modules.xml"
+            style="${basedir}/codegraphs.xsl"/>
+    </target>
+
+    <target name="generate-index-metadata">
+        <mkdir dir="${basedir}/target"/>
+        <xslt in="${basedir}/projects/pom.xml"
+            out="${basedir}/target/codegraph-index-metadata.tsv"
+            style="${basedir}/codegraph-index-metadata.xsl"/>
+    </target>
+
+    <target name="codegraph-index" depends="validate-codegraphs,generate-index-metadata">
+        <exec executable="node" failonerror="true">
+            <arg value="${basedir}/scripts/generate-codegraph-index.js"/>
+            <arg value="--metadata"/>
+            <arg value="${basedir}/target/codegraph-index-metadata.tsv"/>
+            <arg value="--root"/>
+            <arg value="${basedir}/projects"/>
+            <arg value="--output"/>
+            <arg value="${basedir}/target/codegraphs"/>
+        </exec>
+    </target>
+
+    <target name="codegraphs" depends="check,generate-driver">
+        <ant antfile="${basedir}/target/codegraph-modules.xml" target="codegraphs" inheritAll="true"/>
+    </target>
+
+    <target name="codegraph" depends="check,generate-driver">
+        <fail message="Set codegraph.module to a framework module name, for example -Dcodegraph.module=Basic"
+            unless="codegraph.module"/>
+        <ant antfile="${basedir}/target/codegraph-modules.xml"
+            target="codegraph-${codegraph.module}" inheritAll="true"/>
+    </target>
+
+    <target name="validate-codegraphs">
+        <exec executable="node" failonerror="true">
+            <arg value="${basedir}/scripts/validate-codegraphs.js"/>
+            <arg value="--root"/>
+            <arg value="${basedir}/projects"/>
+        </exec>
+    </target>
+
+    <target name="validate-codegraph" depends="codegraph">
+        <exec executable="node" failonerror="true">
+            <arg value="${basedir}/scripts/validate-codegraphs.js"/>
+            <arg value="--root"/>
+            <arg value="${basedir}/projects"/>
+            <arg value="--module"/>
+            <arg value="${codegraph.module}"/>
+        </exec>
+    </target>
+
+    <target name="validate-codegraph-determinism">
+        <fail message="Set codegraph.module to a framework module name, for example -Dcodegraph.module=Basic"
+            unless="codegraph.module"/>
+        <delete dir="${basedir}/target/codegraph-baseline"/>
+        <copy todir="${basedir}/target/codegraph-baseline/${codegraph.module}">
+            <fileset dir="${basedir}/projects/${codegraph.module}" includes="target/codegraph/**/*.json"/>
+        </copy>
+        <antcall target="codegraph"/>
+        <exec executable="node" failonerror="true">
+            <arg value="${basedir}/scripts/validate-codegraphs.js"/>
+            <arg value="--root"/>
+            <arg value="${basedir}/projects"/>
+            <arg value="--module"/>
+            <arg value="${codegraph.module}"/>
+            <arg value="--compare-root"/>
+            <arg value="${basedir}/target/codegraph-baseline"/>
+        </exec>
+        <delete dir="${basedir}/target/codegraph-baseline"/>
+    </target>
+
+</project>

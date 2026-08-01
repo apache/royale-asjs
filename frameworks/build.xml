@@ -160,6 +160,30 @@
 		<!-- <antcall target="ExternsJS"/> -->
     </target>
 
+        <target name="codegraphs" description="Generates public API code graphs for all framework modules">
+                <ant antfile="${basedir}/codegraphs.xml" target="codegraphs" inheritAll="true"/>
+        </target>
+
+        <target name="codegraph" description="Generates public API code graphs for one framework module">
+            <ant antfile="${basedir}/codegraphs.xml" target="codegraph" inheritAll="true"/>
+        </target>
+
+        <target name="validate-codegraphs" description="Validates generated public API code graphs">
+            <ant antfile="${basedir}/codegraphs.xml" target="validate-codegraphs" inheritAll="true"/>
+        </target>
+
+        <target name="validate-codegraph" description="Generates and validates one framework module code graph">
+            <ant antfile="${basedir}/codegraphs.xml" target="validate-codegraph" inheritAll="true"/>
+        </target>
+
+        <target name="validate-codegraph-determinism" description="Regenerates and byte-compares one framework module code graph">
+            <ant antfile="${basedir}/codegraphs.xml" target="validate-codegraph-determinism" inheritAll="true"/>
+        </target>
+
+        <target name="codegraph-index" description="Stages code graph shards and generates aggregate indexes">
+            <ant antfile="${basedir}/codegraphs.xml" target="codegraph-index" inheritAll="true"/>
+        </target>
+
     <target name="test" description="Tests all SWCs">
         <antcall target="LanguageTest"/>
         <antcall target="CoreTest"/>
