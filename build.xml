@@ -173,11 +173,11 @@
         description="Packages the source release kit which is the official Apache release."/>
         
     <target name="binary-release" 
-        depends="setup-binary-release,set.base.folder,build-all,main,sample-themes,checkintests,check-goog-home,binary-package,jsonly-package"
+        depends="setup-binary-release,set.base.folder,build-all,main,sample-themes,checkintests,check-goog-home,codegraphs,binary-package,jsonly-package"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="binary-release-jenkins" 
-        depends="setup-binary-release,main-jenkins,sample-themes,binary-package"
+        depends="setup-binary-release,main-jenkins,sample-themes,codegraphs,binary-package"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
 
     <target name="source-release-noclean" 
@@ -185,8 +185,13 @@
         description="Packages the source release kit which is the official Apache release."/>
         
     <target name="binary-release-noclean" 
-        depends="main,sample-themes,checkintests,binary-package"
+        depends="main,sample-themes,checkintests,codegraphs,binary-package"
         description="Builds and packages the binary kit which is provided as a convenience."/>    
+
+    <target name="codegraphs" description="Generates and indexes public API code graphs for release packages">
+        <ant dir="${basedir}/frameworks" target="codegraphs"/>
+        <ant dir="${basedir}/frameworks" target="codegraph-index"/>
+    </target>
 
     <target name="doc-packages" 
         depends="asdoc-package,javadocs"
@@ -823,7 +828,7 @@ limitations under the License.
     </target>
     
     <target name="stage-top-level" >
-        <copy file="${basedir}/npm/js-swf/package.json" todir="${basedir}/temp" />
+        <copy file="${basedir}/npm/js-swf/package.json" todir="${basedir}/temp" overwrite="true"/>
         <copy todir="${basedir}/temp" includeEmptyDirs="false">
             <fileset dir="${basedir}/releasemgr" includes="**" />
         </copy>
@@ -1048,6 +1053,8 @@ limitations under the License.
         description="Package binary files in zip and tar-gzip file.">
 
         <antcall target="stage-source"/>
+        <antcall target="stage-top-level"/>
+        <antcall target="stage-codegraphs"/>
                 
         <!-- concat the license file with the binary license file for the 3rd party deps -->
         <concat destfile="${basedir}/temp/LICENSE">
@@ -1061,6 +1068,14 @@ limitations under the License.
         <antcall target="binary-package-zip"/>
         <antcall target="binary-package-tgz"/>
         <!--<copy todir="${basedir}/out" file="${basedir}/apache-royale-installer-config.xml" />-->
+    </target>
+
+    <target name="stage-codegraphs">
+        <ant dir="${basedir}/frameworks" target="codegraph-index"/>
+        <delete dir="${staging-dir}/frameworks/codegraphs"/>
+        <copy todir="${staging-dir}/frameworks/codegraphs">
+            <fileset dir="${basedir}/frameworks/target/codegraphs"/>
+        </copy>
     </target>
 
 	<target name="copy-gcl-from-goog-home" if="GOOG_HOME">
