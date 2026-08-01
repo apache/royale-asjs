@@ -261,6 +261,15 @@
             </includes>
         </fileSet>
 
+        <!-- Copy public API code graphs staged by the codegraphs profile -->
+        <fileSet>
+            <outputDirectory>frameworks/codegraphs</outputDirectory>
+            <directory>${codegraphs.directory}</directory>
+            <includes>
+                <include>**</include>
+            </includes>
+        </fileSet>
+
         <!-- Copy the js-projects -->
         <fileSet>
             <outputDirectory>frameworks/js/projects</outputDirectory>

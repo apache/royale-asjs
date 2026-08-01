@@ -45,6 +45,7 @@
     <assembly.bin>bin-without-swf.xml</assembly.bin>
     <assembly.dir>dir-without-swf.xml</assembly.dir>
     <assembly.sdk-description>royale-sdk-description.xml</assembly.sdk-description>
+    <codegraphs.directory>${project.build.directory}/no-codegraphs</codegraphs.directory>
   </properties>
 
   <modules>
@@ -674,6 +675,41 @@
   </dependencies>
 
   <profiles>
+    <profile>
+      <id>codegraphs</id>
+      <properties>
+        <codegraphs.directory>${project.build.directory}/codegraphs</codegraphs.directory>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+              <execution>
+                <id>stage-codegraphs</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <target>
+                    <ant antfile="${project.basedir}/../frameworks/build.xml"
+                         target="codegraph-index"
+                         inheritAll="false"/>
+                    <copy todir="${project.build.directory}/codegraphs">
+                      <fileset dir="${project.basedir}/../frameworks/target/codegraphs"/>
+                    </copy>
+                  </target>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
     <profile>
       <id>apache-release</id>
       <build>
