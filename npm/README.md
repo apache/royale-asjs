@@ -41,6 +41,10 @@ node publish.js --type=js-only --pathToTarball=path-to-tgz-file --username=npm-u
 node publish.js --type=js-swf --pathToTarball=path-to-tgz-file --username=npm-username --password=npm-password
 ```
 
+Both release tarballs must contain the generated public API code graphs under
+`royale-asjs/frameworks/codegraphs`, including `index.json` and `mxml.json`.
+The npm publisher streams the supplied tarball unchanged.
+
 For example:
 ```
 node publish.js --type=js-only --pathToTarball="C:\p\os\flexroot\royale\royale-asjs\out\binaries\apache-royale-0.9.0-bin-js.tar.gz" --username=apache-royale-owner --password=shared_in_private

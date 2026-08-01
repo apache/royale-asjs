@@ -259,6 +259,49 @@ Listing of `option-with-` profiles:
 - `option-with-sass-compile`: The Themes contain a lot of Modules, where each contains SASS resources. Compiling all of these on every build would only slow down the build. Especially because the SASS resources are only changed very infrequently. Therefore, the compiled CSS files are checked in. When enabling this profile the checked in CSS resources are replaced by freshly compiled versions, which then can be checked in.
 - `option-with-swf`: Per default the Royale build only builds the JavaScript-only version. This can be used to build web-based applications. If you however wish to build Flash and Air versions, you need to activate this profile in order for also building the Flash enabled versions of all libraries.
 
+# Code Graphs
+
+Royale can generate deterministic JSON code graphs of the public framework API for both JavaScript and SWF targets. The graphs contain public types and members, ASDoc, metadata, inheritance and reference relationships, target-specific APIs, Maven dependencies, and MXML tag mappings.
+
+Generate and validate every framework module with Ant:
+
+```bash
+ant -f frameworks/build.xml codegraphs
+node frameworks/scripts/validate-codegraphs.js
+```
+
+Generate one module, or only rebuild the aggregate indexes:
+
+```bash
+ant -Dcodegraph.module=Basic -f frameworks/build.xml codegraph
+ant -f frameworks/build.xml codegraph-index
+```
+
+The Maven build provides the same graphs through the opt-in `codegraphs` profile. Include `option-with-swf` when building the framework modules so that both target artifacts are available:
+
+```bash
+./mvnw -f frameworks/projects/pom.xml -Pcodegraphs,option-with-swf -DskipTests prepare-package
+./mvnw -f distribution/pom.xml -Pcodegraphs -DskipTests verify
+```
+
+The distribution build attaches the graphs as:
+
+```text
+org.apache.royale.framework:distribution:zip:codegraphs:<version>
+```
+
+Binary SDK and npm distributions place the aggregate tree in `frameworks/codegraphs`. The Maven classifier has the same tree at the archive root. `index.json` lists module coordinates, target dependencies, shard paths, counts, and SHA-256 hashes. `mxml.json` maps MXML namespaces and tags to graph symbols. Graph shards use this layout:
+
+```text
+<version>/<module>/<js|swf>/<module>.json
+```
+
+To verify an extracted aggregate tree independently, run:
+
+```bash
+node frameworks/scripts/verify-codegraph-package.js --root <path-to-codegraphs>
+```
+
 # Using Royale
 
 In order to get started using Royale, you are invited to follow along with the [Quick Start Guide](https://github.com/apache/royale-asjs/wiki/Quick-Start).
