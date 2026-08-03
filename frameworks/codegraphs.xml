@@ -26,6 +26,7 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/local.properties"/>
     <property file="${ROYALE_HOME}/build.properties"/>
+    <property name="node.executable" value="node"/>
 
     <condition property="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js">
         <available file="${ROYALE_HOME}/js/lib/codegraph.jar"/>
@@ -106,7 +107,7 @@
     </target>
 
     <target name="codegraph-index" depends="validate-codegraphs,generate-index-metadata">
-        <exec executable="node" failonerror="true">
+        <exec executable="${node.executable}" failonerror="true">
             <arg value="${basedir}/scripts/generate-codegraph-index.js"/>
             <arg value="--metadata"/>
             <arg value="${basedir}/target/codegraph-index-metadata.tsv"/>
@@ -131,7 +132,7 @@
     </target>
 
     <target name="validate-codegraphs">
-        <exec executable="node" failonerror="true">
+        <exec executable="${node.executable}" failonerror="true">
             <arg value="${basedir}/scripts/validate-codegraphs.js"/>
             <arg value="--root"/>
             <arg value="${basedir}/projects"/>
@@ -141,7 +142,7 @@
     </target>
 
     <target name="validate-codegraph" depends="codegraph">
-        <exec executable="node" failonerror="true">
+        <exec executable="${node.executable}" failonerror="true">
             <arg value="${basedir}/scripts/validate-codegraphs.js"/>
             <arg value="--root"/>
             <arg value="${basedir}/projects"/>
@@ -158,7 +159,7 @@
             <fileset dir="${basedir}/projects/${codegraph.module}" includes="target/codegraph/**/*.json"/>
         </copy>
         <antcall target="codegraph"/>
-        <exec executable="node" failonerror="true">
+        <exec executable="${node.executable}" failonerror="true">
             <arg value="${basedir}/scripts/validate-codegraphs.js"/>
             <arg value="--root"/>
             <arg value="${basedir}/projects"/>
