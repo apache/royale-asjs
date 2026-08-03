@@ -19,6 +19,8 @@
 -->
 <project name="codegraphs" default="codegraphs" basedir=".">
 
+    <property name="codegraph.targets" value="js,swf"/>
+
     <property name="ROYALE_HOME" location=".."/>
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
@@ -112,6 +114,8 @@
             <arg value="${basedir}/projects"/>
             <arg value="--output"/>
             <arg value="${basedir}/target/codegraphs"/>
+            <arg value="--targets"/>
+            <arg value="${codegraph.targets}"/>
         </exec>
     </target>
 
@@ -131,6 +135,8 @@
             <arg value="${basedir}/scripts/validate-codegraphs.js"/>
             <arg value="--root"/>
             <arg value="${basedir}/projects"/>
+            <arg value="--targets"/>
+            <arg value="${codegraph.targets}"/>
         </exec>
     </target>
 

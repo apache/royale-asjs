@@ -25,15 +25,21 @@ function parseArguments(args) {
     const options = {
         metadata: path.resolve(__dirname, "../target/codegraph-index-metadata.tsv"),
         root: path.resolve(__dirname, "../projects"),
-        output: path.resolve(__dirname, "../target/codegraphs")
+        output: path.resolve(__dirname, "../target/codegraphs"),
+        targets: ["js", "swf"]
     };
     for (let index = 0; index < args.length; index++) {
         const argument = args[index];
         if (argument === "--metadata" || argument === "--root" || argument === "--output") {
             options[argument.substring(2)] = path.resolve(args[++index]);
+        } else if (argument === "--targets") {
+            options.targets = args[++index].split(",");
         } else {
             throw new Error(`Unknown argument: ${argument}`);
         }
+    }
+    if (options.targets.length === 0 || options.targets.some(target => target !== "js" && target !== "swf")) {
+        throw new Error(`Unsupported codegraph targets: ${options.targets.join(",")}`);
     }
     return options;
 }
@@ -110,10 +116,10 @@ function main() {
     fs.rmSync(options.output, { recursive: true, force: true });
     fs.mkdirSync(versionRoot, { recursive: true });
 
-    const symbolsByTarget = { js: new Map(), swf: new Map() };
+    const symbolsByTarget = Object.fromEntries(options.targets.map(target => [target, new Map()]));
     const indexModules = modules.map(module => {
         const targets = {};
-        ["js", "swf"].forEach(target => {
+        options.targets.forEach(target => {
             const source = graphPath(options.root, module.name, target);
             const contents = fs.readFileSync(source);
             const graph = JSON.parse(contents.toString("utf8"));
@@ -139,7 +145,7 @@ function main() {
 
     const mxmlTargets = {};
     let unavailableTags = 0;
-    ["js", "swf"].forEach(target => {
+    options.targets.forEach(target => {
         mxmlTargets[target] = [];
         modules.forEach(module => module.namespaces
             .filter(namespace => namespaceSupportsTarget(namespace, target))

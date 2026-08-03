@@ -60,6 +60,7 @@
 
     <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>
+    <royale.codegraph.targets>js</royale.codegraph.targets>
     <royale.debug>true</royale.debug>
     <repo.compiler.options />
 
@@ -409,6 +410,7 @@
       <properties>
         <royale.targets>SWF,JSRoyale</royale.targets>
         <royale.skipAS>false</royale.skipAS>
+        <royale.codegraph.targets>js,swf</royale.codegraph.targets>
       </properties>
       <dependencies>
         <dependency>

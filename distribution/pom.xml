@@ -45,7 +45,7 @@
     <assembly.bin>bin-without-swf.xml</assembly.bin>
     <assembly.dir>dir-without-swf.xml</assembly.dir>
     <assembly.sdk-description>royale-sdk-description.xml</assembly.sdk-description>
-    <codegraphs.directory>${project.build.directory}/no-codegraphs</codegraphs.directory>
+    <codegraphs.directory>${project.build.directory}/codegraphs</codegraphs.directory>
   </properties>
 
   <modules>
@@ -209,6 +209,52 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>stage-codegraphs</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <ant antfile="${project.basedir}/../frameworks/build.xml"
+                     target="codegraph-index"
+                     inheritAll="false">
+                  <property name="codegraph.targets" value="${royale.codegraph.targets}"/>
+                </ant>
+                <delete dir="${project.build.directory}/codegraphs"/>
+                <copy todir="${project.build.directory}/codegraphs">
+                  <fileset dir="${project.basedir}/../frameworks/target/codegraphs"/>
+                </copy>
+              </target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>verify-codegraph-artifact</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <target>
+                <delete dir="${project.build.directory}/codegraphs-verification"/>
+                <unzip src="${project.build.directory}/${distributionFileName}-codegraphs.zip"
+                       dest="${project.build.directory}/codegraphs-verification"/>
+                <exec executable="node" failonerror="true">
+                  <arg value="${project.basedir}/../frameworks/scripts/verify-codegraph-package.js"/>
+                  <arg value="--root"/>
+                  <arg value="${project.build.directory}/codegraphs-verification"/>
+                </exec>
+              </target>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
           <execution>
@@ -220,6 +266,18 @@
             <configuration>
               <descriptors>
                 <descriptor>src/main/assembly/${assembly.bin}</descriptor>
+              </descriptors>
+            </configuration>
+          </execution>
+          <execution>
+            <id>attach-codegraphs</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+            <configuration>
+              <descriptors>
+                <descriptor>src/main/assembly/codegraphs.xml</descriptor>
               </descriptors>
             </configuration>
           </execution>
@@ -675,78 +733,6 @@
   </dependencies>
 
   <profiles>
-    <profile>
-      <id>codegraphs</id>
-      <properties>
-        <codegraphs.directory>${project.build.directory}/codegraphs</codegraphs.directory>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>3.1.0</version>
-            <executions>
-              <execution>
-                <id>stage-codegraphs</id>
-                <phase>prepare-package</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <ant antfile="${project.basedir}/../frameworks/build.xml"
-                         target="codegraph-index"
-                         inheritAll="false"/>
-                    <copy todir="${project.build.directory}/codegraphs">
-                      <fileset dir="${project.basedir}/../frameworks/target/codegraphs"/>
-                    </copy>
-                  </target>
-                </configuration>
-              </execution>
-              <execution>
-                <id>verify-codegraph-artifact</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>run</goal>
-                </goals>
-                <configuration>
-                  <target>
-                    <delete dir="${project.build.directory}/codegraphs-verification"/>
-                    <unzip src="${project.build.directory}/${distributionFileName}-codegraphs.zip"
-                           dest="${project.build.directory}/codegraphs-verification"/>
-                    <exec executable="node" failonerror="true">
-                      <arg value="${project.basedir}/../frameworks/scripts/verify-codegraph-package.js"/>
-                      <arg value="--root"/>
-                      <arg value="${project.build.directory}/codegraphs-verification"/>
-                    </exec>
-                  </target>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-assembly-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-codegraphs</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>single</goal>
-                </goals>
-                <configuration>
-                  <descriptors>
-                    <descriptor>src/main/assembly/codegraphs.xml</descriptor>
-                  </descriptors>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
     <profile>
       <id>apache-release</id>
       <build>

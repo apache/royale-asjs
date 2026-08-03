@@ -62,8 +62,10 @@ function main() {
     if (!index.version || mxml.version !== index.version || !Array.isArray(index.modules)) {
         throw new Error("Codegraph index versions are missing or inconsistent");
     }
-    if (!mxml.targets || !Array.isArray(mxml.targets.js) || !Array.isArray(mxml.targets.swf)) {
-        throw new Error("MXML index must contain JS and SWF target mappings");
+    const targets = mxml.targets && Object.keys(mxml.targets);
+    if (!targets || targets.length === 0 || targets.some(target =>
+        (target !== "js" && target !== "swf") || !Array.isArray(mxml.targets[target]))) {
+        throw new Error("MXML index must contain at least one supported target mapping");
     }
 
     const expectedFiles = new Set(["index.json", "mxml.json"]);
@@ -73,7 +75,7 @@ function main() {
             throw new Error(`Missing or duplicate module name: ${module.name}`);
         }
         moduleNames.add(module.name);
-        ["js", "swf"].forEach(target => {
+        targets.forEach(target => {
             const targetIndex = module.targets && module.targets[target];
             if (!targetIndex || !targetIndex.path || !targetIndex.sha256) {
                 throw new Error(`${module.name} is missing its ${target} graph index`);

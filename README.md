@@ -261,46 +261,30 @@ Listing of `option-with-` profiles:
 
 # Code Graphs
 
-Royale can generate deterministic JSON code graphs of the public framework API for both JavaScript and SWF targets. The graphs contain public types and members, ASDoc, metadata, inheritance and reference relationships, target-specific APIs, Maven dependencies, and MXML tag mappings.
+A Royale code graph is a deterministic JSON description of the public API that the compiler resolves for one target. It records classes, interfaces, functions, members, signatures, ASDoc, metadata, inheritance, type references, Maven dependencies, and MXML tag mappings. Separate JavaScript and SWF graphs accurately represent conditional APIs.
 
-Generate and validate every framework module with Ant:
+Code graphs let editors, documentation generators, API browsers, static-analysis tools, and AI-assisted development tools understand Royale libraries without parsing source code or guessing how imports, inheritance, metadata, or conditional compilation resolve. They describe declarations and type relationships; they are not runtime call graphs and are not deployed with applications.
+
+The standard Maven lifecycle generates JavaScript code graphs. Add `option-with-swf` to generate both targets, and `with-distribution` to package and verify the aggregate classifier:
 
 ```bash
-ant -f frameworks/build.xml codegraphs
-node frameworks/scripts/validate-codegraphs.js
+./mvnw prepare-package
+./mvnw -Poption-with-swf prepare-package
+./mvnw -Pwith-distribution,option-with-swf verify
 ```
 
-Generate one module, or only rebuild the aggregate indexes:
+Ant framework builds provide the same full and focused workflows. The root `binary-release`, `binary-release-jenkins`, and `binary-release-noclean` targets generate and package codegraphs automatically:
 
 ```bash
+ant codegraphs
+ant -f frameworks/build.xml codegraphs
 ant -Dcodegraph.module=Basic -f frameworks/build.xml codegraph
+ant -Dcodegraph.module=Basic -f frameworks/build.xml validate-codegraph
+ant -Dcodegraph.module=Basic -f frameworks/build.xml validate-codegraph-determinism
 ant -f frameworks/build.xml codegraph-index
 ```
 
-The Maven build provides the same graphs through the opt-in `codegraphs` profile. Include `option-with-swf` when building the framework modules so that both target artifacts are available:
-
-```bash
-./mvnw -f frameworks/projects/pom.xml -Pcodegraphs,option-with-swf -DskipTests prepare-package
-./mvnw -f distribution/pom.xml -Pcodegraphs -DskipTests verify
-```
-
-The distribution build attaches the graphs as:
-
-```text
-org.apache.royale.framework:distribution:zip:codegraphs:<version>
-```
-
-Binary SDK and npm distributions place the aggregate tree in `frameworks/codegraphs`. The Maven classifier has the same tree at the archive root. `index.json` lists module coordinates, target dependencies, shard paths, counts, and SHA-256 hashes. `mxml.json` maps MXML namespaces and tags to graph symbols. Graph shards use this layout:
-
-```text
-<version>/<module>/<js|swf>/<module>.json
-```
-
-To verify an extracted aggregate tree independently, run:
-
-```bash
-node frameworks/scripts/verify-codegraph-package.js --root <path-to-codegraphs>
-```
+See [Code Graphs for Framework Developers](CODEGRAPH_FRAMEWORK_DEVELOPMENT.md) for generation, validation, and release procedures. See [Consuming Royale Code Graphs](CODEGRAPH_CONSUMPTION.md) for SDK, npm, Maven, editor, and application-tool integration.
 
 # Using Royale
 

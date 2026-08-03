@@ -94,7 +94,17 @@
           <forceSwcExternalLibraryPath>true</forceSwcExternalLibraryPath>
           <additionalCompilerOptions>${project.compiler.options}</additionalCompilerOptions>
           <targets>${royale.targets}</targets>
+          <skipAS>${royale.skipAS}</skipAS>
         </configuration>
+        <executions>
+          <execution>
+            <id>codegraphs</id>
+            <phase>prepare-package</phase>
+            <goals>
+              <goal>compile-codegraph</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -121,28 +131,5 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
-
-  <profiles>
-    <profile>
-      <id>codegraphs</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.royale.compiler</groupId>
-            <artifactId>royale-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>codegraphs</id>
-                <phase>prepare-package</phase>
-                <goals>
-                  <goal>compile-codegraph</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 
 </project>
