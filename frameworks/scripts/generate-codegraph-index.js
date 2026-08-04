@@ -46,7 +46,7 @@ function parseArguments(args) {
 
 function readMetadata(file) {
     const modules = new Map();
-    const lines = fs.readFileSync(file, "utf8").trim().split("\n");
+    const lines = fs.readFileSync(file, "utf8").trim().split(/\r?\n/);
     lines.forEach((line, lineIndex) => {
         const fields = line.split("\t");
         const kind = fields.shift();
