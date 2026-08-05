@@ -428,7 +428,9 @@ COMPILE::SWF {
                     if ((_kind || kind) == "interface") {
                         //collect.length can expand during the loop below
                         for (i = 0; i < collect.length; i++) {
-                            collect.push.apply(collect, (collect[i].prototype.ROYALE_CLASS_INFO.interfaces || []));
+                            data = collect[i].prototype.ROYALE_CLASS_INFO;
+                            if (!data) continue;
+                            collect.push.apply(collect, (data.interfaces || []));
                         }
                     } else {
                         var superClass:Object = def.superClass_;
@@ -449,7 +451,8 @@ COMPILE::SWF {
                     for (i=0;i<n;i++) {
                         var iface:Object = collect[i];
                         data = iface.prototype.ROYALE_CLASS_INFO;
-                        results[i] = TypeDefinition.getDefinition(data.names[0].qName,data);
+                        if (!data) continue;
+                        results.push(TypeDefinition.getDefinition(data.names[0].qName,data));
                     }
                 }
             }
