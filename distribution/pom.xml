@@ -240,15 +240,13 @@
             </goals>
             <configuration>
               <target>
-                <ant antfile="${project.basedir}/../frameworks/build.xml"
-                     target="codegraph-index"
-                     inheritAll="false">
-                  <property name="codegraph.targets" value="${royale.codegraph.targets}"/>
-                  <property name="node.executable" value="${node.executable}"/>
+                <ant antfile="${project.basedir}/../frameworks/build.xml" target="codegraph-index" inheritAll="false">
+                  <property name="codegraph.targets" value="${royale.codegraph.targets}" />
+                  <property name="node.executable" value="${node.executable}" />
                 </ant>
-                <delete dir="${project.build.directory}/codegraphs"/>
+                <delete dir="${project.build.directory}/codegraphs" />
                 <copy todir="${project.build.directory}/codegraphs">
-                  <fileset dir="${project.basedir}/../frameworks/target/codegraphs"/>
+                  <fileset dir="${project.basedir}/../frameworks/target/codegraphs" />
                 </copy>
               </target>
             </configuration>
@@ -261,13 +259,12 @@
             </goals>
             <configuration>
               <target>
-                <delete dir="${project.build.directory}/codegraphs-verification"/>
-                <unzip src="${project.build.directory}/${distributionFileName}-codegraphs.zip"
-                       dest="${project.build.directory}/codegraphs-verification"/>
+                <delete dir="${project.build.directory}/codegraphs-verification" />
+                <unzip src="${project.build.directory}/${distributionFileName}-codegraphs.zip" dest="${project.build.directory}/codegraphs-verification" />
                 <exec executable="${node.executable}" failonerror="true">
-                  <arg value="${project.basedir}/../frameworks/scripts/verify-codegraph-package.js"/>
-                  <arg value="--root"/>
-                  <arg value="${project.build.directory}/codegraphs-verification"/>
+                  <arg value="${project.basedir}/../frameworks/scripts/verify-codegraph-package.js" />
+                  <arg value="--root" />
+                  <arg value="${project.build.directory}/codegraphs-verification" />
                 </exec>
               </target>
             </configuration>
