@@ -23,7 +23,7 @@ package flexUnitTests.binding.support.bindings.royale.internalmxml.support
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.core.StyledMXMLItemRenderer;
+    import org.apache.royale.jewel.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.util.getLabelFromData;
 	/*import org.apache.royale.jewel.beads.controls.TextAlign;
