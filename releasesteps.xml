@@ -678,6 +678,9 @@
             <param name="swcname" value="Storage" />
         </antcall>
         <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Style" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
             <param name="swcname" value="Text" />
         </antcall>
         <antcall target="sign-swc-artifacts" >
