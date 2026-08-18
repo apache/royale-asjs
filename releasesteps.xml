@@ -1122,7 +1122,7 @@
     </target>
 
     <target name="upload-missing-signatures" depends="get-artifact-folder">
-        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+        <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
             <arg value="wagon:upload" />
             <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
             <arg value="-Dwagon.includes=**/Jewel-*Community-Theme/**/*.asc" />
@@ -1132,7 +1132,7 @@
             <arg value="_releasesteps-upload-release-to-staging" />
             <arg value="-N"/>
         </exec>
-        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+        <exec executable="${mvn}" dir="${basedir}" failonerror="true" >
             <arg value="wagon:upload" />
             <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
             <arg value="-Dwagon.includes=**/distribution-*-codegraphs.zip.asc" />
