@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-blog</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>BE0012_Using_external_javascript_libraries_in_Apache_Royale</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0012: Using external javascript libraries in Apache Royale</name>
@@ -103,21 +103,21 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Sunflower-Theme</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -131,14 +131,14 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -146,4 +146,4 @@
     </profile>
   </profiles>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2026-08-17T21:53:33Z</project.build.outputTimestamp></properties></project>

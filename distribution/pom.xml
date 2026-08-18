@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>distribution</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Distribution</name>
@@ -48,7 +48,7 @@
     <codegraphs.directory>${project.build.directory}/codegraphs</codegraphs.directory>
     <node.install.directory>${project.build.directory}/node-runtime</node.install.directory>
     <node.executable>${node.install.directory}/node/node</node.executable>
-  </properties>
+  <project.build.outputTimestamp>2026-08-17T21:53:33Z</project.build.outputTimestamp></properties>
 
   <modules>
     <module>jars/compc</module>
@@ -352,259 +352,259 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Ace</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Charts</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>CreateJS</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Crux</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>DragDrop</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Effects</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Express</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Flat</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
  	  <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>FontAwesome</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>GoogleMaps</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML5</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Icons</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JewelTheme</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JQuery</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>MaterialDesignLite</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Mobile</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>MXRoyale</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Reflection</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>RoyaleSite</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>RoyaleUnit</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>RoyaleUnitUI</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>SparkRoyale</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Storage</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Style</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Text</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>TLF</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>XML</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -686,7 +686,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Fonts</artifactId>
-      <version>1.0.1-SNAPSHOT</version>
+      <version>1.0.0</version>
       <type>war</type>
     </dependency>
 
@@ -832,217 +832,217 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Binding</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Charts</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Collections</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>CreateJS</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Crux</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>DragDrop</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Effects</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Express</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Flat</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>FontAwesome</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Formatters</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>GoogleMaps</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Graphics</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>HTML</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>HTML5</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Icons</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>JewelTheme</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>JQuery</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Language</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>MaterialDesignLite</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Mobile</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>MXRoyale</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Network</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Reflection</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>RoyaleSite</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>RoyaleUnit</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>RoyaleUnitUI</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>SparkRoyale</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Storage</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Style</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Text</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>TLF</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>XML</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
         </dependency>
 
@@ -1050,7 +1050,7 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>BasicTheme</artifactId>
-          <version>1.0.1-SNAPSHOT</version>
+          <version>1.0.0</version>
           <type>swc</type>
           <classifier>js</classifier>
         </dependency>
