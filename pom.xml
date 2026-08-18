@@ -426,10 +426,6 @@
 
     <profile>
       <id>_reproducible-build</id>
-      <properties>
-          <repo.compiler.options>
-          -metadata.date=${project.build.outputTimestamp};-metadata.dateFormat=yyyy-MM-dd'T'HH:mm:ss'Z'</repo.compiler.options>
-      </properties>
       <activation>
         <property>
           <name>project.build.outputTimestamp</name>
@@ -443,7 +439,8 @@
             <version>${project.royale.compiler.version}</version>
             <extensions>true</extensions>
             <configuration>
-              <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>
+              <reproducibleBuildTimestamp>${project.build.outputTimestamp}</reproducibleBuildTimestamp>
+              <reproducibleBuildTimestampFormat>yyyy-MM-dd'T'HH:mm:ss'Z'</reproducibleBuildTimestampFormat>
             </configuration>
           </plugin>
         </plugins>
