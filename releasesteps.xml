@@ -1114,6 +1114,35 @@
             unless="release.version"/>
         <antcall target="uploadSWCs" />
     </target>
+
+    <target name="Release_Step_011_Upload_Missing_Signatures_Get_Credentials" depends="get-artifact-folder,get-username,get-password">
+        <fail message="release.version not specified"
+            unless="release.version"/>
+        <antcall target="upload-missing-signatures" />
+    </target>
+
+    <target name="upload-missing-signatures" depends="get-artifact-folder">
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="wagon:upload" />
+            <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
+            <arg value="-Dwagon.includes=**/Jewel-*Community-Theme/**/*.asc" />
+            <arg value="-Drm.username=${apache.username}" if:set="${apache.username}"/>
+            <arg value="-Drm.password=${apache.password}" if:set="${apache.password}"/>
+            <arg value="-P" />
+            <arg value="_releasesteps-upload-release-to-staging" />
+            <arg value="-N"/>
+        </exec>
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="wagon:upload" />
+            <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
+            <arg value="-Dwagon.includes=**/distribution-*-codegraphs.zip.asc" />
+            <arg value="-Drm.username=${apache.username}" if:set="${apache.username}"/>
+            <arg value="-Drm.password=${apache.password}" if:set="${apache.password}"/>
+            <arg value="-P" />
+            <arg value="_releasesteps-upload-release-to-staging" />
+            <arg value="-N"/>
+        </exec>
+    </target>
     
     <target name="uploadSWCs" depends="get-artifact-folder" description="upload all SWCs except Jewel Themes">
         <fail message="release.version not specified"
