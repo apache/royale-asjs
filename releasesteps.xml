@@ -482,6 +482,9 @@
 	<antcall target="sign-file" >
 		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-bin.zip" />
 	</antcall>
+    <antcall target="sign-file" >
+        <param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-codegraphs.zip" />
+    </antcall>
 	<antcall target="sign-file" >
 		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-src.tar.gz" />
 	</antcall>
@@ -1024,6 +1027,42 @@
         </antcall>
         <antcall target="sign-theme-artifacts" >
             <param name="swcname" value="MXTheme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-Flat-Primary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-Flat-Secondary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-Flat-Emphasized-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-Flat-Primary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-Flat-Secondary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-Flat-Emphasized-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Community-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Community-Theme" />
         </antcall>
     </target>
     
