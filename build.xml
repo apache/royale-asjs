@@ -1479,7 +1479,8 @@ limitations under the License.
     </target>
 
     <target name="mustellaresultsparser" unless="skipTests">
-        <java classname="mustella.MustellaResultsParser" failonerror="true">
+        <!-- fork: unforked <java> needs a SecurityManager to trap System.exit, which JDK 18+ refuses -->
+        <java classname="mustella.MustellaResultsParser" fork="true" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
                 <pathelement location="${ROYALE_HOME}/mustella/target/classes"/>
