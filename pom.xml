@@ -538,6 +538,7 @@
       </activation>
       <properties>
         <wagon.includes>**</wagon.includes>
+        <wagon.url>https://repository.apache.org/service/local/staging/deploy/maven2</wagon.url>
       </properties>
       <modules><!-- only run on top-level, not for each module -->
       </modules>
@@ -550,7 +551,7 @@
             <configuration>
               <includes>${wagon.includes}</includes>
               <serverId>apache.releases.https</serverId>
-              <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
+              <url>${wagon.url}</url>
             </configuration>
           </plugin>
         </plugins>
