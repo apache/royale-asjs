@@ -1,3 +1,34 @@
+This RELEASE_NOTES file summarizes the release at the level of the whole
+package. The individual folders (royale-compiler, royale-typedefs, royale-asjs)
+each have their own RELEASE_NOTES file with the detailed changes for that
+folder.
+
+Apache Royale 1.0.0
+===================
+
+- royale-compiler
+  - Added arrow function syntax and TypeScript-style function type expressions.
+  - Added the js-include-script, js-include-css and js-include-asset options,
+    plus the matching [JSIncludeScript], [JSIncludeCSS] and [JSIncludeAsset]
+    metadata.
+  - Added support for more modern HTML elements and CSS pseudo-classes.
+  - Added support for embedding TTF/OTF fonts with [Embed] when targeting SWF.
+  - Many other fixes.
+
+- royale-typedefs
+  - Fixed warnings for returning or assigning null to types that are not
+    allowed to be null.
+  - Added Pretext 0.0.8 typedefs as royale-typedefs-pretext.
+
+- royale-asjs
+  - Added a new experimental Style component library with utility-first CSS
+    style beads, runtime color generation and skinning support.
+  - Additions across Basic, Core, Icons, Jewel and Network, including
+    CompoundBead, SvgIcon, an Audio component, and XMLResult/JSONResult beads
+    for HTTPService.
+  - ASDoc, Ant build and RoyaleUnit improvements.
+  - Many other fixes.
+
 Apache Royale 0.9.12
 ====================
 
