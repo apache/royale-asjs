@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>themes</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
 
   <artifactId>Jewel-Light-Flat-Secondary-Community-Theme</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Themes: Jewel-Light-Flat-Secondary-Community-Theme</name>
@@ -83,4 +83,4 @@
       </build>
     </profile>
   </profiles>
-<properties /></project>
+<properties><project.build.outputTimestamp>2026-08-21T09:52:30Z</project.build.outputTimestamp></properties></project>
