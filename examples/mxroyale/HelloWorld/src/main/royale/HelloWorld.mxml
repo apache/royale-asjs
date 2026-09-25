@@ -31,6 +31,6 @@ limitations under the License.
 		
 	</fx:Style>
 
-	<mx:Label text="Hello World" x="20" y="20" />
+	<mx:Label text="Hello World " x="20" y="20" />
         
 </mx:Application>
