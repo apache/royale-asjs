@@ -937,9 +937,11 @@ limitations under the License.
              Source files have Windows line endings.  Most UNIX editors can handle
              either type of line endings but the converse is often not true.             
         -->
-        <fixcrlf srcdir="${staging-dir}/frameworks" eol="crlf" fixlast="false">
+        <!-- Font files are binary and must not pass through text conversion. -->
+        <fixcrlf srcdir="${staging-dir}/frameworks" eol="crlf" fixlast="false" encoding="UTF-8">
             <exclude name="bin/**"/>
             <exclude name="**/assets/**"/>
+            <exclude name="**/*.eot"/>
             <exclude name="**/*.fla"/>
             <exclude name="**/*.flv"/>
             <exclude name="**/*.gif"/>
@@ -950,6 +952,10 @@ limitations under the License.
             <exclude name="**/*.sh"/>
             <exclude name="**/*.swf"/>
             <exclude name="**/*.swc"/>
+            <exclude name="**/*.ttf"/>
+            <exclude name="**/*.otf"/>
+            <exclude name="**/*.woff"/>
+            <exclude name="**/*.woff2"/>
         </fixcrlf>
                
         <!-- 

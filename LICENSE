@@ -426,3 +426,38 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+--------------------------------------------------------------------------------
+
+BUNDLED THIRD-PARTY ASSETS
+
+Paths below are relative to the royale-asjs folder.
+
+This product bundles Lato fonts under the SIL Open Font License 1.1.
+For details see:
+frameworks/themes/JewelTheme/src/main/assembly/third-party/lato/LICENSE-lato
+
+This product bundles Font Awesome Free 5.15.4 fonts under the SIL Open Font
+License 1.1 and CSS code under the MIT License. For details see:
+frameworks/projects/Icons/src/main/assembly/third-party/font-awesome/5.15.4/LICENSE-fontawesome
+
+This product bundles Font Awesome 4.7.0 fonts under the SIL Open Font
+License 1.1 and CSS code under the MIT License. For details see:
+frameworks/projects/RoyaleSite/src/main/assembly/third-party/font-awesome/LICENSE-fontawesome
+
+This product bundles Hind Siliguri fonts under the SIL Open Font License 1.1.
+For details see:
+frameworks/projects/RoyaleSite/src/main/assembly/third-party/hind-siliguri/LICENSE-HindSiliguri.txt
+
+This product bundles Signika fonts under the SIL Open Font License 1.1.
+For details see:
+frameworks/projects/RoyaleSite/src/main/assembly/third-party/signika/LICENSE-Signika
+
+This product bundles highlight.js 9.12.0 under the BSD 3-Clause License.
+For details see:
+examples/blog/BE0012_Using_external_javascript_libraries_in_Apache_Royale/src/main/assembly/third-party/highlight.js/9.12.0/LICENSE-highlightjs
+examples/jewel/TourDeJewel/src/main/assembly/third-party/highlight.js/9.12.0/LICENSE-highlightjs
+
+This product bundles dialog-polyfill 0.4.9 under the BSD 3-Clause License.
+For details see:
+frameworks/projects/Basic/src/main/assembly/third-party/dialog-polyfill/0.4.9/LICENSE-dialog-polyfill
