@@ -461,3 +461,11 @@ examples/jewel/TourDeJewel/src/main/assembly/third-party/highlight.js/9.12.0/LIC
 This product bundles dialog-polyfill 0.4.9 under the BSD 3-Clause License.
 For details see:
 frameworks/projects/Basic/src/main/assembly/third-party/dialog-polyfill/0.4.9/LICENSE-dialog-polyfill
+
+This product bundles Material Icons 4.0.0 fonts under the Apache License 2.0.
+For details see:
+frameworks/projects/Icons/src/main/assembly/third-party/material-icons/4.0.0/LICENSE-material-icons
+
+This product bundles web-animations-js 2.3.1 under the Apache License 2.0.
+For details see:
+frameworks/projects/Jewel/src/main/assembly/third-party/web-animations/2.3.1/LICENSE-web-animations

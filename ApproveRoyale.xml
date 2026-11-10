@@ -507,6 +507,7 @@
                 <exclude name="royale-asjs/frameworks/libs/RoyaleUnitUI.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/SparkRoyale.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Storage.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Style.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/TLF.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Text.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/XML.swc"/>
@@ -543,6 +544,7 @@
                 <exclude name="royale-asjs/frameworks/js/libs/RoyaleUnitUIJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/SparkRoyaleJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/StorageJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/StyleJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TLFJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TextJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/XMLJS.swc"/>
@@ -564,6 +566,7 @@
                 <exclude name="royale-asjs/js/libs/js.swc"/>
                 <exclude name="royale-asjs/js/libs/node.swc"/>
                 <exclude name="royale-asjs/js/libs/ace-1.2.3.swc"/>
+                <exclude name="royale-asjs/js/libs/pretext.swc"/>
 
                 <exclude name="royale-asjs/js/lib/args4j.jar"/>
                 <exclude name="royale-asjs/js/lib/asdoc.jar"/>
@@ -584,6 +587,7 @@
                 <exclude name="royale-asjs/js/lib/royaleunit/java-websocket.jar"/>
                 <exclude name="royale-asjs/js/lib/royaleunit/dom4j.jar"/>
                 <exclude name="royale-asjs/js/lib/royaleunit/dom4j-LICENSE.txt"/>
+                <exclude name="royale-asjs/js/lib/codegraph.jar"/>
                 <exclude name="royale-asjs/lib/adt.jar"/>
                 <exclude name="royale-asjs/lib/compc.jar"/>
                 <exclude name="royale-asjs/lib/compiler-asc.jar"/>
