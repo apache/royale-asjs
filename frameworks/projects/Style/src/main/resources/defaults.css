@@ -116,6 +116,10 @@ CardActions
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.CardActionsSkin");
 }
+Loading
+{
+	IStyleSkin: ClassReference("org.apache.royale.style.skins.LoadingSkin");
+}
 Modal
 {
 	IStyleSkin: ClassReference("org.apache.royale.style.skins.ModalSkin");
