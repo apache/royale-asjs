@@ -19,6 +19,7 @@
 package flexUnitTests
 {
     import flexUnitTests.language.*
+    import flexUnitTests.collections.*
     
     [Suite]
     [RunWith("org.apache.royale.test.runners.SuiteRunner")]
@@ -28,6 +29,9 @@ package flexUnitTests
         //language tests
         public var testArrayLikeGetSet:LanguageTesterTestArraylikeGetSet;
         public var testArrayLikeForEach:LanguageTesterTestForEach;
+
+        //collection tests
+        public var testArrayListViewRemoval:ArrayListViewRemovalTest;
         
       
     }

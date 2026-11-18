@@ -1038,28 +1038,40 @@ package org.apache.royale.collections
             }
             l = removedItems.length;
             if (l) {
-                while (l--) {
-                    var localEvent:CollectionEvent = removedItems[l].cloneEvent();
-                    removedItems[l] = localEvent;
-                    localEvent.index = getItemIndex(localEvent.item);
+                // The items are already gone from the list. With a local index (a filter or a
+                // sort) the view still holds them until it refreshes, so their view positions
+                // come from it. Without one the view is the list, and the list's own indices
+                // (in the order the removals happened) are already the view's.
+                const hadLocalIndex:Boolean = localIndex != null;
+                var localEvent:CollectionEvent;
+                var viewEvents:Array = [];
+                for (i = 0; i < l; i++) {
+                    localEvent = removedItems[i].cloneEvent();
+                    if (hadLocalIndex) {
+                        localEvent.index = localIndex.indexOf(localEvent.item);
+                        //not in the view (e.g. filtered out before the filter last changed)
+                        if (localEvent.index == -1) continue;
+                    }
+                    viewEvents.push(localEvent);
                 }
+                if (hadLocalIndex) {
+                    // highest first: removing one then leaves the positions of the rest unchanged
+                    viewEvents.sort(function(event1:CollectionEvent, event2:CollectionEvent):int{return event1.index < event2.index ? 1 : -1});
+                }
+
                 var localUpdate:Boolean;
                 if (withRefresh || !localIndex) {
                     internalRefresh(false, false);
                 } else {
                     localUpdate = true;
                 }
-                
-                removedItems.sort(function(event1:CollectionEvent, event2:CollectionEvent):int{return event1.index < event2.index ? 1 : -1});
-                var offset:int = 0;
-                while (removedItems.length) {
-                    localEvent = removedItems.shift();
-                    localEvent.index =- offset;
+
+                while (viewEvents.length) {
+                    localEvent = viewEvents.shift();
                     if (localUpdate) {
                         localIndex.splice(localEvent.index, 1);
                     }
                     dispatchEvent(localEvent);
-                    offset++;
                 }
                 
                 lengthChanged = true;
