@@ -27,7 +27,7 @@
     "fs-extra": "5.0.0",
     "http": "0.0.0",
     "livereload": "0.6.3",
-    "morgan": "1.9.0",
+    "morgan": "1.9.1",
     "node-http-server": "8.1.2",
     "open": "0.0.5",
     "reload": "2.2.2",
